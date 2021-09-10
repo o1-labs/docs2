@@ -15,6 +15,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     organizationName: "o1-labs",
     projectName: "docs2",
 
+    i18n: {
+      defaultLocale: "en",
+      locales: ["en", "fr", "ru"],
+    },
+
     presets: [
       [
         "@docusaurus/preset-classic",
@@ -49,7 +54,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           items: [
             {
               type: "doc",
-              docId: "introduction",
+              docId: "intro",
               position: "left",
               label: "Docs",
             },
@@ -60,6 +65,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               label: "Examples",
             },
             { to: "/blog", label: "Blog", position: "left" },
+            {
+              type: "localeDropdown",
+              position: "right",
+            },
             {
               href: "https://github.com/MinaProtocol/mina",
               label: "GitHub",
