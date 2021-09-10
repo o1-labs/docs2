@@ -4,9 +4,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react';
-import clsx from 'clsx';
-import styles from './HomepageFeatures.module.css';
+import React from "react";
+import clsx from "clsx";
+import styles from "./HomepageFeatures.module.css";
 
 type FeatureItem = {
   title: string;
@@ -16,40 +16,49 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    title: "Easily Accessible, Now & Always",
+    image: "/img/light_chain.png",
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Other blockchain protocols are so heavy they require intermediaries to
+        run nodes, recreating the same old power dynamics. But Mina is light, so
+        anyone can connect peer-to-peer and quickly sync and verify the chain.
+        Built on a consistent-sized cryptographic proof, the blockchain will
+        stay accessible—even as it scales.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    image: '/img/undraw_docusaurus_tree.svg',
+    title: "Truly Decentralized, with Every User Acting as a Full Node",
+    image: "/img/private_powerful.png",
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        With Mina, anyone who's syncing the chain is also validating
+        transactions like a full node. Mina's design means any participant can
+        take part in proof-of-stake consensus, have access to strong
+        censorship-resistance and secure the blockchain.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    image: '/img/undraw_docusaurus_react.svg',
+    title: "Connecting Crypto to the Real World",
+    image: "/img/programmable_money.png",
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Other blockchain protocols don’t interact with the internet, limiting
+        their applications’ scope and utility. But Mina’s Snapps can privately
+        interact with any website and access verified real world data for use
+        on-chain. So developers can leverage the world’s information in
+        computing and decision-making to change the way we live and work —
+        without ever compromising the privacy of users' sensitive data.
       </>
     ),
   },
 ];
 
-function Feature({title, image, description}: FeatureItem) {
+function Feature({ title, image, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx("col col--4")}>
       <div className="text--center">
         <img className={styles.featureSvg} alt={title} src={image} />
       </div>

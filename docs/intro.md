@@ -4,34 +4,18 @@ title: Introduction
 description: Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly.
 ---
 
-# Tutorial Intro
+# Overview
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Here's where you'll find all the documentation for the whole process of getting up and running with Mina.
 
-## Getting Started
+## What is Mina?
 
-Get started by **creating a new site**.
+Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb (the size of a few tweets). This means participants can quickly sync and verify the network.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+This breakthrough is made possible due to zk-SNARKs - a type of succinct cryptographic proof. Each time a Mina node produces a new block, it also generates a SNARK proof verifying that the block was valid. All nodes can then store the small proof, as opposed to the entire chain. By not having to worry about block size, the Mina protocol enables a blockchain that is decentralized at scale.
 
-## Generate a new site
+## How does Mina work?
 
-Generate a new Docusaurus site using the **classic template**:
+How does a ‘succinct blockchain’ work? Read our [technical white paper](https://docs.minaprotocol.com/static/pdf/technicalWhitepaper.pdf) to learn more about our cryptographic preliminaries and the succinct blockchain construction used in Mina.
 
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+Check out our [economics white paper](https://docs.minaprotocol.com/static/pdf/economicsWhitepaper.pdf) to learn about the roles within Mina Protocol, the incentive design and the monetary policy.
