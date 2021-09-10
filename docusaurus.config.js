@@ -49,13 +49,19 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           items: [
             {
               type: "doc",
-              docId: "intro",
+              docId: "introduction",
               position: "left",
-              label: "Tutorial",
+              label: "Docs",
+            },
+            {
+              type: "doc",
+              position: "left",
+              docId: "examples/overview",
+              label: "Examples",
             },
             { to: "/blog", label: "Blog", position: "left" },
             {
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/MinaProtocol/mina",
               label: "GitHub",
               position: "right",
             },
@@ -110,6 +116,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           ],
           copyright: `Copyright © ${new Date().getFullYear()} Mina Foundation.`,
         },
+
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
