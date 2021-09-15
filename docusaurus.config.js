@@ -131,7 +131,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         },
         algolia: {
           appId: process.env.ALGOLIA_APP_ID,
-          appId: process.env.ALGOLIA_API_KEY,
+          apiKey: process.env.ALGOLIA_API_KEY,
           indexName: "mina",
         },
       }),
