@@ -1,3 +1,4 @@
+require("dotenv").config();
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
@@ -127,6 +128,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
+        },
+        algolia: {
+          appId: process.env.ALGOLIA_APP_ID,
+          appId: process.env.ALGOLIA_API_KEY,
+          indexName: "mina",
         },
       }),
   }
