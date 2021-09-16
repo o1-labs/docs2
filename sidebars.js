@@ -35,5 +35,10 @@ module.exports = {
         "examples/troubleshooting",
       ],
     },
+    {
+      type: "category",
+      label: "More Examples",
+      items: ["examples/getting-started"],
+    },
   ],
 };
