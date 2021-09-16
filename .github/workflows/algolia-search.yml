@@ -23,7 +23,7 @@ jobs:
         with:
           deployment-url: ${{ env.VERCEL_DEPLOYMENT_URL }}
           timeout: 20
-      - name: Displays the deployment name (example on how to read information about the deployment)
+      - name: Displays the deployment name
         run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
   algolia-search:
     runs-on: ubuntu-latest
