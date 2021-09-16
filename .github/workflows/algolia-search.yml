@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Retrieve deployment URL
-        run: "echo VERCEL_DEPLOYMENT_URL=docs2-minadocs.vercel.app >> $GITHUB_ENV"
+        run: "echo VERCEL_DEPLOYMENT_URL=docs2-seven.vercel.app >> $GITHUB_ENV"
       - uses: UnlyEd/github-action-await-vercel@v1.1.0
         id: await-vercel
         env:
@@ -23,6 +23,8 @@ jobs:
         with:
           deployment-url: ${{ env.VERCEL_DEPLOYMENT_URL }}
           timeout: 20
+      - name: Displays the deployment name (example on how to read information about the deployment)
+        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
   algolia-search:
     runs-on: ubuntu-latest
     needs: [wait-for-vercel-deployment]
