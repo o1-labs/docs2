@@ -13,8 +13,7 @@ jobs:
   wait-for-vercel-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for Vercel to deploy
-        run: sleep 30s
+      - run: sleep 30s
         shell: bash
   algolia-search:
     runs-on: ubuntu-latest
