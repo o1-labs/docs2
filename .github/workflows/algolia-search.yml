@@ -13,7 +13,7 @@ jobs:
   wait-for-vercel:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 30s
+      - run: sleep 120s
         shell: bash
   algolia-search:
     runs-on: ubuntu-latest

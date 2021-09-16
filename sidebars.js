@@ -32,6 +32,7 @@ module.exports = {
         "examples/mina-faq",
         "examples/mina-glossary",
         "examples/exchange-faq",
+        "examples/troubleshooting",
       ],
     },
   ],
