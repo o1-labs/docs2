@@ -13,7 +13,6 @@ jobs:
   algolia-search:
     runs-on: ubuntu-latest
     steps:
-      - name: "Update Algolia Search Index"
       - uses: actions/checkout@v2
       - uses: darrenjennings/algolia-docsearch-action@master
         with:
