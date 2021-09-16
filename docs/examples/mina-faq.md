@@ -1,0 +1,169 @@
+# FAQ
+
+## Testnet
+
+#### Do I need any specific hardware?
+
+Currently, a 8-core processor and 16 GB of RAM are the minimum requirements.
+
+#### What about software?
+
+You can download all the software required to run a Mina node here. Right now, we have builds that work on macOS, as well as Debian 9 and Ubuntu 18.04. You can also [build from source](https://github.com/minaprotocol/mina) or run via Docker /> for other unsupported systems.
+
+#### What can I do on the Mina network?
+
+Any node can send and receive transactions on the Mina network. Additionally, any node can choose to be a "Node operator". Node operators play two specific roles:
+
+1. Block Producer - this is analogous to being a Bitcoin "miner" or a "validator" in other proof-of-stake networks. By staking mina, you can be selected to produce a block and win the block reward
+
+2. Snark Worker - this job is what helps compress data in Mina's network. The snark worker nodes generate proofs of transactions, and the block producer buys these proofs on the network (we call it a "snarketplace" :) - thus, the snark worker gets rewarded a bit of the block reward for their efforts.
+
+#### What is the point of a testnet?
+
+The Mina testnet's goal is to improve Mina's stability, improve the software through bug fixes and addressing user experience, and to test the economic incentive design in Mina. By participating in the testnet, you get to be the first participants in the Mina protocol, and help develop it from ground zero.
+
+#### My daemon crashed -- where should I share the error log?
+
+First, check out [Github issues](https://github.com/minaprotocol/mina/issues) to see if this is a known issue. If the error you experienced is a new issue, file a Github issue with the appropriate tags (daemon, bug). Mina developers will triage the issue and fix it in a future sprint -- thanks for your help!
+
+#### How can I report other issues / get in touch with the development team?
+
+- The Mina community's live discussion channel is the [Discord server](https://bit.ly/MinaDiscord)
+- You can also create Github issues: https://github.com/minaprotocol/mina/issues
+- If you need to get in touch, you can submit a ticket via the [Mina Support chat](https://support.minaprotocol.com/).
+
+#### Is there a block explorer?
+
+Yes, check out these block explorers:
+
+https://minaexplorer.com/
+
+https://mina.bitfly.at/
+
+## General Questions
+
+#### What consensus algorithm does Mina use?
+
+Mina's consensus mechanism is an implementation of Ouroboros Proof-of-Stake. Due to Mina's unique compressed blockchain, certain aspects of the algorithm have diverged from the Ouroboros papers, and the version Mina uses is called Ouroboros Samisika. Stay tuned for more details on Ouroboros Samisika and some technical writeups on its details and implementation.
+
+#### How does Mina achieve scalability?
+
+Mina achieves scalability through the use of recursive zk-SNARKs. By generating a proof that attests to the validity of historic blockchain states, Mina can keep the blockchain size fixed. This allows for increased throughput due to block size limits not being as taxing on the network, thereby increasing the scalability of the network.
+
+#### Why did you develop a new protocol, rather than augmenting existing cryptocurrencies?
+
+The reason for developing a new protocol instead of offering services to other blockchains is because adding SNARKs after the fact to a Layer 1 project is not trivial. Even basic operations need to be optimized for performance inside a SNARK, and existing implementations are not able to be retrofit as such. If we look at hashing functions for example, SHA256 (used by Bitcoin) or Keccak (used by Ethereum) are extremely expensive inside a SNARK circuit, but Poseidon (what Mina uses) is optimized for performance. This and many other technical considerations make it infeasible to easily add recursive SNARKs to existing Layer 1’s, without entirely overhauling the base protocol.
+
+#### How does Mina verify the current state of the chain without having historical data? How do you audit a transaction if you only keep a proof of the blockchain?
+
+The average user does not need to know the entire transaction history. For example, when you make a purchase using a dollar, you also don't need to know where that dollar came from and how it was spent before arriving in your wallet. Other blockchains depend on the transaction history to verify that the current state is valid. Mina is using zk-SNARKs to prove that (see [this video](https://www.youtube.com/watch?v=eWVGATxEB6M) where co-founder Izaak Meckler explains Mina's recursive use of zk-SNARKs). This enables Mina to become the world's lightest blockchain and to always be accessible for all.
+
+For cases where a user wants to prove the inclusion of past transactions, Mina has a feature called the receipt chain. Each account has its own receipt chain, represented in the current state by a hash. When a user sends a transaction from an account, that transaction modifies the receipt chain of the account, to be the hash of the previous receipt chain, and the new transaction (a merkle list). This allows users to prove a particular transaction was sent from their account.
+
+For programs, Mina uses a different programming paradigm than other chains - instead of being able to reference past history, you can only reference the current state. This is akin to a filesystem that allows writing, deleting, and overwriting data, rather than the “append only” filesystem seen in the usual blockchain. This is intentional, so that Mina will always be lightweight, and sustainable - once the proof is available to stand in for the history, storing the history is more for archival or reference purposes, rather than security or necessary use.
+
+The programming paradigm in Mina will be designed to reflect this - right now Mina has minimal data per account. Programs storing more data will have to pay some amount for that data, likely when added with something like state rent.
+
+Clients that do seek to have the full archival history can operate as archive nodes, to store the full history as well. However, because unlike other blockchains the full history isn’t necessary for any actions that can be performed on chain, these are more for data analysis purposes than anything else.
+
+#### Will you require a trusted setup?
+
+No! Mina uses a [Pickles SNARK](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250), which requires no trusted setup.
+
+#### Does Mina support smart contracts? If so, what smart contracting languages does it support?
+
+See the documentation for Snapps, Mina's Snarkified applications.
+
+#### Does Mina support shielded transactions, like in Zcash?
+
+No, Mina does not natively implement privacy features at the moment. However, privacy is a key consideration for cryptocurrencies, and is also on the development roadmap.
+
+#### Can I run the Mina daemon as a service
+
+See here for information about using launchd or systemd with mina.
+
+## Block Producers
+
+#### How can I verify that I am indeed producing blocks?
+
+(Via the CLI):
+Execute `mina client status`
+
+As output, you should see a block of text, there will be a line similar to this if your Block Producer is running:
+`Block producers running: 1 (B62qrPN5Y5yq8kGE3FbVK...)`
+
+If your Block Producer has won a slot, you will see something like this:
+`Next block will be produced in: in 17.52m`
+
+(Via the Logs):
+The following text appears each time the daemon produces a block:
+
+`Producing new block with parent $breadcrumb`
+
+#### I produced a block, why wasn't it selected for the _Canonical Chain_?
+
+Due to a property of the Ouroboros Samisika consensus protocol, it's entirely possible that more than one block is produced in a particular slot. The network resolves the short-lived forks and will consolidate onto one block per slot by random selection.
+
+Below is a visualization of the Mina Blockchain:
+
+## SNARKs and Snark Workers
+
+#### If I run a Snark Worker, how do I get paid for my SNARKs that I generate?
+
+Block producers (the validators who add new blocks to the blockchain) are required to buy SNARKs from the network (or from what we call the Snarketplace) and will pay out some of their block reward as fees to the snark workers who generated SNARKs. This creates a secondary incentive mechanism in the network to reward nodes that help compress transactions.
+
+#### Is generating SNARKs similar to Proof-of-Work (PoW) mining?
+
+No, they are different in several ways:
+
+- SNARK work is deterministic, while PoW mining requires randomly calculating hashes to try and solve a puzzle. There is no luck element in SNARK work — if a snark worker wants to generate a SNARK of a transaction, they only need to generate the proof once. This means SNARK work is much less expensive and environmentally wasteful, as the compute is all spent towards a productive goal.
+- There is no difficulty increase for SNARK work, as there is with PoW mining. In fact, as SNARK constructions, and proof generation times improve, the difficulty may actually decrease.
+- SNARK work is not directly involved in consensus. Snark workers play no role in determining the next state of the blockchain. Their role is to simply generate SNARKs of transactions observed in the network
+- As a snark worker, there is no requirement for uptime. PoW miners need to run their rigs non-stop to ensure they don't miss out on a potential block. Snark workers can come online and offline as they please — it is more like Uber, where there will always be work to be done, and nobody needs to say ahead of time when they want to work.
+
+#### Why have my SNARKs not been included? (A.K.A. How should I price my SNARKs?)
+
+Even though your SNARK Worker might be producing SNARKs at a breakneck pace, if someone else produces a cheaper proof for a particular job you have already completed, their SNARK would be preferred due to its lower fee.
+
+Pricing your SNARKs is a delicate balance between the cost of compute, the market environment (demand for SNARKs), your SNARK throughput, and the speed at which each of your SNARK Worker processes can produce SNARKs. Sometimes, it might even be economically prudent to turn off your SNARK Worker altogether until the market improves.
+
+#### Will Snark Workers require more storage and computing power over time? What about compared to Mina full nodes?
+
+Snark workers will not need more storage or computing power over time. Snark workers simply query the mempool for pending transactions requiring Snark proofs, and then generate said proof -- this does not require syncing historical data. In addition, the underlying proving cost of Snark work doesn’t get more expensive with time.
+
+If we are comparing Snark worker nodes with full nodes on Mina, then yes Snark workers will benefit from specialized hardware as generating SNARK proofs is currently compute intensive. Again, however, with the explosion of SNARK research, this is likely to change and become more accessible to consumer hardware.
+
+#### What is the difference between a SNARK, a SNARK proof, and snark work?
+
+SNARKs are a very overloaded term currently — when you read **SNARK**, it could be referring to the concept of succinct non-interactive proof systems (eg. SNARKs vs Bulletproofs), the specific technical implementation of the proof system (eg. the construction, the circuit, or the prover), or the individual instance of the proof itself (eg. the blockchain SNARK).
+
+When we speak about it, we will try to adhere to using:
+
+- SNARK: as the general concept of succinct, non-interactive zero-knowledge proofs
+- SNARK circuit: the specific circuit and prover, as pertaining to an app
+- SNARK proof: an individual proof that is generated by a SNARK prover
+- snark work: a Mina protocol data structure that is a wrapper around one or two SNARK proofs and a price to be paid to the snark worker that generated the proof(s). This is made unforgeable by a Signature of Knowledge scheme that will be detailed in another section.
+
+#### Is there any concern about a single large snark worker [dumping](<https://en.wikipedia.org/wiki/Dumping_(pricing_policy)>) work in the snarketplace, and then raising prices after monopolizing the market?
+
+In economics, there is a pricing strategy called predatory pricing (or dumping) where one supplier of a product seeks to exhaust competing suppliers in the market by undercutting the market price. The supplier prices their goods much cheaper than the market rate, in order to drive out competitors, even if it means incurring short-term losses. Once the market has been cleared, the dominant supplier then increases prices [above competitive market rates](https://en.wikipedia.org/wiki/Supracompetitive_pricing), as competition has been extinguished.
+
+However, this strategy is only effective in markets where there are high barriers to entry. Meaning, competitors who were crowded out in the predation stage are unable to rejoin the market.
+
+This is not the case for snark work, as the barriers to entry are low. Anyone who has spare compute can join the snarketplace and produce as little as one snark work, and profit on that unit of work. The only barrier to entry is the initial capital expense on hardware, but we anticipate hardware requirements to be low, such that users with spare equipment can come online and participate. If any snark worker succeeds in driving out the market and increases prices, it is anticipated that newcomers would reappear and drive prices back down.
+
+#### Does speed of producing snarks matter? If my computer is slower, will I be at a disadvantage?
+
+No, provided that the snark work produced is still required by block producers, it doesn't matter who produced it first — only the price matters in the block producers' eyes. The caveat here is that earlier inclusion into the snark mempool is obviously beneficial, as block producers are likely to "see" the work earlier.
+
+One could however envision a scenario where a set of snark workers are favored because they produced the most number of snark works that are profitable, and buying proofs from as few entities as possible would allow for more transactions to be included in any block.
+
+There is also a threshold at which time becomes a factor, but this would only apply to very underpowered devices. We will follow up with detailed benchmarks, when we have run more tests.
+
+#### Will a full node need to store all intermediate SNARK proofs? Eg. Will the storage requirements grow linearly with blocks?
+
+Nope -- when a new block is generated, Mina computes the proof recursively over the prior proof and the new block. This is the advantage of recursive composition -- at any given time, nodes only need to store the most recent proof. Intermediate proofs are not needed. See this talk for more clarity on how this architecture emerged: https://www.youtube.com/watch?v=eWVGATxEB6M
+
+#### How do you control or limit the number of cores Snark Workers use?
+
+You can use the `-snark-worker-parallelism` flag when starting up `mina daemon`.

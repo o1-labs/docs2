@@ -4,7 +4,6 @@ module.exports = {
     {
       type: "category",
       label: "Getting Started - Basics",
-      collapsed: false,
       items: [
         "tutorial-basics/congratulations",
         "tutorial-basics/create-a-blog-post",
@@ -17,7 +16,6 @@ module.exports = {
     {
       type: "category",
       label: "Getting Started - Extras",
-      collapsed: false,
       items: [
         "tutorial-extras/manage-docs-versions",
         "tutorial-extras/translate-your-site",
@@ -28,8 +26,11 @@ module.exports = {
     {
       type: "category",
       label: "Examples",
-      collapsed: false,
-      items: ["examples/overview", "examples/code-snippets"],
+      items: [
+        "examples/overview",
+        "examples/code-snippets",
+        "examples/mina-faq",
+      ],
     },
   ],
 };
