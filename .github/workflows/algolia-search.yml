@@ -1,0 +1,21 @@
+#
+# algolia-search.yml
+#
+# Create a search index for Algolia Search when code is pushed to main.
+#
+
+name: Algolia-Search
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Algolia-Search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: darrenjennings/algolia-docsearch-action@master
+        with:
+          algolia_application_id: ${{ secrets.ALGOLIA_APP_ID}}
+          algolia_api_key: ${{ secrets.ALGOLIA_API_ID}
+          file: "./algolia-config.json"
