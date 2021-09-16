@@ -30,6 +30,8 @@ module.exports = {
         "examples/overview",
         "examples/code-snippets",
         "examples/mina-faq",
+        "examples/mina-glossary",
+        "examples/exchange-faq",
       ],
     },
   ],

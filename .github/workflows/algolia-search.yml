@@ -9,26 +9,14 @@ on:
   push:
     branches:
       - main
-
 jobs:
-  wait-for-vercel-deployment:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Retrieve deployment URL
-        run: "echo VERCEL_DEPLOYMENT_URL=docs2-seven.vercel.app >> $GITHUB_ENV"
-      - uses: UnlyEd/github-action-await-vercel@v1.1.0
-        id: await-vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          deployment-url: ${{ env.VERCEL_DEPLOYMENT_URL }}
-          timeout: 20
-      - name: Displays the deployment name
-        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
   algolia-search:
     runs-on: ubuntu-latest
-    needs: [wait-for-vercel-deployment]
     steps:
+      - name: Wait for Vercel to deploy
+        run: sleep 30s
+        shell: bash
+      - name: "Update Algolia Search Index"
       - uses: actions/checkout@v2
       - uses: darrenjennings/algolia-docsearch-action@master
         with:
