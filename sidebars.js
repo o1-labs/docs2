@@ -28,5 +28,6 @@ module.exports = {
     "exchange-faq",
     "mina-glossary",
     "troubleshooting",
+    "image-example",
   ],
 };
