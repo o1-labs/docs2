@@ -27,12 +27,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
           docs: {
+            path: "./docs",
             routeBasePath: "/",
             sidebarPath: require.resolve("./sidebars.js"),
-            editUrl: "https://github.com/o1-labs/docs2/edit/main",
-          },
-          blog: {
-            showReadingTime: true,
             editUrl: "https://github.com/o1-labs/docs2/edit/main",
           },
           theme: {
@@ -62,7 +59,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               to: "examples/overview",
               position: "left",
             },
-            { to: "/blog", label: "Blog", position: "left" },
             {
               type: "localeDropdown",
               position: "right",
@@ -82,7 +78,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               items: [
                 {
                   label: "Introduction",
-                  to: "/docs/intro",
+                  to: "intro",
                 },
               ],
             },
