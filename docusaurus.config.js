@@ -55,11 +55,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               position: "left",
             },
             {
-              label: "Examples",
-              to: "examples/overview",
-              position: "left",
-            },
-            {
               type: "localeDropdown",
               position: "right",
             },
