@@ -12,6 +12,7 @@ Two-liner about Mina
 Telegram
 Discord
 Github
+Reddit
 
 ### Links to different sections
 
