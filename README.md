@@ -1,33 +1,67 @@
-# Website
+<img src="https://github.com/MinaProtocol/docs/blob/main/public/static/img/svg/mina-wordmark-redviolet.svg" width="350" alt="Mina logo">
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+# Mina Documentation
 
-### Installation
+To view this website, visit [docs.minaprotocol.com](https://docs.minaprotocol.com/).
 
-```
-$ yarn
-```
+## Contributing
 
-### Local Development
+Click the `Suggest changes` button at the top right of any page on [the docs website](https://docs.minaprotocol.com/) to edit that page and submit a pull request via Github.
 
-```
-$ yarn start
-```
+## How to run (for devs)
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This website is built with NextJS & Contentful. Any commit to the `main` branch will be built and deployed automatically.
 
-### Build
+To run locally, first make sure you have `git lfs` installed. 
 
-```
-$ yarn build
+On Mac run:
+
+```bash
+brew install git-lfs
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-```
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+After that you have to install `git-lfs` in the website directory and pull it.
+```bash
+git lfs install
+git lfs pull
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Install it and run:
+
+```bash
+npm install
+npm run dev
+# or
+yarn
+yarn dev
+```
+
+Build and run:
+
+```bash
+npm run build
+npm run start
+# or
+yarn build
+yarn start
+```
+
+### Recommendation:
+
+Run BuckleScript build system `bsb -w` and `next -w` separately. For the sake
+of simple convention, `npm run dev` run both `bsb` and `next` concurrently.
+However, this doesn't offer the full [colorful and nice
+error
+output](https://reasonml.github.io/blog/2017/08/25/way-nicer-error-messages.html)
+experience that ReasonML can offer, don't miss it!
+
+There are 2 convenience scripts to facilitate running these separate processes:
+
+1. `npm run dev:reason` - This script will start the ReasonML toolchain in
+   watch mode to re-compile whenever you make changes.
+2. `npm run dev:next` - This script will start the next.js development server
+   so that you will be able to access your site at the location output by the
+   script. This will also hot reload as you make changes.
+
+You should start the scripts in the presented order.
+

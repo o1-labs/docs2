@@ -1,5 +1,5 @@
 ---
-title: SNARKS
+title: What is SNARKs
 ---
 
 ## What is SNARKs

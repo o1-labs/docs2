@@ -1,27 +1,58 @@
 module.exports = {
   docs: [
     "intro",
-    "homepage",
     {
       type: "category",
       label: "About Mina",
       items: [
         "about-mina/overview",
-        "about-mina/cryptographers",
+        "about-mina/snarks",
         "about-mina/protocol-architecture",
         "about-mina/smart-contracts",
-        "about-mina/snarks",
+        {
+          type: "category",
+          label: "Advanced",
+          items: [
+            "about-mina/Advanced/cryptographers",
+          ],
+        },
+        {
+          type: 'link',
+          label: 'Whitepaper', // The link label
+          href: 'https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf', // The external URL
+        },
+        "about-mina/faq",
       ],
     },
     {
       type: "category",
       label: "Using Mina",
       items: [
-        "using-mina/setup-a-wallet",
-        "using-mina/how-to-send",
-        "using-mina/how-to-stake-delegate",
-        "using-mina/how-to-use-snapps",
+        "using-mina/set-up-a-wallet",
         "using-mina/where-to-buy-mina",
+        "using-mina/how-to-send",
+        "using-mina/how-to-use-snapps",
+        "using-mina/how-to-stake-delegate",
+      ],
+    },
+    {
+      type: "category",
+      label: "Node Operators",
+      items: [
+        "node-operators/overview",
+        "node-operators/how-to-run-node",
+        "node-operators/block-production",
+        "node-operators/snarking",
+        {
+          type: "category",
+          label: "Developer References",
+          items: [
+            "node-operators/Developer-References/mina-node-cli-reference",
+            "node-operators/Developer-References/graphql-api",
+            "node-operators/Developer-References/javascript-client",
+          ],
+        },
+        "node-operators/troubleshooting",
       ],
     },
     "mina-faq",
