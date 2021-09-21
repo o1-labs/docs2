@@ -1,7 +1,6 @@
 module.exports = {
   docs: [
     "intro",
-    "homepage",
     {
       type: "category",
       label: "About Mina",
