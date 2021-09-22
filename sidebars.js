@@ -55,6 +55,17 @@ module.exports = {
         "node-operators/troubleshooting",
       ],
     },
+    {
+      type: "category",
+      label: "Archive Node Operators",
+      items: [
+        "archive-node-operators/overview",
+        "archive-node-operators/how-to-run-archive-node",
+        "archive-node-operators/archive-node-redundancy",
+        "archive-node-operators/how-to-run-archive-node",
+        "archive-node-operators/how-to-run-archive-node",
+      ],
+    },
     "mina-faq",
     "exchange-faq",
     "mina-glossary",

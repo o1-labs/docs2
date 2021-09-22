@@ -1,5 +1,5 @@
 ---
-title: Set Up A Wallet
+title: Set up a wallet
 ---
 
 ## Set Up A Wallet

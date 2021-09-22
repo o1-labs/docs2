@@ -1,5 +1,5 @@
 ---
-title: How to Use SNAPPs
+title: How to use SNAPPs
 ---
 
 ## How to use snapps

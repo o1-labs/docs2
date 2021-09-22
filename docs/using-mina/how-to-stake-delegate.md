@@ -1,5 +1,5 @@
 ---
-title: How to Stake and Delegate
+title: How to stake and delegate
 ---
 
 ## How to Stake and Delegate
