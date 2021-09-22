@@ -119,10 +119,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
         },
-        // this is regina's test keys
         algolia: {
-          appId: "Y6IXQVXU3N",
-          apiKey: "4b731e3b1e2686d0969c9359c8e93c08",
+          appId: process.env.ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
           indexName: "mina",
         },
       }),
