@@ -1,3 +1,5 @@
 ---
-title: Mina Node CLI Reference
+title: MINA Node CLI Reference
 ---
+
+Describe what all commands do

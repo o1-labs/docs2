@@ -46,6 +46,18 @@ module.exports = {
         "node-operators/snarking",
         {
           type: "category",
+          label: "Archive Node Operators",
+          items: [
+            "node-operators/archive-node-operators/overview",
+            "node-operators/archive-node-operators/how-to-run-archive-node",
+            "node-operators/archive-node-operators/archive-node-redundancy",
+            "node-operators/archive-node-operators/backing-up-and-restoring-block-data",
+            "node-operators/archive-node-operators/how-to-query-data",
+            "node-operators/archive-node-operators/troubleshooting",
+          ],
+        },
+        {
+          type: "category",
           label: "Developer References",
           items: [
             "node-operators/Developer-References/mina-node-cli-reference",
@@ -54,17 +66,6 @@ module.exports = {
           ],
         },
         "node-operators/troubleshooting",
-      ],
-    },
-    {
-      type: "category",
-      label: "Archive Node Operators",
-      items: [
-        "archive-node-operators/overview",
-        "archive-node-operators/how-to-run-archive-node",
-        "archive-node-operators/archive-node-redundancy",
-        "archive-node-operators/how-to-run-archive-node",
-        "archive-node-operators/how-to-run-archive-node",
       ],
     },
     "mina-faq",
