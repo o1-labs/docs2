@@ -1,3 +1,7 @@
+---
+title: FAQ
+---
+
 # Exchange FAQ
 
 For exchanges listing Mina.
