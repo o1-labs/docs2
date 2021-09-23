@@ -124,6 +124,5 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
           indexName: "mina",
         },
-      }),
   }
 );

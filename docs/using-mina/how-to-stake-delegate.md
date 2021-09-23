@@ -12,5 +12,5 @@ Currently, hundreds of block producers are accepting delegations on Mina. You ca
 Will the wallet you use affect how well you stake?
 No.
 
-Link us to “how staking works in Mina” (in About Mina) - 
+Link us to “how staking works in Mina” (in About Mina)  
 

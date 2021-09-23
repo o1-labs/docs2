@@ -81,10 +81,21 @@ module.exports = {
         "snapp-developers/troubleshooting",
       ],
     },
-    "mina-faq",
-    "exchange-faq",
+    {
+      type: "category",
+      label: "Exchange Operators",
+      items: [
+        "exchange-operators/how-to-list-mina",
+        "exchange-operators/exchange-faq",
+      ],
+    },
+    {
+      type: "category",
+      label: "Participate",
+      items: [
+        "participate/foundation-delegation-program"
+      ],
+    },
     "mina-glossary",
-    "troubleshooting",
-    "image-example",
   ],
 };
