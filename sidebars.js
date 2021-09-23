@@ -8,6 +8,7 @@ module.exports = {
         "about-mina/overview",
         "about-mina/snarks",
         "about-mina/protocol-architecture",
+        "about-mina/consensus-model",
         "about-mina/smart-contracts",
         {
           type: "category",
@@ -16,12 +17,12 @@ module.exports = {
             "about-mina/Advanced/cryptographers",
           ],
         },
+        "about-mina/faq",
         {
           type: 'link',
           label: 'Whitepaper', // The link label
           href: 'https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf', // The external URL
         },
-        "about-mina/faq",
       ],
     },
     {

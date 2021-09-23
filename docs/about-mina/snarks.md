@@ -1,7 +1,11 @@
 ---
-title: What is SNARKs
+title: What are zk-SNARKs
 ---
 
-## What is SNARKs
+### Video
 
-Describe SNAKRS
+Insert this video here: https://www.youtube.com/watch?v=GvwYJDzzI-g
+
+### Content
+
+We'll write some content here

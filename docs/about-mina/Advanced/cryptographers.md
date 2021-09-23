@@ -2,6 +2,4 @@
 title: Cryptographers
 ---
 
-## Cryptographers
-
-Describe
+Info/educational section for cryptographer
