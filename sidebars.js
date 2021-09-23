@@ -29,10 +29,10 @@ module.exports = {
       type: "category",
       label: "Using Mina",
       items: [
-        "using-mina/set-up-a-wallet",
+        "using-mina/install-wallet",
         "using-mina/where-to-buy-mina",
         "using-mina/how-to-send",
-        "using-mina/how-to-use-snapps",
+        "using-mina/how-to-use-snapp",
         "using-mina/how-to-stake-delegate",
       ],
     },
