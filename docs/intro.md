@@ -1,6 +1,6 @@
 ---
 id: intro
-title: Introduction
+title: Intro
 description: Mina is building a gateway between the real world and crypto — and the infrastructure for the secure, democratic future we all deserve.
 ---
 

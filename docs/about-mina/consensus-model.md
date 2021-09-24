@@ -1,5 +1,5 @@
 ---
-title: MINA's Consensus Model
+title: Consensus
 ---
 
 - Proof of stake

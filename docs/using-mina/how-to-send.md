@@ -1,5 +1,4 @@
 ---
-title: How to send / receive transactions
+title: How to send / receive 
 ---
-
 Describe

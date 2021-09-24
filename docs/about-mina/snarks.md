@@ -1,5 +1,5 @@
 ---
-title: What are zk-SNARKs
+title: What are zk-SNARKs?
 ---
 
 ### Video

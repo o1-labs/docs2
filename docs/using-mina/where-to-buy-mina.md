@@ -1,5 +1,5 @@
 ---
-title: Where to buy MINA (Exchanges)
+title: Where to buy MINA
 ---
 
 Describe

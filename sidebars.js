@@ -10,18 +10,18 @@ module.exports = {
         "about-mina/protocol-architecture",
         "about-mina/consensus-model",
         "about-mina/smart-contracts",
-        {
-          type: "category",
-          label: "Advanced",
-          items: [
-            "about-mina/Advanced/cryptographers",
-          ],
-        },
         "about-mina/faq",
         {
           type: 'link',
           label: 'Whitepaper', // The link label
           href: 'https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf', // The external URL
+        },
+        {
+          type: "category",
+          label: "Advanced",
+          items: [
+            "about-mina/Advanced/cryptography",
+          ],
         },
       ],
     },
@@ -46,14 +46,14 @@ module.exports = {
         "node-operators/snarking",
         {
           type: "category",
-          label: "Archive Node Operators",
+          label: "Archive Node",
           items: [
-            "node-operators/archive-node-operators/overview",
-            "node-operators/archive-node-operators/how-to-run-archive-node",
-            "node-operators/archive-node-operators/archive-node-redundancy",
-            "node-operators/archive-node-operators/backing-up-and-restoring-block-data",
-            "node-operators/archive-node-operators/how-to-query-data",
-            "node-operators/archive-node-operators/troubleshooting",
+            "node-operators/archive-node/overview",
+            "node-operators/archive-node/how-to-run-archive-node",
+            "node-operators/archive-node/archive-node-redundancy",
+            "node-operators/archive-node/backing-up-and-restoring-block-data",
+            "node-operators/archive-node/how-to-query-data",
+            "node-operators/archive-node/troubleshooting",
           ],
         },
         {
@@ -75,17 +75,17 @@ module.exports = {
         "snapp-developers/overview",
         "snapp-developers/how-snapps-work",
         "snapp-developers/how-to-write-snapp",
+        "snapp-developers/advanced-concepts",
         "snapp-developers/snarkyjs",
         "snapp-developers/snapps-for-ethereum",
         "snapp-developers/faq",
-        "snapp-developers/troubleshooting",
       ],
     },
     {
       type: "category",
       label: "Exchange Operators",
       items: [
-        "exchange-operators/how-to-list-mina",
+        "exchange-operators/listing-mina",
         "exchange-operators/exchange-faq",
       ],
     },

@@ -1,5 +1,5 @@
 ---
-title: Smart Contracts (SNAPP)
+title: Smart Contracts (SNAPPs)
 ---
 
 - Brief overview, including brief example use cases (non-technical aspects) 

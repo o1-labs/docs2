@@ -1,5 +1,5 @@
 ---
-title: SNAPPs for Ethereum developers
+title: SNAPPs for Ethereum dev
 ---
 
 - E.g. different methods
