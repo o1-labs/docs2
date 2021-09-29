@@ -1,5 +1,5 @@
 ---
-title: How to run a node
+title: Step-by-step
 ---
 
 > If you’re considering running an archive node, use this Archive Node image (link to it).

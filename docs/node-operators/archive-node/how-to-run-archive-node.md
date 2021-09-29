@@ -1,5 +1,5 @@
 ---
-title: How to run Archive node
+title: How to run
 ---
 
-Why you want Archive node redundancy
+Why you want archive node redundancy

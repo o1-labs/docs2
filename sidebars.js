@@ -41,7 +41,14 @@ module.exports = {
       label: "Node Operators",
       items: [
         "node-operators/overview",
-        "node-operators/how-to-run-node",
+        {
+          type: "category",
+          label: "How to install node",
+          items: [
+            "node-operators/how-to-install-a-node/step-by-step",
+            "node-operators/how-to-install-a-node/docker",
+          ],
+        },
         "node-operators/block-production",
         "node-operators/snarking",
         {
@@ -50,7 +57,7 @@ module.exports = {
           items: [
             "node-operators/archive-node/overview",
             "node-operators/archive-node/how-to-run-archive-node",
-            "node-operators/archive-node/archive-node-redundancy",
+            "node-operators/archive-node/redundancy",
             "node-operators/archive-node/backing-up-and-restoring-block-data",
             "node-operators/archive-node/how-to-query-data",
             "node-operators/archive-node/troubleshooting",

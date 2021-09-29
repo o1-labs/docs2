@@ -1,5 +1,5 @@
 ---
-title: SnarkyJS API Reference
+title: SnarkyJS
 ---
 
 - E.g. different methods

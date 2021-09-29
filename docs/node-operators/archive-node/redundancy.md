@@ -1,5 +1,5 @@
 ---
-title: Archive node redundancy
+title: Redundancy
 ---
 
 The archive node will store its data in a PostgreSQL database that node operators host on a provider of their choice, including self-hosting, if desired. However, for redundancy, archive node data can also be stored to an object storage (e.g. Google Cloud Storage; soon S3 & others) or to a mina.log file, which can live on your computer or be streamed to any typical logging service (e.g. LogDNA).

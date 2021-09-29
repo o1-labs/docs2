@@ -1,4 +1,4 @@
 ---
-title: How to send / receive 
+title: How to send & receive 
 ---
 Describe

@@ -1,5 +1,5 @@
 ---
-title: How to stake / delegate
+title: How to stake (delegate)
 ---
 
 Staking MINA tokens allows nodes on the network to increase their chances of being selected as a block producer in accordance with the consensus mechanism. The chance of winning the block scales in proportion to the amount of MINA staked. For example, if one node stakes 50% of the available MINA in the network, they theoretically have a 50% chance of being selected to produce future blocks. Mina uses Ouroboros Samisika Proof-of-Stake to implement the details of staking. If a node chooses to stake its MINA tokens, it is required to be online and connected to the Mina network.

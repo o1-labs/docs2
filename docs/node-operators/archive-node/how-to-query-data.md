@@ -1,5 +1,5 @@
 ---
-title: How to query data
+title: Querying data
 ---
 
 Example queries 
