@@ -1,3 +1,3 @@
 ---
-title: JavaScript Client
+title: JavaScript Client SDK
 ---

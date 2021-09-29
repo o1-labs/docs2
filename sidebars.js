@@ -43,13 +43,21 @@ module.exports = {
         "node-operators/overview",
         {
           type: "category",
-          label: "How to install node",
+          label: "How to install a node",
           items: [
             "node-operators/how-to-install-a-node/step-by-step",
             "node-operators/how-to-install-a-node/docker",
           ],
         },
-        "node-operators/block-production",
+        {
+              type: "category",
+              label: "Block Production (Staking)",
+              items: [
+                "node-operators/block-production/intro",
+                "node-operators/block-production/faq",
+                "node-operators/block-production/foundation-delegation-program"
+              ],
+            },
         "node-operators/snarking",
         {
           type: "category",
@@ -92,7 +100,6 @@ module.exports = {
       type: "category",
       label: "Exchange Operators",
       items: [
-        "exchange-operators/listing-mina",
         "exchange-operators/exchange-faq",
       ],
     },
@@ -100,7 +107,12 @@ module.exports = {
       type: "category",
       label: "Participate",
       items: [
-        "participate/foundation-delegation-program"
+        "participate/social-media",
+        "participate/github",
+        "participate/careers",
+        "participate/grants",
+        "participate/testnet-leaderboard",
+        "participate/bug-bounty-program"
       ],
     },
     "mina-glossary",

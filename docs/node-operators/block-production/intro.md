@@ -1,5 +1,5 @@
 ---
-title: Block Production (Staking)
+title: Intro
 ---
 
 * Intro
