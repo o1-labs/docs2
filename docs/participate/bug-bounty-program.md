@@ -1,3 +1,3 @@
 ---
-title: Bug Bounty Program
+title: Bug Bounties
 ---
