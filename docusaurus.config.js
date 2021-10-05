@@ -52,7 +52,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           logo: {
             alt: "Mina Logo",
             src: "img/mina-logo.svg",
-            href: "/",
+            href: "https://minaprotocol.com",
           },
           items: [
             {
