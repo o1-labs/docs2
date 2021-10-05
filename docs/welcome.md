@@ -2,6 +2,7 @@
 id: welcome
 title: Welcome
 description: Mina is building a gateway between the real world and crypto — and the infrastructure for the secure, democratic future we all deserve.
+slug: /
 ---
 
 Hi there! :wave: Mina is building a gateway between the real world and crypto — and the infrastructure for the secure, democratic future we all deserve.
