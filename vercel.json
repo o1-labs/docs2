@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://docs2-seven.vercel.app/welcome",
+      "permanent": true
+    }
+  ]
+}
