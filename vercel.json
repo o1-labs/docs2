@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/welcome", "destination": "/" }]
+  "redirects": [
+    {
+      "source": "/welcome",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
