@@ -1,27 +1,15 @@
 ---
-id: welcome
-title: Welcome
+id: Welcome
 description: Mina is building a gateway between the real world and crypto — and the infrastructure for the secure, democratic future we all deserve.
 slug: /
 ---
 
-Hi there! :wave: Mina is building a gateway between the real world and crypto — and the infrastructure for the secure, democratic future we all deserve.
+# Mina Protocol Documentation 
 
-### :busts_in_silhouette: Join the Mina community
+![main](https://i.ibb.co/sjZvz0T/Screen-Shot-2021-10-05-at-5-27-21-PM.png)
 
-We invite you to join the conversations with the community and the team. Follow us on:
+***
 
-- Discord
-- Github
-- Twitter
-- Reddit
-- Telegram
+### Follow Us
 
-### :earth_africa: Explore our docs and resources
-
-The following links will be cards that include a graphic and a tagline:
-
-- [Learn about Mina](/about-mina/overview) - Dive into how Mina works and the technology behind it
-- [Use Mina](/using-mina/install-wallet) - Install a wallet and send MINA
-- [Operate a node](/node-operators/overview) - Learn how to install a node and begin staking
-- [Develop the protocol](/node-operators/Developer-References/mina-node-cli-reference) - Get involved in the development of the core Mina protocols (we can link to subsections)
+![Social](https://i.ibb.co/N39Wjwq/Screen-Shot-2021-10-05-at-5-22-27-PM.png)

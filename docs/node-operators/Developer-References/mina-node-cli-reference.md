@@ -1,5 +1,5 @@
 ---
-title: MINA Node CLI Reference
+title: Mina Node CLI
 ---
 
 Describe what all commands do

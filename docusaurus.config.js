@@ -43,15 +43,15 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
+          title: "Documentation",
           logo: {
             alt: "Mina Logo",
             src: "img/mina-logo.svg",
-            href: "/",
           },
           items: [
             {
               label: "Docs",
-              to: "/",
+              to: "intro",
               position: "left",
             },
             {
@@ -73,7 +73,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               items: [
                 {
                   label: "Introduction",
-                  to: "/",
+                  to: "intro",
                 },
               ],
             },

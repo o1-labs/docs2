@@ -1,6 +1,5 @@
 module.exports = {
   docs: [
-    "welcome",
     {
       type: "category",
       label: "About Mina",
@@ -41,7 +40,7 @@ module.exports = {
         "node-operators/overview",
         {
           type: "category",
-          label: "How to install a node",
+          label: "Installation",
           items: [
             "node-operators/how-to-install-a-node/step-by-step",
             "node-operators/how-to-install-a-node/docker",
@@ -51,7 +50,7 @@ module.exports = {
           type: "category",
           label: "Block Production (Staking)",
           items: [
-            "node-operators/block-production/intro",
+            "node-operators/block-production/overview",
             "node-operators/block-production/faq",
             "node-operators/block-production/foundation-delegation-program",
           ],
