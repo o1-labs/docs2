@@ -4,6 +4,15 @@
  * work well for content-centric websites.
  */
 
+@font-face {
+  font-family: "Monument Grotesk";
+  src: url("/static/font/MonumentGrotesk-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Monument Grotesk Mono";
+  src: url("/static/font/MonumentGrotesk-Mono.woff") format("woff");
+}
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #ff603b;
@@ -14,6 +23,9 @@
   --ifm-color-primary-lighter: #ff866a;
   --ifm-color-primary-lightest: #ffac99;
   --ifm-code-font-size: 95%;
+
+  --ifm-font-family-monospace: "Monument Grotesk Mono";
+  --ifm-font-family-base: "Monument Grotesk";
 }
 
 .docusaurus-highlight-code-line {
