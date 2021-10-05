@@ -12,16 +12,14 @@ module.exports = {
         "about-mina/smart-contracts",
         "about-mina/faq",
         {
-          type: 'link',
-          label: 'Whitepaper', // The link label
-          href: 'https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf', // The external URL
+          type: "link",
+          label: "Whitepaper", // The link label
+          href: "https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf", // The external URL
         },
         {
           type: "category",
           label: "Advanced",
-          items: [
-            "about-mina/Advanced/cryptography",
-          ],
+          items: ["about-mina/Advanced/cryptography"],
         },
       ],
     },
@@ -50,14 +48,14 @@ module.exports = {
           ],
         },
         {
-              type: "category",
-              label: "Block Production (Staking)",
-              items: [
-                "node-operators/block-production/intro",
-                "node-operators/block-production/faq",
-                "node-operators/block-production/foundation-delegation-program"
-              ],
-            },
+          type: "category",
+          label: "Block Production (Staking)",
+          items: [
+            "node-operators/block-production/intro",
+            "node-operators/block-production/faq",
+            "node-operators/block-production/foundation-delegation-program",
+          ],
+        },
         "node-operators/snarking",
         {
           type: "category",
@@ -99,9 +97,7 @@ module.exports = {
     {
       type: "category",
       label: "Exchange Operators",
-      items: [
-        "exchange-operators/exchange-faq",
-      ],
+      items: ["exchange-operators/exchange-faq"],
     },
     {
       type: "category",
@@ -112,7 +108,7 @@ module.exports = {
         "participate/careers",
         "participate/grants",
         "participate/testnet-leaderboard",
-        "participate/bug-bounty-program"
+        "participate/bug-bounty-program",
       ],
     },
     "mina-glossary",
