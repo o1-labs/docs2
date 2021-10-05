@@ -42,11 +42,21 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        colorMode: {
+          defaultMode: "light",
+          switchConfig: {
+            lightIcon: "☀️",
+          },
+        },
         navbar: {
           title: "Documentation",
           logo: {
             alt: "Mina Logo",
             src: "img/mina-logo.svg",
+<<<<<<< HEAD
+=======
+            href: "https://minaprotocol.com",
+>>>>>>> a449a351c97c69b59231b60ee17ae66883f47bc0
           },
           items: [
             {
