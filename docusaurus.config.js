@@ -49,7 +49,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           },
         },
         navbar: {
-          title: "Documentation",
           logo: {
             alt: "Mina Logo",
             src: "img/mina-logo.svg",
