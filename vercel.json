@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/welcome",
-      "destination": "/",
-      "permanent": true
-    }
-  ]
-}
