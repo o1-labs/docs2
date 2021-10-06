@@ -1,5 +1,6 @@
 module.exports = {
   docs: [
+    "welcome",
     {
       type: "category",
       label: "About Mina",
