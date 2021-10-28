@@ -471,11 +471,11 @@ Fails if the field element cannot fit in `length` bits.
 
 ### toJSON
 
-▸ **toJSON**(): [`JSONValue`](../README.md#jsonvalue)
+▸ **toJSON**(): [`JSONValue`](../overview#jsonvalue)
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Defined in
 
@@ -607,9 +607,9 @@ Fails if the field element cannot fit in `length` bits.
 
 #### Parameters
 
-| Name | Type                                  |
-| :--- | :------------------------------------ |
-| `x`  | [`JSONValue`](../README.md#jsonvalue) |
+| Name | Type                                 |
+| :--- | :----------------------------------- |
+| `x`  | [`JSONValue`](../overview#jsonvalue) |
 
 #### Returns
 
@@ -893,7 +893,7 @@ Fails if the field element cannot fit in `length` bits.
 
 ### toJSON
 
-▸ `Static` **toJSON**(`x`): [`JSONValue`](../README.md#jsonvalue)
+▸ `Static` **toJSON**(`x`): [`JSONValue`](../overview#jsonvalue)
 
 #### Parameters
 
@@ -903,7 +903,7 @@ Fails if the field element cannot fit in `length` bits.
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Defined in
 

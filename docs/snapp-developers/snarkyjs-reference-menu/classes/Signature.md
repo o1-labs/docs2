@@ -121,11 +121,11 @@ title: Signature
 
 ### toJSON
 
-▸ **toJSON**(): [`JSONValue`](../README.md#jsonvalue)
+▸ **toJSON**(): [`JSONValue`](../overview#jsonvalue)
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Inherited from
 
@@ -191,9 +191,9 @@ title: Signature
 
 #### Parameters
 
-| Name    | Type                                  |
-| :------ | :------------------------------------ |
-| `value` | [`JSONValue`](../README.md#jsonvalue) |
+| Name    | Type                                 |
+| :------ | :----------------------------------- |
+| `value` | [`JSONValue`](../overview#jsonvalue) |
 
 #### Returns
 
@@ -289,7 +289,7 @@ title: Signature
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`v`): [`JSONValue`](../README.md#jsonvalue)
+▸ `Static` **toJSON**<`T`\>(`v`): [`JSONValue`](../overview#jsonvalue)
 
 #### Type parameters
 
@@ -305,7 +305,7 @@ title: Signature
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Inherited from
 

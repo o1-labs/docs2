@@ -97,7 +97,7 @@ module.exports = {
           type: "category",
           label: "SnarkyJS Reference Menu",
           items: [
-            "snapp-developers/snarkyjs-reference-menu/index",
+            "snapp-developers/snarkyjs-reference-menu/overview",
             {
               type: "category",
               label: "SnarkyJS Interfaces",

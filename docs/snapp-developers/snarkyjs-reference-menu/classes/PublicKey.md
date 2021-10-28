@@ -110,11 +110,11 @@ title: PublicKey
 
 ### toJSON
 
-▸ **toJSON**(): [`JSONValue`](../README.md#jsonvalue)
+▸ **toJSON**(): [`JSONValue`](../overview#jsonvalue)
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Inherited from
 
@@ -138,9 +138,9 @@ title: PublicKey
 
 #### Parameters
 
-| Name    | Type                                  |
-| :------ | :------------------------------------ |
-| `value` | [`JSONValue`](../README.md#jsonvalue) |
+| Name    | Type                                 |
+| :------ | :----------------------------------- |
+| `value` | [`JSONValue`](../overview#jsonvalue) |
 
 #### Returns
 
@@ -256,7 +256,7 @@ title: PublicKey
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`v`): [`JSONValue`](../README.md#jsonvalue)
+▸ `Static` **toJSON**<`T`\>(`v`): [`JSONValue`](../overview#jsonvalue)
 
 #### Type parameters
 
@@ -272,7 +272,7 @@ title: PublicKey
 
 #### Returns
 
-[`JSONValue`](../README.md#jsonvalue)
+[`JSONValue`](../overview#jsonvalue)
 
 #### Inherited from
 
