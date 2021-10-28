@@ -100,7 +100,7 @@ module.exports = {
             "snapp-developers/snarkyjs-reference-menu/overview",
             {
               type: "category",
-              label: "SnarkyJS Interfaces",
+              label: "Interfaces",
               items: [
                 "snapp-developers/snarkyjs-reference-menu/interfaces/AsFieldElements",
                 "snapp-developers/snarkyjs-reference-menu/interfaces/CircuitMain",
@@ -109,7 +109,7 @@ module.exports = {
             },
             {
               type: "category",
-              label: "SnarkyJS Classes",
+              label: "Classes",
               items: [
                 "snapp-developers/snarkyjs-reference-menu/classes/Bool",
                 "snapp-developers/snarkyjs-reference-menu/classes/Circuit",
