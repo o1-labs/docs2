@@ -64,6 +64,8 @@ An algorithm or set of rules that Mina nodes all agree upon when deciding to upd
 
 A participant in the Mina network that performs the consensus function, i.e., a [block producer](#block-producer). For a node to participate in consensus, it requires the recent state.
 
+### Constraints 
+
 ### Cryptocurrency
 
 A digital asset or currency that uses cryptographic primitives to secure financial transactions and to verify ownership via public-private key pairs.
@@ -153,6 +155,8 @@ The protocol state hash is the hash of hashes of the previous state and [protoco
 
 The type of consensus algorithm Mina implements allowing nodes to agree upon the state of the network. Proof-of-Stake (PoS) allows nodes to [stake](#staking) mina on the network to increase their chance of being selected as the next block producer.
 
+### Prover Method 
+
 ### Public Key
 
 One component of public-key cryptography - public keys can be widely shared with the world and can be thought of as "addresses" or identifiers for the person who holds the corresponding private key.
@@ -184,6 +188,9 @@ Short for digital signatures, signatures are a way to establish authenticity or 
 ### Slot
 
 A slot in Mina is a unit of time. As of Mainnet launch, a slot is 3minutes long. An [epoch](#epoch) is divided into slots. Block producers can win the chance to produce a block during a slot.
+
+
+### Smart Contract 
 
 ### SNARK Pool
 
@@ -238,6 +245,8 @@ A local data store that contains the last `k` blocks of the network. It is a ros
 ### User Transaction
 
 A transaction issued by a user - either a payment or a delegation change
+
+### Verifier Method
 
 ### VRF
 
