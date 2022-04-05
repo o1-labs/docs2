@@ -1,5 +1,5 @@
 ---
-title: SNAPPs for Ethereum devs
+title: zkApps for Ethereum devs
 ---
 
 - E.g. different methods
