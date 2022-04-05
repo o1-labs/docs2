@@ -1,5 +1,5 @@
 ---
-title: How SNAPPs work
+title: How zkApps work
 ---
 
 - E.g. off-chain state & off-chain execution
