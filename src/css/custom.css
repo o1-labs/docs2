@@ -15,6 +15,7 @@
 
 @font-face {
   font-family: "Monument Grotesk Mono";
+  font-weight: 400;
   src: url("/static/font/MonumentGrotesk-Mono.woff") format("woff");
 }
 /* You can override the default Infima variables here. */
@@ -30,6 +31,10 @@
 
   --ifm-font-family-monospace: "Monument Grotesk Mono";
   --ifm-font-family-base: "Monument Grotesk";
+}
+
+* {
+  font-family: 'Monument Grotesk', 'Monument Grotesk Mono', sans-serif;
 }
 
 .docusaurus-highlight-code-line {
