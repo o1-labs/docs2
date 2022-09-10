@@ -22,11 +22,11 @@ function Footer(): JSX.Element | null {
   const { copyright, links, logo, style } = footer;
 
   return (
-    <div className="relative h-auto bg-[url('/img/footer/background_large.png')] bg-cover px-40 py-20 [&>*]:text-white">
-      <div className="flex flex-col align-baseline md:flex-row">
-        <div className="mr-40 flex flex-col place-content-between">
+    <div className="">
+      <div className="">
+        <div className="">
           <img
-            className="h-12 w-44 align-baseline"
+            className=""
             alt="Mina Logo"
             src="/img/footer/logo.svg"
             loading="lazy"
@@ -39,13 +39,11 @@ function Footer(): JSX.Element | null {
               Mina is growing fast! Subscribe to stay updated
             </p>
           </div>
-          <div className="mt-8 align-baseline">
-            <h4 className="text-xl font-normal uppercase tracking-wider ">
-              CONNECT
-            </h4>
-            <p className="mb-4 text-xl  opacity-70">Join the conversation.</p>
+          <div className="">
+            <h4 className=" ">CONNECT</h4>
+            <p className="">Join the conversation.</p>
           </div>
-          <div className="flex h-8 w-56 place-content-between gap-x-5 [&>*]:text-white">
+          <div className="">
             <a
               target="_blank"
               href={SocialLinks.Discord}

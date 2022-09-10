@@ -20,15 +20,12 @@
     "@docusaurus/theme-search-algolia": "^2.1.0",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
-    "autoprefixer": "^10.4.8",
     "clsx": "^1.1.1",
     "dotenv": "^10.0.0",
     "file-loader": "^6.2.0",
-    "postcss": "^8.4.16",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "^3.1.8",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
@@ -38,7 +35,6 @@
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.13",
     "typescript": "^4.4.2"
   },
   "browserslist": {
