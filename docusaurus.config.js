@@ -21,6 +21,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
       locales: ["en", "fr", "ru"],
     },
 
+    plugins: ["docusaurus-plugin-sass"],
+
     presets: [
       [
         "@docusaurus/preset-classic",
@@ -33,7 +35,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             editUrl: "https://github.com/o1-labs/docs2/edit/main",
           },
           theme: {
-            customCss: require.resolve("./src/css/custom.css"),
+            customCss: [require.resolve("./src/css/custom.scss")],
           },
         }),
       ],
