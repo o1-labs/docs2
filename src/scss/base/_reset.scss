@@ -1,4 +1,5 @@
 @use "../utilities/variables";
+@use "../utilities/mixins";
 
 /* Changes the caret asset used in the sidebar. */
 .menu__link--sublist-caret::after {
@@ -8,6 +9,39 @@
 /* Changes the animation speed in the sidebar. */
 .menu__list {
   transition: height 30ms ease-in-out 0s !important;
+}
+
+.menu {
+  @media screen and (min-width: variables.$screen-md) {
+    margin-left: 1rem;
+  }
+}
+
+.menu__list {
+  counter-reset: orderedList 0 !important;
+
+  & > .theme-doc-sidebar-item-category-level-1,
+  .theme-doc-sidebar-item-link-level-1 {
+    padding-left: 1rem;
+  }
+
+  & > .theme-doc-sidebar-item-category-level-1::before,
+  .theme-doc-sidebar-item-link-level-1::before {
+    @include mixins.f_mono;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    line-height: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.25;
+    width: 2rem;
+    counter-increment: orderedList 1 !important;
+    content: counter(orderedList, decimal-leading-zero) !important;
+
+    position: absolute;
+    transform: translateX(-60%) translateY(48%);
+  }
 }
 
 .navbar {
