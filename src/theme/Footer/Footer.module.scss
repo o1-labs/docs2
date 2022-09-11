@@ -1,0 +1,114 @@
+@use "../../scss/utilities/variables";
+@use "../../scss/utilities/mixins";
+
+.minaFooter {
+  position: relative;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  padding: 4rem 1.25rem;
+  background-image: url("../../../static/img/footer/background_large.png");
+  background-size: cover;
+  z-index: 999;
+
+  @media screen and (min-width: variables.$screen-md) {
+    padding: 4rem 2.68rem;
+    height: 100%;
+  }
+
+  @media screen and (min-width: variables.$screen-lg) {
+    padding: 5.5rem 9.5rem;
+    height: auto;
+  }
+}
+
+.minaFooter_container {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: variables.$screen-md) {
+    flex-direction: row;
+  }
+}
+
+.minaFooter_col1 {
+  display: flex;
+  flex-direction: column;
+  place-content: space-between flex-start;
+
+  @media screen and (min-width: variables.$screen-md) {
+    margin-right: 10.6rem;
+  }
+
+  img {
+    height: 3.1rem;
+    width: 11rem;
+  }
+}
+
+.minaFooter_form {
+  margin-top: 4.0625rem;
+  color: #fff;
+
+  h4 {
+    @include mixins.f_monument;
+    font-size: 1.25rem;
+    line-height: 1.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    @include mixins.f_monument;
+    font-size: 1.125rem;
+    line-height: 1.69rem;
+    opacity: 0.7;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (variables.$screen-lg) {
+    margin-top: 10.4375rem;
+  }
+}
+
+.minaFooter_social {
+  margin-top: 2rem;
+
+  h4 {
+    @include mixins.f_mono;
+    font-size: 1.25rem;
+    line-height: 1.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: rgb(255, 255, 255);
+  }
+
+  p {
+    @include mixins.f_monument;
+    font-size: 1.125rem;
+    line-height: 1.69rem;
+    color: rgb(255, 255, 255);
+    opacity: 0.7;
+    margin-top: 0px;
+    margin-bottom: 1rem;
+  }
+}
+
+.minaFooter_social__links {
+  display: flex;
+  flex-direction: row;
+  -moz-box-pack: justify;
+  place-content: center space-between;
+  width: 14rem;
+  height: 2rem;
+  color: #fff;
+
+  a {
+    display: inline-block;
+    color: #fff;
+    width: 32px;
+  }
+}

@@ -1,0 +1,83 @@
+@use "../base/typography";
+@mixin f_monument() {
+  font-family: "Monument Grotesk", serif;
+}
+
+@mixin f_mono() {
+  font-family: "Monument Grotesk Mono", monospace;
+}
+
+@mixin f_bold() {
+  font-family: "Monument Grotesk Bold", serif;
+  font-weight: bold;
+}
+
+@mixin t_main($fontsize: 16px, $lineheight: 18px) {
+  @include f_monument();
+  font-size: $fontsize;
+  line-height: $lineheight;
+}
+
+@mixin minaButtonBase(
+  $backgroundColor: rgb(255, 255, 255),
+  $borderColor: rgb(0, 0, 0),
+  $borderColorAfter: rgb(0, 0, 0),
+  $color: rgb(255, 255, 255),
+  $backgroundImage: "../../../static/img/common/button-hover-light.png"
+) {
+  @include f_monument;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: center;
+  align-items: center;
+  width: max-content;
+  height: 3.25rem;
+  border: 1px solid $borderColor;
+  background-color: $backgroundColor;
+  border-radius: 4px 1px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  transform-style: preserve-3d;
+  transition: background 200ms ease-out 0ms;
+  padding: 0rem 1rem;
+  text-align: left;
+
+  span {
+    @include f_monument;
+    color: $color;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    inset: 0.25rem -0.25rem -0.25rem 0.25rem;
+    border-radius: 4px 1px;
+    border: 1px solid $borderColorAfter;
+    transform: translateZ(-1px);
+    transition: transform 200ms ease-in 0ms, border 50ms ease-in 100ms;
+  }
+
+  &:hover {
+    color: $backgroundColor;
+    background: url($backgroundImage) repeat scroll 0% 0%,
+      rgb(0, 0, 0) none repeat scroll 0% 0%;
+    &:after {
+      border: 0px solid rgba(0, 0, 0, 0);
+      transform: translate(-0.25rem, -0.25rem);
+    }
+  }
+}

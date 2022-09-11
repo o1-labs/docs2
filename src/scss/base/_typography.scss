@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Monument Grotesk";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/static/font/MonumentGrotesk-Regular.woff2") format("woff2"),
+    url("/static/font/MonumentGrotesk-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Monument Grotesk Mono";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/static/font/MonumentGrotesk-Mono.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Monument Grotesk Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("/static/font/MonumentGrotesk-Bold.woff2") format("woff2"),
+    url("/static/font/MonumentGrotesk-Bold.woff") format("woff");
+}

@@ -35,7 +35,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             editUrl: "https://github.com/o1-labs/docs2/edit/main",
           },
           theme: {
-            customCss: [require.resolve("./src/css/custom.scss")],
+            customCss: [require.resolve("./src/scss/custom.scss")],
           },
         }),
       ],
