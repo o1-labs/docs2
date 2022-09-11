@@ -6,6 +6,10 @@
   background: url("../../static/svg/chevron_up.svg");
 }
 
+.menu__link {
+  line-height: 2rem;
+}
+
 /* Changes the animation speed in the sidebar. */
 .menu__list {
   transition: height 30ms ease-in-out 0s !important;
@@ -23,7 +27,12 @@
 
   & > .theme-doc-sidebar-item-category-level-1,
   .theme-doc-sidebar-item-link-level-1 {
-    padding-left: 1rem;
+    margin-left: 1.5rem;
+    border-left: 1px solid rgba(45, 45, 45, 0.25);
+    & > div {
+      border-radius: 0;
+      padding: 0;
+    }
   }
 
   & > .theme-doc-sidebar-item-category-level-1::before,
@@ -41,8 +50,11 @@
     content: counter(orderedList, decimal-leading-zero) !important;
 
     position: absolute;
-    transform: translateX(-60%) translateY(48%);
+    transform: translateX(-80%) translateY(48%);
   }
+}
+.menu__list-item:not(:first-child) {
+  margin-top: 0;
 }
 
 .navbar {
