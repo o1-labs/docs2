@@ -1,3 +1,15 @@
+@use "../utilities/variables";
+
+/* Changes the caret asset used in the sidebar. */
+.menu__link--sublist-caret::after {
+  background: url("../../static/svg/chevron_up.svg");
+}
+
+/* Changes the animation speed in the sidebar. */
+.menu__list {
+  transition: height 30ms ease-in-out 0s !important;
+}
+
 ul {
   list-style: none;
 }
