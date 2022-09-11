@@ -47,7 +47,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         navbar: {
           logo: {
             alt: "Mina Logo",
-            src: "img/mina-logo.svg",
+            src: "svg/mina-logo.svg",
             href: "https://minaprotocol.com",
           },
           items: [

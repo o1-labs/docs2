@@ -17,7 +17,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: "Easily Accessible, Now & Always",
-    image: "/img/light_chain.png",
+    image: "/img/common/light_chain.png",
     description: (
       <>
         Other blockchain protocols are so heavy they require intermediaries to
@@ -30,7 +30,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Truly Decentralized, with Every User Acting as a Full Node",
-    image: "/img/private_powerful.png",
+    image: "/img/common/private_powerful.png",
     description: (
       <>
         With Mina, anyone who's syncing the chain is also validating
@@ -42,7 +42,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Connecting Crypto to the Real World",
-    image: "/img/programmable_money.png",
+    image: "/img/common/programmable_money.png",
     description: (
       <>
         Other blockchain protocols don’t interact with the internet, limiting

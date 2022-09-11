@@ -1,16 +1,16 @@
 import React from "react";
 
 import Button from "@site/src/components/common/Button";
-import ArrowRightSmall from "@site/static/img/common/arrow-right-small.svg";
+import ArrowRightSmall from "@site/static/svg/arrow-right-small.svg";
 
 import styles from "./Footer.module.scss";
 import { SocialLinks } from "@site/src/constants";
-import DiscordLogo from "@site/static/img/socials/discord_24x24.svg";
-import TwitterLogo from "@site/static/img/socials/twitter_24x24.svg";
-import FacebookLogo from "@site/static/img/socials/facebook_24x24.svg";
-import TelegramLogo from "@site/static/img/socials/telegram_24x24.svg";
-import WeChatLogo from "@site/static/img/socials/wechat_24x24.svg";
-import YoutubeLogo from "@site/static/img/socials/youtube_24x24.svg";
+import DiscordLogo from "@site/static/svg/socials/discord_24x24.svg";
+import TwitterLogo from "@site/static/svg/socials/twitter_24x24.svg";
+import FacebookLogo from "@site/static/svg/socials/facebook_24x24.svg";
+import TelegramLogo from "@site/static/svg/socials/telegram_24x24.svg";
+import WeChatLogo from "@site/static/svg/socials/wechat_24x24.svg";
+import YoutubeLogo from "@site/static/svg/socials/youtube_24x24.svg";
 
 function Footer(): JSX.Element | null {
   const [email, setEmail] = React.useState("");
@@ -53,7 +53,7 @@ function Footer(): JSX.Element | null {
     <div className={styles.minaFooter}>
       <div className={styles.minaFooter_container}>
         <div className={styles.minaFooter_col1}>
-          <img alt="Mina Logo" src="/img/footer/logo.svg" loading="lazy" />
+          <img alt="Mina Logo" src="/svg/logo.svg" loading="lazy" />
           <div className={styles.minaFooter_form}>
             <h4>GET UPDATES</h4>
             <p>Mina is growing fast! Subscribe to stay updated</p>

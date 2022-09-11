@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Button.module.scss";
-import ArrowRightSmall from "@site/static/img/common/arrow-right-small.svg";
+import ArrowRightSmall from "@site/static/svg/arrow-right-small.svg";
 
 type Color = "orange" | "teal" | "dark";
 
