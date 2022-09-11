@@ -61,9 +61,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               position: "right",
             },
             {
-              href: "https://github.com/MinaProtocol/mina",
+              to: "https://github.com/MinaProtocol/mina",
               label: "GitHub",
               position: "right",
+              className: "header-github-link",
+              "aria-label": "GitHub repository",
             },
           ],
         },
