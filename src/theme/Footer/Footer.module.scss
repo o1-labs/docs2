@@ -11,6 +11,12 @@
   background-size: cover;
   z-index: 999;
 
+  hr {
+    background-color: hsla(0, 0%, 100%, 0.2);
+    width: 100%;
+    margin: 3rem 0;
+  }
+
   @media screen and (min-width: variables.$screen-md) {
     padding: 4rem 2.68rem;
     height: 100%;
@@ -46,6 +52,88 @@
   }
 }
 
+.minaFooter_col2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.1rem 0.5rem;
+  margin-top: 4rem;
+
+  & > ul {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: -20px -0.5rem;
+
+    & > li {
+      box-sizing: border-box;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      padding: 20px 0.5rem;
+      -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+      max-width: 50%;
+
+      & > a {
+        @include mixins.f_mono;
+        font-size: 14px;
+        line-height: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: rgb(255, 255, 255);
+        opacity: 0.4;
+
+        &:hover {
+          color: rgb(255, 255, 255);
+          opacity: 0.4;
+        }
+      }
+
+      & > ul {
+        margin: 0.5rem 0 0 0;
+        padding-left: 0;
+
+        li {
+          display: block;
+
+          a {
+            @include mixins.f_monument;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+
+            &:hover {
+              color: rgb(255, 96, 59);
+            }
+          }
+
+          & + li {
+            margin-top: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-md) {
+    margin-top: 0;
+    height: 30rem;
+  }
+}
+
 .minaFooter_form {
   margin-top: 4.0625rem;
   color: #fff;
@@ -71,6 +159,28 @@
   @media screen and (variables.$screen-lg) {
     margin-top: 10.4375rem;
   }
+}
+
+.minaFooter_form_input {
+  font-family: "Monument Grotesk", serif;
+  line-height: 24px;
+  color: #2d2d2d;
+  display: inline-flex;
+  align-items: center;
+  height: 3.25rem;
+  border-radius: 2px;
+  width: 14.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  border: 1px solid #fff;
+  outline: none;
+}
+
+.minaFooter_form__submitContainer {
+  display: flex;
+  gap: 1rem;
 }
 
 .minaFooter_social {
@@ -111,4 +221,83 @@
     color: #fff;
     width: 32px;
   }
+}
+
+.minaFooter_legals {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: variables.$screen-md) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.minaFooter_legals__menu {
+  flex-direction: column;
+  -moz-box-pack: justify;
+  place-content: center space-between;
+  display: flex;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    -moz-box-pack: justify;
+    place-content: center space-between;
+    width: 100%;
+    display: flex;
+
+    li {
+      display: inline-block;
+      padding: 12px 0;
+
+      a {
+        @include mixins.f_monument;
+        line-height: 1.1rem;
+        cursor: pointer;
+        font-size: 14px;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #ff603b;
+      }
+
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-md) {
+    margin-right: 0;
+    margin-left: 19.25rem;
+    flex-direction: row;
+    width: 39.3rem;
+
+    ul {
+      flex-direction: row;
+
+      li {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.minaFooter_legals__info {
+  @include mixins.f_monument;
+  display: flex;
+  flex-direction: column;
+  -moz-box-pack: start;
+  place-content: space-between flex-start;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: variables.$mina-white;
+  opacity: 0.6;
 }

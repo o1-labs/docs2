@@ -1,3 +1,6 @@
+@use "./base/reset";
+@use "./utilities/variables";
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #ff603b;
@@ -32,6 +35,15 @@ figure {
   padding-block: 0px;
   margin-inline: 0px;
   margin-block: 0px;
+}
+
+hr {
+  max-width: 71rem;
+  width: 100%;
+  margin: 0px auto;
+  border: 0;
+  height: 1px;
+  background-color: variables.$mina-black;
 }
 
 .video {

@@ -7,7 +7,7 @@ type Color = "orange" | "teal" | "dark";
 
 interface Props {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   color: Color;
 }
 

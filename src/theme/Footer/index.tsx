@@ -13,6 +13,42 @@ import WeChatLogo from "@site/static/img/socials/wechat_24x24.svg";
 import YoutubeLogo from "@site/static/img/socials/youtube_24x24.svg";
 
 function Footer(): JSX.Element | null {
+  const [email, setEmail] = React.useState("");
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitted(true);
+    // TODO: add email to newsletter
+    // console.log(event, email);
+  };
+
+  const renderForm = () => {
+    if (isSubmitted) {
+      return <div>Thanks for subscribing!</div>;
+    }
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className={styles.minaFooter_form__submitContainer}
+      >
+        <input
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter Email"
+          className={styles.minaFooter_form_input}
+        />
+        <Button color="orange">
+          <span>Submit</span>
+          <ArrowRightSmall />
+        </Button>
+      </form>
+    );
+  };
+
   return (
     <div className={styles.minaFooter}>
       <div className={styles.minaFooter_container}>
@@ -21,26 +57,7 @@ function Footer(): JSX.Element | null {
           <div className={styles.minaFooter_form}>
             <h4>GET UPDATES</h4>
             <p>Mina is growing fast! Subscribe to stay updated</p>
-            <div>
-              {/* <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Enter Email"
-                />
-              </div> */}
-              <div>
-                <Button color="orange">
-                  <span>Submit</span>
-                  <ArrowRightSmall />
-                </Button>
-              </div>
-            </div>
+            {renderForm()}
           </div>
           <div className={styles.minaFooter_social}>
             <h4>CONNECT</h4>
@@ -66,6 +83,143 @@ function Footer(): JSX.Element | null {
               <YoutubeLogo />
             </a>
           </div>
+        </div>
+        <div className={styles.minaFooter_col2}>
+          <ul>
+            <li>
+              <a href="#">Getting Started</a>
+              <ul>
+                <li>
+                  <a
+                    href="https://docs.minaprotocol.com"
+                    rel="noopener"
+                    target="_blank"
+                  >
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/node-operators">
+                    Run a Node
+                  </a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/genesis">Join Genesis</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Resources</a>
+              <ul>
+                <li>
+                  <a
+                    href="https://minaprotocol.com/lightweight-blockchain"
+                    rel="noopener"
+                    target="_blank"
+                  >
+                    About the Tech
+                  </a>
+                </li>
+                <li>
+                  <a
+                    rel="knowledge-base"
+                    href="https://minaprotocol.com/get-started"
+                  >
+                    Get Started
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="/assets/technicalWhitepaper.pdf"
+                  >
+                    Technical Whitepaper
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="/assets/economicsWhitepaper.pdf"
+                  >
+                    Economics Whitepaper
+                  </a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/media">Media</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Community</a>
+              <ul>
+                <li>
+                  <a href="https://minaprotocol.com/community">Welcome</a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/genesis">Genesis Program</a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/leaderboard">
+                    Testnet Leaderboard
+                  </a>
+                </li>
+                <li>
+                  <a href="https://minaprotocol.com/work-with-mina">Careers</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Help and Support</a>
+              <ul>
+                <li>
+                  <a target="_blank" rel="noopener" href={SocialLinks.Discord}>
+                    Discord
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noopener" href={SocialLinks.Telegram}>
+                    Forums
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noopener" href={SocialLinks.Github}>
+                    Github
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noopener" href={SocialLinks.Support}>
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div className={styles.minaFooter_legals}>
+        <div className={styles.minaFooter_legals__menu}>
+          <ul>
+            <li>
+              <a href="https://o1labs.org">O(1) Labs</a>
+            </li>
+            <li>
+              <a href="https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md">
+                Code of Conduct
+              </a>
+            </li>
+            <li>
+              <a href="https://minaprotocol.com/privacy">Privacy</a>
+            </li>
+            <li>
+              <a href="https://minaprotocol.com/tos">Terms of Service</a>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.minaFooter_legals__info}>
+          ©2022 Mina. Started by O(1) Labs.
         </div>
       </div>
     </div>

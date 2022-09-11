@@ -6,4 +6,5 @@ export const SocialLinks = {
   Facebook: "http://bit.ly/MinaProtocolFacebook",
   Discord: "https://bit.ly/MinaDiscord",
   Telegram: "http://bit.ly/MinaTelegram",
+  Support: "https://support.minaprotocol.com",
 };
