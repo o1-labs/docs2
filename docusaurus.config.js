@@ -121,6 +121,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
         },
+
+        colorMode: {
+          defaultMode: "light",
+          disableSwitch: true,
+          respectPrefersColorScheme: false,
+        },
+
         algolia: {
           appId: process.env.ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
