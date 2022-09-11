@@ -16,6 +16,14 @@
 
   --ifm-font-family-monospace: "Monument Grotesk Mono";
   --ifm-font-family-base: "Monument Grotesk";
+
+  --ifm-navbar-padding-vertical: 1rem;
+  --ifm-navbar-padding-horizontal: 1.5rem;
+
+  @media screen and (min-width: variables.$screen-md) {
+    --ifm-navbar-padding-vertical: 30px;
+    --ifm-navbar-padding-horizontal: 3.5rem;
+  }
 }
 
 .docusaurus-highlight-code-line {

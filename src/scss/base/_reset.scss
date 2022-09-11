@@ -10,6 +10,26 @@
   transition: height 30ms ease-in-out 0s !important;
 }
 
+.navbar {
+  height: 100%;
+}
+
+.navbar__items--right {
+  & > div,
+  a {
+    @media screen and (min-width: variables.$screen-lg) {
+      margin-left: 2.5rem;
+    }
+  }
+}
+
+.navbar__logo {
+  margin: 0 0 0 2rem;
+  @media screen and (min-width: variables.$screen-md) {
+    margin: 0 2rem 0 0;
+  }
+}
+
 ul {
   list-style: none;
 }
