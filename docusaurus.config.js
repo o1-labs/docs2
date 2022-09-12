@@ -67,55 +67,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             },
           ],
         },
-        footer: {
-          style: "dark",
-          links: [
-            {
-              title: "Docs",
-              items: [
-                {
-                  label: "Introduction",
-                  to: "/",
-                },
-              ],
-            },
-            {
-              title: "Community",
-              items: [
-                {
-                  label: "Discord",
-                  href: "https://bit.ly/MinaDiscord",
-                },
-                {
-                  label: "Twitter",
-                  href: "https://twitter.com/minaprotocol",
-                },
-                {
-                  label: "Forums",
-                  href: "https://forums.minaprotocol.com",
-                },
-                {
-                  label: "Telegram",
-                  href: "https://bit.ly/MinaTelegram",
-                },
-              ],
-            },
-            {
-              title: "More",
-              items: [
-                {
-                  label: "Blog",
-                  to: "https://minaprotocol.com/blog",
-                },
-                {
-                  label: "GitHub",
-                  href: "https://github.com/MinaProtocol/mina",
-                },
-              ],
-            },
-          ],
-          copyright: `Copyright © ${new Date().getFullYear()} Mina Foundation.`,
-        },
 
         prism: {
           theme: lightCodeTheme,
