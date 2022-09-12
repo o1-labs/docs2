@@ -259,7 +259,6 @@
 @mixin minaAnnouncement() {
   @include f_monument();
   font-weight: bold;
-  font-weight: 500;
   font-size: 14px !important;
   line-height: 24px !important;
 }
