@@ -1,5 +1,5 @@
-@use "../utilities/variables";
-@use "../utilities/mixins";
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
 
 .theme-doc-markdown {
   & > h1:first-of-type {
@@ -12,7 +12,7 @@
 
 /* Changes the caret asset used in the sidebar. */
 .menu__link--sublist-caret::after {
-  background: url("../../static/svg/chevron_up.svg");
+  background: url("@site/static/svg/chevron_up.svg");
 }
 
 .menu__link {

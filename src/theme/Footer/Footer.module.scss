@@ -1,5 +1,5 @@
-@use "../../scss/utilities/variables";
-@use "../../scss/utilities/mixins";
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
 
 .minaFooter {
   position: relative;
@@ -7,7 +7,7 @@
   bottom: 0px;
   height: 100%;
   padding: 4rem 1.25rem;
-  background-image: url("../../../static/img/footer/background_large.png");
+  background-image: url("@site/static/img/footer/background_large.png");
   background-size: cover;
   z-index: 999;
 

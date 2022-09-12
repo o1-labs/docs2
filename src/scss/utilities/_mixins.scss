@@ -1,5 +1,5 @@
-@use "../base/typography";
-@use "../utilities/variables";
+@use "@site/src/scss/base/typography";
+@use "@site/src/scss/utilities/variables";
 
 @mixin f_monument() {
   font-family: "Monument Grotesk", serif;
@@ -25,7 +25,7 @@
   $borderColor: rgb(0, 0, 0),
   $borderColorAfter: rgb(0, 0, 0),
   $color: rgb(255, 255, 255),
-  $backgroundImage: "../../../static/img/common/button-hover-light.png"
+  $backgroundImage: "@site/static/img/common/button-hover-light.png"
 ) {
   @include f_monument;
   font-weight: 500;
