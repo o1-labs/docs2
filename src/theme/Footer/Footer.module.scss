@@ -184,7 +184,14 @@
 
 .minaFooter_form__submitContainer {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+
+  @media screen and (min-width: variables.$screen-md) {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
 .minaFooter_social {
