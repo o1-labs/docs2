@@ -1,119 +1,11 @@
 @use "@site/src/scss/utilities/variables";
 @use "@site/src/scss/utilities/mixins";
 
-.theme-doc-markdown {
-  & > h1:first-of-type {
-    @include mixins.minaHeaderJumbo;
-  }
-  & > header > h1:first-of-type {
-    @include mixins.minaHeaderJumbo;
-  }
-}
-
-/* Changes the caret asset used in the sidebar. */
-.menu__link--sublist-caret::after {
-  background: url("@site/static/svg/chevron_up.svg");
-}
-
-.menu__link {
-  line-height: 2rem;
-}
-
-/* Changes the animation speed in the sidebar. */
-.menu__list {
-  transition: height 30ms ease-in-out 0s !important;
-}
-
-.menu {
-  @media screen and (min-width: variables.$screen-md) {
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-  }
-}
-
-.menu__list {
-  counter-reset: orderedList 0 !important;
-
-  & > .theme-doc-sidebar-item-category-level-1,
-  .theme-doc-sidebar-item-link-level-1 {
-    margin-left: 1.5rem;
-    border-left: 1px solid rgba(45, 45, 45, 0.25);
-    & > div {
-      border-radius: 0;
-      padding: 0;
-    }
-  }
-
-  & > .theme-doc-sidebar-item-category-level-1::before,
-  .theme-doc-sidebar-item-link-level-1::before {
-    @include mixins.f_mono;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    line-height: 1rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    opacity: 0.25;
-    width: 2rem;
-    counter-increment: orderedList 1 !important;
-    content: counter(orderedList, decimal-leading-zero) !important;
-
-    position: absolute;
-    transform: translateX(-80%) translateY(48%);
-  }
-}
-.menu__list-item:not(:first-child) {
-  margin-top: 0;
-}
-
-.navbar {
-  height: 100%;
-}
-
-.navbar__items--right {
-  & > div,
-  a {
-    @media screen and (min-width: variables.$screen-lg) {
-      display: flex;
-      align-items: center;
-      margin-left: 2.5rem;
-    }
-  }
-}
-
-.navbar__logo {
-  margin: 0 0 0 2rem;
-  @media screen and (min-width: variables.$screen-md) {
-    margin: 0 2rem 0 0;
-  }
-}
-
-.DocSearch-Button {
-  border-radius: 2px !important;
-  border: 1px solid variables.$mina-black !important;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-
-  @media screen and (min-width: variables.$screen-md) {
-    width: 15rem;
-  }
-
-  --docsearch-searchbox-background: variables.$mina-white;
-  --docsearch-muted-color: variables.$mina-black;
-
-  &:hover {
-    border: 1px solid variables.$mina-gray !important;
-    color: variables.$mina-orange !important;
-  }
-}
-
-.DocSearch-SearchBar {
-  --docsearch-highlight-color: #2d2d2d;
-  --docsearch-searchbox-shadow: inset 0 0 0 2px #2a63f7;
-}
-
-#__docusaurus {
-  background-image: url("@site/static/img/mina_background.jpg");
-  background-size: cover;
+html,
+body {
+  overflow-x: hidden;
+  background: #fff;
+  font-family: "Monument Grotesk", serif;
 }
 
 button {
@@ -135,29 +27,6 @@ button {
 
   text-decoration: none;
   color: inherit;
-}
-
-html,
-body {
-  overflow-x: hidden;
-  background: #fff;
-  font-family: "Monument Grotesk", serif;
-}
-
-figure {
-  padding-inline: 0px;
-  padding-block: 0px;
-  margin-inline: 0px;
-  margin-block: 0px;
-}
-
-hr {
-  max-width: 71rem;
-  width: 100%;
-  margin: 0px auto;
-  border: 0;
-  height: 1px;
-  background-color: variables.$mina-black;
 }
 
 h2 {
@@ -182,6 +51,22 @@ h6 {
 
 p {
   @include mixins.minaParagraph;
+}
+
+figure {
+  padding-inline: 0px;
+  padding-block: 0px;
+  margin-inline: 0px;
+  margin-block: 0px;
+}
+
+hr {
+  max-width: 71rem;
+  width: 100%;
+  margin: 0px auto;
+  border: 0;
+  height: 1px;
+  background-color: variables.$mina-black;
 }
 
 .video {
