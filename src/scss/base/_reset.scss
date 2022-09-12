@@ -111,6 +111,11 @@
   --docsearch-searchbox-shadow: inset 0 0 0 2px #2a63f7;
 }
 
+#__docusaurus {
+  background-image: url("@site/static/img/mina_background.jpg");
+  background-size: cover;
+}
+
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
