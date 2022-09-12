@@ -73,9 +73,9 @@
 .navbar__items--right {
   & > div,
   a {
-    display: flex;
-    align-items: center;
     @media screen and (min-width: variables.$screen-lg) {
+      display: flex;
+      align-items: center;
       margin-left: 2.5rem;
     }
   }
