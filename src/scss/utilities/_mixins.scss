@@ -217,10 +217,10 @@
   line-height: 16px !important;
 }
 
-@mixin minaLink() {
+@mixin minaLink($color: variables.$mina-orange) {
   @include f_monument();
   font-weight: normal;
-  color: variables.$mina-orange;
+  color: $color;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
