@@ -1,6 +1,15 @@
 @use "../utilities/variables";
 @use "../utilities/mixins";
 
+.theme-doc-markdown {
+  & > h1:first-of-type {
+    @include mixins.minaHeaderJumbo;
+  }
+  & > header > h1:first-of-type {
+    @include mixins.minaHeaderJumbo;
+  }
+}
+
 /* Changes the caret asset used in the sidebar. */
 .menu__link--sublist-caret::after {
   background: url("../../static/svg/chevron_up.svg");
@@ -79,10 +88,6 @@
   }
 }
 
-ul {
-  list-style: none;
-}
-
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -125,6 +130,30 @@ hr {
   border: 0;
   height: 1px;
   background-color: variables.$mina-black;
+}
+
+h2 {
+  @include mixins.minaHeader2;
+}
+
+h3 {
+  @include mixins.minaHeader3;
+}
+
+h4 {
+  @include mixins.minaHeader4;
+}
+
+h5 {
+  @include mixins.minaHeader5;
+}
+
+h6 {
+  @include mixins.minaHeader6;
+}
+
+p {
+  @include mixins.minaParagraph;
 }
 
 .video {
