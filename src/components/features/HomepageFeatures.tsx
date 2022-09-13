@@ -44,10 +44,7 @@ const FeatureList: FeatureItem[] = [
           about Mina
         </Link>
         ,
-        <Link
-          to="/about-mina/what-are-zero-knowledge-proofs"
-          className={styles.minaLink}
-        >
+        <Link to="/about-mina/overview" className={styles.minaLink}>
           {" "}
           zero-knowledge proofs{" "}
         </Link>
@@ -95,18 +92,15 @@ const FeatureList: FeatureItem[] = [
     title: "Participate",
     image: "/svg/homepage/participate.svg",
     buttonText: "Learn More",
-    buttonLink: "participate/online-communities",
+    buttonLink: "/participate/grants",
 
     description: (
       <>
-        <Link to="/participate/online-communities" className={styles.minaLink}>
+        <Link to="/participate/grants" className={styles.minaLink}>
           Join the community
         </Link>
         ,{" "}
-        <Link
-          to="participate/grants-and-programs#zkapps-builders-program"
-          className={styles.minaLink}
-        >
+        <Link to="/participate/grants" className={styles.minaLink}>
           apply for grants & the zkApps Builders Program
         </Link>
         ,
