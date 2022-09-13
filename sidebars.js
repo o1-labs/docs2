@@ -92,6 +92,7 @@ module.exports = {
         "zkapp-developers/advanced-concepts",
         "zkapp-developers/snarkyjs",
         "zkapp-developers/zkapps-for-ethereum",
+        "zkapp-developers/snarkyjs-reference",
         "zkapp-developers/faq",
       ],
     },
