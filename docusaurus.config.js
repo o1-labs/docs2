@@ -54,7 +54,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             {
               type: "html",
               position: "left",
-              value: `<a href="/"><h3 style="margin:0">Documentation</h3></a>`,
+              value: `<a href="/"><h3 style="margin:0">Docs</h3></a>`,
             },
             {
               type: "localeDropdown",
