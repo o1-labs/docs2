@@ -190,8 +190,7 @@
 
   @media screen and (min-width: variables.$screen-md) {
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: flex-start;
   }
 }
 
