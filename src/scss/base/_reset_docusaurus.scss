@@ -138,3 +138,7 @@ We must use `!important` at times to override some default styles.
   --docsearch-highlight-color: #2d2d2d;
   --docsearch-searchbox-shadow: inset 0 0 0 2px #2a63f7;
 }
+
+.theme-edit-this-page {
+  color: variables.$mina-orange;
+}
