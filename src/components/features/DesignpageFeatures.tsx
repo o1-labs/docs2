@@ -48,11 +48,6 @@ export default function DesignpageFeatures(): JSX.Element {
           adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua.
         </div>
-        <div className={styles.minaParagraphSmall}>
-          Paragraph Small (Grotesk) / Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </div>
         <div className={styles.minaParagraphMono}>
           Paragraph (Mono) / Lorem ipsum dolor sit amet, consectetur adipiscing
           elit, sed do eiusmodorus temporus incididunt ut labore et dolore.
