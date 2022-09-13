@@ -49,10 +49,11 @@
     margin-right: 10.6rem;
   }
 
-  svg {
+  & > svg {
     height: 3.1rem;
     width: 11rem;
     color: white;
+    cursor: pointer;
   }
 }
 

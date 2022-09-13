@@ -57,7 +57,9 @@ function Footer(): JSX.Element | null {
     <footer className={styles.minaFooter}>
       <div className={styles.minaFooter_container}>
         <div className={styles.minaFooter_col1}>
-          <MinaLogo />
+          <a href="https://minaprotocol.com">
+            <MinaLogo />
+          </a>
           <div className={styles.minaFooter_form}>
             <h4>GET UPDATES</h4>
             <p>Mina is growing fast! Subscribe to stay updated</p>
