@@ -39,3 +39,20 @@
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+.navbar-docs-copy {
+  text-decoration: none !important;
+  opacity: 0.5;
+
+  & > h3 {
+    font-size: 2.75rem !important;
+    padding-bottom: 0.45rem;
+  }
+
+  & > * {
+    color: variables.$mina-black !important;
+  }
+  & > a:hover {
+    text-decoration: none !important;
+  }
+}

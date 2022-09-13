@@ -74,10 +74,6 @@ We must use `!important` at times to override some default styles.
   line-height: 2rem;
 }
 
-.menu__link {
-  line-height: 2rem;
-}
-
 .menu__list-item:not(:first-child) {
   margin-top: 0;
 }
@@ -92,8 +88,12 @@ We must use `!important` at times to override some default styles.
   vertical-align: middle;
   height: auto;
   @media screen and (min-width: variables.$screen-md) {
-    margin: 0 2rem 0 0;
+    margin: 0 0.5rem 0 0;
   }
+}
+
+.navbar__brand {
+  margin-right: 0rem;
 }
 
 .navbar__items--right {
