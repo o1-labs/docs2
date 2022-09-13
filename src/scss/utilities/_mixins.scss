@@ -53,6 +53,10 @@
   padding: 0rem 1rem;
   text-align: left;
 
+  svg {
+    color: $color;
+  }
+
   span {
     @include f_monument;
     color: $color;
