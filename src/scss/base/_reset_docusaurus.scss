@@ -23,7 +23,7 @@ We must use `!important` at times to override some default styles.
 }
 
 .menu__link--sublist-caret::after {
-  background: url("@site/static/svg/chevron_up.svg");
+  background: url("@site/static/svg/common/chevron_up.svg");
 }
 
 .menu {

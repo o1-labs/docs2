@@ -8,7 +8,7 @@ import React from "react";
 import styles from "./HomepageFeatures.module.scss";
 
 import Button from "@site/src/components/common/Button";
-import ArrowRightSmall from "@site/static/svg/arrow-right-small.svg";
+import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
 import Link from "@docusaurus/Link";
 
 type FeatureItem = {

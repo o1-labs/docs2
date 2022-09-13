@@ -1,7 +1,7 @@
 import React from "react";
 
 import Button from "@site/src/components/common/Button";
-import ArrowRightSmall from "@site/static/svg/arrow-right-small.svg";
+import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
 
 import styles from "./Footer.module.scss";
 import { SocialLinks } from "@site/src/constants";
