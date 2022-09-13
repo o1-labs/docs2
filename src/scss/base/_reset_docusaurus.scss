@@ -22,6 +22,10 @@ We must use `!important` at times to override some default styles.
   }
 }
 
+.theme-doc-sidebar-container {
+  border-right: none !important;
+}
+
 .menu__link--sublist-caret::after {
   background: url("@site/static/svg/common/chevron_up.svg");
 }
