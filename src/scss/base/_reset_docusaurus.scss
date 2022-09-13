@@ -91,7 +91,7 @@ We must use `!important` at times to override some default styles.
 
 .navbar__items--right {
   & > div,
-  a {
+  & > a {
     @media screen and (min-width: variables.$screen-lg) {
       display: flex;
       align-items: center;
