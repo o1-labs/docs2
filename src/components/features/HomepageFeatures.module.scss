@@ -80,3 +80,7 @@
     text-decoration: none;
   }
 }
+
+.homepageSubead {
+  @include mixins.minaPageSubhead;
+}

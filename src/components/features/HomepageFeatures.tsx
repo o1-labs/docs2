@@ -27,8 +27,14 @@ const FeatureList: FeatureItem[] = [
     buttonLink: "/zkapp-developers/overview",
     description: (
       <>
-        Learn how zero-knowledge smart contracts work and how to write your own
-        using TypeScript.
+        {"Learn "}
+        <Link to="/about-mina/overview" className={styles.minaLink}>
+          how zero-knowledge smart contracts work
+        </Link>
+        {" and "}
+        <Link to="/about-mina/overview" className={styles.minaLink}>
+          how to write your own using TypeScript.
+        </Link>
       </>
     ),
   },
@@ -163,13 +169,19 @@ function ColumnFeature({
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.featuresGrid}>
-      {FeatureList.map((props, idx) => {
-        if (idx === 0) {
-          return <RowFeature key={idx} {...props} />;
-        }
-        return <ColumnFeature key={idx} {...props} />;
-      })}
-    </section>
+    <div>
+      <p className={styles.homepageSubead}>
+        Mina is a layer-1 blockchain with a 22KB blockhain & zero-knowledge
+        smart contracts written in TypeScript (“zkApps”).
+      </p>
+      <section className={styles.featuresGrid}>
+        {FeatureList.map((props, idx) => {
+          if (idx === 0) {
+            return <RowFeature key={idx} {...props} />;
+          }
+          return <ColumnFeature key={idx} {...props} />;
+        })}
+      </section>
+    </div>
   );
 }
