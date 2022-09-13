@@ -20,10 +20,10 @@ We must use `!important` at times to override some default styles.
   & > header > h1:first-of-type {
     @include mixins.minaHeader1;
   }
-}
 
-.theme-doc-sidebar-container {
-  border-right: none !important;
+  & > * > a {
+    color: variables.$mina-orange;
+  }
 }
 
 .menu__link--sublist-caret::after {
