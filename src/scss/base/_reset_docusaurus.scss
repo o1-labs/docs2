@@ -142,3 +142,13 @@ We must use `!important` at times to override some default styles.
 .theme-edit-this-page {
   color: variables.$mina-orange;
 }
+
+.pagination-nav__link {
+  border-color: variables.$mina-orange;
+  & > .pagination-nav__sublabel {
+    color: #9b9b9b;
+  }
+  & > .pagination-nav__label {
+    color: variables.$mina-orange;
+  }
+}
