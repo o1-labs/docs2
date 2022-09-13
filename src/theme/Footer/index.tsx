@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "@site/src/components/common/Button";
+import Link from "@docusaurus/Link";
 import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
 
 import styles from "./Footer.module.scss";
@@ -70,69 +71,64 @@ function Footer(): JSX.Element | null {
             <p>Join the conversation.</p>
           </div>
           <div className={styles.minaFooter_social__links}>
-            <a target="_blank" href={SocialLinks.Discord}>
+            <Link href={SocialLinks.Discord}>
               <DiscordLogo />
-            </a>
-            <a target="_blank" href={SocialLinks.Twitter}>
+            </Link>
+            <Link href={SocialLinks.Twitter}>
               <TwitterLogo />
-            </a>
-            <a target="_blank" href={SocialLinks.Facebook}>
+            </Link>
+            <Link href={SocialLinks.Facebook}>
               <FacebookLogo />
-            </a>
-            <a target="_blank" href={SocialLinks.Telegram}>
+            </Link>
+            <Link href={SocialLinks.Telegram}>
               <TelegramLogo />
-            </a>
-            <a target="_blank" href={SocialLinks.WeChat}>
+            </Link>
+            <Link href={SocialLinks.WeChat}>
               <WeChatLogo />
-            </a>
-            <a target="_blank" href={SocialLinks.Youtube}>
+            </Link>
+            <Link href={SocialLinks.Youtube}>
               <YoutubeLogo />
-            </a>
+            </Link>
           </div>
         </div>
         <div className={styles.minaFooter_col2}>
           <ul>
             <li>
-              <a href="#">Getting Started</a>
+              <span>Getting Started</span>
               <ul>
                 <li>
-                  <a
-                    href="https://docs.minaprotocol.com"
-                    rel="noopener"
-                    target="_blank"
-                  >
-                    Documentation
-                  </a>
+                  <Link to="/">Documentation</Link>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/node-operators">
+                  <Link to="/zkapp-developers/overview">Write a zkApp</Link>
+                </li>
+                <li>
+                  <Link href="https://minaprotocol.com/node-operators">
                     Run a Node
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/genesis">Join Genesis</a>
+                  <Link href="https://minaprotocol.com/genesis">
+                    Join Genesis
+                  </Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">Resources</a>
+              <span>Resources</span>
               <ul>
                 <li>
-                  <a
-                    href="https://minaprotocol.com/lightweight-blockchain"
-                    rel="noopener"
-                    target="_blank"
-                  >
+                  <Link href="https://minaprotocol.com/lightweight-blockchain">
                     About the Tech
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     rel="knowledge-base"
                     href="https://minaprotocol.com/get-started"
                   >
                     Get Started
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -153,51 +149,47 @@ function Footer(): JSX.Element | null {
                   </a>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/media">Media</a>
+                  <Link href="https://minaprotocol.com/media">Media</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">Community</a>
+              <span>Community</span>
               <ul>
                 <li>
-                  <a href="https://minaprotocol.com/community">Welcome</a>
+                  <Link href="https://minaprotocol.com/community">Welcome</Link>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/genesis">Genesis Program</a>
+                  <Link href="https://minaprotocol.com/genesis">
+                    Genesis Program
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/leaderboard">
+                  <Link href="https://minaprotocol.com/leaderboard">
                     Testnet Leaderboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://minaprotocol.com/work-with-mina">Careers</a>
+                  <Link href="https://minaprotocol.com/work-with-mina">
+                    Careers
+                  </Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">Help and Support</a>
+              <span>Help and Support</span>
               <ul>
                 <li>
-                  <a target="_blank" rel="noopener" href={SocialLinks.Discord}>
-                    Discord
-                  </a>
+                  <Link href={SocialLinks.Discord}>Discord</Link>
                 </li>
                 <li>
-                  <a target="_blank" rel="noopener" href={SocialLinks.Telegram}>
-                    Forums
-                  </a>
+                  <Link href={SocialLinks.Telegram}>Forums</Link>
                 </li>
                 <li>
-                  <a target="_blank" rel="noopener" href={SocialLinks.Github}>
-                    Github
-                  </a>
+                  <Link href={SocialLinks.Github}>Github</Link>
                 </li>
                 <li>
-                  <a target="_blank" rel="noopener" href={SocialLinks.Support}>
-                    Contact Us
-                  </a>
+                  <Link href={SocialLinks.Support}>Contact Us</Link>
                 </li>
               </ul>
             </li>
@@ -209,18 +201,18 @@ function Footer(): JSX.Element | null {
         <div className={styles.minaFooter_legals__menu}>
           <ul>
             <li>
-              <a href="https://o1labs.org">O(1) Labs</a>
+              <Link href="https://o1labs.org">O(1) Labs</Link>
             </li>
             <li>
-              <a href="https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md">
+              <Link href="https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md">
                 Code of Conduct
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="https://minaprotocol.com/privacy">Privacy</a>
+              <Link href="https://minaprotocol.com/privacy">Privacy</Link>
             </li>
             <li>
-              <a href="https://minaprotocol.com/tos">Terms of Service</a>
+              <Link href="https://minaprotocol.com/tos">Terms of Service</Link>
             </li>
           </ul>
         </div>
