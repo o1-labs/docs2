@@ -16,10 +16,13 @@ function Footer(): JSX.Element | null {
   const [email, setEmail] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
+  // TODO: add email to newsletter
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!email) {
+      return;
+    }
     setIsSubmitted(true);
-    // TODO: add email to newsletter
     // console.log(event, email);
   };
 
