@@ -7,7 +7,7 @@
   grid-template-columns: repeat(1, 1fr);
   gap: 1rem 3.125rem;
 
-  @media screen and (min-width: variables.$screen-md) {
+  @media screen and (min-width: variables.$screen-lg) {
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem 20%;
     padding-top: 3rem;
@@ -34,7 +34,7 @@
     width: 18rem;
     height: 15rem;
 
-    @media screen and (min-width: variables.$screen-md) {
+    @media screen and (min-width: variables.$screen-lg) {
       margin-top: 0rem;
       margin-bottom: 1.5rem;
     }
@@ -54,13 +54,13 @@
     width: 18rem;
     height: 15rem;
 
-    @media screen and (min-width: variables.$screen-md) {
+    @media screen and (min-width: variables.$screen-lg) {
       width: 28rem;
       height: 20rem;
     }
   }
 
-  @media screen and (min-width: variables.$screen-md) {
+  @media screen and (min-width: variables.$screen-lg) {
     flex-direction: row;
     justify-content: center;
     align-items: center;
