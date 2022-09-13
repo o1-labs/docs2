@@ -88,6 +88,9 @@ We must use `!important` at times to override some default styles.
 
 .navbar__logo {
   margin: 0 0 0 2rem;
+  max-width: 100%;
+  vertical-align: middle;
+  height: auto;
   @media screen and (min-width: variables.$screen-md) {
     margin: 0 2rem 0 0;
   }
