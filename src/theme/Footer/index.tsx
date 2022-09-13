@@ -53,7 +53,7 @@ function Footer(): JSX.Element | null {
   };
 
   return (
-    <div className={styles.minaFooter}>
+    <footer className={styles.minaFooter}>
       <div className={styles.minaFooter_container}>
         <div className={styles.minaFooter_col1}>
           <img alt="Mina Logo" src="/svg/logo.svg" loading="lazy" />
@@ -225,7 +225,7 @@ function Footer(): JSX.Element | null {
           ©2022 Mina. Started by O(1) Labs.
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 
