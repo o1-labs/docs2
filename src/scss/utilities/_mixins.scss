@@ -25,7 +25,8 @@
   $borderColor: rgb(0, 0, 0),
   $borderColorAfter: rgb(0, 0, 0),
   $color: rgb(255, 255, 255),
-  $backgroundImage: "@site/static/img/common/button-hover-light.png"
+  $backgroundImage: "@site/static/img/common/button-hover-light.png",
+  $height: 3.25rem
 ) {
   @include f_monument;
   font-weight: 500;
@@ -40,7 +41,7 @@
   align-items: center;
   gap: 0.5rem;
   width: max-content;
-  height: 3.25rem;
+  height: $height;
   border: 1px solid $borderColor;
   background-color: $backgroundColor;
   border-radius: 4px 1px;
