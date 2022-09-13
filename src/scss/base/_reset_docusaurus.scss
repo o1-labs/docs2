@@ -15,10 +15,10 @@ We must use `!important` at times to override some default styles.
 
 .theme-doc-markdown {
   & > h1:first-of-type {
-    @include mixins.minaHeaderJumbo;
+    @include mixins.minaHeader1;
   }
   & > header > h1:first-of-type {
-    @include mixins.minaHeaderJumbo;
+    @include mixins.minaHeader1;
   }
 }
 
