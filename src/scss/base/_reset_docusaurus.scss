@@ -136,7 +136,7 @@ We must use `!important` at times to override some default styles.
 }
 
 .breadcrumbs {
-  @media screen and (min-width: variables.$screen-lg) {
+  @media screen and (min-width: variables.$screen-md) {
     display: none;
   }
 }
