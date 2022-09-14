@@ -29,6 +29,10 @@ button {
   color: inherit;
 }
 
+h1 {
+  @include mixins.minaHeader1;
+}
+
 h2 {
   @include mixins.minaHeader2;
 }
