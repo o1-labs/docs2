@@ -13,6 +13,14 @@ We must use `!important` at times to override some default styles.
   background-size: cover;
 }
 
+.container {
+  padding-bottom: 4rem !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    padding-bottom: 5rem !important;
+  }
+}
+
 .theme-doc-sidebar-container {
   border-right: none !important;
 }
