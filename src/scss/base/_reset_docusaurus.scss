@@ -43,6 +43,7 @@ We must use `!important` at times to override some default styles.
 }
 
 .menu {
+  padding-left: var(--ifm-menu-link-padding-horizontal);
   @media screen and (min-width: variables.$screen-md) {
     margin-left: 1rem;
     margin-bottom: 1rem;
@@ -213,10 +214,10 @@ We must use `!important` at times to override some default styles.
 
 .navbar-sidebar__brand {
   & > * > .navbar__logo {
-    margin-left: 0;
+    margin-left: -0.5rem;
   }
 }
 
 .navbar-sidebar__back {
-  margin-left: -1.3rem;
+  margin-left: -1.5rem;
 }
