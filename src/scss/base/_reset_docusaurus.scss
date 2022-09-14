@@ -120,6 +120,7 @@ We must use `!important` at times to override some default styles.
   & > * > .DocSearch-Search-Icon,
   .DocSearch-Button-Container {
     color: variables.$mina-gray !important;
+    font-weight: normal !important;
   }
 
   @media screen and (min-width: variables.$screen-md) {
