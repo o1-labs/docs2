@@ -69,7 +69,8 @@ const katex = require("rehype-katex");
             {
               type: "html",
               position: "left",
-              value: `<a class="navbar-docs-copy" href="/"><h3 style="margin:0">Docs</h3></a>`,
+              className: "navbar-docs-copy",
+              value: `<a href="/"><h3 style="margin:0">Docs</h3></a>`,
             },
             {
               type: "html",

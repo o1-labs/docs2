@@ -46,22 +46,24 @@
 }
 
 .navbar-docs-copy {
-  display: none;
-  @media screen and (min-width: variables.$screen-md) {
-    display: block;
-    text-decoration: none !important;
-
-    & > h3 {
-      font-size: 2.75rem !important;
-      padding-bottom: 0.45rem;
-      color: rgba(28, 30, 33, 0.92);
-    }
-
-    & > * {
-      color: variables.$mina-black !important;
-    }
-    & > a:hover {
+  & > a {
+    display: none;
+    @media screen and (min-width: variables.$screen-md) {
+      display: block;
       text-decoration: none !important;
+
+      & > h3 {
+        font-size: 2.75rem !important;
+        padding-bottom: 0.45rem;
+        color: rgba(28, 30, 33, 0.92);
+      }
+
+      & > * {
+        color: variables.$mina-black !important;
+      }
+      & > a:hover {
+        text-decoration: none !important;
+      }
     }
   }
 }
