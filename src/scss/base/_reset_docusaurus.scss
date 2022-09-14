@@ -143,7 +143,7 @@ We must use `!important` at times to override some default styles.
   border-radius: 2px !important;
   border: 1px solid variables.$mina-gray !important;
   border-width: 0.01em;
-  height: 2.75rem !important;
+  height: 3.3rem !important;
 
   position: static;
 
@@ -165,8 +165,8 @@ We must use `!important` at times to override some default styles.
 
   @media screen and (min-width: variables.$screen-md) {
     position: absolute !important;
-    top: 10%;
-    left: 35%;
+    top: 0%;
+    left: 28.5%;
     width: 30rem;
   }
 
