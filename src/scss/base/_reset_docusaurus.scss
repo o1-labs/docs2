@@ -100,6 +100,12 @@ We must use `!important` at times to override some default styles.
   margin-right: 0rem;
 }
 
+.navbar__item {
+  & > .navbar-docs-copy {
+    padding: 0;
+  }
+}
+
 .navbar__items--right {
   & > div,
   & > a {
