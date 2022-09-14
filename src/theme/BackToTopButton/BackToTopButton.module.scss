@@ -27,7 +27,7 @@
     $borderColor: variables.$mina-white,
     $borderColorAfter: variables.$mina-black,
     $color: variables.$mina-white,
-    $backgroundImage: "@site/static/img/common/button-hover-light.png",
+    $backgroundImage: "@site/static/img/common/button-hover-dark.png",
     $height: 4rem
   );
   z-index: calc(var(--ifm-z-index-fixed) - 1);
