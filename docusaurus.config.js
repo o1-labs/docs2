@@ -80,7 +80,7 @@ const katex = require("rehype-katex");
             {
               type: "html",
               position: "right",
-              value: `<a href="https://github.com/MinaProtocol/mina"><img style="margin:0;padding-top:5px;width:28px;height:auto" src="/svg/socials/github_24x24.svg"/></a>`,
+              value: `<a href="https://github.com/MinaProtocol/mina"><img style="margin:0;padding-top:5px;width:36px;height:auto" src="/svg/socials/github_24x24.svg"/></a>`,
             },
           ],
         },
