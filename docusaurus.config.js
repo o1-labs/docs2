@@ -98,6 +98,7 @@ const katex = require("rehype-katex");
           appId: process.env.ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
           indexName: "mina",
+          contextualSearch: false,
         },
       }),
   }
