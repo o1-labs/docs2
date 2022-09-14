@@ -60,7 +60,7 @@ We must use `!important` at times to override some default styles.
 
   & > .theme-doc-sidebar-item-category-level-1,
   .theme-doc-sidebar-item-link-level-1 {
-    margin-left: 1.5rem;
+    margin-left: 2rem;
     border-left: 1px solid rgba(45, 45, 45, 0.25);
     & > div {
       border-radius: 0;
@@ -223,10 +223,10 @@ We must use `!important` at times to override some default styles.
 
 .navbar-sidebar__brand {
   & > * > .navbar__logo {
-    margin-left: -0.5rem;
+    margin-left: -4px;
   }
 }
 
 .navbar-sidebar__back {
-  margin-left: -1.5rem;
+  margin-left: -1rem;
 }
