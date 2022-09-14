@@ -41,6 +41,10 @@ We must use `!important` at times to override some default styles.
   transition: height 30ms ease-in-out 0s !important;
   counter-reset: orderedList 0 !important;
 
+  & > * a:hover {
+    color: variables.$mina-orange;
+  }
+
   & > .theme-doc-sidebar-item-category-level-1,
   .theme-doc-sidebar-item-link-level-1 {
     margin-left: 1.5rem;
