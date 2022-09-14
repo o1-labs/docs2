@@ -109,7 +109,14 @@ We must use `!important` at times to override some default styles.
 
 .DocSearch-Button {
   border-radius: 2px !important;
-  border: 1px solid variables.$mina-black !important;
+  border: 1px solid #fff9f9 !important;
+  border-width: 0.01em;
+  height: 2.75rem !important;
+
+  & > * > .DocSearch-Search-Icon,
+  .DocSearch-Button-Container {
+    color: variables.$mina-gray !important;
+  }
 
   @media screen and (min-width: variables.$screen-md) {
     width: 15rem;
@@ -119,8 +126,7 @@ We must use `!important` at times to override some default styles.
   --docsearch-muted-color: variables.$mina-black;
 
   &:hover {
-    border: 1px solid variables.$mina-gray !important;
-    color: variables.$mina-orange !important;
+    box-shadow: none;
   }
 }
 
@@ -135,7 +141,6 @@ We must use `!important` at times to override some default styles.
 }
 
 .DocSearch-SearchBar {
-  --docsearch-highlight-color: #2d2d2d;
   --docsearch-searchbox-shadow: inset 0 0 0 2px #2a63f7;
 }
 
@@ -146,7 +151,7 @@ We must use `!important` at times to override some default styles.
 .pagination-nav__link {
   border-color: variables.$mina-orange;
   & > .pagination-nav__sublabel {
-    color: #9b9b9b;
+    color: #575757;
   }
   & > .pagination-nav__label {
     color: variables.$mina-orange;
