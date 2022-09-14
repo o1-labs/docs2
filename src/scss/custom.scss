@@ -54,7 +54,7 @@
 
       & > h3 {
         font-size: 39px !important;
-        padding-bottom: 0.45rem;
+        padding-bottom: 0.25rem;
         color: rgba(28, 30, 33, 0.92);
       }
 
@@ -72,6 +72,7 @@
   margin: 0;
   width: 36px;
   height: auto;
+  padding-top: 4px;
 
   &:hover {
     color: variables.$mina-orange;
