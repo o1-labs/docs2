@@ -13,6 +13,10 @@ We must use `!important` at times to override some default styles.
   background-size: cover;
 }
 
+.theme-doc-sidebar-container {
+  border-right: none !important;
+}
+
 .theme-doc-markdown {
   & > h1:first-of-type {
     @include mixins.minaHeader1;
