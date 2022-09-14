@@ -158,7 +158,7 @@ We must use `!important` at times to override some default styles.
 
   @media screen and (min-width: variables.$screen-md) {
     position: absolute !important;
-    top: 0;
+    top: 5%;
     left: 35%;
     width: 30rem;
   }
