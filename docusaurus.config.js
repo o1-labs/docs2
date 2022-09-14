@@ -86,7 +86,7 @@ const katex = require("rehype-katex");
         },
 
         prism: {
-          theme: lightCodeTheme,
+          theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
         },
 
