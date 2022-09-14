@@ -8,8 +8,8 @@
   z-index: calc(var(--ifm-z-index-fixed) - 1);
 
   @media screen and (min-width: variables.$screen-md) {
-    right: 1.3rem;
-    bottom: 1.3rem;
+    right: 1.75rem;
+    bottom: 1.75rem;
   }
 }
 
