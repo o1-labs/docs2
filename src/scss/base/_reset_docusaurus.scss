@@ -153,6 +153,12 @@ We must use `!important` at times to override some default styles.
     font-weight: normal !important;
   }
 
+  &:hover {
+    svg {
+      color: variables.$mina-gray-dark !important;
+    }
+  }
+
   @media screen and (min-width: variables.$screen-sm) {
     width: 15rem;
   }
