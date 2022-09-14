@@ -63,7 +63,7 @@ const katex = require("rehype-katex");
           logo: {
             alt: "Mina Logo",
             src: "svg/common/mina_logo.svg",
-            href: "https://minaprotocol.com",
+            href: "/",
           },
           items: [
             {
