@@ -155,7 +155,7 @@ We must use `!important` at times to override some default styles.
 .pagination-nav__link {
   border-color: variables.$mina-orange;
   & > .pagination-nav__sublabel {
-    color: #575757;
+    color: #a6a6a6;
   }
   & > .pagination-nav__label {
     color: variables.$mina-orange;
