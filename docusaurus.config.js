@@ -15,7 +15,7 @@ const katex = require("rehype-katex");
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
-    favicon: "img/favicon.png",
+    favicon: "img/favicon.ico",
     organizationName: "o1-labs",
     projectName: "docs2",
 
