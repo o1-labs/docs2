@@ -79,6 +79,12 @@ const katex = require("rehype-katex");
           ],
         },
 
+        docs: {
+          sidebar: {
+            autoCollapseCategories: true,
+          },
+        },
+
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
