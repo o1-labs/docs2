@@ -210,3 +210,13 @@ We must use `!important` at times to override some default styles.
     color: variables.$mina-orange;
   }
 }
+
+.navbar-sidebar__brand {
+  & > * > .navbar__logo {
+    margin-left: 0;
+  }
+}
+
+.navbar-sidebar__back {
+  margin-left: -1.3rem;
+}
