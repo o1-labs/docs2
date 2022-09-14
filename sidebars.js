@@ -10,29 +10,33 @@ module.exports = {
         "about-mina/snarks",
         "about-mina/protocol-architecture",
         "about-mina/consensus-model",
-        "about-mina/smart-contracts",
         "about-mina/faq",
         {
           type: "link",
           label: "Whitepaper", // The link label
           href: "https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf", // The external URL
         },
-        {
-          type: "category",
-          label: "Advanced",
-          items: ["about-mina/Advanced/cryptography"],
-        },
       ],
     },
     {
       type: "category",
       label: "Using Mina",
+      items: ["using-mina/install-wallet"],
+    },
+    {
+      type: "category",
+      label: "zkApp Developers",
       items: [
-        "using-mina/install-wallet",
-        "using-mina/where-to-buy-mina",
-        "using-mina/how-to-send",
-        "using-mina/how-to-use-zkapp",
-        "using-mina/how-to-stake-delegate",
+        "zkapp-developers/overview",
+        "zkapp-developers/how-zkapps-work",
+        "zkapp-developers/how-to-write-zkapp",
+        "zkapp-developers/how-to-test-zkapp",
+        "zkapp-developers/how-to-deploy-zkapp",
+        "zkapp-developers/how-to-write-ui-zkapp",
+        "zkapp-developers/advanced-concepts",
+        "zkapp-developers/tutorial-anon-message-board",
+        "zkapp-developers/zkapps-for-ethereum",
+        "zkapp-developers/snarkyjs-reference",
       ],
     },
     {
@@ -82,20 +86,7 @@ module.exports = {
         "node-operators/troubleshooting",
       ],
     },
-    {
-      type: "category",
-      label: "zkApp Developers",
-      items: [
-        "zkapp-developers/overview",
-        "zkapp-developers/how-zkapps-work",
-        "zkapp-developers/how-to-write-zkapp",
-        "zkapp-developers/advanced-concepts",
-        "zkapp-developers/snarkyjs",
-        "zkapp-developers/zkapps-for-ethereum",
-        "zkapp-developers/snarkyjs-reference",
-        "zkapp-developers/faq",
-      ],
-    },
+
     {
       type: "category",
       label: "Exchange Operators",
