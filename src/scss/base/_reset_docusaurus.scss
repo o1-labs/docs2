@@ -103,6 +103,10 @@ We must use `!important` at times to override some default styles.
   height: 100%;
 }
 
+.navbar__items {
+  position: relative;
+}
+
 .navbar__logo {
   margin: 0 0 0 0.9rem;
   max-width: 100%;
@@ -140,6 +144,8 @@ We must use `!important` at times to override some default styles.
   border-width: 0.01em;
   height: 2.75rem !important;
 
+  position: static;
+
   & > * > .DocSearch-Search-Icon,
   .DocSearch-Button-Container {
     color: variables.$mina-gray !important;
@@ -151,7 +157,22 @@ We must use `!important` at times to override some default styles.
   }
 
   @media screen and (min-width: variables.$screen-md) {
-    width: 25rem;
+    position: absolute !important;
+    top: 0;
+    left: 35%;
+    width: 30rem;
+  }
+
+  @media screen and (min-width: variables.$screen-lg) {
+    width: 40rem;
+  }
+
+  @media screen and (min-width: variables.$screen-xl) {
+    width: 40rem;
+  }
+
+  @media screen and (min-width: variables.$screen-xl2) {
+    width: 55rem;
   }
 
   --docsearch-searchbox-background: variables.$mina-white;

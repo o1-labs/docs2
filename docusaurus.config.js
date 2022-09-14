@@ -75,7 +75,7 @@ const katex = require("rehype-katex");
 
             {
               type: "search",
-              position: "right",
+              position: "left",
             },
             {
               type: "html",
