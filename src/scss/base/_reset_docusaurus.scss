@@ -129,7 +129,7 @@ We must use `!important` at times to override some default styles.
     @media screen and (min-width: variables.$screen-lg) {
       display: flex;
       align-items: center;
-      margin-left: 2.5rem;
+      margin-left: 1rem;
     }
   }
 }
@@ -146,8 +146,12 @@ We must use `!important` at times to override some default styles.
     font-weight: normal !important;
   }
 
-  @media screen and (min-width: variables.$screen-md) {
+  @media screen and (min-width: variables.$screen-sm) {
     width: 15rem;
+  }
+
+  @media screen and (min-width: variables.$screen-md) {
+    width: 25rem;
   }
 
   --docsearch-searchbox-background: variables.$mina-white;
