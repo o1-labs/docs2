@@ -67,3 +67,13 @@
     }
   }
 }
+
+.navbar-github-icon {
+  margin: 0;
+  width: 36px;
+  height: auto;
+
+  &:hover {
+    color: variables.$mina-orange;
+  }
+}
