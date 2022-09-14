@@ -1,0 +1,60 @@
+@use "@site/src/scss/base/reset";
+@use "@site/src/scss/base/reset_docusaurus";
+@use "@site/src/scss/utilities/variables";
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #ff603b;
+  --ifm-color-primary-dark: #ff471c;
+  --ifm-color-primary-darker: #ff3a0c;
+  --ifm-color-primary-darkest: #dc2900;
+  --ifm-color-primary-light: #ff795a;
+  --ifm-color-primary-lighter: #ff866a;
+  --ifm-color-primary-lightest: #ffac99;
+  --ifm-code-font-size: 95%;
+
+  --ifm-menu-color: variables.$mina-black;
+  --ifm-breadcrumb-item-background-active: none;
+
+  --ifm-font-family-monospace: "Monument Grotesk Mono";
+  --ifm-font-family-base: "Monument Grotesk";
+
+  --ifm-navbar-shadow: none;
+
+  --ifm-toc-link-color: variables.$mina-black;
+
+  --docsearch-primary-color: #d9d9d9 !important;
+
+  --ifm-navbar-padding-vertical: 1rem;
+  --ifm-navbar-padding-horizontal: 1.5rem;
+  --ifm-navbar-height: 6rem;
+
+  @media screen and (min-width: variables.$screen-md) {
+    --ifm-navbar-padding-vertical: 30px;
+    --ifm-navbar-padding-horizontal: 3.2rem;
+  }
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.navbar-docs-copy {
+  text-decoration: none !important;
+  opacity: 0.5;
+
+  & > h3 {
+    font-size: 2.75rem !important;
+    padding-bottom: 0.45rem;
+  }
+
+  & > * {
+    color: variables.$mina-black !important;
+  }
+  & > a:hover {
+    text-decoration: none !important;
+  }
+}

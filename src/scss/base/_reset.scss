@@ -1,0 +1,90 @@
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
+
+html,
+body {
+  overflow-x: hidden;
+  background: #fff;
+  font-family: "Monument Grotesk", serif;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+a,
+button {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+h2 {
+  @include mixins.minaHeader2;
+}
+
+h3 {
+  @include mixins.minaHeader3;
+}
+
+h4 {
+  @include mixins.minaHeader4;
+}
+
+h5 {
+  @include mixins.minaHeader5;
+}
+
+h6 {
+  @include mixins.minaHeader6;
+}
+
+p {
+  @include mixins.minaParagraph;
+}
+
+figure {
+  padding-inline: 0px;
+  padding-block: 0px;
+  margin-inline: 0px;
+  margin-block: 0px;
+}
+
+hr {
+  max-width: 71rem;
+  width: 100%;
+  margin: 0px auto;
+  border: 0;
+  height: 1px;
+  background-color: variables.$mina-black;
+}
+
+.video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  display: block;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: -2rem;
+  }
+}

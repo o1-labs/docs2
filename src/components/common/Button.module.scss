@@ -1,0 +1,32 @@
+@use "@site/src/scss/utilities/mixins";
+@use "@site/src/scss/utilities/variables";
+
+.minaButtonOrange {
+  @include mixins.minaButtonBase(
+    $backgroundColor: variables.$mina-orange,
+    $borderColor: variables.$mina-black,
+    $borderColorAfter: variables.$mina-orange,
+    $color: variables.$mina-white,
+    $backgroundImage: "@site/static/img/common/button-hover-dark.png"
+  );
+}
+
+.minaButtonTeal {
+  @include mixins.minaButtonBase(
+    $backgroundColor: variables.$mina-teal,
+    $borderColor: variables.$mina-black,
+    $borderColorAfter: variables.$mina-teal,
+    $color: variables.$mina-white,
+    $backgroundImage: "@site/static/img/common/button-hover-dark.png"
+  );
+}
+
+.minaButtonDark {
+  @include mixins.minaButtonBase(
+    $backgroundColor: variables.$mina-black,
+    $borderColor: variables.$mina-black,
+    $borderColorAfter: variables.$mina-black,
+    $color: variables.$mina-white,
+    $backgroundImage: "@site/static/img/common/button-hover-light.png"
+  );
+}

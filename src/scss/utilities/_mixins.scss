@@ -1,0 +1,339 @@
+@use "@site/src/scss/base/typography";
+@use "@site/src/scss/utilities/variables";
+
+@mixin f_monument() {
+  font-family: "Monument Grotesk", serif;
+}
+
+@mixin f_mono() {
+  font-family: "Monument Grotesk Mono", monospace;
+}
+
+@mixin f_bold() {
+  font-family: "Monument Grotesk Bold", serif;
+  font-weight: bold;
+}
+
+@mixin t_main($fontsize: 16px, $lineheight: 18px) {
+  @include f_monument();
+  font-size: $fontsize;
+  line-height: $lineheight;
+}
+
+@mixin minaButtonBase(
+  $backgroundColor: rgb(255, 255, 255),
+  $borderColor: rgb(0, 0, 0),
+  $borderColorAfter: rgb(0, 0, 0),
+  $color: rgb(255, 255, 255),
+  $backgroundImage: "@site/static/img/common/button-hover-light.png",
+  $height: 3.25rem
+) {
+  @include f_monument;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  height: $height;
+  border: 1px solid $borderColor;
+  background-color: $backgroundColor;
+  border-radius: 4px 1px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  transform-style: preserve-3d;
+  transition: background 200ms ease-out 0ms;
+  padding: 0rem 1rem;
+  text-align: left;
+
+  svg {
+    color: $color;
+  }
+
+  span {
+    @include f_monument;
+    color: $color;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    inset: 0.25rem -0.25rem -0.25rem 0.25rem;
+    border-radius: 4px 1px;
+    border: 1px solid $borderColorAfter;
+    transform: translateZ(-1px);
+    transition: transform 200ms ease-in 0ms, border 50ms ease-in 100ms;
+  }
+
+  &:hover {
+    color: $backgroundColor;
+    background: url($backgroundImage) repeat scroll 0% 0%,
+      rgb(0, 0, 0) none repeat scroll 0% 0%;
+    &:after {
+      border: 0px solid rgba(0, 0, 0, 0);
+      transform: translate(-0.25rem, -0.25rem);
+    }
+  }
+}
+
+@mixin minaHeaderJumbo() {
+  @include f_monument;
+  font-weight: normal;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 56px !important;
+  line-height: 67px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 72px !important;
+    line-height: 86px !important;
+  }
+}
+
+@mixin minaHeader1() {
+  @include f_monument;
+  font-style: normal;
+  font-size: 36px !important;
+  line-height: 43px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 72px !important;
+    line-height: 86px !important;
+  }
+}
+
+@mixin minaHeader2() {
+  @include f_monument;
+  font-weight: normal;
+  font-size: 30px !important;
+  line-height: 36px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 40px !important;
+    line-height: 48px !important;
+  }
+}
+
+@mixin minaHeader3() {
+  @include f_monument;
+  font-weight: normal;
+  font-size: 26px !important;
+  line-height: 34px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 32px !important;
+    line-height: 38px !important;
+  }
+}
+
+@mixin minaHeader4() {
+  @include f_mono;
+  font-weight: normal;
+  font-weight: 400;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 20px !important;
+    line-height: 30px !important;
+  }
+}
+
+@mixin minaHeader5() {
+  @include f_monument;
+  font-weight: normal;
+  font-size: 24px !important;
+  line-height: 29px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 21px !important;
+    line-height: 25px !important;
+  }
+}
+
+@mixin minaHeader6() {
+  @include f_monument;
+  font-weight: normal;
+  font-size: 18px !important;
+  line-height: 22px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 18px !important;
+    line-height: 22px !important;
+  }
+}
+
+@mixin minaPageLabel() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 14px !important;
+  line-height: 16px !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 20px !important;
+    line-height: 30px !important;
+  }
+}
+
+@mixin minaLabel() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 15px !important;
+    line-height: 22px !important;
+  }
+}
+
+@mixin minaButtonLabel() {
+  @include f_monument();
+  font-weight: bold;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@mixin minaButtonLink() {
+  @include f_monument();
+  font-weight: bold;
+  font-size: 16px !important;
+  line-height: 16px !important;
+}
+
+@mixin minaLink($color: variables.$mina-orange) {
+  @include f_monument();
+  font-weight: normal;
+  color: $color;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin minaNavLink() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 17px !important;
+  line-height: 17px !important;
+}
+
+@mixin minaSidebarLink() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+@mixin minaTooltip() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 13px !important;
+  line-height: 16px !important;
+}
+
+@mixin minaCredit() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 10px !important;
+  line-height: 16px !important;
+  letter-spacing: -0.01em;
+}
+
+@mixin minaAnnouncement() {
+  @include f_monument();
+  font-weight: bold;
+  font-size: 14px !important;
+  line-height: 24px !important;
+}
+
+@mixin minaPageSubhead() {
+  @include f_mono();
+  font-weight: normal;
+  font-size: 18px !important;
+  line-height: 27px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 21px !important;
+    line-height: 32px !important;
+  }
+}
+
+@mixin minaSectionSubhead() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: -1px;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 20px !important;
+    line-height: 30px !important;
+  }
+}
+
+@mixin minaParagraph() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 16px !important;
+  line-height: 24px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 18px !important;
+    line-height: 27px !important;
+  }
+}
+
+@mixin minaParagraphSmall() {
+  @include f_monument();
+  font-weight: normal;
+  font-size: 14px !important;
+  line-height: 21px !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+}
+
+@mixin minaParagraphMono() {
+  @include f_mono();
+  font-weight: normal;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: -1px;
+}
+
+@mixin minaQuote() {
+  @include f_mono();
+  font-weight: normal;
+  font-size: 21px !important;
+  line-height: 30px !important;
+  letter-spacing: -0.03em;
+
+  @media screen and (min-width: variables.$screen-md) {
+    font-size: 40px !important;
+    line-height: 50px !important;
+  }
+}

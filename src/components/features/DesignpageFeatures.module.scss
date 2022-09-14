@@ -1,0 +1,105 @@
+@use "@site/src/scss/utilities/mixins";
+
+.designPageContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+}
+
+.h1Jumbo {
+  @include mixins.minaHeaderJumbo;
+}
+
+.minaH1 {
+  @include mixins.minaHeader1;
+}
+
+.minaH2 {
+  @include mixins.minaHeader2;
+}
+
+.minaH3 {
+  @include mixins.minaHeader3;
+}
+
+.minaH4 {
+  @include mixins.minaHeader4;
+}
+
+.minaH5 {
+  @include mixins.minaHeader5;
+}
+
+.minaH6 {
+  @include mixins.minaHeader6;
+}
+
+.minaPageLabel {
+  @include mixins.minaPageLabel;
+}
+
+.minaLabel {
+  @include mixins.minaLabel;
+}
+
+.minaButtonLabel {
+  @include mixins.minaButtonLabel;
+}
+
+.minaButtonLink {
+  @include mixins.minaButtonLink;
+}
+
+.minaLink {
+  @include mixins.minaLink;
+}
+
+.minaNavLink {
+  @include mixins.minaNavLink;
+}
+
+.minaSideBarLink {
+  @include mixins.minaSidebarLink;
+}
+
+.minaTooltip {
+  @include mixins.minaTooltip;
+}
+
+.minaCredit {
+  @include mixins.minaCredit;
+}
+
+.minaAnnouncement {
+  @include mixins.minaAnnouncement;
+}
+
+.minaPageSubhead {
+  @include mixins.minaPageSubhead;
+}
+
+.minaSectionSubhead {
+  @include mixins.minaSectionSubhead;
+}
+
+.minaParagraph {
+  @include mixins.minaParagraph;
+}
+
+.minaParagraphSmall {
+  @include mixins.minaParagraphSmall;
+}
+
+.minaParagraphMono {
+  @include mixins.minaParagraphMono;
+}
+
+.minaQuote {
+  @include mixins.minaQuote;
+}
