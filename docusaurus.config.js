@@ -80,12 +80,12 @@ const katex = require("rehype-katex");
             {
               type: "html",
               position: "right",
-              value: `<a href="https://bit.ly/MinaDiscord"><img class="navbar-github-icon" src="/svg/socials/discord_dark_24x24.svg"/></a>`,
+              value: `<a href="https://bit.ly/MinaDiscord"><img class="navbar-icon" src="/svg/socials/discord_dark_24x24.svg"/></a>`,
             },
             {
               type: "html",
               position: "right",
-              value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-github-icon" src="/svg/socials/github_24x24.svg"/></a>`,
+              value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
             },
           ],
         },
