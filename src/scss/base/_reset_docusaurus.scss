@@ -134,7 +134,6 @@ We must use `!important` at times to override some default styles.
     @media screen and (min-width: variables.$screen-lg) {
       display: flex;
       align-items: center;
-      margin-left: 1rem;
     }
   }
 }
