@@ -109,7 +109,7 @@ const FeatureList: FeatureItem[] = [
         <Link to="/participate/grants" className={styles.minaLink}>
           apply for grants & the zkApps Builders Program
         </Link>
-        ,
+        ,{" "}
         <Link to="/participate/github" className={styles.minaLink}>
           become a code contributor
         </Link>
