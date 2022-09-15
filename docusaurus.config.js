@@ -15,7 +15,7 @@ const katex = require("rehype-katex");
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
-    favicon: "img/favicon.png",
+    favicon: "img/favicon.ico",
     organizationName: "o1-labs",
     projectName: "docs2",
 
@@ -63,28 +63,36 @@ const katex = require("rehype-katex");
           logo: {
             alt: "Mina Logo",
             src: "svg/common/mina_logo.svg",
-            href: "https://minaprotocol.com",
+            href: "/",
           },
           items: [
             {
               type: "html",
               position: "left",
-              value: `<a class="navbar-docs-copy" href="/"><h3 style="margin:0">Docs</h3></a>`,
+              className: "navbar-docs-copy",
+              value: `<a href="/"><h3 style="margin:0">Docs</h3></a>`,
             },
+
             {
-              type: "localeDropdown",
-              position: "right",
+              type: "search",
+              position: "left",
             },
             {
               type: "html",
               position: "right",
-              value: `<a href="https://github.com/MinaProtocol/mina"><img style="margin:0;padding-top:5px;width:28px;height:auto" src="/svg/socials/github_24x24.svg"/></a>`,
+              value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-github-icon" src="/svg/socials/github_24x24.svg"/></a>`,
             },
           ],
         },
 
+        docs: {
+          sidebar: {
+            autoCollapseCategories: true,
+          },
+        },
+
         prism: {
-          theme: lightCodeTheme,
+          theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
         },
 
@@ -98,6 +106,7 @@ const katex = require("rehype-katex");
           appId: process.env.ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
           indexName: "mina",
+          contextualSearch: false,
         },
       }),
   }

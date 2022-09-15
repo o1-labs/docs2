@@ -313,4 +313,8 @@
   line-height: 1.5rem;
   color: variables.$mina-white;
   opacity: 0.6;
+
+  @media screen and (min-width: variables.$screen-md) {
+    width: 25rem;
+  }
 }

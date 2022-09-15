@@ -10,7 +10,19 @@ We must use `!important` at times to override some default styles.
 
 #__docusaurus {
   background-image: url("@site/static/img/mina_background.jpg");
-  background-size: cover;
+  background-size: 100%;
+}
+
+.container {
+  padding-bottom: 4rem !important;
+
+  @media screen and (min-width: variables.$screen-md) {
+    padding-bottom: 5rem !important;
+  }
+}
+
+.theme-doc-sidebar-container {
+  border-right: none !important;
 }
 
 .theme-doc-markdown {
@@ -31,6 +43,7 @@ We must use `!important` at times to override some default styles.
 }
 
 .menu {
+  padding-left: var(--ifm-menu-link-padding-horizontal);
   @media screen and (min-width: variables.$screen-md) {
     margin-left: 1rem;
     margin-bottom: 1rem;
@@ -47,7 +60,7 @@ We must use `!important` at times to override some default styles.
 
   & > .theme-doc-sidebar-item-category-level-1,
   .theme-doc-sidebar-item-link-level-1 {
-    margin-left: 1.5rem;
+    margin-left: 2rem;
     border-left: 1px solid rgba(45, 45, 45, 0.25);
     & > div {
       border-radius: 0;
@@ -70,12 +83,17 @@ We must use `!important` at times to override some default styles.
     content: counter(orderedList, decimal-leading-zero) !important;
 
     position: absolute;
-    transform: translateX(-80%) translateY(90%);
+    transform: translateX(-80%) translateY(91%);
   }
 }
 
 .menu__link {
   line-height: 2rem;
+
+  &:hover,
+  & > a {
+    transition: none !important;
+  }
 }
 
 .menu__list-item:not(:first-child) {
@@ -84,6 +102,10 @@ We must use `!important` at times to override some default styles.
 
 .navbar {
   height: 100%;
+}
+
+.navbar__items {
+  position: relative;
 }
 
 .navbar__logo {
@@ -100,13 +122,19 @@ We must use `!important` at times to override some default styles.
   margin-right: 0rem;
 }
 
+.navbar__item {
+  & > .navbar-docs-copy {
+    padding: 0;
+  }
+}
+
 .navbar__items--right {
   & > div,
   & > a {
     @media screen and (min-width: variables.$screen-lg) {
       display: flex;
       align-items: center;
-      margin-left: 2.5rem;
+      margin-left: 1rem;
     }
   }
 }
@@ -115,15 +143,43 @@ We must use `!important` at times to override some default styles.
   border-radius: 2px !important;
   border: 1px solid variables.$mina-gray !important;
   border-width: 0.01em;
-  height: 2.75rem !important;
+  height: 3.3rem !important;
+
+  position: static;
 
   & > * > .DocSearch-Search-Icon,
   .DocSearch-Button-Container {
     color: variables.$mina-gray !important;
+    font-weight: normal !important;
+  }
+
+  &:hover {
+    svg {
+      color: variables.$mina-gray-dark !important;
+    }
+  }
+
+  @media screen and (min-width: variables.$screen-sm) {
+    width: 15rem;
   }
 
   @media screen and (min-width: variables.$screen-md) {
-    width: 15rem;
+    position: absolute !important;
+    top: 0%;
+    left: 28.5%;
+    width: 30rem;
+  }
+
+  @media screen and (min-width: variables.$screen-lg) {
+    width: 40rem;
+  }
+
+  @media screen and (min-width: variables.$screen-xl) {
+    width: 40rem;
+  }
+
+  @media screen and (min-width: variables.$screen-xl2) {
+    width: 55rem;
   }
 
   --docsearch-searchbox-background: variables.$mina-white;
@@ -135,7 +191,7 @@ We must use `!important` at times to override some default styles.
 }
 
 .breadcrumbs {
-  @media screen and (min-width: variables.$screen-lg) {
+  @media screen and (min-width: variables.$screen-md) {
     display: none;
   }
 }
@@ -153,11 +209,24 @@ We must use `!important` at times to override some default styles.
 }
 
 .pagination-nav__link {
-  border-color: variables.$mina-orange;
+  border-color: variables.$mina-gray;
+  &:hover {
+    border-color: variables.$mina-orange;
+  }
   & > .pagination-nav__sublabel {
     color: #a6a6a6;
   }
   & > .pagination-nav__label {
     color: variables.$mina-orange;
   }
+}
+
+.navbar-sidebar__brand {
+  & > * > .navbar__logo {
+    margin-left: -4px;
+  }
+}
+
+.navbar-sidebar__back {
+  margin-left: -1rem;
 }

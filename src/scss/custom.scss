@@ -13,6 +13,8 @@
   --ifm-color-primary-lightest: #ffac99;
   --ifm-code-font-size: 95%;
 
+  --ifm-menu-color-background-active: none;
+
   --ifm-menu-color: variables.$mina-black;
   --ifm-breadcrumb-item-background-active: none;
 
@@ -23,7 +25,8 @@
 
   --ifm-toc-link-color: variables.$mina-black;
 
-  --docsearch-primary-color: #d9d9d9 !important;
+  --docsearch-primary-color: none !important;
+  --docusaurus-announcement-bar-height: 40px;
 
   --ifm-navbar-padding-vertical: 1rem;
   --ifm-navbar-padding-horizontal: 1.5rem;
@@ -43,18 +46,34 @@
 }
 
 .navbar-docs-copy {
-  text-decoration: none !important;
-  opacity: 0.5;
+  & > a {
+    display: none;
+    @media screen and (min-width: variables.$screen-md) {
+      display: block;
+      text-decoration: none !important;
 
-  & > h3 {
-    font-size: 2.75rem !important;
-    padding-bottom: 0.45rem;
-  }
+      & > h3 {
+        font-size: 39px !important;
+        padding-bottom: 0.25rem;
+        color: rgba(28, 30, 33, 0.92);
+      }
 
-  & > * {
-    color: variables.$mina-black !important;
+      & > * {
+        color: variables.$mina-black !important;
+      }
+      & > a:hover {
+        text-decoration: none !important;
+      }
+    }
   }
-  & > a:hover {
-    text-decoration: none !important;
+}
+
+.navbar-github-icon {
+  margin: 0;
+  width: 36px;
+  height: auto;
+
+  &:hover {
+    color: variables.$mina-orange;
   }
 }
