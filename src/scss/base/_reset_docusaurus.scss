@@ -154,7 +154,8 @@ We must use `!important` at times to override some default styles.
   }
 
   &:hover {
-    svg {
+    svg,
+    span {
       color: variables.$mina-gray-dark !important;
     }
   }
