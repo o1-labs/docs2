@@ -5,17 +5,18 @@ description: Frequently asked questions about listing Mina
 
 # Exchange Operators
 
-If you are an exchange operator looking to custody MINA on behalf of users, we recommend reviewing the following frequently asked questions (FAQ).
+If you are an exchange operator looking to custody MINA on behalf of users, we recommend reviewing the following frequently asked questions (FAQ) from exchanges.
 
 ## Basics
 
-### Where can I find third-party audit reports for Mina?
+### Where can I find third-party audit reports for Mina? 
 
 The latest third-party audit reports are publicly available here:
 - [https://research.nccgroup.com/2020/05/13/public-report-coda-cryptographic-review](https://research.nccgroup.com/2020/05/13/public-report-coda-cryptographic-review/)
 - [https://leastauthority.com/blog/audit-of-mina-ledger-application-for-o1-labs](https://leastauthority.com/blog/audit-of-mina-ledger-application-for-o1-labs/)
 - [https://research.nccgroup.com/2022/02/22/public-report-o1-labs-mina-client-sdk-signature-library-and-base-components-cryptography-and-implementation-review](https://research.nccgroup.com/2022/02/22/public-report-o1-labs-mina-client-sdk-signature-library-and-base-components-cryptography-and-implementation-review)
 
+<br></br> 
 
 :::note
 
@@ -34,7 +35,7 @@ You can learn more about Mina’s implementation of Rosetta here (coming soon).
 
 ### What if I have a question about Rosetta?
 
-You can post your questions in [Mina’s Github Discussions]( https://github.com/MinaProtocol/mina/discussions).
+You can post your questions in [Mina’s Github Discussions]( [https://github.com/MinaProtocol/mina/discussions).
 
 ## Accounts
 
@@ -47,6 +48,7 @@ Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This f
 ### What is the maximum size of the mempool? How do we work around this?
 
 The max mempool size is 3,000. Once it hits that size, transactions with the lowest fees are discarded.
+
 We recommend setting your fee to an amount higher than 0.001 MINA, which is the current average fee for transactions in the pool.
 
 You can view the fees for pending transactions here and adjust your fees accordingly: [https://minaexplorer.com/pending-transactions](https://minaexplorer.com/pending-transactions).
@@ -54,17 +56,17 @@ You can view the fees for pending transactions here and adjust your fees accordi
 
 ### Why do some users appear to have lost their funds when sending to exchanges?
 
-<Alert kind="tip">
+:::tip
+<p>While Mina and its SDKs do support the memo field when sending a transaction, we strongly recommend that you <u>do NOT require a memo for deposits</u> to prevent this issue for your exchange.</p>
+:::
 
-<p>While Mina and its SDKs do support the memo field when sending a transaction, we strongly recommend that you do <b>not</b> require a memo for deposits to prevent this issue for your exchange.</p>
+In order to associate the deposit with the user's account, some exchanges require their users to include a unique memo field when sending MINA deposits to the exchange’s address.
 
-</Alert>
+If the user does not include this unique memo when sending their deposit, the receiving exchange may not be able to associate the deposit properly with the user's exchange account. 
 
-In order to associate the deposit with the user's account, some exchanges require their users to include a unique memo field when sending MINA deposits to the exchange’s address. If the user does not include this unique memo when sending their deposit, the receiving exchange may not be able to associate the deposit properly with the user's exchange account. 
+These funds are <u>NOT lost</u>. The exchanges have received the funds at the exchange's address, but the exchange may not be able to automatically associate the deposit with the user's exchange account without such a memo.
 
-These funds are <b>not lost</b>. The exchanges have received the funds at the exchange's address, but the exchange may not be able to automatically associate the deposit with the user's exchange account without such a memo.
-
-To avoid this above issue, <u>we recommend that exchanges do <b>not</b> require a memo</u> for deposits. At the same time, <u>we also recommend that exchanges and wallet creators expose an optional memo field</u> during a Mina send transaction.
+To avoid this above issue, we recommend that exchanges <u>do NOT require a memo</u> for deposits. At the same time, we also recommend that exchanges and wallet creators <u>expose an optional memo field</u> during a Mina send transaction.
 
 ### What is the current maximum number of rollback blocks?
 
@@ -121,7 +123,6 @@ mainnet-30627-3NLfKanQ53X2MRKx5ZRvb9nVCEB9eJpcnssGCTpT3J1cojhB5M19.json
 ```
 mainnet-3NKUBmkc7UZ7ik5JyCM4WNzkN1HG5heMB5zNDUkf3Kgta1MFY6LY.json
 ```
-
 You can download a specific block using curl:
 ```
 curl https://mina_network_block_data.storage.googleapis.com/<filename.json>
@@ -134,7 +135,7 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 ### How do I query for the canonical block at a certain height from the archive node
 
-This can be accomplished using a recursive query. See Example #3 in the Archive Node docs, for a full example.
+This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](node-operators/archive-node/overview), for a full example.
 
 ### Why am I getting this error message: "Not able to connect to the network"? 
 
@@ -164,11 +165,11 @@ Since Mina is a Proof of Stake (PoS) consensus network without lockup for staked
 
 You can look into staking this wallet, either by running your own block production node, or just by delegating your funds to a staking pool on the network. Out of these two options, the latter is simpler to set up (though it does incur about a delay between 18 to 29 days before you can begin getting rewards, as explained below).
 
-:::note
+<Alert kind="note">
 
 Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
 
-:::
+</Alert>
 
 ### Why is there a delay for staking to take effect?
 
@@ -192,4 +193,4 @@ You can use this Delegation Calculator tool built by Carbonara, which tells you 
 
 We strongly suggest that you test tooling and integrations on Devnet before going live on Mainnet. This includes simulating expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
 
-See our instructions for connecting to DevNet.
+See our <DocLink copy="instructions for connecting to DevNet" url="/node-operators/connecting-devnet" />.
