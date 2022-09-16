@@ -1,0 +1,96 @@
+---
+title: Getting Started
+---
+
+# Getting Started
+
+:::note
+
+A new version of Mina Docs is coming soon! We're currently updating the contents of page. If you have any suggestions or would like to contribute, please create a [pull request](https://github.com/MinaProtocol/docs).
+
+:::
+
+
+Welcome to Mina! This section will walk you through the process of setting up a Mina node. After we will show you how to generate a keypair for use with the network. Finally we'll show you how to connect to the network and begin producing blocks.
+
+:::important
+
+This documentation is for the **Mainnet** release.
+
+::::
+
+## Requirements
+
+**Software**: macOS, Linux (currently supports Debian 9 and Ubuntu 18.04 LTS), or any host with Docker
+
+Note: Windows is not officially supported at this time. However, community members succeeded in setting up nodes using Windows Subsystem for Linux. Click [here](https://minawiki.com/index.php?title=Mina_on_Windows) for instructions on using Windows, which are created by the community. Additionally Windows users can use the Docker documentation.
+
+**Hardware**: Sending and receiving mina does not require any special hardware, but running a block producer on the Mina network currently requires:
+
+- at least a 8-core processor
+- at least 16GB of RAM
+
+Note that if you plan on running a snark worker node at the same time as a block producer, you may need more RAM. GPUs aren't currently required, but may be required for node operators when the protocol is upgraded.
+
+**Network**: At least 1 Mbps connection
+
+**VM Instances**:
+O(1) Labs has tested running nodes on several cloud providers, and recommends the following instances for basic node operator needs. Keep in mind that custom requirements as well as different cost constraints may require a different instance type.
+
+- AWS - [c5.2xlarge](https://www.ec2instances.info/?filter=c5.2xl&region=us-west-2&cost_duration=daily&selected=c5.2xlarge)
+- GCP - [c2-standard-8](https://cloud.google.com/compute/docs/machine-types)
+- Azure - [Standard_F8s_v2](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-compute#fsv2-series-1)
+- Digital Ocean - [c-8-16gib](https://cloud.digitalocean.com/droplets/new?size=c-8-16gib)
+
+Check out our [guide](https://youtu.be/M9lE2lgyVEo) for how to configure your Mina node on Google Cloud.
+
+## Installation
+
+### Ubuntu / Debian
+
+Follow along below to install the latest **Stable** [Mina Release 1.3.0](https://github.com/MinaProtocol/mina/releases/tag/1.3.0) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Beta) builds.
+
+You can set up the new debian `stable` repository and install the latest version as follows:
+
+```
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
+sudo apt-get update
+sudo apt-get install -y curl unzip mina-mainnet=1.3.0-9b0369c
+```
+
+Check that daemon installed correctly by running `mina version`. The output should read `Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master`.
+
+### Windows
+
+Windows is not yet natively supported. If you are interested in receiving a grant to develop Mina for Windows, please email grants@o1labs.org or reach out in the [Discord server](https://bit.ly/MinaDiscord).
+
+Please instead use the Docker instructions below.
+
+### macOS
+
+macOS is used by developers, but we are not officially supporting any pre-built packages at this time.
+
+Please instead use the Docker instructions below or you may build from source.
+
+### Docker
+
+Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on <DocLink copy="Connect to the Network" url="/node-operators/connecting" />
+
+### Build from source
+
+If you're running another Linux distro or some version of macOS, you can [try building Mina from source code](https://github.com/MinaProtocol/mina/blob/master/README-dev.md#building-mina). Please note that other operating systems haven't been tested thoroughly, and may have issues. Feel free to share any logs and get troubleshooting help in the [Discord server](https://bit.ly/MinaDiscord).
+
+## Set up port forwarding and any firewalls
+
+If you are running a firewall, you should allow traffic on TCP port 8302. Additionally, unless the `-external-ip YOUR_IP` flag is provided, the daemon will use HTTPS (443) and HTTP (80) to try and determine its own IP address.
+
+You may need to configure your router's port forwarding to allow inbound traffic to the following ports through your **external** IP address.
+
+- `TCP` port `8302`
+- _Optionally_ to use the GraphQL service, expose `TCP` port `3085`
+
+For walk-through instructions see [this guide](./troubleshooting#port-forwarding).
+
+## Next
+
+Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](./keypair).
