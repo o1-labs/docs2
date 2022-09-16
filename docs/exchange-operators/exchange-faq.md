@@ -193,4 +193,4 @@ You can use this Delegation Calculator tool built by Carbonara, which tells you 
 
 We strongly suggest that you test tooling and integrations on Devnet before going live on Mainnet. This includes simulating expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
 
-See our <DocLink copy="instructions for connecting to DevNet" url="/node-operators/connecting-devnet" />.
+See our [instructions for connecting to DevNet](/node-operators/connecting-devnet).
