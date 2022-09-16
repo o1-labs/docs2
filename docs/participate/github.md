@@ -2,10 +2,8 @@
 title: Github
 ---
 
-
 # Github
 
-Access the code behind Mina Protocol
 
 ### Source Code
 
