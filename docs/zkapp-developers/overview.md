@@ -4,36 +4,54 @@ hide_title: true
 ---
 
 :::info
-zkApps are only available on zkApps Testnet currently.
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley QANet.
+
 :::
 
-## What are zkApps?
+# Overview
 
-zkApps (“snark apps”) are Mina’s zk-SNARK-powered smart contracts.
+![Terminal screenshot of Mina’s zkApps from a command-line interface](/img/zk-cli.png)
 
-zkApps use an off-chain execution and mostly off-chain state model. This allows for private computation and state that can be either private or public. Using the power of [zk-SNARKs](../mina-glossary#zk-snark), smart contracts can perform arbitrarily complex computations off chain while incurring only a flat fee to send the resulting [zero-knowledge proof](../mina-glossary#zero-knowledge-proof) to the chain, as opposed to other blockchains which use a gas-fee based model. 
+Mina’s zkApps are zk-SNARK-powered smart contracts that use an off-chain execution and mostly off-chain state model.
 
-![image](https://i.ibb.co/DMRx5z6/Screen-Shot-2021-10-26-at-6-17-07-PM.png)
+### What are zkApps?
 
-You can learn more about [How zkApps Work](./how-zkApps-work) on the next page.
+zkApps ("zero-knowledge apps") are Mina Protocol’s smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs.
 
-## TypeScript
+zkApps use an **off-chain execution** and mostly **off-chain state** model. This allows for private computation and state that can be either private or public.
 
-zkApps are written in TypeScript. 
+zkApps can perform arbitrarily-complex computations off chain while incurring only a flat fee to send the resulting zero-knowledge proof to the chain for verification of this computation, as opposed to other blockchains that run computations on chain and use a variable gas-fee based model.
 
-TypeScript provides an easy, familiar language (JavaScript), but with added type-safety, making it easy to get started writing zkApps.
 
-![image](https://i.ibb.co/DMRx5z6/Screen-Shot-2021-10-26-at-6-17-07-PM.png)
+![How zkApps work](/img/1_zkApps_Off-Chain_Performance.jpg)
 
-You can learn more on the [How to Write a zkApp](./how-to-write-zkApp) page.
+zkApps can perform arbitrarily complex computations off chain while incurring only a flat fee to send the resulting zero-knowledge proof to the chain Other blockchains use a gas-fee based model.
 
-## Examples of zkApps
 
-Play around with a few example zkApps to see what you can create:
+You can learn more on the [how zkApps work](./how-zkapps-work).
 
-- **Verified Trade History** - prove trading gains from a centralized exchange
+### TypeScript
 
-## Learn more 
+zkApps are written in [TypeScript](https://www.typescriptlang.org/).
 
-On the upcoming pages, you can read about [How zkApps work](./how-zkApps-work), [How to write a zkApp](./how-to-write-zkApp), and see our [zkApps for Ethereum](./zkApps-for-ethereum) devs page.
+TypeScript provides an easy, familiar language (JavaScript), but with type safety, making it easy to get started writing zkApps. If you're new to using TypeScript, check out this helpful [12-min introductory video](https://www.youtube.com/watch?v=ahCwqrYpIuM).
+
+When you're ready to write a zkApp, you can learn more on the [how to write a zkApp](./how-to-write-a-zkapp) page.
+
+### Examples of zkApps
+
+Play around with a few example zkApps to see what’s possible:
+
+![Examples of applications that could use zkApps](/img/2_zkApps_Examples.jpg)
+
+zkApps are a great fit for applications that require proof that you have a secret without revealing it to anyone [zero knowledge proofs](https://minaprotocol.com/blog/zero-knowledge-proofs-an-intuitive-explanation).
+
+
+### Learn more
+
+Join the [#zkapps-general](https://discord.gg/R25r5Zha) channel on Discord.
+
+On the upcoming pages, you can read about [how zkApps work](./how-zkapps-work), [how to write a zkApp](./how-to-write-a-zkapp), and see our [zkApps for Ethereum Developers](./zkapps-for-ethereum-developers).
 
