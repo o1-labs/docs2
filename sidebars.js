@@ -85,6 +85,8 @@ module.exports = {
         },
         "node-operators/troubleshooting",
         "node-operators/connecting-devnet",
+        "node-operators/ledger-app-mina",
+        "node-operators/cli-reference"
       ],
     },
 

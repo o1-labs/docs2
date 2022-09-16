@@ -2,5 +2,390 @@
 title: Troubleshooting
 ---
 
-- How to report issues
-- Address how to restart node
+
+# Troubleshooting
+
+Here are some common problems you might encounter while trying to set up the Mina daemon. If you can't find your issue here please ask for help on [Discord](https://bit.ly/MinaDiscord) or open an issue on [Github](https://github.com/MinaProtocol/mina/issues/new).
+
+- [General](#general)
+- [Syncing a node](#syncing-a-node)
+- [Networking](#networking)
+- [Accounts and Transactions](#accounts-and-transactions)
+- [Block producer](#block-producer)
+- [Snark worker](#snark-worker)
+- [Logging](#logging)
+
+## General
+
+### My node crashes every few minutes?
+
+If the node crashes quickly and repeatably, this is likely a configuration issue such as incorrect permissions on the private key, failing to find peers due to incorrectly passing the peers.txt file, an incorrect password or special characters in the password. The last few lines of the logs should provide more information on the issue.
+
+### I closed my SSH terminal, and the node crashed?
+
+If you start the mina daemon in the foreground, once you detach from it, it will shut down (via a SIGINT signal). To run the process in the background so that you may detach, you have many options:
+
+- Start the daemon with the `-background` flag.
+- Run as a systemd service (see <DocLink copy="the docs" url="/node-operators/connecting#ubuntu-1804--debian-9-1" />).
+- Run with Docker (see <DocLink copy="the docs" url="/node-operators/connecting#docker" />).
+- Run the daemon in a terminal multiplexer such as screen or [tmux](https://icohigh.gitbook.io/mina-node-testnet/english/setting-up-tmux) that you can detach from to keep the process running.
+
+Running as a service / via Docker is recommended as they have the advantage of automated restarts if your node crashes.
+
+### What permissions are required for the keys directory?
+
+The `keys` directory should have 700 permissions, and the private key file 600. For example, these commands update the permissions when the keys directory is contained within your home directory and your private key file is named `my-wallet`:
+
+```
+chmod 700 ~/keys
+chmod 600 ~/keys/my-wallet
+```
+
+### Can I run on a Raspberry Pi / ARM-based device?
+
+No. Only x86-64 is supported and not ARM.
+
+### I have special characters in my password, and it is giving an error?
+
+You should use quotes around the password i.e. `"MY_PASSWORD"` and/or you can escape the special characters such as `$` in the password using the `\` character.
+
+### I get a permissions error when running the docker command?
+
+Add the current user to the docker group as per [this article](https://docs.docker.com/engine/install/linux-postinstall/). You could prefix the command with `sudo`, but this is not recommended.
+
+### I see monitor.ml.Error "Timed out getting connection from process" on macOS?
+
+If you're running Mina on macOS and see the following time out error `monitor.ml.Error "Timed out getting connection from process"`, you'll need to add your hostname to `/etc/hosts` by running the following:
+
+- $ `hostname` to get your hostname
+- Open the `/etc/hosts` file and add the mapping:
+
+```
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+127.0.0.1       <ADD YOUR HOSTNAME HERE>
+This is necessary because sometimes macOS doesn't resolve your hostname to your local IP address.
+```
+
+### What hardware do I need?
+
+See the requirements for the current network <DocLink copy="here" url="/node-operators/getting-started" />. Some lower-tier VPS providers may have an issue producing blocks within the slot time. If you continue to experience missing blocks, you may wish to try on more powerful hardware.
+
+### I would like the mina service to start on boot?
+
+If you use `systemd` to manage the Mina daemon then it will not automatically restart on a reboot of the machine. You can manually run the service via `systemctl --user start mina` or run `systemctl --user enable mina` to have the service automatically start on boot.
+
+### What should I add for MINA_PRIVKEY_PASS?
+
+When you generated a keypair, you created a password. Use the password you created for the value of `MINA_PRIVKEY_PASS`.
+
+### I get an error about ~/.mina-config/daemon.json missing?
+
+This is an optional file to pass [configuration options](https://github.com/MinaProtocol/mina/blob/develop/docs/daemon.md) to the daemon (rather than passing via the command line). The daemon looks for it by default, which results in an error if you do not include it. Just ignore this error (unless you are trying to include it) as it is not fatal, and the daemon will start as per normal.
+
+### I see messages about prover/verifier being killed periodically
+
+This is normal, and these processes are currently periodically killed and restarted. Ignore these messages unless they result in a fatal error/crash.
+
+### I crashed with "Fatal error: out of memory"?
+
+This is a common issue - see this [issue](https://github.com/MinaProtocol/mina/issues/6851) on GitHub and add any relevant information with logs and restart your node.
+
+### Can I provide my password using an environment variable?
+
+Yes. Set the `MINA_PRIVKEY_PASS` environment variable to be your password.
+
+### I am trying to install on Ubuntu 20.04 / Debian 10 and get dependency errors?
+
+See this [guide on our Discord](https://discordapp.com/channels/484437221055922177/583400552487059546/822269019687354418) to manually resolve the required dependencies. Alternatively, use a supported OS (Ubuntu 18.04/Debian 9) or use Docker.
+
+## Syncing a node
+
+### I am stuck at block height of 1 and a max observed block length of 1
+
+The output of `mina client status` outputs similar to the following:
+
+```
+Block height:                    1
+Max observed block length:       1
+```
+
+This issue was fixed by the release `9652f8ee092ea77e29f5ab49fa0a295e36743e8b`, please ensure you have upgraded. It is normal to see a height of 1 while the daemon initializes. It could take several minutes (20 mins to an hour) before the node progress to the catchup phase.
+
+### My "Max observed block length" is 1 but my block height is correct?
+
+This issue was fixed by the release `9652f8ee092ea77e29f5ab49fa0a295e36743e8b`, please ensure you have upgraded. After upgrading make sure you let the daemon run (20 mins to an hour), and the error should resolve itself.
+
+### My node is stuck in catchup / the block height does not update
+
+When the node is synced, **Block height** should be equal to **Max observed block length**, as seen in the output of `mina client status` and should match the current height of the network, as shown in the screenshot below:
+
+![Syncing a node](https://i.imgur.com/iWJTYTr.png)
+
+When starting the node, and the node is in a bootstrap/catchup state, the block height will display 1 or a number that is a few hundred blocks from the current best block length (but much greater than 1). During catchup, the block height will not incrementally update, other than when new blocks are produced and will jump to the correct height when catchup is complete. So be patient; this process can take several hours to complete and does vary depending on the hardware used.
+
+### I synced at height 1 / not at the current height of the network?
+
+What matters is that your current blockchain length, as seen in `mina client status`, is equal to the current network height. If your node is reporting it is synced at the wrong height, it should eventually enter the catchup phase to get the node to the correct height. You may occasionally switch between catchup and synced if the network sees any short forks it tries to catch up to.
+
+### Why does my blockchain height jump to 1000+ and then get stuck?
+
+We only need the last `k` (290) blocks of the blockchain to produce blocks. So once bootstrap is completed, the root of the transition frontier (essentially your local store of blocks) should be the current maximum height minus `k` (290). The part of the syncing process that takes significant time is downloading those missing `k` blocks, which is the role of **catchup**. During catchup, you won't see your block height increase (other than new blocks produced on the network) until it jumps to the current height and is synced. This takes time, so leave it running!
+
+### My sync status is offline?
+
+This status indicates that you have not received any messages from peers for the last ~24 minutes. Ensure that you are using the latest peers.txt file. You can add new peers to a running node via this command:
+
+```
+cat peers.txt | xargs -I % mina advanced add-peers %
+```
+
+## Networking
+
+### My hosting provider is warning me: "Abuse message: Netscan detected"
+
+There is some behavior with our p2p networking module that triggers this warning on some hosting providers (specifically we've heard this happening with Hetzner). To mitigate this configure your firewall to allow traffic from ssh, http, https and deny outgoing traffic to all private ip addresses.
+
+Here is an example of this using the [ufw](https://help.ubuntu.com/community/UFW#UFW_-_Uncomplicated_Firewall) firewall tool. Thanks Ducca for sharing these rules and confirming they fix the issues on Hetzner.
+
+Allow SSH, HTTP, HTTPS porst:
+
+```
+ufw allow 22
+ufw allow 80
+ufw allow 443
+ufw enable
+```
+
+Block outgoing private connection:
+
+```
+ufw deny out from any to 10.0.0.0/8
+ufw deny out from any to 172.16.0.0/12
+ufw deny out from any to 192.168.0.0/16
+ufw deny out from any to 100.64.0.0/10
+ufw deny out from any to 198.18.0.0/15
+ufw deny out from any to 169.254.0.0/16
+```
+
+See [#7053](https://github.com/MinaProtocol/mina/issues/7053) for more
+
+### What ports need to be open?
+
+The only port required to be open for the daemon to communicate with peers is TCP port `8302`.
+
+The client port `8301` should **never** be exposed to the internet. There may be outdated references to other ports that were once used before but are no longer required.
+
+### Node fails with "Failed to find any peers, crashing as this is not a seed node"?
+
+First, ensure that you have downloaded the latest peers file from the email received - the URL does not change, but the list of peers is updated very frequently.
+
+Next, depending on the method you use to start the node, ensure that you are passing the correct path to this file. For example, if using `systemd`, there must be a `peers.txt` file in your home directory.
+
+This error should have been resolved by a recent update, so ensure you are on the latest release and have the latest peers file.
+
+### I get an error couldn't determine our IP from the internet?
+
+If you see `couldn't determine our IP from the internet, use --external-ip` flag, then the daemon failed to determine its own IP from [these service providers](https://github.com/MinaProtocol/mina/blob/056d0203722ddfec1c7ad216846434648cd7af5e/src/app/cli/src/find_ip.ml#L7-L11). Your firewall may be blocking HTTP/S requests, or you have a misconfigured network connection.
+
+To bypass this, pass in the flag `-external-ip <your-ip-address>` when starting the Mina daemon. To get your external IP address, run `curl ifconfig.me`.
+
+### Do I need to configure port forwarding manually?
+
+The Mina node does its best to configure itself to be able to connect to the outside world without you needing to do any extra work. However, this may fail, depending on your router and network setup. In this case, you may have to manually forward the external-port.
+
+A common cause of this is routers not supporting UPnP, a protocol that allows the node to configure the port forwarding automatically. If you experience this type of problem, find your router model and search for `<model> port forwarding` and follow the instructions to forward the ports from your router to your device running the Mina node. You'll need to open the TCP port `8302` by default.
+
+Note: When running Mina in the cloud, you should instead configure security groups for your cloud provider.
+
+### Do I need to allow "Accept incoming connections"
+
+If you see one or more warnings like the below, then choose "Allow":
+
+```
+Do you want the application "mina" to accept incoming network connections?
+```
+
+## Accounts and Transactions
+
+### What fee should I use to send a transaction / my transaction is stuck as pending?
+
+Transactions that are included in blocks are prioritized by their transaction fees. If many transactions are pending, then the highest fee transactions will be included first. So, increasing your fees is the best way to ensure that your transaction is included. To view the transaction pool on a running node, you can use the following command (you will need to install `jq,` which is used to format the output of the following command, e.g., `sudo apt install jq`):
+
+```
+mina advanced pooled-user-commands | jq . | grep fee | sort | uniq -c | sort -n
+      1     "fee": "0.031",
+      5     "fee": "0.1",
+```
+
+If there are many transactions in the pool, you may need to increase your fee. For a visual overview of transaction fees, see [here](https://minaexplorer.com/mempool).
+
+If you have a stuck transaction due to a low fee, you will have to wait for it to be included in a block or to be evicted from the transaction pool as there is currently no way to cancel a transaction due to this [known issue](https://github.com/MinaProtocol/mina/issues/6605).
+
+### How many transactions can be included in a block?
+
+On the current network, this is 128, which also includes the coinbase transaction as well as any fee transfers to pay snark workers.
+
+### Can I cancel a transaction?
+
+Not currently due to [this bug](https://github.com/MinaProtocol/mina/issues/6605).
+
+### I sent a transaction, but it was never included in a block?
+
+See [this answer](#what-fee-should-i-use-to-send-a-transaction--my-transaction-is-stuck-as-pending). The transaction was likely stuck as pending and then eventually evicted from the transaction pool. Try sending again.
+
+### Why is the coinbase 0 / there are no transactions included in a block?
+
+In certain circumstances, there is no snark work available to be purchased or is too expensive to be purchased. In this case, it may not be possible to include a coinbase transaction, and so there is no coinbase awarded for the block.
+
+If transactions are not being included, the transaction fees likely do not cover the cost of the snark work required to be purchased to offset, including the transactions.
+
+### Does the order of sending transactions matter?
+
+Yes, transactions are processed in order according to the nonce associated with the transaction. So, if you send a transaction that is stuck, with, for example, a low fee, all following transactions will also be stuck regardless of the fees used in the later transactions. Unfortunately, there is no way to currently cancel a transaction due to a known issue, so you have to wait for either the transaction to be included or to be evicted from the transaction pool.
+
+### Why does my account say "locked"?
+
+If the output of `mina accounts list` shows your account is locked, this means that you need to unlock it using your private key password in order to use it to send transactions. To unlock, simply use the `mina accounts unlock --public-key` command.
+
+A block producer does **not** need the account to be unlocked to produce blocks.
+
+### I requested funds from the faucet, and they never arrived?
+
+Check the status of the faucet [here](https://status.minaprotocol.com/) to see if there are any know issues with the faucet.
+
+You can also check this [explorer](https://minaexplorer.com/wallet/B62qpVjcU3bxjWdVGiXd7tUGNag3cgjSNWmYuZTpU5Eg8MHPqnHfVeL) to see all pending transactions from the faucet to see if yours is listed or if there have been any recent faucet transactions.
+
+If you have just started your node and are not synced, any balance sent from the faucet will not be displayed until the node is synced.
+
+### What are time-locked accounts / why are some accounts timed and others untimed?
+
+See the docs <DocLink copy="here" url="/architecture/timelock" />.
+
+### Can I send a payment before I am synced?
+
+Yes, but only if you have funds already in the ledger. If you requested funds from, e.g., the faucet or another community member, you will need to wait until you are synced so that you have a balance you can use to send.
+
+### Error: Specified sender is not in the ledger or sent a transaction in transaction pool when sending a transaction
+
+See [this answer](#can-I-send-a-payment-before-I-am-synced), you will need to wait until you are synced if you do not have an existing balance in the ledger.
+
+### I am running a block producer, but I don't see anything in mina accounts list?
+
+If you started the daemon passing the `block-producer-key` flag, then you still need to import the account to the daemon in order to send a transaction. To do so, use the `mina accounts import --privkey-path` command, passing in the location of the private key file.
+
+## Block producer
+
+### How do I run a block producer?
+
+The methods to start a node <DocLink copy="in the documentation" url="/node-operators/connecting" /> will run a block producer by default.
+
+### How do I know if I am running a block producer
+
+To check the status of your block producer, run `mina client status` and look for the lines **Block producers running**. You should see a value of 1 and also your public key.
+
+![Running a block producer](https://i.imgur.com/IsXZcXN.png)
+
+The line **Next block will be produced in** lets you know the next time you have won a slot to produce a block. If you have not won any further blocks in the epoch, a message "None this epoch..." will be displayed and will only update once a new epoch starts.
+
+### How can I increase my chance of winning a block?
+
+The chance of winning a block is determined by a Verifiable Random Function (VRF), with the chance of winning a block being proportional to your stake. The VRF will always return the same result no matter how many times it is run, so there is no way of improving your chance of winning a block. Other than your staking balance, it is down to luck.
+
+The stake associated with your public key is determined in advance at the start of an epoch. There is a delay in it being considered, so receiving funds, block rewards, delegating other funds, and snark worker rewards will **not** improve your chance of winning a block in this epoch as these funds will not be considered in the staking ledger for at least another full epoch (~2 weeks).
+
+### Why was my block orphaned / why did I not get a block reward?
+
+There can be more than one block producer per slot due to the way block producers are selected. So if two (or more) blocks are produced for the same slot, it will cause a short fork, and only one will be chosen - the winner in this instance is random based on the VRF output for each block producer. If you consistently see orphaned blocks, then you may be producing blocks slowly, and so other block producers may not see your block before building atop the current longest chain.
+
+It is also possible to produce a block in catchup, and this block will also be quickly orphaned as it is not building on the correct height.
+
+### I didn't produce a block / I missed a slot?
+
+There are a few reasons why you could miss a slot / not successfully produce a block, for example, the node restarting and being in bootstrap at the time of producing a slot.
+
+Also, you must produce a block within the slot time (3 mins). If you are on less powerful hardware or the daemon is competing for resources, it may not produce the block in time. In this instance, you should find in your logs:
+
+`Internally generated block $state_hash cannot be rebroadcast because it's not a valid time to do so ($timing)`
+
+It is not recommended to run a snark worker on the same machine at the same time you are producing a block as the snark worker is resource-intensive and may lead to the block not being produced in time. You can disable the snark worker during block production by, for example, using the [snark stopper script](https://github.com/c29r3/mina-snark-stopper).
+
+### Why is the block rate so low / how often should there be a block?
+
+A slot on the current network is every 3 mins, though not all slots should have a block produced, so on average, we would expect a block every 4 mins. However, not all the stake is online and active in producing blocks, and so not all slots will have a block, and sometimes there can be long delays between blocks. As more of the stake is online and staking, this situation improves.
+
+### Why does O(1) Labs win most of the blocks?
+
+To keep the network stable, O(1) Labs has 30% of the stake, so has a much greater probability of winning a slot and producing a block. Users who were given a balance of 66,000 mina have about a 0.1% chance of winning any particular slot, so should expect a block every couple of days, but luck plays a major factor in how often you will win a block.
+
+### How do I know if I won a block or a transaction went through?
+
+The easiest way is to check a [block explorer](https://minaexplorer.com/). You can also get this information for recent blocks via the [GraphQL API](https://minaprotocol.com/docs/node-developers/graphql-api).
+
+### Why do I have a message of "No blocks won this this epoch"?
+
+See [this answer](#how-can-I-increase-my-chance-of-winning-a-block).
+
+## Snark worker
+
+### My snark work is not getting bought / what fee should I use for a snark worker?
+
+If you are running a snark worker and not seeing any work being included in blocks, then likely others are producing cheaper snark work. Multiple snark workers are all competing for the same snark work, with only the lowest fee for each being included in the snark pool to be bought by block producers.
+
+Sometimes high fees will be included in blocks, and this is a function of how snark workers select which work to complete and which work is required to be purchased by the block producer.
+
+By default, the work selection for a snark worker is random. You can change this by adding the `-work-selection seq` flag to the `mina daemon` command, which will work on jobs in the order required to be included from the scan state and will likely result in your snarks being included without a potentially lengthy delay.
+
+For choosing fees, you can look at historical blocks to determine prices that have been bought, or look at the table listed [here](https://minaexplorer.com/snark-challenge).
+
+### How can I disable the snark worker?
+
+Run `mina client set-snark-worker` to disable the snark worker. To enable again, pass your public key `mina client set-snark-worker --address <YOUR_PUBLIC_KEY>`.
+
+### Can I run a snark worker and block producer on the same machine?
+
+Yes, you can, but you should stop the snark worker during block production so as not to compete for resources and miss producing a block. Snark workers also consume more resources in general. See the [snark stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
+
+## Logging
+
+### I see weird messages/errors in the logs?
+
+The logs are noisy and often contain "scary" looking messages such as failure to connect etc. As a general rule, if the message is not fatal and the node does not crash, it is likely nothing to be worried about. The below messages are all considered "normal":
+
+```
+"RPC #841 failed: \"internal RPC error error: unknown stream_idx\""
+"Peer $peer didn't have enough information to answer ledger_hash query. See error for more details: $error"
+"Timed out waiting for the parent of $cached_transition after 0 ms, signalling a catchup job"
+"Failed to reset stream (this means it was probably closed successfully): $error
+        error: {
+  "string":
+    "RPC #365 failed: \"internal RPC error error: unknown stream_idx\""
+}
+```
+
+### How can I get my logs running as a service?
+
+`journalctl --user -u mina -n 1000 -f`
+
+### How do I get my logs running Docker?
+
+`docker logs --follow mina`
+
+### How do I get my logs running the daemon manually?
+
+`tail -f ~/.mina-config/mina.log`
+
+### How many logs are kept / where are the logs located?
+
+The `~/.mina-config` directory contains the Mina logs. This directory contains the following:
+
+- `mina.log` - This file contains the latest logs of the daemon. Each log file is limited to 10 MiB in size and rotates through 50 log files. Rotated log files are named `mina.log.x` from `mina.log.0` to `mina.log.50`.
+- `mina-best-tip.log` - This is used to write the best tip logs to make it easier to collect the required logs from nodes to determine the state for a hard fork. Each file is limited to 5 MiB and rotates through a maximum of 5 files from` mina-best-tip.log.0` to `mina-best-tip.log.5`.
+- `mina-prover.log` - This logs memory usage and batch size of the prover and is limited to 128 MiB and rotates via a single log file.
+- `mina-verifier.log` - This logs memory usage and batch size of the verifier and is limited to 128 MiB and rotates via a single log file.
+- `mina.version` - This file contains the Git SHA of the running daemon.
