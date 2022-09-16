@@ -2,8 +2,10 @@
 title: What are Zero-Knowledge Proofs?
 ---
 
-![video](https://i.ibb.co/TPhdGV7/Screen-Shot-2021-10-05-at-5-30-40-PM.png)
+# What are Zero-Knowledge Proofs?
 
-[Source: YouTube](https://www.youtube.com/watch?v=GvwYJDzzI-g)
+Zero-knowledge proofs keep Mina's blockchain light and your personal data private. 
 
-Legacy blockchains, such as Bitcoin or Dogecoin, face the problem of long waits to verify the entire chain due to their ever-growing size. However, with Mina, participants will be able to fully verify the network and transactions from their ordinary devices using recursive zero knowledge proofs – or zk-SNARKs.
+In this video, Brandon from <a href="https://o1labs.org/">O(1) Labs</a> explains what zero-knowledge proofs are by comparing them to the game of "Where's Waldo?". By the end of this video, you'll know what they are, how they work, and their importance to Mina and the greater crypto community.
+
+[![What are Zero Knowledge Proofs? | Mina Protocol](https://res.cloudinary.com/marcomontalbano/image/upload/v1660337712/video_to_markdown/images/youtube--GvwYJDzzI-g-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=GvwYJDzzI-g "What are Zero Knowledge Proofs? | Mina Protocol")
