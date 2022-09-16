@@ -12,8 +12,6 @@ zkApps can now be deployed to Berkeley QANet.
 :::
 
 
-Learn how to write automated tests for your smart contract.
-
 Writing automated tests for your smart contract is of crucial importance. The <a href="https://jestjs.io/">Jest testing framework</a> is included in all projects created by the Mina zkApp CLI via `zk project <name>` and `zk example <name`. We recommend Jest, but any testing framework can be used.
 
 ## Running tests
