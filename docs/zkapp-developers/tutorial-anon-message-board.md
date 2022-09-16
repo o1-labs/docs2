@@ -12,7 +12,7 @@ zkApps can now be deployed to Berkeley QANet.
 
 :::
 
-[how to write a zkApp](./how-to-write-zkapp) provides a high-level overview of everything you need to know to build applications
+[How to write a zkApp](./how-to-write-zkapp) provides a high-level overview of everything you need to know to build applications
 on Mina. This tutorial will put these ideas into practice as we walk through the
 design and implementation of a semi-anonymous messaging protocol.
 
