@@ -9,7 +9,7 @@ module.exports = {
         "about-mina/overview",
         "about-mina/snarks",
         "about-mina/protocol-architecture",
-        "about-mina/consensus-model",
+        "about-mina/consensus",
         "about-mina/faq",
         {
           type: "link",
