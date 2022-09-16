@@ -2,39 +2,40 @@
 title: Overview
 ---
 
-## :octopus: What is Mina?
+# Overview
 
-[Insert graphic here about 22KB size]
+### What is Mina? 
 
-Mina is the first cryptocurrency protocol with a succinct blockchain. Current
-cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data,
-and as time goes on, their blockchains will only increase in size. With Mina
-however, no matter how much the usage grows, the blockchain always stays the
-same size - about 22kb (the size of a few tweets). This means participants can
-quickly sync and verify the network.
+Mina is a L1 blockchain based on zero-knowledge proofs (“ZKP”) with smart contracts written in TypeScript. It is the first cryptocurrency protocol with a succinct blockchain (22KB).
 
-This breakthrough is made possible due to zk-SNARKs - a type of succinct
-cryptographic proof. Each time a Mina node produces a new block, it also
-generates a SNARK proof verifying that the block was valid. All nodes can then
-store the small proof, as opposed to the entire chain. By not having to worry
-about block size, the Mina protocol enables a blockchain that is decentralized
-at scale.
+### Why Mina?
 
-#### Things to mention here:
+Mina Protocol uses zero-knowledge proofs to build a more ideal blockchain architecture.
 
-- 22KB size
-- Mention and link to [What are zk-SNARKs](/about-mina/snarks)
-- Mention and link to [Smart Contracts (zkApps)](/about-mina/smart-contracts)
-- Mention off-chain execution
+Early blockchains, like Bitcoin and Ethereum, accumulate data over time and are currently hundreds of gigabytes in size. As time goes on, their blockchains will continue to increase in size. The entire chain history is required in order to verify the current consensus state of these networks.
 
-## :blowfish: Benefits of Mina & example use cases
+With Mina, the blockchain always remains a constant size–about 22KB (the size of a few tweets). It’s possible to verify the current consensus state of the protocol using this one recursive, 22KB zero-knowledge proof. This means participants can quickly sync and verify the current consensus state of the network.
 
-Insert graphics here for different use cases
+Learn more about [Mina’s unique protocol architecture](./protocol-architecture.md).
 
-- Graphic Card #1 - Verification
+### What are zero-knowledge proofs?
 
-- Graphic Card #2 - Privacy
+Mina’s unique characteristics are made possible using  zero-knowledge proofs.
 
-- Graphic Card #3 - Earn MINA by staking
+Watch this [video to learn about zero-knowledge proofs](./what-are-zero-knowledge-proofs />.
 
-Wanna learn more? Check out this blog post on 10 use cases for zkApps.
+### What are zkApps? 
+
+Mina’s zero-knowledge smart contracts are referred to as “zkApps”. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, & more.
+
+Learn more about [how zkApps work](/zkapp-developers/overview).
+
+### How does consensus work on Mina?
+
+The Mina network is secured by proof-of-stake (“PoS”) consensus called Ouroboros Samisika.
+
+Based on Cardano’s Ouroboros, Ouroboros Samisika is a PoS consensus mechanism that requires far less computing power than Bitcoin’s proof-of-work (“PoW”) protocol.
+
+With this model of consensus, you don't need expensive and energy consuming mining equipment to participate in consensus. By simply holding MINA in our wallet, we can choose to either stake it ourselves if running a block producing node, or we can delegate it to another node.
+
+Read more about [Mina’s consensus mechanism](./consensus).
