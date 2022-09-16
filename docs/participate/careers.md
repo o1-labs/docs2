@@ -2,9 +2,7 @@
 title: Careers
 ---
 
-
 # Careers
-Check out these job opportunities to work on Mina
 
 If you’re looking for another way to get involved with Mina, consider exploring the following career opportunities at Mina Foundation and their ecosystem partners.
 
