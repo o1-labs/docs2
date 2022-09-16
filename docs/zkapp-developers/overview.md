@@ -12,7 +12,19 @@ zkApps can now be deployed to Berkeley QANet.
 
 # Overview
 
-![Terminal screenshot of Mina’s zkApps from a command-line interface](/img/zk-cli.png)
+<br />
+
+<figure>
+  <img
+    src="/img/zk-cli.png"
+    alt="Terminal screenshot of Mina’s zkApps from a command-line interface."
+    width="70%"
+  />
+  <figcaption>
+  </figcaption>
+</figure>
+
+<br />
 
 Mina’s zkApps are zk-SNARK-powered smart contracts that use an off-chain execution and mostly off-chain state model.
 
@@ -24,8 +36,12 @@ zkApps use an **off-chain execution** and mostly **off-chain state** model. This
 
 zkApps can perform arbitrarily-complex computations off chain while incurring only a flat fee to send the resulting zero-knowledge proof to the chain for verification of this computation, as opposed to other blockchains that run computations on chain and use a variable gas-fee based model.
 
+<figure>
+  <img src="/img/1_zkApps_Off-Chain_Performance.jpg" width="95%" />
+  <figcaption>zkApps consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.</figcaption>
+</figure>
 
-![How zkApps work](/img/1_zkApps_Off-Chain_Performance.jpg)
+<br />
 
 zkApps can perform arbitrarily complex computations off chain while incurring only a flat fee to send the resulting zero-knowledge proof to the chain Other blockchains use a gas-fee based model.
 
@@ -44,9 +60,36 @@ When you're ready to write a zkApp, you can learn more on the [how to write a zk
 
 Play around with a few example zkApps to see what’s possible:
 
-![Examples of applications that could use zkApps](/img/2_zkApps_Examples.jpg)
+<figure>
+  <img
+    src="/img/1_zkApps_Off-Chain_Performance.jpg"
+    alt="How zkApps work"
+    width="90%"
+  />
+  <figcaption>
+    zkApps can perform arbitrarily complex computations off chain while
+    incurring only a flat fee to send the resulting zero-knowledge proof to the
+    chain Other blockchains use a gas-fee based model.
+  </figcaption>
+</figure>
 
-zkApps are a great fit for applications that require proof that you have a secret without revealing it to anyone [zero knowledge proofs](https://minaprotocol.com/blog/zero-knowledge-proofs-an-intuitive-explanation).
+<br />
+
+<figure>
+  <img
+    src="/img/2_zkApps_Examples.jpg"
+    alt="Examples of applications that could use zkApps."
+    width="85%"
+  />
+  <figcaption>
+    zkApps are a great fit for applications that require proof that you have a
+    secret without revealing it to anyone (
+    <a href="https://minaprotocol.com/blog/zero-knowledge-proofs-an-intuitive-explanation">
+      zero knowledge proofs
+    </a>
+    ).
+  </figcaption>
+</figure>
 
 
 ### Learn more
