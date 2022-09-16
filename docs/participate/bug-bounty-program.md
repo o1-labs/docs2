@@ -2,10 +2,8 @@
 title: Bug Bounties
 ---
 
-
 # Reporting Issues, Bugs, & Feature Requests 
 
-Learn how to report issues and participate in Mina’s Bug Bounty Program
 
 ### How to report things on Mina
 
