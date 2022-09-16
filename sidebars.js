@@ -84,6 +84,7 @@ module.exports = {
           ],
         },
         "node-operators/troubleshooting",
+        "node-operators/connecting-devnet",
       ],
     },
 
