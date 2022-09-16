@@ -2,30 +2,37 @@
 title: Protocol Architecture
 ---
 
-### How does this work?
+# Mina Protocol Architecture
+
+:::note
+
+A new version of Mina Docs is coming soon! This page will be rewritten. If you have any suggestions or would like to contribute, please create a [pull request](https://github.com/MinaProtocol/docs).
+
+:::
+
+## How Does it Work?
 
 Check out this short video explaining how the Mina protocol works in detail:
 
-![video](https://i.ibb.co/x6c3k6V/Screen-Shot-2021-10-05-at-5-35-26-PM.png)
+<iframe
+  id="youtube-iframe"
+  width="560"
+  height="315"
+  src="https://www.youtube-nocookie.com/embed/eWVGATxEB6M?start=100&enablejsapi=1&rel=0"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
 
-### Organization of network
+### Timestamps
 
-![complicated](https://yqintl.alicdn.com/99156f8577cc9e2e66099c35a71dc7c78d1cc7cd.png)
-
-This is an opportunity to link to different roles
-
-Insert graphic showing organization of network (block producers, snarkers,
-zkApps, etc.)
-
-### The Lifecycle of a Payment
-
-In Mina, payments pass through several steps before they are considered verified
-and complete. This document is meant to walk through what happens to a single
-payment in a simplified overview to help users understand a little about how
-Mina payments work. It it not a comprehensive technical overview, but instead a
-simplified walkthrough for users. For a more detailed technical overview aimed
-at developers wishing to understand the codebase check out the technical
-lifecycle of a payment.
-
-:::note Mina uses a gossip protocol to ensure that messages can be reliably
-transmitted to all other members of the network in a timely manner.
+- 1:50 - What is Mina?
+- 2:40 - Current cryptocurrency landscape
+- 3:53 - The life of a full node
+- 6:09 - The root problem - the verification mechanism
+- 7:28 - Toward a solution
+- 8:45 - zk-SNARks: Unforgeable certificates
+- 15:31 - Recursive composition of SNARKs
+- 18:50 - Upshots: decentralization & scalability
+- 20:45 - Conclusion
+- 21:20 - Q&A
