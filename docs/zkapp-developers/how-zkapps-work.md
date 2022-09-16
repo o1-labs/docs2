@@ -18,24 +18,24 @@ zkApps run in the latest versions of <a href="https://www.google.com/chrome/inde
 
 <br />
 
-zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section <DocLink copy="How to write a zkApp" url="/zkapps/how-to-write-a-zkapp" />, we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
+zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](./how-to-write-a-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
 
 A “zkApp” consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.
 
 <figure>
-  <img src="/static/img/docs-images/3_zkapps_Structure.jpg" width="100%" />
+  <img src="/img/3_zkapps_Structure.jpg" width="100%" />
   <figcaption>zkApps consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.</figcaption>
 </figure>
 
 <br />
 
-<Alert kind="note">
+:::note
 
 We use the term <b>“smart contract”</b> to refer to the code written with SnarkyJS (which will be introduced below).
 
 We use the term <b>“zkApp”</b> to refer to the UI + the smart contract.
 
-</Alert>
+:::
 
 ### Zero-knowledge based smart contracts
 
@@ -46,7 +46,7 @@ The **prover function** is the function which executes a smart contract’s cust
 The **prover function** runs in a user’s web browser as part of the zkApp. When interacting with a zkApp's UI, users will enter any data (e.g. “buy ABC for y price”) required as input to the prover function, which will then generate a zero-knowledge proof.
 
 <figure>
-<img src="/static/img/docs-images/4_zkApps_Prover_Function.jpg" width="90%" />
+<img src="/img/4_zkApps_Prover_Function.jpg" width="90%" />
   <figcaption>The prover function is the function which executes a smart contract’s custom logic.</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ The **verifier function** is the function that validates whether a zero-knowledg
 Within the Mina network, Mina acts as the verifier and runs the verifier function. We’ll describe how this works soon.
 
 <figure>
-  <img src="/static/img/docs-images/5_zkApps_Verifier_Function.jpg" width="90%" />
+  <img src="/img/5_zkApps_Verifier_Function.jpg" width="90%" />
   <figcaption>The verifier function is the function that validates whether a zero-knowledge proof successfully passes all the constraints defined in the prover function.</figcaption>
 </figure>
 
@@ -76,24 +76,26 @@ The next two sections will go into more detail about how the prover and verifier
 ### Deploying a smart contract
 
 <figure>
-  <img src="/static/img/docs-images/6_zkApps_DeploySmartContract.jpg" width="75%" />
+  <img src="/img/6_zkApps_DeploySmartContract.jpg" width="75%" />
   <figcaption>To deploy a smart contract to the Mina network, the developer uses Mina zkApp CLI.</figcaption>
 </figure>
+
+<br/>
 
 To deploy a smart contract, means to put it on Mina network. To do this, the developer uses Mina zkApp CLI. The deployment process sends a transaction containing the verification key to an address on the Mina blockchain.
 
 When a Mina address contains a verification key, it acts as a **zkApp account**.
 Whereas a regular Mina account can receive any transactions, a zkApp account can only successfully receive transactions containing a proof that satisfies the verifier function. Any transactions that do not pass the verifier function will be rejected by the Mina network.
 
-<Alert kind="info">
+:::info
 
 When you deploy to a new Mina address, the Mina Protocol will charge a 1 MINA fee for account creation. This is unrelated to zkapps and is to help prevent sybil or denial of service attacks.
 
-</Alert>
+:::note
 
 ### Deploying a zkApp UI
 
-<img src="/static/img/docs-images/7_zkApps_DeploySmartContract.jpg" width="95%" />
+<img src="/img/7_zkApps_DeploySmartContract.jpg" width="95%" />
 <br></br>
 
 Developers usually build a UI to allow users to interact with the smart contract.
@@ -102,15 +104,15 @@ Typically, this is a static website deployed to a host of the developer’s choo
 
 Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the <DocLink copy="how to write a zkApp" url="/zkapps/how-to-write-a-zkapp" /> page, we will go into more detail.
 
-<img src="/static/img/docs-images/8_zkApps_DeploySmartContract.jpg" width="95%" />
+<img src="/img/8_zkApps_DeploySmartContract.jpg" width="95%" />
 
 ### How users interact with a zkApp
 
-<Alert kind="info">
+:::info
 
-To use a zkApp, users must <a href="https://www.aurowallet.com/">install Auro wallet for Google Chrome</a>. We anticipate other wallets to add support for zkapps in the future.
+To use a zkApp, users must [install Auro wallet for Google Chrome](https://www.aurowallet.com). We anticipate other wallets to add support for zkapps in the future.
 
-</Alert>
+:::
 
 <br />
 
@@ -148,18 +150,18 @@ If you anticipate your state to be larger than this, or if the state accumulates
 
 ### Off-chain state
 
-<Alert kind="info">
+:::info
 
 Support for off-chain state will be coming soon.
 
-</Alert>
+:::
 
 For larger data, you may want to consider storing the root of a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) (or similar data structure) within your zkApp’s on-chain storage that references additional off-chain state stored elsewhere, in a location of your choosing, such as [IPFS](https://ipfs.io/).
 
 When the zkApp runs in a user’s web browser, it may insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction (i.e. this proof & state were valid so the updates are allowed), then the zkApp transaction would update the root of the Merkle tree that is stored on chain.
 
-<img src="/static/img/docs-images/9_zkapps_Off-Chain_State.jpg" width="95%" />
+<img src="/img/9_zkapps_Off-Chain_State.jpg" width="95%" />
 
 ### Keep going
 
-On the next page, we’ll dive into <DocLink copy="how to write a zkApp" url="/zkapps/how-to-write-a-zkapp" />!
+On the next page, we’ll dive into [how to write a zkApp](./how-to-write-a-zkapp)!
