@@ -18,7 +18,7 @@ zkApps run in the latest versions of <a href="https://www.google.com/chrome/inde
 
 <br />
 
-zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](./how-to-write-a-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
+zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](./how-to-write-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
 
 A “zkApp” consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.
 
@@ -102,7 +102,7 @@ Developers usually build a UI to allow users to interact with the smart contract
 
 Typically, this is a static website deployed to a host of the developer’s choosing. We recommend web hosts that offer a global CDN to ensure the best user experience.
 
-Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the <DocLink copy="how to write a zkApp" url="/zkapps/how-to-write-a-zkapp" /> page, we will go into more detail.
+Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the [how to write a zkApp](./how-to-write-zkapp) page, we will go into more detail.
 
 <img src="/img/8_zkApps_DeploySmartContract.jpg" width="95%" />
 
@@ -164,4 +164,4 @@ When the zkApp runs in a user’s web browser, it may insert state to an externa
 
 ### Keep going
 
-On the next page, we’ll dive into [how to write a zkApp](./how-to-write-a-zkapp)!
+On the next page, we’ll dive into [how to write a zkApp](./how-to-write-zkapp)!
