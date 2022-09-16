@@ -1,3 +1,42 @@
 ---
 title: Github
 ---
+
+
+# Github
+
+Access the code behind Mina Protocol
+
+### Source Code
+
+As a decentralized protocol, Mina is open-sourced and its codebase is publicly available on Github. We invite you to view and contribute to the Mina protocol:
+
+[<img
+    src="/img/Github64.png"
+    alt="Github logo"
+    width="2.5%"
+  /> &nbsp;MinaProtocol/mina](https://github.com/MinaProtocol/mina)&nbsp; [<img src="https://img.shields.io/github/stars/minaprotocol/Mina?label=Star&style=social" />](https://github.com/MinaProtocol/mina)
+
+[<img
+    src="/img/Github64.png"
+    alt="Github logo"
+    width="2.5%"
+  /> &nbsp;o1-labs/snarkyjs](https://github.com/o1-labs/snarkyjs)&nbsp; [<img src="https://img.shields.io/github/stars/o1-labs/snarkyjs?label=Star&style=social" />](https://github.com/o1-labs/snarkyjs)
+
+[<img
+    src="/img/Github64.png"
+    alt="Github logo"
+    width="2.5%"
+  /> &nbsp;o1-labs/zkapp-cli](https://github.com/o1-labs/zkapp-cli)&nbsp; [<img src="https://img.shields.io/github/stars/o1-labs/zkapp-cli?label=Star&style=social" />](https://github.com/o1-labs/zkapp-cli)
+
+### Mina Discussions
+
+If you have questions or want to participate in discussions about the source code, head over to Mina Discussions:
+
+[<img
+    src="/img/Github64.png"
+    alt="Github logo"
+    width="2.5%"
+  /> &nbsp;Mina Discussions on Github](https://github.com/MinaProtocol/mina/discussions)
+
+You can also learn how to report bugs and issues [on this page](./reporting).
