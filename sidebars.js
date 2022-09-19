@@ -101,7 +101,7 @@ module.exports = {
         "participate/social-media",
         "participate/github",
         "participate/careers",
-        "participate/grants",
+        "participate/grants-and-programs",
         "participate/testnet-leaderboard",
         "participate/bug-bounty-program",
       ],
