@@ -84,7 +84,7 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 
 The goal of this section is to explain the concepts that you will need to understand to write a zero-knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](./how-zkapps-work) pages, please read it first so that this section makes sense.
+If you haven’t yet read the [how zkApps work](./how-zkapps-work#reading-state) pages, please read it first so that this section makes sense.
 
 ##### SnarkyJS
 

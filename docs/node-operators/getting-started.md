@@ -10,7 +10,6 @@ A new version of Mina Docs is coming soon! We're currently updating the contents
 
 :::
 
-
 Welcome to Mina! This section will walk you through the process of setting up a Mina node. After we will show you how to generate a keypair for use with the network. Finally we'll show you how to connect to the network and begin producing blocks.
 
 :::important
@@ -93,4 +92,4 @@ For walk-through instructions see [this guide](./troubleshooting#port-forwarding
 
 ## Next
 
-Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](./keypair).
+Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](./).

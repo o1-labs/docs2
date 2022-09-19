@@ -5,25 +5,23 @@ description: Frequently asked questions about listing Mina
 
 # Exchange Operators
 
-If you are an exchange operator looking to custody MINA on behalf of users, we recommend reviewing the following frequently asked questions (FAQ) from exchanges.
-
 ## Basics
 
-### Where can I find third-party audit reports for Mina? 
+### Where can I find third-party audit reports for Mina?
 
 The latest third-party audit reports are publicly available here:
+
 - [https://research.nccgroup.com/2020/05/13/public-report-coda-cryptographic-review](https://research.nccgroup.com/2020/05/13/public-report-coda-cryptographic-review/)
 - [https://leastauthority.com/blog/audit-of-mina-ledger-application-for-o1-labs](https://leastauthority.com/blog/audit-of-mina-ledger-application-for-o1-labs/)
 - [https://research.nccgroup.com/2022/02/22/public-report-o1-labs-mina-client-sdk-signature-library-and-base-components-cryptography-and-implementation-review](https://research.nccgroup.com/2022/02/22/public-report-o1-labs-mina-client-sdk-signature-library-and-base-components-cryptography-and-implementation-review)
 
-<br></br> 
+<br></br>
 
 :::note
 
 Any news and updates related to exchange listing shared by the Mina Foundation can be found on [www.minaprotocol.com](https://minaprotocol.com) or on the [official Twitter account](https://twitter.com/MinaProtocol). Mina Foundation can not individually answer any listing questions.
 
 :::
-
 
 ## Rosetta
 
@@ -35,11 +33,11 @@ You can learn more about Mina’s implementation of Rosetta here (coming soon).
 
 ### What if I have a question about Rosetta?
 
-You can post your questions in [Mina’s Github Discussions]( [https://github.com/MinaProtocol/mina/discussions).
+You can post your questions in [Mina’s Github Discussions](https://github.com/MinaProtocol/mina/discussions).
 
 ## Accounts
 
-### Is there an account creation fee? 
+### Is there an account creation fee?
 
 Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This fee helps protect the network from denial of service-type attacks and the amount may be reduced over time.
 
@@ -53,16 +51,20 @@ We recommend setting your fee to an amount higher than 0.001 MINA, which is the 
 
 You can view the fees for pending transactions here and adjust your fees accordingly: [https://minaexplorer.com/pending-transactions](https://minaexplorer.com/pending-transactions).
 
-
 ### Why do some users appear to have lost their funds when sending to exchanges?
 
 :::tip
-<p>While Mina and its SDKs do support the memo field when sending a transaction, we strongly recommend that you <u>do NOT require a memo for deposits</u> to prevent this issue for your exchange.</p>
+
+<p>
+  While Mina and its SDKs do support the memo field when sending a transaction,
+  we strongly recommend that you <u>do NOT require a memo for deposits</u> to
+  prevent this issue for your exchange.
+</p>
 :::
 
 In order to associate the deposit with the user's account, some exchanges require their users to include a unique memo field when sending MINA deposits to the exchange’s address.
 
-If the user does not include this unique memo when sending their deposit, the receiving exchange may not be able to associate the deposit properly with the user's exchange account. 
+If the user does not include this unique memo when sending their deposit, the receiving exchange may not be able to associate the deposit properly with the user's exchange account.
 
 These funds are <u>NOT lost</u>. The exchanges have received the funds at the exchange's address, but the exchange may not be able to automatically associate the deposit with the user's exchange account without such a memo.
 
@@ -80,9 +82,9 @@ You can use this tool to calculate your transaction fees: [https://fees.mina.too
 
 ### My Mina node gets stuck sometimes. How can I detect this and fix it?
 
-We are aware of this issue and aim to improve this in future versions. For now, we recommend restarting your node whenever this issue is detected. 
+We are aware of this issue and aim to improve this in future versions. For now, we recommend restarting your node whenever this issue is detected.
 
-You can use the following script to run a cron job every 3 minutes (the slot length) or more frequently: 
+You can use the following script to run a cron job every 3 minutes (the slot length) or more frequently:
 
 ```
 MINA_STATUS=$($MINA client status --json)
@@ -97,9 +99,13 @@ if [[ "$DELTAVALIDATED" -gt 4 ]]; then
   $MINA client stop
 fi
 ```
+
 <Alert kind="tip">
 
-<p>Be sure your Mina daemon is monitored by something such as systemd, so it can auto-restart.</p>
+<p>
+  Be sure your Mina daemon is monitored by something such as systemd, so it can
+  auto-restart.
+</p>
 
 </Alert>
 
@@ -116,20 +122,26 @@ File names contain the network name, block height, and state hash of the block. 
 Example file names:
 
 (Recent)
+
 ```
 mainnet-30627-3NLfKanQ53X2MRKx5ZRvb9nVCEB9eJpcnssGCTpT3J1cojhB5M19.json
 ```
+
 (Older)
+
 ```
 mainnet-3NKUBmkc7UZ7ik5JyCM4WNzkN1HG5heMB5zNDUkf3Kgta1MFY6LY.json
 ```
+
 You can download a specific block using curl:
+
 ```
 curl https://mina_network_block_data.storage.googleapis.com/<filename.json>
 ```
 
-You can import this file using the mina archive blocks tool. The command for it is: 
-``` 
+You can import this file using the mina archive blocks tool. The command for it is:
+
+```
 mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 ```
 
@@ -137,18 +149,20 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](node-operators/archive-node/overview), for a full example.
 
-### Why am I getting this error message: "Not able to connect to the network"? 
+### Why am I getting this error message: "Not able to connect to the network"?
 
 This error message usually occurs due to a chain ID mismatch from running a Devnet build on Mainnet, or vice versa.
 
 To check whether you are running a Devenet or Mainnet build, run `Mina client status`. Next, compare the output’s chain ID of your node to the expected chain ID below for the network you are trying to connect to:
 
 Mainnet:
+
 ```
 5f704cc0c82e0ed70e873f0893d7e06f148524e3f0bdae2afb02e7819a0c24d1
 ```
 
-Devnet: 
+Devnet:
+
 ```
 8af43cf261ea10c761ec540f92aafb76aec56d8d74f77c836f3ab1de5ce4eac5
 ```
@@ -179,13 +193,12 @@ For purposes of ensuring consensus, there is a delay between when delegations ar
 
 The timing of the next staking snapshot varies.
 
-Since the timing is based on a combination of consensus timing (epochs) and snarketplace throughput, it is difficult to determine exactly how long this delay can be. 
+Since the timing is based on a combination of consensus timing (epochs) and snarketplace throughput, it is difficult to determine exactly how long this delay can be.
 
 A conservative estimate is that delegations sent 3 days before the epoch transition can take effect in the upcoming epoch. This means that, for any given delegation, there is an average of 18 to 29 days delay before this delegation updates block production.
 
 You can use this Delegation Calculator tool built by Carbonara, which tells you when the next staking ledger cutoff occurs:
 [https://epoch.mina.tools](https://epoch.mina.tools/).
-
 
 ## Testing
 

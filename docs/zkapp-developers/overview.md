@@ -45,7 +45,6 @@ zkApps can perform arbitrarily-complex computations off chain while incurring on
 
 zkApps can perform arbitrarily complex computations off chain while incurring only a flat fee to send the resulting zero-knowledge proof to the chain Other blockchains use a gas-fee based model.
 
-
 You can learn more on the [how zkApps work](./how-zkapps-work).
 
 ### TypeScript
@@ -91,10 +90,8 @@ Play around with a few example zkApps to see what’s possible:
   </figcaption>
 </figure>
 
-
 ### Learn more
 
 Join the [#zkapps-general](https://discord.gg/R25r5Zha) channel on Discord.
 
-On the upcoming pages, you can read about [how zkApps work](./how-zkapps-work), [how to write a zkApp](./how-to-write-zkapp), and see our [zkApps for Ethereum Developers](./zkapps-for-ethereum-developers).
-
+On the upcoming pages, you can read about [how zkApps work](./how-zkapps-work), [how to write a zkApp](./how-to-write-zkapp), and see our [zkApps for Ethereum Developers](./zkapps-for-ethereum).
