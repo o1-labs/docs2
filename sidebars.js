@@ -99,10 +99,7 @@ module.exports = {
       label: "Node Developers",
       items: [
         "node-developers/overview",
-    {
-      type: "category",
-      label: "Overview",
-      items: ["node-operators/overview"],
+      ],
     },
     {
       type: "category",
