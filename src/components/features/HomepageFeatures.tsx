@@ -28,11 +28,11 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         {"Learn "}
-        <Link to="/about-mina/overview" className={styles.minaLink}>
+        <Link to="/zkapp-developers/how-zkapps-work" className={styles.minaLink}>
           how zero knowledge smart contracts work
         </Link>
         {" and "}
-        <Link to="/about-mina/overview" className={styles.minaLink}>
+        <Link to="/zkapp-developers/how-to-write-zkapp" className={styles.minaLink}>
           how to write your own using TypeScript.
         </Link>
       </>
@@ -50,7 +50,7 @@ const FeatureList: FeatureItem[] = [
           about Mina
         </Link>
         ,
-        <Link to="/about-mina/overview" className={styles.minaLink}>
+        <Link to="/zkapp-developers/overview" className={styles.minaLink}>
           {" "}
           zero knowledge proofs{" "}
         </Link>
@@ -74,10 +74,8 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Where to get MINA,{" "}
-        <Link to="/using-mina/install-wallet" className={styles.minaLink}>
-          download a wallet{" "}
-        </Link>
-        , & more.
+        <Link to="/using-mina/install-wallet" className={styles.minaLink}>download a wallet,{" "}
+        </Link> & more.
       </>
     ),
   },
@@ -102,7 +100,7 @@ const FeatureList: FeatureItem[] = [
 
     description: (
       <>
-        <Link to="/participate/grants" className={styles.minaLink}>
+        <Link to="/participate/social-media" className={styles.minaLink}>
           Join the community
         </Link>
         ,{" "}
