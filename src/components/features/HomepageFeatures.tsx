@@ -8,6 +8,7 @@ import React from "react";
 import styles from "./HomepageFeatures.module.scss";
 
 import Button from "@site/src/components/common/Button";
+import Subhead from "@site/src/components/common/Subhead";
 import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
 import Link from "@docusaurus/Link";
 
@@ -168,10 +169,10 @@ function ColumnFeature({
 export default function HomepageFeatures(): JSX.Element {
   return (
     <div>
-      <p className={styles.homepageSubead}>
+      <Subhead>
         Mina is a layer-1 blockchain with a 22KB blockchain & zero knowledge
         smart contracts (“zkApps”) written in TypeScript.
-      </p>
+      </Subhead>
       <section className={styles.featuresGrid}>
         {FeatureList.map((props, idx) => {
           if (idx === 0) {
