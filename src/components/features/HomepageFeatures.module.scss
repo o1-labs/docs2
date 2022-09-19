@@ -21,8 +21,11 @@
 .featuresGridColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
+
+  & > div > p {
+    min-height: 33%;
+  }
 
   & > img {
     width: auto;
