@@ -354,7 +354,7 @@ Side note: `this.<state>.assertEquals` is more flexible than equating with the c
 
 Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions -- see [Actions and Reducer](./advanced-concepts/#actions-and-reducer).
+One such workaround is the use of actions -- see [Actions and Reducer](./advanced-snarkyjs/#actions-and-reducer).
 
 :::
 
