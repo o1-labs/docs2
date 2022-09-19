@@ -1,0 +1,286 @@
+---
+title: Advanced SnarkyJS
+---
+
+# Advanced SnarkyJS
+
+Build onto what you already learned regarding zkApps and SnarkyJS
+
+This page explores additional topics that require some familiarity with building zkApps, SnarkyJS, and crytography.
+
+## Using on-chain values
+
+We already saw how you can access the current [on-chain state](./how-to-write-zkapp) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+
+Just to give you an idea, here are two possible use cases:
+
+- Say you want to let users vote on a proposal, but only within a specific timespan. To do that, you can make your zkApp require that the current timestamp lies in a certain range.
+- In DeFi, you might need to compute amounts relative to a balance. For example, paying a yield of `0.001` times the account balance requires you to get the current on-chain balance.
+
+We group on-chain values in two categories:
+
+- **Network**: includes the current timestamp, block height, total Mina in circulation and other network state
+- **Account**: includes fields and properties of the zkApp account, such as balance, nonce and delegate
+
+The subfields of both categories are are accessible on `this.network` and `this.account` in your smart contract.
+For example, the timestamp is on `this.network.timestamp`, and it has four methods on it:
+
+```ts
+this.network.timestamp.get();
+this.network.timestamp.assertEquals(timestamp);
+this.network.timestamp.assertBetween(lower, upper);
+```
+
+With two of them you are already familiar: On-chain state has the same `get()` and `assertEquals()` methods. `assertBetween()` gives you even more power: it allows you to make assert that the timestamp is between `lower` and `upper` (inclusive).
+
+### Example: restricting timestamps
+
+Let's see how `assertBetween()` can be used in the voting example mentioned earlier. Assume we want to allow voting throughout September 2022. Timestamps are represented as a `UInt64` in milliseconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). We can use the JS `Date` object to easily convert to this representation. In the simplest case, our zkApp could just hard-code the dates:
+
+```ts
+const startDate = UInt64.from(Date.UTC(2022, 9, 1));
+const endDate = UInt64.from(Date.UTC(2022, 10, 1));
+
+class VotingApp extends SmartContract {
+  // ...
+
+  @method vote(...) {
+    this.network.timestamp.assertBetween(startDate, endDate);
+    // ...
+  }
+}
+```
+
+A more refined example could store the current start date in an on-chain state variable, which can be reset by some process which is also encoded by the zkApp.
+
+In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. So, the range should be `[now, now + 1h]`, such as below:
+
+```ts
+const now = this.network.timestamp.get();
+this.network.timestamp.assertBetween(now, now.add(60 * 60 * 1000));
+```
+
+### Network reference
+
+For completeness, below is the full list of network states you can use and make assertions about in your zkApp.
+
+All of those fields have a `get()` and an `assertEquals()` method, and the subset that represent
+"ordered values" (those that are `UInt32` or `UInt64`), also have `assertBetween()`.
+
+Of course, there's no need to remember this -- just type `this.network.` and let IntelliSense guide you!
+
+```ts
+// current UNIX time in milliseconds, as measured by the block producer
+this.network.timestamp.get(): UInt64;
+// length of the blockchain, also known as block height
+this.network.blockchainLength.get(): UInt32;
+// total minted currency measured in units of 1e-9 MINA
+this.network.totalCurrency.get(): UInt64;
+// slots since genesis / hardfork -- a "slot" is the Mina-native time unit of 3 minutes
+this.network.globalSlotSinceGenesis.get(): UInt32;
+this.network.globalSlotSinceHardFork.get(): UInt32;
+// hash of the snarked ledger -- i.e., the state of Mina included in the blockchain proof
+this.network.snarkedLedgerHash.get(): Field;
+// minimum window density in our consensus algorithm
+this.network.minWindowDensity.get(): UInt32;
+// consensus data relevant to the current staking epoch
+this.network.stakingEpochData.ledger.hash.get(): Field;
+this.network.stakingEpochData.ledger.totalCurrency.get(): UInt64;
+this.network.stakingEpochData.epochLength.get(): UInt32;
+this.network.stakingEpochData.seed.get(): Field;
+this.network.stakingEpochData.lockCheckpoint.get(): Field;
+this.network.stakingEpochData.startCheckpoint.get(): Field;
+// consensus data relevant to the next, upcoming staking epoch
+this.network.nextEpochData.ledger.hash.get(): Field;
+this.network.nextEpochData.ledger.totalCurrency.get(): UInt64;
+this.network.nextEpochData.epochLength.get(): UInt32;
+this.network.nextEpochData.seed.get(): Field;
+this.network.nextEpochData.lockCheckpoint.get(): Field;
+this.network.nextEpochData.startCheckpoint.get(): Field;
+```
+
+### Account reference
+
+Here's the full list of values you can access on the zkApp account. Like the network states, these have `get()` and `assertEquals()`.
+Balance and nonce also have `assertBetween()`.
+
+```ts
+// the account balance; this might be nanoMINA or a custom token
+this.account.balance.get(): UInt64;
+// account nonce -- increases by 0 or 1 in every transaction
+this.account.nonce.get(): UInt32;
+// the account the zkApp delegates its stake to (default: its own address)
+this.account.delegate.get(): PublicKey;
+// boolean indicating whether an account is new (= didn't exist before the transaction)
+this.account.isNew.get(): Bool;
+// boolean indicating whether all 8 on-chain state fields where last changed by a transaction
+// authorized by a zkApp proof (as opposed to a signature)
+this.account.provedState.get(): Bool;
+// hash receipt which includes all prior transaction to an account
+this.account.receiptChainHash.get(): Field;
+```
+
+### Bailing out
+
+In some rare cases, you might, for whatever reason, want to `get()` an on-chain value _without_ constraining it to any value.
+If you try this, you'll see that SnarkyJS throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
+As an escape hatch, if you want to `get()` a value and are really sure you want to not constrain the on-chain value in any way,
+there's `assertNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
+
+<Alert kind="danger">
+
+`assertNothing()` should be rarely used and could cause security issues through unexpected behavior if used improperly. Be certain you know what you're doing before using this.
+
+</Alert>
+
+## Events
+
+Events are arbitrary information that can be passed along with a transaction. Say, your zkApp allows users to publish a message -- those messages could be events!
+
+Another use case for events are zkApps which keep some large internal state, and only store a commitment to that internal state on-chain. For example, a Merkle tree where only the root is stored in on-chain state. Events enable to attach the full information of state changes in transactions. In the Merkle tree example, this could mean sending any Merkle leaves that are changed by the transaction as events. This means that an observer of these transactions can follow along and keep track of the full Merkle tree on their side.
+
+To use events, you have to declare an `events` field at the top level of your smart contract. It contains the _names_ and _types_ of your events. Here's an example:
+
+```ts
+class MyContract extends SmartContract {
+  events = {
+    "add-merkle-leaf": Field,
+    "update-merkle-leaf": Field,
+  };
+}
+```
+
+In this example, we declare events called `"add-merkle-leaf"` and `"update-merkle-leaf"`, both with a type of `Field`. Instead of `Field`, you can also use other built-in SnarkyJS types as well as any `CircuitValue`. (In fact, a custom `CircuitValue` is probably better-suited to encode leaves of a Merkle tree -- we just use `Field` for simplicity here.)
+
+After declaring your events, you can use `this.emitEvent(name, event)` in any smart contract method, where `event` has to have the type you declared for that `name`. Example:
+
+```ts
+class MyContract extends SmartContract {
+  events = {
+    "add-merkle-leaf": Field,
+    "update-merkle-leaf": Field,
+  }
+
+  @method updateMerkleTree(leaf: Field, ...) {
+    this.emitEvent("update-merkle-leaf", leaf);
+    // ...
+  }
+}
+```
+
+Some other important facts about events:
+
+- Events are not stored on-chain. Only events from the most recent couple of transactions are retained by consensus nodes. After that, they will be discarded, but are still accessible on archive nodes. In the near future, we plan to add an API to easily fetch events from an archive node.
+- You can't refer to previously emitted events in a smart contract, because there is no way of proving that the events you refer to are actually the events emitted by that contract.
+
+This is all you need to know about events! Think of them as a convenience feature -- a light-weight way of attaching information about your smart contract execution, which would otherwise get lost. Don't treat them as fully-fledged storage which can be safely accessed in smart contracts.
+
+### Events: API reference
+
+```ts
+class SmartContract {
+  static events?: Record<string, any>;
+
+  emitEvent(name: string, event: any): void;
+}
+```
+
+## Actions and Reducer
+
+<Alert kind="info">Experimental. This API may change.</Alert>
+
+Like events, **actions** are arbitrary information passed along with a zkApp transaction. However, actions give you an additional power: you can process previous actions in a smart contract! Under the hood, this is possible because we store a commitment to the history of dispatched actions on every account -- the **actionsHash**. It allows us to prove that the actions you process are, in fact, the actions that were dispatched to the same smart contract.
+
+Using actions and a "lagging state" pattern, you can write zkApps that can _process concurrent state updates by multiple users_ -- see the next section. Besides that, we imagine all kinds of use cases where actions act as a built-in, "append-only" off-chain storage layer.
+
+To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
+
+```ts
+import { SmartContract, Experimental, Field } from "snarkyjs";
+
+class MyContract extends SmartContract {
+  reducer = Experimental.Reducer({ actionType: Field });
+}
+```
+
+Contrary to events, for actions you only have one type per smart contract; they also don't have a name. The `actionType` in this example is `Field`.
+
+On a `reducer`, you have two functions: `reducer.dispatch` and `reducer.reduce`. "Dispatch" is simple -- like emitting events, it will push one additional action to your account's action history:
+
+```ts
+this.reducer.dispatch(Field(1000));
+```
+
+"Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example. Say we have a list of actions and want to find out if one of them is equal to `1000`. In JavaScript, there's a built-in function on `Array` which does this:
+
+```ts
+let has1000 = array.some((x) => x === 1000);
+```
+
+However, as you might know, you can also implement this with `Array.reduce`:
+
+```ts
+let has1000 = array.reduce((acc, x) => acc || x === 1000, false);
+```
+
+In fact, `Array.reduce` is powerful enough to let you do pretty much all array processing you can think of. With `Reducer.reduce`, we give you an in-snark operation which is just as powerful:
+
+```ts
+// type for the "accumulated output" of reduce -- the `stateType`
+let stateType = Bool;
+
+// example actions data
+let actions = [[Field(1000)], [Field(2)], [Field(100)]];
+
+// state and actionsHash before applying actions
+let initial = {
+  state: Bool(false),
+  actionsHash: Experimental.Reducer.initialActionsHash,
+};
+
+let { state, actionsHash } = this.reducer.reduce(
+  actions,
+  stateType,
+  (state: Bool, action: Field) => state.or(action.equals(1000)),
+  initial
+);
+```
+
+What we called `acc` above is now called `state`; we also have to pass in the state's type as a parameter. In addition, we have to pass in an `actionsHash` which refers to one particular point in the actions history. Like `Array.reduce`, `Reducer.reduce` takes a callback which has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` will be `Bool(true)`, because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionsHash -- so you can store it for using it when you reduce the next batch of actions. One last difference to JS reduce is that this takes a _list of lists_ of actions instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (e.g., while running one smart contract method).
+
+An astute reader may have noticed that this is eerily similar to a standard "Elm architecture" -- this is because we have an instance of a scan over an implicit infinite stream of actions (though here that are aggregated in chunks) -- this is very similar to the problem that came up when processing transactions within the [Mina Protocol L1 with Snark Workers](https://minaprotocol.com/blog/fast-accumulation-on-streams). This may sound scary, but it should be familiar to web developers through its instantiation via the Redux library or more recently via the `useReducer` hook in React!
+
+There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because we're handling multiple actions concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
+
+### Reducer - API reference
+
+```ts
+reducer = Experimental.Reducer({ actionType: AsFieldElements<A> });
+
+this.reducer.dispatch(action: A): void;
+
+this.reducer.reduce<S>(
+  actions: A[][],
+  stateType: AsFieldElements<S>,
+  reduce: (state: S, action: A) => S,
+  initial: { state: S, actionsHash: Field }
+): { state: S, actionsHash: Field };
+
+Experimental.Reducer.initialActionsHash: Field;
+```
+
+The above API is available now, but still marked as "Experimental". In the near future, we want to add a function to retrieve actions from an archive node:
+
+```ts
+this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[][];
+```
+
+Right now, `getActions` is available for [testing with `LocalBlockchain`](https://docs.minaprotocol.com/en/zkapps/how-to-test-a-zkapp).
+
+### Actions for concurrent state updates
+
+We imagine that one of the most important use cases for actions is to enable concurrent state updates. This is also why actions where originally added to the protocol.
+
+A detailed explanation of the problem, and how actions can provide the solution, can be found here: https://github.com/o1-labs/snarkyjs/issues/265#issuecomment-1177512908
+
+We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) which demonstrates this pattern. Leveraging `Reducer.reduce`, it takes only about 30 lines of code to build a zkApp which handles concurrent state updates.
