@@ -94,11 +94,15 @@ module.exports = {
         "node-operators/cli-reference"
       ],
     },
-
     {
       type: "category",
-      label: "Exchange Operators",
-      items: ["exchange-operators/exchange-faq"],
+      label: "Node Developers",
+      items: [
+        "node-developers/overview",
+    {
+      type: "category",
+      label: "Overview",
+      items: ["node-operators/overview"],
     },
     {
       type: "category",
