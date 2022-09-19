@@ -97,7 +97,7 @@ const FeatureList: FeatureItem[] = [
     title: "Participate",
     image: "/svg/homepage/participate.svg",
     buttonText: "Learn More",
-    buttonLink: "/participate/grants",
+    buttonLink: "/participate/grants-and-programs",
 
     description: (
       <>
@@ -105,7 +105,7 @@ const FeatureList: FeatureItem[] = [
           Join the community
         </Link>
         ,{" "}
-        <Link to="/participate/grants" className={styles.minaLink}>
+        <Link to="/participate/grants-and-programs" className={styles.minaLink}>
           apply for grants & the zkApps Builders Program
         </Link>
         ,{" "}
