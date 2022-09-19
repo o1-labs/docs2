@@ -31,7 +31,7 @@ module.exports = {
         "zkapp-developers/how-to-write-zkapp",
         "zkapp-developers/how-to-test-zkapp",
         "zkapp-developers/how-to-deploy-zkapp",
-        "zkapp-developers/how-to-write-ui-zkapp",
+        "zkapp-developers/how-to-write-zkapp-ui",
         "zkapp-developers/advanced-concepts",
         "zkapp-developers/tutorial-anon-message-board",
         "zkapp-developers/zkapps-for-ethereum",
