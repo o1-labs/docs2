@@ -29,7 +29,7 @@ const FeatureList: FeatureItem[] = [
       <>
         {"Learn "}
         <Link to="/about-mina/overview" className={styles.minaLink}>
-          how zero-knowledge smart contracts work
+          how zero knowledge smart contracts work
         </Link>
         {" and "}
         <Link to="/about-mina/overview" className={styles.minaLink}>
@@ -52,7 +52,7 @@ const FeatureList: FeatureItem[] = [
         ,
         <Link to="/about-mina/overview" className={styles.minaLink}>
           {" "}
-          zero-knowledge proofs{" "}
+          zero knowledge proofs{" "}
         </Link>
         , & read the{" "}
         <Link
@@ -89,7 +89,7 @@ const FeatureList: FeatureItem[] = [
 
     description: (
       <>
-        Learn how to run a Mina node as a block producer or snarker worker to
+        Learn how to run a Mina node as a block producer or snark worker to
         participate in consensus.
       </>
     ),
@@ -171,8 +171,8 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <div>
       <p className={styles.homepageSubead}>
-        Mina is a layer-1 blockchain with a 22KB blockhain & zero-knowledge
-        smart contracts written in TypeScript (“zkApps”).
+        Mina is a layer-1 blockchain with a 22KB blockchain & zero knowledge
+        smart contracts (“zkApps”) written in TypeScript.
       </p>
       <section className={styles.featuresGrid}>
         {FeatureList.map((props, idx) => {
