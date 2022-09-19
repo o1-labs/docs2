@@ -1,0 +1,1 @@
+[Old docs page](https://docs.minaprotocol.com/en/node-operators/keypair)
