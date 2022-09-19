@@ -24,15 +24,15 @@ const FeatureList: FeatureItem[] = [
     title: "Deploy your first zkApp",
     image: "/img/homepage/zkapp_developers.png",
     buttonText: "zkApp Developers",
-    buttonLink: "/zkapp-developers/overview",
+    buttonLink: "/zkapps/overview",
     description: (
       <>
         {"Learn "}
-        <Link to="/zkapp-developers/how-zkapps-work" className={styles.minaLink}>
+        <Link to="/zkapps/how-zkapps-work" className={styles.minaLink}>
           how zero knowledge smart contracts work
         </Link>
         {" and "}
-        <Link to="/zkapp-developers/how-to-write-zkapp" className={styles.minaLink}>
+        <Link to="/zkapps/how-to-write-zkapp" className={styles.minaLink}>
           how to write your own using TypeScript.
         </Link>
       </>
@@ -50,7 +50,7 @@ const FeatureList: FeatureItem[] = [
           about Mina
         </Link>
         ,
-        <Link to="/zkapp-developers/overview" className={styles.minaLink}>
+        <Link to="/zkapps/overview" className={styles.minaLink}>
           {" "}
           zero knowledge proofs{" "}
         </Link>
