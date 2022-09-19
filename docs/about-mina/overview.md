@@ -28,7 +28,7 @@ Watch this [video to learn about zero-knowledge proofs](./what-are-zero-knowledg
 
 Mina’s zero-knowledge smart contracts are referred to as “zkApps”. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, & more.
 
-Learn more about [how zkApps work](/zkapp-developers/overview).
+Learn more about [how zkApps work](/zkapps/overview).
 
 ### How does consensus work on Mina?
 
