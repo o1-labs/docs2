@@ -111,7 +111,7 @@ this.account.balance.get(): UInt64;
 // account nonce -- increases by 0 or 1 in every transaction
 this.account.nonce.get(): UInt32;
 // the account the zkApp delegates its stake to (default: its own address)
-this.account.delegate.get(): Public;
+this.account.delegate.get(): PublicKey;
 // boolean indicating whether an account is new (= didn't exist before the transaction)
 this.account.isNew.get(): Bool;
 // boolean indicating whether all 8 on-chain state fields where last changed by a transaction
