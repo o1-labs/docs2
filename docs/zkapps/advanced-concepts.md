@@ -2,7 +2,6 @@
 title: Advanced SnarkyJS
 ---
 
-
 # Advanced SnarkyJS
 
 Build onto what you already learned regarding zkApps and SnarkyJS
@@ -11,7 +10,7 @@ This page explores additional topics that require some familiarity with building
 
 ## Using on-chain values
 
-We already saw how you can access the current [on-chain state](./how-to-write-a-zkapp/#reading-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+We already saw how you can access the current [on-chain state](./how-to-write-zkapp) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
 
 Just to give you an idea, here are two possible use cases:
 

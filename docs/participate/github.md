@@ -4,7 +4,6 @@ title: Github
 
 # Github
 
-
 ### Source Code
 
 As a decentralized protocol, Mina is open-sourced and its codebase is publicly available on Github. We invite you to view and contribute to the Mina protocol:
@@ -37,4 +36,4 @@ If you have questions or want to participate in discussions about the source cod
     width="2.5%"
   /> &nbsp;Mina Discussions on Github](https://github.com/MinaProtocol/mina/discussions)
 
-You can also learn how to report bugs and issues [on this page](./reporting).
+You can also learn how to report bugs and issues [on this page](./).
