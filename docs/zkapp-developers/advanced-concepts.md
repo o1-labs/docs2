@@ -11,7 +11,7 @@ This page explores additional topics that require some familiarity with building
 
 ## Using on-chain values
 
-We already saw how you can access the current [on-chain state](./how-to-write-a-zkapp/#reading-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+We already saw how you can access the current [on-chain state](./how-to-write-zkapp/#reading-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
 
 Just to give you an idea, here are two possible use cases:
 
@@ -111,7 +111,7 @@ this.account.balance.get(): UInt64;
 // account nonce -- increases by 0 or 1 in every transaction
 this.account.nonce.get(): UInt32;
 // the account the zkApp delegates its stake to (default: its own address)
-this.account.delegate.get(): PublicKey;
+this.account.delegate.get(): Public;
 // boolean indicating whether an account is new (= didn't exist before the transaction)
 this.account.isNew.get(): Bool;
 // boolean indicating whether all 8 on-chain state fields where last changed by a transaction

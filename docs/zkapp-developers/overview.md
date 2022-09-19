@@ -92,5 +92,5 @@ Play around with a few example zkApps to see what’s possible:
 
 Join the [#zkapps-general](https://discord.gg/R25r5Zha) channel on Discord.
 
-On the upcoming pages, you can read about [how zkApps work](./how-zkapps-work), [how to write a zkApp](./how-to-write-zkapp), and see our [zkApps for Ethereum Developers](./zkapps-for-ethereum-developers).
+On the upcoming pages, you can read about [how zkApps work](./how-zkapps-work), [how to write a zkApp](./how-to-write-zkapp), and see our [zkApps for Ethereum Developers](./zkapps-for-ethereum).
 

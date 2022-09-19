@@ -37,4 +37,4 @@ If you have questions or want to participate in discussions about the source cod
     width="2.5%"
   /> &nbsp;Mina Discussions on Github](https://github.com/MinaProtocol/mina/discussions)
 
-You can also learn how to report bugs and issues [on this page](./reporting).
+You can also learn how to report bugs and issues [on this page](./bug-bounty-program).

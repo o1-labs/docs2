@@ -35,7 +35,7 @@ You can learn more about Mina’s implementation of Rosetta here (coming soon).
 
 ### What if I have a question about Rosetta?
 
-You can post your questions in [Mina’s Github Discussions]( [https://github.com/MinaProtocol/mina/discussions).
+You can post your questions in [Mina’s Github Discussions](https://github.com/MinaProtocol/mina/discussions).
 
 ## Accounts
 
