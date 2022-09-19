@@ -101,7 +101,7 @@ const FeatureList: FeatureItem[] = [
 
     description: (
       <>
-        <Link to="/participate/social-media" className={styles.minaLink}>
+        <Link to="/participate/online-communities" className={styles.minaLink}>
           Join the community
         </Link>
         ,{" "}
