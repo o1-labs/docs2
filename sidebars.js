@@ -33,7 +33,13 @@ module.exports = {
         "zkapps/how-to-deploy-zkapp",
         "zkapps/how-to-write-zkapp-ui",
         "zkapps/advanced-snarkyjs",
-        "zkapps/tutorial-anon-message-board",
+        {
+          type: "category",
+          label: "Step-by-step Tutorials",
+          items: [
+            "zkapps/tutorial-anon-message-board",
+          ],
+        },
         "zkapps/zkapps-for-ethereum",
         "zkapps/snarkyjs-reference",
       ],
