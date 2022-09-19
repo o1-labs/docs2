@@ -83,11 +83,7 @@ Play around with a few example zkApps to see what’s possible:
   />
   <figcaption>
     zkApps are a great fit for applications that require proof that you have a
-    secret without revealing it to anyone (
-    <a href="https://minaprotocol.com/blog/zero-knowledge-proofs-an-intuitive-explanation">
-      zero knowledge proofs
-    </a>
-    ).
+    secret without revealing it to anyone.
   </figcaption>
 </figure>
 
