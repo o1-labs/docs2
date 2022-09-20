@@ -1,0 +1,58 @@
+@use "@site/src/scss/utilities/mixins";
+@use "@site/src/scss/utilities/variables";
+
+@mixin admonition($backgroundColor: rgb(155, 155, 155)) {
+  border: 1px solid rgba(45, 45, 45, 0.25);
+  margin-bottom: 1em;
+  border-radius: 4px;
+  overflow: hidden;
+
+  & > :first-child {
+    @include mixins.minaHeader4;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    background-color: $backgroundColor;
+  }
+
+  & > :nth-child(2) {
+    margin: 0;
+    padding: 1rem;
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.admonitionNote {
+  @include admonition($backgroundColor: variables.$mina-gray-dark);
+}
+
+.admonitionInfo {
+  @include admonition($backgroundColor: variables.$mina-purple);
+}
+
+.admonitionTip {
+  @include admonition($backgroundColor: variables.$mina-teal);
+}
+
+.admonitionDanger {
+  @include admonition($backgroundColor: variables.$mina-error);
+}
+
+.admonitionHeading code {
+  text-transform: none;
+}
+
+.admonitionIcon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+
+.admonitionIcon svg {
+  display: inline-block;
+  height: 1.6em;
+  width: 1.6em;
+  fill: white;
+}
