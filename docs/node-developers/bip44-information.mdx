@@ -1,0 +1,30 @@
+---
+title: "BIP44 information"
+---
+
+# BIP44 information
+
+| index | hexa       | symbol | coin                              |
+|:------|:-----------|:-------|:----------------------------------|
+| 12586 | 0x8000312a | MINA   | [Mina](https://minaprotocol.com/) |
+
+Mina uses the 5 level [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) path format specified in [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
+
+```
+m / purpose' / coin_type' / account' / change / address_index
+```
+
+Keypairs are derived by varying only the ``account`` while keeping the ``change`` and ``address_index`` zero.
+
+# BIP32 path format
+
+```
+m / 44' / 12586' / account' / 0 / 0
+```
+
+# Examples
+
+| account | path                    |
+|:--------|:------------------------|
+| 0       | m/44'/12586'/0'/0/0     |
+| 271     | m/44'/12586'/271'/0/0   |
