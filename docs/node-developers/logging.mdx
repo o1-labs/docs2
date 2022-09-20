@@ -17,7 +17,7 @@ To follow the logs, use one of the following commands, depending on how you star
 * Running as a service: `journalctl --user -u mina -n 1000 -f`
 * Other: `tail -f ~/.mina-config/mina.log`
 
-### Log levels:
+### Log levels
 
 The Mina daemon logs at the following levels, in this order of precedence:
 
@@ -29,11 +29,11 @@ The Mina daemon logs at the following levels, in this order of precedence:
 * Error
 * Fatal
 
-<Alert>
+:::info
 
 Specifying a `log-level` of `Info` will only display messages from that log level and above and significantly reduce the logs' verbosity.
 
-</Alert>
+:::
 
 ### Log format:
 
@@ -71,27 +71,27 @@ An example error message is shown below:
 }
 ```
 
-### Exporting logs:
+### Exporting logs
 
 The Mina daemon provides a CLI helper to compress and package up the available log files from a node. 
 
 For a running daemon, run `mina client export-logs` where you can pass an optional flag `-tarfile` to specify the tar archive's filename, which defaults to the current date-time. This command compresses the available logs and exports them to the `exported_logs` directory in the `~/.mina-config` directory.
 
-<Alert>
+:::info
 
-The logs may be exported from a running node via GraphQL using the `exportLogs` <DocLink copy="mutation" url="/node-developers/graphql-api#mutations" />.
+The logs may be exported from a running node via GraphQL using the `exportLogs` [mutation](/node-developers/graphql-api#mutations).
 
-</Alert>
+:::
 
 To export logs from a node that is not running, run the `mina client export-local-logs` command to compress the available local log files. Pass the `tarfile` option to specify the tar archive's filename, and the logs will be compressed and exported to the `exported_logs` directory in the `~/.mina-config` directory.
 
-<Alert>
+:::info
 
 When creating or updating an issue on GitHub, you can upload the exported `tar.gz` file directly to the [issue](https://github.com/MinaProtocol/mina/issues).
 
-</Alert>
+:::
 
-### Logging options:
+### Logging options
 
 The following options may be set when starting the daemon to customize the logging behaviour:
 
@@ -104,7 +104,7 @@ The following options may be set when starting the daemon to customize the loggi
 * `-log-txn-pool-gossip` - log transaction-pool diffs received from peers (default: false)
 * `-log-precomputed-blocks` - include precomputed blocks in the logs (default: false)
 
-### Crash Reports:
+### Crash Reports
 
 If the daemon crashes and is able, it will generate a crash report. Only the latest crash report will be retained, with the filename indicating the date-time of the crash and the compressed file being exported to the `~/.mina-config` directory. You can upload this crash report to any [GitHub issue](https://github.com/MinaProtocol/mina/issues) to identify new issues and aid in debugging.
 

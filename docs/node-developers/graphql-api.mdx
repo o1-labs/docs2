@@ -1,16 +1,15 @@
-
 ---
 title: "GraphQL API"
 ---
 
 # GraphQL API
 
-<Alert kind="warning">
+:::caution
 
 - Mina APIs are still under construction, so these endpoints may change.
 - By default, the GraphQL port is bound to localhost. Exposing the GraphQL API to the internet allows anyone to send Mina from the accounts known to the daemon.
 
-</Alert>
+:::
 
 The Mina daemon exposes a [GraphQL API](https://graphql.org/) used to request information from and submit commands to a running node. By default, an HTTP server runs on port `3085`, though this may be configured by passing the `-rest-port` flag to the daemon startup command.
 
@@ -20,7 +19,7 @@ In addition to information about the running node, the GraphQL API can return da
 
 The full Mina GraphQL schema is available [here](https://docs.minaprotocol.com/graphql-docs/).
 
-### Queries:
+### Queries
 
 The Mina GraphQL API has a number of [queries](https://docs.minaprotocol.com/graphql-docs/query.doc.html) to extract data from a running node. [GraphQL queries](https://graphql.org/learn/queries/) allow specifying the data to be returned in the response. For example to get the latest block and creator information known to the daemon:
 
@@ -138,11 +137,11 @@ subscription {
 
 The new block subscription may also be limited to only return new blocks created by a defined public key with the `publicKey` argument.
 
-### GraphQL Public Proxy:
+### GraphQL Public Proxy
 
 While exposing the GraphQL API to the internet is not recommended, an implementation of a [GraphQL proxy](https://github.com/MinaProtocol/mina/tree/master/automation/services/graphql-public-proxy) is available that removes the queries that pose a threat but still allows querying of the node's data from a public endpoint.
 
-### Resources:
+### Resources
 
 - [5-minute introduction video on Mina GraphQL API](http://bit.ly/GraphQLAPIin5)
 - [First steps with the Mina GraphQL API](https://garethtdavies.com/crypto/first-steps-with-coda-graphql-api.html)
