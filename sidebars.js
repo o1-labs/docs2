@@ -40,7 +40,7 @@ module.exports = {
             "zkapps/tutorial-anon-message-board",
           ],
         },
-        "zkapps/zkapps-for-ethereum",
+        "zkapps/zkapps-for-ethereum-developers",
         "zkapps/snarkyjs-reference",
       ],
     },
