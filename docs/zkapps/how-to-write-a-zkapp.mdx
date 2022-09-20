@@ -16,7 +16,7 @@ A zkApp consists of a smart contract and a UI to interact with it. First, we’l
 
 ## Write a smart contract
 
-Your smart contract will be written using [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli/).
+Your smart contract will be written using [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
 
 Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework (<a href="https://jestjs.io/">Jest</a>), code auto-formatting (<a href="https://prettier.io/
 ">Prettier</a>), linting (<a href="https://eslint.org/">ES Lint</a>), & more.
@@ -61,7 +61,7 @@ Examples are based on the standard project structure, but with additional files 
    network alias to your project’s `config.json`. For Berkeley QANet, we recommend
    using `berkeley` as the name, `0.1` for the fee, and
    `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp]
-   (./how-to-deploy-zkapp) page for further details.
+   (how-to-deploy-a-zkapp) page for further details.
 
 You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
 
@@ -78,20 +78,20 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 4. **Deploy to QANet:** Run `zk config`, which will walk you through adding a
    network alias to your project’s `config.json`. For Berkeley QANet, we
    recommend using `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](./how-to-deploy-zkapp) page for further details.
+   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
 5. **Deploy to Mainnet:** (Coming soon.)
 
 ### Writing your smart contract
 
 The goal of this section is to explain the concepts that you will need to understand to write a zero-knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](./how-zkapps-work#reading-state) pages, please read it first so that this section makes sense.
+If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it first so that this section makes sense.
 
 ##### SnarkyJS
 
 zkApps are written in TypeScript using SnarkyJS. SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
 
-To view the full SnarkyJS reference, please see the [snarkyJS reference](./snarkyjs-reference).
+To view the full SnarkyJS reference, please see the [snarkyJS reference](snarkyjs-reference).
 
 ##### Concepts
 
@@ -199,7 +199,7 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [snarkyJS reference](./snarkyjs-reference).
+For a full list, see the [snarkyJS reference](snarkyjs-reference).
 
 ##### Smart Contract
 
@@ -272,7 +272,7 @@ Magically, the proof can be checked without seeing `x` -- it's a _private input_
 The method above is not very meaningful yet. To make it more interesting, we need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [circuit values](./how-to-write-zkapp#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [circuit values](how-to-write-a-zkapp#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -355,7 +355,7 @@ Side note: `this.<state>.assertEquals` is more flexible than equating with the c
 
 Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions -- see [Actions and Reducer](./advanced-snarkyjs/#actions-and-reducer).
+One such workaround is the use of actions -- see [Actions and Reducer](advanced-snarkyjs/#actions-and-reducer).
 
 :::
 
@@ -404,7 +404,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [snarkyJS reference](./snarkyjs-reference).
+For a full list, see the [snarkyJS reference](snarkyjs-reference).
 
 ##### Public and private inputs
 
@@ -522,4 +522,4 @@ This allows for great composability and reusability of circuit values.
 
 ## Next Steps
 
-Now that you've learned how to write a basic smart contract, you can learn [how to test your zkApp](./how-to-test-zkapp).
+Now that you've learned how to write a basic smart contract, you can learn [how to test your zkApp](how-to-test-a-zkapp).
