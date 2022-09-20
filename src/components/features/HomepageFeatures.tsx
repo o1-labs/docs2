@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
           how zero knowledge smart contracts work
         </Link>
         {" and "}
-        <Link to="/zkapps/how-to-write-zkapp" className={styles.minaLink}>
+        <Link to="/zkapps/how-to-write-a-zkapp" className={styles.minaLink}>
           how to write your own using TypeScript.
         </Link>
       </>
