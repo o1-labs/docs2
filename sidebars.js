@@ -35,7 +35,7 @@ module.exports = {
         "zkapps/advanced-snarkyjs",
         {
           type: "category",
-          label: "Step-by-step Tutorials",
+          label: "Step-by-Step Tutorials",
           items: [
             "zkapps/tutorial-anon-message-board",
           ],
