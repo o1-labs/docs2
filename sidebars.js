@@ -28,7 +28,7 @@ module.exports = {
       items: [
         "zkapps/overview",
         "zkapps/how-zkapps-work",
-        "zkapps/how-to-write-zkapp",
+        "zkapps/how-to-write-a-zkapp",
         "zkapps/how-to-test-zkapp",
         "zkapps/how-to-deploy-zkapp",
         "zkapps/how-to-write-a-zkapp-ui",
