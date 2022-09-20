@@ -1,4 +1,3 @@
-
 ---
 title: "Sandbox Node"
 ---
@@ -7,11 +6,11 @@ title: "Sandbox Node"
 
 The Mina Sandbox Node will enable you to test and get familiar with core features of the protocol and build tooling in a stable environment -- it's a single-node private network that uses the same configuration as the live testnet. This sandbox supports multiple accounts, sending transactions between them, and will also support performing SNARK work, delegating, and staking. In fact since it's a single node network, you'll get all the block rewards!
 
-<Alert>
+:::info
 
 The sandbox does **NOT** connect you to a live network.
 
-</Alert>
+:::
 
 ## Installation
 
@@ -44,7 +43,7 @@ And stop mina by running.
 docker stop mina
 ```
 
-You can use the Mina CLI to interact with the sandbox node. The following command opens a shell inside the docker container from where you can issue any of the available <DocLink copy="mina commands" url="/node-operators/cli-reference" />.
+You can use the Mina CLI to interact with the sandbox node. The following command opens a shell inside the docker container from where you can issue any of the available [mina commands](/node-operators/cli-reference).
 
 ```
 docker exec -it mina bash
@@ -64,8 +63,8 @@ The password for this account is the empty string (there's no password -- you ca
 
 There are a few things you can do with your sandbox now that you have it running:
 
-- <DocLink copy="Install Mina" url="/node-operators/getting-started#installation" /> as usual and use many of the client commands. Since the daemon is already running in the container, you don't need to run `mina daemon`!
+- [Install Mina](/node-operators/getting-started#installation) as usual and use many of the client commands. Since the daemon is already running in the container, you don't need to run `mina daemon`!
 
-- Install the <DocLink copy="GUI Wallet" url="/gui-wallet" /> app to use a graphical interface to your node. Enter '127.0.0.1' as the host of your node during setup.
+- Install the [GUI Wallet](/gui-wallet) app to use a graphical interface to your node. Enter '127.0.0.1' as the host of your node during setup.
 
-- Head over to http://localhost:3085/graphql to play with the GraphQL API directly.
+- Head over to [http://localhost:3085/graphql](http://localhost:3085/graphql) to play with the GraphQL API directly.
