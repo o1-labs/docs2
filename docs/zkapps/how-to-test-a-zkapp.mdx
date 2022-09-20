@@ -1,8 +1,7 @@
 ---
 title: How to Test a zkApp
+hide_title: true
 ---
-
-# How to test a zkApp
 
 :::info
 
@@ -11,6 +10,7 @@ zkApps can now be deployed to Berkeley QANet.
 
 :::
 
+# How to test a zkApp
 
 Writing automated tests for your smart contract is of crucial importance. The <a href="https://jestjs.io/">Jest testing framework</a> is included in all projects created by the Mina zkApp CLI via `zk project <name>` and `zk example <name`. We recommend Jest, but any testing framework can be used.
 
@@ -38,7 +38,7 @@ For examples of existing tests, we recommend creating a template example using t
 
 #### Creating a local blockchain
 
-It's helpful to run your smart contract locally on a mock blockchain to quickly test it. 
+It's helpful to run your smart contract locally on a mock blockchain to quickly test it.
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts that runs locally on your machine. It contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
@@ -66,7 +66,7 @@ let zkAppAddress = zkAppPrivateKey.toPublicKey();
 let zkAppInstance = new Add(zkAppAddress);
 ```
 
-Then, use the test account and zkApp keys to construct a transaction to pay account creation fees and deploy your smart contract. This transaction is sent to the local blockchain. 
+Then, use the test account and zkApp keys to construct a transaction to pay account creation fees and deploy your smart contract. This transaction is sent to the local blockchain.
 
 ```ts
 let txn = await Mina.transaction(feePayer, () => {
@@ -88,7 +88,7 @@ Jest can be used to write both unit and integration tests. A well written integr
     zkAppInstance: Add,
     currentState: Field,
     txn;
-  
+
   beforeAll(async () => {
     await isReady;
     // setup local blockchain
@@ -132,7 +132,7 @@ Jest can be used to write both unit and integration tests. A well written integr
     expect(currentState).toEqual(Field(3));
   });
 });
-``` 
+```
 
 ## Learn more
 
