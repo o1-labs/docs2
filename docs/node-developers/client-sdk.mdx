@@ -1,4 +1,6 @@
-
+---
+title: "Client SDK"
+---
 
 # Client SDK
 
@@ -93,8 +95,6 @@ let signedPayment = MinaSDK.signPayment({
   }, keys);
 ```
 
-<Alert>
-
-When generating transactions, you will need to specify the account nonce. This is available for an account via the CLI using `mina advanced get-nonce --address <PUBLIC_KEY>` or using <DocLink copy="GraphQL" url="/node-developers/graphql-api" />.
-
-</Alert>
+:::info
+When generating transactions, you will need to specify the account nonce. This is available for an account via the CLI using `mina advanced get-nonce --address <PUBLIC_KEY>` or using [GraphQL](/node-developers/graphql-api).
+:::
