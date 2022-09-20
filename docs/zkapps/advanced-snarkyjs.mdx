@@ -294,7 +294,11 @@ We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main
 
 ## Merkle trees
 
-<Alert kind="info">Experimental. This API may change.</Alert>
+:::info
+
+Experimental. This API may change.
+
+:::
 
 #### Referencing off-chain data
 
@@ -307,7 +311,7 @@ only storing one single hash on-chain!
 
 Merkle trees are special binary trees in which every leaf (the nodes at the very bottom of the tree!) are cryptographic hashes of the underlying pieces of data and the internal nodes are labelled with the cryptographic hash of the concatenated labels (hashes) of its child nodes.
 
-By following this algorithm to the very top, we end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves. By doing so, we achieve that we can reference large amounts of data by only using one small hash!Another thing that Merkle trees provide is something called the witness (sometimes also called Merkle proof or Merkle path) - the witness is the path from one specific leaf node to the very top of the tree - to the root! Merkle witnesses are proofs of inclusion exists, they allow us to prove that one specific piece of data(an account in the ledger or the scores on a leaderboard) exists within the entire tree.
+By following this algorithm to the very top, we end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves. By doing so, we achieve that we can reference large amounts of data by only using one small hash! Another thing that Merkle trees provide is something called the witness (sometimes also called Merkle proof or Merkle path) - the witness is the path from one specific leaf node to the very top of the tree - to the root! Merkle witnesses are proofs of inclusion exists, they allow us to prove that one specific piece of data(an account in the ledger or the scores on a leaderboard) exists within the entire tree.
 
 #### How will that be useful for zkApps?
 
@@ -337,13 +341,21 @@ Lets look at our data structure first. Imagine wanting to map a player's id to s
 
 Now it's time to look at what our leaderboard zkApp might look like. We want to have on-chain state that points to the off-chain Merkle tree - we will call this variable the `root`.
 
-<Alert kind="note">
+:::info
 
 Sometimes the variable `root` is also called commitment, because we commit to something!
 
-</Alert>
+:::
 
 Additionally, we want to store a variable `z` which is the hash of the value a player has to guess: `H(guess) = z`
+
+:::info
+
+Guessing a simple hash like in this example can easily be brute forced, especially if the preimage is something simple (like a 5 letter word or a small number with only a few digits).
+
+Please make sure that your zkApps are always secure, especially when dealing with funds!
+
+:::
 
 The first method allows a player to make a guess, and if the guess is correct, the player will gain one point.
 The method takes the players guess and hashes it, it then checks if the hash H(guess) equals the on-chain state z and if that's the case,
@@ -352,15 +364,15 @@ then the player gains one point on the score board.
 We will also need a second method that takes care of the reward. It checks if the players score is over a threshold and pays out a reward if that's the case.
 This method will also have to verify our Merkle witness and check it if it matches the on-chain stored Merkle root!
 
-<Alert kind="note">
+:::note
 
 A fully working example, including all the necessary boilerplate code, can be found in the SnarkyJS repository in the examples folder [here](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree).
 
-</Alert>
+:::
 
 ```ts
 class Leaderboard extends SmartContract {
-  // the root it the root hash of our off-chain Merkle tree
+  // the root is the root hash of our off-chain Merkle tree
   @state(Field) root = State<Field>();
 
   // z is the hashed number we want to guess!
@@ -377,47 +389,46 @@ class Leaderboard extends SmartContract {
     );
   }
 
-  @method
-  guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
+  @method guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
     // we fetch z from the chain
-    let z = this.z.get();
+    const z = this.z.get();
     this.z.assertEquals(z);
 
     // if our guess preimage hashes to our target, we won a point!
     Poseidon.hash([guess]).assertEquals(z);
 
-    // we fetch the on-chain commitment
-    let commitment = this.commitment.get();
-    this.commitment.assertEquals(commitment);
+    // we fetch the on-chain commitment/root
+    const root = this.root.get();
+    this.root.assertEquals(root);
 
     // we check that the account is within the committed Merkle Tree
-    path.calculateRoot(account.hash()).assertEquals(commitment);
+    path.calculateRoot(account.hash()).assertEquals(root);
 
     // we update the account and grant one point!
     let newAccount = account.addPoints(1);
 
     // we calculate the new Merkle Root, based on the account changes
-    let newCommitment = path.calculateRoot(newAccount.hash());
+    const newRoot = path.calculateRoot(newAccount.hash());
 
-    this.commitment.set(newCommitment);
+    this.root.set(newRoot);
   }
 
   @method
   claimReward(account: Account, path: MerkleWitness) {
     // we fetch the on-chain commitment
-    let commitment = this.commitment.get();
-    this.commitment.assertEquals(commitment);
+    const root = this.root.get();
+    this.root.assertEquals(root);
 
     // we check that the account is within the committed Merkle Tree
-    path.calculateRoot(account.hash()).assertEquals(commitment);
+    path.calculateRoot(account.hash()).assertEquals(root);
 
     // we check that the account has at least 10 score points in order to claim the reward
-    account.score.assertGte(10);
+    account.score.assertGte(UInt32.fromNumber(10));
 
     // finally, we send the player a reward
     this.send({
       to: account.address,
-      100_000_000,
+      amount: 100_000_000,
     });
   }
 }
@@ -443,16 +454,16 @@ class MerkleWitness extends Experimental.MerkleWitness(treeHeight) {}
 Tree.setLeaf(0n, Field.fromNumber(123));
 
 // gets the current root of the tree
-let root = Tree.getRoot();
+const root = Tree.getRoot();
 
 // gets a plain witness for leaf at index 0n
-let witness = Tree.getWitness(0n);
+const witness = Tree.getWitness(0n);
 
 // creates a circuit-compatible witness
-let circuitWitness = new MerkleWitness(witness);
+const circuitWitness = new MerkleWitness(witness);
 
 // calculates the root of the witness
-let calculatedRoot = circuitWitness.calculateRoot(Field.fromNumber(123));
+const calculatedRoot = circuitWitness.calculateRoot(Field.fromNumber(123));
 
 calculatedRoot.assertEquals(root);
 ```
