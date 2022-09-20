@@ -33,7 +33,7 @@ We must use `!important` at times to override some default styles.
     @include mixins.minaHeader1;
   }
 
-  & > * > a {
+  & a {
     color: variables.$mina-orange;
   }
 }
