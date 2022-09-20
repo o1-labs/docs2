@@ -31,7 +31,7 @@ module.exports = {
         "zkapps/how-to-write-zkapp",
         "zkapps/how-to-test-zkapp",
         "zkapps/how-to-deploy-zkapp",
-        "zkapps/how-to-write-zkapp-ui",
+        "zkapps/how-to-write-a-zkapp-ui",
         "zkapps/advanced-snarkyjs",
         {
           type: "category",
