@@ -108,6 +108,6 @@ module.exports = {
         "participate/bugs-and-feature-requests",
       ],
     },
-    "mina-glossary",
+    "glossary",
   ],
 };
