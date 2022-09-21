@@ -68,10 +68,10 @@ const katex = require("rehype-katex");
             to: '/node-operators/getting-started',
             from: '/node-operators',
           },
-          {
-            to: '/node-developers/contributing',
-            from: '/contributing',
-          },
+          // {
+          //   to: '/node-developers/contributing',
+          //   from: '/contributing',
+          // },
           {
             to: '/node-operators/keypair',
             from: '/keypair',
@@ -84,10 +84,10 @@ const katex = require("rehype-katex");
             to: '/node-operators/staking',
             from: '/staking',
           },
-          {
-            to: '/node-operators-cli-reference',
-            from: '/cli-reference',
-          },
+          // {
+          //   to: '/node-operators-cli-reference',
+          //   from: '/cli-reference',
+          // },
           {
             to: '/node-operators/staking-service-guidelines',
             from: '/advanced/staking-service-guidelines',
@@ -95,6 +95,10 @@ const katex = require("rehype-katex");
           {
             to: '/node-operators/staking',
             from: '/advanced/using-mina/staking',
+          },
+          {
+            to: '/participate/bugs-and-feature-requests',
+            from: '/participate/reporting',
           },
 
 
