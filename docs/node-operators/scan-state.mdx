@@ -11,7 +11,7 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 The scan state is a data structure that allows decoupling the production of transaction SNARKs from block producers to snark workers.
 
-As the block producers no longer have to produce these transaction SNARKs, the block production time may remain constant regardless of the transaction throughput. Additionally, the scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [snark workers](/architecture/snark-workers).
+As the block producers no longer have to produce these transaction SNARKs, the block production time may remain constant regardless of the transaction throughput. Additionally, the scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [snark workers](/node-operators/snark-workers).
 
 The scan state is comprised of a forest of [full-binary trees](https://en.wikipedia.org/wiki/Binary_tree) where each node in the tree is a job to be completed by a snark worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
 
@@ -27,7 +27,7 @@ In a steady-state, when all slots are filled, and all the required proofs are co
 
 ### Including transactions
 
-A [block producer](/architecture/block-producers) when constructing a block may include transactions up to the maximum defined by the [scan state constants](#scan-state-constants). By including transactions, they can pick up any available transaction fees and pay themselves a coinbase reward. Each transaction they add are transformed to new base jobs and added to the scan state.
+A [block producer](/node-operators/block-producers) when constructing a block may include transactions up to the maximum defined by the [scan state constants](#scan-state-constants). By including transactions, they can pick up any available transaction fees and pay themselves a coinbase reward. Each transaction they add are transformed to new base jobs and added to the scan state.
 
 For every transaction added, a block producer must include an equivalent amount of completed snark work that corresponds to a sequence of jobs that already exist in the scan state. These completed jobs, when added to scan state, create new merge jobs except when it is for the root node, in which case the proof is simply returned as a result.
 
