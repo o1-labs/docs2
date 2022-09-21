@@ -48,50 +48,7 @@ module.exports = {
       type: "category",
       label: "Node Operators",
       items: [
-        "node-operators/overview",
-        {
-          type: "category",
-          label: "Installation",
-          items: [
-            "node-operators/how-to-install-a-node/step-by-step",
-            "node-operators/how-to-install-a-node/docker",
-          ],
-        },
-        {
-          type: "category",
-          label: "Block Production (Staking)",
-          items: [
-            "node-operators/block-production/overview",
-            "node-operators/block-production/faq",
-            "node-operators/block-production/foundation-delegation-program",
-          ],
-        },
-        "node-operators/snarking",
-        {
-          type: "category",
-          label: "Archive Node",
-          items: [
-            "node-operators/archive-node/overview",
-            "node-operators/archive-node/how-to-run-archive-node",
-            "node-operators/archive-node/redundancy",
-            "node-operators/archive-node/backing-up-and-restoring-block-data",
-            "node-operators/archive-node/how-to-query-data",
-            "node-operators/archive-node/troubleshooting",
-          ],
-        },
-        {
-          type: "category",
-          label: "Developer References",
-          items: [
-            "node-operators/Developer-References/mina-node-cli-reference",
-            "node-operators/Developer-References/graphql-api",
-            "node-operators/Developer-References/javascript-client",
-          ],
-        },
-        "node-operators/troubleshooting",
-        "node-operators/connecting-devnet",
-        "node-operators/ledger-app-mina",
-        "node-operators/cli-reference"
+        "node-operators/getting-started",
       ],
     },
     {
