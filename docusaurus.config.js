@@ -197,8 +197,7 @@ const katex = require("rehype-katex");
         },
 
         prism: {
-          theme: darkCodeTheme,
-          darkTheme: darkCodeTheme,
+          theme: require("prism-react-renderer/themes/oceanicNext"),
         },
 
         colorMode: {
