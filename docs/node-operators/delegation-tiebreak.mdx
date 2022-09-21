@@ -1,0 +1,104 @@
+---
+title: Delegation Program Tiebreak System
+hide_title: true
+---
+
+:::note
+
+A new version of Mina Docs is coming soon! This page will be rewritten.
+
+:::
+
+# Delegation Program Tiebreak System
+How it works and verification instructions
+
+At the end of every delegation cycle the [Delegation Program Uptime Tracker](https://uptime.minaprotocol.com/) determines up to 240 external validators who have received the highest Performance Scores. In cases where a tiebreak is needed, a random tiebreak process will be implemented to ensure fairness and transparency. This system is outlined below and, if you wish, you can follow the process described below to verify the results.
+
+## How the Delegation Program Tiebreak System Works
+
+1.&nbsp; Block Producer keys eligible to receive a Mina Foundation delegation (see: [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy)) with tied Performance Scores that straddle the 240th place in the uptime snapshot are determined
+
+2.&nbsp; This list of tied keys is sorted alphanumerically using the [canonical ascii representation](http://support.ecisolutions.com/doc-ddms/help/reportsmenu/ascii_sort_order_chart.htm)
+
+3.&nbsp; The sorted list is randomized using [Random.org’s List Randomizer](https://www.random.org/lists/?mode=advanced);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.&nbsp; The [VRF seed](https://docs.minaprotocol.com/en/glossary) from the last epoch of the previous cycle is used as the “persistent identifier”
+
+## Verifying the Delegation Program Random Tiebreak
+
+### Requirements
+
+If you would like to verify the Delegation Program random tiebreak result you will need the following:
+- [Verifiable Random Function (VRF)](https://docs.minaprotocol.com/en/glossary) seed from the last epoch of the previous cycle
+- List of tied wallet addresses
+- Sorting tool (eg, [https://onlinestringtools.com/sort-strings](https://onlinestringtools.com/sort-strings))
+- Randomizing tool ([https://www.random.org/lists/?mode=advanced](https://www.random.org/lists/?mode=advanced))
+
+### Instructions
+
+#### **Step 1:** Identify the VRF seed from the last epoch of the previous cycle
+
+a. &nbsp; The VRF seed will be posted with the list of the Top 240 eligible delegatees
+
+b. &nbsp; If you like you can obtain the VRF seed yourself by:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i.&nbsp; Query [https://graphql.minaexplorer.com/](https://graphql.minaexplorer.com), using last epoch of the previous cycle,  with the following:
+
+```
+query epochSeed {
+  blocks(limit: 1, query: {canonical: true, protocolState: {consensusState: {epoch: 33}}}) {
+    protocolState {
+      consensusState {
+        stakingEpochData {
+          seed
+        }
+      }
+    }
+  }
+}
+```
+
+with the results of the above sample query for `Epoch 33` returning the seed:
+
+```
+2vbJHBGhsg12Hpm5y8QDz3VkR5XfNtK7HsyybWS83TGQrrJLRPiN
+```
+
+#### **Step 2:** Sort the tied wallet addresses alphanumerically using the canonical ascii representation
+a.&nbsp; This can be done using a tool like [Sort Strings](https://onlinestringtools.com/sort-strings)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i.&nbsp; Uncheck “Sort strings numerically”
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ii.&nbsp; Enter the tied addresses in “input strings” with <u>no extra spaces or line breaks</u>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iii.&nbsp; Copy the sorted wallet addresses from “sorted strings” 
+
+<figure>
+    <img
+        src="/static/img/docs-images/onlinestringtools.png"
+        width="75%"
+    />
+</figure>
+
+#### **Step 3:** Randomize the sorted list of tied wallet addresses using Random.org and the VRF seed from Step 1
+
+a.&nbsp; Visit [https://www.random.org/lists/?mode=advanced](https://www.random.org/lists/?mode=advanced)
+
+b.&nbsp; Enter the sorted list of addresses into “Part 1: Enter List Items”
+
+c.&nbsp; In “Part 2: Choose Output Format” select “As a bare-bones text document (type text/plain)”
+
+d.&nbsp; In “Part 3: Choose Randomization” select “Use pregenerated randomization based on persistent identifier **enter-id-here** (max 64 alphanumeric characters)” and where it says **“enter-id-here”** enter the VRF seed you identified 
+
+e.&nbsp; In “Part 4: Go!” press the “Randomize” button
+
+<figure>
+    <img
+        src="/static/img/docs-images/random.png"
+        width="85%"
+    />
+</figure>
+
+Through this process you will be able to confirm the random tiebreak result. If you need any help, please post your question in the [#Delegation-Program](https://discord.gg/ywDzwmGABT) channel on Discord.
+
+
