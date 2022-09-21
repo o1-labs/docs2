@@ -11,11 +11,11 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 # Block Producers
 
-The role of a block producer in Mina is to achieve [consensus](/architecture/consensus) and provide security to the blockchain. The block producer is responsible for creating new blocks, which include recent transactions broadcast on the network and a blockchain proof that proves the current state of the chain is valid.
+The role of a block producer in Mina is to achieve [consensus](../about-mina/consensus) and provide security to the blockchain. The block producer is responsible for creating new blocks, which include recent transactions broadcast on the network and a blockchain proof that proves the current state of the chain is valid.
 
 In Mina, anyone may become a block producer. There is an unbounded number of participants with the chance of producing a block proportional to the funds staked. Funds are not locked and are not subject to slashing.
 
-In return for staking funds and generating the required blockchain proofs, blocks produced and included in the canonical chain are rewarded in the form of a coinbase and transaction fees, less any fees paid to purchase required [transaction snark work](/architecture/snark-workers).
+In return for staking funds and generating the required blockchain proofs, blocks produced and included in the canonical chain are rewarded in the form of a coinbase and transaction fees, less any fees paid to purchase required [transaction snark work](./snark-workers).
 
 To produce a block successfully, a block producer must have the current state of the blockchain. Additionally, they must have enough available compute to produce a blockchain SNARK within the slot time and be connected to peers to broadcast the generated block within an acceptable delay as defined by the network consensus parameters.
 
@@ -27,11 +27,11 @@ This process is secret, in that only the private key holder can determine the VR
 
 The stake distribution is determined from the snarked ledger at the last block of `current epoch-2`, so there is a delay for any recently acquired or [delegated stake](#stake-delegation). For example, if the current epoch is 10, the staking distribution is determined from the snarked ledger of the last block of the 8th epoch.
 
-<Alert>
+:::note
 
 View the output of the VRF in the logs by looking for `Checking VRF evaluations`.
 
-</Alert>
+:::
 
 ### Generating a block
 
@@ -51,6 +51,6 @@ Delegated funds are not spendable and may be undelegated at any time by re-deleg
 
 ## Supercharged coinbase
 
-To further incentivize staking, if the account that wins the slot is one that does not have any [time-locked tokens](/architecture/timelock), the block producer will receive double the coinbase rewards.
+To further incentivize staking, if the account that wins the slot is one that does not have any [time-locked tokens](./timelock), the block producer will receive double the coinbase rewards.
 
 The supercharged coinbase applies to all accounts, either delegating or staking. The supercharged reward is determined using the account that won the slot. For example, if a non-time-locked account delegates to a time-locked account, if the non-time-locked account wins the slot, the coinbase is supercharged. If the time-locked account wins, the coinbase is not supercharged.
