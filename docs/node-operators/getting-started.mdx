@@ -1,18 +1,23 @@
 ---
 title: Getting Started
+hide_title: true
 ---
 
-# Getting Started
+import Subhead from "@site/src/components/common/Subhead";
 
 :::note
 
-A new version of Mina Docs is coming soon! We're currently updating the contents of page. If you have any suggestions or would like to contribute, please create a [pull request](https://github.com/MinaProtocol/docs).
+A new version of Mina Docs is coming soon! We're currently updating the contents of page.
 
 :::
 
-Welcome to Mina! This section will walk you through the process of setting up a Mina node. After we will show you how to generate a keypair for use with the network. Finally we'll show you how to connect to the network and begin producing blocks.
+# Getting Started
 
-:::important
+<Subhead>
+Welcome to Mina! This section will walk you through the process of setting up a Mina node. After we will show you how to generate a keypair for use with the network. Finally we'll show you how to connect to the network and begin producing blocks.
+</Subhead>
+
+:::info
 
 This documentation is for the **Mainnet** release.
 
@@ -73,7 +78,7 @@ Please instead use the Docker instructions below or you may build from source.
 
 ### Docker
 
-Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on <DocLink copy="Connect to the Network" url="/node-operators/connecting" />
+Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on [Connect to the Network](/node-operators/connecting).
 
 ### Build from source
 
@@ -88,7 +93,7 @@ You may need to configure your router's port forwarding to allow inbound traffic
 - `TCP` port `8302`
 - _Optionally_ to use the GraphQL service, expose `TCP` port `3085`
 
-For walk-through instructions see [this guide](./troubleshooting#port-forwarding).
+For walk-through instructions see [this guide](troubleshooting#port-forwarding).
 
 ## Next
 

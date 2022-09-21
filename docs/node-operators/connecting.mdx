@@ -1,0 +1,200 @@
+---
+title: Connect to the Network
+hide_title: true
+---
+
+:::note
+
+A new version of Mina Docs is coming soon! This page will be rewritten.
+
+:::
+
+# Connect to the Network
+
+In this section, we'll connect to the `Mainnet` network and send our first transaction. Let's first start up the node so that we can begin issuing commands.
+
+## Update your software
+
+The first step in connecting to `Mainnet` is installing the latest daemon version. Follow the instructions for your operating system below.
+
+### Ubuntu 18.04, 20.04 / Debian 9, 10, 11
+
+Follow along below to install the latest **Stable** [Mina Release 1.3.0](https://github.com/MinaProtocol/mina/releases/tag/1.3.0) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Beta) builds.
+
+You can set up the new `stable` package repository and install the latest version as follows:
+
+```
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
+sudo apt-get install --yes apt-transport-https
+sudo apt-get update
+sudo apt-get install --yes curl unzip mina-mainnet=1.3.0-9b0369c
+```
+
+Check that daemon installed correctly by running `mina version`. The output should read `Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master`.
+
+## Start up a node
+
+Since this technology is still relatively new, there are a few rare situations where your node can run into some issues. We don't want for your nodes to break and you not realize! So we've made some officially supported auto-restart flows for you. We'll be iterating on these in future releases.
+
+However, first we'll want to make sure everything works by running it manually before starting with the auto-restart flows.
+
+Note: If you are using the Hetzner hosting provider, we are currently experiencing an issue where Hetzner believes our software is being malicious. See the [Networking section of the troubleshooting page](/troubleshooting#networking) to learn how to mitigate this before starting a node.
+
+Run the following command to start up a Mina node instance and connect to the live network:
+
+```
+mina daemon --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+```
+
+If you have a key with stake and would like to produce blocks, also provide `--block-producer-key ~/keys/my-wallet`, replacing `~/keys/my-wallet` with the path to your private key if not the default.
+
+The `--peer-list` argument specified above refer to the seed peer address - this is the initial peer we will connect to on the network. Since Mina is a [peer-to-peer](/mina-glossary#peer-to-peer) protocol, there is no single centralized server we rely on.
+
+See [here](/troubleshooting) for common issues when first running a node.
+
+You're not done yet! Now that you've confirmed things are okay by running the standalone process, it is important we start Mina in a manner that will auto-restart itself when it dies.
+
+First kill the existing `mina daemon` process with `Ctrl-C`, and then keep reading:
+
+### Creating your .mina-env
+
+To produce blocks or otherwise customize the configuration for the mina daemon, create a file `~/.mina-env` containing the following:
+
+```
+MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
+LOG_LEVEL=Info
+FILE_LOG_LEVEL=Debug
+EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
+```
+Ensure to replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key, for example, `/home/ubuntu/keys/my-wallet`.
+
+If you do not intend to produce blocks then you can keep ~/.mina-env empty for now.
+
+To change how mina is configured, simply specify flags to the mina daemon process with space-separated arguments between the quotes in `EXTRA_FLAGS=""`.
+
+The mina systemd service no longer expects a peers.txt file, it just uses the PEER_LIST_URL variable to determine where to fetch initial peers from, and the PEER_LIST_URL for the mainnet package defaults to https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt .
+
+Once your .mina-env is ready, run the following commands to start up a Mina node instance and connect to the live network:
+
+```
+systemctl --user daemon-reload
+systemctl --user start mina
+systemctl --user enable mina
+sudo loginctl enable-linger
+```
+
+These commands will allow the node to continue running after you logout, and restart automatically when the machine reboots.
+
+By default, the node connects to the network using the default external-port of 8302. This can be changed using the `-external-port` flag, just add that to EXTRA_FLAGS.
+
+You can also look into the mina process itself that's running in the background and auto-restarting.
+
+This command will let you know if `mina` had any trouble getting started.
+
+```
+systemctl --user status mina
+```
+
+You can stop mina gracefully, and stop automatically-restarting the service:
+
+```
+systemctl --user stop mina
+```
+
+Manually Restart it:
+
+```
+systemctl --user restart mina
+```
+
+And look at logs:
+
+```
+journalctl --user -u mina -n 1000 -f
+```
+
+In some cases in order to view logs you need to run the following command instead:
+
+```
+journalctl --user-unit mina -n 1000 -f
+```
+
+That command will show you the last 1000 lines and follow from there.
+
+### Docker
+
+When running your daemon using Docker, first ensure that your private key has the correct permissions.
+
+```
+cd ~
+chmod 700 ~/keys
+chmod 600 ~/keys/my-wallet
+mkdir ~/.mina-config
+```
+
+To produce blocks or otherwise customize the configuration for the mina daemon, create a file `~/.mina-env` containing the following:
+
+```
+export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
+LOG_LEVEL=Info
+FILE_LOG_LEVEL=Debug
+EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
+PEER_LIST_URL=https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+```
+Ensure to replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key, for example, `/home/ubuntu/keys/my-wallet`.
+
+If you do not intend to produce blocks then you can keep ~/.mina-env empty except for the PEER_LIST_URL.
+
+Now simply run the image with your keys, ~/.mina-env, and ~/.mina-config mounted into the container:
+
+```
+docker run --name mina -d \
+-p 8302:8302 \
+--restart=always \
+--mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
+--mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
+--mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
+minaprotocol/mina-daemon:1.3.0-9b0369c-bullseye-mainnet \
+daemon
+```
+
+Run `docker logs -f mina` to follow the logs, and if it crashes save the log output to a file with `docker logs mina > mina-log.txt` and post the output to the #mentor-nodes channel or attach the full ~/.mina-config/mina.log to a github issue and link the issue in discord.
+
+Run `docker exec -it mina mina client status` to monitor connectivity to the network, you should quickly find at least 10 peers and watch the block height / max observed block height climb.
+
+:::tip
+
+If you encounter `[Warn] Shutdown before Mina instance was created, not saving a visualization` when attempting to run your Docker container, [increase the resources that the Docker container is allowed to use](https://docs.docker.com/config/containers/resource_constraints/).
+
+:::
+
+## Checking connectivity
+
+Now that we've started up a node and are running the Mina daemon, open up another shell and run the following command:
+
+    mina client status
+
+:::tip
+
+It may take up to a minute before `mina client status` connects to the daemon when first starting up. So if you see `Error: daemon not running. See mina daemon`, just a wait a bit and try again.
+
+:::
+
+Most likely we will see a response that include the fields below:
+
+    ...
+    Peers:                                         Total: 4 (...)
+    ...
+    Sync Status:                                   Bootstrap
+
+If you see `Sync Status: Bootstrap`, this means that the node is bootstrapping and needs to sync with the rest of the network. You may need to be patient here as this step might take some time for the node to get all the data it needs.
+
+After a while, your node should connect to more peers and then should move into `Sync Status: Catchup`, which means we're gathering the most recent blocks and state trying to catch up the the highest block.
+
+When sync status reaches `Synced` and the node is connected to 1 or more peers, we will have successfully connected to the network. We will also see a corresponding daemon log once we've synced: `[Info] Mina daemon is now synced`.
+
+If you the `Bootstrap` state persists for more than an hour, there may be an issue with your port configuration.
+
+## Stepping up your game
+
+Now that we have a fully synced node, we can learn about some of the more advanced features of the daemon such as [Sending a payment](/node-operators/send-payment) and [Staking & Delegating](/node-operators/staking). And if you want to earn more tokens, check out the [Foundation Delegation Program](/node-operators/delegation).

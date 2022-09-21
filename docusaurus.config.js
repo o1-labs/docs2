@@ -24,7 +24,103 @@ const katex = require("rehype-katex");
       locales: ["en", "fr", "ru"],
     },
 
-    plugins: ["docusaurus-plugin-sass"],
+    plugins: [
+      "docusaurus-plugin-sass", 
+      ["@docusaurus/plugin-client-redirects", { redirects: [
+          // /docs/oldDoc -> /docs/newDoc
+          {
+            to: '/node-operators/scan-state',
+            from: '/architecture/scan-state',
+          },
+          {
+            to: '/zkapps/overview',
+            from: '/zkapps',
+          },
+          {
+            to: '/zkapps/overview',
+            from: '/architecture/snapps',
+          },
+          {
+            to: '/about-mina/consensus',
+            from: '/architecture/consensus',
+          },
+          {
+            to: '/node-operators/snark-workers',
+            from: '/architecture/snark-workers',
+          },
+          {
+            to: '/node-operators/timelock',
+            from: '/architecture/timelock',
+          },
+          {
+            to: '/zkapps/overview',
+            from: '/architecture/snapps',
+          },
+          {
+            to: '/node-operators/getting-started',
+            from: '/architecture',
+          },
+          {
+            to: '/node-operators/getting-started',
+            from: '/advanced',
+          },
+          {
+            to: '/node-operators/getting-started',
+            from: '/node-operators',
+          },
+          // {
+          //   to: '/node-developers/contributing',
+          //   from: '/contributing',
+          // },
+          {
+            to: '/node-operators/keypair',
+            from: '/keypair',
+          },
+          {
+            to: '/node-operators/connecting',
+            from: '/connecting',
+          },
+          {
+            to: '/node-operators/staking',
+            from: '/staking',
+          },
+          // {
+          //   to: '/node-operators-cli-reference',
+          //   from: '/cli-reference',
+          // },
+          {
+            to: '/node-operators/staking-service-guidelines',
+            from: '/advanced/staking-service-guidelines',
+          },
+          {
+            to: '/node-operators/staking',
+            from: '/advanced/using-mina/staking',
+          },
+          // {
+          //   to: '/participate/bugs-and-feature-requests',
+          //   from: '/participate/reporting',
+          // },
+
+
+          // // Redirect from multiple old paths to the new path
+          // {
+          //   to: '/docs/newDoc2',
+          //   from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
+          // },
+          ],
+        createRedirects(existingPath) {
+          if (existingPath.includes('/snapps')) {
+            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
+            return [
+              existingPath.replace('/zkapps', '/snapps'),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
+        },
+      ],
+    ],
+
 
     presets: [
       [

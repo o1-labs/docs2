@@ -1,0 +1,161 @@
+---
+title: Data Querying
+hide_title: true
+---
+
+:::note
+A new version of Mina Docs is coming soon! This page will be rewritten.
+:::
+
+# Data Querying for Node Operators
+
+Some node operators don't wish to participate in block production or snark work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
+
+## Preparation
+
+In addition to [installing the Mina daemon on your machine](/node-operators/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/node-operators/archive-node) and/or archive via [other redundant means](/node-operators/archive-redundancy).
+
+## Running a node
+
+The best way to learn how to run a node is to follow the instructions on the [Connecting page](/node-operators/connecting) of the docs.
+
+However, you should remove `MINA_PRIVKEY_PASS` and `-block-producer-key ...` flag as we do not wish this node to start as a block producer.
+
+In order to expose recent information of the blockchain, we'll need to expose the GraphQL REST server. You may want to provide `-rest-server-port XXXX` if the default of 0xc0d or 3085 does not work for you. You may also want to provide `-insecure-rest-server` to make the REST server accessible from outside of `localhost`. However, if you do, make sure you set your firewall up properly. See [GraphQL API page](/node-developers/graphql-api) for more.
+
+## Querying information
+
+Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, for historical information can be accessed using [some sort of archival process](/node-operators/archive-redundancy)
+
+The best way to explore all the specific details available for each of the GraphQL objects is to visit your favorite web browser pointing to the REST server running from within a Mina daemon that hosts a GraphQL sandbox. Visit the [GraphQL API page](/node-developers/graphql-api) to learn more. Documentation is also present on most of the individual fields, you can learn more about each field by hovering over the entries in the sandbox or by visiting the [hosted schema](/graphql-docs/index.html).
+
+### Block data
+
+```javascript
+query BlockData {
+  bestChain(maxLength: 10) {
+    stateHash
+    creatorAccount {
+      balance {
+        total
+      }
+    }
+  }
+}
+```
+
+We will soon add support for a `block` query that can request specific blocks within either the bestChain or any of the forks we are still holding in our node. See [#7404](https://github.com/MinaProtocol/mina/issues/7404) for more.
+
+### Current Balance
+
+The following is a query for accessing the current balance of a public key. Note that you can also ask for the blockHeight and stateHash of the block that this balance is inspected within.
+
+```javascript
+query CurrentBalance {
+  account(publicKey: "B62qmyjqEtUEZrsBpUaiz18DCkwh1ovCrJboiHbDhpvH8JEoaag5fUP") {
+    balance {
+      blockHeight
+      total
+      stateHash
+    }
+  }
+}
+```
+
+### Staking Information
+
+In Mina, accounts are either staked or delegated completely. There is no alternative state. The following is a way to query this information that is present in the current ledger.
+
+```javascript
+query StakingInfo {
+  account(publicKey: "B62qmyjqEtUEZrsBpUaiz18DCkwh1ovCrJboiHbDhpvH8JEoaag5fUP") {
+    balance {
+      blockHeight
+      total
+      stateHash
+    }
+    delegateAccount {
+      publicKey
+    }
+  }
+}
+```
+
+If the delegateAccount.publicKey is null, then this account is "staking directly" and this private key should be used for block production directly.
+
+Note that the actual staking and delegating in the current "epoch" is drawn from the "staking ledger". We are currently implementing a mechanism for accessing this staking ledger directly, but for now you'll need to periodically query for this information and store it internally and then refer to it when it becomes active. On epoch transitions, a new staking ledger is selected by promoting the snarked ledger of the last block two epochs prior. In practice, this is between 2-4 weeks.
+
+### Get Transaction Details
+
+Via GraphQL, you can lookup transactions within blocks on the bestChain as follows:
+
+```javascript
+query TransactionDetails {
+  bestChain(maxLength: 10) {
+    stateHash
+    creatorAccount {
+      balance {
+        total
+      }
+    }
+    transactions {
+      coinbase
+      userCommands {
+        amount
+        fee
+        feePayer {
+          publicKey
+        }
+        hash
+        isDelegation
+        kind
+        memo
+        nonce
+        receiver {
+          publicKey
+        }
+        source {
+          publicKey
+        }
+      }
+    }
+  }
+}
+```
+
+## Submit a Signed Transaction
+
+You can send a signed transaction using the following GraphQL mutation. You can get information about the payment returned back to you as a sanity check.
+
+```javascript
+mutation SubmitSignedTransaction {
+  __typename
+  sendPayment(input: {
+    fee: "3000000",
+    amount: "42",
+    to: "B62qrcFstkpqXww1EkSGrqMCwCNho86kuqBd4FrAAUsPxNKdiPzAUsy",
+    from: "B62qiy32p8kAKnny8ZFwoMhYpBppM1DWVCqAPBYNcXnsAHhnfAAuXgg",
+    nonce: "0",
+    memo: "This is a memo",
+    validUntil: "50000"
+  }, signature: {
+      field: "26393275544831950408026742662950427846842308902199169146789849923161392179806",
+      scalar: "28530962508461835801829592060779431956054746814505059654319465133050504973404"
+   }) {
+    payment {
+      amount
+      fee
+      kind
+      memo
+      nonce
+      source {
+        publicKey
+      }
+      receiver {
+        publicKey
+      }
+      isDelegation
+    }
+  }
+}
+```
