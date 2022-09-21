@@ -4,7 +4,7 @@
 
 ## To view the docs
 
-To view the Mina Docs website, visit [docs.minaprotocol.com](https://docs.minaprotocol.com/).
+To view this website, visit [docs.minaprotocol.com](https://docs.minaprotocol.com/).
 
 ## To contribute content
 
