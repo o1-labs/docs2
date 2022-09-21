@@ -97,8 +97,7 @@ const FeatureList: FeatureItem[] = [
     title: "Participate",
     image: "/svg/homepage/participate.svg",
     buttonText: "Learn More",
-    buttonLink: "/participate/grants-and-programs",
-
+    buttonLink: "/participate/online-communities",
     description: (
       <>
         <Link to="/participate/online-communities" className={styles.minaLink}>
