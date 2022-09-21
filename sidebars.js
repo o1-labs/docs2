@@ -50,7 +50,7 @@ module.exports = {
       items: [
         "node-operators/getting-started",
         "node-operators/archive-node",
-        "node-operators/archive-reundancy",
+        "node-operators/archive-redundancy",
         "node-operators/delegation",
         "node-operators/delegation-tiebreak",
         "node-operators/bp-sidecar",
