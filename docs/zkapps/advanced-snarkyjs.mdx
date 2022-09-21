@@ -439,6 +439,15 @@ However, it is important to mention that the developer of the zkApp must make su
 
 You can look at [this example in the SnarkyJS repository](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree) to get a better understanding of how you can utilize the power of Merkle trees.
 
+:::info
+
+Merkle trees are great at _referencing_ off-chain state. But let alone referencing our state is not enough - we also have to actually store it somewhere!
+
+Where and how to store the data off-chain storage is left up to the developer.
+We will document a recommended method in time, but are currently exploring solutions and would be very interested to see and hear about approaches from others in the community.
+
+:::
+
 ### Merkle Tree - API reference
 
 ```ts
