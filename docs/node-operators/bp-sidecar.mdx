@@ -16,15 +16,15 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 :::info
 
 **PLEASE READ:** This affects the submission of uptime data and the Performance Score results for receiving a delegation.
-:::
 
 The current sidecar tracking system is being phased out to be replaced by the SNARK-work-based uptime tracking system. Until further notice, <u>please continue running the sidecar AND SNARK-based tracking system on the SAME node.</u>
 
-- <DocLink copy="Instructions for the sidecar tracking system" url="/node-operators/bp-sidecar" />
-- <DocLink copy="Instructions for the SNARK-work-based uptime system" url="/node-operators/uptime-system" />
+- [Instructions for the sidecar tracking system](./bp-sidecar)
+- [Instructions for the SNARK-work-based uptime system](./uptime-system)
 
 Please follow the latest updates and post questions in the [#delegation-program channel](https://discord.gg/ywDzwmGABT) on Discord.
 
+:::
 
 <br></br>
 
@@ -82,7 +82,7 @@ We will pass this file into the Docker container in the next step.
 
 ## Usage
 
-This sidecar will need to communicate with a running daemon, so you will first need to start your daemon. You will need to run the daemon with the flag `--limited-graphql-port 3095` in order for the sidecar to be able to communicate with the daemon. Further instructions can be found on the <DocLink copy="connecting page" url="/node-operators/connecting" />.
+This sidecar will need to communicate with a running daemon, so you will first need to start your daemon. You will need to run the daemon with the flag `--limited-graphql-port 3095` in order for the sidecar to be able to communicate with the daemon. Further instructions can be found on the [connecting page](./connecting).
 
 ### Debian / Ubuntu
 
@@ -157,8 +157,8 @@ It likely means you're shipping off data to the ingest pipeline without any bloc
 - [Latest Release Notes for Mina Protocol](https://github.com/MinaProtocol/mina/releases)
 - [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy)
 - [O(1) Labs Delegation Policy](https://blog.o1labs.org/o-1-labs-delegation-policy-786bf96f9fdd)
-- <DocLink copy="Mina Docs: Foundation Delegation Program" url="/node-operators/delegation"/>
-- <DocLink copy="Mina Docs: SNARK-based Uptime System" url="/node-operators/uptime-system"/>
+- [Mina Docs: Foundation Delegation Program](./delegation)
+- [Mina Docs: SNARK-based Uptime System](./uptime-system)
 
 #### Need any help? Post your questions in the [#Delegation-Program](https://discord.gg/ywDzwmGABT) channel on Discord.
 
