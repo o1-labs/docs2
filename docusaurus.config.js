@@ -96,10 +96,10 @@ const katex = require("rehype-katex");
             to: '/node-operators/staking',
             from: '/advanced/using-mina/staking',
           },
-          {
-            to: '/participate/bugs-and-feature-requests',
-            from: '/participate/reporting',
-          },
+          // {
+          //   to: '/participate/bugs-and-feature-requests',
+          //   from: '/participate/reporting',
+          // },
 
 
           // // Redirect from multiple old paths to the new path
