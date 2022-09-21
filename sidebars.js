@@ -119,7 +119,7 @@ module.exports = {
         "participate/grants-and-programs",
         "participate/careers",
         "participate/github",
-        "participate/bug-bounty-program",
+        "participate/bugs-and-feature-requests",
       ],
     },
     "mina-glossary",
