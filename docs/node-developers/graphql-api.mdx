@@ -1,0 +1,156 @@
+---
+title: "GraphQL API"
+hide_title: true
+---
+
+:::note
+
+A new version of Mina Docs is coming soon! We're currently updating the contents of page.
+
+:::
+
+
+# GraphQL API
+
+:::caution
+
+- Mina APIs are still under construction, so these endpoints may change.
+- By default, the GraphQL port is bound to localhost. Exposing the GraphQL API to the internet allows anyone to send Mina from the accounts known to the daemon.
+
+:::
+
+The Mina daemon exposes a [GraphQL API](https://graphql.org/) used to request information from and submit commands to a running node. By default, an HTTP server runs on port `3085`, though this may be configured by passing the `-rest-port` flag to the daemon startup command.
+
+To use the GraphQL API, connect your GraphQL client to `http://localhost:3085/graphql` or open in your browser to utilize the [GraphiQL IDE](https://github.com/graphql/graphiql). By default, for security, only connections from `localhost` are permitted. To listen on all interfaces, add the `-insecure-rest-server` flag to the daemon startup command.
+
+In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier will be returned, i.e., the last `k` blocks. For other historical data, you should use the archive node, which is designed to retain and retrieve historical data.
+
+The full Mina GraphQL schema is available [here](https://docs.minaprotocol.com/graphql-docs/).
+
+### Queries
+
+The Mina GraphQL API has a number of [queries](https://docs.minaprotocol.com/graphql-docs/query.doc.html) to extract data from a running node. [GraphQL queries](https://graphql.org/learn/queries/) allow specifying the data to be returned in the response. For example to get the latest block and creator information known to the daemon:
+
+```
+query {
+  bestChain(maxLength: 1) {
+    creator
+    stateHash
+    protocolState {
+      consensusState {
+        blockHeight
+      }
+      previousStateHash
+    }
+    transactions {
+      coinbase
+    }
+  }
+}
+```
+
+The following query requests all pending transactions in the [transaction pool](#) together with their fees. This query may be used to generate an estimate of a suggested fee for a transaction:
+
+```
+query {
+  pooledUserCommands {
+    id,
+    fee
+  }
+}
+```
+
+<Alert>
+
+The memo field returned for a transaction is [Base58Check encoded](https://en.bitcoin.it/wiki/Base58Check_encoding).
+
+</Alert>
+
+```
+query {
+  account(publicKey: "<B62...>") {
+    balance {
+      total
+    }
+    delegate
+    nonce
+  }
+}
+```
+
+You can submit GraphQL requests from the command line of a node. For example, to use cURL to get the last ten block creators known to the node:
+
+```
+curl -d '{"query": "{
+  bestChain(maxLength: 10) {
+    creator
+  }
+}"}' -H 'Content-Type: application/json' http://localhost:3085/graphql
+```
+
+### Mutations:
+
+GraphQL mutations modify the running node in some way. For example, mutations may be used to send a payment, create a new account, or to add additional peers.
+
+<Alert>
+
+Consult the [GraphQL schema](https://docs.minaprotocol.com/graphql-docs/mutation.doc.html) for all available mutations.
+
+</Alert>
+
+Adding a new peer:
+
+```
+mutation {
+   addPeers(peers:{
+      libp2p_port:10511,
+      host:"34.73.68.198",
+      peer_id:"12D3KooWSJB2gZWi3ruVmtTF9JBCEBpCrJfuWCWzzRr8mMQWFQ9U"
+   })
+}
+```
+
+Update a snark worker to use a fee of 0.1 mina:
+
+```
+mutation {
+  setSnarkWorkFee(input: {fee: "100000000"})
+}
+```
+
+### Subscriptions:
+
+A GraphQL [subscription](https://docs.minaprotocol.com/graphql-docs/subscription.doc.html) allows a GraphQL client to have data pushed to it when an event occurs. In Mina, there are subscriptions for:
+
+- _newSyncUpdate_ - occurs when the sync status of the node changes.
+- _newBlock_ - occurs when a new block is received.
+- chainReorganisation - occurs when the best tip of the node changes in a non-trivial way.
+
+For example, to subscribe to all new blocks produced:
+
+```
+subscription {
+  newBlock {
+    creator
+    stateHash
+    protocolState {
+      consensusState {
+        blockHeight
+      }
+      previousStateHash
+    }
+  }
+}
+```
+
+The new block subscription may also be limited to only return new blocks created by a defined public key with the `publicKey` argument.
+
+### GraphQL Public Proxy
+
+While exposing the GraphQL API to the internet is not recommended, an implementation of a [GraphQL proxy](https://github.com/MinaProtocol/mina/tree/master/automation/services/graphql-public-proxy) is available that removes the queries that pose a threat but still allows querying of the node's data from a public endpoint.
+
+### Resources
+
+- [5-minute introduction video on Mina GraphQL API](http://bit.ly/GraphQLAPIin5)
+- [First steps with the Mina GraphQL API](https://garethtdavies.com/crypto/first-steps-with-coda-graphql-api.html)
+- [Introduction to GraphQL](https://graphql.org/learn/)

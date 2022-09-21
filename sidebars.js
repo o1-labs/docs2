@@ -98,7 +98,17 @@ module.exports = {
       type: "category",
       label: "Node Developers",
       items: [
-        "node-developers/overview",
+        "node-developers/index",
+        "node-developers/bip44-information",
+        "node-developers/client-sdk",
+        "node-developers/code-reviews",
+        "node-developers/codebase-overview",
+        "node-developers/contributing",
+        "node-developers/directory-structure",
+        "node-developers/graphql-api",
+        "node-developers/logging",
+        "node-developers/sandbox-node",
+        "node-developers/style-guide"
       ],
     },
     {
