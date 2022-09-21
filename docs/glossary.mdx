@@ -42,9 +42,9 @@ A breadcrumb is a "node" in the [transition frontier](#transition-frontier). A b
 
 ### Catchup
 
-Catchup is the final stage of the [syncing](#syncing) process. During catchup, the node will attempt to catchup to the current [best tip](#best-tip) by determining, then downloading all [transitions](#transition) between the transition frontier [root](#root) and the current best tip. First, a node requests the missing transition hashes and a transaction chain proof. This proof proves the path provided is valid, i.e., that the provided transition hashes lead from the root to the best tip. Once the node has all transition hashes, it requests the full external transition for each transition hash from peers.
+Catchup is the final stage of the [syncing](#syncing) process. During catchup, the node will attempt to catchup to the current [best tip](#best-tip) by determining, then downloading all [transitions](#transition) between the transition frontier [root](#root-of-transition-frontier) and the current best tip. First, a node requests the missing transition hashes and a transaction chain proof. This proof proves the path provided is valid, i.e., that the provided transition hashes lead from the root to the best tip. Once the node has all transition hashes, it requests the full external transition for each transition hash from peers.
 
-With each external transition, the node builds up its transition frontier by applying each to the prior state to construct a [breadcrumb](#breadcrumb). When catchup is complete, the node's local best tip is the same as the network's best tip, and breadcrumbs have been constructed for all transitions from the transition frontier root (best tip - k) to the current tip, and each has been validated. At this point, the node is [synced](#synced).
+With each external transition, the node builds up its transition frontier by applying each to the prior state to construct a [breadcrumb](#breadcrumb). When catchup is complete, the node's local best tip is the same as the network's best tip, and breadcrumbs have been constructed for all transitions from the transition frontier root (best tip - k) to the current tip, and each has been validated. At this point, the node is [synced](#syncing).
 
 At any time, a catchup may be triggered if the node sees a disjoint transition in the same path, indicating there are missing transitions.
 
@@ -64,7 +64,7 @@ An algorithm or set of rules that Mina nodes all agree upon when deciding to upd
 
 A participant in the Mina network that performs the consensus function, i.e., a [block producer](#block-producer). For a node to participate in consensus, it requires the recent state.
 
-### Constraints 
+### Constraints
 
 ### Cryptocurrency
 
@@ -76,7 +76,11 @@ The Mina daemon is a background process that implements the Mina protocol and ru
 
 ### Delegating
 
-Because staking mina requires nodes to be online, some nodes may desire to delegate their mina to another node that runs a staking service. This process is called delegating a stake, and often the service provider or staking pool operator may charge a fee for running this service, which will be deducted any time the delegator gets selected to be a block producer.
+Because staking MINA requires nodes to be online, some nodes may desire to delegate their MINA to another node that runs a staking service. This process is called delegating a stake, and often the service provider or staking pool operator may charge a fee for running this service, which will be deducted any time the delegator gets selected to be a block producer.
+
+### Deploy Alias
+
+A term used by the Mina zkApp CLI. This is an arbitrary name that is associated with details required during deployment, such as the destination GraphQL API URL, fee to be used, etc.
 
 ### Epoch
 
@@ -90,9 +94,13 @@ This is the port that the Mina daemon uses to connect to other nodes on the netw
 
 An external transition also referred to as a [block](#block), is a transition that is generated externally, i.e., by another block producer, and gossiped to a node.
 
+### Field Element
+
+A field element is the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity. For the cryptography inclined, the exact max value that a field can store is: `28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336`.
+
 ### Finality
 
-A consensus constant `k` the point at which chain [reorganizations](#reorganizations) are no longer possible. Once a block has `k` [block confirmations](#block-confirmations), defined by the consensus constants, it is considered final.
+A consensus constant `k` the point at which chain [reorganizations](#reorganization) are no longer possible. Once a block has `k` [block confirmations](#block-confirmations), defined by the consensus constants, it is considered final.
 
 ### Full Node
 
@@ -106,18 +114,22 @@ A [transition](#transition) that is produced locally, i.e., by a block producer.
 
 A distributed hash table (DHT) for decentralized peer-to-peer networks. Mina uses Kademlia for peer discovery so that nodes can find neighbor nodes to share information about the network state.
 
-### Keypair
+### Key pair
 
-A combination of a [private](#private-key) and [public](#public-key) key. Keypairs may be generated via a running daemon or using a dedicated keygen tool.
+A combination of a [private](#private-key) and [public](#public-key) key. Key pairs may be generated via a running daemon or using a dedicated keygen tool.
 
 ### Mina
 
-- "Mina" with a capital M references the underlying cryptocurrency protocol and the network infrastructure that the system depends upon
-- "mina" is the unit of the cryptocurrency that is exchanged by participating nodes on the network
+- "Mina" with a capital M references the underlying protocol and the network infrastructure that the system depends upon
+- "MINA" is the unit of the cryptocurrency that is exchanged by participating nodes on the network
+
+### Mina zkApp CLI
+
+A command-line tool [available on NPM](https://www.npmjs.com/package/zkapp-cli) used to build zkApps that allows a developer to scaffold and deploy their smart contract.
 
 ### Node
 
-A node is a machine running the mina daemon.
+A node is a machine running the Mina daemon.
 
 ### Non-consensus Node
 
@@ -151,11 +163,13 @@ The state of the network. The protocol state comprises the previous protocol sta
 
 The protocol state hash is the hash of hashes of the previous state and [protocol state](#protocol-state) body. Acts a unique identifier for a block.
 
-### Proof-of-Stake
+### Proof of Stake
 
-The type of consensus algorithm Mina implements allowing nodes to agree upon the state of the network. Proof-of-Stake (PoS) allows nodes to [stake](#staking) mina on the network to increase their chance of being selected as the next block producer.
+The type of consensus algorithm Mina implements allowing nodes to agree upon the state of the network. Proof of Stake (PoS) allows nodes to [stake](#staking) MINA on the network to increase their chance of being selected as the next block producer.
 
-### Prover Method 
+### Prover Function
+
+The function which generates a zero-knowledge proof from your smart contract's logic.
 
 ### Public Key
 
@@ -179,7 +193,7 @@ A remote procedure call [(RPC)] (https://en.wikipedia.org/wiki/Remote_procedure_
 
 ### Scan State
 
-The scan state is a data structure that queues transactions requiring transaction SNARK proofs and allows parallel processing of these transaction SNARKS by [snark workers](#snark-worker).
+The scan state is a data structure that queues transactions requiring transaction SNARK proofs and allows parallel processing of these transaction SNARKs by [snark workers](#snark-worker).
 
 ### Signatures
 
@@ -190,7 +204,7 @@ Short for digital signatures, signatures are a way to establish authenticity or 
 A slot in Mina is a unit of time. As of Mainnet launch, a slot is 3minutes long. An [epoch](#epoch) is divided into slots. Block producers can win the chance to produce a block during a slot.
 
 
-### Smart Contract 
+### Smart Contract
 
 ### SNARK Pool
 
@@ -198,11 +212,15 @@ The snark pool contains work completed by [snark workers](#snark-worker) for req
 
 ### SNARK Worker
 
-A node on the network that is participating in transaction SNARK generation. The SNARK worker is incentivized to help compress transactions because they receive mina as compensation for their efforts.
+A node on the network that is participating in transaction SNARK generation. The SNARK worker is incentivized to help compress transactions because they receive MINA as compensation for their efforts.
 
 ### Snarked Ledger
 
-The snarked ledger is the ledger that only contains transactions that have an associated proof. The snarked ledger is updated once a proof has been emitted from the [scan state](#scan-state) that attests to all of the transactions included in a tree of transactions added via prior [block producers](#block-producers).
+The snarked ledger is the ledger that only contains transactions that have an associated proof. The snarked ledger is updated once a proof has been emitted from the [scan state](#scan-state) that attests to all of the transactions included in a tree of transactions added via prior [block producers](#block-producer).
+
+### SnarkyJS
+
+SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol.
 
 ### Staged Ledger
 
@@ -210,7 +228,7 @@ The staged ledger is the current account state. It contains a pending accounts l
 
 ### Staking
 
-Staking mina allows nodes on the network to increase their chances of being selected as a block producer in accordance with the consensus mechanism. The chance of winning the block scales in proportion to the amount of mina staked. For example, if one node stakes 50% of the available mina in the network, they theoretically have a 50% chance of being selected to produce future blocks. Mina uses Ouroboros Samisika Proof-of-Stake to implement the details of staking. If a node chooses to stake its mina, it is required to be online and connected to the Mina network.
+Staking MINA allows nodes on the network to increase their chances of being selected as a block producer in accordance with the consensus mechanism. The chance of winning the block scales in proportion to the amount of MINA staked. For example, if one node stakes 50% of the available MINA in the network, they theoretically have a 50% chance of being selected to produce future blocks. Mina uses Ouroboros Samisika Proof of Stake to implement the details of staking. If a node chooses to stake its MINA, it is required to be online and connected to the Mina network.
 
 ### Staking Ledger
 
@@ -242,11 +260,21 @@ A transition in Mina is synonymous to a [block](#block).
 
 A local data store that contains the last `k` blocks of the network. It is a rose tree-type data structure as each "node" of the tree may have multiple children, i.e., forks. Each node in the tree is referred to as a [breadcrumb](#breadcrumb).
 
+### TypeScript
+
+A superset of JavaScript that adds compile-time type safety. See the official [TypeScript docs](https://www.typescriptlang.org).
+
 ### User Transaction
 
 A transaction issued by a user - either a payment or a delegation change
 
-### Verifier Method
+### Verification Key
+
+A piece of data generated when building your smart contract. Sending this to a zkApp account is equivalent to deploying a smart contract and allows Mina to verify zero-knowledge proofs generated by your smart contract's prover function.
+
+### Verifier Function
+
+The function which verifies a zero-knowledge proof using the [verification key](#verification-key).
 
 ### VRF
 
@@ -255,6 +283,10 @@ The verifiable random function (VRF) is used to select a block producer for a sl
 ### Zero-Knowledge Proof
 
 A proof by which one party (a prover) can prove to another party (verifiers) that they have knowledge of something - without giving away that specific knowledge. Mina uses zero-knowledge proofs, and specifically, zk-SNARKs, to generate a proof attesting to the blockchain's validity and allowing any node on the network to verify this quickly.
+
+### zkApp
+
+zkApps ("zero-knowledge apps") are Mina Protocol’s smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs
 
 ### zk-SNARK
 
