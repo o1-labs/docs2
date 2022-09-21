@@ -85,7 +85,7 @@ const katex = require("rehype-katex");
             from: '/staking',
           },
           {
-            to: '/node-operators-cli-reference',
+            to: '/node-operators/cli-reference',
             from: '/cli-reference',
           },
           {
