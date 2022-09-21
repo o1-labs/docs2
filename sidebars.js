@@ -115,8 +115,8 @@ module.exports = {
       type: "category",
       label: "Participate",
       items: [
-        "participate/grants-and-programs",
         "participate/online-communities",
+        "participate/grants-and-programs",
         "participate/careers",
         "participate/github",
         "participate/bug-bounty-program",
