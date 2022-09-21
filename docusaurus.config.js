@@ -53,10 +53,6 @@ const katex = require("rehype-katex");
             from: '/architecture/timelock',
           },
           {
-            to: '/zkapps/overview',
-            from: '/architecture/snapps',
-          },
-          {
             to: '/node-operators/getting-started',
             from: '/architecture',
           },
