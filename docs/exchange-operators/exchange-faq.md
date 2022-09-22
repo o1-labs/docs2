@@ -147,7 +147,7 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 ### How do I query for the canonical block at a certain height from the archive node
 
-This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](/node-operators/archive-node/overview), for a full example.
+This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](/node-operators/archive-node), for a full example.
 
 ### Why am I getting this error message: "Not able to connect to the network"?
 
