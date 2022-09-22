@@ -20,7 +20,7 @@ module.exports = {
     {
       type: "category",
       label: "Using Mina",
-      items: ["using-mina/install-wallet"],
+      items: ["using-mina/install-a-wallet"],
     },
     {
       type: "category",
