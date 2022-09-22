@@ -20,7 +20,7 @@ A block in Mina is constituted of:
 * Current protocol version
 * Proposed protocol version
 
-When a node receives a block from a peer, it is first validated, applied to the existing state, and added to the node's transition frontier. If, according to the [consensus](/node-operators/consensus) rules, it results in increasing the length of the blockchain, the node's best tip is updated, and the root of the transition frontier is moved up to only maintain `k` blocks in the transition frontier.
+When a node receives a block from a peer, it is first validated, applied to the existing state, and added to the node's transition frontier. If, according to the [consensus](/about-mina/consensus) rules, it results in increasing the length of the blockchain, the node's best tip is updated, and the root of the transition frontier is moved up to only maintain `k` blocks in the transition frontier.
 
 :::tip
 
