@@ -8,7 +8,7 @@ hide_title: true
 A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
-# Mina Protocol Architecture
+# Protocol Architecture
 
 ## How Does it Work?
 

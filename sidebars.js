@@ -35,7 +35,7 @@ module.exports = {
         "zkapps/advanced-snarkyjs",
         {
           type: "category",
-          label: "Step-by-Step Tutorials",
+          label: "Tutorials",
           items: [
             "zkapps/tutorials/anonymous-message-board",
           ],
@@ -56,7 +56,7 @@ module.exports = {
         "node-operators/bp-sidecar",
         "node-operators/uptime-system",
         "node-operators/client-sdk",
-        "node-operators/operating-for-data",
+        "node-operators/querying-data",
         "node-operators/connecting-devnet",
         "node-operators/hardfork",
         "node-operators/hot-cold-block-production",
@@ -77,7 +77,7 @@ module.exports = {
         "node-operators/connecting",
         "node-operators/send-payment",
         "node-operators/staking",
-        "node-operators/cli-reference",
+        "node-operators/mina-cli-reference",
       ],
     },
     {
@@ -87,7 +87,7 @@ module.exports = {
         "node-developers/index",
         "node-developers/bip44-information",
         "node-developers/client-sdk",
-        "node-developers/code-reviews",
+        "node-developers/code-review-guidelines",
         "node-developers/codebase-overview",
         "node-developers/contributing",
         "node-developers/directory-structure",
