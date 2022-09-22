@@ -4,7 +4,7 @@ title: Troubleshooting
 
 # Troubleshooting
 
-Here are some common problems you might encounter while trying to set up the Mina daemon. If you can't find your issue here please ask for help on [Discord](https://bit.ly/MinaDiscord) or open an issue on [Github](https://github.com/MinaProtocol/mina/issues/new).
+Here are some common problems you might encounter while trying to set up the Mina daemon. If you can't find your issue here please ask for help on [Discord](https://bit.ly/MinaDiscord) or open an issue on [Github](https://github.com/MinaProtocol/mina/issues).
 
 - [General](#general)
 - [Syncing a node](#syncing-a-node)
@@ -93,7 +93,7 @@ This is normal, and these processes are currently periodically killed and restar
 
 ### I crashed with "Fatal error: out of memory"?
 
-This is a common issue - see this [issue](https://github.com/MinaProtocol/mina/issues/6851) on GitHub and add any relevant information with logs and restart your node.
+This is a common issue - see [this issue](https://github.com/MinaProtocol/mina/issues/6851) on GitHub and add any relevant information with logs and restart your node.
 
 ### Can I provide my password using an environment variable?
 
@@ -172,7 +172,7 @@ ufw deny out from any to 198.18.0.0/15
 ufw deny out from any to 169.254.0.0/16
 ```
 
-See [#7053](https://github.com/MinaProtocol/mina/issues/7053) for more
+See [this issue](https://github.com/MinaProtocol/mina/issues/7053) for more details.
 
 ### What ports need to be open?
 
@@ -254,23 +254,18 @@ If the output of `mina accounts list` shows your account is locked, this means t
 
 A block producer does **not** need the account to be unlocked to produce blocks.
 
-### I requested funds from the faucet, and they never arrived?
 
-You can also check this [explorer](https://minaexplorer.com/wallet/B62qpVjcU3bxjWdVGiXd7tUGNag3cgjSNWmYuZTpU5Eg8MHPqnHfVeL) to see all pending transactions from the faucet to see if yours is listed or if there have been any recent faucet transactions.
+### What are time-locked accounts? Why are some accounts time locked and others are not?
 
-If you have just started your node and are not synced, any balance sent from the faucet will not be displayed until the node is synced.
-
-### What are time-locked accounts / why are some accounts timed and others untimed?
-
-See the docs [here](timelock).
+See the [time-locked accounts](timelock) docs.
 
 ### Can I send a payment before I am synced?
 
-Yes, but only if you have funds already in the ledger. If you requested funds from, e.g., the faucet or another community member, you will need to wait until you are synced so that you have a balance you can use to send.
+Yes, but only if you have funds already in the ledger. If you requested funds from, e.g. the faucet or another community member, you will need to wait until you are synced so that you have a balance you can use to send.
 
 ### Error: Specified sender is not in the ledger or sent a transaction in transaction pool when sending a transaction
 
-See [this answer](./troubleshooting#can-i-send-a-payment-before-i-am-synced), you will need to wait until you are synced if you do not have an existing balance in the ledger.
+See [this answer](#can-i-send-a-payment-before-i-am-synced). You will need to wait until you are synced if you do not have an existing balance in the ledger.
 
 ### I am running a block producer, but I don't see anything in mina accounts list?
 
@@ -296,13 +291,13 @@ The chance of winning a block is determined by a Verifiable Random Function (VRF
 
 The stake associated with your public key is determined in advance at the start of an epoch. There is a delay in it being considered, so receiving funds, block rewards, delegating other funds, and snark worker rewards will **not** improve your chance of winning a block in this epoch as these funds will not be considered in the staking ledger for at least another full epoch (~2 weeks).
 
-### Why was my block orphaned / why did I not get a block reward?
+### Why was my block orphaned? Why did I not get a block reward?
 
 There can be more than one block producer per slot due to the way block producers are selected. So if two (or more) blocks are produced for the same slot, it will cause a short fork, and only one will be chosen - the winner in this instance is random based on the VRF output for each block producer. If you consistently see orphaned blocks, then you may be producing blocks slowly, and so other block producers may not see your block before building atop the current longest chain.
 
 It is also possible to produce a block in catchup, and this block will also be quickly orphaned as it is not building on the correct height.
 
-### I didn't produce a block / I missed a slot?
+### Why did I not produce a block or miss a slot?
 
 There are a few reasons why you could miss a slot / not successfully produce a block, for example, the node restarting and being in bootstrap at the time of producing a slot.
 
@@ -326,11 +321,11 @@ The easiest way is to check a [block explorer](https://minaexplorer.com/). You c
 
 ### Why do I have a message of "No blocks won this this epoch"?
 
-See [this answer](./troubleshooting#how-can-i-increase-my-chance-of-winning-a-block).
+See [this answer](#how-can-i-increase-my-chance-of-winning-a-block).
 
 ## Snark worker
 
-### My snark work is not getting bought / what fee should I use for a snark worker?
+### My snark work is not getting bought. What fee should I use for a snark worker?
 
 If you are running a snark worker and not seeing any work being included in blocks, then likely others are producing cheaper snark work. Multiple snark workers are all competing for the same snark work, with only the lowest fee for each being included in the snark pool to be bought by block producers.
 
