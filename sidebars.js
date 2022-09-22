@@ -6,7 +6,7 @@ module.exports = {
       label: "About Mina",
       items: [
         "about-mina/overview",
-        "about-mina/zero-knowledge-proofs",
+        "about-mina/what-are-zero-knowledge-proofs",
         "about-mina/protocol-architecture",
         "about-mina/consensus",
         "about-mina/faq",
