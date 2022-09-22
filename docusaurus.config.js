@@ -66,7 +66,7 @@ const katex = require("rehype-katex");
             from: '/architecture/snark-workers',
           },
           {
-            to: '/node-operators/timelock',
+            to: '/node-operators/timelock-locked-accounts',
             from: '/architecture/timelock',
           },
           {
@@ -98,15 +98,15 @@ const katex = require("rehype-katex");
             from: '/node-developers/bip44-information',
           },
           {
-            to: '/node-operators/keypair',
+            to: '/node-operators/generating-a-keypair',
             from: '/keypair',
           },
           {
-            to: '/node-operators/connecting',
+            to: '/node-operators/connecting-to-the-network',
             from: '/connecting',
           },
           {
-            to: '/node-operators/staking',
+            to: '/node-operators/staking-and-snarking',
             from: '/staking',
           },
           {
