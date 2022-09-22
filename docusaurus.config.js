@@ -86,6 +86,14 @@ const katex = require("rehype-katex");
             from: '/contributing',
           },
           {
+            to: '/node-developers/repository-structure',
+            from: '/node-developers/directory-structure',
+          },
+          {
+            to: '/node-developers/bip44',
+            from: '/node-developers/bip44-information',
+          },
+          {
             to: '/node-operators/keypair',
             from: '/keypair',
           },
