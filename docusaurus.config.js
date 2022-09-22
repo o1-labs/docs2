@@ -45,7 +45,7 @@ const katex = require("rehype-katex");
             from: '/architecture/consensus',
           },
           {
-            to: '/zkapps/anonymous-message-board',
+            to: '/zkapps/tutorials/anonymous-message-board',
             from: '/zkapps/tutorials',
           },
           {
