@@ -177,6 +177,10 @@ const katex = require("rehype-katex");
             to: '/node-operators/staking-and-snarking',
             from: '/node-operators/staking',
           },
+          {
+            to: '/exchange-operators/faq',
+            from: '/exchange-operators/exchange-faq',
+          },
 
 
           // // Redirect from multiple old paths to the new path

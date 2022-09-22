@@ -101,7 +101,7 @@ module.exports = {
       type: "category",
       label: "Exchange Operators",
       items: [
-        "exchange-operators/exchange-faq",
+        "exchange-operators/faq",
       ],
     },
     {
