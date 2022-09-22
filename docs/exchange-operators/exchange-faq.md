@@ -100,14 +100,14 @@ if [[ "$DELTAVALIDATED" -gt 4 ]]; then
 fi
 ```
 
-<Alert kind="tip">
+:::tip
 
 <p>
   Be sure your Mina daemon is monitored by something such as systemd, so it can
   auto-restart.
 </p>
 
-</Alert>
+:::
 
 ### Our archive node is missing block information after a restart. How can we recover the data?
 
@@ -179,11 +179,11 @@ Since Mina is a Proof of Stake (PoS) consensus network without lockup for staked
 
 You can look into staking this wallet, either by running your own block production node, or just by delegating your funds to a staking pool on the network. Out of these two options, the latter is simpler to set up (though it does incur about a delay between 18 to 29 days before you can begin getting rewards, as explained below).
 
-<Alert kind="note">
+:::note
 
 Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
 
-</Alert>
+:::
 
 ### Why is there a delay for staking to take effect?
 

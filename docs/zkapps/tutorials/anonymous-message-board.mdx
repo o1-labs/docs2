@@ -175,10 +175,10 @@ This will serve as the scaffolding for the rest of the tutorial and contains a s
 
 Every Mina smart contract includes eight on-chain state variables that each store almost 256 bits of information. In more complex smart contracts, these can store commitments (i.e. the hash of a file, the root of a Merkle tree, etc.) to off-chain storage, but in this case, we’ll store everything on-chain for the sake of simplicity.
 
-<Alert kind="note">
+:::note
   General purpose off-chain storage libraries are planned, but you can always
   roll your own solution if desired.
-</Alert>
+:::
 
 In this smart contract, one state variable will store the last message. Another will store the hash of all the previous messages (so a frontend can validate message history), and three more will store user public keys (we could store additional public keys by Merkelizing them, but we’ll keep it to three here for the sake of brevity).
 

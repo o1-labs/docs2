@@ -60,11 +60,11 @@ query {
 }
 ```
 
-<Alert>
+:::tip
 
 The memo field returned for a transaction is [Base58Check encoded](https://en.bitcoin.it/wiki/Base58Check_encoding).
 
-</Alert>
+:::
 
 ```
 query {
@@ -92,11 +92,11 @@ curl -d '{"query": "{
 
 GraphQL mutations modify the running node in some way. For example, mutations may be used to send a payment, create a new account, or to add additional peers.
 
-<Alert>
+:::tip
 
 Consult the [GraphQL schema](https://docs.minaprotocol.com/graphql-docs/mutation.doc.html) for all available mutations.
 
-</Alert>
+:::
 
 Adding a new peer:
 
