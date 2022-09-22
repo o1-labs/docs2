@@ -54,7 +54,7 @@ module.exports = {
         "node-operators/foundation-delegation-program",
         "node-operators/delegation-tiebreak",
         "node-operators/bp-sidecar",
-        "node-operators/uptime-system",
+        "node-operators/uptime-tracking-system",
         "node-operators/client-sdk",
         "node-operators/querying-data",
         "node-operators/connecting-devnet",

@@ -137,6 +137,10 @@ const katex = require("rehype-katex");
             to: '/node-operators/mina-cli-reference',
             from: '/node-operators/cli-reference',
           },
+          {
+            to: '/node-operators/uptime-tracking-system',
+            from: '/node-operators/uptime-system',
+          },
 
 
           // // Redirect from multiple old paths to the new path
