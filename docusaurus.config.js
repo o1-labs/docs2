@@ -66,7 +66,7 @@ const katex = require("rehype-katex");
             from: '/architecture/snark-workers',
           },
           {
-            to: '/node-operators/timelock-locked-accounts',
+            to: '/node-operators/time-locked-accounts',
             from: '/architecture/timelock',
           },
           {
@@ -118,7 +118,7 @@ const katex = require("rehype-katex");
             from: '/advanced/staking-service-guidelines',
           },
           {
-            to: '/node-operators/staking',
+            to: '/node-operators/staking-and-snarking',
             from: '/advanced/using-mina/staking',
           },
           {
