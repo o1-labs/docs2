@@ -82,10 +82,6 @@ const katex = require("rehype-katex");
             from: '/advanced',
           },
           {
-            to: '/node-operators/getting-started',
-            from: '/node-operators',
-          },
-          {
             to: '/node-developers/contributing',
             from: '/contributing',
           },
