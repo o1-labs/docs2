@@ -141,6 +141,42 @@ const katex = require("rehype-katex");
             to: '/node-operators/uptime-tracking-system',
             from: '/node-operators/uptime-system',
           },
+          {
+            to: '/node-operators/connecting-to-devnet',
+            from: '/node-operators/connecting-devnet',
+          },
+          {
+            to: '/node-operators/hardforks',
+            from: '/node-operators/hardfork',
+          },
+          {
+            to: '/node-operators/ledger-hardware-wallet',
+            from: '/node-operators/ledger-app-mina',
+          },
+          {
+            to: '/node-operators/time-locked-accounts',
+            from: '/node-operators/timelock',
+          },
+          {
+            to: '/node-operators/lifecycle-of-a-payment',
+            from: '/node-operators/lifecycle-payment',
+          },
+          {
+            to: '/node-operators/generating-a-keypair',
+            from: '/node-operators/keypair',
+          },
+          {
+            to: '/node-operators/connecting-to-the-network',
+            from: '/node-operators/connecting',
+          },
+          {
+            to: '/node-operators/sending-a-payment',
+            from: '/node-operators/send-payment',
+          },
+          {
+            to: '/node-operators/staking-and-snarking',
+            from: '/node-operators/staking',
+          },
 
 
           // // Redirect from multiple old paths to the new path
