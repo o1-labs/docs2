@@ -30,7 +30,7 @@ const katex = require("rehype-katex");
       ["@docusaurus/plugin-client-redirects", { redirects: [
           // /docs/oldDoc -> /docs/newDoc
           {
-            to: '/about-mina/index',
+            to: '/about-mina',
             from: '/about-mina/overview',
           },
           {
@@ -38,11 +38,11 @@ const katex = require("rehype-katex");
             from: '/architecture/scan-state',
           },
           {
-            to: '/zkapps/index',
+            to: '/zkapps',
             from: '/architecture/snapps',
           },
           {
-            to: '/zkapps/index',
+            to: '/zkapps',
             from: '/snapps',
           },
           {
