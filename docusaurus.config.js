@@ -25,7 +25,7 @@ const katex = require("rehype-katex");
     },
 
     plugins: [
-      "docusaurus-plugin-sass", 
+      "docusaurus-plugin-sass",
       ["@docusaurus/plugin-client-redirects", { redirects: [
           // /docs/oldDoc -> /docs/newDoc
           {
@@ -33,19 +33,15 @@ const katex = require("rehype-katex");
             from: '/architecture/scan-state',
           },
           {
-            to: '/zkapps/overview',
-            from: '/zkapps',
-          },
-          {
-            to: '/zkapps/overview',
+            to: '/zkapps',
             from: '/architecture/snapps',
           },
           {
-            to: '/zkapps/overview',
+            to: '/zkapps',
             from: '/snapps',
           },
           {
-            to: '/node-developers/code-review-guildelines',
+            to: '/node-developers/code-review-guidelines',
             from: '/node-developers/code-reviews',
           },
           {

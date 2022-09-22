@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     title: "Deploy your first zkApp",
     image: "/img/homepage/zkapp_developers.png",
     buttonText: "zkApp Developers",
-    buttonLink: "/zkapps/overview",
+    buttonLink: "/zkapps",
     description: (
       <>
         {"Learn "}
@@ -43,11 +43,11 @@ const FeatureList: FeatureItem[] = [
     title: "About Mina",
     image: "/svg/homepage/about_mina.svg",
     buttonText: "About Mina",
-    buttonLink: "/about-mina/overview",
+    buttonLink: "/about-mina",
     description: (
       <>
         {"Learn "}
-        <Link to="/about-mina/overview" className={styles.minaLink}>
+        <Link to="/about-mina" className={styles.minaLink}>
           about Mina
         </Link>
         ,

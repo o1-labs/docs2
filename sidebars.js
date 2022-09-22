@@ -5,7 +5,7 @@ module.exports = {
       type: "category",
       label: "About Mina",
       items: [
-        "about-mina/overview",
+        "about-mina/index",
         "about-mina/what-are-zero-knowledge-proofs",
         "about-mina/protocol-architecture",
         "about-mina/consensus",
@@ -26,7 +26,7 @@ module.exports = {
       type: "category",
       label: "zkApp Developers",
       items: [
-        "zkapps/overview",
+        "zkapps/index",
         "zkapps/how-zkapps-work",
         "zkapps/how-to-write-a-zkapp",
         "zkapps/how-to-test-a-zkapp",
