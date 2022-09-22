@@ -25,7 +25,7 @@ Let's get started by installing what we need.
 
 ## Installation
 
-1. Install the latest version of mina. If you haven't upgraded to the latest version of the daemon, head <DocLink copy="back to the docs" url="/node-operators/getting-started" /> to get the latest version. You can run `mina -help` to check if the installation succeeded.
+1. Install the latest version of mina. If you haven't upgraded to the latest version of the daemon, head [back to the docs](./getting-started) to get the latest version. You can run `mina -help` to check if the installation succeeded.
 2. Install [Postgres](https://www.postgresql.org/download/).
 3. Install the archive node package.
 
@@ -44,11 +44,11 @@ Let's get started by installing what we need.
 
 Below are some basic instructions on how to set up everything required to get an archive node running locally. These will be slightly different if you're connecting to a cloud instance of postgres, if your deployment uses docker, or if you want to run these processes on different machines.
 
-<Alert>
+:::note
 
 Note: Some of these instructions may depend on how your operating system installs postgres (and assume that it is installed in the first place).
 
-</Alert>
+:::
 
 1. Start a local postgres server. This will just run it in the foreground for testing, you will likely want to run it in the background or use your OS's service manager (like systemd) to run it for you. Alternatively, you may use a postgres service hosted by a cloud provider.
 
