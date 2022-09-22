@@ -45,7 +45,7 @@ const katex = require("rehype-katex");
             from: '/snapps',
           },
           {
-            to: 'node-developers/code-review-guildelines',
+            to: '/node-developers/code-review-guildelines',
             from: '/node-developers/code-reviews',
           },
           {
