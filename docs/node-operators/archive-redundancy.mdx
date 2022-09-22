@@ -47,14 +47,11 @@ Some of the internal data look like this:
 {"data":["Signed_command",{"payload":{"common":{"fee":"100","fee_token":"1","fee_payer_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","nonce":"340","valid_until":"4294967295","memo":"E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH"},"body":["Payment",{"source_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","receiver_pk":"B62qm2GCuGCEK79mEjeyaeiFoukThuZLJCHGe9HAzuAnfbtS5FHtPnP","token_id":"1","amount":"100000000"}]},"signer":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","signature":"7mXGz8Df1gu92HVWGue24wcrGxDWkgQrDK59xQGXc627PKFQvVAPSzZn7JMkHtfdBUXavDHcgLBZy4iR4UmA5seRCPMkFDci"}],"status":["Applied",{"fee_payer_account_creation_fee_paid":null,"receiver_account_creation_fee_paid":null,"created_token":null},{"fee_payer_balance":"31866000100000","source_balance":"31866000100000","receiver_balance":"34099000000"}]}],"coinbase":["One",null],"internal_command_balances":[["Coinbase",{"coinbase_receiver_balance":"75477804514901","fee_transfer_receiver_balance":null}],["Fee_transfer",{"receiver1_balance":"65266376010003","receiver2_balance":"78601129170700"}],["Fee_transfer",{"receiver1_balance":"66001820000000","receiver2_balance":"76870784414900"}],["Fee_transfer",{"receiver1_balance":"71158365898775","receiver2_balance":"59264207944722"}],["Fee_transfer",{"receiver1_balance":"68546088449962","receiver2_balance":"66721919100000"}],["Fee_transfer",{"receiver1_balance":"67700798001000","receiver2_balance":"66372760000000"}],["Fee_transfer",{"receiver1_balance":"85383891400000","receiver2_balance":"107174952265469"}],["Fee_transfer",{"receiver1_balance":"65879310000000","receiver2_balance":"66282230000000"}]]}]},"delta_transition_chain_proof":["jxLZWooV57gKCmanzCHHt1CDbHfUpMu6MkynUdqN9ZkBUJi7B1W",[]]}
 ```
 
-This JSON will evolve as the format of the block and transaction payloads evolve in the network. 
+This JSON will evolve as the format of the block and transaction payloads evolve in the network.
 
 ### Upload block data to Google Cloud Storage
 
-To indicate a daemon to upload block data to Google Cloud Storage, pass the flag `--upload-blocks-to-gcloud` . To successfully upload the file, daemon requires the following environment variables to be set:
-    1. `GCLOUD_KEYFILE` : Key file for authentication
-    2. `NETWORK_NAME`: Network name to be used in the filename to easily distinguish between blocks in different networks (main-net and testnets)
-    3. `GCLOUD_BLOCK_UPLOAD_BUCKET` : Google Cloud Storage bucket where the files are uploaded
+To indicate a daemon to upload block data to Google Cloud Storage, pass the flag `--upload-blocks-to-gcloud` . To successfully upload the file, daemon requires the following environment variables to be set: 1. `GCLOUD_KEYFILE` : Key file for authentication 2. `NETWORK_NAME`: Network name to be used in the filename to easily distinguish between blocks in different networks (main-net and testnets) 3. `GCLOUD_BLOCK_UPLOAD_BUCKET` : Google Cloud Storage bucket where the files are uploaded
 
 The daemon generates a file for each block with the name `<network-name>-<protocol-state-hash>.json` . These are called precomputed blocks and will have all the fields of a block.
 
@@ -78,15 +75,15 @@ The tool `mina-missing-block-auditor` can be used to determine any missing block
 
 ## Restoring blocks
 
-Missing blocks in an archive database can be restored if there is block data (precomputed or extensional) available from the options listed [above](#Backing-up-block-data) using the tool `mina-archive-blocks`.
+Missing blocks in an archive database can be restored if there is block data (precomputed or extensional) available from the options listed [above](#backing-up-block-data) using the tool `mina-archive-blocks`.
 
-1. Restore precomputed blocks: (from option [1](#Upload-block-data-to-google-cloud-storage) and [2](#Save-block-data-from-logs) above)
+1. Restore precomputed blocks: (from option [1](#upload-block-data-to-google-cloud-storage) and [2](#save-block-data-from-logs) above)
 
 ```
   mina-archive-blocks --precomputed --archive-uri <postgres uri> FILES
 ```
 
-2. For extensional blocks: (Generated from option [3](#Generate-block-data-from-another-archive-database))
+2. For extensional blocks: (Generated from option [3](#generate-block-data-from-another-archive-database))
 
 ```
   mina-archive-blocks --extensional --archive-uri <postgres uri> FILES
