@@ -82,6 +82,10 @@ const katex = require("rehype-katex");
             from: '/advanced',
           },
           {
+            to: '/node-operators/foundation-delegation-program',
+            from: '/node-operators/delegation',
+          },
+          {
             to: '/node-developers/contributing',
             from: '/contributing',
           },

@@ -51,7 +51,7 @@ module.exports = {
         "node-operators/getting-started",
         "node-operators/archive-node",
         "node-operators/archive-redundancy",
-        "node-operators/delegation",
+        "node-operators/foundation-delegation-program",
         "node-operators/delegation-tiebreak",
         "node-operators/bp-sidecar",
         "node-operators/uptime-system",
