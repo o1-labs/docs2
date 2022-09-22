@@ -26,8 +26,8 @@ If the node crashes quickly and repeatably, this is likely a configuration issue
 If you start the mina daemon in the foreground, once you detach from it, it will shut down (via a SIGINT signal). To run the process in the background so that you may detach, you have many options:
 
 - Start the daemon with the `-background` flag.
-- Run as a systemd service (see <DocLink copy="the docs" url="/node-operators/connecting#ubuntu-1804--debian-9-1" />).
-- Run with Docker (see <DocLink copy="the docs" url="/node-operators/connecting#docker" />).
+- Run as a systemd service (see [the docs](connecting#ubuntu-1804--debian-9-1)).
+- Run with Docker (see [the docs](connecting#docker).
 - Run the daemon in a terminal multiplexer such as screen or [tmux](https://icohigh.gitbook.io/mina-node-testnet/english/setting-up-tmux) that you can detach from to keep the process running.
 
 Running as a service / via Docker is recommended as they have the advantage of automated restarts if your node crashes.
@@ -74,7 +74,7 @@ This is necessary because sometimes macOS doesn't resolve your hostname to your 
 
 ### What hardware do I need?
 
-See the requirements for the current network <DocLink copy="here" url="/node-operators/getting-started" />. Some lower-tier VPS providers may have an issue producing blocks within the slot time. If you continue to experience missing blocks, you may wish to try on more powerful hardware.
+See the requirements for the current network [here](getting-started). Some lower-tier VPS providers may have an issue producing blocks within the slot time. If you continue to experience missing blocks, you may wish to try on more powerful hardware.
 
 ### I would like the mina service to start on boot?
 
@@ -265,7 +265,7 @@ If you have just started your node and are not synced, any balance sent from the
 
 ### What are time-locked accounts / why are some accounts timed and others untimed?
 
-See the docs <DocLink copy="here" url="/architecture/timelock" />.
+See the docs [here](timelock).
 
 ### Can I send a payment before I am synced?
 
@@ -283,7 +283,7 @@ If you started the daemon passing the `block-producer-key` flag, then you still 
 
 ### How do I run a block producer?
 
-The methods to start a node <DocLink copy="in the documentation" url="/node-operators/connecting" /> will run a block producer by default.
+The methods to start a node [in the documentation](connecting) will run a block producer by default.
 
 ### How do I know if I am running a block producer
 
