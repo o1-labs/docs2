@@ -101,8 +101,8 @@ const katex = require("rehype-katex");
             from: '/participate/reporting',
           },
           {
-            to: '/mina-glossary',
-            from: '/glossary',
+            to: '/glossary',
+            from: '/mina-glossar',
           },
 
 
