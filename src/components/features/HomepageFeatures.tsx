@@ -71,7 +71,7 @@ const FeatureList: FeatureItem[] = [
     title: "Using Mina",
     image: "/svg/homepage/using_mina.svg",
     buttonText: "Using Mina",
-    buttonLink: "/using-mina/install-wallet",
+    buttonLink: "/using-mina/install-a-wallet",
     description: (
       <>
         Where to get MINA,{" "}
