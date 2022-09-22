@@ -38,4 +38,4 @@ Based on Cardano’s Ouroboros, Ouroboros Samisika is a PoS consensus mechanism 
 
 With this model of consensus, you don't need expensive and energy consuming mining equipment to participate in consensus. By simply holding MINA in our wallet, we can choose to either stake it ourselves if running a block producing node, or we can delegate it to another node.
 
-Read more about [Mina’s consensus mechanism](./consensus).
+Read more about [Mina’s consensus mechanism](./about-mina/consensus).
