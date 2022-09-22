@@ -2,7 +2,6 @@
 title: Troubleshooting
 ---
 
-
 # Troubleshooting
 
 Here are some common problems you might encounter while trying to set up the Mina daemon. If you can't find your issue here please ask for help on [Discord](https://bit.ly/MinaDiscord) or open an issue on [Github](https://github.com/MinaProtocol/mina/issues/new).
@@ -27,7 +26,7 @@ If you start the mina daemon in the foreground, once you detach from it, it will
 
 - Start the daemon with the `-background` flag.
 - Run as a systemd service (see [the docs](connecting#ubuntu-1804--debian-9-1)).
-- Run with Docker (see [the docs](connecting#docker).
+- Run with Docker (see [the docs](connecting#docker)).
 - Run the daemon in a terminal multiplexer such as screen or [tmux](https://icohigh.gitbook.io/mina-node-testnet/english/setting-up-tmux) that you can detach from to keep the process running.
 
 Running as a service / via Docker is recommended as they have the advantage of automated restarts if your node crashes.
@@ -257,8 +256,6 @@ A block producer does **not** need the account to be unlocked to produce blocks.
 
 ### I requested funds from the faucet, and they never arrived?
 
-Check the status of the faucet [here](https://status.minaprotocol.com/) to see if there are any know issues with the faucet.
-
 You can also check this [explorer](https://minaexplorer.com/wallet/B62qpVjcU3bxjWdVGiXd7tUGNag3cgjSNWmYuZTpU5Eg8MHPqnHfVeL) to see all pending transactions from the faucet to see if yours is listed or if there have been any recent faucet transactions.
 
 If you have just started your node and are not synced, any balance sent from the faucet will not be displayed until the node is synced.
@@ -273,7 +270,7 @@ Yes, but only if you have funds already in the ledger. If you requested funds fr
 
 ### Error: Specified sender is not in the ledger or sent a transaction in transaction pool when sending a transaction
 
-See [this answer](#can-I-send-a-payment-before-I-am-synced), you will need to wait until you are synced if you do not have an existing balance in the ledger.
+See [this answer](./troubleshooting#can-i-send-a-payment-before-i-am-synced), you will need to wait until you are synced if you do not have an existing balance in the ledger.
 
 ### I am running a block producer, but I don't see anything in mina accounts list?
 
@@ -329,7 +326,7 @@ The easiest way is to check a [block explorer](https://minaexplorer.com/). You c
 
 ### Why do I have a message of "No blocks won this this epoch"?
 
-See [this answer](#how-can-I-increase-my-chance-of-winning-a-block).
+See [this answer](./troubleshooting#how-can-i-increase-my-chance-of-winning-a-block).
 
 ## Snark worker
 
