@@ -72,7 +72,7 @@ To avoid this above issue, we recommend that exchanges <u>do NOT require a memo<
 
 ### What is the current maximum number of rollback blocks?
 
-The table here describes how many blocks you will need to wait: [https://docs.minaprotocol.com/en/architecture/lifecycle-payment](https://docs.minaprotocol.com/en/architecture/lifecycle-payment)
+The table here describes how many blocks you will need to wait: [Lifecycle Payment](/node-operators/lifecycle-payment)
 
 ### How should we calculate transaction fees?
 
