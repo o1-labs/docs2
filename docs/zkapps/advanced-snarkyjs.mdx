@@ -194,7 +194,11 @@ class SmartContract {
 
 ## Actions and Reducer
 
-<Alert kind="info">Experimental. This API may change.</Alert>
+:::info
+
+Experimental. This API may change.
+
+:::
 
 Like events, **actions** are arbitrary information passed along with a zkApp transaction. However, actions give you an additional power: you can process previous actions in a smart contract! Under the hood, this is possible because we store a commitment to the history of dispatched actions on every account -- the **actionsHash**. It allows us to prove that the actions you process are, in fact, the actions that were dispatched to the same smart contract.
 
