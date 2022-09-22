@@ -18,6 +18,7 @@ const katex = require("rehype-katex");
     favicon: "img/favicon.ico",
     organizationName: "o1-labs",
     projectName: "docs2",
+    trailingSlash: false,
 
     i18n: {
       defaultLocale: "en",
