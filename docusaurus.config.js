@@ -102,7 +102,11 @@ const katex = require("rehype-katex");
           },
           {
             to: '/glossary',
-            from: '/mina-glossar',
+            from: '/mina-glossary',
+          },
+          {
+            to: 'node-operators/data-querying',
+            from: 'node-operators/operating-for-data',
           },
 
 
