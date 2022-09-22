@@ -41,6 +41,14 @@ const katex = require("rehype-katex");
             from: '/architecture/snapps',
           },
           {
+            to: '/zkapps/overview',
+            from: '/snapps',
+          },
+          {
+            to: 'node-developers/code-review-guildelines',
+            from: '/node-developers/code-reviews',
+          },
+          {
             to: '/about-mina/consensus',
             from: '/architecture/consensus',
           },
@@ -59,6 +67,10 @@ const katex = require("rehype-katex");
           {
             to: '/node-operators/getting-started',
             from: '/architecture',
+          },
+          {
+            to: '/node-operators/getting-started',
+            from: '/node-operators',
           },
           {
             to: '/node-operators/getting-started',
@@ -105,8 +117,12 @@ const katex = require("rehype-katex");
             from: '/mina-glossary',
           },
           {
-            to: '/node-operators/data-querying',
+            to: '/node-operators/querying-data',
             from: '/node-operators/operating-for-data',
+          },
+          {
+            to: '/node-operators/mina-cli-reference',
+            from: '/node-operators/cli-reference',
           },
 
 
