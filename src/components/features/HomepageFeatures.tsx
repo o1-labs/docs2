@@ -75,7 +75,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Where to get MINA,{" "}
-        <Link to="/using-mina/install-wallet" className={styles.minaLink}>install a wallet,{" "}
+        <Link to="/using-mina/install-a-wallet" className={styles.minaLink}>install a wallet,{" "}
         </Link> & more.
       </>
     ),
