@@ -29,6 +29,10 @@ const katex = require("rehype-katex");
       ["@docusaurus/plugin-client-redirects", { redirects: [
           // /docs/oldDoc -> /docs/newDoc
           {
+            to: '/about-mina',
+            from: '/about-mina/overview',
+          },
+          {
             to: '/node-operators/scan-state',
             from: '/architecture/scan-state',
           },
