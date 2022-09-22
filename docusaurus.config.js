@@ -58,6 +58,10 @@ const katex = require("rehype-katex");
             from: '/zkapps/tutorials',
           },
           {
+            to: '/zkapps/tutorials/anonymous-message-board',
+            from: '/zkapps/simple-anonymous-message-board-tutorial',
+          },
+          {
             to: '/node-operators/snark-workers',
             from: '/architecture/snark-workers',
           },

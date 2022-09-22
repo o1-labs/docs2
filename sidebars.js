@@ -99,6 +99,13 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Exchange Operators",
+      items: [
+        "exchange-operators/exchange-faq",
+      ],
+    },
+    {
+      type: "category",
       label: "Participate",
       items: [
         "participate/online-communities",
