@@ -105,8 +105,8 @@ const katex = require("rehype-katex");
             from: '/mina-glossary',
           },
           {
-            to: 'node-operators/data-querying',
-            from: 'node-operators/operating-for-data',
+            to: '/node-operators/data-querying',
+            from: '/node-operators/operating-for-data',
           },
 
 
