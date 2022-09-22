@@ -45,6 +45,10 @@ const katex = require("rehype-katex");
             from: '/architecture/consensus',
           },
           {
+            to: '/zkapps/anonymous-message-board',
+            from: '/zkapps/tutorials',
+          },
+          {
             to: '/node-operators/snark-workers',
             from: '/architecture/snark-workers',
           },

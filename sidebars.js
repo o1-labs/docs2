@@ -37,7 +37,7 @@ module.exports = {
           type: "category",
           label: "Step-by-Step Tutorials",
           items: [
-            "zkapps/tutorial-anon-message-board",
+            "zkapps/anonymous-message-board",
           ],
         },
         "zkapps/zkapps-for-ethereum-developers",
