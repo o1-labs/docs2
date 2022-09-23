@@ -1,10 +1,10 @@
 {
   "index_name": "mina",
-  "start_urls": ["https://docs2-minadocs.vercel.app/"],
-  "stop_urls": [
-    "https://docs2-minadocs.vercel.app/fr",
-    "https://docs2-minadocs.vercel.app/ru"
-  ],
+  "start_urls": ["https://docs2-seven.vercel.app/"],
+  "sitemap_urls": ["https://docs2-seven.vercel.app/sitemap.xml"],
+  "sitemap_alternate_links": true,
+  "js_render": true,
+  "stop_urls": ["/tests"],
   "selectors": {
     "lvl0": {
       "selector": "(//ul[contains(@class,'menu__list')]//a[contains(@class, 'menu__link menu__link--sublist menu__link--active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
@@ -19,5 +19,20 @@
     "lvl5": "article h5, article td:first-child",
     "lvl6": "article h6",
     "text": "article p, article li, article td:last-child"
-  }
+  },
+  "strip_chars": " .,;:#",
+  "custom_settings": {
+    "separatorsToIndex": "_",
+    "attributesForFaceting": ["language", "version", "type", "docusaurus_tag"],
+    "attributesToRetrieve": [
+      "hierarchy",
+      "content",
+      "anchor",
+      "url",
+      "url_without_anchor",
+      "type"
+    ]
+  },
+  "conversation_id": ["833762294"],
+  "nb_hits": 46250
 }
