@@ -1,5 +1,5 @@
 ---
-title: Staking Service Guidelines 
+title: Staking Service Guidelines
 hide_title: true
 ---
 
@@ -11,7 +11,7 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 # Staking Service Guidelines
 
-An important part of running a staking service is predicting/determining winning slots in which you can produce blocks, as well as paying out participants. The Mina protocol does not automatically payout rewards to delegates, so part of running a staking service is manually paying out participants. 
+An important part of running a staking service is predicting/determining winning slots in which you can produce blocks, as well as paying out participants. The Mina protocol does not automatically payout rewards to delegates, so part of running a staking service is manually paying out participants.
 
 This document aims to explain the different components that you should think about when managing those payouts. Specifically, this document provides an understanding of odds of winning blocks, gathering data from the ledger for later use, and computing relevant staking payout information from this data.
 
@@ -25,14 +25,15 @@ In order to compute odds of winning a block for a given epoch, or to retroactive
 
 The `mina ledger export` command can be used to export ledgers from a running daemon. It takes, as an argument, an identifier of the ledger you wish to export. The table below describes what each of these identifiers represent.
 
+<br />
+
 | Identifier           | Description                                                     |
 |----------------------|-----------------------------------------------------------------|
 | staking-epoch-ledger | The staking ledger for the current epoch.                       |
 | next-epoch-ledger    | The staking ledger for the next epoch (epoch after current).    |
 | staged-ledger        | The most recent staged ledger (from the best tip of that node). |
 
-<!-- insert breakpoints to space out table -->
-<br /> <br />
+<br />
 
 In order to ensure you always have each staking ledger available for use after epochs have expired, we recommend exporting the staking-epoch-ledger every $\dfrac{7140\times3}{60} = 357$ hours (there are $7140$ slots in an epoch, and each slot is $3$ minutes long).
 
@@ -98,13 +99,13 @@ unlocked_time = cliff_time + vesting_time
 
 ## Choosing How to Payout Rewards
 
-It's up to each staking service to decide how they wish to compute rewards. It's important to take account supercharging and the weights of different delegators into account, depending no how you choose to payout rewards. 
+It's up to each staking service to decide how they wish to compute rewards. It's important to take account supercharging and the weights of different delegators into account, depending no how you choose to payout rewards.
 
 As an example for calculating staking service payouts, we recommend taking a look at a document put together by a member of our community over at [docs.minaexplorer.com](https://docs.minaexplorer.com/minaexplorer/calculating-payments).
 
 ## Odds of Winning a Block
 
-Blocks in Mina are produced within distinct time intervals called "slots". Each account in the ledger has a chance of winning each slot on the network, which allows them to produce a block for that slot (or, in the case of delegation, allows the delegated account to produce a block on their behalf). An account computes a random number (via a [Verifiable Random Function, or VRF](https://en.wikipedia.org/wiki/Verifiable_random_function)) for each slot, and compares that random number against a required threshold to determine if they have "won" that slot and can produce a block at that time. Their chance of winning a slot is thus determined by the threshold, which is a function of their relative stake in the network.
+Blocks in Mina are produced within distinct time intervals called "slots". Each account in the ledger has a chance of winning each slot on the network, which allows them to produce a block for that slot (or, in the case of delegation, allows the delegated account to produce a block on their behalf). An account computes a random number (via a [Verifiable Random Function, or VRF](../glossary#vrf)) for each slot, and compares that random number against a required threshold to determine if they have "won" that slot and can produce a block at that time. Their chance of winning a slot is thus determined by the threshold, which is a function of their relative stake in the network.
 
 The stake distribution that is sampled when determining the VRF threshold are contained in a special ledger called the "staking ledger". Staking ledgers are fixed ledgers from past epochs in the network (epochs are fixed spans of slots; every epoch is 7140 slots long). Using past fixed ledgers prevents malicious stakers from increasing their chances of winning during an epoch by altering the distribution of stake on the main ledger (the "staged ledger"). Every epoch, the staking ledger changes. Due to this constraint, any account on the system can only check for "winning slots" within the next 2 epochs at any given time.
 
@@ -116,4 +117,4 @@ As an example, let's say there is an account on the network which has $10^6$ (1 
 
 ## Sending Many Transactions
 
-See the advanced section of the [sending payments page](./send-payment).
+See the advanced section of the [sending payments page](sending-a-payment).

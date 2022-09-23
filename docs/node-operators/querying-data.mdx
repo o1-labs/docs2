@@ -1,13 +1,21 @@
 ---
-title: Data Querying
+title: Querying Data
 hide_title: true
 ---
 
 :::note
+
 A new version of Mina Docs is coming soon! This page will be rewritten.
+
 :::
 
-# Data Querying for Node Operators
+# Querying Data
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+Data querying for node operators.
+</Subhead>
 
 Some node operators don't wish to participate in block production or snark work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
 
@@ -17,7 +25,7 @@ In addition to [installing the Mina daemon on your machine](/node-operators/gett
 
 ## Running a node
 
-The best way to learn how to run a node is to follow the instructions on the [Connecting page](/node-operators/connecting) of the docs.
+The best way to learn how to run a node is to follow the instructions on the [Connecting page](connecting-to-the-network) of the docs.
 
 However, you should remove `MINA_PRIVKEY_PASS` and `-block-producer-key ...` flag as we do not wish this node to start as a block producer.
 
@@ -25,7 +33,7 @@ In order to expose recent information of the blockchain, we'll need to expose th
 
 ## Querying information
 
-Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, for historical information can be accessed using [some sort of archival process](/node-operators/archive-redundancy)
+Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, historical information can be accessed using [an archival process](/node-operators/archive-redundancy).
 
 The best way to explore all the specific details available for each of the GraphQL objects is to visit your favorite web browser pointing to the REST server running from within a Mina daemon that hosts a GraphQL sandbox. Visit the [GraphQL API page](/node-developers/graphql-api) to learn more. Documentation is also present on most of the individual fields, you can learn more about each field by hovering over the entries in the sandbox or by visiting the hosted schema (coming soon).
 

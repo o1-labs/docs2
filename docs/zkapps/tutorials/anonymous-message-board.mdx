@@ -1,6 +1,7 @@
 ---
-title: "Anonymous Message Board"
+title: "Anonymous Message Board Tutorial"
 hide_title: true
+sidebar_label: Anonymous Message Board
 ---
 
 :::info
@@ -174,10 +175,10 @@ This will serve as the scaffolding for the rest of the tutorial and contains a s
 
 Every Mina smart contract includes eight on-chain state variables that each store almost 256 bits of information. In more complex smart contracts, these can store commitments (i.e. the hash of a file, the root of a Merkle tree, etc.) to off-chain storage, but in this case, we’ll store everything on-chain for the sake of simplicity.
 
-<Alert kind="note">
+:::note
   General purpose off-chain storage libraries are planned, but you can always
   roll your own solution if desired.
-</Alert>
+:::
 
 In this smart contract, one state variable will store the last message. Another will store the hash of all the previous messages (so a frontend can validate message history), and three more will store user public keys (we could store additional public keys by Merkelizing them, but we’ll keep it to three here for the sake of brevity).
 
@@ -299,7 +300,7 @@ If everything is correct, you should see a new `./build` directory. This is wher
 ## Integrating with a User Interface (Coming Soon)
 
 <!--
-One of the benefits of writing smart contracts in TypeScript, is that the compiled JavaScript and WASM smart contract is easy to <DocLink copy="integrate into your website UI" url="/zkapps/how-to-write-a-zkapp" />.
+One of the benefits of writing smart contracts in TypeScript, is that the compiled JavaScript and WASM smart contract is easy to [integrate into your website UI](./zkapps/how-to-write-a-zkapp-ui).
 
 We won’t make you write a UI for this tutorial, but we have created a simple command-line interface so you can interact with your smart contract as a user to get a sense of how it works, and experiment with what you have just built. You can clone it from [this](https://github.com/) repository.
 

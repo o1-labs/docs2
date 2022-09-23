@@ -3,15 +3,13 @@ title: Rosetta
 hide_title: true
 ---
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
 # Rosetta
 
-Learn how to use Mina’s implementation of Rosetta API
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+Learn how to use Mina’s implementation of Rosetta API.
+</Subhead>
 
 [Rosetta API](https://www.rosetta-api.org/) is an open-source specification and set of tools that make deploying and interacting with the blockchain quickly and easily.
 
@@ -26,17 +24,17 @@ We recommend using Rosetta API if you are:
 
 2. Use the official image `minaprotocol/mina-rosetta:latest`, which is built in exactly this way by buildkite CI/CD.
 
-<Alert kind="note">
+:::note
 
 If you want to build your own docker image, you can find more details in [Mina’s Rosetta repository](https://github.com/MinaProtocol/mina/blob/fb65acb3dce5cfa07567bddd64f17ed51d83d93e/src/app/rosetta/README.md). However, for most users, it’s not necessary to build your own image in order to interact with the API.
 
-</Alert>
+:::
 
 ### How to run
 
 The container in `/rosetta` includes 4 scripts, which each run a different set of services connected to a particular network.
 
-<Alert kind="note">
+:::note
 
 - It may take 20 min to 1 hour for your node to sync
 - Port 10101 is the default P2P port and must be exposed to the open internet
@@ -44,7 +42,7 @@ The container in `/rosetta` includes 4 scripts, which each run a different set o
 - PostgreSQL runs on port 3086
 - Rosetta runs on port 3087
 
-</Alert>
+:::
 
 #### Mainnet:Online
 
@@ -57,7 +55,7 @@ To run docker-devnet-start.sh and connect to the live Mainnet:
 
 #### Mainnet:Offline
 
-**docker-standalone-start.sh** - starts only the mina-rosetta API endpoint and any flags passed into the script go to mina-rosetta. Use this for the "offline" part of the Construction API.	
+**docker-standalone-start.sh** - starts only the mina-rosetta API endpoint and any flags passed into the script go to mina-rosetta. Use this for the "offline" part of the Construction API.
 
 To run docker-standalone-start.sh and connect to the offline Mainnet:
 
@@ -68,13 +66,13 @@ To run docker-standalone-start.sh and connect to the offline Mainnet:
 **docker-demo-start.sh** launches a mina node with a very simple 1-address genesis ledger as a sandbox for developing and playing around in. This script starts the full suite of tools (a mina node, mina-archive, a postgresql DB, and mina-rosetta), but for a demo network with all operations occurring inside this container and no external network activity.
 
 To run the docker-demo-start.sh and connect to the demo network:
-    
+
     docker run -it --rm --name rosetta --entrypoint=./docker-demo-start.sh -p 10101:10101 -p 3085:3085 -p 3086:3086 -p 3087:3087 minaprotocol/mina-rosetta:latest
 
 #### Devnet:Online
 
 **docker-devnet-start.sh** - connects the mina node to our Devnet network with the archive database initialized in a similar way to docker-start.sh. As with docker-demo-start.sh, this script runs a mina node, mina-archive, a postgresql DB, and mina-rosetta. docker-devnet-start.sh is now just a special case of docker-start.sh so inspect the source there for more detailed configuration.
-	
+
 To run the docker-devnet-start.sh and connect to the live Devnet:
 
     docker run -it --rm --name rosetta --entrypoint=./docker-devnet-start.sh -p 10101:10101 -p 3085:3085 -p 3086:3086 -p 3087:3087 minaprotocol/mina-rosetta:latest

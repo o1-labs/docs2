@@ -1,0 +1,36 @@
+---
+title: FAQ
+---
+
+import Subhead from "@site/src/components/common/Subhead";
+
+# FAQ
+
+
+<Subhead>
+Frequently Asked Questions about Mina Protocol
+</Subhead>
+
+### What language is Mina written in?
+
+The Mina node is written in OCaml. But you don't need to know OCaml to write smart contracts for Mina.
+
+### What language are zkApp smart contracts written in?
+
+Mina's zero knowledge smart contracts ("zkApps") are written in TypeScript.
+
+Learn more about [how to write a zkApp](/zkapps/how-to-write-a-zkapp).
+
+### How large is the Mina Blockchain?
+
+22KB
+
+### Given Mina is only 22KB, where are past transactions stored?
+
+The Mina node can run with an optional flag to make it an archive node. This mean it will store historic transactions which is useful for anyone running a service such as a block explorer, but this data is not needed in order to verify the current consensus state of the protocol.
+
+### What ZK proof system does Mina use?
+
+Mina Protocol uses a custom proof system called Kimchi, which was developed by [O(1) Labs](https://o1labs.org/), and is the only blockchain offering infinite recursion.
+
+Check out the [Mina Book](https://o1-labs.github.io/proof-systems/plonk/overview.html) to learn more about Kimchi and the cryptography powering Mina Protocol.

@@ -23,20 +23,20 @@ We've created a simple command-line utility called `mina-generate-keypair`. This
 
 ### Ledger Hardware Wallet
 
-You can use your [Ledger Nano S](https://www.ledger.com/) hardware wallet to securely store your Mina private keys. We are in the process of an independent security audit which currently has found no vulnerabilities, and development is nearly completed. Please see our [ledger-app-mina documentation](/node-operators/ledger-app-mina) to get started with this tool.
+You can use your [Ledger Nano S](https://www.ledger.com/) hardware wallet to securely store your Mina private keys. We are in the process of an independent security audit which currently has found no vulnerabilities, and development is nearly completed. Please see our [ledger-app-mina documentation](ledger-hardware-wallet) to get started with this tool.
 
 ### Client SDK
 
 We've also created a client SDK that is able to generate key pairs and sign transactions. Please note that this method is unadvised and should only be used by experienced security professionals. Please use our `mina-generate-keypair tool instead for creating key pairs.
-See our [client SDK documentation](/node-operators/keypair#client-sdk) for more information.
+See our [client SDK documentation](#client-sdk) for more information.
 
 <br />
 
-<Alert kind="warning">
+:::caution
 
 Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
 
-</Alert>
+:::
 
 <br />
 
@@ -88,11 +88,11 @@ chmod 700 ~/keys
 
 <br />
 
-<Alert kind="warning">
+:::caution
 
 Make sure to set a new and secure password for the following commands. Mina will never ask you for this password, and you should not share it with anyone.
 
-</Alert>
+:::
 
 <br />
 
@@ -113,11 +113,11 @@ This will create two files on your system, `~/keys/my-wallet` which contains the
 
 <br />
 
-<Alert kind="warning">
+:::caution
 
 Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
 
-</Alert>
+:::
 
 <br />
 
@@ -145,4 +145,4 @@ docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume 
 
 ## Next steps
 
-Now that we have created our keypair, we can finally [connect to the network](/node-operators/connecting) or share your public key.
+Now that we have created our keypair, we can finally [connect to the network](connecting-to-the-network) or share your public key.

@@ -1,15 +1,17 @@
 ---
-title: What's in a Block
+title: What's in a Block?
 hide_title: true
 ---
 
 :::note
+
 A new version of Mina Docs is coming soon! This page will be rewritten.
+
 :::
 
-# What's in a Block
+# What's in a Block?
 
-A block is a set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. 
+A block is a set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid.
 
 A block in Mina is constituted of:
 
@@ -24,7 +26,7 @@ When a node receives a block from a peer, it is first validated, applied to the 
 
 :::tip
 
-In Mina, blocks are synonymous with "transitions". When this transition (block) is received from a peer, it is referenced as an external transition, whereas one generated and applied locally is referred to as an internal transition. 
+In Mina, blocks are synonymous with "transitions". When this transition (block) is received from a peer, it is referenced as an external transition, whereas one generated and applied locally is referred to as an internal transition.
 
 :::
 
@@ -34,7 +36,7 @@ The protocol state is comprised of the **previous protocol state hash** and a bo
 
 * [Genesis state hash](#genesis-state-hash)
 * [Blockchain state](#blockchain-state)
-* [Consensus state](#consensus_state)
+* [Consensus state](#consensus-state)
 * [Consensus constants](#consensus-constants)
 
 Each block contains the protocol state hash of the previous block, such that blocks may be linked together to form an immutable chain.

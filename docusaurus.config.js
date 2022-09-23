@@ -18,6 +18,7 @@ const katex = require("rehype-katex");
     favicon: "img/favicon.ico",
     organizationName: "o1-labs",
     projectName: "docs2",
+    trailingSlash: false,
 
     i18n: {
       defaultLocale: "en",
@@ -25,20 +26,28 @@ const katex = require("rehype-katex");
     },
 
     plugins: [
-      "docusaurus-plugin-sass", 
+      "docusaurus-plugin-sass",
       ["@docusaurus/plugin-client-redirects", { redirects: [
           // /docs/oldDoc -> /docs/newDoc
+          {
+            to: '/about-mina',
+            from: '/about-mina/overview',
+          },
           {
             to: '/node-operators/scan-state',
             from: '/architecture/scan-state',
           },
           {
-            to: '/zkapps/overview',
-            from: '/zkapps',
+            to: '/zkapps',
+            from: '/architecture/snapps',
           },
           {
-            to: '/zkapps/overview',
-            from: '/architecture/snapps',
+            to: '/zkapps',
+            from: '/snapps',
+          },
+          {
+            to: '/node-developers/code-review-guidelines',
+            from: '/node-developers/code-reviews',
           },
           {
             to: '/about-mina/consensus',
@@ -49,11 +58,15 @@ const katex = require("rehype-katex");
             from: '/zkapps/tutorials',
           },
           {
+            to: '/zkapps/tutorials/anonymous-message-board',
+            from: '/zkapps/simple-anonymous-message-board-tutorial',
+          },
+          {
             to: '/node-operators/snark-workers',
             from: '/architecture/snark-workers',
           },
           {
-            to: '/node-operators/timelock',
+            to: '/node-operators/time-locked-accounts',
             from: '/architecture/timelock',
           },
           {
@@ -62,30 +75,42 @@ const katex = require("rehype-katex");
           },
           {
             to: '/node-operators/getting-started',
-            from: '/advanced',
+            from: '/node-operators',
           },
           {
             to: '/node-operators/getting-started',
-            from: '/node-operators',
+            from: '/advanced',
+          },
+          {
+            to: '/node-operators/foundation-delegation-program',
+            from: '/node-operators/delegation',
           },
           {
             to: '/node-developers/contributing',
             from: '/contributing',
           },
           {
-            to: '/node-operators/keypair',
+            to: '/node-developers/repository-structure',
+            from: '/node-developers/directory-structure',
+          },
+          {
+            to: '/node-developers/bip44',
+            from: '/node-developers/bip44-information',
+          },
+          {
+            to: '/node-operators/generating-a-keypair',
             from: '/keypair',
           },
           {
-            to: '/node-operators/connecting',
+            to: '/node-operators/connecting-to-the-network',
             from: '/connecting',
           },
           {
-            to: '/node-operators/staking',
+            to: '/node-operators/staking-and-snarking',
             from: '/staking',
           },
           {
-            to: '/node-operators/cli-reference',
+            to: '/node-operators/mina-cli-reference',
             from: '/cli-reference',
           },
           {
@@ -93,7 +118,7 @@ const katex = require("rehype-katex");
             from: '/advanced/staking-service-guidelines',
           },
           {
-            to: '/node-operators/staking',
+            to: '/node-operators/staking-and-snarking',
             from: '/advanced/using-mina/staking',
           },
           {
@@ -101,8 +126,60 @@ const katex = require("rehype-katex");
             from: '/participate/reporting',
           },
           {
-            to: '/mina-glossary',
-            from: '/glossary',
+            to: '/glossary',
+            from: '/mina-glossary',
+          },
+          {
+            to: '/node-operators/querying-data',
+            from: '/node-operators/operating-for-data',
+          },
+          {
+            to: '/node-operators/mina-cli-reference',
+            from: '/node-operators/cli-reference',
+          },
+          {
+            to: '/node-operators/uptime-tracking-system',
+            from: '/node-operators/uptime-system',
+          },
+          {
+            to: '/node-operators/connecting-to-devnet',
+            from: '/node-operators/connecting-devnet',
+          },
+          {
+            to: '/node-operators/hardforks',
+            from: '/node-operators/hardfork',
+          },
+          {
+            to: '/node-operators/ledger-hardware-wallet',
+            from: '/node-operators/ledger-app-mina',
+          },
+          {
+            to: '/node-operators/time-locked-accounts',
+            from: '/node-operators/timelock',
+          },
+          {
+            to: '/node-operators/lifecycle-of-a-payment',
+            from: '/node-operators/lifecycle-payment',
+          },
+          {
+            to: '/node-operators/generating-a-keypair',
+            from: '/node-operators/keypair',
+          },
+          {
+            to: '/node-operators/connecting-to-the-network',
+            from: '/node-operators/connecting',
+          },
+          {
+            to: '/node-operators/sending-a-payment',
+            from: '/node-operators/send-payment',
+          },
+          {
+            to: '/node-operators/staking-and-snarking',
+            from: '/node-operators/staking',
+          },
+          {
+            to: '/exchange-operators/faq',
+            from: '/exchange-operators/exchange-faq',
           },
 
 

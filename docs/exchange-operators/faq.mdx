@@ -1,9 +1,16 @@
 ---
 title: FAQ
 description: Frequently asked questions about listing Mina
+hide_title: true
 ---
 
-# Exchange Operators
+import Subhead from "@site/src/components/common/Subhead";
+
+# FAQ
+
+<Subhead>
+Frequently asked questions about listing Mina.
+</Subhead>
 
 ## Basics
 
@@ -72,7 +79,7 @@ To avoid this above issue, we recommend that exchanges <u>do NOT require a memo<
 
 ### What is the current maximum number of rollback blocks?
 
-The table here describes how many blocks you will need to wait: [https://docs.minaprotocol.com/en/architecture/lifecycle-payment](https://docs.minaprotocol.com/en/architecture/lifecycle-payment)
+The table here describes how many blocks you will need to wait: [Lifecycle Payment](../node-operators/lifecycle-of-a-payment)
 
 ### How should we calculate transaction fees?
 
@@ -100,14 +107,14 @@ if [[ "$DELTAVALIDATED" -gt 4 ]]; then
 fi
 ```
 
-<Alert kind="tip">
+:::tip
 
 <p>
   Be sure your Mina daemon is monitored by something such as systemd, so it can
   auto-restart.
 </p>
 
-</Alert>
+:::
 
 ### Our archive node is missing block information after a restart. How can we recover the data?
 
@@ -147,7 +154,7 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 ### How do I query for the canonical block at a certain height from the archive node
 
-This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](node-operators/archive-node/overview), for a full example.
+This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](/node-operators/archive-node), for a full example.
 
 ### Why am I getting this error message: "Not able to connect to the network"?
 
@@ -179,11 +186,11 @@ Since Mina is a Proof of Stake (PoS) consensus network without lockup for staked
 
 You can look into staking this wallet, either by running your own block production node, or just by delegating your funds to a staking pool on the network. Out of these two options, the latter is simpler to set up (though it does incur about a delay between 18 to 29 days before you can begin getting rewards, as explained below).
 
-<Alert kind="note">
+:::note
 
 Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
 
-</Alert>
+:::
 
 ### Why is there a delay for staking to take effect?
 
@@ -206,4 +213,4 @@ You can use this Delegation Calculator tool built by Carbonara, which tells you 
 
 We strongly suggest that you test tooling and integrations on Devnet before going live on Mainnet. This includes simulating expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
 
-See our [instructions for connecting to DevNet](/node-operators/connecting-devnet).
+See our [instructions for connecting to DevNet](../node-operators/connecting-to-devnet).

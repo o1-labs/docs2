@@ -10,7 +10,7 @@ zkApps can now be deployed to Berkeley QANet.
 
 :::
 
-# How to write a zkApp
+# How to Write a zkApp
 
 A zkApp consists of a smart contract and a UI to interact with it. First, we’ll install the Mina zkApp CLI and write a smart contract.
 
@@ -33,11 +33,11 @@ npm install -g zkapp-cli
 - NPM 6+
 - Git 2+
 
-<Alert kind="tip">
+:::tip
 
 If you have an older version installed, we suggest installing a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
 
-</Alert>
+:::
 
 ### Start a project
 
@@ -232,13 +232,13 @@ let zkApp = new HelloWorld(zkAppAddress);
 
 Later, we show you how you can deploy a smart contract to an on-chain account.
 
-<Alert kind="note">
+:::note
   On Mina, there is no strong distinction between normal "user accounts" and
   "zkApp accounts". A zkApp account is just a normal account that has a smart
   contract deployed to it -- which essentially just means there's a verification
   key stored on the account, which can verify zero-knowledge proofs generated
   with the smart contract.
-</Alert>
+:::
 
 ##### Methods
 

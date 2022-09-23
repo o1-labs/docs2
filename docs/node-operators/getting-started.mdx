@@ -7,7 +7,7 @@ import Subhead from "@site/src/components/common/Subhead";
 
 :::note
 
-A new version of Mina Docs is coming soon! We're currently updating the contents of page.
+A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
@@ -21,13 +21,17 @@ Welcome to Mina! This section will walk you through the process of setting up a 
 
 This documentation is for the **Mainnet** release.
 
-::::
+:::
 
 ## Requirements
 
 **Software**: macOS, Linux (currently supports Debian 9 and Ubuntu 18.04 LTS), or any host with Docker
 
-Note: Windows is not officially supported at this time. However, community members succeeded in setting up nodes using Windows Subsystem for Linux. Click [here](https://minawiki.com/index.php?title=Mina_on_Windows) for instructions on using Windows, which are created by the community. Additionally Windows users can use the Docker documentation.
+:::note
+
+Windows is not officially supported at this time. However, it may be possible to use the [Docker instructions](./#docker). If you are interested in receiving a grant to develop Mina for Windows, please email grants@o1labs.org or reach out in the [Discord server](https://bit.ly/MinaDiscord).
+
+:::
 
 **Hardware**: Sending and receiving mina does not require any special hardware, but running a block producer on the Mina network currently requires:
 
@@ -78,7 +82,7 @@ Please instead use the Docker instructions below or you may build from source.
 
 ### Docker
 
-Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on [Connect to the Network](/node-operators/connecting).
+Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on [Connect to the Network](connecting-to-the-network).
 
 ### Build from source
 
@@ -93,8 +97,6 @@ You may need to configure your router's port forwarding to allow inbound traffic
 - `TCP` port `8302`
 - _Optionally_ to use the GraphQL service, expose `TCP` port `3085`
 
-For walk-through instructions see [this guide](troubleshooting#port-forwarding).
-
 ## Next
 
-Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](./).
+Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](generating-a-keypair).

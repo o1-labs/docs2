@@ -5,7 +5,7 @@ hide_title: true
 
 :::note
 
-A new version of Mina Docs is coming soon! We're currently updating the contents of page.
+A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
@@ -15,71 +15,71 @@ A new version of Mina Docs is coming soon! We're currently updating the contents
 This document describes the file-structure of [the Mina repository](https://github.com/minaprotocol/mina), and what roles various
 files play:
 
-- `dockerfiles/`  
+- `dockerfiles/`
    Contains Docker related scripts - TODO explain this better
 
-- `docs/`  
+- `docs/`
    Documentation for the code and processes for contributing are here. The documentation website with the walkthrough docs lives in `frontend/website/docs`.
 
-- `frontend/`  
+- `frontend/`
    All code related to Mina frontend UIs and products
 
-  - `wallet/`  
+  - `wallet/`
      Source code for the Mina wallet
 
-  - `website/`  
+  - `website/`
      Code for https://minaprotocol.com
 
-    - `docs/`  
+    - `docs/`
        Documentation and instructions on joining the Mina network that live at https://minaprotocol.com/docs
 
-    - `posts/`  
+    - `posts/`
        Markdown docs for blog posts
 
-    - `src/`  
+    - `src/`
        Source code for the website
 
-    - `static/`  
+    - `static/`
        Static files like images, etc.
 
-- `rfcs/`  
+- `rfcs/`
    This directory contains all accepted RFCs (or "requests for comments") made according to the [RFC process](https://github.com/MinaProtocol/mina/blob/master/CONTRIBUTING.md#rfcs).
 
 - `scripts/`
 
-- `src/`  
+- `src/`
    All protocol source code, both application and library code, is in this directory.
 
-  - `*.opam`  
+  - `*.opam`
      These files are needed for our `dune` build system. There must be one for each
     library in `lib`. When you create a library `lib/foo_lib` with a `dune` file giving
     the library's name as `foo_lib`, you must create a `foo_lib.opam` file.
 
-  - `config/`  
+  - `config/`
      Build time config - these .mlh files define compile time constants and their values.
 
-  - `app/`  
+  - `app/`
      Applications live here.
 
-    - `cli/`  
+    - `cli/`
        This is the mina client/daemon. It is what you use to run a staker, a snarker, or a simple client for sending and receiving transactions.
 
-    - `website/`  
+    - `website/`
        Soon to be deprecated directory for the website - most of the code has migrated over to `frontend/website/`
 
-    - `reformat/`  
+    - `reformat/`
        This program runs `ocamlformat` on most of the files in the source tree, with a few exceptions.
 
-    - `logproc/`  
+    - `logproc/`
        This utility reads from `stdin` and can filter and pretty print the log messages emitted by the mina daemon.
 
-    - `libp2p_helper/`  
+    - `libp2p_helper/`
        This program uses go-libp2p to implement the peer-to-peer plumbing that Mina daemons need.
 
-  - `external/`  
+  - `external/`
      Local copies of external libraries which we've had to make some tweaks to.
 
-  - `lib/`  
+  - `lib/`
      Libraries powering mina.
     The libraries here basically fall into two categories.
     1. General purpose data-types and functionality. This includes `snarky`, `fold_lib`, `vrf_lib`, `sgn`, and others.

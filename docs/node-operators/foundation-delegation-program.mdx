@@ -4,10 +4,18 @@ hide_title: true
 ---
 
 :::note
+
 A new version of Mina Docs is coming soon! This page will be rewritten.
+
 :::
 
-# How to Participate in the Foundation Delegation Program
+# Foundation Delegation Program
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+How to Participate in the Foundation Delegation Program
+</Subhead>
 
 Learn how to receive a delegation from Mina Foundation and its ecosystem partner, O(1) Labs
 
@@ -18,7 +26,7 @@ Learn how to receive a delegation from Mina Foundation and its ecosystem partner
 The current sidecar tracking system is being phased out to be replaced by the SNARK-work-based uptime tracking system. <u>Until further notice, continue running the sidecar AND SNARK-based tracking system on the SAME node.</u>
 
 - [Instructions for the sidecar tracking system](/node-operators/bp-sidecar)
-- [Instructions for the SNARK-work-based uptime system](/node-operators/uptime-system)
+- [Instructions for the SNARK-work-based uptime system](/node-operators/uptime-tracking-system)
 
 Please follow the latest updates and post questions in the [#delegation-program channel](https://discord.gg/ywDzwmGABT) on Discord.
 
@@ -30,8 +38,8 @@ If you are a block producer looking to participate in the Foundation Delegation 
 
 :::note
 
-  Please note that there are two delegation programs in Mina's ecosystem — one from the Mina Foundation and one from O(1) Labs, Mina's ecosystem partner. 
-  
+  Please note that there are two delegation programs in Mina's ecosystem — one from the Mina Foundation and one from O(1) Labs, Mina's ecosystem partner.
+
   These are two separate entities running their own delegation programs. For clarity, this post is dedicated to the next iteration of the **Mina Foundation Delegation Program** only. However, following instructions in this post may enable a block producer to participate in the O(1) Labs delegation program as well.
 
   For more information on the two different programs, please visit:
@@ -42,7 +50,7 @@ If you are a block producer looking to participate in the Foundation Delegation 
 
 ## Overview
 
-Mina Foundation is committed to decentralizing the governance of the Mina protocol. In order to delegate their voting power, Mina Foundation and its ecosystem partner O(1) Labs (each referred to as “token providers” below) delegate their tokens to community members through the Foundation Delegation Program and the O(1) Labs Delegation Program, respectively. 
+Mina Foundation is committed to decentralizing the governance of the Mina protocol. In order to delegate their voting power, Mina Foundation and its ecosystem partner O(1) Labs (each referred to as “token providers” below) delegate their tokens to community members through the [Foundation Delegation Program](https://minaprotocol.com/blog/mina-foundation-delegation-policy) and the [O(1) Labs Delegation Program](https://blog.o1labs.org/o-1-labs-delegation-policy-786bf96f9fdd), respectively.
 
 In each Delegation Program, Mina Foundation and its partners delegate their tokens to a number of validators. As the validators earn staking rewards associated with the delegation, they must return the remaining rewards to Mina Foundation and its partners, but can keep 5% of the staking rewards.
 
@@ -50,7 +58,7 @@ Block producers are selected on a quarterly basis, known as a delegation cycle, 
 
 :::note
 
-We highly recommend you review this page and the [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy) for a more detailed explanation of how the Foundation Delegation Program works. The O(1) Labs Delegation Program is similar but differs in a few key ways, primarily in terms of the number of validators to which O(1) Labs delegates tokens.
+We highly recommend you review this page and the [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy) for a more detailed explanation of how the Foundation Delegation Program works. The [O(1) Labs Delegation Program](https://blog.o1labs.org/o-1-labs-delegation-policy-786bf96f9fdd) is similar but differs in a few key ways, primarily in terms of the number of validators to which O(1) Labs delegates tokens.
 :::
 
 ## Eligibility Requirements
@@ -65,12 +73,12 @@ Review the [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/min
 
 #### Step 2: Run the Uptime Tracking System
 
-Next, run **BOTH** the SNARK-based system and sidecar on the **SAME** node. 
+Next, run **BOTH** the SNARK-based system and sidecar on the **SAME** node.
 
 The uptime tracking system sends recent blockchain data from your block producer node's perspective to a service. This service verifies whether this recent data is synced with the chain. If it is synced, it means your node is online.
 
 Instructions for how to run the uptime tracking system:
-- [SNARK-based Uptime System](/node-operators/uptime-system"/>
+- [SNARK-based Uptime System](uptime-tracking-system)
 
 :::info
 
@@ -92,7 +100,7 @@ You can only complete this step if you’re receiving a delegation for the next 
 
 ## Program Guidelines
 
-Now that you understand how to become eligible to participate in the program, please review the following guidelines to better understand how to receive a delegation and send back rewards. 
+Now that you understand how to become eligible to participate in the program, please review the following guidelines to better understand how to receive a delegation and send back rewards.
 
 ### How do I get seleted for a delegation?
 #### Measuring Uptime Performance Score
@@ -106,11 +114,11 @@ The **Uptime Performance Score** is an important factor for selecting the public
 You may run more than one node with the same block producer key if you want to increase your chances of remaining online.
 :::
 
-**Uptime Performance** is the percentage over a time period in which a block producer node is online and operational. 
+**Uptime Performance** is the percentage over a time period in which a block producer node is online and operational.
 
 The time period varies depending on the token provider. For delegations from Mina Foundation, the time period is 90 days. For delegations from O(1) Labs, the time period is 60 days.
 
-This percentage is based on all possible 20-minute windows over the last time period. 
+This percentage is based on all possible 20-minute windows over the last time period.
 
 ### How do I track my performance score?
 
@@ -118,24 +126,24 @@ The **leaderboard** shows the ranking of block producers participating in the de
 
 Your position on this leaderboard is an important factor in your public key being selected to receive delegation from Mina Foundation and O(1) Labs.
 
-See the following uptime leaderboards for the latest uptime performance scores: 
+See the following uptime leaderboards for the latest uptime performance scores:
 - Official Leaderboard: https://uptime.minaprotocol.com
 - Community Leaderboards:
-  - TowerStake: https://towerstake.com/mina-uptime-leaderboard 
+  - TowerStake: https://towerstake.com/mina-uptime-leaderboard
   - Minataur: https://minataur.net/uptime
 
-### What happens after I receive a delegation? 
+### What happens after I receive a delegation?
 
 #### Payout Addresses
 You must send computed rewards as described below to the same addresses that delegate to you.
 
 In other words, if the Foundation is delegating to you, the Foundation will pick two addresses from the Foundation address list (see below) that will delegate to you. You should distribute the rewards to both those addresses.
 
-Likewise, if O(1) Labs is delegating to you, O(1) Labs will pick two addresses from the O(1) Labs address list (see below) that will appear as delegations to you. You must distribute the rewards to both addresses that are delegating to you. However, each selected validator will be allowed to keep 5% of the staking rewards. 
+Likewise, if O(1) Labs is delegating to you, O(1) Labs will pick two addresses from the O(1) Labs address list (see below) that will appear as delegations to you. You must distribute the rewards to both addresses that are delegating to you. However, each selected validator will be allowed to keep 5% of the staking rewards.
 
 #### Payout Frequency
 
-Rewards must be distributed at least once for a given epoch (but you can also send them more frequently). 
+Rewards must be distributed at least once for a given epoch (but you can also send them more frequently).
 
 All the rewards for epoch N must be delivered (ie. accepted in a block, not just sent) no later than slot number 3,500 of the next epoch. This gives you about a week to sort out these payments.
 
@@ -144,15 +152,15 @@ All the rewards for epoch N must be delivered (ie. accepted in a block, not just
 #### Delegation Addresses
 Download the following spreadsheets to see the full list of delegation address to send and receive rewards:
 
-- [Mina Foundation](https://docs.minaprotocol.com/static/Mina_Foundation_Addresses.csv)
-- [O(1) Labs](https://docs.minaprotocol.com/static/O1_Labs_addresses.csv)
+- [Mina Foundation](/Mina_Foundation_Addresses.csv)
+- [O(1) Labs](/O1_Labs_addresses.csv)
 
 #### Payout Attribution
 In order for the token provider to associate the transaction with your delegation, please send the transaction back to the same address that sent you the delegations.
 
 :::tip
 
-Reminder: You must send computed rewards to the same addresses that delegate to you. It is no longer necessary to add identifying information in the memo. 
+Reminder: You must send computed rewards to the same addresses that delegate to you. It is no longer necessary to add identifying information in the memo.
 :::
 
 ### How do I calculate the reward payout?
@@ -169,7 +177,7 @@ At the end of each epoch, do <u>all</u> of the following:
 4. Send a transaction to the token provider accounts with the appropriate payout -- please follow the rules in the "Payout Attribution" section with your transaction.
 
 
-The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool. 
+The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool.
 
 :::tip
 
@@ -200,10 +208,10 @@ If you have computed a reward that has an odd number of nanomina and need to div
 
 If you are computing the share of the stake from the foundation you can calculate the fraction of stake up to 5 decimal places and then truncate afterwards (ie. always round down).
 
-#### Example 1: 
+#### Example 1:
 If the Foundation share is 1 million MINA and the total stake is 3 million MINA, you can use 0.33333 as the stake share fraction.
 
-#### Example 2: 
+#### Example 2:
 If the Foundation share is 2 million MINA and the total stake is 3 million MINA, you can use 0.66666 as the stake share fraction.
 
 

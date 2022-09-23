@@ -1,5 +1,5 @@
 ---
-title: Send a Payment
+title: Sending a Payment
 hide_title: true
 ---
 
@@ -9,7 +9,19 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
-# Send a payment with Mina
+# Sending a Payment
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+How to send a MINA payment using the Mina CLI.
+</Subhead>
+
+:::info
+
+Reminder that this section is intended for node operators. If you want to store, send, and receive MINA without running a node, please see the [Install a Wallet](../using-mina/install-a-wallet) page for links to various user-friendly wallets available for Mina.
+
+:::
 
 In this section, we'll give a brief overview on how to send a transaction with the Mina client and how to get started with interacting with the blockchain.
 
@@ -19,7 +31,7 @@ If you want to send a transaction without running a node yourself, but by delega
 
 ### Using a Ledger device
 
-To generate a signed transaction offline if your private key is on a Ledger device, see [Ledger Offline Mode](./ledger-app-mina#offline-mode").
+To generate a signed transaction offline if your private key is on a Ledger device, see [Ledger Offline Mode](./ledger-hardware-wallet#offline-mode).
 
 ### Using a keypair generated with the generate-keypair tool
 
@@ -45,7 +57,7 @@ We are assuming in the rest of section that you have the Mina client installed o
 
 Once our node is synced, we'll need to import our public/private keypair so that we can sign transactions and generate an address to receive payments. For security reasons, we'll want to put the keys under a directory that is harder for attackers to access.
 
-Run the following command to import your [previously generated](./keypair) keypair file:
+Run the following command to import your [previously generated](generating-a-keypair) keypair file:
 
     mina accounts import --privkey-path ~/keys/my-wallet
 
@@ -148,7 +160,7 @@ You may not see the `Receipt chain hash` on the first transaction from the accou
 
 ## Staking and Snarking
 
-Once you feel comfortable with the basics of creating an address, and sending & receiving mina, we can move on to the truly unique parts of the Mina network like [participating in consensus and helping compress the blockchain](./staking).
+Once you feel comfortable with the basics of creating an address, and sending & receiving mina, we can move on to the truly unique parts of the Mina network like [participating in consensus and helping compress the blockchain](staking-and-snarking).
 
 ## Advanced
 
