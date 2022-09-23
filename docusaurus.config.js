@@ -27,181 +27,182 @@ const katex = require("rehype-katex");
 
     plugins: [
       "docusaurus-plugin-sass",
-      ["@docusaurus/plugin-client-redirects", { redirects: [
-          // /docs/oldDoc -> /docs/newDoc
-          {
-            to: '/about-mina',
-            from: '/about-mina/overview',
-          },
-          {
-            to: '/node-operators/scan-state',
-            from: '/architecture/scan-state',
-          },
-          {
-            to: '/zkapps',
-            from: '/architecture/snapps',
-          },
-          {
-            to: '/zkapps',
-            from: '/snapps',
-          },
-          {
-            to: '/node-developers/code-review-guidelines',
-            from: '/node-developers/code-reviews',
-          },
-          {
-            to: '/about-mina/consensus',
-            from: '/architecture/consensus',
-          },
-          {
-            to: '/zkapps/tutorials/anonymous-message-board',
-            from: '/zkapps/tutorials',
-          },
-          {
-            to: '/zkapps/tutorials/anonymous-message-board',
-            from: '/zkapps/simple-anonymous-message-board-tutorial',
-          },
-          {
-            to: '/node-operators/snark-workers',
-            from: '/architecture/snark-workers',
-          },
-          {
-            to: '/node-operators/time-locked-accounts',
-            from: '/architecture/timelock',
-          },
-          {
-            to: '/node-operators/getting-started',
-            from: '/architecture',
-          },
-          {
-            to: '/node-operators/getting-started',
-            from: '/node-operators',
-          },
-          {
-            to: '/node-operators/getting-started',
-            from: '/advanced',
-          },
-          {
-            to: '/node-operators/foundation-delegation-program',
-            from: '/node-operators/delegation',
-          },
-          {
-            to: '/node-developers/contributing',
-            from: '/contributing',
-          },
-          {
-            to: '/node-developers/repository-structure',
-            from: '/node-developers/directory-structure',
-          },
-          {
-            to: '/node-developers/bip44',
-            from: '/node-developers/bip44-information',
-          },
-          {
-            to: '/node-operators/generating-a-keypair',
-            from: '/keypair',
-          },
-          {
-            to: '/node-operators/connecting-to-the-network',
-            from: '/connecting',
-          },
-          {
-            to: '/node-operators/staking-and-snarking',
-            from: '/staking',
-          },
-          {
-            to: '/node-operators/mina-cli-reference',
-            from: '/cli-reference',
-          },
-          {
-            to: '/node-operators/staking-service-guidelines',
-            from: '/advanced/staking-service-guidelines',
-          },
-          {
-            to: '/node-operators/staking-and-snarking',
-            from: '/advanced/using-mina/staking',
-          },
-          {
-            to: '/participate/bugs-and-feature-requests',
-            from: '/participate/reporting',
-          },
-          {
-            to: '/glossary',
-            from: '/mina-glossary',
-          },
-          {
-            to: '/node-operators/querying-data',
-            from: '/node-operators/operating-for-data',
-          },
-          {
-            to: '/node-operators/mina-cli-reference',
-            from: '/node-operators/cli-reference',
-          },
-          {
-            to: '/node-operators/uptime-tracking-system',
-            from: '/node-operators/uptime-system',
-          },
-          {
-            to: '/node-operators/connecting-to-devnet',
-            from: '/node-operators/connecting-devnet',
-          },
-          {
-            to: '/node-operators/hardforks',
-            from: '/node-operators/hardfork',
-          },
-          {
-            to: '/node-operators/ledger-hardware-wallet',
-            from: '/node-operators/ledger-app-mina',
-          },
-          {
-            to: '/node-operators/time-locked-accounts',
-            from: '/node-operators/timelock',
-          },
-          {
-            to: '/node-operators/lifecycle-of-a-payment',
-            from: '/node-operators/lifecycle-payment',
-          },
-          {
-            to: '/node-operators/generating-a-keypair',
-            from: '/node-operators/keypair',
-          },
-          {
-            to: '/node-operators/connecting-to-the-network',
-            from: '/node-operators/connecting',
-          },
-          {
-            to: '/node-operators/sending-a-payment',
-            from: '/node-operators/send-payment',
-          },
-          {
-            to: '/node-operators/staking-and-snarking',
-            from: '/node-operators/staking',
-          },
-          {
-            to: '/exchange-operators/faq',
-            from: '/exchange-operators/exchange-faq',
-          },
+      [
+        "@docusaurus/plugin-client-redirects",
+        {
+          redirects: [
+            // /docs/oldDoc -> /docs/newDoc
+            {
+              to: "/about-mina",
+              from: "/about-mina/overview",
+            },
+            {
+              to: "/node-operators/scan-state",
+              from: "/architecture/scan-state",
+            },
+            {
+              to: "/zkapps",
+              from: "/architecture/snapps",
+            },
+            {
+              to: "/zkapps",
+              from: "/snapps",
+            },
+            {
+              to: "/node-developers/code-review-guidelines",
+              from: "/node-developers/code-reviews",
+            },
+            {
+              to: "/about-mina/consensus",
+              from: "/architecture/consensus",
+            },
+            {
+              to: "/zkapps/tutorials/anonymous-message-board",
+              from: "/zkapps/tutorials",
+            },
+            {
+              to: "/zkapps/tutorials/anonymous-message-board",
+              from: "/zkapps/simple-anonymous-message-board-tutorial",
+            },
+            {
+              to: "/node-operators/snark-workers",
+              from: "/architecture/snark-workers",
+            },
+            {
+              to: "/node-operators/time-locked-accounts",
+              from: "/architecture/timelock",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/architecture",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/node-operators",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/advanced",
+            },
+            {
+              to: "/node-operators/foundation-delegation-program",
+              from: "/node-operators/delegation",
+            },
+            {
+              to: "/node-developers/contributing",
+              from: "/contributing",
+            },
+            {
+              to: "/node-developers/repository-structure",
+              from: "/node-developers/directory-structure",
+            },
+            {
+              to: "/node-developers/bip44",
+              from: "/node-developers/bip44-information",
+            },
+            {
+              to: "/node-operators/generating-a-keypair",
+              from: "/keypair",
+            },
+            {
+              to: "/node-operators/connecting-to-the-network",
+              from: "/connecting",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/staking",
+            },
+            {
+              to: "/node-operators/mina-cli-reference",
+              from: "/cli-reference",
+            },
+            {
+              to: "/node-operators/staking-service-guidelines",
+              from: "/advanced/staking-service-guidelines",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/advanced/using-mina/staking",
+            },
+            {
+              to: "/participate/bugs-and-feature-requests",
+              from: "/participate/reporting",
+            },
+            {
+              to: "/glossary",
+              from: "/mina-glossary",
+            },
+            {
+              to: "/node-operators/querying-data",
+              from: "/node-operators/operating-for-data",
+            },
+            {
+              to: "/node-operators/mina-cli-reference",
+              from: "/node-operators/cli-reference",
+            },
+            {
+              to: "/node-operators/uptime-tracking-system",
+              from: "/node-operators/uptime-system",
+            },
+            {
+              to: "/node-operators/connecting-to-devnet",
+              from: "/node-operators/connecting-devnet",
+            },
+            {
+              to: "/node-operators/hardforks",
+              from: "/node-operators/hardfork",
+            },
+            {
+              to: "/node-operators/ledger-hardware-wallet",
+              from: "/node-operators/ledger-app-mina",
+            },
+            {
+              to: "/node-operators/time-locked-accounts",
+              from: "/node-operators/timelock",
+            },
+            {
+              to: "/node-operators/lifecycle-of-a-payment",
+              from: "/node-operators/lifecycle-payment",
+            },
+            {
+              to: "/node-operators/generating-a-keypair",
+              from: "/node-operators/keypair",
+            },
+            {
+              to: "/node-operators/connecting-to-the-network",
+              from: "/node-operators/connecting",
+            },
+            {
+              to: "/node-operators/sending-a-payment",
+              from: "/node-operators/send-payment",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/node-operators/staking",
+            },
+            {
+              to: "/exchange-operators/faq",
+              from: "/exchange-operators/exchange-faq",
+            },
 
-
-          // // Redirect from multiple old paths to the new path
-          // {
-          //   to: '/docs/newDoc2',
-          //   from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
-          // },
+            // // Redirect from multiple old paths to the new path
+            // {
+            //   to: '/docs/newDoc2',
+            //   from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
+            // },
           ],
-        // createRedirects(existingPath) {
-        //   if (existingPath.includes('/snapps')) {
-        //     // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
-        //     return [
-        //       existingPath.replace('/zkapps', '/snapps'),
-        //     ];
-        //   }
-        //   return undefined; // Return a falsy value: no redirect created
-        // },
+          // createRedirects(existingPath) {
+          //   if (existingPath.includes('/snapps')) {
+          //     // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
+          //     return [
+          //       existingPath.replace('/zkapps', '/snapps'),
+          //     ];
+          //   }
+          //   return undefined; // Return a falsy value: no redirect created
+          // },
         },
       ],
     ],
-
 
     presets: [
       [
