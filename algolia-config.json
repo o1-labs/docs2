@@ -1,7 +1,7 @@
 {
   "index_name": "mina",
-  "start_urls": ["https://docs2-seven.vercel.app/"],
-  "sitemap_urls": ["https://docs2-seven.vercel.app/sitemap.xml"],
+  "start_urls": ["https://docs.minaprotocol.com"],
+  "sitemap_urls": ["https://docs.minaprotocol.com/sitemap.xml"],
   "sitemap_alternate_links": true,
   "js_render": true,
   "stop_urls": ["/tests"],

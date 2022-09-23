@@ -11,7 +11,7 @@ const katex = require("rehype-katex");
   module.exports = {
     title: "Mina Documentation",
     tagline: "Website for documentation about Mina Protocol",
-    url: "https://your-docusaurus-test-site.com",
+    url: "https://docs.minaprotocol.com",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
