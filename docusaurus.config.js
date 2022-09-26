@@ -1,6 +1,4 @@
 require("dotenv").config();
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const math = require("remark-math");
 const katex = require("rehype-katex");
@@ -22,7 +20,6 @@ const katex = require("rehype-katex");
 
     i18n: {
       defaultLocale: "en",
-      locales: ["en", "fr", "ru"],
     },
 
     plugins: [
@@ -31,7 +28,6 @@ const katex = require("rehype-katex");
         "@docusaurus/plugin-client-redirects",
         {
           redirects: [
-            // /docs/oldDoc -> /docs/newDoc
             {
               to: "/about-mina",
               from: "/about-mina/overview",
@@ -184,22 +180,7 @@ const katex = require("rehype-katex");
               to: "/exchange-operators/faq",
               from: "/exchange-operators/exchange-faq",
             },
-
-            // // Redirect from multiple old paths to the new path
-            // {
-            //   to: '/docs/newDoc2',
-            //   from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
-            // },
           ],
-          // createRedirects(existingPath) {
-          //   if (existingPath.includes('/snapps')) {
-          //     // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
-          //     return [
-          //       existingPath.replace('/zkapps', '/snapps'),
-          //     ];
-          //   }
-          //   return undefined; // Return a falsy value: no redirect created
-          // },
         },
       ],
     ],
