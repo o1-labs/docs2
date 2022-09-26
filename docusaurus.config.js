@@ -20,6 +20,7 @@ const katex = require("rehype-katex");
 
     i18n: {
       defaultLocale: "en",
+      locales: ["en"],
     },
 
     plugins: [
