@@ -285,11 +285,11 @@ A detailed explanation of the problem, and how actions can provide the solution,
 
 We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) which demonstrates this pattern. Leveraging `Reducer.reduce`, it takes only about 30 lines of code to build a zkApp which handles concurrent state updates.
 
-### Custom Tokens
+## Custom Tokens
 
 Mina Protocol supports the creation of custom fungible tokens. Custom fungible tokens play a significant role in decentralized applications and allow zkApps to create tokens that can be used in the zkApp ecosystem.
 
-Custom tokens are typically governed by zkApp accounts, where zkApp accounts can mint/burn tokens and facilitate transfers of two separate accounts. You can interact with custom tokens using the SnarkyJS API. SnarkyJS contains built-in methods to send, burn, and authorize transactions between accounts.
+Custom tokens are typically governed by zkApp accounts, where zkApp accounts can mint/burn tokens and facilitate transfers between two separate accounts. You can interact with custom tokens using the SnarkyJS API. SnarkyJS contains built-in methods to send, burn, and authorize transactions between accounts.
 
 :::info
 
@@ -299,13 +299,13 @@ The custom token API is currently under the `experimental` namespace. This means
 
 ##### Custom Token API
 
-This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS API.
+This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
 
 ##### Minting
 
-Minting generates new tokens whereby the zkApp updates the balance of some new account denoted with the newly created token. Minting tokens can be sent to any existing account in the ledger.
+Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
 
-To mint new tokens using a zkApp, we access the `this.experimental.token` property on our SmartContract class. See the example below of how a zkApp can mint tokens to another account:
+To mint new tokens using a zkApp, we access the `this.experimental.token` property on our `SmartContract` class. See the example below of how a zkApp can mint tokens to another account:
 
 ```ts
 class MintExample extends SmartContract {
@@ -376,7 +376,7 @@ If you are writing your zkApp to interact with custom tokens, you should underst
 
 ##### Token Id
 
-Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token identifier.
+Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token id.
 
 Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp, you can use the `this.experimental.token.id` property.
 
@@ -387,7 +387,7 @@ If an existing account receives a transaction that is specified by a custom toke
 
 Token accounts are specific for each type of custom token, meaning that a single public key can have many different types of token accounts.
 
-To create a token account for a specified custom token, a token account is automatically created for that public key whenever an existing account receives a transaction denoted with a custom token.
+To create a token account for a specified custom token, a token account is automatically created for that public key whenever an existing account receives a transaction denoted with a custom token." to "A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
 
 :::info
 
