@@ -172,3 +172,27 @@ from NPM within their browser-extension wallet.
    installed in order to interact with your zkApp. Once installed, `window.mina`
    will automatically become available in the user's browser environment. Your
    zkApp will then use this object to interact with the wallet.
+2. Get accounts - To fetch a user's list of Mina accounts, you can use the
+   `getAccounts()` method.
+
+```ts
+let accounts
+try {
+  // accounts is an array of string Mina addresses
+  accounts = await window.mina.requestAccounts()
+} catch (err) {
+  // If the user has a wallet installed but has not created an account, an
+  // exception will be thrown. Consider showing "not connected" in your UI.
+  console.log(err.message)
+}
+```
+
+This can be useful to indicate that the user's wallet is successfully
+connected to your zkApp.
+
+<img src="/static/img/docs-images/Mina_Provider_Header.png" width="100%" />
+
+```ts
+// Show first 6 and last 4 characters of user's Mina account.
+const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`
+```
