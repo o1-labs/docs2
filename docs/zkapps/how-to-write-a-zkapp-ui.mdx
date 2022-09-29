@@ -31,9 +31,9 @@ This page is a work in progress.
 The `index.ts` file is the entry point of your project. This file only imports all smart contract classes you want access to, and exports them. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
 
 ```ts
-import { YourSmartContract } from './YourSmartContract.js'
+import { YourSmartContract } from './YourSmartContract.js';
 
-export { YourSmartContract }
+export { YourSmartContract };
 ```
 
 #### Local development
@@ -117,7 +117,6 @@ onMounted(async () => {
 To load SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
 and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers as described below. These enable SnarkyJS' use of [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), which SnarkyJS relies on to enable important WebAssembly features.
 
-
 - `Cross-Origin-Opener-Policy` must be set to `same-origin`.
 - `Cross-Origin-Embedder-Policy` must be set to `require-corp`.
 
@@ -173,14 +172,14 @@ from NPM within their browser-extension wallet.
    `getAccounts()` method.
 
 ```ts
-let accounts
+let accounts;
 try {
   // accounts is an array of string Mina addresses
-  accounts = await window.mina.requestAccounts()
+  accounts = await window.mina.requestAccounts();
 } catch (err) {
   // If the user has a wallet installed but has not created an account, an
   // exception will be thrown. Consider showing "not connected" in your UI.
-  console.log(err.message)
+  console.log(err.message);
 }
 ```
 
@@ -191,7 +190,7 @@ connected to your zkApp.
 
 ```ts
 // Show first 6 and last 4 characters of user's Mina account.
-const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`
+const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
 
 3. Sending a transaction - After your user interacts with your zkApp, you can
@@ -200,11 +199,11 @@ const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`
 ```ts
 try {
   let tx = await Mina.transaction(() => {
-    const YourSmartContractInstance = new YourSmartContract(zkAppAddress)
-    YourSmartContractInstance.foo()
-  })
+    const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
+    YourSmartContractInstance.foo();
+  });
 
-  await tx.prove()
+  await tx.prove();
 
   let { hash } = await window.mina.sendTransaction({
     transaction: tx.toJSON(),
@@ -212,11 +211,11 @@ try {
       fee: '',
       memo: 'zk',
     },
-  })
+  });
 
-  console.log(hash)
+  console.log(hash);
 } catch (err) {
-  console.log(err.message)
+  console.log(err.message);
 }
 ```
 
