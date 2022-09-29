@@ -203,7 +203,7 @@ const katex = require("rehype-katex");
             customCss: [require.resolve("./src/scss/custom.scss")],
           },
           gtag: {
-            trackingID: "G-8TE19MGNNR",
+            trackingID: "GTM-MJBCZX9",
           },
         }),
       ],
