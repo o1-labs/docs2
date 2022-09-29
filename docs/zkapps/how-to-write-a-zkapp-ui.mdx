@@ -156,7 +156,7 @@ To see more details on deploying to Cloudflare Pages, [see their documentation o
 
 ### Connecting your zkApp with a user's wallet
 
-<Alert kind="info">
+:::info
 
 Currently, only Auro Wallet's Chrome extension supports zkApp transactions. We
 anticipate other wallets to add support over time, which they can do by using
@@ -164,7 +164,7 @@ the <a
 href="https://www.npmjs.com/package/auro-web3-provider">`auro-web3-provider`</a>
 from NPM within their browser-extension wallet.
 
-</Alert>
+:::
 
 1. Install <a
    href="https://chrome.google.com/webstore/detail/auro-walletmina-protocol/cnmamaachppnkjgnildpdmkaakejnhae">Auro
@@ -222,3 +222,22 @@ try {
   console.log(err.message)
 }
 ```
+
+:::tip
+
+If an error occurs when sending the transaction, you may want to show the error
+message in your UI to the user.
+
+:::
+
+You will receive a transaction ID as soon as the Mina network has received the
+proposed transaction. But keep in mind that this does not guarantee that
+the network will accept the transaction into an upcoming block.
+
+:::tip
+
+For additional details about the Mina Provider, see the full <a
+href="https://docs.aurowallet.com/general/reference/api-reference/mina-provider-api
+">reference docs</a>.
+
+:::
