@@ -196,3 +196,29 @@ connected to your zkApp.
 // Show first 6 and last 4 characters of user's Mina account.
 const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`
 ```
+
+3. Sending a transaction - After your user interacts with your zkApp, you can
+   sign and send the transaction using `sendTransaction()`.
+
+```ts
+try {
+  let tx = await Mina.transaction(() => {
+    const YourSmartContractInstance = YourSmartContractInstance(zkAppAddress)
+    YourSmartContractInstance.foo()
+  })
+
+  await tx.prove()
+
+  let { hash } = await window.mina.sendTransaction({
+    transaction: tx.toJSON(),
+    feePayer: {
+      fee: '',
+      memo: 'zk',
+    },
+  })
+
+  console.log(hash)
+} catch (err) {
+  console.log(err.message)
+}
+```
