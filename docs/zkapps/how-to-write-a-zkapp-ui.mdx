@@ -31,11 +31,10 @@ This page is a work in progress.
 The `index.ts` file is the entry point of your project. This file only imports all smart contract classes you want access to, and exports them. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
 
 ```ts
-import { YourSmartContract } from "./YourSmartContract.js";
+import { YourSmartContract } from './YourSmartContract.js'
 
-export { YourSmartContract };
+export { YourSmartContract }
 ```
-
 
 #### Local development
 
@@ -88,26 +87,26 @@ loading SnarkyJS.
 
 ```ts
 useEffect(() => {
-  (async () => {
-    const { YourSmartContract } = await import("your-package-name");
-  })();
-}, []);
+  ;(async () => {
+    const { YourSmartContract } = await import('your-package-name')
+  })()
+}, [])
 ```
 
 **Loading your contract with Svelte**
 
 ```ts
 onMount(async () => {
-  const { YourSmartContract } = await import("your-package-name");
-});
+  const { YourSmartContract } = await import('your-package-name')
+})
 ```
 
 **Loading your contract with Vue**
 
 ```ts
 onMounted(async () => {
-  const { YourSmartContract } = await import("your-package-name");
-});
+  const { YourSmartContract } = await import('your-package-name')
+})
 ```
 
 #### Enabling the COOP and COEP headers
@@ -154,3 +153,22 @@ To see more details on deploying to Cloudflare Pages, [see their documentation o
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: require-corp
 ```
+
+### Connecting your zkApp with a user's wallet
+
+<Alert kind="info">
+
+Currently, only Auro Wallet's Chrome extension supports zkApp transactions. We
+anticipate other wallets to add support over time, which they can do by using
+the <a
+href="https://www.npmjs.com/package/auro-web3-provider">`auro-web3-provider`</a>
+from NPM within their browser-extension wallet.
+
+</Alert>
+
+1. Install <a
+   href="https://chrome.google.com/webstore/detail/auro-walletmina-protocol/cnmamaachppnkjgnildpdmkaakejnhae">Auro
+   Wallet for Chrome</a>. Users of your zkApp will need to have this wallet
+   installed in order to interact with your zkApp. Once installed, `window.mina`
+   will automatically become available in the user's browser environment. Your
+   zkApp will then use this object to interact with the wallet.
