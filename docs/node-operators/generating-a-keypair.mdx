@@ -1,0 +1,148 @@
+---
+title: Generating a Keypair
+hide_title: true
+---
+
+:::note
+
+A new version of Mina Docs is coming soon! This page will be rewritten.
+
+:::
+
+# Generating a Keypair
+
+In order to create a keypair for Mainnet or to fully participate in a Mina test network, the first step is to generate a Keypair, which consists of a Public Key and a Private Key. Currently there are two supported tools for generating keypairs mina-generate-keypair and ledger-app-mina. We also have a tool for validating that your private key is created properly.
+
+Note that you may want to generate more than one keypair. For example, if you'd like to run a block producer most securely, you'll want a [hot wallet / cold wallet block production setup](/node-operators/hot-cold-block-production).
+
+## Methods
+
+### mina-generate-keypair
+
+We've created a simple command-line utility called `mina-generate-keypair`. This is the simplest method and instructions can be found below.
+
+### Ledger Hardware Wallet
+
+You can use your [Ledger Nano S](https://www.ledger.com/) hardware wallet to securely store your Mina private keys. We are in the process of an independent security audit which currently has found no vulnerabilities, and development is nearly completed. Please see our [ledger-app-mina documentation](ledger-hardware-wallet) to get started with this tool.
+
+### Client SDK
+
+We've also created a client SDK that is able to generate key pairs and sign transactions. Please note that this method is unadvised and should only be used by experienced security professionals. Please use our `mina-generate-keypair tool instead for creating key pairs.
+See our [client SDK documentation](#client-sdk) for more information.
+
+<br />
+
+:::caution
+
+Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
+
+:::
+
+<br />
+
+## Using mina-generate-keypair
+
+To simplify the process of creating a keypair, we've created a simple command-line utility called `mina-generate-keypair`. The `mina-generate-keypair` tool has easy to use functionality to create your own Keypair to start participating in the Mina network. Please see below to see how to install and use on your local system.
+
+## Installation
+
+We support several different operating systems for the `mina-generate-keypair` tool. Follow the instructions below to install the tool onto your system.
+
+### macOS
+
+If you are using macOS please install Docker and follow the docker based instructions below.
+
+### Ubuntu 18.04 / Debian 9
+
+After [adding the Mina repo](/node-operators/getting-started#ubuntu-1804--debian-9) you can simply run the following command.
+
+```
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
+sudo apt-get update
+sudo apt-get install mina-generate-keypair=1.3.0-9b0369c
+```
+
+Check that keygen tool installed correctly by running `mina-generate-keypair -version`. The output should read `Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master `.
+
+### Windows / Other Platforms
+
+Install Docker and follow the Docker-based instructions in step 3b. below.
+
+## Usage
+
+Creating a keypair is simple and is accomplished in a few short steps.
+
+1. First make sure you have a folder on your system where you can store the key files. We recommend using the `~/keys` folder.
+
+```
+mkdir ~/keys
+```
+
+2. Next, ensure the permissions are set properly this folder, this prevents unwanted processes from accessing these files.
+
+```
+chmod 700 ~/keys
+```
+
+3. Generate a key using either the instructions in Step 3a on Debian/Ubuntu, or Step 3b in Docker
+
+<br />
+
+:::caution
+
+Make sure to set a new and secure password for the following commands. Mina will never ask you for this password, and you should not share it with anyone.
+
+:::
+
+<br />
+
+3a. In Ubuntu/Debian: Generate your keys using the `mina-generate-keypair` command. When prompted, type in the password you intend to use to secure this key. If is set, the tool will use the password from the MINA_PRIVKEY_PASS environment variable instead of prompting you. <em>Do NOT forget this password.</em>
+
+```
+mina-generate-keypair --privkey-path ~/keys/my-wallet
+```
+
+3b. In Docker on Windows/MacOS/Linux: Generate your keys using the `minaprotocol/generate-keypair` docker image. When prompted, type in the password you intend to use to secure this key. <em>Do NOT forget this password.</em>
+
+```
+cd ~
+docker run --interactive --tty --rm --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.3.0-9b0369c --privkey-path /keys/my-wallet
+```
+
+This will create two files on your system, `~/keys/my-wallet` which contains the encrypted private key and `~/keys/my-wallet.pub` which contains the public key in plain text. Please store the private key file and password you used in a secure place, such as a password manager.
+
+<br />
+
+:::caution
+
+Never give out your private key and make sure they are stored safely. If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and will lose your account funds. Always give out your public keys instead. Mina will never ask you for your private keys.
+
+:::
+
+<br />
+
+4. Finally, ensure the permissions are set properly for the private key file, this prevents unwanted processes from accessing it.
+
+```
+chmod 600 ~/keys/my-wallet
+```
+
+## Validate your private key
+
+Now that you've created your key -- you'll want to validate that it works. It's sufficient to verify that you can sign a transaction. You can verify this using the `mina-validate-keypair` tool.
+
+On Linux run the following command:
+
+```
+mina-validate-keypair --privkey-path <path-to-the-private-key-file>
+```
+
+If you are using Docker run the following command:
+
+```
+docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.3.0-9b0369c --privkey-path /keys/my-wallet
+```
+
+## Next steps
+
+Now that we have created our keypair, we can finally [connect to the network](connecting-to-the-network) or share your public key.

@@ -100,7 +100,7 @@ function Footer(): JSX.Element | null {
                   <Link to="/">Documentation</Link>
                 </li>
                 <li>
-                  <Link to="/zkapps/overview">Write a zkApp</Link>
+                  <Link to="/zkapps">Write a zkApp</Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/node-operators">

@@ -1,6 +1,4 @@
 require("dotenv").config();
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const math = require("remark-math");
 const katex = require("rehype-katex");
@@ -11,20 +9,182 @@ const katex = require("rehype-katex");
   module.exports = {
     title: "Mina Documentation",
     tagline: "Website for documentation about Mina Protocol",
-    url: "https://your-docusaurus-test-site.com",
+    url: "https://docs.minaprotocol.com",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.ico",
     organizationName: "o1-labs",
     projectName: "docs2",
+    trailingSlash: false,
 
     i18n: {
       defaultLocale: "en",
-      locales: ["en", "fr", "ru"],
+      locales: ["en"],
     },
 
-    plugins: ["docusaurus-plugin-sass"],
+    plugins: [
+      "docusaurus-plugin-sass",
+      [
+        "@docusaurus/plugin-client-redirects",
+        {
+          redirects: [
+            {
+              to: "/about-mina",
+              from: "/about-mina/overview",
+            },
+            {
+              to: "/node-operators/scan-state",
+              from: "/architecture/scan-state",
+            },
+            {
+              to: "/zkapps",
+              from: "/architecture/snapps",
+            },
+            {
+              to: "/zkapps",
+              from: "/snapps",
+            },
+            {
+              to: "/node-developers/code-review-guidelines",
+              from: "/node-developers/code-reviews",
+            },
+            {
+              to: "/about-mina/consensus",
+              from: "/architecture/consensus",
+            },
+            {
+              to: "/zkapps/tutorials/anonymous-message-board",
+              from: "/zkapps/tutorials",
+            },
+            {
+              to: "/zkapps/tutorials/anonymous-message-board",
+              from: "/zkapps/simple-anonymous-message-board-tutorial",
+            },
+            {
+              to: "/node-operators/snark-workers",
+              from: "/architecture/snark-workers",
+            },
+            {
+              to: "/node-operators/time-locked-accounts",
+              from: "/architecture/timelock",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/architecture",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/node-operators",
+            },
+            {
+              to: "/node-operators/getting-started",
+              from: "/advanced",
+            },
+            {
+              to: "/node-operators/foundation-delegation-program",
+              from: "/node-operators/delegation",
+            },
+            {
+              to: "/node-developers/contributing",
+              from: "/contributing",
+            },
+            {
+              to: "/node-developers/repository-structure",
+              from: "/node-developers/directory-structure",
+            },
+            {
+              to: "/node-developers/bip44",
+              from: "/node-developers/bip44-information",
+            },
+            {
+              to: "/node-operators/generating-a-keypair",
+              from: "/keypair",
+            },
+            {
+              to: "/node-operators/connecting-to-the-network",
+              from: "/connecting",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/staking",
+            },
+            {
+              to: "/node-operators/mina-cli-reference",
+              from: "/cli-reference",
+            },
+            {
+              to: "/node-operators/staking-service-guidelines",
+              from: "/advanced/staking-service-guidelines",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/advanced/using-mina/staking",
+            },
+            {
+              to: "/participate/bugs-and-feature-requests",
+              from: "/participate/reporting",
+            },
+            {
+              to: "/glossary",
+              from: "/mina-glossary",
+            },
+            {
+              to: "/node-operators/querying-data",
+              from: "/node-operators/operating-for-data",
+            },
+            {
+              to: "/node-operators/mina-cli-reference",
+              from: "/node-operators/cli-reference",
+            },
+            {
+              to: "/node-operators/uptime-tracking-system",
+              from: "/node-operators/uptime-system",
+            },
+            {
+              to: "/node-operators/connecting-to-devnet",
+              from: "/node-operators/connecting-devnet",
+            },
+            {
+              to: "/node-operators/hardforks",
+              from: "/node-operators/hardfork",
+            },
+            {
+              to: "/node-operators/ledger-hardware-wallet",
+              from: "/node-operators/ledger-app-mina",
+            },
+            {
+              to: "/node-operators/time-locked-accounts",
+              from: "/node-operators/timelock",
+            },
+            {
+              to: "/node-operators/lifecycle-of-a-payment",
+              from: "/node-operators/lifecycle-payment",
+            },
+            {
+              to: "/node-operators/generating-a-keypair",
+              from: "/node-operators/keypair",
+            },
+            {
+              to: "/node-operators/connecting-to-the-network",
+              from: "/node-operators/connecting",
+            },
+            {
+              to: "/node-operators/sending-a-payment",
+              from: "/node-operators/send-payment",
+            },
+            {
+              to: "/node-operators/staking-and-snarking",
+              from: "/node-operators/staking",
+            },
+            {
+              to: "/exchange-operators/faq",
+              from: "/exchange-operators/exchange-faq",
+            },
+          ],
+        },
+      ],
+    ],
 
     presets: [
       [
@@ -41,6 +201,9 @@ const katex = require("rehype-katex");
           },
           theme: {
             customCss: [require.resolve("./src/scss/custom.scss")],
+          },
+          gtag: {
+            trackingID: "G-8TE19MGNNR",
           },
         }),
       ],
@@ -80,12 +243,12 @@ const katex = require("rehype-katex");
             {
               type: "html",
               position: "right",
-              value: `<a href="https://bit.ly/MinaDiscord"><img class="navbar-icon" src="/svg/socials/discord_dark_24x24.svg"/></a>`,
+              value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
             },
             {
               type: "html",
               position: "right",
-              value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
+              value: `<a href="https://bit.ly/MinaDiscord"><img class="navbar-icon" src="/svg/socials/discord_dark_24x24.svg"/></a>`,
             },
           ],
         },
@@ -97,8 +260,7 @@ const katex = require("rehype-katex");
         },
 
         prism: {
-          theme: darkCodeTheme,
-          darkTheme: darkCodeTheme,
+          theme: require("prism-react-renderer/themes/oceanicNext"),
         },
 
         colorMode: {

@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     title: "Deploy your first zkApp",
     image: "/img/homepage/zkapp_developers.png",
     buttonText: "zkApp Developers",
-    buttonLink: "/zkapps/overview",
+    buttonLink: "/zkapps",
     description: (
       <>
         {"Learn "}
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
           how zero knowledge smart contracts work
         </Link>
         {" and "}
-        <Link to="/zkapps/how-to-write-zkapp" className={styles.minaLink}>
+        <Link to="/zkapps/how-to-write-a-zkapp" className={styles.minaLink}>
           how to write your own using TypeScript.
         </Link>
       </>
@@ -43,15 +43,15 @@ const FeatureList: FeatureItem[] = [
     title: "About Mina",
     image: "/svg/homepage/about_mina.svg",
     buttonText: "About Mina",
-    buttonLink: "/about-mina/overview",
+    buttonLink: "/about-mina",
     description: (
       <>
         {"Learn "}
-        <Link to="/about-mina/overview" className={styles.minaLink}>
+        <Link to="/about-mina" className={styles.minaLink}>
           about Mina
         </Link>
         ,
-        <Link to="/about-mina/zero-knowledge-proofs" className={styles.minaLink}>
+        <Link to="/about-mina/what-are-zero-knowledge-proofs" className={styles.minaLink}>
           {" "}
           zero knowledge proofs{" "}
         </Link>
@@ -71,11 +71,11 @@ const FeatureList: FeatureItem[] = [
     title: "Using Mina",
     image: "/svg/homepage/using_mina.svg",
     buttonText: "Using Mina",
-    buttonLink: "/using-mina/install-wallet",
+    buttonLink: "/using-mina/install-a-wallet",
     description: (
       <>
         Where to get MINA,{" "}
-        <Link to="/using-mina/install-wallet" className={styles.minaLink}>install a wallet,{" "}
+        <Link to="/using-mina/install-a-wallet" className={styles.minaLink}>install a wallet,{" "}
         </Link> & more.
       </>
     ),
@@ -84,7 +84,7 @@ const FeatureList: FeatureItem[] = [
     title: "Run a Node",
     image: "/svg/homepage/node_operators.svg",
     buttonText: "Node Operators",
-    buttonLink: "/node-operators/overview",
+    buttonLink: "/node-operators/getting-started",
 
     description: (
       <>
@@ -97,8 +97,7 @@ const FeatureList: FeatureItem[] = [
     title: "Participate",
     image: "/svg/homepage/participate.svg",
     buttonText: "Learn More",
-    buttonLink: "/participate/grants-and-programs",
-
+    buttonLink: "/participate/online-communities",
     description: (
       <>
         <Link to="/participate/online-communities" className={styles.minaLink}>

@@ -1,15 +1,16 @@
 ---
-title: How zkApps work
+title: How zkApps Work
+hide_title: true
 ---
-
-# How zkApps work
 
 :::info
 
 Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley QANet.
+zkApps can now be deployed to Berkeley Testnet.
 
 :::
+
+# How zkApps Work
 
 :::note
 zkApps run in the latest versions of <a href="https://www.google.com/chrome/index.html">Chrome</a>, <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>, <a href="https://www.microsoft.com/edge">Edge</a>, and <a href="https://brave.com/">Brave</a> currently. We intend to add support for Safari in the future.
@@ -18,12 +19,12 @@ zkApps run in the latest versions of <a href="https://www.google.com/chrome/inde
 
 <br />
 
-zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](./how-to-write-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
+zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](how-to-write-a-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
 
 A “zkApp” consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.
 
 <figure>
-  <img src="/img/3_zkapps_Structure.jpg" width="100%" />
+  <img src="/img/3_zkApps_Structure.jpg" width="100%" />
   <figcaption>zkApps consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.</figcaption>
 </figure>
 
@@ -102,7 +103,7 @@ Developers usually build a UI to allow users to interact with the smart contract
 
 Typically, this is a static website deployed to a host of the developer’s choosing. We recommend web hosts that offer a global CDN to ensure the best user experience.
 
-Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the [how to write a zkApp](./how-to-write-zkapp) page, we will go into more detail.
+Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the [how to write a zkApp](how-to-write-a-zkapp) page, we will go into more detail.
 
 <img src="/img/8_zkApps_DeploySmartContract.jpg" width="95%" />
 
@@ -160,8 +161,8 @@ For larger data, you may want to consider storing the root of a [Merkle tree](ht
 
 When the zkApp runs in a user’s web browser, it may insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction (i.e. this proof & state were valid so the updates are allowed), then the zkApp transaction would update the root of the Merkle tree that is stored on chain.
 
-<img src="/img/9_zkapps_Off-Chain_State.jpg" width="95%" />
+<img src="/img/9_zkApps_Off-Chain_State.jpg" width="95%" />
 
 ### Keep going
 
-On the next page, we’ll dive into [how to write a zkApp](./how-to-write-zkapp)!
+On the next page, we’ll dive into [how to write a zkApp](how-to-write-a-zkapp)!

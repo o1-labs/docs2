@@ -42,6 +42,10 @@ We must use `!important` at times to override some default styles.
   background: url("@site/static/svg/common/chevron_up.svg");
 }
 
+.menu__link--active {
+  background-color: inherit !important;
+}
+
 .menu {
   padding-left: var(--ifm-menu-link-padding-horizontal);
   @media screen and (min-width: variables.$screen-md) {
@@ -88,11 +92,18 @@ We must use `!important` at times to override some default styles.
 }
 
 .menu__link {
-  line-height: 2rem;
+  line-height: 1.5rem;
 
   &:hover,
   & > a {
     transition: none !important;
+    background-color: variables.$mina-gray-light;
+  }
+}
+
+.menu__list-item-collapsible {
+  &:hover {
+    background-color: variables.$mina-gray-light;
   }
 }
 

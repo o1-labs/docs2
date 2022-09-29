@@ -1,6 +1,13 @@
 ---
 title: Advanced SnarkyJS
+hide_title: true
 ---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
 
 # Advanced SnarkyJS
 
@@ -10,7 +17,7 @@ This page explores additional topics that require some familiarity with building
 
 ## Using on-chain values
 
-We already saw how you can access the current [on-chain state](./how-to-write-zkapp) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+We already saw how you can access the current [on-chain state](how-to-write-a-zkapp#on-chain-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
 
 Just to give you an idea, here are two possible use cases:
 
@@ -127,11 +134,11 @@ If you try this, you'll see that SnarkyJS throws a helpful error reminding you t
 As an escape hatch, if you want to `get()` a value and are really sure you want to not constrain the on-chain value in any way,
 there's `assertNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
 
-<Alert kind="danger">
+:::danger
 
 `assertNothing()` should be rarely used and could cause security issues through unexpected behavior if used improperly. Be certain you know what you're doing before using this.
 
-</Alert>
+:::
 
 ## Events
 
@@ -187,7 +194,11 @@ class SmartContract {
 
 ## Actions and Reducer
 
-<Alert kind="info">Experimental. This API may change.</Alert>
+:::info
+
+Experimental. This API may change.
+
+:::
 
 Like events, **actions** are arbitrary information passed along with a zkApp transaction. However, actions give you an additional power: you can process previous actions in a smart contract! Under the hood, this is possible because we store a commitment to the history of dispatched actions on every account -- the **actionsHash**. It allows us to prove that the actions you process are, in fact, the actions that were dispatched to the same smart contract.
 
@@ -275,7 +286,7 @@ The above API is available now, but still marked as "Experimental". In the near 
 this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[][];
 ```
 
-Right now, `getActions` is available for [testing with `LocalBlockchain`](https://docs.minaprotocol.com/en/zkapps/how-to-test-a-zkapp).
+Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapps/how-to-test-a-zkapp).
 
 ### Actions for concurrent state updates
 
@@ -297,11 +308,11 @@ The custom token API is currently under the `experimental` namespace. This means
 
 :::
 
-##### Custom Token API
+### Custom Token API
 
 This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
 
-##### Minting
+### Minting
 
 Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
 
@@ -321,7 +332,7 @@ class MintExample extends SmartContract {
 
 In the snippet above, we define a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.experimental.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
 
-##### Burning
+### Burning
 
 Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. See the example below of how a zkApp can burn tokens of another account:
 
@@ -345,7 +356,7 @@ A zkApp cannot burn more tokens than the specified account has. If there is such
 
 :::
 
-##### Sending
+### Sending
 
 To send a custom token, use the `send` method available on `this.experimental.token`. See the example below of how a zkApp can authorize sending tokens between two accounts:
 
@@ -370,17 +381,17 @@ In the snippet above, we define a smart contract called `SendExample` with a met
 
 For a more comprehensive example of how to use custom tokens with a zkApp, please see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts)
 
-##### Understanding Important Terms
+### Understanding Important Terms
 
 If you are writing your zkApp to interact with custom tokens, you should understand the following essential terms:
 
-##### Token Id
+#### Token Id
 
 Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token id.
 
 Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp, you can use the `this.experimental.token.id` property.
 
-##### Token Accounts
+#### Token Accounts
 
 Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is instead specified by a public key _and_ token id.
 If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id will be created if it does not exist.
@@ -397,8 +408,197 @@ Suppose a token account is being created for the first time. In that case, an ac
 
 Aside from sending custom tokens, custom tokens can be minted and burned by a **token owner account**. A token owner account is the governing zkApp account for a specific custom token.
 
-##### Token Owner
+#### Token Owner
 
 A token owner is an account that creates, facilitates, and governs how a custom token is to be used. Concretely, the token owner is the account that created the custom token and is the only account that can mint and burn tokens.
 
 In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can authorize sending tokens between two accounts. If two accounts want to send tokens to each other, the token owner must authorize the transaction. The token owner can authorize the transaction either with a signature or proof.
+
+## Merkle trees
+
+:::info
+
+Experimental. This API may change.
+
+:::
+
+#### Referencing off-chain data
+
+We already learned that zkApps can only store a small amount of data on-chain, the reason for that is we want Mina to stay succinct and not become bloated.
+But some zkApps might require you to access more than what you can store on-chain in a zkApp account.
+But how can we achieve that? The answer is a Merkle tree! Merkle trees (or similar structures such as Verkle trees) allow us to _reference_ off-chain data by
+only storing one single hash on-chain!
+
+#### How does that work?
+
+Merkle trees are special binary trees in which every leaf (the nodes at the very bottom of the tree!) are cryptographic hashes of the underlying pieces of data and the internal nodes are labelled with the cryptographic hash of the concatenated labels (hashes) of its child nodes.
+
+By following this algorithm to the very top, we end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves. By doing so, we achieve that we can reference large amounts of data by only using one small hash! Another thing that Merkle trees provide is something called the witness (sometimes also called Merkle proof or Merkle path) - the witness is the path from one specific leaf node to the very top of the tree - to the root! Merkle witnesses are proofs of inclusion exists, they allow us to prove that one specific piece of data(an account in the ledger or the scores on a leaderboard) exists within the entire tree.
+
+#### How will that be useful for zkApps?
+
+We just learned that we can reference large amounts of off-chain data and prove inclusion of very specific parts of that data only with a small hash - the root - and something called a witness.
+
+When we want to use Merkle trees and reference off-chain data in our zkApps on Mina, we can simply store the root of the tree on-chain and voilà,
+we now have access to more data off-chain!
+
+Let's imagine a zkApp that manages a game with a leaderboard. The zkApp has a method to update the score of a player, if the player guesses a number correctly.
+Once a player reaches a threshold score, they can invoke another method to get a reward. Because we want many players to participate in our game,
+we are drastically limited by how much data we can store on-chain - and if we want to have at least 8 or more participants, we will run out of on-chain space very fast!
+
+A possible solution to that problem would be to utilize the power of Merkle trees and store the public keys of each player and their corresponding scores off-chain and only reference it in our smart contract.
+
+Lets look at our data structure first. Imagine wanting to map a player's id to score points, so this:
+
+```
+
+0: 5 points
+1: 3 points
+2: 0 points
+3: 8 points
+... : ...
+7: 2 points
+
+```
+
+#### Implementing the smart contract
+
+Now it's time to look at what our leaderboard zkApp might look like. We want to have on-chain state that points to the off-chain Merkle tree - we will call this variable the `root`.
+
+:::info
+
+Sometimes the variable `root` is also called commitment, because we commit to something!
+
+:::
+
+Additionally, we want to store a variable `z` which is the hash of the value a player has to guess: `H(guess) = z`
+
+:::info
+
+Guessing a simple hash like in this example can easily be brute forced, especially if the preimage is something simple (like a 5 letter word or a small number with only a few digits).
+
+Please make sure that your zkApps are always secure, especially when dealing with funds!
+
+:::
+
+The first method allows a player to make a guess, and if the guess is correct, the player will gain one point.
+The method takes the players guess and hashes it, it then checks if the hash H(guess) equals the on-chain state z and if that's the case,
+then the player gains one point on the score board.
+
+We will also need a second method that takes care of the reward. It checks if the players score is over a threshold and pays out a reward if that's the case.
+This method will also have to verify our Merkle witness and check it if it matches the on-chain stored Merkle root!
+
+:::note
+
+A fully working example, including all the necessary boilerplate code, can be found in the SnarkyJS repository in the examples folder [here](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree).
+
+:::
+
+```ts
+class Leaderboard extends SmartContract {
+  // the root is the root hash of our off-chain Merkle tree
+  @state(Field) root = State<Field>();
+
+  // z is the hashed number we want to guess!
+  @state(Field) z = State<Field>();
+
+  deploy(args: DeployArgs) {
+    super.deploy(args);
+
+    // this is our hash we want to guess! its the hash of the preimage "22", but keep it a secret!
+    this.z.set(
+      Field(
+        "17057234437185175411792943285768571642343179330449434169483610110583519635705"
+      )
+    );
+  }
+
+  @method guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
+    // we fetch z from the chain
+    const z = this.z.get();
+    this.z.assertEquals(z);
+
+    // if our guess preimage hashes to our target, we won a point!
+    Poseidon.hash([guess]).assertEquals(z);
+
+    // we fetch the on-chain commitment/root
+    const root = this.root.get();
+    this.root.assertEquals(root);
+
+    // we check that the account is within the committed Merkle Tree
+    path.calculateRoot(account.hash()).assertEquals(root);
+
+    // we update the account and grant one point!
+    let newAccount = account.addPoints(1);
+
+    // we calculate the new Merkle Root, based on the account changes
+    const newRoot = path.calculateRoot(newAccount.hash());
+
+    this.root.set(newRoot);
+  }
+
+  @method
+  claimReward(account: Account, path: MerkleWitness) {
+    // we fetch the on-chain commitment
+    const root = this.root.get();
+    this.root.assertEquals(root);
+
+    // we check that the account is within the committed Merkle Tree
+    path.calculateRoot(account.hash()).assertEquals(root);
+
+    // we check that the account has at least 10 score points in order to claim the reward
+    account.score.assertGte(UInt32.fromNumber(10));
+
+    // finally, we send the player a reward
+    this.send({
+      to: account.address,
+      amount: 100_000_000,
+    });
+  }
+}
+```
+
+Merkle trees allow us to easily reference off-chain data by only adding a couple of lines of code.
+However, it is important to mention that the developer of the zkApp must make sure that the Merkle tree that is being referenced on-chain is always in-sync with the actual off-chain data structure.
+
+You can look at [this example in the SnarkyJS repository](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree) to get a better understanding of how you can utilize the power of Merkle trees.
+
+:::info
+
+Merkle trees are great at _referencing_ off-chain state. But let alone referencing our state is not enough - we also have to actually store it somewhere!
+
+Where and how to store the data off-chain storage is left up to the developer.
+We will document a recommended method in time, but are currently exploring solutions and would be very interested to see and hear about approaches from others in the community.
+
+:::
+
+### Merkle Tree - API reference
+
+```ts
+const treeHeight = 8;
+
+// creates a tree of height 8
+const Tree = new Experimental.MerkleTree(treeHeight);
+
+// creates the corresponding MerkleWitness class that is circuit-compatible
+class MerkleWitness extends Experimental.MerkleWitness(treeHeight) {}
+
+// sets a value at position 0n
+Tree.setLeaf(0n, Field.fromNumber(123));
+
+// gets the current root of the tree
+const root = Tree.getRoot();
+
+// gets a plain witness for leaf at index 0n
+const witness = Tree.getWitness(0n);
+
+// creates a circuit-compatible witness
+const circuitWitness = new MerkleWitness(witness);
+
+// calculates the root of the witness
+const calculatedRoot = circuitWitness.calculateRoot(Field.fromNumber(123));
+
+calculatedRoot.assertEquals(root);
+```
+
+The above API is available now, but still marked as "Experimental".

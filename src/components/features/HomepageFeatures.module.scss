@@ -54,13 +54,8 @@
   justify-content: space-between;
 
   & > img {
-    width: 18rem;
-    height: 15rem;
-
-    @media screen and (min-width: variables.$screen-lg) {
-      width: 28rem;
-      height: 20rem;
-    }
+    width: 28rem;
+    height: 20rem;
   }
 
   @media screen and (min-width: variables.$screen-lg) {

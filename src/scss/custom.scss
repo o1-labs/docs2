@@ -13,7 +13,9 @@
   --ifm-color-primary-lightest: #ffac99;
   --ifm-code-font-size: 95%;
 
-  --ifm-menu-color-background-active: none;
+  --docsearch-hit-active-color: #9b9b9b !important;
+
+  --ifm-hover-overlay: #d9d9d9;
 
   --ifm-menu-color: variables.$mina-black;
   --ifm-breadcrumb-item-background-active: none;
@@ -25,12 +27,16 @@
 
   --ifm-toc-link-color: variables.$mina-black;
 
+  --ifm-transition-fast: 0.01s;
+
   --docsearch-primary-color: none !important;
   --docusaurus-announcement-bar-height: 40px;
 
   --ifm-navbar-padding-vertical: 1rem;
   --ifm-navbar-padding-horizontal: 1.5rem;
-  --ifm-navbar-height: 6rem;
+  --ifm-menu-link-padding-vertical: 0.6rem;
+
+  --ifm-navbar-height: 7rem;
 
   @media screen and (min-width: variables.$screen-md) {
     --ifm-navbar-padding-vertical: 30px;

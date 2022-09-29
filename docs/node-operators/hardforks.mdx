@@ -1,0 +1,53 @@
+---
+title: Hard Forks
+hide_title: true
+---
+
+:::note
+
+A new version of Mina Docs is coming soon! This page will be rewritten.
+
+:::
+
+# Hard Forks
+
+A hard fork occurs when there are major changes to the core protocol that require all nodes on the network to update to the latest software.
+
+## Overview
+
+A fork in a blockchain happens when the rules that determine which blocks are valid or invalid change. There are two types of forks: hard forks and soft forks.
+
+A soft fork occurs when the new rules are still compatible with the old rules. This means users can still run an old version of the node software and still connect to the network.
+
+A hard fork means the old chain is incompatible with the new chain. An example of a hard fork is the Bitcoin Cash network, which used the original Bitcoin blockchain and then hard forked to a new network that is incompatible. As seen in this example, after a hard fork it is possible for two chains to exist. To avoid splitting the chain it is important that every node on the network updates to the latest software.
+
+## Process
+
+Participating in a hard fork is incredibly simple. Once a hard fork is announced, the first step is to update your node to the latest software. Next you will simply need to run your node and wait until the configured network start time. After the scheduled network start time your node will sync to the latest chain and eventually a new block will be produced and the network will continue like usual.
+
+### Updating your node
+
+When the hard fork version is announced, first shut off any node(s) you have running.
+
+Next, remove your `.mina-config` folder since the fork will require syncing from scratch.
+
+```
+rm -rf ~/.mina-config
+```
+
+Now you can follow the instructions on the [Connecting to the Network](connecting-to-the-network) to install the latest version of the daemon.
+
+Once your node syncs with the network you are all set. Just wait for the announced network start time and your node will have successfully participated in a hard fork!
+
+### Migrating your archive node
+
+If you are running an archive node, you will need to update the postgres database. We have included an automated script that will handle all the steps.
+
+First make sure your archive node is not running. Then simply download [this sql script](https://github.com/MinaProtocol/mina/blob/develop-until-4.1-hardfork/scripts/archive/update_schema.sql) and execute it on the archive database.
+
+```
+wget -O https://github.com/MinaProtocol/mina/blob/develop-until-4.1-hardfork/scripts/archive/update_schema.sql ~/update_schema.sql
+psql -d archive -f ~/update_schema.sql
+```
+
+Now you can safely start the latest archive node.

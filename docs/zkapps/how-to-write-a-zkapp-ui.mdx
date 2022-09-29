@@ -1,0 +1,156 @@
+---
+title: How to Write a zkApp UI
+hide_title: true
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# How to Write a zkApp UI
+
+Learn how to write an UI for your smart contract
+
+To allow users to interact with your smart contract, you’ll typically want to build a website UI.
+
+This UI can be written with any framework (e.g. React, Vue, Svelte, etc.) or plain HTML and JavaScript.
+
+:::note
+
+This page is a work in progress.
+
+:::
+
+## Adding your smart contract as a dependency of the UI
+
+#### Setup
+
+The `index.ts` file is the entry point of your project. This file only imports all smart contract classes you want access to, and exports them. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
+
+```ts
+import { YourSmartContract } from "./YourSmartContract.js";
+
+export { YourSmartContract };
+```
+
+
+#### Local development
+
+The `npm link` command allows to use your smart contract within your UI project during local development without needing to publish it npm. This allows for rapid development.
+
+1. Using a command line, change into your smart contract project directory using `cd <your-project>`, type `npm link`, and hit enter.
+2. Using a command line, change into your UI project directory using `cd <your-ui-project>`, type `npm link <your-package-name>`, and hit enter. `your-package-name` is the `name` property used within your _smart contract's_ `package.json`.
+3. Import into your UI project like normal, using `import { YourSmartContract } from ‘your-package-name’;`.
+
+Remember to run `npm run build` in your smart contract directory after making any changes in order for changes to be reflected in the smart contract consumed by your UI project.
+
+:::tip
+
+For additional details about `npm link`, see the full npm <a href="https://docs.npmjs.com/cli/v8/commands/npm-link">reference docs</a>.
+
+:::
+
+#### Publish to npm for production
+
+1. **Create an npm account:** Create one <a href="https://www.npmjs.com/signup">here</a> if you don't have one yet.
+2. **Login:** To sign in, enter `npm login` on the command line. You will be prompted to enter your username, password, and email address.
+3. **Publish:** To publish your package, enter `npm publish` on the command line at the root of your smart contract project directory. If the package name already exists on npm, you will get an error. You can change the package name by changing the name property in your `package.json`.
+
+:::tip
+
+You can check if a package name already exists on npm using the <a href="https://docs.npmjs.com/cli/v7/commands/npm-search">npm search</a>
+terminal command. To avoid naming collisions, npm allows to publish scoped packages:
+`@your-username/your-package-name`. For additional details about publishing packages including scoped packages, see the full npm <a href="https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules">reference docs</a>.
+
+:::
+
+#### Consuming your smart contract in your UI
+
+Once you have published your smart contract to npm, you can easily add it to any UI framework of your choosing by importing the package.
+
+1. **Install your smart contract package:** To install your package, run the following npm command: `npm install your-package-name` from the root of your UI project directory. Or if you published a scoped npm package, run `npm install @your-username/your-project-name`.
+2. **Import your smart contract package into the UI using:** `import { YourSmartContract } from ‘your-package-name’;` , where `YourSmartContract` is the named export that you chose in your smart contract.
+
+:::tip
+
+For a more performant UI, you may want to render your UI before importing and loading your smart contract. This allows the SnarkyJS wasm workers to perform initialization without blocking the UI.
+
+For example, if your UI is built using React, loading the smart contract in a `useEffect`,
+instead of a top level import, will give the UI time to render its components before
+loading SnarkyJS.
+
+:::
+
+**Loading your contract with React**
+
+```ts
+useEffect(() => {
+  (async () => {
+    const { YourSmartContract } = await import("your-package-name");
+  })();
+}, []);
+```
+
+**Loading your contract with Svelte**
+
+```ts
+onMount(async () => {
+  const { YourSmartContract } = await import("your-package-name");
+});
+```
+
+**Loading your contract with Vue**
+
+```ts
+onMounted(async () => {
+  const { YourSmartContract } = await import("your-package-name");
+});
+```
+
+#### Enabling the COOP and COEP headers
+
+To successfully load any SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
+and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers to set up a cross-origin isolated
+environment that enables the use of [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
+SnarkyJS relies on the use of `SharedArrayBuffer` to enable important WebAssembly features.
+
+There are many alternatives available to enable these headers. For example, if you deploy your UI to products like [Vercel](https://vercel.com/) or [Cloudflare Pages](https://pages.cloudflare.com/), you can set these headers in a custom configuration file. Otherwise, you can set these headers in the server framework of your choice (e.g., Express for JavaScript).
+
+:::tip
+
+COOP must be set to `same-origin`.
+
+COEP must be set to `require-corp`.
+
+:::
+
+**Setting COOP and COEP in your Vercel configuration**:
+
+To see more details on deploying to Vercel, [see their documentation on `vercel.json`](https://vercel.com/docs/project-configuration).
+
+```json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" }
+      ]
+    }
+  ]
+}
+```
+
+**Setting COOP and COEP in your Cloudflare Pages configuration**:
+
+To see more details on deploying to Cloudflare Pages, [see their documentation on `_headers`](https://developers.cloudflare.com/pages/platform/headers/).
+
+```
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+```
