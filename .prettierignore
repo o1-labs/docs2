@@ -1,0 +1,9 @@
+# NodeJS
+node_modules
+build
+
+# Editor
+.vscode
+
+# System
+.DS_Store
