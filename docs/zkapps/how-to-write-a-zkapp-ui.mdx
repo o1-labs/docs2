@@ -159,7 +159,10 @@ To see more details on deploying to Cloudflare Pages, [see their documentation o
 :::info
 
 Currently, only Auro Wallet's Chrome extension supports zkApp transactions. We
-anticipate other wallets to add support over time.
+anticipate other wallets to add support over time, which they can do by using
+the <a
+href="https://www.npmjs.com/package/auro-web3-provider">`auro-web3-provider`</a>
+from NPM within their browser-extension wallet.
 
 :::
 
@@ -200,7 +203,7 @@ const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`
 ```ts
 try {
   let tx = await Mina.transaction(() => {
-    const YourSmartContractInstance = YourSmartContractInstance(zkAppAddress)
+    const YourSmartContractInstance = new YourSmartContract(zkAppAddress)
     YourSmartContractInstance.foo()
   })
 
@@ -231,7 +234,7 @@ You will receive a transaction ID as soon as the Mina network has received the
 proposed transaction. But keep in mind that this does not guarantee that
 the network will accept the transaction into an upcoming block.
 
-:::tip
+:::info
 
 For additional details about the Mina Provider, see the full <a
 href="https://docs.aurowallet.com/general/reference/api-reference/mina-provider-api
