@@ -38,6 +38,7 @@ module.exports = {
           label: "Tutorials",
           items: [
             "zkapps/tutorials/anonymous-message-board",
+            "zkapps/tutorials/hello-world",
           ],
         },
         "zkapps/zkapps-for-ethereum-developers",
