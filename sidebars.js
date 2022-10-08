@@ -109,6 +109,7 @@ module.exports = {
       label: "Participate",
       items: [
         "participate/online-communities",
+        "participate/office-hours",
         "participate/grants-and-programs",
         "participate/careers",
         "participate/github",
