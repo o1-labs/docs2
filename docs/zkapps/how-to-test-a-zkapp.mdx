@@ -118,7 +118,7 @@ Jest can be used to write both unit and integration tests. A well written integr
 
   it('sets intitial state of num to 1', async () => {
     currentState = zkAppInstance.num.get();
-    expect(currentState).toEqual(Field.one);
+    expect(currentState).toEqual(Field(1));
   });
 
   it('correctly updates num from intial state to 3', async () => {
