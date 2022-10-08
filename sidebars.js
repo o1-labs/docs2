@@ -39,6 +39,7 @@ module.exports = {
           items: [
             "zkapps/tutorials/anonymous-message-board",
             "zkapps/tutorials/hello-world",
+            "zkapps/tutorials/private-inputs-hash-functions",
           ],
         },
         "zkapps/zkapps-for-ethereum-developers",

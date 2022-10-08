@@ -1,0 +1,92 @@
+---
+title: "Tutorial 02 Private Inputs and Hash Functions"
+hide_title: true
+sidebar_label: 02 Private Inputs and Hash Functions
+---
+
+# Tutorial 2: Private Inputs and Hash Functions
+
+### Overview
+
+In our [last tutorial](TODO), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
+
+In this example, we will discuss private inputs, and hash functions.
+
+## Private Inputs
+
+If you'd like to follow along, copy our previous tutorial, `01-hello-world`, to `02a-private-inputs`. You can find `01-hello-world` as well as `02a-private-inputs` [here](https://github.com/es92/zkApp-examples).
+
+In a zkApp, local devices generate proofs, which are then verified on chain. Each method in a SnarkyJS Smart contract corresponds to constructing a proof.
+
+As such, *all inputs to a smart contract are by default, private*. To discuss, let's look at the `Square.ts` code from our last example:
+
+```ts
+ 26   @method update(square: Field) {
+ 27     const currentState = this.num.get();
+ 28     this.num.assertEquals(currentState);
+ 29     square.assertEquals(currentState.mul(currentState));
+ 30     this.num.set(square);
+ 31   }
+```
+
+While the inputs to a zkApp are private, the outputs are not. Because in this example, the input was stored directly into changing the zkApp's public state, it is not private. However, we can make a small change and take advantge of some privacy:
+
+```ts
+ 26   @method update(square: Field) {
+ 27     const currentState = this.num.get();
+ 28     this.num.assertEquals(currentState);
+ 29     square.assertEquals(currentState.mul(currentState));
+ 30     this.num.set(currentState.add(1));
+ 31   }
+```
+
+With this update, the public state `num` is incremented, but the square isn't shared publicly. That means that while a user needs to know about the square of the current number to increment it, they don't need to publicly share it. It in fact never even leaves the user's machine, only the proof that the method executed passing all asserts does.
+
+To finish this example, we will make some edits to `src/main.ts`:
+
+Changing 
+```ts
+...
+ 56       zkAppInstance.update(Field.fromNumber(75))
+...
+```
+to
+```ts
+...
+ 56       zkAppInstance.update(Field.fromNumber(15))
+...
+```
+and
+```ts
+...
+ 69       zkAppInstance.update(Field.fromNumber(81))
+...
+```
+to
+```ts
+...
+ 69       zkAppInstance.update(Field.fromNumber(16))
+...
+```
+
+Running `npm run build && node build/src/main.js` should now yield:
+
+```sh
+...
+SnarkyJS loaded
+state after init: 3
+state after txn1: 4
+assert_equal: 15 != 16
+state after txn2: 4
+state after txn3: 5
+Shutting down
+```
+
+
+
+## Hash Functions
+
+If you'd like to follow along, copy our previous tutorial, `01-hello-world`, to `02b-hash-functions`. You can find `01-hello-world` as well as `02b-hash-functions` [here](https://github.com/es92/zkApp-examples).
+
+[TODO]
+
