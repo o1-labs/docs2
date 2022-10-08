@@ -151,8 +151,8 @@ To use events, you have to declare an `events` field at the top level of your sm
 ```ts
 class MyContract extends SmartContract {
   events = {
-    "add-merkle-leaf": Field,
-    "update-merkle-leaf": Field,
+    'add-merkle-leaf': Field,
+    'update-merkle-leaf': Field,
   };
 }
 ```
@@ -207,7 +207,7 @@ Using actions and a "lagging state" pattern, you can write zkApps that can _proc
 To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
 
 ```ts
-import { SmartContract, Experimental, Field } from "snarkyjs";
+import { SmartContract, Experimental, Field } from 'snarkyjs';
 
 class MyContract extends SmartContract {
   reducer = Experimental.Reducer({ actionType: Field });
@@ -312,7 +312,7 @@ The custom token API is currently under the `experimental` namespace. This means
 
 This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
 
-### Minting
+#### Minting
 
 Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
 
@@ -332,7 +332,7 @@ class MintExample extends SmartContract {
 
 In the snippet above, we define a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.experimental.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
 
-### Burning
+#### Burning
 
 Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. See the example below of how a zkApp can burn tokens of another account:
 
@@ -356,7 +356,7 @@ A zkApp cannot burn more tokens than the specified account has. If there is such
 
 :::
 
-### Sending
+#### Sending
 
 To send a custom token, use the `send` method available on `this.experimental.token`. See the example below of how a zkApp can authorize sending tokens between two accounts:
 
@@ -380,6 +380,34 @@ class SendExample extends SmartContract {
 In the snippet above, we define a smart contract called `SendExample` with a method called `sendTokens`. Then, in the same fashion, as minting and burning, we use the `this.experimental.token` property to call the `send` method.
 
 For a more comprehensive example of how to use custom tokens with a zkApp, please see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts)
+
+### Authorization
+
+When a zkApp is interacting with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs#token-owner).
+
+There are two ways for a token owner to authorize a transaction, one being a **signature** and the other being a **proof**.
+
+#### Signature Authorization
+
+Signature authorization is the simplest way for a token owner to authorize a custom token transfer however, it is the least flexible. If two seperate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcasted.
+
+Token zkApps should provide a `send` method, like the one described above. By providing a `send` method, the token zkApp can authorize a transaction between two seperate accounts and sign it as the token owner.
+
+```ts
+tx = await Mina.transaction(feePayerKey, () => {
+  zkapp.sendTokens(account1Address, account2Address, UInt64.from(1_000)); // Sends 1,000 tokens from account1 to account2
+  zkapp.sign(zkappKey); // Signs the transaction with the token owner key
+});
+await tx.send();
+```
+
+This sort of authorization is simple and easy to use but it is not flexible. If two accounts want to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, we can let the token owner authorize with a proof.
+
+#### Proof Authorization
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi arcu, tristique non varius eu, fringilla eget erat. Nunc aliquam nisl vel tristique rhoncus. Fusce sit amet ipsum ac sem porttitor sodales. Maecenas dictum, eros sit amet pretium volutpat, est eros viverra enim, faucibus porta lacus ante eu velit.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi arcu, tristique non varius eu, fringilla eget erat. Nunc aliquam nisl vel tristique rhoncus. Fusce sit amet ipsum ac sem porttitor sodales. Maecenas dictum, eros sit amet pretium volutpat, est eros viverra enim, faucibus porta lacus ante eu velit.
 
 ### Understanding Important Terms
 
@@ -508,7 +536,7 @@ class Leaderboard extends SmartContract {
     // this is our hash we want to guess! its the hash of the preimage "22", but keep it a secret!
     this.z.set(
       Field(
-        "17057234437185175411792943285768571642343179330449434169483610110583519635705"
+        '17057234437185175411792943285768571642343179330449434169483610110583519635705'
       )
     );
   }
