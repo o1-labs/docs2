@@ -12,79 +12,135 @@ In our [last tutorial](TODO), we saw how to build a basic zkApp smart contract i
 
 In this example, we will discuss private inputs, and hash functions.
 
-## Private Inputs
-
-If you'd like to follow along, copy our previous tutorial, `01-hello-world`, to `02a-private-inputs`. You can find `01-hello-world` as well as `02a-private-inputs` [here](https://github.com/es92/zkApp-examples).
-
 In a zkApp, local devices generate proofs, which are then verified on chain. Each method in a SnarkyJS Smart contract corresponds to constructing a proof.
 
-As such, *all inputs to a smart contract are by default, private*. To discuss, let's look at the `Square.ts` code from our last example:
+As such, *all inputs to a smart contract are by default, private*, unless they are revealed as part of changing zkApp state.
 
-```ts
- 26   @method update(square: Field) {
- 27     const currentState = this.num.get();
- 28     this.num.assertEquals(currentState);
- 29     square.assertEquals(currentState.mul(currentState));
- 30     this.num.set(square);
- 31   }
+We will build a smart contract with a piece of private state, that can be modified if a user knows the private state.
+
+## Project setup
+
+First, setup a new project with 
+```sh
+$ zk project 02-private-inputs-and-hash-functions
 ```
 
-While the inputs to a zkApp are private, the outputs are not. Because in this example, the input was stored directly into changing the zkApp's public state, it is not private. However, we can make a small change and take advantge of some privacy:
+You can find the complete source code of this project [here](https://github.com/es92/zkApp-examples).
 
-```ts
- 26   @method update(square: Field) {
- 27     const currentState = this.num.get();
- 28     this.num.assertEquals(currentState);
- 29     square.assertEquals(currentState.mul(currentState));
- 30     this.num.set(currentState.add(1));
- 31   }
-```
-
-With this update, the public state `num` is incremented, but the square isn't shared publicly. That means that while a user needs to know about the square of the current number to increment it, they don't need to publicly share it. It in fact never even leaves the user's machine, only the proof that the method executed passing all asserts does.
-
-To finish this example, we will make some edits to `src/main.ts`:
-
-Changing 
-```ts
-...
- 56       zkAppInstance.update(Field.fromNumber(75))
-...
-```
-to
-```ts
-...
- 56       zkAppInstance.update(Field.fromNumber(15))
-...
-```
-and
-```ts
-...
- 69       zkAppInstance.update(Field.fromNumber(81))
-...
-```
-to
-```ts
-...
- 69       zkAppInstance.update(Field.fromNumber(16))
-...
-```
-
-Running `npm run build && node build/src/main.js` should now yield:
+To start, delete the default generated files, `src/Add.test.ts`, and `src/Add.ts`. And create new files:
 
 ```sh
-...
-SnarkyJS loaded
-state after init: 3
-state after txn1: 4
-assert_equal: 15 != 16
-state after txn2: 4
-state after txn3: 5
-Shutting down
+$ touch src/IncrementSecret.ts
+$ touch src/main.ts
 ```
 
-## Hash Functions
+And lastly, change `index.ts` to 
+```ts
+import { IncrementSecret } from './IncrementSecret.js';
 
-We will now visit a more substantial program using privacy - proving knowledge of what value hashes to a particular value (the preimage of a hash).
+export { IncrementSecret };
+```
 
-If you'd like to follow along, copy our previous tutorial, `01-hello-world`, to `02b-hash-functions`. You can find `01-hello-world` as well as `02b-hash-functions` [here](https://github.com/es92/zkApp-examples).
+### IncrementSecret smart contract
 
+Now we'll build the smart contract for our application.
+
+Start out our smart contract by entering
+
+```ts
+  1 import {
+  2   Field,
+  3   SmartContract,
+  4   state,
+  5   State,
+  6   method,
+  7   DeployArgs,
+  8   Poseidon,
+  9   Permissions,
+ 10 } from 'snarkyjs';
+ 11
+ 12 export class IncrementSecret extends SmartContract {
+ 13   @state(Field) x = State<Field>();
+ 14
+ 15   deploy(args: DeployArgs) {
+ 16     super.deploy(args);
+ 17     this.setPermissions({
+ 18       ...Permissions.default(),
+ 19       editState: Permissions.proofOrSignature(),
+ 20     });
+ 21   }
+ 22 }
+```
+
+This just completes basic setup for our smart contract - see [tutorial 01](TODO) for more on this.
+
+Now we will add our initializer function.
+
+```ts
+...
+ 22
+ 23   @method init(firstSecret: Field) {
+ 24     this.x.set(firstSecret);
+ 25   }
+ 26 }
+```
+
+Note in this case, the initializer of the smart contract sets the secret. This ensures that anybody looking at the smart contract code cannot figure out the value of the secret - this is private to whoever initializes the contract.
+
+Next we will add our state update function:
+```ts
+...
+ 26
+ 27   @method incrementSecret(secret: Field) {
+ 28     const x = this.x.get();
+ 29     this.x.assertEquals(x);
+ 30
+ 31     Poseidon.hash([ secret ]).assertEquals(x);
+ 32     this.x.set(Poseidon.hash([ secret.add(1) ]));
+ 33   }
+ 34 }
+ ```
+
+ Mina uses the poseidon hash function, which has been optimized inside its proof system for fast performance. The poseidon hash function takes in an array of Fields, and returns a single Field as output.
+
+We check that the hash of our secret is equal to the current state x. If this is the case, we add 1 to the secret and set x to the hash of that.
+
+When running this successfully, it just proves that the code was run with some input secret whose hash is x, and that the new x will be set to hash(secret + 1). However, the secret itself remains private, because it can't be deduced from it's hash.
+
+### Main
+
+Our `src/main.ts` is similar to our last tutorial - for a full version of `src/main.ts`, see [here](TODO).
+
+Key parts to discuss though, are initializing our contract, and using the poseidon hash.
+
+Our smart contract initialization this time will be:
+```ts
+...
+ 30   const deploy_txn = await Mina.transaction(deployerAccount, () => {
+ 31     AccountUpdate.fundNewAccount(deployerAccount);
+ 32     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+ 33     zkAppInstance.init(Poseidon.hash([ Field.fromNumber(750) ]));
+ 34     zkAppInstance.sign(zkAppPrivateKey);
+ 35   });
+ ...
+```
+
+Note the init function taking a poseidon hash, of our secret, in this case the number 750.
+
+And here is how one can send a transaction:
+```ts
+...
+ 44   const txn1 = await Mina.transaction(deployerAccount, () => {
+ 45     zkAppInstance.incrementSecret(Field.fromNumber(750));
+ 46     zkAppInstance.sign(zkAppPrivateKey);
+ 47   });
+...
+```
+
+We call the zkApp smart contract with the secret itself, the number 750. Because in zkApps smart contracts are executed privately, this will not make it into the transaction. Instead, only the proof that the update was called in way that all asserts passed will be included, and the update to the hash. After the transcation is executed on chain, `x` will be `Poseidon.hash([ Field.fromNumber(750).add(1) ])`.
+
+## Conclusion
+
+Congrats! We have finished building a smart contract that uses privacy and hash functions
+
+Checkout [Tutorial 3](TODO) to learn how to deploy a smart contract to a live instance of Mina.
