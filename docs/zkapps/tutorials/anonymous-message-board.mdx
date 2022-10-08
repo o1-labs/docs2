@@ -206,8 +206,8 @@ The `init` method is similar to the `constructor` in Solidity. It’s a place fo
   this.user1.set(users['Bob'].toPublicKey());
   this.user2.set(users['SuperBob'].toPublicKey());
   this.user3.set(users['MegaBob'].toPublicKey());
-  this.message.set(Field.zero);
-  this.messageHistoryHash.set(Field.zero);
+  this.message.set(Field(0));
+  this.messageHistoryHash.set(Field(0));
 }
 ```
 
