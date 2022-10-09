@@ -8,7 +8,7 @@ sidebar_label: 02 Private Inputs and Hash Functions
 
 ### Overview
 
-In our [last tutorial](TODO), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
+In our last tutorial, Hello World (01), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
 
 In this example, we will discuss private inputs, and hash functions.
 
@@ -72,7 +72,7 @@ Start out our smart contract by entering
  22 }
 ```
 
-This just completes basic setup for our smart contract - see [tutorial 01](TODO) for more on this.
+This just completes basic setup for our smart contract - see Tutorial 01 Hello World for more on this.
 
 Now we will add our initializer function.
 
@@ -109,7 +109,7 @@ When running this successfully, it just proves that the code was run with some i
 
 ### Main
 
-Our `src/main.ts` is similar to our last tutorial - for a full version of `src/main.ts`, see [here](TODO).
+Our `src/main.ts` is similar to our last tutorial - for a full version of `src/main.ts`, see [here](https://github.com/es92/zkApp-examples/blob/main/02-private-inputs-and-hash-functions/src/main.ts).
 
 Key parts to discuss though, are initializing our contract, and using the poseidon hash.
 
@@ -143,4 +143,4 @@ We call the zkApp smart contract with the secret itself, the number 750. Because
 
 Congrats! We have finished building a smart contract that uses privacy and hash functions
 
-Checkout [Tutorial 3](TODO) to learn how to deploy a smart contract to a live instance of Mina.
+Checkout Tutorial 3 to learn how to deploy a smart contract to a live instance of Mina.
