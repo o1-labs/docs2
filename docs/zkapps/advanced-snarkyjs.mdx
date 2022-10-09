@@ -405,9 +405,67 @@ This sort of authorization is simple and easy to use but it is not flexible. If 
 
 #### Proof Authorization
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi arcu, tristique non varius eu, fringilla eget erat. Nunc aliquam nisl vel tristique rhoncus. Fusce sit amet ipsum ac sem porttitor sodales. Maecenas dictum, eros sit amet pretium volutpat, est eros viverra enim, faucibus porta lacus ante eu velit.
+Proof authorization is a more flexible way for a token owner to authorize a custom token transfer. If two seperate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to authorize a transaction without signing it.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi arcu, tristique non varius eu, fringilla eget erat. Nunc aliquam nisl vel tristique rhoncus. Fusce sit amet ipsum ac sem porttitor sodales. Maecenas dictum, eros sit amet pretium volutpat, est eros viverra enim, faucibus porta lacus ante eu velit.
+To allow for proof authorization by the token owner, a token zkApp should provide a `authorize` method that inspects any changes that another account wishes to make and then authorizes the transaction if the changes are valid. To authorize a transaction, you can use the `this.experimental.authorize` method within a zkApp.
+
+By using `this.experimental.authorize` inside your zkApp, a token owner can authorize a transaction either by inspecting a specified `AccountUpdate` or by calling a specified `SmartContract` method and inspecting the results.
+
+See the example below of how a zkApp can authorize a transaction between two accounts. In the first example, we will show how to authorize a transaction by calling a specified `SmartContract` method.
+
+```ts
+/**
+ * This TokenContract class is used to create a custom token
+ * and acts as the token owner of the custom token
+ */
+class TokenContract extends SmartContract {
+  ...
+
+  /**
+   * This method is used to authorize a transaction between two accounts
+   * by calling a specified SmartContract method as `callback`
+   */
+  @method sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    callback: Experimental.Callback<any>
+  ) {
+    this.experimental.authorize(callback); // Authorize the specified @method from another zkApp
+    let amount = UInt64.from(1_000);
+    let tokenId = this.experimental.token.id;
+    let receiverAccountUpdate = Experimental.createChildAccountUpdate(
+      this.self,
+      receiverAddress,
+      tokenId
+    );
+    receiverAccountUpdate.balance.addInPlace(amount);
+  }
+}
+
+class ZkAppB extends SmartContract {
+  @method authorizeSend() {
+    let amount = UInt64.from(1_000);
+    this.balance.subInPlace(amount);
+  }
+}
+
+tx = await Local.transaction(feePayer, () => {
+  // Create a 'callback' that authorizes a transaction by calling the `authorizeSend` method on zkAppB
+  let authorizeSendingCallback = Experimental.Callback.create(
+    zkAppB,
+    'authorizeSend',
+    []
+  );
+  // Here, we call the token contract with the callback
+  tokenZkApp.sendTokens(zkAppBAddress, account1Address, authorizeSendingCallback);
+});
+await tx.prove();
+await tx.send();
+```
+
+The result of the example above is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is authorized by the token owner without the token owner having to sign the transaction.
+
+For more examples of how to authorize a transaction with a zkApp, please see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts).
 
 ### Understanding Important Terms
 
