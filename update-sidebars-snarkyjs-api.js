@@ -29,7 +29,7 @@ function updateSidebars(sidebars, category, snarkyJSItems) {
 
   // Find the index of the `SnarkyJS API Reference` category in the sidebars
   const snarkyJSAPICategory = newSidebars.docs[zkAppCategory].items.findIndex(
-    (item) => item.label === "SnarkyJS API Reference"
+    (item) => item.label === "SnarkyJS Reference"
   );
 
   // Find the index of the category we want to update in the sidebars

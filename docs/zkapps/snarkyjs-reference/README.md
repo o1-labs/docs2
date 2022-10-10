@@ -1,4 +1,4 @@
-# SnarkyJS
+# SnarkyJS Reference
 
 ## Table of contents
 
@@ -97,13 +97,13 @@ Re-exports [PublicKey](classes/Types.PublicKey.md)
 
 ### DeployArgs
 
-Ƭ **DeployArgs**: { `verificationKey?`: { `data`: `string` ; `hash`: `string` \| [`Field`](classes/Field.md)  } ; `zkappKey?`: [`PrivateKey`](classes/PrivateKey.md)  } \| `undefined`
+Ƭ **DeployArgs**: { `verificationKey?`: { `data`: `string` ; `hash`: `string` \| [`Field`](classes/Field.md) } ; `zkappKey?`: [`PrivateKey`](classes/PrivateKey.md) } \| `undefined`
 
 #### Defined in
 
 [lib/zkapp.ts:1095](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L1095)
 
-___
+---
 
 ### State
 
@@ -114,18 +114,18 @@ Gettable and settable state that can be checked for equality.
 #### Type parameters
 
 | Name |
-| :------ |
-| `A` |
+| :--- |
+| `A`  |
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `assertEquals` | (`a`: `A`) => `void` |
-| `assertNothing` | () => `void` |
-| `fetch` | () => `Promise`<`undefined` \| `A`\> |
-| `get` | () => `A` |
-| `set` | (`a`: `A`) => `void` |
+| Name            | Type                                 |
+| :-------------- | :----------------------------------- |
+| `assertEquals`  | (`a`: `A`) => `void`                 |
+| `assertNothing` | () => `void`                         |
+| `fetch`         | () => `Promise`<`undefined` \| `A`\> |
+| `get`           | () => `A`                            |
+| `set`           | (`a`: `A`) => `void`                 |
 
 #### Defined in
 
@@ -133,7 +133,7 @@ Gettable and settable state that can be checked for equality.
 
 [lib/state.ts:18](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/state.ts#L18)
 
-___
+---
 
 ### TokenSymbol
 
@@ -141,10 +141,10 @@ ___
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `field` | [`Field`](classes/Field.md) |
-| `symbol` | `string` |
+| Name     | Type                        |
+| :------- | :-------------------------- |
+| `field`  | [`Field`](classes/Field.md) |
+| `symbol` | `string`                    |
 
 #### Defined in
 
@@ -152,7 +152,7 @@ ___
 
 [lib/hash.ts:168](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/hash.ts#L168)
 
-___
+---
 
 ### ZkappPublicInput
 
@@ -160,17 +160,17 @@ ___
 
 The public input for zkApps consists of certain hashes of the proving AccountUpdate (and its child accountUpdates) which is constructed during method execution.
 
- For SmartContract proving, a method is run twice: First outside the proof, to obtain the public input, and once in the prover,
- which takes the public input as input. The current transaction is hashed again inside the prover, which asserts that the result equals the input public input,
- as part of the snark circuit. The block producer will also hash the transaction they receive and pass it as a public input to the verifier.
- Thus, the transaction is fully constrained by the proof - the proof couldn't be used to attest to a different transaction.
+For SmartContract proving, a method is run twice: First outside the proof, to obtain the public input, and once in the prover,
+which takes the public input as input. The current transaction is hashed again inside the prover, which asserts that the result equals the input public input,
+as part of the snark circuit. The block producer will also hash the transaction they receive and pass it as a public input to the verifier.
+Thus, the transaction is fully constrained by the proof - the proof couldn't be used to attest to a different transaction.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
 | `accountUpdate` | [`Field`](classes/Field.md) |
-| `calls` | [`Field`](classes/Field.md) |
+| `calls`         | [`Field`](classes/Field.md) |
 
 #### Defined in
 
@@ -186,15 +186,15 @@ The public input for zkApps consists of certain hashes of the proving AccountUpd
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `default` | () => [`Permissions`](README.md#permissions) |
-| `impossible` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
-| `initial` | () => [`Permissions`](README.md#permissions) |
-| `none` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
-| `proof` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
+| Name               | Type                                                    |
+| :----------------- | :------------------------------------------------------ |
+| `default`          | () => [`Permissions`](README.md#permissions)            |
+| `impossible`       | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
+| `initial`          | () => [`Permissions`](README.md#permissions)            |
+| `none`             | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
+| `proof`            | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
 | `proofOrSignature` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
-| `signature` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
+| `signature`        | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
 
 #### Defined in
 
@@ -202,7 +202,7 @@ The public input for zkApps consists of certain hashes of the proving AccountUpd
 
 [lib/account_update.ts:224](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L224)
 
-___
+---
 
 ### Poseidon
 
@@ -210,18 +210,18 @@ ___
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Sponge` | typeof `Sponge` |
-| `get initialState()` | [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
-| `hash` | (`input`: [`Field`](classes/Field.md)[]) => [`Field`](classes/Field.md) |
-| `update` | (`state`: [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)], `input`: [`Field`](classes/Field.md)[]) => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
+| Name                 | Type                                                                                                                                                                                                                                  |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Sponge`             | typeof `Sponge`                                                                                                                                                                                                                       |
+| `get initialState()` | [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)]                                                                                                                                               |
+| `hash`               | (`input`: [`Field`](classes/Field.md)[]) => [`Field`](classes/Field.md)                                                                                                                                                               |
+| `update`             | (`state`: [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)], `input`: [`Field`](classes/Field.md)[]) => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
 
 #### Defined in
 
 [lib/hash.ts:36](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/hash.ts#L36)
 
-___
+---
 
 ### TokenSymbol
 
@@ -229,19 +229,19 @@ ___
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `empty` | { `field`: [`Field`](classes/Field.md) = Field.zero; `symbol`: `string` = '' } |
-| `empty.field` | [`Field`](classes/Field.md) |
-| `empty.symbol` | `string` |
-| `check` | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `void` |
-| `from` | (`symbol`: `string`) => [`TokenSymbol`](README.md#tokensymbol-1) |
-| `fromFields` | (`fields`: [`Field`](classes/Field.md)[], `aux`: `any`[]) => [`TokenSymbol`](README.md#tokensymbol-1) |
-| `sizeInFields` | () => `number` |
-| `toAuxiliary` | (`value?`: [`TokenSymbol`](README.md#tokensymbol-1)) => `any`[] |
-| `toFields` | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => [`Field`](classes/Field.md)[] |
-| `toInput` | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `HashInput` |
-| `toJSON` | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `string` |
+| Name           | Type                                                                                                  |
+| :------------- | :---------------------------------------------------------------------------------------------------- |
+| `empty`        | { `field`: [`Field`](classes/Field.md) = Field.zero; `symbol`: `string` = '' }                        |
+| `empty.field`  | [`Field`](classes/Field.md)                                                                           |
+| `empty.symbol` | `string`                                                                                              |
+| `check`        | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `void`                                         |
+| `from`         | (`symbol`: `string`) => [`TokenSymbol`](README.md#tokensymbol-1)                                      |
+| `fromFields`   | (`fields`: [`Field`](classes/Field.md)[], `aux`: `any`[]) => [`TokenSymbol`](README.md#tokensymbol-1) |
+| `sizeInFields` | () => `number`                                                                                        |
+| `toAuxiliary`  | (`value?`: [`TokenSymbol`](README.md#tokensymbol-1)) => `any`[]                                       |
+| `toFields`     | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => [`Field`](classes/Field.md)[]                  |
+| `toInput`      | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `HashInput`                                    |
+| `toJSON`       | (`value`: [`TokenSymbol`](README.md#tokensymbol-1)) => `string`                                       |
 
 #### Defined in
 
@@ -249,7 +249,7 @@ ___
 
 [lib/hash.ts:168](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/hash.ts#L168)
 
-___
+---
 
 ### ZkappPublicInput
 
@@ -261,7 +261,7 @@ ___
 
 [lib/account_update.ts:1357](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L1357)
 
-___
+---
 
 ### isReady
 
@@ -281,10 +281,10 @@ A Promise that resolves when SnarkyJS is ready to be used
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `address` | [`PublicKey`](classes/Types.PublicKey.md) |
-| `tokenId?` | [`Field`](classes/Field.md) |
+| Name       | Type                                      |
+| :--------- | :---------------------------------------- |
+| `address`  | [`PublicKey`](classes/Types.PublicKey.md) |
+| `tokenId?` | [`Field`](classes/Field.md)               |
 
 #### Returns
 
@@ -294,7 +294,7 @@ A Promise that resolves when SnarkyJS is ready to be used
 
 [lib/zkapp.ts:1152](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L1152)
 
-___
+---
 
 ### State
 
@@ -303,8 +303,8 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `A` |
+| :--- |
+| `A`  |
 
 #### Returns
 
@@ -314,7 +314,7 @@ ___
 
 [lib/state.ts:25](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/state.ts#L25)
 
-___
+---
 
 ### addCachedAccount
 
@@ -322,16 +322,16 @@ ___
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `account` | `Object` | `undefined` |
-| `account.balance?` | `string` \| `number` \| [`UInt64`](classes/UInt64.md) | `undefined` |
-| `account.nonce` | `string` \| `number` \| [`UInt32`](classes/UInt32.md) | `undefined` |
-| `account.publicKey` | `string` \| [`PublicKey`](classes/Types.PublicKey.md) | `undefined` |
-| `account.tokenId` | `string` | `undefined` |
-| `account.zkapp?` | `Object` | `undefined` |
-| `account.zkapp.appState` | (`string` \| `number` \| [`Field`](classes/Field.md))[] | `undefined` |
-| `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
+| Name                     | Type                                                    | Default value            |
+| :----------------------- | :------------------------------------------------------ | :----------------------- |
+| `account`                | `Object`                                                | `undefined`              |
+| `account.balance?`       | `string` \| `number` \| [`UInt64`](classes/UInt64.md)   | `undefined`              |
+| `account.nonce`          | `string` \| `number` \| [`UInt32`](classes/UInt32.md)   | `undefined`              |
+| `account.publicKey`      | `string` \| [`PublicKey`](classes/Types.PublicKey.md)   | `undefined`              |
+| `account.tokenId`        | `string`                                                | `undefined`              |
+| `account.zkapp?`         | `Object`                                                | `undefined`              |
+| `account.zkapp.appState` | (`string` \| `number` \| [`Field`](classes/Field.md))[] | `undefined`              |
+| `graphqlEndpoint`        | `string`                                                | `defaultGraphqlEndpoint` |
 
 #### Returns
 
@@ -341,7 +341,7 @@ ___
 
 [lib/fetch.ts:362](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/fetch.ts#L362)
 
-___
+---
 
 ### arrayProp
 
@@ -350,15 +350,15 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                                     |
+| :------------ | :------------------------------------------------------- |
 | `elementType` | [`AsFieldElements`](interfaces/AsFieldElements.md)<`T`\> |
-| `length` | `number` |
+| `length`      | `number`                                                 |
 
 #### Returns
 
@@ -368,10 +368,10 @@ ___
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | `any` |
-| `key` | `string` |
+| Name     | Type     |
+| :------- | :------- |
+| `target` | `any`    |
+| `key`    | `string` |
 
 ##### Returns
 
@@ -381,7 +381,7 @@ ___
 
 [lib/circuit_value.ts:284](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L284)
 
-___
+---
 
 ### circuitMain
 
@@ -389,10 +389,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | `any` |
-| `propertyName` | `string` |
+| Name           | Type                 |
+| :------------- | :------------------- |
+| `target`       | `any`                |
+| `propertyName` | `string`             |
 | `_descriptor?` | `PropertyDescriptor` |
 
 #### Returns
@@ -403,7 +403,7 @@ ___
 
 [lib/circuit_value.ts:353](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L353)
 
-___
+---
 
 ### circuitValue
 
@@ -412,15 +412,15 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `typeObj` | `any` |
-| `options?` | `Object` |
+| Name                       | Type       |
+| :------------------------- | :--------- |
+| `typeObj`                  | `any`      |
+| `options?`                 | `Object`   |
 | `options.customObjectKeys` | `string`[] |
 
 #### Returns
@@ -431,7 +431,7 @@ ___
 
 [lib/circuit_value.ts:407](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L407)
 
-___
+---
 
 ### declareMethods
 
@@ -441,6 +441,7 @@ ___
 to declare SmartContract methods along with their list of arguments.
 It should be placed _after_ the class declaration.
 Here is an example of declaring a method `update`, which takes a single argument of type `Field`:
+
 ```ts
 class MyContract extends SmartContract {
   // ...
@@ -450,19 +451,20 @@ class MyContract extends SmartContract {
 }
 declareMethods(MyContract, { update: [Field] }); // `[Field]` is the list of arguments!
 ```
+
 Note that a method of the same name must still be defined on the class, just without the decorator.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends typeof [`SmartContract`](classes/SmartContract.md) |
+| Name | Type                                                       |
+| :--- | :--------------------------------------------------------- |
+| `T`  | extends typeof [`SmartContract`](classes/SmartContract.md) |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `SmartContract` | `T` |
+| Name              | Type                                                                                  |
+| :---------------- | :------------------------------------------------------------------------------------ |
+| `SmartContract`   | `T`                                                                                   |
 | `methodArguments` | `Record`<`string`, [`AsFieldElements`](interfaces/AsFieldElements.md)<`unknown`\>[]\> |
 
 #### Returns
@@ -473,7 +475,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 [lib/zkapp.ts:1229](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L1229)
 
-___
+---
 
 ### declareState
 
@@ -482,6 +484,7 @@ ___
 `declareState` can be used in place of the `@state` decorator to declare on-chain state on a SmartContract.
 It should be placed _after_ the class declaration.
 Here is an example of declaring a state property `x` of type `Field`.
+
 ```ts
 class MyContract extends SmartContract {
   x = State<Field>();
@@ -502,6 +505,7 @@ declareState(MyContract, { x: Field });
 ```
 
 Instead, add a constructor where you assign the property:
+
 ```js
 class MyContract extends SmartContract {
   constructor(x) {
@@ -514,16 +518,16 @@ declareState(MyContract, { x: Field });
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends typeof [`SmartContract`](classes/SmartContract.md) |
+| Name | Type                                                       |
+| :--- | :--------------------------------------------------------- |
+| `T`  | extends typeof [`SmartContract`](classes/SmartContract.md) |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `SmartContract` | `T` |
-| `states` | `Record`<`string`, [`AsFieldElements`](interfaces/AsFieldElements.md)<`unknown`\>\> |
+| Name            | Type                                                                                |
+| :-------------- | :---------------------------------------------------------------------------------- |
+| `SmartContract` | `T`                                                                                 |
+| `states`        | `Record`<`string`, [`AsFieldElements`](interfaces/AsFieldElements.md)<`unknown`\>\> |
 
 #### Returns
 
@@ -533,7 +537,7 @@ declareState(MyContract, { x: Field });
 
 [lib/state.ts:115](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/state.ts#L115)
 
-___
+---
 
 ### deploy
 
@@ -541,23 +545,23 @@ ___
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `S` | extends typeof [`SmartContract`](classes/SmartContract.md) |
+| Name | Type                                                       |
+| :--- | :--------------------------------------------------------- |
+| `S`  | extends typeof [`SmartContract`](classes/SmartContract.md) |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `SmartContract` | `S` |
-| `__namedParameters` | `Object` |
-| `__namedParameters.feePayer?` | [`FeePayerSpec`](modules/Mina.md#feepayerspec) |
-| `__namedParameters.initialBalance?` | `string` \| `number` |
-| `__namedParameters.tokenId?` | [`Field`](classes/Field.md) |
-| `__namedParameters.verificationKey` | `Object` |
-| `__namedParameters.verificationKey.data` | `string` |
-| `__namedParameters.verificationKey.hash` | `string` \| [`Field`](classes/Field.md) |
-| `__namedParameters.zkappKey` | [`PrivateKey`](classes/PrivateKey.md) |
+| Name                                     | Type                                           |
+| :--------------------------------------- | :--------------------------------------------- |
+| `SmartContract`                          | `S`                                            |
+| `__namedParameters`                      | `Object`                                       |
+| `__namedParameters.feePayer?`            | [`FeePayerSpec`](modules/Mina.md#feepayerspec) |
+| `__namedParameters.initialBalance?`      | `string` \| `number`                           |
+| `__namedParameters.tokenId?`             | [`Field`](classes/Field.md)                    |
+| `__namedParameters.verificationKey`      | `Object`                                       |
+| `__namedParameters.verificationKey.data` | `string`                                       |
+| `__namedParameters.verificationKey.hash` | `string` \| [`Field`](classes/Field.md)        |
+| `__namedParameters.zkappKey`             | [`PrivateKey`](classes/PrivateKey.md)          |
 
 #### Returns
 
@@ -567,11 +571,11 @@ ___
 
 [lib/zkapp.ts:1104](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L1104)
 
-___
+---
 
 ### fetchAccount
 
-▸ **fetchAccount**(`accountInfo`, `graphqlEndpoint?`, `config?`): `Promise`<{ `account`: `Account` ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
+▸ **fetchAccount**(`accountInfo`, `graphqlEndpoint?`, `config?`): `Promise`<{ `account`: `Account` ; `error`: `undefined` } \| { `account`: `undefined` ; `error`: `FetchError` }\>
 
 Gets account information on the specified publicKey by performing a GraphQL query
 to the specified endpoint. This will call the 'GetAccountInfo' query which fetches
@@ -582,18 +586,18 @@ the data is returned.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `accountInfo` | `Object` | `undefined` | - |
-| `accountInfo.publicKey` | `string` \| [`PublicKey`](classes/Types.PublicKey.md) | `undefined` | - |
-| `accountInfo.tokenId?` | `string` | `undefined` | - |
-| `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` | The graphql endpoint to fetch from |
-| `config` | `Object` | `{}` | An object that exposes an additional timeout option |
-| `config.timeout` | `undefined` \| `number` | `undefined` | - |
+| Name                    | Type                                                  | Default value            | Description                                         |
+| :---------------------- | :---------------------------------------------------- | :----------------------- | :-------------------------------------------------- |
+| `accountInfo`           | `Object`                                              | `undefined`              | -                                                   |
+| `accountInfo.publicKey` | `string` \| [`PublicKey`](classes/Types.PublicKey.md) | `undefined`              | -                                                   |
+| `accountInfo.tokenId?`  | `string`                                              | `undefined`              | -                                                   |
+| `graphqlEndpoint`       | `string`                                              | `defaultGraphqlEndpoint` | The graphql endpoint to fetch from                  |
+| `config`                | `Object`                                              | `{}`                     | An object that exposes an additional timeout option |
+| `config.timeout`        | `undefined` \| `number`                               | `undefined`              | -                                                   |
 
 #### Returns
 
-`Promise`<{ `account`: `Account` ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
+`Promise`<{ `account`: `Account` ; `error`: `undefined` } \| { `account`: `undefined` ; `error`: `FetchError` }\>
 
 zkapp information on the specified account or an error is thrown
 
@@ -601,27 +605,27 @@ zkapp information on the specified account or an error is thrown
 
 [lib/fetch.ts:50](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/fetch.ts#L50)
 
-___
+---
 
 ### fetchLastBlock
 
-▸ **fetchLastBlock**(`graphqlEndpoint?`): `Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
+▸ **fetchLastBlock**(`graphqlEndpoint?`): `Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } }\>\>
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
+| Name              | Type     | Default value            |
+| :---------------- | :------- | :----------------------- |
 | `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
 
 #### Returns
 
-`Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
+`Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md) } } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md) } } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md) } } }\>\>
 
 #### Defined in
 
 [lib/fetch.ts:388](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/fetch.ts#L388)
 
-___
+---
 
 ### getSrs
 
@@ -629,8 +633,8 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name      | Type  | Description                                           |
+| :-------- | :---- | :---------------------------------------------------- |
 | `keypair` | `any` | SNARK keypair, as returned by Circuit.generateKeypair |
 
 #### Returns
@@ -643,7 +647,7 @@ The SRS (structured reference string), needed to reconstruct the keypair later
 
 [snarky/addons.js:18](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/snarky/addons.js#L18)
 
-___
+---
 
 ### matrixProp
 
@@ -652,16 +656,16 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                                     |
+| :------------ | :------------------------------------------------------- |
 | `elementType` | [`AsFieldElements`](interfaces/AsFieldElements.md)<`T`\> |
-| `nRows` | `number` |
-| `nColumns` | `number` |
+| `nRows`       | `number`                                                 |
+| `nColumns`    | `number`                                                 |
 
 #### Returns
 
@@ -671,10 +675,10 @@ ___
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | `any` |
-| `key` | `string` |
+| Name     | Type     |
+| :------- | :------- |
+| `target` | `any`    |
+| `key`    | `string` |
 
 ##### Returns
 
@@ -684,7 +688,7 @@ ___
 
 [lib/circuit_value.ts:293](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L293)
 
-___
+---
 
 ### method
 
@@ -701,17 +705,17 @@ You can use inside your zkapp class as:
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`SmartContract`](classes/SmartContract.md)<`T`\> |
+| Name | Type                                                      |
+| :--- | :-------------------------------------------------------- |
+| `T`  | extends [`SmartContract`](classes/SmartContract.md)<`T`\> |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | `T` & { `constructor`: `any`  } |
-| `methodName` | keyof `T` & `string` |
-| `descriptor` | `PropertyDescriptor` |
+| Name         | Type                           |
+| :----------- | :----------------------------- |
+| `target`     | `T` & { `constructor`: `any` } |
+| `methodName` | keyof `T` & `string`           |
+| `descriptor` | `PropertyDescriptor`           |
 
 #### Returns
 
@@ -721,7 +725,7 @@ You can use inside your zkapp class as:
 
 [lib/zkapp.ts:94](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L94)
 
-___
+---
 
 ### prop
 
@@ -729,11 +733,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | `any` |
-| `target` | `any` |
-| `key` | `string` |
+| Name     | Type     |
+| :------- | :------- |
+| `this`   | `any`    |
+| `target` | `any`    |
+| `key`    | `string` |
 
 #### Returns
 
@@ -743,19 +747,19 @@ ___
 
 [lib/circuit_value.ts:225](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L225)
 
-___
+---
 
 ### public\_
 
-▸ **public_**(`target`, `_key`, `index`): `void`
+▸ **public\_**(`target`, `_key`, `index`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | `any` |
-| `_key` | `string` \| `symbol` |
-| `index` | `number` |
+| Name     | Type                 |
+| :------- | :------------------- |
+| `target` | `any`                |
+| `_key`   | `string` \| `symbol` |
+| `index`  | `number`             |
 
 #### Returns
 
@@ -765,7 +769,7 @@ ___
 
 [lib/circuit_value.ts:309](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L309)
 
-___
+---
 
 ### recoverVerificationKey
 
@@ -773,10 +777,10 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `srs` | `any` | the "structured reference string", a set of precomputed values needed for verifying proofs |
-| `serializedVk` | `string` | string representation of a Circuit verification key |
+| Name           | Type     | Description                                                                                |
+| :------------- | :------- | :----------------------------------------------------------------------------------------- |
+| `srs`          | `any`    | the "structured reference string", a set of precomputed values needed for verifying proofs |
+| `serializedVk` | `string` | string representation of a Circuit verification key                                        |
 
 #### Returns
 
@@ -788,7 +792,7 @@ the recovered verification key
 
 [snarky/addons.js:49](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/snarky/addons.js#L49)
 
-___
+---
 
 ### sendZkapp
 
@@ -796,12 +800,12 @@ ___
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `json` | `string` | `undefined` |
-| `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
-| `__namedParameters` | `Object` | `{}` |
-| `__namedParameters.timeout` | `undefined` \| `number` | `undefined` |
+| Name                        | Type                    | Default value            |
+| :-------------------------- | :---------------------- | :----------------------- |
+| `json`                      | `string`                | `undefined`              |
+| `graphqlEndpoint`           | `string`                | `defaultGraphqlEndpoint` |
+| `__namedParameters`         | `Object`                | `{}`                     |
+| `__namedParameters.timeout` | `undefined` \| `number` | `undefined`              |
 
 #### Returns
 
@@ -811,7 +815,7 @@ ___
 
 [lib/fetch.ts:532](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/fetch.ts#L532)
 
-___
+---
 
 ### serializeVerificationKey
 
@@ -819,8 +823,8 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name              | Type  | Description                       |
+| :---------------- | :---- | :-------------------------------- |
 | `verificationKey` | `any` | the verification key of a Circuit |
 
 #### Returns
@@ -833,7 +837,7 @@ string representation of the verification key
 
 [snarky/addons.js:27](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/snarky/addons.js#L27)
 
-___
+---
 
 ### setGraphqlEndpoint
 
@@ -841,8 +845,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name              | Type     |
+| :---------------- | :------- |
 | `graphqlEndpoint` | `string` |
 
 #### Returns
@@ -853,13 +857,13 @@ ___
 
 [lib/fetch.ts:33](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/fetch.ts#L33)
 
-___
+---
 
 ### shutdown
 
 ▸ **shutdown**(): `Promise`<`undefined`\>
 
-This function *must* be called at the end of a nodejs program, otherwise the
+This function _must_ be called at the end of a nodejs program, otherwise the
 worker threads will continue running and the program will never terminate.
 From web applications, this function is a no-op.
 
@@ -871,7 +875,7 @@ From web applications, this function is a no-op.
 
 [snarky.d.ts:852](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/snarky.d.ts#L852)
 
-___
+---
 
 ### signFeePayer
 
@@ -879,11 +883,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transactionJson` | `string` |
-| `feePayerKey` | `string` \| [`PrivateKey`](classes/PrivateKey.md) |
-| `__namedParameters` | `Object` |
+| Name                | Type                                              |
+| :------------------ | :------------------------------------------------ |
+| `transactionJson`   | `string`                                          |
+| `feePayerKey`       | `string` \| [`PrivateKey`](classes/PrivateKey.md) |
+| `__namedParameters` | `Object`                                          |
 
 #### Returns
 
@@ -893,11 +897,11 @@ ___
 
 [lib/zkapp.ts:1186](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/zkapp.ts#L1186)
 
-___
+---
 
 ### state
 
-▸ **state**<`A`\>(`stateType`): (`target`: [`SmartContract`](classes/SmartContract.md) & { `constructor`: `any`  }, `key`: `string`, `_descriptor?`: `PropertyDescriptor`) => `void`
+▸ **state**<`A`\>(`stateType`): (`target`: [`SmartContract`](classes/SmartContract.md) & { `constructor`: `any` }, `key`: `string`, `_descriptor?`: `PropertyDescriptor`) => `void`
 
 A decorator to use within a zkapp to indicate what will be stored on-chain.
 For example, if you want to store a field element `some_state` in a zkapp,
@@ -910,13 +914,13 @@ you can use the following in the declaration of your zkapp:
 #### Type parameters
 
 | Name |
-| :------ |
-| `A` |
+| :--- |
+| `A`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type                                                     |
+| :---------- | :------------------------------------------------------- |
 | `stateType` | [`AsFieldElements`](interfaces/AsFieldElements.md)<`A`\> |
 
 #### Returns
@@ -927,11 +931,11 @@ you can use the following in the declaration of your zkapp:
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `target` | [`SmartContract`](classes/SmartContract.md) & { `constructor`: `any`  } |
-| `key` | `string` |
-| `_descriptor?` | `PropertyDescriptor` |
+| Name           | Type                                                                   |
+| :------------- | :--------------------------------------------------------------------- |
+| `target`       | [`SmartContract`](classes/SmartContract.md) & { `constructor`: `any` } |
+| `key`          | `string`                                                               |
+| `_descriptor?` | `PropertyDescriptor`                                                   |
 
 ##### Returns
 
@@ -941,7 +945,7 @@ you can use the following in the declaration of your zkapp:
 
 [lib/state.ts:39](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/state.ts#L39)
 
-___
+---
 
 ### verify
 
@@ -949,10 +953,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `proof` | `JsonProof` \| [`Proof`](classes/Proof.md)<`any`\> |
-| `verificationKey` | `string` |
+| Name              | Type                                               |
+| :---------------- | :------------------------------------------------- |
+| `proof`           | `JsonProof` \| [`Proof`](classes/Proof.md)<`any`\> |
+| `verificationKey` | `string`                                           |
 
 #### Returns
 
@@ -962,7 +966,7 @@ ___
 
 [lib/proof_system.ts:109](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L109)
 
-___
+---
 
 ### zkappCommandToJson
 
@@ -970,8 +974,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name                | Type           |
+| :------------------ | :------------- |
 | `__namedParameters` | `ZkappCommand` |
 
 #### Returns
