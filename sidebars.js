@@ -46,7 +46,7 @@ module.exports = {
         'zkapps/zkapps-for-ethereum-developers',
         {
           type: 'category',
-          label: 'SnarkyJS API Reference',
+          label: 'SnarkyJS Reference',
           items: [
             {
               type: 'doc',
