@@ -202,8 +202,8 @@ const katex = require("rehype-katex");
           theme: {
             customCss: [require.resolve("./src/scss/custom.scss")],
           },
-          googleAnalytics: {
-            trackingID: "GTM-MJBCZX9",
+          gtag: {
+            trackingID: 'GTM-MJBCZX9',
           },
         }),
       ],
