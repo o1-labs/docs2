@@ -38,6 +38,7 @@ module.exports = {
           label: 'Tutorials',
           items: [
             'zkapps/tutorials/anonymous-message-board',
+            // NOTE: This gets removed from the sidebar when `update-sidebars-snarkyjs-api.js` runs.
             //"zkapps/tutorials/hello-world",
             //"zkapps/tutorials/private-inputs-hash-functions",
             //"zkapps/tutorials/deploying-to-a-network",
