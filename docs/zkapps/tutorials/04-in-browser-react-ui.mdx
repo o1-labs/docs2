@@ -1,0 +1,234 @@
+---
+title: "Tutorial 04 In Browser React UI"
+hide_title: true
+sidebar_label: 04 In Browser React UI 
+---
+
+# Tutorial 4: In Browser React UI 
+
+## Overview
+
+In previous tutorials, we've seen how to write zkApps and interact with them from the CLI.
+
+In this tutorial, we will learn how to interact with zkApps from the browser, using react. This lets you build applications that anyone over the internet can interact with.
+
+If you would like to try out the application before going through the tutorial (recommended), you can do so [here](TODO).
+
+Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](TODO). Instead we will talk through key parts of the application. Much of the code can be reused when you write your own application; we will focus on explaining the parts most different from the CLI tutorial, and the parts you may want to modify if you use this as a starter for your own application.
+
+This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users.
+
+### Caveats
+
+Some caveats to mention for the current state of this tutorial:
+* This tutorial runs SnarkyJS on the UI thread, which blocks and makes the page unresponsive while doing complex computations like creating a zero knowledge proof in the browser. A future version is planned to use Web Workers to fix this.
+* This tutorial uses localStorage to store and manage the user's private key. A new version of SnarkyJS is in the works which will connect to Auro wallet for more persistent private key management.
+* A new version of the zkApp CLI is in the works which will let you develop your Smart Contract and UI in a monorepo. This version has the CLI deployed separately.
+
+## Project setup
+
+### React
+
+We will be using `create-react-app`. To start, run 
+```sh
+$ npx create-react-app 04-zkApp-browser-ui --template typescript
+```
+
+### SharedArrayBuffer Setup
+
+SnarkyJS uses SharedArrayBuffers, which requires particular headers to be set.
+
+To do this, we need to add a proxy to our project:
+
+```sh
+$ cd 04-zkApp-browser-ui
+$ npm install http-proxy-middleware --save
+$ 
+```
+
+create a file at `src/setupProxy.js`, with the contents:
+
+```typescript
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function (app) {
+    app.use(function (req, res, next) {
+        res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+        res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+        next();
+    });
+};
+```
+
+This will automatically run whenever you run the lcoal react server.
+
+### Smart Contract
+
+We will be reusing the smart contract from the [previous tutorial](TODO), particularly, the project `03-deploying-to-a-live-network`
+
+To connect this smart contract, first we need to make one change to its `src/index.ts` - add a line so it looks like:
+
+```ts
+  1 import { Square } from './Square.js';
+  2
+  3 export { Square };
+  4
+  5 export * as snarkyjs from 'snarkyjs';
+```
+
+Importing snarkyjs directly into the react app results in two versions of snarkyjs running, causing issues. A fix is in the works to avoid this.
+
+Inside the `03-deploying-to-a-live-network` folder, run:
+
+```sh
+$ npm link
+```
+
+And within `04-zkApp-browser-ui`, run:
+
+```sh
+$ npm link 03-deploying-to-a-live-network
+```
+
+### Running the UI
+
+You can start hosting the react ui by running `npm start` from within `04-zkApp-browser-ui`. This should automatically open up a browser at the right address for your project.
+
+Whenever you save one of the files in `src`, the react project will be reset.
+
+## Project Files
+
+### App.jsx
+
+This file contains the main logic for our application. It first starts up the `Initialize` component (see below), which loads the snarkyjs, an account, and the smart contract. After this is done, it switches to a `SmartContractUI` component (also see below), which both has a pane for interacting with our smart contract, and a pane for showing the state of making, proving, and sending transactions.
+
+You can see the full code [here](TODO).
+
+A few parts of the code to highlight:
+```typescript
+  8 import { Square, snarkyjs } from '03-deploying-to-a-live-network';
+  9
+ 10 const { Mina, Field, PublicKey, PrivateKey, isReady, fetchAccount, setGraphqlEndpoint } = snarkyjs;
+```
+
+This is to match our export of snarkyjs in `03-deploying-to-a-live-network` we did earlier. As mentioned, this is necessary to avoid duplicate instances of snarkyjs, but will be fixed in a future iteration.
+
+```typescript
+ 16 let mockEffects = false;
+```
+
+When set to true, the code avoids hitting the actual network, and performing long operations (like compilation and proving). This is useful for development and debugging. If you use this feature, search for it across all the files, especially SmartContractUI, to ensure your mocked behavior is equivalent to your actual smart contract.
+
+### App.css
+
+We won't be going through this file here, but you can see it [here](TODO). It styles our page.
+
+### utils.jsx
+
+We won't be going through this file here, but you can see it [here](TODO). It provides some convenience functions for the heavily sequential and asynchronous operations we perform setting up our application and sending transactions.
+
+### Initialize.jsx
+
+This component does the setup necessary for interacting with the smart contract. It uses a private key managed by localstorage, but a version that uses the in browser extension auro wallet is in the works.
+
+You can see the full code [here](TODO).
+
+A few parts of the code to highlight:
+
+```typescript
+104   useMakeStage('waitForAccountFunded', 'compileZKApp', async (state) => {
+105     var zkAppAddress = PublicKey.fromBase58('B62qqonbhsDQrrutNK2faMXpGmJ9mtrxXRtkL5fRqbmoPnHuTJd83C8');
+106
+107     let { verificationKey } = mockEffects ? { verificationKey: null } : await Square.compile();
+108
+109     let zkapp = new Square(zkAppAddress);
+110
+111     return { ...state, zkapp }
+112   });
+```
+
+This is where the smart contract is created.
+
+And this is the part that creates the UI:
+
+```typescript
+186   return (<div className="console">
+187     { loading }
+188     { makeOrGetKey }
+189     { firstCheck }
+190     { foundAccount }
+191     { compiling }
+192     { initialState }
+193   </div>);
+194 }
+```
+
+If you wanted to display custom text or a custom ui in your application while its loading, this is where you would add that.
+
+### SmartContractUI.jsx
+
+This component has a pane for interacting with the smart contract, and a pane for showing the progress of producing and sending transactions. If you want to make your own application, besides changing the smart contract, you would modify the code and add your UI here.
+
+You can see the full code [here](TODO).
+
+A few parts of the code to highlight:
+
+```typescript
+ 97   let updateState = () => {
+ 98     state = { ...state }
+ 99     state.stages.startUpdate.stage = Stage.Done;
+100     state.stages.makeTransaction.stage = Stage.NotStarted;
+101     state.stages.proveTransaction.stage = Stage.NotStarted;
+102     state.stages.sendTransaction.stage = Stage.NotStarted;
+103     state.stages.waitStateChange.stage = Stage.NotStarted;
+104
+105     setState(state);
+106   }
+```
+
+This code is run whenever the button is pressed. It resets all of the transaction stages, and starts off the transaction process again by setting `startUpdate` to `Done`.
+
+```typescript
+132   return <div>
+133    <div className="app">
+134      <div> Current State: { state.currentValue.toString() } </div>
+135      <button onClick={ updateState } disabled={state.stages.startUpdate.stage == Stage.Done}> Update State </butto    n>
+136    </div>
+```
+
+This code creates the UI for interacting with the smart contract. It could be updated to whatever is needed for a particular application.
+
+```typescript
+36   useMakeStage('startUpdate', 'makeTransaction', async (state) => {
+ 37     const num = state.currentValue;
+ 38     const numBefore = num;
+ 39     const updatedValue = num!.mul(num!);
+ 40     let transaction;
+ 41     if (mockEffects) {
+ 42       transaction = {
+ 43         prove: () => null
+ 44       }
+ 45       await new Promise(resolve => setTimeout(resolve, 500))
+ 46     } else {
+ 47       transaction = await Mina.transaction(
+ 48         { feePayerKey: privateKey , fee: transactionFee },
+ 49         () => {
+ 50           zkapp.update(updatedValue);
+ 51         });
+ 52     }
+ 53     state.transaction = transaction;
+ 54     return state;
+ 55   });
+```
+
+This code creates the transaction, with in this case, has `updatedValue = num!.mul(num!)`.
+
+## Deploying the UI to a website
+
+[Under Construction]
+
+## Conclusion
+
+We have built an in browser demo that uses react and interacts with a live netowrk! If you want to build your own in browser zkApp UI, this should serve as a good starting point. 
+
+Now let's move to the next tutorial, where we will learn about different SnarkyJS types you can use in your application.
