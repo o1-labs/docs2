@@ -64,21 +64,21 @@ This will automatically run whenever you run the lcoal react server.
 
 ### Smart Contract
 
-We will be reusing the smart contract from the previous tutorial, particularly, the project `03-deploying-to-a-live-network`
+You can find the code for the smart contract we will be using [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui-smart-contract). This smart contract just stores a number, and calling its function adds one to the number.
 
 To connect this smart contract, first we need to make one change to its `src/index.ts` - add a line so it looks like:
 
 ```ts
-  1 import { Square } from './Square.js';
+  1 import { Add } from './Add.js';
   2
-  3 export { Square };
+  3 export { Add };
   4
   5 export * as snarkyjs from 'snarkyjs';
 ```
 
 Importing snarkyjs directly into the react app results in two versions of snarkyjs running, causing issues. A fix is in the works to avoid this.
 
-Inside the `03-deploying-to-a-live-network` folder, run:
+Inside the `04-zkapp-browser-ui-smart-contract` folder, run:
 
 ```sh
 $ npm link
@@ -87,7 +87,7 @@ $ npm link
 And within `04-zkApp-browser-ui`, run:
 
 ```sh
-$ npm link 03-deploying-to-a-live-network --save
+$ npm link 04-zkapp-browser-ui-smart-contract --save
 ```
 
 ### Running the UI
@@ -106,12 +106,12 @@ You can see the full code [here](https://github.com/es92/zkApp-examples/blob/mai
 
 A few parts of the code to highlight:
 ```typescript
-  8 import { Square, snarkyjs } from '03-deploying-to-a-live-network';
+  8 import { Add, snarkyjs } from '04-zkapp-browser-ui-smart-contract';
   9
  10 const { Mina, Field, PublicKey, PrivateKey, isReady, fetchAccount, setGraphqlEndpoint } = snarkyjs;
 ```
 
-This is to match our export of snarkyjs in `03-deploying-to-a-live-network` we did earlier. As mentioned, this is necessary to avoid duplicate instances of snarkyjs, but will be fixed in a future iteration.
+This is to match our export of snarkyjs in `04-zkapp-browser-ui-smart-contract` we did earlier. As mentioned, this is necessary to avoid duplicate instances of snarkyjs, but will be fixed in a future iteration.
 
 ```typescript
  16 let mockEffects = false;
@@ -139,9 +139,9 @@ A few parts of the code to highlight:
 104   useMakeStage('waitForAccountFunded', 'compileZKApp', async (state) => {
 105     var zkAppAddress = PublicKey.fromBase58('B62qqonbhsDQrrutNK2faMXpGmJ9mtrxXRtkL5fRqbmoPnHuTJd83C8');
 106
-107     let { verificationKey } = mockEffects ? { verificationKey: null } : await Square.compile();
+107     let { verificationKey } = mockEffects ? { verificationKey: null } : await Add.compile();
 108
-109     let zkapp = new Square(zkAppAddress);
+109     let zkapp = new Add(zkAppAddress);
 110
 111     return { ...state, zkapp }
 112   });
