@@ -54,6 +54,10 @@ const katex = require("rehype-katex");
               to: "/about-mina/consensus",
             },
             {
+              from: "/tutorials",
+              to: "/zkapps/tutorials/hello-world",
+            },
+            {
               from: "/zkapps/tutorials",
               to: "/zkapps/tutorials/hello-world",
             },
