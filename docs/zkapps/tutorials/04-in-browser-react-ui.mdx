@@ -87,7 +87,7 @@ $ npm link
 And within `04-zkApp-browser-ui`, run:
 
 ```sh
-$ npm link 03-deploying-to-a-live-network
+$ npm link 03-deploying-to-a-live-network --save
 ```
 
 ### Running the UI
@@ -225,7 +225,15 @@ This code creates the transaction, with in this case, has `updatedValue = num!.m
 
 ## Deploying the UI to a website
 
-[Under Construction]
+A convenient way to deploy our react app is to deploy it to github pages. To do this, first install gh-pages:
+
+```sh
+$ npm install gh-pages
+```
+
+If you are using the example repo, many things you need will be setup for you. If you are using your own repo, you'll need to:
+* setup [coi-serviceworker](https://github.com/gzuidhof/coi-serviceworker)
+* add a homepage variable to package.json (./)
 
 ## Conclusion
 
