@@ -12,9 +12,9 @@ In previous tutorials, we've seen how to write zkApps and interact with them fro
 
 In this tutorial, we will learn how to interact with zkApps from the browser, using react. This lets you build applications that anyone over the internet can interact with.
 
-If you would like to try out the application before going through the tutorial (recommended), you can do so [here](TODO).
+If you would like to try out the application before going through the tutorial (recommended), you can do so [here](https://es92.github.io/zkApp-examples/index.html).
 
-Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](TODO). Instead we will talk through key parts of the application. Much of the code can be reused when you write your own application; we will focus on explaining the parts most different from the CLI tutorial, and the parts you may want to modify if you use this as a starter for your own application.
+Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui). Instead we will talk through key parts of the application. Much of the code can be reused when you write your own application; we will focus on explaining the parts most different from the CLI tutorial, and the parts you may want to modify if you use this as a starter for your own application.
 
 This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users.
 
@@ -64,7 +64,7 @@ This will automatically run whenever you run the lcoal react server.
 
 ### Smart Contract
 
-We will be reusing the smart contract from the [previous tutorial](TODO), particularly, the project `03-deploying-to-a-live-network`
+We will be reusing the smart contract from the previous tutorial, particularly, the project `03-deploying-to-a-live-network`
 
 To connect this smart contract, first we need to make one change to its `src/index.ts` - add a line so it looks like:
 
@@ -102,7 +102,7 @@ Whenever you save one of the files in `src`, the react project will be reset.
 
 This file contains the main logic for our application. It first starts up the `Initialize` component (see below), which loads the snarkyjs, an account, and the smart contract. After this is done, it switches to a `SmartContractUI` component (also see below), which both has a pane for interacting with our smart contract, and a pane for showing the state of making, proving, and sending transactions.
 
-You can see the full code [here](TODO).
+You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/App.tsx).
 
 A few parts of the code to highlight:
 ```typescript
@@ -121,17 +121,17 @@ When set to true, the code avoids hitting the actual network, and performing lon
 
 ### App.css
 
-We won't be going through this file here, but you can see it [here](TODO). It styles our page.
+We won't be going through this file here, but you can see it [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/App.css). It styles our page.
 
 ### utils.jsx
 
-We won't be going through this file here, but you can see it [here](TODO). It provides some convenience functions for the heavily sequential and asynchronous operations we perform setting up our application and sending transactions.
+We won't be going through this file here, but you can see it [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/utils.tsx). It provides some convenience functions for the heavily sequential and asynchronous operations we perform setting up our application and sending transactions.
 
 ### Initialize.jsx
 
 This component does the setup necessary for interacting with the smart contract. It uses a private key managed by localstorage, but a version that uses the in browser extension auro wallet is in the works.
 
-You can see the full code [here](TODO).
+You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/Initialize.tsx).
 
 A few parts of the code to highlight:
 
@@ -169,7 +169,7 @@ If you wanted to display custom text or a custom ui in your application while it
 
 This component has a pane for interacting with the smart contract, and a pane for showing the progress of producing and sending transactions. If you want to make your own application, besides changing the smart contract, you would modify the code and add your UI here.
 
-You can see the full code [here](TODO).
+You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/SmartContractUI.tsx).
 
 A few parts of the code to highlight:
 
