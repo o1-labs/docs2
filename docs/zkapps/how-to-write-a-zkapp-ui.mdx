@@ -110,26 +110,20 @@ onMounted(async () => {
 });
 ```
 
-#### Enabling the COOP and COEP headers
+#### Enabling COOP and COEP headers
 
-To successfully load any SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
-and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers to set up a cross-origin isolated
-environment that enables the use of [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
-SnarkyJS relies on the use of `SharedArrayBuffer` to enable important WebAssembly features.
+To load SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
+and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers as described below. These enable SnarkyJS' use of [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), which SnarkyJS relies on to enable important WebAssembly features.
 
-There are many alternatives available to enable these headers. For example, if you deploy your UI to products like [Vercel](https://vercel.com/) or [Cloudflare Pages](https://pages.cloudflare.com/), you can set these headers in a custom configuration file. Otherwise, you can set these headers in the server framework of your choice (e.g., Express for JavaScript).
 
-:::tip
+- `Cross-Origin-Opener-Policy` must be set to `same-origin`.
+- `Cross-Origin-Embedder-Policy` must be set to `require-corp`.
 
-COOP must be set to `same-origin`.
+You can enable these headers a number of different ways. If you deploy your UI to a host such as [Vercel](https://vercel.com/) or [Cloudflare Pages](https://pages.cloudflare.com/), you can set these headers in a custom configuration file (see below). Otherwise, you can set these headers in the server framework of your choice (e.g. Express for JavaScript).
 
-COEP must be set to `require-corp`.
+**Vercel**
 
-:::
-
-**Setting COOP and COEP in your Vercel configuration**:
-
-To see more details on deploying to Vercel, [see their documentation on `vercel.json`](https://vercel.com/docs/project-configuration).
+If your app will be hosted on Vercel, you can set these headers via [`vercel.json`](https://vercel.com/docs/project-configuration).
 
 ```json
 {
@@ -145,9 +139,9 @@ To see more details on deploying to Vercel, [see their documentation on `vercel.
 }
 ```
 
-**Setting COOP and COEP in your Cloudflare Pages configuration**:
+**Cloudflare Pages**
 
-To see more details on deploying to Cloudflare Pages, [see their documentation on `_headers`](https://developers.cloudflare.com/pages/platform/headers/).
+If your app will be hosted on Cloudflare Pages, you can set these headers via a [`_headers` file](https://developers.cloudflare.com/pages/platform/headers/).
 
 ```
 /*
