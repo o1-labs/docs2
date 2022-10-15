@@ -58,7 +58,7 @@ import { IncrementSecret } from './IncrementSecret.js';
 export { IncrementSecret };
 ```
 
-### IncrementSecret smart contract
+## IncrementSecret smart contract
 
 Now we'll build the smart contract for our application.
 
@@ -102,7 +102,9 @@ Now we will add our initializer function.
  26 }
 ```
 
-Note in this case, the initializer of the smart contract sets the secret. This ensures that anybody looking at the smart contract code cannot figure out the value of the secret - this is private to whoever initializes the contract.
+Note in this case, the initializer of the smart contract sets the secret, and a value called a "salt", which we will discuss later. 
+
+The initializer setting these values ensures that anybody looking at the smart contract code cannot figure out the value of the secret - this is private to whoever initializes the contract.
 
 Next we will add our state update function:
 ```ts
@@ -120,13 +122,19 @@ Next we will add our state update function:
 
 Mina uses the poseidon hash function, which has been optimized inside its proof system for fast performance. The poseidon hash function takes in an array of Fields, and returns a single Field as output.
 
-In this function, we use both a secret (a number), and a value known as a "salt". The salt ensures no onlooker can figure out the value of the secret by bruteforcing possible numbers. If for example it was known that the secret is likely between 1 and 10,000, an attacker could try hashing all of these possibilities and so discover our secret. The salt, by being uniformly random over the field, ensures this isn't possible.
+In this smart contract, we use both a secret number, and a second field, known as a "salt".
 
-First in the function, we check that the hash of the salt and our secret is equal to the current state x. If this is the case, we add 1 to the secret and set x to the hash of the salt and the new secret. SnarkyJS creates a proof of this fact, which can be transmitted over the network to update the smart contract.
+In the `incrementSecret` function, we check that the hash of the salt and our secret is equal to the current state x. If this is the case, we add 1 to the secret and set x to the hash of the salt and the new secret. SnarkyJS creates a proof of this fact, which can be transmitted over the network to update the smart contract.
 
 Because zkApp smart contracts are run offchain, and only a proof is set over the network, both the salt and secret themselves remain private. Only the result, updating x to hash([ salt, secret + 1]) are revealed. Because the salt and secret can't be deduced from their hash, they remain private.
 
-### Main
+### But why the extra `salt` argument?
+
+The extra `salt` argument is added to avoid a possible attack on our smart contract. If we were to just use `secret`, it would be vulnerable to discovery by an attacker. To do this, our attacker could try hashing likely secrets, and check if the hash matches the hash stored in the smart contract. If the hash were to match, then the attacker would have known they had discovered the secret. This is particularly concerning if the secret is likely to be in a particular range of the field, say between 1 and 10,000. In that case, with just 10,000 hashes, the attacker could discover our secret.
+
+What we can do to fix this, is add a second value, chosen uniformly over the field. This second value ensures that there are too many possibilities for an attacker to try for it to be possible to use this brute force method. This second value is commonly known as a "salt", and is the added field we've added to our smart contract.
+
+## Main
 
 Our `src/main.ts` is similar to our last tutorial - for a full version of `src/main.ts`, see [here](https://github.com/es92/zkApp-examples/blob/main/02-private-inputs-and-hash-functions/src/main.ts).
 
