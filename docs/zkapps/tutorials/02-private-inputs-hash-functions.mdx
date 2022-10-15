@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 2 Private Inputs and Hash Functions"
+title: "Tutorial 2: Private Inputs and Hash Functions"
 hide_title: true
 sidebar_label: "Tutorial 2: Private Inputs and Hash Functions"
 ---
@@ -96,8 +96,8 @@ Now we will add our initializer function.
 ```ts
 ...
  22
- 23   @method init(firstSecret: Field) {
- 24     this.x.set(firstSecret);
+ 23   @method init(salt: Field, firstSecret: Field) {
+ 24     this.x.set(Poseidon.hash([ salt, firstSecret ]));
  25   }
  26 }
 ```
@@ -140,13 +140,13 @@ Our smart contract initialization this time will be:
  32   const deploy_txn = await Mina.transaction(deployerAccount, () => {
  33     AccountUpdate.fundNewAccount(deployerAccount);
  34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
- 35     zkAppInstance.init(Poseidon.hash([ salt, Field.fromNumber(750) ]));
+ 35     zkAppInstance.init(salt, Field.fromNumber(750));
  36     zkAppInstance.sign(zkAppPrivateKey);
  37   });
  ...
 ```
 
-Note the init function taking a poseidon hash of of the salt and our secret, in this case the number 750.
+Note the init function taking the salt and our secret, in this case the number 750.
 
 And here is how one can send a transaction:
 ```ts
