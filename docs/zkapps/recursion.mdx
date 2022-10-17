@@ -1,0 +1,150 @@
+---
+title: Proof Recursion and arbitrary circuits
+hide_title: true
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+Experimental. This API may change.
+
+:::
+
+# Proof Recursion and arbitrary circuits
+
+Kimchi, the proof system that backs SnarkyJS, supports arbitrary infinite recursive proof construction of circuits. We can use this to our advantage to verify any zero knowledge program as part of our zkApp.
+
+## Recursively Verifying a simple program within a zkApp
+
+First we need to define a program. Just like in zkApps, arguments to methods are private. This time, we can specify what our public input shape is. This one will be simple and just have one method that proves that the public input is zero:
+
+```typescript
+import { Field, Experimental } from 'snarkyjs';
+
+let SimpleProgram = Experimental.ZkProgram({
+  publicInput: Field,
+
+  methods: {
+    run: {
+      privateInputs: [],
+
+      method(publicInput: Field) {
+        publicInput.assertEquals(Field.zero);
+      },
+    }
+  }
+});
+```
+
+First we compile this program:
+
+```typescript
+let { verificationKey } = await SimpleProgram.compile();
+```
+
+Now we can use it to create a proof:
+
+```typescript
+let proof = await SimpleProgram.run(Field.zero);
+```
+
+And we can verify this proof from within any zkApp method:
+
+```typescript
+@method foo() {
+  proof.verify().assertTrue();
+  //... the rest of our method
+}
+```
+
+## Recursively Verifying a linear recursive program within a zkApp
+
+This time we are going to write a recursive ZkProgram which we can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible, but in SnarkyJS we can describe a recursive ZkProgram with a simple recursive function.
+
+Here we'll write a program that describes a recursive operation of adding one repeatedly to a number. Note that we recursively depend on the older proof as a private argument to our method.
+
+```typescript
+import { SelfProof, Field, Experimental, verify } from 'snarkyjs';
+
+let AddOne = Experimental.ZkProgram({
+  publicInput: Field,
+
+  methods: {
+    baseCase: {
+      privateInputs: [],
+
+      method(publicInput: Field) {
+        publicInput.assertEquals(Field.zero);
+      },
+    },
+
+    inductiveCase: {
+      privateInputs: [SelfProof],
+
+      method(publicInput: Field, earlierProof: SelfProof<Field>) {
+        earlierProof.verify();
+        earlierProof.publicInput.add(1).assertEquals(publicInput);
+      },
+    },
+  },
+});
+```
+
+First we compile this program and make the base proof as before:
+
+```typescript
+let { verificationKey } = await AddOne.compile();
+
+let proof = await AddOne.baseCase(Field.zero);
+```
+
+This time we can use this proof as input to recursively add one again:
+
+```typescript
+let proof1 = await AddOne.inductiveCase(Field.one, proof);
+```
+
+And we can repeat this as many times as we want:
+
+```typescript
+let proof2 = await AddOne.inductiveCase(Field(2), proof1);
+```
+
+Finally we can verify the proof from within a zkApp like we did above:
+
+```typescript
+@method foo() {
+  proof2.verify().assertTrue();
+  //... the rest of our method
+}
+```
+
+
+## Recursively Verifying a tree-based recursive program within a zkApp
+
+Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of it's [decentralized prover and sequeencing mechanism](TODO link to article by protocol team) for rollups, so it's supported very robustly by Kimchi.
+
+Here we'll write a program that describes a very simple rollup for a custom application's state transition system:
+
+TODO
+
+## Using ZkPrograms outside of zkApps
+
+You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge programs (typically called circuits, though in SnarkyJS the backend is fully abstracted from you).
+
+```typescript
+let { verificationKey } = await MyProgram.compile();
+
+let proof = await MyProgram.base(Field.zero);
+```
+
+Now we can directly verify a JSON-encoded version of the proof to get back a boolean value telling us if the proof is valid.
+
+```typescript
+import { verify } from 'snarkyjs';
+
+let ok = await verify(proof.toJSON(), verificationKey);
+```
+
