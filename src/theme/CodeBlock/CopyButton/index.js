@@ -1,14 +1,17 @@
-import React, {useCallback, useState, useRef, useEffect} from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 // @ts-expect-error: TODO, we need to make theme-classic have type: module
 import copy from 'copy-text-to-clipboard';
-import {translate} from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
-export default function CopyButton({code, className}) {
+export default function CopyButton({ code, className }) {
   const [isCopied, setIsCopied] = useState(false);
   const copyTimeout = useRef(undefined);
   const handleCopyCode = useCallback(() => {
-    copy(code);
+    // This regex removes the line numbers from every line of the copied code snippet
+    const copiedCode = code.replace(/^\s*\d+\s/gm, '');
+
+    copy(copiedCode);
     setIsCopied(true);
     copyTimeout.current = window.setTimeout(() => {
       setIsCopied(false);
@@ -40,9 +43,10 @@ export default function CopyButton({code, className}) {
         'clean-btn',
         className,
         styles.copyButton,
-        isCopied && styles.copyButtonCopied,
+        isCopied && styles.copyButtonCopied
       )}
-      onClick={handleCopyCode}>
+      onClick={handleCopyCode}
+    >
       <span className={styles.copyButtonIcons} aria-hidden="true">
         <svg className={styles.copyButtonIcon} viewBox="0 0 24 24">
           <path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" />
