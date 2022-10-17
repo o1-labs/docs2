@@ -8,12 +8,10 @@ export default function CopyButton({ code, className }) {
   const [isCopied, setIsCopied] = useState(false);
   const copyTimeout = useRef(undefined);
   const handleCopyCode = useCallback(() => {
-    // This regex removes the line numbers from every line of the copied code snippet
-    let copiedCode = code.replace(/^\s*\d+\s/gm, '');
-
-    // This removes ellipses from code snippets that are copied
-    copiedCode = copiedCode.replace(/\.{3,}/g, '');
-
+    const removeLineNumbers = /^\s*\d+\s/gm;
+    const removeEllipses = /\.{3}/gm;
+    let copiedCode = code.replace(removeLineNumbers, '');
+    copiedCode = copiedCode.replace(removeEllipses, '');
     copy(copiedCode);
     setIsCopied(true);
     copyTimeout.current = window.setTimeout(() => {
