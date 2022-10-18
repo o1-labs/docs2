@@ -104,6 +104,8 @@ Next steps:
 - To deploy, run: `zk deploy berkeley`
 ```
 
+This command also generates keys, in `keys/berkeley.json`, that we will use in our application. You can see [here](https://github.com/es92/zkApp-examples/blob/main/03-deploying-to-a-live-network/src/generate_private_key.ts) an example of generating a private key programmatically, if useful for your application.
+
 ## Request funds from the faucet
 
 To deploy your zkApp, you will need some funds to pay for transaction fees.
@@ -150,9 +152,19 @@ Next step:
 
 After a few minutes, the transaction will be included in the next block. Visit `https://berkeley.minaexplorer.com/transaction/<txn-hash>` to see the transaction in progresss.
 
-This command also generates keys, in `keys/berkeley.json`, that we will use in our application. You can see [here](https://github.com/es92/zkApp-examples/blob/main/03-deploying-to-a-live-network/src/generate_private_key.ts) an example of generating a private key programmatically, if useful for your application.
+Once the transaction is included in a block, your smart contract is deployed!"
 
-## Writing code to interact with a Smart Contract on Berkeley
+This means, the Mina account at this public key, now contains the verification key associated with this zkApp smart contract. 
+
+In order for a transaction to succeed against this account, it now can either include the signature of the account holder, *or* it can include a valid proof. More instruction on deploying zkApps with custom permissions (such as alowing only proofs to modify an account), will come in a later tutorial.
+
+When a user interacts with this smart contract by providing a proof, the proof is generated locally on the user's device, and included in a transaction. Mina checks the proof (first in consensus directly, then in its ZKP recursively), to know it is correct and matches the verification key. 
+
+When we change our code, the verification key associated with it will change and should be redeployed using the same steps as our initial deployment
+
+## Interacting with our Deployed Smart Contract
+
+Let's write a script to interact with our smart contract so we can see it in action. Typically, your end users will interact with a UI that you build. We'll get to that in a future tutorial, for now we will just write a script to show how this can work. This pattern is also useful when writing server side programs that interact with zkApps.
 
 Open up `main.ts` in a text editor. You can find the complete source for this [here](https://github.com/es92/zkApp-examples/blob/main/03-deploying-to-a-live-network/src/main.ts).
 
@@ -208,9 +220,9 @@ With the Ethereum Bridge (future tutorial coming), states and proofs can also be
 ...
  ```
 
- While earlier we set the active instance to a local blockchain, we are now setting the active instance to the remote berkeley network. We are connecting to Berkeley through a graphql proxy, which is running a Mina node connected to the Berkeley network. 
+ While earlier we set the active instance to a local blockchain, we are now setting the active instance to the remote Berkeley network. We are connecting to Berkeley through a GraphQL proxy, which is running a Mina node connected to the Berkeley network. 
 
- You can also run a Mina node locally, and instead use its graphql endpoint. While in other blockchains this would be very heavyweight, because Mina is succinct this is actually a reasonable option. See [here](/node-operators/getting-started) to see how to do this.
+ You can also run a Mina node locally, and instead use its GraphQL endpoint. While in other blockchains this would be very heavyweight, because Mina is succinct this is actually a reasonable option. See [here](/node-operators/getting-started) to see how to do this.
 
  A version of the Mina node is in the works that will run directly in the browser and within the local node process, so client side users can connect directly to Mina with full decentralization guarantees, with no intermediaries that can go down, censor access, or otherwise impact you or your users' connection to the network.
 
