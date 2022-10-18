@@ -15,9 +15,9 @@ zkApps can now be deployed to Berkeley Testnet.
 
 ## Overview
 
-In our last tutorial, [Hello World](hello-world), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
+In our previous tutorial, [Hello World](hello-world), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
 
-In this example, we will discuss private inputs, and hash functions.
+In this example, we will discuss private inputs and hash functions.
 
 In a zkApp, local devices generate proofs, which are then verified on chain. Each method in a SnarkyJS Smart contract corresponds to constructing a proof.
 
@@ -31,9 +31,9 @@ You can find the complete source code of this project [here](https://github.com/
 
 The following steps assume you've installed dependencies to your machine as described in the previous tutorial - if not, please do that [here](hello-world).
 
-Now, setup a new project with 
+Now, setup a new project with:
 ```sh
-$ zk project 02-private-inputs-and-hash-functions
+zk project 02-private-inputs-and-hash-functions
 ```
 
 
@@ -47,8 +47,8 @@ rm src/Add.test.ts
 And create new files:
 
 ```sh
-$ zk file src/IncrementSecret
-$ touch src/main.ts
+zk file src/IncrementSecret
+touch src/main.ts
 ```
 
 And lastly, change `index.ts` to 
@@ -58,7 +58,7 @@ import { IncrementSecret } from './IncrementSecret.js';
 export { IncrementSecret };
 ```
 
-## IncrementSecret smart contract
+## Writing our smart contract
 
 Now we'll build the smart contract for our application.
 
@@ -104,7 +104,7 @@ Now we will add our initializer function.
 
 Note in this case, the initializer of the smart contract sets the secret, and a value called a "salt", which we will discuss later. 
 
-The initializer setting these values ensures that anybody looking at the smart contract code cannot figure out the value of the secret - this is private to whoever initializes the contract.
+The initializer setting these values ensures that anybody looking at the smart contract code cannot figure out the value of the secret - this is private to whomever initializes the contract.
 
 Next we will add our state update function:
 ```ts
@@ -120,19 +120,19 @@ Next we will add our state update function:
  34 }
  ```
 
-Mina uses the poseidon hash function, which has been optimized inside its proof system for fast performance. The poseidon hash function takes in an array of Fields, and returns a single Field as output.
+Mina uses the poseidon hash function, which has been optimized for fast performance inside zero knowledge proof systems. The poseidon hash function takes in an array of Fields, and returns a single Field as output.
 
 In this smart contract, we use both a secret number, and a second field, known as a "salt".
 
 In the `incrementSecret` function, we check that the hash of the salt and our secret is equal to the current state x. If this is the case, we add 1 to the secret and set x to the hash of the salt and the new secret. SnarkyJS creates a proof of this fact, which can be transmitted over the network to update the smart contract.
 
-Because zkApp smart contracts are run offchain, and only a proof is set over the network, both the salt and secret themselves remain private. Only the result, updating x to hash([ salt, secret + 1]) are revealed. Because the salt and secret can't be deduced from their hash, they remain private.
+Because zkApp smart contracts are run offchain, and only a proof is sent over the network, both the salt and secret themselves remain private. Only the result, updating x to hash([ salt, secret + 1]) are revealed. Because the salt and secret can't be deduced from their hash, they remain private.
 
 ### But why the extra `salt` argument?
 
-The extra `salt` argument is added to avoid a possible attack on our smart contract. If we were to just use `secret`, it would be vulnerable to discovery by an attacker. To do this, our attacker could try hashing likely secrets, and check if the hash matches the hash stored in the smart contract. If the hash were to match, then the attacker would have known they had discovered the secret. This is particularly concerning if the secret is likely to be in a particular range of the field, say between 1 and 10,000. In that case, with just 10,000 hashes, the attacker could discover our secret.
+The extra `salt` argument is added to avoid a possible attack on our smart contract. If we were to just use `secret`, it would be vulnerable to discovery by an attacker. To do this, our attacker could try hashing likely secrets and then check if the hash matches the hash stored in the smart contract. If the hash were to match, then the attacker would have known they had discovered the secret. This is particularly concerning if the secret is likely to be in a particular range of the field, say between 1 and 10,000. In that case, with just 10,000 hashes, the attacker could discover our secret.
 
-What we can do to fix this, is add a second value, chosen uniformly over the field. This second value ensures that there are too many possibilities for an attacker to try for it to be possible to use this brute force method. This second value is commonly known as a "salt", and is the added field we've added to our smart contract.
+What we can do to fix this, is add a second value as an input to our hash function, known as a "salt". The salt will be known only to us and is typically random for optimal security. Using this second value as an additional input to our hash function ensures that an attacker cannot simply brute force attack our secret by generating hashes for likely values of it, because too many possibilities exist.
 
 ## Main
 
@@ -148,7 +148,7 @@ Our smart contract initialization this time will be:
  32   const deploy_txn = await Mina.transaction(deployerAccount, () => {
  33     AccountUpdate.fundNewAccount(deployerAccount);
  34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
- 35     zkAppInstance.init(salt, Field.fromNumber(750));
+ 35     zkAppInstance.init(salt, Field(750));
  36     zkAppInstance.sign(zkAppPrivateKey);
  37   });
  ...
@@ -160,7 +160,7 @@ And here is how one can send a transaction:
 ```ts
 ...
  46   const txn1 = await Mina.transaction(deployerAccount, () => {
- 47     zkAppInstance.incrementSecret(salt, Field.fromNumber(750));
+ 47     zkAppInstance.incrementSecret(salt, Field(750));
  48     zkAppInstance.sign(zkAppPrivateKey);
  49   });
 ...
@@ -168,7 +168,7 @@ And here is how one can send a transaction:
 
 We call the zkApp smart contract with both the salt and the secret itself, the number 750. Because in zkApps smart contracts are executed locally, neither the secret nor the salt will make it into the transaction. 
 
-Instead, the transaction will include only the proof that the update was called in such a way that all asserts passed, and the update to the hash `x`. After the transcation is executed on chain, `x` will be `Poseidon.hash([ salt, Field.fromNumber(750).add(1) ])`, but the underlying salt and secret will not be revealed.
+Instead, the transaction will include only the proof that the update was called in such a way that all asserts passed, and the update to the hash `x`. After the transcation is executed on chain, `x` will be `Poseidon.hash([ salt, Field(750).add(1) ])`, but the underlying salt and secret will not be revealed.
 
 ## Conclusion
 
