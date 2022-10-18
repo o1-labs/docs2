@@ -85,28 +85,31 @@ loading SnarkyJS.
 
 **Loading your contract with React**
 
+<!-- prettier-ignore -->
 ```ts
 useEffect(() => {
-  ;(async () => {
-    const { YourSmartContract } = await import('your-package-name')
-  })()
-}, [])
+  (async () => {
+    const { YourSmartContract } = await import('your-package-name');
+  })();
+}, []);
 ```
 
 **Loading your contract with Svelte**
 
+<!-- prettier-ignore -->
 ```ts
 onMount(async () => {
-  const { YourSmartContract } = await import('your-package-name')
-})
+  const { YourSmartContract } = await import('your-package-name');
+});
 ```
 
 **Loading your contract with Vue**
 
+<!-- prettier-ignore -->
 ```ts
 onMounted(async () => {
-  const { YourSmartContract } = await import('your-package-name')
-})
+  const { YourSmartContract } = await import('your-package-name');
+});
 ```
 
 #### Enabling the COOP and COEP headers
