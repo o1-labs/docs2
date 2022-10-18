@@ -1,29 +1,44 @@
 ---
-title: "Tutorial 04 In Browser React UI"
+title: "Tutorial 4 [Draft]: Building a zkApp in the Browser with React"
 hide_title: true
-sidebar_label: 04 In Browser React UI 
+sidebar_label: "Tutorial 4 [Draft]: Building a zkApp in the Browser with React"
 ---
 
-# Tutorial 4: In Browser React UI 
+# Tutorial 4 [Draft]: Building a zkApp in the Browser with React
+
+:::caution
+
+This tutorial is currently a draft. It is currently public for testing, but only minimal support for its contents will be provided as it is likely to change soon, as new features are added to SnarkyJS and the tutorial undergoes further review.
+
+:::
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+:::
 
 ## Overview
 
-In previous tutorials, we've seen how to write zkApps and interact with them from the CLI.
+In previous tutorials, we've seen how to [write zkApps](hello-world) and [interact with them from the CLI](deploying-to-a-network).
 
-In this tutorial, we will learn how to interact with zkApps from the browser, using react. This lets you build applications that anyone over the internet can interact with.
+In this tutorial, we will learn how to build react apps that interact with zkApps from the browser. This lets you build applications that anyone over the internet can interact with.
+
+We will provide an overview of the code, and show how you can deploy your app to a github pages.
 
 If you would like to try out the application before going through the tutorial (recommended), you can do so [here](https://es92.github.io/zkApp-examples/index.html).
 
 Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui). Instead we will talk through key parts of the application. Much of the code can be reused when you write your own application; we will focus on explaining the parts most different from the CLI tutorial, and the parts you may want to modify if you use this as a starter for your own application.
 
-This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users.
+This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
 
 ### Caveats
 
 Some caveats to mention for the current state of this tutorial:
-* This tutorial runs SnarkyJS on the UI thread, which blocks and makes the page unresponsive while doing complex computations like creating a zero knowledge proof in the browser. A future version is planned to use Web Workers to fix this.
+* This tutorial runs SnarkyJS on the UI thread, which blocks and makes the page unresponsive while doing complex computations like proving zero knowledge proof transactions. A future version is planned to use Web Workers to fix this, as well as other optimizations to in browser proving.
 * This tutorial uses localStorage to store and manage the user's private key. A new version of SnarkyJS is in the works which will connect to Auro wallet for more persistent private key management.
-* A new version of the zkApp CLI is in the works which will let you develop your Smart Contract and UI in a monorepo. This version has the CLI deployed separately.
+* A new version of the zkApp CLI is in the works which will let you develop your Smart Contract and UI in a monorepo. The version discussed here has the CLI deployed separately.
 
 ## Project setup
 
@@ -31,7 +46,7 @@ Some caveats to mention for the current state of this tutorial:
 
 We will be using `create-react-app`. To start, run 
 ```sh
-$ npx create-react-app 04-zkApp-browser-ui --template typescript
+npx create-react-app 04-zkApp-browser-ui --template typescript
 ```
 
 ### SharedArrayBuffer Setup
@@ -41,9 +56,8 @@ SnarkyJS uses SharedArrayBuffers, which requires particular headers to be set.
 To do this, we need to add a proxy to our project:
 
 ```sh
-$ cd 04-zkApp-browser-ui
-$ npm install http-proxy-middleware --save
-$ 
+cd 04-zkApp-browser-ui
+npm install http-proxy-middleware --save
 ```
 
 create a file at `src/setupProxy.js`, with the contents:
@@ -60,13 +74,13 @@ module.exports = function (app) {
 };
 ```
 
-This will automatically run whenever you run the lcoal react server.
+This will automatically run whenever you run the local react server, enabling SharedArrayBuffers for our application, and in doing so allow SnarkyJS to run.
 
 ### Smart Contract
 
 You can find the code for the smart contract we will be using [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui-smart-contract). This smart contract just stores a number, and calling its function adds one to the number.
 
-To connect this smart contract, first we need to make one change to its `src/index.ts` - add a line so it looks like:
+To connect this smart contract, we will be making one change from normal. In `src/index.ts`, we have added a line so the file looks like:
 
 ```ts
   1 import { Add } from './Add.js';
@@ -81,43 +95,43 @@ Importing snarkyjs directly into the react app results in two versions of snarky
 Inside the `04-zkapp-browser-ui-smart-contract` folder, run:
 
 ```sh
-$ npm link
+npm link
 ```
 
 And within `04-zkApp-browser-ui`, run:
 
 ```sh
-$ npm link 04-zkapp-browser-ui-smart-contract --save
+npm link 04-zkapp-browser-ui-smart-contract --save
 ```
 
 ### Running the UI
 
 You can start hosting the react ui by running `npm start` from within `04-zkApp-browser-ui`. This should automatically open up a browser at the right address for your project.
 
-Whenever you save one of the files in `src`, the react project will be reset.
+Whenever you save one of the files in `src`, the react project will refresh.
 
 ## Project Files
 
 ### App.jsx
 
-This file contains the main logic for our application. It first starts up the `Initialize` component (see below), which loads the snarkyjs, an account, and the smart contract. After this is done, it switches to a `SmartContractUI` component (also see below), which both has a pane for interacting with our smart contract, and a pane for showing the state of making, proving, and sending transactions.
+This file contains the main logic for our application. It first starts up the `Initialize` component (see below), which loads snarkyjs, an account, and the smart contract. After this is done, it switches to a `SmartContractUI` component (also see below), which both has a pane for interacting with our smart contract, and a pane for showing the state of making, proving, and sending transactions.
 
 You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/App.tsx).
 
-A few parts of the code to highlight:
+A few parts of the code to highlight. First the imports:
 ```typescript
   8 import { Add, snarkyjs } from '04-zkapp-browser-ui-smart-contract';
   9
  10 const { Mina, Field, PublicKey, PrivateKey, isReady, fetchAccount, setGraphqlEndpoint } = snarkyjs;
 ```
 
-This is to match our export of snarkyjs in `04-zkapp-browser-ui-smart-contract` we did earlier. As mentioned, this is necessary to avoid duplicate instances of snarkyjs, but will be fixed in a future iteration.
+This imports snarkyjs slightly differently than usual. This is to match the export of snarkyjs in `04-zkapp-browser-ui-smart-contract/src/index.ts` we did earlier. As mentioned, this is necessary to avoid duplicate instances of snarkyjs, but will be fixed in a future iteration.
 
 ```typescript
  16 let mockEffects = false;
 ```
 
-When set to true, the code avoids hitting the actual network, and performing long operations (like compilation and proving). This is useful for development and debugging. If you use this feature, search for it across all the files, especially SmartContractUI, to ensure your mocked behavior is equivalent to your actual smart contract.
+When set to true, the code avoids hitting the actual network, and performing long operations (like compilation and proving). This is useful for development and debugging. If you modify this example to use your own smart contract, and wish to use this feature, search for it across all the files, especially SmartContractUI, to ensure your mocked behavior is equivalent to your actual smart contract.
 
 ### App.css
 
@@ -129,7 +143,7 @@ We won't be going through this file here, but you can see it [here](https://gith
 
 ### Initialize.jsx
 
-This component does the setup necessary for interacting with the smart contract. It uses a private key managed by localstorage, but a version that uses the in browser extension auro wallet is in the works.
+This component does the setup necessary for interacting with the smart contract. It uses a private key managed by localStorage, but a version that uses the in browser extension auro wallet is in the works.
 
 You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/Initialize.tsx).
 
@@ -167,7 +181,7 @@ If you wanted to display custom text or a custom ui in your application while it
 
 ### SmartContractUI.jsx
 
-This component has a pane for interacting with the smart contract, and a pane for showing the progress of producing and sending transactions. If you want to make your own application, besides changing the smart contract, you would modify the code and add your UI here.
+This component has a pane for interacting with the smart contract, and a pane for showing the progress of producing and sending transactions. If you want to make your own application, besides changing the smart contract, you would modify the code and add your UI in this component.
 
 You can see the full code [here](https://github.com/es92/zkApp-examples/blob/main/04-zkapp-browser-ui/src/SmartContractUI.tsx).
 
@@ -228,15 +242,18 @@ This code creates the transaction, with in this case, has `updatedValue = num!.m
 A convenient way to deploy our react app is to deploy it to github pages. To do this, first install gh-pages:
 
 ```sh
-$ npm install gh-pages
+npm install gh-pages
 ```
 
 If you are using the example repo, many things you need will be setup for you. If you are using your own repo, you'll need to:
 * setup [coi-serviceworker](https://github.com/gzuidhof/coi-serviceworker)
-* add a homepage variable to package.json (./)
+* add a homepage variable to package.json (`"homepage": "./"`). See the example's package.json for more.
 
 ## Conclusion
 
-We have built an in browser demo that uses react and interacts with a live netowrk! If you want to build your own in browser zkApp UI, this should serve as a good starting point. 
+We have built an in browser react app, that interacts with a live netowrk! If you want to build your own in browser zkApp UI, this should serve as a good starting point. 
 
-Now let's move to the next tutorial, where we will learn about different SnarkyJS types you can use in your application.
+Checkout out our other tutorials and documentation to keep going!
+
+<!-- Now let's move to the next tutorial, where we will learn about different SnarkyJS types you can use in your application. -->
+

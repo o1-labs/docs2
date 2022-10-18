@@ -41,6 +41,7 @@ module.exports = {
             "zkapps/tutorials/hello-world",
             "zkapps/tutorials/private-inputs-hash-functions",
             "zkapps/tutorials/deploying-to-a-network",
+            "zkapps/tutorials/in-browser-react-ui",
             "zkapps/tutorials/anonymous-message-board",
           ],
         },
