@@ -85,7 +85,6 @@ loading SnarkyJS.
 
 **Loading your contract with React**
 
-<!-- prettier-ignore -->
 ```ts
 useEffect(() => {
   (async () => {
@@ -96,7 +95,6 @@ useEffect(() => {
 
 **Loading your contract with Svelte**
 
-<!-- prettier-ignore -->
 ```ts
 onMount(async () => {
   const { YourSmartContract } = await import('your-package-name');
@@ -105,7 +103,6 @@ onMount(async () => {
 
 **Loading your contract with Vue**
 
-<!-- prettier-ignore -->
 ```ts
 onMounted(async () => {
   const { YourSmartContract } = await import('your-package-name');
@@ -168,11 +165,16 @@ from NPM within their browser-extension wallet.
    installed in order to interact with your zkApp. Once installed, `window.mina`
    will automatically become available in the user's browser environment. Your
    zkApp will then use this object to interact with the wallet.
+
 2. Get accounts - To fetch a user's list of Mina accounts, you can use the
-   `getAccounts()` method.
+   `requestAccounts()` method.
+
+3. Sending a transaction - After your user interacts with your zkApp, you can
+   sign and send the transaction using `sendTransaction()`.
 
 ```ts
 let accounts;
+
 try {
   // accounts is an array of string Mina addresses
   accounts = await window.mina.requestAccounts();
@@ -192,9 +194,6 @@ connected to your zkApp.
 // Show first 6 and last 4 characters of user's Mina account.
 const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
-
-3. Sending a transaction - After your user interacts with your zkApp, you can
-   sign and send the transaction using `sendTransaction()`.
 
 ```ts
 try {
