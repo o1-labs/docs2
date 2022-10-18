@@ -176,7 +176,7 @@ from NPM within their browser-extension wallet.
 let accounts;
 
 try {
-  // accounts is an array of string Mina addresses
+  // Accounts is an array of string Mina addresses.
   accounts = await window.mina.requestAccounts();
 } catch (err) {
   // If the user has a wallet installed but has not created an account, an
@@ -206,7 +206,7 @@ try {
 }
 ```
 
-This can be useful to indicate that the user's wallet is successfully
+It may be useful to indicate that the user's wallet is successfully
 connected to your zkApp.
 
 <img src={require('@site/static/img/Mina_Provider_Header.png').default} />
