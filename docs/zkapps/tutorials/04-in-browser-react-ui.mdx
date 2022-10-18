@@ -23,13 +23,15 @@ zkApps can now be deployed to Berkeley Testnet.
 
 In previous tutorials, we've seen how to [write zkApps](hello-world) and [interact with them from the CLI](deploying-to-a-network).
 
-In this tutorial, we will learn how to build react apps that interact with zkApps from the browser. This lets you build applications that anyone over the internet can interact with.
+In this tutorial, we will look at a react app that interacts with zkApps from the browser. There are two ways to use this tutorial and its sample code. 
 
-We will provide an overview of the code, and show how you can deploy your app to a github pages.
+First, you can use this project as an example of how to build a React app, that works with zkApps, and runs in the browser.
+
+Second, this example itself can be a convenient starting point for your own zkApp. It is split into two components, `Initialize`, and `SmartContractUI`. If you would like to build a browser UI for your own zkApp, you can reuse much of the project, and primarily edit `SmartContractUI`.
 
 If you would like to try out the application before going through the tutorial (recommended), you can do so [here](https://es92.github.io/zkApp-examples/index.html).
 
-Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui). Instead we will talk through key parts of the application. Much of the code can be reused when you write your own application; we will focus on explaining the parts most different from the CLI tutorial, and the parts you may want to modify if you use this as a starter for your own application.
+Unlike previous tutorials, we will not be going over all of the code for this example. You can find the full source code [here](https://github.com/es92/zkApp-examples/tree/main/04-zkapp-browser-ui). Most of the code is similar to the previous tutorial, [Tutorial 3](deploying-to-a-network), or follows usual react conventions. Given that, we will be focusing this tutorial on key, unique parts of the code.
 
 This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
 
@@ -111,6 +113,7 @@ You can start hosting the react ui by running `npm start` from within `04-zkApp-
 Whenever you save one of the files in `src`, the react project will refresh.
 
 ## Project Files
+
 
 ### App.jsx
 
