@@ -185,8 +185,6 @@ try {
 const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
 
-<img src={require('@site/static/img/Mina_Provider_Header.png').default} />
-
 3. Sending a transaction - After your user interacts with your zkApp, you can
    sign and send the transaction using `sendTransaction()`. You will receive a transaction ID as soon as the Mina network has received the
    proposed transaction. But keep in mind that this does not guarantee that
@@ -194,6 +192,8 @@ const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 
 ```ts
 try {
+  // This is the public key of the deployed zkapp you want to interact with.
+  const zkAppAddress = 'B62qq8sm7JdsED6VuDKNWKLAi1Tvz1jrnffuud5gXMq3mgtd';
   const tx = await Mina.transaction(() => {
     const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
     YourSmartContractInstance.foo();
