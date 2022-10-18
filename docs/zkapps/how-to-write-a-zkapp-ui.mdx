@@ -183,19 +183,7 @@ try {
   // exception will be thrown. Consider showing "not connected" in your UI.
   console.log(err.message);
 }
-```
 
-This can be useful to indicate that the user's wallet is successfully
-connected to your zkApp.
-
-<img src={require('@site/static/img/Mina_Provider_Header.png').default} />
-
-```ts
-// Show first 6 and last 4 characters of user's Mina account.
-const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
-```
-
-```ts
 try {
   let tx = await Mina.transaction(() => {
     const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
@@ -216,6 +204,16 @@ try {
 } catch (err) {
   console.log(err.message);
 }
+```
+
+This can be useful to indicate that the user's wallet is successfully
+connected to your zkApp.
+
+<img src={require('@site/static/img/Mina_Provider_Header.png').default} />
+
+```ts
+// Show first 6 and last 4 characters of user's Mina account.
+const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
 
 :::tip
