@@ -167,12 +167,8 @@ from NPM within their browser-extension wallet.
    zkApp will then use this object to interact with the wallet.
 
 2. Get accounts - To fetch a user's list of Mina accounts, you can use the
-   `requestAccounts()` method.
-
-3. Sending a transaction - After your user interacts with your zkApp, you can
-   sign and send the transaction using `sendTransaction()`. You will receive a transaction ID as soon as the Mina network has received the
-   proposed transaction. But keep in mind that this does not guarantee that
-   the network will accept the transaction into an upcoming block.
+   `requestAccounts()` method. After requesting a users account, it may be useful to indicate that their wallet is successfully
+   connected to your zkApp.
 
 ```ts
 let accounts;
@@ -186,6 +182,16 @@ try {
   console.log(err.message);
 }
 
+// Show first 6 and last 4 characters of user's Mina account.
+const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
+```
+
+3. Sending a transaction - After your user interacts with your zkApp, you can
+   sign and send the transaction using `sendTransaction()`. You will receive a transaction ID as soon as the Mina network has received the
+   proposed transaction. But keep in mind that this does not guarantee that
+   the network will accept the transaction into an upcoming block.
+
+```ts
 try {
   const tx = await Mina.transaction(() => {
     const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
@@ -208,14 +214,9 @@ try {
 }
 ```
 
-It may be useful to indicate that the user's wallet is successfully
-connected to your zkApp.
-
 <img src={require('@site/static/img/Mina_Provider_Header.png').default} />
 
 ```ts
-// Show first 6 and last 4 characters of user's Mina account.
-const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
 
 :::tip
