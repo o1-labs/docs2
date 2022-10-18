@@ -40,8 +40,8 @@ module.exports = {
 
             "zkapps/tutorials/hello-world",
             "zkapps/tutorials/private-inputs-hash-functions",
-            "zkapps/tutorials/deploying-to-a-network",
             "zkapps/tutorials/anonymous-message-board",
+            //"zkapps/tutorials/deploying-to-a-network",
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',

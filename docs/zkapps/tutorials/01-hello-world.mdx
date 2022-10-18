@@ -118,7 +118,7 @@ npm run build
 node build/src/main.js
 ```
 
-The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`. This command will fail at this point though, since we haven't written the `Square` smart contract yet.
+The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`. Both of these commands will fail at this point though, since we haven't written the `Square` smart contract yet.
 
 You can also combine these together into one line, such as:
 
@@ -229,7 +229,7 @@ The name `update` is arbitrary, but makes sense for our example. Notice that we 
 
 This method will contain our logic by which end users are allowed to update our zkApp's account state on chain. In this example, we are saying that if the user provides a number (e.g. 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (e.g. 3), then we'll update the `num` value stored on chain to the provided value (e.g. 9). If the user provides a number that does not meet these conditions, they will not be able to generate a proof or update the on-chain state.
 
-This is accomplished through using "assertions" within our method. When a user invokes a method on a smart contract, all assertions must be true in order to generate the zero knowledge proof from that smart contract. If a user does this successfully, the transaction generated will also contain a "precondition" for each of these assertions; the Mina network will only accept the transaction and update the on-chain state if the asserted statement is true when the Mina network receives the transaction. This is how we can achieve predictable behavior in an off-chain execution model.
+This is accomplished through using "assertions" within our method. When a user invokes a method on a smart contract, all assertions must be true in order to generate the zero knowledge proof from that smart contract; the Mina network will only accept the transaction and update the on-chain state if the attached proof is valid. This is how we can achieve predictable behavior in an off-chain execution model.
 
 Notice that we have `get()` and `set()` methods for retrieving and setting on-chain state. A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it. Similarly, using `set()` will change the transaction to indicate we want to change this particular on-chain state, but it will only be updated when the transaction is received by the Mina network if it contains a valid authorization (i.e. a proof usually).
 
@@ -292,7 +292,7 @@ Now add the following code to your `src/main.ts`:
  22
  23   await shutdown();
  24 })();
- ...
+...
 ```
 
 Now when you run `npm run build && node build/src/main.js`, your main function should run!
@@ -336,7 +336,7 @@ Now, let's initalize our smart contract. Comments are provided to break down eac
  41   // ----------------------------------------------------
  42
  43   console.log('Shutting down')
- ...
+...
 ```
 
 The above code will be similar for any smart contract that you create.
@@ -411,7 +411,7 @@ Now let's try adding a transaction that should fail - updating the state to `75`
  66   // ----------------------------------------------------
  67
  68   console.log('Shutting down')...
- ...
+...
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
@@ -446,7 +446,7 @@ And lastly, to show the correct update:
  77   // ---------------------------------------
  78
  79   console.log('Shutting down')
- ...
+...
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
