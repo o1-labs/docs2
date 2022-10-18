@@ -185,14 +185,14 @@ try {
 }
 
 try {
-  let tx = await Mina.transaction(() => {
+  const tx = await Mina.transaction(() => {
     const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
     YourSmartContractInstance.foo();
   });
 
   await tx.prove();
 
-  let { hash } = await window.mina.sendTransaction({
+  const { hash } = await window.mina.sendTransaction({
     transaction: tx.toJSON(),
     feePayer: {
       fee: '',
