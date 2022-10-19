@@ -175,14 +175,14 @@ let accounts;
 try {
   // Accounts is an array of string Mina addresses.
   accounts = await window.mina.requestAccounts();
+
+  // Show first 6 and last 4 characters of user's Mina account.
+  const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 } catch (err) {
   // If the user has a wallet installed but has not created an account, an
   // exception will be thrown. Consider showing "not connected" in your UI.
   console.log(err.message);
 }
-
-// Show first 6 and last 4 characters of user's Mina account.
-const display = `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
 ```
 
 3. Sending a transaction - After your user interacts with your zkApp, you can
