@@ -12,17 +12,9 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # How to Write a zkApp UI
 
-Learn how to write an UI for your smart contract
-
 To allow users to interact with your smart contract, you’ll typically want to build a website UI.
 
 This UI can be written with any framework (e.g. React, Vue, Svelte, etc.) or plain HTML and JavaScript.
-
-:::note
-
-This page is a work in progress.
-
-:::
 
 ## Adding your smart contract as a dependency of the UI
 
@@ -113,6 +105,7 @@ onMounted(async () => {
 
 To load SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
 and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers as described below. These enable SnarkyJS' use of [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer), which SnarkyJS relies on to enable important WebAssembly features.
+
 
 - `Cross-Origin-Opener-Policy` must be set to `same-origin`.
 - `Cross-Origin-Embedder-Policy` must be set to `require-corp`.
