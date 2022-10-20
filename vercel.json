@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "redirects": [
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path(.*)", "destination": "/:path(.*)" }
