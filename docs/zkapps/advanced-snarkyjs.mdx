@@ -537,8 +537,7 @@ class Leaderboard extends SmartContract {
     this.root.set(newRoot);
   }
 
-  @method
-  claimReward(account: Account, path: MerkleWitness) {
+  @method claimReward(account: Account, path: MerkleWitness) {
     // we fetch the on-chain commitment
     const root = this.root.get();
     this.root.assertEquals(root);
