@@ -46,7 +46,7 @@ let SimpleProgram = Experimental.ZkProgram({
       privateInputs: [],
 
       method(publicInput: Field) {
-        publicInput.assertEquals(Field.zero);
+        publicInput.assertEquals(Field(0));
       },
     }
   }
@@ -96,7 +96,7 @@ let AddOne = Experimental.ZkProgram({
       privateInputs: [],
 
       method(publicInput: Field) {
-        publicInput.assertEquals(Field.zero);
+        publicInput.assertEquals(Field(0));
       },
     },
 
@@ -117,13 +117,13 @@ First we compile this program and make the base proof as before:
 ```typescript
 let { verificationKey } = await AddOne.compile();
 
-let proof = await AddOne.baseCase(Field.zero);
+let proof = await AddOne.baseCase(Field(0));
 ```
 
 This time we can use this proof as input to recursively add one again:
 
 ```typescript
-let proof1 = await AddOne.step(Field.one, proof);
+let proof1 = await AddOne.step(Field(1), proof);
 ```
 
 And we can repeat this as many times as we want:
@@ -156,7 +156,7 @@ You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge
 ```typescript
 let { verificationKey } = await MyProgram.compile();
 
-let proof = await MyProgram.base(Field.zero);
+let proof = await MyProgram.base(Field(0));
 ```
 
 Now we can directly verify a JSON-encoded version of the proof to get back a boolean value telling us if the proof is valid.
@@ -166,4 +166,3 @@ import { verify } from 'snarkyjs';
 
 let ok = await verify(proof.toJSON(), verificationKey);
 ```
-
