@@ -38,7 +38,7 @@ Let's look at how this works with a simple example that has only one method that
 ```typescript
 import { Field, Experimental } from 'snarkyjs';
 
-let SimpleProgram = Experimental.ZkProgram({
+const SimpleProgram = Experimental.ZkProgram({
   publicInput: Field,
 
   methods: {
@@ -56,13 +56,13 @@ let SimpleProgram = Experimental.ZkProgram({
 Next, we compile this program:
 
 ```typescript
-let { verificationKey } = await SimpleProgram.compile();
+const { verificationKey } = await SimpleProgram.compile();
 ```
 
 Now we can use it to create a proof:
 
 ```typescript
-let proof = await SimpleProgram.run(Field(0));
+const proof = await SimpleProgram.run(Field(0));
 ```
 
 And we can verify this proof from within any method of your `SmartContract` class:
@@ -70,10 +70,10 @@ And we can verify this proof from within any method of your `SmartContract` clas
 ```typescript
 @method foo(proof: SimpleProgram.Proof) {
   proof.verify().assertTrue();
-  let output: Field = proof.value;
-  /* ... the rest of our method
-   * For example storing the output of the execution of the program we've
-   * proven inside the public smart contract state. */
+  const output: Field = proof.value;
+  // ...the rest of our method.
+  // For example, storing the output of the execution of the program we've
+  // proven as on-chain state, if desired.
 }
 ```
 
@@ -88,7 +88,7 @@ Here we'll write a program that describes a recursive operation of adding one re
 ```typescript
 import { SelfProof, Field, Experimental, verify } from 'snarkyjs';
 
-let AddOne = Experimental.ZkProgram({
+const AddOne = Experimental.ZkProgram({
   publicInput: Field,
 
   methods: {
@@ -115,21 +115,21 @@ let AddOne = Experimental.ZkProgram({
 First we compile this program and make the base proof as before:
 
 ```typescript
-let { verificationKey } = await AddOne.compile();
+const { verificationKey } = await AddOne.compile();
 
-let proof = await AddOne.baseCase(Field(0));
+const proof = await AddOne.baseCase(Field(0));
 ```
 
 This time we can use this proof as input to recursively add one again:
 
 ```typescript
-let proof1 = await AddOne.step(Field(1), proof);
+const proof1 = await AddOne.step(Field(1), proof);
 ```
 
 And we can repeat this as many times as we want:
 
 ```typescript
-let proof2 = await AddOne.step(Field(2), proof1);
+const proof2 = await AddOne.step(Field(2), proof1);
 ```
 
 Finally we can verify the proof from within a zkApp like we did above:
@@ -143,7 +143,7 @@ Finally we can verify the proof from within a zkApp like we did above:
 
 ## Recursively Verifying a tree-based recursive program within a zkApp
 
-Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of it's [decentralized prover and sequeencing mechanism](TODO link to article by protocol team) for rollups, so it's supported very robustly by Kimchi.
+Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of its [decentralized prover and sequencing mechanism](TODO link to article by protocol team) for rollups, so it's supported very robustly by Kimchi.
 
 Here we'll write a program that describes a very simple rollup for a custom application's state transition system:
 
@@ -151,12 +151,12 @@ TODO
 
 ## Bonus: Using ZkPrograms outside of zkApps
 
-You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge programs (typically called circuits, though in SnarkyJS the backend is fully abstracted from you).
+You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge programs (a.k.a. circuits).
 
 ```typescript
-let { verificationKey } = await MyProgram.compile();
+const { verificationKey } = await MyProgram.compile();
 
-let proof = await MyProgram.base(Field(0));
+const proof = await MyProgram.base(Field(0));
 ```
 
 Now we can directly verify a JSON-encoded version of the proof to get back a boolean value telling us if the proof is valid.
@@ -164,5 +164,5 @@ Now we can directly verify a JSON-encoded version of the proof to get back a boo
 ```typescript
 import { verify } from 'snarkyjs';
 
-let ok = await verify(proof.toJSON(), verificationKey);
+const ok = await verify(proof.toJSON(), verificationKey);
 ```
