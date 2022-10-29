@@ -20,7 +20,11 @@ module.exports = {
     {
       type: 'category',
       label: 'Using Mina',
-      items: ['using-mina/install-a-wallet'],
+      items: [
+        'using-mina/install-a-wallet',
+        'using-mina/how-to-send-and-receive',
+        'using-mina/how-to-stake-delegate',
+      ],
     },
     {
       type: 'category',
@@ -38,10 +42,9 @@ module.exports = {
           type: 'category',
           label: 'Tutorials',
           items: [
-
-            "zkapps/tutorials/hello-world",
-            "zkapps/tutorials/private-inputs-hash-functions",
-            "zkapps/tutorials/anonymous-message-board",
+            'zkapps/tutorials/hello-world',
+            'zkapps/tutorials/private-inputs-hash-functions',
+            'zkapps/tutorials/anonymous-message-board',
             //"zkapps/tutorials/deploying-to-a-network",
           ],
         },
