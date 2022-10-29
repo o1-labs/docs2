@@ -99,7 +99,7 @@ The second shows typescript errors. You can watch this as you develop to check f
 
 ### Implementing the react app
 
-Open up `ui/pages/_app.page.tsx` in your editor.
+Open up `ui/pages/_app.page.tsx` in your editor. You can find the full contents for this file [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/_app.page.tsx) for reference.
 
 Edit the contents so it looks like this:
 ```ts
@@ -331,7 +331,12 @@ And a function that we will call later, that will update the react state:
 ...
 ```
 
-And lastly, code to replace our `return <div/>`, that shows a ui that updates the user with the state of our application:
+And lastly, code to replace our `return <div/>`, that shows a ui that updates the user with the state of our application.
+
+The ui lets the user know when the zkapp has finished loading - and gives the user a link to the faucet if their account hasn't been funded.
+
+Once the zkapp has finished loading, the user is presented with two buttons, allowing the user to create a transaction, or refresh the current state of the application:
+
 ```ts
 ...
 139   // -------------------------------------------------------
@@ -366,18 +371,13 @@ And lastly, code to replace our `return <div/>`, that shows a ui that updates th
 168 }
 ```
 
-
-
-
-
-
-
+And that's it! We've finished the code for our application. 
 
 ## Pushing the project to github
 
 To deploy our project to github, first push it to a new github repo. The github repo must have the same name as the project name when we ran zk project above (in this example, `04-zkapp-browser-ui`). If not, change the existing project name strings in `next.config.js`, and `pages/reactCOIServiceWorker.ts` to your repo name.
 
-To deploy, just run `npm run deploy`. It will take a minute, but your application should be available at
+To deploy, just run `npm run deploy`. It will take a minute, but after your application will be available at
 ```
 https://<username>.github.io/<repo-name>/index.html
 ```
