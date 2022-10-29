@@ -1,16 +1,42 @@
 ---
-title: How to delegate (stake)
+title: How to Stake
 ---
 
-Staking MINA tokens allows nodes on the network to increase their chances of being selected as a block producer in accordance with the consensus mechanism. The chance of winning the block scales in proportion to the amount of MINA staked. For example, if one node stakes 50% of the available MINA in the network, they theoretically have a 50% chance of being selected to produce future blocks. Mina uses Ouroboros Samisika Proof-of-Stake to implement the details of staking. If a node chooses to stake its MINA tokens, it is required to be online and connected to the Mina network.
+import Subhead from "@site/src/components/common/Subhead";
 
-Because staking MINA tokens requires nodes to be online, some nodes may desire to delegate their mina to another node that runs a staking service. This process is called delegating a stake, and often the service provider or staking pool operator may charge a fee for running this service. 
+# How to Stake MINA
 
-Currently, hundreds of block producers are accepting delegations on Mina. You can find them on this dashboard* that the community built. Currently, the protocol is designed in such a way that staking pool operators receive all block rewards and they need to send you the rewards after deducting any fees. Be sure to do your own due diligence before selecting a staking pool. If you have any questions about the staking pools, you can join our Discord server and ask in the #staking-pools channel.
+<Subhead>
+Learn how to delegate MINA to a validator
+</Subhead>
 
-### FAQ
-Will the wallet you use affect how well you stake?
-No.
+Instead of running your own node, you can delegate MINA to a validator (block producer) and receive staking rewards.
 
-Link us to “how staking works in Mina” (in About Mina)  
+### Prerequisites
 
+First, ensure you installed a Mina wallet with funds.
+
+### Delegating MINA
+
+Here’s how to delegate MINA within common wallets:
+
+- [**Auro**](https://www.aurowallet.com) - Open the wallet, tap “*Staking*”, tap “*Go to Staking*”, select a block producer, and confirm the transaction details.
+- [**Clorio Wallet**](https://clor.io) -  Open the wallet, tap “*Staking Hub*”, select and confirm your validator, and enter your nonce, transaction fee, and passphrase or private key.
+- [**Staking Power**](https://www.staking-power.com) - Open the wallet, tap “*Stake*”, select your account, staking provider, and network fee, and tap “*Send*” to send a transaction.
+- [**Ledger Hardware Wallet**](https://www.ledger.com/mina-wallet) -  - Follow the instructions on creating a Ledger Mina account via Auro Wallet [here](https://support.ledger.com/hc/en-us/articles/5458493215901-Creating-a-Ledger-MINA-account-via-Auro-Wallet?docs=true), then see the instructions for staking MINA on Auro wallet above.
+
+<center>
+<figure>
+  <img
+    src="/img/Staking_MINA.png"
+    alt="Screenshot of Mina Explorer"
+    width="95%"
+  />
+</figure>
+</center>
+
+:::note
+
+When sending transactions on a blockchain, such as Mina,  senders must include a transaction fee. Most wallets will calculate a recommended fee for you. But you can also view a suggested fee amount based on current network transaction volume, at this community-created [Gas Station website](https://fees.mina.tools/).
+
+:::

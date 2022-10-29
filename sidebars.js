@@ -20,7 +20,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Using Mina',
-      items: ['using-mina/install-a-wallet'],
+      items: ['using-mina/install-a-wallet',
+      'using-mina/how-to-send-and-receive',
+      'using-mina/how-to-stake-delegate',
+    ],
     },
     {
       type: 'category',
