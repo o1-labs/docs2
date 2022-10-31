@@ -1,0 +1,369 @@
+---
+title: "Tutorial 6: Offchain Storage"
+hide_title: true
+sidebar_label: "Tutorial 6: Offchain Storage"
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Tutorial 6: Offchain Storage
+
+## Overview
+
+In our last tutorial, we ended by learning about merkle trees, and how we can use them to represent lots of data with a single hash.
+
+In this tutorial, we will share a library and pattern for working with storing merkle trees offchain, with only the root of the merkle tree stored on chain.
+
+### Why Offchain Storage?
+
+Why do we need this? For one, when building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
+
+However, when building a complete, decentralized zkApp, we need more than this. All users interacting with our zkApp need to be able to get the latest state, and modify it.
+
+If this isn't the case, and someone can modify the tree without sharing their modification, the lack of data availability means that further writes, by other parties that don't have access to the new tree, become impossible.
+
+The solution here is to have a server, that anyone can run, that stores the data. If the server is being run as expected, it provides a guarantee that any updates to the merkle root reflected onchain, will be stored on the server, for anyone to retrieve.
+
+A more robust solution is for Mina itself to store these entire merkle trees to guarantee data availability; this is planned for the future. However even then, it is likely that this will need to be relatively expensive, given the entire network will have to store the data. So even in that world, it is expected that offchain storage as presented here will be useful.
+
+If interested, we're looking for a developer to run with the library presented here, improve it, and run instances for the community. One of the improvements suggested is to add a token, required for storing data on the server, to prevent DDOS attacks and making server operation profitable. If interested, please reach out [here](where_should_they_reach_out?).
+
+A heads up on the current limitations of the storage server:
+
+* Currently DDOSable until a token or otherwise buying API credits is added.
+* Only supports trees of height 8 (128 leafs).
+* The client library does not surface errors to code using it.
+* The storage library is unable to cleanup old state for a smart contract if that contract is misconfigured.
+
+## Offchain Storage Project
+
+As usual, there is sample code for this project, which you can find [here](https://github.com/es92/zkApp-examples/tree/main/06-offchain-storage/contracts).
+
+We will be writing and discussing the [main.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) and [NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+
+This project implements a tree, where each leaf is either empty or stores a number. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an offchain storage server.
+
+## Project Setup
+
+To start, create a new project with:
+
+```sh
+zk project 06-offchain-storage
+```
+
+Now enter the project, delete the existing files, make a new smart contract, and a main file:
+
+```sh
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ zk file src/NumberTreeContract.ts
+$ touch src/main.ts
+```
+
+Edit our index.ts for the new smart contract:
+
+```sh
+import { NumberTreeContract } from './NumberTreeContract.js';
+
+export { NumberTreeContract };
+```
+
+Now, add the library for the offchain storage server we'll be using:
+
+```sh
+npm install zkapp-offchain-storage --save
+```
+
+Also install `xmlhttprequest-ts`, which we will use to make network requests when running from node, where the browser's XMLHttpRequest is not available by default:
+
+```sh
+npm install --save xmlhttprequest-ts
+```
+
+With that, setup is complete!
+
+### Running our project
+
+As in previous tutorials, you can run main.ts with
+
+```sh
+npm run build && node build/src/main.js
+```
+
+This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract`, it should run successfully.
+
+Also for this project, we will need to run our storage server. To do this, from the root of the project, run:
+
+```sh
+node node_modules/zkapp-offchain-storage/build/src/storageServer.js
+```
+
+This will create a `database.json` file in the current directory that will also store data.
+
+## Implementing the Smart Contract
+
+To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) for reference.
+
+Start by adding our imports:
+
+```ts
+  1 import {
+  2   SmartContract,
+  3   Field,
+  4   Experimental,
+  5   state,
+  6   State,
+  7   method,
+  8   DeployArgs,
+  9   Signature,
+ 10   PublicKey,
+ 11   Permissions,
+ 12   Bool,
+ 13 } from 'snarkyjs';
+ 14
+ 15 import {
+ 16   OffChainStorage,
+ 17   Update,
+ 18   MerkleWitness8,
+ 19 } from 'zkapp-offchain-storage';
+...
+```
+
+Note we import some items from `zkapp-offchain-storage`:
+
+* `OffChainStorage`: An object that holds functions for interacting with offchain storage. These are:
+  * `assertRootUpdateValid`: A function we'll be using later in our smart contract, to check if the storage server has stored our data.
+  * `get`: A function for fetching a tree from the storage server.
+  * `requestStore`: A function to request storing a tree on the storage server.
+  * `getPublicKey`: A function to get the storage server's public key.
+  * `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
+* `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
+* `MerkleWitness8`: The type of our merkle tree witness. It is 8 because the storage server currently just uses height 8 merkle trees (for 128 leafs).
+
+Continuing, let's setup our smart contract:
+
+```ts
+...
+ 21 export class NumberTreeContract extends SmartContract {
+ 22   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
+ 23   @state(Field) storageNumber = State<Field>();
+ 24   @state(Field) storageTreeRoot = State<Field>();
+ 25
+ 26   // TODO should I be doing my init things inside deploy? does that assert them?
+ 27   deploy(args: DeployArgs) {
+ 28     super.deploy(args);
+ 29     this.setPermissions({
+ 30       ...Permissions.default(),
+ 31       editState: Permissions.proofOrSignature(),
+ 32     });
+ 33   }
+ 34
+ 35   @method init(storageServerPublicKey: PublicKey) {
+ 36     this.storageServerPublicKey.set(storageServerPublicKey);
+ 37     this.storageNumber.set(Field.zero);
+ 38
+ 39     const emptyTreeRoot = new Experimental.MerkleTree(8).getRoot();
+ 40     this.storageTreeRoot.set(emptyTreeRoot);
+ 41   }
+...
+```
+
+Here we add 3 pieces of state to our contract - the public key of the storage server, the "storageNumber", which is used to ensure the storage server is storing state, and the root of the merkle tree.
+
+We also initialize our zkapp by setting it to an empty tree.
+
+Continuing, here is our update function:
+
+```ts
+...
+ 43   @method update(
+ 44     leafIsEmpty: Bool,
+ 45     oldNum: Field,
+ 46     num: Field,
+ 47     path: MerkleWitness8,
+ 48     storedNewRootNumber: Field,
+ 49     storedNewRootSignature: Signature
+ 50   ) {
+ 51     const storedRoot = this.storageTreeRoot.get();
+ 52     this.storageTreeRoot.assertEquals(storedRoot);
+ 53
+ 54     let storedNumber = this.storageNumber.get();
+ 55     this.storageNumber.assertEquals(storedNumber);
+ 56
+ 57     let storageServerPublicKey = this.storageServerPublicKey.get();
+ 58     this.storageServerPublicKey.assertEquals(storageServerPublicKey);
+ 59
+ 60     let leaf = [oldNum];
+ 61     let newLeaf = [num];
+ 62
+ 63     // newLeaf can be a function of the existing leaf
+ 64     newLeaf[0].assertGt(leaf[0]);
+ 65
+ 66     const updates = [
+ 67       {
+ 68         leaf,
+ 69         leafIsEmpty,
+ 70         newLeaf,
+ 71         newLeafIsEmpty: Bool(false),
+ 72         leafWitness: path,
+ 73       },
+ 74     ];
+ 75
+ 76     const storedNewRoot = OffChainStorage.assertRootUpdateValid(
+ 77       storageServerPublicKey,
+ 78       storedNumber,
+ 79       storedRoot,
+ 80       updates,
+ 81       storedNewRootNumber,
+ 82       storedNewRootSignature
+ 83     );
+ 84
+ 85     this.storageTreeRoot.set(storedNewRoot);
+ 86     this.storageNumber.set(storedNewRootNumber);
+ 87   }
+ 88 }
+```
+
+We get and assert the current state of the contract - and then we perform the update.
+
+First, we check that the new leaf is greater than the old leaf.
+
+Then, we check the update itself. In this example, we perform a single update to the tree, however with multiple witnesses, you can chain updates together to change the tree more than once in a single call to the storage server.
+
+To assert the update is valid, we use the `OffChainStorage` library. This checks that the update, when applied, really came from the existing on chain state, and the new state is being stored by the storage server.
+
+That completes the smart contract!
+
+## Implementing `main.ts`
+
+You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) for reference.
+
+We will not be implementing this full file either - so download it from the above link, place it in your src folder, and then open it in your editor.
+
+Note that it contains logic for both running the contract locally and for deploying and interacting with on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to your call to `main.js`.
+
+We'll discuss a few parts of this file:
+
+```ts
+...
+ 71   const storageServerAddress = 'http://localhost:3001';
+ 72   const serverPublicKey = await OffChainStorage.getPublicKey(
+ 73     storageServerAddress,
+ 74     NodeXMLHttpRequest
+ 75   );
+...
+```
+
+This is where we connect to the storage server, and get its public key. Running the storage server as described above starts it by default on port 3001, and so this code is configured to connect to it there. In a real application, you would run the storage server on an externally exposed machine, and change this address to match.
+
+Next we will describe the `updateTree` function, starting on line `120`.
+
+Our goal in this function is to:
+
+1. Get the currently stored tree from the storage server
+2. Select a random leaf
+3. Change the value at that leaf to a bigger nubmer
+4. Create a transaction that performs this update.
+
+To start, let's get the existing tree:
+
+```ts
+...
+120   async function updateTree() {
+121
+122     const index = Math.floor(Math.random() * 4);
+123
+124     // get the existing tree
+125     const treeRoot = await zkapp.storageTreeRoot.get();
+126     const idx2fields = await OffChainStorage.get(
+127       storageServerAddress,
+128       zkappPublicKey,
+129       treeHeight,
+130       treeRoot,
+131       NodeXMLHttpRequest
+132     );
+133
+134     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
+135     const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(index)));
+...
+```
+
+Here, we get the current root stored in the contract - and request the data for that root from the storage server.
+
+Then, we convert that data from a map to a MerkleTree - and we get a witness for a random index of the merkle tree. 
+
+Continuing:
+
+```ts
+...
+137     // get the prior leaf
+138     const priorLeafIsEmpty = !idx2fields.has(index);
+139     let priorLeafNumber: Field;
+140     let newLeafNumber: Field;
+141     if (!priorLeafIsEmpty) {
+142       priorLeafNumber = idx2fields.get(index)![0];
+143       newLeafNumber = priorLeafNumber.add(3);
+144     } else {
+145       priorLeafNumber = Field.zero;
+146       newLeafNumber = Field.one;
+147     }
+...
+```
+
+Here, we check if the leaf is empty, and shape our update accordingly. If the leaf was empty, we set it to one. Otherwise, we set the leaf to whatever used to be there, plus 3.
+
+```ts
+...
+152     const [storedNewStorageNumber, storedNewStorageSignature] =
+153       await OffChainStorage.requestStore(
+154         storageServerAddress,
+155         zkappPublicKey,
+156         treeHeight,
+157         idx2fields,
+158         NodeXMLHttpRequest
+159       );
+...
+```
+
+And lastly, we request that the storage server stores our data. If successful, we are returned a new storage number and a signature, which we will use for updating the smart contract.
+
+We call our smart contract as follows:
+
+```ts
+...
+165     const doUpdate = () => {
+166       zkapp.update(
+167         Bool(priorLeafIsEmpty),
+168         priorLeafNumber,
+169         newLeafNumber,
+170         leafWitness,
+171         storedNewStorageNumber,
+172         storedNewStorageSignature
+173       );
+174     }
+175
+176     if (useLocal) {
+177       const updateTransaction = await Mina.transaction(
+178         { feePayerKey, fee: transactionFee },
+179         () => {
+180           doUpdate();
+181           zkapp.sign(zkappPrivateKey);
+182         }
+183       );
+184
+185       await updateTransaction.send().wait();
+...
+```
+
+That completes our review of the code to interact with the offchain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) for review.
+
+## Conclusion
+
+Congrats! We have finished building a smart contract that leverages offchain storage
+
+Checkout out our other tutorials to keep going!
