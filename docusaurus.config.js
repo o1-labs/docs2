@@ -188,7 +188,7 @@ const katex = require('rehype-katex');
           ],
         },
       ],
-      function ModernjsPlugin() {
+      function GoogleAnalyticsPlugin() {
         return {
           name: 'google-analytics-head-injection',
           injectHtmlTags() {
