@@ -407,9 +407,9 @@ This sort of authorization is simple and easy to use but it is not flexible. If 
 
 Proof authorization is a more flexible way for a token owner to authorize a custom token transfer. If two seperate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to authorize a transaction without signing it.
 
-To allow for proof authorization by the token owner, a token zkApp should provide a `authorize` method that inspects any changes that another account wishes to make and then authorizes the transaction if the changes are valid. To authorize a transaction, you can use the `this.experimental.authorize` method within a zkApp.
+To allow for proof authorization by the token owner, the child zkApp that is requesting authorization must provide a way for the token owner to inspect the changes it wants to make and verify that they are valid. Token owner contracts have the power to inspect child account updates to enforce custom token rules. For example, a token owner contract could enforce that a child zkApp can only send tokens to a specific address.
 
-By using `this.experimental.authorize` inside your zkApp, a token owner can authorize a transaction either by inspecting a specified `AccountUpdate` or by calling a specified `SmartContract` method and inspecting the results.
+Token owner contracts can inspect the updates that a child zkApp wants to make by using a combination of `Experimental.Callback` and `this.experimental.authorize`. The first thing that a token contract must do is generate the account updates that a child zkApp wants to make. The child zkApp wraps a function around `Experimental.Callback` which contains the changes it wants to make. The token owner can then execute that function with `this.authorize` and inspect the changes that the child zkApp wants to make.
 
 See the example below of how a zkApp can authorize a transaction between two accounts. In the first example, we will show how to authorize a transaction by calling a specified `SmartContract` method.
 
@@ -422,17 +422,29 @@ class TokenContract extends SmartContract {
   ...
 
   /**
-   * This method is used to authorize a transaction between two accounts
-   * by calling a specified SmartContract method as `callback`
+   * 'sendTokens' sends tokens from `senderAddress` to `receiverAddress`.
+   *
+   * It does so by deducting the amount of tokens from `senderAddress` by
+   * authorizing the deduction with a proof. It then creates the receiver
+   * from `receiverAddress` and sends the amount.
    */
   @method sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
+    amount: UInt64,
     callback: Experimental.Callback<any>
   ) {
-    this.experimental.authorize(callback); // Authorize the specified @method from another zkApp
-    let amount = UInt64.from(1_000);
+    // Authorizes the callback which deductes the amount of tokens from the sender
+    let senderAccountUpdate = this.experimental.authorize(callback);
+
+    // Create constraints for the sender account update and amount
+    let negativeAmount = Int64.fromObject(
+      senderAccountUpdate.body.balanceChange
+    );
+    negativeAmount.assertEquals(Int64.from(amount).neg());
     let tokenId = this.experimental.token.id;
+
+    // Create receiver accountUpdate
     let receiverAccountUpdate = Experimental.createChildAccountUpdate(
       this.self,
       receiverAddress,
@@ -443,21 +455,27 @@ class TokenContract extends SmartContract {
 }
 
 class ZkAppB extends SmartContract {
-  @method authorizeSend() {
-    let amount = UInt64.from(1_000);
+  /*
+  * This method is used to get authorization from the token owner. Remember,
+  * the token owner is the one who created the custom token, so to deduct our balance
+  * we must get authorization from the token owner.
+  */
+  @method authorizeSend(amount: UInt64) {
     this.balance.subInPlace(amount);
   }
 }
 
 tx = await Local.transaction(feePayer, () => {
-  // Create a 'callback' that authorizes a transaction by calling the `authorizeSend` method on zkAppB
+  let amount = UInt64.from(1_000)
+  // Create a callback inside the transaction that calls the authorizeSend method.
+  // This will be executed by the token owner to get authorization.
   let authorizeSendingCallback = Experimental.Callback.create(
     zkAppB,
     'authorizeSend',
-    []
+    [amount]
   );
   // Here, we call the token contract with the callback
-  tokenZkApp.sendTokens(zkAppBAddress, account1Address, authorizeSendingCallback);
+  tokenZkApp.sendTokens(zkAppBAddress, account1Address, amount, authorizeSendingCallback);
 });
 await tx.prove();
 await tx.send();
