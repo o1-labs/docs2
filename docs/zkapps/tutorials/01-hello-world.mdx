@@ -263,7 +263,7 @@ Add the following:
   4   shutdown,
   5   Field,
   6   Mina,
-  7   PrivateKey,
+  7   PrivateKey
   9   AccountUpdate,
  10 } from 'snarkyjs';
  11
@@ -327,17 +327,17 @@ Now, let's initalize our smart contract. Comments are provided to break down eac
  25   const zkAppAddress = zkAppPrivateKey.toPublicKey();
  26
  27   // Create an instance of our Square smart contract and deploy it to zkAppAddress
- 28   const contract = new Square(zkAppAddress);
+ 28   const zkAppInstance = new Square(zkAppAddress);
  29   const deployTxn = await Mina.transaction(deployerAccount, () => {
  30     AccountUpdate.fundNewAccount(deployerAccount);
- 31     contract.deploy({ zkappKey: zkAppPrivateKey });
- 32     contract.init();
- 33     contract.sign(zkAppPrivateKey);
+ 31     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+ 32     zkAppInstance.init();
+ 33     zkAppInstance.sign(zkAppPrivateKey);
  34   });
  35   await deployTxn.send().wait();
  36
  37   // Get the initial state of our zkApp account after deployment
- 38   const num0 = contract.num.get();
+ 38   const num0 = zkAppInstance.num.get();
  39   console.log('state after init:', num0.toString());
  40
  41   // ----------------------------------------------------
@@ -369,12 +369,12 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
  41   // ----------------------------------------------------
  42
  43   const txn1 = await Mina.transaction(deployerAccount, () => {
- 44     contract.update(Field(9));
- 45     contract.sign(zkAppPrivateKey);
+ 44     zkAppInstance.update(Field(9));
+ 45     zkAppInstance.sign(zkAppPrivateKey);
  46   });
  47   await txn1.send().wait();
  48
- 49   const num1 = contract.num.get();
+ 49   const num1 = zkAppInstance.num.get();
  50   console.log('state after txn1:', num1.toString());
  51
  52   // ----------------------------------------------------
@@ -405,14 +405,14 @@ Now let's try adding a transaction that should fail - updating the state to `75`
  53
  54   try {
  55     const txn2 = await Mina.transaction(deployerAccount, () => {
- 56       contract.update(Field(75));
- 57       contract.sign(zkAppPrivateKey);
+ 56       zkAppInstance.update(Field(75));
+ 57       zkAppInstance.sign(zkAppPrivateKey);
  58     });
  59     await txn2.send().wait();
  60   } catch (err: any) {
  61     console.log(err.message);
  62   }
- 63   const num2 = contract.num.get();
+ 63   const num2 = zkAppInstance.num.get();
  64   console.log('state after txn2:', num2.toString());
  65
  66   // ----------------------------------------------------
@@ -442,12 +442,12 @@ And lastly, to show the correct update:
  66   // ----------------------------------------------------
  67
  68   const txn3 = await Mina.transaction(deployerAccount, () => {
- 69     contract.update(Field(81));
- 70     contract.sign(zkAppPrivateKey);
+ 69     zkAppInstance.update(Field(81));
+ 70     zkAppInstance.sign(zkAppPrivateKey);
  71   });
  72   await txn3.send().wait();
  73
- 74   const num3 = contract.num.get();
+ 74   const num3 = zkAppInstance.num.get();
  75   console.log('state after txn3:', num3.toString());
  76
  77   // ---------------------------------------
