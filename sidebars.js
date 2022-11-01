@@ -32,6 +32,7 @@ module.exports = {
         'zkapps/how-to-test-a-zkapp',
         'zkapps/how-to-deploy-a-zkapp',
         'zkapps/how-to-write-a-zkapp-ui',
+        'zkapps/recursion',
         'zkapps/advanced-snarkyjs',
         {
           type: 'category',
