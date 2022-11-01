@@ -10,6 +10,8 @@ zkApps can now be deployed to Berkeley Testnet.
 
 Experimental. This API may change.
 
+Specifically, we are looking into refactoring ZkProgram methods to explicitly return values rather than requiring them to be passed as further inputs.
+
 :::
 
 # Proof Recursion
@@ -123,7 +125,7 @@ let proof = await AddOne.baseCase(Field.zero);
 This time we can use this proof as input to recursively add one again:
 
 ```typescript
-let proof1 = await AddOne.step(Field.one, proof);
+let proof1 = await AddOne.step(Field(1), proof);
 ```
 
 And we can repeat this as many times as we want:
@@ -132,22 +134,52 @@ And we can repeat this as many times as we want:
 let proof2 = await AddOne.step(Field(2), proof1);
 ```
 
-Finally we can verify the proof from within a zkApp like we did above:
+Finally we can verify the proof from within a SmartContract like we did above:
 
 ```typescript
 @method foo(proof: Proof) {
   proof.verify().assertTrue();
-  //... the rest of our method
+  /* ... the rest of our method
+   * For example using the total value as the fee for some other transaction. */
 }
 ```
 
 ## Recursively Verifying a tree-based recursive program within a zkApp
 
-Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of it's [decentralized prover and sequeencing mechanism](TODO link to article by protocol team) for rollups, so it's supported very robustly by Kimchi.
+Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of it's decentralized prover and sequeencing mechanism for rollups, so it's supported very robustly by Kimchi.
 
-Here we'll write a program that describes a very simple rollup for a custom application's state transition system:
+Here we'll write a program that describes a very simple rollup for adding numbers:
 
-TODO
+```typescript
+import { SelfProof, Field, Experimental, verify } from 'snarkyjs';
+
+let RollupAdd = Experimental.ZkProgram({
+  publicInput: Field,
+
+  methods: {
+    baseCase: {
+      privateInputs: [],
+
+      method(publicInput: Field) { },
+    },
+
+    step: {
+      privateInputs: [SelfProof, SelfProof],
+
+      method(
+        publicInput: Field,
+        left: SelfProof<Field>,
+        right: SelfProof<Field>
+      ) {
+        left.verify();
+        right.verify();
+        // assert that the left and right equal this input
+        left.publicInput.add(right.publicInput).assertEquals(publicInput);
+      },
+    },
+  },
+});
+```
 
 ## Bonus: Using ZkPrograms outside of zkApps
 
