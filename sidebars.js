@@ -23,7 +23,7 @@ module.exports = {
       items: [
         'using-mina/install-a-wallet',
         'using-mina/how-to-send-and-receive',
-        'using-mina/how-to-stake-delegate',
+        'using-mina/how-to-delegate',
       ],
     },
     {
