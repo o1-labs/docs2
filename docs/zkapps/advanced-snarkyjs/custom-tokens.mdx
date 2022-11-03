@@ -1,0 +1,128 @@
+---
+title: Custom Tokens
+hide_title: true
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Custom Tokens
+
+Mina Protocol supports the creation of custom fungible tokens. Custom fungible tokens play a significant role in decentralized applications and allow zkApps to create tokens that can be used in the zkApp ecosystem.
+
+Custom tokens are typically governed by zkApp accounts, where zkApp accounts can mint/burn tokens and facilitate transfers between two separate accounts. You can interact with custom tokens using the SnarkyJS API. SnarkyJS contains built-in methods to send, burn, and authorize transactions between accounts.
+
+:::info
+
+The custom token API is currently under the `experimental` namespace. This means that the API is subject to change in future releases.
+
+:::
+
+### Custom Token API
+
+This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
+
+### Minting
+
+Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
+
+To mint new tokens using a zkApp, we access the `this.experimental.token` property on our `SmartContract` class. See the example below of how a zkApp can mint tokens to another account:
+
+```ts
+class MintExample extends SmartContract {
+...
+@method mintNewTokens(receiverAddress: PublicKey) {
+    this.experimental.token.mint({
+      address: receiverAddress,
+      amount: 100_000,
+    });
+  }
+}
+```
+
+In the snippet above, we define a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.experimental.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
+
+### Burning
+
+Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. See the example below of how a zkApp can burn tokens of another account:
+
+```ts
+class BurnExample extends SmartContract {
+...
+@method burnTokens(addressToDecrease: PublicKey) {
+    this.experimental.token.burn({
+      address: addressToDecrease,
+      amount: 100_000,
+    });
+  }
+}
+```
+
+In the snippet above, we define a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, we use the `this.experimental.token` property to call the `burn` method. This specifies the amount of tokens to burn for the specified address.
+
+:::note
+
+A zkApp cannot burn more tokens than the specified account has. If there is such a case, an error is thrown and no such transaction is made.
+
+:::
+
+### Sending
+
+To send a custom token, use the `send` method available on `this.experimental.token`. See the example below of how a zkApp can authorize sending tokens between two accounts:
+
+```ts
+class SendExample extends SmartContract {
+...
+@method sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    amount: UInt64
+  ) {
+    this.experimental.token.send({
+      to: receiverAddress,
+      from: senderAddress,
+      amount,
+    });
+  }
+}
+```
+
+In the snippet above, we define a smart contract called `SendExample` with a method called `sendTokens`. Then, in the same fashion, as minting and burning, we use the `this.experimental.token` property to call the `send` method.
+
+For a more comprehensive example of how to use custom tokens with a zkApp, please see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts)
+
+### Understanding Important Terms
+
+If you are writing your zkApp to interact with custom tokens, you should understand the following essential terms:
+
+#### Token Id
+
+Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token id.
+
+Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp, you can use the `this.experimental.token.id` property.
+
+#### Token Accounts
+
+Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is instead specified by a public key _and_ token id.
+If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id will be created if it does not exist.
+
+Token accounts are specific for each type of custom token, meaning that a single public key can have many different types of token accounts.
+
+To create a token account for a specified custom token, a token account is automatically created for that public key whenever an existing account receives a transaction denoted with a custom token." to "A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
+
+:::info
+
+Suppose a token account is being created for the first time. In that case, an account creation fee must be paid similarly to creating a new standard account.
+
+:::
+
+Aside from sending custom tokens, custom tokens can be minted and burned by a **token owner account**. A token owner account is the governing zkApp account for a specific custom token.
+
+#### Token Owner
+
+A token owner is an account that creates, facilitates, and governs how a custom token is to be used. Concretely, the token owner is the account that created the custom token and is the only account that can mint and burn tokens.
+
+In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can authorize sending tokens between two accounts. If two accounts want to send tokens to each other, the token owner must authorize the transaction. The token owner can authorize the transaction either with a signature or proof.
