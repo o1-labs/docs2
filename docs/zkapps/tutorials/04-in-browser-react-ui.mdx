@@ -17,18 +17,20 @@ zkApps can now be deployed to Berkeley Testnet.
 
 In previous tutorials, we've seen how to [write zkApps](hello-world) and [interact with them from the CLI](deploying-to-a-network).
 
-In this application, we will implement a browser app that interacts with a smart contract running on Berkeley.
+In this tutorial, we will implement a browser react app that interacts with a smart contract running on Berkeley.
 
-We will setup the application, implement it, and show how to deploy it to github pages. 
-
-The application will implement the following:
-1. Load a PrivateKey from the page's localstorage if one exists, otherwise create one.
-2. Check if the private key has funds, and direct the user to the faucet if not.
-3. Connect to an example zkapp `Add` smart contract, already deployed on berkeley at a fixed address.
-4. Implement a button that when clicked sends a transaction.
-5. Implement a button that when clicked requests the latest state of the smart contract.
+We will discuss how to setup our project, implement its functionality, and show to deploy it to github pages.
 
 If you would like to try out the application before going through the tutorial, you can do so on an instance already deployed to a github pages [here](https://es92.github.io/zkApp-examples/index.html). Extra info is printed to the console as well when it is run, to give an idea of what it is doing internally.
+
+### What we will build
+
+The application we will build will implement the following:
+1. Loading a PrivateKey from the page's localstorage if one exists, otherwise create one.
+2. Checking if the private key has funds, and direct the user to the faucet if not.
+3. Connecting to example zkapp `Add` smart contract, already deployed on berkeley at a fixed address.
+4. A button that when clicked sends a transaction.
+5. A button that when clicked requests the latest state of the smart contract.
 
 Like in tutorial 3, we will provide a couple helper files, so we can focus on the react implementation itself. What is special about these helpers though, is that they use a webworker. This ensures the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
@@ -41,36 +43,39 @@ While this current tutorial uses localStorage to store and manage the user's pri
 First, setup a new project with
 
 ```sh
-zk project 04-zkapp-browser-ui --ui
+zk project 04-zkapp-browser-ui --ui next
 ```
 
 On the prompts that appear, select:
-1. Create an accompanying UI project too? `next`
-2. Do you want your NextJS project to use TypeScript? `yes`
-3. Do you want to setup your project for github pages? `yes`
+1. Do you want your NextJS project to use TypeScript? `yes`
+2. Do you want to setup your project for github pages? `yes`
 
 This will create a new project with two folders instead of just one:
 * `contract`: This stores your smart contract code
 * `ui`: This is where you will write your ui
 
-Enter the contract folder, and run 
+We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
+
+To do this, enter the contract folder, and run 
 ```sh
 npm run build
 ```
 
-We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
+In making your own zkApp, you will need to edit the contract folder, and rebuild before accessing it from your UI.
 
 ## Implementing the UI
 
-### Helper files
+Our React UI will have a few components. First, there is the react page itself. In addition though, there is code that uses SnarkyJS.
 
-As mentioned, we'll be using two helper files so we can focus this tutorial on setting up the UI and writing the react implementation.
+Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a webworkers. 
 
-These two files wrap the snarkyjs code for our example application. They also do this in a web worker, to avoid blocking the ui thread during large computations.
+This will be implemented via 2 helper files:
 * `zkappWorker.ts`: The web worker code itself
 * `zkappWorkerClient.ts`: Code that we run from react to interact with the web worker.
 
-So first, get these [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorker.ts) and [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts), and place them in your `ui/pages` folder.
+We encourage you to read this files, to understand how they work and to extend them for your own zkApp, but we will not review them in detail here, in favor of spending time on the react code.
+
+Download these files from [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorker.ts) and [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts), and place them in your `ui/pages` folder.
 
 ### globals.css
 
@@ -93,7 +98,7 @@ And in the other,
 npm run ts-watch
 ```
 
-The first of these starts hosting your application, at `localhost:3000`. Your browser will refresh automatically when your page has changes.
+The first of these starts hosting your application, by default at `localhost:3000`. Your browser will refresh automatically when your page has changes.
 
 The second shows typescript errors. You can watch this as you develop to check for type errors.
 
@@ -125,7 +130,7 @@ Edit the contents so it looks like this:
 
 This just sets up our react project, with the imports we'll need, and an empty component.
 
-First, we'll add our state to our app:
+Now, we'll add state to our app:
 
 ```ts
 ...
@@ -147,6 +152,8 @@ First, we'll add our state to our app:
  30   return </div>
 ...
 ```
+
+This creates mutable state that we can reference in our UI, and update as our application runs. You can learn more about react state and useState [here](https://reactjs.org/docs/hooks-state.html).
 
 Next, we'll add a function to setup our application:
 ```ts
@@ -175,11 +182,11 @@ Next, we'll add a function to setup our application:
 ```
 
 
-We use the react feature "useEffect", so that this is only run once. We further gate this by a boolean `hasBeenSetup` so we don't run this more than once.
+We use the react feature "useEffect", so that this is only run once. See more on useEffect [here](https://reactjs.org/docs/hooks-effect.html). We further gate running this effect by a boolean `hasBeenSetup` so we don't run this more than once.
 
-This is also where we setup our web worker client. This will interact with our web worker running snarkyjs code, so that code doesn't block the UI thread.
+This is also where we setup our web worker client. This will interact with our web worker running snarkyjs code, so that that code doesn't block the UI thread.
 
-Next, we check if there is already a private key in local storage - and if not, we save one there. We also check if the account exists:
+Next, we check if there is already a private key in local storage - and if not, we save one there. We also check if the account exists on chain:
 
 ```ts
 ...
@@ -203,7 +210,7 @@ Next, we check if there is already a private key in local storage - and if not, 
 ...
 ```
 
-Continuing, we load our zkApp in the web worker. We load the contract, compile it, and create a instance of it at a fixed address, and get its current state:
+Continuing, we load our zkApp in the web worker. We load the contract, compile it, create a instance of it at a fixed address, and get its current state:
 
 ```ts
 ...
@@ -250,7 +257,9 @@ And lastly for this function, we update the state of the react app:
 ...
 ```
 
-Continuing, we add an effect that, once the account has been setup, waits for the account to be loaded:
+Now that we have finished setting up our UI, we write a new effect, that waits for the account to exist, if it didn't exist before. 
+
+If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later a link to request funds for users to request funds while that account does not exist.
 
 ```ts
 ...
@@ -278,9 +287,9 @@ Continuing, we add an effect that, once the account has been setup, waits for th
 ...
 ```
 
-If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later on giving the user a link to request funds.
+Moving on, we'll create functions that are triggered when a button is pressed by a user.
 
-Next, we add a function that we will call later, that will send a transaction:
+First, a function that will send a transaction:
 
 ```ts
 ...
@@ -311,7 +320,7 @@ Next, we add a function that we will call later, that will send a transaction:
 ...
 ```
 
-And a function that we will call later, that will update the react state:
+And second, a function that will get the latest zkApp state:
 
 ```ts
 ...
@@ -331,11 +340,7 @@ And a function that we will call later, that will update the react state:
 ...
 ```
 
-And lastly, code to replace our `return <div/>`, that shows a ui that updates the user with the state of our application.
-
-The ui lets the user know when the zkapp has finished loading - and gives the user a link to the faucet if their account hasn't been funded.
-
-Once the zkapp has finished loading, the user is presented with two buttons, allowing the user to create a transaction, or refresh the current state of the application:
+Lastly, we will update the `return <div/>` placeholder we originally inserted, with a ui to show the user the state of our application:
 
 ```ts
 ...
@@ -371,20 +376,30 @@ Once the zkapp has finished loading, the user is presented with two buttons, all
 168 }
 ```
 
+We divide our UI into 3 sections:
+
+* `setup` lets the user know when the zkapp has finished loading.
+* `accountDoesNotExist` gives the user a link to the faucet if their account hasn't been funded.
+* `mainContent` shows the current state of the zkApp, and buttons to interact with it.
+
+The buttons allow the user to create a transaction, or refresh the current state of the application, by triggering the `onSendTransaction` and `onRefreshCurrentNum` functions we wrote above.
+
 And that's it! We've finished the code for our application. 
 
-## Pushing the project to github
+If you've been using `npm run dev`, you should now be able to interact with this application on `localhost:3000`, with all the functionality we've implemented over the tutorial.
+
+## Deploying the UI to github pages
 
 To deploy our project to github, first push it to a new github repo. The github repo must have the same name as the project name when we ran zk project above (in this example, `04-zkapp-browser-ui`). If not, change the existing project name strings in `next.config.js`, and `pages/reactCOIServiceWorker.ts` to your repo name.
 
-To deploy, just run `npm run deploy`. It will take a minute, but after your application will be available at
+To deploy, just run `npm run deploy`. After the script builds your application, uploads it to github, and github processes it, your application will be available at:
 ```
 https://<username>.github.io/<repo-name>/index.html
 ```
 
 ## Conclusion
 
-We have built an in browser react app, that interacts with a live netowrk! If you want to build your own in browser zkApp UI, this should serve as a good starting point. 
+We have built an in browser react app, that interacts with a live network! You should now be ready to build your own in browser zkApp UI.
 
 Checkout out our other tutorials and documentation to keep going!
 
