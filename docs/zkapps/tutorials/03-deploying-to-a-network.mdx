@@ -282,7 +282,7 @@ Our Smart Contract is also deployed to the same account we deployed from. So we 
 
 Next, we will wait for the deployer account to be ready.
 
-In main, we will import a and use the `loopUntilAccountExists` function from `utils.ts`:
+In main, we will import a and use the `loopUntilAccountExists()` function from `utils.ts`:
 
 ```ts
 ...
@@ -350,7 +350,7 @@ Moving on, we compile the smart contract, and wait for it to have been deployed:
  83   // ----------------------------------------------------...
  ```
 
-To do this, we reuse the helper function `loopUntilAccountExists` from `utils.js`
+To do this, we reuse the helper function `loopUntilAccountExists()` from `utils.js`
 
 Note as we deployed our smart contract already with `zk deploy`, programmatic deploy is not needed, and is commented out here. If you would like to see how this works, or its useful for your application, see code for this [here](https://github.com/es92/zkApp-examples/tree/main/01-hello-world/src/deploy.ts).
 
@@ -376,7 +376,7 @@ Next, let's check if our zkApp is initialized or not:
  ...
  ```
 
-We use a helper, `zkAppNeedsInitialization`, to check if the zkApp has been initialized. Note that deploying a zkApp from the CLI, loads the verification key for the smart contract into the account, but does not initialize it yet. This code is still needed for that step.
+We use a helper, `zkAppNeedsInitialization()`, to check if the zkApp has been initialized. Note that deploying a zkApp from the CLI, loads the verification key for the smart contract into the account, but does not initialize it yet. This code is still needed for that step.
 
 The helper function checks if the zkApp has been initialized by seeing if every field is zero. This works for zkApps that after initialized, never return to a state where all of their fields are zero. This works for the Square smart contract for example, since it initializes to 3 and then only gets larger.
 
@@ -384,7 +384,7 @@ The helper function checks if the zkApp has been initialized by seeing if every 
 
 There is an `isProved` property on accounts present in the protocol, but yet to be exposed in SnarkyJS, that definitively answers if a smart contract has been initialized or not.
 
-This `isProved` property starts out `false` when a contract is deployed. It is recommended that, once available, the a contract's `init` function require `isProved` to be false - while other functions require `isProved` to be true. More details will be released as this feature is made available.
+This `isProved` property starts out `false` when a contract is deployed. It is recommended that, once available, the a contract's `init()` function require `isProved` to be false - while other functions require `isProved` to be true. More details will be released as this feature is made available.
 
 :::
 
@@ -415,13 +415,13 @@ Now, to actually do the initialization:
 ...
 ```
 
-Internally, `makeAndSendSendTransaction` does the following steps:
+Internally, `makeAndSendSendTransaction()` does the following steps:
 
 1. Fetches the fee payer account, to make sure it has up to date account information for sending the deploy transaction, such as its balance.
 2. Constructs the transaction, with some change to make (in this case, initializing the zkApp).
 3. Creates a proof of the transaction. This can take up to a minute or two.
 4. Sends the transaction, posting some information on how the send went.
-5. Loops until the account state has updated. Note after this, the zkApp state is updated, so calling `.get` on zkApp state, as we do on lines `96` and `99`, returns updated values.
+5. Loops until the account state has updated. Note after this, the zkApp state is updated, so calling `.get()` on zkApp state, as we do on lines `96` and `99`, returns updated values.
 
 ### Calling update on our transaction
 
@@ -445,12 +445,12 @@ And lastly, let's now send an update to our transaction. If the zkApp was just i
 115   // ----------------------------------------------------...
 ```
 
-Here we reuse our `makeAndSendTransaction` function, to call the `update` function on our zkapp.
+Here we reuse our `makeAndSendTransaction()` function, to call the `update()` function on our zkapp.
 
 ## Conclusion
 
-We have finished building a CLI that interacts with a live network! You can also run this multiple times - and it should each time, update x to its square.
+We have finished deploying to a live network using the zkApp CLI and writing a script to initialize the state and interact with it! You can also run this script multiple times, and it should each time, update `x` to its square.
 
-Checkout out our other tutorials and documentation to keep going!
+Check out out our other tutorials and documentation to keep going!
 
 <!--- Now let's move to the next tutorial, where we will see how to build zkApp UIs that run in the browser with a wallet. -->
