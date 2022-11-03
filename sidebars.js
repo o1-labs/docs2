@@ -32,8 +32,18 @@ module.exports = {
         'zkapps/how-to-test-a-zkapp',
         'zkapps/how-to-deploy-a-zkapp',
         'zkapps/how-to-write-a-zkapp-ui',
-        'zkapps/recursion',
-        'zkapps/advanced-snarkyjs',
+        {
+          type: 'category',
+          label: 'Advanced SnarkyJS',
+          items: [
+            "zkapps/advanced-snarkyjs/on-chain-values",
+            "zkapps/advanced-snarkyjs/events",
+            "zkapps/advanced-snarkyjs/recursion",
+            "zkapps/advanced-snarkyjs/custom-tokens",
+            "zkapps/advanced-snarkyjs/action-reducer",
+            "zkapps/advanced-snarkyjs/merkle-tree",
+          ],
+        },
         {
           type: 'category',
           label: 'Tutorials',
