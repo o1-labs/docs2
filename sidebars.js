@@ -40,7 +40,7 @@ module.exports = {
             "zkapps/advanced-snarkyjs/events",
             "zkapps/advanced-snarkyjs/recursion",
             "zkapps/advanced-snarkyjs/custom-tokens",
-            "zkapps/advanced-snarkyjs/actions-reducer",
+            "zkapps/advanced-snarkyjs/actions-and-reducer",
             "zkapps/advanced-snarkyjs/merkle-tree",
           ],
         },
