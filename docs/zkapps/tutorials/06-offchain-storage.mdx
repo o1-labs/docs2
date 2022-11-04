@@ -15,36 +15,57 @@ zkApps can now be deployed to Berkeley Testnet.
 
 ## Overview
 
-In our last tutorial, we ended by learning about merkle trees, and how we can use them to represent lots of data with a single hash.
+In our last tutorial, we ended by learning about merkle trees, and how we can use them to represent large amounts of data with a single hash.
 
 In this tutorial, we will share a library and pattern for working with storing merkle trees offchain, with only the root of the merkle tree stored on chain.
 
+:::caution
+
+This Library is ready for prototyping and building toy applications, but needs modification to be production ready. If you are interested in helping make that happen, [Further development](#further-development) section below.
+
+:::
+
 ### Why Offchain Storage?
 
-Why do we need this? For one, when building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
+Why do we need this? When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
 
-However, when building a complete, decentralized zkApp, we need more than this. All users interacting with our zkApp need to be able to get the latest state, and modify it.
+However, when building a complete, distributed zkApp, we need more than this. All users interacting with our zkApp need to be able to get the latest state, and modify it.
 
 If this isn't the case, and someone can modify the tree without sharing their modification, the lack of data availability means that further writes, by other parties that don't have access to the new tree, become impossible.
 
-The solution here is to have a server, that anyone can run, that stores the data. If the server is being run as expected, it provides a guarantee that any updates to the merkle root reflected onchain, will be stored on the server, for anyone to retrieve.
+The solution here is to have a server, that anyone can run, that stores the data. If the server is being run as expected, it provides a guarantee that any updates to the merkle root reflected onchain will be stored on the server for anyone to retrieve.
 
-A more robust solution is for Mina itself to store these entire merkle trees to guarantee data availability; this is planned for the future. However even then, it is likely that this will need to be relatively expensive, given the entire network will have to store the data. So even in that world, it is expected that offchain storage as presented here will be useful.
+### Offchain Storage and Decentralization
 
-If interested, we're looking for a developer to run with the library presented here, improve it, and run instances for the community. One of the improvements suggested is to add a token, required for storing data on the server, to prevent DDOS attacks and making server operation profitable. If interested, please reach out [here](where_should_they_reach_out?).
+This solution works well as long as the server is being run as expected. This is reasonable when the users of the application and the developer both trust the server the zkApp is using.
 
-A heads up on the current limitations of the storage server:
+While this is useful for prototyping applications, and even putting many applications into production, its limited from a decentralization standpoint.
 
-* Currently DDOSable until a token or otherwise buying API credits is added.
-* Only supports trees of height 8 (128 leafs).
-* The client library does not surface errors to code using it.
-* The storage library is unable to cleanup old state for a smart contract if that contract is misconfigured.
+In the short-run, we expect the following solutions for data availability:
 
-## Offchain Storage Project
+* Single-server offchain storage [this solution].
+* Multi-server offchain storage - with guarantees as long as a majority of servers behave honestly [Grant available; see below]
+* Modular blockchain offchain storage [Several dependencies, but under exploration]
+
+In the long run, a feature is being considered for a future hard fork to add purchasable data storage with data availability guarantees to Mina itself. However, even then, putting more data on chain burdens the network, so it is likely that putting large amounts of data on chain will be relatively expensive. Given that it is expected that the short-run solutions presented above will still be relevant and useful.
+
+### Further development
+
+We're looking for a developer to run with the library presented here, improve it, and run instances for the community. There is a grant opportunity for taking this on. If interested, please reach out [here](where_should_they_reach_out?).
+
+Some suggested improvements:
+
+* Eliminate DDOS vulnerability by adding a token that limits storage requests
+* Add support for trees of variable heights (currently only supports trees of height 8, or 128 leafs)
+* Surface errors to the client library
+* Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
+* Add support to the client library for connecting to multiple storage servers, enabling correctness under majority-honest.
+
+## Implemeting a Project Using Offchain Storage
 
 As usual, there is sample code for this project, which you can find [here](https://github.com/es92/zkApp-examples/tree/main/06-offchain-storage/contracts).
 
-We will be writing and discussing the [main.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) and [NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+We will be writing and discussing the [src/main.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
 
 This project implements a tree, where each leaf is either empty or stores a number. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an offchain storage server.
 
@@ -67,7 +88,7 @@ $ touch src/main.ts
 
 Edit our index.ts for the new smart contract:
 
-```sh
+```ts
 import { NumberTreeContract } from './NumberTreeContract.js';
 
 export { NumberTreeContract };
@@ -79,7 +100,7 @@ Now, add the library for the offchain storage server we'll be using:
 npm install zkapp-offchain-storage --save
 ```
 
-Also install `xmlhttprequest-ts`, which we will use to make network requests when running from node, where the browser's XMLHttpRequest is not available by default:
+Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
 
 ```sh
 npm install --save xmlhttprequest-ts
@@ -154,7 +175,7 @@ Continuing, let's setup our smart contract:
  23   @state(Field) storageNumber = State<Field>();
  24   @state(Field) storageTreeRoot = State<Field>();
  25
- 26   // TODO should I be doing my init things inside deploy? does that assert them?
+ 26   
  27   deploy(args: DeployArgs) {
  28     super.deploy(args);
  29     this.setPermissions({
@@ -173,7 +194,7 @@ Continuing, let's setup our smart contract:
 ...
 ```
 
-Here we add 3 pieces of state to our contract - the public key of the storage server, the "storageNumber", which is used to ensure the storage server is storing state, and the root of the merkle tree.
+Here we add 3 pieces of state to our contract - the public key of the storage server, the "storageNumber", which is used to ensure the storage server is actively storing states, and the root of the merkle tree.
 
 We also initialize our zkapp by setting it to an empty tree.
 
@@ -243,11 +264,11 @@ That completes the smart contract!
 
 You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) for reference.
 
-We will not be implementing this full file either - so download it from the above link, place it in your src folder, and then open it in your editor.
+We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
 
-Note that it contains logic for both running the contract locally and for deploying and interacting with on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to your call to `main.js`.
+Note that it contains logic for both running the contract locally and for deploying and interacting with on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to your call to the end of your call to `node main.js`.
 
-We'll discuss a few parts of this file:
+To start, we will connect to the offchain storage server:
 
 ```ts
 ...
@@ -259,7 +280,7 @@ We'll discuss a few parts of this file:
 ...
 ```
 
-This is where we connect to the storage server, and get its public key. Running the storage server as described above starts it by default on port 3001, and so this code is configured to connect to it there. In a real application, you would run the storage server on an externally exposed machine, and change this address to match.
+Here, we connect to the storage server, and get its public key. Running the storage server as described above starts it by default on port 3001, and so this code is configured to connect to it there. In a real application, you would run the storage server on an externally exposed machine, and change this address from localhost to match.
 
 Next we will describe the `updateTree` function, starting on line `120`.
 
