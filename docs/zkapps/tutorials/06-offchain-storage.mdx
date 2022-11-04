@@ -27,11 +27,11 @@ This Library is ready for prototyping and building toy applications, but needs m
 
 ### Why Offchain Storage?
 
-Why do we need this? When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
+When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
 
 However, when building a complete, distributed zkApp, we need more than this. All users interacting with our zkApp need to be able to get the latest state, and modify it.
 
-If this isn't the case, and someone can modify the tree without sharing their modification, the lack of data availability means that further writes, by other parties that don't have access to the new tree, become impossible.
+If this isn't the case, and someone can modify the tree without sharing their modification, the lack of data availability for the new version means that further writes, by other parties that don't have access to the new tree, become impossible.
 
 The solution here is to have a server, that anyone can run, that stores the data. If the server is being run as expected, it provides a guarantee that any updates to the merkle root reflected onchain will be stored on the server for anyone to retrieve.
 
@@ -43,9 +43,9 @@ While this is useful for prototyping applications, and even putting many applica
 
 In the short-run, we expect the following solutions for data availability:
 
-* Single-server offchain storage [this solution].
-* Multi-server offchain storage - with guarantees as long as a majority of servers behave honestly [Grant available; see below]
-* Modular blockchain offchain storage [Several dependencies, but under exploration]
+* Single-server offchain storage (the solution presented here).
+* Multi-server offchain storage - with guarantees as long as a majority of servers behave honestly (Grant available; see below)
+* Modular blockchain offchain storage (Several dependencies, but under exploration)
 
 In the long run, a feature is being considered for a future hard fork to add purchasable data storage with data availability guarantees to Mina itself. However, even then, putting more data on chain burdens the network, so it is likely that putting large amounts of data on chain will be relatively expensive. Given that it is expected that the short-run solutions presented above will still be relevant and useful.
 
@@ -56,12 +56,10 @@ We're looking for a developer to run with the library presented here, improve it
 Some suggested improvements:
 
 * Eliminate DDOS vulnerability by adding a token that limits storage requests
-* Add support for trees of variable heights (currently only supports trees of height 8, or 128 leafs)
-* Surface errors to the client library
 * Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
 * Add support to the client library for connecting to multiple storage servers, enabling correctness under majority-honest.
-* Write a more scalable database (eg Redis)
-* Writing a storage server for an automatically scalable service (eg Cloudflare)
+* Switch the project to a more scalable database implementation (eg Redis)
+* Write an implementation for an automatically scalable service (eg Cloudflare)
 
 ## Implementing a Project Using Offchain Storage
 
@@ -99,7 +97,7 @@ export { NumberTreeContract };
 Now, add the library for the offchain storage server we'll be using:
 
 ```sh
-npm install zkapp-offchain-storage --save
+npm install experimental-zkapp-offchain-storage --save
 ```
 
 Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
@@ -153,7 +151,7 @@ Start by adding our imports:
  16   OffChainStorage,
  17   Update,
  18   MerkleWitness8,
- 19 } from 'zkapp-offchain-storage';
+ 19 } from 'experimental-zkapp-offchain-storage';
 ...
 ```
 
@@ -166,7 +164,7 @@ Note we import some items from `zkapp-offchain-storage`:
   * `getPublicKey`: A function to get the storage server's public key.
   * `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 * `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
-* `MerkleWitness8`: The type of our merkle tree witness. It is 8 because the storage server currently just uses height 8 merkle trees (for 128 leafs).
+* `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
 
 Continuing, let's setup our smart contract:
 
@@ -299,7 +297,7 @@ To start, let's get the existing tree:
 ...
 120   async function updateTree() {
 121
-122     const index = Math.floor(Math.random() * 4);
+122     const index = BigInt(Math.floor(Math.random() * 4));
 123
 124     // get the existing tree
 125     const treeRoot = await zkapp.storageTreeRoot.get();
