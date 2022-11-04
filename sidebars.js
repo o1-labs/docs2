@@ -20,7 +20,11 @@ module.exports = {
     {
       type: 'category',
       label: 'Using Mina',
-      items: ['using-mina/install-a-wallet'],
+      items: [
+        'using-mina/install-a-wallet',
+        'using-mina/how-to-send-and-receive',
+        'using-mina/how-to-delegate',
+      ],
     },
     {
       type: 'category',
@@ -32,17 +36,26 @@ module.exports = {
         'zkapps/how-to-test-a-zkapp',
         'zkapps/how-to-deploy-a-zkapp',
         'zkapps/how-to-write-a-zkapp-ui',
-        'zkapps/advanced-snarkyjs',
+        {
+          type: 'category',
+          label: 'Advanced SnarkyJS',
+          items: [
+            "zkapps/advanced-snarkyjs/on-chain-values",
+            "zkapps/advanced-snarkyjs/events",
+            "zkapps/advanced-snarkyjs/recursion",
+            "zkapps/advanced-snarkyjs/custom-tokens",
+            "zkapps/advanced-snarkyjs/actions-and-reducer",
+            "zkapps/advanced-snarkyjs/merkle-tree",
+          ],
+        },
         {
           type: 'category',
           label: 'Tutorials',
           items: [
-
             "zkapps/tutorials/hello-world",
             "zkapps/tutorials/private-inputs-hash-functions",
             "zkapps/tutorials/offchain-storage",
             "zkapps/tutorials/anonymous-message-board",
-            //"zkapps/tutorials/deploying-to-a-network",
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
