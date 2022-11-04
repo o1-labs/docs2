@@ -1,0 +1,114 @@
+---
+title: Actions & Reducer
+hide_title: true
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Actions & Reducer
+
+:::info
+
+Experimental. This API may change.
+
+:::
+
+Like events, **actions** are arbitrary information passed along with a zkApp transaction. However, actions give you an additional power: you can process previous actions in a smart contract! Under the hood, this is possible because we store a commitment to the history of dispatched actions on every account -- the **actionsHash**. It allows us to prove that the actions you process are, in fact, the actions that were dispatched to the same smart contract.
+
+Using actions and a "lagging state" pattern, you can write zkApps that can _process concurrent state updates by multiple users_ -- see the next section. Besides that, we imagine all kinds of use cases where actions act as a built-in, "append-only" off-chain storage layer.
+
+To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
+
+```ts
+import { SmartContract, Experimental, Field } from "snarkyjs";
+
+class MyContract extends SmartContract {
+  reducer = Experimental.Reducer({ actionType: Field });
+}
+```
+
+Contrary to events, for actions you only have one type per smart contract; they also don't have a name. The `actionType` in this example is `Field`.
+
+On a `reducer`, you have two functions: `reducer.dispatch` and `reducer.reduce`. "Dispatch" is simple -- like emitting events, it will push one additional action to your account's action history:
+
+```ts
+this.reducer.dispatch(Field(1000));
+```
+
+"Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example. Say we have a list of actions and want to find out if one of them is equal to `1000`. In JavaScript, there's a built-in function on `Array` which does this:
+
+```ts
+let has1000 = array.some((x) => x === 1000);
+```
+
+However, as you might know, you can also implement this with `Array.reduce`:
+
+```ts
+let has1000 = array.reduce((acc, x) => acc || x === 1000, false);
+```
+
+In fact, `Array.reduce` is powerful enough to let you do pretty much all array processing you can think of. With `Reducer.reduce`, we give you an in-snark operation which is just as powerful:
+
+```ts
+// type for the "accumulated output" of reduce -- the `stateType`
+let stateType = Bool;
+
+// example actions data
+let actions = [[Field(1000)], [Field(2)], [Field(100)]];
+
+// state and actionsHash before applying actions
+let initial = {
+  state: Bool(false),
+  actionsHash: Experimental.Reducer.initialActionsHash,
+};
+
+let { state, actionsHash } = this.reducer.reduce(
+  actions,
+  stateType,
+  (state: Bool, action: Field) => state.or(action.equals(1000)),
+  initial
+);
+```
+
+What we called `acc` above is now called `state`; we also have to pass in the state's type as a parameter. In addition, we have to pass in an `actionsHash` which refers to one particular point in the actions history. Like `Array.reduce`, `Reducer.reduce` takes a callback which has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` will be `Bool(true)`, because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionsHash -- so you can store it for using it when you reduce the next batch of actions. One last difference to JS reduce is that this takes a _list of lists_ of actions instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (e.g., while running one smart contract method).
+
+An astute reader may have noticed that this is eerily similar to a standard "Elm architecture" -- this is because we have an instance of a scan over an implicit infinite stream of actions (though here that are aggregated in chunks) -- this is very similar to the problem that came up when processing transactions within the [Mina Protocol L1 with Snark Workers](https://minaprotocol.com/blog/fast-accumulation-on-streams). This may sound scary, but it should be familiar to web developers through its instantiation via the Redux library or more recently via the `useReducer` hook in React!
+
+There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because we're handling multiple actions concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
+
+### Reducer - API reference
+
+```ts
+reducer = Experimental.Reducer({ actionType: AsFieldElements<A> });
+
+this.reducer.dispatch(action: A): void;
+
+this.reducer.reduce<S>(
+  actions: A[][],
+  stateType: AsFieldElements<S>,
+  reduce: (state: S, action: A) => S,
+  initial: { state: S, actionsHash: Field }
+): { state: S, actionsHash: Field };
+
+Experimental.Reducer.initialActionsHash: Field;
+```
+
+The above API is available now, but still marked as "Experimental". In the near future, we want to add a function to retrieve actions from an archive node:
+
+```ts
+this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[][];
+```
+
+Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapps/how-to-test-a-zkapp).
+
+### Actions for concurrent state updates
+
+We imagine that one of the most important use cases for actions is to enable concurrent state updates. This is also why actions where originally added to the protocol.
+
+A detailed explanation of the problem, and how actions can provide the solution, can be found here: https://github.com/o1-labs/snarkyjs/issues/265#issuecomment-1177512908
+
+We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) which demonstrates this pattern. Leveraging `Reducer.reduce`, it takes only about 30 lines of code to build a zkApp which handles concurrent state updates.
