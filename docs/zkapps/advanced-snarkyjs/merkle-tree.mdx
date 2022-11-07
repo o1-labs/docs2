@@ -141,7 +141,7 @@ class Leaderboard extends SmartContract {
     path.calculateRoot(account.hash()).assertEquals(root);
 
     // we check that the account has at least 10 score points in order to claim the reward
-    account.score.assertGte(UInt32.fromNumber(10));
+    account.score.assertGte(UInt32.from(10));
 
     // finally, we send the player a reward
     this.send({
@@ -177,7 +177,7 @@ const Tree = new Experimental.MerkleTree(treeHeight);
 class MerkleWitness extends Experimental.MerkleWitness(treeHeight) {}
 
 // sets a value at position 0n
-Tree.setLeaf(0n, Field.fromNumber(123));
+Tree.setLeaf(0n, Field(123));
 
 // gets the current root of the tree
 const root = Tree.getRoot();
@@ -189,7 +189,7 @@ const witness = Tree.getWitness(0n);
 const circuitWitness = new MerkleWitness(witness);
 
 // calculates the root of the witness
-const calculatedRoot = circuitWitness.calculateRoot(Field.fromNumber(123));
+const calculatedRoot = circuitWitness.calculateRoot(Field(123));
 
 calculatedRoot.assertEquals(root);
 ```

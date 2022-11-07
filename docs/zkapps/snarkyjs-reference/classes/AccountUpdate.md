@@ -456,7 +456,7 @@ Constrain a property to lie between lower and upper bounds.
 | :------ | :------ | :------ |
 | `property` | `OrIgnore`<`ClosedInterval`<`T`\>\> | The property to constrain |
 | `lower` | `T` | The lower bound |
-| `upper` | `T` | The upper bound  Example: To constrain the account balance of a SmartContract to lie between 0 and 20 MINA, you can use  ```ts @method onlyRunsWhenBalanceIsLow() {   let lower = UInt64.zero;   let upper = UInt64.fromNumber(20e9);   AccountUpdate.assertBetween(this.self.body.preconditions.account.balance, lower, upper);   // ... } ``` |
+| `upper` | `T` | The upper bound  Example: To constrain the account balance of a SmartContract to lie between 0 and 20 MINA, you can use  ```ts @method onlyRunsWhenBalanceIsLow() {   let lower = UInt64.zero;   let upper = UInt64.from(20e9);   AccountUpdate.assertBetween(this.self.body.preconditions.account.balance, lower, upper);   // ... } ``` |
 
 #### Returns
 
