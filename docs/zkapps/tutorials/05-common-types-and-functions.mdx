@@ -36,32 +36,32 @@ These each have their usual programming language semantics.
 For example, we can have the following code:
 
 ```ts
-  const num1 = UInt32.fromNumber(40);
-  const num2 = UInt64.fromNumber(40);
+const num1 = UInt32.from(40);
+const num2 = UInt64.from(40);
 
-  const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
+const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
 
-  console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
-  console.log(`Fields in num1: ${num1.toFields().length}`);
+console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
+console.log(`Fields in num1: ${num1.toFields().length}`);
 
-  // --------------------------------------
+// --------------------------------------
 
-  const signedNum1 = Int64.fromNumber(-3);
-  const signedNum2 = Int64.fromNumber(45);
+const signedNum1 = Int64.from(-3);
+const signedNum2 = Int64.from(45);
 
-  const signedNumSum = signedNum1.add(signedNum2);
+const signedNumSum = signedNum1.add(signedNum2);
 
-  console.log(`signedNum1 + signedNum2: ${signedNumSum.toString()}`);
-  console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
+console.log(`signedNum1 + signedNum2: ${signedNumSum.toString()}`);
+console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
-  // --------------------------------------
+// --------------------------------------
 
-  const char1 = Character.fromString('c');
-  const char2 = Character.fromString('d');
+const char1 = Character.fromString('c');
+const char2 = Character.fromString('d');
 
-  console.log(`char1: ${char1.toString()}`);
-  console.log(`char1 == char2:: ${char1.equals(char2).toString()}`);
-  console.log(`Fields in char1: ${char1.toFields().length}`);
+console.log(`char1: ${char1.toString()}`);
+console.log(`char1 == char2:: ${char1.equals(char2).toString()}`);
+console.log(`Fields in char1: ${char1.toFields().length}`);
 ```
 
 And when run it'll print to the console:
@@ -91,32 +91,32 @@ One special thing to note, is that the default `CircuitString` has a max length 
 A brief example of using these:
 
 ```ts
-  const str1 = CircuitString.fromString('abc..xyz');
-  console.log(`str1: ${str1.toString()}`);
-  console.log(`Fields in str1: ${str1.toFields().length}`);
+const str1 = CircuitString.fromString('abc..xyz');
+console.log(`str1: ${str1.toString()}`);
+console.log(`Fields in str1: ${str1.toFields().length}`);
 
-  // --------------------------------------
+// --------------------------------------
 
-  const privateKey = PrivateKey.random();
-  const publicKey = privateKey.toPublicKey();
+const privateKey = PrivateKey.random();
+const publicKey = privateKey.toPublicKey();
 
-  const data1 = char2.toFields().concat(signedNumSum.toFields())
-  const data2 = char1.toFields().concat(str1.toFields());
+const data1 = char2.toFields().concat(signedNumSum.toFields())
+const data2 = char1.toFields().concat(str1.toFields());
 
-  const signature = Signature.create(privateKey, data2);
+const signature = Signature.create(privateKey, data2);
 
-  const verifiedData1 = signature.verify(publicKey, data1);
-  const verifiedData2 = signature.verify(publicKey, data2);
+const verifiedData1 = signature.verify(publicKey, data1);
+const verifiedData2 = signature.verify(publicKey, data2);
 
-  console.log(`private key: ${privateKey.toBase58()}`);
-  console.log(`public key: ${publicKey.toBase58()}`);
-  console.log(`Fields in private key: ${privateKey.toFields().length}`);
-  console.log(`Fields in public key: ${publicKey.toFields().length}`);
+console.log(`private key: ${privateKey.toBase58()}`);
+console.log(`public key: ${publicKey.toBase58()}`);
+console.log(`Fields in private key: ${privateKey.toFields().length}`);
+console.log(`Fields in public key: ${publicKey.toFields().length}`);
 
-  console.log(`signature verified for data1: ${verifiedData1.toString()}`);
-  console.log(`signature verified for data2: ${verifiedData2.toString()}`);
+console.log(`signature verified for data1: ${verifiedData1.toString()}`);
+console.log(`signature verified for data2: ${verifiedData2.toString()}`);
 
-  console.log(`Fields in signature: ${signature.toFields().length}`);
+console.log(`Fields in signature: ${signature.toFields().length}`);
 ```
 
 And the console output:
@@ -135,6 +135,10 @@ Fields in signature: 256
 
 ## CircuitValue
 
+:::info
+`CircuitValue` is soon to be replaced with `Struct` in an upcoming version of SnarkyJS. Expect this tutorial to update to use `Struct` in the future accordingly.
+:::
+
 A special type is [CircuitValue](../snarkyjs-reference/classes/CircuitValue), which lets you create your own types for your application.
 
 All arguments passed into smart contracts need to be arguments SnarkyJS can understand. Creating a CircuitValue allows you pass in structured pieces of data, which via their class definition can come with methods to manipulate them. 
@@ -142,48 +146,46 @@ All arguments passed into smart contracts need to be arguments SnarkyJS can unde
 See the following for an example of how to use this, implementing a `Points` structure, and an array of points of length 8 structure:
 
 ```ts
-  class Point extends CircuitValue {
-    @prop x: Field;
-    @prop y: Field;
+class Point extends CircuitValue {
+  @prop x: Field;
+  @prop y: Field;
 
-    static fromField(x: Field, y: Field) {
-      return new Point(x, y);
-    }
-
-    static addPoints(a: Point, b: Point) {
-      return new Point(a.x.add(b.x), a.y.add(b.y));
-    }
+  static fromField(x: Field, y: Field) {
+    return new Point(x, y);
   }
 
-  const point1 = Point.fromField(Field(10), Field(4));
-  const point2 = Point.fromField(Field(1), Field(2));
-
-  const pointSum = Point.addPoints(point1, point2);
-
-  console.log(`pointSum Fields: ${pointSum.toFields().map((p) => p.toString())}`);
-
-  class Points8 extends CircuitValue {
-    points: Point[];
-
-    constructor(points: Point[]) {
-      super();
-      this.points = points;
-    }
+  static addPoints(a: Point, b: Point) {
+    return new Point(a.x.add(b.x), a.y.add(b.y));
   }
-  // arrays are declared outside the usual @prop decorator, with more arguments as seen below:
-  arrayProp(Point, 8)(Points8.prototype, 'points');
+}
 
-  const pointsArray = new Array(8).fill(null).map((_, i) => Point.fromField(Field(i), Field(i*10)));
-  const points8 = new Points8(pointsArray);
+const point1 = Point.fromField(Field(10), Field(4));
+const point2 = Point.fromField(Field(1), Field(2));
 
-  console.log(`points8 Fields: ${points.toFields().map((p) => p.toString())}`);
+const pointSum = Point.addPoints(point1, point2);
+
+console.log(`pointSum Fields: ${pointSum.toFields().map((p) => p.toString())}`);
+
+class Points8 extends CircuitValue {
+  @arrayProp(Point, 8) points: Point[];
+
+  constructor(points: Point[]) {
+    super();
+    this.points = points;
+  }
+}
+
+const pointsArray = new Array(8).fill(null).map((_, i) => Point.fromField(Field(i), Field(i*10)));
+const points8 = new Points8(pointsArray);
+
+console.log(`points8 Fields: ${JSON.stringify(points8)}`);
 ```
 
 Which prints the following to the console:
 
 ```sh
 pointSum Fields: 11,6
-points8 Fields: 0,0,1,10,2,20,3,30,4,40,5,50,6,60,7,70
+points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20"},{"x":"3","y":"30"},{"x":"4","y":"40"},{"x":"5","y":"50"},{"x":"6","y":"60"},{"x":"7","y":"70"}]}
 ```
 
 A great example of a complex use of CircuitValue is the MerkleTree implementation  - see the source for that [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/merkle_tree.ts) for more.
@@ -192,33 +194,33 @@ A great example of a complex use of CircuitValue is the MerkleTree implementatio
 
 There are two functions which help do control flow within SnarkyJS:
 
-* [Circuit.if](http://localhost:3000/zkapps/snarkyjs-reference/classes/Circuit#if)
-* [Circuit.switch](http://localhost:3000/zkapps/snarkyjs-reference/classes/Circuit#switch)
+* [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
+* [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
 
 With these, you can write conditionals inside SnarkyJS.
 
 For example:
 
 ```ts
-  const input1 = Int64.fromNumber(10);
-  const input2 = Int64.fromNumber(-15);
+const input1 = Int64.from(10);
+const input2 = Int64.from(-15);
 
-  const inputSum = input1.add(input2);
+const inputSum = input1.add(input2);
 
-  const inputSumAbs = Circuit.if(inputSum.isPositive(), inputSum, inputSum.mul(Int64.minusOne));
+const inputSumAbs = Circuit.if(inputSum.isPositive(), inputSum, inputSum.mul(Int64.minusOne));
 
-  console.log(`inputSum: ${inputSum.toString()}`);
-  console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
+console.log(`inputSum: ${inputSum.toString()}`);
+console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
 
-  const input3 = Int64.fromNumber(22);
+const input3 = Int64.from(22);
 
-  const input1largest = input1.sub(input2).isPositive().and(input1.sub(input3).isPositive());
-  const input2largest = input2.sub(input1).isPositive().and(input2.sub(input3).isPositive());
-  const input3largest = input3.sub(input1).isPositive().and(input3.sub(input2).isPositive());
+const input1largest = input1.sub(input2).isPositive().and(input1.sub(input3).isPositive());
+const input2largest = input2.sub(input1).isPositive().and(input2.sub(input3).isPositive());
+const input3largest = input3.sub(input1).isPositive().and(input3.sub(input2).isPositive());
 
-  const largest = Circuit.switch([ input1largest, input2largest, input3largest ], Int64, [ input1, input2, input3 ])
+const largest = Circuit.switch([ input1largest, input2largest, input3largest ], Int64, [ input1, input2, input3 ])
 
-  console.log(`largest: ${largest.toString()}`);
+console.log(`largest: ${largest.toString()}`);
 ```
 
 With output:
@@ -314,14 +316,14 @@ And code to interact with it:
     class MerkleWitness extends Experimental.MerkleWitness(height) {}
 
     // deploy the smart contract
-    const deploy_txn = await Mina.transaction(deployerAccount, () => {
+    const deployTxn = await Mina.transaction(deployerAccount, () => {
       AccountUpdate.fundNewAccount(deployerAccount);
       zkapp.deploy({ zkappKey: basicTreeZkAppPrivateKey });
       // get the root of the new tree to use as the initial tree root
       zkapp.init(tree.getRoot());
       zkapp.sign(basicTreeZkAppPrivateKey);
     });
-    await deploy_txn.send().wait();
+    await deployTxn.send().wait();
 
     const incrementIndex = 522;
     const incrementAmount = Field(9);
