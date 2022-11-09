@@ -143,7 +143,9 @@ A special type is [CircuitValue](../snarkyjs-reference/classes/CircuitValue), wh
 
 All arguments passed into smart contracts need to be arguments SnarkyJS can understand. Creating a CircuitValue allows you pass in structured pieces of data, which via their class definition can come with methods to manipulate them. 
 
-See the following for an example of how to use this, implementing a `Points` structure, and an array of points of length 8 structure:
+See the following for an example of how to use `CircuitValue`, implementing a `Point` structure, and an array of points of length 8 structure.
+
+SnarkyJS compiles programs into fixed sized circuits. This means that data structures it consumes must also be a fixed size, and is why we declare the array in `Points8` structure to be a static size of 8 in the example below.
 
 ```ts
 class Point extends CircuitValue {
