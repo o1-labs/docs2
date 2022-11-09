@@ -36,7 +36,11 @@ Like in tutorial 3, we will provide a couple helper files, so we can focus on th
 
 This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
 
-While this current tutorial uses localStorage to store and manage the user's private key, a new version of SnarkyJS is in the works which will connect to Auro wallet for more persistent and secure private key management.
+:::caution
+This tutorial currently uses localStorage to store and manage the user's private key. While helpful for prototyping applications, we do not recommend using it in production, since it does not provide only limited guarantees around persistence and security. 
+
+A new version of SnarkyJS is in the works which will connect to Auro wallet for key management in production applications.
+:::
 
 ## Project setup
 
@@ -187,6 +191,12 @@ We use the react feature "useEffect", so that this is only run once. See more on
 This is also where we setup our web worker client. This will interact with our web worker running snarkyjs code, so that that code doesn't block the UI thread.
 
 Next, we check if there is already a private key in local storage - and if not, we save one there. We also check if the account exists on chain:
+
+:::caution
+This tutorial currently uses localStorage to store and manage the user's private key. While helpful for prototyping applications, we do not recommend using it in production, since it does not provide only limited guarantees around persistence and security. 
+
+A new version of SnarkyJS is in the works which will connect to Auro wallet for key management in production applications.
+:::
 
 ```ts
 ...
