@@ -9,16 +9,21 @@ export default function CopyButton({ code, className }) {
   const copyTimeout = useRef(undefined);
   const handleCopyCode = useCallback(() => {
     const removeLineNumbers = /^\s*\d+\s/gm;
-    const removeEllipses = /\.{3}/gm;
+    const removeEllipses = /^\.{3}/gm;
+
     let copiedCode = code.replace(removeLineNumbers, '');
     copiedCode = copiedCode.replace(removeEllipses, '');
+
     copy(copiedCode);
     setIsCopied(true);
+
     copyTimeout.current = window.setTimeout(() => {
       setIsCopied(false);
     }, 1000);
   }, [code]);
+
   useEffect(() => () => window.clearTimeout(copyTimeout.current), []);
+
   return (
     <button
       type="button"
