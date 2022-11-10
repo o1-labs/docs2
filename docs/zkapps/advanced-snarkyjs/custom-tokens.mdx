@@ -9,23 +9,11 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 :::
 
-# Custom Tokens
-
-Mina Protocol supports the creation of custom fungible tokens. Custom fungible tokens play a significant role in decentralized applications and allow zkApps to create tokens that can be used in the zkApp ecosystem.
-
-Custom tokens are typically governed by zkApp accounts, where zkApp accounts can mint/burn tokens and facilitate transfers between two separate accounts. You can interact with custom tokens using the SnarkyJS API. SnarkyJS contains built-in methods to send, burn, and authorize transactions between accounts.
-
-:::info
-
-The custom token API is currently under the `experimental` namespace. This means that the API is subject to change in future releases.
-
-:::
-
-### Custom Token API
+# Custom Token API
 
 This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
 
-### Minting
+## Minting
 
 Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
 
@@ -45,7 +33,7 @@ class MintExample extends SmartContract {
 
 In the snippet above, we define a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.experimental.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
 
-### Burning
+## Burning
 
 Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. See the example below of how a zkApp can burn tokens of another account:
 
@@ -69,9 +57,9 @@ A zkApp cannot burn more tokens than the specified account has. If there is such
 
 :::
 
-### Sending
+## Sending
 
-To send a custom token, use the `send` method available on `this.experimental.token`. See the example below of how a zkApp can authorize sending tokens between two accounts:
+To send a custom token, use the `send` method available on `this.experimental.token`. See the example below of how a zkApp can approve sending tokens between two accounts:
 
 ```ts
 class SendExample extends SmartContract {
@@ -94,17 +82,122 @@ In the snippet above, we define a smart contract called `SendExample` with a met
 
 For a more comprehensive example of how to use custom tokens with a zkApp, please see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts)
 
-### Understanding Important Terms
+## Authorization
+
+When a zkApp is interacting with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs#token-owner).
+
+There are two ways for a token owner to approve a transaction, one being a **signature** and the other being a **proof**.
+
+### Signature Authorization
+
+Signature authorization is the simplest way for a token owner to approve a custom token transfer however, it is the least flexible. If two seperate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcasted.
+
+Token zkApps should provide a `send` method, like the one described above. By providing a `send` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
+
+```ts
+tx = await Mina.transaction(feePayerKey, () => {
+  zkapp.sendTokens(account1Address, account2Address, UInt64.from(1_000)); // Sends 1,000 tokens from account1 to account2
+  zkapp.sign(zkappKey); // Signs the transaction with the token owner key
+});
+await tx.send();
+```
+
+This sort of authorization is simple and easy to use but it is not flexible. If two accounts want to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, we can let the token owner approve with a proof.
+
+### Proof Authorization
+
+Proof authorization is a more flexible way for a token owner to approve a custom token transfer. If two seperate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to approve a transaction without signing it.
+
+To allow for proof authorization by the token owner, the child zkApp that is requesting authorization must provide a way for the token owner to inspect the changes it wants to make and verify that they are valid. Token owner contracts have the power to inspect child account updates to enforce custom token rules. For example, a token owner contract could enforce that a child zkApp can only send tokens to a specific address.
+
+Token owner contracts can inspect the updates that a child zkApp wants to make by using a combination of `Experimental.Callback` and `this.experimental.approve`. The first thing that a token contract must do is generate the account updates that a child zkApp wants to make. The child zkApp wraps a function around `Experimental.Callback` which contains the changes it wants to make. The token owner can then execute that function with `this.approve` and inspect the changes that the child zkApp wants to make.
+
+See the example below of how a zkApp can approve a transaction between two accounts. In the first example, we will show how to approve a transaction by calling a specified `SmartContract` method.
+
+```ts
+/**
+ * This TokenContract class is used to create a custom token
+ * and acts as the token owner of the custom token
+ */
+class TokenContract extends SmartContract {
+  ...
+
+  /**
+   * 'sendTokens' sends tokens from `senderAddress` to `receiverAddress`.
+   *
+   * It does so by deducting the amount of tokens from `senderAddress` by
+   * authorizing the deduction with a proof. It then creates the receiver
+   * from `receiverAddress` and sends the amount.
+   */
+  @method sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    amount: UInt64,
+    callback: Experimental.Callback<any>
+  ) {
+    // approves the callback which deductes the amount of tokens from the sender
+    let senderAccountUpdate = this.experimental.approve(callback);
+
+    // Create constraints for the sender account update and amount
+    let negativeAmount = Int64.fromObject(
+      senderAccountUpdate.body.balanceChange
+    );
+    negativeAmount.assertEquals(Int64.from(amount).neg());
+    let tokenId = this.experimental.token.id;
+
+    // Create receiver accountUpdate
+    let receiverAccountUpdate = Experimental.createChildAccountUpdate(
+      this.self,
+      receiverAddress,
+      tokenId
+    );
+    receiverAccountUpdate.balance.addInPlace(amount);
+  }
+}
+
+class ZkAppB extends SmartContract {
+  /*
+  * This method is used to get authorization from the token owner. Remember,
+  * the token owner is the one who created the custom token, so to deduct our balance
+  * we must get authorization from the token owner.
+  */
+  @method approveSend(amount: UInt64) {
+    this.balance.subInPlace(amount);
+  }
+}
+
+tx = await Local.transaction(feePayer, () => {
+  let amount = UInt64.from(1_000)
+  // Create a callback inside the transaction that calls the approveSend method.
+  // This will be executed by the token owner to get authorization.
+  let approveSendingCallback = Experimental.Callback.create(
+    zkAppB,
+    'approveSend',
+    [amount]
+  );
+  // Here, we call the token contract with the callback
+  tokenZkApp.sendTokens(zkAppBAddress, account1Address, amount, approveSendingCallback);
+});
+await tx.prove();
+tx.sign([zkAppBKey]);
+await tx.send();
+```
+
+The result of the example above is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is approved by the token owner without the token owner having to sign the transaction.
+
+For more examples of how to approve a transaction with a zkApp, please see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts).
+
+## Understanding Important Terms
 
 If you are writing your zkApp to interact with custom tokens, you should understand the following essential terms:
 
-#### Token Id
+### Token Id
 
 Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token id.
 
 Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp, you can use the `this.experimental.token.id` property.
 
-#### Token Accounts
+### Token Accounts
 
 Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is instead specified by a public key _and_ token id.
 If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id will be created if it does not exist.
@@ -121,8 +214,8 @@ Suppose a token account is being created for the first time. In that case, an ac
 
 Aside from sending custom tokens, custom tokens can be minted and burned by a **token owner account**. A token owner account is the governing zkApp account for a specific custom token.
 
-#### Token Owner
+### Token Owner
 
 A token owner is an account that creates, facilitates, and governs how a custom token is to be used. Concretely, the token owner is the account that created the custom token and is the only account that can mint and burn tokens.
 
-In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can authorize sending tokens between two accounts. If two accounts want to send tokens to each other, the token owner must authorize the transaction. The token owner can authorize the transaction either with a signature or proof.
+In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can approve sending tokens between two accounts. If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner can approve the transaction either with a signature or proof.
