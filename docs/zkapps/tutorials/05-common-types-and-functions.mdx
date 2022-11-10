@@ -13,9 +13,9 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # Tutorial 5: Common Types and Functions
 
-Welcome to tutorial 5. In previous tutorials, we've seen how to deploy smart contracts to the network, and we've interacted with them from both a React UI, nodejs, and the CLI.
+Welcome to tutorial 5. In previous tutorials, we've seen how to deploy smart contracts to the network, and we've interacted with them from both a React UI and NodeJS.
 
-In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. While in theory you could do everything with just Fields, SnarkyJS provides many more useful types to help with development.
+In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development
 
 You can find all of these on the [SnarkyJS Reference page](../snarkyjs-reference), for their full API documentation.
 
@@ -41,7 +41,7 @@ const num2 = UInt64.from(40);
 
 const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
 
-console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
+console.log(`num1 === num2: ${num1EqualsNum2.toString()}`);
 console.log(`Fields in num1: ${num1.toFields().length}`);
 
 // --------------------------------------
@@ -60,19 +60,19 @@ const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
 
 console.log(`char1: ${char1.toString()}`);
-console.log(`char1 == char2:: ${char1.equals(char2).toString()}`);
+console.log(`char1 === char2:: ${char1.equals(char2).toString()}`);
 console.log(`Fields in char1: ${char1.toFields().length}`);
 ```
 
 And when run it'll print to the console:
 
 ```
-num1 == num2: true
+num1 === num2: true
 Fields in num1: 1
 signedNum1 + signedNum2: 42
 Fields in signedNum1: 2
 char1: c
-char1 == char2: false
+char1 === char2: false
 Fields in char1: 1
 ```
 
@@ -82,11 +82,16 @@ Fields in char1: 1
 4 more advanced types are:
 
 * [CircuitString](../snarkyjs-reference/classes/CircuitString)
-* [Private keys](../snarkyjs-reference/classes/PrivateKey)
-* [Public keys](../snarkyjs-reference/classes/Types.PublicKey)
-* [Signatures](../snarkyjs-reference/classes/Signature)
+* [PrivateKey](../snarkyjs-reference/classes/PrivateKey)
+* [PublicKey](../snarkyjs-reference/classes/Types.PublicKey)
+* [Signature](../snarkyjs-reference/classes/Signature)
 
-One special thing to note, is that the default `CircuitString` has a max length of 128 characters. We'll see in the following section how to create custom types, where you could for example build your own strings, modifed to whatever length you would like.
+
+All arguments passed into smart contracts need to be arguments SnarkyJS can understand. This means that we can't just pass normal strings - we need to pass in strings that have been wrapped to be compatible with circuits, which is what `CircuitValue` accomplishes.
+
+One special thing to note, is that the default `CircuitString` has a max length of 128 characters. SnarkyJS supports fixed length strings currently. Support for dynamic length strings will be added in the future after dynamic array access is available.
+
+We'll see in the following section how to create custom types, where you could for example build your own strings, modified to whatever length you would like.
 
 A brief example of using these:
 
@@ -139,9 +144,9 @@ Fields in signature: 256
 `CircuitValue` is soon to be replaced with `Struct` in an upcoming version of SnarkyJS. Expect this tutorial to update to use `Struct` in the future accordingly.
 :::
 
-A special type is [CircuitValue](../snarkyjs-reference/classes/CircuitValue), which lets you create your own types for your application.
+A special type is [CircuitValue](../snarkyjs-reference/classes/CircuitValue), which lets you create your own compound data types.
 
-All arguments passed into smart contracts need to be arguments SnarkyJS can understand. Creating a CircuitValue allows you pass in structured pieces of data, which via their class definition can come with methods to manipulate them. 
+Your CircuitValue can be defined as one or more data types that SnarkyJS understands, i.e. Field, higher-order types built into SnarkyJS based on Field, or other CircuitValue types defined by you. You can also define methods on your CircuitValue to act upon this data type, if desired, but doing so is optional.
 
 See the following for an example of how to use `CircuitValue`, implementing a `Point` structure, and an array of points of length 8 structure.
 
@@ -190,7 +195,7 @@ pointSum Fields: 11,6
 points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20"},{"x":"3","y":"30"},{"x":"4","y":"40"},{"x":"5","y":"50"},{"x":"6","y":"60"},{"x":"7","y":"70"}]}
 ```
 
-A great example of a complex use of CircuitValue is the MerkleTree implementation  - see the source for that [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/merkle_tree.ts) for more.
+A great example of a complex use of `CircuitValue` is the MerkleTree implementation  - see the source for that [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/merkle_tree.ts) for more.
 
 ## Control flow
 
@@ -198,6 +203,8 @@ There are two functions which help do control flow within SnarkyJS:
 
 * [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
 * [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
+
+Circuit.if is similar to a ternary in JavaScript. Circuit.switch is similar to a switch case statement in JavaScript.
 
 With these, you can write conditionals inside SnarkyJS.
 
@@ -237,14 +244,14 @@ By inserting function calls, you can write circuits which usual if / else statem
 
 ```ts
 const result = Circuit.if(
-  <condition>, 
-  (() => { // TRUE
-    <code to use if true>
-    return <true-result>;
+  a.gt(b),
+  (() => { 
+    // TRUE
+    return a;
   })(),
-  (() => { // FALSE
-    <code to use if false>
-    return <false-result>;
+  (() => { 
+    // FALSE
+    return b;
   })()
 );
 ```
@@ -255,7 +262,7 @@ Note that unlike normal programming, because SnarkyJS under the hood is creating
 
 We've been using assertions throughout these tutorials already - but to clarify what they're doing, assertions are creating constraints in our circuit, that must hold true for a valid proof to be generated.
 
-Besides the `assertEquals` we've often used, there is also `assertTrue` available on the Bool class.
+Besides the `a.assertEquals(b)` we've often used, there is also `.assertTrue()` available on the Bool class.
 
 ## Merkle Trees
 
@@ -270,9 +277,16 @@ import {
 } from 'snarkyjs'
 ```
 
-When using Merkle trees, you initialize an instance of the data structure on the "ui" side of your application at a particular height. 
+Merkle Trees can be created in your application as so:
 
-In the smart contract though, you need to provide a "witness" for each update to the tree, which proves the connection between the existing tree in the smart contract, and the updated tree.
+```ts
+const height = 20;
+const tree = new Experimental.MerkleTree(height);
+```
+
+The height variable determines how many leaves are available to your application. A height of 20 for example will lead to a tree with `2**(20-1)`, or 524,288 leaves.
+
+Merkle trees in smart contracts are stored as the hash of the merkle tree's root. Smart contract methods which update the merkle root can take a "witness" of the change as an argument, which represents the merkle path to the data for which inclusion is being proved for.
 
 Here is a simple example of a contract that stores the root of a merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf, while checking that the number added was less than 10:
 
@@ -340,7 +354,7 @@ And code to interact with it:
     const txn1 = await Mina.transaction(deployerAccount, () => {
       zkapp.update(
         witness,
-        Field.zero, // leafs in new trees start at a state of 0
+        Field(0), // leafs in new trees start at a state of 0
         incrementAmount);
       zkapp.sign(basicTreeZkAppPrivateKey);
     });
@@ -357,6 +371,6 @@ You can find this complete example in the [project directory](https://github.com
 
 ## Conclusion
 
-Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, should you now be capable of writing many advanced smart contracts and zkapps.
+Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, should you now be capable of writing many advanced smart contracts and zkApps.
 
 Checkout out our other tutorials to keep going!
