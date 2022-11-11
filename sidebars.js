@@ -54,6 +54,7 @@ module.exports = {
           items: [
             "zkapps/tutorials/hello-world",
             "zkapps/tutorials/private-inputs-hash-functions",
+            "zkapps/tutorials/deploying-to-a-network",
             "zkapps/tutorials/common-types-and-functions",
             "zkapps/tutorials/anonymous-message-board",
           ],
