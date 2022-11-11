@@ -9,7 +9,7 @@ export default function CopyButton({ code, className }) {
   const copyTimeout = useRef(undefined);
   const handleCopyCode = useCallback(() => {
     const removeLineNumbers = /^\s*\d+\s/gm;
-    const removeEllipses = /^\.{3}/gm;
+    const removeEllipses = /(^\s*\.{3})(?![^a-z])|(^\.{3})/gm;
 
     let copiedCode = code.replace(removeLineNumbers, '');
     copiedCode = copiedCode.replace(removeEllipses, '');
