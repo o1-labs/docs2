@@ -60,8 +60,7 @@ Examples are based on the standard project structure, but with additional files 
 4. **Deploy to Testnet:** Run `zk config`, which will walk you through adding a
    network alias to your project’s `config.json`. For Berkeley Testnet, we recommend
    using `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp]
-   (how-to-deploy-a-zkapp) page for further details.
+   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
 
 You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
 
@@ -355,7 +354,7 @@ Side note: `this.<state>.assertEquals` is more flexible than equating with the c
 
 Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions -- see [Actions and Reducer](advanced-snarkyjs/#actions-and-reducer).
+One such workaround is the use of actions -- see [Actions and Reducer](advanced-snarkyjs/actions-and-reducer).
 
 :::
 

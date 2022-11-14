@@ -111,6 +111,12 @@ export { Square };
 
 ### Building and running
 
+:::info
+
+The following commands are included for reference, and will fail if you run them at this point. This is because we haven't written the `Square` smart contract yet.
+
+:::
+
 To compile the TypeScript code into JavaScript, and run the JavaScript code, you'll type:
 
 ```sh
@@ -118,7 +124,7 @@ npm run build
 node build/src/main.js
 ```
 
-The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`. Both of these commands will fail at this point though, since we haven't written the `Square` smart contract yet.
+The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`.
 
 You can also combine these together into one line, such as:
 
@@ -131,6 +137,12 @@ This will run `main` if the build is successful.
 ## Write the zkApp Smart Contract
 
 Now, the fun part! Let's write our smart contract: `src/Square.ts`. Line numbers are provided for convenience. A final version of what we're writing can be found [here](https://github.com/es92/zkApp-examples/blob/main/01-hello-world/src/Square.ts).
+
+:::tip
+
+To avoid inserting the line numbers into your smart contract, copy these code snippets using the button provided. It will appear at the top right of the snippet box when you mouseover it. 
+
+:::
 
 ### Imports
 
