@@ -117,20 +117,20 @@ rm src/Add.test.ts
 And create new files:
 
 ```sh
-zk file CreditScoreVerifier
+zk file CreditScoreOracle
 ```
 
 And lastly, change `index.ts` to:
 
 ```ts
-import { CreditScoreVerifier } from './CreditScoreVerifier.js';
+import { CreditScoreOracle } from './CreditScoreOracle.js';
 
-export { CreditScoreVerifier };
+export { CreditScoreOracle };
 ```
 
 ### Writing our Smart Contract
 
-Open up `/src/CreditScoreVerifier.ts` and paste in the following:
+Open up `/src/CreditScoreOracle.ts` and paste in the following:
 
 ```ts
 import {
