@@ -84,29 +84,29 @@ For a more comprehensive example of how to use custom tokens with a zkApp, pleas
 
 ## Authorization
 
-When a zkApp is interacting with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
+When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
 
 There are two ways for a token owner to approve a transaction, one being a **signature** and the other being a **proof**.
 
 ### Signature Authorization
 
-Signature authorization is the simplest way for a token owner to approve a custom token transfer however, it is the least flexible. If two seperate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcasted.
+Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two seperate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
 
-Token zkApps should provide a `send` method, like the one described above. By providing a `send` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
+Token zkApps should provide a `send()` method, like the one described above. By providing a `send()` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
 
 ```ts
-tx = await Mina.transaction(feePayerKey, () => {
-  zkapp.sendTokens(account1Address, account2Address, UInt64.from(1_000)); // Sends 1,000 tokens from account1 to account2
+let tx = await Mina.transaction(feePayerKey, () => {
+  zkapp.sendTokens(senderAddress, receiverAddress, UInt64.from(1_000)); // Sends 1,000 tokens from `senderAddress` to `receiverAddress`
   zkapp.sign(zkappKey); // Signs the transaction with the token owner key
 });
 await tx.send();
 ```
 
-This sort of authorization is simple and easy to use but it is not flexible. If two accounts want to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, we can let the token owner approve with a proof.
+This sort of authorization is simple and easy to use but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, we can let the token owner approve with a proof.
 
 ### Proof Authorization
 
-Proof authorization is a more flexible way for a token owner to approve a custom token transfer. If two seperate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to approve a transaction without signing it.
+Proof authorization is a more flexible way for a token owner to approve a custom token transfer. If two separate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to approve a transaction without signing it.
 
 To allow for proof authorization by the token owner, the child zkApp that is requesting authorization must provide a way for the token owner to inspect the changes it wants to make and verify that they are valid. Token owner contracts have the power to inspect child account updates to enforce custom token rules. For example, a token owner contract could enforce that a child zkApp can only send tokens to a specific address.
 
@@ -123,7 +123,7 @@ class TokenContract extends SmartContract {
   ...
 
   /**
-   * 'sendTokens' sends tokens from `senderAddress` to `receiverAddress`.
+   * 'sendTokens()' sends tokens from `senderAddress` to `receiverAddress`.
    *
    * It does so by deducting the amount of tokens from `senderAddress` by
    * authorizing the deduction with a proof. It then creates the receiver
@@ -158,15 +158,15 @@ class TokenContract extends SmartContract {
 class ZkAppB extends SmartContract {
   /*
   * This method is used to get authorization from the token owner. Remember,
-  * the token owner is the one who created the custom token, so to deduct our balance
-  * we must get authorization from the token owner.
+  * the token owner is the one who created the custom token. To debit their
+  * balance, we must get authorization from the token owner
   */
   @method approveSend(amount: UInt64) {
     this.balance.subInPlace(amount);
   }
 }
 
-tx = await Local.transaction(feePayer, () => {
+let tx = await Local.transaction(feePayer, () => {
   let amount = UInt64.from(1_000)
   // Create a callback inside the transaction that calls the approveSend method.
   // This will be executed by the token owner to get authorization.
@@ -218,4 +218,6 @@ Aside from sending custom tokens, custom tokens can be minted and burned by a **
 
 A token owner is an account that creates, facilitates, and governs how a custom token is to be used. Concretely, the token owner is the account that created the custom token and is the only account that can mint and burn tokens.
 
-In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can approve sending tokens between two accounts. If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner can approve the transaction either with a signature or proof.
+In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can approve sending tokens between two accounts, by either using signature authorization or proof authorization.
+If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner generates the changes the two accounts want to make and can then make assertions about those changes.
+The token owner can approve the transaction either with a signature or proof.
