@@ -49,9 +49,9 @@ We will fetch data from the desired source, sign it using a Mina-compatible priv
 
 ### Code
 
-You can view the complete oracle code [here](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/index.js) and can generate a Mina-compatible public/private key pair for your oracle by running `npm run keygen` (which will run the code in [this file](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js))
+You can view the complete oracle code [here](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/index.js) and can generate a Mina-compatible public/private key pair for your oracle by running `npm run keygen` (which will run the code in [this file](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js)).
 
-For our oracle, we’re using a Koa API hosted on DigitalOcean. It’s short, but you don’t have to dive into the code now. It’s commented to explain each step so you can build something similar for yourself!
+For our oracle, we’re using a Koa server hosted on DigitalOcean. It’s short, but you don’t have to dive into the code now. It’s commented to explain each step so you can build something similar for yourself!
 
 You can easily adapt this code to create oracles for other API sources. For example, if you wanted your smart contract to ingest price feed data from an exchange, you could simply query the exchange API, sign the results, and return a response formatted as described below.
 
@@ -69,10 +69,10 @@ For example, below is a response from our oracle for the user with an `id` of `1
 {
   "data": { "id": "1", "creditScore": "787" },
   "signature": {
-    "r": "2366821166503338420677946724260579195978574100722996189867656398635505142016",
-    "s": "11923525266274708837554293860277013650841825394090771233039348901942148007140"
+    "r": "6879645159505819706680368079573694250155734132188077159564484773379936889926",
+    "s": "25770716061409035848137554965765890473013735453379104563619678415983125445906"
   },
-  "publicKey": "B62qp24xA8az6sZbCFLaswALCKZLYWSErw4rAbej3b4aoLqumamcSAu"
+  "publicKey": "B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy"
 }
 ```
 
@@ -82,10 +82,10 @@ Our demo oracle also provides a response for a user id of `2`, who has a credit 
 {
   "data": { "id": "2", "creditScore": "536" },
   "signature": {
-    "r": "18843685804321949248196684491815874666837415778094547309423509340222290135938",
-    "s": "7043007656800553195096070050281121019779790649880562873973377281060733231107"
+    "r": "17330964553212655684849406067090021752962217822408913431446690101683066224611",
+    "s": "26366190712354094401916556126787229546643001327044048354949322240615669643867"
   },
-  "publicKey": "B62qp24xA8az6sZbCFLaswALCKZLYWSErw4rAbej3b4aoLqumamcSAu"
+  "publicKey": "B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy"
 }
 ```
 
