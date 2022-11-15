@@ -41,6 +41,15 @@ For examples of existing tests, we recommend creating a template example using t
 It's helpful to run your smart contract locally on a mock blockchain to quickly test it.
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts that runs locally on your machine. It contains logic for updating the ledger that can be used to test your smart contract.
 
+:::tip
+
+`Mina.LocalBlockchain()` takes an optional parameter `{ proofsEnabled: true }` with default value `true`, which lets you specify whether or not you want to generate and verify proofs.
+If you set `proofsEnabled: false`, the local instance will behave exactly the same as before, but it won't generate proofs or verify them.
+This can be very useful when you want to run tests in the CI or quickly debug your smart contract without having to wait for proofs to be generated.
+
+You can also programmatically enable and disable the `proofsEnabled` flag within your test flow by calling `Local.setProofsEnabled(x: boolean)`.
+:::
+
 ```ts
 let Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
