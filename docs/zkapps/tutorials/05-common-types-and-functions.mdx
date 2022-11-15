@@ -1,7 +1,7 @@
 ---
-title: "Common Types and Functions"
+title: 'Common Types and Functions'
 hide_title: true
-sidebar_label: "Common Types and Functions"
+sidebar_label: 'Common Types and Functions'
 ---
 
 :::info
@@ -25,11 +25,11 @@ There is also a project [here](https://github.com/es92/zkApp-examples/tree/main/
 
 To start, we'll discuss 5 basic types derived from the Fields:
 
-* [Bool](../snarkyjs-reference/classes/Bool)
-* [UInt32](../snarkyjs-reference/classes/UInt32)
-* [UInt64](../snarkyjs-reference/classes/UInt64)
-* [Int64](../snarkyjs-reference/classes/Int64)
-* [Character](../snarkyjs-reference/classes/Character)
+- [Bool](../snarkyjs-reference/classes/Bool)
+- [UInt32](../snarkyjs-reference/classes/UInt32)
+- [UInt64](../snarkyjs-reference/classes/UInt64)
+- [Int64](../snarkyjs-reference/classes/Int64)
+- [Character](../snarkyjs-reference/classes/Character)
 
 These each have their usual programming language semantics.
 
@@ -76,18 +76,16 @@ char1 === char2: false
 Fields in char1: 1
 ```
 
-
 ## More Advanced Types
 
 4 more advanced types are:
 
-* [CircuitString](../snarkyjs-reference/classes/CircuitString)
-* [PrivateKey](../snarkyjs-reference/classes/PrivateKey)
-* [PublicKey](../snarkyjs-reference/classes/Types.PublicKey)
-* [Signature](../snarkyjs-reference/classes/Signature)
+- [CircuitString](../snarkyjs-reference/classes/CircuitString)
+- [PrivateKey](../snarkyjs-reference/classes/PrivateKey)
+- [PublicKey](../snarkyjs-reference/classes/Types.PublicKey)
+- [Signature](../snarkyjs-reference/classes/Signature)
 
-
-All arguments passed into smart contracts need to be arguments SnarkyJS can understand. This means that we can't just pass normal strings - we need to pass in strings that have been wrapped to be compatible with circuits, which is what `CircuitValue` accomplishes.
+All arguments passed into smart contracts need to be arguments SnarkyJS can understand. This means that we can't just pass normal strings - we need to pass in strings that have been wrapped to be compatible with circuits, which is what `Struct` accomplishes.
 
 One special thing to note, is that the default `CircuitString` has a max length of 128 characters. SnarkyJS supports fixed length strings currently. Support for dynamic length strings will be added in the future after dynamic array access is available.
 
@@ -105,7 +103,7 @@ console.log(`Fields in str1: ${str1.toFields().length}`);
 const privateKey = PrivateKey.random();
 const publicKey = privateKey.toPublicKey();
 
-const data1 = char2.toFields().concat(signedNumSum.toFields())
+const data1 = char2.toFields().concat(signedNumSum.toFields());
 const data2 = char1.toFields().concat(str1.toFields());
 
 const signature = Signature.create(privateKey, data2);
@@ -138,52 +136,41 @@ signature verified for data2: true
 Fields in signature: 256
 ```
 
-## CircuitValue
+## Struct
 
-:::info
-`CircuitValue` is soon to be replaced with `Struct` in an upcoming version of SnarkyJS. Expect this tutorial to update to use `Struct` in the future accordingly.
-:::
+A special type is [Struct](../snarkyjs-reference#struct), which lets you create your own compound data types.
 
-A special type is [CircuitValue](../snarkyjs-reference/classes/CircuitValue), which lets you create your own compound data types.
+Your Struct can be defined as one or more data types that SnarkyJS understands, i.e. Field, higher-order types built into SnarkyJS based on Field, or other Struct types defined by you. You can also define methods on your Struct to act upon this data type, if desired, but doing so is optional.
 
-Your CircuitValue can be defined as one or more data types that SnarkyJS understands, i.e. Field, higher-order types built into SnarkyJS based on Field, or other CircuitValue types defined by you. You can also define methods on your CircuitValue to act upon this data type, if desired, but doing so is optional.
-
-See the following for an example of how to use `CircuitValue`, implementing a `Point` structure, and an array of points of length 8 structure.
+See the following for an example of how to use `Struct`, implementing a `Point` structure, and an array of points of length 8 structure.
 
 SnarkyJS compiles programs into fixed sized circuits. This means that data structures it consumes must also be a fixed size, and is why we declare the array in `Points8` structure to be a static size of 8 in the example below.
 
 ```ts
-class Point extends CircuitValue {
-  @prop x: Field;
-  @prop y: Field;
-
-  static fromField(x: Field, y: Field) {
-    return new Point(x, y);
-  }
-
-  static addPoints(a: Point, b: Point) {
-    return new Point(a.x.add(b.x), a.y.add(b.y));
+class Point extends Struct({
+  x: Field,
+  y: Field,
+}) {
+  addPoints(a: Point, b: Point) {
+    return new Point({ x: a.x.add(b.x), y: a.y.add(b.y) });
   }
 }
 
-const point1 = Point.fromField(Field(10), Field(4));
-const point2 = Point.fromField(Field(1), Field(2));
+const point1 = new Point({ x: Field(10), y: Field(4) });
+const point2 = new Point({ x: Field(1), y: Field(2) });
 
 const pointSum = Point.addPoints(point1, point2);
 
 console.log(`pointSum Fields: ${pointSum.toFields().map((p) => p.toString())}`);
 
-class Points8 extends CircuitValue {
-  @arrayProp(Point, 8) points: Point[];
+class Points8 extends Struct({
+  points: [Point, Point, Point, Point, Point, Point, Point, Point],
+}) {}
 
-  constructor(points: Point[]) {
-    super();
-    this.points = points;
-  }
-}
-
-const pointsArray = new Array(8).fill(null).map((_, i) => Point.fromField(Field(i), Field(i*10)));
-const points8 = new Points8(pointsArray);
+const pointsArray = new Array(8)
+  .fill(null)
+  .map((_, i) => new Point({ x: Field(i), y: Field(i * 10) }));
+const points8 = new Points8({ points: pointsArray });
 
 console.log(`points8 Fields: ${JSON.stringify(points8)}`);
 ```
@@ -195,14 +182,12 @@ pointSum Fields: 11,6
 points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20"},{"x":"3","y":"30"},{"x":"4","y":"40"},{"x":"5","y":"50"},{"x":"6","y":"60"},{"x":"7","y":"70"}]}
 ```
 
-A great example of a complex use of `CircuitValue` is the MerkleTree implementation  - see the source for that [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/merkle_tree.ts) for more.
-
 ## Control flow
 
 There are two functions which help do control flow within SnarkyJS:
 
-* [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
-* [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
+- [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
+- [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
 
 Circuit.if is similar to a ternary in JavaScript. Circuit.switch is similar to a switch case statement in JavaScript.
 
@@ -216,18 +201,35 @@ const input2 = Int64.from(-15);
 
 const inputSum = input1.add(input2);
 
-const inputSumAbs = Circuit.if(inputSum.isPositive(), inputSum, inputSum.mul(Int64.minusOne));
+const inputSumAbs = Circuit.if(
+  inputSum.isPositive(),
+  inputSum,
+  inputSum.mul(Int64.minusOne)
+);
 
 console.log(`inputSum: ${inputSum.toString()}`);
 console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
 
 const input3 = Int64.from(22);
 
-const input1largest = input1.sub(input2).isPositive().and(input1.sub(input3).isPositive());
-const input2largest = input2.sub(input1).isPositive().and(input2.sub(input3).isPositive());
-const input3largest = input3.sub(input1).isPositive().and(input3.sub(input2).isPositive());
+const input1largest = input1
+  .sub(input2)
+  .isPositive()
+  .and(input1.sub(input3).isPositive());
+const input2largest = input2
+  .sub(input1)
+  .isPositive()
+  .and(input2.sub(input3).isPositive());
+const input3largest = input3
+  .sub(input1)
+  .isPositive()
+  .and(input3.sub(input2).isPositive());
 
-const largest = Circuit.switch([ input1largest, input2largest, input3largest ], Int64, [ input1, input2, input3 ])
+const largest = Circuit.switch(
+  [input1largest, input2largest, input3largest],
+  Int64,
+  [input1, input2, input3]
+);
 
 console.log(`largest: ${largest.toString()}`);
 ```
@@ -245,11 +247,11 @@ By inserting function calls, you can write circuits which usual if / else statem
 ```ts
 const result = Circuit.if(
   a.gt(b),
-  (() => { 
+  (() => {
     // TRUE
     return a;
   })(),
-  (() => { 
+  (() => {
     // FALSE
     return b;
   })()
@@ -269,6 +271,7 @@ Besides the `a.assertEquals(b)` we've often used, there is also `.assertTrue()` 
 Lastly, let's go over an example using [merkle trees](../snarkyjs-reference/modules/Experimental#merkletree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/main.ts).
 
 Merkle trees are currently in the `Experimental` module of SnarkyJS. So start off by importing `Experimental`:
+
 ```ts
 import {
   ...
@@ -299,7 +302,7 @@ Here is a simple example of a contract that stores the root of a merkle tree, wh
   }
 
   @method update(
-    leafWitness: MerkleWitness20, 
+    leafWitness: MerkleWitness20,
     numberBefore: Field,
     incrementAmount: Field,
   ) {
@@ -323,46 +326,51 @@ Here is a simple example of a contract that stores the root of a merkle tree, wh
 And code to interact with it:
 
 ```ts
-    // initialize the zkapp
-    const zkapp = new BasicMerkleTreeContract(basicTreeZkAppAddress);
+// initialize the zkapp
+const zkapp = new BasicMerkleTreeContract(basicTreeZkAppAddress);
 
-    // create a new tree
-    const height = 20;
-    const tree = new Experimental.MerkleTree(height);
-    class MerkleWitness extends Experimental.MerkleWitness(height) {}
+// create a new tree
+const height = 20;
+const tree = new Experimental.MerkleTree(height);
+class MerkleWitness extends Experimental.MerkleWitness(height) {}
 
-    // deploy the smart contract
-    const deployTxn = await Mina.transaction(deployerAccount, () => {
-      AccountUpdate.fundNewAccount(deployerAccount);
-      zkapp.deploy({ zkappKey: basicTreeZkAppPrivateKey });
-      // get the root of the new tree to use as the initial tree root
-      zkapp.init(tree.getRoot());
-      zkapp.sign(basicTreeZkAppPrivateKey);
-    });
-    await deployTxn.send().wait();
+// deploy the smart contract
+const deployTxn = await Mina.transaction(deployerAccount, () => {
+  AccountUpdate.fundNewAccount(deployerAccount);
+  zkapp.deploy({ zkappKey: basicTreeZkAppPrivateKey });
+  // get the root of the new tree to use as the initial tree root
+  zkapp.init(tree.getRoot());
+  zkapp.sign(basicTreeZkAppPrivateKey);
+});
+await deployTxn.send().wait();
 
-    const incrementIndex = 522;
-    const incrementAmount = Field(9);
+const incrementIndex = 522;
+const incrementAmount = Field(9);
 
-    // get the witness for the current tree
-    const witness = new MerkleWitness(tree.getWitness(BigInt(incrementIndex)));
+// get the witness for the current tree
+const witness = new MerkleWitness(tree.getWitness(BigInt(incrementIndex)));
 
-    // update the leaf locally
-    tree.setLeaf(BigInt(incrementIndex), incrementAmount);
+// update the leaf locally
+tree.setLeaf(BigInt(incrementIndex), incrementAmount);
 
-    // update the smart contract
-    const txn1 = await Mina.transaction(deployerAccount, () => {
-      zkapp.update(
-        witness,
-        Field(0), // leafs in new trees start at a state of 0
-        incrementAmount);
-      zkapp.sign(basicTreeZkAppPrivateKey);
-    });
-    await txn1.send().wait();
+// update the smart contract
+const txn1 = await Mina.transaction(deployerAccount, () => {
+  zkapp.update(
+    witness,
+    Field(0), // leafs in new trees start at a state of 0
+    incrementAmount
+  );
+  zkapp.sign(basicTreeZkAppPrivateKey);
+});
+await txn1.send().wait();
 
-    // compare the root of the smart contract tree to our local tree
-    console.log(`BasicMerkleTree: local tree root hash after send1: ${tree.getRoot()}`);
-    console.log(`BasicMerkleTree: smart contract root hash after send1: ${zkapp.treeRoot.get()}`);
+// compare the root of the smart contract tree to our local tree
+console.log(
+  `BasicMerkleTree: local tree root hash after send1: ${tree.getRoot()}`
+);
+console.log(
+  `BasicMerkleTree: smart contract root hash after send1: ${zkapp.treeRoot.get()}`
+);
 ```
 
 While in this example leaves are fields, you can put more variables in a leaf by instead hashing an array of fields, and setting a leaf to that.
