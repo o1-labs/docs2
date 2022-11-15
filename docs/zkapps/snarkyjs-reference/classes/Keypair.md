@@ -22,12 +22,12 @@ Contains a proving key and  VerificationKey  which can be used to verify proofs.
 
 ### verificationKey
 
-▸ **verificationKey**(): [`VerificationKey`](VerificationKey.md)
+▸ **verificationKey**(): `VerificationKey`
 
 #### Returns
 
-[`VerificationKey`](VerificationKey.md)
+`VerificationKey`
 
 #### Defined in
 
-[snarky.d.ts:719](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/snarky.d.ts#L719)
+[snarky.d.ts:983](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L983)
