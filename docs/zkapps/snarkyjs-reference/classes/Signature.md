@@ -1,5 +1,9 @@
 # Class: Signature
 
+**`Deprecated`**
+
+`CircuitValue` is deprecated in favor of [Struct](../README.md#struct), which features a simpler API and better typing.
+
 ## Hierarchy
 
 - [`CircuitValue`](CircuitValue.md)
@@ -28,10 +32,11 @@
 - [verify](Signature.md#verify)
 - [check](Signature.md#check)
 - [create](Signature.md#create)
+- [fromFields](Signature.md#fromfields)
 - [fromJSON](Signature.md#fromjson)
 - [fromObject](Signature.md#fromobject)
-- [ofFields](Signature.md#offields)
 - [sizeInFields](Signature.md#sizeinfields)
+- [toAuxiliary](Signature.md#toauxiliary)
 - [toConstant](Signature.md#toconstant-1)
 - [toFields](Signature.md#tofields-1)
 - [toInput](Signature.md#toinput)
@@ -55,7 +60,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:43](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L43)
+[lib/circuit_value.ts:65](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L65)
 
 ## Properties
 
@@ -65,7 +70,7 @@
 
 #### Defined in
 
-[lib/signature.ts:119](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/signature.ts#L119)
+[lib/signature.ts:119](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/signature.ts#L119)
 
 ___
 
@@ -75,7 +80,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:120](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/signature.ts#L120)
+[lib/signature.ts:120](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/signature.ts#L120)
 
 ## Methods
 
@@ -99,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:127](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L127)
+[lib/circuit_value.ts:153](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L153)
 
 ___
 
@@ -123,7 +128,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:123](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L123)
+[lib/circuit_value.ts:149](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L149)
 
 ___
 
@@ -141,7 +146,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:131](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L131)
+[lib/circuit_value.ts:157](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L157)
 
 ___
 
@@ -159,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:119](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L119)
+[lib/circuit_value.ts:145](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L145)
 
 ___
 
@@ -177,17 +182,17 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L137)
 
 ___
 
 ### toJSON
 
-▸ **toJSON**(): `JSONValue`
+▸ **toJSON**(): `any`
 
 #### Returns
 
-`JSONValue`
+`any`
 
 #### Inherited from
 
@@ -195,7 +200,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:115](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L115)
+[lib/circuit_value.ts:141](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L141)
 
 ___
 
@@ -216,7 +221,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:135](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/signature.ts#L135)
+[lib/signature.ts:135](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/signature.ts#L135)
 
 ___
 
@@ -247,7 +252,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:157](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L157)
+[lib/circuit_value.ts:186](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L186)
 
 ___
 
@@ -268,7 +273,38 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:122](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/signature.ts#L122)
+[lib/signature.ts:122](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/signature.ts#L122)
+
+___
+
+### fromFields
+
+▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `this` | `T` |
+| `xs` | [`Field`](Field.md)[] |
+
+#### Returns
+
+`InstanceType`<`T`\>
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[fromFields](CircuitValue.md#fromfields)
+
+#### Defined in
+
+[lib/circuit_value.ts:161](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L161)
 
 ___
 
@@ -287,7 +323,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `JSONValue` |
+| `value` | `any` |
 
 #### Returns
 
@@ -299,7 +335,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:193](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L193)
+[lib/circuit_value.ts:219](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L219)
 
 ___
 
@@ -330,38 +366,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L60)
-
-___
-
-### ofFields
-
-▸ `Static` **ofFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `AnyConstructor` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
-
-#### Returns
-
-`InstanceType`<`T`\>
-
-#### Inherited from
-
-[CircuitValue](CircuitValue.md).[ofFields](CircuitValue.md#offields)
-
-#### Defined in
-
-[lib/circuit_value.ts:135](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L135)
+[lib/circuit_value.ts:82](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L82)
 
 ___
 
@@ -379,7 +384,25 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:67](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L67)
+[lib/circuit_value.ts:89](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L89)
+
+___
+
+### toAuxiliary
+
+▸ `Static` **toAuxiliary**(): []
+
+#### Returns
+
+[]
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[toAuxiliary](CircuitValue.md#toauxiliary)
+
+#### Defined in
+
+[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L111)
 
 ___
 
@@ -410,7 +433,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L171)
+[lib/circuit_value.ts:200](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L200)
 
 ___
 
@@ -441,7 +464,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:72](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L72)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -472,13 +495,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:115](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L115)
 
 ___
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`this`, `v`): `JSONValue`
+▸ `Static` **toJSON**<`T`\>(`this`, `v`): `any`
 
 #### Type parameters
 
@@ -495,7 +518,7 @@ ___
 
 #### Returns
 
-`JSONValue`
+`any`
 
 #### Inherited from
 
@@ -503,4 +526,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/circuit_value.ts#L179)
+[lib/circuit_value.ts:208](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L208)
