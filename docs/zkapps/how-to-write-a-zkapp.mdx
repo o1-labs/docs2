@@ -391,6 +391,15 @@ On the other hand, if it succeeds, it becomes part of the proof that is verified
 Because of this, our new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
 update the state `x` to `x + 1`.
 
+:::tip
+You can add optional failure messages to assertions, to make debugging easier. For example, the above example could be written as:
+
+```ts
+x.add(1).assertEquals(xPlus1, 'x + 1 should equal xPlus1');
+```
+
+:::
+
 Assertions can be incredibly useful to constrain state updates. Common assertions you may use are:
 
 <!-- prettier-ignore -->
@@ -403,7 +412,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [snarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Public and private inputs
 
