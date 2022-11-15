@@ -35,6 +35,12 @@ Mina smart contracts run off-chain and make it possible to prove that the expect
 
 In the future, Mina’s zkOracles will allow a zkApp to consume data trustlessly from any HTTPS data source. But for now, the oracle design described in this tutorial will typically be operated by the zkApp developer, it will fetch and sign the desired data, and then a zkApp can consume this data and will verify the signature to ensure that the data was provided by the expected source.
 
+:::note
+
+Data providers can also operate response signers (like the one described above) to provide users with an oracle that does not require them to trust an intermediary. In other words, if a credit score or other data provider chooses to sign response data themselves, users can consume data from that source without trusting anybody besides the data provider (who users are already trusting to provide correct data).
+
+:::
+
 ### Design
 
 Our oracle design will be quite simple.
