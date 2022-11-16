@@ -283,7 +283,7 @@ Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptograph
 
 :::tip
 
-You will find that inside a `@nethod`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
+You will find that inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
 
 ```ts
 console.log(x.toString()); // don't do this inside a `@method`! 😬
