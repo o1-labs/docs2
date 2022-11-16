@@ -25,8 +25,8 @@ To generate a test coverage report for your project, run `npm run coverage`. Cov
 Creating tests for your smart contract is easy using the Mina zkApp CLI. To scaffold a TypeScript file with a corresponding test file, simply run the command `zk file foo`. This will generate two files, named `foo.ts` and `foo.test.ts`. `foo.test.ts` is a great place to start writing all your smart contract test code. To write good unit tests, it's vital that you concretely understand the functionality your smart contract provides. An example is shown below of a basic test written in Jest:
 
 ```ts
-describe("foo.test.ts", () => {
-  describe("test()", () => {
+describe('foo.test.ts', () => {
+  describe('test()', () => {
     // your test here
   });
 });
@@ -80,7 +80,7 @@ Then, use the test account and zkApp keys to construct a transaction to pay acco
 ```ts
 let txn = await Mina.transaction(feePayer, () => {
   Party.fundNewAccount(feePayer);
-  zkAppInstance.deploy({ zkappKey: zkAppPrivateKey});
+  zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
 });
 txn.send();
 ```
@@ -90,7 +90,7 @@ txn.send();
 Jest can be used to write both unit and integration tests. A well written integration test tests the flow of your smart contracts expected behavior, and verifies correctness of state updates. After you test the expected behavior, it's benifical to verify the preconditions of your methods and test edge cases of your smart contract. Below is an example of a basic integration test script.
 
 ```ts
-  describe('Add smart contract integration test', () => {
+describe('Add smart contract integration test', () => {
   let feePayer: PrivateKey,
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey,
@@ -116,7 +116,6 @@ Jest can be used to write both unit and integration tests. A well written integr
     txn = await Mina.transaction(feePayer, () => {
       Party.fundNewAccount(feePayer);
       zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
-      zkAppInstance.init();
     });
     await txn.send();
   });
@@ -144,7 +143,6 @@ Jest can be used to write both unit and integration tests. A well written integr
 ```
 
 ## Learn more
-
 
 Please see the <a href="https://jestjs.io/docs/getting-started">Jest docs</a> for further information on how to use Jest.
 
