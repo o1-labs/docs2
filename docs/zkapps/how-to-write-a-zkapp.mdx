@@ -126,9 +126,12 @@ new Bool(x);   // accepts true or false
 new Field(x);  // accepts an integer, or a numeric string if you want to represent a number greater than JavaScript can represent but within the max value that a field can store.
 new UInt64(x); // accepts a Field - useful for constraining numbers to 64 bits
 new UInt32(x); // accepts a Field - useful for constraining numbers to 32 bits
+
 PrivateKey, PublicKey, Signature; // useful for accounts and signing
 new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
 Scalar; // the corresponding scalar field (different than Field)
+
+CircuitString.from('some string'); // string of max length 128
 ```
 
 In the case of `Field` and `Bool`, you can also call the constructor without `new`:
@@ -137,12 +140,6 @@ In the case of `Field` and `Bool`, you can also call the constructor without `ne
 let x = Field(10);
 let b = Bool(true);
 ```
-
-:::info
-
-Support for strings within SnarkyJS will be available soon.
-
-:::
 
 ##### Conditionals
 
@@ -198,7 +195,7 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [snarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Smart Contract
 
@@ -280,6 +277,28 @@ One more note about private inputs: The method above has one input parameter, `x
 
 Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof will only be accepted on the network if it verifies against the verification key stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device -- thus, the account updates conform to the smart contract's rules.
 
+:::
+
+<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thourough explanation of what this tip hints at -->
+
+:::tip
+
+You will find that inside a `@nethod`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
+
+```ts
+console.log(x.toString()); // don't do this inside a `@method`! 😬
+```
+
+This doesn't work because, when we compile the SmartContract into prover and verification keys, we will run your method in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` which are used to build up abstract computations like `x^2 + y^2`, just by running your method code.
+
+Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, it will blow up because such a value can't be found. On the other hand, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"); and it makes perfect sense to want to log these values for debugging.
+This is why we have a special function for logging stuff from inside your method:
+
+```ts
+Circuit.log(x);
+```
+
+The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
 :::
 
 ##### On-chain state
