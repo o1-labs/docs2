@@ -168,10 +168,11 @@ Now let's write a script to interact with our smart contract so we can see it in
 
 ### utils.ts
 
-We will be using a set of helper functions to make this more convenient to write, in a `utils.ts` file. You can find this file [here](https://github.com/es92/zkApp-examples/blob/main/03-deploying-to-a-live-network/src/utils). Please download this and place it in your project's `src` folder. It contains 3 functions:
-* `loopUntilAccountExists`: This function waits until an account exists on Berkeley.
-* `makeAndSendTransaction`: This function makes a transation, produces a proof for it, and sends it.
-* `zkAppNeedsInitialization`: This function checks if a zkApp has been initialized or not.
+We will be using a set of helper functions to make this more convenient to write, in a `utils.ts` file. You can find this file [here](https://github.com/es92/zkApp-examples/blob/main/03-deploying-to-a-live-network/src/utils.ts). Please download this and place it in your project's `src` folder. It contains 3 functions:
+
+- `loopUntilAccountExists`: This function waits until an account exists on Berkeley.
+- `makeAndSendTransaction`: This function makes a transation, produces a proof for it, and sends it.
+- `zkAppNeedsInitialization`: This function checks if a zkApp has been initialized or not.
 
 We strongly recommend reading through this code, to understand what they are doing to interact with the network and implement their functionality.
 
