@@ -40,12 +40,12 @@ module.exports = {
           type: 'category',
           label: 'Advanced SnarkyJS',
           items: [
-            "zkapps/advanced-snarkyjs/on-chain-values",
-            "zkapps/advanced-snarkyjs/events",
-            "zkapps/advanced-snarkyjs/recursion",
-            "zkapps/advanced-snarkyjs/custom-tokens",
-            "zkapps/advanced-snarkyjs/actions-and-reducer",
-            "zkapps/advanced-snarkyjs/merkle-tree",
+            'zkapps/advanced-snarkyjs/on-chain-values',
+            'zkapps/advanced-snarkyjs/events',
+            'zkapps/advanced-snarkyjs/recursion',
+            'zkapps/advanced-snarkyjs/custom-tokens',
+            'zkapps/advanced-snarkyjs/actions-and-reducer',
+            'zkapps/advanced-snarkyjs/merkle-tree',
           ],
         },
         {
@@ -54,8 +54,10 @@ module.exports = {
           items: [
             "zkapps/tutorials/hello-world",
             "zkapps/tutorials/private-inputs-hash-functions",
+            'zkapps/tutorials/deploying-to-a-network',
+            'zkapps/tutorials/common-types-and-functions',
             "zkapps/tutorials/offchain-storage",
-            "zkapps/tutorials/anonymous-message-board",
+            'zkapps/tutorials/anonymous-message-board',
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
@@ -129,6 +131,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/MerkleTree',
+                  label: 'MerkleTree',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/PrivateKey',
                   label: 'PrivateKey',
                 },
@@ -169,6 +176,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/TokenSymbol',
+                  label: 'TokenSymbol',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Types.PublicKey',
                   label: 'Types.PublicKey',
                 },
@@ -195,13 +207,18 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/AsFieldElements',
-                  label: 'AsFieldElements',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Permissions',
+                  label: 'Permissions',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/Permissions',
-                  label: 'Permissions',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Provable',
+                  label: 'Provable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/interfaces/ProvablePure',
+                  label: 'ProvablePure',
                 },
               ],
             },
