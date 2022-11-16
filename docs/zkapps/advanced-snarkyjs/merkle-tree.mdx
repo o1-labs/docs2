@@ -11,12 +11,6 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Merkle Tree
 
-:::info
-
-Experimental. This API may change.
-
-:::
-
 #### Referencing off-chain data
 
 We already learned that zkApps can only store a small amount of data on-chain, the reason for that is we want Mina to stay succinct and not become bloated.
@@ -103,7 +97,7 @@ class Leaderboard extends SmartContract {
     // this is our hash we want to guess! its the hash of the preimage "22", but keep it a secret!
     this.z.set(
       Field(
-        "17057234437185175411792943285768571642343179330449434169483610110583519635705"
+        '17057234437185175411792943285768571642343179330449434169483610110583519635705'
       )
     );
   }
@@ -171,10 +165,10 @@ Where and how to store the data off-chain storage is left up to the developer. W
 const treeHeight = 8;
 
 // creates a tree of height 8
-const Tree = new Experimental.MerkleTree(treeHeight);
+const Tree = new MerkleTree(treeHeight);
 
 // creates the corresponding MerkleWitness class that is circuit-compatible
-class MerkleWitness extends Experimental.MerkleWitness(treeHeight) {}
+class MyMerkleWitness extends MerkleWitness(treeHeight) {}
 
 // sets a value at position 0n
 Tree.setLeaf(0n, Field(123));
@@ -186,12 +180,10 @@ const root = Tree.getRoot();
 const witness = Tree.getWitness(0n);
 
 // creates a circuit-compatible witness
-const circuitWitness = new MerkleWitness(witness);
+const circuitWitness = new MyMerkleWitness(witness);
 
 // calculates the root of the witness
 const calculatedRoot = circuitWitness.calculateRoot(Field(123));
 
 calculatedRoot.assertEquals(root);
 ```
-
-The above API is available now, but still marked as "Experimental".

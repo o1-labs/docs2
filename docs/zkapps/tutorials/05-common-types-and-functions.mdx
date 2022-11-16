@@ -268,14 +268,14 @@ Besides the `a.assertEquals(b)` we've often used, there is also `.assertTrue()` 
 
 ## Merkle Trees
 
-Lastly, let's go over an example using [merkle trees](../snarkyjs-reference/modules/Experimental#merkletree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/main.ts).
+Lastly, let's go over an example using [merkle trees](../snarkyjs-reference/classes/MerkleTree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/main.ts).
 
-Merkle trees are currently in the `Experimental` module of SnarkyJS. So start off by importing `Experimental`:
+Start off by importing `MerkleTree`:
 
 ```ts
 import {
   ...
-  Experimental,
+  MerkleTree,
   ...
 } from 'snarkyjs'
 ```
@@ -284,7 +284,7 @@ Merkle Trees can be created in your application as so:
 
 ```ts
 const height = 20;
-const tree = new Experimental.MerkleTree(height);
+const tree = new MerkleTree(height);
 ```
 
 The height variable determines how many leaves are available to your application. A height of 20 for example will lead to a tree with `2^(20-1)`, or 524,288 leaves.
@@ -331,8 +331,8 @@ const zkapp = new BasicMerkleTreeContract(basicTreeZkAppAddress);
 
 // create a new tree
 const height = 20;
-const tree = new Experimental.MerkleTree(height);
-class MerkleWitness extends Experimental.MerkleWitness(height) {}
+const tree = new MerkleTree(height);
+class MerkleWitness20 extends MerkleWitness(height) {}
 
 // deploy the smart contract
 const deployTxn = await Mina.transaction(deployerAccount, () => {
@@ -344,14 +344,14 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
 });
 await deployTxn.send().wait();
 
-const incrementIndex = 522;
+const incrementIndex = 522n;
 const incrementAmount = Field(9);
 
 // get the witness for the current tree
-const witness = new MerkleWitness(tree.getWitness(BigInt(incrementIndex)));
+const witness = new MerkleWitness20(tree.getWitness(incrementIndex));
 
 // update the leaf locally
-tree.setLeaf(BigInt(incrementIndex), incrementAmount);
+tree.setLeaf(incrementIndex, incrementAmount);
 
 // update the smart contract
 const txn1 = await Mina.transaction(deployerAccount, () => {
