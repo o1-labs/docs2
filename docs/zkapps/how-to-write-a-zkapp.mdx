@@ -473,31 +473,27 @@ However, the secret itself remains private, because it can't be deduced from it'
 
 ##### Initializing state
 
-We didn't cover how to initialize on-chain state yet. This can be done in the `deploy()` method.
+We didn't cover how to initialize on-chain state yet. This can be done in the `init()` method.
 
-Like the constructor, `deploy()` is predefined on the base `SmartContract` class.
-It will be called when you deploy your zkApp with the zkApp CLI.
+Like the constructor, `init()` is predefined on the base `SmartContract` class.
+It will be called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
 You can override this method to add initialization of your on-chain state:
 
 ```ts
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  init() {
+    super.init();
     this.x.set(Field(10)); // initial state
   }
 }
 ```
 
-Note that we have to pass the arguments on to `super.deploy()`, which runs the default deploy logic. So, this line is required:
+Note that we have to call `super.init()`, which sets your entire state to 0.
 
-```ts
-super.deploy(args);
-```
-
-If you don't need to add anything else to `deploy`, there's no need to override it, just leave it out.
-In the example above however, we are setting our state `x` to `Field(10)`. Uninitialized values will be zero.
+If you don't have any state to initialize to values other than 0, then there's no need to override `init()`, you can just leave it out.
+In the example above however, we are setting our state `x` to `Field(10)`.
 
 ##### Custom data types
 
@@ -505,8 +501,8 @@ As mentioned previously, smart contract method arguments can be any of the built
 
 However, what if you want to define your own data type?
 
-You can create a custom data type for your smart contract using the `Struct` class that SnarkyJS exposes. To do this, create a class that extends `Struct`.
-Then, inside the class, define the fields that you want to use in your custom data type.
+You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
+Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
 For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
 You can create a such a Point class by creating a new class that extends the `Struct` class:
@@ -518,7 +514,7 @@ class Point extends Struct({
 }) {}
 ```
 
-Now that you have defined your circuit Struct, you can use it in your smart contract for any SnarkyJS built-in types.
+Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
 
 For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
 
