@@ -24,7 +24,7 @@ Follow the instructions below for your operating system below.
 
 ### Ubuntu 18.04 / Debian 9
 
-Follow along below to install the latest **Stable** [Mina Release 1.3.0](https://github.com/MinaProtocol/mina/releases/tag/1.3.0) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Alpha/Beta) builds.
+Follow along below to install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Alpha/Beta) builds.
 
 You can set up the new debian `stable` repository and install the latest version as follows:
 
@@ -75,7 +75,7 @@ docker run --name mina -d \
 --restart=always \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:1.3.0-9b0369c-bullseye-devnet \
+minaprotocol/mina-daemon:1.3.1.2-25388a0-bullseye-devnet \
 daemon \
 ```
 
