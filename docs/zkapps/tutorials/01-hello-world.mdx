@@ -19,7 +19,7 @@ In this tutorial, we will code a zkApp step by step, from start to finish.
 
 We will write a basic smart contract that stores a number as on-chain state and contains logic to only allow this number to be replaced by its square (e.g. 2 -> 4 -> 16...). We will create this project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli), write our smart contract code, and then use a local Mina blockchain to interact with it.
 
-Future tutorials will introduce further concepts and patterns. But we hope this helps you get started with SnarkyJS, zkApps, and programming with zero knowledge proofs. Then you can go further by reading the [zkApps docs](/zkapps) and additional tutorials.
+Later tutorials will introduce further concepts and patterns. But we hope this helps you get started with SnarkyJS, zkApps, and programming with zero knowledge proofs. Then you can go further by reading the [zkApps docs](/zkapps) and additional tutorials.
 
 You can find the full source code for this example [here](https://github.com/es92/zkApp-examples/tree/main/01-hello-world).
 
@@ -99,7 +99,7 @@ zk file src/Square
 touch src/main.ts
 ```
 
-The `zk file <name>` command created both `src/Square.ts` and `src/Square.test.ts` for us, but we won't worry about writing tests in this tutorial. We'll use `main.ts` as a script to interact with the smart contract and observe how it works. In future tutorials, we will see how to interact with a smart contract from the browser, like a typical end user, but for now we'll just use our `main.ts` script to do this.
+The `zk file <name>` command created both `src/Square.ts` and `src/Square.test.ts` for us, but we won't worry about writing tests in this tutorial. We'll use `main.ts` as a script to interact with the smart contract and observe how it works. In later tutorials, we will see how to interact with a smart contract from the browser, like a typical end user, but for now we'll just use our `main.ts` script to do this.
 
 Now, let's open `src/index.ts` in a text editor and change it to look like below. This file contains all exports we want to make available for consumption from outside our smart contract project, such as from a UI.
 
@@ -247,7 +247,7 @@ Notice that we have `get()` and `set()` methods for retrieving and setting on-ch
 
 Our logic also uses the `.mul()` method for multiplication of our values stored in fields. You can view all available methods in the [SnarkyJS reference](/zkapps/snarkyjs-reference). Keep in mind that _all functions used inside your smart contract must operate on SnarkyJS compatible data types (e.g. Fields and other types built on top of Fields)_. This is to say, functions from random NPM packages won't work inside our smart contract, because it's really a zero-knowledge circuit, unless the functions it provides operate on SnarkyJS-compatible data types.
 
-**Importantly, data passed as an input to smart contract method in SnarkyJS is private and never seen by the network.** But you can also store data publicly on-chain when needed, such as we do with our `num` in this example. A future tutorial will cover an example leveraging privacy.
+**Importantly, data passed as an input to smart contract method in SnarkyJS is private and never seen by the network.** But you can also store data publicly on-chain when needed, such as we do with our `num` in this example. A later tutorial will cover an example leveraging privacy.
 
 This completes the smart contract!
 
