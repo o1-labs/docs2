@@ -155,7 +155,11 @@ const katex = require('rehype-katex');
             },
             {
               from: '/node-operators/ledger-app-mina',
-              to: '/node-operators/ledger-hardware-wallet',
+              to: '/using-mina/ledger-hardware-wallet',
+            },
+            {
+              from: '/advanced/ledger-app-mina',
+              to: '/using-mina/ledger-hardware-wallet',
             },
             {
               from: '/node-operators/timelock',

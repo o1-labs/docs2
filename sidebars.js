@@ -22,6 +22,7 @@ module.exports = {
       label: 'Using Mina',
       items: [
         'using-mina/install-a-wallet',
+        'using-mina/ledger-hardware-wallet',
         'using-mina/how-to-send-and-receive',
         'using-mina/how-to-delegate',
       ],
@@ -279,7 +280,6 @@ module.exports = {
         'node-operators/connecting-to-devnet',
         'node-operators/hardforks',
         'node-operators/hot-cold-block-production',
-        'node-operators/ledger-hardware-wallet',
         'node-operators/rosetta',
         'node-operators/proof-of-stake',
         'node-operators/snark-workers',
