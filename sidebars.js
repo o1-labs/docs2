@@ -57,6 +57,7 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/common-types-and-functions',
             'zkapps/tutorials/anonymous-message-board',
+            'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
