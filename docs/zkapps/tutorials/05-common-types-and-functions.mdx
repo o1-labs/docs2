@@ -349,10 +349,10 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
   AccountUpdate.fundNewAccount(deployerAccount);
   zkapp.deploy({ zkappKey: basicTreeZkAppPrivateKey });
   // get the root of the new tree to use as the initial tree root
-  zkapp.init(tree.getRoot());
+  zkapp.initState(tree.getRoot());
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await deployTxn.send().wait();
+await deployTxn.send();
 
 const incrementIndex = 522n;
 const incrementAmount = Field(9);
@@ -372,7 +372,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
   );
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await txn1.send().wait();
+await txn1.send();
 
 // compare the root of the smart contract tree to our local tree
 console.log(
