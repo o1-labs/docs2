@@ -126,9 +126,12 @@ new Bool(x);   // accepts true or false
 new Field(x);  // accepts an integer, or a numeric string if you want to represent a number greater than JavaScript can represent but within the max value that a field can store.
 new UInt64(x); // accepts a Field - useful for constraining numbers to 64 bits
 new UInt32(x); // accepts a Field - useful for constraining numbers to 32 bits
+
 PrivateKey, PublicKey, Signature; // useful for accounts and signing
 new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
 Scalar; // the corresponding scalar field (different than Field)
+
+CircuitString.from('some string'); // string of max length 128
 ```
 
 In the case of `Field` and `Bool`, you can also call the constructor without `new`:
@@ -137,12 +140,6 @@ In the case of `Field` and `Bool`, you can also call the constructor without `ne
 let x = Field(10);
 let b = Bool(true);
 ```
-
-:::info
-
-Support for strings within SnarkyJS will be available soon.
-
-:::
 
 ##### Conditionals
 
@@ -198,7 +195,7 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [snarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Smart Contract
 
@@ -232,11 +229,11 @@ let zkApp = new HelloWorld(zkAppAddress);
 Later, we show you how you can deploy a smart contract to an on-chain account.
 
 :::note
-  On Mina, there is no strong distinction between normal "user accounts" and
-  "zkApp accounts". A zkApp account is just a normal account that has a smart
-  contract deployed to it -- which essentially just means there's a verification
-  key stored on the account, which can verify zero-knowledge proofs generated
-  with the smart contract.
+On Mina, there is no strong distinction between normal "user accounts" and
+"zkApp accounts". A zkApp account is just a normal account that has a smart
+contract deployed to it -- which essentially just means there's a verification
+key stored on the account, which can verify zero-knowledge proofs generated
+with the smart contract.
 :::
 
 ##### Methods
@@ -271,7 +268,7 @@ Magically, the proof can be checked without seeing `x` -- it's a _private input_
 The method above is not very meaningful yet. To make it more interesting, we need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [circuit values](how-to-write-a-zkapp#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [structs`](how-to-write-a-zkapp#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -280,6 +277,28 @@ One more note about private inputs: The method above has one input parameter, `x
 
 Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof will only be accepted on the network if it verifies against the verification key stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device -- thus, the account updates conform to the smart contract's rules.
 
+:::
+
+<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thourough explanation of what this tip hints at -->
+
+:::tip
+
+You will find that inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
+
+```ts
+console.log(x.toString()); // don't do this inside a `@method`! 😬
+```
+
+This doesn't work because, when we compile the SmartContract into prover and verification keys, we will run your method in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` which are used to build up abstract computations like `x^2 + y^2`, just by running your method code.
+
+Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, it will blow up because such a value can't be found. On the other hand, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"); and it makes perfect sense to want to log these values for debugging.
+This is why we have a special function for logging stuff from inside your method:
+
+```ts
+Circuit.log(x);
+```
+
+The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
 :::
 
 ##### On-chain state
@@ -295,9 +314,9 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Here, `x` is of type `Field`. Like with method inputs, only SnarkyJS circuit values can be used for state variables.
+Here, `x` is of type `Field`. Like with method inputs, only SnarkyJS structs can be used for state variables.
 In the current design, the state can consist of at most 8 Fields of 32 bytes each. These states are stored on the zkApp account.
-Some circuit values take up more than one Field: for example, a `PublicKey` needs 2 of the 8 Fields.
+Some structs take up more than one Field: for example, a `PublicKey` needs 2 of the 8 Fields.
 States are initialized with the `State()` function.
 
 A method can modify on-chain state by using `this.<state>.set()`:
@@ -391,6 +410,15 @@ On the other hand, if it succeeds, it becomes part of the proof that is verified
 Because of this, our new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
 update the state `x` to `x + 1`.
 
+:::tip
+You can add optional failure messages to assertions, to make debugging easier. For example, the above example could be written as:
+
+```ts
+x.add(1).assertEquals(xPlus1, 'x + 1 should equal xPlus1');
+```
+
+:::
+
 Assertions can be incredibly useful to constrain state updates. Common assertions you may use are:
 
 <!-- prettier-ignore -->
@@ -403,7 +431,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [snarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Public and private inputs
 
@@ -445,31 +473,27 @@ However, the secret itself remains private, because it can't be deduced from it'
 
 ##### Initializing state
 
-We didn't cover how to initialize on-chain state yet. This can be done in the `deploy()` method.
+We didn't cover how to initialize on-chain state yet. This can be done in the `init()` method.
 
-Like the constructor, `deploy()` is predefined on the base `SmartContract` class.
-It will be called when you deploy your zkApp with the zkApp CLI.
+Like the constructor, `init()` is predefined on the base `SmartContract` class.
+It will be called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
 You can override this method to add initialization of your on-chain state:
 
 ```ts
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  init() {
+    super.init();
     this.x.set(Field(10)); // initial state
   }
 }
 ```
 
-Note that we have to pass the arguments on to `super.deploy()`, which runs the default deploy logic. So, this line is required:
+Note that we have to call `super.init()`, which sets your entire state to 0.
 
-```ts
-super.deploy(args);
-```
-
-If you don't need to add anything else to `deploy`, there's no need to override it, just leave it out.
-In the example above however, we are setting our state `x` to `Field(10)`. Uninitialized values will be zero.
+If you don't have any state to initialize to values other than 0, then there's no need to override `init()`, you can just leave it out.
+In the example above however, we are setting our state `x` to `Field(10)`.
 
 ##### Custom data types
 
@@ -477,32 +501,29 @@ As mentioned previously, smart contract method arguments can be any of the built
 
 However, what if you want to define your own data type?
 
-You can create a custom data type for your smart contract using the `CircuitValue` class that SnarkyJS exposes. To do this, create a class that extends `CircuitValue`.
-Then, similar to adding state to your smart contract by using the `@state` decorator, you can add properties to your circuit value using the `@prop` decorator.
+You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
+Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
-For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. You can do this by creating a new class that extends the `CircuitValue` class:
+For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
+You can create a such a Point class by creating a new class that extends the `Struct` class:
 
 ```ts
-class Point extends CircuitValue {
-  @prop x: Field;
-  @prop y: Field;
-
-  static fromField(x: Field, y: Field) {
-    return new Point(x, y);
-  }
-}
+class Point extends Struct({
+  x: Field,
+  y: Field,
+}) {}
 ```
 
-Now that you have defined your circuit value, you can use it in your smart contract for any SnarkyJS built-in types.
+Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
 
-For example, the following smart contract uses the `Point` circuit value defined above as state and as a method argument:
+For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
 
 ```ts
 export class Grid extends SmartContract {
   @state(Point) p = State<Point>();
 
   @method init() {
-    this.p.set(Point.fromField(Field(1), Field(2)));
+    this.p.set(new Point({ x: Field(1), y: Field(2) }));
   }
 
   @method move(newPoint: Point) {
@@ -511,13 +532,14 @@ export class Grid extends SmartContract {
 
     const newX = point.x.add(newPoint.x);
     const newY = point.y.add(newPoint.y);
-    this.p.set(Point.fromField(newX, newY));
+
+    this.p.set(new Point({ x: newX, y: newY }));
   }
 }
 ```
 
-Note that your circuit values can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `CircuitValue` class.
-This allows for great composability and reusability of circuit values.
+Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
+This allows for great composability and reusability of structs.
 
 ## Next Steps
 

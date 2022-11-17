@@ -11,12 +11,6 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Actions & Reducer
 
-:::info
-
-Experimental. This API may change.
-
-:::
-
 Like events, **actions** are arbitrary information passed along with a zkApp transaction. However, actions give you an additional power: you can process previous actions in a smart contract! Under the hood, this is possible because we store a commitment to the history of dispatched actions on every account -- the **actionsHash**. It allows us to prove that the actions you process are, in fact, the actions that were dispatched to the same smart contract.
 
 Using actions and a "lagging state" pattern, you can write zkApps that can _process concurrent state updates by multiple users_ -- see the next section. Besides that, we imagine all kinds of use cases where actions act as a built-in, "append-only" off-chain storage layer.
@@ -24,10 +18,10 @@ Using actions and a "lagging state" pattern, you can write zkApps that can _proc
 To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
 
 ```ts
-import { SmartContract, Experimental, Field } from "snarkyjs";
+import { SmartContract, Reducer, Field } from 'snarkyjs';
 
 class MyContract extends SmartContract {
-  reducer = Experimental.Reducer({ actionType: Field });
+  reducer = Reducer({ actionType: Field });
 }
 ```
 
@@ -63,7 +57,7 @@ let actions = [[Field(1000)], [Field(2)], [Field(100)]];
 // state and actionsHash before applying actions
 let initial = {
   state: Bool(false),
-  actionsHash: Experimental.Reducer.initialActionsHash,
+  actionsHash: Reducer.initialActionsHash,
 };
 
 let { state, actionsHash } = this.reducer.reduce(
@@ -83,7 +77,7 @@ There is one interesting nuance here when compared to traditional Elm Architectu
 ### Reducer - API reference
 
 ```ts
-reducer = Experimental.Reducer({ actionType: AsFieldElements<A> });
+reducer = Reducer({ actionType: AsFieldElements<A> });
 
 this.reducer.dispatch(action: A): void;
 
@@ -94,10 +88,10 @@ this.reducer.reduce<S>(
   initial: { state: S, actionsHash: Field }
 ): { state: S, actionsHash: Field };
 
-Experimental.Reducer.initialActionsHash: Field;
+Reducer.initialActionsHash: Field;
 ```
 
-The above API is available now, but still marked as "Experimental". In the near future, we want to add a function to retrieve actions from an archive node:
+In the near future, we want to add a function to retrieve actions from an archive node:
 
 ```ts
 this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[][];

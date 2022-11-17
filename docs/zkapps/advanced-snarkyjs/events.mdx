@@ -11,7 +11,6 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Events
 
-
 Events are arbitrary information that can be passed along with a transaction. Say, your zkApp allows users to publish a message -- those messages could be events!
 
 Another use case for events are zkApps which keep some large internal state, and only store a commitment to that internal state on-chain. For example, a Merkle tree where only the root is stored in on-chain state. Events enable to attach the full information of state changes in transactions. In the Merkle tree example, this could mean sending any Merkle leaves that are changed by the transaction as events. This means that an observer of these transactions can follow along and keep track of the full Merkle tree on their side.
@@ -21,13 +20,13 @@ To use events, you have to declare an `events` field at the top level of your sm
 ```ts
 class MyContract extends SmartContract {
   events = {
-    "add-merkle-leaf": Field,
-    "update-merkle-leaf": Field,
+    'add-merkle-leaf': Field,
+    'update-merkle-leaf': Field,
   };
 }
 ```
 
-In this example, we declare events called `"add-merkle-leaf"` and `"update-merkle-leaf"`, both with a type of `Field`. Instead of `Field`, you can also use other built-in SnarkyJS types as well as any `CircuitValue`. (In fact, a custom `CircuitValue` is probably better-suited to encode leaves of a Merkle tree -- we just use `Field` for simplicity here.)
+In this example, we declare events called `"add-merkle-leaf"` and `"update-merkle-leaf"`, both with a type of `Field`. Instead of `Field`, you can also use other built-in SnarkyJS types as well as any `Struct`. (In fact, a custom `Struct` is probably better-suited to encode leaves of a Merkle tree -- we just use `Field` for simplicity here.)
 
 After declaring your events, you can use `this.emitEvent(name, event)` in any smart contract method, where `event` has to have the type you declared for that `name`. Example:
 

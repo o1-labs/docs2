@@ -87,9 +87,9 @@ export class Add extends SmartContract {
   for practical purposes, but loops back to 1 after overflowing) */
   @state(Field) num = State<Field>();
 
-  // Deploy the contract (similar to a constructor in Solidity)
-  deploy(args: unknown) {
-    super.deploy(args);
+  // Initialize the contract (similar to a constructor in Solidity)
+  init() {
+    super.init();
     // Set num equal to a Field element of value 1 on contract deployment
     this.num.set(Field(1));
   }
