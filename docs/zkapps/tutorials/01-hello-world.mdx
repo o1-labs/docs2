@@ -196,45 +196,32 @@ Now, let's add our `deploy` method:
  17       ...Permissions.default(),
  18       editState: Permissions.proofOrSignature(),
  19     });
- 20   }
- 21
- 22 }
+ 20     this.num.set(Field(3));
+ 21   }
+ 22
+ 23 }
 ```
 
 This method describes how we want to deploy our smart contract. This will be the same for many smart contracts. It is also where we specify the permissions for how we want to allow others to interact with our smart contract.
 
 In this case, we will allow our zkApp on-chain state to be altered by transactions containing account updates with _either_ proof or signature authorization. Proof authorization allows end users to alter the zkApp account state if their transaction was generated from your smart contract code. Signature authorization allows whomever deployed the smart contract to edit it.
 
-Next, we will add an `init()` method:
-
-```ts
- 18       editState: Permissions.proofOrSignature(),
- 19     });
- 20   }
- 21
- 22   @method init() {
- 23     this.num.set(Field(3));
- 24   }
- 25
- 26 }
-```
-
-This method is used to set initial values of our zkApp account's on-chain state. In this case, we will initialize our on-chain state named `num` to a value of `3`.
+In deploy, we also initialize our on-chain state, `num`, to a value of `3`.
 
 Lastly, we will add our update function:
 
 ```ts
- 23     this.num.set(Field(3));
- 24   }
- 25
- 26   @method update(square: Field) {
- 27     const currentState = this.num.get();
- 28     this.num.assertEquals(currentState);
- 29     square.assertEquals(currentState.mul(currentState));
- 30     this.num.set(square);
- 31   }
- 32
- 33 }
+ 20     this.num.set(Field(3));
+ 21   }
+ 22
+ 23   @method update(square: Field) {
+ 24     const currentState = this.num.get();
+ 25     this.num.assertEquals(currentState);
+ 26     square.assertEquals(currentState.mul(currentState));
+ 27     this.num.set(square);
+ 28   }
+ 29
+ 30 }
 ```
 
 The name `update` is arbitrary, but makes sense for our example. Notice that we use the `@method` decorator because we intend for this method to be invoked by end users, such as via a zkApp UI or our `main.ts` script in this case.
@@ -335,7 +322,7 @@ Now, let's initalize our smart contract. Comments are provided to break down eac
  28   const contract = new Square(zkAppAddress);
  29   const deployTxn = await Mina.transaction(deployerAccount, () => {
  30     AccountUpdate.fundNewAccount(deployerAccount);
- 31     contract.deploy({ zkappKey: zkAppPrivateKey }); // this calls init()
+ 31     contract.deploy({ zkappKey: zkAppPrivateKey });
  33     contract.sign(zkAppPrivateKey);
  34   });
  35   await deployTxn.send();
