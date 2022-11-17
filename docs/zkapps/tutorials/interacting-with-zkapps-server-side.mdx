@@ -17,13 +17,15 @@ zkApps can now be deployed to Berkeley Testnet.
 
 While user-facing zkApps can be written for the browser, sometimes it is useful to write a zkApp that can run server-side.
 
-This tutorial shows how to do this.
+This tutorial shows how to do this. This can be useful when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real world events or on-chain events.
 
-To start, read and complete [Tutorial 3](deploying-to-a-network), to see how to deploy a smart contract. Note this reuses the smart contract `Square` from [Tutorial 1](hello-world).
+To start this tutorial, read and complete [Tutorial 3](deploying-to-a-network), to see how to deploy a smart contract. We will use the same project used in Tutorial 3.
+
+Note Tutorial 3, and this tutorial, reuse the smart contract `Square` from [Tutorial 1](hello-world).
 
 ## Interacting with our Deployed Smart Contract
 
-Now that the contract is deployed, let's write a script to interact with our smart contract so we can see it in action. Typically, your end users will interact with a UI that you build. We'll get to implementing a UI in React in the browser in a future tutorial. But for now we will just write a script to show how this can work. This pattern is also useful when writing server side programs that interact with zkApps.
+Once you've created your project, and deployed it, we can write a script to interact with our smart contract. 
 
 ### utils.ts
 
