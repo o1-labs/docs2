@@ -61,45 +61,46 @@ First, we will bring in imports and setup the structure for our smart contract:
  23       ...Permissions.default(),
  24       editState: Permissions.proofOrSignature(),
  25       setTokenSymbol: Permissions.proofOrSignature(),
- 26     send: Permissions.proofOrSignature(),
- 27     receive: Permissions.proofOrSignature(),
+ 26       send: Permissions.proofOrSignature(),
+ 27       receive: Permissions.proofOrSignature(),
  28     });
  29   }
  30 }
 ```
 
-We include a single state variable, totalAmountInCirculation, which we will use to track how many tokens exist.
+We include a single state variable, `totalAmountInCirculation`, which we will use to track how many tokens exist.
 
-Next we’ll add an init method, and a method that mints tokens:
+Next we will add an init method, and a method that mints tokens:
 
 ```ts
  31   @method init() {
- 32     this.tokenSymbol.set(tokenSymbol);
- 33     this.totalAmountInCirculation.set(UInt64.zero);
- 34   }
- 35
- 36   @method mint(
- 37     receiverAddress: PublicKey,
- 38     amount: UInt64,
- 39     adminSignature: Signature
- 40   ) {
- 41     let totalAmountInCirculation = this.totalAmountInCirculation.get();
- 42 this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
- 43
- 44     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
- 45
- 46     adminSignature.verify(
- 47       this.address,
- 48       amount.toFields().concat(receiverAddress.toFields())
- 49     ).assertTrue();
- 50
- 51     this.experimental.token.mint({
- 52       address: receiverAddress,
- 53       amount,
- 54     });
- 55
- 56     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
- 57   }
+ 32     super.init();
+ 33     this.tokenSymbol.set(tokenSymbol);
+ 34     this.totalAmountInCirculation.set(UInt64.zero);
+ 35   }
+ 36
+ 37   @method mint(
+ 38     receiverAddress: PublicKey,
+ 39     amount: UInt64,
+ 40     adminSignature: Signature
+ 41   ) {
+ 42     let totalAmountInCirculation = this.totalAmountInCirculation.get();
+ 43     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+ 44
+ 45     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+ 46
+ 47     adminSignature.verify(
+ 48       this.address,
+ 49       amount.toFields().concat(receiverAddress.toFields())
+ 50     ).assertTrue();
+ 51
+ 52     this.token.mint({
+ 53       address: receiverAddress,
+ 54       amount,
+ 55     });
+ 56
+ 57     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
+ 58   }
 ```
 
 In `init`, we set our token symbol (in this case, MYTKN), and start tracking the amount in circulation by setting it to zero.
@@ -116,7 +117,7 @@ Lastly, we write a send function:
  61     receiverAddress: PublicKey,
  62     amount: UInt64
  63   ) {
- 64     this.experimental.token.send({
+ 64     this.token.send({
  65       from: senderAddress,
  66       to: receiverAddress,
  67       amount,
