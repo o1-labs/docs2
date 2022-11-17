@@ -94,7 +94,7 @@ Now let enter the project, delete the existing files, and create a new smart con
 cd 06-off-chain-storage
 rm src/Add.ts
 rm src/Add.test.ts
-zk file src/NumberTreeContract.ts
+zk file src/NumberTreeContract
 touch src/main.ts
 ```
 
@@ -122,21 +122,21 @@ With that, setup is complete!
 
 ### Running our project
 
-As in previous tutorials, you can run main.ts with
+As in previous tutorials, you can run `main.ts` with
 
 ```sh
 npm run build && node build/src/main.js
 ```
 
-This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract`, it should run successfully.
+This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract.ts`, it should run successfully.
 
-Also for this project, we will need to run our storage server. To do this, from the root of the project, run:
+Also for this project, we will need to run our storage server. To do this, in a new terminal window, change into the root of your project and run:
 
 ```sh
 node node_modules/zkapp-offchain-storage/build/src/storageServer.js
 ```
 
-This will create a `database.json` file in the current directory that will also store data.
+This will start a storage server and create a `database.json` file in the current directory to store our data for this tutorial.
 
 ## Implementing the Smart Contract
 
