@@ -58,6 +58,7 @@ module.exports = {
             'zkapps/tutorials/common-types-and-functions',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
+            'zkapps/tutorials/oracle',
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
