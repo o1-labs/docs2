@@ -97,7 +97,7 @@ Now, we will add our init method. This is intended to run once to set up the ini
 ```ts
 ...
  22
- 23   @method init(salt: Field, firstSecret: Field) {
+ 23   @method initState(salt: Field, firstSecret: Field) {
  24     this.x.set(Poseidon.hash([ salt, firstSecret ]));
  25   }
  26 }
@@ -151,7 +151,7 @@ Our smart contract initialization this time will be:
  32   const deployTxn = await Mina.transaction(deployerAccount, () => {
  33     AccountUpdate.fundNewAccount(deployerAccount);
  34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
- 35     zkAppInstance.init(salt, Field(750));
+ 35     zkAppInstance.initState(salt, Field(750));
  36     zkAppInstance.sign(zkAppPrivateKey);
  37   });
  ...

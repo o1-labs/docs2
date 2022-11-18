@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[lib/encryption.ts:40](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/encryption.ts#L40)
+[lib/encryption.ts:38](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encryption.ts#L38)
 
 ___
 
@@ -52,4 +52,4 @@ ___
 
 #### Defined in
 
-[lib/encryption.ts:12](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/encryption.ts#L12)
+[lib/encryption.ts:12](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encryption.ts#L12)
