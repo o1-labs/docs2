@@ -53,10 +53,11 @@ module.exports = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            'zkapps/tutorials/hello-world',
-            'zkapps/tutorials/private-inputs-hash-functions',
+            "zkapps/tutorials/hello-world",
+            "zkapps/tutorials/private-inputs-hash-functions",
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/common-types-and-functions',
+            "zkapps/tutorials/offchain-storage",
             'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
