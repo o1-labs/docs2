@@ -148,7 +148,7 @@ Start by adding our imports:
   1 import {
   2   SmartContract,
   3   Field,
-  4   Experimental,
+  4   MerkleTree,
   5   state,
   6   State,
   7   method,
@@ -200,7 +200,7 @@ Continuing, let's setup our smart contract:
  36     this.storageServerPublicKey.set(storageServerPublicKey);
  37     this.storageNumber.set(Field(0));
  38
- 39     const emptyTreeRoot = new Experimental.MerkleTree(8).getRoot();
+ 39     const emptyTreeRoot = new MerkleTree(8).getRoot();
  40     this.storageTreeRoot.set(emptyTreeRoot);
  41   }
 ...
@@ -389,7 +389,7 @@ We call our smart contract as follows:
 182         }
 183       );
 184
-185       await updateTransaction.send().wait();
+185       await updateTransaction.send();
 ...
 ```
 
