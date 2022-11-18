@@ -143,13 +143,14 @@ import {
   Permissions,
   PublicKey,
   Signature,
+  PrivateKey,
 } from 'snarkyjs';
 
 // The public key of our trusted data provider
 const ORACLE_PUBLIC_KEY =
-  'B62qp24xA8az6sZbCFLaswALCKZLYWSErw4rAbej3b4aoLqumamcSAu';
+  'B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy';
 
-export class CreditScoreOracle extends SmartContract {
+export class OracleExample extends SmartContract {
   // Define contract state
 
   // Define contract events
@@ -162,16 +163,25 @@ export class CreditScoreOracle extends SmartContract {
     });
   }
 
-  @method init() {
+  @method init(zkappKey: PrivateKey) {
+    super.init(zkappKey);
     // Initialize contract state
+
+    // Specify that caller should include signature with tx instead of proof
+    this.requireSignature();
   }
 
   @method verify(id: Field, creditScore: Field, signature: Signature) {
     // Get the oracle public key from the contract state
+
     // Evaluate whether the signature is valid for the provided data
+
     // Check that the signature is valid
+
     // Check that the provided credit score is greater than 700
+
     // Emit an event containing the verified users id
+
   }
 }
 ```
@@ -190,9 +200,12 @@ Our smart contract will store the public key for the oracle that we choose to re
 We’ll use the `init` method to initialize `oraclePublicKey` to the credit score oracle’s public key.
 
 ```ts
-  @method init() {
+  @method init(zkappKey: PrivateKey) {
+    super.init(zkappKey);
     // Initialize contract state
     this.oraclePublicKey.set(PublicKey.fromBase58(ORACLE_PUBLIC_KEY));
+    // Specify that caller should include signature with tx instead of proof
+    this.requireSignature();
   }
 ```
 
@@ -298,8 +311,9 @@ import {
 const ORACLE_PUBLIC_KEY =
   'B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy';
 
+let proofsEnabled = false;
 function createLocalBlockchain() {
-  const Local = Mina.LocalBlockchain();
+  const Local = Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
   return Local.testAccounts[0].privateKey;
 }
@@ -312,10 +326,11 @@ async function localDeploy(
   const txn = await Mina.transaction(deployerAccount, () => {
     AccountUpdate.fundNewAccount(deployerAccount);
     zkAppInstance.deploy({ zkappKey: zkAppPrivatekey });
-    zkAppInstance.init();
-    zkAppInstance.sign(zkAppPrivatekey);
+    zkAppInstance.init(zkAppPrivatekey);
   });
-  await txn.send().wait();
+  await txn.prove();
+  txn.sign([zkAppPrivatekey]);
+  await txn.send();
 }
 
 describe('CreditScoreOracle', () => {
@@ -323,8 +338,12 @@ describe('CreditScoreOracle', () => {
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await isReady;
+    if (proofsEnabled) OracleExample.compile();
+  });
+
+  beforeEach(async () => {
     deployerAccount = createLocalBlockchain();
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
@@ -364,9 +383,9 @@ describe('CreditScoreOracle', () => {
           creditScore,
           signature ?? fail('something is wrong with the signature')
         );
-        // zkAppInstance.sign(zkAppPrivateKey);
       });
-      await txn.send().wait();
+      await txn.prove();
+      await txn.send();
 
       const events = await zkAppInstance.fetchEvents();
       const verifiedEventValue = events[0].event.toFields(null)[0];
@@ -393,7 +412,6 @@ describe('CreditScoreOracle', () => {
             creditScore,
             signature ?? fail('something is wrong with the signature')
           );
-          zkAppInstance.sign(zkAppPrivateKey);
         });
       }).rejects;
     });
@@ -417,9 +435,9 @@ describe('CreditScoreOracle', () => {
           creditScore,
           signature ?? fail('something is wrong with the signature')
         );
-        zkAppInstance.sign(zkAppPrivateKey);
       });
-      await txn.send().wait();
+      await txn.prove();
+      await txn.send();
 
       const events = await zkAppInstance.fetchEvents();
       const verifiedEventValue = events[0].event.toFields(null)[0];
@@ -444,7 +462,6 @@ describe('CreditScoreOracle', () => {
             creditScore,
             signature ?? fail('something is wrong with the signature')
           );
-          zkAppInstance.sign(zkAppPrivateKey);
         });
       }).rejects;
     });
@@ -467,7 +484,6 @@ describe('CreditScoreOracle', () => {
             creditScore,
             signature ?? fail('something is wrong with the signature')
           );
-          zkAppInstance.sign(zkAppPrivateKey);
         });
       }).rejects;
     });
@@ -479,4 +495,4 @@ Now save it and run `npm run test`.
 
 You might have to try it twice in order for all the tests to pass because we're calling our live API directly. Note that writing a test that calls an API is generally not a best practice, but it’s convenient for the sake of this tutorial. You can also mock your HTTP requests.
 
-Congratulations! You have just built a simple oracle using SnarkyJS and the Mina Protocol.
+Congratulations! You have just built a simple oracle using SnarkyJS and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
