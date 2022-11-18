@@ -52,7 +52,7 @@ Some likely things to expect on this spectrum and are under exploration:
 
 ### Single-Server Off-Chain Storage
 
-This tutorial shares and explains an implementation of the single-server off-chain storage solution mentioned as the first option above. The library provides a REST a server that anyone can run to store data for one or multiple zkApps, as well as a zkApp library to check on-chain if changes have been backed by the server.
+This tutorial shares and explains an implementation of the single-server off-chain storage solution mentioned as the first option above. The library provides a REST server that anyone can run to store data for one or multiple zkApps, as well as a zkApp library to check on-chain if changes have been backed by the server.
 
 This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever running the server.
 
@@ -74,9 +74,9 @@ Some suggested improvements:
 
 ## Implementing a Project Using Off-Chain Storage
 
-As usual, there is sample code for this project, which you can find [here](https://github.com/es92/zkApp-examples/tree/main/06-offchain-storage/contracts).
+As usual, there is sample code for this project, which you can find [here](https://github.com/es92/zkApp-examples/tree/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts).
 
-We will be writing and discussing the [src/main.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+We will be writing and discussing the [src/main.ts](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
 
 This project implements a tree, where each leaf is either empty or stores a number, which will be our data. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an off-chain storage server.
 
@@ -140,7 +140,7 @@ This will start a storage server and create a `database.json` file in the curren
 
 ## Implementing the Smart Contract
 
-To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/NumberTreeContract.ts) for reference.
+To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/NumberTreeContract.ts) for reference.
 
 Start by adding our imports:
 
@@ -274,7 +274,7 @@ That completes the smart contract!
 
 ## Implementing `main.ts`
 
-You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) for reference.
+You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) for reference.
 
 We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
 
@@ -393,7 +393,7 @@ We call our smart contract as follows:
 ...
 ```
 
-That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/es92/zkApp-examples/blob/main/06-offchain-storage/contracts/src/main.ts) for review.
+That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) for review.
 
 ## Conclusion
 
