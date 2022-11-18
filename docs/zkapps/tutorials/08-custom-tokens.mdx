@@ -21,11 +21,11 @@ Mina comes with native support for custom tokens. Each account on Mina can also 
 
 To create a new token, one creates a smart contract, which becomes the manager for the token, and uses that contract to set the rules around how the token can be mint, burned, and sent.
 
-The manager account may also set a token symbol for its token.
+The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens. 
 
-In this tutorial, we will review smart contract code that creates and manages new tokens. You can find a full example, including these smart contracts and code to launch and interact with them, [here](https://github.com/es92/zkApp-examples/tree/main/08-custom-tokens/src).
+In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/es92/zkApp-examples/tree/main/08-custom-tokens/src).
 
-You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts).
+You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts) for reference.
 
 ## Basic Token Example
 
@@ -76,7 +76,7 @@ Next we will add an init method, and a method that mints tokens:
  31   @method init() {
  32     super.init();
  33     this.tokenSymbol.set(tokenSymbol);
- 34     this.totalAmountInCirculation.set(UInt64.zero);
+ 34     this.totalAmountInCirculation.set(UInt64.from(0));
  35   }
  36
  37   @method mint(
@@ -109,7 +109,7 @@ We also write a function to mint new tokens, and send them to a recipient. We ch
 
 In mint, we also track how many tokens are in existence
 
-Lastly, we write a send function:
+Lastly, we will write a send function:
 
 ```ts
  59   @method sendTokens(
@@ -127,11 +127,11 @@ Lastly, we write a send function:
 
 Holders of our token will call this to send tokens to other Mina accounts.
 
-That completes a basic token! To see an example of interacting with this contract, see [here].
+That completes a basic token! To see an example of interacting with this contract, see [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/08-custom-tokens/src/main.ts).
 
 And, to see an example of putting rules around a token, see this example of a token with a whitelist gating which public keys can interact with it [here](https://github.com/es92/zkApp-examples/blob/main/08-custom-tokens/src/WhitelistedTokenContract.ts).
 
-## Building zkApps that intreact with Tokens.
+## Building zkApps that interact with Tokens.
 
 With zkApps, you can also build smart contracts that interact with tokens - say, swapping one token for another, or taking deposits of Mina tokens, etc.
 
@@ -141,4 +141,4 @@ This will come in a future part of this tutorial. For now, see this example [her
 
 We have finished building a smart contract to manage a token, and shown how to build a smart contract that places custom rules over tokens!
 
-Check out out our other tutorials and documentation to keep going!
+Check out out our other tutorials and documentation to keep going! To learn more on tokens, see [the token docs](/zkapps/advanced-snarkyjs/custom-tokens).
