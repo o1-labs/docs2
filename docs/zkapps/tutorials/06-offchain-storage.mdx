@@ -170,10 +170,10 @@ Start by adding our imports:
 Notice we import some items from `zkapp-offchain-storage`:
 
 * `OffChainStorage` is object containing functions for interacting with off-chain storage. These are:
-  * `assertRootUpdateValid`: A function we'll be using later in our smart contract, to check if the storage server has stored our data.
-  * `get`: A function for fetching a tree from the storage server.
-  * `requestStore`: A function to request storing a tree on the storage server.
-  * `getPublicKey`: A function to get the storage server's public key.
+  * `getPublicKey`: A function to get the storage server's public key. This is also stored in smart contracts to identify what storage server is storing the smart contract's off-chain data.
+  * `get`: A function for fetching the data for a merkle tree from the storage server, given the root of the tree.
+  * `requestStore`: A function to request storing a tree on the storage server. Returns a proof that the storage server has stored this tree.
+  * `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
   * `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 * `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
 * `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
@@ -268,7 +268,7 @@ First, we check that the new leaf is greater than the old leaf.
 
 Then, we check the update itself. In this example, we perform a single update to the tree, however with multiple witnesses, you can chain updates together to change the tree more than once in a single call to the storage server.
 
-To assert the update is valid, we use the `OffChainStorage` library. This checks that the update, when applied, really came from the existing on chain state, and the new state is being stored by the storage server.
+To assert the update is valid, we use a `assertRootUpdateValid` call from the `OffChainStorage` library. This checks that when the update is applied to the tree represented by the existing on-chain tree root, the data for the new tree is being stored by the storage server.
 
 That completes the smart contract!
 
