@@ -167,9 +167,9 @@ Start by adding our imports:
 ...
 ```
 
-Note we import some items from `zkapp-offchain-storage`:
+Notice we import some items from `zkapp-offchain-storage`:
 
-* `OffChainStorage`: An object that holds functions for interacting with off-chain storage. These are:
+* `OffChainStorage` is object containing functions for interacting with off-chain storage. These are:
   * `assertRootUpdateValid`: A function we'll be using later in our smart contract, to check if the storage server has stored our data.
   * `get`: A function for fetching a tree from the storage server.
   * `requestStore`: A function to request storing a tree on the storage server.
@@ -198,7 +198,7 @@ Continuing, let's setup our smart contract:
  34
  35   @method init(storageServerPublicKey: PublicKey) {
  36     this.storageServerPublicKey.set(storageServerPublicKey);
- 37     this.storageNumber.set(Field.zero);
+ 37     this.storageNumber.set(Field(0));
  38
  39     const emptyTreeRoot = new Experimental.MerkleTree(8).getRoot();
  40     this.storageTreeRoot.set(emptyTreeRoot);
@@ -206,9 +206,9 @@ Continuing, let's setup our smart contract:
 ...
 ```
 
-Here we add 3 pieces of state to our contract - the public key of the storage server, the "storageNumber", which is used to ensure the storage server is actively storing states, and the root of the merkle tree.
+Here we add 3 pieces of state to our contract: the public key of the storage server, the "storageNumber"—which is used to ensure the storage server is actively storing states, and the root of the merkle tree.
 
-We also initialize our zkapp by setting it to an empty tree.
+We also initialize our zkApp's initialize for these three values, by setting them to the public key of our storage server, setting storage number to 0, and storing the root of an empty tree.
 
 Continuing, here is our update function:
 
@@ -342,8 +342,8 @@ Continuing:
 142       priorLeafNumber = idx2fields.get(index)![0];
 143       newLeafNumber = priorLeafNumber.add(3);
 144     } else {
-145       priorLeafNumber = Field.zero;
-146       newLeafNumber = Field.one;
+145       priorLeafNumber = Field(0);
+146       newLeafNumber = Field(1);
 147     }
 ...
 ```
