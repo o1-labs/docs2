@@ -1,0 +1,432 @@
+---
+title: "Tutorial 4: Building a zkApp UI in the Browser with React"
+hide_title: true
+sidebar_label: "Tutorial 4: Building a zkApp UI in the Browser with React"
+---
+
+# Tutorial 4: Building a zkApp UI in the Browser with React
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+## Overview
+
+In previous tutorials, we've seen how to [write zkApps](hello-world) and [deploy them to a network](deploying-to-a-network).
+
+In this tutorial, we will implement a browser UI using ReactJS app that interacts with a smart contract running on Berkeley.
+
+We will discuss how to setup our project, implement its functionality, and show to deploy it to Github Pages.
+
+If you would like to try out the application before going through the tutorial, you can do so on an instance already deployed to a Github Pages [here](https://es92.github.io/zkApp-examples/index.html). Extra info is printed to the console as well when it is run, to give an idea of what it is doing internally.
+
+### What we will build
+
+The application we build will implement the following:
+1. Loading a Public key from an extension-based wallet (tested with [Auro](https://www.aurowallet.com/) >= 2.1.2)
+2. Checking if the public key has funds, and direct the user to the faucet if not.
+3. Connecting to example zkapp `Add` smart contract, already deployed on berkeley at a fixed address.
+4. A button that when clicked sends a transaction.
+5. A button that when clicked requests the latest state of the smart contract.
+
+Like in tutorial 3, we will provide a couple helper files, so we can focus on the react implementation itself. What is special about these helpers though, is that they use a webworker. This ensures the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+
+This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
+
+:::info
+
+This project requires the latest version of [Auro](https://www.aurowallet.com/) (>= 2.1.2). This version is currently under review at the chrome app store at the time this tutorial was last updated, and will probably be on the chrome store by the time you are reading this.
+
+However if the chrome store hasn't been updated yet, Auro 2.1.2 can be found [here](https://github.com/aurowallet/auro-wallet-browser-extension/releases/), with instructions to install on chrome [here](https://superuser.com/questions/247651/how-does-one-install-an-extension-for-chrome-browser-from-the-local-file-system).
+
+
+:::
+
+## Project setup
+
+First, setup a new project with
+
+```sh
+zk project 04-zkapp-browser-ui --ui next
+```
+
+On the prompts that appear, select:
+1. Do you want your NextJS project to use TypeScript? `yes`
+2. Do you want to setup your project for github pages? `yes`
+
+This will create a new project with two folders instead of just one:
+* `contract`: This stores your smart contract code
+* `ui`: This is where you will write your ui
+
+We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
+
+To do this, enter the contract folder, and run 
+```sh
+npm run build
+```
+
+In making your own zkApp, you will need to edit the contract folder, and rebuild before accessing it from your UI.
+
+## Implementing the UI
+
+Our React UI will have a few components. First, there is the react page itself. In addition though, there is code that uses SnarkyJS.
+
+Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a webworkers. 
+
+This will be implemented via 2 helper files:
+* `zkappWorker.ts`: The web worker code itself
+* `zkappWorkerClient.ts`: Code that we run from react to interact with the web worker.
+
+We encourage you to read these files, to understand how they work and to extend them for your own zkApp, but we will not review them in detail here, in favor of spending time on the react code.
+
+Download these files from [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorker.ts) and [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts), and place them in your `ui/pages` folder.
+
+### globals.css
+
+We will be using an `<a>` link in our application - add the following to the end of `styles/globals.css` to style the link:
+```css
+a {
+  color: blue;
+}
+```
+
+### Running the react app
+
+To run the react app, open up two new terminals. In one, type:
+```sh
+npm run dev
+```
+
+And in the other, 
+```sh
+npm run ts-watch
+```
+
+The first of these starts hosting your application, by default at `localhost:3000`. Your browser will refresh automatically when your page has changes.
+
+The second shows typescript errors. You can watch this as you develop to check for type errors.
+
+### Implementing the react app
+
+Open up `ui/pages/_app.page.tsx` in your editor. You can find the full contents for this file [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/_app.page.tsx) for reference.
+
+Edit the contents so it looks like this:
+```ts
+  1 import '../styles/globals.css'
+  2 import { useEffect, useState } from "react";
+  3 import './reactCOIServiceWorker';
+  4
+  5 import ZkappWorkerClient from './zkappWorkerClient';
+  6
+  7 import {
+  8   PublicKey,
+  9   PrivateKey,
+ 10   Field,
+ 11 } from 'snarkyjs'
+ 12
+ 13 let transactionFee = 0.1;
+ 14
+ 15 export default function App() {
+ 16   return </div>
+ 17 }
+ 18
+```
+
+This just sets up our react project, with the imports we'll need, and an empty component.
+
+Now, we'll add state to our app:
+
+```ts
+...
+ 15 export default function App() {
+ 16
+ 17   let [state, setState] = useState({
+ 18     zkappWorkerClient: null as null | ZkappWorkerClient,
+ 19     hasWallet: null as null | boolean,
+ 20     hasBeenSetup: false,
+ 21     accountExists: false,
+ 22     currentNum: null as null | Field,
+ 23     publicKey: null as null | PublicKey,
+ 24     zkappPublicKey: null as null | PublicKey,
+ 25     creatingTransaction: false,
+ 26   });
+ 27
+ 28   // -------------------------------------------------------
+ 29
+ 30   return </div>
+...
+```
+
+This creates mutable state that we can reference in our UI, and update as our application runs. You can learn more about react state and useState [here](https://reactjs.org/docs/hooks-state.html).
+
+Next, we'll add a function to setup our application:
+```ts
+...
+ 28   // -------------------------------------------------------
+ 29   // Do Setup
+ 30
+ 31   useEffect(() => {
+ 32     (async () => {
+ 33       if (!state.hasBeenSetup) {
+ 34         const zkappWorkerClient = new ZkappWorkerClient();
+ 35
+ 36         console.log('Loading SnarkyJS...');
+ 37         await zkappWorkerClient.loadSnarkyJS();
+ 38         console.log('done');
+ 39
+ 40         await zkappWorkerClient.setActiveInstanceToBerkeley();
+ 41
+ 42         // TODO
+ 43       }
+ 44     })();
+ 45   }, []);
+ 46
+ 47   // -------------------------------------------------------
+...
+```
+
+
+We use the react feature "useEffect", so that this is only run once. See more on useEffect [here](https://reactjs.org/docs/hooks-effect.html). We further gate running this effect by a boolean `hasBeenSetup` so we don't run this more than once.
+
+This is also where we setup our web worker client. This will interact with our web worker running snarkyjs code, so that that code doesn't block the UI thread.
+
+```ts
+...
+ 40         await zkappWorkerClient.setActiveInstanceToBerkeley();
+ 41
+ 42         const mina = (window as any).mina;
+ 43
+ 44         if (mina == null) {
+ 45           setState({ ...state, hasWallet: false });
+ 46           return;
+ 47         }
+ 48
+ 49         const publicKeyBase58 : string = (await mina.requestAccounts())[0];
+ 50         const publicKey = PublicKey.fromBase58(publicKeyBase58);
+ 51
+ 52         console.log('using key', publicKey.toBase58());
+ 53
+ 54         console.log('checking if account exists...');
+ 55         const res = await zkappWorkerClient.fetchAccount({ publicKey: publicKey! });
+ 56         const accountExists = res.error == null;
+ 57
+ 58         // TODO
+ 59       }
+...
+```
+
+Continuing, we load our zkApp in the web worker. We load the contract, compile it, create a instance of it at a fixed address, and get its current state:
+
+```ts
+...
+ 56         const accountExists = res.error == null;
+ 57
+ 58         await zkappWorkerClient.loadContract();
+ 59
+ 60         console.log('compiling zkApp');
+ 61         await zkappWorkerClient.compileContract();
+ 62         console.log('zkApp compiled');
+ 63
+ 64         const zkappPublicKey = PublicKey.fromBase58('B62qrBBEARoG78KLD1bmYZeEirUfpNXoMPYQboTwqmGLtfqAGLXdWpU');
+ 65
+ 66         await zkappWorkerClient.initZkappInstance(zkappPublicKey);
+ 67
+ 68         console.log('getting zkApp state...');
+ 69         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey })
+ 70         const currentNum = await zkappWorkerClient.getNum();
+ 71         console.log('current state:', currentNum.toString());
+ 72
+ 73         // TODO
+ 74       }
+...
+```
+
+And lastly for this function, we update the state of the react app:
+
+```ts
+...
+ 71         console.log('current state:', currentNum.toString());
+ 72
+ 73         setState({
+ 74             ...state,
+ 75             zkappWorkerClient, 
+ 76             hasWallet: true,
+ 77             hasBeenSetup: true, 
+ 78             publicKey, 
+ 79             zkappPublicKey, 
+ 80             accountExists, 
+ 81             currentNum
+ 82         });
+ 83       }
+ 84     })();
+...
+```
+
+Now that we have finished setting up our UI, we write a new effect, that waits for the account to exist, if it didn't exist before. 
+
+If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later a link to request funds for users to request funds while that account does not exist.
+
+```ts
+...
+ 87   // -------------------------------------------------------
+ 88   // Wait for account to exist, if it didn't
+ 89
+ 90   useEffect(() => {
+ 91     (async () => {
+ 92       if (state.hasBeenSetup && !state.accountExists) {
+ 93         for (;;) {
+ 94           console.log('checking if account exists...');
+ 95           const res = await state.zkappWorkerClient!.fetchAccount({ publicKey: state.publicKey! })
+ 96           const accountExists = res.error == null;
+ 97           if (accountExists) {
+ 98             break;
+ 99           }
+100           await new Promise((resolve) => setTimeout(resolve, 5000));
+101         }
+102         setState({ ...state, accountExists: true });
+103       }
+104     })();
+105   }, [state.hasBeenSetup]);
+106
+107   // -------------------------------------------------------
+...
+```
+
+Moving on, we'll create functions that are triggered when a button is pressed by a user.
+
+First, a function that will send a transaction:
+
+```ts
+...
+107   // -------------------------------------------------------
+108   // Send a transaction
+109
+110   const onSendTransaction = async () => {
+111     setState({ ...state, creatingTransaction: true });
+112     console.log('sending a transaction...');
+113
+114     await state.zkappWorkerClient!.fetchAccount({ publicKey: state.publicKey! });
+115
+116     await state.zkappWorkerClient!.createUpdateTransaction();
+117
+118     console.log('creating proof...');
+119     await state.zkappWorkerClient!.proveUpdateTransaction();
+120
+121     console.log('getting Transaction JSON...');
+122     const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON()
+123
+124     console.log('requesting send transaction...');
+125     const { hash } = await (window as any).mina.sendTransaction({
+126       transaction: transactionJSON,
+127       feePayer: {
+128         fee: transactionFee,
+129         memo: '',
+130       },
+131     });
+132
+133     console.log(
+134       'See transaction at https://berkeley.minaexplorer.com/transaction/' + hash
+135     );
+136
+137     setState({ ...state, creatingTransaction: false });
+138   }
+139
+140   // -------------------------------------------------------
+...
+```
+
+And second, a function that will get the latest zkApp state:
+
+```ts
+...
+140   // -------------------------------------------------------
+141   // Refresh the current state
+142
+143   const onRefreshCurrentNum = async () => {
+144     console.log('getting zkApp state...');
+145     await state.zkappWorkerClient!.fetchAccount({ publicKey: state.zkappPublicKey! })
+146     const currentNum = await state.zkappWorkerClient!.getNum();
+147     console.log('current state:', currentNum.toString());
+148
+149     setState({ ...state, currentNum });
+150   }
+151
+152   // -------------------------------------------------------...
+```
+
+Lastly, we will update the `return <div/>` placeholder we originally inserted, with a ui to show the user the state of our application:
+
+```ts
+...
+152   // -------------------------------------------------------
+153   // Create UI elements
+154
+155   let hasWallet;
+156   if (state.hasWallet != null && !state.hasWallet) {
+157     const auroLink = 'https://www.aurowallet.com/';
+158     const auroLinkElem = <a href={auroLink} target="_blank" rel="noreferrer"> [Link] </a>
+159     hasWallet = <div> Could not find a wallet. Install Auro wallet here: { auroLinkElem }</div>
+160   }
+161
+162   let setupText = state.hasBeenSetup ? 'SnarkyJS Ready' : 'Setting up SnarkyJS...';
+163   let setup = <div> { setupText } { hasWallet }</div>
+164
+165   let accountDoesNotExist;
+166   if (state.hasBeenSetup && !state.accountExists) {
+167     const faucetLink = "https://faucet.minaprotocol.com/?address=" + state.publicKey!.toBase58();
+168     accountDoesNotExist = <div>
+169       Account does not exist. Please visit the faucet to fund this account
+170       <a href={faucetLink} target="_blank" rel="noreferrer"> [Link] </a>
+171     </div>
+172   }
+173
+174   let mainContent;
+175   if (state.hasBeenSetup && state.accountExists) {
+176     mainContent = <div>
+177       <button onClick={onSendTransaction} disabled={state.creatingTransaction}> Send Transaction </button>
+178       <div> Current Number in zkApp: { state.currentNum!.toString() } </div>
+179       <button onClick={onRefreshCurrentNum}> Get Latest State </button>
+180     </div>
+181   }
+182
+183   return <div>
+184    { setup }
+185    { accountDoesNotExist }
+186    { mainContent }
+187   </div>
+188 }
+```
+
+We divide our UI into 3 sections:
+
+* `setup` lets the user know when the zkapp has finished loading.
+* `accountDoesNotExist` gives the user a link to the faucet if their account hasn't been funded.
+* `mainContent` shows the current state of the zkApp, and buttons to interact with it.
+
+The buttons allow the user to create a transaction, or refresh the current state of the application, by triggering the `onSendTransaction()` and `onRefreshCurrentNum()` functions we wrote above.
+
+And that's it! We've finished the code for our application. 
+
+If you've been using `npm run dev`, you should now be able to interact with this application on `localhost:3000`, with all the functionality we've implemented over the tutorial.
+
+## Deploying the UI to Github Pages
+
+To deploy our project to Github, first push it to a new Github repo. The Github repo must have the same name as the project name when we ran zk project above (in this example, `04-zkapp-browser-ui`). If not, change the existing project name strings in `next.config.js`, and `pages/reactCOIServiceWorker.ts` to your repo name.
+
+To deploy, just run `npm run deploy`. After the script builds your application, uploads it to Github, and Github processes it, your application will be available at:
+```
+https://<username>.github.io/<repo-name>/index.html
+```
+
+## Conclusion
+We have built a React UI for our zkApp, to allow users to interact with your smart contract and send transactions to Berkeley Testnet!
+
+You can build a UI for your application using any UI framework, not just React. The zkApp CLI will also soon provide support for simultaneously creating SvelteKit and NuxtJS projects to--stay tuned!
+
+Checkout out our other tutorials and documentation to keep going!
+
+<!-- Now let's move to the next tutorial, where we will learn about different SnarkyJS types you can use in your application. -->
+
