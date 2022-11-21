@@ -26,13 +26,13 @@ If you would like to try out the application before going through the tutorial, 
 ### What we will build
 
 The application we build will implement the following:
-1. Loading a Public key from an extension-based wallet (tested with [Auro](https://www.aurowallet.com/) >= 2.1.2)
+1. Loading a p·ublic key from an extension-based wallet (tested with [Auro](https://www.aurowallet.com/) >= 2.1.2)
 2. Checking if the public key has funds, and direct the user to the faucet if not.
-3. Connecting to example zkapp `Add` smart contract, already deployed on berkeley at a fixed address.
+3. Connecting to example zkApp `Add` smart contract, already deployed on Berkeley testnet at a fixed address.
 4. A button that when clicked sends a transaction.
 5. A button that when clicked requests the latest state of the smart contract.
 
-Like in tutorial 3, we will provide a couple helper files, so we can focus on the react implementation itself. What is special about these helpers though, is that they use a webworker. This ensures the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+Like in tutorial 3, we will provide a couple of helper files, so we can focus on the React implementation itself. What is special about these helpers though, is that they use a webworker. This ensures the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
 This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
 
