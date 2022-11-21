@@ -154,7 +154,7 @@ Once the transaction is included in a block, your smart contract is deployed!
 
 This means, the Mina account at this public key, now contains the verification key associated with this smart contract.
 
-Because we set our smart contract's editState permissions to signature or proof when writing it in Tutorial 1, a transaction must contain either a valid ZK proof or a valid signature created by the private key associated with this zkApp account, in order to be accepted by the zkApp account. Typically, you'll only allow proof authorization. More instruction on setting permissions, such as allowing only proofs to modify an account, will come in a later tutorial.
+Because we set our smart contract's `editState` permissions to signature or proof when writing it in Tutorial 1, a transaction must contain either a valid ZK proof or a valid signature created by the private key associated with this zkApp account, in order to be accepted by the zkApp account. Typically, you'll only allow proof authorization. More instruction on setting permissions, such as allowing only proofs to modify an account, will come in a later tutorial.
 
 When a user interacts with this smart contract by providing a proof, the proof is generated locally on the user's device, and included in a transaction. When the transaction is submitted to the network, Mina will check the proof, to know it is correct and matches the on-chain verification key. After it is accepted, the proof and transaction will be recursively proved, and bundled into Mina's recursive ZKP.
 
