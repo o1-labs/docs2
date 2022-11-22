@@ -17,7 +17,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 In previous tutorials, we've seen how to deploy and run transactions on a local network. In this tutorial, we will see how to deploy against a real, live network.
 
-Mina's zkApps are currently available on Berkeley, Mina's public testnet, which is in its final stages of testing before mainnet. In this tutorial, we will deploy our contract to the Berkeley network. Berkeley is feature complete, and only minor changes and bugfixes are expected before Mainnet.
+Mina's zkApps are currently available on Berkeley, Mina's public testnet, which is in its final stages of testing before Mainnet. In this tutorial, we will deploy our contract to the Berkeley Testnet. Berkeley is feature complete, and only minor changes and bugfixes are expected before Mainnet.
 
 We will reuse the same smart contract from [Tutorial 1](hello-world), the `Square` contract.
 
@@ -35,17 +35,15 @@ rm src/Add.ts
 rm src/Add.test.ts
 ```
 
-And create new files:
+And create a new file for our smart contract:
 
 ```sh
 $ zk file src/Square
-$ touch src/main.ts
-$ touch src/util.ts
 ```
 
 Copy in `src/Square.ts` and `src/index.ts` from the first tutorial - you can find these [here](https://github.com/es92/zkApp-examples/tree/main/01-hello-world/src).
 
-That's all for setup - let's proceed to deploying to Berkeley.
+That's all for setup - let's proceed to deploying to Berkeley Testnet.
 
 ## Deploying the smart contract
 
