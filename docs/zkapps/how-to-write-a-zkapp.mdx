@@ -238,7 +238,7 @@ with the smart contract.
 
 ##### Methods
 
-Interaction with a smart contract happens by calling on or more of its _methods_. You declare methods using the `@method` decorator:
+Interaction with a smart contract happens by calling one or more of its _methods_. You declare methods using the `@method` decorator:
 
 ```ts
 class HelloWorld extends SmartContract {
@@ -469,7 +469,7 @@ If this is the case, we add 1 to the secret and set `x` to the hash of that.
 
 When running this successfully, it just proves that the code was run with _some_ input `secret` whose hash is `x`,
 and that the new `x` will be set to `hash(secret + 1)`.
-However, the secret itself remains private, because it can't be deduced from it's hash.
+However, the secret itself remains private, because it can't be deduced from its hash.
 
 ##### Initializing state
 
