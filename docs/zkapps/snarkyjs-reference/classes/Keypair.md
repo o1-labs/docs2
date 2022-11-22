@@ -1,6 +1,6 @@
 # Class: Keypair
 
-Contains a proving key and  VerificationKey  which can be used to verify proofs.
+Contains a proving key and [VerificationKey](VerificationKey.md) which can be used to verify proofs.
 
 ## Table of contents
 
@@ -30,4 +30,4 @@ Contains a proving key and  VerificationKey  which can be used to verify proofs.
 
 #### Defined in
 
-[snarky.d.ts:983](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L983)
+[snarky.d.ts:990](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L990)

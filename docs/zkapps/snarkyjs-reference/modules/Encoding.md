@@ -41,98 +41,65 @@
 
 #### Defined in
 
-[lib/encoding.ts:88](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L88)
+[lib/encoding.ts:106](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L106)
 
 ___
 
 ### EpochSeed
 
-• `Const` **EpochSeed**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromBase58` | (`base58`: `string`) => [`Field`](../classes/Field.md) |
-| `toBase58` | (`field`: [`Field`](../classes/Field.md)) => `string` |
+• **EpochSeed**: `Base58`<[`Field`](../classes/Field.md)\>
 
 #### Defined in
 
-[lib/encoding.ts:317](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L317)
+[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
 
 ___
 
 ### LedgerHash
 
-• `Const` **LedgerHash**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromBase58` | (`base58`: `string`) => [`Field`](../classes/Field.md) |
-| `toBase58` | (`field`: [`Field`](../classes/Field.md)) => `string` |
+• **LedgerHash**: `Base58`<[`Field`](../classes/Field.md)\>
 
 #### Defined in
 
-[lib/encoding.ts:313](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L313)
+[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
 
 ___
 
 ### ReceiptChainHash
 
-• `Const` **ReceiptChainHash**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromBase58` | (`base58`: `string`) => [`Field`](../classes/Field.md) |
-| `toBase58` | (`field`: [`Field`](../classes/Field.md)) => `string` |
+• **ReceiptChainHash**: `Base58`<[`Field`](../classes/Field.md)\>
 
 #### Defined in
 
-[lib/encoding.ts:309](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L309)
+[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
 
 ___
 
 ### StateHash
 
-• `Const` **StateHash**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromBase58` | (`base58`: `string`) => [`Field`](../classes/Field.md) |
-| `toBase58` | (`field`: [`Field`](../classes/Field.md)) => `string` |
+• **StateHash**: `Base58`<[`Field`](../classes/Field.md)\>
 
 #### Defined in
 
-[lib/encoding.ts:321](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L321)
+[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
 
 ___
 
 ### TokenId
 
-• `Const` **TokenId**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromBase58` | (`base58`: `string`) => [`Field`](../classes/Field.md) |
-| `toBase58` | (`field`: [`Field`](../classes/Field.md)) => `string` |
+• **TokenId**: `Base58`<[`Field`](../classes/Field.md)\>
 
 #### Defined in
 
-[lib/encoding.ts:308](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L308)
+[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
 
 ## Functions
 
 ### bytesFromFields
 
 ▸ **bytesFromFields**(`fields`): `Uint8Array`
+
+Decodes a list of [Field](../classes/Field.md) elements into a Uint8Array.
 
 #### Parameters
 
@@ -146,13 +113,15 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:57](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L57)
+[lib/encoding.ts:75](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L75)
 
 ___
 
 ### bytesToFields
 
 ▸ **bytesToFields**(`bytes`): [`Field`](../classes/Field.md)[]
+
+Encodes a Uint8Array into [Field](../classes/Field.md) elements.
 
 #### Parameters
 
@@ -166,13 +135,17 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:37](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L37)
+[lib/encoding.ts:53](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L53)
 
 ___
 
 ### stringFromFields
 
 ▸ **stringFromFields**(`fields`): `string`
+
+Decodes a list of [Field](../classes/Field.md) elements into a JavaScript string.
+
+This function is not a valid in-snark computation.
 
 #### Parameters
 
@@ -186,13 +159,17 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:30](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L30)
+[lib/encoding.ts:43](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L43)
 
 ___
 
 ### stringToFields
 
 ▸ **stringToFields**(`message`): [`Field`](../classes/Field.md)[]
+
+Encodes a JavaScript string into a list of [Field](../classes/Field.md) elements.
+
+This function is not a valid in-snark computation.
 
 #### Parameters
 
@@ -206,4 +183,4 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:25](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encoding.ts#L25)
+[lib/encoding.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L33)

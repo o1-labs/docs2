@@ -13,6 +13,8 @@
 
 ▸ **decrypt**(`__namedParameters`, `privateKey`): [`Field`](../classes/Field.md)[]
 
+Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
+
 #### Parameters
 
 | Name | Type |
@@ -26,13 +28,15 @@
 
 #### Defined in
 
-[lib/encryption.ts:38](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encryption.ts#L38)
+[lib/encryption.ts:44](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encryption.ts#L44)
 
 ___
 
 ### encrypt
 
 ▸ **encrypt**(`message`, `otherPublicKey`): `Object`
+
+Public Key Encryption, using a given array of [Field](../classes/Field.md) elements and encrypts it using a [PublicKey](../README.md#publickey).
 
 #### Parameters
 
@@ -52,4 +56,4 @@ ___
 
 #### Defined in
 
-[lib/encryption.ts:12](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/encryption.ts#L12)
+[lib/encryption.ts:15](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encryption.ts#L15)

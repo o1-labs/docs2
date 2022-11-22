@@ -1,4 +1,4 @@
-# Class: Sign
+# Class: MerkleMapWitness
 
 **`Deprecated`**
 
@@ -8,103 +8,79 @@
 
 - [`CircuitValue`](CircuitValue.md)
 
-  ↳ **`Sign`**
+  ↳ **`MerkleMapWitness`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Sign.md#constructor)
+- [constructor](MerkleMapWitness.md#constructor)
 
 ### Properties
 
-- [value](Sign.md#value)
-
-### Accessors
-
-- [minusOne](Sign.md#minusone)
-- [one](Sign.md#one)
+- [isLefts](MerkleMapWitness.md#islefts)
+- [siblings](MerkleMapWitness.md#siblings)
 
 ### Methods
 
-- [assertEquals](Sign.md#assertequals)
-- [equals](Sign.md#equals)
-- [isConstant](Sign.md#isconstant)
-- [isPositive](Sign.md#ispositive)
-- [mul](Sign.md#mul)
-- [neg](Sign.md#neg)
-- [toConstant](Sign.md#toconstant)
-- [toFields](Sign.md#tofields)
-- [toJSON](Sign.md#tojson)
-- [toString](Sign.md#tostring)
-- [check](Sign.md#check)
-- [fromFields](Sign.md#fromfields)
-- [fromJSON](Sign.md#fromjson)
-- [fromObject](Sign.md#fromobject)
-- [sizeInFields](Sign.md#sizeinfields)
-- [toAuxiliary](Sign.md#toauxiliary)
-- [toConstant](Sign.md#toconstant-1)
-- [toFields](Sign.md#tofields-1)
-- [toInput](Sign.md#toinput)
-- [toJSON](Sign.md#tojson-1)
+- [assertEquals](MerkleMapWitness.md#assertequals)
+- [computeRootAndKey](MerkleMapWitness.md#computerootandkey)
+- [equals](MerkleMapWitness.md#equals)
+- [isConstant](MerkleMapWitness.md#isconstant)
+- [toConstant](MerkleMapWitness.md#toconstant)
+- [toFields](MerkleMapWitness.md#tofields)
+- [toJSON](MerkleMapWitness.md#tojson)
+- [check](MerkleMapWitness.md#check)
+- [fromFields](MerkleMapWitness.md#fromfields)
+- [fromJSON](MerkleMapWitness.md#fromjson)
+- [fromObject](MerkleMapWitness.md#fromobject)
+- [sizeInFields](MerkleMapWitness.md#sizeinfields)
+- [toAuxiliary](MerkleMapWitness.md#toauxiliary)
+- [toConstant](MerkleMapWitness.md#toconstant-1)
+- [toFields](MerkleMapWitness.md#tofields-1)
+- [toInput](MerkleMapWitness.md#toinput)
+- [toJSON](MerkleMapWitness.md#tojson-1)
 
 ## Constructors
 
 ### constructor
 
-• **new Sign**(...`props`)
+• **new MerkleMapWitness**(`isLefts`, `siblings`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...props` | `any`[] |
+| `isLefts` | [`Bool`](Bool.md)[] |
+| `siblings` | [`Field`](Field.md)[] |
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
 
 #### Defined in
 
-[lib/circuit_value.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L64)
+[lib/merkle_map.ts:120](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_map.ts#L120)
 
 ## Properties
 
-### value
+### isLefts
 
-• **value**: [`Field`](Field.md)
-
-#### Defined in
-
-[lib/int.ts:481](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L481)
-
-## Accessors
-
-### minusOne
-
-• `Static` `get` **minusOne**(): [`Sign`](Sign.md)
-
-#### Returns
-
-[`Sign`](Sign.md)
+• **isLefts**: [`Bool`](Bool.md)[]
 
 #### Defined in
 
-[lib/int.ts:486](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L486)
+[lib/merkle_map.ts:117](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_map.ts#L117)
 
 ___
 
-### one
+### siblings
 
-• `Static` `get` **one**(): [`Sign`](Sign.md)
-
-#### Returns
-
-[`Sign`](Sign.md)
+• **siblings**: [`Field`](Field.md)[]
 
 #### Defined in
 
-[lib/int.ts:483](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L483)
+[lib/merkle_map.ts:118](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_map.ts#L118)
 
 ## Methods
 
@@ -116,7 +92,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Sign`](Sign.md) |
+| `x` | [`MerkleMapWitness`](MerkleMapWitness.md) |
 
 #### Returns
 
@@ -132,6 +108,30 @@ ___
 
 ___
 
+### computeRootAndKey
+
+▸ **computeRootAndKey**(`value`): [`Field`](Field.md)[]
+
+computes the merkle tree root for a given value and the key for this witness
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`Field`](Field.md) | The value to compute the root for. |
+
+#### Returns
+
+[`Field`](Field.md)[]
+
+A tuple of the computed merkle root, and the key that is connected to the path updated by this witness.
+
+#### Defined in
+
+[lib/merkle_map.ts:131](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_map.ts#L131)
+
+___
+
 ### equals
 
 ▸ **equals**(`x`): [`Bool`](Bool.md)
@@ -140,7 +140,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Sign`](Sign.md) |
+| `x` | [`MerkleMapWitness`](MerkleMapWitness.md) |
 
 #### Returns
 
@@ -174,61 +174,13 @@ ___
 
 ___
 
-### isPositive
-
-▸ **isPositive**(): [`Bool`](Bool.md)
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-#### Defined in
-
-[lib/int.ts:512](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L512)
-
-___
-
-### mul
-
-▸ **mul**(`y`): [`Sign`](Sign.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`Sign`](Sign.md) |
-
-#### Returns
-
-[`Sign`](Sign.md)
-
-#### Defined in
-
-[lib/int.ts:509](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L509)
-
-___
-
-### neg
-
-▸ **neg**(): [`Sign`](Sign.md)
-
-#### Returns
-
-[`Sign`](Sign.md)
-
-#### Defined in
-
-[lib/int.ts:506](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L506)
-
-___
-
 ### toConstant
 
-▸ **toConstant**(): [`Sign`](Sign.md)
+▸ **toConstant**(): [`MerkleMapWitness`](MerkleMapWitness.md)
 
 #### Returns
 
-[`Sign`](Sign.md)
+[`MerkleMapWitness`](MerkleMapWitness.md)
 
 #### Inherited from
 
@@ -276,41 +228,34 @@ ___
 
 ___
 
-### toString
-
-▸ **toString**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[lib/int.ts:515](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L515)
-
-___
-
 ### check
 
-▸ `Static` **check**(`x`): `void`
+▸ `Static` **check**<`T`\>(`this`, `v`): `void`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Sign`](Sign.md) |
+| `this` | `T` |
+| `v` | `InstanceType`<`T`\> |
 
 #### Returns
 
 `void`
 
-#### Overrides
+#### Inherited from
 
 [CircuitValue](CircuitValue.md).[check](CircuitValue.md#check)
 
 #### Defined in
 
-[lib/int.ts:489](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L489)
+[lib/circuit_value.ts:185](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L185)
 
 ___
 
@@ -347,7 +292,7 @@ ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
 
 #### Type parameters
 
@@ -359,19 +304,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | ``"Positive"`` \| ``"Negative"`` |
+| `this` | `T` |
+| `value` | `any` |
 
 #### Returns
 
 `InstanceType`<`T`\>
 
-#### Overrides
+#### Inherited from
 
 [CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
 
 #### Defined in
 
-[lib/int.ts:501](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L501)
+[lib/circuit_value.ts:218](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L218)
 
 ___
 
@@ -506,46 +452,60 @@ ___
 
 ### toInput
 
-▸ `Static` **toInput**(`x`): `HashInput`
+▸ `Static` **toInput**<`T`\>(`this`, `v`): `HashInput`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Sign`](Sign.md) |
+| `this` | `T` |
+| `v` | `InstanceType`<`T`\> |
 
 #### Returns
 
 `HashInput`
 
-#### Overrides
+#### Inherited from
 
 [CircuitValue](CircuitValue.md).[toInput](CircuitValue.md#toinput)
 
 #### Defined in
 
-[lib/int.ts:493](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L493)
+[lib/circuit_value.ts:114](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L114)
 
 ___
 
 ### toJSON
 
-▸ `Static` **toJSON**(`x`): ``"Positive"`` \| ``"Negative"``
+▸ `Static` **toJSON**<`T`\>(`this`, `v`): `any`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Sign`](Sign.md) |
+| `this` | `T` |
+| `v` | `InstanceType`<`T`\> |
 
 #### Returns
 
-``"Positive"`` \| ``"Negative"``
+`any`
 
-#### Overrides
+#### Inherited from
 
 [CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
 
 #### Defined in
 
-[lib/int.ts:496](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L496)
+[lib/circuit_value.ts:207](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L207)

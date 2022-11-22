@@ -1,8 +1,6 @@
 # Class: UInt64
 
-**`Deprecated`**
-
-`CircuitValue` is deprecated in favor of [Struct](../README.md#struct), which features a simpler API and better typing.
+A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,615.
 
 ## Hierarchy
 
@@ -82,7 +80,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:65](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L65)
+[lib/circuit_value.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L64)
 
 ## Properties
 
@@ -92,7 +90,7 @@
 
 #### Defined in
 
-[lib/int.ts:10](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L10)
+[lib/int.ts:13](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L13)
 
 ___
 
@@ -102,7 +100,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:11](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L11)
+[lib/int.ts:14](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L14)
 
 ## Accessors
 
@@ -110,13 +108,15 @@ ___
 
 • `Static` `get` **one**(): [`UInt64`](UInt64.md)
 
+Static method to create a [UInt64](UInt64.md) with value `1`.
+
 #### Returns
 
 [`UInt64`](UInt64.md)
 
 #### Defined in
 
-[lib/int.ts:17](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L17)
+[lib/int.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L25)
 
 ___
 
@@ -124,13 +124,15 @@ ___
 
 • `Static` `get` **zero**(): [`UInt64`](UInt64.md)
 
+Static method to create a [UInt64](UInt64.md) with value `0`.
+
 #### Returns
 
 [`UInt64`](UInt64.md)
 
 #### Defined in
 
-[lib/int.ts:13](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L13)
+[lib/int.ts:19](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L19)
 
 ## Methods
 
@@ -152,7 +154,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:129](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L129)
+[lib/int.ts:165](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L165)
 
 ___
 
@@ -176,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:153](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L153)
+[lib/circuit_value.ts:152](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L152)
 
 ___
 
@@ -184,6 +186,8 @@ ___
 
 ▸ **assertGt**(`y`, `message?`): `void`
 
+Asserts that a [UInt64](UInt64.md) is greater than another one.
+
 #### Parameters
 
 | Name | Type |
@@ -197,7 +201,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:179](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L179)
+[lib/int.ts:229](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L229)
 
 ___
 
@@ -205,6 +209,8 @@ ___
 
 ▸ **assertGte**(`y`, `message?`): `void`
 
+Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
+
 #### Parameters
 
 | Name | Type |
@@ -218,7 +224,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:187](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L187)
+[lib/int.ts:241](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L241)
 
 ___
 
@@ -226,6 +232,8 @@ ___
 
 ▸ **assertLt**(`y`, `message?`): `void`
 
+Asserts that a [UInt64](UInt64.md) is less than another one.
+
 #### Parameters
 
 | Name | Type |
@@ -239,7 +247,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:171](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L171)
+[lib/int.ts:217](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L217)
 
 ___
 
@@ -247,6 +255,8 @@ ___
 
 ▸ **assertLte**(`y`, `message?`): `void`
 
+Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
+
 #### Parameters
 
 | Name | Type |
@@ -260,7 +270,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:162](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L162)
+[lib/int.ts:204](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L204)
 
 ___
 
@@ -271,7 +281,7 @@ ___
 Integer division.
 
 `x.div(y)` returns the floor of `x / y`, that is, the greatest
-`z` such that `x * y <= x`.
+`z` such that `z * y <= x`.
 
 #### Parameters
 
@@ -285,13 +295,17 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:103](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L103)
+[lib/int.ts:139](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L139)
 
 ___
 
 ### divMod
 
 ▸ **divMod**(`y`): `Object`
+
+Integer division with remainder.
+
+`x.divMod(y)` returns the quotient and the remainder.
 
 #### Parameters
 
@@ -310,7 +324,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:60](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L60)
+[lib/int.ts:96](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L96)
 
 ___
 
@@ -334,7 +348,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:149](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L149)
+[lib/circuit_value.ts:148](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L148)
 
 ___
 
@@ -342,6 +356,8 @@ ___
 
 ▸ **gt**(`y`): [`Bool`](Bool.md)
 
+Checks if a [UInt64](UInt64.md) is greater than another one.
+
 #### Parameters
 
 | Name | Type |
@@ -354,7 +370,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:175](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L175)
+[lib/int.ts:223](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L223)
 
 ___
 
@@ -362,6 +378,8 @@ ___
 
 ▸ **gte**(`y`): [`Bool`](Bool.md)
 
+Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
+
 #### Parameters
 
 | Name | Type |
@@ -374,7 +392,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:183](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L183)
+[lib/int.ts:235](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L235)
 
 ___
 
@@ -392,7 +410,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:157](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L157)
+[lib/circuit_value.ts:156](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L156)
 
 ___
 
@@ -400,6 +418,8 @@ ___
 
 ▸ **lt**(`y`): [`Bool`](Bool.md)
 
+Checks if a [UInt64](UInt64.md) is less than another one.
+
 #### Parameters
 
 | Name | Type |
@@ -412,7 +432,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:167](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L167)
+[lib/int.ts:211](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L211)
 
 ___
 
@@ -420,6 +440,8 @@ ___
 
 ▸ **lte**(`y`): [`Bool`](Bool.md)
 
+Checks if a [UInt64](UInt64.md) is less than or equal to another one.
+
 #### Parameters
 
 | Name | Type |
@@ -432,7 +454,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:144](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L144)
+[lib/int.ts:183](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L183)
 
 ___
 
@@ -457,7 +479,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:113](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L113)
+[lib/int.ts:149](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L149)
 
 ___
 
@@ -479,7 +501,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:120](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L120)
+[lib/int.ts:156](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L156)
 
 ___
 
@@ -501,7 +523,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:138](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L138)
+[lib/int.ts:174](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L174)
 
 ___
 
@@ -509,13 +531,15 @@ ___
 
 ▸ **toBigInt**(): `bigint`
 
+Turns the [UInt64](UInt64.md) into a BigInt.
+
 #### Returns
 
 `bigint`
 
 #### Defined in
 
-[lib/int.ts:24](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L24)
+[lib/int.ts:39](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L39)
 
 ___
 
@@ -533,7 +557,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:145](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L145)
+[lib/circuit_value.ts:144](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L144)
 
 ___
 
@@ -551,7 +575,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L137)
+[lib/circuit_value.ts:136](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L136)
 
 ___
 
@@ -569,7 +593,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:141](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L141)
+[lib/circuit_value.ts:140](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L140)
 
 ___
 
@@ -577,13 +601,15 @@ ___
 
 ▸ **toString**(): `string`
 
+Turns the [UInt64](UInt64.md) into a string.
+
 #### Returns
 
 `string`
 
 #### Defined in
 
-[lib/int.ts:21](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L21)
+[lib/int.ts:32](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L32)
 
 ___
 
@@ -591,13 +617,15 @@ ___
 
 ▸ `Static` **MAXINT**(): [`UInt64`](UInt64.md)
 
+Creates a [UInt64](UInt64.md) with a value of 18,446,744,073,709,551,615.
+
 #### Returns
 
 [`UInt64`](UInt64.md)
 
 #### Defined in
 
-[lib/int.ts:56](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L56)
+[lib/int.ts:87](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L87)
 
 ___
 
@@ -621,7 +649,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:28](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L28)
+[lib/int.ts:43](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L43)
 
 ___
 
@@ -641,13 +669,15 @@ ___
 
 #### Defined in
 
-[lib/int.ts:39](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L39)
+[lib/int.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L64)
 
 ___
 
 ### from
 
 ▸ `Static` **from**(`x`): [`UInt64`](UInt64.md)
+
+Creates a new [UInt64](UInt64.md).
 
 #### Parameters
 
@@ -661,7 +691,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:51](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L51)
+[lib/int.ts:79](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L79)
 
 ___
 
@@ -692,13 +722,15 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:161](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L161)
+[lib/circuit_value.ts:160](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L160)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`this`, `value`): ``null`` \| `InstanceType`<`T`\>
+▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+
+Decodes a JSON-like object into this structure.
 
 #### Type parameters
 
@@ -710,20 +742,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `this` | `T` |
-| `value` | `any` |
+| `x` | `string` |
 
 #### Returns
 
-``null`` \| `InstanceType`<`T`\>
+`InstanceType`<`T`\>
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
 
 #### Defined in
 
-[lib/circuit_value.ts:219](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L219)
+[lib/int.ts:60](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L60)
 
 ___
 
@@ -754,7 +785,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:82](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L82)
+[lib/circuit_value.ts:81](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L81)
 
 ___
 
@@ -772,7 +803,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:88](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L88)
 
 ___
 
@@ -790,7 +821,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:110](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L110)
 
 ___
 
@@ -821,7 +852,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:200](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L200)
+[lib/circuit_value.ts:199](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L199)
 
 ___
 
@@ -852,7 +883,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/circuit_value.ts#L94)
+[lib/circuit_value.ts:93](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L93)
 
 ___
 
@@ -876,13 +907,15 @@ ___
 
 #### Defined in
 
-[lib/int.ts:32](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L32)
+[lib/int.ts:47](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L47)
 
 ___
 
 ### toJSON
 
 ▸ `Static` **toJSON**(`x`): `string`
+
+Encodes this structure into a JSON-like object.
 
 #### Parameters
 
@@ -900,4 +933,4 @@ ___
 
 #### Defined in
 
-[lib/int.ts:35](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/int.ts#L35)
+[lib/int.ts:53](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L53)
