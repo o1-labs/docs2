@@ -38,21 +38,22 @@
 | `accountUpdates` | [`AccountUpdate`](../classes/AccountUpdate.md)[] |
 | `fetchMode` | `FetchMode` |
 | `isFinalRunOutsideCircuit` | `boolean` |
+| `numberOfRuns` | ``0`` \| ``1`` \| `undefined` |
 | `sender?` | [`PublicKey`](../classes/Types.PublicKey.md) |
 
 #### Defined in
 
-[lib/mina.ts:65](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L65)
+[lib/mina.ts:70](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L70)
 
 ___
 
 ### FeePayerSpec
 
-Ƭ **FeePayerSpec**: [`PrivateKey`](../classes/PrivateKey.md) \| { `fee?`: `number` \| `string` \| [`UInt64`](../classes/UInt64.md) ; `feePayerKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `memo?`: `string`  } \| `undefined`
+Ƭ **FeePayerSpec**: [`PrivateKey`](../classes/PrivateKey.md) \| { `fee?`: `number` \| `string` \| [`UInt64`](../classes/UInt64.md) ; `feePayerKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `memo?`: `string` ; `nonce?`: `number`  } \| `undefined`
 
 #### Defined in
 
-[lib/mina.ts:74](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L74)
+[lib/mina.ts:80](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L80)
 
 ## Functions
 
@@ -72,13 +73,13 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:581](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L581)
+[lib/mina.ts:635](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L635)
 
 ___
 
 ### LocalBlockchain
 
-▸ **LocalBlockchain**(`__namedParameters?`): `MockMina`
+▸ **LocalBlockchain**(`__namedParameters?`): `Object`
 
 A mock Mina blockchain running locally and useful for testing.
 
@@ -88,14 +89,36 @@ A mock Mina blockchain running locally and useful for testing.
 | :------ | :------ |
 | `__namedParameters` | `Object` |
 | `__namedParameters.accountCreationFee` | `undefined` \| `string` \| `number` |
+| `__namedParameters.proofsEnabled` | `undefined` \| `boolean` |
 
 #### Returns
 
-`MockMina`
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `accountCreationFee` | () => [`UInt64`](../classes/UInt64.md) |
+| `addAccount` | (`pk`: [`PublicKey`](../classes/Types.PublicKey.md), `balance`: `string`) => `void` |
+| `testAccounts` | { `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }[] |
+| `applyJsonTransaction` | (`json`: `string`) => `Account`[] |
+| `currentSlot` | () => [`UInt32`](../classes/UInt32.md) |
+| `fetchEvents` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `Promise`<`any`[]\> |
+| `getAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `Account` |
+| `getActions` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => { `actions`: `string`[][] ; `hash`: `string`  }[] |
+| `getNetworkState` | () => `PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `timestamp`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\> |
+| `hasAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `boolean` |
+| `incrementGlobalSlot` | (`increment`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
+| `sendTransaction` | (`txn`: `Transaction`) => `Promise`<{ `hash`: () => `string` ; `wait`: () => `Promise`<`void`\>  }\> |
+| `setBlockchainLength` | (`height`: [`UInt32`](../classes/UInt32.md)) => `void` |
+| `setGlobalSlot` | (`slot`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
+| `setProofsEnabled` | (`newProofsEnabled`: `boolean`) => `void` |
+| `setTimestamp` | (`ms`: [`UInt64`](../classes/UInt64.md)) => `void` |
+| `setTotalCurrency` | (`currency`: [`UInt64`](../classes/UInt64.md)) => `void` |
+| `transaction` | (`sender`: [`FeePayerSpec`](Mina.md#feepayerspec), `f`: () => `void`) => `Promise`<`Transaction`\> |
 
 #### Defined in
 
-[lib/mina.ts:235](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L235)
+[lib/mina.ts:256](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L256)
 
 ___
 
@@ -109,13 +132,13 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:719](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L719)
+[lib/mina.ts:773](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L773)
 
 ___
 
 ### createTransaction
 
-▸ **createTransaction**(`feePayer`, `f`, `__namedParameters?`): `Transaction`
+▸ **createTransaction**(`feePayer`, `f`, `numberOfRuns`, `__namedParameters?`): `Transaction`
 
 #### Parameters
 
@@ -123,9 +146,11 @@ ___
 | :------ | :------ |
 | `feePayer` | [`FeePayerSpec`](Mina.md#feepayerspec) |
 | `f` | () => `unknown` |
+| `numberOfRuns` | `undefined` \| ``0`` \| ``1`` |
 | `__namedParameters` | `Object` |
 | `__namedParameters.fetchMode` | `undefined` \| `FetchMode` |
 | `__namedParameters.isFinalRunOutsideCircuit` | `undefined` \| `boolean` |
+| `__namedParameters.proofsEnabled` | `undefined` \| `boolean` |
 
 #### Returns
 
@@ -133,7 +158,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:87](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L87)
+[lib/mina.ts:98](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L98)
 
 ___
 
@@ -149,7 +174,7 @@ The current slot number, according to the active Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:690](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L690)
+[lib/mina.ts:744](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L744)
 
 ___
 
@@ -163,7 +188,7 @@ ___
 
 #### Defined in
 
-[lib/global-context.ts:6](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/global-context.ts#L6)
+[lib/global-context.ts:6](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/global-context.ts#L6)
 
 ___
 
@@ -186,7 +211,7 @@ A list of emitted events associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:730](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L730)
+[lib/mina.ts:784](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L784)
 
 ___
 
@@ -209,7 +234,7 @@ The account data associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:697](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L697)
+[lib/mina.ts:751](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L751)
 
 ___
 
@@ -232,7 +257,7 @@ A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:737](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L737)
+[lib/mina.ts:791](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L791)
 
 ___
 
@@ -255,7 +280,7 @@ The balance associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:715](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L715)
+[lib/mina.ts:769](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L769)
 
 ___
 
@@ -271,7 +296,7 @@ Data associated with the current state of the Mina network.
 
 #### Defined in
 
-[lib/mina.ts:708](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L708)
+[lib/mina.ts:762](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L762)
 
 ___
 
@@ -292,13 +317,13 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:701](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L701)
+[lib/mina.ts:755](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L755)
 
 ___
 
 ### sendTransaction
 
-▸ **sendTransaction**(`txn`): `TransactionId`
+▸ **sendTransaction**(`txn`): `Promise`<`TransactionId`\>
 
 #### Parameters
 
@@ -308,11 +333,11 @@ ___
 
 #### Returns
 
-`TransactionId`
+`Promise`<`TransactionId`\>
 
 #### Defined in
 
-[lib/mina.ts:723](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L723)
+[lib/mina.ts:777](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L777)
 
 ___
 
@@ -334,7 +359,7 @@ Set the currently used Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:652](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L652)
+[lib/mina.ts:706](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L706)
 
 ___
 
@@ -366,7 +391,7 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:669](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L669)
+[lib/mina.ts:723](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L723)
 
 ▸ **transaction**(`sender`, `f`): `Promise`<`Transaction`\>
 
@@ -383,4 +408,4 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:670](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/mina.ts#L670)
+[lib/mina.ts:724](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/mina.ts#L724)

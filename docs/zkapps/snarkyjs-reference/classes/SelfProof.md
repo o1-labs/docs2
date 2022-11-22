@@ -61,7 +61,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:94](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L94)
+[lib/proof_system.ts:97](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L97)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:64](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L64)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L59)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L62)
 
 ___
 
@@ -117,13 +117,13 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:65](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L65)
 
 ___
 
 ### publicInputType
 
-▪ `Static` **publicInputType**: [`AsFieldElements`](../interfaces/AsFieldElements.md)<`any`\>
+▪ `Static` **publicInputType**: [`ProvablePure`](../interfaces/ProvablePure.md)<`any`\>
 
 #### Inherited from
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:52](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L52)
+[lib/proof_system.ts:55](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L55)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:53](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L53)
+[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L56)
 
 ## Methods
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:70](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L70)
+[lib/proof_system.ts:73](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L73)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:64](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L64)
+[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L67)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L67)
+[lib/proof_system.ts:70](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L70)
 
 ___
 
@@ -248,4 +248,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:79](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/proof_system.ts#L79)
+[lib/proof_system.ts:82](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/proof_system.ts#L82)

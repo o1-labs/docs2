@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[lib/account_update.ts:567](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L567)
+[lib/account_update.ts:611](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L611)
 
 ## Properties
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[lib/account_update.ts:553](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L553)
+[lib/account_update.ts:597](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L597)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:554](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L554)
+[lib/account_update.ts:598](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L598)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:555](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L555)
+[lib/account_update.ts:599](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L599)
 
 ___
 
@@ -77,17 +77,18 @@ ___
 | :------ | :------ |
 | `check` | (`x`: [`Field`](Field.md)) => `void` |
 | `default` | [`Field`](Field.md) |
-| `ofFields` | (`x`: [`Field`](Field.md)[]) => [`Field`](Field.md) |
+| `fromFields` | (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => [`Field`](Field.md) |
+| `toAuxiliary` | (`x?`: [`Field`](Field.md)) => `any`[] |
 | `toFields` | (`x`: [`Field`](Field.md)) => [`Field`](Field.md)[] |
 | `toInput` | (`x`: [`Field`](Field.md)) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](Field.md)) => `JSONValue` |
 | `fromBase58` | (`base58`: `string`) => [`Field`](Field.md) |
 | `sizeInFields` | () => `number` |
 | `toBase58` | (`field`: [`Field`](Field.md)) => `string` |
+| `toJSON` | (`x`: [`Field`](Field.md)) => `string` |
 
 #### Defined in
 
-[lib/account_update.ts:557](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L557)
+[lib/account_update.ts:601](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L601)
 
 ## Methods
 
@@ -108,4 +109,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:559](https://github.com/o1-labs/snarkyjs/blob/97ce1bc/src/lib/account_update.ts#L559)
+[lib/account_update.ts:603](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/lib/account_update.ts#L603)
