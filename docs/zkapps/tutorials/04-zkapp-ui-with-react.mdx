@@ -58,17 +58,19 @@ On the prompts that appear, select:
 2. Do you want to setup your project for GitHub pages? `yes`
 
 This will create a new project with two folders instead of just one:
-* `contract`: This stores your smart contract code
+* `contracts`: This stores your smart contract code
 * `ui`: This is where you will write your ui
 
 We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
 
-To do this, enter the contract folder, and run 
+To do this, enter the `contracts` folder, and run the build command:
+
 ```sh
-npm run build
+$ cd contracts/
+$ npm run build
 ```
 
-In making your own zkApp, you will need to edit the contract folder, and rebuild before accessing it from your UI.
+In making your own zkApp, you will need to edit files in the `contracts` folder, and rebuild before accessing it from your UI.
 
 ## Implementing the UI
 
@@ -86,7 +88,7 @@ Download these files from [here](https://raw.githubusercontent.com/es92/zkApp-ex
 
 ### globals.css
 
-We will be using an `<a>` link in our application - add the following to the end of `styles/globals.css` to style the link:
+We will be using an `<a>` link in our application - add the following to the end of `ui/styles/globals.css` to style the link:
 ```css
 a {
   color: blue;
@@ -95,7 +97,7 @@ a {
 
 ### Running the react app
 
-To run the react app, open up two new terminals. In one, type:
+To run the react app, open up two new terminals in the `ui` folder. In one, type:
 ```sh
 npm run dev
 ```
