@@ -36,15 +36,6 @@ Like in tutorial 3, we will provide a couple of helper files, so we can focus on
 
 This example uses an RPC endpoint. An in-browser Mina node is in the works, which will provide full node level security to your users, in the browser.
 
-:::info
-
-This project requires the latest version of [Auro](https://www.aurowallet.com/) (>= 2.1.2). This version is currently under review at the chrome app store at the time this tutorial was last updated, and will probably be on the chrome store by the time you are reading this.
-
-However if the chrome store hasn't been updated yet, Auro 2.1.2 can be found [here](https://github.com/aurowallet/auro-wallet-browser-extension/releases/), with instructions to install on chrome [here](https://superuser.com/questions/247651/how-does-one-install-an-extension-for-chrome-browser-from-the-local-file-system).
-
-
-:::
-
 ## Project setup
 
 First, setup a new project with
@@ -55,26 +46,28 @@ zk project 04-zkapp-browser-ui --ui next
 
 On the prompts that appear, select:
 1. Do you want your NextJS project to use TypeScript? `yes`
-2. Do you want to setup your project for github pages? `yes`
+2. Do you want to setup your project for GitHub pages? `yes`
 
 This will create a new project with two folders instead of just one:
-* `contract`: This stores your smart contract code
+* `contracts`: This stores your smart contract code
 * `ui`: This is where you will write your ui
 
 We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
 
-To do this, enter the contract folder, and run 
+To do this, enter the `contracts` folder, and run the build command:
+
 ```sh
-npm run build
+$ cd contracts/
+$ npm run build
 ```
 
-In making your own zkApp, you will need to edit the contract folder, and rebuild before accessing it from your UI.
+In making your own zkApp, you will need to edit files in the `contracts` folder, and rebuild before accessing it from your UI.
 
 ## Implementing the UI
 
 Our React UI will have a few components. First, there is the react page itself. In addition though, there is code that uses SnarkyJS.
 
-Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a webworkers. 
+Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a web worker. 
 
 This will be implemented via 2 helper files:
 * `zkappWorker.ts`: The web worker code itself
@@ -86,7 +79,7 @@ Download these files from [here](https://raw.githubusercontent.com/es92/zkApp-ex
 
 ### globals.css
 
-We will be using an `<a>` link in our application - add the following to the end of `styles/globals.css` to style the link:
+We will be using an `<a>` link in our application - add the following to the end of `ui/styles/globals.css` to style the link:
 ```css
 a {
   color: blue;
@@ -95,7 +88,7 @@ a {
 
 ### Running the react app
 
-To run the react app, open up two new terminals. In one, type:
+To run the react app, open up two new terminals in the `ui` folder. In one, type:
 ```sh
 npm run dev
 ```
@@ -191,7 +184,7 @@ Next, we'll add a function to setup our application:
 
 We use the react feature "useEffect", so that this is only run once. See more on useEffect [here](https://reactjs.org/docs/hooks-effect.html). We further gate running this effect by a boolean `hasBeenSetup` so we don't run this more than once.
 
-This is also where we setup our web worker client. This will interact with our web worker running snarkyjs code, so that that code doesn't block the UI thread.
+This is also where we setup our web worker client. This will interact with our web worker running SnarkyJS code, so that that code doesn't block the UI thread.
 
 ```ts
 ...
@@ -267,7 +260,7 @@ And lastly for this function, we update the state of the react app:
 
 Now that we have finished setting up our UI, we write a new effect, that waits for the account to exist, if it didn't exist before. 
 
-If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later a link to request funds for users to request funds while that account does not exist.
+If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later a link to request funds for new accounts.
 
 ```ts
 ...
@@ -402,7 +395,7 @@ Lastly, we will update the `return <div/>` placeholder we originally inserted, w
 
 We divide our UI into 3 sections:
 
-* `setup` lets the user know when the zkapp has finished loading.
+* `setup` lets the user know when the zkApp has finished loading.
 * `accountDoesNotExist` gives the user a link to the faucet if their account hasn't been funded.
 * `mainContent` shows the current state of the zkApp, and buttons to interact with it.
 
@@ -422,8 +415,8 @@ https://<username>.github.io/<repo-name>/index.html
 ```
 
 ## Conclusion
-We have built a React UI for our zkApp, to allow users to interact with your smart contract and send transactions to Berkeley Testnet!
+We have built a React UI for our zkApp, to allow users to interact with our smart contract and send transactions to Berkeley Testnet!
 
-You can build a UI for your application using any UI framework, not just React. The zkApp CLI will also soon provide support for simultaneously creating SvelteKit and NuxtJS projects to--stay tuned!
+You can build a UI for your application using any UI framework, not just React. The zkApp CLI will also soon provide support for simultaneously creating SvelteKit and NuxtJS projects too - stay tuned!
 
 Checkout [Tutorial 5](common-types-and-functions) to learn about different SnarkyJS types you can use in your application.
