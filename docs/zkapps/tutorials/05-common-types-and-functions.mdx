@@ -1,7 +1,7 @@
 ---
-title: 'Common Types and Functions'
+title: 'Tutorial 5: Common Types and Functions'
 hide_title: true
-sidebar_label: 'Common Types and Functions'
+sidebar_label: 'Tutorial 5: Common Types and Functions'
 ---
 
 :::info
@@ -11,11 +11,11 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
-# Common Types and Functions
+# Tutorial 5: Common Types and Functions
 
 In previous tutorials, we've seen how to deploy smart contracts to the network, and we've interacted with them from both a React UI and NodeJS.
 
-In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development
+In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development.
 
 You can find all of these on the [SnarkyJS Reference page](../snarkyjs-reference), for their full API documentation.
 
@@ -242,7 +242,7 @@ inputSumAbs: 5
 largest: 22
 ```
 
-By inserting function calls, you can write circuits which usual if / else statements:
+By inserting function calls, you can write circuits which look like usual if / else statements:
 
 ```ts
 const result = Circuit.if(
@@ -260,15 +260,25 @@ const result = Circuit.if(
 
 Note that unlike normal programming, because SnarkyJS under the hood is creating a zk cirucit, this is in fact executing both branches and selecting the one that matches the condition.
 
-## Assertions
+## Assertions and Constraints
 
-We've been using assertions throughout these tutorials already - but to clarify what they're doing, assertions are creating constraints in our circuit, that must hold true for a valid proof to be generated.
+SnarkyJS functions are compiled to generate circuits.
 
-Besides the `a.assertEquals(b)` we've often used, there is also `.assertTrue()` available on the Bool class.
+When a transaction is proven in SnarkyJS, SnarkyJS is proving that the program logic is computed according to the written program, and all assertions are holding true.
+
+We've seen assertions already, with `a.assertEquals(b)`, which we've often used. There is also `.assertTrue()` available on the Bool class.
+
+Circuits in SnarkyJS currently have a fixed maximum size. Each operation performed in a function counts towards this maximum size. This maximum size is currently equivalent to the following:
+* about 5,200 hashes on two fields
+* about 2,600 hashes on four fields
+* about `2^17` field multiplies
+* about `2^17` field additions
+
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion).
 
 ## Merkle Trees
 
-Next, let's go over an example using [merkle trees](../snarkyjs-reference/classes/MerkleTree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/main.ts).
+Lastly, let's go over an example using [merkle trees](../snarkyjs-reference/classes/MerkleTree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/es92/zkApp-examples/blob/main/05-common-types-and-functions/src/main.ts).
 
 Start off by importing `MerkleTree`:
 
@@ -280,7 +290,7 @@ import {
 } from 'snarkyjs'
 ```
 
-Merkle Trees can be created in your application as so:
+Merkle Trees can be created in your application like so:
 
 ```ts
 const height = 20;
@@ -339,10 +349,10 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
   AccountUpdate.fundNewAccount(deployerAccount);
   zkapp.deploy({ zkappKey: basicTreeZkAppPrivateKey });
   // get the root of the new tree to use as the initial tree root
-  zkapp.init(tree.getRoot());
+  zkapp.initState(tree.getRoot());
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await deployTxn.send().wait();
+await deployTxn.send();
 
 const incrementIndex = 522n;
 const incrementAmount = Field(9);
@@ -362,7 +372,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
   );
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await txn1.send().wait();
+await txn1.send();
 
 // compare the root of the smart contract tree to our local tree
 console.log(
@@ -468,6 +478,6 @@ MerkeMaps can be used to implement many useful patterns. For example:
 
 ## Conclusion
 
-Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, should you now be capable of writing many advanced smart contracts and zkApps.
+Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, you should now be capable of writing many advanced smart contracts and zkApps.
 
-Checkout out our other tutorials to keep going!
+Checkout [Tutorial 6](offchain-storage) to learn how to use off-chain storage, to use more data from your zkApp.

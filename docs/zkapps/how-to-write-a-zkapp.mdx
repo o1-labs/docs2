@@ -126,9 +126,12 @@ new Bool(x);   // accepts true or false
 new Field(x);  // accepts an integer, or a numeric string if you want to represent a number greater than JavaScript can represent but within the max value that a field can store.
 new UInt64(x); // accepts a Field - useful for constraining numbers to 64 bits
 new UInt32(x); // accepts a Field - useful for constraining numbers to 32 bits
+
 PrivateKey, PublicKey, Signature; // useful for accounts and signing
 new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
 Scalar; // the corresponding scalar field (different than Field)
+
+CircuitString.from('some string'); // string of max length 128
 ```
 
 In the case of `Field` and `Bool`, you can also call the constructor without `new`:
@@ -137,12 +140,6 @@ In the case of `Field` and `Bool`, you can also call the constructor without `ne
 let x = Field(10);
 let b = Bool(true);
 ```
-
-:::info
-
-Support for strings within SnarkyJS will be available soon.
-
-:::
 
 ##### Conditionals
 
@@ -198,7 +195,7 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [snarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Smart Contract
 
@@ -241,7 +238,7 @@ with the smart contract.
 
 ##### Methods
 
-Interaction with a smart contract happens by calling on or more of its _methods_. You declare methods using the `@method` decorator:
+Interaction with a smart contract happens by calling one or more of its _methods_. You declare methods using the `@method` decorator:
 
 ```ts
 class HelloWorld extends SmartContract {
@@ -280,6 +277,28 @@ One more note about private inputs: The method above has one input parameter, `x
 
 Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof will only be accepted on the network if it verifies against the verification key stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device -- thus, the account updates conform to the smart contract's rules.
 
+:::
+
+<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thourough explanation of what this tip hints at -->
+
+:::tip
+
+You will find that inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
+
+```ts
+console.log(x.toString()); // don't do this inside a `@method`! 😬
+```
+
+This doesn't work because, when we compile the SmartContract into prover and verification keys, we will run your method in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` which are used to build up abstract computations like `x^2 + y^2`, just by running your method code.
+
+Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, it will blow up because such a value can't be found. On the other hand, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"); and it makes perfect sense to want to log these values for debugging.
+This is why we have a special function for logging stuff from inside your method:
+
+```ts
+Circuit.log(x);
+```
+
+The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
 :::
 
 ##### On-chain state
@@ -450,35 +469,31 @@ If this is the case, we add 1 to the secret and set `x` to the hash of that.
 
 When running this successfully, it just proves that the code was run with _some_ input `secret` whose hash is `x`,
 and that the new `x` will be set to `hash(secret + 1)`.
-However, the secret itself remains private, because it can't be deduced from it's hash.
+However, the secret itself remains private, because it can't be deduced from its hash.
 
 ##### Initializing state
 
-We didn't cover how to initialize on-chain state yet. This can be done in the `deploy()` method.
+We didn't cover how to initialize on-chain state yet. This can be done in the `init()` method.
 
-Like the constructor, `deploy()` is predefined on the base `SmartContract` class.
-It will be called when you deploy your zkApp with the zkApp CLI.
+Like the constructor, `init()` is predefined on the base `SmartContract` class.
+It will be called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
 You can override this method to add initialization of your on-chain state:
 
 ```ts
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  init() {
+    super.init();
     this.x.set(Field(10)); // initial state
   }
 }
 ```
 
-Note that we have to pass the arguments on to `super.deploy()`, which runs the default deploy logic. So, this line is required:
+Note that we have to call `super.init()`, which sets your entire state to 0.
 
-```ts
-super.deploy(args);
-```
-
-If you don't need to add anything else to `deploy`, there's no need to override it, just leave it out.
-In the example above however, we are setting our state `x` to `Field(10)`. Uninitialized values will be zero.
+If you don't have any state to initialize to values other than 0, then there's no need to override `init()`, you can just leave it out.
+In the example above however, we are setting our state `x` to `Field(10)`.
 
 ##### Custom data types
 
@@ -486,8 +501,8 @@ As mentioned previously, smart contract method arguments can be any of the built
 
 However, what if you want to define your own data type?
 
-You can create a custom data type for your smart contract using the `Struct` class that SnarkyJS exposes. To do this, create a class that extends `Struct`.
-Then, inside the class, define the fields that you want to use in your custom data type.
+You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
+Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
 For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
 You can create a such a Point class by creating a new class that extends the `Struct` class:
@@ -499,7 +514,7 @@ class Point extends Struct({
 }) {}
 ```
 
-Now that you have defined your circuit Struct, you can use it in your smart contract for any SnarkyJS built-in types.
+Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
 
 For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
 
