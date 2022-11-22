@@ -387,6 +387,95 @@ While in this example leaves are fields, you can put more variables in a leaf by
 
 You can find this complete example in the [project directory](https://github.com/es92/zkApp-examples/tree/main/05-common-types-and-functions/src), as well as a more advanced example `LedgerContract`, which implements a basic ledger of tokens, including checks that the sender has signed their transaction and that the amount the sender has sent matches the amount the receiver receives.
 
+## Merkle Map
+
+Lastly, let's go over an example using [merkle maps](../snarkyjs-reference/classes/MerkleMap). These allow us to implement key value stores.
+
+The API for Merkle Maps is similar to Merkle Trees, just instead of using an index to set a leaf, one uses a key:
+
+```ts
+const map = new MerkleMap();
+
+const key = Field(100);
+const value = Field(50);
+
+map.set(key, value);
+
+console.log('value for key', key.toString() + ':', map.get(key));
+```
+
+Which prints:
+
+```
+value for key 100: 50
+```
+
+It can be used inside smart contracts with a witness, similar to merkle trees
+
+```ts
+...
+  @state(Field) mapRoot = State<Field>();
+...
+  @method init(initialRoot: Field) {
+    this.mapRoot.set(initialRoot);
+  }
+  @method update(
+    keyWitness: MerkleMapWitness,
+    keyToChange: Field,
+    valueBefore: Field,
+    incrementAmount: Field,
+  ) {
+    const initialRoot = this.mapRoot.get();
+    this.mapRoot.assertEquals(initialRoot);
+
+    incrementAmount.assertLt(Field(10));
+
+    // check the initial state matches what we expect
+    const [ rootBefore, key ] = mapWitness.computeRootAndKey(valueBefore);
+    rootBefore.assertEquals(initialRoot);
+
+    key.assertEquals(keyToChange);
+
+    // compute the root after incrementing
+    const [ rootAfter, _ ] = mapWitness.computeRootAndKey(valueBefore.add(incrementAmount));
+
+    // set the new root
+    this.treeRoot.set(rootAfter);
+  }
+```
+
+With (abbreviated) code to interact with it, similar to the merkle tree example above:
+
+```ts
+const map = new MerkleMap();
+
+const rootBefore = map.getRoot();
+
+const key = Field(100);
+
+const witness = map.getWitness(key);
+
+map.set(key, value);
+...
+// update the smart contract
+const txn1 = await Mina.transaction(deployerAccount, () => {
+  zkapp.update(
+    contract.update(
+      witness,
+      key,
+      Field(0), //values start in state zero
+      Field(5)
+    );
+  );
+});
+...
+```
+
+MerkeMaps can be used to implement many useful patterns. For example:
+
+- A key value store from public keys to booleans, of token accounts to whether they've participated in a voted yet.
+- A nullifier that privately tracks if an input was used, without revealing it.
+
 ## Conclusion
 
 Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, you should now be capable of writing many advanced smart contracts and zkApps.
