@@ -15,7 +15,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 In previous tutorials, we've seen how to deploy smart contracts to the network, and we've interacted with them from both a React UI and NodeJS.
 
-In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development
+In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development.
 
 You can find all of these on the [SnarkyJS Reference page](../snarkyjs-reference), for their full API documentation.
 
@@ -266,7 +266,7 @@ SnarkyJS functions are compiled to generate circuits.
 
 When a transaction is proven in SnarkyJS, SnarkyJS is proving that the program logic is computed according to the written program, and all assertions are holding true.
 
-We've seen assertions already, with `a.assertEquals(b)` we've often used, there is also `.assertTrue()` available on the Bool class.
+We've seen assertions already, with `a.assertEquals(b)`, which we've often used. There is also `.assertTrue()` available on the Bool class.
 
 Circuits in SnarkyJS currently have a fixed maximum size. Each operation performed in a function counts towards this maximum size. This maximum size is currently equivalent to the following:
 * about 5,200 hashes on two fields
@@ -274,7 +274,7 @@ Circuits in SnarkyJS currently have a fixed maximum size. Each operation perform
 * about `2^17` field multiplies
 * about `2^17` field additions
 
-If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verfications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion);
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion).
 
 ## Merkle Trees
 
