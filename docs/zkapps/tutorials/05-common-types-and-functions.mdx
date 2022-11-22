@@ -379,12 +379,12 @@ You can find this complete example in the [project directory](https://github.com
 
 ## Merkle Map
 
-Lastly, let's go over an example using [merkle maps](../snarkyjs-reference/modules/Experimental#merklemap). These allow us to implement key value stores.
+Lastly, let's go over an example using [merkle maps](../snarkyjs-reference/classes/MerkleMap). These allow us to implement key value stores.
 
 The API for Merkle Maps is similar to Merkle Trees, just instead of using an index to set a leaf, one uses a key:
 
 ```ts
-const map = new Experimental.MerkleMap();
+const map = new MerkleMap();
 
 const key = Field(100);
 const value = Field(50);
@@ -410,7 +410,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
     this.mapRoot.set(initialRoot);
   }
   @method update(
-    keyWitness: Experimental.MerkleMapWitness,
+    keyWitness: MerkleMapWitness,
     keyToChange: Field,
     valueBefore: Field,
     incrementAmount: Field,
@@ -437,7 +437,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 With (abbreviated) code to interact with it, similar to the merkle tree example above:
 
 ```ts
-const map = new Experimental.MerkleMap();
+const map = new MerkleMap();
 
 const rootBefore = map.getRoot();
 
