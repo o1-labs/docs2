@@ -54,7 +54,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:768](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L768)
+[snarky.d.ts:774](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L774)
 
 ___
 
@@ -77,7 +77,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:786](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L786)
+[snarky.d.ts:792](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L792)
 
 ___
 
@@ -100,7 +100,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:780](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L780)
+[snarky.d.ts:786](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L786)
 
 ___
 
@@ -117,7 +117,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:762](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L762)
+[snarky.d.ts:768](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L768)
 
 ___
 
@@ -140,7 +140,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:774](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L774)
+[snarky.d.ts:780](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L780)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:756](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L756)
+[snarky.d.ts:762](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L762)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:788](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L788)
+[snarky.d.ts:794](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L794)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:825](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L825)
+[snarky.d.ts:831](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L831)
 
 ___
 
@@ -216,7 +216,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[snarky.d.ts:809](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L809)
+[snarky.d.ts:815](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L815)
 
 ___
 
@@ -238,7 +238,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:801](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L801)
+[snarky.d.ts:807](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L807)
 
 ___
 
@@ -261,7 +261,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:824](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L824)
+[snarky.d.ts:830](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L830)
 
 ___
 
@@ -278,7 +278,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[snarky.d.ts:814](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L814)
+[snarky.d.ts:820](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L820)
 
 ___
 
@@ -294,7 +294,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:805](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L805)
+[snarky.d.ts:811](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L811)
 
 ___
 
@@ -316,7 +316,7 @@ Static method to serialize a [Scalar](Scalar.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:797](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L797)
+[snarky.d.ts:803](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L803)
 
 ___
 
@@ -338,7 +338,7 @@ Static method to serialize a [Scalar](Scalar.md) into an array of [Field](Field.
 
 #### Defined in
 
-[snarky.d.ts:793](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L793)
+[snarky.d.ts:799](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L799)
 
 ___
 
@@ -361,4 +361,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:819](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L819)
+[snarky.d.ts:825](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L825)

@@ -61,7 +61,7 @@ The [Circuit](Circuit.md) API is a low level interface to interact and build cir
 
 #### Defined in
 
-[snarky.d.ts:641](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L641)
+[snarky.d.ts:647](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L647)
 
 ___
 
@@ -87,7 +87,7 @@ Adds a constraint to the circuit.
 
 #### Defined in
 
-[snarky.d.ts:606](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L606)
+[snarky.d.ts:612](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L612)
 
 ▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
 
@@ -107,7 +107,7 @@ Adds a constraint to the circuit.
 
 #### Defined in
 
-[snarky.d.ts:613](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L613)
+[snarky.d.ts:619](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L619)
 
 ▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
 
@@ -127,7 +127,7 @@ Adds a constraint to the circuit.
 
 #### Defined in
 
-[snarky.d.ts:620](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L620)
+[snarky.d.ts:626](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L626)
 
 ▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
 
@@ -147,7 +147,7 @@ Adds a constraint to the circuit.
 
 #### Defined in
 
-[snarky.d.ts:627](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L627)
+[snarky.d.ts:633](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L633)
 
 ___
 
@@ -176,7 +176,7 @@ Creates a generic [Provable](../interfaces/Provable.md) array^.
 
 #### Defined in
 
-[snarky.d.ts:669](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L669)
+[snarky.d.ts:675](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L675)
 
 ___
 
@@ -198,7 +198,7 @@ Runs code as a prover.
 
 #### Defined in
 
-[snarky.d.ts:650](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L650)
+[snarky.d.ts:656](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L656)
 
 ___
 
@@ -229,7 +229,7 @@ Asserts that two values are equal.
 
 #### Defined in
 
-[snarky.d.ts:674](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L674)
+[snarky.d.ts:680](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L680)
 
 ▸ `Static` **assertEqual**<`T`\>(`x`, `y`): `void`
 
@@ -254,7 +254,7 @@ Asserts that two values are equal.
 
 #### Defined in
 
-[snarky.d.ts:679](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L679)
+[snarky.d.ts:685](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L685)
 
 ___
 
@@ -288,7 +288,7 @@ Returns information about the constraint system in the callback function.
 
 #### Defined in
 
-[snarky.d.ts:660](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L660)
+[snarky.d.ts:666](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L666)
 
 ___
 
@@ -319,7 +319,7 @@ Checks if two elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:684](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L684)
+[snarky.d.ts:690](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L690)
 
 ▸ `Static` **equal**<`T`\>(`x`, `y`): [`Bool`](Bool.md)
 
@@ -344,7 +344,7 @@ Checks if two elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:689](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L689)
+[snarky.d.ts:695](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L695)
 
 ___
 
@@ -360,7 +360,7 @@ Generates a proving key and a verification key for this circuit.
 
 #### Defined in
 
-[snarky.d.ts:719](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L719)
+[snarky.d.ts:725](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L725)
 
 ___
 
@@ -391,7 +391,7 @@ Circuit-compatible if-statement.
 
 #### Defined in
 
-[snarky.d.ts:694](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L694)
+[snarky.d.ts:700](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L700)
 
 ▸ `Static` **if**<`T`\>(`b`, `x`, `y`): `T`
 
@@ -417,7 +417,7 @@ Circuit-compatible if-statement.
 
 #### Defined in
 
-[snarky.d.ts:698](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L698)
+[snarky.d.ts:704](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L704)
 
 ___
 
@@ -433,7 +433,7 @@ Checks if the circuit is in checked computation mode.
 
 #### Defined in
 
-[snarky.d.ts:744](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L744)
+[snarky.d.ts:750](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L750)
 
 ___
 
@@ -449,7 +449,7 @@ Checks if the circuit is in prover mode.
 
 #### Defined in
 
-[snarky.d.ts:739](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L739)
+[snarky.d.ts:745](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L745)
 
 ___
 
@@ -471,7 +471,7 @@ Interface to log elements within a circuit. Similar to `Console.log()`.
 
 #### Defined in
 
-[snarky.d.ts:749](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L749)
+[snarky.d.ts:755](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L755)
 
 ___
 
@@ -493,7 +493,7 @@ Creates a new variable inside the circuit.
 
 #### Defined in
 
-[snarky.d.ts:638](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L638)
+[snarky.d.ts:644](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L644)
 
 ___
 
@@ -517,7 +517,7 @@ Proves a statement using the private input, public input and the [Keypair](Keypa
 
 #### Defined in
 
-[snarky.d.ts:724](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L724)
+[snarky.d.ts:730](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L730)
 
 ___
 
@@ -545,7 +545,7 @@ Runs code and checks its correctness.
 
 #### Defined in
 
-[snarky.d.ts:655](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L655)
+[snarky.d.ts:661](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L661)
 
 ___
 
@@ -583,7 +583,7 @@ x.assertEquals(2);
 
 #### Defined in
 
-[snarky.d.ts:710](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L710)
+[snarky.d.ts:716](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L716)
 
 ___
 
@@ -611,7 +611,7 @@ Serializes an element into [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:734](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L734)
+[snarky.d.ts:740](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L740)
 
 ___
 
@@ -635,7 +635,7 @@ Verifies a proof using the public input, the proof and the initial [Keypair](Key
 
 #### Defined in
 
-[snarky.d.ts:729](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L729)
+[snarky.d.ts:735](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L735)
 
 ___
 
@@ -663,4 +663,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:642](https://github.com/o1-labs/snarkyjs/blob/4b46575/src/snarky.d.ts#L642)
+[snarky.d.ts:648](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L648)

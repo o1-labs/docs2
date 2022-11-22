@@ -53,12 +53,12 @@ module.exports = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            "zkapps/tutorials/hello-world",
-            "zkapps/tutorials/private-inputs-hash-functions",
+            'zkapps/tutorials/hello-world',
+            'zkapps/tutorials/private-inputs-hash-functions',
             'zkapps/tutorials/deploying-to-a-network',
-            "zkapps/tutorials/zkapp-ui-with-react",
+            'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
-            "zkapps/tutorials/offchain-storage",
+            'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/anonymous-message-board',
@@ -133,6 +133,16 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Ledger',
                   label: 'Ledger',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/MerkleMap',
+                  label: 'MerkleMap',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/MerkleMapWitness',
+                  label: 'MerkleMapWitness',
                 },
                 {
                   type: 'doc',
