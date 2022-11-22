@@ -25,8 +25,6 @@ As such, *all inputs to a smart contract are private by default*, and never seen
 
 We will build a smart contract with a piece of private state, that can be modified if a user knows the private state.
 
-You can find the complete source code of this project [here](https://github.com/es92/zkApp-examples/tree/main/02-private-inputs-and-hash-functions).
-
 ## Setup
 
 The following steps assume you've installed dependencies to your machine as described in the [previous tutorial](hello-world) — if not, please do that first.
@@ -58,6 +56,12 @@ import { IncrementSecret } from './IncrementSecret.js';
 
 export { IncrementSecret };
 ```
+
+:::tip
+
+You can find the complete source code of this project [here](https://github.com/es92/zkApp-examples/tree/main/02-private-inputs-and-hash-functions). We recommend that you copy the entire [main.ts](https://github.com/es92/zkApp-examples/blob/main/02-private-inputs-and-hash-functions/src/main.ts) and [IncrementSecret.ts](https://github.com/es92/zkApp-examples/blob/main/02-private-inputs-and-hash-functions/src/IncrementSecret.ts) files into your project now, and follow this tutorial with the code in place. 
+
+:::
 
 ## Writing our smart contract
 
