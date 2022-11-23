@@ -325,9 +325,9 @@ Now, let's initalize our smart contract. Comments are provided to break down eac
  29   const deployTxn = await Mina.transaction(deployerAccount, () => {
  30     AccountUpdate.fundNewAccount(deployerAccount);
  31     contract.deploy({ zkappKey: zkAppPrivateKey });
- 33     contract.sign(zkAppPrivateKey);
+ 33     contract.requireSignature();
  34   });
- 35   await deployTxn.send();
+ 35   await deployTxn.sign([zkAppPrivateKey]).send();
  36
  37   // Get the initial state of our zkApp account after deployment
  38   const num0 = contract.num.get();
@@ -363,9 +363,9 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
  42
  43   const txn1 = await Mina.transaction(deployerAccount, () => {
  44     contract.update(Field(9));
- 45     contract.sign(zkAppPrivateKey);
+ 45     contract.requireSignature();
  46   });
- 47   await txn1.send();
+ 47   await txn1.sign([zkAppPrivateKey]).send();
  48
  49   const num1 = contract.num.get();
  50   console.log('state after txn1:', num1.toString());
@@ -399,9 +399,9 @@ Now let's try adding a transaction that should fail - updating the state to `75`
  54   try {
  55     const txn2 = await Mina.transaction(deployerAccount, () => {
  56       contract.update(Field(75));
- 57       contract.sign(zkAppPrivateKey);
+ 57       contract.requireSignature();
  58     });
- 59     await txn2.send();
+ 59     await txn2.sign([zkAppPrivateKey]).send();
  60   } catch (err: any) {
  61     console.log(err.message);
  62   }
@@ -436,9 +436,9 @@ And lastly, to show the correct update:
  67
  68   const txn3 = await Mina.transaction(deployerAccount, () => {
  69     contract.update(Field(81));
- 70     contract.sign(zkAppPrivateKey);
+ 70     contract.requireSignature();
  71   });
- 72   await txn3.send();
+ 72   await txn3.sign([zkAppPrivateKey]).send();
  73
  74   const num3 = contract.num.get();
  75   console.log('state after txn3:', num3.toString());
