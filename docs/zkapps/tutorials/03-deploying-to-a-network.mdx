@@ -1,7 +1,7 @@
 ---
-title: "Tutorial 3: Deploying to a Live Network"
+title: 'Tutorial 3: Deploying to a Live Network'
 hide_title: true
-sidebar_label: "Tutorial 3: Deploying to a Live Network"
+sidebar_label: 'Tutorial 3: Deploying to a Live Network'
 ---
 
 :::info
@@ -23,7 +23,8 @@ We will reuse the same smart contract from [Tutorial 1](hello-world), the `Squar
 
 ## Project setup
 
-First, as usual, setup a new project with 
+First, as usual, setup a new project with
+
 ```sh
 $ zk project 03-deploying-to-a-live-network
 ```
@@ -33,6 +34,7 @@ To start, delete the default generated files by running:
 ```sh
 rm src/Add.ts
 rm src/Add.test.ts
+rm src/interact.ts
 ```
 
 And create a new file for our smart contract:
@@ -54,6 +56,7 @@ A CLI tool is provided for convenience for deploying smart contracts to networks
 `zk config` is a tool provided for managing cli deployments. It will create a `config.json` in our project's directory, as well as a `keys` folder, containing private and public keys for our application.
 
 To use, run:
+
 ```sh
 zk config
 ```
@@ -71,13 +74,13 @@ For Berkeley Testnet, let's use the following values:
 - **Fee**: `0.1`
 
 :::tip
-  If your project contains multiple smart contracts (e.g. `Foo` and `Bar`) that
-  you intend to deploy to the same network, we recommend following a naming
-  pattern such as `berkeley-foo` and `berkeley-bar` when naming your deploy
-  aliases. You can change their names at anytime within `config.json`.
+If your project contains multiple smart contracts (e.g. `Foo` and `Bar`) that
+you intend to deploy to the same network, we recommend following a naming
+pattern such as `berkeley-foo` and `berkeley-bar` when naming your deploy
+aliases. You can change their names at anytime within `config.json`.
 :::
 
-<br/>
+<br />
 
 You will see the following output:
 
