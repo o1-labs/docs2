@@ -156,7 +156,7 @@ Our smart contract initialization this time will be:
  33     AccountUpdate.fundNewAccount(deployerAccount);
  34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
  35     zkAppInstance.initState(salt, Field(750));
- 36     zkAppInstance.sign(zkAppPrivateKey);
+ 36     zkAppInstance.requireSignature();
  37   });
  ...
 ```
@@ -169,7 +169,7 @@ And here is how one can create a user transaction to update the on-chain state:
 ...
  46   const txn1 = await Mina.transaction(deployerAccount, () => {
  47     zkAppInstance.incrementSecret(salt, Field(750));
- 48     zkAppInstance.sign(zkAppPrivateKey);
+ 48     zkAppInstance.requireSignature();
  49   });
 ...
 ```
