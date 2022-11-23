@@ -1,7 +1,7 @@
 ---
-title: "Tutorial 6: Off-Chain Storage"
+title: 'Tutorial 6: Off-Chain Storage'
 hide_title: true
-sidebar_label: "Tutorial 6: Off-Chain Storage"
+sidebar_label: 'Tutorial 6: Off-Chain Storage'
 ---
 
 :::info
@@ -16,7 +16,7 @@ zkApps can now be deployed to Berkeley Testnet.
 ## Overview
 
 :::caution
-This tutorial provides a single-server solution to data storage. This is useful for prototyping zkApps and building zkApps where some trust guarantees are reasonable, but should not be used for zkApps that require trustlessness. It is intended as one of several options for data availability on Mina. 
+This tutorial provides a single-server solution to data storage. This is useful for prototyping zkApps and building zkApps where some trust guarantees are reasonable, but should not be used for zkApps that require trustlessness. It is intended as one of several options for data availability on Mina.
 
 If you are interested in improving this library to make it more decentralized and useful in production, see the [further development](#further-development) section below.
 :::
@@ -31,7 +31,7 @@ Feel free to skip ahead to the [implementation section](#implementing-a-project-
 
 ## Why Off-Chain Storage?
 
-When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally. 
+When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally.
 
 However, when building a production-ready, distributed zkApp, we need more than this. All users interacting with our zkApp need to be able to retrieve the latest state, and modify it.
 
@@ -39,11 +39,12 @@ If this isn't the case, and someone were able to modify the tree without sharing
 
 ### Off-Chain Storage and Decentralization
 
-Solutions to storage can be on a spectrum from cheap and more centralized, to more expensive and more decentralized. More decentralized solutions will likely be more expensive due to replicating and proving stored data. 
+Solutions to storage can be on a spectrum from cheap and more centralized, to more expensive and more decentralized. More decentralized solutions will likely be more expensive due to replicating and proving stored data.
 
 Given that, we expect there to be different solutions on a continuum, offering multiple options for developers to choose depending on the zkApp they are building and the guarantees they want that zkApp to have.
 
 Some likely things to expect on this spectrum and are under exploration:
+
 1. A single-server storage solution (this is what is presented here).
 2. A multi-server storage solution that can be run by multiple parties for stronger trust guarantees.
 3. A solution leveraging storage on modular blockchains.
@@ -66,11 +67,11 @@ We're looking for a developer to run with the library presented here, improve it
 
 Some suggested improvements:
 
-* Eliminate DDOS vulnerability by adding a token that limits storage requests.
-* Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
-* Add support to the client library for connecting to multiple storage servers, enabling correctness under a majority-honest assumption.
-* Switch the project to a more scalable database implementation (e.g. Redis).
-* Write an implementation for an automatically scalable service (e.g. Cloudflare).
+- Eliminate DDOS vulnerability by adding a token that limits storage requests.
+- Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
+- Add support to the client library for connecting to multiple storage servers, enabling correctness under a majority-honest assumption.
+- Switch the project to a more scalable database implementation (e.g. Redis).
+- Write an implementation for an automatically scalable service (e.g. Cloudflare).
 
 ## Implementing a Project Using Off-Chain Storage
 
@@ -94,6 +95,7 @@ Now let enter the project, delete the existing files, and create a new smart con
 cd 06-off-chain-storage
 rm src/Add.ts
 rm src/Add.test.ts
+rm src/interact.ts
 zk file src/NumberTreeContract
 touch src/main.ts
 ```
@@ -169,14 +171,14 @@ Start by adding our imports:
 
 Notice we import some items from `zkapp-offchain-storage`:
 
-* `OffChainStorage` is object containing functions for interacting with off-chain storage. These are:
-  * `getPublicKey`: A function to get the storage server's public key. This is also stored in smart contracts to identify what storage server is storing the smart contract's off-chain data.
-  * `get`: A function for fetching the data for a merkle tree from the storage server, given the root of the tree.
-  * `requestStore`: A function to request storing a tree on the storage server. Returns a proof that the storage server has stored this tree.
-  * `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
-  * `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
-* `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
-* `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
+- `OffChainStorage` is object containing functions for interacting with off-chain storage. These are:
+  - `getPublicKey`: A function to get the storage server's public key. This is also stored in smart contracts to identify what storage server is storing the smart contract's off-chain data.
+  - `get`: A function for fetching the data for a merkle tree from the storage server, given the root of the tree.
+  - `requestStore`: A function to request storing a tree on the storage server. Returns a proof that the storage server has stored this tree.
+  - `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
+  - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
+- `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
+- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
 
 Continuing, let's setup our smart contract:
 
@@ -187,7 +189,7 @@ Continuing, let's setup our smart contract:
  23   @state(Field) storageNumber = State<Field>();
  24   @state(Field) storageTreeRoot = State<Field>();
  25
- 26   
+ 26
  27   deploy(args: DeployArgs) {
  28     super.deploy(args);
  29     this.setPermissions({
@@ -328,7 +330,7 @@ To start, let's get the existing tree:
 
 Here, we get the current root stored in the contract - and request the data for that root from the storage server.
 
-Then, we convert that data from a map to a MerkleTree - and we get a witness for a random index of the merkle tree. 
+Then, we convert that data from a map to a MerkleTree - and we get a witness for a random index of the merkle tree.
 
 Continuing:
 
