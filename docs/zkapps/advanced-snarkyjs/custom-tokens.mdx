@@ -90,7 +90,7 @@ There are two ways for a token owner to approve a transaction, one being a **sig
 
 ### Signature Authorization
 
-Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two seperate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
+Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two separate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
 
 Token zkApps should provide a `send()` method, like the one described above. By providing a `send()` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
 
