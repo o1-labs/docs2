@@ -129,11 +129,11 @@ str1: abc..xyz
 Fields in str1: 128
 private key: EKF7vyCyexH6KZpBo4jPG29Ac7tcuYwS1MFwUudhZ6D8v3Ap88SY
 public key: B62qo32qFbpLybPGtFDW8GT5Efu4ZtbUXDoj5vyTrmSp6AXgMh7btAH
-Fields in private key: 255
-Fields in public key: 2
+Fields in private key: 255 // bit field element of the scalar field of the curve
+Fields in public key: 2 // (x,y) coordiante
 signature verified for data1: false
 signature verified for data2: true
-Fields in signature: 256
+Fields in signature: 256 // bit field scalar nonce + a field element
 ```
 
 ## Struct
