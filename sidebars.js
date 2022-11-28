@@ -66,6 +66,7 @@ module.exports = {
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
+        'zkapps/faq',
         {
           type: 'category',
           label: 'SnarkyJS Reference',
