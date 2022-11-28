@@ -2,4 +2,43 @@
 title: FAQ
 ---
 
-Ask a question (link to github or where to submit Q?)
+## Does SnarkyJS compile my JavaScript code to an arithmetic circuit?
+
+No, SnarkyJS **does NOT compile JS into anything else**! This is a very common misconception about how SnarkyJS works. It may be caused by the emphasis on compilation in other zk ecosystems -- many of which have custom languages for writing zk circuits.
+
+SnarkyJS, by contrast, is just a JavaScript library. It creates zk circuits from user code by _executing_ that code. For example, if you have a SmartContract with a `@method myMethod()`, during proof generation we will simply call that method: `myMethod();`
+
+This works because SnarkyJS sets up some global state - a "circuit" - where it collects variables and constraints, and functions like `Field.mul` or `Bool.assertEquals`, which you use inside your method, add variables/constraints to that global circuit.
+
+This has some implications for how your code behaves, and what part of it is included in the zk proof:
+
+- The way to turn your logic into a proof is to use SnarkyJS built-in datatypes, like `Field`, and SnarkyJS functions that operate on them, like `Field.mul()`.
+  - For example, `x.mul(y)` will add a generic PLONK gate to your circuit. It will also return a variable that you can use in further statements, which will get wired to the mutliplication gate.
+  - There are a few SnarkyJS functions which allow you to turn normal JS datatypes into Field elements and back - for example, `Field.toString()`. These functions don't add anything to your circuit. They will typically have a doc-comment clarifying this.
+- If you do normal JS stuff, without using SnarkyJS built-ins, like `'hello world'.split('').join(' ')`, none of that will add anything to your circuit, and so a statement like this won't be included in your zk proof in any way.
+  - Why? Because it doesn't call any of the functions that add stuff to the circuit
+  - There's nothing wrong with doing circuit-unrelated stuff like the above inside your method, as long as you're aware of what it's (not) doing.
+- It's fine to use if-statements, for-loops, arrays, objects, and any other JS language constructs, to facilitate writing circuits. For example, the following code would assert that your Field element `x` doesn't equal either `5`, `10` or `15`:
+
+```ts
+// good
+for (let y of [5, 10, 15]) {
+  x.equals(y).assertFalse();
+}
+```
+
+You can think of using higher-level JS constructs as a form of metaprogramming, to stitch together the right SnarkyJS commands more easily.
+
+However, beware that you can't use _the value of Field elements_ to determine what constraints to add. Example: The following statement can't be used, if `b` is a `Bool`:
+
+```ts
+// bad
+if (b.toBoolean()) x.assertEquals(10);
+```
+
+This doesn't work for two reasons:
+
+1. Fundamentally, your methods must be written such that they create the same constraints every time. A proof cannot be verified against the verification key for a different set of constraints. The code above, however, tried to add an `assertEquals` contraint depending on the value of `b`.
+2. More practically, you can't read out the values of variables in circuit code - an expression like `b.toBoolean()` will throw an error during `SmartContract.compile()` (which generates the prover and verification keys). This is because during `compile()`, variables like `b` don't have any JS values attached to them; they represent abstract variables used to build up an abstract arithmetic circuit.
+
+Takeaway: SnarkyJS metaprogramming only works if it doesn't try to interact with the concrete program that's being written.
