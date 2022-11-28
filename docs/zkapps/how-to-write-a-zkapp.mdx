@@ -502,7 +502,7 @@ A powerful feature of zkApps is that they are composable, just like Ethereum sma
 ```ts
 class HelloWorld extends SmartContract {
   @method myMethod(otherAddress: PublicKey) {
-    let calledContract = new OtherContract(otherAddress);
+    const calledContract = new OtherContract(otherAddress);
     calledContract.otherMethod();
   }
 }
@@ -512,12 +512,12 @@ class OtherContract extends SmartContract {
 }
 ```
 
-When a user calls `HelloWorld.myMethod()`, SnarkyJS will create two separate proofs - one for the execution of `myMethod()` as usual, and a _separate_ one for the execution of `OtherContract.otherMethod()`. The `myMethod()` proof will compute an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call, and guarantee that this hash matches the `callData` field on the account update produced by `otherMethod()`, which is made part of `myMethod()`'s public input. Therefore, when calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
+When a user calls `HelloWorld.myMethod()`, SnarkyJS will create two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ one for the execution of `OtherContract.otherMethod()`. The `myMethod()` proof will compute an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call, and guarantee that this hash matches the `callData` field on the account update produced by `otherMethod()`, which is made part of `myMethod()`'s public input. Therefore, when calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
 
-To ensure other methods can use a return value of your `@method`, you have to annotate the return value in the TS function signature. Here's an example of returning a `Bool` called `isSuccess`:
+To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature. Here's an example of returning a `Bool` called `isSuccess`:
 
 ```ts
-@method otherMethod(): Bool { // annotated return type!
+@method otherMethod(): Bool { // annotated return type
   // ...
   return isSuccess;
 }
