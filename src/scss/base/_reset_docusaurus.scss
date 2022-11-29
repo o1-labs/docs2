@@ -37,6 +37,14 @@ We must use `!important` at times to override some default styles.
   & a {
     color: variables.$mina-orange;
   }
+
+  /* Target code snippets that are not code blocks. */
+  & > * code:not([class]) {
+    font-size: 90%;
+    line-height: normal;
+    vertical-align: baseline;
+    padding: 0.05rem 0.1rem;
+  }
 }
 
 .menu__link--sublist-caret::after {
