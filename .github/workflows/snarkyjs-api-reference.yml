@@ -20,20 +20,23 @@ jobs:
           path: snarkyjs
       - name: Build API reference docs
         run: |
-          cd snarkyjs
-          npm ci
-          npm run build
+          # Install dependencies and build SnarkyJS
+          cd snarkyjs && npm ci && npm run build
 
+          # Install markdown-plugin for typedoc and build the SnarkyJS API reference
           npm install typedoc-plugin-markdown
           npx typedoc --readme none --name SnarkyJS --plugin typedoc-plugin-markdown --out snarkyjs-reference src/index.ts --hideBreadcrumbs true
 
-          cd ../docs/
-          rm -rf docs/zkapps/snarkyjs-reference
-          cp -rv ../snarkyjs/snarkyjs-reference docs/zkapps/snarkyjs-reference
+          # Install dependencies for Docs repo
+          cd ../docs/ && npm ci
 
-          node update-sidebars-snarkyjs-api.js
-          npx prettier --write ./docusaurus.config.js
+          # Remove the old API reference and copy the newly generated reference
+          rm -rf docs/zkapps/snarkyjs-reference && cp -rv ../snarkyjs/snarkyjs-reference docs/zkapps/snarkyjs-reference
 
+          # Update with new enteries and format sidebars.js
+          node update-sidebars-snarkyjs-api.js && npx prettier --config .prettierrc --write docusaurus.config.js
+
+          # Configure git and push
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add docs/zkapps/snarkyjs-reference
