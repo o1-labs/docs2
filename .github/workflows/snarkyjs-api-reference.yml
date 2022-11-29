@@ -26,6 +26,7 @@ jobs:
           # Install markdown-plugin for typedoc and build the SnarkyJS API reference
           npm install typedoc-plugin-markdown
           npx typedoc --readme none --name SnarkyJS --plugin typedoc-plugin-markdown --out snarkyjs-reference src/index.ts --hideBreadcrumbs true
+          rm snarkyjs-reference/.nojekyll
 
           # Install dependencies for Docs repo
           cd ../docs/ && npm ci
