@@ -414,7 +414,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 
 ```ts
 ...
-  @state(Field) mapRoot = State<Field>();
+  @state(Field) mapRoot = State<MerkleMap>();
 ...
   @method init(initialRoot: Field) {
     this.mapRoot.set(initialRoot);
