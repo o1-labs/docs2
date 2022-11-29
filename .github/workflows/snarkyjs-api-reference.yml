@@ -1,33 +1,42 @@
-on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true
+name: SnarkyJS-API-Reference
+on: workflow_dispatch
 
 jobs:
-  log-the-inputs:
+  update-snarkyjs-api-reference:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
-        env:
-          LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
-          ENVIRONMENT: ${{ inputs.environment }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Checkout Docs repo
+        uses: actions/checkout@v3
+        with:
+          path: docs
+      - name: Checkout SnarkyJS repo
+        uses: actions/checkout@v3
+        with:
+          repository: o1-labs/snarkyjs
+          path: snarkyjs
+      - name: Build API reference docs
+        run: |
+          cd snarkyjs
+          npm ci
+          npm run build
+
+          npm install typedoc-plugin-markdown
+          npx typedoc --readme none --name SnarkyJS --plugin typedoc-plugin-markdown --out snarkyjs-reference src/index.ts --hideBreadcrumbs true
+
+          cd ../docs/
+          rm -rf docs/zkapps/snarkyjs-reference
+          cp -rv ../snarkyjs/snarkyjs-reference docs/zkapps/snarkyjs-reference
+
+          node update-sidebars-snarkyjs-api.js
+          npx prettier --write ./docusaurus.config.js
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs/zkapps/snarkyjs-reference
+          git add docusaurus.config.js
+          git commit -m "Build and publish new SnarkyJS API reference docs"
+          git push
