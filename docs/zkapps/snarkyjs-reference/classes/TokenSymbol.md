@@ -18,7 +18,6 @@
 - [symbol](TokenSymbol.md#symbol)
 - [check](TokenSymbol.md#check)
 - [fromFields](TokenSymbol.md#fromfields)
-- [fromJSON](TokenSymbol.md#fromjson)
 - [toAuxiliary](TokenSymbol.md#toauxiliary)
 - [toFields](TokenSymbol.md#tofields)
 - [toInput](TokenSymbol.md#toinput)
@@ -53,7 +52,7 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:728](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L728)
+[lib/circuit_value.ts:688](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/circuit_value.ts#L688)
 
 ## Properties
 
@@ -67,7 +66,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:122](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L122)
+[lib/hash.ts:125](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/hash.ts#L125)
 
 ___
 
@@ -81,7 +80,7 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:122](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L122)
+[lib/hash.ts:125](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/hash.ts#L125)
 
 ___
 
@@ -111,7 +110,7 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:29](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L29)
+[snarky.d.ts:29](https://github.com/o1-labs/snarkyjs/blob/531db43/src/snarky.d.ts#L29)
 
 ___
 
@@ -145,40 +144,7 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:27](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L27)
-
-___
-
-### fromJSON
-
-▪ `Static` **fromJSON**: (`x`: `string`) => { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
-
-#### Type declaration
-
-▸ (`x`): `Object`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` |
-
-##### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `field` | [`Field`](Field.md) |
-| `symbol` | `string` |
-
-#### Inherited from
-
-Struct(TokenSymbolPure).fromJSON
-
-#### Defined in
-
-[lib/circuit_value.ts:735](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L735)
+[snarky.d.ts:27](https://github.com/o1-labs/snarkyjs/blob/531db43/src/snarky.d.ts#L27)
 
 ___
 
@@ -208,7 +174,7 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:26](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L26)
+[snarky.d.ts:26](https://github.com/o1-labs/snarkyjs/blob/531db43/src/snarky.d.ts#L26)
 
 ___
 
@@ -238,7 +204,7 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L25)
+[snarky.d.ts:25](https://github.com/o1-labs/snarkyjs/blob/531db43/src/snarky.d.ts#L25)
 
 ___
 
@@ -273,7 +239,7 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:730](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L730)
+[lib/circuit_value.ts:690](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/circuit_value.ts#L690)
 
 ___
 
@@ -303,7 +269,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:734](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L734)
+[lib/circuit_value.ts:694](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/circuit_value.ts#L694)
 
 ## Accessors
 
@@ -322,7 +288,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L153)
+[lib/hash.ts:152](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/hash.ts#L152)
 
 ## Methods
 
@@ -342,7 +308,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:157](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L157)
+[lib/hash.ts:156](https://github.com/o1-labs/snarkyjs/blob/531db43/src/lib/hash.ts#L156)
 
 ___
 
@@ -360,4 +326,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:28](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L28)
+[snarky.d.ts:28](https://github.com/o1-labs/snarkyjs/blob/531db43/src/snarky.d.ts#L28)
