@@ -25,7 +25,7 @@ In [Tutorial 5, Common Types and Functions](common-types-and-functions), we ende
 
 In this tutorial, we will share a library and pattern for working with storing merkle trees off-chain, with only the root of the merkle tree stored on chain.
 
-We intend for this tutorial to be useful towards unlocking larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
+We intend for this tutorial to be useful towards unlocking a larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
 
 Feel free to skip ahead to the [implementation section](#implementing-a-project-using-off-chain-storage) If you want to jump into how to use single server off-chain storage for prototyping applications. Otherwise, read on to understand more about the different options for off-chain storage, their tradeoffs, and how the single-server solution shared here fits in.
 
@@ -55,7 +55,7 @@ Some likely things to expect on this spectrum and are under exploration:
 
 This tutorial shares and explains an implementation of the single-server off-chain storage solution mentioned as the first option above. The library provides a REST server that anyone can run to store data for one or multiple zkApps, as well as a zkApp library to check on-chain if changes have been backed by the server.
 
-This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever running the server.
+This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever is running the server.
 
 This makes it useful for both prototyping applications that need off-chain storage, and putting applications into production where these trust assumptions are reasonable, but not for zkApps where a trustless solution is needed.
 
