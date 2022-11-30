@@ -42,9 +42,11 @@ jobs:
           node update-sidebars-snarkyjs-api.js && npx prettier --config .prettierrc --write docusaurus.config.js
 
           # Configure git and push
+          BRANCH_NAME=docs/snarkyjs-api-reference-$(git --git-dir ../snarkyjs/.git rev-parse --short HEAD)
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git switch -c $BRANCH_NAME
           git add docs/zkapps/snarkyjs-reference
           git add docusaurus.config.js
           git commit -m "Build and publish new SnarkyJS API reference docs"
-          git push
+          git push --set-upstream origin $BRANCH_NAME
