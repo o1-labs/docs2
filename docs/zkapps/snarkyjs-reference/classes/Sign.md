@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L64)
+[lib/circuit_value.ts:65](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L65)
 
 ## Properties
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[lib/int.ts:481](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L481)
+[lib/int.ts:359](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L359)
 
 ## Accessors
 
@@ -90,7 +90,7 @@
 
 #### Defined in
 
-[lib/int.ts:486](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L486)
+[lib/int.ts:364](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L364)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:483](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L483)
+[lib/int.ts:361](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L361)
 
 ## Methods
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:153](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L153)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:149](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L149)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:157](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L157)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:512](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L512)
+[lib/int.ts:385](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L385)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:509](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L509)
+[lib/int.ts:382](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L382)
 
 ___
 
@@ -218,7 +218,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:506](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L506)
+[lib/int.ts:379](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L379)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:145](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L145)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:136](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L136)
+[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L137)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:140](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L140)
+[lib/circuit_value.ts:141](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L141)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:515](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L515)
+[lib/int.ts:388](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L388)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:489](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L489)
+[lib/int.ts:367](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L367)
 
 ___
 
@@ -341,13 +341,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:161](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L161)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**<`T`\>(`this`, `value`): ``null`` \| `InstanceType`<`T`\>
 
 #### Type parameters
 
@@ -359,19 +359,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | ``"Positive"`` \| ``"Negative"`` |
+| `this` | `T` |
+| `value` | `any` |
 
 #### Returns
 
-`InstanceType`<`T`\>
+``null`` \| `InstanceType`<`T`\>
 
-#### Overrides
+#### Inherited from
 
 [CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
 
 #### Defined in
 
-[lib/int.ts:501](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L501)
+[lib/circuit_value.ts:219](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L219)
 
 ___
 
@@ -402,7 +403,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:81](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L81)
+[lib/circuit_value.ts:82](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L82)
 
 ___
 
@@ -420,7 +421,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:88](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L88)
+[lib/circuit_value.ts:89](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L89)
 
 ___
 
@@ -438,7 +439,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:110](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L110)
+[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L111)
 
 ___
 
@@ -469,7 +470,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:199](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L199)
+[lib/circuit_value.ts:200](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L200)
 
 ___
 
@@ -500,7 +501,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:93](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L93)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -524,7 +525,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:493](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L493)
+[lib/int.ts:371](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L371)
 
 ___
 
@@ -548,4 +549,4 @@ ___
 
 #### Defined in
 
-[lib/int.ts:496](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/int.ts#L496)
+[lib/int.ts:374](https://github.com/o1-labs/snarkyjs/blob/531db432/src/lib/int.ts#L374)
