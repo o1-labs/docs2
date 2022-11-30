@@ -23,6 +23,8 @@ jobs:
           ref: releases
 
       - name: Build API reference docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Install dependencies and build SnarkyJS
           cd snarkyjs && npm ci && npm run build
@@ -49,4 +51,7 @@ jobs:
           git add docs/zkapps/snarkyjs-reference
           git add sidebars.js
           git commit -m "Build and publish new SnarkyJS API reference docs"
+
+          # Use Github CLI to create a PR
           git push --set-upstream origin $BRANCH_NAME
+          gh pr create -B main -H $BRANCH_NAME --title "Build and publish new SnarkyJS API reference docs" --body ""
