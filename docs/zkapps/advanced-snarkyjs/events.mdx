@@ -60,3 +60,7 @@ class SmartContract {
   emitEvent(name: string, event: any): void;
 }
 ```
+
+### Events vs Actions
+
+Events and [Actions](/actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing merkle trees as we see above. Actions, on the other hand, can be accessed within provable code via Reducers. Both Events and Actions are not stored in the ledger and only exist on the transaction.

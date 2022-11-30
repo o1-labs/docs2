@@ -106,3 +106,7 @@ We imagine that one of the most important use cases for actions is to enable con
 A detailed explanation of the problem, and how actions can provide the solution, can be found here: https://github.com/o1-labs/snarkyjs/issues/265#issuecomment-1177512908
 
 We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) which demonstrates this pattern. Leveraging `Reducer.reduce`, it takes only about 30 lines of code to build a zkApp which handles concurrent state updates.
+
+### Events vs Actions
+
+[Events](/events) and Actions are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing merkle trees. Actions, on the other hand, can be accessed within provable code via Reducers as we see above. Both Events and Actions are not stored in the ledger and only exist on the transaction.
