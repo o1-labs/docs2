@@ -1,12 +1,6 @@
 name: SnarkyJS-API-Reference
-on:
-  workflow_dispatch:
-    snarkyjs_branch:
-      type: choice
-      description: SnarkyJS branch to build from
-      options:
-        - main
-        - releases
+on: workflow_dispatch
+
 jobs:
   update-snarkyjs-api-reference:
     runs-on: ubuntu-latest
@@ -26,7 +20,7 @@ jobs:
         with:
           repository: o1-labs/snarkyjs
           path: snarkyjs
-          ref: ${{ github.event.inputs.${{ github.event.inputs.message }} }}
+          ref: releases
 
       - name: Build API reference docs
         run: |
