@@ -414,7 +414,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 
 ```ts
 ...
-  @state(Field) mapRoot = State<MerkleMap>();
+  @state(Field) mapRoot = State<Field>();
 ...
   @method init(initialRoot: Field) {
     this.mapRoot.set(initialRoot);
@@ -431,13 +431,13 @@ It can be used inside smart contracts with a witness, similar to merkle trees
     incrementAmount.assertLt(Field(10));
 
     // check the initial state matches what we expect
-    const [ rootBefore, key ] = mapWitness.computeRootAndKey(valueBefore);
+    const [ rootBefore, key ] = keyWitness.computeRootAndKey(valueBefore);
     rootBefore.assertEquals(initialRoot);
 
     key.assertEquals(keyToChange);
 
     // compute the root after incrementing
-    const [ rootAfter, _ ] = mapWitness.computeRootAndKey(valueBefore.add(incrementAmount));
+    const [ rootAfter, _ ] = keyWitness.computeRootAndKey(valueBefore.add(incrementAmount));
 
     // set the new root
     this.treeRoot.set(rootAfter);
