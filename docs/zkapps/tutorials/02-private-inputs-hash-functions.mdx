@@ -97,7 +97,7 @@ Begin by writing:
 
 This just adds the basic setup for our smart contract — see [Tutorial 01 Hello World](hello-world) for more on this.
 
-Now, we will add our init method. This is intended to run once to set up the initial state on the zkApp account.
+Now, we will add our initState method. This is intended to run once to set up the initial state on the zkApp account.
 
 ```ts
 ...
@@ -108,9 +108,9 @@ Now, we will add our init method. This is intended to run once to set up the ini
  26 }
 ```
 
-Our `init()` method accepts our secret, and a value called a "salt", which we will discuss later.
+Our `initState()` method accepts our secret, and a value called a "salt", which we will discuss later.
 
-Note that these inputs to our `init()` method are private to whomever initializes the contract. Nobody looking at the zkApp account on the chain can see or know what values `firstSecret` or `salt` actually are.
+Note that these inputs to our `initState()` method are private to whomever initializes the contract. Nobody looking at the zkApp account on the chain can see or know what values `firstSecret` or `salt` actually are.
 
 Next we will add a method to update our state:
 
@@ -185,7 +185,7 @@ Try running `main` for yourself:
 $ npm run build && node build/src/main.js
 ```
 
-The ouput should look something like this:
+The output should look something like this:
 
 ```
 ...
