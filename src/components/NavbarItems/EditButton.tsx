@@ -10,7 +10,13 @@ export default function EditButton(): JSX.Element {
   const editUrl = `${baseEditUrl}${pathname}.mdx`;
 
   return (
-    <div style={{ color: 'white' }} className={styles.editButton}>
+    <div
+      style={{ color: 'white' }}
+      className={styles.editButton}
+      onClick={() => {
+        window.location.href = editUrl;
+      }}
+    >
       <Button color="orange">
         Edit this page
         <ArrowRightSmall />
