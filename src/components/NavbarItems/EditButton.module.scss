@@ -1,0 +1,25 @@
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
+
+.editButton {
+  color: variables.$mina-white !important;
+  margin-right: 100px;
+}
+
+// .minaLink {
+//   @include mixins.minaLink($color: variables.$mina-black);
+//   color: variables.$mina-black !important;
+//   text-decoration: underline 1px dotted rgb(85, 85, 85);
+//   text-underline-offset: 3px;
+
+//   &:hover {
+//     color: variables.$mina-orange !important;
+//   }
+// }
+
+// .minaButtonLink {
+//   @include mixins.minaButtonLink;
+//   &:hover {
+//     text-decoration: none;
+//   }
+// }
