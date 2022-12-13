@@ -636,11 +636,35 @@ The proof attests to two different things:
 
 Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. In this case, **the public input is the account update**. It is passed in implicitly when you do `tx.prove()`. The prover function (i.e., your smart contract logic) creates its own account update and constrains it to equal the public input.
 
-You can think of the public input as data that is shared between the prover and the verifier. The verifier passes in the public input when verifying it, and the the proof will only be valid if it was created with _the same public input_. For us, this means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof won't be valid for it anymore. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
+You can think of the public input as data that is shared between the prover and the verifier. The verifier passes in the public input when verifying it, and the proof will only be valid if it was created with _the same public input_. For us, this means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof won't be valid for it anymore. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
 
 ##### Payments in a smart contract
 
-TODO
+Let's continue our discussion of account updates from the preceding sections, at the hand of an example that is important on its own: Paying out MINA from a zkApp. To send MINA, there is `this.send()`, which you can use inside your smart contract method:
+
+```ts
+class MyContract extends SmartContract {
+  @method payout(user: PublicKey, amount: UInt64) {
+    // TODO: logic that determines whether the user is allowed to claim this amount
+
+    this.send({ to: user, amount });
+  }
+}
+```
+
+This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to a given user. In a real zkApp, you'd probably want to add some conditions that are checked in this method, determining who can call it with which amounts. Let's again call this method in a transaction, and print out the result:
+
+```ts
+const MINA = 1_000_000_000n;
+
+const tx = await Mina.transaction(() => {
+  zkapp.payout(myAddress, UInt64.from(5n * MINA));
+});
+await tx.prove();
+console.log(tx.toPretty());
+```
+
+What's interesting for us is that our transaction now has 3 account updates:
 
 Payments (zkApp -> user) as a basic use case, and as an example for:
 
