@@ -583,23 +583,60 @@ First of all, this is an array with two entries: the account updates that make u
 The second account update in our list has a label: `'MyContract.myMethod()'`. This tells us that it corresponds to the method call we performed. A `@method` call always results in the creation of an account update -- namely, an update to the zkApp account itself. Let's see what the other fields in this account update mean:
 
 - `publicKey` -- the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
-- `update: { appState: [...] }` -- shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that weren't updated.
-- `preconditions: { account: { state: [...] } }` -- similar to before, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction will only be accepted if the first of the 8 state fields equals `0`. The `null` values mean that there's no condition on the other 7 state fields.
+- `update: { appState: [...] }` -- shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that aren't updated.
+- `preconditions: { account: { state: [...] } }` -- similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction will only be accepted if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
 - `authorizationKind: 'Proof'` -- this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates, as we'll explain below.
 - `authorization: undefined` -- the proof that's needed on this update isn't there yet! We'll show how to add it in a minute.
 
-Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. We'll still use the term "account update" for simplicity.
+Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. We still use the term "account update" for simplicity.
 
 As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction will be sent to the network, as one atomic update. If something fails -- for example, one of the account updates has insufficient authorization -- the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
 
-##### Creating proofs
+##### Creating proofs, and what they mean
 
-TODO
+Let's finally see how to create zero-knowledge proofs!
 
-- How to fill in that `authorization` field with a proof?
-- Introduce `tx.prove()` and `SmartContract.compile()`
-- (Maybe hint at what "compilation" means)
-- What's the "scope" (public input) of the proof?
+```ts
+await MyContract.compile(); // this might take a while
+
+// ...
+
+const tx = await Mina.transaction(() => {
+  zkapp.myMethod(someArgument);
+});
+await tx.prove(); // this might take a while
+```
+
+There are two new operations here:
+
+- `MyContract.compile()` creates prover & verification keys from your smart contract.[^1] You need to do this before you can create any proofs!
+- `tx.prove()` goes through your transaction, and creates proofs for all the account updates that came from method calls.
+
+[^1]: The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
+
+Both of these are heavy cryptographic operations, and they might take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, you'll find that it now has the proof as a base64 string inside the `authorization` field:
+
+```ts
+[
+  // ...
+  {
+    label: 'MyContract.myMethod()',
+    // ...
+    authorization: { proof: '..KSkp' },
+  },
+];
+```
+
+You might wonder: what, exactly, is proved here? How is the proof linked to the account update it is part of?
+
+The proof attests to two different things:
+
+- The execution of `myMethod()`
+- The public input of that execution
+
+Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. In this case, **the public input is the account update**. It is passed in implicitly when you do `tx.prove()`. The prover function (i.e., your smart contract logic) creates its own account update and constrains it to equal the public input.
+
+You can think of the public input as data that is shared between the prover and the verifier. The verifier passes in the public input when verifying it, and the the proof will only be valid if it was created with _the same public input_. For us, this means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof won't be valid for it anymore. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
 
 ##### Payments in a smart contract
 
