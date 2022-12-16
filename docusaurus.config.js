@@ -281,10 +281,6 @@ module.exports = {
             position: 'left',
           },
           {
-            type: 'custom-EditButton',
-            position: 'right',
-          },
-          {
             type: 'html',
             position: 'right',
             value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
@@ -312,7 +308,6 @@ module.exports = {
         disableSwitch: true,
         respectPrefersColorScheme: false,
       },
-
       algolia: {
         appId: process.env.ALGOLIA_APP_ID,
         apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
