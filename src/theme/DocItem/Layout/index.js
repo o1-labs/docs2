@@ -18,7 +18,7 @@ import styles from './styles.module.css';
  */
 function useDocTOC() {
   const { frontMatter, toc, metadata } = useDoc();
-  const { editUrl } = metadata;
+
   const windowSize = useWindowSize();
   const hidden = frontMatter.hide_table_of_contents;
   const canRender = !hidden && toc.length > 0;
@@ -35,6 +35,39 @@ function useDocTOC() {
 }
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
+  const {
+    metadata: { editUrl },
+  } = useDoc();
+
+  function renderTOC() {
+    if (!docTOC.desktop) {
+      return (
+        <Button
+          color="orange"
+          onClick={() => {
+            window.location.href = editUrl;
+          }}
+        >
+          Edit this page
+          <ArrowRightSmall />
+        </Button>
+      );
+    }
+    return (
+      <>
+        <Button
+          color="orange"
+          onClick={() => {
+            window.location.href = editUrl;
+          }}
+        >
+          Edit this page
+          <ArrowRightSmall />
+        </Button>
+        {docTOC.desktop}
+      </>
+    );
+  }
   return (
     <div className="row">
       <div className={clsx('col', !docTOC.hidden && styles.docItemCol)}>
@@ -50,20 +83,8 @@ export default function DocItemLayout({ children }) {
           <DocItemPaginator />
         </div>
       </div>
-      {docTOC.desktop && (
-        <div className="col col--3">
-          <Button
-            color="orange"
-            onClick={() => {
-              window.location.href = editUrl;
-            }}
-          >
-            Edit this page
-            <ArrowRightSmall />
-          </Button>
-          {docTOC.desktop}
-        </div>
-      )}
+
+      <div className="col col--3">{renderTOC()}</div>
     </div>
   );
 }
