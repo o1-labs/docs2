@@ -5,7 +5,8 @@ import TOC from '@theme/TOC';
 import Button from '@site/src/components/common/Button';
 
 export default function DocItemTOCDesktop() {
-  const { toc, frontMatter } = useDoc();
+  const { toc, frontMatter, metadata } = useDoc();
+  const { editUrl } = metadata;
   return (
     <>
       <Button color="orange">Edit this page</Button>
