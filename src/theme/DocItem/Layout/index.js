@@ -10,6 +10,8 @@ import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile';
 import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop';
 import DocItemContent from '@theme/DocItem/Content';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
+import Button from '@site/src/components/common/Button';
+import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
 import styles from './styles.module.css';
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -48,7 +50,20 @@ export default function DocItemLayout({ children }) {
           <DocItemPaginator />
         </div>
       </div>
-      {docTOC.desktop && <div className="col col--3">{docTOC.desktop}</div>}
+      {docTOC.desktop && (
+        <div className="col col--3">
+          <Button
+            color="orange"
+            onClick={() => {
+              window.location.href = editUrl;
+            }}
+          >
+            Edit this page
+            <ArrowRightSmall />
+          </Button>
+          {docTOC.desktop}
+        </div>
+      )}
     </div>
   );
 }
