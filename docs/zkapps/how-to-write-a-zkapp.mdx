@@ -531,12 +531,13 @@ The fundamental data structure that Mina transactions are built from is called a
 
 A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message -- we'll ignore it for now.
 
-We create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes a callback that contains your transaction's logic.
+We create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
 
 ```ts
+const sender = PublicKey.fromBase58('B62..'); // the user address
 const zkapp = new MyContract(address); // MyContract is a SmartContract
 
-const tx = await Mina.transaction(() => {
+const tx = await Mina.transaction(sender, () => {
   zkapp.myMethod(someArgument);
 });
 ```
@@ -601,7 +602,7 @@ await MyContract.compile(); // this might take a while
 
 // ...
 
-const tx = await Mina.transaction(() => {
+const tx = await Mina.transaction(sender, () => {
   zkapp.myMethod(someArgument);
 });
 await tx.prove(); // this might take a while
@@ -638,27 +639,27 @@ Recall that all method arguments are _private inputs_. So, the verifier doesn't 
 
 You can think of the public input as data that is shared between the prover and the verifier. The verifier passes in the public input when verifying it, and the proof will only be valid if it was created with _the same public input_. For us, this means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof won't be valid for it anymore. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
 
-##### Payments in a smart contract
+##### Payments, and more on public inputs
 
 Let's continue our discussion of account updates from the preceding sections, at the hand of an example that is important on its own: Paying out MINA from a zkApp. To send MINA, you can use `this.send()` from your smart contract method:
 
 ```ts
 class MyContract extends SmartContract {
-  @method payout(user: PublicKey, amount: UInt64) {
+  @method payout(amount: UInt64) {
     // TODO: logic that determines whether the user is allowed to claim this amount
 
-    this.send({ to: user, amount });
+    this.send({ to: this.sender, amount });
   }
 }
 ```
 
-This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to a given user. In a real zkApp, you'd probably want to add some conditions that are checked in this method, determining who can call it with which amounts. Let's again call this method in a transaction, and print out the result:
+This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to themselves. Note that we get the sender of the transaction at `this.sender`. In a real zkApp, you'd probably want to add some conditions that are checked in this method, determining who can call it with which amounts. Let's again call this method in a transaction, and print out the result:
 
 ```ts
-const MINA = 1_000_000_000n;
+const MINA = 1e9;
 
-const tx = await Mina.transaction(() => {
-  zkapp.payout(myAddress, UInt64.from(5n * MINA));
+const tx = await Mina.transaction(sender, () => {
+  zkapp.payout(UInt64.from(5 * MINA));
 });
 await tx.prove();
 console.log(tx.toPretty());
@@ -666,7 +667,7 @@ console.log(tx.toPretty());
 
 :::info
 
-MINA amounts, in all SnarkyJS APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1_000_000_000n`.
+MINA amounts, in all SnarkyJS APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1e9`.
 
 :::
 
@@ -675,7 +676,7 @@ What's interesting for us is that our transaction now has 3 account updates:
 ```ts
 [
   {
-    // fee payer ...
+    // fee payer
   },
   {
     label: 'MyContract.payout()',
@@ -715,9 +716,9 @@ So, what's the meaning of this tree structure? Recall that in the last section, 
 
 Concretely, in our example, both the zkApp account update and the user account update are public input to the zkApp method call. Intuitively, this means that the zkApp can "see" and constrain the update as part of its proof. Here, this means that nobody could change the public key of the receiver, or amount they receive, without making the proof invalid. The update can only contain what the method specified.
 
-All of this is true because `this.send()`, under the hood, placed the receiver update at call depth 1, under the zkApp update. As a counter-example: The fee payer is _not_ part of the zkApp sub-tree, and likewise does not become part of the public input. It can be anything without affecting the validity of the proof.
+All of this is true because `this.send()`, under the hood, placed the receiver update at call depth 1, under the zkApp update. As a counter-example: The fee payer is never part of the public input. It can be anything without affecting the validity of the proof.
 
-A key takeaway is: If you want something to become part of your proof, you have to put it inside your `@method`. Things that happen outside your methods won't be part of any proof, so you can't rely on those things being part of your smart contract logic.
+A key takeaway is: If you want something to become part of your proof, you have to put it inside your `@method`.
 
 <!-- TODO: This section got a bit long, so I commented out the content below. It educates about a frequent gotcha, but it's too much at this point and could live in some tutorial / deep-dive later -->
 
@@ -726,17 +727,17 @@ Let's try to mess around a bit, and see what happens if we move `.send()` _outsi
 
 ```ts
 class MyContract extends SmartContract {
-  @method payout(user: PublicKey, amount: UInt64) {
-    // this.send({ to: user, amount }); // commented this out, placed it below
+  @method payout(amount: UInt64) {
+    // this.send({ to: this.sender, amount }); // commented this out, placed it below
   }
 }
 
 // ...
 
-const tx = await Mina.transaction(() => {
+const tx = await Mina.transaction(sender, () => {
   let amount = UInt64.from(5n * MINA);
-  zkapp.payout(myAddress, amount);
-  zkapp.send({ to: myAddress, amount }); // here
+  zkapp.payout(amount);
+  zkapp.send({ to: sender, amount }); // here
 });
 await tx.prove();
 ```
@@ -758,7 +759,96 @@ This error comes about as follows:
 - That comparison check fails, because the two sets of account updates are different
 -->
 
-##### Signing transactions
+##### Signing transactions, and explicit account updates
+
+Let's recap: We have explained how to write a SmartContract. Then we've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which where created by SnarkyJS under the hood. Now, we'll see an example where we have to create an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
+
+We'll continue the payment topic. Last section, we paid out MINA from the zkApp. This time, we do the other direction: make a deposit from the user into the zkApp. Here's the smart contract code:
+
+```ts
+class MyContract extends SmartContract {
+  @method deposit(amount: UInt64) {
+    let senderUpdate = AccountUpdate.create(this.sender);
+    senderUpdate.requireSignature();
+    senderUpdate.send({ to: this, amount });
+
+    // TODO: logic that gives the user something in return for the deposit
+  }
+}
+```
+
+Let's unpack what happens here. The first line of our method creates a new, empty account update for the sender account:
+
+```ts
+let senderUpdate = AccountUpdate.create(this.sender);
+```
+
+Note that `AccountUpdate` is the class in SnarkyJS that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches it to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
+
+The next line tells SnarkyJS that this update will be authorized with a signature later:
+
+```ts
+senderUpdate.requireSignature();
+```
+
+We'll get into this later. Instead of writing `AccountUpdate.create()` and `requireSignature()`, we could've used a shortcut which does both of them in one command:
+
+```ts
+let senderUpdate = AccountUpdate.createSigned(this.sender); // create + requireSignature
+```
+
+Finally, we use `.send()` on the sender `AccountUpdate` to deposit into the zkApp, which has the same API as `this.send()`:
+
+```ts
+senderUpdate.send({ to: this, amount });
+```
+
+Note that instead of an address as the `to` field, we pass in `this`, which is a `SmartContract`. This is done so that `.send()` doesn't create an additional update, but uses the one that's already created for our zkApp.
+
+If we create a transaction for calling this method like before, it looks like this:
+
+```ts
+[
+  {
+    // fee payer
+  },
+  {
+    label: 'MyContract.deposit()',
+    publicKey: '..Nq6w',
+    balanceChange: { magnitude: '1000000000', sgn: 'Positive' },
+    callDepth: 0,
+    authorizationKind: 'Proof',
+    authorization: { proof: '..KSkp' },
+  },
+  {
+    publicKey: '..VeLh',
+    balanceChange: { magnitude: '1000000000', sgn: 'Negative' },
+    callDepth: 1,
+    useFullCommitment: true,
+    caller: '..umxw',
+    authorizationKind: 'Signature',
+    authorization: undefined,
+  },
+];
+```
+
+This is similar to the output in the last section, with the balance changes reversed. The only other differences are on the user update (third in the list):
+
+- `useFullCommitment: true`, which we won't explain here but has to do with replay protection if you're using signatures.
+- `authorizationKind: 'Signature'`
+
+Those two changes were caused by calling `requireSignature()` on the account update. `authorization: undefined` indicates that we didn't provide this signature yet.
+
+In a real zkApp, user signatures will be added by the wallet, not within SnarkyJS. In that case, the missing signature is fine. However, for testing and calling zkApps via nodeJS, you need to add those signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's a full example:
+
+```ts
+const tx = await Mina.transaction(sender, () => {
+  zkapp.deposit(UInt64.from(5 * MINA));
+});
+await tx.prove();
+
+tx.sign([senderKey]); // senderKey is a PrivateKey
+```
 
 TODO
 
