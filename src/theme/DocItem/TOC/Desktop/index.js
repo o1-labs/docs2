@@ -10,22 +10,11 @@ export default function DocItemTOCDesktop() {
   const { editUrl } = metadata;
 
   return (
-    <>
-      <Button
-        color="orange"
-        onClick={() => {
-          window.location.href = editUrl;
-        }}
-      >
-        Edit this page
-        <ArrowRightSmall />
-      </Button>
-      <TOC
-        toc={toc}
-        minHeadingLevel={frontMatter.toc_min_heading_level}
-        maxHeadingLevel={frontMatter.toc_max_heading_level}
-        className={ThemeClassNames.docs.docTocDesktop}
-      />
-    </>
+    <TOC
+      toc={toc}
+      minHeadingLevel={frontMatter.toc_min_heading_level}
+      maxHeadingLevel={frontMatter.toc_max_heading_level}
+      className={ThemeClassNames.docs.docTocDesktop}
+    />
   );
 }
