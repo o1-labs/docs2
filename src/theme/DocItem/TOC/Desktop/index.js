@@ -9,7 +9,14 @@ export default function DocItemTOCDesktop() {
   const { editUrl } = metadata;
   return (
     <>
-      <Button color="orange">Edit this page</Button>
+      <Button
+        color="orange"
+        onClick={() => {
+          window.location.href = editUrl;
+        }}
+      >
+        Edit this page
+      </Button>
       <TOC
         toc={toc}
         minHeadingLevel={frontMatter.toc_min_heading_level}
