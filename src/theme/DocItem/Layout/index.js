@@ -15,7 +15,8 @@ import styles from './styles.module.css';
  * Decide if the toc should be rendered, on mobile or desktop viewports
  */
 function useDocTOC() {
-  const { frontMatter, toc } = useDoc();
+  const { frontMatter, toc, metadata } = useDoc();
+  const { editUrl } = metadata;
   const windowSize = useWindowSize();
   const hidden = frontMatter.hide_table_of_contents;
   const canRender = !hidden && toc.length > 0;
