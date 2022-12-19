@@ -523,6 +523,52 @@ To ensure other methods can use a return value of your `@method`, you must annot
 }
 ```
 
+##### Custom data types
+
+As mentioned previously, smart contract method arguments can be any of the built-in SnarkyJS types.
+
+However, what if you want to define your own data type?
+
+You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
+Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
+
+For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
+You can create a such a Point class by creating a new class that extends the `Struct` class:
+
+```ts
+class Point extends Struct({
+  x: Field,
+  y: Field,
+}) {}
+```
+
+Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
+
+For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
+
+```ts
+export class Grid extends SmartContract {
+  @state(Point) p = State<Point>();
+
+  @method init() {
+    this.p.set(new Point({ x: Field(1), y: Field(2) }));
+  }
+
+  @method move(newPoint: Point) {
+    const point = this.p.get();
+    this.p.assertEquals(point);
+
+    const newX = point.x.add(newPoint.x);
+    const newY = point.y.add(newPoint.y);
+
+    this.p.set(new Point({ x: newX, y: newY }));
+  }
+}
+```
+
+Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
+This allows for great composability and reusability of structs.
+
 ##### Transactions and account updates
 
 Now that we've got an idea about writing zkApp methods, we need to discuss how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section we'll learn what a transaction looks like, and how you can create one.
@@ -559,7 +605,7 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 ```ts
 [
   {
-    publicKey: '..nvBG',
+    publicKey: '..VeLh',
     fee: '0',
     nonce: '0',
     authorization: '..EzRQ',
@@ -579,7 +625,7 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 
 From this output, there are several important things we can learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer. In this case, our code didn't specify anything about the fee payer, so SnarkyJS filled in a dummy value (with a dummy public key, 0 fee and 0 nonce). In a user-facing zkApp, you typically wouldn't specify the fee payer as well -- instead, you'd create a transaction like this one, in the browser, and pass that to the user wallet. The wallet would replace the dummy fee payer with a real one that represents the user account. It would also fill the `authorization` field with a signature, created with the user's private key. See our section about [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which we didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically wouldn't care about setting those values -- instead, you'd create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet would replace your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See our section about [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
 The second account update in our list has a label: `'MyContract.myMethod()'`. This tells us that it corresponds to the method call we performed. A `@method` call always results in the creation of an account update -- namely, an update to the zkApp account itself. Let's see what the other fields in this account update mean:
 
@@ -761,9 +807,9 @@ This error comes about as follows:
 
 ##### Signing transactions, and explicit account updates
 
-Let's recap: We have explained how to write a SmartContract. Then we've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which where created by SnarkyJS under the hood. Now, we'll see an example where we have to create an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
+Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which where created by SnarkyJS under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
 
-We'll continue the payment topic. Last section, we paid out MINA from the zkApp. This time, we do the other direction: make a deposit from the user into the zkApp. Here's the smart contract code:
+We continue the payment topic of last section, where we paid out MINA from a zkApp. This time, we go the other direction: make a deposit from the user into the zkApp. Payments made from a user account will require a signature by the user. Here's the smart contract code:
 
 ```ts
 class MyContract extends SmartContract {
@@ -783,15 +829,15 @@ Let's unpack what happens here. The first line of our method creates a new, empt
 let senderUpdate = AccountUpdate.create(this.sender);
 ```
 
-Note that `AccountUpdate` is the class in SnarkyJS that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches it to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
+`AccountUpdate` is the class in SnarkyJS that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches the update to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
 
-The next line tells SnarkyJS that this update will be authorized with a signature later:
+The next line tells SnarkyJS that this update will be authorized with a signature:
 
 ```ts
 senderUpdate.requireSignature();
 ```
 
-We'll get into this later. Instead of writing `AccountUpdate.create()` and `requireSignature()`, we could've used a shortcut which does both of them in one command:
+We'll get into this later. We also could've used a shortcut which does both `AccountUpdate.create()` and `requireSignature()` in one command:
 
 ```ts
 let senderUpdate = AccountUpdate.createSigned(this.sender); // create + requireSignature
@@ -814,15 +860,12 @@ If we create a transaction for calling this method like before, it looks like th
   },
   {
     label: 'MyContract.deposit()',
-    publicKey: '..Nq6w',
-    balanceChange: { magnitude: '1000000000', sgn: 'Positive' },
-    callDepth: 0,
-    authorizationKind: 'Proof',
-    authorization: { proof: '..KSkp' },
+    balanceChange: { magnitude: '5000000000', sgn: 'Positive' },
+    // ...
   },
   {
     publicKey: '..VeLh',
-    balanceChange: { magnitude: '1000000000', sgn: 'Negative' },
+    balanceChange: { magnitude: '5000000000', sgn: 'Negative' },
     callDepth: 1,
     useFullCommitment: true,
     caller: '..umxw',
@@ -832,31 +875,50 @@ If we create a transaction for calling this method like before, it looks like th
 ];
 ```
 
-This is similar to the output in the last section, with the balance changes reversed. The only other differences are on the user update (third in the list):
+The third account update is the one we created with `AccountUpdate.create()`. Two changes to it were caused by calling `requireSignature()`:
 
 - `useFullCommitment: true`, which we won't explain here but has to do with replay protection if you're using signatures.
 - `authorizationKind: 'Signature'`
 
-Those two changes were caused by calling `requireSignature()` on the account update. `authorization: undefined` indicates that we didn't provide this signature yet.
+Finally, `authorization: undefined` indicates that we didn't provide the signature yet.
 
-In a real zkApp, user signatures will be added by the wallet, not within SnarkyJS. In that case, the missing signature is fine. However, for testing and calling zkApps via nodeJS, you need to add those signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's a full example:
+In a user-facing zkApp, user signatures will typically be added by a wallet, not within SnarkyJS. In that case, the missing signature is fine. However, for testing and calling zkApps via node, you need to add the signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's an example:
 
 ```ts
+const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
+
 const tx = await Mina.transaction(sender, () => {
   zkapp.deposit(UInt64.from(5 * MINA));
 });
 await tx.prove();
 
-tx.sign([senderKey]); // senderKey is a PrivateKey
+tx.sign([senderPrivateKey]); // senderKey is a PrivateKey
 ```
 
-TODO
+The example first shows us how we can derive the sender's public key `sender` from its private key `senderPrivateKey`.
 
-Continue the payment example, this time with a user -> zkApp payment.
+Note that `.sign()` takes an array, so you could provide multiple private keys for signing. `.sign()` will go through the transaction and add signatures on all account updates which 1) need a signature and 2) whose public keys match one of the private keys that were provided. In the example above, two account updates are signed with `tx.sign()`: The fee payer and the depositor account update. Both have the `sender` public key on them, which matches `senderPrivateKey.toPublicKey()`.
 
-- Example for explicitly _creating_ an account update (introduces the `AccountUpdate` class)
-- Example for needing a user signature
-- Introduce `requireSignature()` and `tx.sign()`
+:::note
+
+SnarkyJS allows you to load and store private and public keys in base58 format. Here's how the sender private key might be created in a script:
+
+```ts
+const senderKey = PrivateKey.fromBase58('EKEQc95...');
+```
+
+In a real server-side deployment, you probably want to load keys from a file or environment variable, instead of hard-coding them in your source code.
+:::
+
+To summarize, there are three types of authorization that account updates can have, which are typically used in different circumstances:
+
+- Proof authorization -- used for zkApp accounts when you do a `@method` call. Proofs are verified against the on-chain verification key.
+- Signature authorization -- used to update user accounts. Signatures are verified against the account's public key.
+- No authorization -- used on updates which don't require authorization, for example positive balance changes.
+
+The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates.
+
+<!-- TODO: link to advanced permissions section instead of just API reference; this section should list all permissions, explain how permissions are changed through zkApp deployment, explain how accounts can be made non-upgradeable, and explain the `access` permission for the case of token contracts -->
 
 ##### Sending transactions
 
@@ -864,52 +926,6 @@ TODO
 
 - Introduce `tx.send()`
 - Introduce `Mina.LocalBlockchain` and `Mina.Network` and what they are for / what "sending a transcation" means
-
-##### Custom data types
-
-As mentioned previously, smart contract method arguments can be any of the built-in SnarkyJS types.
-
-However, what if you want to define your own data type?
-
-You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
-Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
-
-For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
-You can create a such a Point class by creating a new class that extends the `Struct` class:
-
-```ts
-class Point extends Struct({
-  x: Field,
-  y: Field,
-}) {}
-```
-
-Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
-
-For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
-
-```ts
-export class Grid extends SmartContract {
-  @state(Point) p = State<Point>();
-
-  @method init() {
-    this.p.set(new Point({ x: Field(1), y: Field(2) }));
-  }
-
-  @method move(newPoint: Point) {
-    const point = this.p.get();
-    this.p.assertEquals(point);
-
-    const newX = point.x.add(newPoint.x);
-    const newY = point.y.add(newPoint.y);
-
-    this.p.set(new Point({ x: newX, y: newY }));
-  }
-}
-```
-
-Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
-This allows for great composability and reusability of structs.
 
 ## Next Steps
 
