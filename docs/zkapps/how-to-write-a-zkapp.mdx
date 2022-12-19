@@ -922,11 +922,85 @@ The list above just reflects common defaults. The full source of truth is given 
 
 ##### Sending transactions
 
-TODO
+The final step of creating a transaction is sending it to the network. Like signing, in a user-facing zkApp this is usually handled by a wallet. But you need to know how to do it yourself for testing and scripting.
 
-- Introduce `tx.send()`
-- Introduce `Mina.LocalBlockchain` and `Mina.Network` and what they are for / what "sending a transcation" means
+To send a transaction, we need to specify what network we're interacting with. This is done by specifying a "Mina instance" at the beginning of your script:
+
+```ts
+const Network = Mina.Network('https://example.com/graphql');
+Mina.setActiveInstance(Network);
+```
+
+The network URL has to be a GraphQL endpoint which exposes a compatible GraphQL API. This URL will not only determine where transactions are sent, but also where SnarkyJS gets account information from, when _creating_ transactions. For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn will cause the account to be fetched from the GraphQL endpoint.
+
+To send a transaction, create it as before and then use `tx.send()`:
+
+```ts
+// set Mina instance
+const Network = Mina.Network('https://example.com/graphql');
+Mina.setActiveInstance(Network);
+
+// create the transaction, add proofs and signatures
+const tx = await Mina.transaction(sender, () => {
+  // ...
+});
+await tx.prove();
+tx.sign([senderKey]);
+
+// send transaction
+await tx.send();
+```
+
+The output of `tx.send()` can be used to wait for inclusion of this transaction in a block, and to get the transaction hash (which lets you look up the pending transaction on a block explorer):
+
+```ts
+// send transaction, log transaction hash
+let pendingTx = await tx.send();
+console.log(`Got pending transaction with hash ${pendingTx.hash()}`);
+
+// wait until transaction is included in a block
+await pendingTx.wait();
+
+// our accounts updates are applied on chain!
+```
+
+Apart from `Mina.Metwork`, you can also use a mocked "Mina instance" for local testing:
+
+```ts
+const Local = Mina.LocalBlockchain();
+Mina.setActiveInstance(Local);
+```
+
+Doing this means setting up a fresh, local ledger, which is pre-filled with a couple of accounts with funds on them that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.[^2]
+
+Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally. To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
+
+```ts
+// set Mina instance to local
+const proofsEnabled = false;
+const Local = Mina.LocalBlockchain({ proofsEnabled });
+Mina.setActiveInstance(Local);
+
+// only compile smart contract when proofs are enabled
+if (proofsEnabled) await MyContract.compile();
+
+// create the transaction, add proofs and signatures
+const tx = await Mina.transaction(sender, () => {
+  // ...
+});
+await tx.prove();
+tx.sign([senderKey]);
+
+// apply transaction locally
+await tx.send();
+```
+
+Note that with `proofsEnabled: false`, you still need to call `await tx.prove()` like normally. The only change is that `.prove()` creates a dummy proofinstead of a real one, and so runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof.
+
+You can learn more in [How to test your zkApp](how-to-test-a-zkapp).
+
+[^2]: Fun fact: `LocalBlockchain` literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
 ## Next Steps
 
-Now that you've learned how to write a basic smart contract, you can learn [how to test your zkApp](how-to-test-a-zkapp).
+Now that you've learned how to write and operate a basic smart contract, you can learn [how to test your zkApp](how-to-test-a-zkapp).
