@@ -976,28 +976,28 @@ Doing this means setting up a fresh, local ledger, which is pre-filled with a co
 Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally. To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
 
 ```ts
-// set Mina instance to local
+// local mock Mina instance
 const proofsEnabled = false;
 const Local = Mina.LocalBlockchain({ proofsEnabled });
 Mina.setActiveInstance(Local);
 
-// only compile smart contract when proofs are enabled
+// only need to compile smart contract when proofs are enabled
 if (proofsEnabled) await MyContract.compile();
 
-// create the transaction, add proofs and signatures
 const tx = await Mina.transaction(sender, () => {
   // ...
 });
 await tx.prove();
 tx.sign([senderKey]);
 
-// apply transaction locally
 await tx.send();
+
+// our accounts updates are applied locally!
 ```
 
-Note that with `proofsEnabled: false`, you still need to call `await tx.prove()` like normally. The only change is that `.prove()` creates a dummy proofinstead of a real one, and so runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof.
+Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof.
 
-You can learn more in [How to test your zkApp](how-to-test-a-zkapp).
+You can learn more about testing in [How to test your zkApp](how-to-test-a-zkapp).
 
 [^2]: Fun fact: `LocalBlockchain` literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
