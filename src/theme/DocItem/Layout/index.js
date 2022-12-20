@@ -35,11 +35,17 @@ function useDocTOC() {
 }
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
+  const test = useDoc();
+
   const {
-    metadata: { editUrl },
+    metadata: { editUrl, slug },
   } = useDoc();
 
   function renderTOC() {
+    if (slug === '/') {
+      return <>{docTOC.desktop}</>;
+    }
+
     if (!docTOC.desktop) {
       return (
         <div className={styles.editButtonContainer}>
