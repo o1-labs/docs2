@@ -43,7 +43,7 @@ export default function DocItemLayout({ children }) {
     if (!docTOC.desktop) {
       return (
         <Button
-          color="orange"
+          color="dark"
           onClick={() => {
             window.location.href = editUrl;
           }}
@@ -56,7 +56,7 @@ export default function DocItemLayout({ children }) {
     return (
       <>
         <Button
-          color="orange"
+          color="dark"
           onClick={() => {
             window.location.href = editUrl;
           }}
