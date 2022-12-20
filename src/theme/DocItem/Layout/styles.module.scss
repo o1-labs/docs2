@@ -1,3 +1,6 @@
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
+
 .docItemContainer header + *,
 .docItemContainer article > *:first-child {
   margin-top: 0;

@@ -12,7 +12,7 @@ import DocItemContent from '@theme/DocItem/Content';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import Button from '@site/src/components/common/Button';
 import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
  */
