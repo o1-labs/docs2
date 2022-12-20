@@ -12,7 +12,8 @@ import DocItemContent from '@theme/DocItem/Content';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import Button from '@site/src/components/common/Button';
 import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
-import styles from './DocItem.module.scss';
+import styles from './DocItemLayout.module.scss';
+import Link from '@docusaurus/Link';
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
  */
@@ -47,32 +48,22 @@ export default function DocItemLayout({ children }) {
 
     if (!docTOC.desktop) {
       return (
-        <div className={styles.editButtonContainer}>
-          <Button
-            color="dark"
-            onClick={() => {
-              window.location.href = editUrl;
-            }}
-          >
+        <Link className={styles.editButtonContainer} to={editUrl}>
+          <Button color="dark" className={styles.editButton}>
             Edit this page
             <ArrowRightSmall />
           </Button>
-        </div>
+        </Link>
       );
     }
     return (
       <>
-        <div className={styles.editButtonContainer}>
-          <Button
-            color="dark"
-            onClick={() => {
-              window.location.href = editUrl;
-            }}
-          >
+        <Link className={styles.editButtonContainer} to={editUrl}>
+          <Button color="dark" className={styles.editButton}>
             Edit this page
             <ArrowRightSmall />
           </Button>
-        </div>
+        </Link>
         {docTOC.desktop}
       </>
     );
