@@ -973,7 +973,11 @@ Mina.setActiveInstance(Local);
 
 Doing this means setting up a fresh, local ledger, which is pre-filled with a couple of accounts with funds on them that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.[^2]
 
-Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally. To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
+<!-- TODO commenting this out as it overlaps
+
+Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally.
+
+To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
 
 ```ts
 // local mock Mina instance
@@ -995,7 +999,7 @@ await tx.send();
 // our accounts updates are applied locally!
 ```
 
-Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof.
+Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof. -->
 
 You can learn more about testing in [How to test your zkApp](how-to-test-a-zkapp).
 
