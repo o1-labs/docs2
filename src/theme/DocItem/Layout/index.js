@@ -35,7 +35,6 @@ function useDocTOC() {
 }
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
-  const test = useDoc();
 
   const {
     metadata: { editUrl, slug },
