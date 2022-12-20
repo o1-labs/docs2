@@ -42,28 +42,32 @@ export default function DocItemLayout({ children }) {
   function renderTOC() {
     if (!docTOC.desktop) {
       return (
-        <Button
-          color="dark"
-          onClick={() => {
-            window.location.href = editUrl;
-          }}
-        >
-          Edit this page
-          <ArrowRightSmall />
-        </Button>
+        <div className={styles.editButtonContainer}>
+          <Button
+            color="dark"
+            onClick={() => {
+              window.location.href = editUrl;
+            }}
+          >
+            Edit this page
+            <ArrowRightSmall />
+          </Button>
+        </div>
       );
     }
     return (
       <>
-        <Button
-          color="dark"
-          onClick={() => {
-            window.location.href = editUrl;
-          }}
-        >
-          Edit this page
-          <ArrowRightSmall />
-        </Button>
+        <div className={styles.editButtonContainer}>
+          <Button
+            color="dark"
+            onClick={() => {
+              window.location.href = editUrl;
+            }}
+          >
+            Edit this page
+            <ArrowRightSmall />
+          </Button>
+        </div>
         {docTOC.desktop}
       </>
     );
