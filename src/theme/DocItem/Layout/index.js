@@ -62,7 +62,21 @@ export default function DocItemLayout({ children }) {
   }
 
   function renderTOCmobile() {
-    return docTOC.mobile;
+    if (docTOC.mobile) {
+      return (
+        <>
+          {docTOC.mobile}
+          <div className={styles.editButtonContainerMobile}>
+            <Link className={styles.editLink} to={editUrl}>
+              <Button color="dark" className={styles.editButton}>
+                Edit this page
+                <ArrowRightSmall />
+              </Button>
+            </Link>
+          </div>
+        </>
+      );
+    }
   }
 
   return (
