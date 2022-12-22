@@ -11,7 +11,6 @@ export default function DocItemTOCDesktop() {
       toc={toc}
       minHeadingLevel={frontMatter.toc_min_heading_level}
       maxHeadingLevel={frontMatter.toc_max_heading_level}
-      className={styles.tocDesktop}
     />
   );
 }

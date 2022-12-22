@@ -45,7 +45,7 @@ export default function DocItemLayout({ children }) {
   function renderTOCDesktop() {
     if (docTOC.desktop) {
       return (
-        <>
+        <div className={styles.tocContainer}>
           <div className={styles.editButtonContainer}>
             <Link className={styles.editLink} to={editUrl}>
               <Button color="dark" className={styles.editButton}>
@@ -55,7 +55,7 @@ export default function DocItemLayout({ children }) {
             </Link>
           </div>
           {docTOC.desktop}
-        </>
+        </div>
       );
     }
   }
