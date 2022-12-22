@@ -4,8 +4,6 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
 } from 'snarkyjs';
 
 /**
@@ -20,15 +18,8 @@ import {
 export class Add extends SmartContract {
   @state(Field) num = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
-  }
-
-  @method init() {
+  init() {
+    super.init();
     this.num.set(Field(1));
   }
 
