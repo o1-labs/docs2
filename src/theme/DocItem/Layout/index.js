@@ -36,6 +36,7 @@ function useDocTOC() {
 }
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
+  const windowSize = useWindowSize();
 
   const {
     metadata: { editUrl },
@@ -60,7 +61,7 @@ export default function DocItemLayout({ children }) {
   }
 
   function renderTOCmobile() {
-    if (docTOC.mobile) {
+    if (windowSize === 'mobile') {
       return (
         <>
           {docTOC.mobile}
