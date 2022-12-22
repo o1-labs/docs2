@@ -15,6 +15,10 @@
 .editButtonContainer {
   margin: 1em !important;
 }
+.editButtonContainerMobile {
+  display: flex;
+  justify-content: flex-end;
+}
 
 .editLink {
   @include mixins.minaButtonLink;

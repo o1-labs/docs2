@@ -68,7 +68,7 @@ export default function DocItemLayout({ children }) {
           {docTOC.mobile}
           <div className={styles.editButtonContainerMobile}>
             <Link className={styles.editLink} to={editUrl}>
-              <Button color="dark" className={styles.editButton}>
+              <Button color="dark">
                 Edit this page
                 <ArrowRightSmall />
               </Button>
