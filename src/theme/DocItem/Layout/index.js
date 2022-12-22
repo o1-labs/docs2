@@ -38,27 +38,25 @@ export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
 
   const {
-    metadata: { editUrl, slug },
+    metadata: { editUrl },
   } = useDoc();
 
-  function renderTOC() {
-    if (slug === '/') {
-      return <>{docTOC.desktop}</>;
+  function renderTOCDesktop() {
+    if (docTOC.desktop) {
+      return (
+        <>
+          <div className={styles.editButtonContainer}>
+            <Link className={styles.editLink} to={editUrl}>
+              <Button color="dark" className={styles.editButton}>
+                Edit this page
+                <ArrowRightSmall />
+              </Button>
+            </Link>
+          </div>
+          {docTOC.desktop}
+        </>
+      );
     }
-
-    return (
-      <>
-        <div className={styles.editButtonContainer}>
-          <Link className={styles.editLink} to={editUrl}>
-            <Button color="dark" className={styles.editButton}>
-              Edit this page
-              <ArrowRightSmall />
-            </Button>
-          </Link>
-        </div>
-        {docTOC.desktop ? docTOC.desktop : null}
-      </>
-    );
   }
 
   function renderTOCmobile() {
@@ -95,7 +93,7 @@ export default function DocItemLayout({ children }) {
         </div>
       </div>
 
-      <div className="col col--3">{renderTOC()}</div>
+      <div className="col col--3">{renderTOCDesktop()}</div>
     </div>
   );
 }
