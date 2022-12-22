@@ -13,6 +13,14 @@
 }
 
 .editButtonContainer {
+  margin: 1em !important;
+}
+
+.editLink {
+  @include mixins.minaButtonLink;
   color: variables.$mina-white;
-  margin: 1em;
+  &:hover {
+    text-decoration: none;
+    color: variables.$mina-white;
+  }
 }

@@ -48,22 +48,26 @@ export default function DocItemLayout({ children }) {
 
     if (!docTOC.desktop) {
       return (
-        <Link className={styles.editButtonContainer} to={editUrl}>
-          <Button color="dark" className={styles.editButton}>
-            Edit this page
-            <ArrowRightSmall />
-          </Button>
-        </Link>
+        <div className={styles.editButtonContainer}>
+          <Link className={styles.editLink} to={editUrl}>
+            <Button color="dark" className={styles.editButton}>
+              Edit this page
+              <ArrowRightSmall />
+            </Button>
+          </Link>
+        </div>
       );
     }
     return (
       <>
-        <Link className={styles.editButtonContainer} to={editUrl}>
-          <Button color="dark" className={styles.editButton}>
-            Edit this page
-            <ArrowRightSmall />
-          </Button>
-        </Link>
+        <div className={styles.editButtonContainer}>
+          <Link className={styles.editLink} to={editUrl}>
+            <Button color="dark" className={styles.editButton}>
+              Edit this page
+              <ArrowRightSmall />
+            </Button>
+          </Link>
+        </div>
         {docTOC.desktop}
       </>
     );
