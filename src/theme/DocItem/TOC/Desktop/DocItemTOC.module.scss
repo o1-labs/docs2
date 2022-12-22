@@ -1,0 +1,9 @@
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
+
+.tocDesktop {
+  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+  position: sticky;
+  overflow-y: auto;
+  top: calc(var(--ifm-navbar-height) + 4rem);
+}

@@ -14,7 +14,10 @@
 
 .editButtonContainer {
   margin: 1em !important;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 1rem);
 }
+
 .editButtonContainerMobile {
   display: flex;
   justify-content: flex-end;
