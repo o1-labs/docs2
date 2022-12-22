@@ -32,8 +32,8 @@
 }
 
 .tocContainer {
-  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+  max-height: calc(100vh - (var(--ifm-navbar-height) - 2rem));
   position: sticky;
   overflow-y: auto;
-  top: calc(var(--ifm-navbar-height) + 6rem);
+  top: calc(var(--ifm-navbar-height) + 1rem);
 }
