@@ -60,6 +60,11 @@ export default function DocItemLayout({ children }) {
       </>
     );
   }
+
+  function renderTOCmobile() {
+    return docTOC.mobile;
+  }
+
   return (
     <div className="row">
       <div className={clsx('col', !docTOC.hidden && styles.docItemCol)}>
@@ -68,7 +73,7 @@ export default function DocItemLayout({ children }) {
           <article>
             <DocBreadcrumbs />
             <DocVersionBadge />
-            {docTOC.mobile}
+            {renderTOCmobile()}
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
