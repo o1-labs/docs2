@@ -63,6 +63,17 @@ Now that you have the tooling installed, we can start building our application.
 
 First, create a new project using:
 
+<!--
+
+Configure `git` email and name, otherwise `zkapp-cli` project generation will return a non-zero exit code.
+
+```sh
+$ git config --global user.email "test@example.com"
+$ git config --global user.name "Test"
+```
+
+-->
+
 ```sh
 $ zk project 01-hello-world
 ```
