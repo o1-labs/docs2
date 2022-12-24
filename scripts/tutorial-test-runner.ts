@@ -7,7 +7,7 @@ type CodeBlock = ShellCommands | CodePatch;
 
 type ShellCommands = {
   lang: 'sh';
-  commandLines: string[];
+  commands: string[];
 };
 
 type CodePatch = {
@@ -63,25 +63,14 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
     const filePath: string | undefined = infoStringSegments[1];
 
     if (filePath) {
-      const getLineNum = (codeLineWithNum: string): number => {
-        // Empty lines are ok
-        if (codeLineWithNum.match(/\d+/)) {
-          return parseInt(codeLineWithNum.match(/\d+/)[0]);
-        } else {
-          return parseInt(
-            codeLineWithNum.substring(0, codeLineWithNum.indexOf(' '))
-          );
-        }
-      };
+      const getLineNum = (codeLineWithNum: string): number =>
+        parseInt(codeLineWithNum.match(/\d+/)[0]);
       const stripLineNum = (codeLineWithNum: string): string => {
-        // Empty lines are ok
-        if (codeLineWithNum.match(/\d+/)) {
+        if (codeLineWithNum.match(/\d+$/)) {
+          // If there's only a line number, the rest of the line is empty
           return '';
         } else {
-          return codeLineWithNum.substring(
-            codeLineWithNum.indexOf(' ') + 1,
-            -1
-          );
+          return codeLineWithNum.substring(codeLineWithNum.indexOf(' ') + 1);
         }
       };
       const codeLinesWithNums = code.split('\n');
@@ -103,36 +92,36 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
       throw 'Code blocks describing file modifications must include a file path in their info string';
     }
   } else if (lang === 'sh') {
-    const extractCommandLines = (shellCode: string[]): string[] =>
-      shellCode.reduce<string[]>((commandLines, line) => {
+    const extractCommands = (shellCode: string[]): string[] =>
+      shellCode.reduce<string[]>((commands, line) => {
         if (line.startsWith('$ ')) {
-          return [...commandLines, line.slice(2)];
+          return [...commands, line.slice(2)];
         } else {
-          return commandLines;
+          return commands;
         }
       }, []);
 
-    const commandLines = extractCommandLines(code.split('\n'));
+    const commands = extractCommands(code.split('\n'));
 
-    return { lang, commandLines };
+    return { lang, commands };
   } else {
     throw `Unexpected code block language '${lang}'`;
   }
 }
 
 function executeShellCommand(shellCommands: ShellCommands): void {
-  shellCommands.commandLines.forEach((commandLine) => {
-    console.log(`Executing '${commandLine}'…`);
+  shellCommands.commands.forEach((shellCommand) => {
+    console.log(`Executing '${shellCommand}'…`);
 
-    const exec = (commandLine_: string) => {
-      if (commandLine_.startsWith('cd ')) {
-        return sh.cd(commandLine_.slice(2));
+    const exec = (command: string) => {
+      if (command.startsWith('cd ')) {
+        return sh.cd(command.slice(2));
       } else {
-        return sh.exec(commandLine_);
+        return sh.exec(command);
       }
     };
 
-    if (exec(commandLine).code !== 0) {
+    if (exec(shellCommand).code !== 0) {
       throw 'Shell command returned non-zero exit code';
     }
   });
