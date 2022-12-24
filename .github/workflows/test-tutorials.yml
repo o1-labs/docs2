@@ -13,6 +13,4 @@ jobs:
           node-version: 16
       - run: |
           npm ci
-          git config --global user.email "test@example.com"
-          git config --global user.name "Test"
           npx ts-node scripts/tutorial-test-runner.ts docs/zkapps/tutorials/01-hello-world.mdx
