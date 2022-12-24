@@ -113,16 +113,12 @@ function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
     console.log(`Executing '${shellCommand}'…`);
 
-    const exec = (command: string) => {
-      if (command.startsWith('cd ')) {
-        return sh.cd(command.slice(2));
-      } else {
-        return sh.exec(command);
-      }
-    };
+    const exitCode = shellCommand.startsWith('cd ')
+      ? sh.cd(shellCommand.slice(2)).code
+      : sh.exec(shellCommand).code;
 
-    if (exec(shellCommand).code !== 0) {
-      throw 'Shell command returned non-zero exit code';
+    if (exitCode !== 0) {
+      throw `Shell command returned non-zero exit code: '${exitCode}'`;
     }
   });
 }
@@ -136,7 +132,9 @@ function applyCodePatch(codePatch: CodePatch): void {
     .split('\n');
 
   codePatch.codeLines.forEach((codeLine, index) => {
-    lines[codePatch.startLineNum - 1 + index] = codeLine;
+    const lineNumIndex = codePatch.startLineNum - 1 + index;
+    console.log(`${lineNumIndex + 1} ${codeLine}`);
+    lines[lineNumIndex] = codeLine;
   });
 
   fs.writeFileSync(codePatch.filePath, lines.join('\n'));

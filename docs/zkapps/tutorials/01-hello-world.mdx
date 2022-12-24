@@ -120,7 +120,7 @@ The following commands are included for reference, and will fail if you run them
 
 To compile the TypeScript code into JavaScript, and run the JavaScript code, you'll type:
 
-```sh
+```
 $ npm run build
 $ node build/src/main.js
 ```
@@ -129,7 +129,7 @@ The first line creates JavaScript code in the build directory, while the second 
 
 You can also combine these together into one line, such as:
 
-```sh
+```
 $ npm run build && node build/src/main.js
 ```
 
@@ -339,6 +339,9 @@ Now, let's initialize our smart contract. Comments are provided to break down ea
 40   // ----------------------------------------------------
 41
 42   console.log('Shutting down')
+43
+44   await shutdown();
+45 })();
 ```
 
 The above code will be similar for any smart contract that you create.
@@ -374,6 +377,9 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
 51   // ----------------------------------------------------
 52
 53   console.log('Shutting down')
+54
+55   await shutdown();
+56 })();
 ```
 
 This code creates a new transaction that attempts to update the field to the value `9`. Because this follows the rules in the `update()` function that we are calling on the smart contract, this should pass. And if you run it, it should!
@@ -410,7 +416,10 @@ Now let's try adding a transaction that should fail - updating the state to `75`
 64
 65   // ----------------------------------------------------
 66
-67   console.log('Shutting down')...
+67   console.log('Shutting down')
+68
+69   await shutdown();
+70 })();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
@@ -445,6 +454,9 @@ And lastly, to show the correct update:
 76   // ---------------------------------------
 77
 78   console.log('Shutting down')
+79
+80   await shutdown();
+81 })();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
