@@ -13,12 +13,15 @@
  * Furthermore, code blocks containing shell commands (those with `sh` info strings) must prepend each command that the runner ought to execute with `$ `. Other lines will be ignored, but may be used to indicate to the user what the expected result of running each command should look like (just note that this runner will not verify that that output is correct). Code blocks containing code to be written must have each line prepended with its line number, and each code block of this sort may only contain a single contiguous series of lines.
  *
  * Code blocks which satisfy the previous constraints, but which are contained in HTML comments (and are thus hidden in the rendered doc), will still be evaluated by this runner. This fact may be utilized to, for example, perform setup tasks which the reader is expected to have already completed in a previous tutorial.
+ *
+ * This program will exit with failure if any of the code block shell commands it executes return a non-zero exit code.
  */
 
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 import sh from 'shelljs';
 import fs from 'fs';
+import path from 'path';
 
 type CodeBlock = ShellCommands | CodePatch;
 
@@ -35,31 +38,47 @@ type CodePatch = {
 };
 
 yargs(hideBin(process.argv))
-  .command('$0', 'Test a doc.', {}, (argv) => {
-    if (argv._[0] === undefined || typeof argv._[0] !== 'string') {
-      throw "Provide the tutorial's file path as an argument";
-    }
-    const markdown = sh.cat(argv._[0]);
+  .command(
+    '$0',
+    'Execute all of the code blocks in a tutorial in sequence, ensuring that each shell command executed returns a non-zero exit code.',
+    {},
+    (argv) => {
+      if (process.env.GITHUB_ACTIONS !== 'true')
+        throw 'This is only intended to be run in a GitHub Actions environment.';
 
-    const testDir = 'test-dir';
-    sh.mkdir(testDir);
-    sh.cd(testDir);
-
-    // 1. Extract code blocks.
-    const regex = /(?<=```)(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?=```)/gs;
-    const codeBlocks = Array.from(markdown.matchAll(regex)).map(
-      regexMatchToCodeBlock
-    );
-
-    // 2. Simulate tutorial
-    codeBlocks.forEach((codeBlock) => {
-      if (codeBlock.lang === 'sh') {
-        executeShellCommand(codeBlock);
-      } else if (codeBlock.lang === 'ts') {
-        applyCodePatch(codeBlock);
+      if (argv._[0] === undefined || typeof argv._[0] !== 'string') {
+        throw "Provide the tutorial's file path as an argument";
       }
-    });
-  })
+      const tutorialPath = argv._[0];
+      const markdown = sh.cat(tutorialPath);
+
+      const testDir = `test-${tutorialPath.replace(/\/|\./g, '-')}`;
+      const pwd = sh.pwd().toString();
+
+      try {
+        sh.mkdir(testDir);
+        sh.cd(testDir);
+
+        // 1. Extract code blocks.
+        const regex =
+          /(?<=```)(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?=```)/gs;
+        const codeBlocks = Array.from(markdown.matchAll(regex)).map(
+          regexMatchToCodeBlock
+        );
+
+        // 2. Simulate tutorial
+        codeBlocks.forEach((codeBlock) => {
+          if (codeBlock.lang === 'sh') {
+            executeShellCommand(codeBlock);
+          } else if (codeBlock.lang === 'ts') {
+            applyCodePatch(codeBlock);
+          }
+        });
+      } finally {
+        sh.rm('-r', path.join(pwd, testDir));
+      }
+    }
+  )
   .parse();
 
 function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
@@ -121,7 +140,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
 function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
-    console.log(`Executing '${shellCommand}'…`);
+    logStep(`Executing '${shellCommand}'…`);
 
     const exitCode = shellCommand.startsWith('cd ')
       ? sh.cd(shellCommand.slice(2)).code
@@ -134,7 +153,7 @@ function executeShellCommand(shellCommands: ShellCommands): void {
 }
 
 function applyCodePatch(codePatch: CodePatch): void {
-  console.log(`Applying code patch to '${codePatch.filePath}'…`);
+  logStep(`Applying code patch to '${codePatch.filePath}'…`);
 
   const lines = fs
     .readFileSync(codePatch.filePath)
@@ -148,4 +167,8 @@ function applyCodePatch(codePatch: CodePatch): void {
   });
 
   fs.writeFileSync(codePatch.filePath, lines.join('\n'));
+}
+
+function logStep(message: string): void {
+  console.log(`\n### ${message}\n`);
 }
