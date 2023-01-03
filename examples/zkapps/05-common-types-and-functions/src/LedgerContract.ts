@@ -4,8 +4,6 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
   MerkleWitness,
   Poseidon,
   PublicKey,
@@ -18,12 +16,8 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 export class LedgerContract extends SmartContract {
   @state(Field) ledgerRoot = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
+  init() {
+    super.init();
   }
 
   @method initState(initialLedgerRoot: Field) {
