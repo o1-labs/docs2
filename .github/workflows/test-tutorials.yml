@@ -13,4 +13,4 @@ jobs:
           node-version: 16
       - run: |
           npm ci
-          npx ts-node scripts/tutorial-test-runner.ts docs/zkapps/tutorials/01-hello-world.mdx
+          npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.mdx
