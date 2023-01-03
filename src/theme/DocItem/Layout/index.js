@@ -39,10 +39,12 @@ export default function DocItemLayout({ children }) {
   const windowSize = useWindowSize();
 
   const {
-    metadata: { editUrl },
+    metadata: { editUrl, slug },
   } = useDoc();
 
   function renderTOCDesktop() {
+    if (slug === '/') return;
+
     return (
       <div className={styles.tocContainer}>
         <div className={styles.editButtonContainer}>
