@@ -4,13 +4,7 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
-  MerkleWitness,
-  Poseidon,
-  PublicKey,
-  Signature,
-  Circuit,
+  MerkleWitness
 } from 'snarkyjs';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -18,12 +12,8 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 export class BasicMerkleTreeContract extends SmartContract {
   @state(Field) treeRoot = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
+  init() {
+    super.init();
   }
 
   @method initState(initialRoot: Field) {
