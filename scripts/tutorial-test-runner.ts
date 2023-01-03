@@ -2,7 +2,7 @@
  * This is a tiny CLI program, intended to be run by `ts-node`, which is designed for testing zkApp tutorials. It functions by
  *
  *   1. Extracting all of the code blocks from the tutorial Markdown file
- *   2. Iterating through them in order and
+ *   2. Iterating through each in order and
  *     - if it contains shell commands, executing them, else
  *     - if it contains code modifications, applying them
  *
