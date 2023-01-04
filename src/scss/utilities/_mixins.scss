@@ -2,15 +2,15 @@
 @use "@site/src/scss/utilities/variables";
 
 @mixin f_monument() {
-  font-family: "Monument Grotesk", serif;
+  font-family: 'Monument Grotesk', serif;
 }
 
 @mixin f_mono() {
-  font-family: "Monument Grotesk Mono", monospace;
+  font-family: 'Monument Grotesk Mono', monospace;
 }
 
 @mixin f_bold() {
-  font-family: "Monument Grotesk Bold", serif;
+  font-family: 'Monument Grotesk Bold', serif;
   font-weight: bold;
 }
 
@@ -25,7 +25,7 @@
   $borderColor: rgb(0, 0, 0),
   $borderColorAfter: rgb(0, 0, 0),
   $color: rgb(255, 255, 255),
-  $backgroundImage: "@site/static/img/common/button-hover-light.png",
+  $backgroundImage: '@site/static/img/common/button-hover-light.png',
   $height: 3.25rem
 ) {
   @include f_monument;
@@ -71,7 +71,7 @@
 
   &:after {
     position: absolute;
-    content: "";
+    content: '';
     inset: 0.25rem -0.25rem -0.25rem 0.25rem;
     border-radius: 4px 1px;
     border: 1px solid $borderColorAfter;
@@ -80,7 +80,7 @@
   }
 
   &:hover {
-    color: $backgroundColor;
+    color: $color;
     background: url($backgroundImage) repeat scroll 0% 0%,
       rgb(0, 0, 0) none repeat scroll 0% 0%;
     &:after {

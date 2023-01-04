@@ -29,7 +29,7 @@ Once you've created your project and deployed it following Tutorial 3, we can wr
 
 ### utils.ts
 
-We will be using a set of helper functions to make this more convenient to write, in a `utils.ts` file. You can find this file [here](https://github.com/o1-labs/docs2/blob/main/docs/zkapps/examples/interacting-with-zkApps-server-side/src/utils.ts). Please download this and place it in your project's `src` folder. It contains 3 functions:
+We will be using a set of helper functions to make this more convenient to write, in a `utils.ts` file. You can find this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/utils.ts). Please download this and place it in your project's `src` folder. It contains 3 functions:
 
 - `loopUntilAccountExists`: This function waits until an account exists on Berkeley.
 - `makeAndSendTransaction`: This function makes a transation, produces a proof for it, and sends it.
@@ -39,7 +39,7 @@ We strongly recommend reading through this code, to understand what they are doi
 
 ### Imports, main, and Mina.Network
 
-Open up `main.ts` in a text editor. You can find the complete source for this [here](https://github.com/o1-labs/docs2/blob/main/docs/zkapps/examples/interacting-with-zkApps-server-side/src/main.ts).
+Open up `main.ts` in a text editor. You can find the complete source for this [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/main.ts).
 
 To start, let's add the imports, and our empty main function:
 
@@ -216,7 +216,7 @@ Moving on, we compile the smart contract, and wait for it to have been deployed:
 
 To do this, we reuse the helper function `loopUntilAccountExists()` from `utils.js`
 
-Note as we deployed our smart contract already with `zk deploy`, programmatic deploy is not needed, and is commented out here. If you would like to see how this works, or its useful for your application, see code for this [here](https://github.com/o1-labs/docs2/blob/main/docs/zkapps/examples/interacting-with-zkApps-server-side/src/deploy.ts).
+Note as we deployed our smart contract already with `zk deploy`, programmatic deploy is not needed, and is commented out here. If you would like to see how this works, or its useful for your application, see code for this [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/deploy.ts).
 
 ### Initializing the smart contract
 

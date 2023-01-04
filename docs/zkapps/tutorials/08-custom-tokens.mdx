@@ -23,7 +23,7 @@ To create a new token, one creates a smart contract, which becomes the manager f
 
 The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens. 
 
-In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/o1-labs/docs2/tree/main/docs/zkapps/examples/08-custom-tokens/src).
+In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src).
 
 You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts) for reference.
 
@@ -31,7 +31,7 @@ You can also find a more extensive example, including all the ways to interact w
 
 To create a token manager smart contract, we will create a normal smart contract, whose methods call special functions that manipulate tokens.
 
-You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/docs/zkapps/examples/08-custom-tokens/src/BasicTokenContract.ts).
+You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/BasicTokenContract.ts).
 
 First, we will bring in imports and setup the structure for our smart contract:
 
@@ -129,7 +129,7 @@ Holders of our token will call this to send tokens to other Mina accounts.
 
 That completes a basic token! To see an example of interacting with this contract, see [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/08-custom-tokens/src/main.ts).
 
-And, to see an example of putting rules around a token, see this example of a token with a whitelist gating which public keys can interact with it [here](https://github.com/o1-labs/docs2/blob/main/docs/zkapps/examples/08-custom-tokens/src/WhitelistedTokenContract.ts).
+And, to see an example of putting rules around a token, see this example of a token with a whitelist gating which public keys can interact with it [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/WhitelistedTokenContract.ts).
 
 ## Building zkApps that interact with Tokens.
 
