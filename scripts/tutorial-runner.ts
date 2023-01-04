@@ -75,7 +75,7 @@ yargs(hideBin(process.argv))
           }
         });
       } finally {
-        sh.rm('-r', path.join(pwd, testDir));
+        sh.rm('-rf', path.join(pwd, testDir));
       }
     }
   )
