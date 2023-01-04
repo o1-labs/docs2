@@ -309,8 +309,8 @@ module.exports = {
         respectPrefersColorScheme: false,
       },
       algolia: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+        appId: process.env.ALGOLIA_APP_ID ?? 'mina-appId',
+        apiKey: process.env.ALGOLIA_SEARCH_API_KEY ?? 'mina-apiKey',
         indexName: 'mina',
         contextualSearch: false,
       },
