@@ -1,12 +1,12 @@
 import { Add } from './Add';
 import {
-  isReady,
-  shutdown,
+  AccountUpdate,
   Field,
+  isReady,
   Mina,
   PrivateKey,
   PublicKey,
-  AccountUpdate,
+  shutdown
 } from 'snarkyjs';
 
 /*
@@ -16,34 +16,41 @@ import {
  * See https://docs.minaprotocol.com/zkapps for more info.
  */
 
+const proofsEnabled = false;
+
 function createLocalBlockchain() {
-  const Local = Mina.LocalBlockchain();
+  const Local = Mina.LocalBlockchain({proofsEnabled});
   Mina.setActiveInstance(Local);
-  return Local.testAccounts[0].privateKey;
+  return Local.testAccounts;
 }
 
 async function localDeploy(
   zkAppInstance: Add,
-  zkAppPrivatekey: PrivateKey,
-  deployerAccount: PrivateKey
+  zkAppPrivateKey: PrivateKey,
+  deployerAccount: PublicKey,
+  deployerKey: PrivateKey
 ) {
   const txn = await Mina.transaction(deployerAccount, () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkAppInstance.deploy({ zkappKey: zkAppPrivatekey });
-    zkAppInstance.init();
-    zkAppInstance.sign(zkAppPrivatekey);
+    zkAppInstance.deploy();
   });
-  await txn.send().wait();
+  await txn.sign([deployerKey, zkAppPrivateKey]).send();
 }
 
 describe('Add', () => {
-  let deployerAccount: PrivateKey,
+  let deployerAccount: PublicKey,
+    deployerKey: PrivateKey,
+    senderAccount: PublicKey,
+    senderKey: PrivateKey,
     zkAppAddress: PublicKey,
-    zkAppPrivateKey: PrivateKey;
+    zkAppPrivateKey: PrivateKey,
+    testAccounts: { publicKey: PublicKey; privateKey: PrivateKey; }[];
 
   beforeEach(async () => {
     await isReady;
-    deployerAccount = createLocalBlockchain();
+    testAccounts = createLocalBlockchain(); 
+    ({ privateKey: deployerKey, publicKey: deployerAccount } = testAccounts[0]);
+    ({ privateKey: senderKey, publicKey: senderAccount } = testAccounts[1]);
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
   });
@@ -57,19 +64,19 @@ describe('Add', () => {
 
   it('generates and deploys the `Add` smart contract', async () => {
     const zkAppInstance = new Add(zkAppAddress);
-    await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
+    await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount, deployerKey);
     const num = zkAppInstance.num.get();
-    expect(num).toEqual(Field.one);
+    expect(num).toEqual(Field(1));
   });
 
   it('correctly updates the num state on the `Add` smart contract', async () => {
     const zkAppInstance = new Add(zkAppAddress);
-    await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
-    const txn = await Mina.transaction(deployerAccount, () => {
+    await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount, deployerKey);
+    const txn = await Mina.transaction(senderAccount, () => {
       zkAppInstance.update();
-      zkAppInstance.sign(zkAppPrivateKey);
     });
-    await txn.send().wait();
+    await txn.prove();
+    await txn.sign([senderKey]).send();
 
     const updatedNum = zkAppInstance.num.get();
     expect(updatedNum).toEqual(Field(3));

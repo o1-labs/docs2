@@ -1,22 +1,16 @@
-import {
-  Field,
-  SmartContract,
-  state,
-  State,
-  method,
-  DeployArgs,
-  Permissions,
+import { 
+  Field, 
+  SmartContract, 
+  state, 
+  State, 
+  method 
 } from 'snarkyjs';
 
 export class Square extends SmartContract {
   @state(Field) num = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
+  init() {
+    super.init();
     this.num.set(Field(3));
   }
 

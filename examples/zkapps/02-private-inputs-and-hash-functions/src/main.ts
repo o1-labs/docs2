@@ -5,9 +5,7 @@ import {
   Field,
   Mina,
   PrivateKey,
-  PublicKey,
   AccountUpdate,
-  Poseidon,
 } from 'snarkyjs';
 
 (async function main() {
@@ -15,9 +13,12 @@ import {
 
   console.log('SnarkyJS loaded');
 
-  const Local = Mina.LocalBlockchain();
+  const useProof = false;
+
+  const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
   Mina.setActiveInstance(Local);
-  const deployerAccount = Local.testAccounts[0].privateKey;
+  const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
+  const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 
   const salt = Field.random();
 
@@ -28,13 +29,13 @@ import {
   const zkAppAddress = zkAppPrivateKey.toPublicKey();
 
   const zkAppInstance = new IncrementSecret(zkAppAddress);
-  const deploy_txn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
-    zkAppInstance.initState(salt, Field(750))
-    zkAppInstance.sign(zkAppPrivateKey);
+    zkAppInstance.deploy();
+    zkAppInstance.initState(salt, Field(750));
   });
-  await deploy_txn.send();
+  await deployTxn.prove();
+  await deployTxn.sign([deployerKey, zkAppPrivateKey]).send(); // new
 
   // get the initial state of IncrementSecret after deployment
   const num0 = zkAppInstance.x.get();
@@ -42,11 +43,11 @@ import {
 
   // ----------------------------------------------------
 
-  const txn1 = await Mina.transaction(deployerAccount, () => {
+  const txn1 = await Mina.transaction(senderAccount, () => {
     zkAppInstance.incrementSecret(salt, Field(750));
-    zkAppInstance.sign(zkAppPrivateKey);
   });
-  await txn1.send();
+  await txn1.prove();
+  await txn1.sign([senderKey]).send();
 
   const num1 = zkAppInstance.x.get();
   console.log('state after txn1:', num1.toString());
