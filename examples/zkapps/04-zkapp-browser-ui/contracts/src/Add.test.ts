@@ -16,8 +16,10 @@ import {
  * See https://docs.minaprotocol.com/zkapps for more info.
  */
 
+const proofsEnabled = false;
+
 function createLocalBlockchain() {
-  const Local = Mina.LocalBlockchain();
+  const Local = Mina.LocalBlockchain({proofsEnabled});
   Mina.setActiveInstance(Local);
   return Local.testAccounts;
 }
@@ -69,7 +71,6 @@ describe('Add', () => {
 
   it('correctly updates the num state on the `Add` smart contract', async () => {
     const zkAppInstance = new Add(zkAppAddress);
-    await Add.compile();
     await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount, deployerKey);
     const txn = await Mina.transaction(senderAccount, () => {
       zkAppInstance.update();
