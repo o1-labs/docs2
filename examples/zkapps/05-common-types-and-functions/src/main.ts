@@ -32,10 +32,10 @@ await isReady;
 const num1 = UInt32.from(40);
 const num2 = UInt64.from(40);
 
-const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
+const num1EqualsNum2: string = num1.toUInt64().equals(num2).toString();
 
 console.log("// --------------------------------------");
-console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
+console.log(`num1 == num2: ${num1EqualsNum2}`);
 console.log(`Fields in num1: ${num1.toFields().length}`);
 
 // --------------------------------------
@@ -45,23 +45,24 @@ const signedNum2 = Int64.from(45);
 
 const signedNumSum = signedNum1.add(signedNum2);
 
-console.log(`signedNum1 + signedNum2: ${signedNumSum.toString()}`);
+console.log(`signedNum1 + signedNum2: ${signedNumSum}`);
 console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
 // --------------------------------------
 
 const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
+const char1EqualsChar2: string = char1.equals(char2).toString();
 
-console.log(`char1: ${char1.toString()}`);
-console.log(`char1 == char2: ${char1.equals(char2).toString()}`);
+console.log(`char1: ${char1}`);
+console.log(`char1 == char2: ${char1EqualsChar2}`);
 console.log(`Fields in char1: ${char1.toFields().length}`);
 console.log("// --------------------------------------");
 
 // --------------------------------------
 
 const str1 = CircuitString.fromString('abc..xyz');
-console.log(`str1: ${str1.toString()}`);
+console.log(`str1: ${str1}`);
 console.log(`Fields in str1: ${str1.toFields().length}`);
 
 // --------------------------------------
@@ -74,16 +75,16 @@ const data2 = char1.toFields().concat(str1.toFields());
 
 const signature = Signature.create(zkAppPrivateKey, data2);
 
-const verifiedData1 = signature.verify(zkAppPublicKey, data1);
-const verifiedData2 = signature.verify(zkAppPublicKey, data2);
+const verifiedData1 = signature.verify(zkAppPublicKey, data1).toString();
+const verifiedData2 = signature.verify(zkAppPublicKey, data2).toString();
 
 console.log(`private key: ${zkAppPrivateKey.toBase58()}`);
 console.log(`public key: ${zkAppPublicKey.toBase58()}`);
 console.log(`Fields in private key: ${zkAppPrivateKey.toFields().length}`);
 console.log(`Fields in public key: ${zkAppPublicKey.toFields().length}`);
 
-console.log(`signature verified for data1: ${verifiedData1.toString()}`);
-console.log(`signature verified for data2: ${verifiedData2.toString()}`);
+console.log(`signature verified for data1: ${verifiedData1}`);
+console.log(`signature verified for data2: ${verifiedData2}`);
 
 console.log(`Fields in signature: ${signature.toFields().length}`);
 console.log("// --------------------------------------");
@@ -108,7 +109,7 @@ const point2 = Point.fromField(Field(1), Field(2));
 
 const pointSum = Point.addPoints(point1, point2);
 
-console.log(`pointSum Fields: ${pointSum.toFields().map((p) => p.toString())}`);
+console.log(`pointSum Fields: ${pointSum.toFields()}`);
 
 class Points8 extends CircuitValue {
   @arrayProp(Point, 8) points: Point[];
@@ -134,8 +135,8 @@ const inputSum = input1.add(input2);
 
 const inputSumAbs = Circuit.if(inputSum.isPositive(), inputSum, inputSum.mul(Int64.minusOne));
 
-console.log(`inputSum: ${inputSum.toString()}`);
-console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
+console.log(`inputSum: ${inputSum}`);
+console.log(`inputSumAbs: ${inputSumAbs}`);
 
 const input3 = Int64.from(22);
 
@@ -145,7 +146,7 @@ const input3largest = input3.sub(input1).isPositive().and(input3.sub(input2).isP
 
 const largest = Circuit.switch([ input1largest, input2largest, input3largest ], Int64, [ input1, input2, input3 ])
 
-console.log(`largest: ${largest.toString()}`);
+console.log(`largest: ${largest}`);
 console.log("// --------------------------------------");
 
 // --------------------------------------

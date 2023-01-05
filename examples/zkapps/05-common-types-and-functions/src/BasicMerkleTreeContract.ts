@@ -12,10 +12,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 export class BasicMerkleTreeContract extends SmartContract {
   @state(Field) treeRoot = State<Field>();
 
-  init() {
-    super.init();
-  }
-
   @method initState(initialRoot: Field) {
     this.treeRoot.set(initialRoot);
   }

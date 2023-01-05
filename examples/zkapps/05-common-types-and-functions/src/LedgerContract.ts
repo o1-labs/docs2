@@ -16,10 +16,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 export class LedgerContract extends SmartContract {
   @state(Field) ledgerRoot = State<Field>();
 
-  init() {
-    super.init();
-  }
-
   @method initState(initialLedgerRoot: Field) {
     this.ledgerRoot.set(initialLedgerRoot);
   }
