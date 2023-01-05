@@ -10,10 +10,6 @@ import {
 export class IncrementSecret extends SmartContract {
   @state(Field) x = State<Field>();
 
-  init() {
-    super.init();
-  }
-
   @method initState(salt: Field, firstSecret: Field) {
     this.x.set(Poseidon.hash([salt, firstSecret]));
   }

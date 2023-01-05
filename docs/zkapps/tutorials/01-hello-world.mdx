@@ -207,7 +207,7 @@ Since we're extending `SmartContract`, which has its own initialization to perfo
 
 Then we initialize our on-chain state, `num`, to a value of `3`.
 
-We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions) here. The default permissions will allow our zkApp on-chain state to be altered by transactions containing account updates with _either_ proof or signature authorization. Proof authorization allows end users to alter the zkApp account state if their transaction was generated from your smart contract code. Signature authorization allows whomever deployed the smart contract to edit it.
+We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions) here.
 
 Lastly, we will add our update function:
 

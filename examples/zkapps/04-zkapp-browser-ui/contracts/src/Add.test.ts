@@ -1,14 +1,13 @@
 import { Add } from './Add';
 import {
-  isReady,
-  shutdown,
+  AccountUpdate,
   Field,
+  isReady,
   Mina,
   PrivateKey,
   PublicKey,
-  AccountUpdate,
+  shutdown
 } from 'snarkyjs';
-import { LocalBlockchain } from 'snarkyjs/dist/node/lib/mina';
 
 /*
  * This file specifies how to test the `Add` example smart contract. It is safe to delete this file and replace
