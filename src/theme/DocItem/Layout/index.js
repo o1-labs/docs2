@@ -61,6 +61,8 @@ export default function DocItemLayout({ children }) {
   }
 
   function renderTOCmobile() {
+    if (slug === '/') return;
+
     if (windowSize === 'mobile') {
       return (
         <>
