@@ -134,27 +134,25 @@ Our smart contract initialization this time will be:
 
 ```ts
 ...
- 22   const salt = Field.random();
+ 24 const salt = Field.random();
 ...
- 32   const deployTxn = await Mina.transaction(deployerAccount, () => {
- 33     AccountUpdate.fundNewAccount(deployerAccount);
- 34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
- 35     zkAppInstance.initState(salt, Field(750));
- 36     zkAppInstance.sign(zkAppPrivateKey);
- 37   });
+ 33 const deployTxn = await Mina.transaction(deployerAccount, () => {
+ 34   AccountUpdate.fundNewAccount(deployerAccount);
+ 35   zkAppInstance.deploy();
+ 36   zkAppInstance.initState(salt, Field(750));
+ 37 });
  ...
 ```
 
-Note that the init method accepts the salt and our secret, in this case the number `750`.
+Note that the `initState()` method accepts the salt and our secret, in this case the number `750`.
 
 And here is how one can create a user transaction to update the on-chain state:
 
 ```ts
 ...
- 46   const txn1 = await Mina.transaction(deployerAccount, () => {
- 47     zkAppInstance.incrementSecret(salt, Field(750));
- 48     zkAppInstance.sign(zkAppPrivateKey);
- 49   });
+ 47 const txn1 = await Mina.transaction(senderAccount, () => {
+ 48   zkAppInstance.incrementSecret(salt, Field(750));
+ 49 });
 ...
 ```
 
@@ -168,7 +166,7 @@ Try running `main` for yourself:
 $ npm run build && node build/src/main.js
 ```
 
-The ouput should look something like this:
+The output should look something like this:
 
 ```
 ...
@@ -178,10 +176,10 @@ state after txn1: 15333363135506653312218020664441564145350761288169575380089681
 Shutting down
 ```
 
-The `state` strings will be different though, because we used `field.random()` to generate the salt.
+The `state` strings will be different though, because we used `Field.random()` to generate the salt.
 
 ## Conclusion
 
-Congrats! We have finished building a smart contract that uses privacy and hash functions
+Congrats! We have finished building a smart contract that uses privacy and hash functions.
 
-Checkout [Tutorial 3](deploying-to-a-network) to learn how to deploy zkApps to a Live Network.
+Checkout [Tutorial 3](deploying-to-a-network) to learn how to deploy zkApps to a live network.
