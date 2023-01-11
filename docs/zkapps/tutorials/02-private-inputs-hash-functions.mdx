@@ -112,7 +112,7 @@ Next we will add a method to update our state:
 
 Mina uses the Poseidon hash function, which has been optimized for fast performance inside zero knowledge proof systems. The Poseidon hash function takes in an array of Fields, and returns a single Field as output.
 
-In this smart contract, we use both a secret number, and a second field, known as a "salt".
+In this smart contract, we use both a secret number, and a second Field, known as a "salt".
 
 In the `incrementSecret()` method, we check that the hash of the salt and our secret is equal to the current state `x`. If this is the case, we add `1` to the secret and set `x` to the hash of the salt and this new secret. SnarkyJS creates a proof of this fact, and a JSON description of the state updates to be made on the zkApp account, such as to store our new hash value, which together form a transaction that can be sent to the Mina network to update the zkApp account.
 
