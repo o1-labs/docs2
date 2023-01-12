@@ -107,7 +107,7 @@ In `init`, we set our token symbol (in this case, MYTKN), and start tracking the
 
 We also write a function to mint new tokens, and send them to a recipient. We check in this function that a signature has been provided by the zkApp account, so that not just anybody can call mint.
 
-In mint, we also track how many tokens are in existence
+In mint, we also track how many tokens are in existence.
 
 Lastly, we will write a send function:
 
@@ -125,7 +125,7 @@ Lastly, we will write a send function:
  69   }
 ```
 
-Holders of our token will call this to send tokens to other Mina accounts.
+Holders of our token will call this method to send tokens to other Mina accounts.
 
 That completes a basic token! To see an example of interacting with this contract, see [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/08-custom-tokens/src/main.ts).
 
@@ -143,4 +143,4 @@ We have finished building a smart contract to manage a token, and shown how to b
 
 To learn more on tokens, see [the token docs](/zkapps/advanced-snarkyjs/custom-tokens).
 
-Check out out our other tutorials and documentation to learn more about SnarkyJS and zkApps!
+Check out our other tutorials and documentation to learn more about SnarkyJS and zkApps!
