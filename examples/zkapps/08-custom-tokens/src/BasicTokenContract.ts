@@ -20,7 +20,7 @@ export class BasicTokenContract extends SmartContract {
 
     const permissionToEdit = Permissions.proof();
 
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       editState: permissionToEdit,
       setTokenSymbol: permissionToEdit,
@@ -31,7 +31,7 @@ export class BasicTokenContract extends SmartContract {
 
   @method init() {
     super.init();
-    this.tokenSymbol.set(tokenSymbol);
+    this.account.tokenSymbol.set(tokenSymbol);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 

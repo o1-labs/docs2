@@ -57,7 +57,7 @@ First, we will bring in imports and setup the structure for our smart contract:
  19   deploy(args: DeployArgs) {
  20     super.deploy(args);
  21
- 22     this.setPermissions({
+ 22     this.account.permissions.set({
  23       ...Permissions.default(),
  24       editState: Permissions.proofOrSignature(),
  25       setTokenSymbol: Permissions.proofOrSignature(),
@@ -75,7 +75,7 @@ Next we will add an init method, and a method that mints tokens:
 ```ts
  31   @method init() {
  32     super.init();
- 33     this.tokenSymbol.set(tokenSymbol);
+ 33     this.account.tokenSymbol.set(tokenSymbol);
  34     this.totalAmountInCirculation.set(UInt64.from(0));
  35   }
  36

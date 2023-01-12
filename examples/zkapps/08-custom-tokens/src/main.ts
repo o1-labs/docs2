@@ -52,6 +52,7 @@ import {
 
   const init_txn = await Mina.transaction(deployerAccount, () => {
     contract.init();
+    contract.requireSignature();
   });
 
   await init_txn.prove();
@@ -74,6 +75,7 @@ import {
   const mint_txn = await Mina.transaction(deployerAccount, () => {
     AccountUpdate.fundNewAccount(deployerAccount);
     contract.mint(zkAppAddress, mintAmount, mintSignature);
+    contract.requireSignature();
   });
 
   await mint_txn.prove();
@@ -101,6 +103,7 @@ import {
       deployerAccount.toPublicKey(),
       sendAmount
     );
+    contract.requireSignature();
   });
   await send_txn.prove();
   send_txn.sign([zkAppPrivateKey]);
