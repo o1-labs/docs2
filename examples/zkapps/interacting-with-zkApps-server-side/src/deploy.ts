@@ -1,36 +1,28 @@
 import { Square } from './Square.js';
-import {
-  Field,
-  Mina,
-  PrivateKey,
-  PublicKey,
-  AccountUpdate,
-  fetchAccount,
-} from 'snarkyjs';
+import { Field, Mina, PrivateKey, AccountUpdate, fetchAccount } from 'snarkyjs';
 
-let transactionFee = 100_000_000;
+export { deploy };
 
-export const deploy = async (
+const transactionFee = 100_000_000;
+
+async function deploy(
   deployerPrivateKey: PrivateKey,
   zkAppPrivateKey: PrivateKey,
-  zkAppPublicKey: PublicKey,
   zkapp: Square,
   verificationKey: { data: string; hash: string | Field }
-) => {
-  console.log(
-    'using deployer private key with public key',
-    deployerPrivateKey.toPublicKey().toBase58()
-  );
+) {
+  let sender = deployerPrivateKey.toPublicKey();
+  let zkAppPublicKey = zkAppPrivateKey.toPublicKey();
+  console.log('using deployer private key with public key', sender.toBase58());
   console.log(
     'using zkApp private key with public key',
-    zkAppPrivateKey.toPublicKey().toBase58()
+    zkAppPublicKey.toBase58()
   );
 
   // ----------------------------------------------------
 
-  let zkAppResponse = await fetchAccount({ publicKey: zkAppPublicKey });
-  let isDeployed = zkAppResponse.error == null;
-  // TODO add check that verification key is correct once this is available in SnarkyJS
+  let { account } = await fetchAccount({ publicKey: zkAppPublicKey });
+  let isDeployed = account?.verificationKey !== undefined;
 
   // ----------------------------------------------------
 
@@ -43,27 +35,29 @@ export const deploy = async (
   } else {
     console.log('Deploying zkapp for public key', zkAppPublicKey.toBase58());
     let transaction = await Mina.transaction(
-      { feePayerKey: deployerPrivateKey, fee: transactionFee },
+      { sender, fee: transactionFee },
       () => {
-        AccountUpdate.fundNewAccount(deployerPrivateKey);
-        zkapp.deploy({ zkappKey: zkAppPrivateKey, verificationKey });
+        AccountUpdate.fundNewAccount(sender);
+        zkapp.deploy({ verificationKey });
       }
     );
+    await transaction.prove();
+    transaction.sign([deployerPrivateKey, zkAppPrivateKey]);
 
     console.log('Sending the deploy transaction...');
     const res = await transaction.send();
-    const hash = await res.hash(); // This will change in a future version of SnarkyJS
-    if (hash == null) {
+    const hash = res.hash();
+    if (hash === undefined) {
       console.log('error sending transaction (see above)');
     } else {
       console.log(
         'See deploy transaction at',
         'https://berkeley.minaexplorer.com/transaction/' + hash
       );
+      console.log('waiting for zkApp account to be deployed...');
+      await res.wait();
+      isDeployed = true;
     }
   }
-
-  // ----------------------------------------------------
-
   return isDeployed;
-};
+}
