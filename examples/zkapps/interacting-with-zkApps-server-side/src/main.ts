@@ -34,7 +34,7 @@ const deployerPrivateKey = PrivateKey.fromBase58(deployerPrivateKeyBase58);
 const deployerPublicKey = deployerPrivateKey.toPublicKey();
 
 const zkAppPrivateKey = PrivateKey.fromBase58(
-  'EKEW9WWNLaMgaSqQiQQ5a5VHTWipTD9CE1DLZhcqzg39iHHA5sxQ'
+  'EKFTMuvTirzrwpeHP8RKe7bGufBGiKs27nTMzD5XyMV8NcK3upt2'
 );
 
 // ----------------------------------------------------
@@ -74,7 +74,7 @@ if (!accountExistsAlready) {
   await deploy(deployerPrivateKey, zkAppPrivateKey, zkapp, verificationKey);
 }
 
-let num = zkapp.num.get();
+let num = (await zkapp.num.fetch())!;
 console.log(`current value of num is ${num}`);
 
 // ----------------------------------------------------
