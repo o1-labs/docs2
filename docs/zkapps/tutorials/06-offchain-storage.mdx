@@ -192,7 +192,7 @@ Continuing, let's setup our smart contract:
  26
  27   deploy(args: DeployArgs) {
  28     super.deploy(args);
- 29     this.setPermissions({
+ 29     this.account.permissions.set({
  30       ...Permissions.default(),
  31       editState: Permissions.proofOrSignature(),
  32     });
@@ -380,17 +380,17 @@ We call our smart contract as follows:
 171         storedNewStorageNumber,
 172         storedNewStorageSignature
 173       );
-174     }
-175
-176     if (useLocal) {
-177       const updateTransaction = await Mina.transaction(
-178         { feePayerKey, fee: transactionFee },
-179         () => {
-180           doUpdate();
-181           zkapp.sign(zkappPrivateKey);
+174       zkapp.requireSignature()
+175     }
+176
+177     if (useLocal) {
+178       const updateTransaction = await Mina.transaction(
+179         { feePayerKey, fee: transactionFee },
+180         () => {
+181           doUpdate();
 182         }
 183       );
-184
+184       updateTransaction.sign([zkappPrivateKey])
 185       await updateTransaction.send();
 ...
 ```

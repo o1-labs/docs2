@@ -86,9 +86,9 @@ async function main() {
       AccountUpdate.fundNewAccount(feePayerKey);
       zkapp.deploy({ zkappKey: zkappPrivateKey });
       zkapp.initState(serverPublicKey);
-      zkapp.sign(zkappPrivateKey);
+      zkapp.requireSignature()
     });
-
+    transaction.sign([zkappPrivateKey])
     await transaction.send();
   } else {
     let zkAppAccount = await loopUntilAccountExists({
@@ -157,6 +157,7 @@ async function main() {
         storedNewStorageNumber,
         storedNewStorageSignature
       );
+      zkapp.requireSignature()
     }
 
     if (useLocal) {
@@ -164,10 +165,10 @@ async function main() {
         { feePayerKey, fee: transactionFee },
         () => {
           doUpdate();
-          zkapp.sign(zkappPrivateKey);
         }
       );
 
+      updateTransaction.sign([zkappPrivateKey])
       await updateTransaction.send();
     } else {
       await makeAndSendTransaction({
