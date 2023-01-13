@@ -286,11 +286,11 @@ To start, we will connect to the off-chain storage server:
 
 ```ts
 ...
- 71   const storageServerAddress = 'http://localhost:3001';
- 72   const serverPublicKey = await OffChainStorage.getPublicKey(
- 73     storageServerAddress,
- 74     NodeXMLHttpRequest
- 75   );
+ 73   const storageServerAddress = 'http://localhost:3001';
+ 74   const serverPublicKey = await OffChainStorage.getPublicKey(
+ 75     storageServerAddress,
+ 76     NodeXMLHttpRequest
+ 77   );
 ...
 ```
 
@@ -309,22 +309,22 @@ To start, let's get the existing tree:
 
 ```ts
 ...
-120   async function updateTree() {
+108   async function updateTree() {
+109
+110     const index = BigInt(Math.floor(Math.random() * 4));
+111
+112     // get the existing tree
+113     const treeRoot = await zkapp.storageTreeRoot.get();
+114     const idx2fields = await OffChainStorage.get(
+115       storageServerAddress,
+116       zkappPublicKey,
+117       treeHeight,
+118       treeRoot,
+119       NodeXMLHttpRequest
+120     );
 121
-122     const index = BigInt(Math.floor(Math.random() * 4));
-123
-124     // get the existing tree
-125     const treeRoot = await zkapp.storageTreeRoot.get();
-126     const idx2fields = await OffChainStorage.get(
-127       storageServerAddress,
-128       zkappPublicKey,
-129       treeHeight,
-130       treeRoot,
-131       NodeXMLHttpRequest
-132     );
-133
-134     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
-135     const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(index)));
+122     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
+123     const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(index)));
 ...
 ```
 
@@ -336,17 +336,17 @@ Continuing:
 
 ```ts
 ...
-137     // get the prior leaf
-138     const priorLeafIsEmpty = !idx2fields.has(index);
-139     let priorLeafNumber: Field;
-140     let newLeafNumber: Field;
-141     if (!priorLeafIsEmpty) {
-142       priorLeafNumber = idx2fields.get(index)![0];
-143       newLeafNumber = priorLeafNumber.add(3);
-144     } else {
-145       priorLeafNumber = Field(0);
-146       newLeafNumber = Field(1);
-147     }
+124     // get the prior leaf
+125     const priorLeafIsEmpty = !idx2fields.has(index);
+126     let priorLeafNumber: Field;
+127     let newLeafNumber: Field;
+128     if (!priorLeafIsEmpty) {
+129       priorLeafNumber = idx2fields.get(index)![0];
+130       newLeafNumber = priorLeafNumber.add(3);
+131     } else {
+132       priorLeafNumber = Field(0);
+133       newLeafNumber = Field(1);
+134     }
 ...
 ```
 
@@ -354,14 +354,14 @@ Here, we check if the leaf is empty, and shape our update accordingly. If the le
 
 ```ts
 ...
-152     const [storedNewStorageNumber, storedNewStorageSignature] =
-153       await OffChainStorage.requestStore(
-154         storageServerAddress,
-155         zkappPublicKey,
-156         treeHeight,
-157         idx2fields,
-158         NodeXMLHttpRequest
-159       );
+139     const [storedNewStorageNumber, storedNewStorageSignature] =
+140       await OffChainStorage.requestStore(
+141         storageServerAddress,
+142         zkappPublicKey,
+143         treeHeight,
+144         idx2fields,
+145         NodeXMLHttpRequest
+146       );
 ...
 ```
 
@@ -371,27 +371,26 @@ We call our smart contract as follows:
 
 ```ts
 ...
-165     const doUpdate = () => {
-166       zkapp.update(
-167         Bool(priorLeafIsEmpty),
-168         priorLeafNumber,
-169         newLeafNumber,
-170         leafWitness,
-171         storedNewStorageNumber,
-172         storedNewStorageSignature
-173       );
-174       zkapp.requireSignature()
-175     }
-176
-177     if (useLocal) {
-178       const updateTransaction = await Mina.transaction(
-179         { feePayerKey, fee: transactionFee },
-180         () => {
-181           doUpdate();
-182         }
-183       );
-184       updateTransaction.sign([zkappPrivateKey])
-185       await updateTransaction.send();
+159     const doUpdate = () => {
+160       zkapp.update(
+161         Bool(priorLeafIsEmpty),
+162         priorLeafNumber,
+163         newLeafNumber,
+164         leafWitness,
+165         storedNewStorageNumber,
+166         storedNewStorageSignature
+167       );
+168     }
+169
+170     if (useLocal) {
+171       const updateTransaction = await Mina.transaction(
+172         { sender: feePayerKey.toPublicKey(), fee: transactionFee },
+173         () => {
+174           doUpdate();
+175         }
+176       );
+177       updateTransaction.sign([zkappPrivateKey, feePayerKey])
+178       await updateTransaction.send();
 ...
 ```
 
