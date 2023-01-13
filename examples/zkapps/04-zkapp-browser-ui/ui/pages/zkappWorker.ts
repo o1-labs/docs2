@@ -5,7 +5,7 @@ import {
   PrivateKey,
   Field,
   fetchAccount,
-} from 'snarkyjs'
+} from 'snarkyjs';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
@@ -17,7 +17,7 @@ const state = {
   Add: null as null | typeof Add,
   zkapp: null as null | Add,
   transaction: null as null | Transaction,
-}
+};
 
 // ---------------------------------------------------------------------------------------
 
@@ -26,8 +26,8 @@ const functions = {
     await isReady;
   },
   setActiveInstanceToBerkeley: async (args: {}) => {
-    const Berkeley = Mina.BerkeleyQANet(
-      "https://proxy.berkeley.minaexplorer.com/graphql"
+    const Berkeley = Mina.Network(
+      'https://proxy.berkeley.minaexplorer.com/graphql'
     );
     Mina.setActiveInstance(Berkeley);
   },
@@ -52,9 +52,8 @@ const functions = {
   },
   createUpdateTransaction: async (args: {}) => {
     const transaction = await Mina.transaction(() => {
-        state.zkapp!.update();
-      }
-    );
+      state.zkapp!.update();
+    });
     state.transaction = transaction;
   },
   proveUpdateTransaction: async (args: {}) => {
@@ -70,23 +69,26 @@ const functions = {
 export type WorkerFunctions = keyof typeof functions;
 
 export type ZkappWorkerRequest = {
-  id: number,
-  fn: WorkerFunctions,
-  args: any
-}
+  id: number;
+  fn: WorkerFunctions;
+  args: any;
+};
 
 export type ZkappWorkerReponse = {
-  id: number,
-  data: any
-}
+  id: number;
+  data: any;
+};
 if (process.browser) {
-  addEventListener('message', async (event: MessageEvent<ZkappWorkerRequest>) => {
-    const returnData = await functions[event.data.fn](event.data.args);
+  addEventListener(
+    'message',
+    async (event: MessageEvent<ZkappWorkerRequest>) => {
+      const returnData = await functions[event.data.fn](event.data.args);
 
-    const message: ZkappWorkerReponse = {
-      id: event.data.id,
-      data: returnData,
+      const message: ZkappWorkerReponse = {
+        id: event.data.id,
+        data: returnData,
+      };
+      postMessage(message);
     }
-    postMessage(message)
-  });
+  );
 }
