@@ -10,9 +10,11 @@ export default function CopyButton({ code, className }) {
   const handleCopyCode = useCallback(() => {
     const removeLineNumbers = /^\s*\d+\s/gm;
     const removeEllipses = /(^\s*\.{3})(?![^a-z])|(^\.{3})/gm;
+    const removeDollarSymbol = /^\$\s/gm;
 
     let copiedCode = code.replace(removeLineNumbers, '');
     copiedCode = copiedCode.replace(removeEllipses, '');
+    copiedCode = copiedCode.replace(removeDollarSymbol, '');
 
     copy(copiedCode);
     setIsCopied(true);
