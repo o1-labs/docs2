@@ -90,6 +90,7 @@ if (useLocal) {
     zkapp.initState(serverPublicKey);
   });
   transaction.sign([zkappPrivateKey, feePayerKey]);
+  await transaction.prove()
   await transaction.send();
 } else {
   let zkAppAccount = await loopUntilAccountExists({
@@ -176,6 +177,7 @@ async function updateTree() {
     );
 
     updateTransaction.sign([zkappPrivateKey, feePayerKey]);
+    await updateTransaction.prove()
     await updateTransaction.send();
   } else {
     await makeAndSendTransaction({

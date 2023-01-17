@@ -324,7 +324,7 @@ To start, let's get the existing tree:
 120     );
 121
 122     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
-123     const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(index)));
+123     const leafWitness = new MerkleWitness8(tree.getWitness(index));
 ...
 ```
 
@@ -390,7 +390,8 @@ We call our smart contract as follows:
 175         }
 176       );
 177       updateTransaction.sign([zkappPrivateKey, feePayerKey])
-178       await updateTransaction.send();
+178       await updateTransaction.prove();
+179       await updateTransaction.send();
 ...
 ```
 
