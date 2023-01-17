@@ -37,8 +37,7 @@ const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
   contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
 });
 await deploy_txn.prove();
-deploy_txn.sign([deployerAccount]);
-await deploy_txn.send();
+await deploy_txn.sign([deployerAccount]).send();
 
 console.log('deployed');
 
@@ -51,8 +50,7 @@ const init_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
 });
 
 await init_txn.prove();
-init_txn.sign([deployerAccount]);
-await init_txn.send();
+await init_txn.sign([deployerAccount]).send();
 
 console.log('initialized');
 
@@ -73,8 +71,7 @@ const mint_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
 });
 
 await mint_txn.prove();
-mint_txn.sign([deployerAccount]);
-await mint_txn.send();
+await mint_txn.sign([deployerAccount]).send();
 
 console.log('minted');
 
@@ -95,8 +92,7 @@ const send_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
   contract.sendTokens(zkAppAddress, deployerAccount.toPublicKey(), sendAmount);
 });
 await send_txn.prove();
-send_txn.sign([deployerAccount]);
-await send_txn.send();
+await send_txn.sign([deployerAccount]).send();
 
 console.log('sent');
 
