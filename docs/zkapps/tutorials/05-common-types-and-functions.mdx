@@ -352,7 +352,15 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
   zkapp.initState(tree.getRoot());
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await deployTxn.send();
+
+const txPromise = await deployTxn.send();
+/*
+`txn.send()` returns a promise with two closures - `.wait()` and `.hash()`
+`.hash()` returns the transaction hash, as the name might indicate
+`.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
+*/
+await txPromise.wait();
+
 
 const incrementIndex = 522n;
 const incrementAmount = Field(9);
@@ -372,7 +380,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
   );
   zkapp.sign(basicTreeZkAppPrivateKey);
 });
-await txn1.send();
+await (await txn1.send()).wait();
 
 // compare the root of the smart contract tree to our local tree
 console.log(
