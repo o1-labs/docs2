@@ -33,7 +33,7 @@ const num2 = UInt64.from(40);
 
 const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
 
-console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
+console.log(`num1 === num2: ${num1EqualsNum2.toString()}`);
 console.log(`Fields in num1: ${num1.toFields().length}`);
 
 // --------------------------------------
@@ -53,7 +53,7 @@ const char2 = Character.fromString('d');
 const char1EqualsChar2: Bool = char1.equals(char2);
 
 console.log(`char1: ${char1}`);
-console.log(`char1 == char2: ${char1EqualsChar2.toString()}`);
+console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
 console.log(`Fields in char1: ${char1.toFields().length}`);
 console.log('--------------------------------------');
 

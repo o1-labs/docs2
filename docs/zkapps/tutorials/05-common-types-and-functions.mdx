@@ -41,7 +41,7 @@ const num2 = UInt64.from(40);
 
 const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
 
-console.log(`num1 == num2: ${num1EqualsNum2.toString()}`);
+console.log(`num1 === num2: ${num1EqualsNum2.toString()}`);
 console.log(`Fields in num1: ${num1.toFields().length}`);
 
 // --------------------------------------
@@ -61,7 +61,7 @@ const char2 = Character.fromString('d');
 const char1EqualsChar2: Bool = char1.equals(char2);
 
 console.log(`char1: ${char1}`);
-console.log(`char1 == char2: ${char1EqualsChar2.toString()}`);
+console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
 console.log(`Fields in char1: ${char1.toFields().length}`);
 ```
 
@@ -88,7 +88,7 @@ Fields in char1: 1
 
 All arguments passed into smart contracts need to be arguments SnarkyJS can understand. This means that we can't just pass normal strings - we need to pass in strings that have been wrapped to be compatible with circuits, which is what `Struct` accomplishes.
 
-One special thing to note, is that the default `CircuitString` has a max length of 128 characters. This is because, under the hood, SnarkyJS types have to be fixed length. However, the `CircuitString` API this abstracts away and can be used like a dynamic length string, with the only caveat being the max length.
+One special thing to note, is that the default `CircuitString` has a max length of 128 characters. This is because, under the hood, SnarkyJS types have to be fixed length. However, the `CircuitString` API abstracts this away and can be used like a dynamic length string, with the only caveat being the max length.
 
 We'll see in the following section how to create custom types, where you could for example build your own strings, modified to whatever length you would like.
 
@@ -136,6 +136,8 @@ signature verified for data1: false
 signature verified for data2: true
 Fields in signature: 256
 ```
+
+Small but important note: Make sure that you never use the private key above (or any private key that's publicly accessible) in a real application!
 
 If you're curious why there are 255 Fields in a private key and 256 in a signature - the reason for this is cryptographic in nature: Elliptic curve scalars are most efficiently represented in a SNARK as an array of bits, and the bit length of these scalars happens to be 255.
 
