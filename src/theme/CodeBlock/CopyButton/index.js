@@ -15,9 +15,17 @@ export default function CopyButton({ code, className }) {
     let copiedCode = code.replace(removeLineNumbers, '');
     copiedCode = copiedCode.replace(removeEllipses, '');
 
+    /**
+     This removes all lines from the code snippet that 
+     do not start with $ (i.e. the output of a terminal command),
+     and removes the $ from the remaining lines. 
+    **/
     if (copiedCode.startsWith('$')) {
-      const codeArr = copiedCode.split('\n');
-      copiedCode = codeArr.filter((line) => line[0] === '$').join('\n');
+      const copiedCodeArr = copiedCode.split('\n');
+      copiedCode = copiedCodeArr
+        .filter((line) => line[0] === '$')
+        .join('\n')
+        .replace(removeDollarSymbol, '');
     }
 
     copy(copiedCode);
