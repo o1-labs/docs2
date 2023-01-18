@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 export default function CopyButton({ code, className }) {
   const [isCopied, setIsCopied] = useState(false);
   const copyTimeout = useRef(undefined);
+
   const handleCopyCode = useCallback(() => {
     const removeLineNumbers = /^\s*\d+\s/gm;
     const removeEllipses = /(^\s*\.{3})(?![^a-z])|(^\.{3})/gm;
@@ -16,10 +17,10 @@ export default function CopyButton({ code, className }) {
     copiedCode = copiedCode.replace(removeEllipses, '');
 
     /**
-     This removes all lines from the code snippet that 
-     do not start with $ (i.e. the output of a terminal command),
-     and removes the $ from the remaining lines. 
-    **/
+     * This removes all lines from the code snippet after the lines
+     * that start with $ (i.e. the output of a terminal command),
+     * and removes the $ from the remaining lines.
+     **/
     if (copiedCode.startsWith('$')) {
       const copiedCodeArr = copiedCode.split('\n');
       copiedCode = copiedCodeArr
