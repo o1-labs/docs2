@@ -1,7 +1,7 @@
 ---
-title: "Tutorial 4: Building a zkApp UI in the Browser with React"
+title: 'Tutorial 4: Building a zkApp UI in the Browser with React'
 hide_title: true
-sidebar_label: "Tutorial 4: Building a zkApp UI in the Browser with React"
+sidebar_label: 'Tutorial 4: Building a zkApp UI in the Browser with React'
 ---
 
 # Tutorial 4: Building a zkApp UI in the Browser with React
@@ -26,6 +26,7 @@ If you would like to try out the application before going through the tutorial, 
 ### What we will build
 
 The application we build will implement the following:
+
 1. Loading a public key from an extension-based wallet (tested with [Auro](https://www.aurowallet.com/) >= 2.1.2)
 2. Checking if the public key has funds, and direct the user to the faucet if not.
 3. Connecting to example zkApp `Add` smart contract, already deployed on Berkeley testnet at a fixed address.
@@ -45,12 +46,14 @@ zk project 04-zkapp-browser-ui --ui next
 ```
 
 On the prompts that appear, select:
+
 1. Do you want your NextJS project to use TypeScript? `yes`
 2. Do you want to setup your project for GitHub pages? `yes`
 
 This will create a new project with two folders instead of just one:
-* `contracts`: This stores your smart contract code
-* `ui`: This is where you will write your ui
+
+- `contracts`: This stores your smart contract code
+- `ui`: This is where you will write your ui
 
 We will be using the default contract (`Add`), so all we'll be doing is building it for use from our ui.
 
@@ -67,19 +70,21 @@ In making your own zkApp, you will need to edit files in the `contracts` folder,
 
 Our React UI will have a few components. First, there is the react page itself. In addition though, there is code that uses SnarkyJS.
 
-Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a web worker. 
+Because SnarkyJS code is computationally intensive, running it as usual in a script would block our browser's UI thread, causing our page to become unresponsive at times. To solve this, we will put our SnarkyJS code in a web worker.
 
 This will be implemented via 2 helper files:
-* `zkappWorker.ts`: The web worker code itself
-* `zkappWorkerClient.ts`: Code that we run from react to interact with the web worker.
+
+- `zkappWorker.ts`: The web worker code itself
+- `zkappWorkerClient.ts`: Code that we run from react to interact with the web worker.
 
 We encourage you to read these files, to understand how they work and to extend them for your own zkApp, but we will not review them in detail here, in favor of spending time on the react code.
 
-Download these files from [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorker.ts) and [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts), and place them in your `ui/pages` folder.
+Download these files from [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/pages/zkappWorker.ts) and [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts), and place them in your `ui/pages` folder.
 
 ### globals.css
 
 We will be using an `<a>` link in our application - add the following to the end of `ui/styles/globals.css` to style the link:
+
 ```css
 a {
   color: blue;
@@ -89,11 +94,13 @@ a {
 ### Running the react app
 
 To run the react app, open up two new terminals in the `ui` folder. In one, type:
+
 ```sh
 npm run dev
 ```
 
-And in the other, 
+And in the other,
+
 ```sh
 npm run ts-watch
 ```
@@ -104,9 +111,10 @@ The second shows typescript errors. You can watch this as you develop to check f
 
 ### Implementing the react app
 
-Open up `ui/pages/_app.page.tsx` in your editor. You can find the full contents for this file [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/04-zkapp-browser-ui/ui/pages/_app.page.tsx) for reference.
+Open up `ui/pages/_app.page.tsx` in your editor. You can find the full contents for this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/pages/_app.page.tsx) for reference.
 
 Edit the contents so it looks like this:
+
 ```ts
   1 import '../styles/globals.css'
   2 import { useEffect, useState } from "react";
@@ -123,7 +131,7 @@ Edit the contents so it looks like this:
  13 let transactionFee = 0.1;
  14
  15 export default function App() {
- 16   return </div>
+ 16   return <div/>
  17 }
  18
 ```
@@ -149,13 +157,14 @@ Now, we'll add state to our app:
  27
  28   // -------------------------------------------------------
  29
- 30   return </div>
+ 30   return <div/>
 ...
 ```
 
 This creates mutable state that we can reference in our UI, and update as our application runs. You can learn more about react state and useState [here](https://reactjs.org/docs/hooks-state.html).
 
 Next, we'll add a function to setup our application:
+
 ```ts
 ...
  28   // -------------------------------------------------------
@@ -180,7 +189,6 @@ Next, we'll add a function to setup our application:
  47   // -------------------------------------------------------
 ...
 ```
-
 
 We use the react feature "useEffect", so that this is only run once. See more on useEffect [here](https://reactjs.org/docs/hooks-effect.html). We further gate running this effect by a boolean `hasBeenSetup` so we don't run this more than once.
 
@@ -245,12 +253,12 @@ And lastly for this function, we update the state of the react app:
  72
  73         setState({
  74             ...state,
- 75             zkappWorkerClient, 
+ 75             zkappWorkerClient,
  76             hasWallet: true,
- 77             hasBeenSetup: true, 
- 78             publicKey, 
- 79             zkappPublicKey, 
- 80             accountExists, 
+ 77             hasBeenSetup: true,
+ 78             publicKey,
+ 79             zkappPublicKey,
+ 80             accountExists,
  81             currentNum
  82         });
  83       }
@@ -258,7 +266,7 @@ And lastly for this function, we update the state of the react app:
 ...
 ```
 
-Now that we have finished setting up our UI, we write a new effect, that waits for the account to exist, if it didn't exist before. 
+Now that we have finished setting up our UI, we write a new effect, that waits for the account to exist, if it didn't exist before.
 
 If the account has been newly created for example, it will need to be funded from the faucet. We'll add in our UI later a link to request funds for new accounts.
 
@@ -395,13 +403,13 @@ Lastly, we will update the `return <div/>` placeholder we originally inserted, w
 
 We divide our UI into 3 sections:
 
-* `setup` lets the user know when the zkApp has finished loading.
-* `accountDoesNotExist` gives the user a link to the faucet if their account hasn't been funded.
-* `mainContent` shows the current state of the zkApp, and buttons to interact with it.
+- `setup` lets the user know when the zkApp has finished loading.
+- `accountDoesNotExist` gives the user a link to the faucet if their account hasn't been funded.
+- `mainContent` shows the current state of the zkApp, and buttons to interact with it.
 
 The buttons allow the user to create a transaction, or refresh the current state of the application, by triggering the `onSendTransaction()` and `onRefreshCurrentNum()` functions we wrote above.
 
-And that's it! We've finished the code for our application. 
+And that's it! We've finished the code for our application.
 
 If you've been using `npm run dev`, you should now be able to interact with this application on `localhost:3000`, with all the functionality we've implemented over the tutorial.
 
@@ -410,11 +418,13 @@ If you've been using `npm run dev`, you should now be able to interact with this
 To deploy our project to Github, first push it to a new Github repo. The Github repo must have the same name as the project name when we ran zk project above (in this example, `04-zkapp-browser-ui`). If not, change the existing project name strings in `next.config.js`, and `pages/reactCOIServiceWorker.ts` to your repo name.
 
 To deploy, just run `npm run deploy` in the `ui` directory. After the script builds your application, uploads it to Github, and Github processes it, your application will be available at:
+
 ```
 https://<username>.github.io/<repo-name>/index.html
 ```
 
 ## Conclusion
+
 We have built a React UI for our zkApp, to allow users to interact with our smart contract and send transactions to Berkeley Testnet!
 
 You can build a UI for your application using any UI framework, not just React. The zkApp CLI will also soon provide support for simultaneously creating SvelteKit and NuxtJS projects too - stay tuned!
