@@ -17,6 +17,7 @@ export default function CopyButton({ code, className }) {
 
     if (copiedCode.startsWith('$')) {
       const codeArr = copiedCode.split('\n');
+      copiedCode = codeArr.filter((line) => line[0] === '$').join('\n');
     }
 
     copy(copiedCode);
