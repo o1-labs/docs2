@@ -14,7 +14,10 @@ export default function CopyButton({ code, className }) {
 
     let copiedCode = code.replace(removeLineNumbers, '');
     copiedCode = copiedCode.replace(removeEllipses, '');
-    copiedCode = copiedCode.replace(removeDollarSymbol, '');
+
+    if (copiedCode.startsWith('$')) {
+      const codeArr = copiedCode.split('\n');
+    }
 
     copy(copiedCode);
     setIsCopied(true);
