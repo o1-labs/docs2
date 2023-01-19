@@ -337,7 +337,7 @@ Now, let's expand the `main.ts` file to initialize our smart contract. Comments 
 29 const zkAppInstance = new Square(zkAppAddress);
 30 const deployTxn = await Mina.transaction(deployerAccount, () => {
 31   AccountUpdate.fundNewAccount(deployerAccount);
-32     zkAppInstance.deploy();
+32   zkAppInstance.deploy();
 33 });
 34 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 35
@@ -348,6 +348,8 @@ Now, let's expand the `main.ts` file to initialize our smart contract. Comments 
 40 // ----------------------------------------------------
 41
 42 console.log('Shutting down')
+43
+44 await shutdown();
 ```
 
 The above code will be similar for any smart contract that you create.
@@ -383,6 +385,8 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
 51 // ----------------------------------------------------
 52
 53   console.log('Shutting down')
+54
+55 await shutdown();
 ```
 
 This code creates a new transaction that attempts to update the field to the value `9`. Because this follows the rules in the `update()` function that we are calling on the smart contract, this should pass. And if you run it, it should!
@@ -420,6 +424,8 @@ Now let's try adding a transaction that should fail - updating the state to `75`
 65 // ----------------------------------------------------
 66
 67 console.log('Shutting down')
+68
+69 await shutdown();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
@@ -454,6 +460,8 @@ And lastly, to show the correct update:
 76 // ----------------------------------------------------
 77
 78 console.log('Shutting down');
+79
+80 await shutdown();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
