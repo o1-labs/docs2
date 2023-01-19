@@ -1,7 +1,7 @@
 ---
-title: "Example: Anonymous Message Board Tutorial"
+title: 'Example: Anonymous Message Board Tutorial'
 hide_title: true
-sidebar_label: "Example: Anonymous Message Board"
+sidebar_label: 'Example: Anonymous Message Board'
 ---
 
 :::info
@@ -44,19 +44,19 @@ by the NodeJS Project.
 #### Installation
 
 ```sh
-npm install -g zkapp-cli
+$ npm install -g zkapp-cli
 ```
 
 #### Usage
 
 ```sh
-zk --help
+$ zk --help
 ```
 
 ##### Create a new project
 
 ```sh
-zk project message-board  # or path/to/message-board
+$ zk project message-board  # or path/to/message-board
 
 ✔ Fetch project template
 ✔ Initialize Git repo
@@ -101,7 +101,7 @@ There should be an example smart contract in `./src` called `Add.ts` and tests f
 Let’s create a new contract by running:
 
 ```sh
-zk file message
+$ zk file message
 ```
 
 Now open it (`message.ts`) up and paste in the following:
@@ -120,7 +120,7 @@ import {
   isReady,
   Poseidon,
   Encoding,
-} from "snarkyjs";
+} from 'snarkyjs';
 
 export { isReady, Field, Encoding };
 
@@ -136,16 +136,16 @@ await isReady;
 
 export const users = {
   Bob: PrivateKey.fromBase58(
-    "EKFAdBGSSXrBbaCVqy4YjwWHoGEnsqYRQTqz227Eb5bzMx2bWu3F"
+    'EKFAdBGSSXrBbaCVqy4YjwWHoGEnsqYRQTqz227Eb5bzMx2bWu3F'
   ),
   SuperBob: PrivateKey.fromBase58(
-    "EKEitxmNYYMCyumtKr8xi1yPpY3Bq6RZTEQsozu2gGf44cNxowmg"
+    'EKEitxmNYYMCyumtKr8xi1yPpY3Bq6RZTEQsozu2gGf44cNxowmg'
   ),
   MegaBob: PrivateKey.fromBase58(
-    "EKE9qUDcfqf6Gx9z6CNuuDYPe4XQQPzFBCfduck2X4PeFQJkhXtt"
+    'EKE9qUDcfqf6Gx9z6CNuuDYPe4XQQPzFBCfduck2X4PeFQJkhXtt'
   ), // This one says duck in it :)
   Jack: PrivateKey.fromBase58(
-    "EKFS9v8wxyrrEGfec4HXycCC2nH7xf79PtQorLXXsut9WUrav4Nw"
+    'EKFS9v8wxyrrEGfec4HXycCC2nH7xf79PtQorLXXsut9WUrav4Nw'
   ),
 };
 
@@ -176,8 +176,8 @@ This will serve as the scaffolding for the rest of the tutorial and contains a s
 Every Mina smart contract includes eight on-chain state variables that each store almost 256 bits of information. In more complex smart contracts, these can store commitments (i.e. the hash of a file, the root of a Merkle tree, etc.) to off-chain storage, but in this case, we’ll store everything on-chain for the sake of simplicity.
 
 :::note
-  General purpose off-chain storage libraries are planned, but you can always
-  roll your own solution if desired.
+General purpose off-chain storage libraries are planned, but you can always
+roll your own solution if desired.
 :::
 
 In this smart contract, one state variable will store the last message. Another will store the hash of all the previous messages (so a frontend can validate message history), and three more will store user public keys (we could store additional public keys by Merkelizing them, but we’ll keep it to three here for the sake of brevity).
@@ -292,7 +292,7 @@ this.messageHistoryHash.set(newHash);
 That’s it! Save the file, and let’s make sure everything compiles.
 
 ```sh
-npm run build
+$ npm run build
 ```
 
 If everything is correct, you should see a new `./build` directory. This is where the compiled version of your project lives that you can import into a user interface.
