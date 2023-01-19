@@ -32,9 +32,9 @@ $ zk project 03-deploying-to-a-live-network
 To start, delete the default generated files by running:
 
 ```sh
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
 ```
 
 And create a new file for our smart contract:
@@ -58,7 +58,7 @@ A CLI tool is provided for convenience for deploying smart contracts to networks
 To use, run:
 
 ```sh
-zk config
+$ zk config
 ```
 
 It will ask you to specify a name (can be anything), URL to deploy to, and fee (in
@@ -118,7 +118,7 @@ You will have to wait a few minutes for the next block to include your transacti
 To deploy your smart contract to the network, run the following command:
 
 ```sh
-zk deploy berkeley
+$ zk deploy berkeley
 ```
 
 When running the deploy command, the zkApp CLI will compute a verification key for your smart contract. Computing the verification key can take 1-2 minutes, so please be patient. The zkApp CLI will show you the details of the transaction such as the network name, the URL, and the smart contract that will be deployed.
