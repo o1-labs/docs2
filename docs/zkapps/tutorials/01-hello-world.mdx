@@ -46,13 +46,13 @@ by the NodeJS Project.
 #### Installation
 
 ```sh
-npm install -g zkapp-cli
+$ npm install -g zkapp-cli
 ```
 
 To confirm it is installed, run:
 
 ```sh
-zk --version
+$ zk --version
 ```
 
 This tutorial has been tested as of Mina zkApp CLI version `0.4.17` and SnarkyJS `0.6.0`.
@@ -64,7 +64,7 @@ Now that you have the tooling installed, we can start building our application.
 First, create a new project using:
 
 ```sh
-zk project 01-hello-world
+$ zk project 01-hello-world
 ```
 
 This will create a directory named `01-hello-world` containing scaffolding for our project, including tools such as Prettier, ESLint, & Jest.
@@ -88,16 +88,16 @@ We will start by creating files for our project and deleting the default files t
 First, delete the old files. Run:
 
 ```sh
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
 ```
 
 And generate the new files for our project. Enter:
 
 ```sh
-zk file src/Square
-touch src/main.ts
+$ zk file src/Square
+$ touch src/main.ts
 ```
 
 The `zk file <name>` command created both `src/Square.ts` and `src/Square.test.ts` for us, but we won't worry about writing tests in this tutorial. We'll use `main.ts` as a script to interact with the smart contract and observe how it works. In later tutorials, we will see how to interact with a smart contract from the browser, like a typical end user, but for now we'll just use our `main.ts` script to do this.
@@ -121,8 +121,8 @@ The following commands are included for reference, and will fail if you run them
 To compile the TypeScript code into JavaScript, and run the JavaScript code, you'll type:
 
 ```sh
-npm run build
-node build/src/main.js
+$ npm run build
+$ node build/src/main.js
 ```
 
 The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`.
@@ -130,7 +130,7 @@ The first line creates JavaScript code in the build directory, while the second 
 You can also combine these together into one line, such as:
 
 ```sh
-npm run build && node build/src/main.js
+$ npm run build && node build/src/main.js
 ```
 
 This will run `main` if the build is successful.
@@ -281,7 +281,7 @@ Now add the following code to your `src/main.ts`:
  11 await isReady;
  12
  13 console.log('SnarkyJS loaded')
- 14 
+ 14
  15 const useProof = false;
  16
  17 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
@@ -315,11 +315,11 @@ Now, let's expand the `main.ts` file to initialize our smart contract. Comments 
  20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
  21
  22 // ----------------------------------------------------
- 23 
+ 23
  24 // Create a public/private key pair. The public key is our address and where we will deploy to
  25 const zkAppPrivateKey = PrivateKey.random();
  26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
- 27 
+ 27
  28 // create an instance of Square - and deploy it to zkAppAddress
  29 const zkAppInstance = new Square(zkAppAddress);
  30 const deployTxn = await Mina.transaction(deployerAccount, () => {
@@ -327,11 +327,11 @@ Now, let's expand the `main.ts` file to initialize our smart contract. Comments 
  32   zkAppInstance.deploy();
  33 });
  34 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
- 35 
+ 35
  36 // get the initial state of Square after deployment
  37 const num0 = zkAppInstance.num.get();
  38 console.log('state after init:', num0.toString());
- 39 
+ 39
  40 // ----------------------------------------------------
  41
  42 console.log('Shutting down')
@@ -368,7 +368,7 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
  47
  48 const num1 = zkAppInstance.num.get();
  49 console.log('state after txn1:', num1.toString());
- 50 
+ 50
  51 // ----------------------------------------------------
  52
  53   console.log('Shutting down')
@@ -438,12 +438,12 @@ And lastly, to show the correct update:
  69 });
  70 await txn3.prove();
  71 await txn3.sign([senderKey]).send();
- 72 
+ 72
  73 const num3 = zkAppInstance.num.get();
  74 console.log('state after txn3:', num3.toString());
- 75 
+ 75
  76 // ----------------------------------------------------
- 77 
+ 77
  78 console.log('Shutting down');
 ...
 ```
