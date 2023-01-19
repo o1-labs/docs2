@@ -32,22 +32,22 @@ The following steps assume you've installed dependencies to your machine as desc
 Now, setup a new project with:
 
 ```sh
-zk project 02-private-inputs-and-hash-functions
+$ zk project 02-private-inputs-and-hash-functions
 ```
 
 Delete the default generated files by running:
 
 ```sh
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
 ```
 
 And create new files:
 
 ```sh
-zk file src/IncrementSecret
-touch src/main.ts
+$ zk file src/IncrementSecret
+$ touch src/main.ts
 ```
 
 And lastly, change `index.ts` to:
@@ -71,65 +71,48 @@ Now we'll build the smart contract for our application.
 Begin by writing:
 
 ```ts
-  1 import {
-  2   Field,
-  3   SmartContract,
-  4   state,
-  5   State,
-  6   method,
-  7   DeployArgs,
-  8   Poseidon,
-  9   Permissions,
- 10 } from 'snarkyjs';
- 11
- 12 export class IncrementSecret extends SmartContract {
- 13   @state(Field) x = State<Field>();
- 14
- 15   deploy(args: DeployArgs) {
- 16     super.deploy(args);
- 17     this.setPermissions({
- 18       ...Permissions.default(),
- 19       editState: Permissions.proofOrSignature(),
- 20     });
- 21   }
- 22 }
+  1 import { Field, SmartContract, state, State, method, Poseidon } from 'snarkyjs';
+  2
+  3 export class IncrementSecret extends SmartContract {
+  4   @state(Field) x = State<Field>();
+  5 }
 ```
 
 This just adds the basic setup for our smart contract — see [Tutorial 01 Hello World](hello-world) for more on this.
 
-Now, we will add our init method. This is intended to run once to set up the initial state on the zkApp account.
+Now, we will add an `initState()` method. This is intended to run once to set up the initial state on the zkApp account.
 
 ```ts
 ...
- 22
- 23   @method initState(salt: Field, firstSecret: Field) {
- 24     this.x.set(Poseidon.hash([ salt, firstSecret ]));
- 25   }
- 26 }
+  5
+  6   @method initState(salt: Field, firstSecret: Field) {
+  7     this.x.set(Poseidon.hash([ salt, firstSecret ]));
+  8   }
+  9 }
 ```
 
-Our `init()` method accepts our secret, and a value called a "salt", which we will discuss later.
+Our `initState()` method accepts our secret, and a value called a "salt", which we will discuss later.
 
-Note that these inputs to our `init()` method are private to whomever initializes the contract. Nobody looking at the zkApp account on the chain can see or know what values `firstSecret` or `salt` actually are.
+Note that these inputs to our `initState()` method are private to whomever initializes the contract. Nobody looking at the zkApp account on the chain can see or know what values `firstSecret` or `salt` actually are.
 
 Next we will add a method to update our state:
 
 ```ts
 ...
- 26
- 27   @method incrementSecret(salt: Field, secret: Field) {
- 28     const x = this.x.get();
- 29     this.x.assertEquals(x);
- 30
- 31     Poseidon.hash([ salt, secret ]).assertEquals(x);
- 32     this.x.set(Poseidon.hash([ salt, secret.add(1) ]));
- 33   }
- 34 }
+  9
+ 10   @method incrementSecret(salt: Field, secret: Field) {
+ 11     const x = this.x.get();
+ 12     this.x.assertEquals(x);
+ 13
+ 14     Poseidon.hash([ salt, secret ]).assertEquals(x);
+ 15     this.x.set(Poseidon.hash([ salt, secret.add(1) ]));
+ 16   }
+ 17 }
 ```
 
-Mina uses the poseidon hash function, which has been optimized for fast performance inside zero knowledge proof systems. The poseidon hash function takes in an array of Fields, and returns a single Field as output.
+Mina uses the Poseidon hash function, which has been optimized for fast performance inside zero knowledge proof systems. The Poseidon hash function takes in an array of Fields, and returns a single Field as output.
 
-In this smart contract, we use both a secret number, and a second field, known as a "salt".
+In this smart contract, we use both a secret number, and a second Field, known as a "salt".
 
 In the `incrementSecret()` method, we check that the hash of the salt and our secret is equal to the current state `x`. If this is the case, we add `1` to the secret and set `x` to the hash of the salt and this new secret. SnarkyJS creates a proof of this fact, and a JSON description of the state updates to be made on the zkApp account, such as to store our new hash value, which together form a transaction that can be sent to the Mina network to update the zkApp account.
 
@@ -151,27 +134,25 @@ Our smart contract initialization this time will be:
 
 ```ts
 ...
- 22   const salt = Field.random();
+ 24 const salt = Field.random();
 ...
- 32   const deployTxn = await Mina.transaction(deployerAccount, () => {
- 33     AccountUpdate.fundNewAccount(deployerAccount);
- 34     zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
- 35     zkAppInstance.initState(salt, Field(750));
- 36     zkAppInstance.sign(zkAppPrivateKey);
- 37   });
- ...
+ 33 const deployTxn = await Mina.transaction(deployerAccount, () => {
+ 34   AccountUpdate.fundNewAccount(deployerAccount);
+ 35   zkAppInstance.deploy();
+ 36   zkAppInstance.initState(salt, Field(750));
+ 37 });
+...
 ```
 
-Note that the init method accepts the salt and our secret, in this case the number `750`.
+Note that the `initState()` method accepts the salt and our secret, in this case the number `750`.
 
 And here is how one can create a user transaction to update the on-chain state:
 
 ```ts
 ...
- 46   const txn1 = await Mina.transaction(deployerAccount, () => {
- 47     zkAppInstance.incrementSecret(salt, Field(750));
- 48     zkAppInstance.sign(zkAppPrivateKey);
- 49   });
+ 47 const txn1 = await Mina.transaction(senderAccount, () => {
+ 48   zkAppInstance.incrementSecret(salt, Field(750));
+ 49 });
 ...
 ```
 
@@ -185,7 +166,7 @@ Try running `main` for yourself:
 $ npm run build && node build/src/main.js
 ```
 
-The ouput should look something like this:
+The output should look something like this:
 
 ```
 ...
@@ -195,10 +176,10 @@ state after txn1: 15333363135506653312218020664441564145350761288169575380089681
 Shutting down
 ```
 
-The `state` strings will be different though, because we used `field.random()` to generate the salt.
+The `state` strings will be different though, because we used `Field.random()` to generate the salt.
 
 ## Conclusion
 
-Congrats! We have finished building a smart contract that uses privacy and hash functions
+Congrats! We have finished building a smart contract that uses privacy and hash functions.
 
-Checkout [Tutorial 3](deploying-to-a-network) to learn how to deploy zkApps to a Live Network.
+Checkout [Tutorial 3](deploying-to-a-network) to learn how to deploy zkApps to a live network.
