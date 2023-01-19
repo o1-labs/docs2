@@ -86,18 +86,18 @@ This project implements a tree, where each leaf is either empty or stores a numb
 To start, create a new project with:
 
 ```sh
-zk project 06-off-chain-storage
+$ zk project 06-off-chain-storage
 ```
 
 Now let enter the project, delete the existing files, and create a new smart contract and a main file:
 
 ```sh
-cd 06-off-chain-storage
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
-zk file src/NumberTreeContract
-touch src/main.ts
+$ cd 06-off-chain-storage
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
+$ zk file src/NumberTreeContract
+$ touch src/main.ts
 ```
 
 Edit `index.ts` to import and export our new smart contract:
@@ -111,13 +111,13 @@ export { NumberTreeContract };
 Now, add the library for the off-chain storage server we'll be using:
 
 ```sh
-npm install experimental-zkapp-offchain-storage --save
+$ npm install experimental-zkapp-offchain-storage --save
 ```
 
 Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
 
 ```sh
-npm install --save xmlhttprequest-ts
+$ npm install --save xmlhttprequest-ts
 ```
 
 With that, setup is complete!
@@ -127,7 +127,7 @@ With that, setup is complete!
 As in previous tutorials, you can run `main.ts` with
 
 ```sh
-npm run build && node build/src/main.js
+$ npm run build && node build/src/main.js
 ```
 
 This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract.ts`, it should run successfully.
@@ -135,7 +135,7 @@ This will fail when first run, but once we start adding code to `main.ts` and `N
 Also for this project, we will need to run our storage server. To do this, in a new terminal window, change into the root of your project and run:
 
 ```sh
-node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
+$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
 ```
 
 This will start a storage server and create a `database.json` file in the current directory to store our data for this tutorial.
