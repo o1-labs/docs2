@@ -4,7 +4,7 @@ Welcome to Mina! This section walks you through the process of setting up a Mina
 
 ## Requirements
 
-**Software**: Supported environments include macOS, Linux (Debian 9 and Ubuntu 18.04 LTS), and any host with Docker.
+**Software**: Supported environments include macOS, Linux (Debian 9 and Ubuntu 18.04 LTS), and any host machine with Docker.
 
 Note: Windows is not officially supported. However, community members have successfully set up nodes using the Windows Subsystem for Linux (WSL). 
 
@@ -33,13 +33,11 @@ Check out our [Connecting to the Mina Testnet (Google Cloud)](https://youtu.be/M
 
 ## Installation
 
-The newest binary releases can be found below. Instructions are provided for macOS and Linux below:
+Use the installation steps for your environment to install the newest binary releases. The binary download is around 1 GB, so the installation might take a few minutes.
 
-This is a large download, around 1GB, so the install might take some time.
+### Ubuntu 18.04 and Debian 9
 
-### Ubuntu 18.04 / Debian 9
-
-Add the Mina Debian repo and install:
+To add the Mina Debian repo and install the binary:
 
 ```
 echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list
@@ -47,27 +45,29 @@ sudo apt-get update
 sudo apt-get install -y curl unzip mina-mainnet=1.1.5-a42bdee
 ```
 
-Check that daemon installed correctly by running `mina version`. The output should read `Commit a42bdeef6b0c15ee34616e4df76c882b0c5c7c2a on branch master`.
+To verify your installation:
+
+- `mina version`
+
+The expected output is `Commit a42bdeef6b0c15ee34616e4df76c882b0c5c7c2a on branch master`.
 
 ### Windows
 
 Windows is not natively supported. 
 
-Instead, use the Docker instructions.
+To install Mina on Windows, use the Docker instructions.
 
 ### macOS
 
-macOS is used by developers.
-
-Instead, use the Docker instructions or build from source.
+You can install Mina on macOS using the Docker instructions or build from source.
 
 ### Docker
 
-Docker is a cross-platform tool. You can download and install Docker on multiple platforms. Use the Docker installation instructions for your platform on [Get Docker](https://docs.docker.com/get-docker/). After docker is installed, go to the Mina Docker instructions on [Connecting to the Network](../node-developers/connecting-to-the-network.mdx).
+Docker is a cross-platform tool. You can download and install Docker on multiple platforms. Use the Docker installation instructions for your platform on [Get Docker](https://docs.docker.com/get-docker/). After Docker is installed, follow the instructions on [Connecting to the Network](connecting-to-the-network#docker).
 
 ### Build from source
 
-On Linux distribution or macOS, you can experiment with [Building Mina](https://github.com/MinaProtocol/mina/blob/master/README-dev.md#building-mina) from source code. Other operating systems haven't been tested thoroughly and might have issues. You can share logs and get troubleshooting help in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
+On Linux or macOS operating systems, you can experiment with [Building Mina](https://github.com/MinaProtocol/mina/blob/master/README-dev.md#building-mina) from source code. Other operating systems haven't been tested thoroughly and might have issues. You can share logs and get troubleshooting help in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
 
 ## Set up port forwarding and firewalls
 
@@ -75,7 +75,7 @@ If you are running a firewall, you must allow traffic on TCP port 8302.
 
 Unless the `-external-ip YOUR_IP` flag is provided, the daemon uses HTTPS (443) and HTTP (80) to determine its own IP address.
 
-You might need to configure your router's port forwarding to allow inbound traffic to the following ports through your **external** IP address.
+Enable port forwarding on your router to allow inbound traffic to the following ports through your **external** IP address.
 
 - `TCP` port `8302`
 - _Optional_ To use the GraphQL service, expose `TCP` port `3085`
