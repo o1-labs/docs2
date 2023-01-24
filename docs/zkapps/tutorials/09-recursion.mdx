@@ -23,11 +23,11 @@ With recursion, you can realize composability between zero knowledge proofs. Thi
 
 Verifying large amounts of information is usually challenging for blockchains. But with zero knowledge proofs, and particularly recursive ZKPs, this becomes far easier.
 
-By leveraging recursive verification, it is possible to easily construct both zkRollups and App Chains. We’ll give an example of a simple zkRollup near the end of this tutorial.
+By leveraging recursive verification, it is possible to easily construct both zkRollups and app chains. We’ll give an example of a simple zkRollup near the end of this tutorial.
 
 Recursive composition even gives us flexibility to handle live demand. Recursive composition gives you flexibility to choose between a high tree height (higher throughput, but logarithmically slower latency), and lower tree height (lower throughput, but faster latency). The depth of the tree can be modified live to handle whatever traffic actually present on the network, while still offering optimal latency to commit transactions back to the chain.
 
-For an example of an ‘app chain’, one could imagine an on-chain trading pair that uses an orderbook. Rolling up the transactions for the application with zero knowledge proofs, can allow our app to handle the expensive computations of keeping buy and sell orders sorted, while still posting full verification to the chain.
+For an example of an ‘app chain’, one could imagine an on-chain trading pair that uses an orderbook. Rolling up the transactions for the application with zero knowledge proofs can allow our app to handle the expensive computations of keeping buy and sell orders sorted, while still posting full verification to the chain.
 
 At the end of this tutorial, we’ll review a simple zkRollup example that can be used for implementing a zkRollup or an app chain.
 
@@ -39,7 +39,7 @@ For example, recursive ZKPs could be used to prove the output of a machine learn
 
 ### Off-chain, multi-party proof construction
 
-Recursive zero knowledge proofs also make it easy to allow multiple parties to construct transactions. To accomplish off-chain proof construction, one or more parties can recursively update a ZKP and its associated public state. That state can then be sent as part of a transaction on-chain, or used as part of an off-chain application leveraging ZKPs.
+Recursive zero knowledge proofs also make it easy to allow multiple parties to construct transactions. To accomplish off-chain proof construction, one or more parties can recursively update a ZKP and its associated public state.When the mulit-party stage is completed, that state and its proof can then be sent as part of a transaction on-chain, or used as part of an off-chain application leveraging ZKPs.
 
 ## ZkProgram
 
@@ -233,9 +233,9 @@ class RollupContract extends SmartContract {
 }
 ```
 
-Last, is just to fill in the methods above, particularly, `oneStep()', and `createOneStep()`. This single “step” of the rollup will check the value at an “account” was incremented by a particular amount.
+Last, is just to fill in the methods above, particularly, `oneStep()`, and `createOneStep()`. This single “step” of the rollup will check the value at an “account” was incremented by a particular amount.
 
-To check that the value at an account was incremented by a particular amount, our code computes an updated state–inside the recursive snark–by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
+To check that the value at an account was incremented by a particular amount, our code computes an updated state - inside the recursive snark - by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
 
 ```typescript
 class RollupState extends Struct({
