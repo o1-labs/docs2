@@ -399,7 +399,7 @@ Now let's try adding a transaction that should fail - updating the state to `75`
  54   const txn2 = await Mina.transaction(senderAccount, () => {
  55     zkAppInstance.update(Field(75));
  56   });
- 57   await txn1.prove();
+ 57   await txn2.prove();
  58   await txn2.sign([senderKey]).send();
  59 } catch (ex: any) {
  60   console.log(ex.message);
