@@ -69,6 +69,17 @@ Now that you have the tooling installed, we can start building our application.
 
 First, create a new project using:
 
+<!--
+
+Configure `git` email and name, otherwise `zkapp-cli` project generation will return a non-zero exit code.
+
+```sh
+$ git config --global user.email "test@example.com"
+$ git config --global user.name "Test"
+```
+
+-->
+
 ```sh
 $ zk project 01-hello-world
 ```
@@ -110,10 +121,10 @@ The `zk file <name>` command created both `src/Square.ts` and `src/Square.test.t
 
 Now, let's open `src/index.ts` in a text editor and change it to look like below. This file contains all exports we want to make available for consumption from outside our smart contract project, such as from a UI.
 
-```
-import { Square } from './Square.js';
-
-export { Square };
+```ts src/index.ts
+1 import { Square } from './Square.js';
+2
+3 export { Square };
 ```
 
 ### Building and running
@@ -126,7 +137,7 @@ The following commands are included for reference, and will fail if you run them
 
 To compile the TypeScript code into JavaScript, and run the JavaScript code, you'll type:
 
-```sh
+```
 $ npm run build
 $ node build/src/main.js
 ```
@@ -135,7 +146,7 @@ The first line creates JavaScript code in the build directory, while the second 
 
 You can also combine these together into one line, such as:
 
-```sh
+```
 $ npm run build && node build/src/main.js
 ```
 
@@ -157,16 +168,16 @@ You can also copy and paste the code snippets into your project as you go - to a
 
 First, open `src/Square.ts` in your editor, then add the following at the top of the file:
 
-```ts
-  1 import {
-  2   Field,
-  3   SmartContract,
-  4   state,
-  5   State,
-  6   method,
-  7   DeployArgs,
-  8   Permissions,
-  9 } from 'snarkyjs';
+```ts src/Square.ts
+1 import {
+2   Field,
+3   SmartContract,
+4   state,
+5   State,
+6   method,
+7   DeployArgs,
+8   Permissions,
+9 } from 'snarkyjs';
 ```
 
 What each of these are:
@@ -183,28 +194,28 @@ What each of these are:
 
 Now, we will write the smart contract. Write the following in your file:
 
-```ts
- 10
- 11 export class Square extends SmartContract {
- 12   @state(Field) num = State<Field>();
- 13
- 14 }
+```ts src/Square.ts
+10
+11 export class Square extends SmartContract {
+12   @state(Field) num = State<Field>();
+13
+14 }
 ```
 
 This creates a new smart contract called `Square` with one element of on-chain state named `num` of type `Field`. zkApps can have up to 8 fields worth of on-chain state, each storing up to 32 bytes of arbitrary data. A later tutorial will discuss options for off-chain state.
 
 Now, let's add our `init` method:
 
-```ts
- 11 export class Square extends SmartContract {
- 12   @state(Field) num = State<Field>();
- 13
- 14   init() {
- 15     super.init();
- 16     this.num.set(Field(3));
- 17   }
- 18
- 19 }
+```ts src/Square.ts
+11 export class Square extends SmartContract {
+12   @state(Field) num = State<Field>();
+13
+14   init() {
+15     super.init();
+16     this.num.set(Field(3));
+17   }
+18
+19 }
 ```
 
 This method sets up the initial state of the smart contract on deployment.
@@ -217,18 +228,18 @@ We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/
 
 Lastly, we will add our update function:
 
-```ts
- 20     this.num.set(Field(3));
- 21   }
- 22
- 23   @method update(square: Field) {
- 24     const currentState = this.num.get();
- 25     this.num.assertEquals(currentState);
- 26     square.assertEquals(currentState.mul(currentState));
- 27     this.num.set(square);
- 28   }
- 29
- 30 }
+```ts src/Square.ts
+16     this.num.set(Field(3));
+17   }
+18
+19   @method update(square: Field) {
+20     const currentState = this.num.get();
+21     this.num.assertEquals(currentState);
+22     square.assertEquals(currentState.mul(currentState));
+23     this.num.set(square);
+24   }
+25
+26 }
 ```
 
 The name `update` is arbitrary, but makes sense for our example. Notice that we use the `@method` decorator because we intend for this method to be invoked by end users, such as via a zkApp UI or our `main.ts` script in this case.
@@ -255,18 +266,17 @@ Open up `src/main.ts` in your editor. A complete version of this file can be fou
 
 Add the following:
 
-```ts
-  1 import { Square } from './Square.js';
-  2 import {
-  3   isReady,
-  4   shutdown,
-  5   Field,
-  6   Mina,
-  7   PrivateKey,
-  8   AccountUpdate,
-  9 } from 'snarkyjs';
- 10
- ...
+```ts src/main.ts
+1 import { Square } from './Square.js';
+2 import {
+3   isReady,
+4   shutdown,
+5   Field,
+6   Mina,
+7   PrivateKey,
+8   AccountUpdate,
+9 } from 'snarkyjs';
+10
 ```
 
 What each of these imports are:
@@ -282,26 +292,30 @@ What each of these imports are:
 
 Now add the following code to your `src/main.ts`:
 
-```ts
-...
- 11 await isReady;
- 12
- 13 console.log('SnarkyJS loaded')
- 14
- 15 const useProof = false;
- 16
- 17 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
- 18 Mina.setActiveInstance(Local);
- 19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
- 20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
- 21
- 22 console.log('Shutting down')
- 23
- 24 await shutdown();
-...
+```ts src/main.ts
+11 await isReady;
+12
+13 console.log('SnarkyJS loaded')
+14
+15 const useProof = false;
+16
+17 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
+18 Mina.setActiveInstance(Local);
+19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
+20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
+21
+22 console.log('Shutting down')
+23
+24 await shutdown();
 ```
 
-Now when you run `npm run build && node build/src/main.js`, your main function should run!
+Now when you run
+
+```sh
+$ npm run build && node build/src/main.js
+```
+
+your main function should run!
 
 In production, you'll [deploy your zkApp to Mina network](https://docs.minaprotocol.com/zkapps/how-to-deploy-a-zkapp). But this "local blockchain" allows us to speed up development and test the behavior of our smart contract locally. This local blockchain also provides pre-funded accounts (e.g. the `deployerAccount` above). Later tutorials will discuss how to deploy your zkApp to live Mina networks, such as Berkeley Testnet.
 
@@ -315,40 +329,40 @@ zkApp programmability is currently available on Berkeley Testnet, Mina's public 
 
 Now, let's expand the `main.ts` file to initialize our smart contract. Comments are provided to break down each stage.
 
-```ts
-...
- 19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
- 20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
- 21
- 22 // ----------------------------------------------------
- 23
- 24 // Create a public/private key pair. The public key is our address and where we will deploy to
- 25 const zkAppPrivateKey = PrivateKey.random();
- 26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
- 27
- 28 // create an instance of Square - and deploy it to zkAppAddress
- 29 const zkAppInstance = new Square(zkAppAddress);
- 30 const deployTxn = await Mina.transaction(deployerAccount, () => {
- 31 AccountUpdate.fundNewAccount(deployerAccount);
- 32   zkAppInstance.deploy();
- 33 });
- 34 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
- 35
- 36 // get the initial state of Square after deployment
- 37 const num0 = zkAppInstance.num.get();
- 38 console.log('state after init:', num0.toString());
- 39
- 40 // ----------------------------------------------------
- 41
- 42 console.log('Shutting down')
-...
+```ts src/main.ts
+19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
+20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
+21
+22 // ----------------------------------------------------
+23
+24 // Create a public/private key pair. The public key is our address and where we will deploy to
+25 const zkAppPrivateKey = PrivateKey.random();
+26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
+27
+28 // create an instance of Square - and deploy it to zkAppAddress
+29 const zkAppInstance = new Square(zkAppAddress);
+30 const deployTxn = await Mina.transaction(deployerAccount, () => {
+31   AccountUpdate.fundNewAccount(deployerAccount);
+32   zkAppInstance.deploy();
+33 });
+34 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
+35
+36 // get the initial state of Square after deployment
+37 const num0 = zkAppInstance.num.get();
+38 console.log('state after init:', num0.toString());
+39
+40 // ----------------------------------------------------
+41
+42 console.log('Shutting down')
+43
+44 await shutdown();
 ```
 
 The above code will be similar for any smart contract that you create.
 
 Try running this now with: `npm run build && node build/src/main.js`. The output should be:
 
-```
+```sh
 $ npm run build && node build/src/main.js
 ...
 SnarkyJS loaded
@@ -360,32 +374,33 @@ Shutting down
 
 Now let's try updating our local zkApp account with a transaction! Add the following:
 
-```ts
-...
- 38 console.log('state after init:', num0.toString());
- 39
- 40 // ----------------------------------------------------
- 41
- 42 const txn1 = await Mina.transaction(senderAccount, () => {
- 43   zkAppInstance.update(Field(9));
- 44 });
- 45 await txn1.prove();
- 46 await txn1.sign([senderKey]).send();
- 47
- 48 const num1 = zkAppInstance.num.get();
- 49 console.log('state after txn1:', num1.toString());
- 50
- 51 // ----------------------------------------------------
- 52
- 53   console.log('Shutting down')
-...
+```ts src/main.ts
+38 console.log('state after init:', num0.toString());
+39
+40 // ----------------------------------------------------
+41
+42 const txn1 = await Mina.transaction(senderAccount, () => {
+43   zkAppInstance.update(Field(9));
+44 });
+45 await txn1.prove();
+46 await txn1.sign([senderKey]).send();
+47
+48 const num1 = zkAppInstance.num.get();
+49 console.log('state after txn1:', num1.toString());
+50
+51 // ----------------------------------------------------
+52
+53   console.log('Shutting down')
+54
+55 await shutdown();
 ```
 
 This code creates a new transaction that attempts to update the field to the value `9`. Because this follows the rules in the `update()` function that we are calling on the smart contract, this should pass. And if you run it, it should!
 
 Use `npm run build && node build/src/main.js` again to run it:
 
-```
+```sh
+$ npm run build && node build/src/main.js
 ...
 SnarkyJS loaded
 state after init: 3
@@ -395,33 +410,34 @@ Shutting down
 
 Now let's try adding a transaction that should fail - updating the state to `75`. Now that `num` is in state `9`, updating should only be possible with `81`.
 
-```ts
-...
- 49 console.log('state after txn1:', num1.toString());
- 50
- 51 // ----------------------------------------------------
- 52
- 53 try {
- 54   const txn2 = await Mina.transaction(senderAccount, () => {
- 55     zkAppInstance.update(Field(75));
- 56   });
- 57   await txn2.prove();
- 58   await txn2.sign([senderKey]).send();
- 59 } catch (ex: any) {
- 60   console.log(ex.message);
- 61 }
- 62 const num2 = zkAppInstance.num.get();
- 63 console.log('state after txn2:', num2.toString());
- 64
- 65 // ----------------------------------------------------
- 66
- 67 console.log('Shutting down')...
-...
+```ts src/main.ts
+49 console.log('state after txn1:', num1.toString());
+50
+51 // ----------------------------------------------------
+52
+53 try {
+54   const txn2 = await Mina.transaction(senderAccount, () => {
+55     zkAppInstance.update(Field(75));
+56   });
+57   await txn2.prove();
+58   await txn2.sign([senderKey]).send();
+59 } catch (ex: any) {
+60   console.log(ex.message);
+61 }
+62 const num2 = zkAppInstance.num.get();
+63 console.log('state after txn2:', num2.toString());
+64
+65 // ----------------------------------------------------
+66
+67 console.log('Shutting down')
+68
+69 await shutdown();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
 
-```
+```sh
+$ npm run build && node build/src/main.js
 ...
 SnarkyJS loaded
 state after init: 3
@@ -433,30 +449,31 @@ Shutting down
 
 And lastly, to show the correct update:
 
-```ts
-...
- 63 console.log('state after txn2:', num2.toString());
- 64
- 65   // ----------------------------------------------------
- 66
- 67 const txn3 = await Mina.transaction(senderAccount, () => {
- 68   zkAppInstance.update(Field(81));
- 69 });
- 70 await txn3.prove();
- 71 await txn3.sign([senderKey]).send();
- 72
- 73 const num3 = zkAppInstance.num.get();
- 74 console.log('state after txn3:', num3.toString());
- 75
- 76 // ----------------------------------------------------
- 77
- 78 console.log('Shutting down');
-...
+```ts src/main.ts
+63 console.log('state after txn2:', num2.toString());
+64
+65 // ----------------------------------------------------
+66
+67 const txn3 = await Mina.transaction(senderAccount, () => {
+68   zkAppInstance.update(Field(81));
+69 });
+70 await txn3.prove();
+71 await txn3.sign([senderKey]).send();
+72
+73 const num3 = zkAppInstance.num.get();
+74 console.log('state after txn3:', num3.toString());
+75
+76 // ----------------------------------------------------
+77
+78 console.log('Shutting down');
+79
+80 await shutdown();
 ```
 
 Run this again with `npm run build && node build/src/main.js`. The output should be:
 
-```
+```sh
+$ npm run build && node build/src/main.js
 ...
 SnarkyJS loaded
 state after init: 3
