@@ -135,17 +135,29 @@ See the following uptime leaderboards for the latest uptime performance scores:
 ### What happens after I receive a delegation?
 
 #### Payout Addresses
-You must send computed rewards as described below to the same addresses that delegate to you.
 
-In other words, if the Foundation is delegating to you, the Foundation will pick one address from the Foundation address list (see below) that will delegate to you. You should distribute the rewards to both those addresses.
+You must send computed rewards as described below to a Mina Foundation address - however, beginning in Cycle 9, Mina Foundation changed the method of returning rewards to the Foundation.
 
-Likewise, if O(1) Labs is delegating to you, O(1) Labs will pick one address from the O(1) Labs address list (see below) that will appear as delegations to you. You must distribute the rewards to both addresses that are delegating to you. However, each selected validator will be allowed to keep 5% of the staking rewards.
+Previously, Block Producers were asked to send rewards to the same address that delegated to them, however this is no longer the case.  In the new system, once a Block Producer is selected as one of the 240 to participate in the Delegation Program for an upcoming cycle, they will receive an email listing a specific wallet to send their rewards to.
+
+Each Block Producer will receive an individual email containing one wallet address, so all payments to that address throughout the cycle can be tracked specifically to that Block Producer.  The full list of all Block Producers and their corresponding return wallets will also be publicly available on Mina Foundation’s Github page.
+
+
+:::caution
+
+Please note that Block Producers, beginning in Cycle 9, should NOT be sending their rewards to the Mina Foundation wallet that is delegating to them.
+
+:::
 
 #### Payout Frequency
 
-Rewards must be distributed at least once for a given epoch (but you can also send them more frequently).
+Rewards must be distributed at least once for a given epoch.  You can send rewards more frequently, but the preferred method is to send one payment in the amount of your obligation.  This is the easiest method to avoid confusion in tracking payments, and will reduce the likelihood you will be incorrectly flagged as delinquent.
 
 All the rewards for epoch N must be delivered (ie. accepted in a block, not just sent) no later than slot number 3,500 of the next epoch. This gives you about a week to sort out these payments.
+
+:::tip
+Finally, it is very helpful to include a memo listing the epoch number your payment corresponds to.
+::: 
 
 ### Where do I send my rewards?
 
