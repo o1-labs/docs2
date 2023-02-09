@@ -232,9 +232,9 @@ If an assertion error occurs while a user is interacting with your zkApp, you ma
 
 ```ts
 try {
-  callMyMethod(arg);
-} catch (e) {
-  switch (e.message) {
+  methodOnYourSmartContract(arg);
+} catch (err) {
+  switch (err.message) {
     case INSUFFICIENT_BALANCE:
       // show a modal telling the user they have insufficient balance for this
       break;
