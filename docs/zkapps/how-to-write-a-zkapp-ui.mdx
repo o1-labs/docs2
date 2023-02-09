@@ -232,6 +232,7 @@ If an assertion error occurs while a user is interacting with your zkApp, you ma
 
 1. Capture errors that occur when a user interacts with a method on your smart contract in a try catch statement.
 2. Filter by the error message that was created.
+3. Display a helpful error message for the user in your UI based on what assertion exception was captured. This could be a modal or a message in your UI.
 
 ```ts
 try {
@@ -239,7 +240,7 @@ try {
 } catch (err) {
   switch (err.message) {
     case INSUFFICIENT_BALANCE:
-      // show a modal telling the user they have insufficient balance for this
+      // show a modal or a message telling the user they have insufficient balance for this
       break;
     // etc
   }
