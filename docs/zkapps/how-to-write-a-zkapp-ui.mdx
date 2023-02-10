@@ -240,7 +240,8 @@ try {
 } catch (err) {
   let uiErrorMessage;
   switch (err.message) {
-    case 'Overflow': // The assertion error message thrown by invoking YourSmartContract.yourMethod when there is an insufficent balance.
+    // The assertion error message thrown by invoking YourSmartContract.yourMethod when there is an insufficent balance. In this case, a custom error message.
+    case 'INSUFFICIENT_BALANCE':
       // Create a helpful message to display to your user in the UI. This message can be shown in a modal or displayed somewhere in your UI.
       uiErrorMessage =
         'Your account has an insufficent balance for this transaction';
