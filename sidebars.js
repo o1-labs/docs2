@@ -66,6 +66,7 @@ module.exports = {
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
         },
+        'zkapps/roadmap',
         'zkapps/zkapps-for-ethereum-developers',
         'zkapps/faq',
         {
