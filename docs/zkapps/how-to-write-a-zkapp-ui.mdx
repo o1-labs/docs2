@@ -240,7 +240,8 @@ try {
 } catch (err) {
   let uiErrorMessage;
   switch (err.message) {
-    // A custom error thrown within YourSmartContract.yourMethod when there is an insufficient balance.
+    // A custom error thrown within YourSmartContract.yourMethod()
+    // when there is an insufficient balance.
     case 'INSUFFICIENT_BALANCE':
       // Set a helpful message to show the user in the UI.
       uiErrorMessage =
