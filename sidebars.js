@@ -66,8 +66,6 @@ module.exports = {
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
         },
-        'zkapps/zkapps-for-ethereum-developers',
-        'zkapps/faq',
         {
           type: 'category',
           label: 'SnarkyJS Reference',
@@ -277,6 +275,9 @@ module.exports = {
             },
           ],
         },
+        'zkapps/roadmap',
+        'zkapps/faq',
+        'zkapps/zkapps-for-ethereum-developers',
       ],
     },
     {
