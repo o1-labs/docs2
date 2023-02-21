@@ -4,7 +4,7 @@ title: FAQ
 
 ## Does SnarkyJS compile my JavaScript code to an arithmetic circuit?
 
-No, SnarkyJS **does NOT compile into anything else**! In contrast to other zk ecosystems, SnarkyJS is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method myMethod()`, for example, we will simply call `myMethod();` during proof generation.
+No, SnarkyJS **does NOT compile into anything else**. In contrast to other zk ecosystems, SnarkyJS is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method myMethod()`, for example, we will simply call `myMethod();` during proof generation.
 
 This works because SnarkyJS sets up some global state - a "circuit" - where it collects variables and constraints. The use of functions like `Field.mul` or `Bool.assertEquals` inside your smart contract methods will add corresponding variables and constraints to the global circuit.
 
