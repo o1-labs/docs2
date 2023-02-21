@@ -11,6 +11,12 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
+:::note
+
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
+
+:::
+
 # Tutorial 6: Off-Chain Storage
 
 ## Overview
@@ -25,7 +31,7 @@ In [Tutorial 5, Common Types and Functions](common-types-and-functions), we ende
 
 In this tutorial, we will share a library and pattern for working with storing merkle trees off-chain, with only the root of the merkle tree stored on chain.
 
-We intend for this tutorial to be useful towards unlocking larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
+We intend for this tutorial to be useful towards unlocking a larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
 
 Feel free to skip ahead to the [implementation section](#implementing-a-project-using-off-chain-storage) If you want to jump into how to use single server off-chain storage for prototyping applications. Otherwise, read on to understand more about the different options for off-chain storage, their tradeoffs, and how the single-server solution shared here fits in.
 
@@ -55,7 +61,7 @@ Some likely things to expect on this spectrum and are under exploration:
 
 This tutorial shares and explains an implementation of the single-server off-chain storage solution mentioned as the first option above. The library provides a REST server that anyone can run to store data for one or multiple zkApps, as well as a zkApp library to check on-chain if changes have been backed by the server.
 
-This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever running the server.
+This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever is running the server.
 
 This makes it useful for both prototyping applications that need off-chain storage, and putting applications into production where these trust assumptions are reasonable, but not for zkApps where a trustless solution is needed.
 
@@ -86,18 +92,18 @@ This project implements a tree, where each leaf is either empty or stores a numb
 To start, create a new project with:
 
 ```sh
-zk project 06-off-chain-storage
+$ zk project 06-off-chain-storage
 ```
 
 Now let enter the project, delete the existing files, and create a new smart contract and a main file:
 
 ```sh
-cd 06-off-chain-storage
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
-zk file src/NumberTreeContract
-touch src/main.ts
+$ cd 06-off-chain-storage
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
+$ zk file src/NumberTreeContract
+$ touch src/main.ts
 ```
 
 Edit `index.ts` to import and export our new smart contract:
@@ -111,13 +117,13 @@ export { NumberTreeContract };
 Now, add the library for the off-chain storage server we'll be using:
 
 ```sh
-npm install experimental-zkapp-offchain-storage --save
+$ npm install experimental-zkapp-offchain-storage --save
 ```
 
 Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
 
 ```sh
-npm install --save xmlhttprequest-ts
+$ npm install --save xmlhttprequest-ts
 ```
 
 With that, setup is complete!
@@ -127,7 +133,7 @@ With that, setup is complete!
 As in previous tutorials, you can run `main.ts` with
 
 ```sh
-npm run build && node build/src/main.js
+$ npm run build && node build/src/main.js
 ```
 
 This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract.ts`, it should run successfully.
@@ -135,7 +141,7 @@ This will fail when first run, but once we start adding code to `main.ts` and `N
 Also for this project, we will need to run our storage server. To do this, in a new terminal window, change into the root of your project and run:
 
 ```sh
-node node_modules/zkapp-offchain-storage/build/src/storageServer.js
+$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
 ```
 
 This will start a storage server and create a `database.json` file in the current directory to store our data for this tutorial.
@@ -192,7 +198,7 @@ Continuing, let's setup our smart contract:
  26
  27   deploy(args: DeployArgs) {
  28     super.deploy(args);
- 29     this.setPermissions({
+ 29     this.account.permissions.set({
  30       ...Permissions.default(),
  31       editState: Permissions.proofOrSignature(),
  32     });
@@ -280,17 +286,17 @@ You can find a full copy of this file [here](https://github.com/es92/zkApp-examp
 
 We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
 
-Note that it contains logic for both running the contract locally and for deploying and interacting with on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to your call to the end of your call to `node main.js`.
+Note that it contains logic for both running the contract locally and for deploying and interacting with it on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to the end of your call to `node main.js`.
 
 To start, we will connect to the off-chain storage server:
 
 ```ts
 ...
- 71   const storageServerAddress = 'http://localhost:3001';
- 72   const serverPublicKey = await OffChainStorage.getPublicKey(
- 73     storageServerAddress,
- 74     NodeXMLHttpRequest
- 75   );
+ 73   const storageServerAddress = 'http://localhost:3001';
+ 74   const serverPublicKey = await OffChainStorage.getPublicKey(
+ 75     storageServerAddress,
+ 76     NodeXMLHttpRequest
+ 77   );
 ...
 ```
 
@@ -309,22 +315,22 @@ To start, let's get the existing tree:
 
 ```ts
 ...
-120   async function updateTree() {
+108   async function updateTree() {
+109
+110     const index = BigInt(Math.floor(Math.random() * 4));
+111
+112     // get the existing tree
+113     const treeRoot = await zkapp.storageTreeRoot.get();
+114     const idx2fields = await OffChainStorage.get(
+115       storageServerAddress,
+116       zkappPublicKey,
+117       treeHeight,
+118       treeRoot,
+119       NodeXMLHttpRequest
+120     );
 121
-122     const index = BigInt(Math.floor(Math.random() * 4));
-123
-124     // get the existing tree
-125     const treeRoot = await zkapp.storageTreeRoot.get();
-126     const idx2fields = await OffChainStorage.get(
-127       storageServerAddress,
-128       zkappPublicKey,
-129       treeHeight,
-130       treeRoot,
-131       NodeXMLHttpRequest
-132     );
-133
-134     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
-135     const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(index)));
+122     const tree = OffChainStorage.mapToTree(treeHeight, idx2fields);
+123     const leafWitness = new MerkleWitness8(tree.getWitness(index));
 ...
 ```
 
@@ -336,17 +342,17 @@ Continuing:
 
 ```ts
 ...
-137     // get the prior leaf
-138     const priorLeafIsEmpty = !idx2fields.has(index);
-139     let priorLeafNumber: Field;
-140     let newLeafNumber: Field;
-141     if (!priorLeafIsEmpty) {
-142       priorLeafNumber = idx2fields.get(index)![0];
-143       newLeafNumber = priorLeafNumber.add(3);
-144     } else {
-145       priorLeafNumber = Field(0);
-146       newLeafNumber = Field(1);
-147     }
+124     // get the prior leaf
+125     const priorLeafIsEmpty = !idx2fields.has(index);
+126     let priorLeafNumber: Field;
+127     let newLeafNumber: Field;
+128     if (!priorLeafIsEmpty) {
+129       priorLeafNumber = idx2fields.get(index)![0];
+130       newLeafNumber = priorLeafNumber.add(3);
+131     } else {
+132       priorLeafNumber = Field(0);
+133       newLeafNumber = Field(1);
+134     }
 ...
 ```
 
@@ -354,14 +360,14 @@ Here, we check if the leaf is empty, and shape our update accordingly. If the le
 
 ```ts
 ...
-152     const [storedNewStorageNumber, storedNewStorageSignature] =
-153       await OffChainStorage.requestStore(
-154         storageServerAddress,
-155         zkappPublicKey,
-156         treeHeight,
-157         idx2fields,
-158         NodeXMLHttpRequest
-159       );
+139     const [storedNewStorageNumber, storedNewStorageSignature] =
+140       await OffChainStorage.requestStore(
+141         storageServerAddress,
+142         zkappPublicKey,
+143         treeHeight,
+144         idx2fields,
+145         NodeXMLHttpRequest
+146       );
 ...
 ```
 
@@ -371,27 +377,27 @@ We call our smart contract as follows:
 
 ```ts
 ...
-165     const doUpdate = () => {
-166       zkapp.update(
-167         Bool(priorLeafIsEmpty),
-168         priorLeafNumber,
-169         newLeafNumber,
-170         leafWitness,
-171         storedNewStorageNumber,
-172         storedNewStorageSignature
-173       );
-174     }
-175
-176     if (useLocal) {
-177       const updateTransaction = await Mina.transaction(
-178         { feePayerKey, fee: transactionFee },
-179         () => {
-180           doUpdate();
-181           zkapp.sign(zkappPrivateKey);
-182         }
-183       );
-184
-185       await updateTransaction.send();
+159     const doUpdate = () => {
+160       zkapp.update(
+161         Bool(priorLeafIsEmpty),
+162         priorLeafNumber,
+163         newLeafNumber,
+164         leafWitness,
+165         storedNewStorageNumber,
+166         storedNewStorageSignature
+167       );
+168     }
+169
+170     if (useLocal) {
+171       const updateTransaction = await Mina.transaction(
+172         { sender: feePayerKey.toPublicKey(), fee: transactionFee },
+173         () => {
+174           doUpdate();
+175         }
+176       );
+177       updateTransaction.sign([zkappPrivateKey, feePayerKey])
+178       await updateTransaction.prove();
+179       await updateTransaction.send();
 ...
 ```
 

@@ -61,11 +61,13 @@ module.exports = {
             'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/custom-tokens',
+            'zkapps/tutorials/recursion',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
         },
         'zkapps/zkapps-for-ethereum-developers',
+        'zkapps/faq',
         {
           type: 'category',
           label: 'SnarkyJS Reference',

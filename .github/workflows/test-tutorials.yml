@@ -1,0 +1,16 @@
+name: Test-Tutorials
+
+on:
+  push:
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: |
+          npm ci
+          npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.mdx

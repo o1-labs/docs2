@@ -104,21 +104,21 @@ The following steps assume you've installed dependencies to your machine as desc
 Now, set up a new project with:
 
 ```sh
-zk project oracle
+$ zk project oracle
 ```
 
 Delete the default generated files by running:
 
 ```sh
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
+$ rm src/Add.ts
+$ rm src/Add.test.ts
+$ rm src/interact.ts
 ```
 
 And create new files:
 
 ```sh
-zk file CreditScoreOracle
+$ zk file CreditScoreOracle
 ```
 
 And lastly, change `index.ts` to:
@@ -297,7 +297,7 @@ this.emitEvent('verified', id);
 The zkApp CLI automatically generated a file called `CreditScoreOracle.test.ts` for us when we ran `zk file CreditScoreOracle`. Let’s add some tests. Open it and paste in the following:
 
 ```ts
-import { OracleExample } from './OracleExample';
+import { OracleExample } from './CreditScoreOracle';
 import {
   isReady,
   shutdown,
@@ -427,8 +427,10 @@ describe('CreditScoreOracle', () => {
       const id = Field(1);
       const creditScore = Field(787);
       const signature = Signature.fromJSON({
-        r: '13209474117923890467777795933147746532722569254037337512677934549675287266861',
-        s: '12079365427851031707052269572324263778234360478121821973603368912000793139475',
+        r:
+          '13209474117923890467777795933147746532722569254037337512677934549675287266861',
+        s:
+          '12079365427851031707052269572324263778234360478121821973603368912000793139475',
       });
 
       const txn = await Mina.transaction(deployerAccount, () => {
@@ -453,8 +455,10 @@ describe('CreditScoreOracle', () => {
       const id = Field(2);
       const creditScore = Field(536);
       const signature = Signature.fromJSON({
-        r: '25163915754510418213153704426580201164374923273432613331381672085201550827220',
-        s: '20455871399885835832436646442230538178588318835839502912889034210314761124870',
+        r:
+          '25163915754510418213153704426580201164374923273432613331381672085201550827220',
+        s:
+          '20455871399885835832436646442230538178588318835839502912889034210314761124870',
       });
 
       expect(async () => {
@@ -475,8 +479,10 @@ describe('CreditScoreOracle', () => {
       const id = Field(1);
       const creditScore = Field(787);
       const signature = Signature.fromJSON({
-        r: '26545513748775911233424851469484096799413741017006352456100547880447752952428',
-        s: '7381406986124079327199694038222605261248869991738054485116460354242251864564',
+        r:
+          '26545513748775911233424851469484096799413741017006352456100547880447752952428',
+        s:
+          '7381406986124079327199694038222605261248869991738054485116460354242251864564',
       });
 
       expect(async () => {
