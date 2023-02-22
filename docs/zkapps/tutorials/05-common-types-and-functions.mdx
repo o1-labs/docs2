@@ -348,7 +348,7 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
   zkApp.initState(tree.getRoot());
 });
 await deployTxn.prove();
-await deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]).send();
+deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
 
 const pendingDeployTx = await deployTxn.send();
 /**
