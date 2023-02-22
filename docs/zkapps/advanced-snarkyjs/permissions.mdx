@@ -1,0 +1,47 @@
+---
+title: Permissions
+hide_title: true
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+Experimental. This API may change.
+
+Specifically, we are looking into refactoring ZkProgram methods to explicitly return values rather than requiring them to be passed as further inputs.
+
+:::
+
+# Permissions
+
+Permissions are an integral part of zkApp development - they determine who has the authority to interact and make changes to a specific part of a smart contract.
+Naturally, it's important for every smart contract to have a set of sound permissions to prevent any attacks or security holes.
+Permissions live on-chain, that means they are a part of the account representation on the network, and are checked every time a transaction tries to interact with an account.
+
+## Types of Permissions
+
+
+Currently, there are 7 different types of permissions that guard a zkApp account and a developer can access and adjust.
+
+`editState`: The Permission corresponding to the 8 state fields associated with an account.
+Every smart contract account has 8 fields of on-chain state. This permissions describes how those 8 fields can be manipulated.
+
+`send`: The Permission corresponding to the ability to send transactions from this account.
+
+
+`receive`: Similar to `send`, the Permission corresponding to the ability to receive transactions to this account.
+`setDelegate`: The Permission corresponding to the ability to set the delegate field of the account.
+`setPermissions`: The Permission corresponding to the ability to change the permissions of the account.
+`setVerificationKey`: The Permission corresponding to the ability to change the verification key of the account.
+`setZkappUri`:  The Permission corresponding to the ability to change the zkapp uri field of the account.
+`editSequenceState`: The Permission corresponding to the ability to change the sequence state of the associated account.
+`setTokenSymbol`: The Permission corresponding to the ability to set the token symbol for this account.
+`incrementNonce`: 
+`setVotingFor`: 
+
+
+## Authorization
+
+## Example
