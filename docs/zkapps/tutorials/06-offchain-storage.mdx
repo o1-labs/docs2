@@ -81,9 +81,9 @@ Some suggested improvements:
 
 ## Implementing a Project Using Off-Chain Storage
 
-As usual, there is sample code for this project, which you can find [here](https://github.com/es92/zkApp-examples/tree/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts).
+As usual, there is sample code for this project, which you can find [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts).
 
-We will be writing and discussing the [src/main.ts](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+We will be writing and discussing the [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
 
 This project implements a tree, where each leaf is either empty or stores a number, which will be our data. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an off-chain storage server.
 
@@ -148,7 +148,7 @@ This will start a storage server and create a `database.json` file in the curren
 
 ## Implementing the Smart Contract
 
-To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/NumberTreeContract.ts) for reference.
+To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) for reference.
 
 Start by adding our imports:
 
@@ -196,21 +196,22 @@ Continuing, let's setup our smart contract:
  24   @state(Field) storageTreeRoot = State<Field>();
  25
  26
- 27   deploy(args: DeployArgs) {
- 28     super.deploy(args);
- 29     this.account.permissions.set({
- 30       ...Permissions.default(),
- 31       editState: Permissions.proofOrSignature(),
- 32     });
- 33   }
- 34
- 35   @method initState(storageServerPublicKey: PublicKey) {
- 36     this.storageServerPublicKey.set(storageServerPublicKey);
- 37     this.storageNumber.set(Field(0));
- 38
- 39     const emptyTreeRoot = new MerkleTree(8).getRoot();
- 40     this.storageTreeRoot.set(emptyTreeRoot);
- 41   }
+ 27
+ 28   deploy(args: DeployArgs) {
+ 29     super.deploy(args);
+ 30     this.account.permissions.set({
+ 31       ...Permissions.default(),
+ 32       editState: Permissions.proofOrSignature(),
+ 33     });
+ 34   }
+ 35
+ 36   @method initState(storageServerPublicKey: PublicKey) {
+ 37     this.storageServerPublicKey.set(storageServerPublicKey);
+ 38     this.storageNumber.set(Field(0));
+ 39
+ 40     const emptyTreeRoot = new MerkleTree(8).getRoot();
+ 41     this.storageTreeRoot.set(emptyTreeRoot);
+ 42   }
 ...
 ```
 
@@ -222,52 +223,52 @@ Continuing, here is our update function:
 
 ```ts
 ...
- 43   @method update(
- 44     leafIsEmpty: Bool,
- 45     oldNum: Field,
- 46     num: Field,
- 47     path: MerkleWitness8,
- 48     storedNewRootNumber: Field,
- 49     storedNewRootSignature: Signature
- 50   ) {
- 51     const storedRoot = this.storageTreeRoot.get();
- 52     this.storageTreeRoot.assertEquals(storedRoot);
- 53
- 54     let storedNumber = this.storageNumber.get();
- 55     this.storageNumber.assertEquals(storedNumber);
- 56
- 57     let storageServerPublicKey = this.storageServerPublicKey.get();
- 58     this.storageServerPublicKey.assertEquals(storageServerPublicKey);
- 59
- 60     let leaf = [oldNum];
- 61     let newLeaf = [num];
- 62
- 63     // newLeaf can be a function of the existing leaf
- 64     newLeaf[0].assertGt(leaf[0]);
- 65
- 66     const updates = [
- 67       {
- 68         leaf,
- 69         leafIsEmpty,
- 70         newLeaf,
- 71         newLeafIsEmpty: Bool(false),
- 72         leafWitness: path,
- 73       },
- 74     ];
- 75
- 76     const storedNewRoot = OffChainStorage.assertRootUpdateValid(
- 77       storageServerPublicKey,
- 78       storedNumber,
- 79       storedRoot,
- 80       updates,
- 81       storedNewRootNumber,
- 82       storedNewRootSignature
- 83     );
- 84
- 85     this.storageTreeRoot.set(storedNewRoot);
- 86     this.storageNumber.set(storedNewRootNumber);
- 87   }
- 88 }
+ 42   @method update(
+ 43     leafIsEmpty: Bool,
+ 44     oldNum: Field,
+ 45     num: Field,
+ 46     path: MerkleWitness8,
+ 47     storedNewRootNumber: Field,
+ 48     storedNewRootSignature: Signature
+ 49   ) {
+ 50     const storedRoot = this.storageTreeRoot.get();
+ 51     this.storageTreeRoot.assertEquals(storedRoot);
+ 52
+ 53     let storedNumber = this.storageNumber.get();
+ 54     this.storageNumber.assertEquals(storedNumber);
+ 55
+ 56     let storageServerPublicKey = this.storageServerPublicKey.get();
+ 57     this.storageServerPublicKey.assertEquals(storageServerPublicKey);
+ 58
+ 59     let leaf = [oldNum];
+ 60     let newLeaf = [num];
+ 61
+ 62     // newLeaf can be a function of the existing leaf
+ 63     newLeaf[0].assertGt(leaf[0]);
+ 64
+ 65     const updates = [
+ 66       {
+ 67         leaf,
+ 68         leafIsEmpty,
+ 69         newLeaf,
+ 70         newLeafIsEmpty: Bool(false),
+ 71         leafWitness: path,
+ 72       },
+ 73     ];
+ 74
+ 75     const storedNewRoot = OffChainStorage.assertRootUpdateValid(
+ 76       storageServerPublicKey,
+ 77       storedNumber,
+ 78       storedRoot,
+ 79       updates,
+ 80       storedNewRootNumber,
+ 81       storedNewRootSignature
+ 82     );
+ 83
+ 84     this.storageTreeRoot.set(storedNewRoot);
+ 85     this.storageNumber.set(storedNewRootNumber);
+ 86   }
+ 87 }
 ```
 
 We get and assert the current state of the contract - and then we perform the update.
@@ -282,7 +283,7 @@ That completes the smart contract!
 
 ## Implementing `main.ts`
 
-You can find a full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) for reference.
+You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for reference.
 
 We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
 
@@ -315,8 +316,7 @@ To start, let's get the existing tree:
 
 ```ts
 ...
-108   async function updateTree() {
-109
+109   async function updateTree() {
 110     const index = BigInt(Math.floor(Math.random() * 4));
 111
 112     // get the existing tree
@@ -342,17 +342,17 @@ Continuing:
 
 ```ts
 ...
-124     // get the prior leaf
-125     const priorLeafIsEmpty = !idx2fields.has(index);
-126     let priorLeafNumber: Field;
-127     let newLeafNumber: Field;
-128     if (!priorLeafIsEmpty) {
-129       priorLeafNumber = idx2fields.get(index)![0];
-130       newLeafNumber = priorLeafNumber.add(3);
-131     } else {
-132       priorLeafNumber = Field(0);
-133       newLeafNumber = Field(1);
-134     }
+125     // get the prior leaf
+126     const priorLeafIsEmpty = !idx2fields.has(index);
+127     let priorLeafNumber: Field;
+128     let newLeafNumber: Field;
+129     if (!priorLeafIsEmpty) {
+130       priorLeafNumber = idx2fields.get(index)![0];
+131       newLeafNumber = priorLeafNumber.add(3);
+132     } else {
+133       priorLeafNumber = Field(0);
+134       newLeafNumber = Field(1);
+135     }
 ...
 ```
 
@@ -360,14 +360,14 @@ Here, we check if the leaf is empty, and shape our update accordingly. If the le
 
 ```ts
 ...
-139     const [storedNewStorageNumber, storedNewStorageSignature] =
-140       await OffChainStorage.requestStore(
-141         storageServerAddress,
-142         zkappPublicKey,
-143         treeHeight,
-144         idx2fields,
-145         NodeXMLHttpRequest
-146       );
+140     const [storedNewStorageNumber, storedNewStorageSignature] =
+141       await OffChainStorage.requestStore(
+142         storageServerAddress,
+143         zkappPublicKey,
+144         treeHeight,
+145         idx2fields,
+146         NodeXMLHttpRequest
+147       );
 ...
 ```
 
@@ -377,31 +377,32 @@ We call our smart contract as follows:
 
 ```ts
 ...
-159     const doUpdate = () => {
-160       zkapp.update(
-161         Bool(priorLeafIsEmpty),
-162         priorLeafNumber,
-163         newLeafNumber,
-164         leafWitness,
-165         storedNewStorageNumber,
-166         storedNewStorageSignature
-167       );
-168     }
-169
-170     if (useLocal) {
-171       const updateTransaction = await Mina.transaction(
-172         { sender: feePayerKey.toPublicKey(), fee: transactionFee },
-173         () => {
-174           doUpdate();
-175         }
-176       );
-177       updateTransaction.sign([zkappPrivateKey, feePayerKey])
-178       await updateTransaction.prove();
-179       await updateTransaction.send();
+160     const doUpdate = () => {
+161       zkapp.update(
+162         Bool(priorLeafIsEmpty),
+163         priorLeafNumber,
+164         newLeafNumber,
+165         leafWitness,
+166         storedNewStorageNumber,
+167         storedNewStorageSignature
+168       );
+169     }
+170
+171     if (useLocal) {
+172       const updateTransaction = await Mina.transaction(
+173         { sender: feePayerKey.toPublicKey(), fee: transactionFee },
+174         () => {
+175           doUpdate();
+176         }
+177       );
+178
+179       updateTransaction.sign([zkappPrivateKey, feePayerKey])
+180       await updateTransaction.prove();
+181       await updateTransaction.send();
 ...
 ```
 
-That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/06-offchain-storage/contracts/src/main.ts) for review.
+That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for review.
 
 ## Conclusion
 

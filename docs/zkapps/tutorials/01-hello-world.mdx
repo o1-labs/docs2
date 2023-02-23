@@ -175,9 +175,7 @@ First, open `src/Square.ts` in your editor, then add the following at the top of
 4   state,
 5   State,
 6   method,
-7   DeployArgs,
-8   Permissions,
-9 } from 'snarkyjs';
+7 } from 'snarkyjs';
 ```
 
 What each of these are:
@@ -187,35 +185,34 @@ What each of these are:
 - `state`: a convenience decorator used within zkApp smart contracts to create references to state stored on chain in a zkApp account.
 - `State`: a class used within zkApp smart contracts to create state stored on chain in a zkApp account.
 - `method`: a convenience decorator used within zkApp smart contracts to create new smart contract methods (i.e. functions). Methods that uses this decorator are the end user's entry points to interacting with our smart contract.
-- `DeployArgs`: The type for arguments submitted to a newly deployed smart contract.
-- `Permissions`: A collection of methods for manipulating zkApp smart contract permissions.
 
 ### Smart contract class
 
 Now, we will write the smart contract. Write the following in your file:
 
 ```ts src/Square.ts
-10
-11 export class Square extends SmartContract {
-12   @state(Field) num = State<Field>();
-13
-14 }
+8
+9 export class Square extends SmartContract {
+10   @state(Field) num = State<Field>();
+11
+12 }
 ```
 
-This creates a new smart contract called `Square` with one element of on-chain state named `num` of type `Field`. zkApps can have up to 8 fields worth of on-chain state, each storing up to 32 bytes of arbitrary data. A later tutorial will discuss options for off-chain state.
+This creates a new smart contract called `Square` with one element of on-chain state named `num` of type `Field`. zkApps can have up to 8 fields worth of on-chain state, each storing up to 32 bytes (technically, 31.875 bytes or 255 bit) of arbitrary data. A later tutorial will discuss options for off-chain state.
 
 Now, let's add our `init` method:
 
 ```ts src/Square.ts
-11 export class Square extends SmartContract {
-12   @state(Field) num = State<Field>();
-13
-14   init() {
-15     super.init();
-16     this.num.set(Field(3));
-17   }
-18
-19 }
+8
+9 export class Square extends SmartContract {
+10   @state(Field) num = State<Field>();
+11
+12   init() {
+13     super.init();
+14     this.num.set(Field(3));
+15   }
+16
+17 }
 ```
 
 This method sets up the initial state of the smart contract on deployment.
@@ -229,17 +226,16 @@ We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/
 Lastly, we will add our update function:
 
 ```ts src/Square.ts
-16     this.num.set(Field(3));
-17   }
-18
-19   @method update(square: Field) {
-20     const currentState = this.num.get();
-21     this.num.assertEquals(currentState);
-22     square.assertEquals(currentState.mul(currentState));
-23     this.num.set(square);
-24   }
-25
-26 }
+14     this.num.set(Field(3));
+15   }
+16
+17   @method update(square: Field) {
+18     const currentState = this.num.get();
+19     this.num.assertEquals(currentState);
+20     square.assertEquals(currentState.mul(currentState));
+21     this.num.set(square);
+22   }
+23 }
 ```
 
 The name `update` is arbitrary, but makes sense for our example. Notice that we use the `@method` decorator because we intend for this method to be invoked by end users, such as via a zkApp UI or our `main.ts` script in this case.
@@ -390,7 +386,7 @@ Now let's try updating our local zkApp account with a transaction! Add the follo
 50
 51 // ----------------------------------------------------
 52
-53   console.log('Shutting down')
+53 console.log('Shutting down')
 54
 55 await shutdown();
 ```
