@@ -132,4 +132,71 @@ there's `assertNothing()` on all of these fields (including on-chain state). **U
 
 `assertNothing()` should be rarely used and could cause security issues through unexpected behavior if used improperly. Be certain you know what you're doing before using this.
 
+### Setting account fields
+
+Just like on-chain state, some account fields can be written to. Again, the API is consistent with state: `this.account.<field>.set(newValue)`.
+
+For example, here's how you can change permissions on an account:
+
+```ts
+this.account.permissions.set({
+  ...Permissions.default(),
+  setVerificationKey: Permissions.impossible(),
+});
+```
+
+And here's how you can set the delegate (the account that your smart contract delegates its stake to):
+
+```ts
+this.account.delegate.set(delegatePublicKey);
+```
+
+The fields that you can set are not the same as those that you can make assertions about. This is the full list that have a `.set()`, with short descriptions:
+
+```ts
+// the account that this account delegates its MINA stake to
+this.account.delegate.set(value: PublicKey);
+// the verification key
+this.account.verificationKey.set(value: { data: string; hash: Field });
+// account permissions, to control authorization for performing actions on the account
+this.account.permissions.set(value: Permissions);
+// currently unused - could become URL holding zkApp metadata
+this.account.zkappUri.set(value: string);
+// token symbol of the token owned by this account -- only relevant for token contracts!
+this.account.tokenSymbol.set(value: string);
+// parameters to control a vesting schedule, used in time-locked accounts
+this.account.timing.set(value: Timing);
+// currently unused - could be used during hard forks to hold a ledger hash referring to the chain the account votes for continuing
+this.account.votingFor.set(value: Field);
+```
+
+### Accessing other accounts than the zkApp's
+
+The API described in this section (get / set / assertEquals / ...) can not only be used to access the zkApp account itself, but also any other account.
+To do so, just create an [account update](/zkapps/how-to-write-a-zkapp#transactions-and-account-updates) -- you'll find the same `account` / `network` fields API on it:
+
+```ts
+let accountUpdate = AccountUpdate.create(address);
+
+// use the balance of this account
+let balance = accountUpdate.account.balance.get();
+accountUpdate.account.balance.assertEquals(balance);
+
+// assert that this account is new
+accountUpdate.account.isNew.assertEquals(Bool(true));
+
+// set permissions this account
+accountUpdate.account.permissions.set(permissions);
+```
+
+Beware: when setting fields on an account update, you have to make sure that _this same account udapte_ has the correct authorization to perform those actions.
+For example, to initially set the verification key, the update will likely need a signature from the account owner:
+
+```ts
+// we use createSigned to require a signature
+let accountUpdate = AccountUpdate.createSigned(address);
+// we set the verification key on this account === deploy a zkApp from a zkApp!
+accountUpdate.account.verificationKey.set(vk);
+```
+
 :::
