@@ -228,11 +228,11 @@ href="https://docs.aurowallet.com/general/reference/api-reference/mina-provider-
 
 ### Displaying assertion exceptions in your UI
 
-If an assertion error occurs while a user is interacting with your zkApp, you may want capture the assertion error and display a helpful message for the user in your UI.
+If an assertion exception occurs while a user interacts with any of your smart contract methods, you will want to capture this and display a helpful message for the user in your UI.
 
-1. Capture errors that occur when a user interacts with a method on your smart contract in a try catch statement.
-2. Filter by the error message that was created.
-3. Display a helpful error message for the user in your UI based on what assertion exception was captured. This could be a modal or a message in your UI.
+1. Use a try-catch statement to catch exceptions when a user invokes a method on your smart contract.
+2. Use a switch-case statement to identify which exception was thrown. You will want a matching case for each unique assertion within your method. To assist with this, you may consider setting custom error messages for your assertions while writing the smart contract--for example: `INSUFFICIENT_BALANCE`.
+3. Display a helpful error message for the user within your UI.
 
 ```ts
 try {
@@ -240,11 +240,12 @@ try {
 } catch (err) {
   let uiErrorMessage;
   switch (err.message) {
-    // The assertion error message thrown by invoking YourSmartContract.yourMethod when there is an insufficent balance. In this case, a custom error message.
+    // A custom error thrown within YourSmartContract.yourMethod()
+    // when there is an insufficient balance.
     case 'INSUFFICIENT_BALANCE':
-      // Create a helpful message to display to your user in the UI. This message can be shown in a modal or displayed somewhere in your UI.
+      // Set a helpful message to show the user in the UI.
       uiErrorMessage =
-        'Your account has an insufficent balance for this transaction';
+        'Your account has an insufficient balance for this transaction';
       break;
     // etc
   }
