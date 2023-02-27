@@ -26,27 +26,37 @@ Permissions live on-chain, that means they are a part of the account representat
 Currently, there are 11 different types of permissions that guard a zkApp account and a developer can access and adjust.
 
 `editState`: The Permission corresponding to the 8 state fields associated with an account.
-    - Every smart contract account has 8 fields of on-chain state. This permissions describes how those 8 fields can be manipulated.
+Every smart contract account has 8 fields of on-chain state. This permissions describes how those 8 fields can be manipulated.
+
 `send`: The Permission corresponding to the ability to send transactions from this account.
-    - This permission determines whether or not someone is able to send transaction (e.g. transfer MINA) from this particular account. 
+This permission determines whether or not someone is able to send transaction (e.g. transfer MINA) from this particular account. 
+
 `receive`: Similar to `send`, the Permission corresponding to the ability to receive transactions to this account.
-    - Similar to send, it determines whether or not a particular account can receive transactions - for example, depositing MINA.
+Similar to send, it determines whether or not a particular account can receive transactions - for example, depositing MINA.
+
 `setDelegate`: The Permission corresponding to the ability to set the delegate field of the account.
-    - The delegate field is the address of another account, to whom this account is delegating its MINA to for staking.
+The delegate field is the address of another account, to whom this account is delegating its MINA to for staking.
+
 `setPermissions`: The Permission corresponding to the ability to change the permissions of the account.
-    - As the name might suggest, this type of permission describes how already set permissions can be changed.
+As the name might suggest, this type of permission describes how already set permissions can be changed.
+
 `setVerificationKey`: The Permission corresponding to the ability to change the verification key of the account.
-    - Every smart contract has a verification key stored on-chain. The verification key is used to verify off-chain proofs. This permission essentially describes if the verification key can be changed or not - we can also think of it as "upgradeability" of smart contracts.
+Every smart contract has a verification key stored on-chain. The verification key is used to verify off-chain proofs. This permission essentially describes if the verification key can be changed or not - we can also think of it as "upgradeability" of smart contracts.
+
 `setZkappUri`:  The Permission corresponding to the ability to change the zkapp uri field of the account.
-    - The `zkappUri` is a field that can be used to store some meta data about the smart contract (e.g. link to the source code). The permission determines how this field can be changed.
+The `zkappUri` is a field that can be used to store some meta data about the smart contract (e.g. link to the source code). The permission determines how this field can be changed.
+
 `editSequenceState`: The Permission corresponding to the ability to change the sequence state of the associated account.
-    - Every smart contract can dispatch sequence events (or actions), which are committed to on-chain. This type of permission describes who can change that value.
+Every smart contract can dispatch sequence events (or actions), which are committed to on-chain. This type of permission describes who can change that value.
+
 `setTokenSymbol`: The Permission corresponding to the ability to set the token symbol for this account.
-    - Similar to `setZkappUri` and `zkappUri`, this field stored the symbol of a token.
+Similar to `setZkappUri` and `zkappUri`, this field stored the symbol of a token.
+
 `incrementNonce`: The Permission that determine whether or not the nonce should be incremented with an account update.
-    - This Permission determines who can increment the nonce on this account with a transaction.
+This Permission determines who can increment the nonce on this account with a transaction.
+
 `setVotingFor`: The permissions corresponding to the ability to set the chain hash for this account. 
-    - The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
+The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
 
 
 ## Authorization
