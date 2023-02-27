@@ -56,7 +56,7 @@ Currently, we have 5 types of authorizations: `none`, `impossible`, `signature`,
 
 We already know that a transaction consists of multiple account updates (sort of like instructions to the network) - and each account update has to be authorized in one way or another.
 When you inspect an account update (either directly in SnarkyJS or using an explorer), you will notice a field `authorization` on the account update.
-If this field has a proof attached, it means it's authorized by a proof which will be checked against the verification key of the account. If it's a signature, that means the account update was authorized by a signature.
+If this field has a proof attached, it means it's authorized by a proof, which will be checked against the verification key of the account. If it's a signature, that means the account update was authorized by a signature.
 
 Here is an example of how this may look like: 
 
@@ -150,11 +150,9 @@ class UnsecureContract extends SmartContract {
 ```
 
 
-
-
 Our `UnsecureContract` has two methods: `withdraw` for withdrawing funds from the smart contract account and `deposit` for depositing funds into the smart contract account.
 Also notice how we specify our permissions in the `init` method and set the permission for `send` to `Permissions.none()`? 
-Because `none` means we don't have to provide *any* from of authorization, a malicious actor can easily drain all funds from the smart contract! Take a look at the following transaction that abuses that:
+Because `none` means we don't have to provide *any* form of authorization, a malicious actor can easily drain all funds from the smart contract! Take a look at the following transaction that abuses that:
 
 
 ```ts
@@ -166,7 +164,7 @@ await tx.sign([account1Key]).send();
 ```
 
 The transaction above creates a new account update for our smart contract address. Right after that, we tell our new account update to send 1 MINA to the address of our fee payer (account1Address).
-At the end of our transaction block we only sign the transaction with the private key of the fee payer - not the private key of the smart contract!
+At the end of our transaction block, we only sign the transaction with the private key of the fee payer - not the private key of the smart contract!
 Because our permissions for sending funds away from a smart contract were set to `none`, this transaction will succeed and drain 1 MINA from the smart contract.
 
 If we now change our `send` permission to something else, like `signature`,
@@ -192,7 +190,7 @@ Now that we have provided a valid signature and the smart contract requires a va
 Another important part of smart contract development is upgradeability.
 By using permissions, we can either make our smart contract not upgradeable at all or upgradeable! 
 On Mina, when we deploy a smart contract we generate a verification key from our contract source code, which will then be stored on-chain and used to verify proofs that belong to that smart contract.
-We remember that one permission was called `setVerificationKey` - by modifying the authorization kind for this permissions, we can make our smart contract upgradeable or not. 
+We remember that one permission was called `setVerificationKey` - by modifying the authorization kind for this permission, we can make our smart contract upgradeable or not. 
 
 #### Impossible
 
