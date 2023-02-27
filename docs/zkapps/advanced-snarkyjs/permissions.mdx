@@ -189,10 +189,90 @@ Now that we have provided a valid signature and the smart contract requires a va
 
 ### Upgradeability of smart contracts
 
+Another important part of smart contract development is upgradeability.
+By using permissions, we can either make our smart contract not upgradeable at all or upgradeable! 
+On Mina, when we deploy a smart contract we generate a verification key from our contract source code, which will then be stored on-chain and used to verify proofs that belong to that smart contract.
+We remember that one permission was called `setVerificationKey` - by modifying the authorization kind for this permissions, we can make our smart contract upgradeable or not. 
+
 #### Impossible
+
+Let's start simple - our smart contract will not be upgradeable, and once a verification key is deployed, we will never be able to change it.
+
+
+```ts
+class UpgradeabilityImpossible extends SmartContract {
+  init() {
+    super.init();
+    this.account.permissions.set({
+      ...Permissions.default(),
+      setVerificationKey: Permissions.impossible(),
+    });
+  }
+
+  @method updateVerificationKey(vk: VerificationKey) {
+    this.account.verificationKey.set(vk);
+  }
+}
+```
+
+The `UpgradeabilityImpossible` smart contract only has one method: `updateVerificationKey`. By invoking this method and providing a new verification key, we expect the verification key on-chain to change.
+But since we also specify the `setVerificationKey` permission to be `impossible`, invoking that method will fail - essentially making our smart contract not upgradeable.
+
+```ts
+console.log('try upgrading vk');
+tx = await Mina.transaction(feePayer, () => {
+  zkapp.updateVerificationKey(newVerificationKey);
+});
+await tx.prove();
+await tx.sign([feePayerKey, zkappKey]).send();
+```
+
+This transaction will try to replace the existing verification key with a new one, `newVerificationKey`, but since we can prevent that by setting the permissions for a verification key change to `impossible`,
+we expect the transaction to fail.
+
+Using the `LocalBlockchain`, we will get the following (expected) error:
+
+`Error: Transaction verification failed: Cannot update field 'verificationKey' because permission for this field is 'Impossible'`
 
 
 #### Upgradeable with a proof
 
+But there are situations where we might want our smart contract to be upgradeable!
+Let's assume we want to modify our method `updateVerificationKey` to do some checks before we can update our verification key (this could be the result of a vote or other conditions).
+For now, we just want to check that we provide a `x` which is greater than or equal to 5. If this check succeeds, we update our verification key.
+
+```ts
+@method updateVerificationKey(vk: VerificationKey, x: Field) {
+    let y = Field(5);
+    x.gte(y).assertTrue();
+
+    this.account.verificationKey.set(vk);
+}
+```
+
+Also, we have to update our permissions from `setVerificationKey`: `impossible` to `proof`, because we only want to change the verification key if we also provide a valid proof.
+
+```ts
+this.account.permissions.set({
+    ...Permissions.default(),
+    setVerificationKey: Permissions.proof(),
+});
+```
+
+When we now try and invoke the `updateVerificationKey` method, our transaction will generate a valid smart contract execution proof, succeed and upgrade the verification key to a new one!
+
+```ts
+console.log('try upgrading vk');
+tx = await Mina.transaction(feePayer, () => {
+    zkapp.updateVerificationKey(newVerificationKey);
+});
+await tx.prove();
+await tx.sign([feePayerKey, zkappKey]).send();
+```
+
 
 ## Where to learn more
+
+
+Our integration tests exercise the behavior of different permissions, including upgradeability. 
+If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/upgradability.ts).
