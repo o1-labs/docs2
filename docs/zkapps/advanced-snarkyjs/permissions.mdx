@@ -42,8 +42,8 @@ Every smart contract has a verification key stored on-chain. The verification ke
 `setZkappUri`:  The Permission corresponding to the ability to change the zkapp uri field of the account.
 The `zkappUri` is a field that can be used to store some meta data about the smart contract (e.g. link to the source code). The permission determines how this field can be changed.
 
-`editSequenceState`: The Permission corresponding to the ability to change the sequence state of the associated account.
-Every smart contract can dispatch sequence events (or actions), which are committed to on-chain. This type of permission describes who can change that value.
+`editActionsState`: The Permission corresponding to the ability to change the actions state of the associated account.
+Every smart contract can dispatch actions, which are committed to on-chain. This type of permission describes who can change that value.
 
 `setTokenSymbol`: The Permission corresponding to the ability to set the token symbol for this account.
 Similar to `setZkappUri` and `zkappUri`, this field stored the symbol of a token.
@@ -133,7 +133,7 @@ Currently, the default is this:
 
 `setZkappUri`: `signature`
 
-`editSequenceState`: `proof`
+`editActionsState`: `proof`
 
 `setTokenSymbol`: `signature`
 
