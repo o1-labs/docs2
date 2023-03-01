@@ -246,6 +246,9 @@ Using the `LocalBlockchain`, we will get the following (expected) error:
 
 `Error: Transaction verification failed: Cannot update field 'verificationKey' because permission for this field is 'Impossible'`
 
+For the sake of security, it is important to mention that if we want to make our smart contract truly impossible to upgrade, we should also set the field `setPermissions` to `impossible`,
+in order to prevent a malicious actor from changing the permission `setVerificationKey` to, for example, `none` - which would allow an actor to manipulate the verification key again.
+
 
 #### Upgradeable with a proof
 
