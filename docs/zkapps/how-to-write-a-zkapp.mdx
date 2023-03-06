@@ -914,9 +914,9 @@ To summarize, there are three types of authorization that account updates can ha
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
 - No authorization – used on updates which don't require authorization, for example positive balance changes.
 
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates.
+The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](advanced-snarkyjs/permissions) section that goes into detail!.
 
-<!-- TODO: link to advanced permissions section instead of just API reference; this section should list all permissions, explain how permissions are changed through zkApp deployment, explain how accounts can be made non-upgradeable, and explain the `access` permission for the case of token contracts -->
+
 
 ##### Sending transactions
 
