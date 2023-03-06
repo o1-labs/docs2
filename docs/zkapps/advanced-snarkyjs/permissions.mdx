@@ -54,7 +54,7 @@ This Permission determines who can increment the nonce on this account with a tr
 `setVotingFor`: The permissions corresponding to the ability to set the chain hash for this account. 
 The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
 
-`access`: The permission corresponding to the ability to access a ledger account.
+`access`: This Permission is more restrictive than all the others combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, this can be set to require no authorization. However, for [token manager contracts](custom-tokens), `access` should require at least proof authorization, so that token interactions must be approved by calling one of the token manager's methods.
 
 `setTiming`: The permission corresponding to the ability to control the vesting schedule of time-locked accounts.
 
@@ -250,7 +250,7 @@ Using the `LocalBlockchain`, we will get the following (expected) error:
 `Error: Transaction verification failed: Cannot update field 'verificationKey' because permission for this field is 'Impossible'`
 
 For the sake of security, it is important to mention that if we want to make our smart contract truly impossible to upgrade, we should also set the field `setPermissions` to `impossible`,
-in order to prevent a malicious actor from changing the permission `setVerificationKey` to, for example, `none` - which would allow an actor to manipulate the verification key again.
+in order to prevent a zkApp developer from changing the permission `setVerificationKey` to, for example, `signature` - which would allow an actor to manipulate the verification key again.
 
 
 #### Upgradeable with a proof
