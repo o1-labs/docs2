@@ -16,7 +16,17 @@ To allow users to interact with your smart contract, you’ll typically want to 
 
 This UI can be written with any framework (e.g. React, Vue, Svelte, etc.) or plain HTML and JavaScript.
 
+## Using one of the provided UI framework scaffolds
+
+When creating a new project with the zkApp CLI, you can directly choose one of three frameworks to be scaffolded as a part of your new zkApp project.
+At the moment, we support NuxtJS, Svelte Kit and NextJS. 
+
+You can do so by adding the `--ui=<framework>` flag to the `zk project <myproj>` command: `zk project <myproj> --ui=<framework>`, where `<framework>` stands for one of the three currently supported frameworks `nuxt`, `svelte` and `next`.
+
 ## Adding your smart contract as a dependency of the UI
+
+If you want to use one of the scaffolding options that we provide and you want to add your smart contract to an already existing frontend, a different UI framework or simply a plain HTML and JavaScript website, you can do so as well. 
+
 
 #### Setup
 

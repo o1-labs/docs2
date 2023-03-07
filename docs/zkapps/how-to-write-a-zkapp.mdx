@@ -67,7 +67,7 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 #### Option B: Start your own project
 
 1. **Install:** Run `zk project <myproj>`. Type `ls` and hit enter to see the
-   newly created project structure.
+   newly created project structure. _Note_: If you want to directly scaffold an UI with your new zkApp, you can do so by adding the `--ui` flag to the previous command, like `zk project <myproj> --ui=<framework>`. You can currently choose from the following frameworks: `svelte`, `next` or `nuxt` 
 2. **Run tests:** Run `npm run test`. Tests are written using <a
    href="https://jestjs.io/">Jest</a>. After running this command, you should
    see all tests pass. You can also run `npm run testw` to run tests in watch
@@ -914,9 +914,9 @@ To summarize, there are three types of authorization that account updates can ha
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
 - No authorization – used on updates which don't require authorization, for example positive balance changes.
 
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates.
+The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](advanced-snarkyjs/permissions) section that goes into detail!.
 
-<!-- TODO: link to advanced permissions section instead of just API reference; this section should list all permissions, explain how permissions are changed through zkApp deployment, explain how accounts can be made non-upgradeable, and explain the `access` permission for the case of token contracts -->
+
 
 ##### Sending transactions
 
