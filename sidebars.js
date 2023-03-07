@@ -48,6 +48,7 @@ module.exports = {
             'zkapps/advanced-snarkyjs/actions-and-reducer',
             'zkapps/advanced-snarkyjs/merkle-tree',
             'zkapps/advanced-snarkyjs/permissions',
+            'zkapps/advanced-snarkyjs/time-locked-accounts',
           ],
         },
         {
