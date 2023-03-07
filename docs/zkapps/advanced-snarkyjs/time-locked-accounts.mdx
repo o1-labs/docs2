@@ -86,7 +86,7 @@ const cliffTime = UInt32.from((60 / 3) * 24 * 7);
 
 accountUpdate.account.timing.set({
   initialMinimumBalance: tokensToLock,
-  cliffTime,
+  cliffTime: cliffTime,
   cliffAmount: tokensToLock,
   vestingPeriod: UInt32.from(1), // 0 is not allowed; default value is 1
   vestingIncrement: UInt64.from(0),
