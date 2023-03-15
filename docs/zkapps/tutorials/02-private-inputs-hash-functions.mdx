@@ -94,7 +94,6 @@ Now, we will add an `initState()` method. This is intended to run once to set up
   6   @method initState(salt: Field, firstSecret: Field) {
   7     this.x.set(Poseidon.hash([ salt, firstSecret ]));
   8   }
-  9 }
 ```
 
 Our `initState()` method accepts our secret, and a value called a "salt", which we will discuss later.
