@@ -99,6 +99,42 @@ this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[
 
 Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapps/how-to-test-a-zkapp).
 
+### Fetching Actions from an Archive Node
+
+Since are emitted action data is stored in transaction data, actions will only be persisted by an Archive Node. To fetch action data from an Archive Node, you can use the `archive` property on the `Mina.Network` function. For example:
+
+```ts
+let Network = Mina.Network({
+  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
+  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+});
+Mina.setActiveInstance(Network);
+```
+
+By setting the `archive` property to one of the listed endpoints, SnarkyJS will use one of the selected endpoints to fetch action data. For example, let us assume that a zkApp has already emitted actions and has broadcasted the transaction. To fetch actions for a zkApp, you can use the `getActions` function:
+
+```ts
+class MyContract extends SmartContract {
+  ...
+  @method getActionsExample() {
+    // Get all actions for this zkApp
+    let pendingActions = this.reducer.getActions({
+      fromActionHash: actionsHash,
+    });
+    this.reducer.reduce(
+      pendingActions,
+      Field,
+      (state: Field, action: Field) => {
+        ...
+      },
+      { state: counter, actionsHash }
+    );
+  }
+}
+```
+
+`getActions` takes an optional `fromActionHash` parameter which is the `actionsHash` of the last action that was processed. If `fromActionHash` is not provided, `getActions` will fetch all actions for the zkApp. `getActions` returns a list of actions that were emitted after the `fromActionHash` was processed.
+
 ### Actions for concurrent state updates
 
 We imagine that one of the most important use cases for actions is to enable concurrent state updates. This is also why actions where originally added to the protocol.
