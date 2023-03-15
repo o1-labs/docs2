@@ -138,16 +138,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/MerkleMap',
-                  label: 'MerkleMap',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/MerkleMapWitness',
-                  label: 'MerkleMapWitness',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/MerkleTree',
                   label: 'MerkleTree',
                 },
