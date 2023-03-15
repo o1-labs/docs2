@@ -61,6 +61,34 @@ class SmartContract {
 }
 ```
 
+### Fetching Events from an Archive Node
+
+Since emitted event data is only stored in transaction data, events will only be persisted by an Archive Node. To fetch events from an Archive Node, you can use the `archive` property on the `Mina.Network` function. For example:
+
+```ts
+let Network = Mina.Network({
+  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
+  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+});
+Mina.setActiveInstance(Network);
+```
+
+By setting the `archive` property to one of the listed endpoints, SnarkyJS will use one of the selected endpoints to fetch events. For example, let us assume that a zkApp has already emitted events and has broadcasted the transaction. To fetch events for a zkApp, you can use the `fetchEvents` function:
+
+```ts
+let zkapp = new SimpleZkapp(address);
+// fetches all events from zkapp starting block 0
+let events = await zkapp.fetchEvents(UInt32.from(0));
+// fetches all events starting at block 560 and ending at block 600
+events = await zkapp.fetchEvents(UInt32.from(560), UInt32.from(600));
+// fetches all events for a given address
+const fetchedEvents = await fetchEvents({
+  publicKey: 'B62qrfn5xxChtPGJne9HuDJZ4ziWVgWxeL3hntGBqMmf45p4hudo3tw',
+});
+```
+
+`getEvents` takes in a starting block and an ending block. If the ending block is not provided, it will fetch all events up to the latest block. If the starting block is not provided, it will fetch all events from the beginning of the zkApp's history.
+
 ### Events vs Actions
 
 Events and [Actions](actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees as we see above. Actions, on the other hand, can be accessed within provable code within a smart contract using a Reducer, because a commitment to the relevant actions (i.e. the "action state") is stored on the zkApp account. Neither Events nor Actions are stored directly in the Mina ledger and exist only in the transaction and on archive nodes.
