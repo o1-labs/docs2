@@ -6,9 +6,9 @@
 
 ### Type Aliases
 
+- [Account](Types.Json.md#account)
 - [AccountUpdate](Types.Json.md#accountupdate)
 - [AuthRequired](Types.Json.md#authrequired)
-- [AuthorizationKind](Types.Json.md#authorizationkind)
 - [Bool](Types.Json.md#bool)
 - [Field](Types.Json.md#field)
 - [PublicKey](Types.Json.md#publickey)
@@ -21,6 +21,51 @@
 
 ## Type Aliases
 
+### Account
+
+Ƭ **Account**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `balance` | [`UInt64`](Types.Json.md#uint64) |
+| `delegate` | [`PublicKey`](Types.Json.md#publickey) \| ``null`` |
+| `nonce` | [`UInt32`](Types.Json.md#uint32) |
+| `permissions` | { `access`: [`AuthRequired`](Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } |
+| `permissions.access` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.editSequenceState` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.editState` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.incrementNonce` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.receive` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.send` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setDelegate` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setPermissions` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setTiming` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setTokenSymbol` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setVerificationKey` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setVotingFor` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `permissions.setZkappUri` | [`AuthRequired`](Types.Json.md#authrequired) |
+| `publicKey` | [`PublicKey`](Types.Json.md#publickey) |
+| `receiptChainHash` | [`Field`](Types.Json.md#field) |
+| `timing` | { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `isTimed`: [`Bool`](Types.Json.md#bool) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } |
+| `timing.cliffAmount` | [`UInt64`](Types.Json.md#uint64) |
+| `timing.cliffTime` | [`UInt32`](Types.Json.md#uint32) |
+| `timing.initialMinimumBalance` | [`UInt64`](Types.Json.md#uint64) |
+| `timing.isTimed` | [`Bool`](Types.Json.md#bool) |
+| `timing.vestingIncrement` | [`UInt64`](Types.Json.md#uint64) |
+| `timing.vestingPeriod` | [`UInt32`](Types.Json.md#uint32) |
+| `tokenId` | [`TokenId`](Types.Json.md#tokenid) |
+| `tokenSymbol` | `string` |
+| `votingFor` | [`Field`](Types.Json.md#field) |
+| `zkapp` | { `appState`: [`Field`](Types.Json.md#field)[] ; `lastSequenceSlot`: [`UInt32`](Types.Json.md#uint32) ; `provedState`: [`Bool`](Types.Json.md#bool) ; `sequenceState`: [`Field`](Types.Json.md#field)[] ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `zkappUri`: `string` ; `zkappVersion`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
+
+#### Defined in
+
+[provable/gen/transaction-json.ts:315](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction-json.ts#L315)
+
+___
+
 ### AccountUpdate
 
 Ƭ **AccountUpdate**: `Object`
@@ -32,17 +77,24 @@
 | `authorization` | { `proof`: `string` \| ``null`` ; `signature`: `string` \| ``null``  } |
 | `authorization.proof` | `string` \| ``null`` |
 | `authorization.signature` | `string` \| ``null`` |
-| `body` | { `authorizationKind`: [`AuthorizationKind`](Types.Json.md#authorizationkind) ; `balanceChange`: { `magnitude`: [`UInt64`](Types.Json.md#uint64) ; `sgn`: [`Sign`](Types.Json.md#sign)  } ; `callData`: [`Field`](Types.Json.md#field) ; `callDepth`: `number` ; `caller`: [`TokenId`](Types.Json.md#tokenid) ; `events`: [`Field`](Types.Json.md#field)[][] ; `incrementNonce`: [`Bool`](Types.Json.md#bool) ; `preconditions`: { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceHardFork`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `timestamp`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  }  } ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `sequenceEvents`: [`Field`](Types.Json.md#field)[][] ; `tokenId`: [`TokenId`](Types.Json.md#tokenid) ; `update`: { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } ; `useFullCommitment`: [`Bool`](Types.Json.md#bool)  } |
-| `body.authorizationKind` | [`AuthorizationKind`](Types.Json.md#authorizationkind) |
+| `body` | { `actions`: [`Field`](Types.Json.md#field)[][] ; `authorizationKind`: { `isProved`: [`Bool`](Types.Json.md#bool) ; `isSigned`: [`Bool`](Types.Json.md#bool) ; `verificationKeyHash`: [`Field`](Types.Json.md#field)  } ; `balanceChange`: { `magnitude`: [`UInt64`](Types.Json.md#uint64) ; `sgn`: [`Sign`](Types.Json.md#sign)  } ; `callData`: [`Field`](Types.Json.md#field) ; `callDepth`: `number` ; `events`: [`Field`](Types.Json.md#field)[][] ; `implicitAccountCreationFee`: [`Bool`](Types.Json.md#bool) ; `incrementNonce`: [`Bool`](Types.Json.md#bool) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](Types.Json.md#bool) ; `parentsOwnToken`: [`Bool`](Types.Json.md#bool)  } ; `preconditions`: { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `validWhile`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null``  } ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `tokenId`: [`TokenId`](Types.Json.md#tokenid) ; `update`: { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `access`: [`AuthRequired`](Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } ; `useFullCommitment`: [`Bool`](Types.Json.md#bool)  } |
+| `body.actions` | [`Field`](Types.Json.md#field)[][] |
+| `body.authorizationKind` | { `isProved`: [`Bool`](Types.Json.md#bool) ; `isSigned`: [`Bool`](Types.Json.md#bool) ; `verificationKeyHash`: [`Field`](Types.Json.md#field)  } |
+| `body.authorizationKind.isProved` | [`Bool`](Types.Json.md#bool) |
+| `body.authorizationKind.isSigned` | [`Bool`](Types.Json.md#bool) |
+| `body.authorizationKind.verificationKeyHash` | [`Field`](Types.Json.md#field) |
 | `body.balanceChange` | { `magnitude`: [`UInt64`](Types.Json.md#uint64) ; `sgn`: [`Sign`](Types.Json.md#sign)  } |
 | `body.balanceChange.magnitude` | [`UInt64`](Types.Json.md#uint64) |
 | `body.balanceChange.sgn` | [`Sign`](Types.Json.md#sign) |
 | `body.callData` | [`Field`](Types.Json.md#field) |
 | `body.callDepth` | `number` |
-| `body.caller` | [`TokenId`](Types.Json.md#tokenid) |
 | `body.events` | [`Field`](Types.Json.md#field)[][] |
+| `body.implicitAccountCreationFee` | [`Bool`](Types.Json.md#bool) |
 | `body.incrementNonce` | [`Bool`](Types.Json.md#bool) |
-| `body.preconditions` | { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceHardFork`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `timestamp`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  }  } |
+| `body.mayUseToken` | { `inheritFromParent`: [`Bool`](Types.Json.md#bool) ; `parentsOwnToken`: [`Bool`](Types.Json.md#bool)  } |
+| `body.mayUseToken.inheritFromParent` | [`Bool`](Types.Json.md#bool) |
+| `body.mayUseToken.parentsOwnToken` | [`Bool`](Types.Json.md#bool) |
+| `body.preconditions` | { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `validWhile`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null``  } |
 | `body.preconditions.account` | { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } |
 | `body.preconditions.account.balance` | { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` |
 | `body.preconditions.account.delegate` | [`PublicKey`](Types.Json.md#publickey) \| ``null`` |
@@ -52,10 +104,9 @@
 | `body.preconditions.account.receiptChainHash` | [`Field`](Types.Json.md#field) \| ``null`` |
 | `body.preconditions.account.sequenceState` | [`Field`](Types.Json.md#field) \| ``null`` |
 | `body.preconditions.account.state` | ([`Field`](Types.Json.md#field) \| ``null``)[] |
-| `body.preconditions.network` | { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceHardFork`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `timestamp`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } |
+| `body.preconditions.network` | { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } |
 | `body.preconditions.network.blockchainLength` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
 | `body.preconditions.network.globalSlotSinceGenesis` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
-| `body.preconditions.network.globalSlotSinceHardFork` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
 | `body.preconditions.network.minWindowDensity` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
 | `body.preconditions.network.nextEpochData` | { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } |
 | `body.preconditions.network.nextEpochData.epochLength` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
@@ -74,15 +125,14 @@
 | `body.preconditions.network.stakingEpochData.lockCheckpoint` | [`Field`](Types.Json.md#field) \| ``null`` |
 | `body.preconditions.network.stakingEpochData.seed` | [`Field`](Types.Json.md#field) \| ``null`` |
 | `body.preconditions.network.stakingEpochData.startCheckpoint` | [`Field`](Types.Json.md#field) \| ``null`` |
-| `body.preconditions.network.timestamp` | { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` |
 | `body.preconditions.network.totalCurrency` | { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` |
+| `body.preconditions.validWhile` | { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
 | `body.publicKey` | [`PublicKey`](Types.Json.md#publickey) |
-| `body.sequenceEvents` | [`Field`](Types.Json.md#field)[][] |
 | `body.tokenId` | [`TokenId`](Types.Json.md#tokenid) |
-| `body.update` | { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } |
+| `body.update` | { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `access`: [`AuthRequired`](Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } |
 | `body.update.appState` | ([`Field`](Types.Json.md#field) \| ``null``)[] |
 | `body.update.delegate` | [`PublicKey`](Types.Json.md#publickey) \| ``null`` |
-| `body.update.permissions` | { `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` |
+| `body.update.permissions` | { `access`: [`AuthRequired`](Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` |
 | `body.update.timing` | { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` |
 | `body.update.tokenSymbol` | `string` \| ``null`` |
 | `body.update.verificationKey` | { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` |
@@ -92,7 +142,7 @@
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:174](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/gen/transaction-json.ts#L174)
+[provable/gen/transaction-json.ts:178](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction-json.ts#L178)
 
 ___
 
@@ -102,17 +152,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:19](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L19)
-
-___
-
-### AuthorizationKind
-
-Ƭ **AuthorizationKind**: ``"Signature"`` \| ``"Proof"`` \| ``"None_given"``
-
-#### Defined in
-
-[provable/transaction-leaves-json.ts:20](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L20)
+[provable/transaction-leaves-json.ts:9](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L9)
 
 ___
 
@@ -122,7 +162,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:14](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L14)
+[provable/transaction-leaves-json.ts:4](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L4)
 
 ___
 
@@ -132,7 +172,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:13](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L13)
+[provable/transaction-leaves-json.ts:3](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L3)
 
 ___
 
@@ -142,7 +182,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L17)
+[provable/transaction-leaves-json.ts:7](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L7)
 
 ___
 
@@ -152,7 +192,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:18](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L18)
+[provable/transaction-leaves-json.ts:8](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L8)
 
 ___
 
@@ -162,7 +202,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:21](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L21)
+[provable/transaction-leaves-json.ts:10](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L10)
 
 ___
 
@@ -175,7 +215,6 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `AuthRequired` | [`AuthRequired`](Types.Json.md#authrequired) |
-| `AuthorizationKind` | [`AuthorizationKind`](Types.Json.md#authorizationkind) |
 | `Bool` | [`Bool`](Types.Json.md#bool) |
 | `Field` | [`Field`](Types.Json.md#field) |
 | `PublicKey` | [`PublicKey`](Types.Json.md#publickey) |
@@ -186,7 +225,7 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:19](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/gen/transaction-json.ts#L19)
+[provable/gen/transaction-json.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction-json.ts#L18)
 
 ___
 
@@ -196,7 +235,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:16](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L16)
+[provable/transaction-leaves-json.ts:6](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L6)
 
 ___
 
@@ -206,7 +245,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:15](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/transaction-leaves-json.ts#L15)
+[provable/transaction-leaves-json.ts:5](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves-json.ts#L5)
 
 ___
 
@@ -218,7 +257,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdates` | { `authorization`: { `proof`: `string` \| ``null`` ; `signature`: `string` \| ``null``  } ; `body`: { `authorizationKind`: [`AuthorizationKind`](Types.Json.md#authorizationkind) ; `balanceChange`: { `magnitude`: [`UInt64`](Types.Json.md#uint64) ; `sgn`: [`Sign`](Types.Json.md#sign)  } ; `callData`: [`Field`](Types.Json.md#field) ; `callDepth`: `number` ; `caller`: [`TokenId`](Types.Json.md#tokenid) ; `events`: [`Field`](Types.Json.md#field)[][] ; `incrementNonce`: [`Bool`](Types.Json.md#bool) ; `preconditions`: { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceHardFork`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `timestamp`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  }  } ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `sequenceEvents`: [`Field`](Types.Json.md#field)[][] ; `tokenId`: [`TokenId`](Types.Json.md#tokenid) ; `update`: { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } ; `useFullCommitment`: [`Bool`](Types.Json.md#bool)  }  }[] |
+| `accountUpdates` | { `authorization`: { `proof`: `string` \| ``null`` ; `signature`: `string` \| ``null``  } ; `body`: { `actions`: [`Field`](Types.Json.md#field)[][] ; `authorizationKind`: { `isProved`: [`Bool`](Types.Json.md#bool) ; `isSigned`: [`Bool`](Types.Json.md#bool) ; `verificationKeyHash`: [`Field`](Types.Json.md#field)  } ; `balanceChange`: { `magnitude`: [`UInt64`](Types.Json.md#uint64) ; `sgn`: [`Sign`](Types.Json.md#sign)  } ; `callData`: [`Field`](Types.Json.md#field) ; `callDepth`: `number` ; `events`: [`Field`](Types.Json.md#field)[][] ; `implicitAccountCreationFee`: [`Bool`](Types.Json.md#bool) ; `incrementNonce`: [`Bool`](Types.Json.md#bool) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](Types.Json.md#bool) ; `parentsOwnToken`: [`Bool`](Types.Json.md#bool)  } ; `preconditions`: { `account`: { `balance`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null`` ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `isNew`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `nonce`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `provedState`: [`Bool`](Types.Json.md#bool) \| ``null`` ; `receiptChainHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `sequenceState`: [`Field`](Types.Json.md#field) \| ``null`` ; `state`: ([`Field`](Types.Json.md#field) \| ``null``)[]  } ; `network`: { `blockchainLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `globalSlotSinceGenesis`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `minWindowDensity`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `nextEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `snarkedLedgerHash`: [`Field`](Types.Json.md#field) \| ``null`` ; `stakingEpochData`: { `epochLength`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `ledger`: { `hash`: [`Field`](Types.Json.md#field) \| ``null`` ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `lockCheckpoint`: [`Field`](Types.Json.md#field) \| ``null`` ; `seed`: [`Field`](Types.Json.md#field) \| ``null`` ; `startCheckpoint`: [`Field`](Types.Json.md#field) \| ``null``  } ; `totalCurrency`: { `lower`: [`UInt64`](Types.Json.md#uint64) ; `upper`: [`UInt64`](Types.Json.md#uint64)  } \| ``null``  } ; `validWhile`: { `lower`: [`UInt32`](Types.Json.md#uint32) ; `upper`: [`UInt32`](Types.Json.md#uint32)  } \| ``null``  } ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `tokenId`: [`TokenId`](Types.Json.md#tokenid) ; `update`: { `appState`: ([`Field`](Types.Json.md#field) \| ``null``)[] ; `delegate`: [`PublicKey`](Types.Json.md#publickey) \| ``null`` ; `permissions`: { `access`: [`AuthRequired`](Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](Types.Json.md#authrequired) ; `send`: [`AuthRequired`](Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](Types.Json.md#authrequired)  } \| ``null`` ; `timing`: { `cliffAmount`: [`UInt64`](Types.Json.md#uint64) ; `cliffTime`: [`UInt32`](Types.Json.md#uint32) ; `initialMinimumBalance`: [`UInt64`](Types.Json.md#uint64) ; `vestingIncrement`: [`UInt64`](Types.Json.md#uint64) ; `vestingPeriod`: [`UInt32`](Types.Json.md#uint32)  } \| ``null`` ; `tokenSymbol`: `string` \| ``null`` ; `verificationKey`: { `data`: `string` ; `hash`: [`Field`](Types.Json.md#field)  } \| ``null`` ; `votingFor`: [`Field`](Types.Json.md#field) \| ``null`` ; `zkappUri`: `string` \| ``null``  } ; `useFullCommitment`: [`Bool`](Types.Json.md#bool)  }  }[] |
 | `feePayer` | { `authorization`: `string` ; `body`: { `fee`: [`UInt64`](Types.Json.md#uint64) ; `nonce`: [`UInt32`](Types.Json.md#uint32) ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `validUntil`: [`UInt32`](Types.Json.md#uint32) \| ``null``  }  } |
 | `feePayer.authorization` | `string` |
 | `feePayer.body` | { `fee`: [`UInt64`](Types.Json.md#uint64) ; `nonce`: [`UInt32`](Types.Json.md#uint32) ; `publicKey`: [`PublicKey`](Types.Json.md#publickey) ; `validUntil`: [`UInt32`](Types.Json.md#uint32) \| ``null``  } |
@@ -230,4 +269,4 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:31](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/provable/gen/transaction-json.ts#L31)
+[provable/gen/transaction-json.ts:29](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction-json.ts#L29)

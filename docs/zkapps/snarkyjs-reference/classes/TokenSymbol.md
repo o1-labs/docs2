@@ -16,6 +16,7 @@
 
 - [field](TokenSymbol.md#field)
 - [symbol](TokenSymbol.md#symbol)
+- [\_isStruct](TokenSymbol.md#_isstruct)
 - [check](TokenSymbol.md#check)
 - [fromFields](TokenSymbol.md#fromfields)
 - [fromJSON](TokenSymbol.md#fromjson)
@@ -53,7 +54,7 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:728](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L728)
+[lib/circuit_value.ts:743](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L743)
 
 ## Properties
 
@@ -67,7 +68,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:122](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L122)
+[lib/hash.ts:114](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/hash.ts#L114)
 
 ___
 
@@ -81,7 +82,21 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:122](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L122)
+[lib/hash.ts:114](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/hash.ts#L114)
+
+___
+
+### \_isStruct
+
+▪ `Static` **\_isStruct**: ``true``
+
+#### Inherited from
+
+Struct(TokenSymbolPure).\_isStruct
+
+#### Defined in
+
+[lib/circuit_value.ts:743](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L743)
 
 ___
 
@@ -111,7 +126,7 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:29](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L29)
+[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L37)
 
 ___
 
@@ -145,7 +160,7 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:27](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L27)
+[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L35)
 
 ___
 
@@ -178,7 +193,7 @@ Struct(TokenSymbolPure).fromJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:735](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L735)
+[lib/circuit_value.ts:751](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L751)
 
 ___
 
@@ -208,7 +223,7 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:26](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L26)
+[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L34)
 
 ___
 
@@ -238,7 +253,7 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L25)
+[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L33)
 
 ___
 
@@ -273,7 +288,7 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:730](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L730)
+[lib/circuit_value.ts:746](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L746)
 
 ___
 
@@ -303,7 +318,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:734](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L734)
+[lib/circuit_value.ts:750](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L750)
 
 ## Accessors
 
@@ -322,7 +337,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L153)
+[lib/hash.ts:145](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/hash.ts#L145)
 
 ## Methods
 
@@ -342,7 +357,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:157](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L157)
+[lib/hash.ts:149](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/hash.ts#L149)
 
 ___
 
@@ -360,4 +375,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:28](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L28)
+[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L36)

@@ -53,7 +53,7 @@ Represents a point with x and y coordinates on an elliptic curve.
 
 #### Defined in
 
-[snarky.d.ts:884](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L884)
+[snarky.d.ts:1051](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1051)
 
 • **new Group**(`x`, `y`)
 
@@ -66,7 +66,7 @@ Represents a point with x and y coordinates on an elliptic curve.
 
 #### Defined in
 
-[snarky.d.ts:888](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L888)
+[snarky.d.ts:1055](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1055)
 
 ## Properties
 
@@ -76,7 +76,7 @@ Represents a point with x and y coordinates on an elliptic curve.
 
 #### Defined in
 
-[snarky.d.ts:845](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L845)
+[snarky.d.ts:1012](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1012)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:846](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L846)
+[snarky.d.ts:1013](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1013)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:893](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L893)
+[snarky.d.ts:1060](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1060)
 
 ## Methods
 
@@ -118,7 +118,7 @@ Adds two [Group](Group.md) elements together.
 
 #### Defined in
 
-[snarky.d.ts:851](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L851)
+[snarky.d.ts:1018](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1018)
 
 ___
 
@@ -141,7 +141,7 @@ Asserts that two [Group](Group.md) elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:872](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L872)
+[snarky.d.ts:1039](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1039)
 
 ___
 
@@ -163,7 +163,7 @@ Checks if two [Group](Group.md) elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:877](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L877)
+[snarky.d.ts:1044](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1044)
 
 ___
 
@@ -179,7 +179,7 @@ Negates this [Group](Group.md) elements and returns a new instance.
 
 #### Defined in
 
-[snarky.d.ts:861](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L861)
+[snarky.d.ts:1028](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1028)
 
 ___
 
@@ -201,7 +201,7 @@ Scales this [Group](Group.md) element using a [Scalar](Scalar.md).
 
 #### Defined in
 
-[snarky.d.ts:866](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L866)
+[snarky.d.ts:1033](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1033)
 
 ___
 
@@ -223,7 +223,7 @@ Subtracts one [Group](Group.md) element from the other.
 
 #### Defined in
 
-[snarky.d.ts:856](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L856)
+[snarky.d.ts:1023](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1023)
 
 ___
 
@@ -244,7 +244,7 @@ Returns the JSON representation of this [Group](Group.md) element.
 
 #### Defined in
 
-[snarky.d.ts:882](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L882)
+[snarky.d.ts:1049](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1049)
 
 ___
 
@@ -267,7 +267,7 @@ Adds two [Group](Group.md) elements together.
 
 #### Defined in
 
-[snarky.d.ts:897](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L897)
+[snarky.d.ts:1064](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1064)
 
 ___
 
@@ -290,7 +290,7 @@ Asserts that two [Group](Group.md) elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:916](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L916)
+[snarky.d.ts:1083](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1083)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:954](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L954)
+[snarky.d.ts:1121](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1121)
 
 ___
 
@@ -333,7 +333,7 @@ Checks if two [Group](Group.md) elements are equal.
 
 #### Defined in
 
-[snarky.d.ts:921](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L921)
+[snarky.d.ts:1088](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1088)
 
 ___
 
@@ -355,24 +355,24 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:933](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L933)
+[snarky.d.ts:1100](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1100)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**(`__namedParameters`): ``null`` \| [`Group`](Group.md)
+▸ `Static` **fromJSON**(`«destructured»`): ``null`` \| [`Group`](Group.md)
 
 Deserialize a JSON structure into a [Group](Group.md).
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Group.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.x` | `string` \| `number` |
-| `__namedParameters.y` | `string` \| `number` |
+| `«destructured»` | `Object` |
+| › `x` | `string` \| `number` |
+| › `y` | `string` \| `number` |
 
 #### Returns
 
@@ -380,7 +380,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:947](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L947)
+[snarky.d.ts:1114](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1114)
 
 ___
 
@@ -402,7 +402,7 @@ Negates a [Group](Group.md) elements and returns a new instance.
 
 #### Defined in
 
-[snarky.d.ts:905](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L905)
+[snarky.d.ts:1072](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1072)
 
 ___
 
@@ -425,7 +425,7 @@ Scales this [Group](Group.md) element using a [Scalar](Scalar.md).
 
 #### Defined in
 
-[snarky.d.ts:910](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L910)
+[snarky.d.ts:1077](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1077)
 
 ___
 
@@ -441,7 +441,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:937](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L937)
+[snarky.d.ts:1104](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1104)
 
 ___
 
@@ -464,7 +464,7 @@ Subtracts one [Group](Group.md) element from the other.
 
 #### Defined in
 
-[snarky.d.ts:901](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L901)
+[snarky.d.ts:1068](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1068)
 
 ___
 
@@ -486,7 +486,7 @@ Static method to serialize a [Group](Group.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:929](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L929)
+[snarky.d.ts:1096](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1096)
 
 ___
 
@@ -508,7 +508,7 @@ Static method to serialize a [Group](Group.md) into an array of [Field](Field.md
 
 #### Defined in
 
-[snarky.d.ts:925](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L925)
+[snarky.d.ts:1092](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1092)
 
 ___
 
@@ -517,7 +517,7 @@ ___
 ▸ `Static` **toJSON**(`x`): `Object`
 
 Serialize a [Group](Group.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Group.
 
 #### Parameters
 
@@ -536,4 +536,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:942](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L942)
+[snarky.d.ts:1109](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1109)
