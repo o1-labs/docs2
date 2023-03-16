@@ -20,7 +20,7 @@ jobs:
         with:
           repository: o1-labs/snarkyjs
           path: snarkyjs
-          ref: releases
+          ref: main
 
       - name: Build API reference docs
         env:
@@ -28,6 +28,7 @@ jobs:
         run: |
           # Install dependencies and build SnarkyJS
           cd snarkyjs && npm ci && npm run build
+          cd src/mina-signer && npm ci && npm run build && cd ../../
 
           # Install markdown-plugin for typedoc and build the SnarkyJS API reference
           npm install typedoc-plugin-markdown

@@ -224,6 +224,11 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Mina.TransactionId',
+                  label: 'Mina.TransactionId',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/interfaces/Permissions',
                   label: 'Permissions',
                 },
