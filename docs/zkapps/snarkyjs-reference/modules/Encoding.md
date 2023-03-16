@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[lib/encoding.ts:106](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L106)
+[lib/encoding.ts:107](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L107)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+[lib/encoding.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L18)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+[lib/encoding.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L18)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+[lib/encoding.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L18)
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+[lib/encoding.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L18)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+[lib/encoding.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L18)
 
 ## Functions
 
@@ -113,7 +113,7 @@ Decodes a list of [Field](../classes/Field.md) elements into a Uint8Array.
 
 #### Defined in
 
-[lib/encoding.ts:75](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L75)
+[lib/encoding.ts:76](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L76)
 
 ___
 
@@ -135,7 +135,7 @@ Encodes a Uint8Array into [Field](../classes/Field.md) elements.
 
 #### Defined in
 
-[lib/encoding.ts:53](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L53)
+[lib/encoding.ts:54](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L54)
 
 ___
 
@@ -159,7 +159,7 @@ This function is not a valid in-snark computation.
 
 #### Defined in
 
-[lib/encoding.ts:43](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L43)
+[lib/encoding.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L44)
 
 ___
 
@@ -183,4 +183,4 @@ This function is not a valid in-snark computation.
 
 #### Defined in
 
-[lib/encoding.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L33)
+[lib/encoding.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encoding.ts#L34)

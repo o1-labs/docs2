@@ -52,9 +52,13 @@
 ### Type Aliases
 
 - [DeployArgs](README.md#deployargs)
+- [FlexibleProvable](README.md#flexibleprovable)
+- [FlexibleProvablePure](README.md#flexibleprovablepure)
 - [ProvableExtended](README.md#provableextended)
 - [Reducer](README.md#reducer)
 - [State](README.md#state)
+- [Struct](README.md#struct)
+- [TransactionStatus](README.md#transactionstatus)
 - [ZkappPublicInput](README.md#zkapppublicinput)
 
 ### Variables
@@ -70,15 +74,16 @@
 - [MerkleWitness](README.md#merklewitness)
 - [Reducer](README.md#reducer-1)
 - [State](README.md#state-1)
-- [Struct](README.md#struct)
+- [Struct](README.md#struct-1)
 - [addCachedAccount](README.md#addcachedaccount)
 - [arrayProp](README.md#arrayprop)
 - [circuitMain](README.md#circuitmain)
 - [declareMethods](README.md#declaremethods)
 - [declareState](README.md#declarestate)
-- [deploy](README.md#deploy)
 - [fetchAccount](README.md#fetchaccount)
+- [fetchEvents](README.md#fetchevents)
 - [fetchLastBlock](README.md#fetchlastblock)
+- [fetchTransactionStatus](README.md#fetchtransactionstatus)
 - [getSrs](README.md#getsrs)
 - [matrixProp](README.md#matrixprop)
 - [method](README.md#method)
@@ -94,7 +99,6 @@
 - [signFeePayer](README.md#signfeepayer)
 - [state](README.md#state-2)
 - [verify](README.md#verify)
-- [zkappCommandToJson](README.md#zkappcommandtojson)
 
 ## References
 
@@ -110,7 +114,39 @@ Re-exports [PublicKey](classes/Types.PublicKey.md)
 
 #### Defined in
 
-[lib/zkapp.ts:1325](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1325)
+[lib/zkapp.ts:1434](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1434)
+
+___
+
+### FlexibleProvable
+
+Ƭ **FlexibleProvable**<`T`\>: [`Provable`](interfaces/Provable.md)<`T`\> \| [`Struct`](README.md#struct)<`T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[lib/circuit_value.ts:54](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L54)
+
+___
+
+### FlexibleProvablePure
+
+Ƭ **FlexibleProvablePure**<`T`\>: [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> \| `StructPure`<`T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L55)
 
 ___
 
@@ -127,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:462](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L462)
+[lib/circuit_value.ts:475](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L475)
 
 ___
 
@@ -145,13 +181,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `actionType` | [`ProvablePure`](interfaces/ProvablePure.md)<`Action`\> |
+| `actionType` | [`FlexibleProvablePure`](README.md#flexibleprovablepure)<`Action`\> |
 
 #### Defined in
 
-[lib/zkapp.ts:1093](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1093)
+[lib/zkapp.ts:1211](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1211)
 
-[lib/zkapp.ts:1479](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1479)
+[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1506)
 
 ___
 
@@ -179,9 +215,43 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/state.ts#L25)
+[lib/state.ts:30](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/state.ts#L30)
 
-[lib/state.ts:18](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/state.ts#L18)
+[lib/state.ts:23](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/state.ts#L23)
+
+___
+
+### Struct
+
+Ƭ **Struct**<`T`\>: [`ProvableExtended`](README.md#provableextended)<`NonMethods`<`T`\>\> & `Constructor`<`T`\> & { `_isStruct`: ``true``  }
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[lib/circuit_value.ts:735](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L735)
+
+[lib/circuit_value.ts:49](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L49)
+
+___
+
+### TransactionStatus
+
+Ƭ **TransactionStatus**: ``"INCLUDED"`` \| ``"PENDING"`` \| ``"UNKNOWN"``
+
+INCLUDED: A transaction that is on the longest chain
+
+PENDING: A transaction either in the transition frontier or in transaction pool but is not on the longest chain
+
+UNKNOWN: The transaction has either been snarked, reached finality through consensus or has been dropped
+
+#### Defined in
+
+[lib/fetch.ts:491](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L491)
 
 ___
 
@@ -189,12 +259,18 @@ ___
 
 Ƭ **ZkappPublicInput**: `Object`
 
-The public input for zkApps consists of certain hashes of the proving AccountUpdate (and its child accountUpdates) which is constructed during method execution.
+The public input for zkApps consists of certain hashes of the proving
+AccountUpdate (and its child accountUpdates) which is constructed during method
+execution.
 
- For SmartContract proving, a method is run twice: First outside the proof, to obtain the public input, and once in the prover,
- which takes the public input as input. The current transaction is hashed again inside the prover, which asserts that the result equals the input public input,
- as part of the snark circuit. The block producer will also hash the transaction they receive and pass it as a public input to the verifier.
- Thus, the transaction is fully constrained by the proof - the proof couldn't be used to attest to a different transaction.
+ For SmartContract proving, a method is run twice: First outside the proof, to
+obtain the public input, and once in the prover, which takes the public input
+as input. The current transaction is hashed again inside the prover, which
+asserts that the result equals the input public input, as part of the snark
+circuit. The block producer will also hash the transaction they receive and
+pass it as a public input to the verifier. Thus, the transaction is fully
+constrained by the proof - the proof couldn't be used to attest to a different
+transaction.
 
 #### Type declaration
 
@@ -205,9 +281,9 @@ The public input for zkApps consists of certain hashes of the proving AccountUpd
 
 #### Defined in
 
-[lib/account_update.ts:1677](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1677)
+[lib/account_update.ts:1861](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L1861)
 
-[lib/account_update.ts:1678](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1678)
+[lib/account_update.ts:1865](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L1865)
 
 ## Variables
 
@@ -221,7 +297,7 @@ The public input for zkApps consists of certain hashes of the proving AccountUpd
 | :------ | :------ |
 | `default` | () => [`Permissions`](README.md#permissions) |
 | `dummy` | () => [`Permissions`](README.md#permissions) |
-| `fromJSON` | (`permissions`: { `editSequenceState`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `send`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](modules/Types.Json.md#authrequired)  }) => [`Permissions`](README.md#permissions) |
+| `fromJSON` | (`permissions`: { `access`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `editSequenceState`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `editState`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `incrementNonce`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `receive`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `send`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setDelegate`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setPermissions`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setTiming`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setTokenSymbol`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setVerificationKey`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setVotingFor`: [`AuthRequired`](modules/Types.Json.md#authrequired) ; `setZkappUri`: [`AuthRequired`](modules/Types.Json.md#authrequired)  }) => [`Permissions`](README.md#permissions) |
 | `fromString` | (`permission`: [`AuthRequired`](modules/Types.Json.md#authrequired)) => [`AuthRequired`](modules/Types.md#authrequired-1) |
 | `impossible` | () => [`AuthRequired`](modules/Types.md#authrequired-1) |
 | `initial` | () => [`Permissions`](README.md#permissions) |
@@ -232,9 +308,9 @@ The public input for zkApps consists of certain hashes of the proving AccountUpd
 
 #### Defined in
 
-[lib/account_update.ts:156](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L156)
+[lib/account_update.ts:150](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L150)
 
-[lib/account_update.ts:220](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L220)
+[lib/account_update.ts:225](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L225)
 
 ___
 
@@ -247,13 +323,13 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `Sponge` | typeof `Sponge` |
-| `get initialState()` | [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
 | `hash` | (`input`: [`Field`](classes/Field.md)[]) => [`Field`](classes/Field.md) |
+| `initialState` | () => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
 | `update` | (`state`: [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)], `input`: [`Field`](classes/Field.md)[]) => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
 
 #### Defined in
 
-[lib/hash.ts:36](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/hash.ts#L36)
+[lib/hash.ts:38](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/hash.ts#L38)
 
 ___
 
@@ -263,9 +339,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1677](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1677)
+[lib/account_update.ts:1861](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L1861)
 
-[lib/account_update.ts:1678](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1678)
+[lib/account_update.ts:1865](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L1865)
 
 ___
 
@@ -277,13 +353,13 @@ A Promise that resolves when SnarkyJS is ready to be used
 
 #### Defined in
 
-[snarky.d.ts:1185](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L1185)
+[snarky.d.ts:1323](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1323)
 
 ## Functions
 
 ### Account
 
-▸ **Account**(`address`, `tokenId?`): `PreconditionClassType`<`AccountPrecondition`\>
+▸ **Account**(`address`, `tokenId?`): `Account`
 
 #### Parameters
 
@@ -294,11 +370,11 @@ A Promise that resolves when SnarkyJS is ready to be used
 
 #### Returns
 
-`PreconditionClassType`<`AccountPrecondition`\>
+`Account`
 
 #### Defined in
 
-[lib/zkapp.ts:1382](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1382)
+[lib/zkapp.ts:1441](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1441)
 
 ___
 
@@ -322,7 +398,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:215](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L215)
+[lib/merkle_tree.ts:215](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L215)
 
 ___
 
@@ -334,8 +410,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`ProvablePure`](interfaces/ProvablePure.md)<`any`, `T`\> |
-| `A` | extends `any` |
+| `T` | extends [`FlexibleProvablePure`](README.md#flexibleprovablepure)<`any`\> |
+| `A` | extends `any` = `InferProvable`<`T`\> |
 
 #### Parameters
 
@@ -350,7 +426,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1479](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1479)
+[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1506)
 
 ___
 
@@ -370,13 +446,13 @@ ___
 
 #### Defined in
 
-[lib/state.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/state.ts#L25)
+[lib/state.ts:30](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/state.ts#L30)
 
 ___
 
 ### Struct
 
-▸ **Struct**<`A`, `T`, `J`, `Pure`\>(`type`, `options?`): (`value`: `T`) => `T` & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](interfaces/Provable.md)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](classes/Field.md)[] ; `packed?`: [[`Field`](classes/Field.md), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
+▸ **Struct**<`A`, `T`, `J`, `Pure`\>(`type`, `options?`): (`value`: `T`) => `T` & { `_isStruct`: ``true``  } & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](interfaces/Provable.md)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](classes/Field.md)[] ; `packed?`: [[`Field`](classes/Field.md), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
 
 `Struct` lets you declare composite types for use in snarkyjs circuits.
 
@@ -448,7 +524,7 @@ From the circuit point of view, it simply doesn't exist!
 | Name | Type |
 | :------ | :------ |
 | `A` | `A` |
-| `T` | extends `unknown` = `InferCircuitValue`<`A`\> |
+| `T` | extends `unknown` = `InferProvable`<`A`\> |
 | `J` | extends `unknown` = `InferJson`<`A`\> |
 | `Pure` | extends `boolean` = `IsPure`<`A`\> |
 
@@ -462,33 +538,27 @@ From the circuit point of view, it simply doesn't exist!
 
 #### Returns
 
-(`value`: `T`) => `T` & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](interfaces/Provable.md)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](classes/Field.md)[] ; `packed?`: [[`Field`](classes/Field.md), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
+(`value`: `T`) => `T` & { `_isStruct`: ``true``  } & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](interfaces/Provable.md)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](classes/Field.md)[] ; `packed?`: [[`Field`](classes/Field.md), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
 
 Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:720](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L720)
+[lib/circuit_value.ts:735](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L735)
 
 ___
 
 ### addCachedAccount
 
-▸ **addCachedAccount**(`account`, `graphqlEndpoint?`): `void`
+▸ **addCachedAccount**(`partialAccount`, `graphqlEndpoint?`): `void`
 
-Fetches an account from the GraphQL endpoint and adds it to the local cache.
+Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `account` | `Object` | `undefined` |
-| `account.balance?` | `string` \| `number` \| [`UInt64`](classes/UInt64.md) | `undefined` |
-| `account.nonce` | `string` \| `number` \| [`UInt32`](classes/UInt32.md) | `undefined` |
-| `account.publicKey` | `string` \| [`PublicKey`](classes/Types.PublicKey.md) | `undefined` |
-| `account.tokenId` | `string` | `undefined` |
-| `account.zkapp?` | `Object` | `undefined` |
-| `account.zkapp.appState` | (`string` \| `number` \| [`Field`](classes/Field.md))[] | `undefined` |
+| `partialAccount` | `PartialAccount` | `undefined` |
 | `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
 
 #### Returns
@@ -497,7 +567,7 @@ Fetches an account from the GraphQL endpoint and adds it to the local cache.
 
 #### Defined in
 
-[lib/fetch.ts:364](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/fetch.ts#L364)
+[lib/fetch.ts:274](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L274)
 
 ___
 
@@ -515,7 +585,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `elementType` | [`Provable`](interfaces/Provable.md)<`T`\> |
+| `elementType` | [`FlexibleProvable`](README.md#flexibleprovable)<`T`\> |
 | `length` | `number` |
 
 #### Returns
@@ -537,7 +607,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:338](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L338)
+[lib/circuit_value.ts:351](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L351)
 
 ___
 
@@ -559,7 +629,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:411](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L411)
+[lib/circuit_value.ts:424](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L424)
 
 ___
 
@@ -601,7 +671,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1459](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1459)
+[lib/zkapp.ts:1492](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1492)
 
 ___
 
@@ -653,7 +723,7 @@ declareState(MyContract, { x: Field });
 | Name | Type |
 | :------ | :------ |
 | `SmartContract` | `T` |
-| `states` | `Record`<`string`, [`ProvablePure`](interfaces/ProvablePure.md)<`unknown`\>\> |
+| `states` | `Record`<`string`, [`FlexibleProvablePure`](README.md#flexibleprovablepure)<`unknown`\>\> |
 
 #### Returns
 
@@ -661,47 +731,13 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:115](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/state.ts#L115)
-
-___
-
-### deploy
-
-▸ **deploy**<`S`\>(`SmartContract`, `__namedParameters`): `Promise`<`string`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `S` | extends typeof [`SmartContract`](classes/SmartContract.md) |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `SmartContract` | `S` |
-| `__namedParameters` | `Object` |
-| `__namedParameters.feePayer?` | [`FeePayerSpec`](modules/Mina.md#feepayerspec) |
-| `__namedParameters.initialBalance?` | `string` \| `number` |
-| `__namedParameters.tokenId?` | [`Field`](classes/Field.md) |
-| `__namedParameters.verificationKey` | `Object` |
-| `__namedParameters.verificationKey.data` | `string` |
-| `__namedParameters.verificationKey.hash` | `string` \| [`Field`](classes/Field.md) |
-| `__namedParameters.zkappKey` | [`PrivateKey`](classes/PrivateKey.md) |
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[lib/zkapp.ts:1334](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1334)
+[lib/state.ts:120](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/state.ts#L120)
 
 ___
 
 ### fetchAccount
 
-▸ **fetchAccount**(`accountInfo`, `graphqlEndpoint?`, `config?`): `Promise`<{ `account`: `Account` ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
+▸ **fetchAccount**(`accountInfo`, `graphqlEndpoint?`, `«destructured»?`): `Promise`<{ `account`: [`Account`](modules/Types.md#account-1) ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
 
 Gets account information on the specified publicKey by performing a GraphQL query
 to the specified endpoint. This will call the 'GetAccountInfo' query which fetches
@@ -716,26 +752,68 @@ the data is returned.
 | :------ | :------ | :------ | :------ |
 | `accountInfo` | `Object` | `undefined` | - |
 | `accountInfo.publicKey` | `string` \| [`PublicKey`](classes/Types.PublicKey.md) | `undefined` | - |
-| `accountInfo.tokenId?` | `string` | `undefined` | - |
+| `accountInfo.tokenId?` | `string` \| [`Field`](classes/Field.md) | `undefined` | - |
 | `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` | The graphql endpoint to fetch from |
-| `config` | `Object` | `{}` | An object that exposes an additional timeout option |
-| `config.timeout` | `undefined` \| `number` | `undefined` | - |
+| `«destructured»` | `Object` | `{}` | - |
+| › `timeout` | `undefined` \| `number` | `undefined` | - |
 
 #### Returns
 
-`Promise`<{ `account`: `Account` ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
+`Promise`<{ `account`: [`Account`](modules/Types.md#account-1) ; `error`: `undefined`  } \| { `account`: `undefined` ; `error`: `FetchError`  }\>
 
 zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:50](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/fetch.ts#L50)
+[lib/fetch.ts:76](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L76)
+
+___
+
+### fetchEvents
+
+▸ **fetchEvents**(`accountInfo`, `graphqlEndpoint?`, `filterOptions?`): `Promise`<{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: `string`[][] ; `globalSlot`: [`UInt32`](classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash; `transactionHash`: `string` = event.transactionInfo.hash; `transactionMemo`: `string` = event.transactionInfo.memo; `transactionStatus`: `string` = event.transactionInfo.status }[]\>
+
+Asynchronously fetches event data for an account from the Mina Archive Node GraphQL API.
+
+**`Async`**
+
+**`Throws`**
+
+If the GraphQL request fails or the response is invalid.
+
+**`Example`**
+
+```ts
+const accountInfo = { publicKey: 'B62qiwmXrWn7Cok5VhhB3KvCwyZ7NHHstFGbiU5n7m8s2RqqNW1p1wF' };
+const events = await fetchEvents(accountInfo);
+console.log(events);
+```
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `accountInfo` | `Object` | `undefined` | The account information object. |
+| `accountInfo.publicKey` | `string` | `undefined` | The account public key. |
+| `accountInfo.tokenId?` | `string` | `undefined` | The optional token ID for the account. |
+| `graphqlEndpoint?` | `string` | `archiveGraphqlEndpoint` | The GraphQL endpoint to query. Defaults to the Archive Node GraphQL API. |
+| `filterOptions?` | `EventActionFilterOptions` | `{}` | The optional filter options object. |
+
+#### Returns
+
+`Promise`<{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: `string`[][] ; `globalSlot`: [`UInt32`](classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash; `transactionHash`: `string` = event.transactionInfo.hash; `transactionMemo`: `string` = event.transactionInfo.memo; `transactionStatus`: `string` = event.transactionInfo.status }[]\>
+
+A promise that resolves to an array of objects containing event data, block information and transaction information for the account.
+
+#### Defined in
+
+[lib/fetch.ts:641](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L641)
 
 ___
 
 ### fetchLastBlock
 
-▸ **fetchLastBlock**(`graphqlEndpoint?`): `Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
+▸ **fetchLastBlock**(`graphqlEndpoint?`): `Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
 
 Fetches the last block on the Mina network.
 
@@ -747,11 +825,34 @@ Fetches the last block on the Mina network.
 
 #### Returns
 
-`Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceHardFork`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `timestamp`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
+`Promise`<`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt32`](classes/UInt32.md) ; `upper`: [`UInt32`](classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: [`Field`](classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](classes/Bool.md) ; `value`: { `lower`: [`UInt64`](classes/UInt64.md) ; `upper`: [`UInt64`](classes/UInt64.md)  }  }  }\>\>
 
 #### Defined in
 
-[lib/fetch.ts:393](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/fetch.ts#L393)
+[lib/fetch.ts:319](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L319)
+
+___
+
+### fetchTransactionStatus
+
+▸ **fetchTransactionStatus**(`txId`, `graphqlEndpoint?`): `Promise`<[`TransactionStatus`](README.md#transactionstatus)\>
+
+Fetches the status of a transaction.
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `txId` | `string` | `undefined` |
+| `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
+
+#### Returns
+
+`Promise`<[`TransactionStatus`](README.md#transactionstatus)\>
+
+#### Defined in
+
+[lib/fetch.ts:467](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L467)
 
 ___
 
@@ -773,7 +874,7 @@ The SRS (structured reference string), needed to reconstruct the keypair later
 
 #### Defined in
 
-[snarky/addons.js:18](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky/addons.js#L18)
+[snarky/addons.js:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky/addons.js#L18)
 
 ___
 
@@ -791,7 +892,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `elementType` | [`Provable`](interfaces/Provable.md)<`T`\> |
+| `elementType` | [`FlexibleProvable`](README.md#flexibleprovable)<`T`\> |
 | `nRows` | `number` |
 | `nColumns` | `number` |
 
@@ -814,7 +915,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:347](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L347)
+[lib/circuit_value.ts:360](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L360)
 
 ___
 
@@ -851,7 +952,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:93](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L93)
+[lib/zkapp.ts:96](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L96)
 
 ___
 
@@ -873,13 +974,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:241](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L241)
+[lib/circuit_value.ts:251](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L251)
 
 ___
 
 ### provable
 
-▸ **provable**<`A`\>(`typeObj`, `options?`): [`ProvableExtended`](README.md#provableextended)<`InferCircuitValue`<`A`\>, `InferJson`<`A`\>\>
+▸ **provable**<`A`\>(`typeObj`, `options?`): [`ProvableExtended`](README.md#provableextended)<`InferProvable`<`A`\>, `InferJson`<`A`\>\>
 
 #### Type parameters
 
@@ -898,17 +999,17 @@ ___
 
 #### Returns
 
-[`ProvableExtended`](README.md#provableextended)<`InferCircuitValue`<`A`\>, `InferJson`<`A`\>\>
+[`ProvableExtended`](README.md#provableextended)<`InferProvable`<`A`\>, `InferJson`<`A`\>\>
 
 #### Defined in
 
-[lib/circuit_value.ts:465](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L465)
+[lib/circuit_value.ts:480](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L480)
 
 ___
 
 ### provablePure
 
-▸ **provablePure**<`A`\>(`typeObj`, `options?`): [`ProvablePure`](interfaces/ProvablePure.md)<`InferCircuitValue`<`A`\>\> & `ProvableExtension`<`InferCircuitValue`<`A`\>, `InferJson`<`A`\>\>
+▸ **provablePure**<`A`\>(`typeObj`, `options?`): [`ProvablePure`](interfaces/ProvablePure.md)<`InferProvable`<`A`\>\> & `ProvableExtension`<`InferProvable`<`A`\>, `InferJson`<`A`\>\>
 
 #### Type parameters
 
@@ -926,11 +1027,11 @@ ___
 
 #### Returns
 
-[`ProvablePure`](interfaces/ProvablePure.md)<`InferCircuitValue`<`A`\>\> & `ProvableExtension`<`InferCircuitValue`<`A`\>, `InferJson`<`A`\>\>
+[`ProvablePure`](interfaces/ProvablePure.md)<`InferProvable`<`A`\>\> & `ProvableExtension`<`InferProvable`<`A`\>, `InferJson`<`A`\>\>
 
 #### Defined in
 
-[lib/circuit_value.ts:642](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L642)
+[lib/circuit_value.ts:657](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L657)
 
 ___
 
@@ -952,7 +1053,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:363](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L363)
+[lib/circuit_value.ts:376](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L376)
 
 ___
 
@@ -975,13 +1076,13 @@ the recovered verification key
 
 #### Defined in
 
-[snarky/addons.js:49](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky/addons.js#L49)
+[snarky/addons.js:49](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky/addons.js#L49)
 
 ___
 
 ### sendZkapp
 
-▸ **sendZkapp**(`json`, `graphqlEndpoint?`, `__namedParameters?`): `Promise`<[`FetchResponse`, `undefined`] \| [`undefined`, `FetchError`]\>
+▸ **sendZkapp**(`json`, `graphqlEndpoint?`, `«destructured»?`): `Promise`<[`FetchResponse`, `undefined`] \| [`undefined`, `FetchError`]\>
 
 Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
@@ -991,8 +1092,8 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 | :------ | :------ | :------ |
 | `json` | `string` | `undefined` |
 | `graphqlEndpoint` | `string` | `defaultGraphqlEndpoint` |
-| `__namedParameters` | `Object` | `{}` |
-| `__namedParameters.timeout` | `undefined` \| `number` | `undefined` |
+| `«destructured»` | `Object` | `{}` |
+| › `timeout` | `undefined` \| `number` | `undefined` |
 
 #### Returns
 
@@ -1000,7 +1101,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:540](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/fetch.ts#L540)
+[lib/fetch.ts:496](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L496)
 
 ___
 
@@ -1022,7 +1123,7 @@ string representation of the verification key
 
 #### Defined in
 
-[snarky/addons.js:27](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky/addons.js#L27)
+[snarky/addons.js:27](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky/addons.js#L27)
 
 ___
 
@@ -1044,7 +1145,7 @@ Specifies the default GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/fetch.ts#L33)
+[lib/fetch.ts:49](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/fetch.ts#L49)
 
 ___
 
@@ -1062,13 +1163,13 @@ From web applications, this function is a no-op.
 
 #### Defined in
 
-[snarky.d.ts:1180](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L1180)
+[snarky.d.ts:1318](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L1318)
 
 ___
 
 ### signFeePayer
 
-▸ **signFeePayer**(`transactionJson`, `feePayerKey`, `__namedParameters`): `string`
+▸ **signFeePayer**(`transactionJson`, `feePayerKey`, `«destructured»`): `string`
 
 #### Parameters
 
@@ -1076,7 +1177,7 @@ ___
 | :------ | :------ |
 | `transactionJson` | `string` |
 | `feePayerKey` | `string` \| [`PrivateKey`](classes/PrivateKey.md) |
-| `__namedParameters` | `Object` |
+| `«destructured»` | `Object` |
 
 #### Returns
 
@@ -1084,7 +1185,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1416](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1416)
+[lib/zkapp.ts:1449](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1449)
 
 ___
 
@@ -1110,7 +1211,7 @@ you can use the following in the declaration of your zkapp:
 
 | Name | Type |
 | :------ | :------ |
-| `stateType` | [`ProvablePure`](interfaces/ProvablePure.md)<`A`\> |
+| `stateType` | [`FlexibleProvablePure`](README.md#flexibleprovablepure)<`A`\> |
 
 #### Returns
 
@@ -1132,7 +1233,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:39](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/state.ts#L39)
+[lib/state.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/state.ts#L44)
 
 ___
 
@@ -1153,24 +1254,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:112](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L112)
-
-___
-
-### zkappCommandToJson
-
-▸ **zkappCommandToJson**(`__namedParameters`): [`ZkappCommand`](modules/Types.Json.md#zkappcommand)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `ZkappCommand` |
-
-#### Returns
-
-[`ZkappCommand`](modules/Types.Json.md#zkappcommand)
-
-#### Defined in
-
-[lib/account_update.ts:1564](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1564)
+[lib/proof_system.ts:118](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/proof_system.ts#L118)
