@@ -11,6 +11,12 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
+:::note
+
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.9.3.
+
+:::
+
 # Tutorial 10: Account Updates
 
 ## Permissions, Preconditions, and Composability
@@ -52,13 +58,13 @@ We'll now be building an example zkApp, to explore permissions, preconditions, a
 
 To visualize transactions, we'll be using the library `mina-transaction-visualizer`. To use this in your own zkApp, install with npm with `npm install mina-transaction-visualizer --save`.
 
-You can find all of the code for this tutorial [here on github](https://github.com/es92/zkApp-examples/tree/main/10-account-updates).
+You can find all of the code for this tutorial [here on github](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates).
 
 ### Smart Contracts
 
 We'll be buliding two smart contracts to use in our example:
 
-First, [ProofsOnlyZkApp.ts](https://github.com/es92/zkApp-examples/blob/main/10-account-updates/src/ProofsOnlyZkApp.ts).
+First, [ProofsOnlyZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/ProofsOnlyZkApp.ts).
 
 This is a zkApp configured to only be modifiable or modifiable via proofs (and for the zkApp we're deploying, is not upgradable once deployed). This means that while someone must own the private key to deploy the zkApp itself - after deployed, only the rules in the zkApp determine how the zkApp functions. The private key is no longer useful for anything.
 
@@ -165,7 +171,7 @@ Lastly, we'll add one more function, `callSecondary`, which calls a different zk
 
 This takes the address of our other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method will occur after this set of AccountUpdates - so when we call `secondaryContract.num.get()`, that will get the value before this transaction was applied.
 
-Last, to look briefly at [SecondaryZkApp.ts](https://github.com/es92/zkApp-examples/blob/main/10-account-updates/src/SecondaryZkApp.ts), we have contents:
+Last, to look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts), we have contents:
 
 ```typescript
 export class SecondaryZkApp extends SmartContract {
@@ -202,7 +208,7 @@ We declare functions for initializing the account, and a method `add` which is t
 
 ### Running our Smart Contracts and Visualizing the AccountUpdates
 
-We'll now discuss the file [main.ts](https://github.com/es92/zkApp-examples/blob/main/10-account-updates/src/main.ts), which creates transactions with the above smart contracts, and the account update visualizations it creates.
+We'll now discuss the file [main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/main.ts), which creates transactions with the above smart contracts, and the account update visualizations it creates.
 
 First, we'll import the transaction visualizer:
 
