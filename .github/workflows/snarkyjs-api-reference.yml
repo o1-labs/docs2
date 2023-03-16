@@ -20,7 +20,7 @@ jobs:
         with:
           repository: o1-labs/snarkyjs
           path: snarkyjs
-          ref: releases
+          ref: main
 
       - name: Build API reference docs
         env:
