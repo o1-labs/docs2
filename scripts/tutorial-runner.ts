@@ -69,8 +69,6 @@ yargs(hideBin(process.argv))
         // 2. Simulate tutorial
         codeBlocks.forEach((codeBlock) => {
           if (codeBlock.lang === 'sh') {
-            console.log('codeBlock', codeBlock);
-
             executeShellCommand(codeBlock);
           } else if (codeBlock.lang === 'ts') {
             applyCodePatch(codeBlock);
