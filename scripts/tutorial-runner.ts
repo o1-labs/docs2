@@ -142,15 +142,13 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
 function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
+    let exitCode;
     console.log('shell command', shellCommand);
     if (shellCommand.startsWith('zk project')) {
       const nonInteractiveCommand = `${shellCommand} --ui none`;
+      logStep(`Executing '${nonInteractiveCommand}'…`);
+      exitCode = sh.exec(nonInteractiveCommand).code;
     }
-    logStep(`Executing '${shellCommand}'…`);
-
-    const exitCode = shellCommand.startsWith('cd ')
-      ? sh.cd(shellCommand.slice(2)).code
-      : sh.exec(shellCommand).code;
 
     if (exitCode !== 0) {
       throw `Shell command returned non-zero exit code: '${exitCode}'`;
