@@ -43,8 +43,8 @@ yargs(hideBin(process.argv))
     'Execute all of the code blocks in a tutorial in sequence, ensuring that each shell command executed returns a non-zero exit code.',
     {},
     (argv) => {
-      // if (process.env.GITHUB_ACTIONS !== 'true')
-      //   throw 'This is only intended to be run in a GitHub Actions environment.';
+      if (process.env.GITHUB_ACTIONS !== 'true')
+        throw 'This is only intended to be run in a GitHub Actions environment.';
 
       if (argv._[0] === undefined || typeof argv._[0] !== 'string') {
         throw "Provide the tutorial's file path as an argument";
@@ -143,11 +143,18 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
     let exitCode;
-    console.log('shell command', shellCommand);
+
     if (shellCommand.startsWith('zk project')) {
       const nonInteractiveCommand = `${shellCommand} --ui none`;
+
       logStep(`Executing '${nonInteractiveCommand}'…`);
       exitCode = sh.exec(nonInteractiveCommand).code;
+    } else {
+      logStep(`Executing '${shellCommand}'…`);
+
+      exitCode = shellCommand.startsWith('cd ')
+        ? sh.cd(shellCommand.slice(2)).code
+        : sh.exec(shellCommand).code;
     }
 
     if (exitCode !== 0) {
