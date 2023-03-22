@@ -21,19 +21,19 @@
 
 ### constructor
 
-• **new Token**(`__namedParameters`)
+• **new Token**(`«destructured»`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.parentTokenId?` | [`Field`](Field.md) |
-| `__namedParameters.tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
+| `«destructured»` | `Object` |
+| › `parentTokenId?` | [`Field`](Field.md) |
+| › `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Defined in
 
-[lib/account_update.ts:601](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L601)
+[lib/account_update.ts:599](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L599)
 
 ## Properties
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[lib/account_update.ts:587](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L587)
+[lib/account_update.ts:585](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L585)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:588](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L588)
+[lib/account_update.ts:586](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L586)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:589](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L589)
+[lib/account_update.ts:587](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L587)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:591](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L591)
+[lib/account_update.ts:589](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L589)
 
 ## Methods
 
@@ -111,4 +111,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:593](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L593)
+[lib/account_update.ts:591](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L591)

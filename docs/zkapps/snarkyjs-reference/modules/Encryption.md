@@ -11,7 +11,7 @@
 
 ### decrypt
 
-▸ **decrypt**(`__namedParameters`, `privateKey`): [`Field`](../classes/Field.md)[]
+▸ **decrypt**(`«destructured»`, `privateKey`): [`Field`](../classes/Field.md)[]
 
 Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
@@ -19,7 +19,7 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `CipherText` |
+| `«destructured»` | `CipherText` |
 | `privateKey` | [`PrivateKey`](../classes/PrivateKey.md) |
 
 #### Returns
@@ -28,7 +28,7 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 #### Defined in
 
-[lib/encryption.ts:44](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encryption.ts#L44)
+[lib/encryption.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encryption.ts#L44)
 
 ___
 
@@ -56,4 +56,4 @@ Public Key Encryption, using a given array of [Field](../classes/Field.md) eleme
 
 #### Defined in
 
-[lib/encryption.ts:15](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encryption.ts#L15)
+[lib/encryption.ts:15](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/encryption.ts#L15)

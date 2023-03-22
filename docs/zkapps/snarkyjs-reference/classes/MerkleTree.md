@@ -51,7 +51,7 @@ Creates a new, empty [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree).
 
 #### Defined in
 
-[lib/merkle_tree.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L33)
+[lib/merkle_tree.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L33)
 
 ## Properties
 
@@ -59,9 +59,11 @@ Creates a new, empty [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree).
 
 • `Readonly` **height**: `number`
 
+The height of Merkle Tree.
+
 #### Defined in
 
-[lib/merkle_tree.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L33)
+[lib/merkle_tree.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L33)
 
 ___
 
@@ -71,7 +73,7 @@ ___
 
 #### Defined in
 
-[lib/merkle_tree.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L25)
+[lib/merkle_tree.ts:25](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L25)
 
 ___
 
@@ -81,7 +83,7 @@ ___
 
 #### Defined in
 
-[lib/merkle_tree.ts:26](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L26)
+[lib/merkle_tree.ts:26](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L26)
 
 ## Accessors
 
@@ -99,7 +101,7 @@ Amount of leaf nodes.
 
 #### Defined in
 
-[lib/merkle_tree.ts:141](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L141)
+[lib/merkle_tree.ts:141](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L141)
 
 ## Methods
 
@@ -121,7 +123,7 @@ Fills all leaves of the tree.
 
 #### Defined in
 
-[lib/merkle_tree.ts:131](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L131)
+[lib/merkle_tree.ts:131](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L131)
 
 ___
 
@@ -146,7 +148,7 @@ The data of the node.
 
 #### Defined in
 
-[lib/merkle_tree.ts:46](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L46)
+[lib/merkle_tree.ts:46](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L46)
 
 ___
 
@@ -164,7 +166,7 @@ The root of the Merkle Tree.
 
 #### Defined in
 
-[lib/merkle_tree.ts:54](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L54)
+[lib/merkle_tree.ts:54](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L54)
 
 ___
 
@@ -188,7 +190,7 @@ The witness that belongs to the leaf.
 
 #### Defined in
 
-[lib/merkle_tree.ts:92](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L92)
+[lib/merkle_tree.ts:92](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L92)
 
 ___
 
@@ -211,7 +213,7 @@ Sets the value of a leaf node at a given index to a given value.
 
 #### Defined in
 
-[lib/merkle_tree.ts:69](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L69)
+[lib/merkle_tree.ts:69](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L69)
 
 ___
 
@@ -233,7 +235,7 @@ ___
 
 #### Defined in
 
-[lib/merkle_tree.ts:59](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L59)
+[lib/merkle_tree.ts:59](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L59)
 
 ___
 
@@ -257,4 +259,4 @@ True if the witness for the leaf node is valid.
 
 #### Defined in
 
-[lib/merkle_tree.ts:114](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/merkle_tree.ts#L114)
+[lib/merkle_tree.ts:114](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_tree.ts#L114)
