@@ -144,6 +144,7 @@ function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
     console.log('shell command', shellCommand);
     if (shellCommand.startsWith('zk project')) {
+      const nonInteractiveCommand = `${shellCommand} --ui none`;
     }
     logStep(`Executing '${shellCommand}'…`);
 
