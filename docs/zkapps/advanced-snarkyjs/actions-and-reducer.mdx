@@ -151,6 +151,8 @@ class MyContract extends SmartContract {
 
 `getActions` takes an optional `fromActionHash` parameter that is the `actionsHash` of the last action that was processed. If `fromActionHash` is not provided, `getActions` fetches all actions for the zkApp. `getActions` returns a list of actions that were emitted after the `fromActionHash` was processed.
 
+To see a end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, [see this example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts).
+
 ### Actions for concurrent state updates
 
 One of the most important use cases for actions is to enable concurrent state updates. This enablement is also why actions were originally added to the protocol.
