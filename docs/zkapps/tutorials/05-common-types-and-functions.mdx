@@ -459,8 +459,6 @@ const rootBefore = map.getRoot();
 const key = Field(100);
 
 const witness = map.getWitness(key);
-
-map.set(key, value);
 ...
 // update the smart contract
 const txn1 = await Mina.transaction(deployerAccount, () => {
@@ -468,7 +466,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
     contract.update(
       witness,
       key,
-      Field(0), // values start in state zero
+      Field(50),
       Field(5)
     );
   );
