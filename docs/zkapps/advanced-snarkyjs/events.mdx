@@ -73,7 +73,7 @@ let Network = Mina.Network({
 Mina.setActiveInstance(Network);
 ```
 
-By setting the `archive` property to one of the listed endpoints, SnarkyJS will use one of the selected endpoints to fetch events. For example, let us assume that a zkApp has already emitted events and has broadcasted the transaction. To fetch events for a zkApp, you can use the `fetchEvents` function:
+By setting the `archive` property to one of the listed endpoints, SnarkyJS uses one of the selected endpoints to fetch events. For example, if a zkApp has already emitted events and has broadcasted the transaction. To fetch events for a zkApp, you can use the `fetchEvents` function:
 
 ```ts
 let zkapp = new SimpleZkapp(address);
@@ -87,8 +87,17 @@ const fetchedEvents = await fetchEvents({
 });
 ```
 
-`getEvents` takes in a starting block and an ending block. If the ending block is not provided, it will fetch all events up to the latest block. If the starting block is not provided, it will fetch all events from the beginning of the zkApp's history.
+`getEvents` takes in a starting block and an ending block. 
+
+- If the ending block is not provided, it fetches all events up to the latest block. 
+- If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
 ### Events vs Actions
 
-Events and [Actions](actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees as we see above. Actions, on the other hand, can be accessed within provable code within a smart contract using a Reducer, because a commitment to the relevant actions (i.e. the "action state") is stored on the zkApp account. Neither Events nor Actions are stored directly in the Mina ledger and exist only in the transaction and on archive nodes.
+Events and [Actions](actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction. 
+
+- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees. 
+
+- Actions can be accessed within provable code within a smart contract using a Reducer because a commitment to the relevant actions (for example, the action state) is stored on the zkApp account. 
+
+Events and Actions exist only in the transaction and on archive nodes. Events and actions are not stored directly in the Mina Ledger.
