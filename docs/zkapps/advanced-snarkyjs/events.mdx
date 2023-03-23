@@ -89,7 +89,7 @@ const Network = Mina.Network({
 Mina.setActiveInstance(Network);
 ```
 
-By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `fetchEvents` function to retrieve events for a zkApp:
+By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `fetchEvents()` function to retrieve events for a zkApp:
 
 ```ts
 const zkapp = new MyContract(address);
@@ -105,7 +105,7 @@ const fetchedEvents = await fetchEvents({
 });
 ```
 
-`fetchEvents` accepts a starting block and an ending block.
+`fetchEvents()` accepts a starting block and an ending block.
 
 If the ending block is not provided, it fetches all events up to the latest block.
 If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.

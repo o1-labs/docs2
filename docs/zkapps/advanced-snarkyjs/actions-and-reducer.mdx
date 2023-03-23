@@ -127,7 +127,7 @@ const Network = Mina.Network({
 Mina.setActiveInstance(Network);
 ```
 
-By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `getActions` function to retrieve actions for a zkApp:
+By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `getActions()` function to retrieve actions for a zkApp:
 
 ```ts
 class MyContract extends SmartContract {
@@ -149,7 +149,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-The `getActions()` function accepts an optional `fromActionHash` parameter. This `actionsHash` is derived from processing Account Updates and indicates the starting point for your zkApp to begin processing actions. If `fromActionHash` is not provided, getActions get all actions for the zkApp, since the first one. The function returns a list of actions emitted after the specified `fromActionHash` has been processed.
+The `getActions()` function accepts an optional `fromActionHash` parameter. This `actionsHash` is derived from processing Account Updates and indicates the starting point for your zkApp to begin processing actions. If `fromActionHash` is not provided, `getActions()` get all actions for the zkApp, since the first one. The function returns a list of actions emitted after the specified `fromActionHash` has been processed.
 
 To see a end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, [see this example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts).
 
