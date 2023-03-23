@@ -149,7 +149,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-`getActions` takes an optional `fromActionHash` parameter that is the `actionsHash` of the last action that was processed. If `fromActionHash` is not provided, `getActions` fetches all actions for the zkApp. `getActions` returns a list of actions that were emitted after the `fromActionHash` was processed.
+The `getActions()` function accepts an optional `fromActionHash` parameter. This `actionsHash` is derived from processing Account Updates and indicates the starting point for your zkApp to begin processing actions. If `fromActionHash` is not provided, getActions get all actions for the zkApp, since the first one. The function returns a list of actions emitted after the specified `fromActionHash` has been processed.
 
 To see a end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, [see this example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts).
 
