@@ -33,9 +33,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:91](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L91)
+[index.ts:86](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/index.ts#L86)
 
-[index.ts:92](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L92)
+[index.ts:87](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/index.ts#L87)
 
 ## Variables
 
@@ -45,38 +45,38 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:91](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L91)
+[index.ts:86](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/index.ts#L86)
 
-[index.ts:92](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L92)
+[index.ts:87](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/index.ts#L87)
 
 ## Functions
 
 ### ZkProgram
 
-▸ **ZkProgram**<`PublicInputType`, `Types`\>(`__namedParameters`): { `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferInstance`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferInstance<PublicInputType\>, Types[I]\> }
+▸ **ZkProgram**<`PublicInputType`, `Types`\>(`«destructured»`): { `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvable`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvable<PublicInputType\>, Types[I]\> }
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `PublicInputType` | extends [`ProvablePure`](../interfaces/ProvablePure.md)<`any`, `PublicInputType`\> |
+| `PublicInputType` | extends [`FlexibleProvablePure`](../README.md#flexibleprovablepure)<`any`\> |
 | `Types` | extends `Object` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.methods` | { [I in string \| number \| symbol]: Method<InferInstance<PublicInputType\>, Types[I]\> } |
-| `__namedParameters.publicInput` | `PublicInputType` |
+| `«destructured»` | `Object` |
+| › `methods` | { [I in string \| number \| symbol]: Method<InferProvable<PublicInputType\>, Types[I]\> } |
+| › `publicInput` | `PublicInputType` |
 
 #### Returns
 
-{ `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferInstance`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferInstance<PublicInputType\>, Types[I]\> }
+{ `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvable`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvable<PublicInputType\>, Types[I]\> }
 
 #### Defined in
 
-[lib/proof_system.ts:148](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L148)
+[lib/proof_system.ts:154](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/proof_system.ts#L154)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1498](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1498)
+[lib/account_update.ts:1640](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L1640)
 
 ___
 
@@ -119,7 +119,7 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`Provable`](../interfaces/Provable.md)<`T`\> |
+| `type` | [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
 | `compute` | () => `T` |
 
 #### Returns
@@ -128,4 +128,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/circuit_value.ts:1044](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L1044)
+[lib/circuit_value.ts:1101](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L1101)

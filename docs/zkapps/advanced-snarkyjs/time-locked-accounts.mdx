@@ -35,13 +35,13 @@ This graph shows how each of the timing properties affect the vesting schedule:
 
 <figure>
   <img
-    src="/img/10_time_locked_accounts.png"
+    src="/img/timelocked.png"
     width="95%"
     alt="Timing parameters"
   />
 </figure>
 
-The red cross on the left marks the point in time where the `timing` field is set and `isTimed` switches from `false` to `true`. The blue line shows how the amount of unlocked tokens increases over time, until it finally reaches its maximum value and stays flat. At this point, `isTimed` flips from `true` back to `false`, because no tokens remain locked.
+The red cross on the left marks the point in time where the `timing` field is set and `isTimed` switches from `false` to `true`. The orange line shows how the amount of unlocked tokens increases over time, until it finally reaches its maximum value and stays flat. At this point, `isTimed` flips from `true` back to `false`, because no tokens remain locked.
 
 As you can see, the maximum amount of unlocked tokens is defined by the `initialMinimumBalance`. It is called "initialMinimumBalance" because, even though the tokens show up in the balance, they can't be withdrawn — in other words, the account has a a non-zero _minimum balance_. Initially, that minimum balance is equal to the amount of tokens locked (i.e. the initial minimum balance). Over time, the minimum balance decreases until it hits zero, which is the condition that makes `isTimed` false again.
 

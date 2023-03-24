@@ -16,6 +16,7 @@
 
 - [data](VerificationKey.md#data)
 - [hash](VerificationKey.md#hash)
+- [\_isStruct](VerificationKey.md#_isstruct)
 - [check](VerificationKey.md#check)
 - [fromFields](VerificationKey.md#fromfields)
 - [fromJSON](VerificationKey.md#fromjson)
@@ -53,7 +54,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:728](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L728)
+[lib/circuit_value.ts:743](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L743)
 
 ## Properties
 
@@ -72,7 +73,7 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1303](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1303)
+[lib/zkapp.ts:1413](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1413)
 
 ___
 
@@ -91,7 +92,26 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1303](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/zkapp.ts#L1303)
+[lib/zkapp.ts:1413](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/zkapp.ts#L1413)
+
+___
+
+### \_isStruct
+
+▪ `Static` **\_isStruct**: ``true``
+
+#### Inherited from
+
+Struct({
+  ...provable({ data: String, hash: Field }),
+  toJSON({ data }: { data: string }) {
+    return data;
+  },
+}).\_isStruct
+
+#### Defined in
+
+[lib/circuit_value.ts:743](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L743)
 
 ___
 
@@ -126,7 +146,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:29](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L29)
+[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L37)
 
 ___
 
@@ -165,7 +185,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:27](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L27)
+[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L35)
 
 ___
 
@@ -203,7 +223,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:735](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L735)
+[lib/circuit_value.ts:751](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L751)
 
 ___
 
@@ -238,7 +258,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:26](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L26)
+[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L34)
 
 ___
 
@@ -273,7 +293,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:25](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L25)
+[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L33)
 
 ___
 
@@ -313,7 +333,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:730](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L730)
+[lib/circuit_value.ts:746](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L746)
 
 ___
 
@@ -348,7 +368,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:734](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L734)
+[lib/circuit_value.ts:750](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L750)
 
 ## Methods
 
@@ -371,4 +391,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:28](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L28)
+[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L36)
