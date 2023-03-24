@@ -18,11 +18,11 @@ Writing automated tests for your smart contract is of crucial importance. The <a
 
 To run all test files within your project, run `npm run test` or `npm run testw` (for watch mode) from your project’s root directory.
 
-To generate a test coverage report for your project, run `npm run coverage`. Coverage reports show the % of your code that is tested. The result will be output in your terminal. This can be helpful to ensure your code is well tested.
+To generate a test coverage report for your project, run `npm run coverage`. Coverage reports show the % of your code that is tested. The result is output to your terminal. This can be helpful to ensure your code is well tested.
 
 ## Writing tests
 
-Creating tests for your smart contract is easy using the Mina zkApp CLI. To scaffold a TypeScript file with a corresponding test file, simply run the command `zk file foo`. This will generate two files, named `foo.ts` and `foo.test.ts`. `foo.test.ts` is a great place to start writing all your smart contract test code. To write good unit tests, it's vital that you concretely understand the functionality your smart contract provides. An example is shown below of a basic test written in Jest:
+Creating tests for your smart contract is easy using the Mina zkApp CLI. To scaffold a TypeScript file with a corresponding test file, run the command `zk file foo` to generate two files named `foo.ts` and `foo.test.ts`. The `foo.test.ts` file is a great place to start writing all your smart contract test code. To write good unit tests, it's vital that you concretely understand the functionality your smart contract provides. An example is shown below of a basic test written in Jest:
 
 ```ts
 describe('foo.test.ts', () => {
@@ -34,7 +34,7 @@ describe('foo.test.ts', () => {
 
 Because we are using Jest, it's helpful to break down all functionality of your smart contract into `describe` blocks. Mapping out your unit tests like this is also a good way of providing documentation to other developers reading your smart contract. An excellent place to start testing your smart contract is in the areas your smart contract modifies its state. Make sure to verify that your state updates in the way you expect.
 
-For examples of existing tests, we recommend creating a template example using the Mina zkApp CLI via `zk project <name>` and examining the test file there. [You will see a basic example of a few tests](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) that deploy and update the state on a smart contract using Jest.
+For examples of existing tests, a best practice is to create a template example using the Mina zkApp CLI by using `zk project <name>` and examining the test file there. See a few [basic examples of tests](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) that deploy and update the state on a smart contract using Jest.
 
 #### Creating a local blockchain
 
@@ -43,8 +43,8 @@ The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts tha
 
 :::tip
 
-`Mina.LocalBlockchain()` takes an optional parameter `{ proofsEnabled: true }` with default value `true`, which lets you specify whether or not you want to generate and verify proofs.
-If you set `proofsEnabled: false`, the local instance will behave exactly the same as before, but it won't generate proofs or verify them.
+`Mina.LocalBlockchain()` takes an optional parameter `{ proofsEnabled: true }` with default value `true`, which lets you specify whether to generate and verify proofs.
+If you set `proofsEnabled: false`, the local instance behaves exactly the same as before, but it won't generate proofs or verify them.
 This can be very useful when you want to run tests in the CI or quickly debug your smart contract without having to wait for proofs to be generated.
 
 You can also programmatically enable and disable the `proofsEnabled` flag within your test flow by calling `Local.setProofsEnabled(x: boolean)`.
@@ -96,7 +96,7 @@ await txPromise.wait();
 
 #### Writing integration tests
 
-Jest can be used to write both unit and integration tests. A well written integration test tests the flow of your smart contracts expected behavior, and verifies correctness of state updates. After you test the expected behavior, it's benifical to verify the preconditions of your methods and test edge cases of your smart contract. Below is an example of a basic integration test script.
+Jest can be used to write unit and integration tests. A well-written integration test verifies the flow of your smart contract's expected behavior and ensures the correctness of state updates. After you test the expected behavior, it's beneficial to verify the preconditions of your methods and test edge cases of your smart contract. This example is a basic integration test script.
 
 ```ts
 describe('Add smart contract integration test', () => {

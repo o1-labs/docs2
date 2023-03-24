@@ -32,10 +32,10 @@ When we want to use Merkle trees and reference off-chain data in our zkApps on M
 we now have access to more data off-chain!
 
 Let's imagine a zkApp that manages a game with a leaderboard. The zkApp has a method to update the score of a player, if the player guesses a number correctly.
-Once a player reaches a threshold score, they can invoke another method to get a reward. Because we want many players to participate in our game,
-we are drastically limited by how much data we can store on-chain - and if we want to have at least 8 or more participants, we will run out of on-chain space very fast!
+After a player reaches a threshold score, they can invoke another method to get a reward. Because we want many players to participate in our game,
+we are drastically limited by how much data we can store on-chain - and if we want to have at least 8 or more participants, we run out of on-chain space very fast!
 
-A possible solution to that problem would be to utilize the power of Merkle trees and store the public keys of each player and their corresponding scores off-chain and only reference it in our smart contract.
+A possible solution to that problem is to utilize the power of Merkle trees and store the public keys of each player and their corresponding scores off-chain and only reference it in our smart contract.
 
 Lets look at our data structure first. Imagine wanting to map a player's id to score points, so this:
 
@@ -52,7 +52,7 @@ Lets look at our data structure first. Imagine wanting to map a player's id to s
 
 #### Implementing the smart contract
 
-Now it's time to look at what our leaderboard zkApp might look like. We want to have on-chain state that points to the off-chain Merkle tree - we will call this variable the `root`.
+Now it's time to look at what our leaderboard zkApp might look like. We want to have on-chain state that points to the off-chain Merkle tree - call this variable the `root`.
 
 :::info
 
@@ -70,12 +70,12 @@ Please make sure that your zkApps are always secure, especially when dealing wit
 
 :::
 
-The first method allows a player to make a guess, and if the guess is correct, the player will gain one point.
+The first method allows a player to make a guess, and if the guess is correct, the player gains one point.
 The method takes the players guess and hashes it, it then checks if the hash H(guess) equals the on-chain state z and if that's the case,
 then the player gains one point on the score board.
 
-We will also need a second method that takes care of the reward. It checks if the players score is over a threshold and pays out a reward if that's the case.
-This method will also have to verify our Merkle witness and check it if it matches the on-chain stored Merkle root!
+A second method is required to take care of the reward. It checks if the players score is over a threshold and pays out a reward if that's the case.
+This method must also verify the Merkle witness and check it if it matches the on-chain stored Merkle root!
 
 :::note
 
@@ -155,7 +155,7 @@ You can look at [this example in the SnarkyJS repository](https://github.com/o1-
 
 Merkle trees are great for _referencing_ off-chain state. But just referencing our state is not enough - we also need to actually store it somewhere.
 
-Where and how to store the data off-chain storage is left up to the developer. We will document a recommended method in time, but are currently exploring solutions and would be very interested to see and hear about approaches from others in the community.
+Where and how to store the data off-chain storage is left up to the developer. We are  exploring solutions and are very interested to see and hear about approaches from others in the community.
 
 :::
 

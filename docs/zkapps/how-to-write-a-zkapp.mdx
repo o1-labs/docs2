@@ -12,11 +12,11 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # How to Write a zkApp
 
-A zkApp consists of a smart contract and a UI to interact with it. First, we’ll install the Mina zkApp CLI and write a smart contract.
+A zkApp consists of a smart contract and a UI to interact with it. First, install the Mina zkApp CLI and write a smart contract.
 
 ## Write a smart contract
 
-Your smart contract will be written using [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
+Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
 
 Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework (<a href="https://jestjs.io/">Jest</a>), code auto-formatting (<a href="https://prettier.io/
 ">Prettier</a>), linting (<a href="https://eslint.org/">ES Lint</a>), & more.
@@ -35,7 +35,7 @@ npm install -g zkapp-cli
 
 :::tip
 
-If you have an older version installed, we suggest installing a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
+If you have an older version installed, install a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
 
 :::
 
@@ -52,14 +52,13 @@ Examples are based on the standard project structure, but with additional files 
    directory. Type `ls` & hit enter to see the files that were created or open
    the directory in a code editor such as VS Code.
 2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you should
+   href="https://jestjs.io/">Jest</a>. After running this command, you
    see all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so it will automatically re-run tests when saving changes to your code.
-3. **Build the example:** Run `npm run build`. This will compile your TypeScript
+   mode, so tests are automatically re-run tests when you save changes to your code.
+3. **Build the example:** Run `npm run build` to compile your TypeScript
    into JavaScript inside the project’s `/build` directory.
-4. **Deploy to Testnet:** Run `zk config`, which will walk you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, we recommend
-   using `berkeley` as the name, `0.1` for the fee, and
+4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
+   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
    `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
 
 You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
@@ -69,22 +68,21 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 1. **Install:** Run `zk project <myproj>`. Type `ls` and hit enter to see the
    newly created project structure. _Note_: If you want to directly scaffold an UI with your new zkApp, you can do so by adding the `--ui` flag to the previous command, like `zk project <myproj> --ui=<framework>`. You can currently choose from the following frameworks: `svelte`, `next` or `nuxt` 
 2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you should
-   see all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so it will automatically re-run tests when saving changes to your code.
-3. **Build:** Run `npm run build`. This will compile your TypeScript code into
+   href="https://jestjs.io/">Jest</a>. After running this command, you can
+   see that all tests pass. You can also run `npm run testw` to run tests in watch
+   mode, so tests are automatically re-run you save changes to your code.
+3. **Build:** Run `npm run build` to compile your TypeScript code into
    JavaScript inside the project’s `/build`.
-4. **Deploy to Testnet:** Run `zk config`, which will walk you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, we
-   recommend using `berkeley` as the name, `0.1` for the fee, and
+4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
+   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
    `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
 5. **Deploy to Mainnet:** (Coming soon.)
 
 ### Writing your smart contract
 
-The goal of this section is to explain the concepts that you will need to understand to write a zero-knowledge-based smart contract.
+The goal of this section is to explain the concepts that you need to understand how to write a zero-knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it first so that this section makes sense.
+If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it now so that this section makes sense.
 
 ##### SnarkyJS
 
@@ -106,7 +104,7 @@ For example, in typical programming, you might use:
 
 `const sum = 1 + 3`.
 
-In SnarkyJS, you would write this as:
+In SnarkyJS, you write this as:
 
 `const sum = new Field(1).add(new Field(3))`
 
@@ -226,7 +224,7 @@ let zkAppAddress = PublicKey.fromPrivateKey(zkAppKey);
 let zkApp = new HelloWorld(zkAppAddress);
 ```
 
-Later, we show you how you can deploy a smart contract to an on-chain account.
+Later, you learn how to deploy a smart contract to an on-chain account.
 
 :::note
 On Mina, there is no strong distinction between normal "user accounts" and
@@ -250,7 +248,7 @@ class HelloWorld extends SmartContract {
 
 Within a method, you can use SnarkyJS' data types and methods to define your custom logic.
 
-Later, we'll show how you can...
+Later, you learn how you can...
 
 - run a method (off-chain)
 - create a proof that it executed successfully
@@ -262,13 +260,13 @@ To get an idea what "successful execution" means, look at this line in our examp
 x.mul(2).assertEquals(5);
 ```
 
-Creating a proof for this method will only be possible if the input `x` satisfies the equation `x * 2 === 5`. This is what we call a "constraint".
+Creating a proof for this method is be possible only if the input `x` satisfies the equation `x * 2 === 5`. This is called a "constraint".
 Magically, the proof can be checked without seeing `x` – it's a _private input_.
 
-The method above is not very meaningful yet. To make it more interesting, we need a way to interact with accounts, and record state on-chain.
+The method above is not very meaningful yet. To make it more interesting, you need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [structs`](how-to-write-a-zkapp#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](how-to-write-a-zkapp#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -435,16 +433,14 @@ For a full list, see the [SnarkyJS reference](snarkyjs-reference).
 
 ##### Public and private inputs
 
-We touched on this already, but it's good to cover it in more depth:
-
 While the state of a zkApp is **public**, method parameters are **private**.
 
 When a smart contract method is called, the proof it produces uses zero-knowledge to hide inputs and details of the computation.
 
 The only way method parameters can be exposed is when the computation explicitly exposes them, as
-in our last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
+in the last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
 
-Let's show an example where this is not the case, by defining a new method called `incrementSecret()`:
+For example where this is not the case, define a new method called `incrementSecret()`:
 
 ```ts
 class HelloWorld extends SmartContract {
@@ -462,19 +458,19 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-This time, our input is called `secret`. We check that the hash of our secret is equal to the current state `x`.
-If this is the case, we add 1 to the secret and set `x` to the hash of that.
+This time, the input is called `secret`. Check that the hash of the secret is equal to the current state `x`.
+If this is the case, add 1 to the secret and set `x` to the hash of that.
 
 When running this successfully, it just proves that the code was run with _some_ input `secret` whose hash is `x`,
-and that the new `x` will be set to `hash(secret + 1)`.
+and that the new `x` is set to `hash(secret + 1)`.
 However, the secret itself remains private, because it can't be deduced from its hash.
 
 ##### Initializing state
 
-We didn't cover how to initialize on-chain state yet. This can be done in the `init()` method.
+You initialize on-chain state in the `init()` method.
 
 Like the constructor, `init()` is predefined on the base `SmartContract` class.
-It will be called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
+It is called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
 You can override this method to add initialization of your on-chain state:
 
 ```ts
@@ -488,10 +484,10 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Note that we have to call `super.init()`, which sets your entire state to 0.
+You must call `super.init()` to set your entire state to 0.
 
 If you don't have any state to initialize to values other than 0, then there's no need to override `init()`, you can just leave it out.
-In the example above however, we are setting our state `x` to `Field(10)`.
+The previous example set the state `x` to `Field(10)`.
 
 ##### Composing zkApps
 
@@ -510,9 +506,18 @@ class OtherContract extends SmartContract {
 }
 ```
 
-When a user calls `HelloWorld.myMethod()`, SnarkyJS will create two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ one for the execution of `OtherContract.otherMethod()`. The `myMethod()` proof will compute an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call, and guarantee that this hash matches the `callData` field on the account update produced by `otherMethod()`, which is made part of `myMethod()`'s public input. Therefore, when calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
+When a user calls `HelloWorld.myMethod()`, SnarkyJS creates two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ proof for the execution of `OtherContract.otherMethod()`. 
 
-To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature. Here's an example of returning a `Bool` called `isSuccess`:
+The `myMethod()` proof:
+
+- Computes an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call.
+- Guarantees that this hash matches the `callData` field on the account update produced by `otherMethod()` that is made part of `myMethod()`'s public input. 
+
+Therefore, when you calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
+
+To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature. 
+
+Here's an example of returning a `Bool` called `isSuccess`:
 
 ```ts
 @method otherMethod(): Bool { // annotated return type
@@ -523,15 +528,15 @@ To ensure other methods can use a return value of your `@method`, you must annot
 
 ##### Custom data types
 
-As mentioned previously, smart contract method arguments can be any of the built-in SnarkyJS types.
+Smart contract method arguments can be any of the built-in SnarkyJS types.
 
 However, what if you want to define your own data type?
 
 You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
 Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
-For example, let us say you want to create a custom data type called `Point` representing a 2D point on a grid. The `Point` struct has no instance methods and is only used to hold information about the `x` and `y` points.
-You can create a such a Point class by creating a new class that extends the `Struct` class:
+For example, if you want to create a custom data type called `Point` to represent a 2D point on a grid. The `Point` struct has no instance methods and is used only to hold information about the `x` and `y` points.
+You can create a Point class by creating a new class that extends the `Struct` class:
 
 ```ts
 class Point extends Struct({
@@ -569,13 +574,13 @@ This allows for great composability and reusability of structs.
 
 ##### Transactions and account updates
 
-Now that we've got an idea about writing zkApp methods, we need to discuss how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section we'll learn what a transaction looks like, and how you can create one.
+Now that you have an idea about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like, and how you can create one.
 
-The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, that will update the balance on two accounts – the sender and the receiver. Therefore, sending MINA requires two account updates. As you'll see later, account updates are a flexible and powerful data structure, which can express all kinds of updates, events and preconditions that you'll need for developing smart contracts.
+The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. Account updates are a flexible and powerful data structure that can express all kinds of updates, events and preconditions that you use for developing smart contracts.
 
-A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message – we'll ignore it for now.
+A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message. Ignore it for now.
 
-We create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
+You create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
 
 ```ts
 const sender = PublicKey.fromBase58('B62..'); // the user address
@@ -592,7 +597,7 @@ In this example, the transaction consists of calling a single `SmartContract` me
 console.log(tx.toJSON());
 ```
 
-If you try this, you'll see a massive JSON object with lots of fields, most of which are set to their default value. There's also a way to pretty-print transactions in a more human-readable, condensed format:
+If you try this, you see a massive JSON object with lots of fields, most of which are set to their default value. There's also a way to pretty-print transactions in a more human-readable, condensed format:
 
 ```ts
 console.log(tx.toPretty());
@@ -623,19 +628,19 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 
 From this output, there are several important things we can learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which we didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically wouldn't care about setting those values – instead, you'd create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet would replace your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See our section about [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
-The second account update in our list has a label: `'MyContract.myMethod()'`. This tells us that it corresponds to the method call we performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Let's see what the other fields in this account update mean:
+The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
 
 - `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
 - `update: { appState: [...] }` – shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that aren't updated.
-- `preconditions: { account: { state: [...] } }` – similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction will only be accepted if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
-- `authorizationKind: 'Proof'` – this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates, as we'll explain below.
-- `authorization: undefined` – the proof that's needed on this update isn't there yet! We'll show how to add it in a minute.
+- `preconditions: { account: { state: [...] } }` – similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction are accepted only if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
+- `authorizationKind: 'Proof'` – this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates.
+- `authorization: undefined` – the proof that's needed on this update isn't there yet! You learn how to add it in a minute.
 
-Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. We still use the term "account update" for simplicity.
+Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
 
-As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction will be sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
+As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
 
 ##### Creating proofs, and what they mean
 
@@ -654,12 +659,12 @@ await tx.prove(); // this might take a while
 
 There are two new operations here:
 
-- `MyContract.compile()` creates prover & verification keys from your smart contract.[^1] You need to do this before you can create any proofs!
+- `MyContract.compile()` creates prover and verification keys from your smart contract.[^1] You need to do this before you can create any proofs!
 - `tx.prove()` goes through your transaction, and creates proofs for all the account updates that came from method calls.
 
 [^1]: The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
 
-Both of these are heavy cryptographic operations, and they might take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, you'll find that it now has the proof as a base64 string inside the `authorization` field:
+Both of these are heavy cryptographic operations and can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a base64 string inside the `authorization` field:
 
 ```ts
 [
@@ -681,11 +686,11 @@ The proof attests to two different things:
 
 Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. In the case of zkApps, **the public input is the account update**. It is passed in implicitly when you do `tx.prove()`. The prover function (i.e., your smart contract logic) creates its own account update and constrains it to equal the public input.
 
-You can think of the public input as data that is shared between the prover and verifier. The verifier passes in the public input when verifying it, and the proof will only be valid if it was created with _the same public input_. For us, this means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof won't be valid for it anymore. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
+You can think of the public input as data that is shared between the prover and verifier. The verifier passes in the public input when verifying it, and the proof is valid only if it was created with _the same public input_. This means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof is no longer not be valid. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
 
-##### Payments, and more on public inputs
+##### Payments and more on public inputs
 
-Let's continue our discussion of account updates from the preceding sections, at the hand of an example that is important on its own: Paying out MINA from a zkApp. To send MINA, you can use `this.send()` from your smart contract method:
+To continue the discussion of account updatess, this example is important on its own: Paying out MINA from a zkApp. To send MINA, you can use `this.send()` from your smart contract method:
 
 ```ts
 class MyContract extends SmartContract {
@@ -697,7 +702,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to themselves. Note that we get the sender of the transaction with `this.sender`. In a real zkApp, you'd probably want to add some conditions that are checked in this method, determining who can call it with which amounts. Let's call this method in a transaction, and print out the result:
+This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to themselves. Note that you get the sender of the transaction with `this.sender`. In a real zkApp, you add conditions that are checked in this method to determining who can call it with which amounts. To call this method in a transaction and print out the result:
 
 ```ts
 const MINA = 1e9;
@@ -715,7 +720,7 @@ MINA amounts, in all SnarkyJS APIs and elsewhere in the protocol, are always den
 
 :::
 
-What's interesting for us is that our transaction now has 3 account updates:
+What's interesting is that the transaction now has 3 account updates:
 
 ```ts
 [
@@ -739,15 +744,15 @@ What's interesting for us is that our transaction now has 3 account updates:
 ];
 ```
 
-The zkApp update with label `'MyContract.payout()'` has a negative `balanceChange` of 5 billion (= 5 MINA). This makes sense, because we are sending MINA away from the zkApp account.
+The zkApp update with label `'MyContract.payout()'` has a negative `balanceChange` of 5 billion (= 5 MINA). This makes sense, because you are sending MINA away from the zkApp account.
 Then, there's an additional account update, with a corresponding positive balance change – the user account that receives MINA.
 
 Two quick observations:
 
-- We didn't create the receiver account update explicitly. It was created, and attached to the transaction, by calling `this.send()`. You'll find that SnarkyJS tries to abstract away the low-level language of account updates where possible, and to give you intuitive commands to create the right ones. However, you'll sometimes also create account updates explicitly (see next section).
+- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. SnarkyJS tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
 - The user update has `authorizationKind: 'None_given'`. That means it's not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA, and you're able to send someone MINA without their permission.
 
-In general, there are three kinds of authorization that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section.
+In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section.
 
 <!-- TODO: link to permission section when it exists -->
 
