@@ -96,7 +96,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Participate",
     image: "/svg/homepage/participate.svg",
-    buttonText: "Learn More",
+    buttonText: "Online Communities",
     buttonLink: "/participate/online-communities",
     description: (
       <>
