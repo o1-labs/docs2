@@ -63,7 +63,7 @@ class SmartContract {
 
 ### Fetching Events from an Archive Node
 
-Since Mina nodes do not store historical network information and events are not kept on-chain, emitted events are preserved only in the archive node. To see how to work with events within your zkApp, refer to our [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs) section.
+Since Mina nodes do not store historical network information and events are not kept on-chain, emitted events are preserved only in the archive node. To see how to work with events within your zkApp, see [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs).
 
 If your smart contract needs to fetch events from an archive node, simply provide an `archive` property within the object passed into `Mina.Network({mina: '...', archive: '...'})`. Its value should be the URL for the GraphQL API service that you want to use. If this property does not exist, an error will occur.
 

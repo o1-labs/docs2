@@ -101,11 +101,11 @@ Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapp
 
 ### Fetching Actions from an Archive Node
 
-Since Mina nodes do not store historical network information and actions are not kept on-chain, emitted actions are preserved only in the archive node. To see how to work with actions within your zkApp, refer to our [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs) section.
+Since Mina nodes do not store historical network information and actions are not kept on-chain, emitted actions are preserved only in the archive node. To see how to work with actions within your zkApp, see [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs).
 
-If your smart contract needs to fetch actions from an archive node, simply provide an `archive` property within the object passed into `Mina.Network({mina: '...', archive: '...'})`. Its value should be the URL for the GraphQL API service that you want to use. If this property does not exist, an error will occur.
+If your smart contract needs to fetch actions from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
 
-You can set the `archive` property to one of the following endpoints:
+Set the `archive` property to one of the following endpoints:
 
 ```sh
 https://api.minascan.io/archive/berkeley/v1/graphql
@@ -147,9 +147,9 @@ class MyContract extends SmartContract {
 }
 ```
 
-By default, `getActions()` retrieves all actions from the very first ever emitted for that zkApp account. However, you can provide an object containing an optional property named `fromActionHash` where the value is an `actionsHash` to indicate the starting point of the actions to be retrieved and processed by your smart contract. Note that actions _after_ the specified hash will be retrieved—i.e. it is not inclusive.
+By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionHash`, where the value is an `actionsHash` to indicate the starting point of the actions to be retrieved and processed by your smart contract. Actions that occur _after_ the specified hash are not retrieved—so it is not inclusive.
 
-To see a end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see this voting app example in the [voting.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts) file in examples provided in the codebase repo.
+For an end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see this voting app example in the [voting.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts) file in examples provided in the codebase repo.
 
 ### Actions for concurrent state updates
 
