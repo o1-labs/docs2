@@ -127,7 +127,7 @@ const Network = Mina.Network({
 Mina.setActiveInstance(Network);
 ```
 
-By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `getActions()` function to retrieve actions for a zkApp:
+Within your smart contract, you can use `getActions()` to retrieve actions emitted by your smart contract as part of previous transactions.
 
 ```ts
 class MyContract extends SmartContract {
