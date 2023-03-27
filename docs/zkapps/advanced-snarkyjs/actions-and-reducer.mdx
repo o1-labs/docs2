@@ -101,9 +101,9 @@ Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapp
 
 ### Fetching Actions from an Archive Node
 
-Since Mina nodes do not store historical network information and actions are not kept on-chain, emitted actions are preserved only in the archive node. Consequently, a zkApp must fetch its previously emitted actions on the Mina network from an archive node.
+Since Mina nodes do not store historical network information and actions are not kept on-chain, emitted actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted actions from one or more Mina archive nodes.
 
-As the Archive Node is essentially a database, it does not offer a user-friendly API that SnarkyJS can readily utilize to fetch actions. To address this issue, a GraphQL server was developed to retrieve network information such as actions and actions from the Archive Node. SnarkyJS will use this GraphQL server to fetch actions from the Archive Node.
+The Mina archive node offers the ability for operators to store data using any data store of their choice, however, it does not currently expose a built-in API to query this data publicly. To address this, the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) was developed and can be run by archive node operators to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
 
 To configure SnarkyJS to use an Archive Node to fetch actions, use the `archive` property in the `Mina.Network` function. The `archive` property must be specified in the `Mina.Network` function to fetch actions from an Archive Node; otherwise, an error will occur.
 
