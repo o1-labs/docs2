@@ -223,7 +223,7 @@ GROUP BY p.value ORDER BY count DESC;
 
 ## Using the Archive Node with SnarkyJS
 
-Since Mina nodes do not store historical network information and events/actions are not kept on-chain, emitted events/actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events/actions from one or more Mina archive nodes.
+Since Mina nodes do not store historical network information and events/actions are not kept on-chain, emitted events/actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events and actions from one or more Mina archive nodes.
 
 The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly. Archive node operators can run the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
 
