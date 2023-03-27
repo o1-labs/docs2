@@ -105,7 +105,7 @@ Since Mina nodes do not store historical network information and actions are not
 
 The Mina archive node offers the ability for operators to store data using any data store of their choice, however, it does not currently expose a built-in API to query this data publicly. To address this, the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) was developed and can be run by archive node operators to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
 
-To configure SnarkyJS to use an Archive Node to fetch actions, use the `archive` property in the `Mina.Network` function. The `archive` property must be specified in the `Mina.Network` function to fetch actions from an Archive Node; otherwise, an error will occur.
+If your smart contract needs to fetch actions from an archive node, simply provide an `archive` property within the object passed into `Mina.Network({mina: '...', archive: '...'})`. Its value should be the URL for the GraphQL API service that you want to use. If this property does not exist, an error will occur.
 
 You can set the `archive` property to one of the following endpoints:
 
