@@ -105,7 +105,7 @@ const fetchedEvents = await fetchEvents({
 
 By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block, and if the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
-To see a end-to-end example of zkApp fetching events from a running network, [see this voting example code that fetches preivously emitted events](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts).
+To see a end-to-end example of zkApp fetching events from a running network, see this voting app example in the [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file in examples provided in the codebase repo.
 
 ### Events vs Actions
 
