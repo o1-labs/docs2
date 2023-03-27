@@ -63,11 +63,9 @@ class SmartContract {
 
 ### Fetching Events from an Archive Node
 
-Since Mina nodes do not store historical network information and events are not kept on-chain, emitted events are only preserved in the Archive Node. Consequently, a zkApp must fetch its previously emitted events on the Mina network from an Archive Node.
+Since Mina nodes do not store historical network information and events are not kept on-chain, emitted events are preserved only in the archive node. To see how to work with events within your zkApp, refer to our [Using the Archive Node with SnarkyJS guide](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs).
 
-As the Archive Node is essentially a database, it does not offer a user-friendly API that SnarkyJS can readily utilize to fetch events. To address this issue, a GraphQL server was developed to retrieve network information such as events and actions from the Archive Node. SnarkyJS will use this GraphQL server to fetch events from the Archive Node.
-
-To configure SnarkyJS to use an Archive Node to fetch events, use the `archive` property in the `Mina.Network` function. The `archive` property must be specified in the `Mina.Network` function to fetch events from an Archive Node; otherwise, an error will occur.
+If your smart contract needs to fetch events from an archive node, simply provide an `archive` property within the object passed into `Mina.Network({mina: '...', archive: '...'})`. Its value should be the URL for the GraphQL API service that you want to use. If this property does not exist, an error will occur.
 
 You can set the `archive` property to one of the following endpoints:
 
@@ -79,7 +77,7 @@ https://api.minascan.io/archive/berkeley/v1/graphql
 https://archive.berkeley.minaexplorer.com
 ```
 
-For example, to use the archive property, see the following example code:
+For example:
 
 ```ts
 const Network = Mina.Network({
@@ -89,7 +87,7 @@ const Network = Mina.Network({
 Mina.setActiveInstance(Network);
 ```
 
-By setting the `archive` property to one of the listed endpoints, SnarkyJS uses the selected endpoint to fetch events. For instance, if a zkApp has already emitted events and broadcasted the transaction, you can use the `fetchEvents()` function to retrieve events for a zkApp:
+Within your smart contract, you can use `fetchEvents()` to retrieve events emitted by your smart contract as part of previous transactions.
 
 ```ts
 const zkapp = new MyContract(address);
@@ -105,12 +103,9 @@ const fetchedEvents = await fetchEvents({
 });
 ```
 
-`fetchEvents()` accepts a starting block and an ending block.
+By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block, and if the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
-If the ending block is not provided, it fetches all events up to the latest block.
-If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
-
-To see a end-to-end example of zkApp fetching events from a running network, [see this example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts).
+To see a end-to-end example of zkApp fetching events from a running network, [see this voting example code that fetches preivously emitted events](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts).
 
 ### Events vs Actions
 
