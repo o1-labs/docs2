@@ -13,6 +13,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "generate-one-page": "node scripts/generate-one-page.js",
     "typecheck": "tsc"
   },
   "dependencies": {
