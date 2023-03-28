@@ -1,0 +1,36 @@
+name: Combine Markdown Files
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  combine-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run the script
+      run: npm run generate-one-page
+
+    - name: Commit and push changes (if any)
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "github-actions@github.com"
+        find . -type f -name 'one-page.mdx' -exec git add {} \;
+        git diff --quiet && git diff --staged --quiet || git commit -m "docs: Combine markdown files"
+        git push
