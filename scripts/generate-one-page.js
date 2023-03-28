@@ -5,6 +5,7 @@
 
  * To modify the input directories, update the `inputDirectories` array.
  * To exclude certain directories, update the `excludedDirs` array.
+ * To exclude certain files, update the `excludedFiles` array.
  */
 
 const fs = require('fs');
@@ -16,12 +17,19 @@ const docsDirectory = `${process.cwd()}/docs`;
 const inputDirectories = ['zkapps'];
 // List of directories to be excluded from the combining process
 const excludedDirs = ['snarkyjs-reference'];
+// List of specific files to be excluded from the combining process (make sure to include the file extension)
+const excludedFiles = [''];
 // Output file path for the combined markdown file
 const outputFilePath = `${process.cwd()}/src/one-page.mdx`;
 
 // Check if a directory is in the list of excluded directories
 function isExcludedDir(dir) {
   return excludedDirs.includes(dir);
+}
+
+// Check if a file is in the list of excluded files
+function isExcludedFile(file) {
+  return excludedFiles.includes(file);
 }
 
 // Prepend the base directory to the provided directory name
@@ -48,7 +56,8 @@ function combineFiles(inputDir, outputFile) {
       const entryPath = path.join(inputDir, entry.name);
       if (
         entry.isFile() &&
-        (entry.name.endsWith('.md') || entry.name.endsWith('mdx'))
+        (entry.name.endsWith('.md') || entry.name.endsWith('mdx')) &&
+        !isExcludedFile(entry.name)
       ) {
         const fileContent = fs.readFileSync(entryPath, 'utf8');
         fs.appendFileSync(outputFile, fileContent + '\n\n');
