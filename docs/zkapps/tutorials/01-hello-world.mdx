@@ -21,72 +21,75 @@ This tutorial was last tested with [Mina zkApp CLI](https://github.com/o1-labs/z
 
 ## Overview
 
-In this tutorial, we will code a zkApp step by step, from start to finish.
+This Hello World tutorial helps you get started with SnarkyJS, zkApps, and programming with zero-knowledge proofs. 
 
-We will write a basic smart contract that stores a number as on-chain state and contains logic to only allow this number to be replaced by its square (e.g. 2 -> 4 -> 16...). We will create this project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli), write our smart contract code, and then use a local Mina blockchain to interact with it.
+In this step-by-step tutorial, you learn to code a zkApp from start to finish.
 
-Later tutorials will introduce further concepts and patterns. But we hope this helps you get started with SnarkyJS, zkApps, and programming with zero knowledge proofs. Then you can go further by reading the [zkApps docs](/zkapps) and additional tutorials.
+You will: 
 
-You can find the full source code for this example [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world).
+- Write a basic smart contract that stores a number as on-chain state.
+- The contract logic allows this number to be replaced only by its square; for example, 2 -> 4 -> 16, and so on. 
+- Create a project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
+- Write our smart contract code
+- Use a local Mina blockchain to interact with your smart contract.
+
+Later tutorials introduce more concepts and patterns.  
+
+The full source code for [01-hello-world](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world) is provided in the codebase `examples`. 
 
 ## Setup
 
-First, install the [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli), if you haven’t already.
+First, install the [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) if you haven't already.
 
 #### Dependencies
 
-You'll need the following installed to use the zkApp CLI:
+To use the zkApp CLI, your environment requires:
 
-- NodeJS 16+ (or 14 using `--experimental-wasm-threads`)
-- NPM 6+
-- Git 2+
+- NodeJS v16 and later (or NodeJS v14 using `--experimental-wasm-threads`)
+- NPM v6 and later
+- Git v2 and later
 
-If you have an older version installed, we suggest installing a newer version
-using the package manager for your system: [Homebrew](https://brew.sh/) (Mac),
-[Chocolatey](https://chocolatey.org/) (Windows), or apt/yum/etc (Linux). On
-Linux, you may need to install a recent NodeJS version via NodeSource
-([deb](https://github.com/nodesource/distributions#debinstall) or
-[rpm](https://github.com/nodesource/distributions#rpminstall)), as recommended
-by the NodeJS Project.
+Use a package manager to install the required versions and upgrade older versions if needed. Package managers for the supported environments are:
+
+- MacOS [Homebrew](https://brew.sh/)
+- Windows [Chocolatey](https://chocolatey.org/)
+- Linux
+
+  - apt, yum, and others
+
+  On Linux, you might need to install a recent NodeJS version by using NodeSource. Use [deb](https://github.com/nodesource/distributions#debinstall) or [rpm](https://github.com/nodesource/distributions#rpminstall) as recommended by the NodeJS project.
+
+To verify your installed versions, use `npm -v`, `node -v`, and `git -v`.
 
 #### Installation
 
-```sh
-$ npm install -g zkapp-cli
-```
-
-To confirm it is installed, run:
+To install the zkApp CLI:
 
 ```sh
-$ zk --version
+npm install -g zkapp-cli
 ```
 
-This tutorial has been tested as of Mina zkApp CLI version `0.6.4` and SnarkyJS `0.8.0`.
+To confirm successful installion:
+
+```sh
+zk --version
+```
+
+This tutorial has been tested with Mina zkApp CLI version `0.6.4` and SnarkyJS `0.8.0`.
 
 ## Create a new project
 
-Now that you have the tooling installed, we can start building our application.
+Now that you have the tooling installed, you can start building your application.
 
-First, create a new project using:
-
-<!--
-
-Configure `git` email and name, otherwise `zkapp-cli` project generation will return a non-zero exit code.
+First, create a new project using the `zk project` command:
 
 ```sh
-$ git config --global user.email "test@example.com"
-$ git config --global user.name "Test"
+zk project 01-hello-world
 ```
 
--->
+This command creates a directory named `01-hello-world` that contains the scaffolding for your project, including tools such as Prettier, ESLint, and Jest.
 
-```sh
-$ zk project 01-hello-world
-```
-
-This will create a directory named `01-hello-world` containing scaffolding for our project, including tools such as Prettier, ESLint, & Jest.
-
-The zkApp CLI will ask if you would like to create an acompnanying ui project. Select none for this tutorial.
+One of the features of the `zk project` command is the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
 ```
 ? Create an accompanying UI project too? …
@@ -97,23 +100,28 @@ The zkApp CLI will ask if you would like to create an acompnanying ui project. S
 ❯ none
 ```
 
-Let's change into this directory and list the contents to see what it created:
+Change into the `01-hello-world` directory and list the contents:
 
 ```sh
 $ cd 01-hello-world
 $ ls
+```
+
+The output is similar to the following:
+
+```sh
 LICENSE           build             jest.config.js    package-lock.json tsconfig.json
 README.md         config.json       keys              package.json
 babel.config.cjs  jest-resolver.cjs node_modules      src
 ```
 
-We will be working mostly within the `src` directory, which will contain the TypeScript code for our smart contract. When we build or deploy (which automatically builds for us), our TypeScript will be compiled into JavaScript inside the `build` directory.
+For this tutorial, you work mostly in the `src` directory that contains the TypeScript code for the smart contract. Each time you make updates, then build or deploy (which automatically builds), the TypeScript code is compiled into JavaScript in the `build` directory.
 
 ### Preparing the project
 
-We will start by creating files for our project and deleting the default files that come with the new project.
+Start by deleting the default files that come with the new project.
 
-First, delete the old files. Run:
+To delete the old files:
 
 ```sh
 $ rm src/Add.ts
@@ -121,16 +129,18 @@ $ rm src/Add.test.ts
 $ rm src/interact.ts
 ```
 
-And generate the new files for our project. Enter:
+Then, generate the new files for the project:
 
 ```sh
 $ zk file src/Square
 $ touch src/main.ts
 ```
 
-The `zk file <name>` command created both `src/Square.ts` and `src/Square.test.ts` for us, but we won't worry about writing tests in this tutorial. We'll use `main.ts` as a script to interact with the smart contract and observe how it works. In later tutorials, we will see how to interact with a smart contract from the browser, like a typical end user, but for now we'll just use our `main.ts` script to do this.
+The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files. However, this tutorial does not include writing tests. Instead, you use `main.ts` as a script to interact with the smart contract and observe how it works. 
 
-Now, let's open `src/index.ts` in a text editor and change it to look like below. This file contains all exports we want to make available for consumption from outside our smart contract project, such as from a UI.
+In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user. For now, you just use the `main.ts` script.
+
+Now, open `src/index.ts` in a text editor and change it to look like:
 
 ```ts src/index.ts
 1 import { Square } from './Square.js';
@@ -138,46 +148,55 @@ Now, let's open `src/index.ts` in a text editor and change it to look like below
 3 export { Square };
 ```
 
+The `src/index.ts` file contains all of the exports you want to make available for consumption from outside our smart contract project, such as from a UI.
+
 ### Building and running
 
 :::info
 
-The following commands are included for reference, and will fail if you run them at this point. This is because we haven't written the `Square` smart contract yet.
+The following commands are included for reference and will fail if you run them now. This is expected behavior because you haven't written the `Square` smart contract yet.
 
 :::
 
-To compile the TypeScript code into JavaScript, and run the JavaScript code, you'll type:
+To compile the TypeScript code into JavaScript and run the JavaScript code:
 
 ```
 $ npm run build
 $ node build/src/main.js
 ```
 
-The first line creates JavaScript code in the build directory, while the second line runs the code in `src/main.ts`.
+The first command creates JavaScript code in the build directory. The second command runs the code in `src/main.ts`.
 
 You can also combine these together into one line, such as:
 
 ```
-$ npm run build && node build/src/main.js
+npm run build && node build/src/main.js
 ```
 
-This will run `main` if the build is successful.
+This command runs `main` if the build is successful.
 
 ## Write the zkApp Smart Contract
 
-Now, the fun part! Let's write our smart contract: `src/Square.ts`. Line numbers are provided for convenience. A final version of what we're writing can be found [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts).
+Now, the fun part! Write your smart contract, the `src/Square.ts` file. 
+
+Line numbers are provided for convenience. A final version of what you're writing is provided in the [Square.tx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file.
 
 :::tip
 
-This tutorial will walk through the `Square` smart contract linked above. We recommend that you copy and paste the entire file from that link, and then follow the tutorial with the finished code in place.
-
-You can also copy and paste the code snippets into your project as you go - to avoid inserting the line numbers into your smart contract, copy these code snippets using the button provided. It will appear at the top right of the snippet box when you mouseover it.
+This tutorial walks through the `Square` smart contract code in the `src/Square.ts` as viewed in a text editor. If this is your first project, use the provided example file for the best user experience.  
 
 :::
 
+## Copy the example 
+
+The easiest way to walk through the example is to use the entire contents in the provided [Square.tx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file. You can then follow the tutorial with the finished code in place.
+
+Or you can follow the steps to copy and paste the code snippets into your project as you go. To avoid inserting the line numbers into your smart contract, use the copy code to clipboard button that appears at the top right of the snippet box when you hover over it.
+
+
 ### Imports
 
-First, open `src/Square.ts` in your editor, then add the following at the top of the file:
+First, open `src/Square.ts` in your editor, then add the following code at the top of the file:
 
 ```ts src/Square.ts
 1 import {
@@ -189,17 +208,19 @@ First, open `src/Square.ts` in your editor, then add the following at the top of
 7 } from 'snarkyjs';
 ```
 
-What each of these are:
+These fields are:
 
-- `Field`: The native "number" type in SnarkyJS. You can think of these as unsigned integers. These are the most basic type in SnarkyJS and are what all other SnarkyJS-compatible types are built on top of.
+- `Field`: The native "number" type in SnarkyJS. You can think of these as unsigned integers. These fields are the most basic type in SnarkyJS and are what all other SnarkyJS-compatible types are built on top of.
 - `SmartContract`: The class that creates zkApp smart contracts.
-- `state`: a convenience decorator used within zkApp smart contracts to create references to state stored on chain in a zkApp account.
-- `State`: a class used within zkApp smart contracts to create state stored on chain in a zkApp account.
-- `method`: a convenience decorator used within zkApp smart contracts to create new smart contract methods (i.e. functions). Methods that uses this decorator are the end user's entry points to interacting with our smart contract.
+- `state`: a convenience decorator used within zkApp smart contracts to create references to state stored on-chain in a zkApp account.
+- `State`: a class used within zkApp smart contracts to create state stored on-chain in a zkApp account.
+- `method`: a convenience decorator used within zkApp smart contracts to create new smart contract methods like functions. Methods that uses this decorator are the end user's entry points to interacting with a smart contract.
 
 ### Smart contract class
 
-Now, we will write the smart contract. Write the following in your file:
+Now, write the smart contract. 
+
+To create a new smart contract called `Square` with one element of on-chain state named `num` of type `Field`, add the following code to your file:
 
 ```ts src/Square.ts
 8
@@ -209,9 +230,9 @@ Now, we will write the smart contract. Write the following in your file:
 12 }
 ```
 
-This creates a new smart contract called `Square` with one element of on-chain state named `num` of type `Field`. zkApps can have up to 8 fields worth of on-chain state, each storing up to 32 bytes (technically, 31.875 bytes or 255 bit) of arbitrary data. A later tutorial will discuss options for off-chain state.
+zkApps can have up to 8 Fields of on-chain state, each storing up to 32 bytes (technically, 31.875 bytes or 255 bit) of arbitrary data. A later tutorial covers options for off-chain state.
 
-Now, let's add our `init` method:
+Now, add the `init` method:
 
 ```ts src/Square.ts
 8
@@ -228,13 +249,13 @@ Now, let's add our `init` method:
 
 This method sets up the initial state of the smart contract on deployment.
 
-Since we're extending `SmartContract`, which has its own initialization to perform, we also need to call `super.init()` to invoke this function on the base class.
+Since you're extending `SmartContract` that has its own initialization to perform, you also need to call `super.init()` to invoke this function on the base class.
 
-Then we initialize our on-chain state, `num`, to a value of `3`.
+Then initialize the on-chain state, `num`, to a value of `3`.
 
-We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions) here.
+You can optionally [specify permissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions).
 
-Lastly, we will add our update function:
+Finally, add the update function:
 
 ```ts src/Square.ts
 14     this.num.set(Field(3));
@@ -249,17 +270,31 @@ Lastly, we will add our update function:
 23 }
 ```
 
-The name `update` is arbitrary, but makes sense for our example. Notice that we use the `@method` decorator because we intend for this method to be invoked by end users, such as via a zkApp UI or our `main.ts` script in this case.
+The name `update` is arbitrary, but it makes sense for this example. Notice that you use the `@method` decorator because this method is intended to be invoked by end users by using a zkApp UI, or as in this case, the `main.ts` script.
 
-This method will contain our logic by which end users are allowed to update our zkApp's account state on chain. In this example, we are saying that if the user provides a number (e.g. 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (e.g. 3), then we'll update the `num` value stored on chain to the provided value (e.g. 9). If the user provides a number that does not meet these conditions, they will not be able to generate a proof or update the on-chain state.
+This method contain the logic by which end users are allowed to update our the zkApp's account state on chain. In this example, you are saying that if the user provides a number (for example, 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (for example, 3), then update the `num` value that is stored on-chain to the provided value (in this case, 9). If the user provides a number that does not meet these conditions, they are unable to generate a proof or update the on-chain state.
 
-This is accomplished through using "assertions" within our method. When a user invokes a method on a smart contract, all assertions must be true in order to generate the zero knowledge proof from that smart contract; the Mina network will only accept the transaction and update the on-chain state if the attached proof is valid. This is how we can achieve predictable behavior in an off-chain execution model.
+These update conditions are accomplished by using "assertions" within the method. When a user invokes a method on a smart contract, all assertions must be true in order to generate the zero knowledge proof from that smart contract. The Mina network accepts the transaction and updates the on-chain state only if the attached proof is valid. This assertion is how to achieve predictable behavior in an off-chain execution model.
 
-Notice that we have `get()` and `set()` methods for retrieving and setting on-chain state. A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it. Similarly, using `set()` will change the transaction to indicate we want to change this particular on-chain state, but it will only be updated when the transaction is received by the Mina network if it contains a valid authorization (i.e. a proof usually).
+Notice that you have `get()` and `set()` methods for retrieving and setting on-chain state. 
 
-Our logic also uses the `.mul()` method for multiplication of our values stored in fields. You can view all available methods in the [SnarkyJS reference](/zkapps/snarkyjs-reference). Keep in mind that _all functions used inside your smart contract must operate on SnarkyJS compatible data types (e.g. Fields and other types built on top of Fields)_. This is to say, functions from random NPM packages won't work inside our smart contract, because it's really a zero-knowledge circuit, unless the functions it provides operate on SnarkyJS-compatible data types.
+- A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it. 
 
-**Importantly, data passed as an input to smart contract method in SnarkyJS is private and never seen by the network.** But you can also store data publicly on-chain when needed, such as we do with our `num` in this example. A later tutorial will cover an example leveraging privacy.
+- Similarly, using `set()` changes the transaction to indicate that changes to this particular on-chain state are updated only when the transaction is received by the Mina network if it contains a valid authorization (usually, a valid authorization is a proof).
+
+The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available methods in the [SnarkyJS reference](/zkapps/snarkyjs-reference) documentation. 
+
+:::info
+
+All functions used inside your smart contract must operate on SnarkyJS compatible data types: `Field` types and other types built on top of `Field` types. 
+
+:::info
+
+Functions from random NPM packages won't work inside a smart contract, because it's really a zero-knowledge circuit, unless the functions it provides operate on SnarkyJS-compatible data types.
+
+**Importantly, data passed as an input to a smart contract method in SnarkyJS is private and never seen by the network.** 
+
+You can also store data publicly on-chain when needed, the the `num` in this example. A later tutorial covers an example that leverages privacy.
 
 This completes the smart contract!
 
@@ -496,3 +531,5 @@ Shutting down
 Congrats! We have finished building our first zkApp with SnarkyJS.
 
 Checkout [Tutorial 2](private-inputs-hash-functions) to learn how to use private inputs and hash functions with SnarkyJS.
+
+Then you can go further by reading the [zkApps docs](/zkapps) and additional tutorials.
