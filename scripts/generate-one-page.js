@@ -17,7 +17,7 @@ const inputDirectories = ['zkapps'];
 // List of directories to be excluded from the combining process
 const excludedDirs = ['snarkyjs-reference'];
 // Output file path for the combined markdown file
-const outputFilePath = prependDocsDir('one-page.mdx');
+const outputFilePath = `${process.cwd()}/src/one-page.mdx`;
 
 // Check if a directory is in the list of excluded directories
 function isExcludedDir(dir) {
