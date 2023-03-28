@@ -1,15 +1,15 @@
 name: Combine Markdown Files
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+    types:
+      - closed
 
 jobs:
   combine-markdown:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -33,4 +33,4 @@ jobs:
         git config --global user.email "github-actions@github.com"
         find . -type f -name 'one-page.mdx' -exec git add {} \;
         git diff --quiet && git diff --staged --quiet || git commit -m "docs: Combine markdown files"
-        git push
+        # Will add when reviewed and PR is to be merged: git push origin main
