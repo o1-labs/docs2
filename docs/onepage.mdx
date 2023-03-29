@@ -160,7 +160,7 @@ After a few minutes, the transaction will be included in the next block. To see 
 
 ## Next Steps
 
-Now that you've learn how to deploy a smart contract, you can now learn [how to write a UI for your zkApp](how-to-write-a-zkapp-ui).
+Now that you've learn how to deploy a smart contract, you can now learn [how to write a UI for your zkApp](/).
 
 
 ---
@@ -324,7 +324,7 @@ We will be adding blockchain-specific testing functionality in the future. Keep 
 
 ## Next Steps
 
-Now that you've learn how to test a smart contract, you can now learn [how to deploy a zkApp](how-to-deploy-a-zkapp).
+Now that you've learn how to test a smart contract, you can now learn [how to deploy a zkApp](/).
 
 
 ---
@@ -654,7 +654,7 @@ Examples are based on the standard project structure, but with additional files 
 4. **Deploy to Testnet:** Run `zk config`, which will walk you through adding a
    network alias to your project’s `config.json`. For Berkeley Testnet, we recommend
    using `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
+   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](/) page for further details.
 
 You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
 
@@ -671,20 +671,20 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 4. **Deploy to Testnet:** Run `zk config`, which will walk you through adding a
    network alias to your project’s `config.json`. For Berkeley Testnet, we
    recommend using `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
+   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](/) page for further details.
 5. **Deploy to Mainnet:** (Coming soon.)
 
 ### Writing your smart contract
 
 The goal of this section is to explain the concepts that you will need to understand to write a zero-knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it first so that this section makes sense.
+If you haven’t yet read the [how zkApps work](/) pages, please read it first so that this section makes sense.
 
 ##### SnarkyJS
 
 zkApps are written in TypeScript using SnarkyJS. SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
 
-To view the full SnarkyJS reference, please see the [snarkyJS reference](snarkyjs-reference).
+To view the full SnarkyJS reference, please see the [snarkyJS reference](/).
 
 ##### Concepts
 
@@ -789,7 +789,7 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [SnarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](/).
 
 ##### Smart Contract
 
@@ -862,7 +862,7 @@ Magically, the proof can be checked without seeing `x` – it's a _private input
 The method above is not very meaningful yet. To make it more interesting, we need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [structs`](how-to-write-a-zkapp#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, we will refer to those types as [structs`](/).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -967,7 +967,7 @@ Side note: `this.<state>.assertEquals` is more flexible than equating with the c
 
 Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions – see [Actions and Reducer](advanced-snarkyjs/actions-and-reducer).
+One such workaround is the use of actions – see [Actions and Reducer](/).
 
 :::
 
@@ -1025,7 +1025,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [SnarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](/).
 
 ##### Public and private inputs
 
@@ -1217,7 +1217,7 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 
 From this output, there are several important things we can learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which we didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically wouldn't care about setting those values – instead, you'd create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet would replace your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See our section about [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which we didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically wouldn't care about setting those values – instead, you'd create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet would replace your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See our section about [connecting your zkApp with a user's wallet](/).
 
 The second account update in our list has a label: `'MyContract.myMethod()'`. This tells us that it corresponds to the method call we performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Let's see what the other fields in this account update mean:
 
@@ -1508,7 +1508,7 @@ To summarize, there are three types of authorization that account updates can ha
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
 - No authorization – used on updates which don't require authorization, for example positive balance changes.
 
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](advanced-snarkyjs/permissions) section that goes into detail!.
+The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](/). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](/) section that goes into detail!.
 
 
 
@@ -1593,13 +1593,13 @@ await tx.send();
 
 Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof. -->
 
-You can learn more about testing in [How to test your zkApp](how-to-test-a-zkapp).
+You can learn more about testing in [How to test your zkApp](/).
 
 [^2]: Fun fact: `LocalBlockchain` literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
 ## Next Steps
 
-Now that you've learned how to write and operate a basic smart contract, you can learn [how to test your zkApp](how-to-test-a-zkapp).
+Now that you've learned how to write and operate a basic smart contract, you can learn [how to test your zkApp](/).
 
 
 ---
@@ -1623,7 +1623,7 @@ zkApps run in the latest versions of <a href="https://www.google.com/chrome/inde
 
 <br />
 
-zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](how-to-write-a-zkapp), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
+zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming section [how to write a zkApp](/), we’ll go into detail about writing your first zkApp. For now, we’ll discuss how zkApps work.
 
 A “zkApp” consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.
 
@@ -1706,7 +1706,7 @@ Developers usually build a UI to allow users to interact with the smart contract
 
 Typically, this is a static website deployed to a host of the developer’s choosing. We recommend web hosts that offer a global CDN to ensure the best user experience.
 
-Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the [how to write a zkApp](how-to-write-a-zkapp) page, we will go into more detail.
+Your website needs to contain the `smart_contract.js` file that was generated when building your smart contract. On the [how to write a zkApp](/) page, we will go into more detail.
 
 <img src="/img/8_zkApps_DeploySmartContract.jpg" width="95%" />
 
@@ -1768,7 +1768,7 @@ When the zkApp runs in a user’s web browser, it may insert state to an externa
 
 ### Keep going
 
-On the next page, we’ll dive into [how to write a zkApp](how-to-write-a-zkapp)!
+On the next page, we’ll dive into [how to write a zkApp](/)!
 
 
 ---
@@ -1815,7 +1815,7 @@ zkApps can perform arbitrarily-complex computations off chain while incurring on
 
 <br />
 
-You can learn more on the [How zkApps Work](./zkapps/how-zkapps-work) page.
+You can learn more on the [How zkApps Work](/) page.
 
 ### TypeScript
 
@@ -1823,7 +1823,7 @@ zkApps are written in [TypeScript](https://www.typescriptlang.org/).
 
 TypeScript provides an easy, familiar language (JavaScript), but with type safety, making it easy to get started writing zkApps. If you're new to using TypeScript, check out this helpful [12-min introductory video](https://www.youtube.com/watch?v=ahCwqrYpIuM).
 
-See [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) page to learn more.
+See [How to Write a zkApp](/) page to learn more.
 
 ### Quickstart
 
@@ -1870,13 +1870,13 @@ Play around with a few example zkApps to see what’s possible:
 
 ### Learn more
 
-To learn more about developing zkApps, read [how zkApps work](/zkapps/how-zkapps-work), [how to write a zkApp](/zkapps/how-to-write-a-zkapp), and [zkApps for Ethereum Developers](/zkapps/zkapps-for-ethereum-developers).
+To learn more about developing zkApps, read [how zkApps work](/), [how to write a zkApp](/), and [zkApps for Ethereum Developers](/).
 
-Try the [zkApps tutorials](/zkapps/tutorials/hello-world) to learn by doing!
+Try the [zkApps tutorials](/) to learn by doing!
 
 ### Get help
 
-Join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord. Participate and ask questions in [zkApps Developers Office Hours](/participate/office-hours).
+Join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord. Participate and ask questions in [zkApps Developers Office Hours](/).
 
 
 ---
@@ -1902,9 +1902,9 @@ zkApps can now be deployed to Berkeley Testnet.
 
 ### Mina zkApp CLI
 
-- [Scaffold projects & files](/zkapps/how-to-write-a-zkapp#option-b-start-your-own-project)
-- [Example projects](/zkapps/how-to-write-a-zkapp#option-a-start-with-an-example-recommended)
-- [Deployment](/zkapps/how-to-deploy-a-zkapp)
+- [Scaffold projects & files](/)
+- [Example projects](/)
+- [Deployment](/)
 - Create a project with an accompanying UI — SvelteKit, NextJS, or NuxtJS
 
 :::note
@@ -1915,27 +1915,27 @@ To view all commands offered by the zkApp CLI, install it via `npm install -g zk
 
 ### SnarkyJS
 
-- [Built-in data types](/zkapps/how-to-write-a-zkapp#built-in-data-types) — Field, Bool, UInt32, UInt64, PublicKey, PrivateKey, Signature, Group, Scalar, & CircuitString
-- [Custom data types](/zkapps/how-to-write-a-zkapp#custom-data-types) — a.k.a. Struct
-- [Composability](/zkapps/how-to-write-a-zkapp#composing-zkapps)
-- [Recursion](/zkapps/advanced-snarkyjs/recursion) — a.k.a. ZkProgram
-- [Events](/zkapps/advanced-snarkyjs/events) — writing events to the archive node
-- [Encryption & decryption](/zkapps/snarkyjs-reference/modules/Encryption) — using Mina’s curves
-- [Actions & reducer](/zkapps/advanced-snarkyjs/actions-and-reducer)
-- [Merkle tree](/zkapps/advanced-snarkyjs/merkle-tree)
-- [Custom tokens](/zkapps/advanced-snarkyjs/custom-tokens)
-- [Using on-chain values](/zkapps/advanced-snarkyjs/on-chain-values) — a.k.a. protocol & account preconditions
-- [Local blockchain](/zkapps/snarkyjs-reference/modules/Mina#localblockchain)
-- [And more...](/zkapps/snarkyjs-reference)
+- [Built-in data types](/) — Field, Bool, UInt32, UInt64, PublicKey, PrivateKey, Signature, Group, Scalar, & CircuitString
+- [Custom data types](/) — a.k.a. Struct
+- [Composability](/)
+- [Recursion](/) — a.k.a. ZkProgram
+- [Events](/) — writing events to the archive node
+- [Encryption & decryption](/) — using Mina’s curves
+- [Actions & reducer](/)
+- [Merkle tree](/)
+- [Custom tokens](/)
+- [Using on-chain values](/) — a.k.a. protocol & account preconditions
+- [Local blockchain](/)
+- [And more...](/)
 
 ### Data Availability
 
-- [On-chain state](/zkapps/how-to-write-a-zkapp#on-chain-state) — 8 x 32 bytes of arbitrary data per zkApp account
-- [Off-chain storage](/zkapps/tutorials/offchain-storage) — for Merkle tree data; see Tutorial 6
+- [On-chain state](/) — 8 x 32 bytes of arbitrary data per zkApp account
+- [Off-chain storage](/) — for Merkle tree data; see Tutorial 6
 
 ### Other
 
-- [Oracles](/zkapps/tutorials/oracle)
+- [Oracles](/)
 
 ## Next
 
@@ -2215,7 +2215,7 @@ In the near future, we want to add a function to retrieve actions from an archiv
 this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[][];
 ```
 
-Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapps/how-to-test-a-zkapp).
+Right now, `getActions` is available for [testing with `LocalBlockchain`](/).
 
 ### Actions for concurrent state updates
 
@@ -2227,7 +2227,7 @@ We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main
 
 ### Events vs Actions
 
-[Events](events) and Actions are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing merkle trees. Actions, on the other hand, can be accessed within provable code via Reducers as we see above. Both Events and Actions are not stored in the ledger and only exist on the transaction.
+[Events](/) and Actions are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing merkle trees. Actions, on the other hand, can be accessed within provable code via Reducers as we see above. Both Events and Actions are not stored in the ledger and only exist on the transaction.
 
 
 ---
@@ -2316,7 +2316,7 @@ For a more comprehensive example of how to use custom tokens with a zkApp, pleas
 
 ## Authorization
 
-When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
+When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/).
 
 There are two ways for a token owner to approve a transaction, one being a **signature** and the other being a **proof**.
 
@@ -2520,7 +2520,7 @@ class SmartContract {
 
 ### Events vs Actions
 
-Events and [Actions](actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees as we see above. Actions, on the other hand, can be accessed within provable code within a smart contract using a Reducer, because a commitment to the relevant actions (i.e. the "action state") is stored on the zkApp account. Neither Events nor Actions are stored directly in the Mina ledger and exist only in the transaction and on archive nodes.
+Events and [Actions](/) are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees as we see above. Actions, on the other hand, can be accessed within provable code within a smart contract using a Reducer, because a commitment to the relevant actions (i.e. the "action state") is stored on the zkApp account. Neither Events nor Actions are stored directly in the Mina ledger and exist only in the transaction and on archive nodes.
 
 
 ---
@@ -2727,7 +2727,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # On-Chain Values
 
-We already saw how you can access the current [on-chain state](/zkapps/how-to-write-a-zkapp#on-chain-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+We already saw how you can access the current [on-chain state](/) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
 
 Just to give you an idea, here are two possible use cases:
 
@@ -2889,7 +2889,7 @@ this.account.timing.set(value: Timing);
 ### Accessing other accounts than the zkApp's
 
 The API described in this section (get / set / assertEquals / ...) can not only be used to access the zkApp account itself, but also any other account.
-To do so, just create an [account update](/zkapps/how-to-write-a-zkapp#transactions-and-account-updates) — you'll find the same `account` / `network` fields API on it:
+To do so, just create an [account update](/) — you'll find the same `account` / `network` fields API on it:
 
 ```ts
 let accountUpdate = AccountUpdate.create(address);
@@ -2976,7 +2976,7 @@ This Permission determines who can increment the nonce on this account with a tr
 `setVotingFor`: The permissions corresponding to the ability to set the chain hash for this account. 
 The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
 
-`access`: This Permission is more restrictive than all the others combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, this can be set to require no authorization. However, for [token manager contracts](custom-tokens), `access` should require at least proof authorization, so that token interactions must be approved by calling one of the token manager's methods.
+`access`: This Permission is more restrictive than all the others combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, this can be set to require no authorization. However, for [token manager contracts](/), `access` should require at least proof authorization, so that token interactions must be approved by calling one of the token manager's methods.
 
 `setTiming`: The permission corresponding to the ability to control the vesting schedule of time-locked accounts.
 
@@ -3239,7 +3239,7 @@ Kimchi, the proof system that backs SnarkyJS, supports arbitrary infinite recurs
 
 1. Mina uses linear recursive proofs to compress the blockchain, an infinitely growing structure, down to a constant size.
 2. Mina also uses "rollup-like" tree-based recursive proofs to _in parallel_ compress transactions within blocks down to a constant size.
-3. The [Mastermind game](link to example) uses linear recursive proofs, an example of an application-specific rollup, to progress the state-machine of the application without needing to sync back to the game.
+3. The [Mastermind game](/) uses linear recursive proofs, an example of an application-specific rollup, to progress the state-machine of the application without needing to sync back to the game.
 4. App-specific rollups can use recursion to communicate to each other, sort like app chains using IBC or parachains using XCVM to send messages.
 
 More generally, we can use recursion to verify any zero knowledge program as part of our zkApp.
@@ -3569,7 +3569,7 @@ In this tutorial, we will code a zkApp step by step, from start to finish.
 
 We will write a basic smart contract that stores a number as on-chain state and contains logic to only allow this number to be replaced by its square (e.g. 2 -> 4 -> 16...). We will create this project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli), write our smart contract code, and then use a local Mina blockchain to interact with it.
 
-Later tutorials will introduce further concepts and patterns. But we hope this helps you get started with SnarkyJS, zkApps, and programming with zero knowledge proofs. Then you can go further by reading the [zkApps docs](/zkapps) and additional tutorials.
+Later tutorials will introduce further concepts and patterns. But we hope this helps you get started with SnarkyJS, zkApps, and programming with zero knowledge proofs. Then you can go further by reading the [zkApps docs](/) and additional tutorials.
 
 You can find the full source code for this example [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world).
 
@@ -3776,7 +3776,7 @@ Since we're extending `SmartContract`, which has its own initialization to perfo
 
 Then we initialize our on-chain state, `num`, to a value of `3`.
 
-We can also optionally [specify permissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions) here.
+We can also optionally [specify permissions](/) here.
 
 Lastly, we will add our update function:
 
@@ -3801,7 +3801,7 @@ This is accomplished through using "assertions" within our method. When a user i
 
 Notice that we have `get()` and `set()` methods for retrieving and setting on-chain state. A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it. Similarly, using `set()` will change the transaction to indicate we want to change this particular on-chain state, but it will only be updated when the transaction is received by the Mina network if it contains a valid authorization (i.e. a proof usually).
 
-Our logic also uses the `.mul()` method for multiplication of our values stored in fields. You can view all available methods in the [SnarkyJS reference](/zkapps/snarkyjs-reference). Keep in mind that _all functions used inside your smart contract must operate on SnarkyJS compatible data types (e.g. Fields and other types built on top of Fields)_. This is to say, functions from random NPM packages won't work inside our smart contract, because it's really a zero-knowledge circuit, unless the functions it provides operate on SnarkyJS-compatible data types.
+Our logic also uses the `.mul()` method for multiplication of our values stored in fields. You can view all available methods in the [SnarkyJS reference](/). Keep in mind that _all functions used inside your smart contract must operate on SnarkyJS compatible data types (e.g. Fields and other types built on top of Fields)_. This is to say, functions from random NPM packages won't work inside our smart contract, because it's really a zero-knowledge circuit, unless the functions it provides operate on SnarkyJS-compatible data types.
 
 **Importantly, data passed as an input to smart contract method in SnarkyJS is private and never seen by the network.** But you can also store data publicly on-chain when needed, such as we do with our `num` in this example. A later tutorial will cover an example leveraging privacy.
 
@@ -4039,7 +4039,7 @@ Shutting down
 
 Congrats! We have finished building our first zkApp with SnarkyJS.
 
-Checkout [Tutorial 2](private-inputs-hash-functions) to learn how to use private inputs and hash functions with SnarkyJS.
+Checkout [Tutorial 2](/) to learn how to use private inputs and hash functions with SnarkyJS.
 
 
 ---
@@ -4065,7 +4065,7 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 
 ## Overview
 
-In our previous tutorial, [Hello World](hello-world), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
+In our previous tutorial, [Hello World](/), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
 
 In this tutorial, we will discuss private inputs and hash functions.
 
@@ -4077,7 +4077,7 @@ We will build a smart contract with a piece of private state, that can be modifi
 
 ## Setup
 
-The following steps assume you've installed dependencies to your machine as described in the [previous tutorial](hello-world) — if not, please do that first.
+The following steps assume you've installed dependencies to your machine as described in the [previous tutorial](/) — if not, please do that first.
 
 Now, setup a new project with:
 
@@ -4128,7 +4128,7 @@ Begin by writing:
   5 }
 ```
 
-This just adds the basic setup for our smart contract — see [Tutorial 01 Hello World](hello-world) for more on this.
+This just adds the basic setup for our smart contract — see [Tutorial 01 Hello World](/) for more on this.
 
 Now, we will add an `initState()` method. This is intended to run once to set up the initial state on the zkApp account.
 
@@ -4232,7 +4232,7 @@ The `state` strings will be different though, because we used `Field.random()` t
 
 Congrats! We have finished building a smart contract that uses privacy and hash functions.
 
-Checkout [Tutorial 3](deploying-to-a-network) to learn how to deploy zkApps to a live network.
+Checkout [Tutorial 3](/) to learn how to deploy zkApps to a live network.
 
 
 ---
@@ -4262,7 +4262,7 @@ In previous tutorials, we've seen how to deploy and run transactions on a local 
 
 Mina's zkApps are currently available on Berkeley, Mina's public testnet, which is in its final stages of testing before Mainnet. In this tutorial, we will deploy our contract to the Berkeley Testnet. Berkeley is feature complete, and only minor changes and bugfixes are expected before Mainnet.
 
-We will reuse the same smart contract from [Tutorial 1](hello-world), the `Square` contract.
+We will reuse the same smart contract from [Tutorial 1](/), the `Square` contract.
 
 ## Project setup
 
@@ -4292,7 +4292,7 @@ That's all for setup - let's proceed to deploying to Berkeley Testnet.
 
 ## Deploying the smart contract
 
-A CLI tool is provided for convenience for deploying smart contracts to networks. If you need more custom account creation for your zkApp - say deploying a zkApp to a different key than the fee payer key, programmatically parameterizing a zkApp before initializing it, or creating a Smart Contract programmatically for users as part of an application - see the server-side tutorial mentioned in the [conclusion](#conclusion).
+A CLI tool is provided for convenience for deploying smart contracts to networks. If you need more custom account creation for your zkApp - say deploying a zkApp to a different key than the fee payer key, programmatically parameterizing a zkApp before initializing it, or creating a Smart Contract programmatically for users as part of an application - see the server-side tutorial mentioned in the [conclusion](/).
 
 ### zk config
 
@@ -4409,9 +4409,9 @@ When we change our code, the verification key associated with it will change, an
 
 We have finished deploying to a live network using the zkApp CLI!
 
-If you would like to learn how to build server-side scripts that interact with zkApps, see that tutorial [here](./interacting-with-zkapps-server-side).
+If you would like to learn how to build server-side scripts that interact with zkApps, see that tutorial [here](/).
 
-Checkout [Tutorial 4](zkapp-ui-with-react) to learn how to zkApp UIs with ReactJS that run in the browser with a wallet.
+Checkout [Tutorial 4](/) to learn how to zkApp UIs with ReactJS that run in the browser with a wallet.
 
 
 ---
@@ -4431,7 +4431,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 ## Overview
 
-In previous tutorials, we've seen how to [write zkApps](hello-world) and [deploy them to a network](deploying-to-a-network).
+In previous tutorials, we've seen how to [write zkApps](/) and [deploy them to a network](/).
 
 In this tutorial, we will implement a browser UI using ReactJS that interacts with a smart contract running on Berkeley.
 
@@ -4884,7 +4884,7 @@ We have built a React UI for our zkApp, to allow users to interact with our smar
 
 You can build a UI for your application using any UI framework, not just React. The zkApp CLI will also soon provide support for simultaneously creating SvelteKit and NuxtJS projects too - stay tuned!
 
-Checkout [Tutorial 5](common-types-and-functions) to learn about different SnarkyJS types you can use in your application.
+Checkout [Tutorial 5](/) to learn about different SnarkyJS types you can use in your application.
 
 
 ---
@@ -4912,7 +4912,7 @@ In previous tutorials, we've seen how to deploy smart contracts to the network, 
 
 In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development.
 
-You can find all of these on the [SnarkyJS Reference page](../snarkyjs-reference), for their full API documentation.
+You can find all of these on the [SnarkyJS Reference page](/), for their full API documentation.
 
 There is also a project [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src), with a [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) demoing the concepts presented in this tutorial, along with smart contracts showing more advanced usage of some of the concepts, particularly Merkle Trees.
 
@@ -4920,11 +4920,11 @@ There is also a project [here](https://github.com/o1-labs/docs2/tree/main/exampl
 
 To start, we'll discuss 5 basic types derived from the Fields:
 
-- [Bool](../snarkyjs-reference/classes/Bool)
-- [UInt32](../snarkyjs-reference/classes/UInt32)
-- [UInt64](../snarkyjs-reference/classes/UInt64)
-- [Int64](../snarkyjs-reference/classes/Int64)
-- [Character](../snarkyjs-reference/classes/Character)
+- [Bool](/)
+- [UInt32](/)
+- [UInt64](/)
+- [Int64](/)
+- [Character](/)
 
 These each have their usual programming language semantics.
 
@@ -4976,10 +4976,10 @@ Fields in char1: 1
 
 4 more advanced types are:
 
-- [CircuitString](../snarkyjs-reference/classes/CircuitString)
-- [PrivateKey](../snarkyjs-reference/classes/PrivateKey)
-- [PublicKey](../snarkyjs-reference/classes/Types.PublicKey)
-- [Signature](../snarkyjs-reference/classes/Signature)
+- [CircuitString](/)
+- [PrivateKey](/)
+- [PublicKey](/)
+- [Signature](/)
 
 All arguments passed into smart contracts need to be arguments SnarkyJS can understand. This means that we can't just pass normal strings - we need to pass in strings that have been wrapped to be compatible with circuits, which is what `Struct` accomplishes.
 
@@ -5038,7 +5038,7 @@ If you're curious why there are 255 Fields in a private key and 256 in a signatu
 
 ## Struct
 
-A special type is [Struct](../snarkyjs-reference#struct), which lets you create your own compound data types.
+A special type is [Struct](/), which lets you create your own compound data types.
 
 Your Struct can be defined as one or more data types that SnarkyJS understands, i.e. Field, higher-order types built into SnarkyJS based on Field, or other Struct types defined by you. You can also define methods on your Struct to act upon this data type, if desired, but doing so is optional.
 
@@ -5083,8 +5083,8 @@ points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20
 
 There are two functions which help do control flow within SnarkyJS:
 
-- [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
-- [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
+- [Circuit.if](/)
+- [Circuit.switch](/)
 
 `Circuit.if` is similar to a ternary in JavaScript. `Circuit.switch` is similar to a switch case statement in JavaScript.
 
@@ -5156,11 +5156,11 @@ Circuits in SnarkyJS currently have a fixed maximum size. Each operation perform
 - about `2^17` field multiplies
 - about `2^17` field additions
 
-If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion).
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](/).
 
 ## Merkle Trees
 
-Lastly, let's go over an example using [merkle trees](../snarkyjs-reference/classes/MerkleTree). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts).
+Lastly, let's go over an example using [merkle trees](/). Merkle trees are very powerful, since they let us manage large amounts of data within a circuit. In the [project corresponding to this tutorial](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src), you can find a full reference for the example here. The contract can be found in [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts), and the example can be found in a section of [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts).
 
 Start off by importing `MerkleTree`:
 
@@ -5283,7 +5283,7 @@ You can find this complete example in the [project directory](https://github.com
 
 ## Merkle Map
 
-Lastly, let's go over an example using [merkle maps](../snarkyjs-reference/classes/MerkleMap). These allow us to implement key value stores.
+Lastly, let's go over an example using [merkle maps](/). These allow us to implement key value stores.
 
 The API for Merkle Maps is similar to Merkle Trees, just instead of using an index to set a leaf, one uses a key:
 
@@ -5372,7 +5372,7 @@ MerkleMaps can be used to implement many useful patterns. For example:
 
 Congrats! We have finished reviewing more common types and functions in SnarkyJS. With this, you should now be capable of writing many advanced smart contracts and zkApps.
 
-Checkout [Tutorial 6](offchain-storage) to learn how to use off-chain storage, to use more data from your zkApp.
+Checkout [Tutorial 6](/) to learn how to use off-chain storage, to use more data from your zkApp.
 
 
 ---
@@ -5401,16 +5401,16 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 :::caution
 This tutorial provides a single-server solution to data storage. This is useful for prototyping zkApps and building zkApps where some trust guarantees are reasonable, but should not be used for zkApps that require trustlessness. It is intended as one of several options for data availability on Mina.
 
-If you are interested in improving this library to make it more decentralized and useful in production, see the [further development](#further-development-of-single-server-off-chain-storage) section below.
+If you are interested in improving this library to make it more decentralized and useful in production, see the [further development](/) section below.
 :::
 
-In [Tutorial 5, Common Types and Functions](common-types-and-functions), we ended by learning about merkle trees, and how we can use them to refer to large amounts of data stored off chain, by storing only the tree's root hash on chain
+In [Tutorial 5, Common Types and Functions](/), we ended by learning about merkle trees, and how we can use them to refer to large amounts of data stored off chain, by storing only the tree's root hash on chain
 
 In this tutorial, we will share a library and pattern for working with storing merkle trees off-chain, with only the root of the merkle tree stored on chain.
 
 We intend for this tutorial to be useful towards unlocking a larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
 
-Feel free to skip ahead to the [implementation section](#implementing-a-project-using-off-chain-storage) If you want to jump into how to use single server off-chain storage for prototyping applications. Otherwise, read on to understand more about the different options for off-chain storage, their tradeoffs, and how the single-server solution shared here fits in.
+Feel free to skip ahead to the [implementation section](/) If you want to jump into how to use single server off-chain storage for prototyping applications. Otherwise, read on to understand more about the different options for off-chain storage, their tradeoffs, and how the single-server solution shared here fits in.
 
 ## Why Off-Chain Storage?
 
@@ -5446,7 +5446,7 @@ See the library [here](https://github.com/es92/zkApp-offchain-storage) if you'd 
 
 ### Further Development of Single-Server Off-Chain Storage
 
-We're looking for a developer to run with the library presented here, improve it, make it more decentralized, and run instances for the community. There is a grant opportunity for taking this on. If interested, please reach out [here](mailto:build@minaprotocol.com).
+We're looking for a developer to run with the library presented here, improve it, make it more decentralized, and run instances for the community. There is a grant opportunity for taking this on. If interested, please reach out [here](/).
 
 Some suggested improvements:
 
@@ -5785,7 +5785,7 @@ That completes our review of the code to interact with the off-chain storage ser
 
 Congrats! We have finished building a smart contract that leverages off-chain storage
 
-Checkout [Tutorial 7](oracle) to learn how to use Oracles, to pull in data from the outside world into your zkApp.
+Checkout [Tutorial 7](/) to learn how to use Oracles, to pull in data from the outside world into your zkApp.
 
 
 ---
@@ -5889,7 +5889,7 @@ Now that we have an oracle that returns signed data, we will write a smart contr
 
 ### Setup
 
-The following steps assume you've installed dependencies to your machine as described in [Tutorial 1: Hello World](hello-world) — if not, please do that first.
+The following steps assume you've installed dependencies to your machine as described in [Tutorial 1: Hello World](/) — if not, please do that first.
 
 Now, set up a new project with:
 
@@ -5978,7 +5978,7 @@ export class OracleExample extends SmartContract {
 }
 ```
 
-This just adds the basic setup for our smart contract. For more details on the `deploy()` method — see [Tutorial 1: Hello World](hello-world).
+This just adds the basic setup for our smart contract. For more details on the `deploy()` method — see [Tutorial 1: Hello World](/).
 
 ## On-Chain State
 
@@ -6295,7 +6295,7 @@ You might have to try it twice in order for all the tests to pass because we're 
 
 Congratulations! You have just built a simple oracle using SnarkyJS and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
 
-Checkout [Tutorial 8](custom-tokens) to learn how to launch and use custom tokens.
+Checkout [Tutorial 8](/) to learn how to launch and use custom tokens.
 
 
 ---
@@ -6450,9 +6450,9 @@ This will come in a future part of this tutorial. For now, see this example [her
 
 We have finished building a smart contract to manage a token, and shown how to build a smart contract that places custom rules over tokens!
 
-To learn more on tokens, see [the token docs](/zkapps/advanced-snarkyjs/custom-tokens).
+To learn more on tokens, see [the token docs](/).
 
-Checkout [Tutorial 9](recursion) to learn how to use recursive ZKPs with SnarkyJS, to implement zkRollups, large computations, and more.
+Checkout [Tutorial 9](/) to learn how to use recursive ZKPs with SnarkyJS, to implement zkRollups, large computations, and more.
 
 
 ---
@@ -6500,7 +6500,7 @@ Recursive zero knowledge proofs also make it easy to allow multiple parties to c
 
 ## ZkProgram
 
-Recursive zkApps are built using [ZkProgram](../../zkapps/snarkyjs-reference/modules/Experimental#zkprogram). ZkProgram is similar to the zkApp smart contracts we’ve seen before, but aren’t tied to an on-chain account.
+Recursive zkApps are built using [ZkProgram](/). ZkProgram is similar to the zkApp smart contracts we’ve seen before, but aren’t tied to an on-chain account.
 
 Proofs generated via ZkProgram can be passed into zkApp smart contracts (for them to verify recursively), and can even be passed recursively into their own functions for off-chain recursive composition.
 
@@ -6784,7 +6784,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # Anonymous Message Board Tutorial
 
-[How to write a zkApp](/zkapps/how-to-write-a-zkapp) provides a high-level overview of everything you need to know to build applications
+[How to write a zkApp](/) provides a high-level overview of everything you need to know to build applications
 on Mina. This tutorial will put these ideas into practice as we walk through the
 design and implementation of a semi-anonymous messaging protocol.
 
@@ -7071,7 +7071,7 @@ If everything is correct, you should see a new `./build` directory. This is wher
 ## Integrating with a User Interface (Coming Soon)
 
 <!--
-One of the benefits of writing smart contracts in TypeScript, is that the compiled JavaScript and WASM smart contract is easy to [integrate into your website UI](./zkapps/how-to-write-a-zkapp-ui).
+One of the benefits of writing smart contracts in TypeScript, is that the compiled JavaScript and WASM smart contract is easy to [integrate into your website UI](/).
 
 We won’t make you write a UI for this tutorial, but we have created a simple command-line interface so you can interact with your smart contract as a user to get a sense of how it works, and experiment with what you have just built. You can clone it from [this](https://github.com/) repository.
 
@@ -7151,9 +7151,9 @@ While user-facing zkApps can be written for the browser, sometimes it is useful 
 
 This tutorial shows how to do this. This can be useful when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real world or on-chain events.
 
-To start this tutorial, read and complete [Tutorial 3](deploying-to-a-network), to see how to deploy a smart contract. We will use the same project used in Tutorial 3.
+To start this tutorial, read and complete [Tutorial 3](/), to see how to deploy a smart contract. We will use the same project used in Tutorial 3.
 
-Note Tutorial 3, and this tutorial, reuse the smart contract `Square` from [Tutorial 1](hello-world).
+Note Tutorial 3, and this tutorial, reuse the smart contract `Square` from [Tutorial 1](/).
 
 ## Interacting with our deployed Smart Contract
 
@@ -7217,7 +7217,7 @@ We also set a transaction fee, which we'll use to pay for access to sending tran
 
 :::note
 
-While in this case we are connecting to a remote RPC (run by `minaexplorer.com`), you can also run a Mina node locally, and instead use its GraphQL endpoint. While in other blockchains this would be very heavyweight, because Mina is succinct this is actually a reasonable option. See [here](/node-operators/getting-started) to see how to do this.
+While in this case we are connecting to a remote RPC (run by `minaexplorer.com`), you can also run a Mina node locally, and instead use its GraphQL endpoint. While in other blockchains this would be very heavyweight, because Mina is succinct this is actually a reasonable option. See [here](/) to see how to do this.
 
 A version of the Mina node is in the works that runs directly in the browser and within the local node process, so client side users can connect directly to Mina with low resource requirements, while keeping full decentralization guarantees, with no intermediaries that can go down, censor, or otherwise impact you or your users' connection to the network.
 

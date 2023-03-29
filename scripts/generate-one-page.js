@@ -20,7 +20,7 @@ const excludedDirs = ['snarkyjs-reference'];
 // List of specific files to be excluded from the combining process (make sure to include the file extension)
 const excludedFiles = [''];
 // Output file path for the combined markdown file
-const outputFilePath = `${process.cwd()}/src/one-page.mdx`;
+const outputFilePath = `${docsDirectory}/onepage.mdx`;
 
 // Check if a directory is in the list of excluded directories
 function isExcludedDir(dir) {
