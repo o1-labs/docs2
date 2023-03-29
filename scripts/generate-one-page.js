@@ -37,6 +37,17 @@ function prependDocsDir(dir) {
   return path.join(docsDirectory, dir);
 }
 
+// Remove any internal links from the markdown content.
+// This is done to prevent any site building errors that contain incorrect links as a result of gathering markdown from different directories.
+function removeInternalLinks(content) {
+  // Regex to match Markdown links without http or https
+  const internalLinkRegex = /\[(.*?)\]\((?!http[s]?)(.*?)\)/g;
+  // Replace internal links with only the text inside square brackets
+  return content.replace(internalLinkRegex, (_, p1) => {
+    return `[${p1}](/)`;
+  });
+}
+
 /**
  * The combineFiles function is called recursively to traverse the input directories
  * and their subdirectories. It reads the markdown files, appends their content to
@@ -60,7 +71,8 @@ function combineFiles(inputDir, outputFile) {
         !isExcludedFile(entry.name)
       ) {
         const fileContent = fs.readFileSync(entryPath, 'utf8');
-        fs.appendFileSync(outputFile, fileContent + '\n\n');
+        const updatedContent = removeInternalLinks(fileContent);
+        fs.appendFileSync(outputFile, updatedContent + '\n\n');
       } else if (entry.isDirectory() && !isExcludedDir(entry.name)) {
         combineFiles(entryPath, outputFile);
       }
