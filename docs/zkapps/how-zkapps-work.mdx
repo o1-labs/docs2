@@ -19,13 +19,13 @@ zkApps run in the latest versions of <a href="https://www.google.com/chrome/inde
 
 <br />
 
-zkApps are written in TypeScript using the Mina zkApp CLI. In the [how to write a zkApp](how-to-write-a-zkapp) section, you learn about writing your first zkApp. First, learn  how zkApps work.
+zkApps are written in TypeScript using the Mina zkApp CLI. In the upcoming [how to write a zkApp](how-to-write-a-zkapp) section, you learn the details about writing your first zkApp. For now, get started by learning how zkApps work.
 
-A “zkApp” consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.
+A “zkApp” consists of two parts: 1) a smart contract and 2) a UI (user interface) for users to interact with it.
 
 <figure>
   <img src="/img/3_zkApps_Structure.jpg" width="100%" />
-  <figcaption>zkApps consists of two parts: 1) a smart contract and 2) an UI (user interface) for users to interact with it.</figcaption>
+  <figcaption>zkApps consists of two parts: 1) a smart contract and 2) a UI (user interface) for users to interact with it.</figcaption>
 </figure>
 
 <br />
@@ -101,11 +101,9 @@ When you deploy to a new Mina address, the Mina Protocol charges a 1 MINA fee fo
 <img src="/img/7_zkApps_DeploySmartContract.jpg" width="95%" />
 <br></br>
 
-zkApp developers usually build a UI to allow users to interact with the smart contract.
+zkApp developers usually build a UI to allow users to interact with the smart contract and then deploy this interactive UI as a static website. To achieve the best user experience, zkApp developers deploy the UI static website to a recommended web host that offers a global content delivery network (CDN).
 
-Typically, this static website is deployed to a host of the developer’s choosing.  Recommend web hosts offer a global CDN to ensure the best user experience.
-
-Your website must contain the `smart_contract.js` file that was generated when building your smart contract. See [how to write a zkApp](how-to-write-a-zkapp) page for more detail.
+Your website must contain the `smart_contract.js` file that was generated when you built the smart contract. For more detail, see [how to write a zkApp](how-to-write-a-zkapp).
 
 <img src="/img/8_zkApps_DeploySmartContract.jpg" width="95%" />
 
@@ -131,13 +129,13 @@ After a zkApp is deployed to a host (e.g. mycoolzkapp.com), users can interact w
 
 Because the user’s interaction occurs _locally_ within their web browser (using JavaScript on the client), the user’s privacy is maintained.
 
-### How is state updated on chain
+### How state is updated on chain
 
 Now you have learned enough to wonder how the state on a zkApp account gets updated on chain. 
 
-When the prover function runs in a web browser, the smart contract outputs a proof and some associated data called “events”. This is sent as part of the transaction when sending a transaction to a zkApp address. These events are a JSON plaintext description that describes how to update the state on a zkApp account.
+When the prover function runs in a web browser, the smart contract outputs a proof and some associated data called "account updates" that are sent as part of the transaction when sending a transaction to a zkApp address. The account updates are a JSON plaintext description that describe how to update the state on a zkApp account.
 
-The integrity of these events is ensured by passing a hash of these events as a public input to the smart contract. The events must be present and unmodified for the verification function to pass successfully when it runs on Mina. In this way, the Mina network can confirm the integrity of both the proof and the associated events which describe how to update the zkApp account’s state.
+The integrity of these account updates is ensured by passing a hash of the account updates as a public input to the smart contract. The account updates must be present and unmodified for the verification function to pass successfully when it runs on Mina. In this way, the Mina network can confirm the integrity of both the proof and the associated account updates that describe how to update the zkApp account’s state.
 
 ### ZkApp state
 

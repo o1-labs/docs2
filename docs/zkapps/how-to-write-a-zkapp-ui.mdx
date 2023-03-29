@@ -240,7 +240,7 @@ href="https://docs.aurowallet.com/general/reference/api-reference/mina-provider-
 If an assertion exception occurs while a user interacts with any of your smart contract methods, you want to capture this and display a helpful message for the user in your UI.
 
 1. Use a try-catch statement to catch exceptions when a user invokes a method on your smart contract.
-2. Use a switch-case statement to identify which exception was thrown. You want a matching case for each unique assertion within your method. To assist with this, you may consider setting custom error messages for your assertions while writing the smart contract--for example: `INSUFFICIENT_BALANCE`.
+2. Use a switch-case statement to identify which exception was thrown. Add a matching case for each unique assertion within your method. To assist with this, you may consider setting custom error messages for your assertions while writing the smart contract--for example: `INSUFFICIENT_BALANCE`.
 3. Display a helpful error message for the user within your UI.
 
 ```ts

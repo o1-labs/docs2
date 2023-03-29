@@ -27,7 +27,7 @@ class MyContract extends SmartContract {
 
 Contrary to events, for actions you only have one type per smart contract; they also don't have a name. The `actionType` in this example is `Field`.
 
-On a `reducer`, you have two functions: `reducer.dispatch` and `reducer.reduce`. "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
+On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce()`. "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
 
 ```ts
 this.reducer.dispatch(Field(1000));
