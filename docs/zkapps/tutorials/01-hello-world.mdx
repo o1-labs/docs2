@@ -66,13 +66,13 @@ To verify your installed versions, use `npm -v`, `node -v`, and `git -v`.
 To install the zkApp CLI:
 
 ```sh
-npm install -g zkapp-cli
+$ npm install -g zkapp-cli
 ```
 
 To confirm successful installion:
 
 ```sh
-zk --version
+$ zk --version
 ```
 
 This tutorial has been tested with Mina zkApp CLI version `0.6.4` and SnarkyJS `0.8.0`.
@@ -84,7 +84,7 @@ Now that you have the tooling installed, you can start building your application
 First, create a new project using the `zk project` command:
 
 ```sh
-zk project 01-hello-world
+$ zk project 01-hello-world
 ```
 
 This command creates a directory named `01-hello-world` that contains the scaffolding for your project, including tools such as Prettier, ESLint, and Jest.
@@ -167,13 +167,13 @@ $ node build/src/main.js
 
 The first command creates JavaScript code in the build directory. The second command runs the code in `src/main.ts`.
 
-You can also combine these together into one line, such as:
+You can also combine these commands together into one line, such as:
 
 ```
 npm run build && node build/src/main.js
 ```
 
-This command runs `main` if the build is successful.
+After you create a working smart contract, this command runs `main` if the build is successful. For now, command failure is the expected result.  
 
 ## Write the zkApp Smart Contract
 
@@ -196,7 +196,11 @@ Or you can follow the steps to copy and paste the code snippets into your projec
 
 ### Imports
 
-First, open `src/Square.ts` in your editor, then add the following code at the top of the file:
+First, open `src/Square.ts` in your editor.
+
+- If you already copied the contents of the example file, then review these lines. 
+
+- If you are adding the code as you go, add the following code at the top of the file.
 
 ```ts src/Square.ts
 1 import {
@@ -210,7 +214,7 @@ First, open `src/Square.ts` in your editor, then add the following code at the t
 
 These fields are:
 
-- `Field`: The native "number" type in SnarkyJS. You can think of these as unsigned integers. These fields are the most basic type in SnarkyJS and are what all other SnarkyJS-compatible types are built on top of.
+- `Field`: The native number type in SnarkyJS. You can think of Fields as unsigned integers. Fields are the most basic type in SnarkyJS and are what all other SnarkyJS-compatible types are built on top of.
 - `SmartContract`: The class that creates zkApp smart contracts.
 - `state`: a convenience decorator used within zkApp smart contracts to create references to state stored on-chain in a zkApp account.
 - `State`: a class used within zkApp smart contracts to create state stored on-chain in a zkApp account.
@@ -230,7 +234,7 @@ To create a new smart contract called `Square` with one element of on-chain stat
 12 }
 ```
 
-zkApps can have up to 8 Fields of on-chain state, each storing up to 32 bytes (technically, 31.875 bytes or 255 bit) of arbitrary data. A later tutorial covers options for off-chain state.
+zkApps can have up to eight Fields of on-chain state. Each field stores up to 32 bytes (technically, 31.875 bytes or 255 bit) of arbitrary data. A later tutorial covers options for off-chain state.
 
 Now, add the `init` method:
 
