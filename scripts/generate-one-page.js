@@ -57,7 +57,6 @@ function removeInternalLinks(content) {
  * @param {string} outputFile - The output file path for the combined markdown content
  */
 function combineFiles(inputDir, outputFile) {
-  console.log(inputDir);
   fs.readdir(inputDir, { withFileTypes: true }, (err, entries) => {
     if (err) {
       console.error('Error reading directory: ', err);
