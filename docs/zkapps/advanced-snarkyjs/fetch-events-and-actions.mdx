@@ -10,9 +10,9 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # How to Fetch Events and Actions
 
-[Events](#events) and [Actions](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction: 
+[Events](#events) and [Actions](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction:
 
-- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs. You can also use events for reconstructing Merkle trees. 
+- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs. You can also use events for reconstructing Merkle trees.
 
 - Actions can be accessed within provable code by using reducers.
 
@@ -24,7 +24,7 @@ Events and actions are not stored in the ledger and exist only on the transactio
 
 Since Mina nodes do not store historical network information and events and actions are not kept on-chain, emitted events and actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events and actions from one or more Mina archive nodes.
 
-The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly. 
+The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly.
 
 ## Using the Archive Node with SnarkyJS
 
