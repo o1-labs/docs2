@@ -49,7 +49,13 @@ Some other important facts about events:
 - Events are not stored on-chain. Only events from the most recent couple of transactions are retained by consensus nodes. After that, they will be discarded, but are still accessible on archive nodes. In the near future, we plan to add an API to easily fetch events from an archive node.
 - You can't refer to previously emitted events in a smart contract, because there is no way of proving that the events you refer to are actually the events emitted by that contract.
 
-This is all you need to know about events! Think of them as a convenience feature -- a light-weight way of attaching information about your smart contract execution, which would otherwise get lost. Don't treat them as fully-fledged storage which can be safely accessed in smart contracts.
+:::tip
+
+If your smart contract needs to fetch events from an archive node, see [How to Fetch Events and Actions](fetch-events-and-actions).
+
+:::
+
+This is all you need to know about events! Think of them as a convenience feature -- a light-weight way of attaching information about your smart contract execution, which would otherwise get lost. Don't treat them as fully-fledged storage that can be safely accessed in smart contracts.
 
 ### Events: API reference
 
@@ -61,58 +67,3 @@ class SmartContract {
 }
 ```
 
-### Fetching Events from an Archive Node
-
-Since Mina nodes do not store historical network information and events are not kept on-chain, emitted events are preserved only in the archive node. To see how to work with events within your zkApp, see [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs).
-
-If your smart contract needs to fetch events from an archive node, simply provide an `archive` property within the object passed into `Mina.Network({mina: '...', archive: '...'})`. Its value should be the URL for the GraphQL API service that you want to use. If this property does not exist, an error will occur.
-
-You can set the `archive` property to one of the following endpoints:
-
-```sh
-https://api.minascan.io/archive/berkeley/v1/graphql
-```
-
-```sh
-https://archive.berkeley.minaexplorer.com
-```
-
-For example:
-
-```ts
-const Network = Mina.Network({
-  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
-  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
-});
-Mina.setActiveInstance(Network);
-```
-
-Within your smart contract, you can use `fetchEvents()` to retrieve events emitted by your smart contract as part of previous transactions.
-
-```ts
-const zkapp = new MyContract(address);
-// Fetch all events from zkapp starting at block 0
-const events = await zkapp.fetchEvents(UInt32.from(0));
-
-// Fetch all events starting at block 560 and ending at block 600
-const events = await zkapp.fetchEvents(UInt32.from(560), UInt32.from(600));
-
-// Fetch all events for a given address
-const fetchedEvents = await fetchEvents({
-  publicKey: 'B62qrfn5xxChtPGJne9HuDJZ4ziWVgWxeL3hntGBqMmf45p4hudo3tw',
-});
-```
-
-By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block, and if the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
-
-To see a end-to-end example of zkApp fetching events from a running network, see this voting app example in the [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file in examples provided in the codebase repo.
-
-### Events vs Actions
-
-Events and [Actions](actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction.
-
-- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing Merkle trees.
-
-- Actions can be accessed within provable code within a smart contract using a Reducer because a commitment to the relevant actions (for example, the action state) is stored on the zkApp account.
-
-Events and Actions exist only in the transaction and on archive nodes. Events and actions are not stored directly in the Mina Ledger.
