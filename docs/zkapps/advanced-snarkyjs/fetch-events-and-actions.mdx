@@ -10,7 +10,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # How to Fetch Events and Actions
 
-[Events](events) and [Actions & Reducer](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction: 
+[Events](#events) and [Actions](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction: 
 
 - Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs. You can also use events for reconstructing Merkle trees. 
 
@@ -128,4 +128,4 @@ const fetchedEvents = await fetchEvents({
 
 By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block. If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
-To see a end-to-end example of zkApp fetching events from a running network, see the example [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file that is provided in the codebase repo.
+To see an end-to-end example of zkApp fetching events from a running network, see the example [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file that is provided in the codebase repo.
