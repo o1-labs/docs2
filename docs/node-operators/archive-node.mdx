@@ -14,6 +14,12 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 Mina nodes are succinct by default, meaning they don't need to maintain historical information about the network, block, or transactions.
 For some usecases, it is useful to maintain this historical data, which you can do by running an **Archive Node.**
 
+:::tip
+
+To use the archive node with SnarkyJS, see [How to Fetch Events and Actions](#fetch-events-and-actions).
+
+:::
+
 An **Archive Node** is just a regular mina daemon that is connected to a running archive process.
 The daemon will regularly send blockchain data to the archive process,
 which will store it in a [Postgres](https://www.postgresql.org/) database.
@@ -220,13 +226,3 @@ WHERE status = 'applied'
 AND type = 'payment'
 GROUP BY p.value ORDER BY count DESC;
 ```
-
-## Using the Archive Node with SnarkyJS
-
-Since Mina nodes do not store historical network information and events/actions are not kept on-chain, emitted events/actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events and actions from one or more Mina archive nodes.
-
-The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly. Archive node operators can run the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
-
-When using SnarkyJS, developers specify a Mina Archive Node API endpoint to integrate with their zkApp, allowing access to archived events and actions.
-
-See the [fetching events](../zkapps/advanced-snarkyjs/events#fetching-events-from-an-archive-node) and [fetching actions](../zkapps/advanced-snarkyjs/actions-and-reducer#fetching-actions-from-an-archive-node) sections in the SnarkyJS documentation to see how you can use the archive node in your zkApps.

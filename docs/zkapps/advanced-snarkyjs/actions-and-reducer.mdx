@@ -74,6 +74,12 @@ An astute reader may have noticed that this is eerily similar to a standard "Elm
 
 There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because we're handling multiple actions concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
 
+:::tip
+
+If your smart contract needs to fetch actions from an archive node, see [How to Fetch Events and Actions](fetch-events-and-actions).
+
+:::
+
 ### Reducer - API reference
 
 ```ts
@@ -98,58 +104,6 @@ this.reducer.getActions({ fromActionsHash?: Field, endActionsHash?: Field }): A[
 ```
 
 Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapps/how-to-test-a-zkapp).
-
-### Fetching Actions from an Archive Node
-
-Since Mina nodes do not store historical network information and actions are not kept on-chain, emitted actions are preserved only in the archive node. To see how to work with actions within your zkApp, see [Using the Archive Node with SnarkyJS](../../node-operators/archive-node#using-the-archive-node-with-snarkyjs).
-
-If your smart contract needs to fetch actions from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
-
-Set the `archive` property to one of the following endpoints:
-
-```sh
-https://api.minascan.io/archive/berkeley/v1/graphql
-```
-
-```sh
-https://archive.berkeley.minaexplorer.com
-```
-
-For example:
-
-```ts
-const Network = Mina.Network({
-  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
-  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
-});
-Mina.setActiveInstance(Network);
-```
-
-Within your smart contract, you can use `getActions()` to retrieve actions emitted by your smart contract as part of previous transactions.
-
-```ts
-class MyContract extends SmartContract {
-  ...
-  @method getActionsExample() {
-    // Get all actions for this zkApp
-    let pendingActions = this.reducer.getActions({
-      fromActionHash: actionsHash,
-    });
-    this.reducer.reduce(
-      pendingActions,
-      Field,
-      (state: Field, action: Field) => {
-        ...
-      },
-      { state: counter, actionsHash }
-    );
-  }
-}
-```
-
-By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionHash`, where the value is an `actionsHash` to indicate the starting point of the actions to be retrieved and processed by your smart contract. Actions that occur _after_ the specified hash are not retrieved—so it is not inclusive.
-
-For an end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see this voting app example in the [voting.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts) file in examples provided in the codebase repo.
 
 ### Actions for concurrent state updates
 
