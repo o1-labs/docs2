@@ -92,7 +92,7 @@ There are two ways for a token owner to approve a transaction, one being a **sig
 
 Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two separate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
 
-Token zkApps should provide a `send()` method, like the one described above. By providing a `send()` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
+Token zkApps must provide a `send()` method, like the one described above. By providing a `send()` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
 
 ```ts
 let tx = await Mina.transaction(feePayerKey, () => {
@@ -108,11 +108,11 @@ This sort of authorization is simple and easy to use but it is not flexible. If 
 
 Proof authorization is a more flexible way for a token owner to approve a custom token transfer. If two separate accounts want to trade a specific custom token, the token owner can provide a proof that the transaction is valid. This allows the token owner to approve a transaction without signing it.
 
-To allow for proof authorization by the token owner, the child zkApp that is requesting authorization must provide a way for the token owner to inspect the changes it wants to make and verify that they are valid. Token owner contracts have the power to inspect child account updates to enforce custom token rules. For example, a token owner contract could enforce that a child zkApp can only send tokens to a specific address.
+To allow for proof authorization by the token owner, the child zkApp that is requesting authorization must provide a way for the token owner to inspect the changes it wants to make and verify that they are valid. Token owner contracts have the power to inspect child account updates to enforce custom token rules. For example, a token owner contract could enforce that a child zkApp can send tokens only to a specific address.
 
 Token owner contracts can inspect the updates that a child zkApp wants to make by using a combination of `Experimental.Callback` and `this.approve`. The first thing that a token contract must do is generate the account updates that a child zkApp wants to make. The child zkApp wraps a function around `Experimental.Callback` which contains the changes it wants to make. The token owner can then execute that function with `this.approve` and inspect the changes that the child zkApp wants to make.
 
-See the example below of how a zkApp can approve a transaction between two accounts. In the first example, we will show how to approve a transaction by calling a specified `SmartContract` method.
+Here are examples of how a zkApp can approve a transaction between two accounts. The first example shows how to approve a transaction by calling a specified `SmartContract` method.
 
 ```ts
 /**
@@ -183,7 +183,7 @@ tx.sign([zkAppBKey]);
 await tx.send();
 ```
 
-The result of the example above is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is approved by the token owner without the token owner having to sign the transaction.
+The result of this example is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is approved by the token owner without the token owner having to sign the transaction.
 
 For more examples of how to approve a transaction with a zkApp, please see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts).
 
@@ -200,11 +200,11 @@ Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp
 ### Token Accounts
 
 Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is instead specified by a public key _and_ token id.
-If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id will be created if it does not exist.
+If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id is created if it does not exist.
 
 Token accounts are specific for each type of custom token, meaning that a single public key can have many different types of token accounts.
 
-To create a token account for a specified custom token, a token account is automatically created for that public key whenever an existing account receives a transaction denoted with a custom token." to "A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
+A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
 
 :::info
 
@@ -220,4 +220,4 @@ A token owner is an account that creates, facilitates, and governs how a custom 
 
 In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can approve sending tokens between two accounts, by either using signature authorization or proof authorization.
 If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner generates the changes the two accounts want to make and can then make assertions about those changes.
-The token owner can approve the transaction either with a signature or proof.
+The token owner can approve the transaction with a signature or proof.

@@ -35,7 +35,7 @@ Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _
 
 ## Recursively Verifying a simple program within a zkApp
 
-Let's look at how this works with a simple example that has only one method that proves the public input it received is zero.
+This simple example has only one method that proves the public input it received is zero.
 
 ```typescript
 import { Field, Experimental } from 'snarkyjs';
@@ -55,19 +55,19 @@ const SimpleProgram = Experimental.ZkProgram({
 });
 ```
 
-Next, we compile this program:
+Next, compile this program:
 
 ```typescript
 const { verificationKey } = await SimpleProgram.compile();
 ```
 
-Now we can use it to create a proof:
+Now you can use it to create a proof:
 
 ```typescript
 const proof = await SimpleProgram.run(Field(0));
 ```
 
-And we can verify this proof from within any method of your `SmartContract` class:
+And verify this proof from within any method of your `SmartContract` class:
 
 ```typescript
 @method foo(proof: SimpleProgram.Proof) {
@@ -85,7 +85,7 @@ What we're doing in `foo` is taking the `SimpleProgram` proof as a private argum
 
 This time we are going to write a recursive `ZkProgram` which we can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible, but in SnarkyJS we can describe a recursive ZkProgram with a simple recursive function.
 
-Here we'll write a program that describes a recursive operation of adding one repeatedly to a number. Note that we recursively depend on the older proof as a private argument to our method.
+Here, write a program that describes a recursive operation of adding one repeatedly to a number. Note that we recursively depend on the older proof as a private argument to our method.
 
 ```typescript
 import { SelfProof, Field, Experimental, verify } from 'snarkyjs';

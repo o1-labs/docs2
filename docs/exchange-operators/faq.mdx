@@ -52,7 +52,7 @@ Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This f
 
 ### What is the maximum size of the mempool? How do we work around this?
 
-The max mempool size is 3,000. Once it hits that size, transactions with the lowest fees are discarded.
+The max mempool size is 3,000. After it hits that size, transactions with the lowest fees are discarded.
 
 We recommend setting your fee to an amount higher than 0.001 MINA, which is the current average fee for transactions in the pool.
 
@@ -79,7 +79,7 @@ To avoid this above issue, we recommend that exchanges <u>do NOT require a memo<
 
 ### What is the current maximum number of rollback blocks?
 
-The table here describes how many blocks you will need to wait: [Lifecycle Payment](../node-operators/lifecycle-of-a-payment)
+The table in [Lifecycle of a Payment](../node-operators/lifecycle-of-a-payment) describes how many blocks you wait for a transaction to be confirmed.
 
 ### How should we calculate transaction fees?
 
@@ -188,13 +188,13 @@ You can look into staking this wallet, either by running your own block producti
 
 :::note
 
-Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
+Newly staked accounts incur a delay between 18 to 29 days before you start receiving rewards.
 
 :::
 
 ### Why is there a delay for staking to take effect?
 
-For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. In other words, the staking ledger will always operate between 18 to 29 days behind the live ledger.
+For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. In other words, the staking ledger always operates between 18 to 29 days behind the live ledger.
 
 ### In that case, how long is the delay and when is the next staking snapshot?
 
@@ -204,7 +204,7 @@ Since the timing is based on a combination of consensus timing (epochs) and snar
 
 A conservative estimate is that delegations sent 3 days before the epoch transition can take effect in the upcoming epoch. This means that, for any given delegation, there is an average of 18 to 29 days delay before this delegation updates block production.
 
-You can use this Delegation Calculator tool built by Carbonara, which tells you when the next staking ledger cutoff occurs:
+You can use this Delegation Calculator tool built by Carbonara to see when the next staking ledger cutoff:
 [https://epoch.mina.tools](https://epoch.mina.tools/).
 
 ## Testing
