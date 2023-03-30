@@ -1,0 +1,131 @@
+---
+title: How to Fetch Events and Actions
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# How to Fetch Events and Actions
+
+[Events](events) and [Actions & Reducer](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction: 
+
+- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs. You can also use events for reconstructing Merkle trees. 
+
+- Actions can be accessed within provable code by using reducers.
+
+:::info
+
+Events and actions are not stored in the ledger and exist only on the transaction.
+
+:::info
+
+Since Mina nodes do not store historical network information and events and actions are not kept on-chain, emitted events and actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events and actions from one or more Mina archive nodes.
+
+The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly. 
+
+## Using the Archive Node with SnarkyJS
+
+There are two parts to using the archive node with SnarkyJS:
+
+- Archive node operators run the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
+
+- SnarkyJS developers specify a Mina Archive Node API endpoint to integrate with their zkApp to allow access to archived events and actions.
+
+The Archive Node API enables SnarkyJS to fetch events and actions. To use the archive node with SnarkyJS, see [Fetching Events from an Archive Node](#fetching-events-from-an-archive-node) and [Fetching Actions from an Archive Node](#fetching-actions-from-an-archive-node).
+
+## Fetching Actions from an Archive Node
+
+If your smart contract needs to fetch actions from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
+
+Set the `archive` property to one of the following endpoints:
+
+```sh
+https://api.minascan.io/archive/berkeley/v1/graphql
+```
+
+```sh
+https://archive.berkeley.minaexplorer.com
+```
+
+For example:
+
+```ts
+const Network = Mina.Network({
+  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
+  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+});
+Mina.setActiveInstance(Network);
+```
+
+Within your smart contract, you can use `getActions()` to retrieve actions emitted by your smart contract as part of previous transactions.
+
+```ts
+class MyContract extends SmartContract {
+  ...
+  @method getActionsExample() {
+    // Get all actions for this zkApp
+    let pendingActions = this.reducer.getActions({
+      fromActionHash: actionsHash,
+    });
+    this.reducer.reduce(
+      pendingActions,
+      Field,
+      (state: Field, action: Field) => {
+        ...
+      },
+      { state: counter, actionsHash }
+    );
+  }
+}
+```
+
+By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionHash`, where the value is an `actionsHash` to indicate the starting point of the actions to be retrieved and processed by your smart contract. Actions that occur _after_ the specified hash are not retrieved—so it is not inclusive.
+
+For an end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see the voting app example [voting.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts) file that is provided in the codebase repo.
+
+### Fetching Events from an Archive Node
+
+If your smart contract needs to fetch events from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
+
+You can set the `archive` property to one of the following endpoints:
+
+```sh
+https://api.minascan.io/archive/berkeley/v1/graphql
+```
+
+```sh
+https://archive.berkeley.minaexplorer.com
+```
+
+For example:
+
+```ts
+const Network = Mina.Network({
+  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
+  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+});
+Mina.setActiveInstance(Network);
+```
+
+Within your smart contract, you can use `fetchEvents()` to retrieve events emitted by your smart contract as part of previous transactions.
+
+```ts
+const zkapp = new MyContract(address);
+// Fetch all events from zkapp starting at block 0
+const events = await zkapp.fetchEvents(UInt32.from(0));
+
+// Fetch all events starting at block 560 and ending at block 600
+const events = await zkapp.fetchEvents(UInt32.from(560), UInt32.from(600));
+
+// Fetch all events for a given address
+const fetchedEvents = await fetchEvents({
+  publicKey: 'B62qrfn5xxChtPGJne9HuDJZ4ziWVgWxeL3hntGBqMmf45p4hudo3tw',
+});
+```
+
+By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block. If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
+
+To see a end-to-end example of zkApp fetching events from a running network, see the example [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file that is provided in the codebase repo.
