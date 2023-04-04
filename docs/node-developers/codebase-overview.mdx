@@ -29,9 +29,9 @@ Interface files in OCaml with the `.mli` extension contain type signatures and s
 
 For the linking step, `dune` uses `ldd` under the hood. You can also use things like `-O3` for optimization. For debugging, you can use `gdb`.
 
-## Documentation
+## Open-source Library Documentation
 
-One challenge with learning OCaml is locating and reading documentation for libraries. In particular, the `Core` library has the following structure:
+There are multiple libraries for OCaml. One challenge with learning OCaml is locating and reading documentation for the various libraries. For example, the Jane Street `Core` library has the following structure:
 
 ```
               Base
@@ -41,9 +41,11 @@ One challenge with learning OCaml is locating and reading documentation for libr
     Unix  <-  Core  ->       Async
 ```
 
-There are multiple sources for OCaml Core library documentation. In general, the source code of an installed library is not available so to find the  documentation, first go to the codebase on GitHub and then locate the correct documentation. If you don't see the module you're looking for, go to `Core_kernel`. If that fails, then look for `Base`. To use the find capability in GitHub, expand the sections.
+In general, the source code of an installed library is not available, so follow these tips to find the documentation.
 
-The [Core library documentation](https://v2.ocaml.org/manual/core.html) is published in HTML. However, you can use the Merlin editor service that provides modern IDE features for OCaml. Merlin provides type hints and code navigation, like Go To Definition. Note that Merlin works only if your code compiles. 
+To review the docs for Core, a standard library overlay. Core is a popular alternative to the OCaml standard library. First, go to the [Core](https://github.com/janestreet/core) codebase on GitHub and then locate the correct documentation. If you don't see the module you're looking for, go to next to `Core_kernel`. If that fails, then look for `Base`. To use the find capability in GitHub, expand the sections.
+
+Most documentation is published in HTML. However, you can use the an IDE to find and review code and documentation, like the Merlin editor service that provides modern IDE features for OCaml. Merlin provides type hints and code navigation, like Go To Definition. Note that Merlin works only if your code compiles. 
 
 OPAM, the source-based package manager for OCaml, usually ships documentation with libraries that you can access using Merlin.
 
