@@ -177,18 +177,12 @@ Last, to look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tr
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-    });
-  }
-
   @method init() {
+    super.init();
+
     this.account.provedState.assertEquals(this.account.provedState.get());
     this.account.provedState.get().assertFalse();
 
-    super.init();
     this.num.set(Field(12));
   }
 
@@ -271,7 +265,7 @@ This is best opened in a new tab to read the contents ([link](https://raw.github
 The deploy transaction includes 5 accountUpdates. In order from left to right;
 
 1. This accountUpdate takes the new account fee from the deployer for deploying the zkApps. Note the `-2` on the `balanceChange` field
-2. This update deploys the `proofsOnlyZkApp` instance. Note the permissions, all set to the values in the zkApp's deploy field, and the `preconditions`, asserting its a new account.
+2. This update deploys the `proofsOnlyZkApp` instance. Note the permissions, all set to the values in the zkApp's deploy field, and the `preconditions` asserting the nonce, so the transaction can't be applied more than once.
 3. This update initializes the `proofsOnlyZkApp`. Note the precondition that it can't already be in a proved state.
 4. This update deploys an instance of `secondaryZkApp`. Note the permissions here are set to default values, in contrast to the deployment in the `proofsOnlyZkApp` example.
 5. This update initializes the `secondaryZkApp` instance.
@@ -298,7 +292,9 @@ This yields the following visualization of `txn1`
 
 See download link [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn1-copy.png).
 
-Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes.
+Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
+
+One update is the child because it was called from the parent - which also implies that the parent has the child included as part of its proof. You can read more on parent / child account updates [here](../how-to-write-a-zkapp#payments-and-more-on-public-inputs).
 
 As a reminder, this corresponds to code: 
 
