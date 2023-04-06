@@ -169,9 +169,9 @@ Finally, add one more function, `callSecondary()` that calls a different zkApp:
 }
 ```
 
-This takes the address of our other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method will occur after this set of AccountUpdates - so when we call `secondaryContract.num.get()`, that will get the value before this transaction was applied.
+This takes the address of our other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method occurs after this set of AccountUpdates - so when you call `secondaryContract.num.get()` that gets the value before this transaction is applied.
 
-Last, to look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts), we have contents:
+Last, to look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts), you have contents:
 
 ```typescript
 export class SecondaryZkApp extends SmartContract {
