@@ -108,7 +108,7 @@ export class ProofsOnlyZkApp extends SmartContract {
 This configures the zkApp as described, and initializes the zkApp with the values we'd like. 
 
 :::caution
-Note we assert that `provedState` is `False` in `init`. This ensures that `init` cannot be called again after the zkApp is setup. Without this, our zkApp could be reset by anyone calling the `init` transaction on our zkApp, and is recommended for most zkApps.
+Note you assert that `provedState` is `false` in `init()` to ensure that `init()` cannot be called again after the zkApp is set up. Without this, your zkApp could be reset by anyone calling the `init()` method on your zkApp and is recommended for most zkApps. 
 :::
 
 Next, we'll add two functions:
