@@ -204,7 +204,7 @@ export class SecondaryZkApp extends SmartContract {
 
 ```
 
-We declare functions for initializing the account, and a method `add` which is the one that is being called from `ProofOnlyZkApp` above.
+You declare functions for initializing the account and the `add` method that is called from the earlier `ProofOnlyZkApp`.
 
 ### Running our Smart Contracts and Visualizing the AccountUpdates
 
@@ -218,7 +218,7 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 ...
 ```
 
-This provides us 3 functions:
+This provides three functions:
 
 ```typescript
 // creates a png file of a transaction, and opens it in a local image viewer
@@ -235,7 +235,7 @@ type Legend = { [pk: string]: string };
 
 ```
 
-We'll build our legend as follows:
+Now build the legend as follows:
 
 ```typescript
   const legend = {
@@ -273,12 +273,12 @@ The deploy transaction includes 5 accountUpdates. In order from left to right;
 1. This accountUpdate takes the new account fee from the deployer for deploying the zkApps. Note the `-2` on the `balanceChange` field
 2. This update deploys the `proofsOnlyZkApp` instance. Note the permissions, all set to the values in the zkApp's deploy field, and the `preconditions`, asserting its a new account.
 3. This update initializes the `proofsOnlyZkApp`. Note the precondition that it can't already be in a proved state.
-4. This update deploys an instance of `secondaryZkApp`. Note the permissions here set to default compared to the deployment in the `proofsOnlyZkApp` example.
+4. This update deploys an instance of `secondaryZkApp`. Note the permissions here are set to default values, in contrast to the deployment in the `proofsOnlyZkApp` example.
 5. This update initializes the `secondaryZkApp` instance.
 
-When the transaction is run on-chain, all of these accountUpdates will be checked, and applied. Note that there is no actual "execution" of each AccountUpdate provided - instead each AccountUpdate includes an associated signature or proof, corresponding to the verification key in the zkApp.
+When the transaction is run on-chain, all of these account updates are checked and applied. Note that there is no actual "execution" of each AccountUpdate provided - instead, each AccountUpdate includes an associated signature or proof, corresponding to the verification key in the zkApp.
 
-Next, we'll call `add` on our instance of `proofsOnlyZkApp`:
+Next, call `add` on your instance of `proofsOnlyZkApp`:
 
 ```typescript
   const txn1 = await Mina.transaction(deployerAccount, () => {
