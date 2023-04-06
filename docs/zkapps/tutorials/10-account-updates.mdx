@@ -66,7 +66,7 @@ You will build two smart contracts to use in your example:
 
 First, [ProofsOnlyZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/ProofsOnlyZkApp.ts).
 
-This is a zkApp configured to only be modifiable or modifiable via proofs (and for the zkApp we're deploying, is not upgradable once deployed). This means that while someone must own the private key to deploy the zkApp itself - after deployed, only the rules in the zkApp determine how the zkApp functions. The private key is no longer useful for anything.
+You will configure this zkApp to be modifiable only by using proofs. For this example, the zkApp is not upgradable after it is deployed. This means that while someone must own the private key to deploy the zkApp itself - after it is deployed, only the rules in the zkApp determine how the zkApp functions. The private key is no longer useful for anything.
 
 This zkApp also has methods that call other methods, so we can explore how that impacts a transaction's AccountUpdates.
 
