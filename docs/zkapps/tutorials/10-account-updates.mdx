@@ -298,7 +298,7 @@ This yields the following visualization of `txn1`
 
 See download link [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn1-copy.png).
 
-Now we have two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes.
+Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes.
 
 As a reminder, this corresponds to code: 
 
@@ -326,9 +326,9 @@ As a reminder, this corresponds to code:
   ...
 ```
 
-You can note in the accountUpdates that in the first update - we're updating the state of `appState[0]` to `5` (matching the `this.num.set` in the `add` contract) - and in the second update, we're updating `appState[1]` to `1` (matching the `this.calls.set` in the `incrementCalls` contract).
+You can note in the account updates that in the first update, you're updating the state of `appState[0]` to `5` (matching the `this.num.set` in the `add` contract), and in the second update, you're updating `appState[1]` to `1` (matching the `this.calls.set` in the `incrementCalls` contract).
 
-Lastly, we'll call `callSecondary` on our instance of `proofsOnlyZkApp`:
+Lastly, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
 ```typescript
   const txn2 = await Mina.transaction(deployerAccount, () => {
@@ -376,6 +376,5 @@ Following the note in the comment, note that `callSecondary` sets `this.num` to 
 
 ## Conclusion
 
-We have finished exploring the core features of AccountUpdates, and visualizing the AccountUpdates for a set of transactions. We hope this helps you build more complicated transactions, involving multiple zkApps, as well as understand how SnarkyJS and zkApps is working to enable permissions, preconditions, composability.
+Congratulations! You have explored the core features of AccountUpdates and learned about visualizing the AccountUpdates for a set of transactions. You can build more complicated transactions that involve multiple zkApps. This tutorial builds a foundational understanding of how SnarkyJS and zkApps work to enable permissions, preconditions, and composability.
 
-Please see the next tutorial (coming soon) to see how AccountUpdates works with tokens.
