@@ -140,7 +140,7 @@ Next, add two functions:
 ```
 
 :::caution
-In each of these, we are also asserting `provedState` is `true`. This ensures the zkApp was initialized as expected, as `provedState` becomes true after `init` is called, and is recommended for most zkApps.
+In each of these methods, you are also asserting `provedState` is `true` to ensure the zkApp was initialized as expected because `provedState` becomes true after `init` is called and is recommended for most zkApps.
 :::
 
 Note you are also having the `add()` method call the `incrementCalls()` method, to see how this is reflected in the `add()` transaction's AccountUpdate structure.
