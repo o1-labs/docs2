@@ -245,17 +245,17 @@ We'll build our legend as follows:
   };
 ```
 
-Then we'll deploy our smart contracts as follows, and visualize the transaction:
+Then deploy your smart contracts as follows and visualize the transaction:
 
 ```typescript
-  const deploy_txn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, () => {
     AccountUpdate.fundNewAccount(deployerAccount, 2);
-    proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
-    secondaryInstance.deploy({ zkappKey: secondarySk });
+    proofsOnlyInstance.deploy();
+    secondaryInstance.deploy();
   });
 
   await deploy_txn.prove();
-  deploy_txn.sign([ proofsOnlySk, secondarySk ]);
+  deploy_txn.sign([ deployerKey, proofsOnlySk, secondarySk ]);
 
   await showTxn(deploy_txn, 'deploy_txn', legend);
 
