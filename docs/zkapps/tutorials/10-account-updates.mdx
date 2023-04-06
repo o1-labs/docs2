@@ -41,7 +41,7 @@ To learn more, see these advanced SnarkyJS docs:
 Each [AccountUpdate](../snarkyjs-reference/classes/AccountUpdate) has these components:
 
 * `PublicKey`: The account address for the account update
-* `TokenId`: By default the Mina TokenId. Between this and PublicKey, uniquely determines the account
+* `TokenId`: By default, the Mina TokenId. Together, TokenId and PublicKey uniquely determine the account.
 * `Preconditions`: What needs to be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
 * `Updates`: Things that are changed by the AccountUpdate. Can include the zkApp state, permissions, and verification key.
 * `Balance change`: Any changes to the balance
