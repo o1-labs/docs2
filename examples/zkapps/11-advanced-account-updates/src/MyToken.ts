@@ -26,10 +26,11 @@ export class MyToken extends SmartContract {
   deploy(args?: DeployArgs) {
     super.deploy(args);
     this.setPermissions({
+      receive: Permissions.none(),
       send: Permissions.proof(),
       editState: Permissions.proof(),
-      receive: Permissions.none(),
-      editActionState: Permissions.proof(),
+      //editActionState: Permissions.proof(),
+      editSequenceState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
       setVerificationKey: Permissions.proof(),
@@ -40,38 +41,23 @@ export class MyToken extends SmartContract {
       setTiming: Permissions.proof(),
       access: Permissions.proof()
     });
+
+    this.tokenSymbol.set('MYTKN');
+
+    let receiverAccountUpdate = this.token.mint({
+      address: this.address,
+      amount: UInt64.from(1000),
+    });
+
   }
 
   // ----------------------------------------------------------------------
 
-  //@method init() {
-  //  super.init();
-
-  //  this.account.provedState.assertEquals(this.account.provedState.get());
-  //  this.account.provedState.get().assertFalse();
-
-  //  this.tokenSymbol.set('MYTKN');
-
-  //  let receiverAccountUpdate = this.token.mint({
-  //    address: this.address,
-  //    amount: UInt64.from(1000),
-  //  });
-
-  //  receiverAccountUpdate.account.isNew.assertEquals(Bool(true));
-
-  //  this.balance.subInPlace(Mina.accountCreationFee());
-  //}
-
-  // ----------------------------------------------------------------------
-
-  @method mint(
+  @method mintTokens(
     receiverAddress: PublicKey,
     amount: UInt64,
   ) {
-    this.token.mint({
-      address: receiverAddress,
-      amount,
-    });
+    this.token.mint({ address: receiverAddress, amount });
   }
 
   @method approveDeploy(deployUpdate: AccountUpdate) {
@@ -86,19 +72,10 @@ export class MyToken extends SmartContract {
   // ----------------------------------------------------------------------
 
   @method approveTransfer(
-    transferUpdate: AccountUpdate,
-    to: PublicKey,
-    amount: UInt64
+    transferUpdate: AccountUpdate
   ) {
-    // TODO assert not approvign anything else
+    // TODO assert not approving anything else
     this.approve(transferUpdate);
-
-    // see if balance change cancels the amount sent
-    let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
-    balanceChange.assertEquals(Int64.from(amount).neg());
-
-    // add same amount of tokens to the receiving address
-    this.token.mint({ address: to, amount });
   }
 
   // ----------------------------------------------------------------------

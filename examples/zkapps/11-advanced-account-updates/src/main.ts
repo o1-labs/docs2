@@ -1,4 +1,4 @@
-import { TokenUser } from './TokenUser.js';
+import { TokenUser, TokenHolder } from './TokenUser.js';
 import { MyToken } from './MyToken.js';
 
 import {
@@ -43,22 +43,26 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
     [tokenUserAddr.toBase58()]: 'tokenUser',
     [deployerAccount.toPublicKey().toBase58()]: 'deployer',
   };
+  console.log(legend)
 
-  TokenUser.myTokenPublicKey = myTokenAddr;
+  TokenUser.tokenSmartContractAddress = myTokenAddr;
+  TokenHolder.tokenSmartContractAddress = myTokenAddr
 
   const myTokenInstance = new MyToken(myTokenAddr);
-  const tokenUserInstance = new TokenUser(tokenUserAddr, myTokenInstance.token.id);
+  const tokenUserInstance = new TokenUser(tokenUserAddr);
+  const tokenHolderInstance = new TokenHolder(tokenUserAddr, myTokenInstance.token.id);
 
   // ----------------------------------------------------
 
   const deploy_txn = await Mina.transaction(deployerAccount, () => {
-    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 2); // shouldn't this need to be 3?
+    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 4);
     feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
 
     myTokenInstance.deploy();
     tokenUserInstance.deploy();
+    tokenHolderInstance.deploy()
 
-    myTokenInstance.approveDeploy(tokenUserInstance.self);
+    myTokenInstance.approveDeploy(tokenHolderInstance.self);
   });
 
   await deploy_txn.prove();
@@ -74,12 +78,10 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   // ----------------------------------------------------
 
   const txn1 = await Mina.transaction(deployerAccount, () => {
-    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
-    feePayerUpdate.send({ to: tokenUserAddr, amount: accountFee });
-
-    myTokenInstance.mint(tokenUserAddr, UInt64.from(500));
+    myTokenInstance.mintTokens(tokenUserAddr, UInt64.from(500));
   });
 
+  txn1.sign([ myTokenSk, tokenUserSk ]);
   await txn1.prove();
 
   //await showTxn(txn1, 'txn1', legend);
@@ -92,11 +94,6 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   // ----------------------------------------------------
 
   const txn2 = await Mina.transaction(deployerAccount, () => {
-    //let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
-    //feePayerUpdate.send({ to: deployerAccount.toPublicKey(), amount: accountFee });
-
-    //tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAccount.toPublicKey());
-
     tokenUserInstance.sendMyTokens(UInt64.from(100), tokenUserAddr);
   });
 
