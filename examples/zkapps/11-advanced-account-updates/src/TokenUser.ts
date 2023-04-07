@@ -93,7 +93,6 @@ export class TokenHolder extends SmartContract {
   }
 
   @method transfer(to: PublicKey, amount: UInt64) {
-    // manual send
     const toAccountUpdate = AccountUpdate.create(to, this.tokenId);
     toAccountUpdate.balance.addInPlace(amount);
     toAccountUpdate.body.mayUseToken =

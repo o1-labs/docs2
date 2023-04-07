@@ -61,8 +61,8 @@ export class MyToken extends SmartContract {
   }
 
   @method approveDeploy(deployUpdate: AccountUpdate) {
-    // TODO assert not approving anything else
-    this.approve(deployUpdate);
+    // TODO should anything else be asserted here for a "safe" deployment?
+    this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
     // see if balance change is zero
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
@@ -74,8 +74,11 @@ export class MyToken extends SmartContract {
   @method approveTransfer(
     transferUpdate: AccountUpdate
   ) {
-    // TODO assert not approving anything else
+    // TODO should anything else be asserted here for a "safe" deployment?
     this.approve(transferUpdate);
+
+    // TODO should this also assert that all accountUpdates / balanceChanges are for the correct tokenId?
+    this.assertHasNoBalanceChange(transferUpdate);
   }
 
   // ----------------------------------------------------------------------
@@ -83,6 +86,35 @@ export class MyToken extends SmartContract {
   @method transfer(from: PublicKey, to: PublicKey, value: UInt64) {
     this.token.send({ from, to, amount: value });
   }
+
+  // ----------------------------------------------------------------------
+
+  public hasNoBalanceChange(accountUpdate: AccountUpdate): Bool {
+    // all balance changes of children
+    const balanceChanges = accountUpdate.children.accountUpdates.map(
+      ({ body: { balanceChange } }) => balanceChange
+    );
+
+    // add the self balance change
+    balanceChanges.push(accountUpdate.body.balanceChange);
+
+    const balanceChange = balanceChanges.reduce(
+      (accumulatedBalanceChange, currentBalanceChange) =>
+        Int64.fromObject(accumulatedBalanceChange).add(
+          Int64.fromObject(currentBalanceChange)
+        ),
+      Int64.zero
+    );
+
+    return Int64.fromObject(balanceChange).equals(UInt64.zero);
+  }
+
+  public assertHasNoBalanceChange(accountUpdate: AccountUpdate) {
+    this.hasNoBalanceChange(accountUpdate).assertTrue(
+      'Account update has a non-zero balance change'
+    );
+  }
+
 
   // ----------------------------------------------------------------------
 }
