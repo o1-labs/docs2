@@ -1,7 +1,7 @@
 # Interface: Permissions
 
-Permissions specify how specific aspects of the zkapp account are allowed to
-be modified. All fields are denominated by a Permission.
+Permissions specify how specific aspects of the zkapp account are allowed
+to be modified. All fields are denominated by a Permission.
 
 ## Hierarchy
 
@@ -14,7 +14,7 @@ be modified. All fields are denominated by a Permission.
 ### Properties
 
 - [access](Permissions.md#access)
-- [editSequenceState](Permissions.md#editsequencestate)
+- [editActionState](Permissions.md#editactionstate)
 - [editState](Permissions.md#editstate)
 - [incrementNonce](Permissions.md#incrementnonce)
 - [receive](Permissions.md#receive)
@@ -46,26 +46,23 @@ Permissions\_.access
 
 #### Defined in
 
-[lib/account_update.ts:223](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L223)
+[lib/account_update.ts:221](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L221)
 
 ___
 
-### editSequenceState
+### editActionState
 
-• **editSequenceState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **editActionState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The Permission corresponding to the ability to change the sequence
-state associated with the account.
-
-TODO: Define sequence state here as well.
+The Permission corresponding to the ability to emit actions to the account.
 
 #### Overrides
 
-Permissions\_.editSequenceState
+Permissions\_.editActionState
 
 #### Defined in
 
-[lib/account_update.ts:202](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L202)
+[lib/account_update.ts:200](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L200)
 
 ___
 
@@ -82,7 +79,7 @@ Permissions\_.editState
 
 #### Defined in
 
-[lib/account_update.ts:155](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L155)
+[lib/account_update.ts:156](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L156)
 
 ___
 
@@ -96,7 +93,7 @@ Permissions\_.incrementNonce
 
 #### Defined in
 
-[lib/account_update.ts:211](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L211)
+[lib/account_update.ts:209](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L209)
 
 ___
 
@@ -113,7 +110,7 @@ Permissions\_.receive
 
 #### Defined in
 
-[lib/account_update.ts:167](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L167)
+[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L168)
 
 ___
 
@@ -130,7 +127,7 @@ Permissions\_.send
 
 #### Defined in
 
-[lib/account_update.ts:161](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L161)
+[lib/account_update.ts:162](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L162)
 
 ___
 
@@ -147,7 +144,7 @@ Permissions\_.setDelegate
 
 #### Defined in
 
-[lib/account_update.ts:173](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L173)
+[lib/account_update.ts:174](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L174)
 
 ___
 
@@ -164,7 +161,7 @@ Permissions\_.setPermissions
 
 #### Defined in
 
-[lib/account_update.ts:179](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L179)
+[lib/account_update.ts:180](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L180)
 
 ___
 
@@ -178,7 +175,7 @@ Permissions\_.setTiming
 
 #### Defined in
 
-[lib/account_update.ts:213](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L213)
+[lib/account_update.ts:211](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L211)
 
 ___
 
@@ -195,7 +192,7 @@ Permissions\_.setTokenSymbol
 
 #### Defined in
 
-[lib/account_update.ts:208](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L208)
+[lib/account_update.ts:206](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L206)
 
 ___
 
@@ -213,7 +210,7 @@ Permissions\_.setVerificationKey
 
 #### Defined in
 
-[lib/account_update.ts:186](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L186)
+[lib/account_update.ts:187](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L187)
 
 ___
 
@@ -227,7 +224,7 @@ Permissions\_.setVotingFor
 
 #### Defined in
 
-[lib/account_update.ts:212](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L212)
+[lib/account_update.ts:210](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L210)
 
 ___
 
@@ -246,4 +243,4 @@ Permissions\_.setZkappUri
 
 #### Defined in
 
-[lib/account_update.ts:194](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L194)
+[lib/account_update.ts:195](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L195)
