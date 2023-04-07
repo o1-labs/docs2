@@ -13,31 +13,30 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 #### Referencing off-chain data
 
-We already learned that zkApps can only store a small amount of data on-chain, the reason for that is we want Mina to stay succinct and not become bloated.
+zkApp accounts can store only a limited amount of data on chain so that Mina's chain remains succinct and does not become bloated. 
 But some zkApps might require you to access more than what you can store on-chain in a zkApp account.
-But how can we achieve that? The answer is a Merkle tree! Merkle trees (or similar structures such as Verkle trees) allow us to _reference_ off-chain data by
-only storing one single hash on-chain!
+But how can you achieve that? The answer is a Merkle tree! Merkle trees (or similar structures such as Verkle trees) allow you to _reference_ off-chain data by storing only a single hash on-chain.
 
 #### How does that work?
 
 Merkle trees are special binary trees in which every leaf (the nodes at the very bottom of the tree!) are cryptographic hashes of the underlying pieces of data and the internal nodes are labelled with the cryptographic hash of the concatenated labels (hashes) of its child nodes.
 
-By following this algorithm to the very top, we end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves. By doing so, we achieve that we can reference large amounts of data by only using one small hash! Another thing that Merkle trees provide is something called the witness (sometimes also called Merkle proof or Merkle path) - the witness is the path from one specific leaf node to the very top of the tree - to the root! Merkle witnesses are proofs of inclusion exists, they allow us to prove that one specific piece of data(an account in the ledger or the scores on a leaderboard) exists within the entire tree.
+By following this algorithm to the very top, you end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves so you can reference large amounts of data by using one small hash! Another benefit that Merkle trees provide is something called the witness (sometimes also called Merkle proof or Merkle path). The witness is the path from one specific leaf node to the very top of the tree to the root! Merkle witnesses are proofs of inclusion that prove that one specific piece of data (an account in the ledger or the scores on a leaderboard) exists within the entire tree.
 
-#### How will that be useful for zkApps?
+#### How are Merkle trees useful for zkApps?
 
-We just learned that we can reference large amounts of off-chain data and prove inclusion of very specific parts of that data only with a small hash - the root - and something called a witness.
+You can reference large amounts of off-chain data and prove inclusion of very specific parts of that data with only a small hash - the root - and a witness.
 
-When we want to use Merkle trees and reference off-chain data in our zkApps on Mina, we can simply store the root of the tree on-chain and voilà,
-we now have access to more data off-chain!
+To use Merkle trees and reference off-chain data in your zkApps on Mina, store the root of the tree on-chain and voilà,
+you now have access to more data off-chain.
 
-Let's imagine a zkApp that manages a game with a leaderboard. The zkApp has a method to update the score of a player, if the player guesses a number correctly.
-After a player reaches a threshold score, they can invoke another method to get a reward. Because we want many players to participate in our game,
-we are drastically limited by how much data we can store on-chain - and if we want to have at least 8 or more participants, we run out of on-chain space very fast!
+Imagine a zkApp that manages a game with a leaderboard. The zkApp has a method to update the score of a player if the player guesses a number correctly.
+After a player reaches a threshold score, the player can invoke another method to get a reward. Because you want many players to participate in the game,
+you are drastically limited by how much data can be stored on-chain. With eight or more participants, you will quickly run out of on-chain space.
 
-A possible solution to that problem is to utilize the power of Merkle trees and store the public keys of each player and their corresponding scores off-chain and only reference it in our smart contract.
+A possible solution to that problem is to use the power of Merkle trees and store the public keys of each player and their corresponding scores off-chain and reference the keys in the smart contract.
 
-Lets look at our data structure first. Imagine wanting to map a player's id to score points, so this:
+Look at the data structure first. Imagine you want to map a player's id to score points, so this:
 
 ```
 
@@ -52,34 +51,33 @@ Lets look at our data structure first. Imagine wanting to map a player's id to s
 
 #### Implementing the smart contract
 
-Now it's time to look at what our leaderboard zkApp might look like. We want to have on-chain state that points to the off-chain Merkle tree - call this variable the `root`.
+Now it's time to look at what a leaderboard zkApp might look like. To have on-chain state that points to the off-chain Merkle tree, call this variable the `root`.
 
 :::info
 
-Sometimes the variable `root` is also called commitment, because we commit to something!
+Sometimes the variable `root` is also called commitment, because it commits to something.
 
 :::
 
-Additionally, we want to store a variable `z` which is the hash of the value a player has to guess: `H(guess) = z`
+Additionally, you want to store a variable `z` that is the hash of the value a player has to guess: `H(guess) = z`
 
 :::info
 
-Guessing a simple hash like in this example can easily be brute forced, especially if the preimage is something simple (like a 5 letter word or a small number with only a few digits).
+Guessing a simple hash like in this example can easily be brute forced, especially if the preimage is something simple (like a 5-letter word or a small number with only a few digits).
 
-Please make sure that your zkApps are always secure, especially when dealing with funds!
+Be sure that your zkApps are always secure, especially when dealing with funds!
 
 :::
 
 The first method allows a player to make a guess, and if the guess is correct, the player gains one point.
-The method takes the players guess and hashes it, it then checks if the hash H(guess) equals the on-chain state z and if that's the case,
-then the player gains one point on the score board.
+The method takes the players guess and hashes it, it then checks if the hash `H(guess)` equals the on-chain state `z` and if that's the case, then the player gains one point on the score board.
 
 A second method is required to take care of the reward. It checks if the players score is over a threshold and pays out a reward if that's the case.
 This method must also verify the Merkle witness and check it if it matches the on-chain stored Merkle root!
 
 :::note
 
-A fully working example, including all the necessary boilerplate code, can be found in the SnarkyJS repository in the examples folder [here](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree).
+The `examples` folder in the SnarkyJS repository includes a working [Merkle tree](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree) example with all of the required boilerplate code.
 
 :::
 
@@ -146,16 +144,16 @@ class Leaderboard extends SmartContract {
 }
 ```
 
-Merkle trees allow us to easily reference off-chain data by only adding a couple of lines of code.
-However, it is important to mention that the developer of the zkApp must make sure that the Merkle tree that is being referenced on-chain is always in-sync with the actual off-chain data structure.
+Merkle trees allow you to easily reference off-chain data by only adding a couple of lines of code.
+However, it is the responsibility of the developer of the zkApp to make sure that the Merkle tree that is being referenced on-chain is always in sync with the actual off-chain data structure.
 
-You can look at [this example in the SnarkyJS repository](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree) to get a better understanding of how you can utilize the power of Merkle trees.
+You can look at the [Merkle tree example](https://github.com/o1-labs/snarkyjs/tree/main/src/examples/zkapps/merkle_tree)  in the SnarkyJS repository to get a better understanding of how you can leverage the power of Merkle trees.
 
 :::info
 
-Merkle trees are great for _referencing_ off-chain state. But just referencing our state is not enough - we also need to actually store it somewhere.
+Merkle trees are great for _referencing_ off-chain state. But just referencing the state is not enough - you also need to actually store it somewhere.
 
-Where and how to store the data off-chain storage is left up to the developer. We are  exploring solutions and are very interested to see and hear about approaches from others in the community.
+Where and how to store the data off-chain storage is left up to you, the developer. We are exploring solutions and are very interested to see and hear about approaches from others in the community.
 
 :::
 
