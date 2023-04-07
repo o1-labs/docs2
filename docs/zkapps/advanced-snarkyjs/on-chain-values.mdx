@@ -15,7 +15,7 @@ You can access the current [on-chain state](/zkapps/how-to-write-a-zkapp#on-chai
 
 Just to give you an idea, here are two possible use cases:
 
-- Say you want to let users vote on a proposal, but only within a specific timespan. To do that, you can make your zkApp require that the current timestamp lies in a certain range.
+- You want to let users vote on a proposal, but only within a specific timespan. To restrict the dates, you can make your zkApp require that the current timestamp lies in a certain range.
 - In DeFi, you might need to compute amounts relative to a balance. For example, paying a yield of `0.001` times the account balance requires you to get the current on-chain balance.
 
 There are two categories of on-chain values:
@@ -52,7 +52,7 @@ class VotingApp extends SmartContract {
 }
 ```
 
-A more refined example could store the current start date in an on-chain state variable, which can then be reset by some process which is also encoded by the zkApp.
+A more refined example could store the current start date in an on-chain state variable, which can then be reset by some process that is also encoded by the zkApp.
 
 In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. In this case, the range would be `[now, now + 1h]`:
 
@@ -102,7 +102,7 @@ this.network.nextEpochData.startCheckpoint.get(): Field;
 
 ### Account reference
 
-Here's the full list of values you can access on the zkApp account. Like the network states, these have `get()` and `assertEquals()`.
+Here's the full list of values you can access on the zkApp account. Like the network states, these values have `get()` and `assertEquals()`.
 Balance and nonce also have `assertBetween()`.
 
 ```ts
@@ -138,7 +138,7 @@ there's `assertNothing()` on all of these fields (including on-chain state). **U
 
 Just like on-chain state, some account fields can be written to. Again, the API is consistent with state: `this.account.<field>.set(newValue)`.
 
-For example, here's how you can change permissions on an account:
+For example, here's how to change permissions on an account:
 
 ```ts
 this.account.permissions.set({
@@ -147,7 +147,7 @@ this.account.permissions.set({
 });
 ```
 
-And here's how you can set the delegate (the account that your smart contract delegates its stake to):
+And here's how to set the delegate (the account that your smart contract delegates its stake to):
 
 ```ts
 this.account.delegate.set(delegatePublicKey);
@@ -170,7 +170,7 @@ this.account.tokenSymbol.set(value: string);
 this.account.timing.set(value: Timing);
 ```
 
-### Accessing other accounts than the zkApp's account
+### Accessing accounts other than the zkApp's account
 
 The API described in this section (get / set / assertEquals / ...) can be used to access the zkApp account itself, but also any other account.
 To do so, create an [account update](/zkapps/how-to-write-a-zkapp#transactions-and-account-updates) to find the same `account` / `network` fields API:

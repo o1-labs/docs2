@@ -49,7 +49,7 @@ class BurnExample extends SmartContract {
 }
 ```
 
-This example snippet defines a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, the `this.token` property calls the `burn` method. This specifies the amount of tokens to burn for the specified address.
+This example snippet defines a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, the `this.token` property calls the `burn()` method. This specifies the amount of tokens to burn for the specified address.
 
 :::note
 
@@ -86,7 +86,7 @@ For a more comprehensive example of how to use custom tokens with a zkApp, see t
 
 When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
 
-There are two ways for a token owner to approve a transaction: a **signature** and a **proof**.
+A token owner can approve a transaction using a **signature** or a **proof**.
 
 ### Signature Authorization
 

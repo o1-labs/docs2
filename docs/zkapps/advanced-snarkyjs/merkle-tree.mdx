@@ -13,7 +13,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 #### Referencing off-chain data
 
-zkApps can store only a small amount of data on-chain so that Mina stays succinct and does not become bloated.
+zkApp accounts can store only a limited amount of data on chain so that Mina's chain remains succinct and does not become bloated. 
 But some zkApps might require you to access more than what you can store on-chain in a zkApp account.
 But how can you achieve that? The answer is a Merkle tree! Merkle trees (or similar structures such as Verkle trees) allow you to _reference_ off-chain data by storing only a single hash on-chain.
 
@@ -153,7 +153,7 @@ You can look at the [Merkle tree example](https://github.com/o1-labs/snarkyjs/tr
 
 Merkle trees are great for _referencing_ off-chain state. But just referencing the state is not enough - you also need to actually store it somewhere.
 
-Where and how to store the data off-chain storage is left up to you, the developer. O(1) Labs is exploring solutions and are very interested to see and hear about approaches from others in the community.
+Where and how to store the data off-chain storage is left up to you, the developer. We are exploring solutions and are very interested to see and hear about approaches from others in the community.
 
 :::
 
