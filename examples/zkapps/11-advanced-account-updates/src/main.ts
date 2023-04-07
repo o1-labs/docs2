@@ -1,4 +1,5 @@
-import { ProofsOnlyZkApp } from './ProofsOnlyZkApp.js';
+import { TokenUser } from './TokenUser.js';
+import { MyToken } from './MyToken.js';
 
 import {
   isReady,
@@ -7,6 +8,7 @@ import {
   Mina,
   PrivateKey,
   AccountUpdate,
+  UInt64,
 } from 'snarkyjs';
 
 import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
@@ -22,48 +24,92 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   const deployerAccount = Local.testAccounts[0].privateKey;
 
   if (proofsEnabled) {
-    ProofsOnlyZkApp.compile();
+    MyToken.compile();
+    TokenUser.compile();
   }
+
+  let accountFee = Mina.accountCreationFee();
 
   // ----------------------------------------------------
 
-  const proofsOnlySk = PrivateKey.random();
-  const proofsOnlyAddr = proofsOnlySk.toPublicKey();
+  const myTokenSk = PrivateKey.random();
+  const myTokenAddr = myTokenSk.toPublicKey();
+
+  const tokenUserSk = PrivateKey.random();
+  const tokenUserAddr = tokenUserSk.toPublicKey();
 
   const legend = {
-    [proofsOnlyAddr.toBase58()]: 'proofsOnlyZkApp',
+    [myTokenAddr.toBase58()]: 'myToken',
+    [tokenUserAddr.toBase58()]: 'tokenUser',
     [deployerAccount.toPublicKey().toBase58()]: 'deployer',
   };
 
-  const proofsOnlyInstance = new ProofsOnlyZkApp(proofsOnlyAddr);
+  TokenUser.myTokenPublicKey = myTokenAddr;
+
+  const myTokenInstance = new MyToken(myTokenAddr);
+  const tokenUserInstance = new TokenUser(tokenUserAddr, myTokenInstance.token.id);
 
   // ----------------------------------------------------
 
   const deploy_txn = await Mina.transaction(deployerAccount, () => {
-    AccountUpdate.fundNewAccount(deployerAccount, 1);
-    proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
+    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 2); // shouldn't this need to be 3?
+    feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
+
+    myTokenInstance.deploy();
+    tokenUserInstance.deploy();
+
+    myTokenInstance.approveDeploy(tokenUserInstance.self);
   });
 
   await deploy_txn.prove();
-  deploy_txn.sign([ proofsOnlySk ]);
+  deploy_txn.sign([ myTokenSk, tokenUserSk ]);
 
   //await showTxn(deploy_txn, 'deploy_txn', legend);
   //await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
 
   await deploy_txn.send();
 
+  console.log('sent deploy txn');
+
   // ----------------------------------------------------
 
   const txn1 = await Mina.transaction(deployerAccount, () => {
-    proofsOnlyInstance.add(Field(4));
+    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
+    feePayerUpdate.send({ to: tokenUserAddr, amount: accountFee });
+
+    myTokenInstance.mint(tokenUserAddr, UInt64.from(500));
   });
 
   await txn1.prove();
 
-  await showTxn(txn1, 'txn1', legend);
-  await saveTxn(txn1, 'txn1', legend, './txn1.png');
+  //await showTxn(txn1, 'txn1', legend);
+  //await saveTxn(txn1, 'txn1', legend, './txn1.png');
 
   await txn1.send();
+
+  console.log('sent txn1');
+
+  // ----------------------------------------------------
+
+  const txn2 = await Mina.transaction(deployerAccount, () => {
+    //let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
+    //feePayerUpdate.send({ to: deployerAccount.toPublicKey(), amount: accountFee });
+
+    //tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAccount.toPublicKey());
+
+    tokenUserInstance.sendMyTokens(UInt64.from(100), tokenUserAddr);
+  });
+
+  await txn2.prove();
+
+  await showTxn(txn2, 'txn2', legend);
+  //await saveTxn(txn2, 'txn2', legend, './txn2.png');
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  await txn2.send();
+
+  console.log('sent txn2');
 
   // ----------------------------------------------------
 
