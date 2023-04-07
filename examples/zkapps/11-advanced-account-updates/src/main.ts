@@ -47,8 +47,8 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   await deploy_txn.prove();
   deploy_txn.sign([ proofsOnlySk ]);
 
-  await showTxn(deploy_txn, 'deploy_txn', legend);
-  await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
+  //await showTxn(deploy_txn, 'deploy_txn', legend);
+  //await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
 
   await deploy_txn.send();
 
