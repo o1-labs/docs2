@@ -28,7 +28,7 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:18](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L18)
+[lib/merkle_map.ts:18](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L18)
 
 ## Properties
 
@@ -38,7 +38,7 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:10](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L10)
+[lib/merkle_map.ts:10](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L10)
 
 ## Methods
 
@@ -58,7 +58,7 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L33)
+[lib/merkle_map.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L33)
 
 ___
 
@@ -82,7 +82,7 @@ The value stored at the key.
 
 #### Defined in
 
-[lib/merkle_map.ts:69](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L69)
+[lib/merkle_map.ts:69](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L69)
 
 ___
 
@@ -100,7 +100,7 @@ The root of the Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:80](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L80)
+[lib/merkle_map.ts:80](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L80)
 
 ___
 
@@ -124,7 +124,7 @@ A MerkleMapWitness, which can be used to assert changes to the MerkleMap, and th
 
 #### Defined in
 
-[lib/merkle_map.ts:89](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L89)
+[lib/merkle_map.ts:89](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L89)
 
 ___
 
@@ -147,4 +147,4 @@ Sets a key of the merkle map to a given value.
 
 #### Defined in
 
-[lib/merkle_map.ts:57](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/merkle_map.ts#L57)
+[lib/merkle_map.ts:57](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/merkle_map.ts#L57)

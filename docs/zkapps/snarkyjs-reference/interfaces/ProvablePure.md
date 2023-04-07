@@ -56,7 +56,7 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 #### Defined in
 
-[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L50)
+[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L50)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:48](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L48)
+[snarky.d.ts:48](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L48)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:47](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L47)
+[snarky.d.ts:47](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L47)
 
 ___
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:46](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L46)
+[snarky.d.ts:46](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L46)
 
 ## Methods
 
@@ -158,4 +158,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:49](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L49)
+[snarky.d.ts:49](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L49)

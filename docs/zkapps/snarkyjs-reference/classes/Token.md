@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[lib/account_update.ts:599](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L599)
+[lib/account_update.ts:597](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L597)
 
 ## Properties
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[lib/account_update.ts:585](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L585)
+[lib/account_update.ts:583](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L583)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:586](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L586)
+[lib/account_update.ts:584](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L584)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:587](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L587)
+[lib/account_update.ts:585](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L585)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:589](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L589)
+[lib/account_update.ts:587](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L587)
 
 ## Methods
 
@@ -111,4 +111,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:591](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/account_update.ts#L591)
+[lib/account_update.ts:589](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/account_update.ts#L589)

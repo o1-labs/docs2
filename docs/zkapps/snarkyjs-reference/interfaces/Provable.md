@@ -51,7 +51,7 @@ You will find this as the required input type in a few places in snarkyjs. One c
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L37)
+[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L37)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L35)
+[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L35)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L34)
+[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L34)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L33)
+[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L33)
 
 ## Methods
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L36)
+[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L36)
