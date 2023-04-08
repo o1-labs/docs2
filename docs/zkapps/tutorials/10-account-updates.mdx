@@ -258,9 +258,10 @@ Then deploy your smart contracts as follows and visualize the transaction:
 
 This yields the following visualization of `deploy_txn`. 
 
-![](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/deploy_txn.png)
 
-This is best opened in a new tab to read the contents ([link](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/deploy_txn.png)).
+<img src="/img/tutorial-10-deploy_txn.png" width="100%" />
+
+This is best opened in a new tab to read the contents ([link](/img/tutorial-10-deploy_txn.png)).
 
 The deploy transaction includes 5 accountUpdates. In order from left to right;
 
@@ -288,9 +289,10 @@ Next, call `add` on your instance of `proofsOnlyZkApp`:
 
 This yields the following visualization of `txn1`
 
-![](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn1-copy.png)
 
-See download link [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn1-copy.png).
+<img src="/img/tutorial-10-txn1.png" width="100%" />
+
+See download link [here](/img/tutorial-10-txn1.png).
 
 Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
 
@@ -341,9 +343,9 @@ Lastly, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
 This yields the following visualization of `txn2`
 
-![](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn2.png)
+<img src="/img/tutorial-10-txn2.png" width="100%" />
 
-See download link [here](https://raw.githubusercontent.com/es92/zkApp-examples/main/10-account-updates/txn2.png).
+See download link [here](/img/tutorial-10-txn2.png).
 
 And a quick reminder of the code for `callSecondary`:
 
