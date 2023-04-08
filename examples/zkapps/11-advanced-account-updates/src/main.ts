@@ -94,13 +94,14 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   // ----------------------------------------------------
 
   const txn2 = await Mina.transaction(deployerAccount, () => {
-    tokenUserInstance.sendMyTokens(UInt64.from(100), tokenUserAddr);
+    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
+    tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAccount.toPublicKey());
   });
 
   await txn2.prove();
 
   await showTxn(txn2, 'txn2', legend);
-  //await saveTxn(txn2, 'txn2', legend, './txn2.png');
+  await saveTxn(txn2, 'txn2', legend, './txn2.png');
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
 

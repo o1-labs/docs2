@@ -65,6 +65,7 @@ module.exports = {
             'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
+            'zkapps/tutorials/advanced-account-updates',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
