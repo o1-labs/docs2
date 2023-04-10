@@ -39,7 +39,7 @@ The Mina daemon logs at the following levels, in this order of precedence:
 
 :::info
 
-Specifying a `log-level` of `Info` will only display messages from that log level and above and significantly reduce the logs' verbosity.
+Specifying a `log-level` of `Info` display only messages from that log level and higher and significantly reduce the logs' verbosity.
 
 :::
 
@@ -59,7 +59,7 @@ The format of the logs is defined by the following structure:
   "metadata": {{...}}
 }
 ```
-An example error message is shown below:
+Here's an example error message:
 
 ```
 {
@@ -91,7 +91,7 @@ The logs may be exported from a running node via GraphQL using the `exportLogs` 
 
 :::
 
-To export logs from a node that is not running, run the `mina client export-local-logs` command to compress the available local log files. Pass the `tarfile` option to specify the tar archive's filename, and the logs will be compressed and exported to the `exported_logs` directory in the `~/.mina-config` directory.
+To export logs from a node that is not running, run the `mina client export-local-logs` command to compress the available local log files. Pass the `tarfile` option to specify the tar archive filename. The logs are compressed and exported to the `exported_logs` directory in the `~/.mina-config` directory.
 
 :::info
 
@@ -101,7 +101,7 @@ When creating or updating an issue on GitHub, you can upload the exported `tar.g
 
 ### Logging options
 
-The following options may be set when starting the daemon to customize the logging behaviour:
+To customize the logging behavior, set the following options when you start the daemon:
 
 * `-file-log-level` - log level for the log file (default: Trace)
 * `-log-level` - log level for output to the terminal via stdout (default: Info)
@@ -114,13 +114,13 @@ The following options may be set when starting the daemon to customize the loggi
 
 ### Crash Reports
 
-If the daemon crashes and is able, it will generate a crash report. Only the latest crash report will be retained, with the filename indicating the date-time of the crash and the compressed file being exported to the `~/.mina-config` directory. You can upload this crash report to any [GitHub issue](https://github.com/MinaProtocol/mina/issues) to identify new issues and aid in debugging.
+If the daemon crashes and is able, it generates a crash report. Only the latest crash report is retained with the filename that indicates the date-time of the crash and the compressed file being exported to the `~/.mina-config` directory. To aid in debugging, you can upload this crash report to a [GitHub issue](https://github.com/MinaProtocol/mina/issues).
 
-The crash report will contain some, or all of, the following log files:
+The crash report contains some, or all, of the following log files:
 
-* `crash_summary.json` - contains a summary of the crash, including the system info, the version information, and the final log output.
-* `mina_status.json` - an output of the `mina client status` command for a summary of the daemon's final state.
-* `mina_short.log` - contains the last 4MiB of the `mina.log` file.
-* `registered_mask.dot` - contains the latest ledger visualization.
-* `frontier.dot` - contains the latest frontier visualization.
-* `daemon.json` - a copy of the daemon configuration file.
+* `crash_summary.json` - a summary of the crash, including the system info, the version information, and the final log output
+* `mina_status.json` - an output of the `mina client status` command for a summary of the daemon's final state
+* `mina_short.log` - the last 4 MB of the `mina.log` file
+* `registered_mask.dot` - the latest ledger visualization
+* `frontier.dot` - the latest frontier visualization
+* `daemon.json` - a copy of the daemon configuration file

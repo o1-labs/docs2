@@ -12,20 +12,19 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # How to Write a zkApp UI
 
-To allow users to interact with your smart contract, you’ll typically want to build a website UI.
+To allow users to interact with your smart contract, you typically want to build a website UI.
 
 This UI can be written with any framework (e.g. React, Vue, Svelte, etc.) or plain HTML and JavaScript.
 
 ## Using one of the provided UI framework scaffolds
 
-When creating a new project with the zkApp CLI, you can directly choose one of three frameworks to be scaffolded as a part of your new zkApp project.
-At the moment, we support NuxtJS, Svelte Kit and NextJS. 
+When creating a new project with the zkApp CLI, you can directly choose a supported frameworks to be scaffolded as a part of your new zkApp project. For example, NuxtJS, Svelte Kit, and NextJS. 
 
-You can do so by adding the `--ui=<framework>` flag to the `zk project <myproj>` command: `zk project <myproj> --ui=<framework>`, where `<framework>` stands for one of the three currently supported frameworks `nuxt`, `svelte` and `next`.
+Adding the `--ui=<framework>` flag to the `zk project <myproj>` command: `zk project <myproj> --ui=<framework>`, where `<framework>` stands for a supported framework like `nuxt`, `svelte` and `next`.
 
 ## Adding your smart contract as a dependency of the UI
 
-If you want to use one of the scaffolding options that we provide and you want to add your smart contract to an already existing frontend, a different UI framework or simply a plain HTML and JavaScript website, you can do so as well. 
+To use one of the provided scaffolding options and add your smart contract to an existing frontend, a different UI framework or simply a plain HTML and JavaScript website, you can do so as well. 
 
 
 #### Setup
@@ -141,7 +140,7 @@ If your app will be hosted on Vercel, you can set these headers via [`vercel.jso
 
 **Cloudflare Pages**
 
-If your app will be hosted on Cloudflare Pages, you can set these headers via a [`_headers` file](https://developers.cloudflare.com/pages/platform/headers/).
+To host your app on Cloudflare Pages, you can set these headers by using a [`_headers` file](https://developers.cloudflare.com/pages/platform/headers/).
 
 ```
 /*
@@ -163,10 +162,10 @@ from NPM within their browser-extension wallet.
 
 1. Install <a
    href="https://chrome.google.com/webstore/detail/auro-walletmina-protocol/cnmamaachppnkjgnildpdmkaakejnhae">Auro
-   Wallet for Chrome</a>. Users of your zkApp will need to have this wallet
+   Wallet for Chrome</a>. Users of your zkApp must have this wallet
    installed in order to interact with your zkApp. Once installed, `window.mina`
-   will automatically become available in the user's browser environment. Your
-   zkApp will then use this object to interact with the wallet.
+   is automatically available in the user's browser environment. Your
+   zkApp then uses this object to interact with the wallet.
 
 2. Get accounts - To fetch a user's list of Mina accounts, you can use the
    `requestAccounts()` method. It can be useful to indicate if the user's wallet is successfully connected to your zkApp, such as in the screenshot below.
@@ -190,9 +189,9 @@ try {
 <img src={require('@site/static/img/Mina_Provider_Header.png').default} />
 
 3. Sending a transaction - After your user interacts with your zkApp, you can
-   sign and send the transaction using `sendTransaction()`. You will receive a transaction ID as soon as the Mina network has received the
+   sign and send the transaction using `sendTransaction()`. You receive a transaction ID as soon as the Mina network has received the
    proposed transaction. But keep in mind that this does not guarantee that
-   the network will accept the transaction into an upcoming block.
+   the transaction is accepted in the network into an upcoming block.
 
 ```ts
 try {
@@ -238,10 +237,10 @@ href="https://docs.aurowallet.com/general/reference/api-reference/mina-provider-
 
 ### Displaying assertion exceptions in your UI
 
-If an assertion exception occurs while a user interacts with any of your smart contract methods, you will want to capture this and display a helpful message for the user in your UI.
+If an assertion exception occurs while a user interacts with any of your smart contract methods, you want to capture this and display a helpful message for the user in your UI.
 
 1. Use a try-catch statement to catch exceptions when a user invokes a method on your smart contract.
-2. Use a switch-case statement to identify which exception was thrown. You will want a matching case for each unique assertion within your method. To assist with this, you may consider setting custom error messages for your assertions while writing the smart contract--for example: `INSUFFICIENT_BALANCE`.
+2. Use a switch-case statement to identify which exception was thrown. Add a matching case for each unique assertion within your method. To assist with this, you may consider setting custom error messages for your assertions while writing the smart contract--for example: `INSUFFICIENT_BALANCE`.
 3. Display a helpful error message for the user within your UI.
 
 ```ts
