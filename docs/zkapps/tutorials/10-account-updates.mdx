@@ -325,7 +325,7 @@ As a reminder, this corresponds to code:
 
 You can note in the account updates that in the first update, you're updating the state of `appState[0]` to `5` (matching the `this.num.set` in the `add` contract), and in the second update, you're updating `appState[1]` to `1` (matching the `this.calls.set` in the `incrementCalls` contract).
 
-Lastly, call `callSecondary` on your instance of `proofsOnlyZkApp`:
+Finally, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
 ```typescript
   const txn2 = await Mina.transaction(deployerAccount, () => {
@@ -340,13 +340,13 @@ Lastly, call `callSecondary` on your instance of `proofsOnlyZkApp`:
   await txn2.send();
 ```
 
-This yields the following visualization of `txn2`
+This returns the following visualization of `txn2`:
 
 <img src="/img/tutorial-10-txn2.png" width="100%" />
 
-See download link [here](/img/tutorial-10-txn2.png).
+This [txn2 visualization](/img/tutorial-10-txn2.png) is best viewed in a new tab.
 
-And a quick reminder of the code for `callSecondary`:
+And a quick reminder of the code for `callSecondary()`:
 
 ```typescript
   @method callSecondary(secondaryAddr: PublicKey) {
@@ -369,7 +369,7 @@ And a quick reminder of the code for `callSecondary`:
 
 This call is producing 3 accountUpdates - one for `callSecondary` (the parent) - one for `secondaryZkApp.add` (the left child) - and one for `incrementCalls` (the right child).
 
-Following the note in the comment, note that `callSecondary` sets `this.num` to `12` - the value of `secondaryContract` at the "start" of the transaction.
+As described in the code comment, `callSecondary` sets `this.num` to `12` which is the value of `secondaryContract` at the "start" of the transaction.
 
 ## Conclusion
 
