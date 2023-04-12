@@ -295,7 +295,7 @@ See download link [here](/img/tutorial-10-txn1.png).
 
 Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add()` method call and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
 
-One update is the child because it was called from the parent - which also implies that the parent has the child included as part of its proof. You can read more on parent / child account updates [here](../how-to-write-a-zkapp#payments-and-more-on-public-inputs).
+One update is the child because it was called from the parent, which also implies that the parent has the child included as part of its proof. To learn more about parent/child account updates, see [Payments and more on public inputs](../how-to-write-a-zkapp#payments-and-more-on-public-inputs).
 
 As a reminder, this corresponds to code: 
 
@@ -323,7 +323,7 @@ As a reminder, this corresponds to code:
   ...
 ```
 
-You can note in the account updates that in the first update, you're updating the state of `appState[0]` to `5` (matching the `this.num.set` in the `add` contract), and in the second update, you're updating `appState[1]` to `1` (matching the `this.calls.set` in the `incrementCalls` contract).
+View the [account updates visualization](/img/tutorial-10-deploy_txn.png) again. The first AccountUpdate sets the state of `appState[0]` to `5`— corresponding to the value passed to `this.num.set()` in the `add()` method. In the second AccountUpdate, `appState[1]` is set to `1`—corresponding to the value passed to `this.calls.set()` in the `incrementCalls()` contract.
 
 Finally, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
@@ -367,7 +367,11 @@ And a quick reminder of the code for `callSecondary()`:
   }
 ```
 
-This call is producing 3 accountUpdates - one for `callSecondary` (the parent) - one for `secondaryZkApp.add` (the left child) - and one for `incrementCalls` (the right child).
+This call produces three accountUpdates:
+
+ - `callSecondary()` (the parent)
+ - `secondaryZkApp.add()` (the left child)
+ - `incrementCalls()` (the right child)
 
 As described in the code comment, `callSecondary` sets `this.num` to `12` which is the value of `secondaryContract` at the "start" of the transaction.
 
