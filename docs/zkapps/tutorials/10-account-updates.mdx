@@ -43,7 +43,7 @@ Each [AccountUpdate](../snarkyjs-reference/classes/AccountUpdate) has these comp
 * `PublicKey`: The account address for the account update
 * `TokenId`: By default, the Mina TokenId. Together, TokenId and PublicKey uniquely determine the account.
 * `Preconditions`: What needs to be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
-* `Updates`: Things that are changed by the AccountUpdate. Can include the zkApp state, permissions, and verification key.
+* `Updates`: Things changed by the AccountUpdate, such as include the zkApp state, permissions, and verification key.
 * `Balance change`: Any changes to the balance
 * `Authorization`: How the zkApp is authorized; can be either a proof (corresponding to the verification key on the account) or a signature.
 
@@ -56,24 +56,23 @@ There are some other components we'll discuss in a later tutorial:
 
 Now, you can start building an example zkApp to explore permissions, preconditions, and composability with AccountUpdates.
 
-To visualize transactions, we'll be using the library `mina-transaction-visualizer`. To use this in your own zkApp, install with npm with `npm install mina-transaction-visualizer --save`.
+To visualize transactions, use the library `mina-transaction-visualizer`. To use this library in your own zkApp, install with npm with `npm install mina-transaction-visualizer --save`.
 
-You can find the full source code for this [Account Updates](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates) tutorial in the codebase repo.
+You can find the full [source code for this Account Updates tutorial](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates) in the `examples` directory within the Mina docs repo.
 
 ### Smart Contracts
 
-You will build two smart contracts to use in your example:
+In this tutorial, you build two smart contracts to use in your example:
 
 First, [ProofsOnlyZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/ProofsOnlyZkApp.ts).
 
-You will configure this zkApp to be modifiable only by using proofs. For this example, the zkApp is not upgradable after it is deployed. This means that while someone must own the private key to deploy the zkApp itself - after it is deployed, only the rules in the zkApp determine how the zkApp functions. The private key is no longer useful for anything.
+Configure this zkApp to be modifiable only by using proofs. For this example, the zkApp is not upgradable after it is deployed. This means that while the zkApp developer owns the private key to initially deploy the zkApp, after its first deployment, the zkApp requires proof authorization and consequently can only be updated by transactions that fulfill the zkApp's smart contract logic. The private key is no longer useful for anything.
 
-This zkApp also has methods that call other methods, so we can explore how that impacts a transaction's AccountUpdates.
+This zkApp also has methods that call other methods, so you can explore how that impacts a transaction's AccountUpdates.
 
 Start by adding the main contents of the zkApp:
 
 ```typescript
-
 export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();
   @state(Field) calls = State<Field>();
