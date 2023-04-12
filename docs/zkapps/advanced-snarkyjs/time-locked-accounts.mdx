@@ -11,9 +11,11 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Time-Locked Accounts
 
-Time-locking allows you to pay someone in MINA or custom other tokens subject to a vesting schedule. This means that the tokens are initially locked, and only become available for withdrawal after a certain time, or gradually according to a certain schedule.
+Time-locking allows you to pay someone in MINA or custom other tokens subject to a vesting schedule. This means that the tokens are initially locked and become available for withdrawal only after a certain time or are available gradually according to a specific vesting schedule.
 
-The zkApp feature that enables time-locking is the `timing` field, which is present on every account. It look like this:
+The zkApp feature that enables time-locking is the `timing` field that is present on every account. 
+
+The `timing` field looks like this:
 
 ```ts
 type Account = {
@@ -29,7 +31,7 @@ type Account = {
 };
 ```
 
-`isTimed` indicates whether this account is time locked. The other fields are parameters that allow you to define a vesting schedule in a very flexible manner. By default, accounts are not time locked, and `isTimed` is `false` and all other properties contain default values.
+`isTimed` indicates whether this account is time locked. The other fields are parameters that allow you to define a vesting schedule in a flexible manner. By default, accounts are not time locked. The default value of `isTimed` is `false`, and all other properties contain default values.
 
 This graph shows how each of the timing properties affect the vesting schedule:
 
@@ -41,21 +43,21 @@ This graph shows how each of the timing properties affect the vesting schedule:
   />
 </figure>
 
-The red cross on the left marks the point in time where the `timing` field is set and `isTimed` switches from `false` to `true`. The orange line shows how the amount of unlocked tokens increases over time, until it finally reaches its maximum value and stays flat. At this point, `isTimed` flips from `true` back to `false`, because no tokens remain locked.
+The red cross on the left marks the point in time where the `timing` field is set and `isTimed` switches from `false` to `true`. The orange line shows how the amount of unlocked tokens increases over time until it finally reaches its maximum value and stays flat. At this point, `isTimed` flips from `true` back to `false` because no tokens remain locked.
 
-As shown, the maximum amount of unlocked tokens is defined by the `initialMinimumBalance`. It is called "initialMinimumBalance" because, even though the tokens show up in the balance, they can't be withdrawn — in other words, the account has a a non-zero _minimum balance_. Initially, that minimum balance is equal to the amount of tokens locked (i.e. the initial minimum balance). Over time, the minimum balance decreases until it hits zero, which is the condition that makes `isTimed` false again.
+As shown, the maximum amount of unlocked tokens is defined by the `initialMinimumBalance`. The property is called "initialMinimumBalance" because, even though the tokens show up in the balance, they can't be withdrawn. The account has a a non-zero _minimum balance_. Initially, that minimum balance is equal to the amount of tokens locked (for example, the initial minimum balance). Over time, the minimum balance decreases until it hits zero, which is the condition that makes `isTimed` false again.
 
-The other timing-related properties are described as follows:
+The other timing-related properties are:
 
-- `cliffTime`: the initial time period during which all tokens are locked. Note that 'time' is measured in Mina by 'slots', where 1 slot is 3min currently.
-- `cliffAmount`: the quantity of tokens to be unlocked when the cliff time has elapsed. If this is greater or equal the 'initial minimum balance', all tokens are unlocked after the cliff time elapses.
+- `cliffTime`: The initial time period during which all tokens are locked. Note that 'time' is measured in Mina by 'slots', where 1 slot is 3 minutes.
+- `cliffAmount`: The quantity of tokens to be unlocked when the cliff time has elapsed. If this amount is greater or equal the 'initial minimum balance', all tokens are unlocked after the cliff time elapses.
 - `vestingPeriod`: After the cliff time elapses, tokens can be set to unlock periodically at a fixed interval, by a fixed quantity. The vesting period is the length of that interval.
-- `vestingIncrement`: the quantity of tokens unlocked after each vesting period elapses.
+- `vestingIncrement`: The quantity of tokens that are unlocked after each vesting period elapses.
 
 :::note
-Only one vesting schedule can be specified per account and it cannot be changed during the vesting period.
+Only one vesting schedule can be specified per account. The vesting schedule cannot be changed during the vesting period.
 
-Because of this, when `isTimed` is set to `true`, the values of the timing fields are immutable and cannot be changed.
+Because of this design, when `isTimed` is set to `true` the values of the timing fields are immutable and cannot be changed.
 After all tokens are unlocked and `isTimed` flips back to `false`, the account timing becomes mutable again.
 :::
 
@@ -67,15 +69,15 @@ In SnarkyJS, `timing` is one of the account fields that can be updated by using 
 accountUpdate.account.timing.set({ initialMinimumBalance, cliffTime, ...etc });
 ```
 
-When setting timing, all timing-related properties are required, except for `isTimed` that is automatically set by the protocol.
+When you set timing, all timing-related properties are required, except for `isTimed` that is automatically set by the protocol.
 
 ### Examples
 
-These examples show how to correctly implement some simple example use cases.
+These examples show how to correctly implement several example use cases.
 
 #### Example 1: All tokens unlock after 1 week
 
-If you simply want all tokens to unlock after a certain time, then the only properties you need to care about are `initialMinimumBalance`, `cliffTime`, and `cliffAmount`. Set `cliffAmount` equal to the `initialMinimumBalance` to ensure all tokens are unlocked when the cliff elapses. Both `vestingPeriod` and `vestingIncrement` are unused so set them to their default values, 1 and 0:
+If you want all tokens to unlock after a certain time, then the only properties you need to care about are `initialMinimumBalance`, `cliffTime`, and `cliffAmount`. Set `cliffAmount` equal to the `initialMinimumBalance` to ensure all tokens are unlocked when the cliff elapses. Both `vestingPeriod` and `vestingIncrement` are unused so set them to their default values, 1 and 0:
 
 ```ts
 // example: 10 MINA to lock
