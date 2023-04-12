@@ -228,7 +228,7 @@ type Legend = { [pk: string]: string };
 
 ```
 
-Now build the legend as follows:
+Now, define the legend as follows:
 
 ```typescript
   const legend = {
@@ -260,7 +260,7 @@ This yields the following visualization of `deploy_txn`.
 
 <img src="/img/tutorial-10-deploy_txn.png" width="100%" />
 
-This is best opened in a new tab to read the contents ([link](/img/tutorial-10-deploy_txn.png)).
+This [visualization](/img/tutorial-10-deploy_txn.png) is best viewed in a new tab.
 
 The deploy transaction includes 5 accountUpdates. In order from left to right;
 
@@ -272,7 +272,7 @@ The deploy transaction includes 5 accountUpdates. In order from left to right;
 
 When the transaction is run on-chain, all of these account updates are checked and applied. Note that there is no actual "execution" of each AccountUpdate provided - instead, each AccountUpdate includes an associated signature or proof, corresponding to the verification key in the zkApp.
 
-Next, call `add` on your instance of `proofsOnlyZkApp`:
+Next, call `add()` on your instance of `proofsOnlyZkApp`:
 
 ```typescript
   const txn1 = await Mina.transaction(deployerAccount, () => {
@@ -286,14 +286,14 @@ Next, call `add` on your instance of `proofsOnlyZkApp`:
   await txn1.send();
 ```
 
-This yields the following visualization of `txn1`
+This returns the following visualization of `txn1`:
 
 
 <img src="/img/tutorial-10-txn1.png" width="100%" />
 
 See download link [here](/img/tutorial-10-txn1.png).
 
-Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add` method call - and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
+Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add()` method call and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
 
 One update is the child because it was called from the parent - which also implies that the parent has the child included as part of its proof. You can read more on parent / child account updates [here](../how-to-write-a-zkapp#payments-and-more-on-public-inputs).
 
