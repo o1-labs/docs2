@@ -21,17 +21,17 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 
 ## Permissions, Preconditions, and Composability
 
-## Overview:
+## Overview
 
-Each zkApp transaction constructed in SnarkyJS is composed of [AccountUpdates](../snarkyjs-reference/classes/AccountUpdate), a set of instructions for the Mina network.
+Each zkApp transaction constructed by SnarkyJS is composed of one or more [AccountUpdates](../snarkyjs-reference/classes/AccountUpdate), which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, etc.
 
 Each AccountUpdate can make assertions about its account, apply updates to its account, as well as make assertions about its child AccountUpdates.
 
-Transactions are structured as a list of trees of AccountUpdates - applied with a ["pre-order"](https://en.wikipedia.org/wiki/Tree_traversal) traversal.
+Transactions are structured as a list of trees of AccountUpdates applied with a ["pre-order" traversal](https://en.wikipedia.org/wiki/Tree_traversal).
 
-Many of the core features of zkApps - permissions, preconditions, composability, and tokens - are each implemented through the use of AccountUpdates. In this tutorial, you learn all of these except tokens and assertions on account update layouts.
+Many of the core features of zkApps—permissions, preconditions, composability, and tokens—are implemented using AccountUpdates. In this tutorial, you learn about many of the essential AccountUpdates features.
 
-To learn more, see these advanced SnarkyJS docs:
+To learn more, see these SnarkyJS docs:
 
 * [Permissions](../advanced-snarkyjs/permissions)
 * [Preconditions](../advanced-snarkyjs/on-chain-values)
