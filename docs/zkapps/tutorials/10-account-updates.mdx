@@ -139,10 +139,10 @@ Next, add two functions:
 ```
 
 :::caution
-In each of these methods, you are also asserting `provedState` is `true` to ensure the zkApp was initialized as expected because `provedState` becomes true after `init` is called and is recommended for most zkApps.
+In each of these methods, you are also asserting `provedState` is `true` to ensure the zkApp was initialized as expected because `provedState` becomes true after `init()` is invoked, and is recommended for most zkApps.
 :::
 
-Note you are also having the `add()` method call the `incrementCalls()` method, to see how this is reflected in the `add()` transaction's AccountUpdate structure.
+The `add()` method calls the `incrementCalls()` method. You can see how this is reflected in the `add()` transaction's AccountUpdate structure.
 
 Finally, add one more function, `callSecondary()` that calls a different zkApp:
 
@@ -168,9 +168,9 @@ Finally, add one more function, `callSecondary()` that calls a different zkApp:
 }
 ```
 
-This takes the address of our other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method occurs after this set of AccountUpdates - so when you call `secondaryContract.num.get()` that gets the value before this transaction is applied.
+`callSecondary()` takes the address of the other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method occurs after this set of AccountUpdates—so when you call `secondaryContract.num.get()`, it gets the value before this transaction is applied.
 
-Last, to look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts), you have contents:
+Finally, look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts) containing:
 
 ```typescript
 export class SecondaryZkApp extends SmartContract {
@@ -197,9 +197,9 @@ export class SecondaryZkApp extends SmartContract {
 
 ```
 
-You declare functions for initializing the account and the `add` method that is called from the earlier `ProofOnlyZkApp`.
+You declare functions for initializing the account and the `add()` method that is called from the earlier `ProofOnlyZkApp`.
 
-### Running our Smart Contracts and Visualizing the AccountUpdates
+### Running Your Smart Contracts and Visualizing the AccountUpdates
 
 Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/main.ts) file that creates transactions with the earlier smart contracts and the account update visualizations it creates.
 
