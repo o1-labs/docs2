@@ -41,7 +41,7 @@ The full source code for [01-hello-world](https://github.com/o1-labs/docs2/tree/
 
 First, install the [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) if you haven't already.
 
-#### Dependencies
+### Dependencies
 
 To use the zkApp CLI, your environment requires:
 
@@ -61,7 +61,7 @@ Use a package manager to install the required versions and upgrade older version
 
 To verify your installed versions, use `npm -v`, `node -v`, and `git -v`.
 
-#### Installation
+### Install the zkApp CLI
 
 To install the zkApp CLI:
 
@@ -75,80 +75,91 @@ To confirm successful installion:
 $ zk --version
 ```
 
-This tutorial has been tested with Mina zkApp CLI version `0.6.4` and SnarkyJS `0.8.0`.
+This tutorial has been tested with Mina zkApp CLI version `0.7.5` and SnarkyJS `0.8.0`.
 
 ## Create a new project
 
 Now that you have the tooling installed, you can start building your application.
 
-First, create a new project using the `zk project` command:
+1. Create or change to a directory where you have write priveleges.
+1. Now, create a project using the `zk project` command:
 
-```sh
-$ zk project 01-hello-world
-```
+  ```sh
+  $ zk project 01-hello-world
+  ```
 
-This command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
+  This command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
 
-One of the features of the `zk project` command is the ability to scaffold the UI for your project. For this tutorial, select `none`:
+1. The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-```
-? Create an accompanying UI project too? …
-  next
-  svelte
-  nuxt
-  empty
-❯ none
-```
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
 
-Change into the `01-hello-world` directory and list the contents:
+1. Change into the `01-hello-world` directory and list the contents:
 
-```sh
-$ cd 01-hello-world
-$ ls
-```
+  ```sh
+  $ cd 01-hello-world
+  $ ls
+  ```
 
-The output is similar to the following:
+  The output shows these results:
 
-```sh
-LICENSE           build             jest.config.js    package-lock.json tsconfig.json
-README.md         config.json       keys              package.json
-babel.config.cjs  jest-resolver.cjs node_modules      src
-```
+  ```sh
+  LICENSE
+  README.md
+  babel.config.cjs
+  build
+  config.json
+  jest-resolver.cjs
+  jest.config.js
+  keys
+  node_modules
+  package-lock.json
+  package.json
+  src
+  tsconfig.json
+  ```
 
-For this tutorial, you work mostly in the `src` directory that contains the TypeScript code for the smart contract. Each time you make updates, then build or deploy (which automatically builds), the TypeScript code is compiled into JavaScript in the `build` directory.
+For this tutorial, you work mostly in the `src` directory that contains the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
 ### Preparing the project
 
 Start by deleting the default files that come with the new project.
 
-To delete the old files:
+1. To delete the old files:
 
-```sh
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-```
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
 
-Then, generate the new files for the project:
+1. Now, generate the new files for your project:
 
-```sh
-$ zk file src/Square
-$ touch src/main.ts
-```
+  ```sh
+  $ zk file src/Square
+  $ touch src/main.ts
+  ```
 
 The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files. However, this tutorial does not include writing tests. Instead, you use `main.ts` as a script to interact with the smart contract and observe how it works. 
 
-In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user. For now, you just use the `main.ts` script.
+In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user. For this first tutorial, you just use the `main.ts` script.
 
-Now, open `src/index.ts` in a text editor and change it to look like:
+3. Now, open `src/index.ts` in a text editor and change it to look like:
 
-```ts src/index.ts
-1 import { Square } from './Square.js';
-2
-3 export { Square };
-```
+  ```ts src/index.ts
+  1 import { Square } from './Square.js';
+  2
+  3 export { Square };
+  ```
 
-The `src/index.ts` file contains all of the exports you want to make available for consumption from outside our smart contract project, such as from a UI.
+  The `src/index.ts` file contains all of the exports you want to make available for consumption from outside our smart contract project, such as from a UI.
 
 ### Building and running
 
@@ -165,9 +176,9 @@ $ npm run build
 $ node build/src/main.js
 ```
 
-The first command creates JavaScript code in the build directory. The second command runs the code in `src/main.ts`.
+Because you haven't built the smart contract yet, this command fails as expected. When successful, the first command creates JavaScript code in the `build` directory. The second command runs the code in `src/main.ts`.
 
-You can also combine these commands together into one line, such as:
+You can also combine these commands together into one line:
 
 ```
 npm run build && node build/src/main.js
