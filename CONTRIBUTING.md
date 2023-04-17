@@ -64,6 +64,6 @@ During the documentation build process, each PR goes through Vercel CI to test t
 
 ### SnarkyJS Reference
 
-The zkApp Developers > [SnarkyJS Reference](https://docs.minaprotocol.com/zkapps/snarkyjs-reference) docs are generated content and outside the scope of the Mina Docs repository. Updating the associated Markdown file for SnarkyJS Reference docs is not supported.
+The zkApp Developers > [SnarkyJS Reference](https://docs.minaprotocol.com/zkapps/snarkyjs-reference) docs are generated content and outside the scope of the Mina Docs repository. 
 
 Thank you for contributing to the Mina docs. It's better together.
