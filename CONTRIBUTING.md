@@ -2,7 +2,7 @@
 
 Welcome to the Mina Docs open source repository. Thank you for your interest in contributing to the [Mina Docs](https://docs.minaprotocol.com/) website. 
 
-We treat documentation like code. The Mina Docs use a docs as code workflow to develop and publish product documentation using the same tools and processes as software code development. All user-impacting updates on the codebase require updates to the relevant documentation in the docs repo. Developers write the first draft of content for all new features. Feature documentation is part of our development “definition of done.”
+We treat documentation like code. The Mina Docs use a docs-as-code workflow to develop and publish product documentation using the same tools and processes as software code development. All user-impacting updates on the codebase require updates to the relevant documentation in the docs repo. Developers write the first draft of content for all new features. Feature documentation is part of our development “definition of done.”
 
 By contributing, you can help us improve the functionality and user experience of the docs which helps the users build better projects. To ensure a smooth and effective collaboration, please follow these contribution guidelines.
 
