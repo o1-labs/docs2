@@ -12,7 +12,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # How to Test a zkApp
 
-Writing automated tests for your smart contract is essential to ensure your code is well-tested during development. All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
+Writing automated tests for your smart contract is essential to ensure your code is well tested during development. All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
 
 ## Writing tests for your smart contract
 
@@ -38,16 +38,9 @@ describe('foo.test.ts', () => {
 });
 ```
 
-Create `describe` blocks for all areas where your smart contract modifies its state so you can verify that your state updates as expected.
+When you start testing with the Jest testing framework, it is helpful to create `describe` blocks for all areas where your smart contract modifies its state so you can verify that your state updates as expected.
 
-To generate existing tests, create a template example using the Mina zkApp CLI:
-
-- `zk project <name>` 
-- `zk example <name` 
-
-Examine the generated test files. 
-
-For basic test examples that deploy and update the state on a smart contract using Jest, see the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) template.
+For basic test examples that deploy and update the state on a smart contract using Jest, see the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) file. You can also find this file inside every new project that is created using `zk project <name>`.
 
 ## Running tests
 
@@ -69,7 +62,7 @@ You can quickly test your smart contract by running it locally on a mock blockch
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
-let Local = Mina.LocalBlockchain();
+const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
@@ -187,4 +180,4 @@ See the [Jest](https://jestjs.io/docs/getting-started) documentation.
 
 ## Next Steps
 
-Now that you know how to test a smart contract, you can learn [How to deploy a zkApp](/how-to-deploy-a-zkapp).
+Now that you know how to test a smart contract, you can learn [How to deploy a zkApp](how-to-deploy-a-zkapp).
