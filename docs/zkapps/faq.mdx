@@ -12,7 +12,7 @@ This has some implications:
 
 - To turn your logic into a proof, you must use SnarkyJS built-in datatypes such as `Field` and use the SnarkyJS functions that operate on them, like `Field.mul()`.
   - A statement like `x.mul(y)` adds a generic PLONK gate to your circuit and returns a variable that you can use in further statements that get wired to the multiplication gate.
-  - Some SnarkyJS functions allow you to turn normal JS datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. Functions that don't add anything to your circuit are typically clarified in a doc-comment.
+  - Some SnarkyJS methods allow you to convert normal JavaScript datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. Methods like this that don't add anything to your circuit are typically clarified in a doc comment.
 - Conventional JS code such as `'hello world'.split('').join(' ')` that doesn't use SnarkyJS built-ins are not included in your zk proof in any way since it does add anything to your circuit.
   - Why? Because it doesn't call any of the functions that build the circuit.
   - There's nothing wrong with having non-circuit code inside your method, as long as you're aware of what it's (not) doing.
