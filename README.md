@@ -6,7 +6,7 @@ This Mina Docs website is [docs.minaprotocol.com](https://docs.minaprotocol.com/
 
 ## To contribute content
 
-Thank you for your interest! See the docs [CONTRIBUTING](contributing) guidelines.
+Thank you for your interest! See the docs [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
 ## How to see your doc updates during development
 
