@@ -35,7 +35,7 @@ You will:
 
 Later tutorials introduce more concepts and patterns.  
 
-The full source code for [01-hello-world](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world) is provided in the `examples/zkapps` directory. 
+The full source code for this tutorial is provided in  the [examples/zkapps/01-hello-world](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world) directory on GitHub. While you're there, give the `/docs2` repository a star. 
 
 :::info
 
@@ -94,9 +94,7 @@ Now that you have the tooling installed, you can start building your application
   $ zk project 01-hello-world
   ```
 
-  This command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
-
-1. The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
   ```
   ? Create an accompanying UI project too? …
@@ -106,6 +104,27 @@ Now that you have the tooling installed, you can start building your application
     empty
   ❯ none
   ```
+  The expected output is:
+
+  ```sh
+  ✔ Create an accompanying UI project too? · none
+  ✔ UI: Set up project
+  ✔ Initialize Git repo
+  ✔ Set up project
+  ✔ NPM install
+  ✔ NPM build contract
+  ✔ Set project name
+  ✔ Git init commit
+
+  Success!
+
+  Next steps:
+    cd 01-hello-world
+    git remote add origin <your-repo-url>
+    git push -u origin main
+```
+
+  This command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework. 
 
 1. Change into the `01-hello-world` directory and list the contents:
 
@@ -132,7 +151,16 @@ Now that you have the tooling installed, you can start building your application
   tsconfig.json
   ```
 
-For this tutorial, you work mostly in the `src` directory that contains the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+2. A local repository was created for you when you created a project using the `zk project` command, you can commit your changes. By saving your changes now, you can roll back changes if necessary:
+
+  ```sh
+  $ git remote add origin <your-repo-url>
+  $ git push -u origin main
+  ```
+
+(?what is <your-repo-url>? )
+
+For this tutorial, you run commands from the `01-hello-world` directory as you work in the `src` directory on files  that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
 ### Preparing the project
 
@@ -483,7 +511,8 @@ state after txn1: 9
 Shutting down
 ```
 
-Now try adding a transaction that should fail. Now that `num` is in state `9`, updating is possible only with `81`. To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
+Now try adding a transaction that fails. 
+The contract logic allows the number that is stored as on-chain state to be replaced only by its square. Now that `num` is in state `9`, updating is possible only with `81`. To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
 
 ```ts src/main.ts
 49 console.log('state after txn1:', num1.toString());
