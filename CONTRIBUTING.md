@@ -2,13 +2,13 @@
 
 Welcome to the Mina Docs open source repository. Thank you for your interest in contributing to the [Mina Docs](https://docs.minaprotocol.com/) website. 
 
-We treat documentation like code. The Mina Docs use a docs-as-code workflow to develop and publish product documentation using the same tools and processes as software code development. All user-impacting updates on the codebase require updates to the relevant documentation in the docs repo. Developers write the first draft of content for all new features. Feature documentation is part of our development “definition of done.”
+We realize that technical documentation is a high-visibility interface with you: our community and our users. We work hard to deliver well-written docs to help you discover, understand, and use the Mina Protocol and SnarkyJS.
 
-By contributing, you can help us improve the functionality and user experience of the docs which helps the users build better projects. To ensure a smooth and effective collaboration, please follow these contribution guidelines.
+We treat documentation like code. The Mina Docs use a docs-as-code workflow to develop and publish product documentation using the same tools and processes as software code development. All user-impacting updates on the codebase require corresponding updates to the relevant documentation in the docs repo. Developers who know the feature best write the first draft of content for all changes and new features. Feature documentation is part of our development “definition of done.”
+
+By contributing, you can help us improve the functionality and user experience of the docs which in turn helps you build better projects. To ensure a smooth and effective collaboration, please follow these contribution guidelines.
 
 ## Style Guidance
-
-Technical documentation is a high-visibility interface with our community and our users. Well-written docs help our users discover, understand, and use the Mina Protocol and SnarkyJS.
 
 Follow the style guidance in the [Docs Style Guide](https://github.com/o1-labs/docs2/wiki/Docs-Style-Guide) and recommended [Word List](https://github.com/o1-labs/docs2/wiki/Word-list) to ensure a consistent user experience. Look around. Match the style you see used in the rest of the project. 
 
@@ -20,11 +20,13 @@ To learn about ways to participate and interact with community members, see [Onl
 
 All contributors agree to respect and follow the Mina Protocol [Code of Conduct](https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md).
 
-## Docs Toolset 
+## Docs Toolset
 
 The [Mina Docs](https://docs.minaprotocol.com/) website is published with the Docusaurus static site generator. The docs source files are written in Markdown `.mdx` files that support Markdown with embedded components through the JSX syntax extension to JavaScript. Docusaurus has built-in support for MDX that renders the JSX in Markdown files as React components. 
 
 Even if you're unfamiliar with Markdown, you can still contribute to the docs in a helpful and meaningful way. Use [Markdown Basic Syntax](https://www.markdownguide.org/basic-syntax) and look at existing docs for models to follow. You can start contributing by submitting fixes for typos, spelling, and broken links. 
+
+You can even build the docs locally. See the [README](readme) file. 
 
 ## Using this repo
 
@@ -45,25 +47,23 @@ Some of the best content contributions come during the PR review cycles. To ensu
 
 ## Pull Requests (PRs)
 
-Provide a helpful, informative PR title that include the context and page you are updating. Each PR must address one issue or feature.
+To provide a fix or update, make a direct contribution. We appreciate your contributions!
 
-To provide a fix or update, make a direct contribution. If you're not a member or maintainer, fork the repo and then submit a pull request (PR) from your forked repo to the `main` branch.
+- For a simple fix to single page, you can select **EDIT THIS PAGE** at the top of the page to make changes to the file in a web browser. In the **Propose changes** section, you can follow the GitHub workflow to submit a pull request.  
+
+- If you're not a member or maintainer, fork the repo and then submit a pull request (PR) from your forked repo to the `main` branch.
+
+Provide a helpful, informative PR title that includes the context and page you are updating. Each PR must address only one issue or feature.
 
 Start by creating a [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/). Create your draft PR early, even if your work is just beginning or incomplete. Your draft PR indicates to the community that you're working on something and provides a space for conversations early in the development process. Merging is blocked for `Draft` PRs, so they provide a safe place to experiment and invite comments.
 
-All pull requests must get code reviewed. As the PR submitter, you must address each comment and suggestion in the **Files changed** view during the review process.
+All pull requests must go through the code review process. As the PR submitter, you are responsible for addressing each comment and suggestion in the **Files changed** view during the review process.
 
 - If you are a member of the docs repo, you can merge the approved PR.
 - If your PR is a fork, the code maintainers will merge the approved PR.
 
-### Continuous Integration (CI)
-
-The docs output is generated by a CI pipeline which means that we can update the docs site whenever we want, so the [Mina Docs](https://docs.minaprotocol.com/) website always contains the most up-to-date content available. 
-
-During the documentation build process, each PR goes through Vercel CI to test the doc updates and build a preview of your changes. Vercel for GitHub automatically deploys and provides preview deployment URLs. After the PR status is ready, click **Visit Preview** and navigate to the changed page to see your doc updates.
-
 ### SnarkyJS Reference
 
-The zkApp Developers > [SnarkyJS Reference](https://docs.minaprotocol.com/zkapps/snarkyjs-reference) docs are generated content and outside the scope of the Mina Docs repository. 
+The zkApp Developers > [SnarkyJS Reference](https://docs.minaprotocol.com/zkapps/snarkyjs-reference) docs are generated content and are outside the scope of the Mina Docs repository.
 
 Thank you for contributing to the Mina docs. It's better together.
