@@ -26,7 +26,7 @@ The [Mina Docs](https://docs.minaprotocol.com/) website is published with the Do
 
 Even if you're unfamiliar with Markdown, you can still contribute to the docs in a helpful and meaningful way. Use [Markdown Basic Syntax](https://www.markdownguide.org/basic-syntax) and look at existing docs for models to follow. You can start contributing by submitting fixes for typos, spelling, and broken links. 
 
-You can even build the docs locally. See the [README](readme) file. 
+To build the docs locally during development, see the [README](readme) file. 
 
 ## Using this repo
 
@@ -47,7 +47,7 @@ Some of the best content contributions come during the PR review cycles. To ensu
 
 ## Pull Requests (PRs)
 
-To provide a fix or update, make a direct contribution. We appreciate your contributions!
+You are welcome to provide a fix or update directly. We appreciate your contributions!
 
 - For a simple fix to single page, you can select **EDIT THIS PAGE** at the top of the page to make changes to the file in a web browser. In the **Propose changes** section, you can follow the GitHub workflow to submit a pull request.  
 
