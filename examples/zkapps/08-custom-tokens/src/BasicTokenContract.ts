@@ -8,12 +8,14 @@ import {
   UInt64,
   PublicKey,
   Signature,
+  UInt32,
 } from 'snarkyjs';
 
 const tokenSymbol = 'MYTKN';
 
 export class BasicTokenContract extends SmartContract {
   @state(UInt64) totalAmountInCirculation = State<UInt64>();
+  @state(UInt32) mintNonce = State<UInt32>();
 
   deploy(args: DeployArgs) {
     super.deploy(args);
@@ -44,11 +46,13 @@ export class BasicTokenContract extends SmartContract {
     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
 
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+    let nonce = this.mintNonce.get();
+    this.mintNonce.assertEquals(nonce);
 
     adminSignature
       .verify(
         this.address,
-        amount.toFields().concat(receiverAddress.toFields())
+        amount.toFields().concat(...receiverAddress.toFields(), ...nonce.toFields())
       )
       .assertTrue();
 
@@ -57,6 +61,7 @@ export class BasicTokenContract extends SmartContract {
       amount,
     });
 
+    this.mintNonce.set(nonce.add(1));
     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
   }
 
