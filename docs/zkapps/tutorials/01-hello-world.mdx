@@ -315,8 +315,6 @@ Congratulations, you have reviewed the complete smart contract code.
 
 Next, write a script that interacts with your smart contract. As before, the complete [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file is provided. Follow these steps to build the `main.ts` file so you can can interact with the smart contract.  
 
-1. First, open the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file.
-
 ### Imports
 
 For this tutorial, the `import` statement brings in items from `snarkyjs` that you use to interact with your smart contract. 
@@ -347,7 +345,9 @@ These import items are:
 
 ### Local Blockchain
 
-Now, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts` to initialize your local blockchain used for testing:
+Using a local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to deploy a zkApp to live Mina networks.
+
+To initialize your local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
 11 await isReady;
@@ -401,16 +401,15 @@ npm run build && node build/src/main.js
 - The `&&` operator links two commands together. The second command runs only if the first command is successful. 
 - The `node build/src/main.js` command runs the code in `src/main.ts`.
 
-Using a local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to deploy a zkApp to live Mina networks.
-
 ### Initialize your smart contract
 
 To initialize your smart contract, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file. 
 
-All smart contracts that you create with the zkApp CLI use similar code.
+All smart contracts that you create with the zkApp CLI use similar code:
+
 - Create a public/private key pair; the public key is your address and where you deploy the zkApp to
-- Create an instance of `Square` and deploy it to `zkAppAddress`
-- Get the initial state of Square after deployment
+- Create an instance of your smart contract `Square` and deploy it to `zkAppAddress`
+- Get the initial state of `Square` after deployment
 
 Comments break down each stage:
 
