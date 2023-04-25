@@ -22,12 +22,12 @@
 
 - [Account](Types.md#account)
 - [AccountUpdate](Types.md#accountupdate)
+- [ActionState](Types.md#actionstate)
+- [Actions](Types.md#actions)
 - [AuthRequired](Types.md#authrequired)
 - [Events](Types.md#events)
 - [Layout](Types.md#layout)
 - [ReceiptChainHash](Types.md#receiptchainhash)
-- [SequenceEvents](Types.md#sequenceevents)
-- [SequenceState](Types.md#sequencestate)
 - [StateHash](Types.md#statehash)
 - [TokenId](Types.md#tokenid)
 - [TokenSymbol](Types.md#tokensymbol)
@@ -39,11 +39,11 @@
 
 - [Account](Types.md#account-1)
 - [AccountUpdate](Types.md#accountupdate-1)
+- [ActionState](Types.md#actionstate-1)
+- [Actions](Types.md#actions-1)
 - [AuthRequired](Types.md#authrequired-1)
 - [Events](Types.md#events-1)
 - [ReceiptChainHash](Types.md#receiptchainhash-1)
-- [SequenceEvents](Types.md#sequenceevents-1)
-- [SequenceState](Types.md#sequencestate-1)
 - [StateHash](Types.md#statehash-1)
 - [TokenId](Types.md#tokenid-1)
 - [TokenSymbol](Types.md#tokensymbol-1)
@@ -101,9 +101,9 @@ Re-exports [UInt64](../classes/UInt64.md)
 | `balance` | [`UInt64`](../classes/UInt64.md) |
 | `delegate?` | [`PublicKey`](../classes/Types.PublicKey.md) |
 | `nonce` | [`UInt32`](../classes/UInt32.md) |
-| `permissions` | { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  } |
+| `permissions` | { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  } |
 | `permissions.access` | [`AuthRequired`](Types.md#authrequired-1) |
-| `permissions.editSequenceState` | [`AuthRequired`](Types.md#authrequired-1) |
+| `permissions.editActionState` | [`AuthRequired`](Types.md#authrequired-1) |
 | `permissions.editState` | [`AuthRequired`](Types.md#authrequired-1) |
 | `permissions.incrementNonce` | [`AuthRequired`](Types.md#authrequired-1) |
 | `permissions.receive` | [`AuthRequired`](Types.md#authrequired-1) |
@@ -127,11 +127,11 @@ Re-exports [UInt64](../classes/UInt64.md)
 | `tokenId` | [`TokenId`](Types.md#tokenid-1) |
 | `tokenSymbol` | `string` |
 | `votingFor` | [`Field`](../classes/Field.md) |
-| `zkapp?` | { `appState`: [`Field`](../classes/Field.md)[] ; `lastSequenceSlot`: [`UInt32`](../classes/UInt32.md) ; `provedState`: [`Bool`](../classes/Bool.md) ; `sequenceState`: [`Field`](../classes/Field.md)[] ; `verificationKey?`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } ; `zkappUri`: `string` ; `zkappVersion`: [`UInt32`](../classes/UInt32.md)  } |
+| `zkapp?` | { `actionState`: [`Field`](../classes/Field.md)[] ; `appState`: [`Field`](../classes/Field.md)[] ; `lastActionSlot`: [`UInt32`](../classes/UInt32.md) ; `provedState`: [`Bool`](../classes/Bool.md) ; `verificationKey?`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } ; `zkappUri`: `string` ; `zkappVersion`: [`UInt32`](../classes/UInt32.md)  } |
+| `zkapp.actionState` | [`Field`](../classes/Field.md)[] |
 | `zkapp.appState` | [`Field`](../classes/Field.md)[] |
-| `zkapp.lastSequenceSlot` | [`UInt32`](../classes/UInt32.md) |
+| `zkapp.lastActionSlot` | [`UInt32`](../classes/UInt32.md) |
 | `zkapp.provedState` | [`Bool`](../classes/Bool.md) |
-| `zkapp.sequenceState` | [`Field`](../classes/Field.md)[] |
 | `zkapp.verificationKey?` | { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } |
 | `zkapp.verificationKey.data` | `string` |
 | `zkapp.verificationKey.hash` | [`Field`](../classes/Field.md) |
@@ -140,9 +140,9 @@ Re-exports [UInt64](../classes/UInt64.md)
 
 #### Defined in
 
-[provable/gen/transaction.ts:521](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L521)
+[provable/gen/transaction.ts:521](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L521)
 
-[provable/gen/transaction.ts:567](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L567)
+[provable/gen/transaction.ts:567](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L567)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 | `authorization` | { `proof?`: `string` ; `signature?`: `string`  } |
 | `authorization.proof?` | `string` |
 | `authorization.signature?` | `string` |
-| `body` | { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `sequenceState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  } |
+| `body` | { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  } |
 | `body.actions` | { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
 | `body.actions.data` | [`Field`](../classes/Field.md)[][] |
 | `body.actions.hash` | [`Field`](../classes/Field.md) |
@@ -178,8 +178,11 @@ ___
 | `body.mayUseToken` | { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } |
 | `body.mayUseToken.inheritFromParent` | [`Bool`](../classes/Bool.md) |
 | `body.mayUseToken.parentsOwnToken` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions` | { `account`: { `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `sequenceState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } |
-| `body.preconditions.account` | { `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `sequenceState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } |
+| `body.preconditions` | { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } |
+| `body.preconditions.account` | { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } |
+| `body.preconditions.account.actionState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.account.actionState.isSome` | [`Bool`](../classes/Bool.md) |
+| `body.preconditions.account.actionState.value` | [`Field`](../classes/Field.md) |
 | `body.preconditions.account.balance` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } |
 | `body.preconditions.account.balance.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.account.balance.value` | { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  } |
@@ -202,9 +205,6 @@ ___
 | `body.preconditions.account.receiptChainHash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
 | `body.preconditions.account.receiptChainHash.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.account.receiptChainHash.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.account.sequenceState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
-| `body.preconditions.account.sequenceState.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.account.sequenceState.value` | [`Field`](../classes/Field.md) |
 | `body.preconditions.account.state` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] |
 | `body.preconditions.network` | { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
 | `body.preconditions.network.blockchainLength` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } |
@@ -285,16 +285,16 @@ ___
 | `body.preconditions.validWhile.value.upper` | [`UInt32`](../classes/UInt32.md) |
 | `body.publicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
 | `body.tokenId` | [`TokenId`](Types.md#tokenid-1) |
-| `body.update` | { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } |
+| `body.update` | { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } |
 | `body.update.appState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] |
 | `body.update.delegate` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } |
 | `body.update.delegate.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.update.delegate.value` | [`PublicKey`](../classes/Types.PublicKey.md) |
-| `body.update.permissions` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } |
+| `body.update.permissions` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } |
 | `body.update.permissions.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.update.permissions.value` | { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  } |
+| `body.update.permissions.value` | { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  } |
 | `body.update.permissions.value.access` | [`AuthRequired`](Types.md#authrequired-1) |
-| `body.update.permissions.value.editSequenceState` | [`AuthRequired`](Types.md#authrequired-1) |
+| `body.update.permissions.value.editActionState` | [`AuthRequired`](Types.md#authrequired-1) |
 | `body.update.permissions.value.editState` | [`AuthRequired`](Types.md#authrequired-1) |
 | `body.update.permissions.value.incrementNonce` | [`AuthRequired`](Types.md#authrequired-1) |
 | `body.update.permissions.value.receive` | [`AuthRequired`](Types.md#authrequired-1) |
@@ -336,9 +336,33 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:320](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L320)
+[provable/gen/transaction.ts:320](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L320)
 
-[provable/gen/transaction.ts:517](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L517)
+[provable/gen/transaction.ts:517](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L517)
+
+___
+
+### ActionState
+
+Ƭ **ActionState**: [`Field`](../classes/Field.md)
+
+#### Defined in
+
+[provable/transaction-leaves.ts:47](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L47)
+
+[provable/transaction-leaves.ts:48](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L48)
+
+___
+
+### Actions
+
+Ƭ **Actions**: [`Events`](Types.md#events-1)
+
+#### Defined in
+
+[provable/transaction-leaves.ts:44](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L44)
+
+[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L45)
 
 ___
 
@@ -356,9 +380,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:26](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L26)
+[provable/transaction-leaves.ts:26](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L26)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -375,9 +399,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:40](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L40)
+[provable/transaction-leaves.ts:40](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L40)
 
-[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L45)
+[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L45)
 
 ___
 
@@ -387,7 +411,7 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:58](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L58)
+[provable/gen/transaction.ts:58](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L58)
 
 ___
 
@@ -397,33 +421,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:53](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L53)
+[provable/transaction-leaves.ts:53](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L53)
 
-[provable/transaction-leaves.ts:54](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L54)
-
-___
-
-### SequenceEvents
-
-Ƭ **SequenceEvents**: [`Events`](Types.md#events-1)
-
-#### Defined in
-
-[provable/transaction-leaves.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L44)
-
-[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L45)
-
-___
-
-### SequenceState
-
-Ƭ **SequenceState**: [`Field`](../classes/Field.md)
-
-#### Defined in
-
-[provable/transaction-leaves.ts:47](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L47)
-
-[provable/transaction-leaves.ts:48](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L48)
+[provable/transaction-leaves.ts:54](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L54)
 
 ___
 
@@ -433,9 +433,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:32](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L32)
+[provable/transaction-leaves.ts:32](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L32)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -445,9 +445,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:31](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L31)
+[provable/transaction-leaves.ts:31](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L31)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -464,9 +464,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L33)
+[provable/transaction-leaves.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L33)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -489,9 +489,9 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L33)
+[provable/gen/transaction.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L33)
 
-[provable/gen/transaction.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L44)
+[provable/gen/transaction.ts:44](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L44)
 
 ___
 
@@ -503,7 +503,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdates` | { `authorization`: { `proof?`: `string` ; `signature?`: `string`  } ; `body`: { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `sequenceState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editSequenceState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  }  }[] |
+| `accountUpdates` | { `authorization`: { `proof?`: `string` ; `signature?`: `string`  } ; `body`: { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  }  }[] |
 | `feePayer` | { `authorization`: `string` ; `body`: { `fee`: [`UInt64`](../classes/UInt64.md) ; `nonce`: [`UInt32`](../classes/UInt32.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `validUntil?`: [`UInt32`](../classes/UInt32.md)  }  } |
 | `feePayer.authorization` | `string` |
 | `feePayer.body` | { `fee`: [`UInt64`](../classes/UInt64.md) ; `nonce`: [`UInt32`](../classes/UInt32.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `validUntil?`: [`UInt32`](../classes/UInt32.md)  } |
@@ -515,9 +515,9 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:107](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L107)
+[provable/gen/transaction.ts:107](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L107)
 
-[provable/gen/transaction.ts:316](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L316)
+[provable/gen/transaction.ts:316](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L316)
 
 ___
 
@@ -534,9 +534,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L34)
+[provable/transaction-leaves.ts:34](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L34)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ## Variables
 
@@ -560,9 +560,9 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:521](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L521)
+[provable/gen/transaction.ts:521](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L521)
 
-[provable/gen/transaction.ts:567](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L567)
+[provable/gen/transaction.ts:567](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L567)
 
 ___
 
@@ -586,9 +586,67 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:320](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L320)
+[provable/gen/transaction.ts:320](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L320)
 
-[provable/gen/transaction.ts:517](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L517)
+[provable/gen/transaction.ts:517](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L517)
+
+___
+
+### ActionState
+
+• **ActionState**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
+| `emptyValue` | () => [`Field`](../classes/Field.md) |
+| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
+| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
+| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
+| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
+| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
+| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `sizeInFields` | () => `number` |
+
+#### Defined in
+
+[provable/transaction-leaves.ts:47](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L47)
+
+[provable/transaction-leaves.ts:48](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L48)
+
+___
+
+### Actions
+
+• **Actions**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `check` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
+| `emptyValue` | () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } & () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
+| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
+| `fromJSON` | (`x`: `string`[][]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
+| `toAuxiliary` | (`x?`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
+| `toFields` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
+| `toInput` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
+| `toJSON` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
+| `empty` | () => `Events` |
+| `emptyActionState` | () => [`Field`](../classes/Field.md) |
+| `fromList` | (`events`: `Event`[]) => `Events` |
+| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
+| `pushEvent` | (`actions`: `Events`, `event`: `Event`) => `Events` |
+| `sizeInFields` | () => `number` |
+| `updateSequenceState` | (`state`: [`Field`](../classes/Field.md), `sequenceEventsHash`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md) |
+
+#### Defined in
+
+[provable/transaction-leaves.ts:44](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L44)
+
+[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L45)
 
 ___
 
@@ -612,9 +670,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:26](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L26)
+[provable/transaction-leaves.ts:26](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L26)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -642,9 +700,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:40](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L40)
+[provable/transaction-leaves.ts:40](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L40)
 
-[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L45)
+[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L45)
 
 ___
 
@@ -668,67 +726,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:53](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L53)
+[provable/transaction-leaves.ts:53](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L53)
 
-[provable/transaction-leaves.ts:54](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L54)
-
-___
-
-### SequenceEvents
-
-• **SequenceEvents**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `check` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
-| `emptyValue` | () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } & () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromJSON` | (`x`: `string`[][]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `toAuxiliary` | (`x?`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
-| `toFields` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
-| `empty` | () => `Events` |
-| `emptySequenceState` | () => [`Field`](../classes/Field.md) |
-| `fromList` | (`events`: `Event`[]) => `Events` |
-| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
-| `pushEvent` | (`sequenceEvents`: `Events`, `event`: `Event`) => `Events` |
-| `sizeInFields` | () => `number` |
-| `updateSequenceState` | (`state`: [`Field`](../classes/Field.md), `sequenceEventsHash`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md) |
-
-#### Defined in
-
-[provable/transaction-leaves.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L44)
-
-[provable/transaction-leaves.ts:45](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L45)
-
-___
-
-### SequenceState
-
-• **SequenceState**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
-| `sizeInFields` | () => `number` |
-
-#### Defined in
-
-[provable/transaction-leaves.ts:47](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L47)
-
-[provable/transaction-leaves.ts:48](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L48)
+[provable/transaction-leaves.ts:54](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L54)
 
 ___
 
@@ -752,9 +752,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:32](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L32)
+[provable/transaction-leaves.ts:32](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L32)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -778,9 +778,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:31](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L31)
+[provable/transaction-leaves.ts:31](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L31)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -804,9 +804,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L33)
+[provable/transaction-leaves.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L33)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -829,9 +829,9 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:33](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L33)
+[provable/gen/transaction.ts:33](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L33)
 
-[provable/gen/transaction.ts:44](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L44)
+[provable/gen/transaction.ts:44](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L44)
 
 ___
 
@@ -855,9 +855,9 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:107](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L107)
+[provable/gen/transaction.ts:107](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L107)
 
-[provable/gen/transaction.ts:316](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L316)
+[provable/gen/transaction.ts:316](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L316)
 
 ___
 
@@ -867,9 +867,9 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves.ts:34](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L34)
+[provable/transaction-leaves.ts:34](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L34)
 
-[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/transaction-leaves.ts#L36)
+[provable/transaction-leaves.ts:36](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves.ts#L36)
 
 ___
 
@@ -879,7 +879,7 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction.ts:93](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/gen/transaction.ts#L93)
+[provable/gen/transaction.ts:93](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction.ts#L93)
 
 ## Functions
 
@@ -899,7 +899,7 @@ ___
 
 #### Defined in
 
-[provable/from-layout.ts:301](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/from-layout.ts#L301)
+[provable/from-layout.ts:301](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/from-layout.ts#L301)
 
 ___
 
@@ -938,7 +938,7 @@ ___
 
 #### Defined in
 
-[provable/from-layout.ts:60](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/from-layout.ts#L60)
+[provable/from-layout.ts:60](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/from-layout.ts#L60)
 
 ___
 
@@ -959,4 +959,4 @@ ___
 
 #### Defined in
 
-[provable/from-layout.ts:392](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/provable/from-layout.ts#L392)
+[provable/from-layout.ts:392](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/from-layout.ts#L392)
