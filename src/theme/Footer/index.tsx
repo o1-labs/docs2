@@ -24,19 +24,19 @@ function Footer(): JSX.Element | null {
     if (!email) {
       return;
     }
-    let response = await fetch(FormSubmitUrl, {
+    const response = await fetch(FormSubmitUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `email=${email}`,
+      body: `input_1=${email}`, // Seems like this is the input field name for the email field on minaprotocol.com
     });
-
     if (!response.ok) {
       console.error('Failed to submit form');
       return;
     }
     setIsSubmitted(true);
+    window.location.href = 'https://minaprotocol.com/newsletter-confirmation';
   };
 
   const renderForm = () => {
