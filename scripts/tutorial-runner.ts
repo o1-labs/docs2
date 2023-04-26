@@ -59,6 +59,9 @@ yargs(hideBin(process.argv))
         sh.mkdir(testDir);
         sh.cd(testDir);
 
+        console.log('Current directory:', sh.pwd().toString());
+        console.log('Files:', sh.ls().toString());
+
         // 1. Extract code blocks.
         const regex =
           /(?<=```)(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?=```)/gs;
@@ -71,6 +74,8 @@ yargs(hideBin(process.argv))
           if (codeBlock.lang === 'sh') {
             executeShellCommand(codeBlock);
           } else if (codeBlock.lang === 'ts') {
+            console.log('Applying code patch...', codeBlock);
+            console.log('DEBUG STEP:', sh.pwd().toString(), sh.ls().toString());
             applyCodePatch(codeBlock);
           }
         });
