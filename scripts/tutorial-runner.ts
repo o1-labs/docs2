@@ -114,9 +114,9 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
     if (filePath) {
       const getLineNum = (codeLineWithNum: string): number =>
-        parseInt(codeLineWithNum.match(/\d+/)[0]);
+        parseInt(codeLineWithNum.match(/[ \t]*\d+/)[0]);
       const stripLineNum = (codeLineWithNum: string): string => {
-        if (codeLineWithNum.match(/\d+$/)) {
+        if (codeLineWithNum.match(/[ \t]*\d+$/)) {
           // If there's only a line number, the rest of the line is empty
           return '';
         } else {
@@ -134,7 +134,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
             `located in the code block with info string: '${infoString}'`
           );
         }
-        return stripLineNum(codeLineWithNum).trim();
+        return stripLineNum(codeLineWithNum);
       });
 
       return { lang, startLineNum, filePath, codeLines };
@@ -162,10 +162,15 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 }
 
 function executeShellCommand(shellCommands: ShellCommands): void {
-  console.log('DEBUG SHELL COMMANDS:', shellCommands);
+  console.log(
+    'DEBUG SHELL COMMANDS:',
+    shellCommands,
+    sh.ls('./src').toString(),
+    sh.cat('./src/index.ts').toString()
+  );
   shellCommands.commands.forEach((shellCommand) => {
     let exitCode;
-
+    shellCommand = shellCommand.trim();
     if (shellCommand.startsWith('zk project')) {
       const nonInteractiveCommand = `${shellCommand} --ui none`;
 
