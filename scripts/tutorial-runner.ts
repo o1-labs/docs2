@@ -118,7 +118,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
       return { lang, startLineNum, filePath, codeLines };
     } else {
-      throw 'Code blocks describing file modifications must include a file path in their info string';
+      throw `Code blocks describing file modifications must include a file path in their info string. InfoString: '${infoString}', Code: '${code}'`;
     }
   } else if (lang === 'sh') {
     const extractCommands = (shellCode: string[]): string[] =>
