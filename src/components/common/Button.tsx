@@ -1,36 +1,33 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
-type Color = "orange" | "teal" | "dark" | "custom";
+type Color = 'orange' | 'teal' | 'dark' | 'custom';
 
 interface Props {
   children: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   color: Color;
-  customStyles?: any;
+  customStyles?: string;
+  type: string;
 }
 
-export const Button: React.FC<Props> = ({
-  children,
-  onClick,
-  color = "orange",
-  customStyles,
-}) => {
+export const Button: React.FC<Props> = (
+  props: React.ComponentPropsWithoutRef<'button'> & Props
+) => {
+  const { color, customStyles, ...rest } = props;
   let stylesColor = undefined;
-  if (color === "orange") {
+  if (color === 'orange') {
     stylesColor = styles.minaButtonOrange;
-  } else if (color === "teal") {
+  } else if (color === 'teal') {
     stylesColor = styles.minaButtonTeal;
-  } else if (color === "dark") {
+  } else if (color === 'dark') {
     stylesColor = styles.minaButtonDark;
-  } else if (color === "custom") {
+  } else if (color === 'custom' && customStyles) {
     stylesColor = customStyles;
   }
-
   return (
-    <button type="button" className={stylesColor} onClick={onClick}>
-      {children}
+    <button {...rest} className={stylesColor}>
+      {props.children}
     </button>
   );
 };

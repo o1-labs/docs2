@@ -1,31 +1,42 @@
-import React from "react";
+import React from 'react';
 
-import Button from "@site/src/components/common/Button";
-import Link from "@docusaurus/Link";
-import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
+import Button from '@site/src/components/common/Button';
+import Link from '@docusaurus/Link';
+import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
 
-import styles from "./Footer.module.scss";
-import { SocialLinks } from "@site/src/constants";
-import MinaLogo from "@site/static/svg/common/mina_logo.svg";
-import DiscordLogo from "@site/static/svg/socials/discord_24x24.svg";
-import TwitterLogo from "@site/static/svg/socials/twitter_24x24.svg";
-import FacebookLogo from "@site/static/svg/socials/facebook_24x24.svg";
-import TelegramLogo from "@site/static/svg/socials/telegram_24x24.svg";
-import WeChatLogo from "@site/static/svg/socials/wechat_24x24.svg";
-import YoutubeLogo from "@site/static/svg/socials/youtube_24x24.svg";
+import styles from './Footer.module.scss';
+import { SocialLinks } from '@site/src/constants';
+import MinaLogo from '@site/static/svg/common/mina_logo.svg';
+import DiscordLogo from '@site/static/svg/socials/discord_24x24.svg';
+import TwitterLogo from '@site/static/svg/socials/twitter_24x24.svg';
+import FacebookLogo from '@site/static/svg/socials/facebook_24x24.svg';
+import TelegramLogo from '@site/static/svg/socials/telegram_24x24.svg';
+import WeChatLogo from '@site/static/svg/socials/wechat_24x24.svg';
+import YoutubeLogo from '@site/static/svg/socials/youtube_24x24.svg';
+import { FormSubmitUrl } from '@site/src/constants';
 
 function Footer(): JSX.Element | null {
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState('');
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  // TODO: add email to newsletter
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email) {
       return;
     }
+    const response = await fetch(FormSubmitUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `input_1=${email}`, // Seems like this is the input field name for the email field on minaprotocol.com
+    });
+    if (!response.ok) {
+      console.error('Failed to submit form');
+      return;
+    }
     setIsSubmitted(true);
-    // console.log(event, email);
+    window.location.href = 'https://minaprotocol.com/newsletter-confirmation';
   };
 
   const renderForm = () => {
@@ -34,19 +45,20 @@ function Footer(): JSX.Element | null {
     }
     return (
       <form
+        id="newletter_form"
         onSubmit={handleSubmit}
         className={styles.minaFooter_form__submitContainer}
       >
         <input
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          type="email"
+          type={isSubmitted ? 'hidden' : 'email'}
           name="email"
           id="email"
           placeholder="Enter Email"
           className={styles.minaFooter_form_input}
         />
-        <Button color="orange">
+        <Button type="submit" color="orange">
           <span>Submit</span>
           <ArrowRightSmall />
         </Button>
