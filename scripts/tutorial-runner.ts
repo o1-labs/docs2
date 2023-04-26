@@ -64,7 +64,7 @@ yargs(hideBin(process.argv))
 
         // 1. Extract code blocks.
         const regex =
-          /(?<=```)(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?=```)/gs;
+          /(?:[ \t]*```) *(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?:[ \t]*```)/gs;
         const codeBlocks = Array.from(markdown.matchAll(regex)).map(
           regexMatchToCodeBlock
         );
@@ -72,10 +72,18 @@ yargs(hideBin(process.argv))
         // 2. Simulate tutorial
         codeBlocks.forEach((codeBlock) => {
           if (codeBlock.lang === 'sh') {
+            console.log(
+              'DEBUG STEP SHELL BLOCK:',
+              sh.pwd().toString(),
+              sh.ls().toString()
+            );
             executeShellCommand(codeBlock);
           } else if (codeBlock.lang === 'ts') {
-            console.log('Applying code patch...', codeBlock);
-            console.log('DEBUG STEP:', sh.pwd().toString(), sh.ls().toString());
+            console.log(
+              'DEBUG STEP CODE BLOCK:',
+              sh.pwd().toString(),
+              sh.ls().toString()
+            );
             applyCodePatch(codeBlock);
           }
         });
@@ -126,7 +134,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
             `located in the code block with info string: '${infoString}'`
           );
         }
-        return stripLineNum(codeLineWithNum);
+        return stripLineNum(codeLineWithNum).trim();
       });
 
       return { lang, startLineNum, filePath, codeLines };
@@ -136,6 +144,8 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
   } else if (lang === 'sh') {
     const extractCommands = (shellCode: string[]): string[] =>
       shellCode.reduce<string[]>((commands, line) => {
+        console.log('DEBUG SHELL EXTRACTING:', commands, line);
+        line = line.trimStart();
         if (line.startsWith('$ ')) {
           return [...commands, line.slice(2)];
         } else {
@@ -152,6 +162,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 }
 
 function executeShellCommand(shellCommands: ShellCommands): void {
+  console.log('DEBUG SHELL COMMANDS:', shellCommands);
   shellCommands.commands.forEach((shellCommand) => {
     let exitCode;
 
