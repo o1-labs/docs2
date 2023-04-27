@@ -101,13 +101,18 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
     if (filePath) {
       const getLineNum = (codeLineWithNum: string): number =>
-        parseInt(codeLineWithNum.match(/[ \t]*\d+/)[0]);
+        parseInt(codeLineWithNum.match(/\d+/)[0]);
       const stripLineNum = (codeLineWithNum: string): string => {
-        if (codeLineWithNum.match(/[ \t]*\d+$/)) {
+        if (
+          codeLineWithNum.trim().match(/^\d+$/) ||
+          codeLineWithNum.trim().match(/^\d+ $/)
+        ) {
           // If there's only a line number, the rest of the line is empty
           return '';
         } else {
-          return codeLineWithNum.substring(codeLineWithNum.indexOf(' ') + 1);
+          return codeLineWithNum
+            .trimStart()
+            .substring(codeLineWithNum.indexOf(' ') + 1);
         }
       };
       const codeLinesWithNums = code.split('\n');
