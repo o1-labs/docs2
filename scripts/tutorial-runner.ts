@@ -91,6 +91,14 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
   if (lang === 'ts') {
     const filePath: string | undefined = infoStringSegments[1];
 
+    // If the code block is tagged with 'ignore', it's meant to be ignored by the tutorial runner.
+    if (filePath === 'ignore') {
+      return {
+        lang: 'sh',
+        commands: [],
+      };
+    }
+
     if (filePath) {
       const getLineNum = (codeLineWithNum: string): number =>
         parseInt(codeLineWithNum.match(/\d+/)[0]);
@@ -118,7 +126,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
       return { lang, startLineNum, filePath, codeLines };
     } else {
-      throw 'Code blocks describing file modifications must include a file path in their info string';
+      throw `Code blocks describing file modifications must include a file path in their info string. InfoString: '${infoString}', Code: '${code}'`;
     }
   } else if (lang === 'sh') {
     const extractCommands = (shellCode: string[]): string[] =>
