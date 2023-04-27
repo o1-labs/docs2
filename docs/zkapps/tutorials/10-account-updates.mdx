@@ -41,13 +41,13 @@ To learn more, see these SnarkyJS docs:
 Each [AccountUpdate](../snarkyjs-reference/classes/AccountUpdate) has these components:
 
 * `PublicKey`: The account address for the account update
-* `TokenId`: By default, the Mina TokenId. Together, TokenId and PublicKey uniquely determine the account.
-* `Preconditions`: What needs to be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
+* `TokenId`: A unique hash representing the custom token. Defaults to the MINA TokenId (`1`). Together, PublicKey and TokenId uniquely identify an account on Mina Protocol.
+* `Preconditions`: Conditions that must be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
 * `Updates`: Things changed by the AccountUpdate, such as include the zkApp state, permissions, and verification key.
-* `Balance change`: Any changes to the balance
+* `BalanceChange`: Any changes to the balance
 * `Authorization`: How the zkApp is authorized; can be either a proof (corresponding to the verification key on the account) or a signature.
 
-There are some other components we'll discuss in a later tutorial:
+These AccountUpdate components are available to use but are not covered in this tutorial:
 
 * `MayUseToken`: Whether the zkApp has permissions to manipulate its token.
 * `Layout`: Allows for assertions about the structure of an AccountUpdate.
@@ -107,7 +107,7 @@ export class ProofsOnlyZkApp extends SmartContract {
 This code configures the zkApp as described and initializes the zkApp with the values you want. 
 
 :::caution
-Note you assert that `provedState` is `false` in `init()` to ensure that `init()` cannot be called again after the zkApp is set up. Without this, your zkApp could be reset by anyone calling the `init()` method on your zkApp and is recommended for most zkApps. 
+Note you assert that `provedState` is `false` in `init()` to ensure that `init()` cannot be called again after the zkApp is set up during the initial deployment. Without this, your zkApp could be reset by anyone calling the `init()` method on your zkApp. This is recommended for most zkApps. 
 :::
 
 Next, add two functions:
@@ -221,7 +221,7 @@ async showTxn(txn: Mina.Transaction, name: string, legend: Legend)
 saveTxn(txn: Mina.Transaction, name: string, legend: Legend, path: string)
 
 // prints a nicely formatted view of a transaction
-showTxn(txn: Mina.Transaction, name: string, legend: Legend)
+printTxn(txn: Mina.Transaction, name: string, legend: Legend)
 
 // with legend type, to replace public keys with human readable strings:
 type Legend = { [pk: string]: string };
@@ -262,9 +262,9 @@ This yields the following visualization of `deploy_txn`.
 
 This [visualization](/img/tutorial-10-deploy_txn.png) is best viewed in a new tab.
 
-The deploy transaction includes 5 accountUpdates. In order from left to right;
+The deploy transaction includes 5 accountUpdates represented as ovals. Described from left to right;
 
-1. This accountUpdate takes the new account fee from the deployer for deploying the zkApps. Note the `-2` on the `balanceChange` field
+1. This update takes the new account fee from the deployer for deploying the zkApps. Note the `-2` on the `balanceChange` field.
 2. This update deploys the `proofsOnlyZkApp` instance. Note the permissions, all set to the values in the zkApp's deploy field, and the `preconditions` asserting the nonce, so the transaction can't be applied more than once.
 3. This update initializes the `proofsOnlyZkApp`. Note the precondition that it can't already be in a proved state.
 4. This update deploys an instance of `secondaryZkApp`. Note the permissions here are set to default values, in contrast to the deployment in the `proofsOnlyZkApp` example.
