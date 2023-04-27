@@ -12,17 +12,23 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # How to Test a zkApp
 
-Writing automated tests for your smart contract is of crucial importance. The <a href="https://jestjs.io/">Jest testing framework</a> is included in all projects created by the Mina zkApp CLI via `zk project <name>` and `zk example <name`. We recommend Jest, but any testing framework can be used.
+Writing automated tests for your smart contract is essential to ensure your code is well tested during development. All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
 
-## Running tests
+## Writing tests for your smart contract
 
-To run all test files within your project, run `npm run test` or `npm run testw` (for watch mode) from your project’s root directory.
+Use the Mina zkApp CLI to create tests for your smart contract.
 
-To generate a test coverage report for your project, run `npm run coverage`. Coverage reports show the % of your code that is tested. The result is output to your terminal. This can be helpful to ensure your code is well tested.
+To scaffold a TypeScript file with a corresponding test file, run:
 
-## Writing tests
+- `zk file foo`
 
-Creating tests for your smart contract is easy using the Mina zkApp CLI. To scaffold a TypeScript file with a corresponding test file, run the command `zk file foo` to generate two files named `foo.ts` and `foo.test.ts`. The `foo.test.ts` file is a great place to start writing all your smart contract test code. To write good unit tests, it's vital that you concretely understand the functionality your smart contract provides. An example is shown below of a basic test written in Jest:
+The `foo.ts` and `foo.test.ts` files are generated.
+
+The `foo.test.ts` file is a great place to start writing your smart contract test code. To write valid unit tests, be sure you understand your smart contract functionality.
+
+It's good practice to break down the functionality of your smart contract into `describe` blocks to organize your test groupings in the same file. By mapping out your unit tests using the `describe` convention, you provide documentation to developers who read your smart contract.
+
+The following example shows the describe block for `test` in the `foo.test.ts` file:
 
 ```ts
 describe('foo.test.ts', () => {
@@ -32,32 +38,47 @@ describe('foo.test.ts', () => {
 });
 ```
 
-Because we are using Jest, it's helpful to break down all functionality of your smart contract into `describe` blocks. Mapping out your unit tests like this is also a good way of providing documentation to other developers reading your smart contract. An excellent place to start testing your smart contract is in the areas your smart contract modifies its state. Make sure to verify that your state updates in the way you expect.
+When you start testing with the Jest testing framework, it is helpful to create `describe` blocks for all areas where your smart contract modifies its state so you can verify that your state updates as expected.
 
-For examples of existing tests, a best practice is to create a template example using the Mina zkApp CLI by using `zk project <name>` and examining the test file there. See a few [basic examples of tests](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) that deploy and update the state on a smart contract using Jest.
+For basic test examples that deploy and update the state on a smart contract using Jest, see the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts) file. You can also find this file inside every new project that is created using `zk project <name>`.
 
-#### Creating a local blockchain
+## Running tests
 
-It's helpful to run your smart contract locally on a mock blockchain to quickly test it.
-The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts that runs locally on your machine. It contains logic for updating the ledger that can be used to test your smart contract.
+To run all test files in your project, run these commands from your project's root directory:
 
-:::tip
+- `npm run test` 
+- `npm run testw` for watchmode
 
-`Mina.LocalBlockchain()` takes an optional parameter `{ proofsEnabled: true }` with default value `true`, which lets you specify whether to generate and verify proofs.
-If you set `proofsEnabled: false`, the local instance behaves exactly the same as before, but it won't generate proofs or verify them.
-This can be very useful when you want to run tests in the CI or quickly debug your smart contract without having to wait for proofs to be generated.
+To generate a test coverage report for your project, run:
 
-You can also programmatically enable and disable the `proofsEnabled` flag within your test flow by calling `Local.setProofsEnabled(x: boolean)`.
-:::
+- `npm run coverage`
+
+The code coverage result is output to your terminal and shows the percentage of tested code.
+
+### Creating a local blockchain
+
+You can quickly test your smart contract by running it locally on a mock blockchain.
+
+The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
-let Local = Mina.LocalBlockchain();
+const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
-#### Deploying a contract locally
+:::tip
 
-The mock Mina local blockchain contains test accounts that can be used to deploy smart contracts and pay transaction fees.
+To specify whether to generate and verify proofs, you can provide the optional `proofsEnabled` parameter to the `Mina.LocalBlockchain()` method:
+
+- `{ proofsEnabled: true }` - default value, the local instance generates and verifies proofs
+- `{ proofsEnabled: false }` - the local instance does not generate or verify proofs when you want to run tests in the CI or quickly debug your smart contract without waiting for proofs to be generated
+
+You can also programmatically enable and disable the `proofsEnabled` flag in your test flow by calling `Local.setProofsEnabled(x: boolean)`.
+:::
+
+### Deploying a contract locally
+
+The mock Mina local blockchain contains test accounts you can use to deploy smart contracts and pay transaction fees.
 
 First, access a test account provided by the local blockchain.
 
@@ -94,9 +115,11 @@ await txPromise.wait();
 
 ```
 
-#### Writing integration tests
+## Writing integration tests
 
-Jest can be used to write unit and integration tests. A well-written integration test verifies the flow of your smart contract's expected behavior and ensures the correctness of state updates. After you test the expected behavior, it's beneficial to verify the preconditions of your methods and test edge cases of your smart contract. This example is a basic integration test script.
+A well-written integration test verifies the flow of expected behavior for your smart contract and confirms the correctness of state updates. After you test the expected behavior, be sure to verify the preconditions of your methods and test the edge cases of your smart contract.
+
+The following example is a basic integration test script:
 
 ```ts
 describe('Add smart contract integration test', () => {
@@ -153,10 +176,8 @@ describe('Add smart contract integration test', () => {
 
 ## Learn more
 
-Please see the <a href="https://jestjs.io/docs/getting-started">Jest docs</a> for further information on how to use Jest.
-
-We will be adding blockchain-specific testing functionality in the future. Keep an eye on this section for updates.
+See the [Jest](https://jestjs.io/docs/getting-started) documentation.
 
 ## Next Steps
 
-Now that you've learn how to test a smart contract, you can now learn [how to deploy a zkApp](how-to-deploy-a-zkapp).
+Now that you know how to test a smart contract, you can learn [How to deploy a zkApp](how-to-deploy-a-zkapp).
