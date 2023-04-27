@@ -354,7 +354,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 ```ts src/main.ts
 11 await isReady;
 12
-13 console.log('SnarkyJS loaded')
+13 console.log('SnarkyJS loaded');
 14
 15 const useProof = false;
 16
@@ -363,7 +363,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 21
-22 console.log('Shutting down')
+22 console.log('Shutting down');
 23
 24 await shutdown();
 ```
@@ -421,7 +421,7 @@ Comments break down each stage:
 21
 22 // ----------------------------------------------------
 23
-24// Create a public/private key pair. The public key is your address and where you deploy the zkApp to
+24 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
 25 const zkAppPrivateKey = PrivateKey.random();
 26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
 27
@@ -481,7 +481,7 @@ To update your local zkApp account with a transaction, add the following code to
 50
 51 // ----------------------------------------------------
 52
-53 console.log('Shutting down')
+53 console.log('Shutting down');
 54
 55 await shutdown();
 ```
@@ -524,7 +524,7 @@ To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
 64
 65 // ----------------------------------------------------
 66
-67 console.log('Shutting down')
+67 console.log('Shutting down');
 68
 69 await shutdown();
 ```
