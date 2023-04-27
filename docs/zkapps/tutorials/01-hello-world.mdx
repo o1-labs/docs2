@@ -13,7 +13,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::note
 
-This tutorial was last tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) 0.6.4 and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.7.5` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.9.8`.
 
 :::
 
@@ -78,8 +78,6 @@ To confirm successful installion:
 ```sh
 $ zk --version
 ```
-
-This tutorial has been tested with Mina zkApp CLI version `0.7.5` and SnarkyJS `0.9.8`.
 
 ## Create a new project
 
@@ -372,7 +370,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 
 This local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
 
-```sh
+```ts ignore
 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1]; 
 ```
