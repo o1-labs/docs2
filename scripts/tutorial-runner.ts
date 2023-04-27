@@ -103,19 +103,16 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
       const getLineNum = (codeLineWithNum: string): number =>
         parseInt(codeLineWithNum.match(/\d+/)[0]);
       const stripLineNum = (codeLineWithNum: string): string => {
-        if (
-          codeLineWithNum.trim().match(/^\d+$/) ||
-          codeLineWithNum.trim().match(/^\d+ $/)
-        ) {
+        if (/^\d+$/.test(codeLineWithNum)) {
           // If there's only a line number, the rest of the line is empty
           return '';
         } else {
-          return codeLineWithNum
-            .trimStart()
-            .substring(codeLineWithNum.indexOf(' ') + 1);
+          return codeLineWithNum.substring(codeLineWithNum.indexOf(' ') + 1);
         }
       };
-      const codeLinesWithNums = code.split('\n');
+      const codeLinesWithNums = code
+        .split('\n')
+        .map((codeLine) => codeLine.trimStart());
       const startLineNum = getLineNum(codeLinesWithNums[0]);
       const codeLines = codeLinesWithNums.map((codeLineWithNum, index) => {
         if (startLineNum + index !== getLineNum(codeLineWithNum)) {
