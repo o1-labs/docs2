@@ -59,9 +59,6 @@ yargs(hideBin(process.argv))
         sh.mkdir(testDir);
         sh.cd(testDir);
 
-        console.log('Current directory:', sh.pwd().toString());
-        console.log('Files:', sh.ls().toString());
-
         // 1. Extract code blocks.
         const regex =
           /(?:[ \t]*```) *(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?:[ \t]*```)/gs;
@@ -72,18 +69,8 @@ yargs(hideBin(process.argv))
         // 2. Simulate tutorial
         codeBlocks.forEach((codeBlock) => {
           if (codeBlock.lang === 'sh') {
-            console.log(
-              'DEBUG STEP SHELL BLOCK:',
-              sh.pwd().toString(),
-              sh.ls().toString()
-            );
             executeShellCommand(codeBlock);
           } else if (codeBlock.lang === 'ts') {
-            console.log(
-              'DEBUG STEP CODE BLOCK:',
-              sh.pwd().toString(),
-              sh.ls().toString()
-            );
             applyCodePatch(codeBlock);
           }
         });
@@ -144,7 +131,6 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
   } else if (lang === 'sh') {
     const extractCommands = (shellCode: string[]): string[] =>
       shellCode.reduce<string[]>((commands, line) => {
-        console.log('DEBUG SHELL EXTRACTING:', commands, line);
         line = line.trimStart();
         if (line.startsWith('$ ')) {
           return [...commands, line.slice(2)];
@@ -162,12 +148,6 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 }
 
 function executeShellCommand(shellCommands: ShellCommands): void {
-  console.log(
-    'DEBUG SHELL COMMANDS:',
-    shellCommands,
-    sh.ls('./src').toString(),
-    sh.cat('./src/index.ts').toString()
-  );
   shellCommands.commands.forEach((shellCommand) => {
     let exitCode;
     shellCommand = shellCommand.trim();
