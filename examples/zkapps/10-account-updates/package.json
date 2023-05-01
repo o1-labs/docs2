@@ -1,5 +1,5 @@
 {
-  "name": "tutorial-4",
+  "name": "10-account-updates",
   "version": "0.1.0",
   "description": "",
   "author": "",
@@ -18,7 +18,6 @@
     "buildw": "tsc --watch",
     "coverage": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --coverage",
     "format": "prettier --write --ignore-unknown **/*",
-    "prepare": "cd .. && husky install contracts/.husky",
     "test": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
     "testw": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
     "lint": "npx eslint src/* --fix"
@@ -46,5 +45,8 @@
   },
   "peerDependencies": {
     "snarkyjs": "0.9.*"
+  },
+  "dependencies": {
+    "mina-transaction-visualizer": "^0.1.0"
   }
 }
