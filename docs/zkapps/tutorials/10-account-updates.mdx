@@ -1,0 +1,381 @@
+---
+title: 'Tutorial 10: Account Updates'
+hide_title: true
+sidebar_label: 'Tutorial 10: Account Updates'
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but
+zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+:::note
+
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.9.3.
+
+:::
+
+# Tutorial 10: Account Updates
+
+## Permissions, Preconditions, and Composability
+
+## Overview
+
+Each zkApp transaction constructed by SnarkyJS is composed of one or more [AccountUpdates](../snarkyjs-reference/classes/AccountUpdate), which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, etc.
+
+Each AccountUpdate can make assertions about its account, apply updates to its account, as well as make assertions about its child AccountUpdates.
+
+Transactions are structured as a list of trees of AccountUpdates applied with a ["pre-order" traversal](https://en.wikipedia.org/wiki/Tree_traversal).
+
+Many of the core features of zkApps—permissions, preconditions, composability, and tokens—are implemented using AccountUpdates. In this tutorial, you learn about many of the essential AccountUpdates features.
+
+To learn more, see these SnarkyJS docs:
+
+* [Permissions](../advanced-snarkyjs/permissions)
+* [Preconditions](../advanced-snarkyjs/on-chain-values)
+
+## AccountUpdate contents
+
+Each [AccountUpdate](../snarkyjs-reference/classes/AccountUpdate) has these components:
+
+* `PublicKey`: The account address for the account update
+* `TokenId`: A unique hash representing the custom token. Defaults to the MINA TokenId (`1`). Together, PublicKey and TokenId uniquely identify an account on Mina Protocol.
+* `Preconditions`: Conditions that must be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
+* `Updates`: Things changed by the AccountUpdate, such as include the zkApp state, permissions, and verification key.
+* `BalanceChange`: Any changes to the balance
+* `Authorization`: How the zkApp is authorized; can be either a proof (corresponding to the verification key on the account) or a signature.
+
+These AccountUpdate components are available to use but are not covered in this tutorial:
+
+* `MayUseToken`: Whether the zkApp has permissions to manipulate its token.
+* `Layout`: Allows for assertions about the structure of an AccountUpdate.
+
+## AccountUpdates for a non-user-upgradable zkApp
+
+Now, you can start building an example zkApp to explore permissions, preconditions, and composability with AccountUpdates.
+
+To visualize transactions, use the library `mina-transaction-visualizer`. To use this library in your own zkApp, install with npm with `npm install mina-transaction-visualizer --save`.
+
+You can find the full [source code for this Account Updates tutorial](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates) in the `examples` directory within the Mina docs repo.
+
+### Smart Contracts
+
+In this tutorial, you build two smart contracts to use in your example:
+
+First, [ProofsOnlyZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/ProofsOnlyZkApp.ts).
+
+Configure this zkApp to be modifiable only by using proofs. For this example, the zkApp is not upgradable after it is deployed. This means that while the zkApp developer owns the private key to initially deploy the zkApp, after its first deployment, the zkApp requires proof authorization and consequently can only be updated by transactions that fulfill the zkApp's smart contract logic. The private key is no longer useful for anything.
+
+This zkApp also has methods that call other methods, so you can explore how that impacts a transaction's AccountUpdates.
+
+Start by adding the main contents of the zkApp:
+
+```typescript
+export class ProofsOnlyZkApp extends SmartContract {
+  @state(Field) num = State<Field>();
+  @state(Field) calls = State<Field>();
+
+  deploy(args: DeployArgs) {
+    super.deploy(args);
+    this.setPermissions({
+      ...Permissions.default(),
+      setDelegate: Permissions.proof(),
+      setPermissions: Permissions.proof(),
+      setVerificationKey: Permissions.proof(),
+      setZkappUri: Permissions.proof(),
+      setTokenSymbol: Permissions.proof(),
+      incrementNonce: Permissions.proof(),
+      setVotingFor: Permissions.proof(),
+      setTiming: Permissions.proof(),
+    });
+  }
+
+  @method init() {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertFalse();
+
+    super.init();
+    this.num.set(Field(1));
+    this.calls.set(Field(0));
+  }
+
+  ...
+```
+
+This code configures the zkApp as described and initializes the zkApp with the values you want. 
+
+:::caution
+Note you assert that `provedState` is `false` in `init()` to ensure that `init()` cannot be called again after the zkApp is set up during the initial deployment. Without this, your zkApp could be reset by anyone calling the `init()` method on your zkApp. This is recommended for most zkApps. 
+:::
+
+Next, add two functions:
+
+```typescript
+  ...
+
+  @method add(incrementBy: Field) {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const num = this.num.get();
+    this.num.assertEquals(num);
+    this.num.set(num.add(incrementBy));
+
+    this.incrementCalls();
+  }
+
+  @method incrementCalls() {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const calls = this.calls.get();
+    this.calls.assertEquals(calls);
+    this.calls.set(calls.add(Field(1)));
+  }
+
+  ...
+```
+
+:::caution
+In each of these methods, you are also asserting `provedState` is `true` to ensure the zkApp was initialized as expected because `provedState` becomes true after `init()` is invoked, and is recommended for most zkApps.
+:::
+
+The `add()` method calls the `incrementCalls()` method. You can see how this is reflected in the `add()` transaction's AccountUpdate structure.
+
+Finally, add one more function, `callSecondary()` that calls a different zkApp:
+
+```typescript
+  ...
+
+  @method callSecondary(secondaryAddr: PublicKey) {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const secondaryContract = new SecondaryZkApp(secondaryAddr);
+
+    const num = this.num.get();
+    this.num.assertEquals(num);
+
+    secondaryContract.add(num);
+
+    // NOTE this gets the state at the start of the transaction
+    this.num.set(secondaryContract.num.get());
+
+    this.incrementCalls();
+  }
+}
+```
+
+`callSecondary()` takes the address of the other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method occurs after this set of AccountUpdates—so when you call `secondaryContract.num.get()`, it gets the value before this transaction is applied.
+
+Finally, look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts) containing:
+
+```typescript
+export class SecondaryZkApp extends SmartContract {
+  @state(Field) num = State<Field>();
+
+  @method init() {
+    super.init();
+
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertFalse();
+
+    this.num.set(Field(12));
+  }
+
+  @method add(incrementBy: Field) {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const num = this.num.get();
+    this.num.assertEquals(num);
+    this.num.set(num.add(incrementBy));
+  }
+}
+
+```
+
+You declare functions for initializing the account and the `add()` method that is called from the earlier `ProofOnlyZkApp`.
+
+### Running Your Smart Contracts and Visualizing the AccountUpdates
+
+Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/main.ts) file that creates transactions with the earlier smart contracts and the account update visualizations it creates.
+
+First, import the transaction visualizer:
+
+```typescript
+...
+import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
+...
+```
+
+This provides three functions:
+
+```typescript
+// creates a png file of a transaction, and opens it in a local image viewer
+async showTxn(txn: Mina.Transaction, name: string, legend: Legend)
+
+// creates a png file of a transaction, and saves it to a path
+saveTxn(txn: Mina.Transaction, name: string, legend: Legend, path: string)
+
+// prints a nicely formatted view of a transaction
+printTxn(txn: Mina.Transaction, name: string, legend: Legend)
+
+// with legend type, to replace public keys with human readable strings:
+type Legend = { [pk: string]: string };
+
+```
+
+Now, define the legend as follows:
+
+```typescript
+  const legend = {
+    [proofsOnlyAddr.toBase58()]: 'proofsOnlyZkApp',
+    [secondaryAddr.toBase58()]: 'secondaryZkApp',
+    [deployerAccount.toPublicKey().toBase58()]: 'deployer',
+  };
+```
+
+Then deploy your smart contracts as follows and visualize the transaction:
+
+```typescript
+  const deployTxn = await Mina.transaction(deployerAccount, () => {
+    AccountUpdate.fundNewAccount(deployerAccount, 2);
+    proofsOnlyInstance.deploy();
+    secondaryInstance.deploy();
+  });
+
+  await deploy_txn.prove();
+  deploy_txn.sign([ deployerKey, proofsOnlySk, secondarySk ]);
+
+  await showTxn(deploy_txn, 'deploy_txn', legend);
+
+  await deploy_txn.send();
+```
+
+This yields the following visualization of `deploy_txn`. 
+
+
+<img src="/img/tutorial-10-deploy_txn.png" width="100%" />
+
+This [visualization](/img/tutorial-10-deploy_txn.png) is best viewed in a new tab.
+
+The deploy transaction includes 5 accountUpdates represented as ovals. Described from left to right;
+
+1. This update takes the new account fee from the deployer for deploying the zkApps. Note the `-2` on the `balanceChange` field.
+2. This update deploys the `proofsOnlyZkApp` instance. Note the permissions, all set to the values in the zkApp's deploy field, and the `preconditions` asserting the nonce, so the transaction can't be applied more than once.
+3. This update initializes the `proofsOnlyZkApp`. Note the precondition that it can't already be in a proved state.
+4. This update deploys an instance of `secondaryZkApp`. Note the permissions here are set to default values, in contrast to the deployment in the `proofsOnlyZkApp` example.
+5. This update initializes the `secondaryZkApp` instance.
+
+When the transaction is run on chain, these account updates are checked by the Mina network and applied if valid. Each AccountUpdate includes either a proof corresponding to the verification key in the zkApp account on chain or a signature corresponding to the zkApp address. In this case, only proof authorization is allowed.
+
+Next, call `add()` on your instance of `proofsOnlyZkApp`:
+
+```typescript
+  const txn1 = await Mina.transaction(deployerAccount, () => {
+    proofsOnlyInstance.add(Field(4));
+  });
+
+  await txn1.prove();
+
+  await showTxn(txn1, 'txn1', legend);
+
+  await txn1.send();
+```
+
+This returns the following visualization of `txn1`:
+
+
+<img src="/img/tutorial-10-txn1.png" width="100%" />
+
+See download link [here](/img/tutorial-10-txn1.png).
+
+Now there are two AccountUpdates, where one is a child of the other. The parent corresponds to the `add()` method call and the child corresponds to the `this.incrementCalls()` call that the parent makes. 
+
+One update is the child because it was called from the parent, which also implies that the parent has the child included as part of its proof. To learn more about parent/child account updates, see [Payments and more on public inputs](../how-to-write-a-zkapp#payments-and-more-on-public-inputs).
+
+As a reminder, this corresponds to code: 
+
+```typescript
+  ...
+  @method add(incrementBy: Field) {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const num = this.num.get();
+    this.num.assertEquals(num);
+    this.num.set(num.add(incrementBy));
+
+    this.incrementCalls();
+  }
+
+  @method incrementCalls() {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const calls = this.calls.get();
+    this.calls.assertEquals(calls);
+    this.calls.set(calls.add(Field(1)));
+  }
+  ...
+```
+
+View the [account updates visualization](/img/tutorial-10-deploy_txn.png) again. The first AccountUpdate sets the state of `appState[0]` to `5`— corresponding to the value passed to `this.num.set()` in the `add()` method. In the second AccountUpdate, `appState[1]` is set to `1`—corresponding to the value passed to `this.calls.set()` in the `incrementCalls()` contract.
+
+Finally, call `callSecondary` on your instance of `proofsOnlyZkApp`:
+
+```typescript
+  const txn2 = await Mina.transaction(deployerAccount, () => {
+    proofsOnlyInstance.callSecondary(secondaryAddr);
+  });
+
+  await txn2.prove();
+
+  await showTxn(txn2, 'txn2', legend);
+  await saveTxn(deploy_txn, 'deploy_txn', legend, './txn2.png');
+
+  await txn2.send();
+```
+
+This returns the following visualization of `txn2`:
+
+<img src="/img/tutorial-10-txn2.png" width="100%" />
+
+This [txn2 visualization](/img/tutorial-10-txn2.png) is best viewed in a new tab.
+
+And a quick reminder of the code for `callSecondary()`:
+
+```typescript
+  @method callSecondary(secondaryAddr: PublicKey) {
+    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.get().assertTrue();
+
+    const secondaryContract = new SecondaryZkApp(secondaryAddr);
+
+    const num = this.num.get();
+    this.num.assertEquals(num);
+
+    secondaryContract.add(num);
+
+    // NOTE this gets the state at the start of the transaction
+    this.num.set(secondaryContract.num.get());
+
+    this.incrementCalls();
+  }
+```
+
+This call produces three accountUpdates:
+
+ - `callSecondary()` (the parent)
+ - `secondaryZkApp.add()` (the left child)
+ - `incrementCalls()` (the right child)
+
+As described in the code comment, `callSecondary` sets `this.num` to `12` which is the value of `secondaryContract` at the "start" of the transaction.
+
+## Conclusion
+
+Congratulations! You have explored the core features of AccountUpdates and learned about visualizing the AccountUpdates for a set of transactions. You can build more complicated transactions that involve multiple zkApps. This tutorial builds a foundational understanding of how SnarkyJS and zkApps work to enable permissions, preconditions, and composability.
+
