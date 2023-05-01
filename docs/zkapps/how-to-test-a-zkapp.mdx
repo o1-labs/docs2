@@ -100,7 +100,7 @@ Then, use the test account and zkApp keys to construct a transaction to pay acco
 
 ```ts
 let txn = await Mina.transaction(feePayer, () => {
-  Party.fundNewAccount(feePayer);
+  AccountUpdate.fundNewAccount(feePayer);
   zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
 });
 
@@ -146,7 +146,7 @@ describe('Add smart contract integration test', () => {
 
     // deploy zkapp
     txn = await Mina.transaction(feePayer, () => {
-      Party.fundNewAccount(feePayer);
+      AccountUpdate.fundNewAccount(feePayer);
       zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
     });
     await txn.send();
