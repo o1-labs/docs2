@@ -270,7 +270,7 @@ The deploy transaction includes 5 accountUpdates represented as ovals. Described
 4. This update deploys an instance of `secondaryZkApp`. Note the permissions here are set to default values, in contrast to the deployment in the `proofsOnlyZkApp` example.
 5. This update initializes the `secondaryZkApp` instance.
 
-When the transaction is run on-chain, all of these account updates are checked and applied. Note that there is no actual "execution" of each AccountUpdate provided - instead, each AccountUpdate includes an associated signature or proof, corresponding to the verification key in the zkApp.
+When the transaction is run on chain, these account updates are checked by the Mina network and applied if valid. Each AccountUpdate includes either a proof corresponding to the verification key in the zkApp account on chain or a signature corresponding to the zkApp address. In this case, only proof authorization is allowed.
 
 Next, call `add()` on your instance of `proofsOnlyZkApp`:
 
