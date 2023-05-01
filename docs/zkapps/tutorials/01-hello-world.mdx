@@ -13,7 +13,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::note
 
-This tutorial was last tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) 0.6.4 and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.7.5` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.9.8`.
 
 :::
 
@@ -78,8 +78,6 @@ To confirm successful installion:
 ```sh
 $ zk --version
 ```
-
-This tutorial has been tested with Mina zkApp CLI version `0.7.5` and SnarkyJS `0.9.8`.
 
 ## Create a new project
 
@@ -356,7 +354,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 ```ts src/main.ts
 11 await isReady;
 12
-13 console.log('SnarkyJS loaded')
+13 console.log('SnarkyJS loaded');
 14
 15 const useProof = false;
 16
@@ -365,14 +363,14 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 21
-22 console.log('Shutting down')
+22 console.log('Shutting down');
 23
 24 await shutdown();
 ```
 
 This local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
 
-```sh
+```ts ignore
 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1]; 
 ```
@@ -423,7 +421,7 @@ Comments break down each stage:
 21
 22 // ----------------------------------------------------
 23
-24// Create a public/private key pair. The public key is your address and where you deploy the zkApp to
+24 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
 25 const zkAppPrivateKey = PrivateKey.random();
 26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
 27
@@ -483,7 +481,7 @@ To update your local zkApp account with a transaction, add the following code to
 50
 51 // ----------------------------------------------------
 52
-53 console.log('Shutting down')
+53 console.log('Shutting down');
 54
 55 await shutdown();
 ```
@@ -526,7 +524,7 @@ To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
 64
 65 // ----------------------------------------------------
 66
-67 console.log('Shutting down')
+67 console.log('Shutting down');
 68
 69 await shutdown();
 ```
