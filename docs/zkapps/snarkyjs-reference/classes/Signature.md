@@ -60,7 +60,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/circuit_value.ts:74](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L74)
+[lib/circuit_value.ts:83](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L83)
 
 ## Properties
 
@@ -70,7 +70,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/signature.ts:191](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L191)
+[lib/signature.ts:191](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L191)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:192](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L192)
+[lib/signature.ts:192](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L192)
 
 ## Methods
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L162)
+[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L171)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L158)
+[lib/circuit_value.ts:167](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L167)
 
 ___
 
@@ -146,7 +146,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L166)
+[lib/circuit_value.ts:175](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L175)
 
 ___
 
@@ -162,7 +162,7 @@ Encodes a [Signature](Signature.md) in base58 format.
 
 #### Defined in
 
-[lib/signature.ts:252](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L252)
+[lib/signature.ts:252](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L252)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L154)
+[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L163)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L146)
+[lib/circuit_value.ts:155](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L155)
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L150)
+[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L159)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 ▸ **verify**(`publicKey`, `msg`): [`Bool`](Bool.md)
 
-Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](../README.md#publickey).
+Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](Types.PublicKey.md).
 
 #### Parameters
 
@@ -241,7 +241,7 @@ a [Bool](Bool.md)
 
 #### Defined in
 
-[lib/signature.ts:226](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L226)
+[lib/signature.ts:226](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L226)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:195](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L195)
+[lib/circuit_value.ts:204](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L204)
 
 ___
 
@@ -297,7 +297,7 @@ a [Signature](Signature.md)
 
 #### Defined in
 
-[lib/signature.ts:198](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L198)
+[lib/signature.ts:198](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L198)
 
 ___
 
@@ -319,7 +319,7 @@ Decodes a base58 encoded signature into a [Signature](Signature.md).
 
 #### Defined in
 
-[lib/signature.ts:242](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/signature.ts#L242)
+[lib/signature.ts:242](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/signature.ts#L242)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:170](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L170)
+[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L179)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:228](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L228)
+[lib/circuit_value.ts:237](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L237)
 
 ___
 
@@ -412,7 +412,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:91](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L91)
+[lib/circuit_value.ts:100](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L100)
 
 ___
 
@@ -430,7 +430,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:98](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L98)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L107)
 
 ___
 
@@ -448,7 +448,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L120)
+[lib/circuit_value.ts:129](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L129)
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:209](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L209)
+[lib/circuit_value.ts:218](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L218)
 
 ___
 
@@ -510,7 +510,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:103](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L103)
+[lib/circuit_value.ts:112](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L112)
 
 ___
 
@@ -541,7 +541,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:124](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L124)
+[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L133)
 
 ___
 
@@ -572,4 +572,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:217](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/circuit_value.ts#L217)
+[lib/circuit_value.ts:226](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L226)
