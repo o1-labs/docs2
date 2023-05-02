@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[lib/mina.ts:60](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/mina.ts#L60)
+[lib/mina.ts:62](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/mina.ts#L62)
 
 ## Methods
 
@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[lib/mina.ts:62](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/mina.ts#L62)
+[lib/mina.ts:64](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/mina.ts#L64)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:61](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/lib/mina.ts#L61)
+[lib/mina.ts:63](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/mina.ts#L63)
