@@ -17,7 +17,7 @@ This section shows you how to perform common token operations, such as minting, 
 
 Minting generates new tokens whereby the zkApp updates the balance of an account by adding the newly created tokens to it. Minted tokens can be sent to any existing account in the ledger.
 
-To mint new tokens using a zkApp, we access the `this.token` property on our `SmartContract` class. See the example below of how a zkApp can mint tokens to another account:
+To mint new tokens using a zkApp, this example of the `this.token` property on the `SmartContract` class shows how a zkApp can mint tokens to another account:
 
 ```ts
 class MintExample extends SmartContract {
@@ -31,11 +31,11 @@ class MintExample extends SmartContract {
 }
 ```
 
-In the snippet above, we define a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
+This example snippet defines a smart contract called `MintExample` with a method called `mintNewTokens`. Using `this.token`, the smart contract specifies the address to mint new tokens for as well as the amount.
 
 ## Burning
 
-Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. See the example below of how a zkApp can burn tokens of another account:
+Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. The following examples show how a zkApp can burn tokens of another account:
 
 ```ts
 class BurnExample extends SmartContract {
@@ -49,7 +49,7 @@ class BurnExample extends SmartContract {
 }
 ```
 
-In the snippet above, we define a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, we use the `this.token` property to call the `burn` method. This specifies the amount of tokens to burn for the specified address.
+This example snippet defines a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, the `this.token` property calls the `burn()` method. This specifies the amount of tokens to burn for the specified address.
 
 :::note
 
@@ -59,7 +59,7 @@ A zkApp cannot burn more tokens than the specified account has. If there is such
 
 ## Sending
 
-To send a custom token, use the `send()` method available on `this.token`. See the example below of how a zkApp can approve sending tokens between two accounts:
+To send a custom token, use the `send()` method available on `this.token`. This example shows how a zkApp can approve sending tokens between two accounts:
 
 ```ts
 class SendExample extends SmartContract {
@@ -78,21 +78,21 @@ class SendExample extends SmartContract {
 }
 ```
 
-In the snippet above, we define a smart contract called `SendExample` with a method called `sendTokens`. Then, in the same fashion, as minting and burning, we use the `this.token` property to call the `send` method.
+This example snippet defines a smart contract called `SendExample` with a method called `sendTokens()`. Then, in the same fashion, as minting and burning, the `this.token` property calls the `send()` method.
 
-For a more comprehensive example of how to use custom tokens with a zkApp, please see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts)
+For a more comprehensive example of how to use custom tokens with a zkApp, see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts).
 
-## Authorization
+## Proof Authorization
 
 When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
 
-There are two ways for a token owner to approve a transaction, one being a **signature** and the other being a **proof**.
+A token owner can approve a transaction using a **signature** or a **proof**.
 
 ### Signature Authorization
 
 Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two separate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
 
-Token zkApps must provide a `send()` method, like the one described above. By providing a `send()` method, the token zkApp can approve a transaction between two seperate accounts and sign it as the token owner.
+Token zkApps must provide a `send()` method. By providing a `send()` method, the token zkApp can approve a transaction between two separate accounts and sign it as the token owner. For example:
 
 ```ts
 let tx = await Mina.transaction(feePayerKey, () => {
@@ -102,7 +102,7 @@ let tx = await Mina.transaction(feePayerKey, () => {
 await tx.send();
 ```
 
-This sort of authorization is simple and easy to use but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, we can let the token owner approve with a proof.
+This signature authorization is simple and easy to use, but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, it makes more sense to let the token owner approve with a proof.
 
 ### Proof Authorization
 
@@ -112,7 +112,7 @@ To allow for proof authorization by the token owner, the child zkApp that is req
 
 Token owner contracts can inspect the updates that a child zkApp wants to make by using a combination of `Experimental.Callback` and `this.approve`. The first thing that a token contract must do is generate the account updates that a child zkApp wants to make. The child zkApp wraps a function around `Experimental.Callback` which contains the changes it wants to make. The token owner can then execute that function with `this.approve` and inspect the changes that the child zkApp wants to make.
 
-Here are examples of how a zkApp can approve a transaction between two accounts. The first example shows how to approve a transaction by calling a specified `SmartContract` method.
+This example shows how a zkApp can approve a transaction between two accounts by calling a specified `SmartContract` method:
 
 ```ts
 /**
@@ -185,21 +185,21 @@ await tx.send();
 
 The result of this example is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is approved by the token owner without the token owner having to sign the transaction.
 
-For more examples of how to approve a transaction with a zkApp, please see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts).
+For another example of how to approve a transaction with a zkApp, see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts) provided.
 
 ## Understanding Important Terms
 
-If you are writing your zkApp to interact with custom tokens, you should understand the following essential terms:
+If your zkApp interacts with custom tokens, be sure you understand the following essential terms:
 
 ### Token Id
 
-Token Ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network, meaning no two custom tokens can have the same token id.
+Token ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network. 
 
-Token Ids themeselves are derived from a zkApp. To check the token id of a zkApp, you can use the `this.token.id` property.
+Token ids are derived from a zkApp. To check the token id of a zkApp, use the `this.token.id` property.
 
 ### Token Accounts
 
-Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is instead specified by a public key _and_ token id.
+Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account but is specified by a public key _and_ a token id.
 If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id is created if it does not exist.
 
 Token accounts are specific for each type of custom token, meaning that a single public key can have many different types of token accounts.
@@ -218,6 +218,6 @@ Aside from sending custom tokens, custom tokens can be minted and burned by a **
 
 A token owner is an account that creates, facilitates, and governs how a custom token is to be used. Concretely, the token owner is the account that created the custom token and is the only account that can mint and burn tokens.
 
-In addition to being the only account that can mint and burn tokens, the token owner is also the only account that can approve sending tokens between two accounts, by either using signature authorization or proof authorization.
+In addition to being the only account that can mint and burn tokens, the token owner is the only account that can approve sending tokens between two accounts.
 If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner generates the changes the two accounts want to make and can then make assertions about those changes.
 The token owner can approve the transaction with a signature or proof.

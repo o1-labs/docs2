@@ -1,35 +1,34 @@
 # Class: Circuit
 
-The [Circuit](Circuit.md) API is a low level interface to interact and build circuits with
-
 ## Table of contents
 
 ### Constructors
 
 - [constructor](Circuit.md#constructor)
 
-### Methods
+### Properties
 
-- [\_witness](Circuit.md#_witness)
-- [addConstraint](Circuit.md#addconstraint)
 - [array](Circuit.md#array)
 - [asProver](Circuit.md#asprover)
 - [assertEqual](Circuit.md#assertequal)
 - [constraintSystem](Circuit.md#constraintsystem)
 - [constraintSystemFromKeypair](Circuit.md#constraintsystemfromkeypair)
 - [equal](Circuit.md#equal)
-- [generateKeypair](Circuit.md#generatekeypair)
 - [if](Circuit.md#if)
 - [inCheckedComputation](Circuit.md#incheckedcomputation)
 - [inProver](Circuit.md#inprover)
 - [log](Circuit.md#log)
-- [newVariable](Circuit.md#newvariable)
-- [prove](Circuit.md#prove)
 - [runAndCheck](Circuit.md#runandcheck)
+- [runUnchecked](Circuit.md#rununchecked)
 - [switch](Circuit.md#switch)
 - [toFields](Circuit.md#tofields)
-- [verify](Circuit.md#verify)
 - [witness](Circuit.md#witness)
+
+### Methods
+
+- [generateKeypair](Circuit.md#generatekeypair)
+- [prove](Circuit.md#prove)
+- [verify](Circuit.md#verify)
 
 ## Constructors
 
@@ -37,185 +36,107 @@ The [Circuit](Circuit.md) API is a low level interface to interact and build cir
 
 • **new Circuit**()
 
-## Methods
-
-### \_witness
-
-▸ `Static` **_witness**<`S`\>(`ctor`, `f`): [`Field`](Field.md)[]
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `S` | extends [`Provable`](../interfaces/Provable.md)<`any`, `S`\> |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctor` | `S` |
-| `f` | () => [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Field`](Field.md)[]
-
-#### Defined in
-
-[snarky.d.ts:780](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L780)
-
-___
-
-### addConstraint
-
-▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
-
-Adds a constraint to the circuit.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `this` | [`Circuit`](Circuit.md) |
-| `kind` | ``"multiply"`` |
-| `x` | [`Field`](Field.md) |
-| `y` | [`Field`](Field.md) |
-| `z` | [`Field`](Field.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[snarky.d.ts:745](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L745)
-
-▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `this` | [`Circuit`](Circuit.md) |
-| `kind` | ``"add"`` |
-| `x` | [`Field`](Field.md) |
-| `y` | [`Field`](Field.md) |
-| `z` | [`Field`](Field.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[snarky.d.ts:752](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L752)
-
-▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `this` | [`Circuit`](Circuit.md) |
-| `kind` | ``"equal"`` |
-| `x` | [`Field`](Field.md) |
-| `y` | [`Field`](Field.md) |
-| `z` | [`Field`](Field.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[snarky.d.ts:759](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L759)
-
-▸ `Static` **addConstraint**(`this`, `kind`, `x`, `y`, `z`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `this` | [`Circuit`](Circuit.md) |
-| `kind` | ``"boolean"`` |
-| `x` | [`Field`](Field.md) |
-| `y` | [`Field`](Field.md) |
-| `z` | [`Field`](Field.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[snarky.d.ts:766](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L766)
-
-___
+## Properties
 
 ### array
 
-▸ `Static` **array**<`A`\>(`elementType`, `length`): `InferredProvable`<`A`[]\>
+▪ `Static` **array**: <A\>(`elementType`: `A`, `length`: `number`) => `InferredProvable`<`A`[]\> = `SnarkyCircuit.array`
+
+#### Type declaration
+
+▸ <`A`\>(`elementType`, `length`): `InferredProvable`<`A`[]\>
 
 Creates a [Provable](../interfaces/Provable.md) for a generic array.
 
-#### Type parameters
+**`Example`**
+
+```ts
+const ProvableArray = Circuit.array(Field, 5);
+```
+
+##### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `A` | extends [`FlexibleProvable`](../README.md#flexibleprovable)<`any`\> |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `elementType` | `A` |
 | `length` | `number` |
 
-#### Returns
+##### Returns
 
 `InferredProvable`<`A`[]\>
 
 #### Defined in
 
-[snarky.d.ts:816](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L816)
+[lib/circuit.ts:141](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L141)
 
 ___
 
 ### asProver
 
-▸ `Static` **asProver**(`f`): `void`
+▪ `Static` **asProver**: (`f`: () => `void`) => `void` = `SnarkyCircuit.asProver`
+
+#### Type declaration
+
+▸ (`f`): `void`
 
 Runs code as a prover.
 
-#### Parameters
+**`Example`**
+
+```ts
+Circuit.asProver(() => {
+  // Your prover code here
+});
+```
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `f` | () => `void` |
 
-#### Returns
+##### Returns
 
 `void`
 
 #### Defined in
 
-[snarky.d.ts:789](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L789)
+[lib/circuit.ts:93](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L93)
 
 ___
 
 ### assertEqual
 
-▸ `Static` **assertEqual**<`T`\>(`ctor`, `x`, `y`): `void`
+▪ `Static` **assertEqual**: <T\>(`ctor`: { `toFields`: (`x`: `T`) => [`Field`](Field.md)[]  }, `x`: `T`, `y`: `T`) => `void`<T\>(`x`: `T`, `y`: `T`) => `void` = `SnarkyCircuit.assertEqual`
+
+#### Type declaration
+
+▸ <`T`\>(`ctor`, `x`, `y`): `void`
 
 Asserts that two values are equal.
 
-#### Type parameters
+**`Example`**
+
+```ts
+class MyStruct extends Struct({ a: Field, b: Bool }) {};
+const a: MyStruct = { a: Field(0), b: Bool(false) };
+const b: MyStruct = { a: Field(1), b: Bool(true) };
+Circuit.assertEqual(MyStruct, a, b);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -224,60 +145,76 @@ Asserts that two values are equal.
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 `void`
 
-#### Defined in
-
-[snarky.d.ts:824](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L824)
-
-▸ `Static` **assertEqual**<`T`\>(`x`, `y`): `void`
+▸ <`T`\>(`x`, `y`): `void`
 
 Asserts that two values are equal.
 
-#### Type parameters
+**`Example`**
+
+```ts
+class MyStruct extends Struct({ a: Field, b: Bool }) {};
+const a: MyStruct = { a: Field(0), b: Bool(false) };
+const b: MyStruct = { a: Field(1), b: Bool(true) };
+Circuit.assertEqual(MyStruct, a, b);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 `void`
 
 #### Defined in
 
-[snarky.d.ts:829](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L829)
+[lib/circuit.ts:152](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L152)
 
 ___
 
 ### constraintSystem
 
-▸ `Static` **constraintSystem**<`T`\>(`f`): `Object`
+▪ `Static` **constraintSystem**: <T\>(`f`: () => `T`) => { `digest`: `string` ; `gates`: `Gate`[] ; `publicInputSize`: `number` ; `result`: `T` ; `rows`: `number`  } = `SnarkyCircuit.constraintSystem`
+
+#### Type declaration
+
+▸ <`T`\>(`f`): `Object`
 
 Returns information about the constraint system in the callback function.
 
-#### Type parameters
+**`Example`**
+
+```ts
+const result = Circuit.constraintSystem(circuit);
+console.log(result);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `f` | () => `T` |
 
-#### Returns
+##### Returns
 
 `Object`
 
@@ -291,46 +228,70 @@ Returns information about the constraint system in the callback function.
 
 #### Defined in
 
-[snarky.d.ts:799](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L799)
+[lib/circuit.ts:122](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L122)
 
 ___
 
 ### constraintSystemFromKeypair
 
-▸ `Static` **constraintSystemFromKeypair**(`keypair`): `Gate`[]
+▪ `Static` **constraintSystemFromKeypair**: (`keypair`: [`Keypair`](Keypair.md)) => `Gate`[] = `SnarkyCircuit.constraintSystemFromKeypair`
+
+#### Type declaration
+
+▸ (`keypair`): `Gate`[]
 
 Returns a low-level JSON representation of the `Circuit` from its [Keypair](Keypair.md):
 a list of gates, each of which represents a row in a table, with certain coefficients and wires to other (row, column) pairs
 
-#### Parameters
+**`Example`**
+
+```ts
+const keypair = await Circuit.generateKeypair();
+const jsonRepresentation = Circuit.constraintSystemFromKeypair(keypair);
+```
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `keypair` | [`Keypair`](Keypair.md) |
 
-#### Returns
+##### Returns
 
 `Gate`[]
 
 #### Defined in
 
-[snarky.d.ts:811](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L811)
+[lib/circuit.ts:132](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L132)
 
 ___
 
 ### equal
 
-▸ `Static` **equal**<`T`\>(`ctor`, `x`, `y`): [`Bool`](Bool.md)
+▪ `Static` **equal**: <T\>(`ctor`: { `toFields`: (`x`: `T`) => [`Field`](Field.md)[]  }, `x`: `T`, `y`: `T`) => [`Bool`](Bool.md)<T\>(`x`: `T`, `y`: `T`) => [`Bool`](Bool.md) = `SnarkyCircuit.equal`
+
+#### Type declaration
+
+▸ <`T`\>(`ctor`, `x`, `y`): [`Bool`](Bool.md)
 
 Checks if two elements are equal.
 
-#### Type parameters
+**`Example`**
+
+```ts
+class MyStruct extends Struct({ a: Field, b: Bool }) {};
+const a: MyStruct = { a: Field(0), b: Bool(false) };
+const b: MyStruct = { a: Field(1), b: Bool(true) };
+const isEqual = Circuit.equal(MyStruct, a, b);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -339,70 +300,70 @@ Checks if two elements are equal.
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 [`Bool`](Bool.md)
 
-#### Defined in
-
-[snarky.d.ts:834](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L834)
-
-▸ `Static` **equal**<`T`\>(`x`, `y`): [`Bool`](Bool.md)
+▸ <`T`\>(`x`, `y`): [`Bool`](Bool.md)
 
 Checks if two elements are equal.
 
-#### Type parameters
+**`Example`**
+
+```ts
+class MyStruct extends Struct({ a: Field, b: Bool }) {};
+const a: MyStruct = { a: Field(0), b: Bool(false) };
+const b: MyStruct = { a: Field(1), b: Bool(true) };
+const isEqual = Circuit.equal(MyStruct, a, b);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 [`Bool`](Bool.md)
 
 #### Defined in
 
-[snarky.d.ts:839](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L839)
-
-___
-
-### generateKeypair
-
-▸ `Static` **generateKeypair**(): [`Keypair`](Keypair.md)
-
-Generates a proving key and a verification key for this circuit.
-
-#### Returns
-
-[`Keypair`](Keypair.md)
-
-#### Defined in
-
-[snarky.d.ts:869](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L869)
+[lib/circuit.ts:163](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L163)
 
 ___
 
 ### if
 
-▸ `Static` **if**<`T`\>(`b`, `ctor`, `x`, `y`): `T`
+▪ `Static` **if**: <T\>(`b`: `boolean` \| [`Bool`](Bool.md), `ctor`: [`ProvablePure`](../interfaces/ProvablePure.md)<`T`\>, `x`: `T`, `y`: `T`) => `T`<T\>(`b`: `boolean` \| [`Bool`](Bool.md), `x`: `T`, `y`: `T`) => `T` = `SnarkyCircuit.if`
+
+#### Type declaration
+
+▸ <`T`\>(`b`, `ctor`, `x`, `y`): `T`
 
 Circuit-compatible if-statement.
 
-#### Type parameters
+**`Example`**
+
+```ts
+const condition = Bool(true);
+const result = Circuit.if(condition, Field(1), Field(2)); // Returns Field(1)
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -411,25 +372,28 @@ Circuit-compatible if-statement.
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 `T`
 
-#### Defined in
-
-[snarky.d.ts:844](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L844)
-
-▸ `Static` **if**<`T`\>(`b`, `x`, `y`): `T`
+▸ <`T`\>(`b`, `x`, `y`): `T`
 
 Circuit-compatible if-statement.
 
-#### Type parameters
+**`Example`**
+
+```ts
+const condition = Bool(true);
+const result = Circuit.if(condition, Field(1), Field(2)); // Returns Field(1)
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -437,165 +401,200 @@ Circuit-compatible if-statement.
 | `x` | `T` |
 | `y` | `T` |
 
-#### Returns
+##### Returns
 
 `T`
 
 #### Defined in
 
-[snarky.d.ts:848](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L848)
+[lib/circuit.ts:172](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L172)
 
 ___
 
 ### inCheckedComputation
 
-▸ `Static` **inCheckedComputation**(): `boolean`
+▪ `Static` **inCheckedComputation**: () => `boolean` = `SnarkyCircuit.inCheckedComputation`
+
+#### Type declaration
+
+▸ (): `boolean`
 
 Checks if the circuit is in checked computation mode.
 
-#### Returns
+**`Example`**
+
+```ts
+if (Circuit.inCheckedComputation()) {
+  // Checked computation-specific code
+}
+```
+
+##### Returns
 
 `boolean`
 
 #### Defined in
 
-[snarky.d.ts:894](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L894)
+[lib/circuit.ts:212](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L212)
 
 ___
 
 ### inProver
 
-▸ `Static` **inProver**(): `boolean`
+▪ `Static` **inProver**: () => `boolean` = `SnarkyCircuit.inProver`
+
+#### Type declaration
+
+▸ (): `boolean`
 
 Checks if the circuit is in prover mode.
 
-#### Returns
+**`Example`**
+
+```ts
+if (Circuit.inProver()) {
+  // Prover-specific code
+}
+```
+
+##### Returns
 
 `boolean`
 
 #### Defined in
 
-[snarky.d.ts:889](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L889)
+[lib/circuit.ts:202](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L202)
 
 ___
 
 ### log
 
-▸ `Static` **log**(`...args`): `void`
+▪ `Static` **log**: (...`args`: `any`) => `void` = `SnarkyCircuit.log`
 
-Interface to log elements within a circuit. Similar to `Console.log()`.
+#### Type declaration
 
-#### Parameters
+▸ (`...args`): `void`
+
+Interface to log elements within a circuit. Similar to `console.log()`.
+
+**`Example`**
+
+```ts
+const element = Field(42);
+Circuit.log(element);
+```
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `...args` | `any` |
 
-#### Returns
+##### Returns
 
 `void`
 
 #### Defined in
 
-[snarky.d.ts:899](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L899)
-
-___
-
-### newVariable
-
-▸ `Static` **newVariable**(`f`): [`Field`](Field.md)
-
-Creates a new variable inside the circuit.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `f` | () => `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:777](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L777)
-
-___
-
-### prove
-
-▸ `Static` **prove**(`privateInput`, `publicInput`, `kp`): `Proof`
-
-Proves a statement using the private input, public input and the [Keypair](Keypair.md) of the circuit.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `privateInput` | `any`[] |
-| `publicInput` | `any`[] |
-| `kp` | [`Keypair`](Keypair.md) |
-
-#### Returns
-
-`Proof`
-
-#### Defined in
-
-[snarky.d.ts:874](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L874)
+[lib/circuit.ts:221](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L221)
 
 ___
 
 ### runAndCheck
 
-▸ `Static` **runAndCheck**<`T`\>(`f`): `T`
+▪ `Static` **runAndCheck**: (`f`: () => `void`) => `void` = `SnarkyCircuit.runAndCheck`
 
-Runs code and checks its correctness.
+#### Type declaration
 
-#### Type parameters
+▸ (`f`): `void`
 
-| Name |
-| :------ |
-| `T` |
+Runs provable code quickly, without creating a proof, but still checking whether constraints are satisfied.
 
-#### Parameters
+**`Example`**
+
+```ts
+Circuit.runAndCheck(() => {
+  // Your code to check here
+});
+```
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `f` | () => `T` |
+| `f` | () => `void` |
 
-#### Returns
+##### Returns
 
-`T`
+`void`
 
 #### Defined in
 
-[snarky.d.ts:794](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L794)
+[lib/circuit.ts:103](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L103)
+
+___
+
+### runUnchecked
+
+▪ `Static` **runUnchecked**: (`f`: () => `void`) => `void` = `SnarkyCircuit.runUnchecked`
+
+#### Type declaration
+
+▸ (`f`): `void`
+
+Runs provable code quickly, without creating a proof, and not checking whether constraints are satisfied.
+
+**`Example`**
+
+```ts
+Circuit.runUnchecked(() => {
+  // Your code to run here
+});
+```
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `f` | () => `void` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[lib/circuit.ts:113](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L113)
 
 ___
 
 ### switch
 
-▸ `Static` **switch**<`T`, `A`\>(`mask`, `type`, `values`): `T`
+▪ `Static` **switch**: <T, A\>(`mask`: [`Bool`](Bool.md)[], `type`: `A`, `values`: `T`[]) => `T` = `SnarkyCircuit.switch`
+
+#### Type declaration
+
+▸ <`T`, `A`\>(`mask`, `type`, `values`): `T`
 
 Generalization of `Circuit.if` for choosing between more than two different cases.
-It takes a "mask", which is an array of `Bool`s that contains only one `true` element, as well as a type/constructor and an array of values of that type.
-The result is that value which corresponds to the true element of the mask. Example:
+It takes a "mask", which is an array of `Bool`s that contains only one `true` element, a type/constructor, and an array of values of that type.
+The result is that value which corresponds to the true element of the mask.
+
+**`Example`**
 
 ```ts
 let x = Circuit.switch([Bool(false), Bool(true)], Field, [Field(1), Field(2)]);
 x.assertEquals(2);
 ```
 
-#### Type parameters
+##### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
 | `A` | extends [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -603,49 +602,171 @@ x.assertEquals(2);
 | `type` | `A` |
 | `values` | `T`[] |
 
-#### Returns
+##### Returns
 
 `T`
 
 #### Defined in
 
-[snarky.d.ts:860](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L860)
+[lib/circuit.ts:183](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L183)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`A`\>(`a`): [`Field`](Field.md)[]
+▪ `Static` **toFields**: <A\>(`a`: `A`) => [`Field`](Field.md)[] = `SnarkyCircuit.toFields`
+
+#### Type declaration
+
+▸ <`A`\>(`a`): [`Field`](Field.md)[]
 
 Serializes an element into [Field](Field.md) elements.
 
-#### Type parameters
+**`Example`**
+
+```ts
+const element = Field(42);
+const fields = Circuit.toFields(element);
+```
+
+##### Type parameters
 
 | Name |
 | :------ |
 | `A` |
 
-#### Parameters
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `a` | `A` |
 
-#### Returns
+##### Returns
 
 [`Field`](Field.md)[]
 
 #### Defined in
 
-[snarky.d.ts:884](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L884)
+[lib/circuit.ts:192](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L192)
+
+___
+
+### witness
+
+▪ `Static` **witness**: <T, S\>(`ctor`: `S`, `f`: () => `T`) => `T` = `SnarkyCircuit.witness`
+
+#### Type declaration
+
+▸ <`T`, `S`\>(`ctor`, `f`): `T`
+
+Create a new witness. A witness, or variable, is a value that is provided as input
+by the prover. This provides a flexible way to introduce values from outside into the circuit.
+However, note that nothing about how the value was created is part of the proof - `Circuit.witness`
+behaves exactly like user input. So, make sure that after receiving the witness you make any assertions
+that you want to associate with it.
+
+**`Example`**
+
+Example for re-implementing `Field.inv` with the help of `witness`:
+```ts
+let invX = Circuit.witness(Field, () => {
+  // compute the inverse of `x` outside the circuit, however you like!
+  return Field.inv(x));
+}
+// prove that `invX` is really the inverse of `x`:
+invX.mul(x).assertEquals(1);
+```
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `S` | extends [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> = [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctor` | `S` |
+| `f` | () => `T` |
+
+##### Returns
+
+`T`
+
+#### Defined in
+
+[lib/circuit.ts:83](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L83)
+
+## Methods
+
+### generateKeypair
+
+▸ `Static` **generateKeypair**(): `Promise`<[`Keypair`](Keypair.md)\>
+
+Generates a proving key and a verification key for this circuit.
+
+**`Example`**
+
+```ts
+const keypair = await Circuit.generateKeypair();
+```
+
+#### Returns
+
+`Promise`<[`Keypair`](Keypair.md)\>
+
+#### Defined in
+
+[lib/circuit.ts:25](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L25)
+
+___
+
+### prove
+
+▸ `Static` **prove**(`privateInput`, `publicInput`, `keypair`): `Promise`<`Proof`\>
+
+Proves a statement using the private input, public input, and the [Keypair](Keypair.md) of the circuit.
+
+**`Example`**
+
+```ts
+const keypair = await Circuit.generateKeypair();
+const proof = await Circuit.prove(privateInput, publicInput, keypair);
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `privateInput` | `any`[] |
+| `publicInput` | `any`[] |
+| `keypair` | [`Keypair`](Keypair.md) |
+
+#### Returns
+
+`Promise`<`Proof`\>
+
+#### Defined in
+
+[lib/circuit.ts:39](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L39)
 
 ___
 
 ### verify
 
-▸ `Static` **verify**(`publicInput`, `vk`, `pi`): `boolean`
+▸ `Static` **verify**(`publicInput`, `vk`, `proof`): `Promise`<`boolean`\>
 
-Verifies a proof using the public input, the proof and the initial [Keypair](Keypair.md) of the circuit.
+Verifies a proof using the public input, the proof, and the initial [Keypair](Keypair.md) of the circuit.
+
+**`Example`**
+
+```ts
+const keypair = await Circuit.generateKeypair();
+const proof = await Circuit.prove(privateInput, publicInput, keypair);
+const isValid = await Circuit.verify(publicInput, keypair.vk, proof);
+```
 
 #### Parameters
 
@@ -653,40 +774,12 @@ Verifies a proof using the public input, the proof and the initial [Keypair](Key
 | :------ | :------ |
 | `publicInput` | `any`[] |
 | `vk` | `VerificationKey` |
-| `pi` | `Proof` |
+| `proof` | `Proof` |
 
 #### Returns
 
-`boolean`
+`Promise`<`boolean`\>
 
 #### Defined in
 
-[snarky.d.ts:879](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L879)
-
-___
-
-### witness
-
-▸ `Static` **witness**<`T`, `S`\>(`ctor`, `f`): `T`
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
-| `S` | extends [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> = [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctor` | `S` |
-| `f` | () => `T` |
-
-#### Returns
-
-`T`
-
-#### Defined in
-
-[snarky.d.ts:781](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/snarky.d.ts#L781)
+[lib/circuit.ts:54](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L54)

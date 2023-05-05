@@ -11,20 +11,20 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # On-Chain Values
 
-We already saw how you can access the current [on-chain state](/zkapps/how-to-write-a-zkapp#on-chain-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
+You can access the current [on-chain state](/zkapps/how-to-write-a-zkapp#on-chain-state) of a zkApp account. Similarly, you can access many other on-chain values in a zkApp.
 
 Just to give you an idea, here are two possible use cases:
 
-- Say you want to let users vote on a proposal, but only within a specific timespan. To do that, you can make your zkApp require that the current timestamp lies in a certain range.
+- You want to let users vote on a proposal, but only within a specific timespan. To restrict the dates, you can make your zkApp require that the current timestamp lies in a certain range.
 - In DeFi, you might need to compute amounts relative to a balance. For example, paying a yield of `0.001` times the account balance requires you to get the current on-chain balance.
 
-We group on-chain values in two categories:
+There are two categories of on-chain values:
 
-- **Network**: includes the current timestamp, block height, total Mina in circulation and other network state
-- **Account**: includes fields and properties of the zkApp account, such as balance, nonce and delegate
+- **Network**: includes the current timestamp, block height, total Mina in circulation, and other network state
+- **Account**: includes fields and properties of the zkApp account, such as balance, nonce, and delegate
 
-The subfields of both categories are are accessible on `this.network` and `this.account` in your smart contract.
-For example, the timestamp is on `this.network.timestamp`, and it has four methods on it:
+The subfields of both categories are accessible on `this.network` and `this.account` in a smart contract.
+For example, the timestamp on `this.network.timestamp` has four methods:
 
 ```ts
 this.network.timestamp.get();
@@ -32,11 +32,11 @@ this.network.timestamp.assertEquals(timestamp);
 this.network.timestamp.assertBetween(lower, upper);
 ```
 
-With two of them you are already familiar: On-chain state has the same `get()` and `assertEquals()` methods. `assertBetween()` gives you even more power: it allows you to make assert that the timestamp is between `lower` and `upper` (inclusive).
+The familiar on-chain state has the same `get()` and `assertEquals()` methods. The `assertBetween()` method has even more power: it allows you to make assert that the timestamp is between `lower` and `upper` (inclusive).
 
 ### Example: restricting timestamps
 
-Let's see how `assertBetween()` can be used in the voting example mentioned earlier. Assume we want to allow voting throughout September 2022. Timestamps are represented as a `UInt64` in milliseconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). We can use the JS `Date` object to easily convert to this representation. In the simplest case, our zkApp could just hard-code the dates:
+You can see how to use the `assertBetween()` method in the voting example that was mentioned earlier. Assume you want to allow voting throughout September 2022. Timestamps are represented as a `UInt64` in milliseconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). You can use the JS `Date` object to easily convert to this representation. In the simplest case, a zkApp could just hard-code the dates:
 
 ```ts
 const startDate = UInt64.from(Date.UTC(2022, 9, 1));
@@ -52,9 +52,9 @@ class VotingApp extends SmartContract {
 }
 ```
 
-A more refined example could store the current start date in an on-chain state variable, which can be reset by some process which is also encoded by the zkApp.
+A more refined example could store the current start date in an on-chain state variable, which can then be reset by some process that is also encoded by the zkApp.
 
-In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. So, the range should be `[now, now + 1h]`, such as below:
+In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. In this case, the range would be `[now, now + 1h]`:
 
 ```ts
 const now = this.network.timestamp.get();
@@ -63,12 +63,12 @@ this.network.timestamp.assertBetween(now, now.add(60 * 60 * 1000));
 
 ### Network reference
 
-For completeness, below is the full list of network states you can use and make assertions about in your zkApp.
+For completeness, here is the full list of network states you can use and make assertions about in your zkApp.
 
-All of those fields have a `get()` and an `assertEquals()` method, and the subset that represent
-"ordered values" (those that are `UInt32` or `UInt64`), also have `assertBetween()`.
+All of these fields have a `get()` and an `assertEquals()` method. The subset that represents
+"ordered values" (those that are `UInt32` or `UInt64`) also have `assertBetween()`.
 
-Of course, there's no need to remember this -- just type `this.network.` and let IntelliSense guide you!
+Of course, there's no need to remember this -- just type `this.network.` and let intelligent code complete guide you!
 
 ```ts
 // current UNIX time in milliseconds, as measured by the block producer
@@ -102,7 +102,7 @@ this.network.nextEpochData.startCheckpoint.get(): Field;
 
 ### Account reference
 
-Here's the full list of values you can access on the zkApp account. Like the network states, these have `get()` and `assertEquals()`.
+Here's the full list of values you can access on the zkApp account. Like the network states, these values have `get()` and `assertEquals()`.
 Balance and nonce also have `assertBetween()`.
 
 ```ts
@@ -124,7 +124,7 @@ this.account.receiptChainHash.get(): Field;
 ### Bailing out
 
 In some rare cases, you might, for whatever reason, want to `get()` an on-chain value _without_ constraining it to any value.
-If you try this, you'll see that SnarkyJS throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
+If you try this, SnarkyJS throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
 As an escape hatch, if you want to `get()` a value and are really sure you want to not constrain the on-chain value in any way,
 there's `assertNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
 
@@ -138,7 +138,7 @@ there's `assertNothing()` on all of these fields (including on-chain state). **U
 
 Just like on-chain state, some account fields can be written to. Again, the API is consistent with state: `this.account.<field>.set(newValue)`.
 
-For example, here's how you can change permissions on an account:
+For example, here's how to change permissions on an account:
 
 ```ts
 this.account.permissions.set({
@@ -147,13 +147,13 @@ this.account.permissions.set({
 });
 ```
 
-And here's how you can set the delegate (the account that your smart contract delegates its stake to):
+And here's how to set the delegate (the account that your smart contract delegates its stake to):
 
 ```ts
 this.account.delegate.set(delegatePublicKey);
 ```
 
-The fields that you can set are not the same as those that you can make assertions about. This is the full list that have a `.set()`, with short descriptions:
+The fields that you can set are not the same as the fields that you can make assertions about. Here is the full list of fields that have a `.set()`:
 
 ```ts
 // the account that this account delegates its MINA stake to
@@ -170,10 +170,10 @@ this.account.tokenSymbol.set(value: string);
 this.account.timing.set(value: Timing);
 ```
 
-### Accessing other accounts than the zkApp's
+### Accessing accounts other than the zkApp's account
 
-The API described in this section (get / set / assertEquals / ...) can not only be used to access the zkApp account itself, but also any other account.
-To do so, just create an [account update](/zkapps/how-to-write-a-zkapp#transactions-and-account-updates) — you'll find the same `account` / `network` fields API on it:
+The API described in this section (get / set / assertEquals / ...) can be used to access the zkApp account itself, but also any other account.
+To do so, create an [account update](/zkapps/how-to-write-a-zkapp#transactions-and-account-updates) to find the same `account` / `network` fields API:
 
 ```ts
 let accountUpdate = AccountUpdate.create(address);
@@ -191,7 +191,7 @@ accountUpdate.account.permissions.set(permissions);
 
 :::tip
 When setting fields on an account update, you have to make sure that this _same_ account update has the correct authorization to perform those actions.
-For example, to initially set the verification key, the update will likely need a signature from the account owner:
+For example, to initially set the verification key, the update requires a signature from the account owner:
 
 ```ts
 // use createSigned to require a signature

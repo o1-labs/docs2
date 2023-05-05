@@ -12,62 +12,65 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # Permissions
 
-Permissions are an integral part of zkApp development - they determine who has the authority to interact and make changes to a specific part of a smart contract.
-Naturally, it's important for every smart contract to have a set of sound permissions to prevent any attacks or security holes.
-Permissions live on-chain, that means they are a part of the account representation on the network, and are checked every time an account updates tries to interact with an account.
+Permissions are an integral part of zkApp development because they determine who has the authority to interact and make changes to a specific part of a smart contract.
+Naturally, every smart contract must have proper permissions to prevent attacks or security holes.
+Permissions live on-chain, which means they are a part of the account representation on the network. Permissions are checked every time an account update tries to interact with an account.
 
 ## Types of Permissions
 
+There are 11 different types of permissions that a developer can access and adjust to guard a zkApp account:
 
-Currently, there are 11 different types of permissions that guard a zkApp account and a developer can access and adjust.
+- `editState`: The permission describing how the zkApp account's eight on-chain state fields are allowed to be manipulated. This permission describes how the on-chate state fields can be manipulated.
 
-`editState`: The Permission corresponding to the 8 state fields associated with an account.
-Every smart contract account has 8 fields of on-chain state. This permissions describes how those 8 fields can be manipulated.
+- `send`: The permission corresponding to the ability to send transactions from this account. This permission determines whether someone can send a transaction, for example, transfer MINA from this particular account. 
 
-`send`: The Permission corresponding to the ability to send transactions from this account.
-This permission determines whether or not someone is able to send transaction (e.g. transfer MINA) from this particular account. 
+- `receive`: Similar to `send`, the `receive` permission determines whether a particular account can receive transactions, for example, depositing MINA.
 
-`receive`: Similar to `send`, the Permission corresponding to the ability to receive transactions to this account.
-Similar to send, it determines whether or not a particular account can receive transactions - for example, depositing MINA.
+- `setDelegate`: The permission corresponding to the ability to set the delegate field of the account. The delegate field is the address of another account to whom this account is delegating its MINA for staking.
 
-`setDelegate`: The Permission corresponding to the ability to set the delegate field of the account.
-The delegate field is the address of another account, to whom this account is delegating its MINA to for staking.
+- `setPermissions`: The permission corresponding to the ability to change the permissions of the account. As the name suggests, this type of permission describes how already set permissions can be changed.
 
-`setPermissions`: The Permission corresponding to the ability to change the permissions of the account.
-As the name might suggest, this type of permission describes how already set permissions can be changed.
+- `setVerificationKey`: The permission corresponding to the ability to change the verification key of the account. Every smart contract has a verification key stored on-chain. The verification key is used to verify off-chain proofs. This permission essentially describes if the verification key can be changed; you can also think of it as the "upgradeability" of smart contracts.
 
-`setVerificationKey`: The Permission corresponding to the ability to change the verification key of the account.
-Every smart contract has a verification key stored on-chain. The verification key is used to verify off-chain proofs. This permission essentially describes if the verification key can be changed or not - we can also think of it as "upgradeability" of smart contracts.
+- `setZkappUri`: The permission corresponding to the ability to change the zkapp uri field of the account. The `zkappUri` field can be used to store metadata about the smart contract, for example, link to the source code. 
 
-`setZkappUri`:  The Permission corresponding to the ability to change the zkapp uri field of the account.
-The `zkappUri` is a field that can be used to store some meta data about the smart contract (e.g. link to the source code). The permission determines how this field can be changed.
+- `editActionsState`: The permission that corresponds to the ability to change the actions state of the associated account. Every smart contract can dispatch actions that are committed on-chain. This type of permission describes who can change the actions state.
 
-`editActionsState`: The Permission corresponding to the ability to change the actions state of the associated account.
-Every smart contract can dispatch actions, which are committed to on-chain. This type of permission describes who can change that value.
+- `setTokenSymbol`: The permission corresponding to the ability to set the token symbol for this account. The `tokenSymbol` field stores the symbol of a token.
 
-`setTokenSymbol`: The Permission corresponding to the ability to set the token symbol for this account.
-Similar to `setZkappUri` and `zkappUri`, this field stored the symbol of a token.
+- `incrementNonce`: The permission that determines whether to increment the nonce with an account update and who can increment the nonce on this account with a transaction.
 
-`incrementNonce`: The Permission that determine whether or not the nonce should be incremented with an account update.
-This Permission determines who can increment the nonce on this account with a transaction.
+- `setVotingFor`: The permission corresponding to the ability to set the chain hash for this account. The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
 
-`setVotingFor`: The permissions corresponding to the ability to set the chain hash for this account. 
-The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for. 
+- `access`: This permission is more restrictive than all the other permissions combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, the access permission is set to require no authorization. However, for [token manager contracts](custom-tokens), `access` requires at least proof authorization so that token interactions are approved by calling one of the token manager's methods.
 
-`access`: This Permission is more restrictive than all the others combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, this can be set to require no authorization. However, for [token manager contracts](custom-tokens), `access` should require at least proof authorization, so that token interactions must be approved by calling one of the token manager's methods.
-
-`setTiming`: The permission corresponding to the ability to control the vesting schedule of time-locked accounts.
+- `setTiming`: The permission corresponding to the ability to control the vesting schedule of time-locked accounts.
 
 ## Authorization
 
-Permissions just describe who has the ability to execute an action, but they don't authorize it.
-Currently, we have 5 types of authorizations: `none`, `impossible`, `signature`, `proof` and `proofOrSignature`.
+Authorization determines what resources can be accessed, while permissions just describe who has the ability to execute an action.
 
 A transaction consists of multiple account updates (sort of like instructions to the network) - and each account update must be authorized in one way or another.
-When you inspect an account update (either directly in SnarkyJS or using an explorer), you see a field `authorization` on the account update.
-If this field has a proof attached, it means it's authorized by a proof that is checked against the verification key of the account. If it's a signature, that means the account update was authorized by a signature.
+When you inspect an account update directly in SnarkyJS or using an explorer, you see the `authorization` field. 
 
-Here is an example of how this may look like: 
+- If the `authorization` field has a proof attached, it means the transaction is authorized by a proof that is checked against the verification key of the account. 
+- If the `authorization` field has a signature, it means the account update is authorized by a signature.
+
+### Types of Authorizations
+
+The types of authorizations are:
+
+- `none`: Everyone has access to fields with permission set to `none` - and therefore can manipulate the fields as they please. 
+
+- `impossible`: If a field permission is set to `impossible`, nothing can ever change this field!  
+
+- `signature`: Fields that have their permission set to `signature` can only be manipulated by account updates that are accompanied and authorized by a valid signature.
+
+- `proof`: Fields that have their permission set to `proof` can be manipulated only by account updates that are accompanied and authorized by a valid proof. Proofs are generated by proving the execution of a smart contract method. A proof is checked against the verification key of the account to ensure that state is changed only if the user generated a valid proof by executing a smart contract method correctly.
+
+- `proofOrSignature`: As the name might suggest, permissions with authorization set to `proofOrSignature` accept either a valid signature or a valid proof. 
+
+This example account update is authorized by a signature: 
 
 ```json
 {
@@ -96,24 +99,12 @@ Here is an example of how this may look like:
 }
 ```
 
-As you can see, this example account update has an authorization of kind `signature` provided, and you can also see it's trying to update the app state of the smart contract!
-Let's consider a smart contract that has the permission `editState` set to the authorization `none`. 
-This means, since the authorization is `none`, everyone can freely change the state of the smart contract as they please! Obviously, this is not a safe practice. To allow state changes only when a valid proof accompanies the account update (which wants to access said state), set your authorization to `proof`!
-This makes sure that state is being changed only if the user generated a valid proof by executing a smart contract method correctly!
+As you can see, this example account update has an authorization with a `signature` provided. You can also see it's trying to update the app state of the smart contract.
 
-The authorizations are:
+However, imagine if a smart contract had the the permission `editState` set to the authorization `none`. 
+When authorization is `none`, everyone can freely change the state of the smart contract as they please! Obviously, this is not a safe practice. To allow state changes only when a valid proof accompanies the account update that wants to access the state, set your authorization to `proof` so that the transaction is authorized by a proof that is checked against the verification key of the account. Using a `proof` authorization ensures that state is changed only if the user generated a valid proof by executing a smart contract method correctly.
 
-`none`: Everyone has access to fields with permission set to `none` - and therefore can manipulate the fields as they please! 
-
-`impossible`: If a fields permission is set to `impossible`, nothing can ever change this field!  
-
-`signature`: Fields that have their permission set to `signature` can only be manipulated by account updates that are accompanied and authorized by a valid signature.
-
-`proof`: Fields that have their permission set to `proof` can be manipulated only by account updates that are accompanied and authorized by a valid proof. Proofs are generated by proving the execution of a smart contract method.
-
-`proofOrSignature`: As the name might suggest, permissions with authorization set to `proofOrSignature` accept both a valid signature or a valid proof. 
-
-## The Default
+## Default Permissions
 
 Smart contracts, when first deployed, always start with this default set of permissions:
 
@@ -138,13 +129,13 @@ Smart contracts, when first deployed, always start with this default set of perm
 
 ## Example
 
-To better understand how to leverage permissions to make our smart contract more secure, look at a few examples.
+To better understand how to leverage permissions to make your smart contract more secure, look at these examples.
 
 ### Sending MINA from smart contracts
 
 Some smart contracts manage state and token, such as the native MINA token. To prevent malicious actors from withdrawing all funds, use permissions to secure them.
 
-Consider the following smart contract `UnsecureContract`, which is available [here](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) as well
+Consider the [`UnsecureContract`](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) smart contract. This example is also provided in the `examples` folder  in the `snarkyjs` codebase repo:
 
 
 ```ts
@@ -164,10 +155,8 @@ class UnsecureContract extends SmartContract {
 }
 ```
 
-
-Our `UnsecureContract` has two methods: `withdraw` for withdrawing funds from the smart contract account and `deposit` for depositing funds into the smart contract account.
-Notice permissions are specified in the `init` method and set the permission for `send` to `Permissions.none()`? 
-Because `none` means you don't have to provide *any* form of authorization, a malicious actor can easily drain all funds from the smart contract! Take a look at the following transaction that abuses that:
+This `UnsecureContract` smart contract has two methods: `withdraw` for withdrawing funds from the smart contract account and `deposit` for depositing funds into the smart contract account.
+Notice that the permissions specified in the `init` method have set the `send` permission to `Permissions.none()`. Because `none` means you don't have to provide *any* form of authorization, a malicious actor can easily drain all funds from the smart contract! Take a look at the following malicious transaction that abuses this permission:
 
 
 ```ts
@@ -178,12 +167,11 @@ tx = await Mina.transaction(account1Address, () => {
 await tx.sign([account1Key]).send();
 ```
 
-This example transaction creates a new account update for our smart contract address. Right after that, the new account update sends 1 MINA to the address of the fee payer (`account1Address`).
-At the end of the transaction block, the transaction is signed only with the private key of the fee payer - not the private key of the smart contract!
+This malicious example transaction creates a new account update for our smart contract address. Right after that, the new account update sends 1 MINA to the address of the fee payer (`account1Address`).
+At the end of the transaction block, the transaction is signed only with the private key of the fee payer -- not the private key of the smart contract!
 Because the permissions for sending funds away from a smart contract are set to `none`, this transaction succeeds and drains 1 MINA from the smart contract.
 
-Now, if you change the `send` permission to something else, like `signature`, the manual account update fails with `Update_not_permitted_balance` which does not allow to withdraw funds from the smart contract,
-since the authorization does not fit the permission for `send` that now requires a valid signature!
+Now, if you change the `send` permission to something else, like `signature`, the manual account update fails with `Update_not_permitted_balance` that prevents withdrawing funds from the smart contract since the authorization does not fit the permission for `send` that now requires a valid signature.
 
 You can slightly modify the withdraw-transaction to include a valid signature by adding requesting a signature on the `withdrawal` account update and providing the private key of the smart contract account to `tx.send([zkappKey]) `
 
@@ -202,13 +190,13 @@ Now that you have provided a valid signature and the smart contract requires a v
 ### Upgradeability of smart contracts
 
 Another important part of smart contract development is upgradeability.
-By using permissions, we can either make our smart contract not upgradeable at all or upgradeable! 
-On Mina, when we deploy a smart contract we generate a verification key from our contract source code, which are then be stored on-chain and used to verify proofs that belong to that smart contract.
+By using permissions, you can make our smart contract not upgradeable at all or upgradeable! 
+On Mina, when you deploy a smart contract you generate a verification key from the contract source code. The verification key and the smart contract are stored on-chain and used to verify proofs that belong to that smart contract.
 Remember the permission called `setVerificationKey`? You can modify the authorization for this permission to set the upgradability of the smart contract. 
 
-#### Impossible
+#### Example: Impossible to upgrade
 
-Let's start simple. This example ensures that the smart contract is not upgradeable. After a verification key is deployed, it cannot be changed.
+This simple example ensures that the smart contract is not upgradeable. After a verification key is deployed, it cannot be changed.
 
 
 ```ts
@@ -227,7 +215,7 @@ class UpgradeabilityImpossible extends SmartContract {
 }
 ```
 
-The `UpgradeabilityImpossible` smart contract has only one method: `updateVerificationKey`. By invoking this method and providing a new verification key,  the verification key on-chain is expected to change.
+The `UpgradeabilityImpossible` smart contract has only one method: `updateVerificationKey`. By invoking this method and providing a new verification key, the verification key on-chain is expected to change.
 But since `setVerificationKey` permission is specified to be `impossible`, invoking that method fails - essentially making the smart contract not upgradeable.
 
 ```ts
@@ -245,12 +233,11 @@ Using the `LocalBlockchain`, you get the following (expected) error:
 
 `Error: Transaction verification failed: Cannot update field 'verificationKey' because permission for this field is 'Impossible'`
 
-For the sake of security, it is important to mention that you must also set the field `setPermissions` to `impossible` to make the smart contract truly impossible to upgrade. This permission prevents a zkApp developer from changing the permission `setVerificationKey` to, for example, `signature` - which allows an actor to manipulate the verification key again.
+For the sake of security, it is important to note that you must also set the field `setPermissions` to `impossible` to make the smart contract truly impossible to upgrade. This permission prevents a zkApp developer from changing the permission `setVerificationKey` to, for example, `signature` - which allows an actor to manipulate the verification key again.
 
+#### Example: Upgradeable with a proof
 
-#### Upgradeable with a proof
-
-But there are situations where you might want the smart contract to be upgradeable!
+There are situations where you might want the smart contract to be upgradeable.
 Modify the method `updateVerificationKey` to do some checks before you can update the verification key (as the result of a vote or other conditions).
 For now, just check that you can provide an `x` that is greater than or equal to 5. If this check succeeds, then update the verification key.
 
@@ -263,7 +250,7 @@ For now, just check that you can provide an `x` that is greater than or equal to
 }
 ```
 
-You must update the permissions from `setVerificationKey`: `impossible` to `proof`, because you want to change the verification key only if a valid proof is provided.
+You must update the permissions from `setVerificationKey`: `impossible` to `proof` because you want to change the verification key only if a valid proof is provided.
 
 ```ts
 this.account.permissions.set({
@@ -283,9 +270,7 @@ await tx.prove();
 await tx.sign([feePayerKey, zkappKey]).send();
 ```
 
-
 ## Where to learn more
-
 
 Integration tests exercise the behavior of different permissions, including upgradeability. 
 If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/upgradability.ts).

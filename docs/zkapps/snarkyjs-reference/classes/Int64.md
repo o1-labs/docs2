@@ -80,7 +80,7 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 
 #### Defined in
 
-[lib/int.ts:780](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L780)
+[lib/int.ts:785](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L785)
 
 ## Properties
 
@@ -94,7 +94,7 @@ BalanceChange.magnitude
 
 #### Defined in
 
-[lib/int.ts:757](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L757)
+[lib/int.ts:762](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L762)
 
 ___
 
@@ -108,7 +108,7 @@ BalanceChange.sgn
 
 #### Defined in
 
-[lib/int.ts:758](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L758)
+[lib/int.ts:763](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L763)
 
 ## Accessors
 
@@ -124,7 +124,7 @@ Static method to create a [Int64](Int64.md) with value `-1`.
 
 #### Defined in
 
-[lib/int.ts:856](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L856)
+[lib/int.ts:861](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L861)
 
 ___
 
@@ -140,7 +140,7 @@ Static method to create a [Int64](Int64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:850](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L850)
+[lib/int.ts:855](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L855)
 
 ___
 
@@ -156,7 +156,7 @@ Static method to create a [Int64](Int64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:844](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L844)
+[lib/int.ts:849](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L849)
 
 ## Methods
 
@@ -178,7 +178,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:890](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L890)
+[lib/int.ts:895](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L895)
 
 ___
 
@@ -205,7 +205,7 @@ Asserts that two values are equal.
 
 #### Defined in
 
-[lib/int.ts:944](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L944)
+[lib/int.ts:949](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L949)
 
 ___
 
@@ -230,7 +230,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:915](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L915)
+[lib/int.ts:920](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L920)
 
 ___
 
@@ -256,7 +256,7 @@ Checks if two values are equal.
 
 #### Defined in
 
-[lib/int.ts:937](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L937)
+[lib/int.ts:942](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L942)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:833](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L833)
+[lib/int.ts:838](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L838)
 
 ___
 
@@ -290,7 +290,7 @@ Checks if the value is postive.
 
 #### Defined in
 
-[lib/int.ts:954](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L954)
+[lib/int.ts:959](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L959)
 
 ___
 
@@ -315,7 +315,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:927](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L927)
+[lib/int.ts:932](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L932)
 
 ___
 
@@ -337,7 +337,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:904](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L904)
+[lib/int.ts:909](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L909)
 
 ___
 
@@ -355,7 +355,7 @@ Negates the value.
 
 #### Defined in
 
-[lib/int.ts:883](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L883)
+[lib/int.ts:888](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L888)
 
 ___
 
@@ -377,7 +377,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:897](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L897)
+[lib/int.ts:902](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L902)
 
 ___
 
@@ -395,7 +395,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L154)
+[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L163)
 
 ___
 
@@ -411,7 +411,7 @@ Returns the [Field](Field.md) value.
 
 #### Defined in
 
-[lib/int.ts:863](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L863)
+[lib/int.ts:868](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L868)
 
 ___
 
@@ -429,7 +429,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L146)
+[lib/circuit_value.ts:155](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L155)
 
 ___
 
@@ -447,7 +447,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L150)
+[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L159)
 
 ___
 
@@ -463,7 +463,7 @@ Turns the [Int64](Int64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:827](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L827)
+[lib/int.ts:832](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L832)
 
 ___
 
@@ -494,7 +494,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:195](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L195)
+[lib/circuit_value.ts:204](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L204)
 
 ___
 
@@ -518,7 +518,7 @@ Check the range if the argument is a constant.
 
 #### Defined in
 
-[lib/int.ts:817](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L817)
+[lib/int.ts:822](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L822)
 
 ___
 
@@ -540,7 +540,7 @@ Static method to create a [Int64](Int64.md) from a [Field](Field.md).
 
 #### Defined in
 
-[lib/int.ts:869](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L869)
+[lib/int.ts:874](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L874)
 
 ___
 
@@ -564,7 +564,7 @@ Does check if the [Field](Field.md) is within range.
 
 #### Defined in
 
-[lib/int.ts:789](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L789)
+[lib/int.ts:794](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L794)
 
 ___
 
@@ -595,7 +595,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:170](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L170)
+[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L179)
 
 ___
 
@@ -626,7 +626,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:228](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L228)
+[lib/circuit_value.ts:237](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L237)
 
 ___
 
@@ -657,7 +657,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:91](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L91)
+[lib/circuit_value.ts:100](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L100)
 
 ___
 
@@ -681,7 +681,7 @@ Creates a new [Int64](Int64.md) from a [Field](Field.md).
 
 #### Defined in
 
-[lib/int.ts:807](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/int.ts#L807)
+[lib/int.ts:812](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/int.ts#L812)
 
 ___
 
@@ -699,7 +699,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:98](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L98)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L107)
 
 ___
 
@@ -717,7 +717,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L120)
+[lib/circuit_value.ts:129](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L129)
 
 ___
 
@@ -748,7 +748,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:209](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L209)
+[lib/circuit_value.ts:218](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L218)
 
 ___
 
@@ -779,7 +779,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:103](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L103)
+[lib/circuit_value.ts:112](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L112)
 
 ___
 
@@ -810,7 +810,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:124](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L124)
+[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L133)
 
 ___
 
@@ -841,4 +841,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:217](https://github.com/o1-labs/snarkyjs/blob/f82cd47/src/lib/circuit_value.ts#L217)
+[lib/circuit_value.ts:226](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit_value.ts#L226)

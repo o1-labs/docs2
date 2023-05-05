@@ -10,13 +10,13 @@ This works because SnarkyJS sets up some global state - a "circuit" - where it c
 
 This has some implications:
 
-- In order to turn your logic into a proof, you must use SnarkyJS built-in datatypes such as `Field` and use the SnarkyJS functions that operate on them, like `Field.mul()`.
+- To turn your logic into a proof, you must use SnarkyJS built-in datatypes such as `Field` and use the SnarkyJS functions that operate on them, like `Field.mul()`.
   - A statement like `x.mul(y)` adds a generic PLONK gate to your circuit and returns a variable that you can use in further statements that get wired to the multiplication gate.
-  - Some SnarkyJS functions allow you to turn normal JS datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. These functions don't add anything to your circuit are typically clarified in a doc-comment.
+  - Some SnarkyJS methods allow you to convert normal JavaScript datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. Methods like this that don't add anything to your circuit are typically clarified in a doc comment.
 - Conventional JS code such as `'hello world'.split('').join(' ')` that doesn't use SnarkyJS built-ins are not included in your zk proof in any way since it does add anything to your circuit.
   - Why? Because it doesn't call any of the functions that build the circuit.
   - There's nothing wrong with having non-circuit code inside your method, as long as you're aware of what it's (not) doing.
-- It's fine to use if-statements, for-loops, arrays, objects, and any other JS language constructs, to facilitate writing circuits. But beware: these flexible constructs don't allow you to overcome the static nature of circuits.
+- It's fine to use if-statements, for-loops, arrays, objects, and any other JS language constructs to facilitate writing circuits. But beware: these flexible constructs don't allow you to overcome the static nature of circuits.
 
 This example asserts that a Field element `x` is not equal to `5`, `10` or `15`:
 
@@ -42,4 +42,4 @@ The previous for-loop example just stitches together a fixed number of SnarkyJS 
 This example fails for two reasons:
 
 1. `n.toString()` can't be used in circuit code at all. It throws an error during `SmartContract.compile()` because during `compile()`, variables like `n` don't have any JS values attached to them; they represent abstract variables used to build up an abstract arithmetic circuit. So, in general, you can't use any of the methods that read out the JS value of your Field elements: `Field.toString()`, `Field.toBigInt()`, `Bool.toBoolean()` etc.
-2. More subtly, your methods must create the same constraints every time because a proof cannot be verified against a verification key for a differing set of constraints. The code above adds `x.equals(y).assertFalse()` _on condition of_ the value of `n`which leads to constraints varying between executions of the proof.
+2. More subtly, your methods must create the same constraints every time because a proof cannot be verified against a verification key for a differing set of constraints. The code above adds `x.equals(y).assertFalse()` _on condition of_ the value of `n` which leads to constraints varying between executions of the proof.

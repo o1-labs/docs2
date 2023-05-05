@@ -8,6 +8,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
+          # In case of version change, update README.md accordingly
           node-version: 16
 
       - name: Checkout Docs repo
@@ -27,7 +28,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Install dependencies and build SnarkyJS
-          cd snarkyjs && npm ci && npm run build
+          cd snarkyjs
+          git submodule update --init --recursive
+          npm ci && npm run build
           cd src/mina-signer && npm ci && npm run build && cd ../../
 
           # Install markdown-plugin for typedoc and build the SnarkyJS API reference

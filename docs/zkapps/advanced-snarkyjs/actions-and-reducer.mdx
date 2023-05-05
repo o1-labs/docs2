@@ -74,6 +74,12 @@ As an astute reader, you might have noticed that this use of `state` is eerily s
 
 There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because we're handling multiple actions concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
 
+:::tip
+
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](fetch-events-and-actions).
+
+:::
+
 ### Reducer - API reference
 
 ```ts
@@ -101,12 +107,8 @@ Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapp
 
 ### Actions for concurrent state updates
 
-We imagine that one of the most important use cases for actions is to enable concurrent state updates. This is also why actions where originally added to the protocol.
+One of the most important use cases for actions is to enable concurrent state updates. This enablement is also why actions were originally added to the protocol.
 
 A detailed explanation of the problem, and how actions can provide the solution, can be found here: https://github.com/o1-labs/snarkyjs/issues/265#issuecomment-1177512908
 
-We also have a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.
-
-### Events vs Actions
-
-[Events](events) and Actions are two distinct mechanisms for logging information alongside a transaction. Events are not meant for use within proofs directly as they can't be predicated on inside proofs. Events are used to signal to UIs, but can also be used for reconstructing merkle trees. Actions, on the other hand, can be accessed within provable code via Reducers as we see above. Both Events and Actions are not stored in the ledger and only exist on the transaction.
+You can see a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce()`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.
