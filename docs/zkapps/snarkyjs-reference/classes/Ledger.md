@@ -63,7 +63,7 @@ Represents the Mina ledger.
 
 #### Defined in
 
-[snarky.d.ts:1250](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1250)
+[snarky.d.ts:1257](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1257)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1239](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1239)
+[snarky.d.ts:1246](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1246)
 
 ## Methods
 
@@ -108,7 +108,7 @@ Adds an account and its balance to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:1155](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1155)
+[snarky.d.ts:1162](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1162)
 
 ___
 
@@ -132,7 +132,7 @@ Applies a JSON transaction to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:1160](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1160)
+[snarky.d.ts:1167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1167)
 
 ___
 
@@ -155,7 +155,7 @@ Returns an account.
 
 #### Defined in
 
-[snarky.d.ts:1169](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1169)
+[snarky.d.ts:1176](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1176)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1230](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1230)
+[snarky.d.ts:1237](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1237)
 
 ___
 
@@ -198,7 +198,7 @@ Creates a fresh ledger.
 
 #### Defined in
 
-[snarky.d.ts:1148](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1148)
+[snarky.d.ts:1155](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1155)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1218](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1218)
+[snarky.d.ts:1225](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1225)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1216](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1216)
+[snarky.d.ts:1223](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1223)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1217](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1217)
+[snarky.d.ts:1224](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1224)
 
 ___
 
@@ -277,7 +277,7 @@ Returns a dummy signature.
 
 #### Defined in
 
-[snarky.d.ts:1200](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1200)
+[snarky.d.ts:1207](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1207)
 
 ___
 
@@ -297,7 +297,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1225](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1225)
+[snarky.d.ts:1232](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1232)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1224](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1224)
+[snarky.d.ts:1231](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1231)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1235](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1235)
+[snarky.d.ts:1242](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1242)
 
 ___
 
@@ -357,7 +357,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1236](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1236)
+[snarky.d.ts:1243](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1243)
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1237](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1237)
+[snarky.d.ts:1244](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1244)
 
 ___
 
@@ -397,7 +397,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1228](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1228)
+[snarky.d.ts:1235](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1235)
 
 ___
 
@@ -417,7 +417,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1227](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1227)
+[snarky.d.ts:1234](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1234)
 
 ___
 
@@ -437,7 +437,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1223](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1223)
+[snarky.d.ts:1230](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1230)
 
 ___
 
@@ -458,7 +458,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1222](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1222)
+[snarky.d.ts:1229](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1229)
 
 ___
 
@@ -478,7 +478,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1221](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1221)
+[snarky.d.ts:1228](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1228)
 
 ___
 
@@ -498,7 +498,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1220](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1220)
+[snarky.d.ts:1227](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1227)
 
 ___
 
@@ -522,7 +522,7 @@ Signs a transaction as the fee payer.
 
 #### Defined in
 
-[snarky.d.ts:1205](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1205)
+[snarky.d.ts:1212](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1212)
 
 ___
 
@@ -547,7 +547,7 @@ Signs a [Field](Field.md) element.
 
 #### Defined in
 
-[snarky.d.ts:1191](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1191)
+[snarky.d.ts:1198](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1198)
 
 ___
 
@@ -572,7 +572,7 @@ Signs an account update.
 
 #### Defined in
 
-[snarky.d.ts:1210](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1210)
+[snarky.d.ts:1217](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1217)
 
 ___
 
@@ -600,7 +600,7 @@ Returns the commitment of a JSON transaction.
 
 #### Defined in
 
-[snarky.d.ts:1174](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1174)
+[snarky.d.ts:1181](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1181)
 
 ___
 
@@ -628,4 +628,4 @@ Returns the public input of a zkApp transaction.
 
 #### Defined in
 
-[snarky.d.ts:1183](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1183)
+[snarky.d.ts:1190](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1190)

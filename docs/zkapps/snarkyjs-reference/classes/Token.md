@@ -37,7 +37,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:626](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L626)
+[lib/account_update.ts:630](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L630)
 
 ## Properties
 
@@ -47,7 +47,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:623](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L623)
+[lib/account_update.ts:627](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L627)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:624](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L624)
+[lib/account_update.ts:628](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L628)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:625](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L625)
+[lib/account_update.ts:629](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L629)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:617](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L617)
+[lib/account_update.ts:621](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L621)
 
 ## Methods
 
@@ -116,4 +116,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:619](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/account_update.ts#L619)
+[lib/account_update.ts:623](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L623)

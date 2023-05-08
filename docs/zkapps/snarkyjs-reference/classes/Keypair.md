@@ -30,4 +30,4 @@ Contains a proving key and [VerificationKey](VerificationKey.md) which can be us
 
 #### Defined in
 
-[snarky.d.ts:1128](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L1128)
+[snarky.d.ts:1135](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1135)
