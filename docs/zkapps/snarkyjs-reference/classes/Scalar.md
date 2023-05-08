@@ -56,7 +56,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:906](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L906)
+[snarky.d.ts:906](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L906)
 
 ___
 
@@ -79,7 +79,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:924](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L924)
+[snarky.d.ts:924](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L924)
 
 ___
 
@@ -102,7 +102,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:918](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L918)
+[snarky.d.ts:918](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L918)
 
 ___
 
@@ -119,7 +119,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:900](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L900)
+[snarky.d.ts:900](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L900)
 
 ___
 
@@ -142,7 +142,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:912](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L912)
+[snarky.d.ts:912](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L912)
 
 ___
 
@@ -162,7 +162,7 @@ Check out [toFieldsCompressed](Scalar.md#tofieldscompressed) for a user-friendly
 
 #### Defined in
 
-[snarky.d.ts:886](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L886)
+[snarky.d.ts:886](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L886)
 
 ___
 
@@ -178,7 +178,7 @@ Serializes this Scalar to a string
 
 #### Defined in
 
-[snarky.d.ts:929](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L929)
+[snarky.d.ts:929](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L929)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:971](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L971)
+[snarky.d.ts:971](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L971)
 
 ___
 
@@ -221,7 +221,7 @@ If the bigint is too large, it is reduced modulo the scalar field order.
 
 #### Defined in
 
-[snarky.d.ts:970](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L970)
+[snarky.d.ts:970](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L970)
 
 ___
 
@@ -243,7 +243,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[snarky.d.ts:950](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L950)
+[snarky.d.ts:950](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L950)
 
 ___
 
@@ -265,7 +265,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:942](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L942)
+[snarky.d.ts:942](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L942)
 
 ___
 
@@ -288,7 +288,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:965](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L965)
+[snarky.d.ts:965](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L965)
 
 ___
 
@@ -305,7 +305,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[snarky.d.ts:955](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L955)
+[snarky.d.ts:955](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L955)
 
 ___
 
@@ -321,7 +321,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:946](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L946)
+[snarky.d.ts:946](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L946)
 
 ___
 
@@ -343,7 +343,7 @@ Static method to serialize a [Scalar](Scalar.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:938](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L938)
+[snarky.d.ts:938](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L938)
 
 ___
 
@@ -365,7 +365,7 @@ Static method to serialize a [Scalar](Scalar.md) into an array of [Field](Field.
 
 #### Defined in
 
-[snarky.d.ts:934](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L934)
+[snarky.d.ts:934](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L934)
 
 ___
 
@@ -395,7 +395,7 @@ is needed to represent all Scalars. However, for a random Scalar, the high bit w
 
 #### Defined in
 
-[snarky.d.ts:894](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L894)
+[snarky.d.ts:894](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L894)
 
 ___
 
@@ -418,4 +418,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:960](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/snarky.d.ts#L960)
+[snarky.d.ts:960](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L960)

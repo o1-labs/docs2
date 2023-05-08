@@ -73,7 +73,7 @@ const ProvableArray = Circuit.array(Field, 5);
 
 #### Defined in
 
-[lib/circuit.ts:141](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L141)
+[lib/circuit.ts:141](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L141)
 
 ___
 
@@ -107,7 +107,7 @@ Circuit.asProver(() => {
 
 #### Defined in
 
-[lib/circuit.ts:93](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L93)
+[lib/circuit.ts:93](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L93)
 
 ___
 
@@ -181,7 +181,7 @@ Circuit.assertEqual(MyStruct, a, b);
 
 #### Defined in
 
-[lib/circuit.ts:152](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L152)
+[lib/circuit.ts:152](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L152)
 
 ___
 
@@ -228,7 +228,7 @@ console.log(result);
 
 #### Defined in
 
-[lib/circuit.ts:122](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L122)
+[lib/circuit.ts:122](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L122)
 
 ___
 
@@ -262,7 +262,7 @@ const jsonRepresentation = Circuit.constraintSystemFromKeypair(keypair);
 
 #### Defined in
 
-[lib/circuit.ts:132](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L132)
+[lib/circuit.ts:132](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L132)
 
 ___
 
@@ -336,7 +336,7 @@ const isEqual = Circuit.equal(MyStruct, a, b);
 
 #### Defined in
 
-[lib/circuit.ts:163](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L163)
+[lib/circuit.ts:163](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L163)
 
 ___
 
@@ -407,7 +407,7 @@ const result = Circuit.if(condition, Field(1), Field(2)); // Returns Field(1)
 
 #### Defined in
 
-[lib/circuit.ts:172](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L172)
+[lib/circuit.ts:172](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L172)
 
 ___
 
@@ -435,7 +435,7 @@ if (Circuit.inCheckedComputation()) {
 
 #### Defined in
 
-[lib/circuit.ts:212](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L212)
+[lib/circuit.ts:212](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L212)
 
 ___
 
@@ -463,7 +463,7 @@ if (Circuit.inProver()) {
 
 #### Defined in
 
-[lib/circuit.ts:202](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L202)
+[lib/circuit.ts:202](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L202)
 
 ___
 
@@ -496,7 +496,7 @@ Circuit.log(element);
 
 #### Defined in
 
-[lib/circuit.ts:221](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L221)
+[lib/circuit.ts:221](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L221)
 
 ___
 
@@ -530,7 +530,7 @@ Circuit.runAndCheck(() => {
 
 #### Defined in
 
-[lib/circuit.ts:103](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L103)
+[lib/circuit.ts:103](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L103)
 
 ___
 
@@ -564,7 +564,7 @@ Circuit.runUnchecked(() => {
 
 #### Defined in
 
-[lib/circuit.ts:113](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L113)
+[lib/circuit.ts:113](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L113)
 
 ___
 
@@ -608,7 +608,7 @@ x.assertEquals(2);
 
 #### Defined in
 
-[lib/circuit.ts:183](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L183)
+[lib/circuit.ts:183](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L183)
 
 ___
 
@@ -647,7 +647,7 @@ const fields = Circuit.toFields(element);
 
 #### Defined in
 
-[lib/circuit.ts:192](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L192)
+[lib/circuit.ts:192](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L192)
 
 ___
 
@@ -697,7 +697,7 @@ invX.mul(x).assertEquals(1);
 
 #### Defined in
 
-[lib/circuit.ts:83](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L83)
+[lib/circuit.ts:83](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L83)
 
 ## Methods
 
@@ -719,7 +719,7 @@ const keypair = await Circuit.generateKeypair();
 
 #### Defined in
 
-[lib/circuit.ts:25](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L25)
+[lib/circuit.ts:25](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L25)
 
 ___
 
@@ -750,7 +750,7 @@ const proof = await Circuit.prove(privateInput, publicInput, keypair);
 
 #### Defined in
 
-[lib/circuit.ts:39](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L39)
+[lib/circuit.ts:39](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L39)
 
 ___
 
@@ -782,4 +782,4 @@ const isValid = await Circuit.verify(publicInput, keypair.vk, proof);
 
 #### Defined in
 
-[lib/circuit.ts:54](https://github.com/o1-labs/snarkyjs/blob/3779d0f/src/lib/circuit.ts#L54)
+[lib/circuit.ts:54](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit.ts#L54)
