@@ -29,7 +29,7 @@ function Footer(): JSX.Element | null {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `input_1=${email}`, // Seems like this is the input field name for the email field on minaprotocol.com
+      body: `email=${email}`,
     });
     if (!response.ok) {
       console.error('Failed to submit form');
