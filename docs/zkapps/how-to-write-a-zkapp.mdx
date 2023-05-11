@@ -150,10 +150,10 @@ if (foo) {
 }
 ```
 
-Instead, use SnarkyJS’ built-in `Circuit.if()` method, which is a ternary operator:
+Instead, use SnarkyJS’ built-in `Provable.if()` method, which is a ternary operator:
 
 ```ts
-const x = Circuit.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
+const x = Provable.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
 ```
 
 ##### Functions
@@ -277,7 +277,7 @@ Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptograph
 
 :::
 
-<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thourough explanation of what this tip hints at -->
+<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thorough explanation of what this tip hints at -->
 
 :::tip
 
@@ -293,7 +293,7 @@ Therefore, when executing your code and trying to read the value of `x` to turn 
 This is why we have a special function for logging stuff from inside your method:
 
 ```ts
-Circuit.log(x);
+Provable.log(x);
 ```
 
 The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
