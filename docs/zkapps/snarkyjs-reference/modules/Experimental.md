@@ -33,9 +33,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
+[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/8374557/src/index.ts#L96)
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/8374557/src/index.ts#L97)
 
 ## Variables
 
@@ -45,9 +45,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
+[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/8374557/src/index.ts#L96)
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/8374557/src/index.ts#L97)
 
 ## Functions
 
@@ -74,7 +74,7 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[lib/proof_system.ts:205](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/proof_system.ts#L205)
+[lib/proof_system.ts:198](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/proof_system.ts#L198)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1704](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1704)
+[lib/account_update.ts:1709](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/account_update.ts#L1709)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **memoizeWitness**<`T`\>(`type`, `compute`): `T`
 
-Like Circuit.witness, but memoizes the witness during transaction construction
+Like Provable.witness, but memoizes the witness during transaction construction
 for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Type parameters
@@ -126,4 +126,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/circuit_value.ts:856](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L856)
+[lib/provable.ts:491](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/provable.ts#L491)

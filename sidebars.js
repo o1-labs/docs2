@@ -237,11 +237,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/Provable',
-                  label: 'Provable',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/interfaces/ProvablePure',
                   label: 'ProvablePure',
                 },

@@ -13,7 +13,7 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 ## Hierarchy
 
-- [`Provable`](Provable.md)<`T`\>
+- `Provable`<`T`\>
 
   ↳ **`ProvablePure`**
 
@@ -52,11 +52,11 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 #### Overrides
 
-[Provable](Provable.md).[check](Provable.md#check)
+Provable.check
 
 #### Defined in
 
-[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L50)
+[snarky.d.ts:43](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L43)
 
 ___
 
@@ -80,11 +80,11 @@ ___
 
 #### Overrides
 
-[Provable](Provable.md).[fromFields](Provable.md#fromfields)
+Provable.fromFields
 
 #### Defined in
 
-[snarky.d.ts:48](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L48)
+[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L41)
 
 ___
 
@@ -108,11 +108,11 @@ ___
 
 #### Overrides
 
-[Provable](Provable.md).[toAuxiliary](Provable.md#toauxiliary)
+Provable.toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:47](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L47)
+[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L40)
 
 ___
 
@@ -136,11 +136,11 @@ ___
 
 #### Overrides
 
-[Provable](Provable.md).[toFields](Provable.md#tofields)
+Provable.toFields
 
 #### Defined in
 
-[snarky.d.ts:46](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L46)
+[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L39)
 
 ## Methods
 
@@ -154,8 +154,8 @@ ___
 
 #### Overrides
 
-[Provable](Provable.md).[sizeInFields](Provable.md#sizeinfields)
+Provable.sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:49](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L49)
+[snarky.d.ts:42](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L42)
