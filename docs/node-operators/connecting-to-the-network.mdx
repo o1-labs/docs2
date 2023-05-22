@@ -72,7 +72,7 @@ If you do not intend to produce blocks then you can keep ~/.mina-env empty for n
 
 To change how mina is configured, simply specify flags to the mina daemon process with space-separated arguments between the quotes in `EXTRA_FLAGS=""`.
 
-The mina systemd service no longer expects a peers.txt file, it just uses the PEER_LIST_URL variable to determine where to fetch initial peers from, and the PEER_LIST_URL for the mainnet package defaults to [https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt).
+The mina systemd service no longer expects a peers.txt file, it just uses the PEER_LIST_URL variable to determine where to fetch initial peers from, and the PEER_LIST_URL for the mainnet package defaults to [https://storage.googleapis.com/seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt).
 
 After your .mina-env is ready, run the following commands to start up a Mina node instance and connect to the live network:
 
@@ -139,7 +139,7 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEER_LIST_URL=https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+PEER_LIST_URL=https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
 ```
 Ensure to replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key, for example, `/home/ubuntu/keys/my-wallet`.
 
