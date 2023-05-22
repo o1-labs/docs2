@@ -67,7 +67,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L87)
+[lib/circuit_value.ts:70](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L70)
 
 ## Methods
 
@@ -87,7 +87,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:175](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L175)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L171)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L179)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L167)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L159)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L163)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L146)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:208](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L208)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:183](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L183)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -244,7 +244,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:241](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L241)
+[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L224)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:104](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L104)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -299,7 +299,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L133)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -326,7 +326,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:222](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L222)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L205)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L116)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -380,7 +380,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L137)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -407,4 +407,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:230](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L230)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit_value.ts#L213)
