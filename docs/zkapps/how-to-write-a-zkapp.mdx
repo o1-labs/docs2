@@ -82,13 +82,13 @@ You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/e
 
 The goal of this section is to explain the concepts that you need to understand how to write a zero-knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it now so that this section makes sense.
+If you haven’t yet read [how zkApps work](how-zkapps-work), please read it now so that this section makes sense.
 
 ##### SnarkyJS
 
 zkApps are written in TypeScript using SnarkyJS. SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
 
-To view the full SnarkyJS reference, please see the [snarkyJS reference](snarkyjs-reference).
+To view the full SnarkyJS reference, see the [snarkyJS reference](snarkyjs-reference) docs.
 
 ##### Concepts
 
@@ -150,7 +150,7 @@ if (foo) {
 }
 ```
 
-Instead, use SnarkyJS’ built-in `Provable.if()` method, which is a ternary operator:
+Instead, use the SnarkyJS built-in `Provable.if()` method, which is a ternary operator:
 
 ```ts
 const x = Provable.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
@@ -168,7 +168,7 @@ function addOneAndDouble(x: Field): Field {
 
 ##### Common methods
 
-Some common methods you will use often are:
+Some common methods you use often are:
 
 ```ts
 let x = new Field(4); // x = 4
@@ -206,7 +206,7 @@ For a full list, see the [SnarkyJS reference](snarkyjs-reference).
   * permissions? (probably an advanced topic)
  -->
 
-Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
+Now that you know the basics of writing SnarkyJS programs, here's how to create a smart contract.
 
 Smart contracts are written by extending the base class `SmartContract`:
 
@@ -229,8 +229,8 @@ Later, you learn how to deploy a smart contract to an on-chain account.
 :::note
 On Mina, there is no strong distinction between normal "user accounts" and
 "zkApp accounts". A zkApp account is just a normal account that has a smart
-contract deployed to it – which essentially just means there's a verification
-key stored on the account, which can verify zero-knowledge proofs generated
+contract deployed to it that essentially just means there's a verification
+key stored on the account that can verify zero-knowledge proofs generated
 with the smart contract.
 :::
 
@@ -246,34 +246,33 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Within a method, you can use SnarkyJS' data types and methods to define your custom logic.
+Within a method, you can use SnarkyJS data types and methods to define your custom logic.
 
 Later, you learn how you can...
 
-- run a method (off-chain)
-- create a proof that it executed successfully
-- send that proof to the Mina network, to trigger actions like a state change or payment
+- Run a method (off-chain)
+- Create a proof that it executed successfully
+- Send that proof to the Mina network, to trigger actions like a state change or payment
 
-To get an idea what "successful execution" means, look at this line in our example above:
+To get an idea what "successful execution" means, look at this line in the previous example:
 
 ```ts
 x.mul(2).assertEquals(5);
 ```
 
-Creating a proof for this method is be possible only if the input `x` satisfies the equation `x * 2 === 5`. This is called a "constraint".
-Magically, the proof can be checked without seeing `x` – it's a _private input_.
+Creating a proof for this method is possible only if the input `x` satisfies the equation `x * 2 === 5`. This is called a "constraint".
+Magically, the proof can be checked without seeing `x` because `x` is a _private input_.
 
-The method above is not very meaningful yet. To make it more interesting, you need a way to interact with accounts, and record state on-chain.
-Check out the next section for more on that!
+This method is not very meaningful yet. To make it more interesting, you need a way to interact with accounts and record state on-chain.
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](how-to-write-a-zkapp#custom-data-types).
+One more note about private inputs: The previous method has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type: `Bool`, `UInt64`, `PrivateKey`, and so on. From now on, those built-in SnarkyJS types are referred to as [structs](how-to-write-a-zkapp#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
 
 :::info
 
-Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof will only be accepted on the network if it verifies against the verification key stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device – thus, the account updates conform to the smart contract's rules.
+Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof is only accepted on the network if it verifies against the verification key that is stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device so that the account updates conform to the smart contract's rules.
 
 :::
 
@@ -281,27 +280,27 @@ Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptograph
 
 :::tip
 
-You will find that inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
+Inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
 
 ```ts
 console.log(x.toString()); // don't do this inside a `@method`! 😬
 ```
 
-This doesn't work because, when we compile the SmartContract into prover and verification keys, we will run your method in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` which are used to build up abstract computations like `x^2 + y^2`, just by running your method code.
+This doesn't work because, when we compile the SmartContract into prover and verification keys, your method runs in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` that are used to build up abstract computations, like `x^2 + y^2`, just by running your method code.
 
-Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, it will blow up because such a value can't be found. On the other hand, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"); and it makes perfect sense to want to log these values for debugging.
-This is why we have a special function for logging stuff from inside your method:
+Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, the execution fails because the value can't be found. In contrast, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"). It makes perfect sense to want to log these values for debugging.
+This is why a special function is available to log stuff from inside your method:
 
 ```ts
 Provable.log(x);
 ```
 
-The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
+The API is like that of `console.log`, but it automatically handles printing SnarkyJS data types in a nice format. During SmartContract compilation, it simply does nothing.
 :::
 
 ##### On-chain state
 
-A smart contract can contain **on-chain state**, which is declared as a property
+A smart contract can contain **on-chain state** that is declared as a property
 on the class with the `@state` decorator:
 
 ```ts
@@ -333,7 +332,7 @@ As a zkApp developer, if you add this method to your smart contract, you are say
 
 ##### Reading state
 
-Often, we also want to _read_ state – check out this example:
+Often, you also want to _read_ state as shown in this example:
 
 ```ts
 class HelloWorld extends SmartContract {
@@ -351,27 +350,26 @@ class HelloWorld extends SmartContract {
 ```
 
 The `increment()` method fetches the current on-chain state `x` with `this.x.get()`.
-Later, it sets the new state to `x + 1` using `this.x.set()`. Simple!
+Later, it sets the new state to `x + 1` using `this.x.set()`. 
 
-There's another line though, which looks weird at first:
+There's another line that looks weird at first:
 
 ```ts
 this.x.assertEquals(x);
 ```
 
-To understand it, we have to take a step back, and understand what it means to "use an on-chain value" during off-chain execution.
+To understand it, take a step back and understand what it means to "use an on-chain value" during off-chain execution.
 
-For sure, when we use an on-chain value, we have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify SnarkyJS and make it just use any other value than the current on-chain state – breaking our zkApp.
+To use an on-chain value, you have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify SnarkyJS and make it just use any other value than the current on-chain state – breaking the zkApp.
 
-To prevent that, we link "`x` at proving time" to be the same as "`x` at verification time". We call this a _precondition_ – a condition that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This is what `this.x.assertEquals(x)` does: it adds the precondition that `this.x` – the on-chain state at verification time – has to equal `x` – the value we fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
+To prevent that security vulnerability, link "`x` at proving time" to be the same as "`x` at verification time". This is called a _precondition_ that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This check is what `this.x.assertEquals(x)` does: it adds the precondition that `this.x`, the on-chain state at verification time, has to equal `x` that is the value fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
 
 Side note: `this.<state>.assertEquals` is more flexible than equating with the current value. For example, `this.x.assertEquals(10)` fixes the on-chain `x` to the number `10`.
 
 :::note
 
-Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
-Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions – see [Actions and Reducer](advanced-snarkyjs/actions-and-reducer).
+Why can't you just make `this.x.get()` add the precondition automatically, so that you didn't have to write `this.x.assertEquals(x)`? To keep things explicit, the assertion adds logic that can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but in other situations, it might cause races and calls for workarounds.
+One such workaround is the use of actions, see [Actions and Reducer](advanced-snarkyjs/actions-and-reducer).
 
 :::
 
@@ -379,7 +377,7 @@ One such workaround is the use of actions – see [Actions and Reducer](advanced
 
 <!-- TODO: this is _slightly_ misplaced now, because I already had assertEquals earlier -->
 
-Let's modify the `increment()` method to accept a parameter:
+To modify the `increment()` method to accept a parameter:
 
 ```ts
 class HelloWorld extends SmartContract {
@@ -396,20 +394,20 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Here, after obtaining the current state `x` and asserting that it equals the on-chain value, we make another assertion:
+Here, after obtaining the current state `x` and asserting that it equals the on-chain value, make another assertion:
 
 ```ts
 x.add(1).assertEquals(xPlus1);
 ```
 
-If the assertion fails, SnarkyJS will throw an error and not submit the transaction.
-On the other hand, if it succeeds, it becomes part of the proof that is verified on-chain.
+- If the assertion fails, SnarkyJS throws an error and does not submit the transaction.
+- If the assertion succeeds, it becomes part of the proof that is verified on-chain.
 
-Because of this, our new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
+Because of this, the new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
 update the state `x` to `x + 1`.
 
 :::tip
-You can add optional failure messages to assertions, to make debugging easier. For example, the above example could be written as:
+You can add optional failure messages to assertions to make debugging easier. For example, the previous example could be written as:
 
 ```ts
 x.add(1).assertEquals(xPlus1, 'x + 1 should equal xPlus1');
@@ -417,7 +415,7 @@ x.add(1).assertEquals(xPlus1, 'x + 1 should equal xPlus1');
 
 :::
 
-Assertions can be incredibly useful to constrain state updates. Common assertions you may use are:
+Assertions can be incredibly useful to constrain state updates. Common assertions you can use are:
 
 <!-- prettier-ignore -->
 ```ts
@@ -437,7 +435,7 @@ While the state of a zkApp is **public**, method parameters are **private**.
 
 When a smart contract method is called, the proof it produces uses zero-knowledge to hide inputs and details of the computation.
 
-The only way method parameters can be exposed is when the computation explicitly exposes them, as
+The only way method parameters can be exposed is when the computation explicitly exposes them, like 
 in the last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
 
 For example where this is not the case, define a new method called `incrementSecret()`:
@@ -513,7 +511,7 @@ The `myMethod()` proof:
 - Computes an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call.
 - Guarantees that this hash matches the `callData` field on the account update produced by `otherMethod()` that is made part of `myMethod()`'s public input. 
 
-Therefore, when you calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
+Therefore, when you call another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
 
 To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature. 
 
@@ -545,7 +543,7 @@ class Point extends Struct({
 }) {}
 ```
 
-Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
+Now that you have defined your `Struct`, you can use it in your smart contract for any SnarkyJS built-in types.
 
 For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
 
@@ -569,12 +567,12 @@ export class Grid extends SmartContract {
 }
 ```
 
-Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
+Note that Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, and so on, or even other custom types that you've defined that are based on the `Struct` class.
 This allows for great composability and reusability of structs.
 
 ##### Transactions and account updates
 
-Now that you have an idea about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like, and how you can create one.
+Now that you know about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_ that can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like and how you can create one.
 
 The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. Account updates are a flexible and powerful data structure that can express all kinds of updates, events and preconditions that you use for developing smart contracts.
 
