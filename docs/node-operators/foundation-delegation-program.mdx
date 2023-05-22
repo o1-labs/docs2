@@ -162,9 +162,8 @@ At the end of each epoch, do <u>all</u> of the following:
 
 1. Compute the total stake delegated to your account for the epoch
 2. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. ```provider_share = provider_delegation / total_stake```). The resulting share should be between 0 and 1.
-3. For each block produced that has a non-zero block-reward on the canonical chain, calculate the payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus a 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * coinbase)```
+3. For each block produced that has a non-zero block-reward on the canonical chain, calculate the payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * coinbase)```.
 4. Send a transaction to the token provider accounts with the appropriate payout -- please follow the rules in the "Payout Attribution" section with your transaction.
-
 
 The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool.
 
@@ -178,7 +177,6 @@ Consider the following:
 - Account A has ```2 million locked MINA```
 - Account B is controlled by the Mina Foundation and has 6 million **locked** MINA.
 - Account C is controlled by a third party and has 2 million MINA fully **unlocked**. This account also delegates to Account A.
-
 
 In this example, the total amount of stake for Account A is 10 million calculated by adding up the balances from all the accounts. Note that since Account C has all its tokens unlocked, any block rewards won when `winnerAccount` equals Account C will be super-charged.
 
@@ -202,7 +200,6 @@ If the Foundation share is 1 million MINA and the total stake is 3 million MINA,
 
 #### Example 2:
 If the Foundation share is 2 million MINA and the total stake is 3 million MINA, you can use 0.66666 as the stake share fraction.
-
 
 ### Relevant Links
 
