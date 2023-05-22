@@ -56,7 +56,7 @@ Provable.check
 
 #### Defined in
 
-[snarky.d.ts:43](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L43)
+[snarky.d.ts:43](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L43)
 
 ___
 
@@ -84,7 +84,7 @@ Provable.fromFields
 
 #### Defined in
 
-[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L41)
+[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L41)
 
 ___
 
@@ -112,7 +112,7 @@ Provable.toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L40)
+[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L40)
 
 ___
 
@@ -140,7 +140,7 @@ Provable.toFields
 
 #### Defined in
 
-[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L39)
+[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L39)
 
 ## Methods
 
@@ -158,4 +158,4 @@ Provable.sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:42](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L42)
+[snarky.d.ts:42](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L42)

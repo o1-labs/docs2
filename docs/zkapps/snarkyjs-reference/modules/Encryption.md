@@ -28,7 +28,7 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 #### Defined in
 
-[lib/encryption.ts:45](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/encryption.ts#L45)
+[lib/encryption.ts:45](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/encryption.ts#L45)
 
 ___
 
@@ -56,4 +56,4 @@ Public Key Encryption, using a given array of [Field](../classes/Field.md) eleme
 
 #### Defined in
 
-[lib/encryption.ts:16](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/encryption.ts#L16)
+[lib/encryption.ts:16](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/encryption.ts#L16)

@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:137](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L137)
+[lib/circuit.ts:137](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L137)
 
 ## Properties
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:135](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L135)
+[lib/circuit.ts:135](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L135)
 
 ## Methods
 
@@ -54,7 +54,7 @@ a list of gates, each of which represents a row in a table, with certain coeffic
 
 ```ts
 const keypair = await MyCircuit.generateKeypair();
-const json = MyCircuit.constraintSystemFromKeypair(keypair);
+const json = MyProvable.witnessFromKeypair(keypair);
 ```
 
 #### Returns
@@ -63,7 +63,7 @@ const json = MyCircuit.constraintSystemFromKeypair(keypair);
 
 #### Defined in
 
-[lib/circuit.ts:156](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L156)
+[lib/circuit.ts:156](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L156)
 
 ___
 
@@ -77,4 +77,4 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:141](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L141)
+[lib/circuit.ts:141](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L141)

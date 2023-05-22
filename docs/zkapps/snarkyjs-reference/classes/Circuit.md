@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:13](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L13)
+[lib/circuit.ts:13](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L13)
 
 ___
 
@@ -78,7 +78,7 @@ use [Array](../README.md#array)
 
 #### Defined in
 
-[lib/circuit.ts:103](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L103)
+[lib/circuit.ts:103](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L103)
 
 ___
 
@@ -106,7 +106,7 @@ use [asProver](../README.md#asprover)
 
 #### Defined in
 
-[lib/circuit.ts:87](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L87)
+[lib/circuit.ts:87](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L87)
 
 ___
 
@@ -165,7 +165,7 @@ use [assertEqual](../README.md#assertequal)
 
 #### Defined in
 
-[lib/circuit.ts:107](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L107)
+[lib/circuit.ts:107](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L107)
 
 ___
 
@@ -207,7 +207,7 @@ use [constraintSystem](../README.md#constraintsystem)
 
 #### Defined in
 
-[lib/circuit.ts:99](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L99)
+[lib/circuit.ts:99](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L99)
 
 ___
 
@@ -266,7 +266,7 @@ use [equal](../README.md#equal)
 
 #### Defined in
 
-[lib/circuit.ts:111](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L111)
+[lib/circuit.ts:111](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L111)
 
 ___
 
@@ -327,7 +327,7 @@ use [if](../README.md#if)
 
 #### Defined in
 
-[lib/circuit.ts:115](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L115)
+[lib/circuit.ts:115](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L115)
 
 ___
 
@@ -349,7 +349,7 @@ use [inCheckedComputation](../README.md#incheckedcomputation)
 
 #### Defined in
 
-[lib/circuit.ts:127](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L127)
+[lib/circuit.ts:127](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L127)
 
 ___
 
@@ -371,7 +371,7 @@ use [inProver](../README.md#inprover)
 
 #### Defined in
 
-[lib/circuit.ts:123](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L123)
+[lib/circuit.ts:123](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L123)
 
 ___
 
@@ -399,7 +399,7 @@ use [log](../README.md#log)
 
 #### Defined in
 
-[lib/circuit.ts:131](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L131)
+[lib/circuit.ts:131](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L131)
 
 ___
 
@@ -427,7 +427,7 @@ use [runAndCheck](../README.md#runandcheck)
 
 #### Defined in
 
-[lib/circuit.ts:91](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L91)
+[lib/circuit.ts:91](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L91)
 
 ___
 
@@ -455,7 +455,7 @@ use [runUnchecked](../README.md#rununchecked)
 
 #### Defined in
 
-[lib/circuit.ts:95](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L95)
+[lib/circuit.ts:95](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L95)
 
 ___
 
@@ -492,7 +492,7 @@ use [switch](../README.md#switch)
 
 #### Defined in
 
-[lib/circuit.ts:119](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L119)
+[lib/circuit.ts:119](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L119)
 
 ___
 
@@ -528,7 +528,7 @@ use [witness](../README.md#witness)
 
 #### Defined in
 
-[lib/circuit.ts:83](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L83)
+[lib/circuit.ts:83](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L83)
 
 ## Methods
 
@@ -550,7 +550,7 @@ const keypair = await MyCircuit.generateKeypair();
 
 #### Defined in
 
-[lib/circuit.ts:22](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L22)
+[lib/circuit.ts:22](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L22)
 
 ___
 
@@ -581,7 +581,7 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 #### Defined in
 
-[lib/circuit.ts:39](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L39)
+[lib/circuit.ts:39](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L39)
 
 ___
 
@@ -613,4 +613,4 @@ const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 
 #### Defined in
 
-[lib/circuit.ts:63](https://github.com/o1-labs/snarkyjs/blob/8374557/src/lib/circuit.ts#L63)
+[lib/circuit.ts:63](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/lib/circuit.ts#L63)

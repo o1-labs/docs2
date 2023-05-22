@@ -86,7 +86,7 @@ Coerces anything field-like to a [Field](Field.md).
 
 #### Defined in
 
-[snarky.d.ts:140](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L140)
+[snarky.d.ts:140](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L140)
 
 ## Properties
 
@@ -98,7 +98,7 @@ The field order as a `bigint`.
 
 #### Defined in
 
-[snarky.d.ts:511](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L511)
+[snarky.d.ts:511](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L511)
 
 ___
 
@@ -114,7 +114,7 @@ The number -1 as a [[`Field`]].
 
 #### Defined in
 
-[snarky.d.ts:507](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L507)
+[snarky.d.ts:507](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L507)
 
 ___
 
@@ -130,7 +130,7 @@ The number 1 as a [[`Field`]].
 
 #### Defined in
 
-[snarky.d.ts:495](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L495)
+[snarky.d.ts:495](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L495)
 
 ___
 
@@ -146,7 +146,7 @@ The number 0 as a [[`Field`]].
 
 #### Defined in
 
-[snarky.d.ts:501](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L501)
+[snarky.d.ts:501](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L501)
 
 ## Methods
 
@@ -173,7 +173,7 @@ let sum = a.add(5)
 
 #### Defined in
 
-[snarky.d.ts:173](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L173)
+[snarky.d.ts:173](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L173)
 
 ___
 
@@ -199,7 +199,7 @@ Field(0).assertBool();
 
 #### Defined in
 
-[snarky.d.ts:435](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L435)
+[snarky.d.ts:435](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L435)
 
 ___
 
@@ -229,7 +229,7 @@ Field(0).assertBoolean();
 
 #### Defined in
 
-[snarky.d.ts:447](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L447)
+[snarky.d.ts:447](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L447)
 
 ___
 
@@ -257,7 +257,7 @@ Field(1).assertEquals(1);
 
 #### Defined in
 
-[snarky.d.ts:425](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L425)
+[snarky.d.ts:425](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L425)
 
 ___
 
@@ -284,7 +284,7 @@ Field(1).assertGt(0);
 
 #### Defined in
 
-[snarky.d.ts:309](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L309)
+[snarky.d.ts:309](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L309)
 
 ___
 
@@ -311,7 +311,7 @@ Field(1).assertGte(0);
 
 #### Defined in
 
-[snarky.d.ts:322](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L322)
+[snarky.d.ts:322](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L322)
 
 ___
 
@@ -342,7 +342,7 @@ Field(1).assertGt(0);
 
 #### Defined in
 
-[snarky.d.ts:404](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L404)
+[snarky.d.ts:404](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L404)
 
 ___
 
@@ -373,7 +373,7 @@ Field(1).assertGte(0);
 
 #### Defined in
 
-[snarky.d.ts:415](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L415)
+[snarky.d.ts:415](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L415)
 
 ___
 
@@ -400,7 +400,7 @@ Field(1).assertLessThan(2);
 
 #### Defined in
 
-[snarky.d.ts:286](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L286)
+[snarky.d.ts:286](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L286)
 
 ___
 
@@ -427,7 +427,7 @@ Field(1).assertLessThanOrEqual(2);
 
 #### Defined in
 
-[snarky.d.ts:296](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L296)
+[snarky.d.ts:296](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L296)
 
 ___
 
@@ -458,7 +458,7 @@ Field(1).assertLessThan(2);
 
 #### Defined in
 
-[snarky.d.ts:383](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L383)
+[snarky.d.ts:383](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L383)
 
 ___
 
@@ -489,7 +489,7 @@ Field(1).assertLte(2);
 
 #### Defined in
 
-[snarky.d.ts:393](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L393)
+[snarky.d.ts:393](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L393)
 
 ___
 
@@ -511,7 +511,7 @@ Divides this [Field](Field.md) element through another coercible to a field.
 
 #### Defined in
 
-[snarky.d.ts:188](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L188)
+[snarky.d.ts:188](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L188)
 
 ___
 
@@ -538,7 +538,7 @@ Field(2).equals(2); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:470](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L470)
+[snarky.d.ts:470](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L470)
 
 ___
 
@@ -560,7 +560,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:548](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L548)
+[snarky.d.ts:548](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L548)
 
 ___
 
@@ -587,7 +587,7 @@ Field(2).greaterThan(1); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:264](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L264)
+[snarky.d.ts:264](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L264)
 
 ___
 
@@ -614,7 +614,7 @@ Field(2).greaterThanOrEqual(1); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:274](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L274)
+[snarky.d.ts:274](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L274)
 
 ___
 
@@ -645,7 +645,7 @@ Field(2).gt(1); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:359](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L359)
+[snarky.d.ts:359](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L359)
 
 ___
 
@@ -676,7 +676,7 @@ Field(2).gte(1); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:370](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L370)
+[snarky.d.ts:370](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L370)
 
 ___
 
@@ -699,7 +699,7 @@ A [Field](Field.md) element that is equivalent to one divided by this element.
 
 #### Defined in
 
-[snarky.d.ts:163](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L163)
+[snarky.d.ts:163](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L163)
 
 ___
 
@@ -715,7 +715,7 @@ Checks whether this is a hard-coded constant in the Circuit.
 
 #### Defined in
 
-[snarky.d.ts:480](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L480)
+[snarky.d.ts:480](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L480)
 
 ___
 
@@ -729,7 +729,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:449](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L449)
+[snarky.d.ts:449](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L449)
 
 ___
 
@@ -756,7 +756,7 @@ Field(2).lessThan(3); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:244](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L244)
+[snarky.d.ts:244](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L244)
 
 ___
 
@@ -783,7 +783,7 @@ Field(2).lessThanOrEqual(3); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:254](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L254)
+[snarky.d.ts:254](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L254)
 
 ___
 
@@ -814,7 +814,7 @@ Field(2).lt(3); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:337](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L337)
+[snarky.d.ts:337](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L337)
 
 ___
 
@@ -845,7 +845,7 @@ Field(2).lte(3); // Bool(true)
 
 #### Defined in
 
-[snarky.d.ts:348](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L348)
+[snarky.d.ts:348](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L348)
 
 ___
 
@@ -867,7 +867,7 @@ Multiplies this [Field](Field.md) element with another coercible to a field.
 
 #### Defined in
 
-[snarky.d.ts:183](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L183)
+[snarky.d.ts:183](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L183)
 
 ___
 
@@ -889,7 +889,7 @@ negOne.assertEquals(-1);
 
 #### Defined in
 
-[snarky.d.ts:151](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L151)
+[snarky.d.ts:151](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L151)
 
 ___
 
@@ -909,7 +909,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:475](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L475)
+[snarky.d.ts:475](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L475)
 
 ___
 
@@ -923,7 +923,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:473](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L473)
+[snarky.d.ts:473](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L473)
 
 ___
 
@@ -939,7 +939,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:228](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L228)
+[snarky.d.ts:228](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L228)
 
 ___
 
@@ -959,7 +959,7 @@ x.square().sqrt().assertEquals(x);
 
 #### Defined in
 
-[snarky.d.ts:207](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L207)
+[snarky.d.ts:207](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L207)
 
 ___
 
@@ -980,7 +980,7 @@ x2.assertEquals(x.mul(x));
 
 #### Defined in
 
-[snarky.d.ts:198](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L198)
+[snarky.d.ts:198](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L198)
 
 ___
 
@@ -1002,7 +1002,7 @@ Subtracts another [Field](Field.md)-like element from this one.
 
 #### Defined in
 
-[snarky.d.ts:178](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L178)
+[snarky.d.ts:178](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L178)
 
 ___
 
@@ -1019,7 +1019,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:218](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L218)
+[snarky.d.ts:218](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L218)
 
 ___
 
@@ -1035,7 +1035,7 @@ Little endian binary representation of the field element.
 
 #### Defined in
 
-[snarky.d.ts:454](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L454)
+[snarky.d.ts:454](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L454)
 
 ▸ **toBits**(`length`): [`Bool`](Bool.md)[]
 
@@ -1054,7 +1054,7 @@ Fails if the field element cannot fit in `length` bits.
 
 #### Defined in
 
-[snarky.d.ts:460](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L460)
+[snarky.d.ts:460](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L460)
 
 ___
 
@@ -1070,7 +1070,7 @@ Returns a constant.
 
 #### Defined in
 
-[snarky.d.ts:485](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L485)
+[snarky.d.ts:485](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L485)
 
 ___
 
@@ -1086,7 +1086,7 @@ Serializes this data structure into [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:233](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L233)
+[snarky.d.ts:233](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L233)
 
 ___
 
@@ -1103,7 +1103,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:223](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L223)
+[snarky.d.ts:223](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L223)
 
 ___
 
@@ -1120,7 +1120,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:213](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L213)
+[snarky.d.ts:213](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L213)
 
 ___
 
@@ -1140,7 +1140,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:606](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L606)
+[snarky.d.ts:606](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L606)
 
 ___
 
@@ -1163,7 +1163,7 @@ Fails if the field element cannot fit given too many bits.
 
 #### Defined in
 
-[snarky.d.ts:582](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L582)
+[snarky.d.ts:582](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L582)
 
 ___
 
@@ -1183,7 +1183,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:611](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L611)
+[snarky.d.ts:611](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L611)
 
 ___
 
@@ -1205,7 +1205,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:553](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L553)
+[snarky.d.ts:553](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L553)
 
 ___
 
@@ -1228,7 +1228,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:604](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L604)
+[snarky.d.ts:604](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L604)
 
 ___
 
@@ -1244,7 +1244,7 @@ A random field element.
 
 #### Defined in
 
-[snarky.d.ts:516](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L516)
+[snarky.d.ts:516](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L516)
 
 ___
 
@@ -1265,7 +1265,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:612](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L612)
+[snarky.d.ts:612](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L612)
 
 ___
 
@@ -1279,7 +1279,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:616](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L616)
+[snarky.d.ts:616](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L616)
 
 ___
 
@@ -1295,7 +1295,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:558](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L558)
+[snarky.d.ts:558](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L558)
 
 ___
 
@@ -1317,7 +1317,7 @@ Static method to serialize a [Field](Field.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:567](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L567)
+[snarky.d.ts:567](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L567)
 
 ___
 
@@ -1337,7 +1337,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:610](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L610)
+[snarky.d.ts:610](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L610)
 
 ___
 
@@ -1359,7 +1359,7 @@ Static method to serialize a [Field](Field.md) into an array of [Field](Field.md
 
 #### Defined in
 
-[snarky.d.ts:563](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L563)
+[snarky.d.ts:563](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L563)
 
 ___
 
@@ -1383,7 +1383,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:609](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L609)
+[snarky.d.ts:609](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L609)
 
 ___
 
@@ -1406,4 +1406,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:598](https://github.com/o1-labs/snarkyjs/blob/8374557/src/snarky.d.ts#L598)
+[snarky.d.ts:598](https://github.com/o1-labs/snarkyjs/blob/2fa164e/src/snarky.d.ts#L598)
