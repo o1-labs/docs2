@@ -268,6 +268,14 @@ module.exports = {
           content:
             'Snarkyjs, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
         },
+        {
+          name: 'image',
+          content: '/svg/common/mina_logo.svg',
+        },
+        {
+          name: 'og:image',
+          content: '/svg/common/mina_logo.svg',
+        },
       ],
 
       navbar: {
