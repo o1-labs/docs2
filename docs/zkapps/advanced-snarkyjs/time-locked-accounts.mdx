@@ -55,7 +55,7 @@ The other timing-related properties are:
 :::note
 Only one vesting schedule can be specified per account and it cannot be changed during the vesting period.
 
-Because of this restriction, when `isTimed` is set to `true`, the values of the timing fields are immutable and cannot be changed.
+Because of this restriction, the values of the timing fields cannot be changed when `isTimed` is set to `true`.
 After all tokens are unlocked and `isTimed` flips back to `false`, the account timing becomes mutable again.
 :::
 
