@@ -11,7 +11,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Events
 
-Events are _public_ arbitrary information that can be passed along with a transaction. If your zkApp allows users to publish a message, those messages could be events.
+Events are _public_ arbitrary information that can be passed along with a transaction. If your zkApp allows users to publish a message, for example, those messages could be events.
 
 Another use case for events are zkApps that keep some large internal state and only store a commitment to that internal state on-chain. For example, a Merkle tree where only the root is stored in on-chain state. Events enable to attach the full information of state changes in transactions. In the Merkle tree example, this could mean sending any Merkle leaves that are changed by the transaction as events. An observer of these transactions can follow along and keep track of the full Merkle tree on their side.
 
