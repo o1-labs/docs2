@@ -70,9 +70,9 @@ let { state, actionState } = this.reducer.reduce(
 
 The `acc` shown earlier is now `state`; you also have to pass in the state's type as a parameter. In addition, you have to pass in an `actionState` which refers to one particular point in the action's history. Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionState -- so you can store it to use when you reduce the next batch of actions. One last difference to JS reduce is that this takes a _list of lists_ of actions instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
 
-As an astute reader, you might have noticed that this use of `state` is eerily similar to a standard "Elm architecture" -- this similarity is because an instance of a scan over an implicit infinite stream of actions (though here that are aggregated in chunks). This is very similar to the problem that came up when processing transactions within the [Mina Protocol L1 with Snark Workers](https://minaprotocol.com/blog/fast-accumulation-on-streams). This may sound scary, but it is familiar to web developers through its instantiation by using the Redux library or more recently by using the `useReducer` hook in React!
+As an astute reader, you might have noticed that this use of `state` is eerily similar to a standard "Elm architecture" that scans over an implicit infinite stream of actions (though here they are aggregated in chunks). This problem is familiar to web developers through its instantiation by using the Redux library or more recently by using the `useReducer` hook in React.
 
-There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because we're handling multiple actions concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
+There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because multiple actions are handled concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
 
 :::tip
 
@@ -109,6 +109,4 @@ Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapp
 
 One of the most important use cases for actions is to enable concurrent state updates. This enablement is also why actions were originally added to the protocol.
 
-A detailed explanation of the problem, and how actions can provide the solution, can be found here: https://github.com/o1-labs/snarkyjs/issues/265#issuecomment-1177512908
-
-You can see a [full code example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce()`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.
+You can see a full code example in [reducer.ts]](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce()`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.

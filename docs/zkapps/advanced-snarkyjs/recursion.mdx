@@ -33,7 +33,7 @@ After performing your desired recursive steps, you can settle the interaction on
 
 Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _private by default_ and never seen by the Mina network.  Unlike `SmartContract` methods, as the zkApp developer you choose the shape of the public input to all the methods within a `ZkProgram`.
 
-## Recursively Verifying a simple program within a zkApp
+## Recursively verifying a simple program in a zkApp
 
 This simple example has only one method that proves the public input it received is zero.
 
@@ -81,7 +81,7 @@ And verify this proof from within any method of your `SmartContract` class:
 
 In this excample, `foo` is taking the `SimpleProgram` proof as a private argument to the method, verifying that the execution was valid, and then using the output.
 
-## Recursively verifying a linear recursive program within a zkApp
+## Recursively verifying a linear recursive program in a zkApp
 
 This example shows a recursive `ZkProgram` that you can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in SnarkyJS you can describe a recursive ZkProgram with a simple recursive function.
 
@@ -144,7 +144,7 @@ Finally, verify the proof from within a SmartContract like the earlier example:
 }
 ```
 
-## Recursively verifying a tree-based recursive program within a zkApp
+## Recursively verifying a tree-based recursive program in a zkApp
 
 Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of its decentralized prover and sequencing mechanism for rollups, so it's supported very robustly by Kimchi.
 
