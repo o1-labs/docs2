@@ -262,6 +262,14 @@ module.exports = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content:
+            'Snarkyjs, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
+        },
+      ],
+
       navbar: {
         logo: {
           alt: 'Mina Logo',
