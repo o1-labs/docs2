@@ -270,11 +270,23 @@ module.exports = {
         },
         {
           name: 'image',
-          content: '/svg/common/mina_logo.svg',
+          property: 'image',
+          content: 'https://docs.minaprotocol.com/svg/common/mina_logo.svg',
         },
         {
           name: 'og:image',
-          content: '/svg/common/mina_logo.svg',
+          property: 'og:image',
+          content: 'https://docs.minaprotocol.com/svg/common/mina_logo.svg',
+        },
+        {
+          name: 'twitter:image',
+          property: 'twitter:image',
+          content: 'https://docs.minaprotocol.com/svg/common/mina_logo.svg',
+        },
+        { name: 'twitter:title', content: 'Mina Documentation' },
+        {
+          name: 'twitter:description',
+          content: 'Website for documentation about Mina Protocol',
         },
       ],
 
