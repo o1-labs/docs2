@@ -43,7 +43,7 @@ Note: If you are using the Hetzner hosting provider, we are currently experienci
 Run the following command to start up a Mina node instance and connect to the live network:
 
 ```
-mina daemon --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
 ```
 
 If you have a key with stake and would like to produce blocks, also provide `--block-producer-key ~/keys/my-wallet`, replacing `~/keys/my-wallet` with the path to your private key if not the default.
@@ -72,9 +72,9 @@ If you do not intend to produce blocks then you can keep ~/.mina-env empty for n
 
 To change how mina is configured, simply specify flags to the mina daemon process with space-separated arguments between the quotes in `EXTRA_FLAGS=""`.
 
-The mina systemd service no longer expects a peers.txt file, it just uses the PEER_LIST_URL variable to determine where to fetch initial peers from, and the PEER_LIST_URL for the mainnet package defaults to https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt .
+The mina systemd service no longer expects a peers.txt file, it just uses the PEER_LIST_URL variable to determine where to fetch initial peers from, and the PEER_LIST_URL for the mainnet package defaults to [https://storage.googleapis.com/seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt).
 
-Once your .mina-env is ready, run the following commands to start up a Mina node instance and connect to the live network:
+After your .mina-env is ready, run the following commands to start up a Mina node instance and connect to the live network:
 
 ```
 systemctl --user daemon-reload
@@ -83,9 +83,9 @@ systemctl --user enable mina
 sudo loginctl enable-linger
 ```
 
-These commands will allow the node to continue running after you logout, and restart automatically when the machine reboots.
+These commands allow the node to continue running after you logout and restart automatically when the machine reboots.
 
-By default, the node connects to the network using the default external-port of 8302. This can be changed using the `-external-port` flag, just add that to EXTRA_FLAGS.
+By default, the node connects to the network using the default external port of 8302. This can be changed using the `-external-port` flag, just add that to EXTRA_FLAGS.
 
 You can also look into the mina process itself that's running in the background and auto-restarting.
 
@@ -139,7 +139,7 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEER_LIST_URL=https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+PEER_LIST_URL=https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
 ```
 Ensure to replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key, for example, `/home/ubuntu/keys/my-wallet`.
 
