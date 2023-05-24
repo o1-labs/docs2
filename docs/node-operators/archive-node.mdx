@@ -9,11 +9,16 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
-
 # Archive Node
 
 Mina nodes are succinct by default, meaning they don't need to maintain historical information about the network, block, or transactions.
 For some usecases, it is useful to maintain this historical data, which you can do by running an **Archive Node.**
+
+:::tip
+
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../zkapps/advanced-snarkyjs/fetch-events-and-actions).
+
+:::
 
 An **Archive Node** is just a regular mina daemon that is connected to a running archive process.
 The daemon will regularly send blockchain data to the archive process,

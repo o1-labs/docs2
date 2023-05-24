@@ -25,6 +25,7 @@ module.exports = {
         'using-mina/ledger-hardware-wallet',
         'using-mina/how-to-send-and-receive',
         'using-mina/how-to-delegate',
+        'using-mina/how-to-use-zkapp',
       ],
     },
     {
@@ -41,11 +42,12 @@ module.exports = {
           type: 'category',
           label: 'Advanced SnarkyJS',
           items: [
-            'zkapps/advanced-snarkyjs/on-chain-values',
+            'zkapps/advanced-snarkyjs/fetch-events-and-actions',
             'zkapps/advanced-snarkyjs/events',
+            'zkapps/advanced-snarkyjs/actions-and-reducer',
+            'zkapps/advanced-snarkyjs/on-chain-values',
             'zkapps/advanced-snarkyjs/recursion',
             'zkapps/advanced-snarkyjs/custom-tokens',
-            'zkapps/advanced-snarkyjs/actions-and-reducer',
             'zkapps/advanced-snarkyjs/merkle-tree',
             'zkapps/advanced-snarkyjs/permissions',
             'zkapps/advanced-snarkyjs/time-locked-accounts',
