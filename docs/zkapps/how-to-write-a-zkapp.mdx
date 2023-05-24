@@ -18,8 +18,8 @@ A zkApp consists of a smart contract and a UI to interact with it. First, instal
 
 Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
 
-Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework (<a href="https://jestjs.io/">Jest</a>), code auto-formatting (<a href="https://prettier.io/
-">Prettier</a>), linting (<a href="https://eslint.org/">ES Lint</a>), & more.
+Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework [Jest](https://jestjs.io/), code auto-formatting [Prettier](https://prettier.io/
+), linting [ES Lint](https://eslint.org/), and more.
 
 ### Install Mina zkApp CLI
 
@@ -35,7 +35,15 @@ npm install -g zkapp-cli
 
 :::tip
 
-If you have an older version installed, install a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
+If you have a later version installed, install the required version using the package manager for your system: 
+
+- MacOs [Homebrew](https://brew.sh/)
+
+- Windows [Chocolatey](https://chocolatey.org/
+
+- Linux (apt, yum, and others)
+
+  As recommended by the NodeJS Project, you might need to install a recent NodeJS version using NodeSource: [Debian](https://github.com/nodesource/distributions#debinstall), [rpm](https://github.com/nodesource/distributions#rpminstall).
 
 :::
 
@@ -43,46 +51,55 @@ If you have an older version installed, install a newer version using the packag
 
 Now that you have Mina zkApp CLI installed, you can start with an example or start your own project.
 
+Examples are provided in the [zkapp-cli
+/examples/
+](https://github.com/o1-labs/zkapp-cli/tree/main/) folder.
+
 #### Option A: Start with an example (recommended)
 
-Examples are based on the standard project structure, but with additional files in the `/src` directory as the only difference.
+Examples are based on the standard project structure and provide additional files in the `/src` directory.
 
-1. **Install:** Run `zk example sudoku`. This creates a new project and includes
-   the example files (i.e. the smart contract) inside the project’s `src/`
-   directory. Type `ls` & hit enter to see the files that were created or open
-   the directory in a code editor such as VS Code.
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you
-   see all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run tests when you save changes to your code.
-3. **Build the example:** Run `npm run build` to compile your TypeScript
-   into JavaScript inside the project’s `/build` directory.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
+1. Create the sudoku example project: `zk example sudoku`
 
-You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
+  The created project includes the example files (the smart contract) in the project's `src/` directory. 
+  
+  To see the files that were created, change to the `sudoku` directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+
+2. Run tests and see the tests pass: `npm run test`  
+  
+  To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+
+3. Build the example: `npm run build`
+
+  Compile your TypeScript into JavaScript in the project `/build` directory.
+
+4. Configure your zkApp: `zk config`
+
+  The command prompts guide you in adding a network alias to your project `config.json` file. 
+  
+  For Berkeley Testnet, use:
+  
+  - name: `berkeley`
+  - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+  - transaction fee: `0.1`
+
+4. Fund your fee payer account.
+
+  Follow the prompts to request tMina. 
+
+5. Deploy to Testnet: `zk deploy`
+
+  Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
 
 #### Option B: Start your own project
 
-1. **Install:** Run `zk project <myproj>`. Type `ls` and hit enter to see the
-   newly created project structure. _Note_: If you want to directly scaffold an UI with your new zkApp, you can do so by adding the `--ui` flag to the previous command, like `zk project <myproj> --ui=<framework>`. You can currently choose from the following frameworks: `svelte`, `next` or `nuxt` 
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you can
-   see that all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run you save changes to your code.
-3. **Build:** Run `npm run build` to compile your TypeScript code into
-   JavaScript inside the project’s `/build`.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
-5. **Deploy to Mainnet:** (Coming soon.)
+Using the steps above, create your own project using `zk project <myproj>`.
 
 ### Writing your smart contract
 
-The goal of this section is to explain the concepts that you need to understand how to write a zero-knowledge-based smart contract.
+This section explain the concepts to understand how to write a zero knowledge-based smart contract.
 
-If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it now so that this section makes sense.
+If you haven't yet read [how zkApps work](how-zkapps-work) pages, please read it now to build your foundational knowledge.
 
 ##### SnarkyJS
 
@@ -92,7 +109,7 @@ To view the full SnarkyJS reference, please see the [snarkyJS reference](snarkyj
 
 ##### Concepts
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a uint256 in Solidity.
 
 :::note
 
@@ -206,7 +223,7 @@ For a full list, see the [SnarkyJS reference](snarkyjs-reference).
   * permissions? (probably an advanced topic)
  -->
 
-Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
+Now that we have covered the basics of writing SnarkyJS programs, here's how to create a smart contract.
 
 Smart contracts are written by extending the base class `SmartContract`:
 
@@ -246,7 +263,7 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Within a method, you can use SnarkyJS' data types and methods to define your custom logic.
+Within a method, you can use SnarkyJS data types and methods to define your custom logic.
 
 Later, you learn how you can...
 
@@ -642,9 +659,9 @@ Note that there a many more fields that account updates can have, but `tx.toPret
 
 As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
 
-##### Creating proofs, and what they mean
+### Creating proofs and what they mean
 
-Let's finally see how to create zero-knowledge proofs!
+How to create zero-knowledge proofs.
 
 ```ts
 await MyContract.compile(); // this might take a while
@@ -664,7 +681,7 @@ There are two new operations here:
 
 [^1]: The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
 
-Both of these are heavy cryptographic operations and can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a base64 string inside the `authorization` field:
+Both of these heavy cryptographic operations can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a base64 string inside the `authorization` field:
 
 ```ts
 [
