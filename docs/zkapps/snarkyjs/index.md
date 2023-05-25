@@ -13,8 +13,6 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # SnarkyJS
 
-SnarkyJS is a general-purpose zk framework that gives you the tools to create zk proofs. It lets you write arbitrary zk programs leveraging a rich set of built-in provable operations, like basic arithmetic, hashing, signatures, boolean operations, comparisons, and more. Use the SnarkyJS framework to write zkApps on Mina, smart contracts that execute client-side and have private inputs.
-
 SnarkyJS is a TypeScript (TS) library for:
 
 - Writing general-purpose zk programs
@@ -40,6 +38,8 @@ The code is plain TypeScript (TS) and is executed as normal TS. You might call S
 SnarkyJS provides data types and methods that are _provable_: You can prove their execution. 
 
 In the previous example code, `Poseidon.hash()` and `Field.assertEquals()` are examples of provable method. Proofs are _zero-knowledge_, because they can be verified without learning their inputs and execution trace. Selected parts of the proof can be made public, if it suits your application.
+
+SnarkyJS is a general-purpose zk framework that gives you the tools to create zk proofs. It lets you write arbitrary zk programs leveraging a rich set of built-in provable operations, like basic arithmetic, hashing, signatures, boolean operations, comparisons, and more. Use the SnarkyJS framework to write zkApps on Mina, smart contracts that execute client-side and have private inputs.
 
 All of the SnarkyJS framework is packaged as a single TS library that can be used in major web browsers and Node.js. The best way to get started with SnarkyJS is [using the zkApp CLI](./how-to-write-a-zkapp). You can also install SnarkyJS from npm with `npm i snarkyjs`.
 
