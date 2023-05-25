@@ -85,7 +85,7 @@ export class TokenHolder extends SmartContract {
   }
 
   @method transferAway(amount: UInt64) {
-    // TODO: in a real zkApp, there would be application-specific checks for whether we want to allow sending tokens
+    // TODO: in a real zkApp, here would be application-specific checks for whether we want to allow sending tokens
 
     this.balance.subInPlace(amount);
     this.self.body.mayUseToken = AccountUpdate.MayUseToken.ParentsOwnToken;

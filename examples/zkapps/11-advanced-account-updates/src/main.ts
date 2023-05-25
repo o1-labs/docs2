@@ -100,7 +100,7 @@ await (async function main() {
 
   const txn2 = await Mina.transaction(deployerAddr, () => {
     AccountUpdate.fundNewAccount(deployerAddr, 1);
-    tokenUserInstance.sendMyTokens(UInt64.from(100), deployerKey.toPublicKey());
+    tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
   });
 
   await txn2.prove();
