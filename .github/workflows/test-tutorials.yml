@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
+          # In case of version change, update README.md accordingly
           node-version: 16
       - run: |
           npm ci

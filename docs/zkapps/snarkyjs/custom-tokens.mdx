@@ -1,6 +1,17 @@
 ---
 title: Custom Tokens
 hide_title: true
+description: Learn how to use SnarkyJS for common token operations like minting, burning, and sending tokens. Understand the concepts of Token ID, Token Accounts, and Token Owners in the context of custom tokens.
+keywords:
+  - custom tokens
+  - snarkyjs
+  - token operations
+  - minting tokens
+  - burning tokens
+  - sending tokens
+  - token id
+  - token accounts
+  - token owner
 ---
 
 :::info
@@ -11,7 +22,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Custom Token API
 
-This section shows you how to perform common token operations, such as minting, burning, and sending tokens, using SnarkyJS.
+This section shows you how to use SnarkyJS to perform common token operations, such as minting, burning, and sending tokens.
 
 ## Minting
 
@@ -80,7 +91,7 @@ class SendExample extends SmartContract {
 
 This example snippet defines a smart contract called `SendExample` with a method called `sendTokens()`. Then, in the same fashion, as minting and burning, the `this.token` property calls the `send()` method.
 
-For a more comprehensive example of how to use custom tokens with a zkApp, see this [custom token example](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts).
+For a more comprehensive example of how to use custom tokens with a zkApp, see this custom token example provided in [token.test.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts).
 
 ## Proof Authorization
 

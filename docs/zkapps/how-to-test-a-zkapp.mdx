@@ -1,6 +1,13 @@
 ---
 title: How to Test a zkApp
 hide_title: true
+description: Guided steps to write and run tests for your zkApp using the Jest JavaScript testing framework, create and run tests, create a local blockchain, deploy a contract locally, and write integration tests.
+keywords:
+  - zkApp
+  - test a zkapp
+  - Smart contract
+  - Jest
+  - Local blockchain
 ---
 
 :::info
@@ -100,7 +107,7 @@ Then, use the test account and zkApp keys to construct a transaction to pay acco
 
 ```ts
 let txn = await Mina.transaction(feePayer, () => {
-  Party.fundNewAccount(feePayer);
+  AccountUpdate.fundNewAccount(feePayer);
   zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
 });
 
@@ -146,7 +153,7 @@ describe('Add smart contract integration test', () => {
 
     // deploy zkapp
     txn = await Mina.transaction(feePayer, () => {
-      Party.fundNewAccount(feePayer);
+      AccountUpdate.fundNewAccount(feePayer);
       zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
     });
     await txn.send();

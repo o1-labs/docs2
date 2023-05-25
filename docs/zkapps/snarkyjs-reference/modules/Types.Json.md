@@ -62,7 +62,7 @@
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:315](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction-json.ts#L315)
+bindings/mina-transaction/gen/transaction-json.ts:315
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:178](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction-json.ts#L178)
+bindings/mina-transaction/gen/transaction-json.ts:178
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:9](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L9)
+bindings/mina-transaction/transaction-leaves-json.ts:9
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:4](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L4)
+bindings/mina-transaction/transaction-leaves-json.ts:4
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:3](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L3)
+bindings/mina-transaction/transaction-leaves-json.ts:3
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:7](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L7)
+bindings/mina-transaction/transaction-leaves-json.ts:7
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:8](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L8)
+bindings/mina-transaction/transaction-leaves-json.ts:8
 
 ___
 
@@ -202,7 +202,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:10](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L10)
+bindings/mina-transaction/transaction-leaves-json.ts:10
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:18](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction-json.ts#L18)
+bindings/mina-transaction/gen/transaction-json.ts:18
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:6](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L6)
+bindings/mina-transaction/transaction-leaves-json.ts:6
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[provable/transaction-leaves-json.ts:5](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/transaction-leaves-json.ts#L5)
+bindings/mina-transaction/transaction-leaves-json.ts:5
 
 ___
 
@@ -269,4 +269,4 @@ ___
 
 #### Defined in
 
-[provable/gen/transaction-json.ts:29](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/provable/gen/transaction-json.ts#L29)
+bindings/mina-transaction/gen/transaction-json.ts:29

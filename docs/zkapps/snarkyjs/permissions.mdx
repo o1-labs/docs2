@@ -1,6 +1,18 @@
 ---
 title: Permissions
 hide_title: true
+description: Detailed guide on permissions in zkApp development including types of permissions, authorization, default permissions, and real-world examples.
+keywords:
+  - permissions
+  - zkapp development
+  - smart contracts
+  - mina
+  - smart contract security
+  - smart contract upgradeability
+  - snarkyjs
+  - mina transaction
+  - blockchain
+  - authorization
 ---
 
 :::info
@@ -135,7 +147,7 @@ To better understand how to leverage permissions to make your smart contract mor
 
 Some smart contracts manage state and token, such as the native MINA token. To prevent malicious actors from withdrawing all funds, use permissions to secure them.
 
-Consider the [`UnsecureContract`](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) smart contract. This example is also provided in the `examples` folder  in the `snarkyjs` codebase repo:
+Consider the UnsecureContract smart contract example provided in [simple_zkapp_payment.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) in the `snarkyjs` codebase repo:
 
 
 ```ts
@@ -155,7 +167,11 @@ class UnsecureContract extends SmartContract {
 }
 ```
 
-This `UnsecureContract` smart contract has two methods: `withdraw` for withdrawing funds from the smart contract account and `deposit` for depositing funds into the smart contract account.
+This `UnsecureContract` smart contract has two methods: 
+
+- `withdraw` for withdrawing funds from the smart contract account
+- `deposit` for depositing funds into the smart contract account
+
 Notice that the permissions specified in the `init` method have set the `send` permission to `Permissions.none()`. Because `none` means you don't have to provide *any* form of authorization, a malicious actor can easily drain all funds from the smart contract! Take a look at the following malicious transaction that abuses this permission:
 
 
@@ -273,4 +289,4 @@ await tx.sign([feePayerKey, zkappKey]).send();
 ## Where to learn more
 
 Integration tests exercise the behavior of different permissions, including upgradeability. 
-If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/upgradability.ts).
+If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/upgradability.ts) examples.
