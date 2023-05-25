@@ -23,7 +23,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
 
-If you haven't yet read [how zkApps work](how-zkapps-work), please read it first to build your foundational knowledge.
+If you haven't yet read [how zkApps work](../how-zkapps-work), please read it first to build your foundational knowledge.
 
 ## SmartContract
 
@@ -85,7 +85,7 @@ Magically, the proof can be checked without seeing `x` – it's a _private input
 The method above is not very meaningful yet. To make it more interesting, you need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](how-to-write-a-zkapp#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -190,7 +190,7 @@ Side note: `this.<state>.assertEquals` is more flexible than equating with the c
 
 Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions – see [Actions and Reducer](snarkyjs/actions-and-reducer).
+One such workaround is the use of actions – see [Actions and Reducer](./actions-and-reducer).
 
 :::
 
@@ -248,7 +248,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [SnarkyJS reference](snarkyjs-reference).
+For a full list, see the [SnarkyJS reference](../snarkyjs-reference).
 
 ## Public and private inputs
 

@@ -68,7 +68,7 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 
 From this output, there are several important things we can learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
 The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
 
@@ -359,7 +359,7 @@ To summarize, there are three types of authorization that account updates can ha
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
 - No authorization – used on updates which don't require authorization, for example positive balance changes.
 
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](snarkyjs/permissions) section that goes into detail!.
+The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](./permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates.
 
 ## Sending transactions
 
@@ -444,4 +444,4 @@ await tx.send();
 
 Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof. -->
 
-You can learn more about testing in [How to test your zkApp](how-to-test-a-zkapp).
+You can learn more about testing in [How to test your zkApp](../how-to-test-a-zkapp).
