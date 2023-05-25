@@ -95,7 +95,7 @@ For a more comprehensive example of how to use custom tokens with a zkApp, see t
 
 ## Proof Authorization
 
-When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/advanced-snarkyjs/custom-tokens#token-owner).
+When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/snarkyjs/custom-tokens#token-owner).
 
 A token owner can approve a transaction using a **signature** or a **proof**.
 
@@ -204,7 +204,7 @@ If your zkApp interacts with custom tokens, be sure you understand the following
 
 ### Token Id
 
-Token ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network. 
+Token ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network.
 
 Token ids are derived from a zkApp. To check the token id of a zkApp, use the `this.token.id` property.
 
