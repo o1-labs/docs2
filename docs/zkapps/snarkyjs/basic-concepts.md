@@ -12,6 +12,8 @@ zkApps can now be deployed to Berkeley Testnet.
 
 # Basic concepts
 
+## Field
+
 Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
 
 :::note
