@@ -1,10 +1,7 @@
 import { MyToken } from './MyToken.js';
 
 import {
-  Field,
   SmartContract,
-  state,
-  State,
   method,
   DeployArgs,
   PublicKey,
@@ -18,7 +15,7 @@ export class TokenUser extends SmartContract {
 
   deploy(args?: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
       editState: Permissions.proof(),
@@ -31,7 +28,7 @@ export class TokenUser extends SmartContract {
       incrementNonce: Permissions.proof(),
       setVotingFor: Permissions.proof(),
       setTiming: Permissions.proof(),
-      access: Permissions.none()
+      access: Permissions.none(),
     });
   }
 
@@ -50,13 +47,10 @@ export class TokenUser extends SmartContract {
     return new MyToken(TokenUser.tokenSmartContractAddress);
   }
 
-  @method sendMyTokens(
-    amount: UInt64, 
-    destination: PublicKey
-  ) {
+  @method sendMyTokens(amount: UInt64, destination: PublicKey) {
     const tokenHolder = this.tokenHolder;
-    tokenHolder.transfer(destination, amount);
-    this.tokenContract.approveTransfer(tokenHolder.self);
+    tokenHolder.transferAway(amount);
+    this.tokenContract.approveTransfer(tokenHolder.self, destination);
   }
 }
 
@@ -79,7 +73,7 @@ export class TokenHolder extends SmartContract {
       incrementNonce: Permissions.proof(),
       setVotingFor: Permissions.proof(),
       setTiming: Permissions.proof(),
-      access: Permissions.none()
+      access: Permissions.none(),
     });
   }
 
@@ -90,14 +84,10 @@ export class TokenHolder extends SmartContract {
     return new MyToken(TokenHolder.tokenSmartContractAddress);
   }
 
-  @method transfer(to: PublicKey, amount: UInt64) {
-    const toAccountUpdate = AccountUpdate.create(to, this.tokenId);
-    toAccountUpdate.balance.addInPlace(amount);
-    toAccountUpdate.body.mayUseToken =
-      AccountUpdate.MayUseToken.InheritFromParent;
+  @method transferAway(amount: UInt64) {
+    // TODO: in a real zkApp, there would be application-specific checks for whether we want to allow sending tokens
 
     this.balance.subInPlace(amount);
-
     this.self.body.mayUseToken = AccountUpdate.MayUseToken.ParentsOwnToken;
   }
 }

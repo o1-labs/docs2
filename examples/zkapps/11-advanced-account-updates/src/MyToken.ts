@@ -1,31 +1,19 @@
 import {
-  Account,
   Bool,
-  Circuit,
   DeployArgs,
-  Field,
   Int64,
-  isReady,
   method,
-  Mina,
   AccountUpdate,
   Permissions,
-  PrivateKey,
   PublicKey,
   SmartContract,
-  Token,
   UInt64,
-  VerificationKey,
-  Struct,
-  State,
-  state,
-  UInt32,
 } from 'snarkyjs';
 
 export class MyToken extends SmartContract {
   deploy(args?: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
       editState: Permissions.proof(),
@@ -38,46 +26,40 @@ export class MyToken extends SmartContract {
       incrementNonce: Permissions.proof(),
       setVotingFor: Permissions.proof(),
       setTiming: Permissions.proof(),
-      access: Permissions.proof()
+      access: Permissions.proof(),
     });
 
-    this.tokenSymbol.set('MYTKN');
+    this.account.tokenSymbol.set('MYTKN');
 
-    let receiverAccountUpdate = this.token.mint({
-      address: this.address,
-      amount: UInt64.from(1000),
-    });
-
+    this.token.mint({ address: this.address, amount: UInt64.from(1000) });
   }
 
   // ----------------------------------------------------------------------
 
-  @method mintTokens(
-    receiverAddress: PublicKey,
-    amount: UInt64,
-  ) {
+  @method mintTokens(receiverAddress: PublicKey, amount: UInt64) {
     this.token.mint({ address: receiverAddress, amount });
   }
 
   @method approveDeploy(deployUpdate: AccountUpdate) {
-    // TODO should anything else be asserted here for a "safe" deployment?
     this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
-    // see if balance change is zero
+    // check that balance change is zero
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
     balanceChange.assertEquals(Int64.from(0));
   }
 
   // ----------------------------------------------------------------------
 
-  @method approveTransfer(
-    transferUpdate: AccountUpdate
-  ) {
-    // TODO should anything else be asserted here for a "safe" deployment?
-    this.approve(transferUpdate);
+  @method approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
+    this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
 
-    // TODO should this also assert that all accountUpdates / balanceChanges are for the correct tokenId?
-    this.assertHasNoBalanceChange(transferUpdate);
+    let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
+
+    // assert that the balance change is negative
+    balanceChange.isPositive().not().assertTrue();
+
+    // move the same amount to the receiver
+    this.token.mint({ address: receiver, amount: balanceChange.magnitude });
   }
 
   // ----------------------------------------------------------------------
@@ -114,7 +96,5 @@ export class MyToken extends SmartContract {
     );
   }
 
-
   // ----------------------------------------------------------------------
 }
-
