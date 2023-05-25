@@ -48,7 +48,8 @@ module.exports = {
           type: 'category',
           label: 'SnarkyJS',
           items: [
-            'zkapps/snarkyjs/snarkyjs-intro',
+            'zkapps/snarkyjs/index',
+            'zkapps/snarkyjs/basic-concepts',
             'zkapps/snarkyjs/writing-circuits',
             'zkapps/snarkyjs/writing-smart-contracts',
             'zkapps/snarkyjs/interact-with-mina',
