@@ -23,6 +23,8 @@ zkApps can now be deployed to Berkeley Testnet.
 
 Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
 
+If you haven't yet read [how zkApps work](how-zkapps-work), please read it first to build your foundational knowledge.
+
 ## SmartContract
 
 Smart contracts are written by extending the base class `SmartContract`:
