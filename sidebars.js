@@ -50,8 +50,7 @@ module.exports = {
           items: [
             'zkapps/snarkyjs/index',
             'zkapps/snarkyjs/basic-concepts',
-            'zkapps/snarkyjs/writing-circuits',
-            'zkapps/snarkyjs/writing-smart-contracts',
+            'zkapps/snarkyjs/smart-contracts',
             'zkapps/snarkyjs/interact-with-mina',
             'zkapps/snarkyjs/fetch-events-and-actions',
             'zkapps/snarkyjs/events',
