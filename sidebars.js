@@ -36,7 +36,7 @@ module.exports = {
         'zkapps/how-zkapps-work',
         {
           type: 'category',
-          label: 'Using zkApps',
+          label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
@@ -48,7 +48,6 @@ module.exports = {
           type: 'category',
           label: 'SnarkyJS',
           items: [
-            'zkapps/snarkyjs/snarkyjs-overview',
             'zkapps/snarkyjs/snarkyjs-intro',
             'zkapps/snarkyjs/writing-circuits',
             'zkapps/snarkyjs/writing-smart-contracts',
