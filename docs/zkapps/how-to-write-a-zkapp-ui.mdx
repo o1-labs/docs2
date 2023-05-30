@@ -46,41 +46,83 @@ export { YourSmartContract };
 
 ### Local development
 
-The `npm link` command allows you to use your smart contract within your UI project during local development without having to publish it to npm. This local use allows for rapid development. See the [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) reference docs.
+To test iteratively and use your smart contract within your UI project during local development, you can use [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link). This local use allows for rapid development without having to publish your project to npm. 
 
-1. At the command line, change into your smart contract project directory using `cd <your-project>` and run the `npm link` command.
-2. At the command line, change into your UI project directory using `cd <your-ui-project>` and run the `npm link <your-package-name>` command. 
-  `your-package-name` is the `name` property used in your _smart contract's_ `package.json`.
-3. Import the smart contracts into your UI project, using `import { YourSmartContract } from 'your-package-name';`.
+1. To change into your smart contract project directory:
 
-After making changes, remember to run `npm run build` in your smart contract directory so that the changes are reflected in the smart contract consumed by your UI project.
+  ```sh
+  cd <your-project>
+  ```
+
+1. To create the symlinks:
+
+  ```sh
+  npm link <your-package-name>
+  ```
+
+  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`.
+
+1. To import the smart contracts into your UI project, add the import statement to the `index.ts` file:
+
+  ```ts
+  import { YourSmartContract } from 'your-package-name';`
+  ```
+
+1. After making changes, build your project so that the changes are reflected in the smart contract consumed by your UI project:
+
+  ```sh
+  npm run build
+  ```
 
 ### Publish to npm for production
 
 1. Create an npm account. 
-  If you don't have an account yet, go to npm [Sign Up](https://www.npmjs.com/signup).
-2. Login to npm. 
-  To sign in, run `npm login` on the command line. When prompted,enter your username, password, and email address.
-3. Publish your package.
-  At the root of your smart contract project directory, run `npm publish`. An error occurs if the package name already exists. To change the package name, change the `name` property in your `package.json`.
 
-:::tip
+  If you don't already have an account, go to npm [Sign Up](https://www.npmjs.com/signup).
 
-To check if a package name exists on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command. To avoid naming collisions, npm allows you to publish scoped packages: `@your-username/your-package-name`. See [Introduction to packages and modules](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules) in the npm reference docs.
+1. Login to npm: 
 
-:::
+  ```sh
+  npm login
+  ```
+
+  When prompted, enter your username, password, and email address.
+
+1. To publish your package from the root of your smart contract project directory:
+
+  ```sh
+  npm publish
+  ```
+
+Package names must be unique. An error occurs if the package name already exists. To use a different package name, change the `name` property in the `package.json` file.
+
+To check existing package names on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command. 
+
+To avoid naming collisions, npm allows you to publish scoped packages: `@your-username/your-package-name`. See [Introduction to packages and modules](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules) in the npm reference docs.
+
 
 ### Consuming your smart contract in your UI
 
 After you have published your smart contract to npm, you can add it to any UI framework by importing the package.
 
-1. Install your smart contract package.
-  - Run `npm install your-package-name` from the root of your UI project directory. 
-  - If you published a scoped npm package, run `npm install @your-username/your-project-name`.
-2. Import your smart contract package into the UI using:
+1. Install your smart contract package from the root of your UI project directory:
+
+    ```sh
+    npm install your-package-name
+    ``` 
+
+  - If you published a scoped npm package:
+
+  ```sh
+  npm install @your-username/your-project-name
+  ```
+
+1. Import your smart contract package into the UI using:
+
   ```ts
   import { YourSmartContract } from ‘your-package-name’;
   ```
+  
   where `YourSmartContract` is the named export that you chose in your smart contract.
 
 :::tip
