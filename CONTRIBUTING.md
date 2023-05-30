@@ -26,7 +26,7 @@ The [Mina Docs](https://docs.minaprotocol.com/) website is published with the Do
 
 Even if you're unfamiliar with Markdown, you can still contribute to the docs in a helpful and meaningful way. Use [Markdown Basic Syntax](https://www.markdownguide.org/basic-syntax) and look at existing docs for models to follow. You can start contributing by submitting fixes for typos, spelling, and broken links. 
 
-To build the docs locally during development, see the [README](readme) file. 
+To build the docs locally during development, see the [README](README.md) file. 
 
 ## Using this repo
 
