@@ -55,11 +55,23 @@ If you have a later version installed, install the required version using the pa
 
 Now that you have the Mina zkApp CLI installed, you can start with an example or start your own project.
 
+Example projects do not create an accompanying UI. 
+
 ### Option A: Start with an example (recommended)
 
 Examples are based on the standard project structure and provide additional files in the `/src` directory.
 
-1. Create the sudoku example project: `zk example sudoku`
+1. Create the example project: `zk example`
+
+  The `zk example` command prompts you to select an example project:
+
+  ```text
+  ? Choose an example …
+❯ sudoku
+  tictactoe
+  ```
+
+  Select the `sudoku` example project. 
 
   The created project includes the example files (the smart contract) in the project's `src/` directory. 
   
@@ -75,7 +87,7 @@ Examples are based on the standard project structure and provide additional file
 
 1. Configure your zkApp: `zk config`
 
-  The command prompts guide you in adding a network alias to your project `config.json` file. 
+  The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
   
   For Berkeley Testnet, use:
   
@@ -85,7 +97,7 @@ Examples are based on the standard project structure and provide additional file
 
 1. Fund your fee payer account.
 
-  Follow the prompts to request tMina. 
+  Follow the prompts to request tMINA. 
 
 1. Deploy to Testnet: `zk deploy`
 
@@ -96,6 +108,19 @@ Examples are based on the standard project structure and provide additional file
 1. Create your own project: `zk project <myproj>`
 
     The created project includes the files (the smart contract) in the project's `src/` directory. 
+
+1. Select an accompanying UI framework, if any:
+
+    ```text
+    ? Create an accompanying UI project too? …
+  ❯ next
+    svelte
+    nuxt
+    empty
+    none
+    ```
+    
+    For your selected UI framework, follow the prompts.
 
     To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
 
@@ -109,7 +134,7 @@ Examples are based on the standard project structure and provide additional file
 
 1. Configure your zkApp: `zk config`
 
-    The command prompts guide you in adding a network alias to your project `config.json` file. 
+    The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
 
     For Berkeley Testnet, use:
 
