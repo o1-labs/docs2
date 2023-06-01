@@ -52,7 +52,7 @@ Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This f
 
 ### What is the maximum size of the mempool? How do we work around this?
 
-The max mempool size is 3,000. Once it hits that size, transactions with the lowest fees are discarded.
+The max mempool size is 3,000. After it hits that size, transactions with the lowest fees are discarded.
 
 We recommend setting your fee to an amount higher than 0.001 MINA, which is the current average fee for transactions in the pool.
 
@@ -77,9 +77,9 @@ These funds are <u>NOT lost</u>. The exchanges have received the funds at the ex
 
 To avoid this above issue, we recommend that exchanges <u>do NOT require a memo</u> for deposits. At the same time, we also recommend that exchanges and wallet creators <u>expose an optional memo field</u> during a Mina send transaction.
 
-### What is the current maximum number of rollback blocks?
+### What is the maximum number of rollback blocks?
 
-The table here describes how many blocks you will need to wait: [Lifecycle Payment](../node-operators/lifecycle-of-a-payment)
+The table in [Lifecycle of a Payment](../node-operators/lifecycle-of-a-payment) describes how many blocks you wait for a transaction to be confirmed.
 
 ### How should we calculate transaction fees?
 
@@ -120,11 +120,11 @@ fi
 
 Archive node operators often choose to run redundant archive nodes to store block data to one or more locations of their choice (e.g. PostgreSQL, GCP, local files, a logging service, etc) and to backfill any missed block data if needed.
 
-For convenience, O(1) Labs makes data from its archive node available [here](https://console.cloud.google.com/storage/browser/mina_network_block_data) to help others in the community backfill any missing information.
+For convenience, [mina_network_block_data](https://console.cloud.google.com/storage/browser/mina_network_block_data) from the archive node is available to help others in the community backfill any missing information.
 
 This bucket contains blocks from various Mina networks — e.g. Mainnet & the most recent Devnet named devnet2. Filter the file names to find those for the network you desire. (Note that this bucket contains blocks for various other networks too, such as QAnet, which we recommend against using for your testing. QAnet is used by O(1) Labs during their iterative development.)
 
-File names contain the network name, block height, and state hash of the block. Block height was added to the filename more recently, so blocks older than height 25,705 can include only the network name and state hash in the filename.
+File names contain the network name, block height, and state hash of the block. Blocks older than height 25,705 include only the network name and state hash in the filename.
 
 Example file names:
 
@@ -188,13 +188,13 @@ You can look into staking this wallet, either by running your own block producti
 
 :::note
 
-Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
+Newly staked accounts incur a delay between 18 to 29 days before you start receiving rewards.
 
 :::
 
 ### Why is there a delay for staking to take effect?
 
-For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. In other words, the staking ledger will always operate between 18 to 29 days behind the live ledger.
+For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. In other words, the staking ledger always operates between 18 to 29 days behind the live ledger.
 
 ### In that case, how long is the delay and when is the next staking snapshot?
 
@@ -204,7 +204,7 @@ Since the timing is based on a combination of consensus timing (epochs) and snar
 
 A conservative estimate is that delegations sent 3 days before the epoch transition can take effect in the upcoming epoch. This means that, for any given delegation, there is an average of 18 to 29 days delay before this delegation updates block production.
 
-You can use this Delegation Calculator tool built by Carbonara, which tells you when the next staking ledger cutoff occurs:
+You can use this Delegation Calculator tool built by Carbonara to see the next staking ledger cutoff:
 [https://epoch.mina.tools](https://epoch.mina.tools/).
 
 ## Testing

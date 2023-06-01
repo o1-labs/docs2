@@ -33,9 +33,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:91](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L91)
+[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
 
-[index.ts:92](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L92)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
 
 ## Variables
 
@@ -45,38 +45,36 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:91](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L91)
+[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
 
-[index.ts:92](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/index.ts#L92)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
 
 ## Functions
 
 ### ZkProgram
 
-▸ **ZkProgram**<`PublicInputType`, `Types`\>(`__namedParameters`): { `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferInstance`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferInstance<PublicInputType\>, Types[I]\> }
+▸ **ZkProgram**<`StatementType`, `Types`\>(`config`): { `analyzeMethods`: () => `ReturnType`<typeof `analyzeMethod`\>[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `PublicInputType` | extends [`ProvablePure`](../interfaces/ProvablePure.md)<`any`, `PublicInputType`\> |
+| `StatementType` | extends `Object` |
 | `Types` | extends `Object` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.methods` | { [I in string \| number \| symbol]: Method<InferInstance<PublicInputType\>, Types[I]\> } |
-| `__namedParameters.publicInput` | `PublicInputType` |
+| `config` | `StatementType` & { `methods`: { [I in string \| number \| symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }  } |
 
 #### Returns
 
-{ `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `PublicInputType` ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferInstance`<`PublicInputType`\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferInstance<PublicInputType\>, Types[I]\> }
+{ `analyzeMethods`: () => `ReturnType`<typeof `analyzeMethod`\>[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
 
 #### Defined in
 
-[lib/proof_system.ts:148](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L148)
+[lib/proof_system.ts:205](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/proof_system.ts#L205)
 
 ___
 
@@ -98,7 +96,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1498](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/account_update.ts#L1498)
+[lib/account_update.ts:1704](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1704)
 
 ___
 
@@ -119,7 +117,7 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`Provable`](../interfaces/Provable.md)<`T`\> |
+| `type` | [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
 | `compute` | () => `T` |
 
 #### Returns
@@ -128,4 +126,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/circuit_value.ts:1044](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L1044)
+[lib/circuit_value.ts:856](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L856)

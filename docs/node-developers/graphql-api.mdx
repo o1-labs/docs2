@@ -23,7 +23,7 @@ The Mina daemon exposes a [GraphQL API](https://graphql.org/) used to request in
 
 To use the GraphQL API, connect your GraphQL client to `http://localhost:3085/graphql` or open in your browser to utilize the [GraphiQL IDE](https://github.com/graphql/graphiql). By default, for security, only connections from `localhost` are permitted. To listen on all interfaces, add the `-insecure-rest-server` flag to the daemon startup command.
 
-In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier will be returned, i.e., the last `k` blocks. For other historical data, you should use the archive node, which is designed to retain and retrieve historical data.
+In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier are returned, i.e., the last `k` blocks. For other historical data, use the archive node that is designed to retain and retrieve historical data.
 
 The full Mina GraphQL schema is available [here](https://github.com/MinaProtocol/mina/blob/develop/graphql_schema.json).
 

@@ -25,6 +25,7 @@ module.exports = {
         'using-mina/ledger-hardware-wallet',
         'using-mina/how-to-send-and-receive',
         'using-mina/how-to-delegate',
+        'using-mina/how-to-use-zkapp',
       ],
     },
     {
@@ -33,22 +34,33 @@ module.exports = {
       items: [
         'zkapps/index',
         'zkapps/how-zkapps-work',
-        'zkapps/how-to-write-a-zkapp',
-        'zkapps/how-to-test-a-zkapp',
-        'zkapps/how-to-deploy-a-zkapp',
-        'zkapps/how-to-write-a-zkapp-ui',
         {
           type: 'category',
-          label: 'Advanced SnarkyJS',
+          label: 'Creating zkApps',
           items: [
-            'zkapps/advanced-snarkyjs/on-chain-values',
-            'zkapps/advanced-snarkyjs/events',
-            'zkapps/advanced-snarkyjs/recursion',
-            'zkapps/advanced-snarkyjs/custom-tokens',
-            'zkapps/advanced-snarkyjs/actions-and-reducer',
-            'zkapps/advanced-snarkyjs/merkle-tree',
-            'zkapps/advanced-snarkyjs/permissions',
-            'zkapps/advanced-snarkyjs/time-locked-accounts',
+            'zkapps/how-to-write-a-zkapp',
+            'zkapps/how-to-write-a-zkapp-ui',
+            'zkapps/how-to-test-a-zkapp',
+            'zkapps/how-to-deploy-a-zkapp',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SnarkyJS',
+          items: [
+            'zkapps/snarkyjs/index',
+            'zkapps/snarkyjs/basic-concepts',
+            'zkapps/snarkyjs/smart-contracts',
+            'zkapps/snarkyjs/interact-with-mina',
+            'zkapps/snarkyjs/fetch-events-and-actions',
+            'zkapps/snarkyjs/events',
+            'zkapps/snarkyjs/actions-and-reducer',
+            'zkapps/snarkyjs/on-chain-values',
+            'zkapps/snarkyjs/recursion',
+            'zkapps/snarkyjs/custom-tokens',
+            'zkapps/snarkyjs/merkle-tree',
+            'zkapps/snarkyjs/permissions',
+            'zkapps/snarkyjs/time-locked-accounts',
           ],
         },
         {
@@ -222,6 +234,11 @@ module.exports = {
               type: 'category',
               label: 'Interfaces',
               items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Mina.TransactionId',
+                  label: 'Mina.TransactionId',
+                },
                 {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/interfaces/Permissions',

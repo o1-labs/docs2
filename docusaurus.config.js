@@ -262,6 +262,34 @@ module.exports = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content:
+            'Snarkyjs, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
+        },
+        {
+          name: 'image',
+          property: 'image',
+          content: 'https://docs.minaprotocol.com/img/common/mina-logo.png',
+        },
+        {
+          name: 'og:image',
+          property: 'og:image',
+          content: 'https://docs.minaprotocol.com/img/common/mina-logo.png',
+        },
+        {
+          name: 'twitter:image',
+          property: 'twitter:image',
+          content: 'https://docs.minaprotocol.com/img/common/mina-logo.png',
+        },
+        { name: 'twitter:title', content: 'Mina Documentation' },
+        {
+          name: 'twitter:description',
+          content: 'Website for documentation about Mina Protocol',
+        },
+      ],
+
       navbar: {
         logo: {
           alt: 'Mina Logo',

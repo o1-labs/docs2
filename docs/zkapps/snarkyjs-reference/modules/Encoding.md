@@ -5,11 +5,6 @@
 ### Variables
 
 - [Bijective](Encoding.md#bijective)
-- [EpochSeed](Encoding.md#epochseed)
-- [LedgerHash](Encoding.md#ledgerhash)
-- [ReceiptChainHash](Encoding.md#receiptchainhash)
-- [StateHash](Encoding.md#statehash)
-- [TokenId](Encoding.md#tokenid)
 
 ### Functions
 
@@ -41,57 +36,7 @@
 
 #### Defined in
 
-[lib/encoding.ts:106](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L106)
-
-___
-
-### EpochSeed
-
-• **EpochSeed**: `Base58`<[`Field`](../classes/Field.md)\>
-
-#### Defined in
-
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
-
-___
-
-### LedgerHash
-
-• **LedgerHash**: `Base58`<[`Field`](../classes/Field.md)\>
-
-#### Defined in
-
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
-
-___
-
-### ReceiptChainHash
-
-• **ReceiptChainHash**: `Base58`<[`Field`](../classes/Field.md)\>
-
-#### Defined in
-
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
-
-___
-
-### StateHash
-
-• **StateHash**: `Base58`<[`Field`](../classes/Field.md)\>
-
-#### Defined in
-
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
-
-___
-
-### TokenId
-
-• **TokenId**: `Base58`<[`Field`](../classes/Field.md)\>
-
-#### Defined in
-
-[lib/encoding.ts:17](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L17)
+bindings/lib/encoding.ts:98
 
 ## Functions
 
@@ -113,7 +58,7 @@ Decodes a list of [Field](../classes/Field.md) elements into a Uint8Array.
 
 #### Defined in
 
-[lib/encoding.ts:75](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L75)
+bindings/lib/encoding.ts:67
 
 ___
 
@@ -135,7 +80,7 @@ Encodes a Uint8Array into [Field](../classes/Field.md) elements.
 
 #### Defined in
 
-[lib/encoding.ts:53](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L53)
+bindings/lib/encoding.ts:45
 
 ___
 
@@ -159,7 +104,7 @@ This function is not a valid in-snark computation.
 
 #### Defined in
 
-[lib/encoding.ts:43](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L43)
+bindings/lib/encoding.ts:35
 
 ___
 
@@ -183,4 +128,4 @@ This function is not a valid in-snark computation.
 
 #### Defined in
 
-[lib/encoding.ts:33](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/encoding.ts#L33)
+bindings/lib/encoding.ts:25

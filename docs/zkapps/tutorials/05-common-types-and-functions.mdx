@@ -267,7 +267,7 @@ Circuits in SnarkyJS currently have a fixed maximum size. Each operation perform
 - about `2^17` field multiplies
 - about `2^17` field additions
 
-If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion).
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../snarkyjs/recursion).
 
 ## Merkle Trees
 
@@ -459,8 +459,6 @@ const rootBefore = map.getRoot();
 const key = Field(100);
 
 const witness = map.getWitness(key);
-
-map.set(key, value);
 ...
 // update the smart contract
 const txn1 = await Mina.transaction(deployerAccount, () => {
@@ -468,7 +466,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
     contract.update(
       witness,
       key,
-      Field(0), // values start in state zero
+      Field(50),
       Field(5)
     );
   );
