@@ -1,6 +1,22 @@
 ---
-title: Basic concepts
+title: SnarkyJS Basic Concepts
 hide_title: true
+sidebar_label: Basic Concepts
+description: Field elements are the basic unit of data in zero-knowledge proof programming. Learn about built-in data types, functions, and common methods. 
+keywords:
+  - smart contracts
+  - zkapps
+  - fields
+  - field elements
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - data types
+  - snarkyjs
+  - blockchain
+  - mina
+  - typescript
+  - methods
 ---
 
 :::info
@@ -10,7 +26,7 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
-# Basic concepts
+# SnarkyJS Basic Concepts
 
 ## Field
 
@@ -63,7 +79,7 @@ let b = Bool(true);
 
 ## Conditionals
 
-Traditional conditional statements are not yet supported by SnarkyJS:
+Traditional conditional statements are not supported by SnarkyJS:
 
 ```ts
 // this will NOT work
@@ -72,7 +88,7 @@ if (foo) {
 }
 ```
 
-Instead, use SnarkyJS’ built-in `Circuit.if()` method, which is a ternary operator:
+Instead, use the SnarkyJS built-in `Circuit.if()` method, which is a ternary operator:
 
 ```ts
 const x = Circuit.if(new Bool(foo), a, b); // behaves like `foo ? a : b`

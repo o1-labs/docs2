@@ -1,6 +1,22 @@
 ---
 title: Interacting With Mina
 hide_title: true
+description: How to create zero knowledge proofs and how users call zkApp methods. An account update can have proof, signature or none authorizations.
+keywords:
+  - smart contracts
+  - zkapps
+  - zkapp methods
+  - zero knowledge proofs
+  - zk proof
+  - zk
+  - snarkyjs
+  - blockchain
+  - transaction
+  - mina
+  - data structure
+  - account updates
+  - on-chain account
+  - authorization types
 ---
 
 :::info
@@ -82,7 +98,7 @@ Note that there a many more fields that account updates can have, but `tx.toPret
 
 As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
 
-## Creating proofs, and what they mean
+## Creating proofs and what they mean
 
 Let's finally see how to create zero-knowledge proofs!
 
@@ -248,7 +264,7 @@ This error comes about as follows:
 - That comparison check fails, because the two sets of account updates are different
 -->
 
-## Signing transactions, and explicit account updates
+## Signing transactions and explicit account updates
 
 Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which were created by SnarkyJS under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
 
