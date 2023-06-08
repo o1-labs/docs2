@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[snarky.d.ts:553](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L553)
+[snarky.d.ts:1056](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1056)
 
 ## Properties
 
@@ -71,11 +71,11 @@
 
 | Name | Type |
 | :------ | :------ |
-| `ofField` | (`x`: `string` \| `number` \| `boolean` \| [`Field`](Field.md)) => [`Bool`](Bool.md) |
+| `ofField` | (`x`: `string` \| `number` \| `boolean` \| `Field`) => [`Bool`](Bool.md) |
 
 #### Defined in
 
-[snarky.d.ts:643](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L643)
+[snarky.d.ts:1146](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1146)
 
 ## Methods
 
@@ -98,7 +98,7 @@ this [Bool](Bool.md) and `y` are also true.
 
 #### Defined in
 
-[snarky.d.ts:570](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L570)
+[snarky.d.ts:1073](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1073)
 
 ___
 
@@ -121,7 +121,7 @@ Proves that this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[snarky.d.ts:583](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L583)
+[snarky.d.ts:1086](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1086)
 
 ___
 
@@ -143,7 +143,7 @@ Proves that this [Bool](Bool.md) is `false`.
 
 #### Defined in
 
-[snarky.d.ts:593](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L593)
+[snarky.d.ts:1096](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1096)
 
 ___
 
@@ -165,7 +165,7 @@ Proves that this [Bool](Bool.md) is `true`.
 
 #### Defined in
 
-[snarky.d.ts:588](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L588)
+[snarky.d.ts:1091](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1091)
 
 ___
 
@@ -187,7 +187,7 @@ Returns true if this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[snarky.d.ts:599](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L599)
+[snarky.d.ts:1102](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1102)
 
 ___
 
@@ -203,7 +203,7 @@ a new [Bool](Bool.md) that is the negation of this [Bool](Bool.md).
 
 #### Defined in
 
-[snarky.d.ts:563](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L563)
+[snarky.d.ts:1066](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1066)
 
 ___
 
@@ -226,7 +226,7 @@ this [Bool](Bool.md) or `y` is true.
 
 #### Defined in
 
-[snarky.d.ts:577](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L577)
+[snarky.d.ts:1080](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1080)
 
 ___
 
@@ -242,7 +242,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:604](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L604)
+[snarky.d.ts:1107](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1107)
 
 ___
 
@@ -259,39 +259,39 @@ This can only be called on non-witness values.
 
 #### Defined in
 
-[snarky.d.ts:626](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L626)
+[snarky.d.ts:1129](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1129)
 
 ___
 
 ### toField
 
-▸ **toField**(): [`Field`](Field.md)
+▸ **toField**(): `Field`
 
-Converts a [Bool](Bool.md) to a [Field](Field.md). `false` becomes 0 and `true` becomes 1.
+Converts a [Bool](Bool.md) to a [Field](../README.md#field). `false` becomes 0 and `true` becomes 1.
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[snarky.d.ts:558](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L558)
+[snarky.d.ts:1061](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1061)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
-Serializes this [Bool](Bool.md) into [Field](Field.md) elements.
+Serializes this [Bool](Bool.md) into [Field](../README.md#field) elements.
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[snarky.d.ts:609](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L609)
+[snarky.d.ts:1112](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1112)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 ▸ **toJSON**(): `boolean`
 
 Serialize the [Bool](Bool.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Field.
 
 #### Returns
 
@@ -308,7 +308,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:620](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L620)
+[snarky.d.ts:1123](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1123)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 ▸ **toString**(): `string`
 
 Serialize the [Bool](Bool.md) to a string, e.g. for printing.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Field.
 
 #### Returns
 
@@ -325,7 +325,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:615](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L615)
+[snarky.d.ts:1118](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1118)
 
 ___
 
@@ -348,7 +348,7 @@ Boolean AND operation.
 
 #### Defined in
 
-[snarky.d.ts:661](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L661)
+[snarky.d.ts:1164](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1164)
 
 ___
 
@@ -371,7 +371,7 @@ Asserts if both [Bool](Bool.md) are equal.
 
 #### Defined in
 
-[snarky.d.ts:671](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L671)
+[snarky.d.ts:1174](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1174)
 
 ___
 
@@ -391,13 +391,13 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:713](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L713)
+[snarky.d.ts:1216](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1216)
 
 ___
 
 ### count
 
-▸ `Static` **count**(`x`): [`Field`](Field.md)
+▸ `Static` **count**(`x`): `Field`
 
 Counts all elements of type [Bool](Bool.md).
 
@@ -409,11 +409,11 @@ Counts all elements of type [Bool](Bool.md).
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[snarky.d.ts:681](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L681)
+[snarky.d.ts:1184](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1184)
 
 ___
 
@@ -436,7 +436,7 @@ Checks two [Bool](Bool.md) for equality.
 
 #### Defined in
 
-[snarky.d.ts:676](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L676)
+[snarky.d.ts:1179](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1179)
 
 ___
 
@@ -456,7 +456,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:718](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L718)
+[snarky.d.ts:1221](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1221)
 
 ___
 
@@ -464,13 +464,13 @@ ___
 
 ▸ `Static` **fromFields**(`fields`): [`Bool`](Bool.md)
 
-Creates a data structure from an array of serialized [Field](Field.md) elements.
+Creates a data structure from an array of serialized [Field](../README.md#field) elements.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
+| `fields` | `Field`[] |
 
 #### Returns
 
@@ -478,7 +478,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:700](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L700)
+[snarky.d.ts:1203](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1203)
 
 ___
 
@@ -487,7 +487,7 @@ ___
 ▸ `Static` **fromJSON**(`x`): [`Bool`](Bool.md)
 
 Deserialize a JSON structure into a [Bool](Bool.md).
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Field.
 
 #### Parameters
 
@@ -501,7 +501,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:711](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L711)
+[snarky.d.ts:1214](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1214)
 
 ___
 
@@ -523,7 +523,7 @@ Boolean negation.
 
 #### Defined in
 
-[snarky.d.ts:656](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L656)
+[snarky.d.ts:1159](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1159)
 
 ___
 
@@ -546,7 +546,7 @@ Boolean OR operation.
 
 #### Defined in
 
-[snarky.d.ts:666](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L666)
+[snarky.d.ts:1169](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1169)
 
 ___
 
@@ -567,7 +567,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:719](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L719)
+[snarky.d.ts:1222](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1222)
 
 ___
 
@@ -581,7 +581,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:723](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L723)
+[snarky.d.ts:1226](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1226)
 
 ___
 
@@ -597,7 +597,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:686](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L686)
+[snarky.d.ts:1189](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1189)
 
 ___
 
@@ -619,7 +619,7 @@ Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:696](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L696)
+[snarky.d.ts:1199](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1199)
 
 ___
 
@@ -639,15 +639,15 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:717](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L717)
+[snarky.d.ts:1220](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1220)
 
 ___
 
 ### toField
 
-▸ `Static` **toField**(`x`): [`Field`](Field.md)
+▸ `Static` **toField**(`x`): `Field`
 
-Serializes a [Bool](Bool.md) into an array of [Field](Field.md) elements.
+Serializes a [Bool](Bool.md) into an array of [Field](../README.md#field) elements.
 
 #### Parameters
 
@@ -657,19 +657,19 @@ Serializes a [Bool](Bool.md) into an array of [Field](Field.md) elements.
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[snarky.d.ts:641](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L641)
+[snarky.d.ts:1144](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1144)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**(`x`): [`Field`](Field.md)[]
+▸ `Static` **toFields**(`x`): `Field`[]
 
-Static method to serialize a [Bool](Bool.md) into an array of [Field](Field.md) elements.
+Static method to serialize a [Bool](Bool.md) into an array of [Field](../README.md#field) elements.
 
 #### Parameters
 
@@ -679,11 +679,11 @@ Static method to serialize a [Bool](Bool.md) into an array of [Field](Field.md) 
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[snarky.d.ts:691](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L691)
+[snarky.d.ts:1194](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1194)
 
 ___
 
@@ -703,11 +703,11 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `packed` | [[`Field`](Field.md), `number`][] |
+| `packed` | [`Field`, `number`][] |
 
 #### Defined in
 
-[snarky.d.ts:716](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L716)
+[snarky.d.ts:1219](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1219)
 
 ___
 
@@ -716,7 +716,7 @@ ___
 ▸ `Static` **toJSON**(`x`): `boolean`
 
 Serialize a [Bool](Bool.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Field.
 
 #### Parameters
 
@@ -730,4 +730,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:706](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L706)
+[snarky.d.ts:1209](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L1209)

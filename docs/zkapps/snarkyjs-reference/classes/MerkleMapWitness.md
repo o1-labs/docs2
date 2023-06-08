@@ -52,7 +52,7 @@
 | Name | Type |
 | :------ | :------ |
 | `isLefts` | [`Bool`](Bool.md)[] |
-| `siblings` | [`Field`](Field.md)[] |
+| `siblings` | `Field`[] |
 
 #### Overrides
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[lib/merkle_map.ts:121](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L121)
+[lib/merkle_map.ts:121](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L121)
 
 ## Properties
 
@@ -70,17 +70,17 @@
 
 #### Defined in
 
-[lib/merkle_map.ts:118](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L118)
+[lib/merkle_map.ts:118](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L118)
 
 ___
 
 ### siblings
 
-• **siblings**: [`Field`](Field.md)[]
+• **siblings**: `Field`[]
 
 #### Defined in
 
-[lib/merkle_map.ts:119](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L119)
+[lib/merkle_map.ts:119](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L119)
 
 ## Methods
 
@@ -104,13 +104,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:175](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L175)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L158)
 
 ___
 
 ### computeRootAndKey
 
-▸ **computeRootAndKey**(`value`): [`Field`](Field.md)[]
+▸ **computeRootAndKey**(`value`): `Field`[]
 
 computes the merkle tree root for a given value and the key for this witness
 
@@ -118,17 +118,17 @@ computes the merkle tree root for a given value and the key for this witness
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`Field`](Field.md) | The value to compute the root for. |
+| `value` | `Field` | The value to compute the root for. |
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 A tuple of the computed merkle root, and the key that is connected to the path updated by this witness.
 
 #### Defined in
 
-[lib/merkle_map.ts:132](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L132)
+[lib/merkle_map.ts:132](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L132)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L171)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L179)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -188,17 +188,17 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L167)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L150)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
@@ -206,7 +206,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L159)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L163)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L146)
 
 ___
 
@@ -255,7 +255,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:208](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L208)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:183](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L183)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:241](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L241)
+[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L224)
 
 ___
 
@@ -348,7 +348,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:104](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L104)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -366,7 +366,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L133)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -415,13 +415,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:222](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L222)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L205)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -438,7 +438,7 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
@@ -446,7 +446,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L116)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -477,7 +477,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L137)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -508,4 +508,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:230](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L230)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L213)

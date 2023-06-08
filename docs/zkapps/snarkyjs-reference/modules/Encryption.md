@@ -11,7 +11,7 @@
 
 ### decrypt
 
-▸ **decrypt**(`«destructured»`, `privateKey`): [`Field`](../classes/Field.md)[]
+▸ **decrypt**(`«destructured»`, `privateKey`): `Field`[]
 
 Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
@@ -24,11 +24,11 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 #### Returns
 
-[`Field`](../classes/Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/encryption.ts:44](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/encryption.ts#L44)
+[lib/encryption.ts:46](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/encryption.ts#L46)
 
 ___
 
@@ -36,13 +36,13 @@ ___
 
 ▸ **encrypt**(`message`, `otherPublicKey`): `Object`
 
-Public Key Encryption, using a given array of [Field](../classes/Field.md) elements and encrypts it using a [PublicKey](../classes/Types.PublicKey.md).
+Public Key Encryption, using a given array of [Field](../README.md#field-1) elements and encrypts it using a [PublicKey](../classes/Types.PublicKey.md).
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `message` | [`Field`](../classes/Field.md)[] |
+| `message` | `Field`[] |
 | `otherPublicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
 
 #### Returns
@@ -51,9 +51,9 @@ Public Key Encryption, using a given array of [Field](../classes/Field.md) eleme
 
 | Name | Type |
 | :------ | :------ |
-| `cipherText` | [`Field`](../classes/Field.md)[] |
+| `cipherText` | `Field`[] |
 | `publicKey` | [`Group`](../classes/Group.md) |
 
 #### Defined in
 
-[lib/encryption.ts:15](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/encryption.ts#L15)
+[lib/encryption.ts:17](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/encryption.ts#L17)

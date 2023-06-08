@@ -2,7 +2,7 @@
 
 ## Hierarchy
 
-- { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+- { `field`: `Field` ; `symbol`: `string`  }
 
   ↳ **`TokenSymbol`**
 
@@ -45,7 +45,7 @@
 | Name | Type |
 | :------ | :------ |
 | `value` | `Object` |
-| `value.field` | [`Field`](Field.md) |
+| `value.field` | `Field` |
 | `value.symbol` | `string` |
 
 #### Inherited from
@@ -54,13 +54,13 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:467](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L467)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L365)
 
 ## Properties
 
 ### field
 
-• **field**: [`Field`](Field.md)
+• **field**: `Field`
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:141](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/hash.ts#L141)
+[lib/hash.ts:137](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/hash.ts#L137)
 
 ___
 
@@ -82,7 +82,7 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:141](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/hash.ts#L141)
+[lib/hash.ts:137](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/hash.ts#L137)
 
 ___
 
@@ -96,13 +96,13 @@ Struct(TokenSymbolPure).\_isStruct
 
 #### Defined in
 
-[lib/circuit_value.ts:467](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L467)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L365)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `void`
+▪ `Static` **check**: (`x`: { `field`: `Field` ; `symbol`: `string`  }) => `void`
 
 #### Type declaration
 
@@ -113,7 +113,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -126,13 +126,13 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L37)
+[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L34)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromFields**: (`x`: `Field`[], `aux`: `any`[]) => { `field`: `Field` ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -142,7 +142,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md)[] |
+| `x` | `Field`[] |
 | `aux` | `any`[] |
 
 ##### Returns
@@ -151,7 +151,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Inherited from
@@ -160,13 +160,13 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L35)
+[snarky.d.ts:32](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L32)
 
 ___
 
 ### fromJSON
 
-▪ `Static` **fromJSON**: (`x`: `string`) => { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromJSON**: (`x`: `string`) => { `field`: `Field` ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -184,7 +184,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Inherited from
@@ -193,13 +193,13 @@ Struct(TokenSymbolPure).fromJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:475](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L475)
+[lib/circuit_value.ts:373](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L373)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`x?`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `any`[]
+▪ `Static` **toAuxiliary**: (`x?`: { `field`: `Field` ; `symbol`: `string`  }) => `any`[]
 
 #### Type declaration
 
@@ -210,7 +210,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x?` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -223,29 +223,29 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L34)
+[snarky.d.ts:31](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L31)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`x`: { `field`: `Field` ; `symbol`: `string`  }) => `Field`[]
 
 #### Type declaration
 
-▸ (`x`): [`Field`](Field.md)[]
+▸ (`x`): `Field`[]
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
@@ -253,13 +253,13 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L33)
+[snarky.d.ts:30](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L30)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: { `field`: `Field` ; `symbol`: `string`  }) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  }
 
 #### Type declaration
 
@@ -270,7 +270,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -279,8 +279,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `fields?` | [`Field`](Field.md)[] |
-| `packed?` | [[`Field`](Field.md), `number`][] |
+| `fields?` | `Field`[] |
+| `packed?` | [`Field`, `number`][] |
 
 #### Inherited from
 
@@ -288,13 +288,13 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:470](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L470)
+[lib/circuit_value.ts:368](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L368)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `string`
+▪ `Static` **toJSON**: (`x`: { `field`: `Field` ; `symbol`: `string`  }) => `string`
 
 #### Type declaration
 
@@ -305,7 +305,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -318,7 +318,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:474](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L474)
+[lib/circuit_value.ts:372](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L372)
 
 ## Accessors
 
@@ -332,12 +332,12 @@ Struct(TokenSymbolPure).toJSON
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Defined in
 
-[lib/hash.ts:172](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/hash.ts#L172)
+[lib/hash.ts:168](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/hash.ts#L168)
 
 ## Methods
 
@@ -357,7 +357,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:176](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/hash.ts#L176)
+[lib/hash.ts:172](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/hash.ts#L172)
 
 ___
 
@@ -375,4 +375,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L36)
+[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/snarky.d.ts#L33)

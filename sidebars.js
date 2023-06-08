@@ -125,11 +125,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/Field',
-                  label: 'Field',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Group',
                   label: 'Group',
                 },
@@ -243,11 +238,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/interfaces/Permissions',
                   label: 'Permissions',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/Provable',
-                  label: 'Provable',
                 },
                 {
                   type: 'doc',

@@ -28,7 +28,7 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:19](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L19)
+[lib/merkle_map.ts:19](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L19)
 
 ## Properties
 
@@ -38,7 +38,7 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:11](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L11)
+[lib/merkle_map.ts:11](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L11)
 
 ## Methods
 
@@ -50,7 +50,7 @@ Creates a new, empty Merkle Map.
 
 | Name | Type |
 | :------ | :------ |
-| `key` | [`Field`](Field.md) |
+| `key` | `Field` |
 
 #### Returns
 
@@ -58,13 +58,13 @@ Creates a new, empty Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:34](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L34)
+[lib/merkle_map.ts:34](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L34)
 
 ___
 
 ### get
 
-▸ **get**(`key`): [`Field`](Field.md)
+▸ **get**(`key`): `Field`
 
 Returns a value given a key. Values are by default Field(0).
 
@@ -72,35 +72,35 @@ Returns a value given a key. Values are by default Field(0).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `key` | [`Field`](Field.md) | The key to get the value from. |
+| `key` | `Field` | The key to get the value from. |
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 The value stored at the key.
 
 #### Defined in
 
-[lib/merkle_map.ts:70](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L70)
+[lib/merkle_map.ts:70](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L70)
 
 ___
 
 ### getRoot
 
-▸ **getRoot**(): [`Field`](Field.md)
+▸ **getRoot**(): `Field`
 
 Returns the root of the Merkle Map.
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 The root of the Merkle Map.
 
 #### Defined in
 
-[lib/merkle_map.ts:81](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L81)
+[lib/merkle_map.ts:81](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L81)
 
 ___
 
@@ -114,7 +114,7 @@ Returns a circuit-compatible witness (also known as [Merkle Proof or Merkle Witn
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `key` | [`Field`](Field.md) | The key to make a witness for. |
+| `key` | `Field` | The key to make a witness for. |
 
 #### Returns
 
@@ -124,7 +124,7 @@ A MerkleMapWitness, which can be used to assert changes to the MerkleMap, and th
 
 #### Defined in
 
-[lib/merkle_map.ts:90](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L90)
+[lib/merkle_map.ts:90](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L90)
 
 ___
 
@@ -138,8 +138,8 @@ Sets a key of the merkle map to a given value.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `key` | [`Field`](Field.md) | The key to set in the map. |
-| `value` | [`Field`](Field.md) | - |
+| `key` | `Field` | The key to set in the map. |
+| `value` | `Field` | - |
 
 #### Returns
 
@@ -147,4 +147,4 @@ Sets a key of the merkle map to a given value.
 
 #### Defined in
 
-[lib/merkle_map.ts:58](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/merkle_map.ts#L58)
+[lib/merkle_map.ts:58](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/merkle_map.ts#L58)

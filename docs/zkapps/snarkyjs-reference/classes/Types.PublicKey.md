@@ -68,7 +68,7 @@ You can derive a [PublicKey](Types.PublicKey.md) directly from a [PrivateKey](Pr
 
 #### Defined in
 
-[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L87)
+[lib/circuit_value.ts:70](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L70)
 
 ## Properties
 
@@ -78,17 +78,17 @@ You can derive a [PublicKey](Types.PublicKey.md) directly from a [PrivateKey](Pr
 
 #### Defined in
 
-[lib/signature.ts:86](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L86)
+[lib/signature.ts:87](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L87)
 
 ___
 
 ### x
 
-• **x**: [`Field`](Field.md)
+• **x**: `Field`
 
 #### Defined in
 
-[lib/signature.ts:85](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L85)
+[lib/signature.ts:86](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L86)
 
 ## Methods
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:175](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L175)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L171)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L179)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -172,7 +172,7 @@ a [Bool](Bool.md)
 
 #### Defined in
 
-[lib/signature.ts:143](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L143)
+[lib/signature.ts:144](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L144)
 
 ___
 
@@ -190,7 +190,7 @@ a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:160](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L160)
+[lib/signature.ts:161](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L161)
 
 ___
 
@@ -208,17 +208,17 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L167)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L150)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
@@ -226,7 +226,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L159)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -244,7 +244,7 @@ A [Group](Group.md)
 
 #### Defined in
 
-[lib/signature.ts:92](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L92)
+[lib/signature.ts:93](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L93)
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L163)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L146)
 
 ___
 
@@ -293,7 +293,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:208](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L208)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -311,7 +311,7 @@ an empty [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:135](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L135)
+[lib/signature.ts:136](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L136)
 
 ___
 
@@ -327,7 +327,7 @@ Creates a [PublicKey](Types.PublicKey.md) from a JSON structure element.
 | :------ | :------ |
 | `g` | `Object` |
 | `g.isOdd` | [`Bool`](Bool.md) |
-| `g.x` | [`Field`](Field.md) |
+| `g.x` | `Field` |
 
 #### Returns
 
@@ -337,7 +337,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:127](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L127)
+[lib/signature.ts:128](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L128)
 
 ___
 
@@ -361,7 +361,7 @@ a [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:152](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L152)
+[lib/signature.ts:153](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L153)
 
 ___
 
@@ -380,7 +380,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -392,7 +392,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:183](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L183)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -416,7 +416,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:110](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L110)
+[lib/signature.ts:111](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L111)
 
 ___
 
@@ -451,7 +451,7 @@ a JSON string
 
 #### Defined in
 
-[lib/signature.ts:182](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L182)
+[lib/signature.ts:183](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L183)
 
 ___
 
@@ -482,7 +482,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:104](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L104)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -506,7 +506,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:119](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L119)
+[lib/signature.ts:120](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L120)
 
 ___
 
@@ -524,7 +524,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -542,7 +542,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L133)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -566,7 +566,7 @@ a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:168](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L168)
+[lib/signature.ts:169](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L169)
 
 ___
 
@@ -597,13 +597,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:222](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L222)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L205)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -620,7 +620,7 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
@@ -628,7 +628,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L116)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -659,7 +659,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L137)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -687,4 +687,4 @@ a JSON string
 
 #### Defined in
 
-[lib/signature.ts:175](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L175)
+[lib/signature.ts:176](https://github.com/o1-labs/snarkyjs/blob/c00c3f5/src/lib/signature.ts#L176)

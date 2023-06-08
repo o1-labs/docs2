@@ -68,7 +68,7 @@ ___
 
 ### Field
 
-Re-exports [Field](../classes/Field.md)
+Re-exports [Field](../README.md#field-1)
 
 ___
 
@@ -116,7 +116,7 @@ Re-exports [UInt64](../classes/UInt64.md)
 | `permissions.setVotingFor` | [`AuthRequired`](Types.md#authrequired-1) |
 | `permissions.setZkappUri` | [`AuthRequired`](Types.md#authrequired-1) |
 | `publicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
-| `receiptChainHash` | [`Field`](../classes/Field.md) |
+| `receiptChainHash` | [`Field`](../README.md#field-1) |
 | `timing` | { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `isTimed`: [`Bool`](../classes/Bool.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  } |
 | `timing.cliffAmount` | [`UInt64`](../classes/UInt64.md) |
 | `timing.cliffTime` | [`UInt32`](../classes/UInt32.md) |
@@ -126,15 +126,15 @@ Re-exports [UInt64](../classes/UInt64.md)
 | `timing.vestingPeriod` | [`UInt32`](../classes/UInt32.md) |
 | `tokenId` | [`TokenId`](Types.md#tokenid-1) |
 | `tokenSymbol` | `string` |
-| `votingFor` | [`Field`](../classes/Field.md) |
-| `zkapp?` | { `actionState`: [`Field`](../classes/Field.md)[] ; `appState`: [`Field`](../classes/Field.md)[] ; `lastActionSlot`: [`UInt32`](../classes/UInt32.md) ; `provedState`: [`Bool`](../classes/Bool.md) ; `verificationKey?`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } ; `zkappUri`: `string` ; `zkappVersion`: [`UInt32`](../classes/UInt32.md)  } |
-| `zkapp.actionState` | [`Field`](../classes/Field.md)[] |
-| `zkapp.appState` | [`Field`](../classes/Field.md)[] |
+| `votingFor` | [`Field`](../README.md#field-1) |
+| `zkapp?` | { `actionState`: [`Field`](../README.md#field-1)[] ; `appState`: [`Field`](../README.md#field-1)[] ; `lastActionSlot`: [`UInt32`](../classes/UInt32.md) ; `provedState`: [`Bool`](../classes/Bool.md) ; `verificationKey?`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  } ; `zkappUri`: `string` ; `zkappVersion`: [`UInt32`](../classes/UInt32.md)  } |
+| `zkapp.actionState` | [`Field`](../README.md#field-1)[] |
+| `zkapp.appState` | [`Field`](../README.md#field-1)[] |
 | `zkapp.lastActionSlot` | [`UInt32`](../classes/UInt32.md) |
 | `zkapp.provedState` | [`Bool`](../classes/Bool.md) |
-| `zkapp.verificationKey?` | { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } |
+| `zkapp.verificationKey?` | { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  } |
 | `zkapp.verificationKey.data` | `string` |
-| `zkapp.verificationKey.hash` | [`Field`](../classes/Field.md) |
+| `zkapp.verificationKey.hash` | [`Field`](../README.md#field-1) |
 | `zkapp.zkappUri` | `string` |
 | `zkapp.zkappVersion` | [`UInt32`](../classes/UInt32.md) |
 
@@ -157,32 +157,32 @@ ___
 | `authorization` | { `proof?`: `string` ; `signature?`: `string`  } |
 | `authorization.proof?` | `string` |
 | `authorization.signature?` | `string` |
-| `body` | { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  } |
-| `body.actions` | { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `body.actions.data` | [`Field`](../classes/Field.md)[][] |
-| `body.actions.hash` | [`Field`](../classes/Field.md) |
-| `body.authorizationKind` | { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } |
+| `body` | { `actions`: { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../README.md#field-1)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../README.md#field-1) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../README.md#field-1) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  } |
+| `body.actions` | { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } |
+| `body.actions.data` | [`Field`](../README.md#field-1)[][] |
+| `body.actions.hash` | [`Field`](../README.md#field-1) |
+| `body.authorizationKind` | { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../README.md#field-1)  } |
 | `body.authorizationKind.isProved` | [`Bool`](../classes/Bool.md) |
 | `body.authorizationKind.isSigned` | [`Bool`](../classes/Bool.md) |
-| `body.authorizationKind.verificationKeyHash` | [`Field`](../classes/Field.md) |
+| `body.authorizationKind.verificationKeyHash` | [`Field`](../README.md#field-1) |
 | `body.balanceChange` | { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } |
 | `body.balanceChange.magnitude` | [`UInt64`](../classes/UInt64.md) |
 | `body.balanceChange.sgn` | [`Sign`](../classes/Sign.md) |
-| `body.callData` | [`Field`](../classes/Field.md) |
+| `body.callData` | [`Field`](../README.md#field-1) |
 | `body.callDepth` | `number` |
-| `body.events` | { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `body.events.data` | [`Field`](../classes/Field.md)[][] |
-| `body.events.hash` | [`Field`](../classes/Field.md) |
+| `body.events` | { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } |
+| `body.events.data` | [`Field`](../README.md#field-1)[][] |
+| `body.events.hash` | [`Field`](../README.md#field-1) |
 | `body.implicitAccountCreationFee` | [`Bool`](../classes/Bool.md) |
 | `body.incrementNonce` | [`Bool`](../classes/Bool.md) |
 | `body.mayUseToken` | { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } |
 | `body.mayUseToken.inheritFromParent` | [`Bool`](../classes/Bool.md) |
 | `body.mayUseToken.parentsOwnToken` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions` | { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } |
-| `body.preconditions.account` | { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } |
-| `body.preconditions.account.actionState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions` | { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } |
+| `body.preconditions.account` | { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[]  } |
+| `body.preconditions.account.actionState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.account.actionState.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.account.actionState.value` | [`Field`](../classes/Field.md) |
+| `body.preconditions.account.actionState.value` | [`Field`](../README.md#field-1) |
 | `body.preconditions.account.balance` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } |
 | `body.preconditions.account.balance.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.account.balance.value` | { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  } |
@@ -202,11 +202,11 @@ ___
 | `body.preconditions.account.provedState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } |
 | `body.preconditions.account.provedState.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.account.provedState.value` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.account.receiptChainHash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.account.receiptChainHash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.account.receiptChainHash.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.account.receiptChainHash.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.account.state` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] |
-| `body.preconditions.network` | { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
+| `body.preconditions.account.receiptChainHash.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.account.state` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[] |
+| `body.preconditions.network` | { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
 | `body.preconditions.network.blockchainLength` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } |
 | `body.preconditions.network.blockchainLength.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.blockchainLength.value` | { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  } |
@@ -222,57 +222,57 @@ ___
 | `body.preconditions.network.minWindowDensity.value` | { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  } |
 | `body.preconditions.network.minWindowDensity.value.lower` | [`UInt32`](../classes/UInt32.md) |
 | `body.preconditions.network.minWindowDensity.value.upper` | [`UInt32`](../classes/UInt32.md) |
-| `body.preconditions.network.nextEpochData` | { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } |
+| `body.preconditions.network.nextEpochData` | { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } |
 | `body.preconditions.network.nextEpochData.epochLength` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } |
 | `body.preconditions.network.nextEpochData.epochLength.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.nextEpochData.epochLength.value` | { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  } |
 | `body.preconditions.network.nextEpochData.epochLength.value.lower` | [`UInt32`](../classes/UInt32.md) |
 | `body.preconditions.network.nextEpochData.epochLength.value.upper` | [`UInt32`](../classes/UInt32.md) |
-| `body.preconditions.network.nextEpochData.ledger` | { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
-| `body.preconditions.network.nextEpochData.ledger.hash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.nextEpochData.ledger` | { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
+| `body.preconditions.network.nextEpochData.ledger.hash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.nextEpochData.ledger.hash.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.nextEpochData.ledger.hash.value` | [`Field`](../classes/Field.md) |
+| `body.preconditions.network.nextEpochData.ledger.hash.value` | [`Field`](../README.md#field-1) |
 | `body.preconditions.network.nextEpochData.ledger.totalCurrency` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } |
 | `body.preconditions.network.nextEpochData.ledger.totalCurrency.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.nextEpochData.ledger.totalCurrency.value` | { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  } |
 | `body.preconditions.network.nextEpochData.ledger.totalCurrency.value.lower` | [`UInt64`](../classes/UInt64.md) |
 | `body.preconditions.network.nextEpochData.ledger.totalCurrency.value.upper` | [`UInt64`](../classes/UInt64.md) |
-| `body.preconditions.network.nextEpochData.lockCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.nextEpochData.lockCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.nextEpochData.lockCheckpoint.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.nextEpochData.lockCheckpoint.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.nextEpochData.seed` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.nextEpochData.lockCheckpoint.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.nextEpochData.seed` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.nextEpochData.seed.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.nextEpochData.seed.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.nextEpochData.startCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.nextEpochData.seed.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.nextEpochData.startCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.nextEpochData.startCheckpoint.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.nextEpochData.startCheckpoint.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.snarkedLedgerHash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.nextEpochData.startCheckpoint.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.snarkedLedgerHash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.snarkedLedgerHash.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.snarkedLedgerHash.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.stakingEpochData` | { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } |
+| `body.preconditions.network.snarkedLedgerHash.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.stakingEpochData` | { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } |
 | `body.preconditions.network.stakingEpochData.epochLength` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } |
 | `body.preconditions.network.stakingEpochData.epochLength.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.stakingEpochData.epochLength.value` | { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  } |
 | `body.preconditions.network.stakingEpochData.epochLength.value.lower` | [`UInt32`](../classes/UInt32.md) |
 | `body.preconditions.network.stakingEpochData.epochLength.value.upper` | [`UInt32`](../classes/UInt32.md) |
-| `body.preconditions.network.stakingEpochData.ledger` | { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
-| `body.preconditions.network.stakingEpochData.ledger.hash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.stakingEpochData.ledger` | { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } |
+| `body.preconditions.network.stakingEpochData.ledger.hash` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.stakingEpochData.ledger.hash.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.stakingEpochData.ledger.hash.value` | [`Field`](../classes/Field.md) |
+| `body.preconditions.network.stakingEpochData.ledger.hash.value` | [`Field`](../README.md#field-1) |
 | `body.preconditions.network.stakingEpochData.ledger.totalCurrency` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } |
 | `body.preconditions.network.stakingEpochData.ledger.totalCurrency.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.stakingEpochData.ledger.totalCurrency.value` | { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  } |
 | `body.preconditions.network.stakingEpochData.ledger.totalCurrency.value.lower` | [`UInt64`](../classes/UInt64.md) |
 | `body.preconditions.network.stakingEpochData.ledger.totalCurrency.value.upper` | [`UInt64`](../classes/UInt64.md) |
-| `body.preconditions.network.stakingEpochData.lockCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.stakingEpochData.lockCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.stakingEpochData.lockCheckpoint.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.stakingEpochData.lockCheckpoint.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.stakingEpochData.seed` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.stakingEpochData.lockCheckpoint.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.stakingEpochData.seed` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.stakingEpochData.seed.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.stakingEpochData.seed.value` | [`Field`](../classes/Field.md) |
-| `body.preconditions.network.stakingEpochData.startCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.preconditions.network.stakingEpochData.seed.value` | [`Field`](../README.md#field-1) |
+| `body.preconditions.network.stakingEpochData.startCheckpoint` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.preconditions.network.stakingEpochData.startCheckpoint.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.preconditions.network.stakingEpochData.startCheckpoint.value` | [`Field`](../classes/Field.md) |
+| `body.preconditions.network.stakingEpochData.startCheckpoint.value` | [`Field`](../README.md#field-1) |
 | `body.preconditions.network.totalCurrency` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } |
 | `body.preconditions.network.totalCurrency.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.preconditions.network.totalCurrency.value` | { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  } |
@@ -285,8 +285,8 @@ ___
 | `body.preconditions.validWhile.value.upper` | [`UInt32`](../classes/UInt32.md) |
 | `body.publicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
 | `body.tokenId` | [`TokenId`](Types.md#tokenid-1) |
-| `body.update` | { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } |
-| `body.update.appState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] |
+| `body.update` | { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../README.md#field-1) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  }  } |
+| `body.update.appState` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[] |
 | `body.update.delegate` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } |
 | `body.update.delegate.isSome` | [`Bool`](../classes/Bool.md) |
 | `body.update.delegate.value` | [`PublicKey`](../classes/Types.PublicKey.md) |
@@ -314,24 +314,24 @@ ___
 | `body.update.timing.value.initialMinimumBalance` | [`UInt64`](../classes/UInt64.md) |
 | `body.update.timing.value.vestingIncrement` | [`UInt64`](../classes/UInt64.md) |
 | `body.update.timing.value.vestingPeriod` | [`UInt32`](../classes/UInt32.md) |
-| `body.update.tokenSymbol` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } |
+| `body.update.tokenSymbol` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../README.md#field-1) ; `symbol`: `string`  }  } |
 | `body.update.tokenSymbol.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.update.tokenSymbol.value` | { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  } |
-| `body.update.tokenSymbol.value.field` | [`Field`](../classes/Field.md) |
+| `body.update.tokenSymbol.value` | { `field`: [`Field`](../README.md#field-1) ; `symbol`: `string`  } |
+| `body.update.tokenSymbol.value.field` | [`Field`](../README.md#field-1) |
 | `body.update.tokenSymbol.value.symbol` | `string` |
-| `body.update.verificationKey` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } |
+| `body.update.verificationKey` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  } |
 | `body.update.verificationKey.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.update.verificationKey.value` | { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } |
+| `body.update.verificationKey.value` | { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  } |
 | `body.update.verificationKey.value.data` | `string` |
-| `body.update.verificationKey.value.hash` | [`Field`](../classes/Field.md) |
-| `body.update.votingFor` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } |
+| `body.update.verificationKey.value.hash` | [`Field`](../README.md#field-1) |
+| `body.update.votingFor` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } |
 | `body.update.votingFor.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.update.votingFor.value` | [`Field`](../classes/Field.md) |
-| `body.update.zkappUri` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } |
+| `body.update.votingFor.value` | [`Field`](../README.md#field-1) |
+| `body.update.zkappUri` | { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  } |
 | `body.update.zkappUri.isSome` | [`Bool`](../classes/Bool.md) |
-| `body.update.zkappUri.value` | { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } |
+| `body.update.zkappUri.value` | { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  } |
 | `body.update.zkappUri.value.data` | `string` |
-| `body.update.zkappUri.value.hash` | [`Field`](../classes/Field.md) |
+| `body.update.zkappUri.value.hash` | [`Field`](../README.md#field-1) |
 | `body.useFullCommitment` | [`Bool`](../classes/Bool.md) |
 
 #### Defined in
@@ -344,7 +344,7 @@ ___
 
 ### ActionState
 
-Ƭ **ActionState**: [`Field`](../classes/Field.md)
+Ƭ **ActionState**: [`Field`](../README.md#field-1)
 
 #### Defined in
 
@@ -395,7 +395,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | `Event`[] |
-| `hash` | [`Field`](../classes/Field.md) |
+| `hash` | [`Field`](../README.md#field-1) |
 
 #### Defined in
 
@@ -417,7 +417,7 @@ ___
 
 ### ReceiptChainHash
 
-Ƭ **ReceiptChainHash**: [`Field`](../classes/Field.md)
+Ƭ **ReceiptChainHash**: [`Field`](../README.md#field-1)
 
 #### Defined in
 
@@ -429,7 +429,7 @@ ___
 
 ### StateHash
 
-Ƭ **StateHash**: [`Field`](../classes/Field.md)
+Ƭ **StateHash**: [`Field`](../README.md#field-1)
 
 #### Defined in
 
@@ -441,7 +441,7 @@ ___
 
 ### TokenId
 
-Ƭ **TokenId**: [`Field`](../classes/Field.md)
+Ƭ **TokenId**: [`Field`](../README.md#field-1)
 
 #### Defined in
 
@@ -459,7 +459,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](../classes/Field.md) |
+| `field` | [`Field`](../README.md#field-1) |
 | `symbol` | `string` |
 
 #### Defined in
@@ -480,7 +480,7 @@ ___
 | :------ | :------ |
 | `AuthRequired` | [`AuthRequired`](Types.md#authrequired-1) |
 | `Bool` | [`Bool`](../classes/Bool.md) |
-| `Field` | [`Field`](../classes/Field.md) |
+| `Field` | [`Field`](../README.md#field-1) |
 | `PublicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
 | `Sign` | [`Sign`](../classes/Sign.md) |
 | `TokenId` | [`TokenId`](Types.md#tokenid-1) |
@@ -503,7 +503,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdates` | { `authorization`: { `proof?`: `string` ; `signature?`: `string`  } ; `body`: { `actions`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../classes/Field.md)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../classes/Field.md) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../classes/Field.md) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  }  }[] |
+| `accountUpdates` | { `authorization`: { `proof?`: `string` ; `signature?`: `string`  } ; `body`: { `actions`: { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } ; `authorizationKind`: { `isProved`: [`Bool`](../classes/Bool.md) ; `isSigned`: [`Bool`](../classes/Bool.md) ; `verificationKeyHash`: [`Field`](../README.md#field-1)  } ; `balanceChange`: { `magnitude`: [`UInt64`](../classes/UInt64.md) ; `sgn`: [`Sign`](../classes/Sign.md)  } ; `callData`: [`Field`](../README.md#field-1) ; `callDepth`: `number` ; `events`: { `data`: [`Field`](../README.md#field-1)[][] ; `hash`: [`Field`](../README.md#field-1)  } ; `implicitAccountCreationFee`: [`Bool`](../classes/Bool.md) ; `incrementNonce`: [`Bool`](../classes/Bool.md) ; `mayUseToken`: { `inheritFromParent`: [`Bool`](../classes/Bool.md) ; `parentsOwnToken`: [`Bool`](../classes/Bool.md)  } ; `preconditions`: { `account`: { `actionState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `balance`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  } ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `isNew`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `nonce`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `provedState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Bool`](../classes/Bool.md)  } ; `receiptChainHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `state`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[]  } ; `network`: { `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `validWhile`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  }  } ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `tokenId`: [`TokenId`](Types.md#tokenid-1) ; `update`: { `appState`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  }[] ; `delegate`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`PublicKey`](../classes/Types.PublicKey.md)  } ; `permissions`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `access`: [`AuthRequired`](Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](Types.md#authrequired-1) ; `editState`: [`AuthRequired`](Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](Types.md#authrequired-1) ; `receive`: [`AuthRequired`](Types.md#authrequired-1) ; `send`: [`AuthRequired`](Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](Types.md#authrequired-1)  }  } ; `timing`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](../classes/UInt64.md) ; `cliffTime`: [`UInt32`](../classes/UInt32.md) ; `initialMinimumBalance`: [`UInt64`](../classes/UInt64.md) ; `vestingIncrement`: [`UInt64`](../classes/UInt64.md) ; `vestingPeriod`: [`UInt32`](../classes/UInt32.md)  }  } ; `tokenSymbol`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `field`: [`Field`](../README.md#field-1) ; `symbol`: `string`  }  } ; `verificationKey`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  } ; `votingFor`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../README.md#field-1)  } ; `zkappUri`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](../README.md#field-1)  }  }  } ; `useFullCommitment`: [`Bool`](../classes/Bool.md)  }  }[] |
 | `feePayer` | { `authorization`: `string` ; `body`: { `fee`: [`UInt64`](../classes/UInt64.md) ; `nonce`: [`UInt32`](../classes/UInt32.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `validUntil?`: [`UInt32`](../classes/UInt32.md)  }  } |
 | `feePayer.authorization` | `string` |
 | `feePayer.body` | { `fee`: [`UInt64`](../classes/UInt64.md) ; `nonce`: [`UInt32`](../classes/UInt32.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md) ; `validUntil?`: [`UInt32`](../classes/UInt32.md)  } |
@@ -530,7 +530,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | `string` |
-| `hash` | [`Field`](../classes/Field.md) |
+| `hash` | [`Field`](../README.md#field-1) |
 
 #### Defined in
 
@@ -550,11 +550,11 @@ bindings/mina-transaction/transaction-leaves.ts:36
 | :------ | :------ |
 | `check` | (`value`: [`Account`](Types.md#account-1)) => `void` |
 | `emptyValue` | () => [`Account`](Types.md#account-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Account`](Types.md#account-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`Account`](Types.md#account-1) |
 | `fromJSON` | (`json`: [`Account`](Types.Json.md#account)) => [`Account`](Types.md#account-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`Account`](Types.md#account-1)) => `any`[] |
-| `toFields` | (`value`: [`Account`](Types.md#account-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`Account`](Types.md#account-1)) => `Field`[] |
 | `toInput` | (`value`: [`Account`](Types.md#account-1)) => `HashInput` |
 | `toJSON` | (`value`: [`Account`](Types.md#account-1)) => [`Account`](Types.Json.md#account) |
 
@@ -576,11 +576,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `void` |
 | `emptyValue` | () => [`AccountUpdate`](Types.md#accountupdate-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`AccountUpdate`](Types.md#accountupdate-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`AccountUpdate`](Types.md#accountupdate-1) |
 | `fromJSON` | (`json`: [`AccountUpdate`](Types.Json.md#accountupdate)) => [`AccountUpdate`](Types.md#accountupdate-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`AccountUpdate`](Types.md#accountupdate-1)) => `any`[] |
-| `toFields` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `Field`[] |
 | `toInput` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `HashInput` |
 | `toJSON` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => [`AccountUpdate`](Types.Json.md#accountupdate) |
 
@@ -600,14 +600,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `check` | (`x`: `Field`) => `void` |
+| `emptyValue` | () => `Field` |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: `Field`) => `string` |
 | `sizeInFields` | () => `number` |
 
 #### Defined in
@@ -626,21 +626,21 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
-| `emptyValue` | () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } & () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromJSON` | (`x`: `string`[][]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `toAuxiliary` | (`x?`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
-| `toFields` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
+| `check` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `void` |
+| `emptyValue` | () => { `data`: `Field`[][] ; `hash`: `Field`  } & () => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromJSON` | (`x`: `string`[][]) => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `toAuxiliary` | (`x?`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `any`[] |
+| `toFields` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `Field`[] |
+| `toInput` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `string`[][] |
 | `empty` | () => `Events` |
-| `emptyActionState` | () => [`Field`](../classes/Field.md) |
+| `emptyActionState` | () => `Field` |
 | `fromList` | (`events`: `Event`[]) => `Events` |
-| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
+| `hash` | (`events`: `Event`[]) => `Field` |
 | `pushEvent` | (`actions`: `Events`, `event`: `Event`) => `Events` |
 | `sizeInFields` | () => `number` |
-| `updateSequenceState` | (`state`: [`Field`](../classes/Field.md), `sequenceEventsHash`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md) |
+| `updateSequenceState` | (`state`: `Field`, `sequenceEventsHash`: `Field`) => `Field` |
 
 #### Defined in
 
@@ -659,10 +659,10 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `check` | (`x`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => `void` |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool } |
 | `toAuxiliary` | (`x?`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => `any`[] |
-| `toFields` | (`x`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
+| `toFields` | (`x`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => `Field`[] |
+| `toInput` | (`x`: { `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
 | `emptyValue` | () => `AuthRequired` |
 | `fromJSON` | (`json`: [`AuthRequired`](Types.Json.md#authrequired)) => `AuthRequired` |
 | `sizeInFields` | () => `number` |
@@ -684,17 +684,17 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
-| `emptyValue` | () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } & () => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromJSON` | (`x`: `string`[][]) => { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `toAuxiliary` | (`x?`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
-| `toFields` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: { `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
+| `check` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `void` |
+| `emptyValue` | () => { `data`: `Field`[][] ; `hash`: `Field`  } & () => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromJSON` | (`x`: `string`[][]) => { `data`: `Field`[][] ; `hash`: `Field`  } |
+| `toAuxiliary` | (`x?`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `any`[] |
+| `toFields` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `Field`[] |
+| `toInput` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: { `data`: `Field`[][] ; `hash`: `Field`  }) => `string`[][] |
 | `empty` | () => `Events` |
 | `fromList` | (`events`: `Event`[]) => `Events` |
-| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
+| `hash` | (`events`: `Event`[]) => `Field` |
 | `pushEvent` | (`events`: `Events`, `event`: `Event`) => `Events` |
 | `sizeInFields` | () => `number` |
 
@@ -714,14 +714,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `check` | (`x`: `Field`) => `void` |
+| `emptyValue` | () => `Field` |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: `Field`) => `string` |
 | `sizeInFields` | () => `number` |
 
 #### Defined in
@@ -740,15 +740,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `emptyValue?` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
+| `check` | (`x`: `Field`) => `void` |
+| `emptyValue?` | () => `Field` |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `fromJSON` | (`x`: `string`) => `Field` |
 | `sizeInFields` | () => `number` |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `toJSON` | (`x`: `Field`) => `string` |
 
 #### Defined in
 
@@ -766,15 +766,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
+| `check` | (`x`: `Field`) => `void` |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `emptyValue` | () => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
 | `sizeInFields` | () => `number` |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `toJSON` | (`x`: `Field`) => `string` |
 
 #### Defined in
 
@@ -792,14 +792,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: { `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String }) => `void` |
-| `emptyValue?` | () => { `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => { `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String } |
-| `toAuxiliary` | (`x?`: { `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String }) => `any`[] |
-| `toFields` | (`x`: { `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String }) => [`Field`](../classes/Field.md)[] |
+| `check` | (`x`: { `field`: `Field` = Field; `symbol`: `string` = String }) => `void` |
+| `emptyValue?` | () => { `field`: `Field` = Field; `symbol`: `string` = String } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => { `field`: `Field` = Field; `symbol`: `string` = String } |
+| `toAuxiliary` | (`x?`: { `field`: `Field` = Field; `symbol`: `string` = String }) => `any`[] |
+| `toFields` | (`x`: { `field`: `Field` = Field; `symbol`: `string` = String }) => `Field`[] |
 | `fromJSON` | (`symbol`: `string`) => `TokenSymbol` |
 | `sizeInFields` | () => `number` |
-| `toInput` | (`__namedParameters`: `TokenSymbol`) => `GenericHashInput`<[`Field`](../classes/Field.md)\> |
+| `toInput` | (`__namedParameters`: `TokenSymbol`) => `GenericHashInput`<`Field`\> |
 | `toJSON` | (`__namedParameters`: `TokenSymbol`) => `string` |
 
 #### Defined in
@@ -820,10 +820,10 @@ ___
 | :------ | :------ |
 | `AuthRequired` | `ProvableExtended`<[`AuthRequired`](Types.md#authrequired-1), [`AuthRequired`](Types.Json.md#authrequired)\> |
 | `Bool` | `ProvableExtended`<[`Bool`](../classes/Bool.md), `boolean`\> |
-| `Field` | `ProvableExtended`<[`Field`](../classes/Field.md), `string`\> |
+| `Field` | `ProvableExtended`<`Field`, `string`\> |
 | `PublicKey` | `ProvableExtended`<[`PublicKey`](../classes/Types.PublicKey.md), `string`\> |
 | `Sign` | `ProvableExtended`<[`Sign`](../classes/Sign.md), [`Sign`](Types.Json.md#sign)\> |
-| `TokenId` | `ProvableExtended`<[`Field`](../classes/Field.md), `string`\> |
+| `TokenId` | `ProvableExtended`<`Field`, `string`\> |
 | `UInt32` | `ProvableExtended`<[`UInt32`](../classes/UInt32.md), `string`\> |
 | `UInt64` | `ProvableExtended`<[`UInt64`](../classes/UInt64.md), `string`\> |
 
@@ -845,11 +845,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `void` |
 | `emptyValue` | () => [`ZkappCommand`](Types.md#zkappcommand-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`ZkappCommand`](Types.md#zkappcommand-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`ZkappCommand`](Types.md#zkappcommand-1) |
 | `fromJSON` | (`json`: [`ZkappCommand`](Types.Json.md#zkappcommand)) => [`ZkappCommand`](Types.md#zkappcommand-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `any`[] |
-| `toFields` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `Field`[] |
 | `toInput` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `HashInput` |
 | `toJSON` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => [`ZkappCommand`](Types.Json.md#zkappcommand) |
 
@@ -863,7 +863,7 @@ ___
 
 ### ZkappUri
 
-• **ZkappUri**: `GenericProvable`<{ `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }, [`Field`](../classes/Field.md)\> & { `emptyValue?`: () => { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } ; `fromJSON`: (`x`: `string`) => { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  } ; `toInput`: (`x`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } ; `toJSON`: (`x`: { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }) => `string`  } & { `emptyValue`: () => { `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }
+• **ZkappUri**: `GenericProvable`<{ `data`: `string` ; `hash`: `Field`  }, `Field`\> & { `emptyValue?`: () => { `data`: `string` ; `hash`: `Field`  } ; `fromJSON`: (`x`: `string`) => { `data`: `string` ; `hash`: `Field`  } ; `toInput`: (`x`: { `data`: `string` ; `hash`: `Field`  }) => { `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } ; `toJSON`: (`x`: { `data`: `string` ; `hash`: `Field`  }) => `string`  } & { `emptyValue`: () => { `data`: `string` ; `hash`: `Field`  }  }
 
 #### Defined in
 
@@ -928,11 +928,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: `T`) => `void` |
 | `emptyValue` | () => `T` |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => `T` |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => `T` |
 | `fromJSON` | (`json`: `TJson`) => `T` |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: `T`) => `any`[] |
-| `toFields` | (`value`: `T`) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: `T`) => `Field`[] |
 | `toInput` | (`value`: `T`) => `HashInput` |
 | `toJSON` | (`value`: `T`) => `TJson` |
 
