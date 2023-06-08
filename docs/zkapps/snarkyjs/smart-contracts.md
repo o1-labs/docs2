@@ -112,7 +112,7 @@ Therefore, when executing your code and trying to read the value of `x` to turn 
 This is why we have a special function for logging stuff from inside your method:
 
 ```ts
-Circuit.log(x);
+Provable.log(x);
 ```
 
 The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
