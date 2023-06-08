@@ -1,6 +1,16 @@
 ---
 title: On-Chain Values
 hide_title: true
+description: Learn about accessing and manipulating on-chain values in a zkApp, including network and account-level data. Understand potential use cases such as timestamp restrictions, on-chain balances, and account properties.
+keywords:
+  - on-chain values
+  - zkapp
+  - smart contract
+  - mina protocol
+  - blockchain
+  - defi
+  - zkapp account
+  - network state
 ---
 
 :::info
@@ -190,7 +200,7 @@ accountUpdate.account.permissions.set(permissions);
 ```
 
 :::tip
-When setting fields on an account update, you have to make sure that this _same_ account update has the correct authorization to perform those actions.
+When setting fields on an account update, you must ensure that this _same_ account update has the correct authorization to perform those actions.
 For example, to initially set the verification key, the update requires a signature from the account owner:
 
 ```ts
