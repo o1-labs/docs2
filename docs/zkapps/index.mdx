@@ -35,7 +35,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 ### What are zkApps?
 
-zkApps ("zero-knowledge apps") are Mina Protocol’s smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs.
+zkApps (zero knowledge apps) are Mina Protocol smart contracts powered by zero knowledge proofs, specifically using zk-SNARKs.
 
 zkApps use an **off-chain execution** and mostly **off-chain state** model. This allows for private computation and state that can be either private or public.
 
@@ -51,38 +51,36 @@ zkApps can perform arbitrarily-complex computations off chain while incurring on
 
 <br />
 
-You can learn more on the [How zkApps Work](./zkapps/how-zkapps-work) page.
+Learn more on [How zkApps Work](./zkapps/how-zkapps-work).
 
 ### TypeScript
 
 zkApps are written in [TypeScript](https://www.typescriptlang.org/).
 
-TypeScript provides an easy, familiar language (JavaScript), but with type safety, making it easy to get started writing zkApps. If you're new to using TypeScript, check out this helpful [12-min introductory video](https://www.youtube.com/watch?v=ahCwqrYpIuM).
+TypeScript provides an easy, familiar language (JavaScript), but with type safety, making it easy to get started writing zkApps. If you're new to using TypeScript, check out this helpful 12-min introductory video [TypeScript - The Basics](https://www.youtube.com/watch?v=ahCwqrYpIuM).
 
-See [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) page to learn more.
+To learn more, see [How to Write a zkApp](/zkapps/how-to-write-a-zkapp).
 
 ### Quickstart
 
-Deploy a zkApp in 5-steps, to see how easy it is to get started:
+To get started, deploy a zkApp in 5 steps:
 
-1. `npm install -g zkapp-cli` to make the `zk` command available on your system
+1. `npm install -g zkapp-cli` to install the zkApp CLI and make the `zk` command available on your system
 2. `zk project <name>`
 3. `cd <name>`
 4. `zk config`
 
-   Enter the details below when prompted:
-
-   - Name: `berkeley` (can be anything)
-   - URL: `https://proxy.berkeley.minaexplorer.com/graphql`
-   - Fee: `0.1`
-
-   When finished, hold command (Mac) or control (Windows & Linux) and click the URL shown in your terminal to request Testnet MINA on your address from https://faucet.minaprotocol.com/?address=yourAddress. Then wait ~3 minutes for the next block so you have enough Testnet MINA to send your deploy transaction.
+  Follow the command prompts to your configure your project's `config.json` file. 
+  
+  - name: `berkeley` (name can be anything)
+  - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+  - transaction fee: `0.1`
+ 
+  Follow the prompts to request Testnet MINA (tMINA) to fund your fee payer account. Click the URL in your terminal to request tMINA on your address. Wait ~3 minutes for the next block so you have enough tMINA to send your deploy transaction.
 
 5. `zk deploy berkeley`
 
-The project you just created contains an example smart
-contract named `Add.ts` that stores a number as on-chain state and adds `2` to it
-whenever a transaction is received by the zkApp account.
+  The project you just created contains an example smart contract named `Add.ts` that stores a number as on-chain state and adds `2` to it whenever a transaction is received by the zkApp account.
 
 You just deployed a zkApp!
 
@@ -90,7 +88,7 @@ Next, go further with [Tutorial 1: Hello World](https://docs.minaprotocol.com/zk
 
 ### Examples of zkApps
 
-Play around with a few example zkApps to see what’s possible:
+Play around with a few example zkApps to see what's possible:
 
 <figure>
   <img
@@ -106,10 +104,10 @@ Play around with a few example zkApps to see what’s possible:
 
 ### Learn more
 
-To learn more about developing zkApps, read [how zkApps work](/zkapps/how-zkapps-work), [how to write a zkApp](/zkapps/how-to-write-a-zkapp), and [zkApps for Ethereum Developers](/zkapps/zkapps-for-ethereum-developers).
+To learn more about developing zkApps, see [how zkApps work](/zkapps/how-zkapps-work), [how to write a zkApp](/zkapps/how-to-write-a-zkapp) and [zkApps for Ethereum Developers](/zkapps/zkapps-for-ethereum-developers).
 
 Try the [zkApps tutorials](/zkapps/tutorials/hello-world) to learn by doing!
 
-### Get help
+### Get help and join the community
 
 Join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord. Participate and ask questions in [zkApps Developers Office Hours](/participate/office-hours).

@@ -19,85 +19,149 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # How to Write a zkApp
 
-A zkApp consists of a smart contract and a UI to interact with it. First, install the Mina zkApp CLI and write a smart contract.
+A zkApp consists of a smart contract and a UI to interact with it. 
 
-## Write a smart contract
+Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/). 
 
-Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
+First, install the Mina zkApp CLI.
 
-Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework (<a href="https://jestjs.io/">Jest</a>), code auto-formatting (<a href="https://prettier.io/
-">Prettier</a>), linting (<a href="https://eslint.org/">ES Lint</a>), & more.
+The Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework [Jest](https://jestjs.io/), code auto-formatting [Prettier](https://prettier.io/
+), linting [ES Lint](https://eslint.org/), and more.
 
-### Install Mina zkApp CLI
+## Install Mina zkApp CLI
 
 ```sh
 npm install -g zkapp-cli
 ```
 
-#### Dependencies:
+Dependencies:
 
 - NodeJS 16+ (or 14 using `node --experimental-wasm-threads`)
 - NPM 6+
 - Git 2+
 
-:::tip
+If you have a later version installed, install the required version using the package manager for your system: 
 
-If you have an older version installed, install a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
+- MacOs [Homebrew](https://brew.sh/)
 
-:::
+- Windows [Chocolatey](https://chocolatey.org/)
 
-### Start a project
+- Linux (apt, yum, and others)
 
-Now that you have Mina zkApp CLI installed, you can start with an example or start your own project.
+    As recommended by the Node.js project, you might need to install a recent Node.js version using NodeSource binary distributions: [Debian](https://github.com/nodesource/distributions#debinstall), [rpm](https://github.com/nodesource/distributions#rpminstall).
 
-#### Option A: Start with an example (recommended)
+## Start a project
 
-Examples are based on the standard project structure, but with additional files in the `/src` directory as the only difference.
+Now that you have the Mina zkApp CLI installed, you can start with an example or start your own project.
 
-1. **Install:** Run `zk example sudoku`. This creates a new project and includes
-   the example files (i.e. the smart contract) inside the project’s `src/`
-   directory. Type `ls` & hit enter to see the files that were created or open
-   the directory in a code editor such as VS Code.
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you
-   see all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run tests when you save changes to your code.
-3. **Build the example:** Run `npm run build` to compile your TypeScript
-   into JavaScript inside the project’s `/build` directory.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
+Example projects do not create an accompanying UI. 
 
-You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
+### Option A: Start with an example (recommended)
 
-#### Option B: Start your own project
+Examples are based on the standard project structure and provide additional files in the `/src` directory.
 
-1. **Install:** Run `zk project <myproj>`. Type `ls` and hit enter to see the
-   newly created project structure. _Note_: If you want to directly scaffold an UI with your new zkApp, you can do so by adding the `--ui` flag to the previous command, like `zk project <myproj> --ui=<framework>`. You can currently choose from the following frameworks: `svelte`, `next` or `nuxt`
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you can
-   see that all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run you save changes to your code.
-3. **Build:** Run `npm run build` to compile your TypeScript code into
-   JavaScript inside the project’s `/build`.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
-5. **Deploy to Mainnet:** (Coming soon.)
+1. Create the example project: `zk example`
+
+  The `zk example` command prompts you to select an example project:
+
+  ```text
+  ? Choose an example …
+❯ sudoku
+  tictactoe
+  ```
+
+  Select the `sudoku` example project. 
+
+  The created project includes the example files (the smart contract) in the project's `src/` directory. 
+  
+  To see the files that were created, change to the `sudoku` directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+
+1. Run tests and see the tests pass: `npm run test`  
+  
+  To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+
+1. Build the example: `npm run build`
+
+  Compile your TypeScript into JavaScript in the project `/build` directory.
+
+1. Configure your zkApp: `zk config`
+
+  The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
+  
+  For Berkeley Testnet, use:
+  
+    - name: `berkeley`
+    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+    - transaction fee: `0.1`
+
+1. Fund your fee payer account.
+
+  Follow the prompts to request tMINA. 
+
+1. Deploy to Testnet: `zk deploy`
+
+  Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
+
+### Option B: Start your own project
+
+1. Create your own project: `zk project <myproj>`
+
+    The created project includes the files (the smart contract) in the project's `src/` directory. 
+
+1. Select an accompanying UI framework, if any:
+
+    ```text
+    ? Create an accompanying UI project too? …
+  ❯ next
+    svelte
+    nuxt
+    empty
+    none
+    ```
+    
+    For your selected UI framework, follow the prompts.
+
+    To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+
+1. Run tests and see the tests pass: `npm run test`  
+  
+    To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+
+1. Build the example: `npm run build`
+
+    Compile your TypeScript into JavaScript in the project `/build` directory.
+
+1. Configure your zkApp: `zk config`
+
+    The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
+
+    For Berkeley Testnet, use:
+
+    - name: `berkeley`
+    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+    - transaction fee: `0.1`
+
+1. Fund your fee payer account.
+
+    Follow the prompts to request tMina. 
+
+1. Deploy to Testnet: `zk deploy`
+
+    Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
 
 ### Writing your smart contract
 
 zkApps are written in TypeScript using SnarkyJS. SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
 
-See [the SnarkyJS docs](snarkyjs) to learn more. The first 3 subsections are enough to get you started writing zkApps:
+To get started writing zkApps, begin with these SnarkyJS docs:
 
 - [Basic concepts](./snarkyjs/basic-concepts)
 - [Smart contracts](./snarkyjs/smart-contracts)
 - [Interacting with Mina](./snarkyjs/interact-with-mina)
 
-Start with [Tutorial 1: Hello World](./tutorials/hello-world), a hands-on walkthrough that teaches you to create your first zkApp.
+For guided steps to create your first zkApp, start with [Tutorial 1: Hello World](./tutorials/hello-world).
 
-For a comprehensive documentation of the SnarkyJS API, please see the [SnarkyJS reference](snarkyjs-reference).
+For comprehensive details about the SnarkyJS API, see the [SnarkyJS reference](snarkyjs-reference).
 
 ## Next Steps
 
