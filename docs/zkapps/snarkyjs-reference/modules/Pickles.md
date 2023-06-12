@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Pickles
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Pickles
 
 # Namespace: Pickles
 
@@ -26,11 +26,11 @@ ___
 
 ### Prover
 
-Ƭ **Prover**: (`publicInput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: [`MlArray`](../modules.md#mlarray-1)<[`Proof`](Pickles.md#proof)\>) => `Promise`<[`MlTuple`](../modules.md#mltuple-1)<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+Ƭ **Prover**: (`publicInput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: [`MlArray`](../modules.md#mlarray-1)<[`Proof`](Pickles.md#proof)\>) => `Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
 
 #### Type declaration
 
-▸ (`publicInput`, `previousProofs`): `Promise`<[`MlTuple`](../modules.md#mltuple-1)<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+▸ (`publicInput`, `previousProofs`): `Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
 
 ##### Parameters
 
@@ -41,7 +41,7 @@ ___
 
 ##### Returns
 
-`Promise`<[`MlTuple`](../modules.md#mltuple-1)<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+`Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
 
 #### Defined in
 
@@ -69,7 +69,7 @@ ___
 
 ### Statement
 
-Ƭ **Statement**: [`MlTuple`](../modules.md#mltuple-1)<[`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>\>
+Ƭ **Statement**: `MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>\>
 
 #### Defined in
 
@@ -79,7 +79,7 @@ ___
 
 ### StatementConst
 
-Ƭ **StatementConst**: [`MlTuple`](../modules.md#mltuple-1)<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>\>
+Ƭ **StatementConst**: `MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>\>
 
 #### Defined in
 

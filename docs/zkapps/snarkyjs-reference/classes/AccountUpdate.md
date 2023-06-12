@@ -1,14 +1,14 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / AccountUpdate
+[SnarkyJS](../README.md) / [Modules](../modules.md) / AccountUpdate
 
 # Class: AccountUpdate
 
 An [AccountUpdate](AccountUpdate.md) is a set of instructions for the Mina network.
-It includes [Preconditions](../modules.md#preconditions-1) and a list of state updates, which need to
-be authorized by either a [Signature](Signature.md) or [Proof](Proof-1.md).
+It includes Preconditions and a list of state updates, which need to
+be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 ## Implements
 
-- `AccountUpdate`
+- [`AccountUpdate`](../modules/Types.md#accountupdate-1)
 
 ## Table of contents
 
@@ -93,8 +93,10 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof-1.md).
 
 | Name | Type |
 | :------ | :------ |
-| `body` | [`Body`](../modules.md#body) |
+| `body` | `Body` |
 | `authorization?` | `Object` |
+| `authorization.proof?` | `string` |
+| `authorization.signature?` | `string` |
 
 #### Defined in
 
@@ -104,7 +106,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof-1.md).
 
 ### account
 
-• **account**: [`Account`](../modules.md#account-1)
+• **account**: `Account`
 
 #### Defined in
 
@@ -115,6 +117,13 @@ ___
 ### authorization
 
 • **authorization**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `proof?` | `string` |
+| `signature?` | `string` |
 
 #### Implementation of
 
@@ -128,7 +137,7 @@ ___
 
 ### body
 
-• **body**: [`Body`](../modules.md#body)
+• **body**: `Body`
 
 #### Implementation of
 
@@ -159,7 +168,7 @@ ___
 
 ### currentSlot
 
-• **currentSlot**: [`CurrentSlot`](../modules.md#currentslot)
+• **currentSlot**: `CurrentSlot`
 
 #### Defined in
 
@@ -212,7 +221,7 @@ ___
 
 ### network
 
-• **network**: [`Network`](../modules.md#network)
+• **network**: `Network`
 
 #### Defined in
 
@@ -238,11 +247,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `check` | (`x`: { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  }) => `void` |
+| `emptyValue` | () => { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  } & () => { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  } |
+| `fromFields` | (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  } |
+| `fromJSON` | (`x`: `string`[][]) => { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  } |
+| `toAuxiliary` | (`x?`: { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  }) => `any`[] |
+| `toFields` | (`x`: { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  }) => [`Field`](Field.md)[] |
+| `toInput` | (`x`: { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  }) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
+| `toJSON` | (`x`: { `data`: [`Field`](Field.md)[][] ; `hash`: [`Field`](Field.md)  }) => `string`[][] |
 | `empty` | () => `Events` |
 | `emptyActionState` | () => [`Field`](Field.md) |
 | `fromList` | (`events`: `Event`[]) => `Events` |
 | `hash` | (`events`: `Event`[]) => [`Field`](Field.md) |
 | `pushEvent` | (`actions`: `Events`, `event`: `Event`) => `Events` |
+| `sizeInFields` | () => `number` |
 | `updateSequenceState` | (`state`: [`Field`](Field.md), `sequenceEventsHash`: [`Field`](Field.md)) => [`Field`](Field.md) |
 
 #### Defined in
@@ -286,7 +304,7 @@ StaticChildren(AnyChildren, StaticChildren(1))
 | `AnyChildren` | ``"AnyChildren"`` |
 | `NoChildren` | `number` |
 | `NoDelegation` | ``"NoDelegation"`` |
-| `StaticChildren` | (`n`: `number`) => [`AccountUpdatesLayout`](../modules.md#accountupdateslayout)(...`args`: [`AccountUpdatesLayout`](../modules.md#accountupdateslayout)[]) => [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) |
+| `StaticChildren` | (`n`: `number`) => `AccountUpdatesLayout`(...`args`: `AccountUpdatesLayout`[]) => `AccountUpdatesLayout` |
 
 #### Defined in
 
@@ -296,7 +314,7 @@ ___
 
 ### check
 
-▪ `Static` **check**: (`value`: `AccountUpdate`) => `void` = `Types.AccountUpdate.check`
+▪ `Static` **check**: (`value`: [`AccountUpdate`](../modules/Types.md#accountupdate-1)) => `void` = `Types.AccountUpdate.check`
 
 #### Type declaration
 
@@ -306,7 +324,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `AccountUpdate` |
+| `value` | [`AccountUpdate`](../modules/Types.md#accountupdate-1) |
 
 ##### Returns
 
@@ -348,7 +366,7 @@ ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: `AccountUpdate`) => [`Field`](Field.md)[] = `Types.AccountUpdate.toFields`
+▪ `Static` **toFields**: (`value`: [`AccountUpdate`](../modules/Types.md#accountupdate-1)) => [`Field`](Field.md)[] = `Types.AccountUpdate.toFields`
 
 #### Type declaration
 
@@ -358,7 +376,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `AccountUpdate` |
+| `value` | [`AccountUpdate`](../modules/Types.md#accountupdate-1) |
 
 ##### Returns
 
@@ -372,7 +390,7 @@ ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`value`: `AccountUpdate`) => `HashInput` = `Types.AccountUpdate.toInput`
+▪ `Static` **toInput**: (`value`: [`AccountUpdate`](../modules/Types.md#accountupdate-1)) => `HashInput` = `Types.AccountUpdate.toInput`
 
 #### Type declaration
 
@@ -382,7 +400,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `AccountUpdate` |
+| `value` | [`AccountUpdate`](../modules/Types.md#accountupdate-1) |
 
 ##### Returns
 
@@ -415,11 +433,11 @@ ___
 
 ### publicKey
 
-• `get` **publicKey**(): [`PublicKey`](PublicKey.md)
+• `get` **publicKey**(): [`PublicKey`](Types.PublicKey.md)
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
 #### Defined in
 
@@ -471,6 +489,55 @@ ___
 
 `Object`
 
+| Name | Type |
+| :------ | :------ |
+| `appState` | { `isSome`: [`Bool`](Bool.md) ; `value`: [`Field`](Field.md)  }[] |
+| `delegate` | { `isSome`: [`Bool`](Bool.md) ; `value`: [`PublicKey`](Types.PublicKey.md)  } |
+| `delegate.isSome` | [`Bool`](Bool.md) |
+| `delegate.value` | [`PublicKey`](Types.PublicKey.md) |
+| `permissions` | { `isSome`: [`Bool`](Bool.md) ; `value`: { `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  }  } |
+| `permissions.isSome` | [`Bool`](Bool.md) |
+| `permissions.value` | { `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  } |
+| `permissions.value.access` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.editActionState` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.editState` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.incrementNonce` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.receive` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.send` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setDelegate` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setPermissions` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setTiming` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setTokenSymbol` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setVerificationKey` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setVotingFor` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setZkappUri` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `timing` | { `isSome`: [`Bool`](Bool.md) ; `value`: { `cliffAmount`: [`UInt64`](UInt64.md) ; `cliffTime`: [`UInt32`](UInt32.md) ; `initialMinimumBalance`: [`UInt64`](UInt64.md) ; `vestingIncrement`: [`UInt64`](UInt64.md) ; `vestingPeriod`: [`UInt32`](UInt32.md)  }  } |
+| `timing.isSome` | [`Bool`](Bool.md) |
+| `timing.value` | { `cliffAmount`: [`UInt64`](UInt64.md) ; `cliffTime`: [`UInt32`](UInt32.md) ; `initialMinimumBalance`: [`UInt64`](UInt64.md) ; `vestingIncrement`: [`UInt64`](UInt64.md) ; `vestingPeriod`: [`UInt32`](UInt32.md)  } |
+| `timing.value.cliffAmount` | [`UInt64`](UInt64.md) |
+| `timing.value.cliffTime` | [`UInt32`](UInt32.md) |
+| `timing.value.initialMinimumBalance` | [`UInt64`](UInt64.md) |
+| `timing.value.vestingIncrement` | [`UInt64`](UInt64.md) |
+| `timing.value.vestingPeriod` | [`UInt32`](UInt32.md) |
+| `tokenSymbol` | { `isSome`: [`Bool`](Bool.md) ; `value`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }  } |
+| `tokenSymbol.isSome` | [`Bool`](Bool.md) |
+| `tokenSymbol.value` | { `field`: [`Field`](Field.md) ; `symbol`: `string`  } |
+| `tokenSymbol.value.field` | [`Field`](Field.md) |
+| `tokenSymbol.value.symbol` | `string` |
+| `verificationKey` | { `isSome`: [`Bool`](Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](Field.md)  }  } |
+| `verificationKey.isSome` | [`Bool`](Bool.md) |
+| `verificationKey.value` | { `data`: `string` ; `hash`: [`Field`](Field.md)  } |
+| `verificationKey.value.data` | `string` |
+| `verificationKey.value.hash` | [`Field`](Field.md) |
+| `votingFor` | { `isSome`: [`Bool`](Bool.md) ; `value`: [`Field`](Field.md)  } |
+| `votingFor.isSome` | [`Bool`](Bool.md) |
+| `votingFor.value` | [`Field`](Field.md) |
+| `zkappUri` | { `isSome`: [`Bool`](Bool.md) ; `value`: { `data`: `string` ; `hash`: [`Field`](Field.md)  }  } |
+| `zkappUri.isSome` | [`Bool`](Bool.md) |
+| `zkappUri.value` | { `data`: `string` ; `hash`: [`Field`](Field.md)  } |
+| `zkappUri.value.data` | `string` |
+| `zkappUri.value.hash` | [`Field`](Field.md) |
+
 #### Defined in
 
 [lib/account_update.ts:900](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L900)
@@ -519,7 +586,7 @@ approves it.
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `childUpdate` | [`AccountUpdate`](AccountUpdate.md) | `undefined` |
-| `layout` | [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) | `AccountUpdate.Layout.NoChildren` |
+| `layout` | `AccountUpdatesLayout` | `AccountUpdate.Layout.NoChildren` |
 
 #### Returns
 
@@ -597,7 +664,7 @@ ___
 | :------ | :------ |
 | `«destructured»` | `Object` |
 | › `amount` | `number` \| `bigint` \| [`UInt64`](UInt64.md) |
-| › `to` | [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
+| › `to` | [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
 
 #### Returns
 
@@ -635,11 +702,11 @@ ___
 
 ### toJSON
 
-▸ **toJSON**(): `AccountUpdate`
+▸ **toJSON**(): [`AccountUpdate`](../modules/Types.Json.md#accountupdate)
 
 #### Returns
 
-`AccountUpdate`
+[`AccountUpdate`](../modules/Types.Json.md#accountupdate)
 
 #### Defined in
 
@@ -690,10 +757,10 @@ ___
 | :------ | :------ |
 | `id` | [`Field`](Field.md) |
 | `parentTokenId` | [`Field`](Field.md) |
-| `tokenOwner` | [`PublicKey`](PublicKey.md) |
-| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
+| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
 
 #### Defined in
 
@@ -819,7 +886,7 @@ becomes part of the proof.
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | [`PublicKey`](PublicKey.md) |
+| `publicKey` | [`PublicKey`](Types.PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
 #### Returns
@@ -854,7 +921,7 @@ be (can be) authorized by a signature.
 
 | Name | Type |
 | :------ | :------ |
-| `signer` | [`PublicKey`](PublicKey.md) |
+| `signer` | [`PublicKey`](Types.PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
 #### Returns
@@ -896,7 +963,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `address` | [`PublicKey`](PublicKey.md) |
+| `address` | [`PublicKey`](Types.PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
 #### Returns
@@ -911,18 +978,18 @@ ___
 
 ### defaultFeePayer
 
-▸ `Static` **defaultFeePayer**(`address`, `nonce`): [`FeePayerUnsigned`](../modules.md#feepayerunsigned)
+▸ `Static` **defaultFeePayer**(`address`, `nonce`): `FeePayerUnsigned`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `address` | [`PublicKey`](PublicKey.md) |
+| `address` | [`PublicKey`](Types.PublicKey.md) |
 | `nonce` | [`UInt32`](UInt32.md) |
 
 #### Returns
 
-[`FeePayerUnsigned`](../modules.md#feepayerunsigned)
+`FeePayerUnsigned`
 
 #### Defined in
 
@@ -946,11 +1013,11 @@ ___
 
 ### dummyFeePayer
 
-▸ `Static` **dummyFeePayer**(): [`FeePayerUnsigned`](../modules.md#feepayerunsigned)
+▸ `Static` **dummyFeePayer**(): `FeePayerUnsigned`
 
 #### Returns
 
-[`FeePayerUnsigned`](../modules.md#feepayerunsigned)
+`FeePayerUnsigned`
 
 #### Defined in
 
@@ -987,7 +1054,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `json` | `AccountUpdate` |
+| `json` | [`AccountUpdate`](../modules/Types.Json.md#accountupdate) |
 
 #### Returns
 
@@ -1013,7 +1080,7 @@ and require that the net balance change of the transaction covers the account cr
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `feePayer` | [`PublicKey`](PublicKey.md) | the address of the account that pays the fee |
+| `feePayer` | [`PublicKey`](Types.PublicKey.md) | the address of the account that pays the fee |
 | `numberOfAccounts?` | `number` | the number of new accounts to fund (default: 1) |
 
 #### Returns
@@ -1041,7 +1108,7 @@ feePayerUpdate.send({ to: receiverAddress, amount: initialBalance });
 
 | Name | Type |
 | :------ | :------ |
-| `feePayer` | [`PrivateKey`](PrivateKey.md) \| [`PublicKey`](PublicKey.md) |
+| `feePayer` | [`PrivateKey`](PrivateKey.md) \| [`PublicKey`](Types.PublicKey.md) |
 | `options?` | `number` \| { `initialBalance`: `string` \| `number` \| [`UInt64`](UInt64.md)  } |
 
 #### Returns
@@ -1062,7 +1129,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) \| [`FeePayerUnsigned`](../modules.md#feepayerunsigned) |
+| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) \| `FeePayerUnsigned` |
 
 #### Returns
 
@@ -1082,7 +1149,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) \| [`FeePayerUnsigned`](../modules.md#feepayerunsigned) |
+| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) \| `FeePayerUnsigned` |
 
 #### Returns
 
@@ -1107,7 +1174,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `update` | [`AccountUpdate`](AccountUpdate.md) \| [`FeePayerUnsigned`](../modules.md#feepayerunsigned) |
+| `update` | [`AccountUpdate`](AccountUpdate.md) \| `FeePayerUnsigned` |
 
 #### Returns
 
@@ -1138,7 +1205,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `maybeValue` | [`SetOrKeep`](../modules.md#setorkeep)<`T`\> |
+| `maybeValue` | `SetOrKeep`<`T`\> |
 | `value` | `T` |
 
 #### Returns
@@ -1159,7 +1226,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `feePayer` | [`FeePayerUnsigned`](../modules.md#feepayerunsigned) |
+| `feePayer` | `FeePayerUnsigned` |
 | `privateKey?` | [`PrivateKey`](PrivateKey.md) |
 
 #### Returns
@@ -1194,7 +1261,7 @@ ___
 
 ### toJSON
 
-▸ `Static` **toJSON**(`a`): `AccountUpdate`
+▸ `Static` **toJSON**(`a`): [`AccountUpdate`](../modules/Types.Json.md#accountupdate)
 
 #### Parameters
 
@@ -1204,7 +1271,7 @@ ___
 
 #### Returns
 
-`AccountUpdate`
+[`AccountUpdate`](../modules/Types.Json.md#accountupdate)
 
 #### Defined in
 
@@ -1277,7 +1344,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) |
-| `childLayout` | [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) |
+| `childLayout` | `AccountUpdatesLayout` |
 | `options?` | `Object` |
 | `options.skipCheck` | `boolean` |
 
@@ -1309,7 +1376,7 @@ accountUpdate's children, which also get witnessed
 | Name | Type |
 | :------ | :------ |
 | `resultType` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
-| `childLayout` | [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) |
+| `childLayout` | `AccountUpdatesLayout` |
 | `compute` | () => { `accountUpdate`: [`AccountUpdate`](AccountUpdate.md) ; `result`: `T`  } |
 | `options?` | `Object` |
 | `options.skipCheck` | `boolean` |

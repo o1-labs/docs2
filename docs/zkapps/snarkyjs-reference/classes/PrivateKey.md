@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / PrivateKey
+[SnarkyJS](../README.md) / [Modules](../modules.md) / PrivateKey
 
 # Class: PrivateKey
 
@@ -235,15 +235,15 @@ ___
 
 ### toPublicKey
 
-▸ **toPublicKey**(): [`PublicKey`](PublicKey.md)
+▸ **toPublicKey**(): [`PublicKey`](Types.PublicKey.md)
 
 Derives the associated public key.
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-a [PublicKey](PublicKey.md).
+a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
@@ -259,7 +259,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -341,7 +341,7 @@ Deserializes a list of bits into a [PrivateKey](PrivateKey.md).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `bs` | [`Bool`](Bool.md)[] | a list of [Bool](../modules.md#bool-2). |
+| `bs` | [`Bool`](Bool.md)[] | a list of [Bool](../modules.md#bool-1). |
 
 #### Returns
 
@@ -363,7 +363,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -394,7 +394,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -425,7 +425,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -537,7 +537,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -568,7 +568,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -599,7 +599,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -630,7 +630,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / MerkleMap
+[SnarkyJS](../README.md) / [Modules](../modules.md) / MerkleMap
 
 # Class: MerkleMap
 

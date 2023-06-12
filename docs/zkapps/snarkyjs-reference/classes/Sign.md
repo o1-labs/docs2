@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Sign
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Sign
 
 # Class: Sign
 
@@ -339,7 +339,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -370,7 +370,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -400,7 +400,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -467,7 +467,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -498,7 +498,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 

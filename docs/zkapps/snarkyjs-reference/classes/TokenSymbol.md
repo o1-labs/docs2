@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / TokenSymbol
+[SnarkyJS](../README.md) / [Modules](../modules.md) / TokenSymbol
 
 # Class: TokenSymbol
 

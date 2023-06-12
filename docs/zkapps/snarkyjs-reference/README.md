@@ -1,4 +1,4 @@
-SnarkyJS / [Exports](modules.md)
+SnarkyJS / [Modules](modules.md)
 
 # SnarkyJS &nbsp; [![npm version](https://img.shields.io/npm/v/snarkyjs.svg?style=flat)](https://www.npmjs.com/package/snarkyjs) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/o1-labs/snarkyjs/blob/main/CONTRIBUTING.md)
 

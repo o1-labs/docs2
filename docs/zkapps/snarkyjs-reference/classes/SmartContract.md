@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / SmartContract
+[SnarkyJS](../README.md) / [Modules](../modules.md) / SmartContract
 
 # Class: SmartContract
 
@@ -70,7 +70,7 @@ class YourSmartContract extends SmartContract {
 
 | Name | Type |
 | :------ | :------ |
-| `address` | [`PublicKey`](PublicKey.md) |
+| `address` | [`PublicKey`](Types.PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
 #### Defined in
@@ -87,7 +87,7 @@ class YourSmartContract extends SmartContract {
 
 | Name | Type |
 | :------ | :------ |
-| `sender` | [`PublicKey`](PublicKey.md) |
+| `sender` | [`PublicKey`](Types.PublicKey.md) |
 | `transactionId` | `number` |
 
 #### Defined in
@@ -108,7 +108,7 @@ ___
 
 ### address
 
-• **address**: [`PublicKey`](PublicKey.md)
+• **address**: [`PublicKey`](Types.PublicKey.md)
 
 #### Defined in
 
@@ -164,7 +164,7 @@ ___
 
 ### \_methods
 
-▪ `Static` `Optional` **\_methods**: [`MethodInterface`](../modules.md#methodinterface)[]
+▪ `Static` `Optional` **\_methods**: `MethodInterface`[]
 
 #### Defined in
 
@@ -201,13 +201,13 @@ ___
 
 ### account
 
-• `get` **account**(): [`Account`](../modules.md#account-1)
+• `get` **account**(): `Account`
 
 Current account of the [SmartContract](SmartContract.md).
 
 #### Returns
 
-[`Account`](../modules.md#account-1)
+`Account`
 
 #### Defined in
 
@@ -238,7 +238,7 @@ ___
 
 ### currentSlot
 
-• `get` **currentSlot**(): [`CurrentSlot`](../modules.md#currentslot)
+• `get` **currentSlot**(): `CurrentSlot`
 
 Current global slot on the network. This is the slot at which this transaction is included in a block. Since we cannot know this value
 at the time of transaction construction, this only has the `assertBetween()` method but no `get()` (impossible to implement)
@@ -246,7 +246,7 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 #### Returns
 
-[`CurrentSlot`](../modules.md#currentslot)
+`CurrentSlot`
 
 #### Defined in
 
@@ -256,13 +256,13 @@ ___
 
 ### network
 
-• `get` **network**(): [`Network`](../modules.md#network)
+• `get` **network**(): `Network`
 
 Current network state of the [SmartContract](SmartContract.md).
 
 #### Returns
 
-[`Network`](../modules.md#network)
+`Network`
 
 #### Defined in
 
@@ -288,7 +288,7 @@ ___
 
 ### sender
 
-• `get` **sender**(): [`PublicKey`](PublicKey.md)
+• `get` **sender**(): [`PublicKey`](Types.PublicKey.md)
 
 The public key of the current transaction's sender account.
 
@@ -299,7 +299,7 @@ A malicious prover could use any other public key without affecting the validity
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
 #### Defined in
 
@@ -321,10 +321,10 @@ Token of the [SmartContract](SmartContract.md).
 | :------ | :------ |
 | `id` | [`Field`](Field.md) |
 | `parentTokenId` | [`Field`](Field.md) |
-| `tokenOwner` | [`PublicKey`](PublicKey.md) |
-| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
+| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
 
 #### Defined in
 
@@ -379,8 +379,8 @@ by specifying a certain expected layout of children. See [Layout](AccountUpdate.
 
 | Name | Type |
 | :------ | :------ |
-| `updateOrCallback` | [`AccountUpdate`](AccountUpdate.md) \| [`Callback`](Callback.md)<`any`\> |
-| `layout?` | [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) |
+| `updateOrCallback` | [`AccountUpdate`](AccountUpdate.md) \| `Callback`<`any`\> |
+| `layout?` | `AccountUpdatesLayout` |
 
 #### Returns
 
@@ -573,7 +573,7 @@ ___
 | :------ | :------ |
 | `args` | `Object` |
 | `args.amount` | `number` \| `bigint` \| [`UInt64`](UInt64.md) |
-| `args.to` | [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
+| `args.to` | [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
 
 #### Returns
 
@@ -627,7 +627,7 @@ use `this.account.<field>.set()`
 
 | Name | Type |
 | :------ | :------ |
-| `maybeValue` | [`SetOrKeep`](../modules.md#setorkeep)<`T`\> |
+| `maybeValue` | `SetOrKeep`<`T`\> |
 | `value` | `T` |
 
 #### Returns

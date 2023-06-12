@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Scalar
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Scalar
 
 # Class: Scalar
 

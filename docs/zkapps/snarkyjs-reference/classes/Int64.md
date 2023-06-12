@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Int64
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Int64
 
 # Class: Int64
 
@@ -405,7 +405,7 @@ ___
 
 ▸ **toField**(): [`Field`](Field.md)
 
-Returns the [Field](../modules.md#field-2) value.
+Returns the [Field](../modules.md#field-1) value.
 
 #### Returns
 
@@ -477,7 +477,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -528,7 +528,7 @@ ___
 
 ▸ `Static` **fromField**(`x`): [`Int64`](Int64.md)
 
-Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-2).
+Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
 #### Parameters
 
@@ -550,9 +550,9 @@ ___
 
 ▸ `Static` `Private` **fromFieldUnchecked**(`x`): [`Int64`](Int64.md)
 
-Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-2).
+Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
-Does check if the [Field](../modules.md#field-2) is within range.
+Does check if the [Field](../modules.md#field-1) is within range.
 
 #### Parameters
 
@@ -578,7 +578,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -609,7 +609,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -640,7 +640,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -667,9 +667,9 @@ ___
 
 ▸ `Static` **fromUnsigned**(`x`): [`Int64`](Int64.md)
 
-Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-2).
+Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
-**Does not** check if the [Field](../modules.md#field-2) is within range.
+**Does not** check if the [Field](../modules.md#field-1) is within range.
 
 #### Parameters
 
@@ -731,7 +731,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -762,7 +762,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -793,7 +793,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -824,7 +824,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 

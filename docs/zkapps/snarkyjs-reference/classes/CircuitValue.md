@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / CircuitValue
+[SnarkyJS](../README.md) / [Modules](../modules.md) / CircuitValue
 
 # Class: CircuitValue
 
@@ -18,19 +18,17 @@
 
   ↳ [`Sign`](Sign.md)
 
-  ↳ [`MerkleMapWitness`](MerkleMapWitness.md)
-
-  ↳ [`BaseMerkleWitness`](BaseMerkleWitness.md)
-
-  ↳ [`PrivateKey`](PrivateKey.md)
-
-  ↳ [`PublicKey`](PublicKey.md)
-
-  ↳ [`Signature`](Signature.md)
+  ↳ [`PublicKey`](Types.PublicKey.md)
 
   ↳ [`Character`](Character.md)
 
   ↳ [`CircuitString`](CircuitString.md)
+
+  ↳ [`MerkleMapWitness`](MerkleMapWitness.md)
+
+  ↳ [`PrivateKey`](PrivateKey.md)
+
+  ↳ [`Signature`](Signature.md)
 
 ## Table of contents
 
@@ -179,7 +177,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -206,7 +204,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -233,7 +231,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -260,7 +258,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -315,7 +313,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -342,7 +340,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -369,7 +367,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -396,7 +394,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 

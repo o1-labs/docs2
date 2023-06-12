@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / ProvablePure
+[SnarkyJS](../README.md) / [Modules](../modules.md) / ProvablePure
 
 # Interface: ProvablePure<T\>
 

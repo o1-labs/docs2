@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Keypair
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Keypair
 
 # Class: Keypair
 
@@ -71,11 +71,11 @@ ___
 
 ### verificationKey
 
-▸ **verificationKey**(): [`VerificationKey`](VerificationKey.md)
+▸ **verificationKey**(): `VerificationKey`
 
 #### Returns
 
-[`VerificationKey`](VerificationKey.md)
+`VerificationKey`
 
 #### Defined in
 

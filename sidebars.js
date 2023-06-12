@@ -87,6 +87,11 @@ module.exports = {
             {
               type: 'doc',
               id: 'zkapps/snarkyjs-reference/README',
+              label: 'Introduction',
+            },
+            {
+              type: 'doc',
+              id: 'zkapps/snarkyjs-reference/modules',
               label: 'Overview',
             },
             {
@@ -100,18 +105,8 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/BaseMerkleWitness',
-                  label: 'BaseMerkleWitness',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Bool',
                   label: 'Bool',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/Callback',
-                  label: 'Callback',
                 },
                 {
                   type: 'doc',
@@ -137,11 +132,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Field',
                   label: 'Field',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/GenericArgument',
-                  label: 'GenericArgument',
                 },
                 {
                   type: 'doc',
@@ -185,18 +175,8 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/Proof-1',
-                  label: 'Proof-1',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Proof',
                   label: 'Proof',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/PublicKey',
-                  label: 'PublicKey',
                 },
                 {
                   type: 'doc',
@@ -245,6 +225,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/Types.PublicKey',
+                  label: 'Types.PublicKey',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/UInt32',
                   label: 'UInt32',
                 },
@@ -252,11 +237,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/UInt64',
                   label: 'UInt64',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/VerificationKey-1',
-                  label: 'VerificationKey-1',
                 },
                 {
                   type: 'doc',
@@ -271,8 +251,8 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/Body',
-                  label: 'Body',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Mina.TransactionId',
+                  label: 'Mina.TransactionId',
                 },
                 {
                   type: 'doc',
@@ -289,11 +269,6 @@ module.exports = {
                   id: 'zkapps/snarkyjs-reference/interfaces/ProvablePure',
                   label: 'ProvablePure',
                 },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/TransactionId',
-                  label: 'TransactionId',
-                },
               ],
             },
             {
@@ -302,13 +277,23 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Context',
-                  label: 'Context',
+                  id: 'zkapps/snarkyjs-reference/modules/Encoding',
+                  label: 'Encoding',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Encryption',
+                  label: 'Encryption',
                 },
                 {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/modules/Experimental',
                   label: 'Experimental',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Mina',
+                  label: 'Mina',
                 },
                 {
                   type: 'doc',
@@ -322,18 +307,13 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/TransactionCost',
-                  label: 'TransactionCost',
+                  id: 'zkapps/snarkyjs-reference/modules/Types.Json',
+                  label: 'Types.Json',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/TransactionLimits',
-                  label: 'TransactionLimits',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/ZkProgram',
-                  label: 'ZkProgram',
+                  id: 'zkapps/snarkyjs-reference/modules/Types',
+                  label: 'Types',
                 },
               ],
             },

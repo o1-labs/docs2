@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / CircuitString
+[SnarkyJS](../README.md) / [Modules](../modules.md) / CircuitString
 
 # Class: CircuitString
 
@@ -357,7 +357,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -408,7 +408,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -439,7 +439,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -470,7 +470,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -557,7 +557,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -588,7 +588,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -619,7 +619,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -650,7 +650,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
