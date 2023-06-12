@@ -111,9 +111,9 @@ const snarkyjsEnums = getAllSnarkyJSAPIPathnames('enums');
 
 const newSidebars = resetSnarkyjsSidebar(sidebars);
 updateSidebars(newSidebars, 'Classes', snarkyjsClasses);
-updateSidebars(sidebars, 'Interfaces', snarkyjsInterfaces);
-updateSidebars(sidebars, 'Modules', snarkyjsModules);
-updateSidebars(sidebars, 'Enums', snarkyjsEnums);
+updateSidebars(newSidebars, 'Interfaces', snarkyjsInterfaces);
+updateSidebars(newSidebars, 'Modules', snarkyjsModules);
+updateSidebars(newSidebars, 'Enums', snarkyjsEnums);
 
 fs.writeFileSync(
   './sidebars.js',
