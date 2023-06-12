@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Exports](../modules.md) / ProvablePure
+
 # Interface: ProvablePure<T\>
 
 `ProvablePure<T>` is a special kind of `Provable<T>`, where the auxiliary data is empty. This means the type only consists of field elements,
@@ -56,7 +58,7 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 #### Defined in
 
-[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L50)
+[snarky.d.ts:54](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L54)
 
 ___
 
@@ -84,7 +86,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:48](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L48)
+[snarky.d.ts:52](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L52)
 
 ___
 
@@ -112,7 +114,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:47](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L47)
+[snarky.d.ts:51](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L51)
 
 ___
 
@@ -140,7 +142,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:46](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L46)
+[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L50)
 
 ## Methods
 
@@ -158,4 +160,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:49](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L49)
+[snarky.d.ts:53](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L53)

@@ -1,56 +1,56 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / SelfProof
+[SnarkyJS](../README.md) / [Exports](../modules.md) / Proof
 
-# Class: SelfProof<PublicInput, PublicOutput\>
+# Class: Proof<Input, Output\>
 
 ## Type parameters
 
 | Name |
 | :------ |
-| `PublicInput` |
-| `PublicOutput` |
+| `Input` |
+| `Output` |
 
 ## Hierarchy
 
-- [`Proof`](Proof-1.md)<`PublicInput`, `PublicOutput`\>
+- **`Proof`**
 
-  ↳ **`SelfProof`**
+  ↳ [`SelfProof`](SelfProof.md)
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](SelfProof.md#constructor)
+- [constructor](Proof-1.md#constructor)
 
 ### Properties
 
-- [maxProofsVerified](SelfProof.md#maxproofsverified)
-- [proof](SelfProof.md#proof)
-- [publicInput](SelfProof.md#publicinput)
-- [publicOutput](SelfProof.md#publicoutput)
-- [shouldVerify](SelfProof.md#shouldverify)
-- [publicInputType](SelfProof.md#publicinputtype)
-- [publicOutputType](SelfProof.md#publicoutputtype)
-- [tag](SelfProof.md#tag)
+- [maxProofsVerified](Proof-1.md#maxproofsverified)
+- [proof](Proof-1.md#proof)
+- [publicInput](Proof-1.md#publicinput)
+- [publicOutput](Proof-1.md#publicoutput)
+- [shouldVerify](Proof-1.md#shouldverify)
+- [publicInputType](Proof-1.md#publicinputtype)
+- [publicOutputType](Proof-1.md#publicoutputtype)
+- [tag](Proof-1.md#tag)
 
 ### Methods
 
-- [toJSON](SelfProof.md#tojson)
-- [verify](SelfProof.md#verify)
-- [verifyIf](SelfProof.md#verifyif)
-- [fromJSON](SelfProof.md#fromjson)
+- [toJSON](Proof-1.md#tojson)
+- [verify](Proof-1.md#verify)
+- [verifyIf](Proof-1.md#verifyif)
+- [fromJSON](Proof-1.md#fromjson)
 
 ## Constructors
 
 ### constructor
 
-• **new SelfProof**<`PublicInput`, `PublicOutput`\>(`«destructured»`)
+• **new Proof**<`Input`, `Output`\>(`«destructured»`)
 
 #### Type parameters
 
 | Name |
 | :------ |
-| `PublicInput` |
-| `PublicOutput` |
+| `Input` |
+| `Output` |
 
 #### Parameters
 
@@ -59,12 +59,8 @@
 | `«destructured»` | `Object` |
 | › `maxProofsVerified` | ``0`` \| ``2`` \| ``1`` |
 | › `proof` | `unknown` |
-| › `publicInput` | `PublicInput` |
-| › `publicOutput` | `PublicOutput` |
-
-#### Inherited from
-
-[Proof](Proof-1.md).[constructor](Proof-1.md#constructor)
+| › `publicInput` | `Input` |
+| › `publicOutput` | `Output` |
 
 #### Defined in
 
@@ -76,10 +72,6 @@
 
 • **maxProofsVerified**: ``0`` \| ``2`` \| ``1``
 
-#### Inherited from
-
-[Proof](Proof-1.md).[maxProofsVerified](Proof-1.md#maxproofsverified)
-
 #### Defined in
 
 [lib/proof_system.ts:76](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L76)
@@ -90,10 +82,6 @@ ___
 
 • **proof**: `unknown`
 
-#### Inherited from
-
-[Proof](Proof-1.md).[proof](Proof-1.md#proof)
-
 #### Defined in
 
 [lib/proof_system.ts:75](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L75)
@@ -102,11 +90,7 @@ ___
 
 ### publicInput
 
-• **publicInput**: `PublicInput`
-
-#### Inherited from
-
-[Proof](Proof-1.md).[publicInput](Proof-1.md#publicinput)
+• **publicInput**: `Input`
 
 #### Defined in
 
@@ -116,11 +100,7 @@ ___
 
 ### publicOutput
 
-• **publicOutput**: `PublicOutput`
-
-#### Inherited from
-
-[Proof](Proof-1.md).[publicOutput](Proof-1.md#publicoutput)
+• **publicOutput**: `Output`
 
 #### Defined in
 
@@ -132,10 +112,6 @@ ___
 
 • **shouldVerify**: [`Bool`](Bool.md)
 
-#### Inherited from
-
-[Proof](Proof-1.md).[shouldVerify](Proof-1.md#shouldverify)
-
 #### Defined in
 
 [lib/proof_system.ts:77](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L77)
@@ -146,10 +122,6 @@ ___
 
 ▪ `Static` **publicInputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
 
-#### Inherited from
-
-[Proof](Proof-1.md).[publicInputType](Proof-1.md#publicinputtype)
-
 #### Defined in
 
 [lib/proof_system.ts:65](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L65)
@@ -159,10 +131,6 @@ ___
 ### publicOutputType
 
 ▪ `Static` **publicOutputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
-
-#### Inherited from
-
-[Proof](Proof-1.md).[publicOutputType](Proof-1.md#publicoutputtype)
 
 #### Defined in
 
@@ -186,10 +154,6 @@ ___
 | :------ | :------ |
 | `name` | `string` |
 
-#### Inherited from
-
-[Proof](Proof-1.md).[tag](Proof-1.md#tag)
-
 #### Defined in
 
 [lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L67)
@@ -204,10 +168,6 @@ ___
 
 [`JsonProof`](../modules.md#jsonproof)
 
-#### Inherited from
-
-[Proof](Proof-1.md).[toJSON](Proof-1.md#tojson)
-
 #### Defined in
 
 [lib/proof_system.ts:85](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L85)
@@ -221,10 +181,6 @@ ___
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[Proof](Proof-1.md).[verify](Proof-1.md#verify)
 
 #### Defined in
 
@@ -245,10 +201,6 @@ ___
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[Proof](Proof-1.md).[verifyIf](Proof-1.md#verifyif)
 
 #### Defined in
 
@@ -276,10 +228,6 @@ ___
 #### Returns
 
 [`Proof`](Proof-1.md)<`InferProvable`<`S`[``"publicInputType"``]\>, `InferProvable`<`S`[``"publicOutputType"``]\>\>
-
-#### Inherited from
-
-[Proof](Proof-1.md).[fromJSON](Proof-1.md#fromjson)
 
 #### Defined in
 

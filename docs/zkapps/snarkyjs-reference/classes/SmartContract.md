@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Exports](../modules.md) / SmartContract
+
 # Class: SmartContract
 
 The main zkapp class. To write a zkapp, extend this class as such:
@@ -68,12 +70,12 @@ class YourSmartContract extends SmartContract {
 
 | Name | Type |
 | :------ | :------ |
-| `address` | [`PublicKey`](Types.PublicKey.md) |
+| `address` | [`PublicKey`](PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
 #### Defined in
 
-[lib/zkapp.ts:638](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L638)
+[lib/zkapp.ts:643](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L643)
 
 ## Properties
 
@@ -85,12 +87,12 @@ class YourSmartContract extends SmartContract {
 
 | Name | Type |
 | :------ | :------ |
-| `sender` | [`PublicKey`](Types.PublicKey.md) |
+| `sender` | [`PublicKey`](PublicKey.md) |
 | `transactionId` | `number` |
 
 #### Defined in
 
-[lib/zkapp.ts:888](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L888)
+[lib/zkapp.ts:891](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L891)
 
 ___
 
@@ -100,17 +102,17 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:610](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L610)
+[lib/zkapp.ts:610](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L610)
 
 ___
 
 ### address
 
-• **address**: [`PublicKey`](Types.PublicKey.md)
+• **address**: [`PublicKey`](PublicKey.md)
 
 #### Defined in
 
-[lib/zkapp.ts:607](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L607)
+[lib/zkapp.ts:607](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L607)
 
 ___
 
@@ -122,11 +124,11 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 #### Index signature
 
-▪ [key: `string`]: [`FlexibleProvablePure`](../README.md#flexibleprovablepure)<`any`\>
+▪ [key: `string`]: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
 
 #### Defined in
 
-[lib/zkapp.ts:999](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L999)
+[lib/zkapp.ts:1002](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1002)
 
 ___
 
@@ -136,7 +138,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:608](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L608)
+[lib/zkapp.ts:608](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L608)
 
 ___
 
@@ -146,37 +148,37 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:623](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L623)
+[lib/zkapp.ts:628](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L628)
 
 ___
 
 ### \_methodMetadata
 
-▪ `Static` **\_methodMetadata**: `Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: `Gate`[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\> = `{}`
+▪ `Static` `Optional` **\_methodMetadata**: `Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
 
 #### Defined in
 
-[lib/zkapp.ts:612](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L612)
+[lib/zkapp.ts:617](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L617)
 
 ___
 
 ### \_methods
 
-▪ `Static` `Optional` **\_methods**: `MethodInterface`[]
+▪ `Static` `Optional` **\_methods**: [`MethodInterface`](../modules.md#methodinterface)[]
 
 #### Defined in
 
-[lib/zkapp.ts:611](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L611)
+[lib/zkapp.ts:616](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L616)
 
 ___
 
 ### \_provers
 
-▪ `Static` `Optional` **\_provers**: `Prover`[]
+▪ `Static` `Optional` **\_provers**: [`Prover`](../modules/Pickles.md#prover)[]
 
 #### Defined in
 
-[lib/zkapp.ts:622](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L622)
+[lib/zkapp.ts:627](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L627)
 
 ___
 
@@ -193,23 +195,23 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:624](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L624)
+[lib/zkapp.ts:629](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L629)
 
 ## Accessors
 
 ### account
 
-• `get` **account**(): `Account`
+• `get` **account**(): [`Account`](../modules.md#account-1)
 
 Current account of the [SmartContract](SmartContract.md).
 
 #### Returns
 
-`Account`
+[`Account`](../modules.md#account-1)
 
 #### Defined in
 
-[lib/zkapp.ts:919](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L919)
+[lib/zkapp.ts:922](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L922)
 
 ___
 
@@ -230,13 +232,13 @@ Balance of this [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:993](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L993)
+[lib/zkapp.ts:996](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L996)
 
 ___
 
 ### currentSlot
 
-• `get` **currentSlot**(): `CurrentSlot`
+• `get` **currentSlot**(): [`CurrentSlot`](../modules.md#currentslot)
 
 Current global slot on the network. This is the slot at which this transaction is included in a block. Since we cannot know this value
 at the time of transaction construction, this only has the `assertBetween()` method but no `get()` (impossible to implement)
@@ -244,27 +246,27 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 #### Returns
 
-`CurrentSlot`
+[`CurrentSlot`](../modules.md#currentslot)
 
 #### Defined in
 
-[lib/zkapp.ts:933](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L933)
+[lib/zkapp.ts:936](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L936)
 
 ___
 
 ### network
 
-• `get` **network**(): `Network`
+• `get` **network**(): [`Network`](../modules.md#network)
 
 Current network state of the [SmartContract](SmartContract.md).
 
 #### Returns
 
-`Network`
+[`Network`](../modules.md#network)
 
 #### Defined in
 
-[lib/zkapp.ts:925](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L925)
+[lib/zkapp.ts:928](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L928)
 
 ___
 
@@ -280,13 +282,13 @@ Returns the current [AccountUpdate](AccountUpdate.md) associated to this [SmartC
 
 #### Defined in
 
-[lib/zkapp.ts:845](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L845)
+[lib/zkapp.ts:848](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L848)
 
 ___
 
 ### sender
 
-• `get` **sender**(): [`PublicKey`](Types.PublicKey.md)
+• `get` **sender**(): [`PublicKey`](PublicKey.md)
 
 The public key of the current transaction's sender account.
 
@@ -297,11 +299,11 @@ A malicious prover could use any other public key without affecting the validity
 
 #### Returns
 
-[`PublicKey`](Types.PublicKey.md)
+[`PublicKey`](PublicKey.md)
 
 #### Defined in
 
-[lib/zkapp.ts:898](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L898)
+[lib/zkapp.ts:901](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L901)
 
 ___
 
@@ -319,14 +321,14 @@ Token of the [SmartContract](SmartContract.md).
 | :------ | :------ |
 | `id` | [`Field`](Field.md) |
 | `parentTokenId` | [`Field`](Field.md) |
-| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
-| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `tokenOwner` | [`PublicKey`](PublicKey.md) |
+| `burn` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `mint` | (`__namedParameters`: { `address`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `send` | (`__namedParameters`: { `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
 
 #### Defined in
 
-[lib/zkapp.ts:939](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L939)
+[lib/zkapp.ts:942](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L942)
 
 ___
 
@@ -348,7 +350,7 @@ use `this.account.tokenSymbol`
 
 #### Defined in
 
-[lib/zkapp.ts:987](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L987)
+[lib/zkapp.ts:990](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L990)
 
 ## Methods
 
@@ -377,8 +379,8 @@ by specifying a certain expected layout of children. See [Layout](AccountUpdate.
 
 | Name | Type |
 | :------ | :------ |
-| `updateOrCallback` | [`AccountUpdate`](AccountUpdate.md) \| `Callback`<`any`\> |
-| `layout?` | `AccountUpdatesLayout` |
+| `updateOrCallback` | [`AccountUpdate`](AccountUpdate.md) \| [`Callback`](Callback.md)<`any`\> |
+| `layout?` | [`AccountUpdatesLayout`](../modules.md#accountupdateslayout) |
 
 #### Returns
 
@@ -388,7 +390,7 @@ The account update that was approved (needed when passing in a Callback)
 
 #### Defined in
 
-[lib/zkapp.ts:965](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L965)
+[lib/zkapp.ts:968](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L968)
 
 ___
 
@@ -422,7 +424,7 @@ tx.sign([senderKey, zkAppKey]);
 
 #### Defined in
 
-[lib/zkapp.ts:728](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L728)
+[lib/zkapp.ts:732](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L732)
 
 ___
 
@@ -451,7 +453,7 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Defined in
 
-[lib/zkapp.ts:1005](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1005)
+[lib/zkapp.ts:1008](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1008)
 
 ___
 
@@ -491,13 +493,13 @@ A promise that resolves to an array of objects, each containing the event type a
 
 #### Defined in
 
-[lib/zkapp.ts:1051](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1051)
+[lib/zkapp.ts:1054](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1054)
 
 ___
 
 ### init
 
-▸ **init**(`zkappKey?`): `void`
+▸ **init**(): `void`
 
 `SmartContract.init()` will be called only when a [SmartContract](SmartContract.md) will be first deployed, not for redeployment.
 This method can be overridden as follows
@@ -511,19 +513,13 @@ class MyContract extends SmartContract {
 }
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `zkappKey?` | [`PrivateKey`](PrivateKey.md) |
-
 #### Returns
 
 `void`
 
 #### Defined in
 
-[lib/zkapp.ts:798](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L798)
+[lib/zkapp.ts:803](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L803)
 
 ___
 
@@ -539,7 +535,7 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 
 #### Defined in
 
-[lib/zkapp.ts:880](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L880)
+[lib/zkapp.ts:883](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L883)
 
 ___
 
@@ -550,7 +546,7 @@ ___
 Use this command if the account update created by this SmartContract should be signed by the account owner,
 instead of authorized with a proof.
 
-Note that the smart contract's [Permissions](../README.md#permissions) determine which updates have to be (can be) authorized by a signature.
+Note that the smart contract's [Permissions](../modules.md#permissions) determine which updates have to be (can be) authorized by a signature.
 
 If you only want to avoid creating proofs for quicker testing, we advise you to
 use `LocalBlockchain({ proofsEnabled: false })` instead of `requireSignature()`. Setting
@@ -563,7 +559,7 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 #### Defined in
 
-[lib/zkapp.ts:821](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L821)
+[lib/zkapp.ts:824](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L824)
 
 ___
 
@@ -577,7 +573,7 @@ ___
 | :------ | :------ |
 | `args` | `Object` |
 | `args.amount` | `number` \| `bigint` \| [`UInt64`](UInt64.md) |
-| `args.to` | [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
+| `args.to` | [`PublicKey`](PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) |
 
 #### Returns
 
@@ -585,7 +581,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:977](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L977)
+[lib/zkapp.ts:980](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L980)
 
 ___
 
@@ -601,7 +597,7 @@ use `this.account.permissions.set()`
 
 | Name | Type |
 | :------ | :------ |
-| `permissions` | [`Permissions`](../README.md#permissions) |
+| `permissions` | [`Permissions`](../modules.md#permissions) |
 
 #### Returns
 
@@ -609,7 +605,7 @@ use `this.account.permissions.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1231](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1231)
+[lib/zkapp.ts:1234](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1234)
 
 ___
 
@@ -631,7 +627,7 @@ use `this.account.<field>.set()`
 
 | Name | Type |
 | :------ | :------ |
-| `maybeValue` | `SetOrKeep`<`T`\> |
+| `maybeValue` | [`SetOrKeep`](../modules.md#setorkeep)<`T`\> |
 | `value` | `T` |
 
 #### Returns
@@ -640,7 +636,7 @@ use `this.account.<field>.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1224](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1224)
+[lib/zkapp.ts:1227](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1227)
 
 ___
 
@@ -664,7 +660,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:827](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L827)
+[lib/zkapp.ts:830](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L830)
 
 ___
 
@@ -685,7 +681,7 @@ authorization flow.
 
 #### Defined in
 
-[lib/zkapp.ts:838](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L838)
+[lib/zkapp.ts:841](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L841)
 
 ___
 
@@ -701,13 +697,13 @@ typeof `__class`
 
 #### Defined in
 
-[lib/zkapp.ts:629](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L629)
+[lib/zkapp.ts:634](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L634)
 
 ___
 
 ### analyzeMethods
 
-▸ `Static` **analyzeMethods**(): `Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: `Gate`[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+▸ `Static` **analyzeMethods**(): `Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
 
 This function is run internally before compiling a smart contract, to collect metadata about what each of your
 smart contract methods does.
@@ -723,7 +719,7 @@ Note: If this function was already called before, it will short-circuit and just
 
 #### Returns
 
-`Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: `Gate`[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+`Record`<`string`, { `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
 
 an object, keyed by method name, each entry containing:
  - `rows` the size of the constraint system created by this method
@@ -734,13 +730,13 @@ an object, keyed by method name, each entry containing:
 
 #### Defined in
 
-[lib/zkapp.ts:1171](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1171)
+[lib/zkapp.ts:1174](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1174)
 
 ___
 
 ### compile
 
-▸ `Static` **compile**(): `Promise`<{ `provers`: `Prover`[] ; `verificationKey`: { `data`: `string` = verificationKey\_.data; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: `Statement`, `proof`: `unknown`) => `Promise`<`boolean`\>  }\>
+▸ `Static` **compile**(): `Promise`<{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: { `data`: `string` = verificationKey\_.data; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: [`StatementConst`](../modules/Pickles.md#statementconst), `proof`: `unknown`) => `Promise`<`boolean`\>  }\>
 
 Compile your smart contract.
 
@@ -757,11 +753,11 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 #### Returns
 
-`Promise`<{ `provers`: `Prover`[] ; `verificationKey`: { `data`: `string` = verificationKey\_.data; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: `Statement`, `proof`: `unknown`) => `Promise`<`boolean`\>  }\>
+`Promise`<{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: { `data`: `string` = verificationKey\_.data; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: [`StatementConst`](../modules/Pickles.md#statementconst), `proof`: `unknown`) => `Promise`<`boolean`\>  }\>
 
 #### Defined in
 
-[lib/zkapp.ts:665](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L665)
+[lib/zkapp.ts:670](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L670)
 
 ___
 
@@ -781,7 +777,7 @@ the digest, as a hex string
 
 #### Defined in
 
-[lib/zkapp.ts:707](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L707)
+[lib/zkapp.ts:712](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L712)
 
 ___
 
@@ -801,4 +797,4 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1145](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1145)
+[lib/zkapp.ts:1148](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1148)

@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Exports](../modules.md) / Token
+
 # Class: Token
 
 **`Deprecated`**
@@ -33,11 +35,11 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 | :------ | :------ |
 | `«destructured»` | `Object` |
 | › `parentTokenId?` | [`Field`](Field.md) |
-| › `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
+| › `tokenOwner` | [`PublicKey`](PublicKey.md) |
 
 #### Defined in
 
-[lib/account_update.ts:630](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L630)
+[lib/account_update.ts:640](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L640)
 
 ## Properties
 
@@ -47,7 +49,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:627](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L627)
+[lib/account_update.ts:637](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L637)
 
 ___
 
@@ -57,17 +59,17 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:628](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L628)
+[lib/account_update.ts:638](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L638)
 
 ___
 
 ### tokenOwner
 
-• `Readonly` **tokenOwner**: [`PublicKey`](Types.PublicKey.md)
+• `Readonly` **tokenOwner**: [`PublicKey`](PublicKey.md)
 
 #### Defined in
 
-[lib/account_update.ts:629](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L629)
+[lib/account_update.ts:639](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L639)
 
 ___
 
@@ -79,23 +81,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](Field.md)) => `void` |
 | `default` | [`Field`](Field.md) |
-| `fromFields` | (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => [`Field`](Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](Field.md)) => [`Field`](Field.md)[] |
-| `toInput` | (`x`: [`Field`](Field.md)) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
-| `derive` | (`tokenOwner`: [`PublicKey`](Types.PublicKey.md), `parentTokenId`: [`Field`](Field.md)) => [`Field`](Field.md) |
-| `emptyValue` | () => [`Field`](Field.md) |
+| `derive` | (`tokenOwner`: [`PublicKey`](PublicKey.md), `parentTokenId`: [`Field`](Field.md)) => [`Field`](Field.md) |
 | `fromBase58` | (`base58`: `string`) => [`Field`](Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](Field.md) |
-| `sizeInFields` | () => `number` |
 | `toBase58` | (`t`: [`Field`](Field.md)) => `string` |
-| `toJSON` | (`x`: [`Field`](Field.md)) => `string` |
 
 #### Defined in
 
-[lib/account_update.ts:621](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L621)
+[lib/account_update.ts:631](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L631)
 
 ## Methods
 
@@ -107,7 +100,7 @@ ___
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) | `undefined` |
+| `tokenOwner` | [`PublicKey`](PublicKey.md) | `undefined` |
 | `parentTokenId` | [`Field`](Field.md) | `TokenId.default` |
 
 #### Returns
@@ -116,4 +109,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:623](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L623)
+[lib/account_update.ts:633](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L633)

@@ -1,17 +1,17 @@
-# Interface: TransactionId
+[SnarkyJS](../README.md) / [Exports](../modules.md) / TransactionId
 
-[Mina](../modules/Mina.md).TransactionId
+# Interface: TransactionId
 
 ## Table of contents
 
 ### Properties
 
-- [isSuccess](Mina.TransactionId.md#issuccess)
+- [isSuccess](TransactionId.md#issuccess)
 
 ### Methods
 
-- [hash](Mina.TransactionId.md#hash)
-- [wait](Mina.TransactionId.md#wait)
+- [hash](TransactionId.md#hash)
+- [wait](TransactionId.md#wait)
 
 ## Properties
 
@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[lib/mina.ts:62](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L62)
+[lib/mina.ts:66](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L66)
 
 ## Methods
 
@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[lib/mina.ts:64](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L64)
+[lib/mina.ts:68](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L68)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:63](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L63)
+[lib/mina.ts:67](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L67)
