@@ -100,8 +100,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/BaseMerkleWitness',
+                  label: 'BaseMerkleWitness',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/Callback',
+                  label: 'Callback',
                 },
                 {
                   type: 'doc',
@@ -127,6 +137,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Field',
                   label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/GenericArgument',
+                  label: 'GenericArgument',
                 },
                 {
                   type: 'doc',
@@ -170,8 +185,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/Proof-1',
+                  label: 'Proof-1',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Proof',
                   label: 'Proof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/PublicKey',
+                  label: 'PublicKey',
                 },
                 {
                   type: 'doc',
@@ -200,6 +225,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/SnarkyBool',
+                  label: 'SnarkyBool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/SnarkyField',
+                  label: 'SnarkyField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Token',
                   label: 'Token',
                 },
@@ -210,11 +245,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/Types.PublicKey',
-                  label: 'Types.PublicKey',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/UInt32',
                   label: 'UInt32',
                 },
@@ -222,6 +252,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/UInt64',
                   label: 'UInt64',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/VerificationKey-1',
+                  label: 'VerificationKey-1',
                 },
                 {
                   type: 'doc',
@@ -236,8 +271,8 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/interfaces/Mina.TransactionId',
-                  label: 'Mina.TransactionId',
+                  id: 'zkapps/snarkyjs-reference/interfaces/Body',
+                  label: 'Body',
                 },
                 {
                   type: 'doc',
@@ -254,6 +289,11 @@ module.exports = {
                   id: 'zkapps/snarkyjs-reference/interfaces/ProvablePure',
                   label: 'ProvablePure',
                 },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/interfaces/TransactionId',
+                  label: 'TransactionId',
+                },
               ],
             },
             {
@@ -262,13 +302,8 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Encoding',
-                  label: 'Encoding',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Encryption',
-                  label: 'Encryption',
+                  id: 'zkapps/snarkyjs-reference/modules/Context',
+                  label: 'Context',
                 },
                 {
                   type: 'doc',
@@ -277,18 +312,39 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Mina',
-                  label: 'Mina',
+                  id: 'zkapps/snarkyjs-reference/modules/Pickles',
+                  label: 'Pickles',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Types.Json',
-                  label: 'Types.Json',
+                  id: 'zkapps/snarkyjs-reference/modules/Snarky',
+                  label: 'Snarky',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/modules/Types',
-                  label: 'Types',
+                  id: 'zkapps/snarkyjs-reference/modules/TransactionCost',
+                  label: 'TransactionCost',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/TransactionLimits',
+                  label: 'TransactionLimits',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/ZkProgram',
+                  label: 'ZkProgram',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Enums',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/enums/FieldType',
+                  label: 'FieldType',
                 },
               ],
             },

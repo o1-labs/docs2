@@ -1,54 +1,60 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Signature
+[SnarkyJS](../README.md) / [Exports](../modules.md) / PublicKey
 
-# Class: Signature
+# Class: PublicKey
 
-A Schnorr [Signature](Signature.md) over the Pasta Curves.
+A public key, which is also an address on the Mina network.
+You can derive a [PublicKey](PublicKey.md) directly from a [PrivateKey](PrivateKey.md).
 
 ## Hierarchy
 
 - [`CircuitValue`](CircuitValue.md)
 
-  ↳ **`Signature`**
+  ↳ **`PublicKey`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Signature.md#constructor)
+- [constructor](PublicKey.md#constructor)
 
 ### Properties
 
-- [r](Signature.md#r)
-- [s](Signature.md#s)
+- [isOdd](PublicKey.md#isodd)
+- [x](PublicKey.md#x)
 
 ### Methods
 
-- [assertEquals](Signature.md#assertequals)
-- [equals](Signature.md#equals)
-- [isConstant](Signature.md#isconstant)
-- [toBase58](Signature.md#tobase58)
-- [toConstant](Signature.md#toconstant)
-- [toFields](Signature.md#tofields)
-- [toJSON](Signature.md#tojson)
-- [verify](Signature.md#verify)
-- [check](Signature.md#check)
-- [create](Signature.md#create)
-- [fromBase58](Signature.md#frombase58)
-- [fromFields](Signature.md#fromfields)
-- [fromJSON](Signature.md#fromjson)
-- [fromObject](Signature.md#fromobject)
-- [sizeInFields](Signature.md#sizeinfields)
-- [toAuxiliary](Signature.md#toauxiliary)
-- [toConstant](Signature.md#toconstant-1)
-- [toFields](Signature.md#tofields-1)
-- [toInput](Signature.md#toinput)
-- [toJSON](Signature.md#tojson-1)
+- [assertEquals](PublicKey.md#assertequals)
+- [equals](PublicKey.md#equals)
+- [isConstant](PublicKey.md#isconstant)
+- [isEmpty](PublicKey.md#isempty)
+- [toBase58](PublicKey.md#tobase58)
+- [toConstant](PublicKey.md#toconstant)
+- [toFields](PublicKey.md#tofields)
+- [toGroup](PublicKey.md#togroup)
+- [toJSON](PublicKey.md#tojson)
+- [check](PublicKey.md#check)
+- [empty](PublicKey.md#empty)
+- [from](PublicKey.md#from)
+- [fromBase58](PublicKey.md#frombase58)
+- [fromFields](PublicKey.md#fromfields)
+- [fromGroup](PublicKey.md#fromgroup)
+- [fromJSON](PublicKey.md#fromjson)
+- [fromObject](PublicKey.md#fromobject)
+- [fromPrivateKey](PublicKey.md#fromprivatekey)
+- [sizeInFields](PublicKey.md#sizeinfields)
+- [toAuxiliary](PublicKey.md#toauxiliary)
+- [toBase58](PublicKey.md#tobase58-1)
+- [toConstant](PublicKey.md#toconstant-1)
+- [toFields](PublicKey.md#tofields-1)
+- [toInput](PublicKey.md#toinput)
+- [toJSON](PublicKey.md#tojson-1)
 
 ## Constructors
 
 ### constructor
 
-• **new Signature**(`...props`)
+• **new PublicKey**(`...props`)
 
 #### Parameters
 
@@ -66,23 +72,23 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 ## Properties
 
-### r
+### isOdd
 
-• **r**: [`Field`](Field.md)
+• **isOdd**: [`Bool`](Bool.md)
 
 #### Defined in
 
-[lib/signature.ts:223](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L223)
+[lib/signature.ts:112](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L112)
 
 ___
 
-### s
+### x
 
-• **s**: [`Scalar`](Scalar.md)
+• **x**: [`Field`](Field.md)
 
 #### Defined in
 
-[lib/signature.ts:224](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L224)
+[lib/signature.ts:111](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L111)
 
 ## Methods
 
@@ -94,7 +100,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Signature`](Signature.md) |
+| `x` | [`PublicKey`](PublicKey.md) |
 
 #### Returns
 
@@ -118,7 +124,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Signature`](Signature.md) |
+| `x` | [`PublicKey`](PublicKey.md) |
 
 #### Returns
 
@@ -152,29 +158,49 @@ ___
 
 ___
 
+### isEmpty
+
+▸ **isEmpty**(): [`Bool`](Bool.md)
+
+Checks if a [PublicKey](PublicKey.md) is empty.
+
+#### Returns
+
+[`Bool`](Bool.md)
+
+a [Bool](../modules.md#bool-2)
+
+#### Defined in
+
+[lib/signature.ts:169](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L169)
+
+___
+
 ### toBase58
 
 ▸ **toBase58**(): `string`
 
-Encodes a [Signature](Signature.md) in base58 format.
+Encodes a [PublicKey](PublicKey.md) in base58 format.
 
 #### Returns
 
 `string`
 
+a base58 encoded [PublicKey](PublicKey.md)
+
 #### Defined in
 
-[lib/signature.ts:284](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L284)
+[lib/signature.ts:187](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L187)
 
 ___
 
 ### toConstant
 
-▸ **toConstant**(): [`Signature`](Signature.md)
+▸ **toConstant**(): [`PublicKey`](PublicKey.md)
 
 #### Returns
 
-[`Signature`](Signature.md)
+[`PublicKey`](PublicKey.md)
 
 #### Inherited from
 
@@ -204,6 +230,24 @@ ___
 
 ___
 
+### toGroup
+
+▸ **toGroup**(): [`Group`](Group.md)
+
+Returns the [Group](../modules.md#group-3) representation of this [PublicKey](PublicKey.md).
+
+#### Returns
+
+[`Group`](Group.md)
+
+A [Group](../modules.md#group-3)
+
+#### Defined in
+
+[lib/signature.ts:118](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L118)
+
+___
+
 ### toJSON
 
 ▸ **toJSON**(): `any`
@@ -219,31 +263,6 @@ ___
 #### Defined in
 
 [lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L146)
-
-___
-
-### verify
-
-▸ **verify**(`publicKey`, `msg`): [`Bool`](Bool.md)
-
-Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](PublicKey.md).
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `publicKey` | [`PublicKey`](PublicKey.md) |
-| `msg` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-a [Bool](../modules.md#bool-2)
-
-#### Defined in
-
-[lib/signature.ts:258](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L258)
 
 ___
 
@@ -278,50 +297,71 @@ ___
 
 ___
 
-### create
+### empty
 
-▸ `Static` **create**(`privKey`, `msg`): [`Signature`](Signature.md)
+▸ `Static` **empty**(): [`PublicKey`](PublicKey.md)
 
-Signs a message using a [PrivateKey](PrivateKey.md).
+Creates an empty [PublicKey](PublicKey.md).
+
+#### Returns
+
+[`PublicKey`](PublicKey.md)
+
+an empty [PublicKey](PublicKey.md)
+
+#### Defined in
+
+[lib/signature.ts:161](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L161)
+
+___
+
+### from
+
+▸ `Static` **from**(`g`): [`PublicKey`](PublicKey.md)
+
+Creates a [PublicKey](PublicKey.md) from a JSON structure element.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `privKey` | [`PrivateKey`](PrivateKey.md) |
-| `msg` | [`Field`](Field.md)[] |
+| `g` | `Object` |
+| `g.isOdd` | [`Bool`](Bool.md) |
+| `g.x` | [`Field`](Field.md) |
 
 #### Returns
 
-[`Signature`](Signature.md)
+[`PublicKey`](PublicKey.md)
 
-a [Signature](Signature.md)
+a [PublicKey](PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:230](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L230)
+[lib/signature.ts:153](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L153)
 
 ___
 
 ### fromBase58
 
-▸ `Static` **fromBase58**(`signatureBase58`): [`Signature`](Signature.md)
+▸ `Static` **fromBase58**(`publicKeyBase58`): [`PublicKey`](PublicKey.md)
 
-Decodes a base58 encoded signature into a [Signature](Signature.md).
+Decodes a base58 encoded [PublicKey](PublicKey.md) into a [PublicKey](PublicKey.md).
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `signatureBase58` | `string` |
+| `publicKeyBase58` | `string` |
 
 #### Returns
 
-[`Signature`](Signature.md)
+[`PublicKey`](PublicKey.md)
+
+a [PublicKey](PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:274](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L274)
+[lib/signature.ts:178](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L178)
 
 ___
 
@@ -356,9 +396,35 @@ ___
 
 ___
 
+### fromGroup
+
+▸ `Static` **fromGroup**(`«destructured»`): [`PublicKey`](PublicKey.md)
+
+Creates a [PublicKey](PublicKey.md) from a [Group](../modules.md#group-3) element.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `«destructured»` | [`Group`](Group.md) |
+
+#### Returns
+
+[`PublicKey`](PublicKey.md)
+
+a [PublicKey](PublicKey.md).
+
+#### Defined in
+
+[lib/signature.ts:136](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L136)
+
+___
+
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**<`T`\>(`this`, `publicKey`): `InstanceType`<`T`\>
+
+Deserializes a JSON string into a [PublicKey](PublicKey.md).
 
 #### Type parameters
 
@@ -371,19 +437,21 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `any` |
+| `publicKey` | `string` |
 
 #### Returns
 
 `InstanceType`<`T`\>
 
-#### Inherited from
+a JSON string
+
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
 
 #### Defined in
 
-[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L224)
+[lib/signature.ts:214](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L214)
 
 ___
 
@@ -415,6 +483,30 @@ ___
 #### Defined in
 
 [lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L87)
+
+___
+
+### fromPrivateKey
+
+▸ `Static` **fromPrivateKey**(`«destructured»`): [`PublicKey`](PublicKey.md)
+
+Derives a [PublicKey](PublicKey.md) from a [PrivateKey](PrivateKey.md).
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `«destructured»` | [`PrivateKey`](PrivateKey.md) |
+
+#### Returns
+
+[`PublicKey`](PublicKey.md)
+
+a [PublicKey](PublicKey.md).
+
+#### Defined in
+
+[lib/signature.ts:145](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L145)
 
 ___
 
@@ -451,6 +543,30 @@ ___
 #### Defined in
 
 [lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L116)
+
+___
+
+### toBase58
+
+▸ `Static` **toBase58**(`«destructured»`): `string`
+
+Static method to encode a [PublicKey](PublicKey.md) into base58 format.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `«destructured»` | [`PublicKey`](PublicKey.md) |
+
+#### Returns
+
+`string`
+
+a base58 encoded [PublicKey](PublicKey.md)
+
+#### Defined in
+
+[lib/signature.ts:195](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L195)
 
 ___
 
@@ -549,29 +665,26 @@ ___
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`this`, `v`): `any`
+▸ `Static` **toJSON**(`publicKey`): `string`
 
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+Serializes a [PublicKey](PublicKey.md) into its JSON representation.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `publicKey` | [`PublicKey`](PublicKey.md) |
 
 #### Returns
 
-`any`
+`string`
 
-#### Inherited from
+a JSON string
+
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
 
 #### Defined in
 
-[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L213)
+[lib/signature.ts:206](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L206)

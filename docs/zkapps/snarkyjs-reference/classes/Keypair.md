@@ -1,6 +1,6 @@
-# Class: Keypair
+[SnarkyJS](../README.md) / [Exports](../modules.md) / Keypair
 
-Contains a proving key and [VerificationKey](VerificationKey.md) which can be used to verify proofs.
+# Class: Keypair
 
 ## Table of contents
 
@@ -8,26 +8,75 @@ Contains a proving key and [VerificationKey](VerificationKey.md) which can be us
 
 - [constructor](Keypair.md#constructor)
 
+### Properties
+
+- [value](Keypair.md#value)
+
 ### Methods
 
+- [constraintSystem](Keypair.md#constraintsystem)
 - [verificationKey](Keypair.md#verificationkey)
 
 ## Constructors
 
 ### constructor
 
-• **new Keypair**()
+• **new Keypair**(`value`)
 
-## Methods
+#### Parameters
 
-### verificationKey
-
-▸ **verificationKey**(): `VerificationKey`
-
-#### Returns
-
-`VerificationKey`
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
 
 #### Defined in
 
-[snarky.d.ts:1135](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1135)
+[lib/circuit.ts:144](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L144)
+
+## Properties
+
+### value
+
+• **value**: `unknown`
+
+#### Defined in
+
+[lib/circuit.ts:142](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L142)
+
+## Methods
+
+### constraintSystem
+
+▸ **constraintSystem**(): [`Gate`](../modules.md#gate)[]
+
+Returns a low-level JSON representation of the [Circuit](Circuit.md) from its [Keypair](Keypair.md):
+a list of gates, each of which represents a row in a table, with certain coefficients and wires to other (row, column) pairs
+
+**`Example`**
+
+```ts
+const keypair = await MyCircuit.generateKeypair();
+const json = MyProvable.witnessFromKeypair(keypair);
+```
+
+#### Returns
+
+[`Gate`](../modules.md#gate)[]
+
+#### Defined in
+
+[lib/circuit.ts:163](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L163)
+
+___
+
+### verificationKey
+
+▸ **verificationKey**(): [`VerificationKey`](VerificationKey.md)
+
+#### Returns
+
+[`VerificationKey`](VerificationKey.md)
+
+#### Defined in
+
+[lib/circuit.ts:148](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L148)

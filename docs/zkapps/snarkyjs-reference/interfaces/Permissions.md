@@ -1,7 +1,9 @@
+[SnarkyJS](../README.md) / [Exports](../modules.md) / Permissions
+
 # Interface: Permissions
 
 Permissions specify how specific aspects of the zkapp account are allowed
-to be modified. All fields are denominated by a Permission.
+to be modified. All fields are denominated by a [Permission](../modules.md#permission-1).
 
 ## Hierarchy
 
@@ -31,7 +33,7 @@ to be modified. All fields are denominated by a Permission.
 
 ### access
 
-• **access**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **access**: `AuthRequired`
 
 Permission to control the ability to include _any_ account update for this
 account in a transaction. Note that this is more restrictive than all other
@@ -46,15 +48,15 @@ Permissions\_.access
 
 #### Defined in
 
-[lib/account_update.ts:233](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L233)
+[lib/account_update.ts:233](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L233)
 
 ___
 
 ### editActionState
 
-• **editActionState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **editActionState**: `AuthRequired`
 
-The Permission corresponding to the ability to emit actions to the account.
+The [Permission](../modules.md#permission-1) corresponding to the ability to emit actions to the account.
 
 #### Overrides
 
@@ -62,15 +64,15 @@ Permissions\_.editActionState
 
 #### Defined in
 
-[lib/account_update.ts:212](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L212)
+[lib/account_update.ts:212](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L212)
 
 ___
 
 ### editState
 
-• **editState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **editState**: `AuthRequired`
 
-The Permission corresponding to the 8 state fields associated with
+The [Permission](../modules.md#permission-1) corresponding to the 8 state fields associated with
 an account.
 
 #### Overrides
@@ -79,13 +81,13 @@ Permissions\_.editState
 
 #### Defined in
 
-[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L168)
+[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L168)
 
 ___
 
 ### incrementNonce
 
-• **incrementNonce**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **incrementNonce**: `AuthRequired`
 
 #### Overrides
 
@@ -93,15 +95,15 @@ Permissions\_.incrementNonce
 
 #### Defined in
 
-[lib/account_update.ts:221](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L221)
+[lib/account_update.ts:221](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L221)
 
 ___
 
 ### receive
 
-• **receive**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **receive**: `AuthRequired`
 
-The Permission corresponding to the ability to receive transactions
+The [Permission](../modules.md#permission-1) corresponding to the ability to receive transactions
 to this account.
 
 #### Overrides
@@ -110,15 +112,15 @@ Permissions\_.receive
 
 #### Defined in
 
-[lib/account_update.ts:180](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L180)
+[lib/account_update.ts:180](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L180)
 
 ___
 
 ### send
 
-• **send**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **send**: `AuthRequired`
 
-The Permission corresponding to the ability to send transactions
+The [Permission](../modules.md#permission-1) corresponding to the ability to send transactions
 from this account.
 
 #### Overrides
@@ -127,15 +129,15 @@ Permissions\_.send
 
 #### Defined in
 
-[lib/account_update.ts:174](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L174)
+[lib/account_update.ts:174](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L174)
 
 ___
 
 ### setDelegate
 
-• **setDelegate**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setDelegate**: `AuthRequired`
 
-The Permission corresponding to the ability to set the delegate
+The [Permission](../modules.md#permission-1) corresponding to the ability to set the delegate
 field of the account.
 
 #### Overrides
@@ -144,15 +146,15 @@ Permissions\_.setDelegate
 
 #### Defined in
 
-[lib/account_update.ts:186](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L186)
+[lib/account_update.ts:186](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L186)
 
 ___
 
 ### setPermissions
 
-• **setPermissions**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setPermissions**: `AuthRequired`
 
-The Permission corresponding to the ability to set the permissions
+The [Permission](../modules.md#permission-1) corresponding to the ability to set the permissions
 field of the account.
 
 #### Overrides
@@ -161,13 +163,13 @@ Permissions\_.setPermissions
 
 #### Defined in
 
-[lib/account_update.ts:192](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L192)
+[lib/account_update.ts:192](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L192)
 
 ___
 
 ### setTiming
 
-• **setTiming**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setTiming**: `AuthRequired`
 
 #### Overrides
 
@@ -175,15 +177,15 @@ Permissions\_.setTiming
 
 #### Defined in
 
-[lib/account_update.ts:223](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L223)
+[lib/account_update.ts:223](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L223)
 
 ___
 
 ### setTokenSymbol
 
-• **setTokenSymbol**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setTokenSymbol**: `AuthRequired`
 
-The Permission corresponding to the ability to set the token symbol
+The [Permission](../modules.md#permission-1) corresponding to the ability to set the token symbol
 for this account.
 
 #### Overrides
@@ -192,15 +194,15 @@ Permissions\_.setTokenSymbol
 
 #### Defined in
 
-[lib/account_update.ts:218](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L218)
+[lib/account_update.ts:218](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L218)
 
 ___
 
 ### setVerificationKey
 
-• **setVerificationKey**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setVerificationKey**: `AuthRequired`
 
-The Permission corresponding to the ability to set the verification
+The [Permission](../modules.md#permission-1) corresponding to the ability to set the verification
 key associated with the circuit tied to this account. Effectively
 "upgradeability" of the smart contract.
 
@@ -210,13 +212,13 @@ Permissions\_.setVerificationKey
 
 #### Defined in
 
-[lib/account_update.ts:199](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L199)
+[lib/account_update.ts:199](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L199)
 
 ___
 
 ### setVotingFor
 
-• **setVotingFor**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setVotingFor**: `AuthRequired`
 
 #### Overrides
 
@@ -224,15 +226,15 @@ Permissions\_.setVotingFor
 
 #### Defined in
 
-[lib/account_update.ts:222](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L222)
+[lib/account_update.ts:222](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L222)
 
 ___
 
 ### setZkappUri
 
-• **setZkappUri**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setZkappUri**: `AuthRequired`
 
-The Permission corresponding to the ability to set the zkapp uri
+The [Permission](../modules.md#permission-1) corresponding to the ability to set the zkapp uri
 typically pointing to the source code of the smart contract. Usually this
 should be changed whenever the [setVerificationKey](Permissions.md#setverificationkey) is
 changed. Effectively "upgradeability" of the smart contract.
@@ -243,4 +245,4 @@ Permissions\_.setZkappUri
 
 #### Defined in
 
-[lib/account_update.ts:207](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L207)
+[lib/account_update.ts:207](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L207)

@@ -1,88 +1,101 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Signature
+[SnarkyJS](../README.md) / [Exports](../modules.md) / BaseMerkleWitness
 
-# Class: Signature
+# Class: BaseMerkleWitness
 
-A Schnorr [Signature](Signature.md) over the Pasta Curves.
+The [BaseMerkleWitness](BaseMerkleWitness.md) class defines a circuit-compatible base class for [Merkle Witness'](https://computersciencewiki.org/index.php/Merkle_proof).
 
 ## Hierarchy
 
 - [`CircuitValue`](CircuitValue.md)
 
-  ↳ **`Signature`**
+  ↳ **`BaseMerkleWitness`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Signature.md#constructor)
+- [constructor](BaseMerkleWitness.md#constructor)
 
 ### Properties
 
-- [r](Signature.md#r)
-- [s](Signature.md#s)
+- [isLeft](BaseMerkleWitness.md#isleft)
+- [path](BaseMerkleWitness.md#path)
+- [height](BaseMerkleWitness.md#height)
 
 ### Methods
 
-- [assertEquals](Signature.md#assertequals)
-- [equals](Signature.md#equals)
-- [isConstant](Signature.md#isconstant)
-- [toBase58](Signature.md#tobase58)
-- [toConstant](Signature.md#toconstant)
-- [toFields](Signature.md#tofields)
-- [toJSON](Signature.md#tojson)
-- [verify](Signature.md#verify)
-- [check](Signature.md#check)
-- [create](Signature.md#create)
-- [fromBase58](Signature.md#frombase58)
-- [fromFields](Signature.md#fromfields)
-- [fromJSON](Signature.md#fromjson)
-- [fromObject](Signature.md#fromobject)
-- [sizeInFields](Signature.md#sizeinfields)
-- [toAuxiliary](Signature.md#toauxiliary)
-- [toConstant](Signature.md#toconstant-1)
-- [toFields](Signature.md#tofields-1)
-- [toInput](Signature.md#toinput)
-- [toJSON](Signature.md#tojson-1)
+- [assertEquals](BaseMerkleWitness.md#assertequals)
+- [calculateIndex](BaseMerkleWitness.md#calculateindex)
+- [calculateRoot](BaseMerkleWitness.md#calculateroot)
+- [calculateRootSlow](BaseMerkleWitness.md#calculaterootslow)
+- [equals](BaseMerkleWitness.md#equals)
+- [height](BaseMerkleWitness.md#height-1)
+- [isConstant](BaseMerkleWitness.md#isconstant)
+- [toConstant](BaseMerkleWitness.md#toconstant)
+- [toFields](BaseMerkleWitness.md#tofields)
+- [toJSON](BaseMerkleWitness.md#tojson)
+- [check](BaseMerkleWitness.md#check)
+- [fromFields](BaseMerkleWitness.md#fromfields)
+- [fromJSON](BaseMerkleWitness.md#fromjson)
+- [fromObject](BaseMerkleWitness.md#fromobject)
+- [sizeInFields](BaseMerkleWitness.md#sizeinfields)
+- [toAuxiliary](BaseMerkleWitness.md#toauxiliary)
+- [toConstant](BaseMerkleWitness.md#toconstant-1)
+- [toFields](BaseMerkleWitness.md#tofields-1)
+- [toInput](BaseMerkleWitness.md#toinput)
+- [toJSON](BaseMerkleWitness.md#tojson-1)
 
 ## Constructors
 
 ### constructor
 
-• **new Signature**(`...props`)
+• **new BaseMerkleWitness**(`witness`)
+
+Takes a [Witness](../modules.md#witness) and turns it into a circuit-compatible Witness.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...props` | `any`[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `witness` | [`Witness`](../modules.md#witness) | Witness. |
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
 
 #### Defined in
 
-[lib/circuit_value.ts:70](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L70)
+[lib/merkle_tree.ts:167](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L167)
 
 ## Properties
 
-### r
+### isLeft
 
-• **r**: [`Field`](Field.md)
+• **isLeft**: [`Bool`](Bool.md)[]
 
 #### Defined in
 
-[lib/signature.ts:223](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L223)
+[lib/merkle_tree.ts:157](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L157)
 
 ___
 
-### s
+### path
 
-• **s**: [`Scalar`](Scalar.md)
+• **path**: [`Field`](Field.md)[]
 
 #### Defined in
 
-[lib/signature.ts:224](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L224)
+[lib/merkle_tree.ts:156](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L156)
+
+___
+
+### height
+
+▪ `Static` **height**: `number`
+
+#### Defined in
+
+[lib/merkle_tree.ts:155](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L155)
 
 ## Methods
 
@@ -94,7 +107,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Signature`](Signature.md) |
+| `x` | [`BaseMerkleWitness`](BaseMerkleWitness.md) |
 
 #### Returns
 
@@ -110,6 +123,74 @@ ___
 
 ___
 
+### calculateIndex
+
+▸ **calculateIndex**(): [`Field`](Field.md)
+
+Calculates the index of the leaf node that belongs to this Witness.
+
+#### Returns
+
+[`Field`](Field.md)
+
+Index of the leaf.
+
+#### Defined in
+
+[lib/merkle_tree.ts:218](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L218)
+
+___
+
+### calculateRoot
+
+▸ **calculateRoot**(`leaf`): [`Field`](Field.md)
+
+Calculates a root depending on the leaf value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `leaf` | [`Field`](Field.md) | Value of the leaf node that belongs to this Witness. |
+
+#### Returns
+
+[`Field`](Field.md)
+
+The calculated root.
+
+#### Defined in
+
+[lib/merkle_tree.ts:184](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L184)
+
+___
+
+### calculateRootSlow
+
+▸ **calculateRootSlow**(`leaf`): [`Field`](Field.md)
+
+Calculates a root depending on the leaf value.
+
+**`Deprecated`**
+
+This is a less efficient version of [calculateRoot](BaseMerkleWitness.md#calculateroot) which was added for compatibility with existing deployed contracts
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `leaf` | [`Field`](Field.md) |
+
+#### Returns
+
+[`Field`](Field.md)
+
+#### Defined in
+
+[lib/merkle_tree.ts:201](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L201)
+
+___
+
 ### equals
 
 ▸ **equals**(`x`): [`Bool`](Bool.md)
@@ -118,7 +199,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Signature`](Signature.md) |
+| `x` | [`BaseMerkleWitness`](BaseMerkleWitness.md) |
 
 #### Returns
 
@@ -131,6 +212,20 @@ ___
 #### Defined in
 
 [lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L154)
+
+___
+
+### height
+
+▸ **height**(): `number`
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[lib/merkle_tree.ts:158](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L158)
 
 ___
 
@@ -152,29 +247,13 @@ ___
 
 ___
 
-### toBase58
-
-▸ **toBase58**(): `string`
-
-Encodes a [Signature](Signature.md) in base58 format.
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[lib/signature.ts:284](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L284)
-
-___
-
 ### toConstant
 
-▸ **toConstant**(): [`Signature`](Signature.md)
+▸ **toConstant**(): [`BaseMerkleWitness`](BaseMerkleWitness.md)
 
 #### Returns
 
-[`Signature`](Signature.md)
+[`BaseMerkleWitness`](BaseMerkleWitness.md)
 
 #### Inherited from
 
@@ -222,31 +301,6 @@ ___
 
 ___
 
-### verify
-
-▸ **verify**(`publicKey`, `msg`): [`Bool`](Bool.md)
-
-Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](PublicKey.md).
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `publicKey` | [`PublicKey`](PublicKey.md) |
-| `msg` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-a [Bool](../modules.md#bool-2)
-
-#### Defined in
-
-[lib/signature.ts:258](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L258)
-
-___
-
 ### check
 
 ▸ `Static` **check**<`T`\>(`this`, `v`): `void`
@@ -275,53 +329,6 @@ ___
 #### Defined in
 
 [lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L191)
-
-___
-
-### create
-
-▸ `Static` **create**(`privKey`, `msg`): [`Signature`](Signature.md)
-
-Signs a message using a [PrivateKey](PrivateKey.md).
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `privKey` | [`PrivateKey`](PrivateKey.md) |
-| `msg` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Signature`](Signature.md)
-
-a [Signature](Signature.md)
-
-#### Defined in
-
-[lib/signature.ts:230](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L230)
-
-___
-
-### fromBase58
-
-▸ `Static` **fromBase58**(`signatureBase58`): [`Signature`](Signature.md)
-
-Decodes a base58 encoded signature into a [Signature](Signature.md).
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `signatureBase58` | `string` |
-
-#### Returns
-
-[`Signature`](Signature.md)
-
-#### Defined in
-
-[lib/signature.ts:274](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L274)
 
 ___
 

@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Exports](../modules.md) / PrivateKey
+
 # Class: PrivateKey
 
 A signing key. You can generate one via [random](PrivateKey.md#random).
@@ -24,12 +26,14 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 - [equals](PrivateKey.md#equals)
 - [isConstant](PrivateKey.md#isconstant)
 - [toBase58](PrivateKey.md#tobase58)
+- [toBigInt](PrivateKey.md#tobigint)
 - [toConstant](PrivateKey.md#toconstant)
 - [toFields](PrivateKey.md#tofields)
 - [toJSON](PrivateKey.md#tojson)
 - [toPublicKey](PrivateKey.md#topublickey)
 - [check](PrivateKey.md#check)
 - [fromBase58](PrivateKey.md#frombase58)
+- [fromBigInt](PrivateKey.md#frombigint)
 - [fromBits](PrivateKey.md#frombits)
 - [fromFields](PrivateKey.md#fromfields)
 - [fromJSON](PrivateKey.md#fromjson)
@@ -47,21 +51,21 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 ### constructor
 
-• **new PrivateKey**(`...props`)
+• **new PrivateKey**(`s`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...props` | `any`[] |
+| `s` | [`Scalar`](Scalar.md) |
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
 
 #### Defined in
 
-[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L87)
+[lib/signature.ts:25](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L25)
 
 ## Properties
 
@@ -71,7 +75,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:18](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L18)
+[lib/signature.ts:23](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L23)
 
 ## Methods
 
@@ -95,7 +99,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/circuit_value.ts:175](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L175)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -119,7 +123,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:171](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L171)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -137,7 +141,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:179](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L179)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -155,7 +159,23 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:64](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L64)
+[lib/signature.ts:90](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L90)
+
+___
+
+### toBigInt
+
+▸ **toBigInt**(): `bigint`
+
+Convert this [PrivateKey](PrivateKey.md) to a bigint
+
+#### Returns
+
+`bigint`
+
+#### Defined in
+
+[lib/signature.ts:53](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L53)
 
 ___
 
@@ -173,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L167)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -191,7 +211,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:159](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L159)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -209,25 +229,25 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:163](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L163)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L146)
 
 ___
 
 ### toPublicKey
 
-▸ **toPublicKey**(): [`PublicKey`](Types.PublicKey.md)
+▸ **toPublicKey**(): [`PublicKey`](PublicKey.md)
 
 Derives the associated public key.
 
 #### Returns
 
-[`PublicKey`](Types.PublicKey.md)
+[`PublicKey`](PublicKey.md)
 
-a [PublicKey](Types.PublicKey.md).
+a [PublicKey](PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:46](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L46)
+[lib/signature.ts:72](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L72)
 
 ___
 
@@ -239,7 +259,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -258,7 +278,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:208](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L208)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -282,7 +302,32 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:55](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L55)
+[lib/signature.ts:81](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L81)
+
+___
+
+### fromBigInt
+
+▸ `Static` **fromBigInt**(`sk`): [`PrivateKey`](PrivateKey.md)
+
+Create a [PrivateKey](PrivateKey.md) from a bigint
+
+**Warning**: Private keys should be sampled from secure randomness with sufficient entropy.
+Be careful that you don't use this method to create private keys that were sampled insecurely.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sk` | `bigint` |
+
+#### Returns
+
+[`PrivateKey`](PrivateKey.md)
+
+#### Defined in
+
+[lib/signature.ts:63](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L63)
 
 ___
 
@@ -296,7 +341,7 @@ Deserializes a list of bits into a [PrivateKey](PrivateKey.md).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `bs` | [`Bool`](Bool.md)[] | a list of [Bool](Bool.md). |
+| `bs` | [`Bool`](Bool.md)[] | a list of [Bool](../modules.md#bool-2). |
 
 #### Returns
 
@@ -306,7 +351,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:37](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L37)
+[lib/signature.ts:46](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L46)
 
 ___
 
@@ -318,7 +363,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -337,7 +382,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:183](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L183)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -349,7 +394,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -368,7 +413,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:241](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L241)
+[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L224)
 
 ___
 
@@ -380,7 +425,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -399,7 +444,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:104](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L104)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -419,7 +464,7 @@ a new [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:27](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L27)
+[lib/signature.ts:36](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L36)
 
 ___
 
@@ -437,7 +482,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:111](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L111)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -455,7 +500,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:133](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L133)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -480,7 +525,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:73](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/signature.ts#L73)
+[lib/signature.ts:99](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/signature.ts#L99)
 
 ___
 
@@ -492,7 +537,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -511,7 +556,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:222](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L222)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L205)
 
 ___
 
@@ -523,7 +568,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -542,7 +587,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L116)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -554,7 +599,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -573,7 +618,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:137](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L137)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -585,7 +630,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `AnyConstructor` |
+| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
 
 #### Parameters
 
@@ -604,4 +649,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:230](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L230)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L213)
