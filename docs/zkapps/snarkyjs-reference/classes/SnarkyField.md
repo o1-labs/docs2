@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / SnarkyField
+[SnarkyJS](../README.md) / [Modules](../modules.md) / SnarkyField
 
 # Class: SnarkyField
 
@@ -1248,7 +1248,7 @@ ___
 
 ▸ **toFields**(): [`Field`](Field.md)[]
 
-This function is the implementation of [toFields](TokenSymbol.md#tofields) in [Field](Field.md) type.
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) in [Field](Field.md) type.
 You can use this array to calculate the [Poseidon](../modules.md#poseidon-1) hash of a [Field](Field.md).
 This data structure will be always an array of length 1, where the first and only element equals the [Field](Field.md) itself.
 
@@ -1322,7 +1322,7 @@ ___
 
 ▸ `Static` **check**(`value`): `void`
 
-This function is the implementation of [check](TokenSymbol.md#check) in [Field](Field.md) type.
+This function is the implementation of [check](../interfaces/Provable.md#check) in [Field](Field.md) type.
 
 As any [Provable](../interfaces/Provable.md) type can be a [Field](Field.md), this function does not create any assertions on the chain, so it basically does nothing :)
 
@@ -1519,7 +1519,7 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-This function is the implementation of [sizeInFields](TokenSymbol.md#sizeinfields) in [Field](Field.md) type.
+This function is the implementation of [sizeInFields](../interfaces/Provable.md#sizeinfields) in [Field](Field.md) type.
 Size of the [Field](Field.md) type is always 1, as it is the primitive type.
 This function returns a reular number, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
 
@@ -1547,7 +1547,7 @@ ___
 
 ▸ `Static` **toAuxiliary**(`value?`): []
 
-This function is the implementation of [toAuxiliary](TokenSymbol.md#toauxiliary) in [Field](Field.md) type.
+This function is the implementation of [toAuxiliary](../interfaces/Provable.md#toauxiliary) in [Field](Field.md) type.
 As the primitive [Field](Field.md) type has no auxiliary data associated with it, this function will always return an empty array.
 
 #### Parameters
@@ -1595,7 +1595,7 @@ ___
 
 ▸ `Static` **toFields**(`value`): [`Field`](Field.md)[]
 
-This function is the implementation of [toFields](TokenSymbol.md#tofields) in [Field](Field.md) type.
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) in [Field](Field.md) type.
 Static function to serializes a [Field](Field.md) into an array of [Field](Field.md) elements.
 You can use this array to calculate the [Poseidon](../modules.md#poseidon-1) hash of a [Field](Field.md).
 This will be always an array of length 1, where the first and only element equals the given parameter itself.

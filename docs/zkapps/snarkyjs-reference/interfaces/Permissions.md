@@ -1,9 +1,9 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Permissions
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Permissions
 
 # Interface: Permissions
 
 Permissions specify how specific aspects of the zkapp account are allowed
-to be modified. All fields are denominated by a [Permission](../modules.md#permission-1).
+to be modified. All fields are denominated by a Permission.
 
 ## Hierarchy
 
@@ -33,7 +33,7 @@ to be modified. All fields are denominated by a [Permission](../modules.md#permi
 
 ### access
 
-• **access**: `AuthRequired`
+• **access**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
 Permission to control the ability to include _any_ account update for this
 account in a transaction. Note that this is more restrictive than all other
@@ -54,9 +54,9 @@ ___
 
 ### editActionState
 
-• **editActionState**: `AuthRequired`
+• **editActionState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to emit actions to the account.
+The Permission corresponding to the ability to emit actions to the account.
 
 #### Overrides
 
@@ -70,9 +70,9 @@ ___
 
 ### editState
 
-• **editState**: `AuthRequired`
+• **editState**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the 8 state fields associated with
+The Permission corresponding to the 8 state fields associated with
 an account.
 
 #### Overrides
@@ -87,7 +87,7 @@ ___
 
 ### incrementNonce
 
-• **incrementNonce**: `AuthRequired`
+• **incrementNonce**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
 #### Overrides
 
@@ -101,9 +101,9 @@ ___
 
 ### receive
 
-• **receive**: `AuthRequired`
+• **receive**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to receive transactions
+The Permission corresponding to the ability to receive transactions
 to this account.
 
 #### Overrides
@@ -118,9 +118,9 @@ ___
 
 ### send
 
-• **send**: `AuthRequired`
+• **send**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to send transactions
+The Permission corresponding to the ability to send transactions
 from this account.
 
 #### Overrides
@@ -135,9 +135,9 @@ ___
 
 ### setDelegate
 
-• **setDelegate**: `AuthRequired`
+• **setDelegate**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to set the delegate
+The Permission corresponding to the ability to set the delegate
 field of the account.
 
 #### Overrides
@@ -152,9 +152,9 @@ ___
 
 ### setPermissions
 
-• **setPermissions**: `AuthRequired`
+• **setPermissions**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to set the permissions
+The Permission corresponding to the ability to set the permissions
 field of the account.
 
 #### Overrides
@@ -169,7 +169,7 @@ ___
 
 ### setTiming
 
-• **setTiming**: `AuthRequired`
+• **setTiming**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
 #### Overrides
 
@@ -183,9 +183,9 @@ ___
 
 ### setTokenSymbol
 
-• **setTokenSymbol**: `AuthRequired`
+• **setTokenSymbol**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to set the token symbol
+The Permission corresponding to the ability to set the token symbol
 for this account.
 
 #### Overrides
@@ -200,9 +200,9 @@ ___
 
 ### setVerificationKey
 
-• **setVerificationKey**: `AuthRequired`
+• **setVerificationKey**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to set the verification
+The Permission corresponding to the ability to set the verification
 key associated with the circuit tied to this account. Effectively
 "upgradeability" of the smart contract.
 
@@ -218,7 +218,7 @@ ___
 
 ### setVotingFor
 
-• **setVotingFor**: `AuthRequired`
+• **setVotingFor**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
 #### Overrides
 
@@ -232,9 +232,9 @@ ___
 
 ### setZkappUri
 
-• **setZkappUri**: `AuthRequired`
+• **setZkappUri**: [`AuthRequired`](../modules/Types.md#authrequired-1)
 
-The [Permission](../modules.md#permission-1) corresponding to the ability to set the zkapp uri
+The Permission corresponding to the ability to set the zkapp uri
 typically pointing to the source code of the smart contract. Usually this
 should be changed whenever the [setVerificationKey](Permissions.md#setverificationkey) is
 changed. Effectively "upgradeability" of the smart contract.

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Circuit
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Circuit
 
 # Class: Circuit
 
@@ -215,11 +215,11 @@ ___
 
 ### equal
 
-▪ `Static` **equal**: <T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\>, `x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-2)<T\>(`x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-2) = `Provable.equal`
+▪ `Static` **equal**: <T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\>, `x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1)<T\>(`x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1) = `Provable.equal`
 
 #### Type declaration
 
-▸ <`T`\>(`type`, `x`, `y`): [`Bool`](../modules.md#bool-2)
+▸ <`T`\>(`type`, `x`, `y`): [`Bool`](../modules.md#bool-1)
 
 **`Deprecated`**
 
@@ -241,9 +241,9 @@ use [equal](../modules.md#equal)
 
 ##### Returns
 
-[`Bool`](../modules.md#bool-2)
+[`Bool`](../modules.md#bool-1)
 
-▸ <`T`\>(`x`, `y`): [`Bool`](../modules.md#bool-2)
+▸ <`T`\>(`x`, `y`): [`Bool`](../modules.md#bool-1)
 
 **`Deprecated`**
 
@@ -264,7 +264,7 @@ use [equal](../modules.md#equal)
 
 ##### Returns
 
-[`Bool`](../modules.md#bool-2)
+[`Bool`](../modules.md#bool-1)
 
 #### Defined in
 
@@ -558,7 +558,7 @@ ___
 
 ### prove
 
-▸ `Static` **prove**(`privateInput`, `publicInput`, `keypair`): `Promise`<[`Proof`](Proof.md)\>
+▸ `Static` **prove**(`privateInput`, `publicInput`, `keypair`): `Promise`<`Proof`\>
 
 Proves a statement using the private input, public input, and the [Keypair](Keypair.md) of the circuit.
 
@@ -579,7 +579,7 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 #### Returns
 
-`Promise`<[`Proof`](Proof.md)\>
+`Promise`<`Proof`\>
 
 #### Defined in
 
@@ -606,8 +606,8 @@ const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 | Name | Type |
 | :------ | :------ |
 | `publicInput` | `any`[] |
-| `verificationKey` | [`VerificationKey`](VerificationKey.md) |
-| `proof` | [`Proof`](Proof.md) |
+| `verificationKey` | `VerificationKey` |
+| `proof` | `Proof` |
 
 #### Returns
 

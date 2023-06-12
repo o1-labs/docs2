@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / SelfProof
+[SnarkyJS](../README.md) / [Modules](../modules.md) / SelfProof
 
 # Class: SelfProof<PublicInput, PublicOutput\>
 
@@ -11,7 +11,7 @@
 
 ## Hierarchy
 
-- [`Proof`](Proof-1.md)<`PublicInput`, `PublicOutput`\>
+- [`Proof`](Proof.md)<`PublicInput`, `PublicOutput`\>
 
   ↳ **`SelfProof`**
 
@@ -64,7 +64,7 @@
 
 #### Inherited from
 
-[Proof](Proof-1.md).[constructor](Proof-1.md#constructor)
+[Proof](Proof.md).[constructor](Proof.md#constructor)
 
 #### Defined in
 
@@ -78,7 +78,7 @@
 
 #### Inherited from
 
-[Proof](Proof-1.md).[maxProofsVerified](Proof-1.md#maxproofsverified)
+[Proof](Proof.md).[maxProofsVerified](Proof.md#maxproofsverified)
 
 #### Defined in
 
@@ -92,7 +92,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[proof](Proof-1.md#proof)
+[Proof](Proof.md).[proof](Proof.md#proof)
 
 #### Defined in
 
@@ -106,7 +106,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[publicInput](Proof-1.md#publicinput)
+[Proof](Proof.md).[publicInput](Proof.md#publicinput)
 
 #### Defined in
 
@@ -120,7 +120,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[publicOutput](Proof-1.md#publicoutput)
+[Proof](Proof.md).[publicOutput](Proof.md#publicoutput)
 
 #### Defined in
 
@@ -134,7 +134,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[shouldVerify](Proof-1.md#shouldverify)
+[Proof](Proof.md).[shouldVerify](Proof.md#shouldverify)
 
 #### Defined in
 
@@ -148,7 +148,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[publicInputType](Proof-1.md#publicinputtype)
+[Proof](Proof.md).[publicInputType](Proof.md#publicinputtype)
 
 #### Defined in
 
@@ -162,7 +162,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[publicOutputType](Proof-1.md#publicoutputtype)
+[Proof](Proof.md).[publicOutputType](Proof.md#publicoutputtype)
 
 #### Defined in
 
@@ -188,7 +188,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[tag](Proof-1.md#tag)
+[Proof](Proof.md).[tag](Proof.md#tag)
 
 #### Defined in
 
@@ -206,7 +206,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[toJSON](Proof-1.md#tojson)
+[Proof](Proof.md).[toJSON](Proof.md#tojson)
 
 #### Defined in
 
@@ -224,7 +224,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[verify](Proof-1.md#verify)
+[Proof](Proof.md).[verify](Proof.md#verify)
 
 #### Defined in
 
@@ -248,7 +248,7 @@ ___
 
 #### Inherited from
 
-[Proof](Proof-1.md).[verifyIf](Proof-1.md#verifyif)
+[Proof](Proof.md).[verifyIf](Proof.md#verifyif)
 
 #### Defined in
 
@@ -258,13 +258,13 @@ ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`S`\>(`this`, `«destructured»`): [`Proof`](Proof-1.md)<`InferProvable`<`S`[``"publicInputType"``]\>, `InferProvable`<`S`[``"publicOutputType"``]\>\>
+▸ `Static` **fromJSON**<`S`\>(`this`, `«destructured»`): [`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `S` | extends `Subclass`<typeof [`Proof`](Proof-1.md)\> |
+| `S` | extends `Subclass`<typeof [`Proof`](Proof.md)\> |
 
 #### Parameters
 
@@ -275,11 +275,11 @@ ___
 
 #### Returns
 
-[`Proof`](Proof-1.md)<`InferProvable`<`S`[``"publicInputType"``]\>, `InferProvable`<`S`[``"publicOutputType"``]\>\>
+[`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
 
 #### Inherited from
 
-[Proof](Proof-1.md).[fromJSON](Proof-1.md#fromjson)
+[Proof](Proof.md).[fromJSON](Proof.md#fromjson)
 
 #### Defined in
 

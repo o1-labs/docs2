@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / MerkleTree
+[SnarkyJS](../README.md) / [Modules](../modules.md) / MerkleTree
 
 # Class: MerkleTree
 
@@ -174,7 +174,7 @@ ___
 
 ### getWitness
 
-▸ **getWitness**(`index`): [`Witness`](../modules.md#witness)
+▸ **getWitness**(`index`): `Witness`
 
 Returns the witness (also known as [Merkle Proof or Merkle Witness](https://computersciencewiki.org/index.php/Merkle_proof)) for the leaf at the given index.
 
@@ -186,7 +186,7 @@ Returns the witness (also known as [Merkle Proof or Merkle Witness](https://comp
 
 #### Returns
 
-[`Witness`](../modules.md#witness)
+`Witness`
 
 The witness that belongs to the leaf.
 

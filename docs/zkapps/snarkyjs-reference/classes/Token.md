@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Token
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Token
 
 # Class: Token
 
@@ -35,7 +35,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 | :------ | :------ |
 | `«destructured»` | `Object` |
 | › `parentTokenId?` | [`Field`](Field.md) |
-| › `tokenOwner` | [`PublicKey`](PublicKey.md) |
+| › `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Defined in
 
@@ -65,7 +65,7 @@ ___
 
 ### tokenOwner
 
-• `Readonly` **tokenOwner**: [`PublicKey`](PublicKey.md)
+• `Readonly` **tokenOwner**: [`PublicKey`](Types.PublicKey.md)
 
 #### Defined in
 
@@ -81,10 +81,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `check` | (`x`: [`Field`](Field.md)) => `void` |
 | `default` | [`Field`](Field.md) |
-| `derive` | (`tokenOwner`: [`PublicKey`](PublicKey.md), `parentTokenId`: [`Field`](Field.md)) => [`Field`](Field.md) |
+| `fromFields` | (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => [`Field`](Field.md) |
+| `toAuxiliary` | (`x?`: [`Field`](Field.md)) => `any`[] |
+| `toFields` | (`x`: [`Field`](Field.md)) => [`Field`](Field.md)[] |
+| `toInput` | (`x`: [`Field`](Field.md)) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
+| `derive` | (`tokenOwner`: [`PublicKey`](Types.PublicKey.md), `parentTokenId`: [`Field`](Field.md)) => [`Field`](Field.md) |
+| `emptyValue` | () => [`Field`](Field.md) |
 | `fromBase58` | (`base58`: `string`) => [`Field`](Field.md) |
+| `fromJSON` | (`x`: `string`) => [`Field`](Field.md) |
+| `sizeInFields` | () => `number` |
 | `toBase58` | (`t`: [`Field`](Field.md)) => `string` |
+| `toJSON` | (`x`: [`Field`](Field.md)) => `string` |
 
 #### Defined in
 
@@ -100,7 +109,7 @@ ___
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `tokenOwner` | [`PublicKey`](PublicKey.md) | `undefined` |
+| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) | `undefined` |
 | `parentTokenId` | [`Field`](Field.md) | `TokenId.default` |
 
 #### Returns

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Group
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Group
 
 # Class: Group
 
@@ -128,6 +128,12 @@ ___
 #### Returns
 
 `Object`
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `bigint` |
+| `y` | `bigint` |
+| `z` | `bigint` |
 
 #### Defined in
 

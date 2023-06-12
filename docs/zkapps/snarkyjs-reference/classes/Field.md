@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Field
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Field
 
 # Class: Field
 
@@ -984,7 +984,7 @@ ___
 
 ▸ **toAuxiliary**(): []
 
-This function is the implementation of [toAuxiliary](TokenSymbol.md#toauxiliary) for the [Field](Field.md) type.
+This function is the implementation of [toAuxiliary](../interfaces/Provable.md#toauxiliary) for the [Field](Field.md) type.
 
 As the primitive [Field](Field.md) type has no auxiliary data associated with it, this function will always return an empty array.
 
@@ -1086,7 +1086,7 @@ ___
 
 ▸ **toFields**(): [`Field`](Field.md)[]
 
-This function is the implementation of [toFields](TokenSymbol.md#tofields) for the [Field](Field.md) type.
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) for the [Field](Field.md) type.
 
 The result will be always an array of length 1, where the first and only element equals the [Field](Field.md) itself.
 
@@ -1241,7 +1241,7 @@ ___
 
 ▸ `Static` **check**(): `void`
 
-This function is the implementation of [check](TokenSymbol.md#check) in [Field](Field.md) type.
+This function is the implementation of [check](../interfaces/Provable.md#check) in [Field](Field.md) type.
 
 As any field element can be a [Field](Field.md), this function does not create any assertions, so it does nothing.
 
@@ -1334,7 +1334,7 @@ ___
 
 ▸ `Static` **fromFields**(`fields`): [`Field`](Field.md)
 
-Implementation of [fromFields](TokenSymbol.md#fromfields) for the [Field](Field.md) type.
+Implementation of [fromFields](../interfaces/Provable.md#fromfields) for the [Field](Field.md) type.
 
 **Warning**: This function is designed for internal use. It is not intended to be used by a zkApp developer.
 
@@ -1463,7 +1463,7 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-This function is the implementation of [sizeInFields](TokenSymbol.md#sizeinfields) for the [Field](Field.md) type.
+This function is the implementation of [sizeInFields](../interfaces/Provable.md#sizeinfields) for the [Field](Field.md) type.
 
 Size of the [Field](Field.md) type is 1, as it is the primitive type.
 This function returns a regular number, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
@@ -1490,7 +1490,7 @@ ___
 
 ▸ `Static` **toAuxiliary**(): []
 
-This function is the implementation of [toAuxiliary](TokenSymbol.md#toauxiliary) for the [Field](Field.md) type.
+This function is the implementation of [toAuxiliary](../interfaces/Provable.md#toauxiliary) for the [Field](Field.md) type.
 
 As the primitive [Field](Field.md) type has no auxiliary data associated with it, this function will always return an empty array.
 
@@ -1533,7 +1533,7 @@ ___
 
 ▸ `Static` **toFields**(`x`): [`Field`](Field.md)[]
 
-This function is the implementation of [toFields](TokenSymbol.md#tofields) for the [Field](Field.md) type.
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) for the [Field](Field.md) type.
 
 Static function to serializes a [Field](Field.md) into an array of [Field](Field.md) elements.
 This will be always an array of length 1, where the first and only element equals the given parameter itself.

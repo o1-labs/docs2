@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / FieldType
+[SnarkyJS](../README.md) / [Modules](../modules.md) / FieldType
 
 # Enumeration: FieldType
 

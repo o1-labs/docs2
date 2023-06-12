@@ -1,9 +1,11 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / PublicKey
+[SnarkyJS](../README.md) / [Modules](../modules.md) / [Types](../modules/Types.md) / PublicKey
 
 # Class: PublicKey
 
+[Types](../modules/Types.md).PublicKey
+
 A public key, which is also an address on the Mina network.
-You can derive a [PublicKey](PublicKey.md) directly from a [PrivateKey](PrivateKey.md).
+You can derive a [PublicKey](Types.PublicKey.md) directly from a [PrivateKey](PrivateKey.md).
 
 ## Hierarchy
 
@@ -15,40 +17,40 @@ You can derive a [PublicKey](PublicKey.md) directly from a [PrivateKey](PrivateK
 
 ### Constructors
 
-- [constructor](PublicKey.md#constructor)
+- [constructor](Types.PublicKey.md#constructor)
 
 ### Properties
 
-- [isOdd](PublicKey.md#isodd)
-- [x](PublicKey.md#x)
+- [isOdd](Types.PublicKey.md#isodd)
+- [x](Types.PublicKey.md#x)
 
 ### Methods
 
-- [assertEquals](PublicKey.md#assertequals)
-- [equals](PublicKey.md#equals)
-- [isConstant](PublicKey.md#isconstant)
-- [isEmpty](PublicKey.md#isempty)
-- [toBase58](PublicKey.md#tobase58)
-- [toConstant](PublicKey.md#toconstant)
-- [toFields](PublicKey.md#tofields)
-- [toGroup](PublicKey.md#togroup)
-- [toJSON](PublicKey.md#tojson)
-- [check](PublicKey.md#check)
-- [empty](PublicKey.md#empty)
-- [from](PublicKey.md#from)
-- [fromBase58](PublicKey.md#frombase58)
-- [fromFields](PublicKey.md#fromfields)
-- [fromGroup](PublicKey.md#fromgroup)
-- [fromJSON](PublicKey.md#fromjson)
-- [fromObject](PublicKey.md#fromobject)
-- [fromPrivateKey](PublicKey.md#fromprivatekey)
-- [sizeInFields](PublicKey.md#sizeinfields)
-- [toAuxiliary](PublicKey.md#toauxiliary)
-- [toBase58](PublicKey.md#tobase58-1)
-- [toConstant](PublicKey.md#toconstant-1)
-- [toFields](PublicKey.md#tofields-1)
-- [toInput](PublicKey.md#toinput)
-- [toJSON](PublicKey.md#tojson-1)
+- [assertEquals](Types.PublicKey.md#assertequals)
+- [equals](Types.PublicKey.md#equals)
+- [isConstant](Types.PublicKey.md#isconstant)
+- [isEmpty](Types.PublicKey.md#isempty)
+- [toBase58](Types.PublicKey.md#tobase58)
+- [toConstant](Types.PublicKey.md#toconstant)
+- [toFields](Types.PublicKey.md#tofields)
+- [toGroup](Types.PublicKey.md#togroup)
+- [toJSON](Types.PublicKey.md#tojson)
+- [check](Types.PublicKey.md#check)
+- [empty](Types.PublicKey.md#empty)
+- [from](Types.PublicKey.md#from)
+- [fromBase58](Types.PublicKey.md#frombase58)
+- [fromFields](Types.PublicKey.md#fromfields)
+- [fromGroup](Types.PublicKey.md#fromgroup)
+- [fromJSON](Types.PublicKey.md#fromjson)
+- [fromObject](Types.PublicKey.md#fromobject)
+- [fromPrivateKey](Types.PublicKey.md#fromprivatekey)
+- [sizeInFields](Types.PublicKey.md#sizeinfields)
+- [toAuxiliary](Types.PublicKey.md#toauxiliary)
+- [toBase58](Types.PublicKey.md#tobase58-1)
+- [toConstant](Types.PublicKey.md#toconstant-1)
+- [toFields](Types.PublicKey.md#tofields-1)
+- [toInput](Types.PublicKey.md#toinput)
+- [toJSON](Types.PublicKey.md#tojson-1)
 
 ## Constructors
 
@@ -100,7 +102,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`PublicKey`](PublicKey.md) |
+| `x` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Returns
 
@@ -124,7 +126,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`PublicKey`](PublicKey.md) |
+| `x` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Returns
 
@@ -162,13 +164,13 @@ ___
 
 ▸ **isEmpty**(): [`Bool`](Bool.md)
 
-Checks if a [PublicKey](PublicKey.md) is empty.
+Checks if a [PublicKey](Types.PublicKey.md) is empty.
 
 #### Returns
 
 [`Bool`](Bool.md)
 
-a [Bool](../modules.md#bool-2)
+a [Bool](../modules.md#bool-1)
 
 #### Defined in
 
@@ -180,13 +182,13 @@ ___
 
 ▸ **toBase58**(): `string`
 
-Encodes a [PublicKey](PublicKey.md) in base58 format.
+Encodes a [PublicKey](Types.PublicKey.md) in base58 format.
 
 #### Returns
 
 `string`
 
-a base58 encoded [PublicKey](PublicKey.md)
+a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
@@ -196,11 +198,11 @@ ___
 
 ### toConstant
 
-▸ **toConstant**(): [`PublicKey`](PublicKey.md)
+▸ **toConstant**(): [`PublicKey`](Types.PublicKey.md)
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
 #### Inherited from
 
@@ -234,13 +236,13 @@ ___
 
 ▸ **toGroup**(): [`Group`](Group.md)
 
-Returns the [Group](../modules.md#group-3) representation of this [PublicKey](PublicKey.md).
+Returns the [Group](../modules.md#group-1) representation of this [PublicKey](Types.PublicKey.md).
 
 #### Returns
 
 [`Group`](Group.md)
 
-A [Group](../modules.md#group-3)
+A [Group](../modules.md#group-1)
 
 #### Defined in
 
@@ -274,7 +276,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -299,15 +301,15 @@ ___
 
 ### empty
 
-▸ `Static` **empty**(): [`PublicKey`](PublicKey.md)
+▸ `Static` **empty**(): [`PublicKey`](Types.PublicKey.md)
 
-Creates an empty [PublicKey](PublicKey.md).
+Creates an empty [PublicKey](Types.PublicKey.md).
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-an empty [PublicKey](PublicKey.md)
+an empty [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
@@ -317,9 +319,9 @@ ___
 
 ### from
 
-▸ `Static` **from**(`g`): [`PublicKey`](PublicKey.md)
+▸ `Static` **from**(`g`): [`PublicKey`](Types.PublicKey.md)
 
-Creates a [PublicKey](PublicKey.md) from a JSON structure element.
+Creates a [PublicKey](Types.PublicKey.md) from a JSON structure element.
 
 #### Parameters
 
@@ -331,9 +333,9 @@ Creates a [PublicKey](PublicKey.md) from a JSON structure element.
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-a [PublicKey](PublicKey.md).
+a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
@@ -343,9 +345,9 @@ ___
 
 ### fromBase58
 
-▸ `Static` **fromBase58**(`publicKeyBase58`): [`PublicKey`](PublicKey.md)
+▸ `Static` **fromBase58**(`publicKeyBase58`): [`PublicKey`](Types.PublicKey.md)
 
-Decodes a base58 encoded [PublicKey](PublicKey.md) into a [PublicKey](PublicKey.md).
+Decodes a base58 encoded [PublicKey](Types.PublicKey.md) into a [PublicKey](Types.PublicKey.md).
 
 #### Parameters
 
@@ -355,9 +357,9 @@ Decodes a base58 encoded [PublicKey](PublicKey.md) into a [PublicKey](PublicKey.
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-a [PublicKey](PublicKey.md)
+a [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
@@ -373,7 +375,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -398,9 +400,9 @@ ___
 
 ### fromGroup
 
-▸ `Static` **fromGroup**(`«destructured»`): [`PublicKey`](PublicKey.md)
+▸ `Static` **fromGroup**(`«destructured»`): [`PublicKey`](Types.PublicKey.md)
 
-Creates a [PublicKey](PublicKey.md) from a [Group](../modules.md#group-3) element.
+Creates a [PublicKey](Types.PublicKey.md) from a [Group](../modules.md#group-1) element.
 
 #### Parameters
 
@@ -410,9 +412,9 @@ Creates a [PublicKey](PublicKey.md) from a [Group](../modules.md#group-3) elemen
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-a [PublicKey](PublicKey.md).
+a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
@@ -424,13 +426,13 @@ ___
 
 ▸ `Static` **fromJSON**<`T`\>(`this`, `publicKey`): `InstanceType`<`T`\>
 
-Deserializes a JSON string into a [PublicKey](PublicKey.md).
+Deserializes a JSON string into a [PublicKey](Types.PublicKey.md).
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -463,7 +465,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -488,9 +490,9 @@ ___
 
 ### fromPrivateKey
 
-▸ `Static` **fromPrivateKey**(`«destructured»`): [`PublicKey`](PublicKey.md)
+▸ `Static` **fromPrivateKey**(`«destructured»`): [`PublicKey`](Types.PublicKey.md)
 
-Derives a [PublicKey](PublicKey.md) from a [PrivateKey](PrivateKey.md).
+Derives a [PublicKey](Types.PublicKey.md) from a [PrivateKey](PrivateKey.md).
 
 #### Parameters
 
@@ -500,9 +502,9 @@ Derives a [PublicKey](PublicKey.md) from a [PrivateKey](PrivateKey.md).
 
 #### Returns
 
-[`PublicKey`](PublicKey.md)
+[`PublicKey`](Types.PublicKey.md)
 
-a [PublicKey](PublicKey.md).
+a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
@@ -550,19 +552,19 @@ ___
 
 ▸ `Static` **toBase58**(`«destructured»`): `string`
 
-Static method to encode a [PublicKey](PublicKey.md) into base58 format.
+Static method to encode a [PublicKey](Types.PublicKey.md) into base58 format.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `«destructured»` | [`PublicKey`](PublicKey.md) |
+| `«destructured»` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Returns
 
 `string`
 
-a base58 encoded [PublicKey](PublicKey.md)
+a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
@@ -578,7 +580,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -609,7 +611,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -640,7 +642,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`AnyConstructor`](../modules.md#anyconstructor) |
+| `T` | extends `AnyConstructor` |
 
 #### Parameters
 
@@ -667,13 +669,13 @@ ___
 
 ▸ `Static` **toJSON**(`publicKey`): `string`
 
-Serializes a [PublicKey](PublicKey.md) into its JSON representation.
+Serializes a [PublicKey](Types.PublicKey.md) into its JSON representation.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | [`PublicKey`](PublicKey.md) |
+| `publicKey` | [`PublicKey`](Types.PublicKey.md) |
 
 #### Returns
 

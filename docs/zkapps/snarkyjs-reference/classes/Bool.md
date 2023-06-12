@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Bool
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Bool
 
 # Class: Bool
 

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Ledger
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Ledger
 
 # Class: Ledger
 
@@ -64,13 +64,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountPrecondition` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
-| `body` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
-| `networkPrecondition` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
-| `packInput` | (`input`: [`MlHashInput`](../modules.md#mlhashinput-1)) => [`MlArray`](../modules.md#mlarray-1)<`Uint8Array`\> |
-| `permissions` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
-| `timing` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
-| `update` | (`json`: `String`) => [`MlHashInput`](../modules.md#mlhashinput-1) |
+| `accountPrecondition` | (`json`: `String`) => `MlHashInput` |
+| `body` | (`json`: `String`) => `MlHashInput` |
+| `networkPrecondition` | (`json`: `String`) => `MlHashInput` |
+| `packInput` | (`input`: `MlHashInput`) => [`MlArray`](../modules.md#mlarray-1)<`Uint8Array`\> |
+| `permissions` | (`json`: `String`) => `MlHashInput` |
+| `timing` | (`json`: `String`) => `MlHashInput` |
+| `update` | (`json`: `String`) => `MlHashInput` |
 
 #### Defined in
 
@@ -127,7 +127,7 @@ ___
 
 ### getAccount
 
-▸ **getAccount**(`publicKey`, `tokenId`): `undefined` \| `Account`
+▸ **getAccount**(`publicKey`, `tokenId`): `undefined` \| [`Account`](../modules/Types.Json.md#account)
 
 Returns an account.
 
@@ -140,7 +140,7 @@ Returns an account.
 
 #### Returns
 
-`undefined` \| `Account`
+`undefined` \| [`Account`](../modules/Types.Json.md#account)
 
 #### Defined in
 

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / Snarky
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Snarky
 
 # Namespace: Snarky
 

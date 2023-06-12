@@ -1,17 +1,19 @@
-[SnarkyJS](../README.md) / [Exports](../modules.md) / TransactionId
+[SnarkyJS](../README.md) / [Modules](../modules.md) / [Mina](../modules/Mina.md) / TransactionId
 
 # Interface: TransactionId
+
+[Mina](../modules/Mina.md).TransactionId
 
 ## Table of contents
 
 ### Properties
 
-- [isSuccess](TransactionId.md#issuccess)
+- [isSuccess](Mina.TransactionId.md#issuccess)
 
 ### Methods
 
-- [hash](TransactionId.md#hash)
-- [wait](TransactionId.md#wait)
+- [hash](Mina.TransactionId.md#hash)
+- [wait](Mina.TransactionId.md#wait)
 
 ## Properties
 
