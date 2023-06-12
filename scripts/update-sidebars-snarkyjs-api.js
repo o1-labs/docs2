@@ -19,39 +19,67 @@ function getAllSnarkyJSAPIPathnames(directory) {
     });
 }
 
-function updateSidebars(sidebars, category, snarkyJSItems) {
-  let { ...newSidebars } = sidebars;
-
+function findSnarkyjsSidebar(sidebars) {
   // Find the index of the `zkApp Developers` category in the sidebars
-  const zkAppCategory = newSidebars.docs.findIndex(
+  const zkAppCategory = sidebars.docs.findIndex(
     (item) => item.label === 'zkApp Developers'
   );
 
   // Find the index of the `SnarkyJS API Reference` category in the sidebars
-  const snarkyJSAPICategory = newSidebars.docs[zkAppCategory].items.findIndex(
+  const snarkyJSAPICategory = sidebars.docs[zkAppCategory].items.findIndex(
     (item) => item.label === 'SnarkyJS Reference'
   );
 
-  // Find the index of the category we want to update in the sidebars
-  const categoryToFind = newSidebars.docs[zkAppCategory].items[
+  return {
+    zkAppCategory,
+    snarkyJSAPICategory,
+  };
+}
+
+function resetSnarkyjsSidebar(sidebars) {
+  let { zkAppCategory, snarkyJSAPICategory } = findSnarkyjsSidebar(sidebars);
+  sidebars.docs[zkAppCategory].items[snarkyJSAPICategory] = emptySidebar();
+  return sidebars;
+}
+
+function updateSidebars(sidebars, category, snarkyJSItems) {
+  const { zkAppCategory, snarkyJSAPICategory } = findSnarkyjsSidebar(sidebars);
+
+  const categoryToFind = sidebars.docs[zkAppCategory].items[
     snarkyJSAPICategory
   ].items.findIndex((item) => {
     return item.label === category;
   });
 
   // Update the category with the new items
-  newSidebars.docs[zkAppCategory].items[snarkyJSAPICategory].items[
+  sidebars.docs[zkAppCategory].items[snarkyJSAPICategory].items[
     categoryToFind
   ].items = snarkyJSItems;
 
-  return newSidebars;
+  console.log(
+    category,
+    categoryToFind,
+    sidebars.docs[zkAppCategory].items[snarkyJSAPICategory].items[
+      categoryToFind
+    ]
+  );
 }
 
 function emptySidebar() {
   return {
     type: 'category',
-    label: 'SnarkyJS API Reference',
+    label: 'SnarkyJS Reference',
     items: [
+      {
+        type: 'doc',
+        id: 'zkapps/snarkyjs-reference/README',
+        label: 'Introduction',
+      },
+      {
+        type: 'doc',
+        id: 'zkapps/snarkyjs-reference/modules',
+        label: 'Overview',
+      },
       {
         type: 'category',
         label: 'Classes',
@@ -81,11 +109,11 @@ const snarkyjsInterfaces = getAllSnarkyJSAPIPathnames('interfaces');
 const snarkyjsModules = getAllSnarkyJSAPIPathnames('modules');
 const snarkyjsEnums = getAllSnarkyJSAPIPathnames('enums');
 
-let newSidebars = emptySidebar();
-newSidebars = updateSidebars(sidebars, 'Classes', snarkyjsClasses);
-newSidebars = updateSidebars(sidebars, 'Interfaces', snarkyjsInterfaces);
-newSidebars = updateSidebars(sidebars, 'Modules', snarkyjsModules);
-newSidebars = updateSidebars(sidebars, 'Enums', snarkyjsEnums);
+const newSidebars = resetSnarkyjsSidebar(sidebars);
+updateSidebars(newSidebars, 'Classes', snarkyjsClasses);
+updateSidebars(sidebars, 'Interfaces', snarkyjsInterfaces);
+updateSidebars(sidebars, 'Modules', snarkyjsModules);
+updateSidebars(sidebars, 'Enums', snarkyjsEnums);
 
 fs.writeFileSync(
   './sidebars.js',
