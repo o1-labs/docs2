@@ -1,18 +1,18 @@
 /**
- * Usage: node update-sidebars-snarkyjs-api.js
+ * Usage: node scripts/update-sidebars-snarkyjs-api.js
  * This script will update the sidebars.js file with the latest SnarkyJS API. It will only modify the `SnarkyJS API Reference` category.
  */
 
-const fs = require("fs");
-const sidebars = require("./sidebars.js");
+const fs = require('fs');
+const sidebars = require('../sidebars.js');
 
 function getAllSnarkyJSAPIPathnames(directory) {
   return fs
     .readdirSync(`./docs/zkapps/snarkyjs-reference/${directory}`)
     .map((file) => {
-      const fileName = file.replace(".md", "");
+      const fileName = file.replace('.md', '');
       return {
-        type: "doc",
+        type: 'doc',
         id: `zkapps/snarkyjs-reference/${directory}/${fileName}`,
         label: `${fileName}`,
       };
@@ -24,12 +24,12 @@ function updateSidebars(sidebars, category, snarkyJSItems) {
 
   // Find the index of the `zkApp Developers` category in the sidebars
   const zkAppCategory = newSidebars.docs.findIndex(
-    (item) => item.label === "zkApp Developers"
+    (item) => item.label === 'zkApp Developers'
   );
 
   // Find the index of the `SnarkyJS API Reference` category in the sidebars
   const snarkyJSAPICategory = newSidebars.docs[zkAppCategory].items.findIndex(
-    (item) => item.label === "SnarkyJS Reference"
+    (item) => item.label === 'SnarkyJS Reference'
   );
 
   // Find the index of the category we want to update in the sidebars
@@ -47,18 +47,47 @@ function updateSidebars(sidebars, category, snarkyJSItems) {
   return newSidebars;
 }
 
-// Import all the "classes" from the SnarkyJS API Reference
-const snarkyjsClasses = getAllSnarkyJSAPIPathnames("classes");
-// Import all the "interfaces" from the SnarkyJS API Reference
-const snarkyjsInterfaces = getAllSnarkyJSAPIPathnames("interfaces");
-// Import all the "modules" from the SnarkyJS API Reference
-const snarkyjsModules = getAllSnarkyJSAPIPathnames("modules");
+function emptySidebar() {
+  return {
+    type: 'category',
+    label: 'SnarkyJS API Reference',
+    items: [
+      {
+        type: 'category',
+        label: 'Classes',
+        items: [],
+      },
+      {
+        type: 'category',
+        label: 'Interfaces',
+        items: [],
+      },
+      {
+        type: 'category',
+        label: 'Modules',
+        items: [],
+      },
+      {
+        type: 'category',
+        label: 'Enums',
+        items: [],
+      },
+    ],
+  };
+}
 
-let newSidebars = updateSidebars(sidebars, "Classes", snarkyjsClasses);
-newSidebars = updateSidebars(sidebars, "Interfaces", snarkyjsInterfaces);
-newSidebars = updateSidebars(sidebars, "Modules", snarkyjsModules);
+const snarkyjsClasses = getAllSnarkyJSAPIPathnames('classes');
+const snarkyjsInterfaces = getAllSnarkyJSAPIPathnames('interfaces');
+const snarkyjsModules = getAllSnarkyJSAPIPathnames('modules');
+const snarkyjsEnums = getAllSnarkyJSAPIPathnames('enums');
+
+let newSidebars = emptySidebar();
+newSidebars = updateSidebars(sidebars, 'Classes', snarkyjsClasses);
+newSidebars = updateSidebars(sidebars, 'Interfaces', snarkyjsInterfaces);
+newSidebars = updateSidebars(sidebars, 'Modules', snarkyjsModules);
+newSidebars = updateSidebars(sidebars, 'Enums', snarkyjsEnums);
 
 fs.writeFileSync(
-  "./sidebars.js",
+  './sidebars.js',
   `module.exports = ${JSON.stringify(newSidebars, null, 2)}`
 );
