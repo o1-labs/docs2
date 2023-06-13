@@ -1,93 +1,69 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Bool
+[SnarkyJS](../README.md) / [Modules](../modules.md) / SnarkyBool
 
-# Class: Bool
-
-A boolean value. You can use it like this:
-
-```
-const x = new Bool(true);
-```
-
-You can also combine multiple booleans via [[`not`]], [[`and`]], [[`or`]].
-
-Use [[assertEquals]] to enforce the value of a Bool.
+# Class: SnarkyBool
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Bool.md#constructor)
+- [constructor](SnarkyBool.md#constructor)
 
 ### Properties
 
-- [value](Bool.md#value)
-- [Unsafe](Bool.md#unsafe)
+- [Unsafe](SnarkyBool.md#unsafe)
 
 ### Methods
 
-- [and](Bool.md#and)
-- [assertEquals](Bool.md#assertequals)
-- [assertFalse](Bool.md#assertfalse)
-- [assertTrue](Bool.md#asserttrue)
-- [equals](Bool.md#equals)
-- [isConstant](Bool.md#isconstant)
-- [not](Bool.md#not)
-- [or](Bool.md#or)
-- [sizeInFields](Bool.md#sizeinfields)
-- [toBoolean](Bool.md#toboolean)
-- [toField](Bool.md#tofield)
-- [toFields](Bool.md#tofields)
-- [toJSON](Bool.md#tojson)
-- [toString](Bool.md#tostring)
-- [#isBool](Bool.md##isbool)
-- [#toVar](Bool.md##tovar)
-- [and](Bool.md#and-1)
-- [assertEqual](Bool.md#assertequal)
-- [check](Bool.md#check)
-- [count](Bool.md#count)
-- [equal](Bool.md#equal)
-- [fromBytes](Bool.md#frombytes)
-- [fromFields](Bool.md#fromfields)
-- [fromJSON](Bool.md#fromjson)
-- [not](Bool.md#not-1)
-- [or](Bool.md#or-1)
-- [readBytes](Bool.md#readbytes)
-- [sizeInBytes](Bool.md#sizeinbytes)
-- [sizeInFields](Bool.md#sizeinfields-1)
-- [toAuxiliary](Bool.md#toauxiliary)
-- [toBytes](Bool.md#tobytes)
-- [toField](Bool.md#tofield-1)
-- [toFields](Bool.md#tofields-1)
-- [toInput](Bool.md#toinput)
-- [toJSON](Bool.md#tojson-1)
+- [and](SnarkyBool.md#and)
+- [assertEquals](SnarkyBool.md#assertequals)
+- [assertFalse](SnarkyBool.md#assertfalse)
+- [assertTrue](SnarkyBool.md#asserttrue)
+- [equals](SnarkyBool.md#equals)
+- [not](SnarkyBool.md#not)
+- [or](SnarkyBool.md#or)
+- [sizeInFields](SnarkyBool.md#sizeinfields)
+- [toBoolean](SnarkyBool.md#toboolean)
+- [toField](SnarkyBool.md#tofield)
+- [toFields](SnarkyBool.md#tofields)
+- [toJSON](SnarkyBool.md#tojson)
+- [toString](SnarkyBool.md#tostring)
+- [and](SnarkyBool.md#and-1)
+- [assertEqual](SnarkyBool.md#assertequal)
+- [check](SnarkyBool.md#check)
+- [count](SnarkyBool.md#count)
+- [equal](SnarkyBool.md#equal)
+- [fromBytes](SnarkyBool.md#frombytes)
+- [fromFields](SnarkyBool.md#fromfields)
+- [fromJSON](SnarkyBool.md#fromjson)
+- [not](SnarkyBool.md#not-1)
+- [or](SnarkyBool.md#or-1)
+- [readBytes](SnarkyBool.md#readbytes)
+- [sizeInBytes](SnarkyBool.md#sizeinbytes)
+- [sizeInFields](SnarkyBool.md#sizeinfields-1)
+- [toAuxiliary](SnarkyBool.md#toauxiliary)
+- [toBytes](SnarkyBool.md#tobytes)
+- [toField](SnarkyBool.md#tofield-1)
+- [toFields](SnarkyBool.md#tofields-1)
+- [toInput](SnarkyBool.md#toinput)
+- [toJSON](SnarkyBool.md#tojson-1)
 
 ## Constructors
 
 ### constructor
 
-• **new Bool**(`x`)
+• **new SnarkyBool**(`x`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `boolean` \| [`Bool`](Bool.md) \| [`FieldVar`](../modules.md#fieldvar-1) |
+| `x` | `boolean` \| [`Bool`](Bool.md) |
 
 #### Defined in
 
-[lib/bool.ts:31](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L31)
+[snarky.d.ts:1087](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1087)
 
 ## Properties
-
-### value
-
-• **value**: [`FieldVar`](../modules.md#fieldvar-1)
-
-#### Defined in
-
-[lib/bool.ts:29](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L29)
-
-___
 
 ### Unsafe
 
@@ -101,7 +77,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:323](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L323)
+[snarky.d.ts:1177](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1177)
 
 ## Methods
 
@@ -124,7 +100,7 @@ this [Bool](Bool.md) and `y` are also true.
 
 #### Defined in
 
-[lib/bool.ts:69](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L69)
+[snarky.d.ts:1104](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1104)
 
 ___
 
@@ -147,7 +123,7 @@ Proves that this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:92](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L92)
+[snarky.d.ts:1117](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1117)
 
 ___
 
@@ -169,7 +145,7 @@ Proves that this [Bool](Bool.md) is `false`.
 
 #### Defined in
 
-[lib/bool.ts:123](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L123)
+[snarky.d.ts:1127](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1127)
 
 ___
 
@@ -191,7 +167,7 @@ Proves that this [Bool](Bool.md) is `true`.
 
 #### Defined in
 
-[lib/bool.ts:109](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L109)
+[snarky.d.ts:1122](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1122)
 
 ___
 
@@ -213,21 +189,7 @@ Returns true if this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:138](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L138)
-
-___
-
-### isConstant
-
-▸ **isConstant**(): this is Object
-
-#### Returns
-
-this is Object
-
-#### Defined in
-
-[lib/bool.ts:43](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L43)
+[snarky.d.ts:1133](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1133)
 
 ___
 
@@ -243,7 +205,7 @@ a new [Bool](Bool.md) that is the negation of this [Bool](Bool.md).
 
 #### Defined in
 
-[lib/bool.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L57)
+[snarky.d.ts:1097](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1097)
 
 ___
 
@@ -266,7 +228,7 @@ this [Bool](Bool.md) or `y` is true.
 
 #### Defined in
 
-[lib/bool.ts:81](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L81)
+[snarky.d.ts:1111](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1111)
 
 ___
 
@@ -282,7 +244,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:148](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L148)
+[snarky.d.ts:1138](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1138)
 
 ___
 
@@ -299,7 +261,7 @@ This can only be called on non-witness values.
 
 #### Defined in
 
-[lib/bool.ts:179](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L179)
+[snarky.d.ts:1160](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1160)
 
 ___
 
@@ -315,7 +277,7 @@ Converts a [Bool](Bool.md) to a [Field](Field.md). `false` becomes 0 and `true` 
 
 #### Defined in
 
-[lib/bool.ts:50](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L50)
+[snarky.d.ts:1092](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1092)
 
 ___
 
@@ -331,7 +293,7 @@ Serializes this [Bool](Bool.md) into [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:155](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L155)
+[snarky.d.ts:1143](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1143)
 
 ___
 
@@ -348,7 +310,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:171](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L171)
+[snarky.d.ts:1154](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1154)
 
 ___
 
@@ -365,47 +327,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L163)
-
-___
-
-### #isBool
-
-▸ `Static` `Private` **#isBool**(`x`): x is Bool
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `boolean` \| [`Bool`](Bool.md) \| [`FieldVar`](../modules.md#fieldvar-1) |
-
-#### Returns
-
-x is Bool
-
-#### Defined in
-
-[lib/bool.ts:343](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L343)
-
-___
-
-### #toVar
-
-▸ `Static` `Private` **#toVar**(`x`): [`FieldVar`](../modules.md#fieldvar-1)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `boolean` \| [`Bool`](Bool.md) |
-
-#### Returns
-
-[`FieldVar`](../modules.md#fieldvar-1)
-
-#### Defined in
-
-[lib/bool.ts:347](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L347)
+[snarky.d.ts:1149](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1149)
 
 ___
 
@@ -428,7 +350,7 @@ Boolean AND operation.
 
 #### Defined in
 
-[lib/bool.ts:206](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L206)
+[snarky.d.ts:1195](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1195)
 
 ___
 
@@ -442,7 +364,7 @@ Asserts if both [Bool](Bool.md) are equal.
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Bool`](Bool.md) |
+| `x` | `boolean` \| [`Bool`](Bool.md) |
 | `y` | `boolean` \| [`Bool`](Bool.md) |
 
 #### Returns
@@ -451,7 +373,7 @@ Asserts if both [Bool](Bool.md) are equal.
 
 #### Defined in
 
-[lib/bool.ts:226](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L226)
+[snarky.d.ts:1205](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1205)
 
 ___
 
@@ -471,13 +393,15 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:319](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L319)
+[snarky.d.ts:1247](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1247)
 
 ___
 
 ### count
 
 ▸ `Static` **count**(`x`): [`Field`](Field.md)
+
+Counts all elements of type [Bool](Bool.md).
 
 #### Parameters
 
@@ -491,7 +415,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:315](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L315)
+[snarky.d.ts:1215](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1215)
 
 ___
 
@@ -514,7 +438,7 @@ Checks two [Bool](Bool.md) for equality.
 
 #### Defined in
 
-[lib/bool.ts:237](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L237)
+[snarky.d.ts:1210](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1210)
 
 ___
 
@@ -534,7 +458,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:299](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L299)
+[snarky.d.ts:1252](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1252)
 
 ___
 
@@ -556,13 +480,13 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:261](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L261)
+[snarky.d.ts:1234](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1234)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**(`b`): [`Bool`](Bool.md)
+▸ `Static` **fromJSON**(`x`): [`Bool`](Bool.md)
 
 Deserialize a JSON structure into a [Bool](Bool.md).
 This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Field.
@@ -571,7 +495,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 | Name | Type |
 | :------ | :------ |
-| `b` | `boolean` |
+| `x` | `boolean` |
 
 #### Returns
 
@@ -579,7 +503,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:280](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L280)
+[snarky.d.ts:1245](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1245)
 
 ___
 
@@ -601,7 +525,7 @@ Boolean negation.
 
 #### Defined in
 
-[lib/bool.ts:196](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L196)
+[snarky.d.ts:1190](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1190)
 
 ___
 
@@ -624,26 +548,20 @@ Boolean OR operation.
 
 #### Defined in
 
-[lib/bool.ts:216](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L216)
+[snarky.d.ts:1200](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1200)
 
 ___
 
 ### readBytes
 
-▸ `Static` **readBytes**<`N`\>(`bytes`, `offset`): [value: Bool, offset: number]
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `N` | extends `number` |
+▸ `Static` **readBytes**(`bytes`, `offset`): [value: Bool, offset: number]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `bytes` | `number`[] |
-| `offset` | `NonNegativeInteger`<`N`\> |
+| `offset` | `number` |
 
 #### Returns
 
@@ -651,7 +569,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:303](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L303)
+[snarky.d.ts:1253](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1253)
 
 ___
 
@@ -665,7 +583,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:310](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L310)
+[snarky.d.ts:1257](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1257)
 
 ___
 
@@ -681,13 +599,13 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:287](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L287)
+[snarky.d.ts:1220](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1220)
 
 ___
 
 ### toAuxiliary
 
-▸ `Static` **toAuxiliary**(`_?`): []
+▸ `Static` **toAuxiliary**(`x?`): []
 
 Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
@@ -695,7 +613,7 @@ Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
 | Name | Type |
 | :------ | :------ |
-| `_?` | [`Bool`](Bool.md) |
+| `x?` | [`Bool`](Bool.md) |
 
 #### Returns
 
@@ -703,19 +621,19 @@ Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
 #### Defined in
 
-[lib/bool.ts:254](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L254)
+[snarky.d.ts:1230](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1230)
 
 ___
 
 ### toBytes
 
-▸ `Static` **toBytes**(`b`): `number`[]
+▸ `Static` **toBytes**(`x`): `number`[]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `b` | [`Bool`](Bool.md) |
+| `x` | [`Bool`](Bool.md) |
 
 #### Returns
 
@@ -723,13 +641,15 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:295](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L295)
+[snarky.d.ts:1251](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1251)
 
 ___
 
 ### toField
 
 ▸ `Static` **toField**(`x`): [`Field`](Field.md)
+
+Serializes a [Bool](Bool.md) into an array of [Field](Field.md) elements.
 
 #### Parameters
 
@@ -743,7 +663,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:189](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L189)
+[snarky.d.ts:1175](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1175)
 
 ___
 
@@ -765,7 +685,7 @@ Static method to serialize a [Bool](Bool.md) into an array of [Field](Field.md) 
 
 #### Defined in
 
-[lib/bool.ts:247](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L247)
+[snarky.d.ts:1225](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1225)
 
 ___
 
@@ -789,7 +709,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:291](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L291)
+[snarky.d.ts:1250](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1250)
 
 ___
 
@@ -812,4 +732,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:272](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L272)
+[snarky.d.ts:1240](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1240)

@@ -87,6 +87,11 @@ module.exports = {
             {
               type: 'doc',
               id: 'zkapps/snarkyjs-reference/README',
+              label: 'Introduction',
+            },
+            {
+              type: 'doc',
+              id: 'zkapps/snarkyjs-reference/modules',
               label: 'Overview',
             },
             {
@@ -200,6 +205,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/SnarkyBool',
+                  label: 'SnarkyBool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/SnarkyField',
+                  label: 'SnarkyField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/Token',
                   label: 'Token',
                 },
@@ -282,6 +297,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Pickles',
+                  label: 'Pickles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Snarky',
+                  label: 'Snarky',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/modules/Types.Json',
                   label: 'Types.Json',
                 },
@@ -289,6 +314,17 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/modules/Types',
                   label: 'Types',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Enums',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/enums/FieldType',
+                  label: 'FieldType',
                 },
               ],
             },

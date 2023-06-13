@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / [Mina](../modules/Mina.md) / TransactionId
+
 # Interface: TransactionId
 
 [Mina](../modules/Mina.md).TransactionId
@@ -21,7 +23,7 @@
 
 #### Defined in
 
-[lib/mina.ts:62](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L62)
+[lib/mina.ts:66](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L66)
 
 ## Methods
 
@@ -35,7 +37,7 @@
 
 #### Defined in
 
-[lib/mina.ts:64](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L64)
+[lib/mina.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L68)
 
 ___
 
@@ -57,4 +59,4 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:63](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/mina.ts#L63)
+[lib/mina.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L67)

@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Ledger
+
 # Class: Ledger
 
 Represents the Mina ledger.
@@ -23,21 +25,8 @@ Represents the Mina ledger.
 - [createTokenAccount](Ledger.md#createtokenaccount)
 - [customTokenId](Ledger.md#customtokenid)
 - [customTokenIdChecked](Ledger.md#customtokenidchecked)
-- [dummySignature](Ledger.md#dummysignature)
-- [fieldOfBase58](Ledger.md#fieldofbase58)
-- [fieldToBase58](Ledger.md#fieldtobase58)
 - [fieldsOfJson](Ledger.md#fieldsofjson)
-- [hashAccountUpdateFromFields](Ledger.md#hashaccountupdatefromfields)
 - [hashAccountUpdateFromJson](Ledger.md#hashaccountupdatefromjson)
-- [memoHashBase58](Ledger.md#memohashbase58)
-- [memoToBase58](Ledger.md#memotobase58)
-- [privateKeyOfString](Ledger.md#privatekeyofstring)
-- [privateKeyToString](Ledger.md#privatekeytostring)
-- [publicKeyOfString](Ledger.md#publickeyofstring)
-- [publicKeyToString](Ledger.md#publickeytostring)
-- [signFeePayer](Ledger.md#signfeepayer)
-- [signFieldElement](Ledger.md#signfieldelement)
-- [signOtherAccountUpdate](Ledger.md#signotheraccountupdate)
 - [transactionCommitments](Ledger.md#transactioncommitments)
 - [zkappPublicInput](Ledger.md#zkapppublicinput)
 
@@ -63,7 +52,7 @@ Represents the Mina ledger.
 
 #### Defined in
 
-[snarky.d.ts:1257](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1257)
+[snarky.d.ts:1381](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1381)
 
 ___
 
@@ -75,17 +64,17 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `accountPrecondition` | (`json`: `String`) => `OcamlInput` |
-| `body` | (`json`: `String`) => `OcamlInput` |
-| `networkPrecondition` | (`json`: `String`) => `OcamlInput` |
-| `packInput` | (`input`: `OcamlInput`) => [`Field`](Field.md)[] |
-| `permissions` | (`json`: `String`) => `OcamlInput` |
-| `timing` | (`json`: `String`) => `OcamlInput` |
-| `update` | (`json`: `String`) => `OcamlInput` |
+| `accountPrecondition` | (`json`: `String`) => `MlHashInput` |
+| `body` | (`json`: `String`) => `MlHashInput` |
+| `networkPrecondition` | (`json`: `String`) => `MlHashInput` |
+| `packInput` | (`input`: `MlHashInput`) => [`MlArray`](../modules.md#mlarray-1)<`Uint8Array`\> |
+| `permissions` | (`json`: `String`) => `MlHashInput` |
+| `timing` | (`json`: `String`) => `MlHashInput` |
+| `update` | (`json`: `String`) => `MlHashInput` |
 
 #### Defined in
 
-[snarky.d.ts:1246](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1246)
+[snarky.d.ts:1370](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1370)
 
 ## Methods
 
@@ -99,7 +88,7 @@ Adds an account and its balance to the ledger.
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | `PublicKey_` |
+| `publicKey` | [`MlPublicKey`](../modules.md#mlpublickey) |
 | `balance` | `string` |
 
 #### Returns
@@ -108,7 +97,7 @@ Adds an account and its balance to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:1162](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1162)
+[snarky.d.ts:1316](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1316)
 
 ___
 
@@ -132,7 +121,7 @@ Applies a JSON transaction to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:1167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1167)
+[snarky.d.ts:1321](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1321)
 
 ___
 
@@ -146,8 +135,8 @@ Returns an account.
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | `PublicKey_` |
-| `tokenId` | [`Field`](Field.md) |
+| `publicKey` | [`MlPublicKey`](../modules.md#mlpublickey) |
+| `tokenId` | `Uint8Array` |
 
 #### Returns
 
@@ -155,7 +144,7 @@ Returns an account.
 
 #### Defined in
 
-[snarky.d.ts:1176](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1176)
+[snarky.d.ts:1330](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1330)
 
 ___
 
@@ -168,7 +157,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `updateJson` | `string` |
-| `commitment` | [`Field`](Field.md) |
+| `commitment` | `Uint8Array` |
 
 #### Returns
 
@@ -176,7 +165,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1237](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1237)
+[snarky.d.ts:1362](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1362)
 
 ___
 
@@ -190,7 +179,7 @@ Creates a fresh ledger.
 
 | Name | Type |
 | :------ | :------ |
-| `genesisAccounts` | { `balance`: `string` ; `publicKey`: `PublicKey_`  }[] |
+| `genesisAccounts` | { `balance`: `string` ; `publicKey`: [`MlPublicKey`](../modules.md#mlpublickey)  }[] |
 
 #### Returns
 
@@ -198,7 +187,7 @@ Creates a fresh ledger.
 
 #### Defined in
 
-[snarky.d.ts:1155](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1155)
+[snarky.d.ts:1309](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1309)
 
 ___
 
@@ -210,8 +199,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | `PublicKey_` |
-| `tokenId` | [`Field`](Field.md) |
+| `publicKey` | [`MlPublicKey`](../modules.md#mlpublickey) |
+| `tokenId` | `Uint8Array` |
 
 #### Returns
 
@@ -219,111 +208,55 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1225](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1225)
+[snarky.d.ts:1357](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1357)
 
 ___
 
 ### customTokenId
 
-▸ `Static` **customTokenId**(`publicKey`, `tokenId`): [`Field`](Field.md)
+▸ `Static` **customTokenId**(`publicKey`, `tokenId`): `Uint8Array`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | `PublicKey_` |
-| `tokenId` | [`Field`](Field.md) |
+| `publicKey` | [`MlPublicKey`](../modules.md#mlpublickey) |
+| `tokenId` | `Uint8Array` |
 
 #### Returns
 
-[`Field`](Field.md)
+`Uint8Array`
 
 #### Defined in
 
-[snarky.d.ts:1223](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1223)
+[snarky.d.ts:1352](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1352)
 
 ___
 
 ### customTokenIdChecked
 
-▸ `Static` **customTokenIdChecked**(`publicKey`, `tokenId`): [`Field`](Field.md)
+▸ `Static` **customTokenIdChecked**(`publicKey`, `tokenId`): [`FieldVar`](../modules.md#fieldvar-1)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `publicKey` | `PublicKey_` |
-| `tokenId` | [`Field`](Field.md) |
+| `publicKey` | [`MlPublicKeyVar`](../modules.md#mlpublickeyvar) |
+| `tokenId` | [`FieldVar`](../modules.md#fieldvar-1) |
 
 #### Returns
 
-[`Field`](Field.md)
+[`FieldVar`](../modules.md#fieldvar-1)
 
 #### Defined in
 
-[snarky.d.ts:1224](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1224)
-
-___
-
-### dummySignature
-
-▸ `Static` **dummySignature**(): `string`
-
-Returns a dummy signature.
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1207](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1207)
-
-___
-
-### fieldOfBase58
-
-▸ `Static` **fieldOfBase58**(`fieldBase58`): [`Field`](Field.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `fieldBase58` | `string` |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:1232](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1232)
-
-___
-
-### fieldToBase58
-
-▸ `Static` **fieldToBase58**(`field`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `field` | [`Field`](Field.md) |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1231](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1231)
+[snarky.d.ts:1353](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1353)
 
 ___
 
 ### fieldsOfJson
 
-▸ `Static` **fieldsOfJson**(`json`): [`Field`](Field.md)[]
+▸ `Static` **fieldsOfJson**(`json`): [`MlArray`](../modules.md#mlarray-1)<`Uint8Array`\>
 
 #### Parameters
 
@@ -333,37 +266,17 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+[`MlArray`](../modules.md#mlarray-1)<`Uint8Array`\>
 
 #### Defined in
 
-[snarky.d.ts:1242](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1242)
-
-___
-
-### hashAccountUpdateFromFields
-
-▸ `Static` **hashAccountUpdateFromFields**(`fields`): [`Field`](Field.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:1243](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1243)
+[snarky.d.ts:1367](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1367)
 
 ___
 
 ### hashAccountUpdateFromJson
 
-▸ `Static` **hashAccountUpdateFromJson**(`json`): [`Field`](Field.md)
+▸ `Static` **hashAccountUpdateFromJson**(`json`): `Uint8Array`
 
 #### Parameters
 
@@ -373,206 +286,11 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)
+`Uint8Array`
 
 #### Defined in
 
-[snarky.d.ts:1244](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1244)
-
-___
-
-### memoHashBase58
-
-▸ `Static` **memoHashBase58**(`memoBase58`): [`Field`](Field.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `memoBase58` | `string` |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:1235](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1235)
-
-___
-
-### memoToBase58
-
-▸ `Static` **memoToBase58**(`memoString`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `memoString` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1234](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1234)
-
-___
-
-### privateKeyOfString
-
-▸ `Static` **privateKeyOfString**(`privateKeyBase58`): [`Scalar`](Scalar.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `privateKeyBase58` | `string` |
-
-#### Returns
-
-[`Scalar`](Scalar.md)
-
-#### Defined in
-
-[snarky.d.ts:1230](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1230)
-
-___
-
-### privateKeyToString
-
-▸ `Static` **privateKeyToString**(`privateKey`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `privateKey` | `Object` |
-| `privateKey.s` | [`Scalar`](Scalar.md) |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1229](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1229)
-
-___
-
-### publicKeyOfString
-
-▸ `Static` **publicKeyOfString**(`publicKeyBase58`): `PublicKey_`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `publicKeyBase58` | `string` |
-
-#### Returns
-
-`PublicKey_`
-
-#### Defined in
-
-[snarky.d.ts:1228](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1228)
-
-___
-
-### publicKeyToString
-
-▸ `Static` **publicKeyToString**(`publicKey`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `publicKey` | `PublicKey_` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1227](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1227)
-
-___
-
-### signFeePayer
-
-▸ `Static` **signFeePayer**(`txJson`, `privateKey`): `string`
-
-Signs a transaction as the fee payer.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `txJson` | `string` |
-| `privateKey` | `Object` |
-| `privateKey.s` | [`Scalar`](Scalar.md) |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1212](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1212)
-
-___
-
-### signFieldElement
-
-▸ `Static` **signFieldElement**(`messageHash`, `privateKey`, `isMainnet`): `string`
-
-Signs a [Field](Field.md) element.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `messageHash` | [`Field`](Field.md) |
-| `privateKey` | `Object` |
-| `privateKey.s` | [`Scalar`](Scalar.md) |
-| `isMainnet` | `boolean` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1198](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1198)
-
-___
-
-### signOtherAccountUpdate
-
-▸ `Static` **signOtherAccountUpdate**(`txJson`, `privateKey`, `i`): `string`
-
-Signs an account update.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `txJson` | `string` |
-| `privateKey` | `Object` |
-| `privateKey.s` | [`Scalar`](Scalar.md) |
-| `i` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:1217](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1217)
+[snarky.d.ts:1368](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1368)
 
 ___
 
@@ -594,13 +312,13 @@ Returns the commitment of a JSON transaction.
 
 | Name | Type |
 | :------ | :------ |
-| `commitment` | [`Field`](Field.md) |
-| `feePayerHash` | [`Field`](Field.md) |
-| `fullCommitment` | [`Field`](Field.md) |
+| `commitment` | `Uint8Array` |
+| `feePayerHash` | `Uint8Array` |
+| `fullCommitment` | `Uint8Array` |
 
 #### Defined in
 
-[snarky.d.ts:1181](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1181)
+[snarky.d.ts:1338](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1338)
 
 ___
 
@@ -623,9 +341,9 @@ Returns the public input of a zkApp transaction.
 
 | Name | Type |
 | :------ | :------ |
-| `accountUpdate` | [`Field`](Field.md) |
-| `calls` | [`Field`](Field.md) |
+| `accountUpdate` | `Uint8Array` |
+| `calls` | `Uint8Array` |
 
 #### Defined in
 
-[snarky.d.ts:1190](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L1190)
+[snarky.d.ts:1347](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1347)

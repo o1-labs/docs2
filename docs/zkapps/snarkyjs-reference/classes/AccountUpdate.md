@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / AccountUpdate
+
 # Class: AccountUpdate
 
 An [AccountUpdate](AccountUpdate.md) is a set of instructions for the Mina network.
@@ -98,7 +100,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account_update.ts:684](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L684)
+[lib/account_update.ts:694](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L694)
 
 ## Properties
 
@@ -108,7 +110,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account_update.ts:665](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L665)
+[lib/account_update.ts:675](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L675)
 
 ___
 
@@ -129,7 +131,7 @@ Types.AccountUpdate.authorization
 
 #### Defined in
 
-[lib/account_update.ts:662](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L662)
+[lib/account_update.ts:672](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L672)
 
 ___
 
@@ -143,7 +145,7 @@ Types.AccountUpdate.body
 
 #### Defined in
 
-[lib/account_update.ts:661](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L661)
+[lib/account_update.ts:671](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L671)
 
 ___
 
@@ -160,7 +162,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:668](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L668)
+[lib/account_update.ts:678](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L678)
 
 ___
 
@@ -170,7 +172,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:667](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L667)
+[lib/account_update.ts:677](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L677)
 
 ___
 
@@ -180,7 +182,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:655](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L655)
+[lib/account_update.ts:665](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L665)
 
 ___
 
@@ -190,7 +192,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:680](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L680)
+[lib/account_update.ts:690](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L690)
 
 ___
 
@@ -203,7 +205,7 @@ was created. Can be modified by applications to add richer information.
 
 #### Defined in
 
-[lib/account_update.ts:660](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L660)
+[lib/account_update.ts:670](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L670)
 
 ___
 
@@ -213,7 +215,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:663](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L663)
+[lib/account_update.ts:673](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L673)
 
 ___
 
@@ -223,7 +225,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:666](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L666)
+[lib/account_update.ts:676](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L676)
 
 ___
 
@@ -233,7 +235,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:678](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L678)
+[lib/account_update.ts:688](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L688)
 
 ___
 
@@ -263,7 +265,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:682](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L682)
+[lib/account_update.ts:692](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L692)
 
 ___
 
@@ -306,7 +308,7 @@ StaticChildren(AnyChildren, StaticChildren(1))
 
 #### Defined in
 
-[lib/account_update.ts:1393](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1393)
+[lib/account_update.ts:1403](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1403)
 
 ___
 
@@ -330,7 +332,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1278](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1278)
+[lib/account_update.ts:1288](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1288)
 
 ___
 
@@ -340,7 +342,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1014](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1014)
+[lib/account_update.ts:1024](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1024)
 
 ___
 
@@ -358,7 +360,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1257](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1257)
+[lib/account_update.ts:1267](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1267)
 
 ___
 
@@ -382,7 +384,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1258](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1258)
+[lib/account_update.ts:1268](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1268)
 
 ___
 
@@ -406,7 +408,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1277](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1277)
+[lib/account_update.ts:1287](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1287)
 
 ## Accessors
 
@@ -425,7 +427,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:875](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L875)
+[lib/account_update.ts:885](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L885)
 
 ___
 
@@ -439,7 +441,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:958](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L958)
+[lib/account_update.ts:968](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L968)
 
 ___
 
@@ -453,7 +455,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:815](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L815)
+[lib/account_update.ts:825](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L825)
 
 ___
 
@@ -475,7 +477,7 @@ use `this.account.tokenSymbol`
 
 #### Defined in
 
-[lib/account_update.ts:822](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L822)
+[lib/account_update.ts:832](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L832)
 
 ___
 
@@ -538,7 +540,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:890](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L890)
+[lib/account_update.ts:900](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L900)
 
 ___
 
@@ -568,7 +570,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1407](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1407)
+[lib/account_update.ts:1417](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1417)
 
 ## Methods
 
@@ -592,7 +594,7 @@ approves it.
 
 #### Defined in
 
-[lib/account_update.ts:867](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L867)
+[lib/account_update.ts:877](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L877)
 
 ___
 
@@ -606,7 +608,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1074](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1074)
+[lib/account_update.ts:1084](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1084)
 
 ___
 
@@ -620,7 +622,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1103](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1103)
+[lib/account_update.ts:1113](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1113)
 
 ___
 
@@ -639,7 +641,7 @@ let tx = Mina.transaction(...); // create transaction as usual, using `requireSi
 tx.sign([privateKey]); // pass the private key of this account to `sign()`!
 ```
 
-Note that an account's [Permissions](../README.md#permissions) determine which updates have to
+Note that an account's [Permissions](../modules.md#permissions) determine which updates have to
 be (can be) authorized by a signature.
 
 #### Returns
@@ -648,7 +650,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account_update.ts:977](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L977)
+[lib/account_update.ts:987](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L987)
 
 ___
 
@@ -670,7 +672,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:832](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L832)
+[lib/account_update.ts:842](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L842)
 
 ___
 
@@ -694,7 +696,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:983](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L983)
+[lib/account_update.ts:993](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L993)
 
 ___
 
@@ -708,7 +710,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1063](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1063)
+[lib/account_update.ts:1073](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1073)
 
 ___
 
@@ -725,21 +727,21 @@ default [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account_update.ts:1442](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1442)
+[lib/account_update.ts:1452](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1452)
 
 ___
 
 ### toPublicInput
 
-▸ **toPublicInput**(): [`ZkappPublicInput`](../README.md#zkapppublicinput-1)
+▸ **toPublicInput**(): [`ZkappPublicInput`](../modules.md#zkapppublicinput-1)
 
 #### Returns
 
-[`ZkappPublicInput`](../README.md#zkapppublicinput-1)
+[`ZkappPublicInput`](../modules.md#zkapppublicinput-1)
 
 #### Defined in
 
-[lib/account_update.ts:1091](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1091)
+[lib/account_update.ts:1101](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1101)
 
 ___
 
@@ -762,7 +764,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:721](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L721)
+[lib/account_update.ts:731](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L731)
 
 ___
 
@@ -792,7 +794,7 @@ Constrain a property to lie between lower and upper bounds.
 
 #### Defined in
 
-[lib/account_update.ts:918](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L918)
+[lib/account_update.ts:928](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L928)
 
 ___
 
@@ -821,7 +823,7 @@ Fix a property to a certain value.
 
 #### Defined in
 
-[lib/account_update.ts:945](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L945)
+[lib/account_update.ts:955](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L955)
 
 ___
 
@@ -844,7 +846,7 @@ Attach account update to the current transaction
 
 #### Defined in
 
-[lib/account_update.ts:1147](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1147)
+[lib/account_update.ts:1157](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1157)
 
 ___
 
@@ -866,7 +868,7 @@ Clones the [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account_update.ts:702](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L702)
+[lib/account_update.ts:712](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L712)
 
 ___
 
@@ -893,7 +895,7 @@ becomes part of the proof.
 
 #### Defined in
 
-[lib/account_update.ts:1128](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1128)
+[lib/account_update.ts:1138](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1138)
 
 ___
 
@@ -912,7 +914,7 @@ let tx = Mina.transaction(...); // create transaction as usual, using `createSig
 tx.sign([privateKey]); // pass the private key of this account to `sign()`!
 ```
 
-Note that an account's [Permissions](../README.md#permissions) determine which updates have to
+Note that an account's [Permissions](../modules.md#permissions) determine which updates have to
 be (can be) authorized by a signature.
 
 #### Parameters
@@ -928,7 +930,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account_update.ts:1194](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1194)
+[lib/account_update.ts:1204](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1204)
 
 ▸ `Static` **createSigned**(`signer`, `tokenId?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -949,7 +951,7 @@ in favor of calling this function with a `PublicKey` as `signer`
 
 #### Defined in
 
-[lib/account_update.ts:1198](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1198)
+[lib/account_update.ts:1208](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1208)
 
 ___
 
@@ -970,7 +972,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1097](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1097)
+[lib/account_update.ts:1107](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1107)
 
 ___
 
@@ -991,7 +993,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1107](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1107)
+[lib/account_update.ts:1117](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1117)
 
 ___
 
@@ -1005,7 +1007,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1100](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1100)
+[lib/account_update.ts:1110](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1110)
 
 ___
 
@@ -1019,7 +1021,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1116](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1116)
+[lib/account_update.ts:1126](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1126)
 
 ___
 
@@ -1040,7 +1042,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1279](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1279)
+[lib/account_update.ts:1289](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1289)
 
 ___
 
@@ -1060,7 +1062,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1069](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1069)
+[lib/account_update.ts:1079](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1079)
 
 ___
 
@@ -1089,7 +1091,7 @@ they [AccountUpdate](AccountUpdate.md) for the account which pays the fee
 
 #### Defined in
 
-[lib/account_update.ts:1226](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1226)
+[lib/account_update.ts:1236](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1236)
 
 ▸ `Static` **fundNewAccount**(`feePayer`, `options?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -1115,7 +1117,7 @@ feePayerUpdate.send({ to: receiverAddress, amount: initialBalance });
 
 #### Defined in
 
-[lib/account_update.ts:1238](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1238)
+[lib/account_update.ts:1248](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1248)
 
 ___
 
@@ -1135,7 +1137,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1010](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1010)
+[lib/account_update.ts:1020](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1020)
 
 ___
 
@@ -1160,7 +1162,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1019](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1019)
+[lib/account_update.ts:1029](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1029)
 
 ___
 
@@ -1185,7 +1187,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1027](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1027)
+[lib/account_update.ts:1037](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1037)
 
 ___
 
@@ -1212,7 +1214,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:894](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L894)
+[lib/account_update.ts:904](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L904)
 
 ___
 
@@ -1233,7 +1235,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1001](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1001)
+[lib/account_update.ts:1011](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1011)
 
 ___
 
@@ -1253,7 +1255,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1259](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1259)
+[lib/account_update.ts:1269](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1269)
 
 ___
 
@@ -1273,7 +1275,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1066](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1066)
+[lib/account_update.ts:1076](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1076)
 
 ___
 
@@ -1295,7 +1297,7 @@ Disattach an account update from where it's currently located in the transaction
 
 #### Defined in
 
-[lib/account_update.ts:1167](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1167)
+[lib/account_update.ts:1177](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1177)
 
 ___
 
@@ -1313,7 +1315,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
 | `compute` | () => { `accountUpdate`: [`AccountUpdate`](AccountUpdate.md) ; `result`: `T`  } |
 | `«destructured»` | `Object` |
 | › `skipCheck` | `undefined` \| `boolean` |
@@ -1329,7 +1331,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1287](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1287)
+[lib/account_update.ts:1297](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1297)
 
 ___
 
@@ -1352,7 +1354,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1303](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1303)
+[lib/account_update.ts:1313](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1313)
 
 ___
 
@@ -1373,7 +1375,7 @@ accountUpdate's children, which also get witnessed
 
 | Name | Type |
 | :------ | :------ |
-| `resultType` | [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
+| `resultType` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
 | `childLayout` | `AccountUpdatesLayout` |
 | `compute` | () => { `accountUpdate`: [`AccountUpdate`](AccountUpdate.md) ; `result`: `T`  } |
 | `options?` | `Object` |
@@ -1390,4 +1392,4 @@ accountUpdate's children, which also get witnessed
 
 #### Defined in
 
-[lib/account_update.ts:1348](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1348)
+[lib/account_update.ts:1358](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1358)

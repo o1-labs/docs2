@@ -1,8 +1,12 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Provable
+
 # Interface: Provable<T\>
 
-`Provable<T>` is the general circuit type interface. It describes how a type `T` is made up of field elements and auxiliary (non-field element) data.
+`Provable<T>` is the general circuit type interface. Provable interface describes how a type `T` is made up of field elements and auxiliary (non-field element) data.
 
-You will find this as the required input type in a few places in snarkyjs. One convenient way to create a `Provable<T>` is using `Struct`.
+You will find `Provable<T>` as the required input type in a few places in SnarkyJS. One convenient way to create a `Provable<T>` is using `Struct`.
+
+The properties and methods on the provable type exist in all base SnarkyJS types as well (aka. [Field](../classes/Field.md), [Bool](../classes/Bool.md), etc.). In most cases, a zkApp developer does not need these functions to create Dapps.
 
 ## Type parameters
 
@@ -51,7 +55,7 @@ You will find this as the required input type in a few places in snarkyjs. One c
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L37)
+[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L41)
 
 ___
 
@@ -76,7 +80,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L35)
+[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L39)
 
 ___
 
@@ -100,7 +104,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L34)
+[snarky.d.ts:38](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L38)
 
 ___
 
@@ -124,7 +128,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L33)
+[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L37)
 
 ## Methods
 
@@ -138,4 +142,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L36)
+[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L40)
