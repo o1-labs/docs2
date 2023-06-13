@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[snarky.d.ts:1449](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1449)
+[snarky.d.ts:1449](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1449)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1462](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1462)
+[snarky.d.ts:1462](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1462)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1452](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1452)
+[snarky.d.ts:1452](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1452)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1450](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1450)
+[snarky.d.ts:1450](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1450)
 
 ___
 
@@ -83,4 +83,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1451](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1451)
+[snarky.d.ts:1451](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1451)

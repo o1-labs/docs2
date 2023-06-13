@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[lib/mina.ts:158](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L158)
+[lib/mina.ts:158](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L158)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:116](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L116)
+[lib/mina.ts:116](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L116)
 
 ___
 
@@ -92,7 +92,7 @@ Allows you to specify information about the fee payer account and the transactio
 
 #### Defined in
 
-[lib/mina.ts:129](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L129)
+[lib/mina.ts:129](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L129)
 
 ___
 
@@ -114,9 +114,9 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:71](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L71)
+[lib/mina.ts:71](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L71)
 
-[lib/mina.ts:108](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L108)
+[lib/mina.ts:108](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L108)
 
 ## Variables
 
@@ -132,9 +132,9 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:71](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L71)
+[lib/mina.ts:71](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L71)
 
-[lib/mina.ts:108](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L108)
+[lib/mina.ts:108](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L108)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:963](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L963)
+[lib/mina.ts:963](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L963)
 
 ## Functions
 
@@ -169,7 +169,7 @@ The name `BerkeleyQANet` was misleading because it suggested that this is specif
 
 #### Defined in
 
-[lib/mina.ts:959](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L959)
+[lib/mina.ts:959](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L959)
 
 ___
 
@@ -217,7 +217,7 @@ A mock Mina blockchain running locally and useful for testing.
 
 #### Defined in
 
-[lib/mina.ts:373](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L373)
+[lib/mina.ts:373](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L373)
 
 ___
 
@@ -239,7 +239,7 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:664](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L664)
+[lib/mina.ts:664](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L664)
 
 ▸ **Network**(`graphqlEndpoints`): `Mina`
 
@@ -257,7 +257,7 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:665](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L665)
+[lib/mina.ts:665](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L665)
 
 ___
 
@@ -273,7 +273,7 @@ Returns the default account creation fee.
 
 #### Defined in
 
-[lib/mina.ts:1164](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1164)
+[lib/mina.ts:1164](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1164)
 
 ___
 
@@ -299,7 +299,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:171](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L171)
+[lib/mina.ts:171](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L171)
 
 ___
 
@@ -315,7 +315,7 @@ The current slot number, according to the active Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1129](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1129)
+[lib/mina.ts:1129](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1129)
 
 ___
 
@@ -329,7 +329,7 @@ ___
 
 #### Defined in
 
-[lib/global-context.ts:6](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/global-context.ts#L6)
+[lib/global-context.ts:6](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/global-context.ts#L6)
 
 ___
 
@@ -352,7 +352,7 @@ Requests the [testnet faucet](https://faucet.minaprotocol.com/api/v1/faucet) to 
 
 #### Defined in
 
-[lib/mina.ts:1551](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1551)
+[lib/mina.ts:1551](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1551)
 
 ___
 
@@ -376,7 +376,7 @@ A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1186](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1186)
+[lib/mina.ts:1186](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1186)
 
 ___
 
@@ -400,7 +400,7 @@ A list of emitted events associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1175](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1175)
+[lib/mina.ts:1175](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1175)
 
 ___
 
@@ -426,7 +426,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1508](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1508)
+[lib/mina.ts:1508](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1508)
 
 ___
 
@@ -449,7 +449,7 @@ The account data associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1136](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1136)
+[lib/mina.ts:1136](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1136)
 
 ___
 
@@ -473,7 +473,7 @@ A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1197](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1197)
+[lib/mina.ts:1197](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1197)
 
 ___
 
@@ -496,7 +496,7 @@ The balance associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1157](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1157)
+[lib/mina.ts:1157](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1157)
 
 ___
 
@@ -512,7 +512,7 @@ Data associated with the current state of the Mina network.
 
 #### Defined in
 
-[lib/mina.ts:1150](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1150)
+[lib/mina.ts:1150](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1150)
 
 ___
 
@@ -526,7 +526,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1205](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1205)
+[lib/mina.ts:1205](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1205)
 
 ___
 
@@ -549,7 +549,7 @@ Checks if an account exists within the ledger.
 
 #### Defined in
 
-[lib/mina.ts:1143](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1143)
+[lib/mina.ts:1143](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1143)
 
 ___
 
@@ -569,7 +569,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1168](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1168)
+[lib/mina.ts:1168](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1168)
 
 ___
 
@@ -587,7 +587,7 @@ Throws an error if not inside a transaction, or the sender wasn't passed in.
 
 #### Defined in
 
-[lib/mina.ts:1105](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1105)
+[lib/mina.ts:1105](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1105)
 
 ___
 
@@ -609,7 +609,7 @@ Set the currently used Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1045](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1045)
+[lib/mina.ts:1045](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1045)
 
 ___
 
@@ -642,7 +642,7 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:1062](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1062)
+[lib/mina.ts:1062](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1062)
 
 ▸ **transaction**(`f`): `Promise`<[`Transaction`](Mina.md#transaction-1)\>
 
@@ -658,7 +658,7 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:1063](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1063)
+[lib/mina.ts:1063](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1063)
 
 ▸ **transaction**(`sender`, `f`): `Promise`<[`Transaction`](Mina.md#transaction-1)\>
 
@@ -688,7 +688,7 @@ Mina.transaction({ feePayerKey: privateKey }, ...);
 
 #### Defined in
 
-[lib/mina.ts:1076](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1076)
+[lib/mina.ts:1076](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1076)
 
 ___
 
@@ -708,4 +708,4 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1527](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/mina.ts#L1527)
+[lib/mina.ts:1527](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/mina.ts#L1527)

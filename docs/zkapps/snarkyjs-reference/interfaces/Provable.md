@@ -55,7 +55,7 @@ The properties and methods on the provable type exist in all base SnarkyJS types
 
 #### Defined in
 
-[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L41)
+[snarky.d.ts:41](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L41)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L39)
+[snarky.d.ts:39](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L39)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:38](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L38)
+[snarky.d.ts:38](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L38)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L37)
+[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L37)
 
 ## Methods
 
@@ -142,4 +142,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L40)
+[snarky.d.ts:40](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L40)
