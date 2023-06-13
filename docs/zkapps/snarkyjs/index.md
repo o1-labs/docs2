@@ -1,7 +1,21 @@
 ---
 title: Introduction to SnarkyJS
 hide_title: true
-description: SnarkyJS is a general-purpose zk framework that gives you the tools to create zk proofs. SnarkyJS is a TypeScript library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+sidebar_label: Introduction
+description: SnarkyJS is a general-purpose zk framework with the tools to create zk proofs. SnarkyJS is a TypeScript library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+keywords:
+  - smart contracts
+  - zkapps
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - mina 
+  - data types
+  - what is snarkyjs
+  - blockchain
+  - mina
+  - typescript
+  - typescript library
 ---
 
 :::info
@@ -9,7 +23,7 @@ description: SnarkyJS is a general-purpose zk framework that gives you the tools
 zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 :::
 
-# SnarkyJS
+# Introduction to SnarkyJS
 
 SnarkyJS is a TypeScript (TS) library for:
 
