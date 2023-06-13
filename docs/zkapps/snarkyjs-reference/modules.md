@@ -149,9 +149,9 @@
 
 #### Defined in
 
-[lib/core.ts:57](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L57)
+[lib/core.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L57)
 
-[lib/core.ts:58](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L58)
+[lib/core.ts:58](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L58)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:10](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/bool.ts#L10)
+[lib/bool.ts:10](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L10)
 
 ___
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:88](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L88)
+[lib/field.ts:88](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L88)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1511](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1511)
+[lib/zkapp.ts:1511](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1511)
 
 ___
 
@@ -191,9 +191,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L59)
+[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L59)
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L60)
 
 ___
 
@@ -203,9 +203,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:43](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L43)
+[lib/core.ts:43](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L43)
 
-[lib/core.ts:44](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L44)
+[lib/core.ts:44](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L44)
 
 ___
 
@@ -215,9 +215,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L16)
+[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L16)
 
-[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L25)
+[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L25)
 
 ___
 
@@ -239,9 +239,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L59)
+[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L59)
 
-[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L67)
 
 ___
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L60)
+[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L60)
 
 ___
 
@@ -273,7 +273,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L61)
+[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L61)
 
 ___
 
@@ -291,7 +291,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1260](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1260)
+[snarky.d.ts:1260](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1260)
 
 ___
 
@@ -301,9 +301,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:63](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L63)
+[lib/core.ts:63](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L63)
 
-[lib/core.ts:64](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L64)
+[lib/core.ts:64](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L64)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:253](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L253)
+[snarky.d.ts:253](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L253)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:170](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L170)
+[lib/proof_system.ts:170](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L170)
 
 ___
 
@@ -372,9 +372,9 @@ ___
 
 #### Defined in
 
-[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/ml/base.ts#L8)
+[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L8)
 
-[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/ml/base.ts#L13)
+[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L13)
 
 ___
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1299](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1299)
+[snarky.d.ts:1299](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1299)
 
 ___
 
@@ -394,7 +394,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1300](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1300)
+[snarky.d.ts:1300](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1300)
 
 ___
 
@@ -414,9 +414,9 @@ You will find this as the required input type in a few places in SnarkyJS. One c
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L47)
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L50)
+[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L50)
 
 ___
 
@@ -455,9 +455,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1239](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1239)
+[lib/zkapp.ts:1239](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1239)
 
-[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1558)
+[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1558)
 
 ___
 
@@ -487,9 +487,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L20)
 
 ___
 
@@ -505,9 +505,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L357)
 
-[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L55)
+[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L55)
 
 ___
 
@@ -523,7 +523,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L650)
+[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L650)
 
 ___
 
@@ -533,9 +533,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L56)
+[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L56)
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L57)
 
 ___
 
@@ -545,9 +545,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L61)
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L62)
 
 ___
 
@@ -577,9 +577,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L1968)
+[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1968)
 
-[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L1972)
+[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1972)
 
 ## Variables
 
@@ -589,9 +589,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L59)
+[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L59)
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L60)
 
 ___
 
@@ -612,9 +612,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L16)
+[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L16)
 
-[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L25)
+[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L25)
 
 ___
 
@@ -636,9 +636,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L59)
+[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L59)
 
-[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L67)
 
 ___
 
@@ -655,9 +655,9 @@ ___
 
 #### Defined in
 
-[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/ml/base.ts#L8)
+[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L8)
 
-[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/ml/base.ts#L13)
+[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L13)
 
 ___
 
@@ -683,9 +683,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:163](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L163)
+[lib/account_update.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L163)
 
-[lib/account_update.ts:235](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L235)
+[lib/account_update.ts:235](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L235)
 
 ___
 
@@ -707,9 +707,9 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1448](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1448)
+[snarky.d.ts:1448](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1448)
 
-[snarky.d.ts:1468](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1468)
+[snarky.d.ts:1468](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1468)
 
 ___
 
@@ -729,7 +729,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:41](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/hash.ts#L41)
+[lib/hash.ts:41](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/hash.ts#L41)
 
 ___
 
@@ -751,7 +751,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1273](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1273)
+[snarky.d.ts:1273](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1273)
 
 ___
 
@@ -779,9 +779,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L47)
 
 ___
 
@@ -839,9 +839,9 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:57](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L57)
+[snarky.d.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L57)
 
-[snarky.d.ts:69](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L69)
+[snarky.d.ts:69](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L69)
 
 ___
 
@@ -875,7 +875,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1397](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1397)
+[snarky.d.ts:1397](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1397)
 
 ___
 
@@ -903,7 +903,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:602](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L602)
+[lib/account_update.ts:602](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L602)
 
 ___
 
@@ -913,9 +913,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L56)
+[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L56)
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L57)
 
 ___
 
@@ -925,9 +925,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L61)
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L62)
 
 ___
 
@@ -937,9 +937,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L1968)
+[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1968)
 
-[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/account_update.ts#L1972)
+[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1972)
 
 ___
 
@@ -953,7 +953,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1446](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1446)
+[snarky.d.ts:1446](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1446)
 
 ## Functions
 
@@ -974,7 +974,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1518](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1518)
+[lib/zkapp.ts:1518](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1518)
 
 ___
 
@@ -1004,7 +1004,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L68)
+[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
 
 ___
 
@@ -1058,7 +1058,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L68)
+[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
 
 ___
 
@@ -1080,7 +1080,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/core.ts#L68)
+[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
 
 ___
 
@@ -1104,7 +1104,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/merkle_tree.ts#L237)
+[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/merkle_tree.ts#L237)
 
 ___
 
@@ -1132,7 +1132,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1558)
+[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1558)
 
 ___
 
@@ -1152,7 +1152,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L73)
 
 ___
 
@@ -1250,7 +1250,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L357)
 
 ___
 
@@ -1273,7 +1273,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L351)
+[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L351)
 
 ___
 
@@ -1313,7 +1313,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L262)
+[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L262)
 
 ___
 
@@ -1333,7 +1333,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L498)
+[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L498)
 
 ___
 
@@ -1355,7 +1355,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1397,7 +1397,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1544](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L1544)
+[lib/zkapp.ts:1544](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1544)
 
 ___
 
@@ -1457,7 +1457,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L163)
 
 ___
 
@@ -1491,7 +1491,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L131)
+[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L131)
 
 ___
 
@@ -1533,7 +1533,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L820)
+[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L820)
 
 ___
 
@@ -1555,7 +1555,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L394)
+[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L394)
 
 ___
 
@@ -1578,7 +1578,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L625)
+[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L625)
 
 ___
 
@@ -1598,7 +1598,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:373](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/bool.ts#L373)
+[lib/bool.ts:373](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L373)
 
 ___
 
@@ -1618,7 +1618,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1234](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1234)
+[lib/field.ts:1234](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1234)
 
 ___
 
@@ -1659,7 +1659,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L271)
+[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L271)
 
 ___
 
@@ -1696,7 +1696,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:90](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/zkapp.ts#L90)
+[lib/zkapp.ts:90](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L90)
 
 ___
 
@@ -1718,7 +1718,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit_value.ts#L247)
+[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L247)
 
 ___
 
@@ -1797,7 +1797,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit.ts#L196)
 
 ___
 
@@ -1822,7 +1822,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L655)
+[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L655)
 
 ___
 
@@ -1844,7 +1844,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L100)
+[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L100)
 
 ___
 
@@ -1864,7 +1864,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L78)
+[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L78)
 
 ___
 
@@ -1884,7 +1884,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/fetch.ts#L71)
+[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L71)
 
 ___
 
@@ -1902,7 +1902,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1441](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/snarky.d.ts#L1441)
+[snarky.d.ts:1441](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1441)
 
 ___
 
@@ -1950,7 +1950,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L87)
 
 ___
 
@@ -1971,7 +1971,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:136](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/proof_system.ts#L136)
+[lib/proof_system.ts:136](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L136)
 
 ___
 
@@ -1992,4 +1992,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1256](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1256)
+[lib/field.ts:1256](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1256)

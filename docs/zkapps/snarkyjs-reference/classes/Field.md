@@ -119,7 +119,7 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 #### Defined in
 
-[lib/field.ts:135](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L135)
+[lib/field.ts:135](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L135)
 
 ## Properties
 
@@ -129,7 +129,7 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 #### Defined in
 
-[lib/field.ts:124](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L124)
+[lib/field.ts:124](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L124)
 
 ___
 
@@ -142,7 +142,7 @@ Order of the [Field](Field.md) is 2894802230932904885589274625217197696336305648
 
 #### Defined in
 
-[lib/field.ts:130](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L130)
+[lib/field.ts:130](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L130)
 
 ## Methods
 
@@ -167,7 +167,7 @@ Order of the [Field](Field.md) is 2894802230932904885589274625217197696336305648
 
 #### Defined in
 
-[lib/field.ts:604](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L604)
+[lib/field.ts:604](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L604)
 
 ___
 
@@ -215,7 +215,7 @@ A [Field](Field.md) element equivalent to the modular addition of the two value.
 
 #### Defined in
 
-[lib/field.ts:302](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L302)
+[lib/field.ts:302](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L302)
 
 ___
 
@@ -240,7 +240,7 @@ Calling this function is equivalent to `Bool.or(Field(...).equals(1), Field(...)
 
 #### Defined in
 
-[lib/field.ts:868](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L868)
+[lib/field.ts:868](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L868)
 
 ___
 
@@ -267,7 +267,7 @@ See [equals](Field.md#equals) for more details.
 
 #### Defined in
 
-[lib/field.ts:260](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L260)
+[lib/field.ts:260](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L260)
 
 ___
 
@@ -297,7 +297,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:809](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L809)
+[lib/field.ts:809](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L809)
 
 ___
 
@@ -327,7 +327,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:826](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L826)
+[lib/field.ts:826](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L826)
 
 ___
 
@@ -357,7 +357,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:753](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L753)
+[lib/field.ts:753](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L753)
 
 ___
 
@@ -387,7 +387,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:781](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L781)
+[lib/field.ts:781](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L781)
 
 ___
 
@@ -418,7 +418,7 @@ x.assertNotEquals(0, "expect x to be non-zero");
 
 #### Defined in
 
-[lib/field.ts:843](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L843)
+[lib/field.ts:843](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L843)
 
 ___
 
@@ -469,7 +469,7 @@ A [Field](Field.md) element equivalent to the modular division of the two value.
 
 #### Defined in
 
-[lib/field.ts:472](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L472)
+[lib/field.ts:472](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L472)
 
 ___
 
@@ -500,7 +500,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is equal another "field
 
 #### Defined in
 
-[lib/field.ts:584](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L584)
+[lib/field.ts:584](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L584)
 
 ___
 
@@ -542,7 +542,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is greater than another
 
 #### Defined in
 
-[lib/field.ts:707](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L707)
+[lib/field.ts:707](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L707)
 
 ___
 
@@ -584,7 +584,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is greater than or equa
 
 #### Defined in
 
-[lib/field.ts:735](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L735)
+[lib/field.ts:735](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L735)
 
 ___
 
@@ -615,7 +615,7 @@ A [Field](Field.md) element that is equivalent to one divided by this element.
 
 #### Defined in
 
-[lib/field.ts:424](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L424)
+[lib/field.ts:424](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L424)
 
 ___
 
@@ -648,7 +648,7 @@ A `boolean` showing if this [Field](Field.md) is a constant or not.
 
 #### Defined in
 
-[lib/field.ts:191](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L191)
+[lib/field.ts:191](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L191)
 
 ___
 
@@ -666,7 +666,7 @@ use `x.equals(0)` which is equivalent
 
 #### Defined in
 
-[lib/field.ts:544](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L544)
+[lib/field.ts:544](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L544)
 
 ___
 
@@ -708,7 +708,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is less than another "f
 
 #### Defined in
 
-[lib/field.ts:647](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L647)
+[lib/field.ts:647](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L647)
 
 ___
 
@@ -750,7 +750,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is less than or equal a
 
 #### Defined in
 
-[lib/field.ts:677](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L677)
+[lib/field.ts:677](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L677)
 
 ___
 
@@ -783,7 +783,7 @@ A [Field](Field.md) element equivalent to the modular difference of the two valu
 
 #### Defined in
 
-[lib/field.ts:385](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L385)
+[lib/field.ts:385](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L385)
 
 ___
 
@@ -817,7 +817,7 @@ A [Field](Field.md) element that is equivalent to the element multiplied by -1.
 
 #### Defined in
 
-[lib/field.ts:330](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L330)
+[lib/field.ts:330](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L330)
 
 ___
 
@@ -846,7 +846,7 @@ A [Field](Field.md) element that is equal to the `length` of this [Field](Field.
 
 #### Defined in
 
-[lib/field.ts:960](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L960)
+[lib/field.ts:960](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L960)
 
 ___
 
@@ -870,7 +870,7 @@ A [Field](Field.md) element that is equal to the result of AST that was previous
 
 #### Defined in
 
-[lib/field.ts:988](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L988)
+[lib/field.ts:988](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L988)
 
 ___
 
@@ -901,7 +901,7 @@ A [Field](Field.md) element equivalent to the square root of the [Field](Field.m
 
 #### Defined in
 
-[lib/field.ts:522](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L522)
+[lib/field.ts:522](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L522)
 
 ___
 
@@ -930,7 +930,7 @@ A [Field](Field.md) element equivalent to the multiplication of the [Field](Fiel
 
 #### Defined in
 
-[lib/field.ts:492](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L492)
+[lib/field.ts:492](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L492)
 
 ___
 
@@ -976,7 +976,7 @@ A [Field](Field.md) element equivalent to the modular difference of the two valu
 
 #### Defined in
 
-[lib/field.ts:366](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L366)
+[lib/field.ts:366](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L366)
 
 ___
 
@@ -994,7 +994,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1096](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1096)
+[lib/field.ts:1096](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1096)
 
 ___
 
@@ -1021,7 +1021,7 @@ A bigint equivalent to the bigint representation of the Field.
 
 #### Defined in
 
-[lib/field.ts:228](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L228)
+[lib/field.ts:228](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L228)
 
 ___
 
@@ -1051,7 +1051,7 @@ An array of [Bool](Bool.md) element representing little endian binary representa
 
 #### Defined in
 
-[lib/field.ts:905](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L905)
+[lib/field.ts:905](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L905)
 
 ___
 
@@ -1078,7 +1078,7 @@ A constant [Field](Field.md) element equivalent to this [Field](Field.md) elemen
 
 #### Defined in
 
-[lib/field.ts:208](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L208)
+[lib/field.ts:208](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L208)
 
 ___
 
@@ -1098,7 +1098,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1087](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1087)
+[lib/field.ts:1087](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1087)
 
 ___
 
@@ -1125,7 +1125,7 @@ A string equivalent to the JSON representation of the [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1115](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1115)
+[lib/field.ts:1115](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1115)
 
 ___
 
@@ -1152,7 +1152,7 @@ A string equivalent to the string representation of the Field.
 
 #### Defined in
 
-[lib/field.ts:246](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L246)
+[lib/field.ts:246](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L246)
 
 ___
 
@@ -1173,7 +1173,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:883](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L883)
+[lib/field.ts:883](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L883)
 
 ___
 
@@ -1193,7 +1193,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:155](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L155)
+[lib/field.ts:155](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L155)
 
 ___
 
@@ -1213,7 +1213,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:160](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L160)
+[lib/field.ts:160](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L160)
 
 ___
 
@@ -1233,7 +1233,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:164](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L164)
+[lib/field.ts:164](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L164)
 
 ___
 
@@ -1251,7 +1251,7 @@ As any field element can be a [Field](Field.md), this function does not create a
 
 #### Defined in
 
-[lib/field.ts:1078](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1078)
+[lib/field.ts:1078](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1078)
 
 ___
 
@@ -1271,7 +1271,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:168](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L168)
+[lib/field.ts:168](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L168)
 
 ___
 
@@ -1299,7 +1299,7 @@ A [Field](Field.md) element matching the [little endian binary representation](h
 
 #### Defined in
 
-[lib/field.ts:931](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L931)
+[lib/field.ts:931](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L931)
 
 ___
 
@@ -1326,7 +1326,7 @@ A new [Field](Field.md) element created using the [little-endian](https://en.wik
 
 #### Defined in
 
-[lib/field.ts:1202](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1202)
+[lib/field.ts:1202](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1202)
 
 ___
 
@@ -1354,7 +1354,7 @@ The first [Field](Field.md) element of the given array.
 
 #### Defined in
 
-[lib/field.ts:1067](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1067)
+[lib/field.ts:1067](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1067)
 
 ___
 
@@ -1380,7 +1380,7 @@ A [Field](Field.md) coerced from the given JSON string.
 
 #### Defined in
 
-[lib/field.ts:1147](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1147)
+[lib/field.ts:1147](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1147)
 
 ___
 
@@ -1404,7 +1404,7 @@ A random [Field](Field.md) element.
 
 #### Defined in
 
-[lib/field.ts:1006](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1006)
+[lib/field.ts:1006](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1006)
 
 ___
 
@@ -1435,7 +1435,7 @@ Part of the `Binable` interface.
 
 #### Defined in
 
-[lib/field.ts:1185](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1185)
+[lib/field.ts:1185](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1185)
 
 ___
 
@@ -1455,7 +1455,7 @@ The size of a [Field](Field.md) element - 31.
 
 #### Defined in
 
-[lib/field.ts:1213](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1213)
+[lib/field.ts:1213](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1213)
 
 ___
 
@@ -1482,7 +1482,7 @@ A number representing the size of the [Field](Field.md) type in terms of [Field]
 
 #### Defined in
 
-[lib/field.ts:1052](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1052)
+[lib/field.ts:1052](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1052)
 
 ___
 
@@ -1500,7 +1500,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1035](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1035)
+[lib/field.ts:1035](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1035)
 
 ___
 
@@ -1525,7 +1525,7 @@ An array of digits equal to the [little-endian](https://en.wikipedia.org/wiki/En
 
 #### Defined in
 
-[lib/field.ts:1176](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1176)
+[lib/field.ts:1176](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1176)
 
 ___
 
@@ -1552,7 +1552,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1024](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1024)
+[lib/field.ts:1024](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1024)
 
 ___
 
@@ -1582,7 +1582,7 @@ An object where the `fields` key is a [Field](Field.md) array of length 1 create
 
 #### Defined in
 
-[lib/field.ts:1161](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1161)
+[lib/field.ts:1161](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1161)
 
 ___
 
@@ -1615,4 +1615,4 @@ A string equivalent to the JSON representation of the given [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1134](https://github.com/o1-labs/snarkyjs/blob/5a945ad8/src/lib/field.ts#L1134)
+[lib/field.ts:1134](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1134)
