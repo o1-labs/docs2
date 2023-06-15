@@ -602,12 +602,12 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
+| `check` | (`value`: [`Field`](../classes/Field.md)) => `void` |
 | `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
+| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
 | `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
+| `toAuxiliary` | (`value?`: [`Field`](../classes/Field.md)) => `any`[] |
+| `toFields` | (`value`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
 | `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
 | `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
 | `sizeInFields` | () => `number` |
@@ -716,12 +716,12 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
+| `check` | (`value`: [`Field`](../classes/Field.md)) => `void` |
 | `emptyValue` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
+| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
 | `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
+| `toAuxiliary` | (`value?`: [`Field`](../classes/Field.md)) => `any`[] |
+| `toFields` | (`value`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
 | `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
 | `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
 | `sizeInFields` | () => `number` |

@@ -10,7 +10,6 @@
 - [Prover](Pickles.md#prover)
 - [Rule](Pickles.md#rule)
 - [Statement](Pickles.md#statement)
-- [StatementConst](Pickles.md#statementconst)
 
 ## Type Aliases
 
@@ -20,32 +19,32 @@
 
 #### Defined in
 
-[snarky.d.ts:1449](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1449)
+[snarky.d.ts:493](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L493)
 
 ___
 
 ### Prover
 
-Ƭ **Prover**: (`publicInput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: [`MlArray`](../modules.md#mlarray-1)<[`Proof`](Pickles.md#proof)\>) => `Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+Ƭ **Prover**: (`publicInput`: `MlArray`<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: `MlArray`<[`Proof`](Pickles.md#proof)\>) => `Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
 
 #### Type declaration
 
-▸ (`publicInput`, `previousProofs`): `Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+▸ (`publicInput`, `previousProofs`): `Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `publicInput` | [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\> |
-| `previousProofs` | [`MlArray`](../modules.md#mlarray-1)<[`Proof`](Pickles.md#proof)\> |
+| `publicInput` | `MlArray`<[`FieldConst`](../modules.md#fieldconst-1)\> |
+| `previousProofs` | `MlArray`<[`Proof`](Pickles.md#proof)\> |
 
 ##### Returns
 
-`Promise`<`MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`Proof`](Pickles.md#proof)\>\>
+`Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
 
 #### Defined in
 
-[snarky.d.ts:1462](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1462)
+[snarky.d.ts:504](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L504)
 
 ___
 
@@ -58,29 +57,25 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `identifier` | `string` |
-| `main` | (`publicInput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>) => { `previousStatements`: [`MlArray`](../modules.md#mlarray-1)<[`Statement`](Pickles.md#statement)\> ; `publicOutput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: [`MlArray`](../modules.md#mlarray-1)<[`BoolVar`](../modules.md#boolvar)\>  } |
-| `proofsToVerify` | [`MlArray`](../modules.md#mlarray-1)<{ `isSelf`: ``true``  } \| { `isSelf`: ``false`` ; `tag`: `unknown`  }\> |
+| `main` | (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => { `previousStatements`: `MlArray`<[`Statement`](Pickles.md#statement)<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`<[`BoolVar`](../modules.md#boolvar)\>  } |
+| `proofsToVerify` | `MlArray`<{ `isSelf`: ``true``  } \| { `isSelf`: ``false`` ; `tag`: `unknown`  }\> |
 
 #### Defined in
 
-[snarky.d.ts:1452](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1452)
+[snarky.d.ts:495](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L495)
 
 ___
 
 ### Statement
 
-Ƭ **Statement**: `MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>\>
+Ƭ **Statement**<`F`\>: [\_: 0, publicInput: MlArray<F\>, publicOutput: MlArray<F\>]
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `F` |
 
 #### Defined in
 
-[snarky.d.ts:1450](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1450)
-
-___
-
-### StatementConst
-
-Ƭ **StatementConst**: `MlTuple`<[`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>, [`MlArray`](../modules.md#mlarray-1)<[`FieldConst`](../modules.md#fieldconst-1)\>\>
-
-#### Defined in
-
-[snarky.d.ts:1451](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1451)
+[snarky.d.ts:494](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L494)
