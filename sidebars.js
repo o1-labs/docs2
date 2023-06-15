@@ -67,6 +67,7 @@ module.exports = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'zkapps/tutorials/index',
             'zkapps/tutorials/hello-world',
             'zkapps/tutorials/private-inputs-hash-functions',
             'zkapps/tutorials/deploying-to-a-network',
