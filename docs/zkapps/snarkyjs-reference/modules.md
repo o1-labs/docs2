@@ -34,6 +34,7 @@
 - [MerkleMap](classes/MerkleMap.md)
 - [MerkleMapWitness](classes/MerkleMapWitness.md)
 - [MerkleTree](classes/MerkleTree.md)
+- [Nullifier](classes/Nullifier.md)
 - [PrivateKey](classes/PrivateKey.md)
 - [Proof](classes/Proof.md)
 - [Scalar](classes/Scalar.md)
@@ -41,8 +42,6 @@
 - [Sign](classes/Sign.md)
 - [Signature](classes/Signature.md)
 - [SmartContract](classes/SmartContract.md)
-- [SnarkyBool](classes/SnarkyBool.md)
-- [SnarkyField](classes/SnarkyField.md)
 - [Token](classes/Token.md)
 - [TokenSymbol](classes/TokenSymbol.md)
 - [UInt32](classes/UInt32.md)
@@ -72,7 +71,6 @@
 - [InferProvable](modules.md#inferprovable)
 - [JsonGate](modules.md#jsongate)
 - [JsonProof](modules.md#jsonproof)
-- [MlArray](modules.md#mlarray)
 - [MlPublicKey](modules.md#mlpublickey)
 - [MlPublicKeyVar](modules.md#mlpublickeyvar)
 - [Provable](modules.md#provable)
@@ -90,11 +88,9 @@
 - [Empty](modules.md#empty-1)
 - [FieldConst](modules.md#fieldconst-1)
 - [FieldVar](modules.md#fieldvar-1)
-- [MlArray](modules.md#mlarray-1)
 - [Permissions](modules.md#permissions)
 - [Pickles](modules.md#pickles)
 - [Poseidon](modules.md#poseidon)
-- [Poseidon](modules.md#poseidon-1)
 - [Provable](modules.md#provable-1)
 - [Snarky](modules.md#snarky)
 - [Test](modules.md#test)
@@ -132,6 +128,7 @@
 - [provable](modules.md#provable-2)
 - [provablePure](modules.md#provablepure)
 - [public\_](modules.md#public_)
+- [scaleShifted](modules.md#scaleshifted)
 - [sendZkapp](modules.md#sendzkapp)
 - [setArchiveGraphqlEndpoint](modules.md#setarchivegraphqlendpoint)
 - [setGraphqlEndpoint](modules.md#setgraphqlendpoint)
@@ -149,9 +146,9 @@
 
 #### Defined in
 
-[lib/core.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L57)
+[lib/core.ts:55](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L55)
 
-[lib/core.ts:58](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L58)
+[lib/core.ts:56](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L56)
 
 ___
 
@@ -161,7 +158,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:10](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L10)
+[lib/bool.ts:11](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/bool.ts#L11)
 
 ___
 
@@ -171,7 +168,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:88](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L88)
+[lib/field.ts:86](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L86)
 
 ___
 
@@ -181,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1511](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1511)
+[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1506)
 
 ___
 
@@ -191,9 +188,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L59)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -203,9 +200,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:43](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L43)
+[lib/core.ts:41](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L41)
 
-[lib/core.ts:44](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L44)
+[lib/core.ts:42](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L42)
 
 ___
 
@@ -215,9 +212,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L16)
+[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L14)
 
-[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L25)
+[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L23)
 
 ___
 
@@ -239,9 +236,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L59)
+[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L57)
 
-[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L67)
+[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L65)
 
 ___
 
@@ -257,7 +254,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L60)
+[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L60)
 
 ___
 
@@ -273,7 +270,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L61)
+[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L61)
 
 ___
 
@@ -291,7 +288,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1260](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1260)
+[snarky.d.ts:365](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L365)
 
 ___
 
@@ -301,9 +298,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:63](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L63)
+[lib/core.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L61)
 
-[lib/core.ts:64](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L64)
+[lib/core.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L62)
 
 ___
 
@@ -337,7 +334,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:253](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L253)
+[snarky.d.ts:358](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L358)
 
 ___
 
@@ -356,45 +353,27 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:170](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L170)
-
-___
-
-### MlArray
-
-Ƭ **MlArray**<`T`\>: [``0``, ...T[]]
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Defined in
-
-[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L8)
-
-[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L13)
+[lib/proof_system.ts:171](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L171)
 
 ___
 
 ### MlPublicKey
 
-Ƭ **MlPublicKey**: `MlTuple`<[`FieldConst`](modules.md#fieldconst-1), `MlBool`\>
+Ƭ **MlPublicKey**: [\_: 0, x: FieldConst, isOdd: MlBool]
 
 #### Defined in
 
-[snarky.d.ts:1299](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1299)
+[snarky.d.ts:378](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L378)
 
 ___
 
 ### MlPublicKeyVar
 
-Ƭ **MlPublicKeyVar**: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`BoolVar`](modules.md#boolvar)\>
+Ƭ **MlPublicKeyVar**: [\_: 0, x: FieldVar, isOdd: BoolVar]
 
 #### Defined in
 
-[snarky.d.ts:1300](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1300)
+[snarky.d.ts:379](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L379)
 
 ___
 
@@ -414,9 +393,9 @@ You will find this as the required input type in a few places in SnarkyJS. One c
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L47)
 
 ___
 
@@ -433,7 +412,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L50)
+[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L50)
 
 ___
 
@@ -455,9 +434,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1239](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1239)
+[lib/zkapp.ts:1234](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1234)
 
-[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1558)
+[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1553)
 
 ___
 
@@ -487,9 +466,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L20)
 
 ___
 
@@ -505,9 +484,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L357)
 
-[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L55)
+[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L55)
 
 ___
 
@@ -523,7 +502,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L650)
+[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L650)
 
 ___
 
@@ -533,9 +512,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L56)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -545,9 +524,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -577,9 +556,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1968)
+[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1965)
 
-[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1972)
+[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1969)
 
 ## Variables
 
@@ -589,9 +568,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L59)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -612,9 +591,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:16](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L16)
+[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L14)
 
-[lib/field.ts:25](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L25)
+[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L23)
 
 ___
 
@@ -636,28 +615,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L59)
+[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L57)
 
-[lib/field.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L67)
-
-___
-
-### MlArray
-
-• **MlArray**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `from` | <T\>(`__namedParameters`: [`MlArray`](modules.md#mlarray-1)<`T`\>) => `T`[] |
-| `to` | <T\>(`arr`: `T`[]) => [`MlArray`](modules.md#mlarray-1)<`T`\> |
-
-#### Defined in
-
-[lib/ml/base.ts:8](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L8)
-
-[lib/ml/base.ts:13](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/ml/base.ts#L13)
+[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L65)
 
 ___
 
@@ -683,9 +643,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L163)
+[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L168)
 
-[lib/account_update.ts:235](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L235)
+[lib/account_update.ts:240](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L240)
 
 ___
 
@@ -697,19 +657,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `compile` | (`rules`: [`MlArray`](modules.md#mlarray-1)<[`Rule`](modules/Pickles.md#rule)\>, `signature`: { `publicInputSize`: `number` ; `publicOutputSize`: `number`  }) => { `getVerificationKey`: () => `MlTuple`<`string`, `Uint8Array`\> ; `provers`: [`MlArray`](modules.md#mlarray-1)<[`Prover`](modules/Pickles.md#prover)\> ; `tag`: `unknown` ; `verify`: (`statement`: [`StatementConst`](modules/Pickles.md#statementconst), `proof`: `unknown`) => `Promise`<`boolean`\>  } |
+| `compile` | (`rules`: `MlArray`<[`Rule`](modules/Pickles.md#rule)\>, `signature`: { `publicInputSize`: `number` ; `publicOutputSize`: `number`  }) => { `getVerificationKey`: () => [\_: 0, data: string, hash: Uint8Array] ; `provers`: `MlArray`<[`Prover`](modules/Pickles.md#prover)\> ; `tag`: `unknown` ; `verify`: (`statement`: [`Statement`](modules/Pickles.md#statement)<`Uint8Array`\>, `proof`: `unknown`) => `Promise`<`boolean`\>  } |
 | `dummyBase64Proof` | () => `string` |
-| `dummyVerificationKey` | () => `MlTuple`<`string`, `Uint8Array`\> |
+| `dummyVerificationKey` | () => [\_: 0, data: string, hash: Uint8Array] |
 | `proofOfBase64` | (`base64`: `string`, `maxProofsVerified`: ``0`` \| ``2`` \| ``1``) => [``0`` \| ``2`` \| ``1``, `unknown`] |
 | `proofToBase64` | (`proof`: [``0`` \| ``2`` \| ``1``, `unknown`]) => `string` |
 | `proofToBase64Transaction` | (`proof`: `unknown`) => `string` |
-| `verify` | (`statement`: [`StatementConst`](modules/Pickles.md#statementconst), `proof`: `unknown`, `verificationKey`: `string`) => `Promise`<`boolean`\> |
+| `verify` | (`statement`: [`Statement`](modules/Pickles.md#statement)<`Uint8Array`\>, `proof`: `unknown`, `verificationKey`: `string`) => `Promise`<`boolean`\> |
 
 #### Defined in
 
-[snarky.d.ts:1448](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1448)
+[snarky.d.ts:492](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L492)
 
-[snarky.d.ts:1468](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1468)
+[snarky.d.ts:510](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L510)
 
 ___
 
@@ -729,29 +689,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:41](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/hash.ts#L41)
-
-___
-
-### Poseidon
-
-• `Const` **Poseidon**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `prefixes` | `Record`<``"event"`` \| ``"events"`` \| ``"sequenceEvents"`` \| ``"body"`` \| ``"accountUpdateCons"`` \| ``"accountUpdateNode"`` \| ``"zkappMemo"``, `string`\> |
-| `hash` | (`input`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [`FieldVar`](modules.md#fieldvar-1) |
-| `hashToGroup` | (`input`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> |
-| `spongeAbsorb` | (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` |
-| `spongeCreate` | (`isChecked`: `boolean`) => `unknown` |
-| `spongeSqueeze` | (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1) |
-| `update` | (`state`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>, `input`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)] |
-
-#### Defined in
-
-[snarky.d.ts:1273](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1273)
+[lib/hash.ts:40](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/hash.ts#L40)
 
 ___
 
@@ -779,9 +717,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L47)
 
 ___
 
@@ -803,14 +741,14 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `bool.equals` | [object Object] | - |
 | `bool.not` | [object Object] | - |
 | `bool.or` | [object Object] | - |
-| `circuit` | { `keypair`: { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } ; `compile`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`) => `unknown` ; `prove`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`, `publicInput`: [`MlArray`](modules.md#mlarray-1)<`Uint8Array`\>, `keypair`: `unknown`) => `unknown` ; `verify`: (`publicInput`: [`MlArray`](modules.md#mlarray-1)<`Uint8Array`\>, `proof`: `unknown`, `verificationKey`: `unknown`) => `boolean`  } | The circuit API is a low level interface to create zero-knowledge proofs |
+| `circuit` | { `keypair`: { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } ; `compile`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`) => `unknown` ; `prove`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`, `publicInput`: `MlArray`<`Uint8Array`\>, `keypair`: `unknown`) => `unknown` ; `verify`: (`publicInput`: `MlArray`<`Uint8Array`\>, `proof`: `unknown`, `verificationKey`: `unknown`) => `boolean`  } | The circuit API is a low level interface to create zero-knowledge proofs |
 | `circuit.keypair` | { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } | - |
 | `circuit.keypair.getConstraintSystemJSON` | [object Object] | Returns a low-level JSON representation of the circuit: a list of gates, each of which represents a row in a table, with certain coefficients and wires to other (row, column) pairs |
 | `circuit.keypair.getVerificationKey` | [object Object] | - |
 | `circuit.compile` | [object Object] | Generates a proving key and a verification key for the provable function `main` |
 | `circuit.prove` | [object Object] | Proves a statement using the private input, public input and the keypair of the circuit. |
 | `circuit.verify` | [object Object] | Verifies a proof using the public input, the proof and the verification key of the circuit. |
-| `field` | { `add`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `assertBoolean`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertEqual`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertMul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1), `z`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertSquare`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `compare`: (`bitLength`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [flag: 0, less: FieldVar, lessOrEqual: FieldVar] ; `fromBits`: (`bits`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `mul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `readVar`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `Uint8Array` ; `scale`: (`c`: `Uint8Array`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `seal`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `toBits`: (`length`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\> ; `toConstantAndTerms`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `MlTuple`<`MlOption`<`Uint8Array`\>, `MlList`<`MlTuple`<`Uint8Array`, `number`\>\>\> ; `truncateToBits16`: (`lengthDiv16`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } | APIs to add constraints on field variables |
+| `field` | { `add`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `assertBoolean`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertEqual`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertMul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1), `z`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertSquare`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `compare`: (`bitLength`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, less: FieldVar, lessOrEqual: FieldVar] ; `fromBits`: (`bits`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `mul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `readVar`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `Uint8Array` ; `scale`: (`c`: `Uint8Array`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `seal`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `toBits`: (`length`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> ; `toConstantAndTerms`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, constant: MlOption<Uint8Array\>, terms: MlList<MlTuple<Uint8Array, number\>\>] ; `truncateToBits16`: (`lengthDiv16`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } | APIs to add constraints on field variables |
 | `field.add` | [object Object] | add x, y to get a new AST node Add(x, y); handles if x, y are constants |
 | `field.assertBoolean` | [object Object] | x*x === x without handling of constants |
 | `field.assertEqual` | [object Object] | x === y without handling of constants |
@@ -825,23 +763,31 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `field.toBits` | [object Object] |  |
 | `field.toConstantAndTerms` | [object Object] | Unfolds AST to get `x = c + c0*Var(i0) + ... + cn*Var(in)`, returns `(c, [(c0, i0), ..., (cn, in)])`; c is optional |
 | `field.truncateToBits16` | [object Object] | returns x truncated to the lowest `16 * lengthDiv16` bits => can be used to assert that x fits in `16 * lengthDiv16` bits. more efficient than `toBits()` because it uses the EC_endoscalar gate; does 16 bits per row (vs 1 bits per row that you can do with generic gates). |
-| `group` | { `add`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `assertOnCurve`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `void` ; `equals`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `scale`: (`p`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `s`: [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>  } | - |
+| `group` | { `add`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `assertOnCurve`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `void` ; `equals`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `scale`: (`p`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `s`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>  } | - |
 | `group.add` | [object Object] | Addition of two group elements, handles only variables. |
 | `group.assertOnCurve` | [object Object] | - |
 | `group.equals` | [object Object] | - |
 | `group.scale` | [object Object] | - |
+| `poseidon` | { `sponge`: { `absorb`: (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `create`: (`isChecked`: `boolean`) => `unknown` ; `squeeze`: (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1)  } ; `hash`: (`input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [`FieldVar`](modules.md#fieldvar-1) ; `hashToGroup`: (`input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `update`: (`state`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)]  } | - |
+| `poseidon.sponge` | { `absorb`: (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `create`: (`isChecked`: `boolean`) => `unknown` ; `squeeze`: (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1)  } | - |
+| `poseidon.sponge.absorb` | [object Object] | - |
+| `poseidon.sponge.create` | [object Object] | - |
+| `poseidon.sponge.squeeze` | [object Object] | - |
+| `poseidon.hash` | [object Object] | - |
+| `poseidon.hashToGroup` | [object Object] | - |
+| `poseidon.update` | [object Object] | - |
 | `asProver` | (`f`: () => `void`) => `void` | Runs code as a prover. |
 | `constraintSystem` | (`f`: () => `void`) => { `digest`: `string` ; `json`: `JsonConstraintSystem` ; `rows`: `number`  } | Returns information about the constraint system in the callback function. |
-| `exists` | (`sizeInFields`: `number`, `compute`: () => [`MlArray`](modules.md#mlarray-1)<`Uint8Array`\>) => [`MlArray`](modules.md#mlarray-1)<[`FieldVar`](modules.md#fieldvar-1)\> | witness `sizeInFields` field element variables Note: this is called "exists" because in a proof, you use it like this: > "I prove that there exists x, such that (some statement)" |
+| `exists` | (`sizeInFields`: `number`, `compute`: () => `MlArray`<`Uint8Array`\>) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> | witness `sizeInFields` field element variables Note: this is called "exists" because in a proof, you use it like this: > "I prove that there exists x, such that (some statement)" |
 | `existsVar` | (`compute`: () => `Uint8Array`) => [`FieldVar`](modules.md#fieldvar-1) | witness a single field element variable |
 | `runAndCheck` | (`f`: () => `void`) => `void` | Runs code and checks its correctness. |
 | `runUnchecked` | (`f`: () => `void`) => `void` | Runs code in prover mode, without checking correctness. |
 
 #### Defined in
 
-[snarky.d.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L57)
+[snarky.d.ts:137](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L137)
 
-[snarky.d.ts:69](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L69)
+[snarky.d.ts:149](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L149)
 
 ___
 
@@ -853,18 +799,37 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `encoding` | { `memoHashBase58`: (`memoBase58`: `string`) => `Uint8Array` ; `memoToBase58`: (`memoString`: `string`) => `string` ; `privateKeyOfBase58`: (`privateKeyBase58`: `string`) => `Uint8Array` ; `privateKeyToBase58`: (`privateKey`: `Uint8Array`) => `string` ; `publicKeyOfBase58`: (`publicKeyBase58`: `string`) => [`MlPublicKey`](modules.md#mlpublickey) ; `publicKeyToBase58`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey)) => `string` ; `tokenIdOfBase58`: (`fieldBase58`: `string`) => `Uint8Array` ; `tokenIdToBase58`: (`field`: `Uint8Array`) => `string`  } |
+| `encoding` | { `memoHashBase58`: (`memoBase58`: `string`) => `Uint8Array` ; `memoToBase58`: (`memoString`: `string`) => `string` ; `ofBase58`: (`base58`: `string`, `versionByte`: `number`) => `MlBytes` ; `privateKeyOfBase58`: (`privateKeyBase58`: `string`) => `Uint8Array` ; `privateKeyToBase58`: (`privateKey`: `Uint8Array`) => `string` ; `publicKeyOfBase58`: (`publicKeyBase58`: `string`) => [`MlPublicKey`](modules.md#mlpublickey) ; `publicKeyToBase58`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey)) => `string` ; `toBase58`: (`s`: `MlBytes`, `versionByte`: `number`) => `string` ; `tokenIdOfBase58`: (`fieldBase58`: `string`) => `Uint8Array` ; `tokenIdToBase58`: (`field`: `Uint8Array`) => `string`  } |
 | `encoding.memoHashBase58` | [object Object] |
 | `encoding.memoToBase58` | [object Object] |
+| `encoding.ofBase58` | [object Object] |
 | `encoding.privateKeyOfBase58` | [object Object] |
 | `encoding.privateKeyToBase58` | [object Object] |
 | `encoding.publicKeyOfBase58` | [object Object] |
 | `encoding.publicKeyToBase58` | [object Object] |
+| `encoding.toBase58` | [object Object] |
 | `encoding.tokenIdOfBase58` | [object Object] |
 | `encoding.tokenIdToBase58` | [object Object] |
+| `fieldsFromJson` | { `accountUpdate`: (`json`: `string`) => `MlArray`<`Uint8Array`\>  } |
+| `fieldsFromJson.accountUpdate` | [object Object] |
+| `hashFromJson` | { `accountUpdate`: (`json`: `string`) => `Uint8Array` ; `transactionCommitments`: (`txJson`: `string`) => { `commitment`: [`FieldConst`](modules.md#fieldconst-1) ; `feePayerHash`: [`FieldConst`](modules.md#fieldconst-1) ; `fullCommitment`: [`FieldConst`](modules.md#fieldconst-1)  } ; `zkappPublicInput`: (`txJson`: `string`, `accountUpdateIndex`: `number`) => { `accountUpdate`: [`FieldConst`](modules.md#fieldconst-1) ; `calls`: [`FieldConst`](modules.md#fieldconst-1)  }  } |
+| `hashFromJson.accountUpdate` | [object Object] |
+| `hashFromJson.transactionCommitments` | [object Object] |
+| `hashFromJson.zkappPublicInput` | [object Object] |
+| `hashInputFromJson` | { `accountPrecondition`: (`json`: `String`) => `MlHashInput` ; `body`: (`json`: `String`) => `MlHashInput` ; `networkPrecondition`: (`json`: `String`) => `MlHashInput` ; `packInput`: (`input`: `MlHashInput`) => `MlArray`<`Uint8Array`\> ; `permissions`: (`json`: `String`) => `MlHashInput` ; `timing`: (`json`: `String`) => `MlHashInput` ; `update`: (`json`: `String`) => `MlHashInput`  } |
+| `hashInputFromJson.accountPrecondition` | [object Object] |
+| `hashInputFromJson.body` | [object Object] |
+| `hashInputFromJson.networkPrecondition` | [object Object] |
+| `hashInputFromJson.packInput` | [object Object] |
+| `hashInputFromJson.permissions` | [object Object] |
+| `hashInputFromJson.timing` | [object Object] |
+| `hashInputFromJson.update` | [object Object] |
 | `signature` | { `dummySignature`: () => `string` ; `signFieldElement`: (`messageHash`: `Uint8Array`, `privateKey`: `Uint8Array`, `isMainnet`: `boolean`) => `string`  } |
 | `signature.dummySignature` | [object Object] |
 | `signature.signFieldElement` | [object Object] |
+| `tokenId` | { `derive`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey), `tokenId`: `Uint8Array`) => `Uint8Array` ; `deriveChecked`: (`publicKey`: [`MlPublicKeyVar`](modules.md#mlpublickeyvar), `tokenId`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } |
+| `tokenId.derive` | [object Object] |
+| `tokenId.deriveChecked` | [object Object] |
 | `transactionHash` | { `examplePayment`: () => `string` ; `hashPayment`: (`payment`: `string`) => `string` ; `hashPaymentV1`: (`payment`: `string`) => `string` ; `serializeCommon`: (`common`: `string`) => { `data`: `Uint8Array`  } ; `serializePayment`: (`payment`: `string`) => { `data`: `Uint8Array`  } ; `serializePaymentV1`: (`payment`: `string`) => `string`  } |
 | `transactionHash.examplePayment` | [object Object] |
 | `transactionHash.hashPayment` | [object Object] |
@@ -875,7 +840,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1397](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1397)
+[snarky.d.ts:413](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L413)
 
 ___
 
@@ -903,7 +868,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:602](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L602)
+[lib/account_update.ts:612](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L612)
 
 ___
 
@@ -913,9 +878,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L56)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -925,9 +890,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -937,15 +902,15 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1968](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1968)
+[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1965)
 
-[lib/account_update.ts:1972](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1972)
+[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1969)
 
 ___
 
 ### isReady
 
-• **isReady**: `Promise`<`undefined`\>
+• **isReady**: `Promise`<`void`\>
 
 **`Deprecated`**
 
@@ -953,7 +918,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:1446](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1446)
+[index.ts:109](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L109)
 
 ## Functions
 
@@ -974,7 +939,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1518](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1518)
+[lib/zkapp.ts:1513](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1513)
 
 ___
 
@@ -1004,7 +969,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
 
 ___
 
@@ -1058,7 +1023,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
 
 ___
 
@@ -1080,7 +1045,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:68](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/core.ts#L68)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
 
 ___
 
@@ -1104,7 +1069,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/merkle_tree.ts#L237)
+[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/merkle_tree.ts#L237)
 
 ___
 
@@ -1132,7 +1097,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1558](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1558)
+[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1553)
 
 ___
 
@@ -1152,7 +1117,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L73)
 
 ___
 
@@ -1250,7 +1215,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L357)
 
 ___
 
@@ -1273,7 +1238,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L351)
+[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L351)
 
 ___
 
@@ -1313,7 +1278,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L262)
+[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L262)
 
 ___
 
@@ -1333,7 +1298,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L498)
+[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L498)
 
 ___
 
@@ -1355,7 +1320,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1397,7 +1362,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1544](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L1544)
+[lib/zkapp.ts:1539](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1539)
 
 ___
 
@@ -1457,7 +1422,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L163)
 
 ___
 
@@ -1491,7 +1456,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L131)
+[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L131)
 
 ___
 
@@ -1533,7 +1498,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L820)
+[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L820)
 
 ___
 
@@ -1555,7 +1520,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L394)
+[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L394)
 
 ___
 
@@ -1578,7 +1543,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L625)
+[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L625)
 
 ___
 
@@ -1598,7 +1563,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:373](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/bool.ts#L373)
+[lib/bool.ts:363](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/bool.ts#L363)
 
 ___
 
@@ -1618,7 +1583,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1234](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1234)
+[lib/field.ts:1232](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L1232)
 
 ___
 
@@ -1659,7 +1624,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L271)
+[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L271)
 
 ___
 
@@ -1696,7 +1661,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:90](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/zkapp.ts#L90)
+[lib/zkapp.ts:85](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L85)
 
 ___
 
@@ -1718,7 +1683,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L247)
+[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L247)
 
 ___
 
@@ -1797,7 +1762,28 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit.ts#L196)
+
+___
+
+### scaleShifted
+
+▸ **scaleShifted**(`point`, `shiftedScalar`): [`Group`](classes/Group.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `point` | [`Group`](classes/Group.md) |
+| `shiftedScalar` | [`Scalar`](classes/Scalar.md) |
+
+#### Returns
+
+[`Group`](classes/Group.md)
+
+#### Defined in
+
+[lib/signature.ts:296](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L296)
 
 ___
 
@@ -1822,7 +1808,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L655)
+[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L655)
 
 ___
 
@@ -1844,7 +1830,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L100)
+[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L100)
 
 ___
 
@@ -1864,7 +1850,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L78)
+[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L78)
 
 ___
 
@@ -1884,13 +1870,13 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/fetch.ts#L71)
+[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L71)
 
 ___
 
 ### shutdown
 
-▸ **shutdown**(): `Promise`<`undefined`\>
+▸ **shutdown**(): `void`
 
 **`Deprecated`**
 
@@ -1898,11 +1884,11 @@ ___
 
 #### Returns
 
-`Promise`<`undefined`\>
+`void`
 
 #### Defined in
 
-[snarky.d.ts:1441](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L1441)
+[index.ts:114](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L114)
 
 ___
 
@@ -1950,7 +1936,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L87)
 
 ___
 
@@ -1971,7 +1957,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:136](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L136)
+[lib/proof_system.ts:137](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L137)
 
 ___
 
@@ -1992,4 +1978,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1256](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L1256)
+[lib/field.ts:1254](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L1254)

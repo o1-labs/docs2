@@ -55,12 +55,12 @@ Represents a [Scalar](Scalar.md).
 
 | Name | Type |
 | :------ | :------ |
-| `bits` | [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `bits` | `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> |
 | `constantValue?` | `bigint` |
 
 #### Defined in
 
-[lib/scalar.ts:31](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L31)
+[lib/scalar.ts:31](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L31)
 
 ## Properties
 
@@ -70,17 +70,17 @@ Represents a [Scalar](Scalar.md).
 
 #### Defined in
 
-[lib/scalar.ts:27](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L27)
+[lib/scalar.ts:27](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L27)
 
 ___
 
 ### value
 
-• **value**: [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>
+• **value**: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>
 
 #### Defined in
 
-[lib/scalar.ts:26](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L26)
+[lib/scalar.ts:26](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L26)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:29](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L29)
+[lib/scalar.ts:29](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L29)
 
 ## Methods
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:119](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L119)
+[lib/scalar.ts:119](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L119)
 
 ___
 
@@ -134,7 +134,7 @@ Add scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:139](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L139)
+[lib/scalar.ts:139](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L139)
 
 ___
 
@@ -159,7 +159,7 @@ Throws if the denominator is zero.
 
 #### Defined in
 
-[lib/scalar.ts:176](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L176)
+[lib/scalar.ts:176](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L176)
 
 ___
 
@@ -176,7 +176,7 @@ this is Scalar & Object
 
 #### Defined in
 
-[lib/scalar.ts:56](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L56)
+[lib/scalar.ts:56](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L56)
 
 ___
 
@@ -200,7 +200,7 @@ Multiply scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:163](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L163)
+[lib/scalar.ts:163](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L163)
 
 ___
 
@@ -218,7 +218,7 @@ Negate a scalar field element.
 
 #### Defined in
 
-[lib/scalar.ts:128](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L128)
+[lib/scalar.ts:128](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L128)
 
 ___
 
@@ -232,7 +232,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:185](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L185)
+[lib/scalar.ts:185](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L185)
 
 ___
 
@@ -256,7 +256,7 @@ Subtract scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:151](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L151)
+[lib/scalar.ts:151](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L151)
 
 ___
 
@@ -272,7 +272,7 @@ Convert this [Scalar](Scalar.md) into a bigint
 
 #### Defined in
 
-[lib/scalar.ts:84](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L84)
+[lib/scalar.ts:84](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L84)
 
 ___
 
@@ -292,7 +292,7 @@ See [FieldVar](../modules.md#fieldvar-1) for an explanation of constants vs. var
 
 #### Defined in
 
-[lib/scalar.ts:67](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L67)
+[lib/scalar.ts:67](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L67)
 
 ___
 
@@ -315,7 +315,7 @@ that can be used outside proofs.
 
 #### Defined in
 
-[lib/scalar.ts:240](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L240)
+[lib/scalar.ts:240](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L240)
 
 ___
 
@@ -341,7 +341,7 @@ is needed to represent all Scalars. However, for a random Scalar, the high bit w
 
 #### Defined in
 
-[lib/scalar.ts:202](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L202)
+[lib/scalar.ts:202](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L202)
 
 ___
 
@@ -357,7 +357,7 @@ Serializes this Scalar to a string
 
 #### Defined in
 
-[lib/scalar.ts:306](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L306)
+[lib/scalar.ts:306](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L306)
 
 ___
 
@@ -371,7 +371,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:189](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L189)
+[lib/scalar.ts:189](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L189)
 
 ___
 
@@ -392,7 +392,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:110](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L110)
+[lib/scalar.ts:110](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L110)
 
 ___
 
@@ -410,7 +410,7 @@ Does nothing.
 
 #### Defined in
 
-[lib/scalar.ts:276](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L276)
+[lib/scalar.ts:276](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L276)
 
 ___
 
@@ -434,7 +434,7 @@ If the input is too large, it is reduced modulo the scalar field size.
 
 #### Defined in
 
-[lib/scalar.ts:44](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L44)
+[lib/scalar.ts:44](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L44)
 
 ___
 
@@ -458,7 +458,7 @@ use [from](Scalar.md#from)
 
 #### Defined in
 
-[lib/scalar.ts:77](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L77)
+[lib/scalar.ts:77](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L77)
 
 ___
 
@@ -482,7 +482,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[lib/scalar.ts:95](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L95)
+[lib/scalar.ts:95](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L95)
 
 ___
 
@@ -506,7 +506,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:258](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L258)
+[lib/scalar.ts:258](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L258)
 
 ___
 
@@ -529,7 +529,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:314](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L314)
+[lib/scalar.ts:314](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L314)
 
 ___
 
@@ -546,7 +546,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[lib/scalar.ts:103](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L103)
+[lib/scalar.ts:103](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L103)
 
 ___
 
@@ -564,7 +564,7 @@ Returns the size of this type in [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:267](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L267)
+[lib/scalar.ts:267](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L267)
 
 ___
 
@@ -582,7 +582,7 @@ Serialize a [Scalar](Scalar.md) into its auxiliary data, which are empty.
 
 #### Defined in
 
-[lib/scalar.ts:249](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L249)
+[lib/scalar.ts:249](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L249)
 
 ___
 
@@ -610,7 +610,7 @@ The fields are not constrained to be boolean.
 
 #### Defined in
 
-[lib/scalar.ts:225](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L225)
+[lib/scalar.ts:225](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L225)
 
 ___
 
@@ -633,4 +633,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:298](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/scalar.ts#L298)
+[lib/scalar.ts:298](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/scalar.ts#L298)
