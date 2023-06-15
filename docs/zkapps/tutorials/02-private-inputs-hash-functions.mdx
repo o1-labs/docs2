@@ -24,50 +24,115 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::note
-
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
-
-:::
 
 # Tutorial 2: Private Inputs and Hash Functions
 
-## Overview
+In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract in SnarkyJS with a single state variable that could be updated if you knew the square of that number.
 
-In our previous tutorial, [Hello World](hello-world), we saw how to build a basic zkApp smart contract in SnarkyJS, with a single state variable, that could be updated if a user knew the square of that number.
+In this tutorial, you learn about private inputs and hash functions.
 
-In this tutorial, we will discuss private inputs and hash functions.
+With a zkApp, a smart contract user's local device generates one or more zero knowledge proofs, which are then verified by the Mina network. Each method in a SnarkyJS smart contract corresponds to constructing a proof.
 
-With a zkApp, a user's local device generates one or more zero knowledge proofs, which are then verified by the Mina network. Each method in a SnarkyJS smart contract corresponds to constructing a proof.
+All inputs to a smart contract are private by default. Inputs are never seen by the blockchain unless you store those values as on-chain state in the zkApp account.
 
-As such, _all inputs to a smart contract are private by default_, and never seen by the blockchain, unless the developer chooses to store those values as on-chain state in the zkApp account.
+In this tutorial, you build a smart contract with a piece of private state that can be modified if a user knows the private state.
 
-We will build a smart contract with a piece of private state, that can be modified if a user knows the private state.
+## Prerequisites
 
-## Setup
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.9.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.9.8`.
 
-The following steps assume you've installed dependencies to your machine as described in the [previous tutorial](hello-world) — if not, please do that first.
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-Now, setup a new project with:
+## Create a project
 
-```sh
-$ zk project 02-private-inputs-and-hash-functions
-```
+1. Create or change to a directory where you have write privileges.
 
-Delete the default generated files by running:
+2. Create a project by using the `zk project` command:
 
-```sh
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-```
+  ```sh
+  $ zk project 02-private-inputs-and-hash-functions
+  ```
 
-And create new files:
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-```sh
-$ zk file src/IncrementSecret
-$ touch src/main.ts
-```
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+  The expected output is:
+
+  ```sh
+  ✔ Create an accompanying UI project too? · none
+  ✔ UI: Set up project
+  ✔ Initialize Git repo
+  ✔ Set up project
+  ✔ NPM install
+  ✔ NPM build contract
+  ✔ Set project name
+  ✔ Git init commit
+
+  Success!
+
+  Next steps:
+    cd 02-private-inputs-and-hash-functions
+    git remote add origin <your-repo-url>
+    git push -u origin main
+  ```
+  
+  The `zk project` command creates the `02-private-inputs-and-hash-functions` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework. 
+
+1. Change into the `02-private-inputs-and-hash-functions` directory and list the contents:
+
+  ```sh
+  $ cd 02-private-inputs-and-hash-functions
+  $ ls
+  ```
+
+  The output shows these results:
+
+  ```sh
+  LICENSE
+  README.md
+  babel.config.cjs
+  build
+  config.json
+  jest-resolver.cjs
+  jest.config.js
+  keys
+  node_modules
+  package-lock.json
+  package.json
+  src
+  tsconfig.json
+  ```
+
+For this tutorial, you run commands from the root of the `02-private-inputs-and-hash-functions` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+### Preparing the project
+
+Start by deleting the default files that come with the new project.
+
+1. To delete the default generated files:
+
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
+
+1. Now, create the new files for your project:
+
+  ```sh
+  $ zk file src/IncrementSecret
+  $ touch src/main.ts
+  ```
+
+  - The `zk file` command created the `src/IncrementSecret` and `src/Square.test.ts` test files.
+  - However, this tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works. 
 
 And lastly, change `index.ts` to:
 
