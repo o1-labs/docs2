@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[snarky.d.ts:493](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L493)
+[snarky.d.ts:493](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L493)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:504](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L504)
+[snarky.d.ts:504](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L504)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:495](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L495)
+[snarky.d.ts:495](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L495)
 
 ___
 
@@ -78,4 +78,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:494](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L494)
+[snarky.d.ts:494](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L494)
