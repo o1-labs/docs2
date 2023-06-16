@@ -23,13 +23,13 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:59](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L59)
+[snarky.d.ts:139](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L139)
 
 ___
 
 ### Main
 
-Ƭ **Main**: (`publicInput`: [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\>) => `void`
+Ƭ **Main**: (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => `void`
 
 #### Type declaration
 
@@ -39,7 +39,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `publicInput` | [`MlArray`](../modules.md#mlarray-1)<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `publicInput` | `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> |
 
 ##### Returns
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:58](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L58)
+[snarky.d.ts:138](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L138)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:61](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L61)
+[snarky.d.ts:141](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L141)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:60](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/snarky.d.ts#L60)
+[snarky.d.ts:140](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L140)

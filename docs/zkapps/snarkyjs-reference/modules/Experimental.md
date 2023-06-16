@@ -35,9 +35,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:95](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/index.ts#L95)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L97)
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/index.ts#L96)
+[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L98)
 
 ## Variables
 
@@ -47,9 +47,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:95](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/index.ts#L95)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L97)
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/index.ts#L96)
+[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L98)
 
 ## Functions
 
@@ -76,7 +76,7 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[lib/proof_system.ts:188](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/proof_system.ts#L188)
+[lib/proof_system.ts:189](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L189)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1714](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/account_update.ts#L1714)
+[lib/account_update.ts:1711](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1711)
 
 ___
 
@@ -128,4 +128,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:456](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/provable.ts#L456)
+[lib/provable.ts:456](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L456)

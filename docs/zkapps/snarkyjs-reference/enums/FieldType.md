@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[lib/field.ts:42](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L42)
+[lib/field.ts:40](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L40)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:40](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L40)
+[lib/field.ts:38](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L38)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:43](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L43)
+[lib/field.ts:41](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L41)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:41](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/field.ts#L41)
+[lib/field.ts:39](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L39)

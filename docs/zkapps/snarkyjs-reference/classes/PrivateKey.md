@@ -65,7 +65,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:25](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L25)
+[lib/signature.ts:28](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L28)
 
 ## Properties
 
@@ -75,7 +75,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:23](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L23)
+[lib/signature.ts:26](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L26)
 
 ## Methods
 
@@ -99,7 +99,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L158)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L154)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L162)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -159,7 +159,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:90](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L90)
+[lib/signature.ts:93](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L93)
 
 ___
 
@@ -175,7 +175,7 @@ Convert this [PrivateKey](PrivateKey.md) to a bigint
 
 #### Defined in
 
-[lib/signature.ts:53](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L53)
+[lib/signature.ts:56](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L56)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L150)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L142)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L146)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L146)
 
 ___
 
@@ -247,7 +247,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:72](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L72)
+[lib/signature.ts:75](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L75)
 
 ___
 
@@ -278,7 +278,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L191)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -302,7 +302,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:81](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L81)
+[lib/signature.ts:84](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L84)
 
 ___
 
@@ -327,7 +327,7 @@ Be careful that you don't use this method to create private keys that were sampl
 
 #### Defined in
 
-[lib/signature.ts:63](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L63)
+[lib/signature.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L66)
 
 ___
 
@@ -351,7 +351,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:46](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L46)
+[lib/signature.ts:49](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L49)
 
 ___
 
@@ -382,7 +382,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L166)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -413,7 +413,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L224)
+[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L224)
 
 ___
 
@@ -444,7 +444,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L87)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -464,7 +464,7 @@ a new [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:36](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L36)
+[lib/signature.ts:39](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L39)
 
 ___
 
@@ -482,7 +482,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L94)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -500,7 +500,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L116)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -525,7 +525,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:99](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/signature.ts#L99)
+[lib/signature.ts:102](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L102)
 
 ___
 
@@ -556,7 +556,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L205)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L205)
 
 ___
 
@@ -587,7 +587,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L99)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -618,7 +618,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L120)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -649,4 +649,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/3ae77a9/src/lib/circuit_value.ts#L213)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L213)

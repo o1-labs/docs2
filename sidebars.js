@@ -171,6 +171,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/Nullifier',
+                  label: 'Nullifier',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/PrivateKey',
                   label: 'PrivateKey',
                 },
@@ -203,16 +208,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/SmartContract',
                   label: 'SmartContract',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/SnarkyBool',
-                  label: 'SnarkyBool',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/snarkyjs-reference/classes/SnarkyField',
-                  label: 'SnarkyField',
                 },
                 {
                   type: 'doc',
