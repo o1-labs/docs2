@@ -77,7 +77,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L365)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
 
 ## Properties
 
@@ -110,7 +110,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:25](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L25)
+[lib/nullifier.ts:25](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L25)
 
 ___
 
@@ -142,7 +142,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:21](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L21)
+[lib/nullifier.ts:21](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L21)
 
 ___
 
@@ -167,7 +167,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:20](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L20)
+[lib/nullifier.ts:20](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L20)
 
 ___
 
@@ -192,7 +192,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L365)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
 
 ___
 
@@ -239,7 +239,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:134](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L134)
+[snarky.d.ts:134](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L134)
 
 ___
 
@@ -290,7 +290,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:115](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L115)
+[snarky.d.ts:115](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L115)
 
 ___
 
@@ -337,7 +337,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:104](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L104)
+[snarky.d.ts:104](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L104)
 
 ___
 
@@ -383,7 +383,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:94](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L94)
+[snarky.d.ts:94](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L94)
 
 ___
 
@@ -430,7 +430,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:368](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L368)
+[lib/circuit_value.ts:368](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L368)
 
 ___
 
@@ -480,7 +480,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:372](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L372)
+[lib/circuit_value.ts:372](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L372)
 
 ## Methods
 
@@ -510,7 +510,7 @@ nullifier.assertUnused();
 
 #### Defined in
 
-[lib/nullifier.ts:136](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L136)
+[lib/nullifier.ts:136](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L136)
 
 ___
 
@@ -532,7 +532,7 @@ let pk = nullifier.getPublicKey();
 
 #### Defined in
 
-[lib/nullifier.ts:165](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L165)
+[lib/nullifier.ts:165](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L165)
 
 ___
 
@@ -562,7 +562,7 @@ let isUnused = nullifier.isUnused();
 
 #### Defined in
 
-[lib/nullifier.ts:116](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L116)
+[lib/nullifier.ts:116](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L116)
 
 ___
 
@@ -586,7 +586,7 @@ let key = nullifier.key();
 
 #### Defined in
 
-[lib/nullifier.ts:103](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L103)
+[lib/nullifier.ts:103](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L103)
 
 ___
 
@@ -615,7 +615,7 @@ let newRoot = nullifier.setUsed(witness);
 
 #### Defined in
 
-[lib/nullifier.ts:151](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L151)
+[lib/nullifier.ts:151](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L151)
 
 ___
 
@@ -645,7 +645,7 @@ nullifier.verify(nullifierMessage);
 
 #### Defined in
 
-[lib/nullifier.ts:46](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L46)
+[lib/nullifier.ts:46](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L46)
 
 ___
 
@@ -680,7 +680,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:31](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/nullifier.ts#L31)
+[lib/nullifier.ts:31](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L31)
 
 ___
 
@@ -715,4 +715,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:124](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L124)
+[snarky.d.ts:124](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L124)

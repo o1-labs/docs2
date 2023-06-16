@@ -146,9 +146,9 @@
 
 #### Defined in
 
-[lib/core.ts:55](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L55)
+[lib/core.ts:55](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L55)
 
-[lib/core.ts:56](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L56)
+[lib/core.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L56)
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:11](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/bool.ts#L11)
+[lib/bool.ts:11](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L11)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:86](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L86)
+[lib/field.ts:86](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L86)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1506)
+[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1506)
 
 ___
 
@@ -188,9 +188,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -200,9 +200,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:41](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L41)
+[lib/core.ts:41](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L41)
 
-[lib/core.ts:42](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L42)
+[lib/core.ts:42](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L42)
 
 ___
 
@@ -212,9 +212,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L14)
+[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L14)
 
-[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L23)
+[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L23)
 
 ___
 
@@ -236,9 +236,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L57)
+[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L57)
 
-[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L65)
+[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L65)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L60)
+[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L60)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L61)
+[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L61)
 
 ___
 
@@ -288,7 +288,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:365](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L365)
+[snarky.d.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L365)
 
 ___
 
@@ -298,9 +298,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L61)
+[lib/core.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L61)
 
-[lib/core.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L62)
+[lib/core.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L62)
 
 ___
 
@@ -334,7 +334,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:358](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L358)
+[snarky.d.ts:358](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L358)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:171](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L171)
+[lib/proof_system.ts:171](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L171)
 
 ___
 
@@ -363,7 +363,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:378](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L378)
+[snarky.d.ts:378](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L378)
 
 ___
 
@@ -373,7 +373,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:379](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L379)
+[snarky.d.ts:379](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L379)
 
 ___
 
@@ -393,9 +393,9 @@ You will find this as the required input type in a few places in SnarkyJS. One c
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L47)
 
 ___
 
@@ -412,7 +412,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L50)
+[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L50)
 
 ___
 
@@ -434,9 +434,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1234](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1234)
+[lib/zkapp.ts:1234](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1234)
 
-[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1553)
+[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1553)
 
 ___
 
@@ -466,9 +466,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L20)
 
 ___
 
@@ -484,9 +484,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L357)
 
-[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L55)
+[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L55)
 
 ___
 
@@ -502,7 +502,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L650)
+[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L650)
 
 ___
 
@@ -512,9 +512,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -524,9 +524,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -556,9 +556,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1965)
+[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1965)
 
-[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1969)
+[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1969)
 
 ## Variables
 
@@ -568,9 +568,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -591,9 +591,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L14)
+[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L14)
 
-[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L23)
+[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L23)
 
 ___
 
@@ -615,9 +615,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L57)
+[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L57)
 
-[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L65)
+[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L65)
 
 ___
 
@@ -643,9 +643,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L168)
+[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L168)
 
-[lib/account_update.ts:240](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L240)
+[lib/account_update.ts:240](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L240)
 
 ___
 
@@ -667,9 +667,9 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:492](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L492)
+[snarky.d.ts:492](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L492)
 
-[snarky.d.ts:510](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L510)
+[snarky.d.ts:510](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L510)
 
 ___
 
@@ -689,7 +689,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:40](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/hash.ts#L40)
+[lib/hash.ts:40](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/hash.ts#L40)
 
 ___
 
@@ -717,9 +717,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L47)
 
 ___
 
@@ -785,9 +785,9 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:137](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L137)
+[snarky.d.ts:137](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L137)
 
-[snarky.d.ts:149](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L149)
+[snarky.d.ts:149](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L149)
 
 ___
 
@@ -840,7 +840,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:413](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/snarky.d.ts#L413)
+[snarky.d.ts:413](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L413)
 
 ___
 
@@ -868,7 +868,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:612](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L612)
+[lib/account_update.ts:612](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L612)
 
 ___
 
@@ -878,9 +878,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -890,9 +890,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -902,9 +902,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1965)
+[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1965)
 
-[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/account_update.ts#L1969)
+[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1969)
 
 ___
 
@@ -918,7 +918,7 @@ ___
 
 #### Defined in
 
-[index.ts:109](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L109)
+[index.ts:109](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L109)
 
 ## Functions
 
@@ -939,7 +939,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1513](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1513)
+[lib/zkapp.ts:1513](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1513)
 
 ___
 
@@ -969,7 +969,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
 
 ___
 
@@ -1023,7 +1023,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
 
 ___
 
@@ -1045,7 +1045,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/core.ts#L66)
+[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
 
 ___
 
@@ -1069,7 +1069,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/merkle_tree.ts#L237)
+[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/merkle_tree.ts#L237)
 
 ___
 
@@ -1097,7 +1097,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1553)
+[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1553)
 
 ___
 
@@ -1117,7 +1117,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L73)
 
 ___
 
@@ -1215,7 +1215,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L357)
 
 ___
 
@@ -1238,7 +1238,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L351)
+[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L351)
 
 ___
 
@@ -1278,7 +1278,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L262)
+[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L262)
 
 ___
 
@@ -1298,7 +1298,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L498)
+[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L498)
 
 ___
 
@@ -1320,7 +1320,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1362,7 +1362,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1539](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L1539)
+[lib/zkapp.ts:1539](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1539)
 
 ___
 
@@ -1422,7 +1422,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L163)
 
 ___
 
@@ -1456,7 +1456,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L131)
+[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L131)
 
 ___
 
@@ -1498,7 +1498,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L820)
+[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L820)
 
 ___
 
@@ -1520,7 +1520,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L394)
+[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L394)
 
 ___
 
@@ -1543,7 +1543,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L625)
+[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L625)
 
 ___
 
@@ -1563,7 +1563,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:363](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/bool.ts#L363)
+[lib/bool.ts:363](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L363)
 
 ___
 
@@ -1583,7 +1583,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1232](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L1232)
+[lib/field.ts:1232](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1232)
 
 ___
 
@@ -1624,7 +1624,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L271)
+[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L271)
 
 ___
 
@@ -1661,7 +1661,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:85](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/zkapp.ts#L85)
+[lib/zkapp.ts:85](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L85)
 
 ___
 
@@ -1683,7 +1683,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit_value.ts#L247)
+[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L247)
 
 ___
 
@@ -1762,7 +1762,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit.ts#L196)
 
 ___
 
@@ -1783,7 +1783,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:296](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/signature.ts#L296)
+[lib/signature.ts:296](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L296)
 
 ___
 
@@ -1808,7 +1808,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L655)
+[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L655)
 
 ___
 
@@ -1830,7 +1830,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L100)
+[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L100)
 
 ___
 
@@ -1850,7 +1850,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L78)
+[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L78)
 
 ___
 
@@ -1870,7 +1870,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/fetch.ts#L71)
+[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L71)
 
 ___
 
@@ -1888,7 +1888,7 @@ ___
 
 #### Defined in
 
-[index.ts:114](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/index.ts#L114)
+[index.ts:114](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L114)
 
 ___
 
@@ -1936,7 +1936,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L87)
 
 ___
 
@@ -1957,7 +1957,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:137](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/proof_system.ts#L137)
+[lib/proof_system.ts:137](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L137)
 
 ___
 
@@ -1978,4 +1978,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1254](https://github.com/o1-labs/snarkyjs/blob/ede537b/src/lib/field.ts#L1254)
+[lib/field.ts:1254](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1254)
