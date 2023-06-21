@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Experimental
+
 # Namespace: Experimental
 
 This module exposes APIs that are unstable, in the sense that the API surface is expected to change.
@@ -33,9 +35,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L97)
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
+[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L98)
 
 ## Variables
 
@@ -45,9 +47,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:96](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L96)
+[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L97)
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/index.ts#L97)
+[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L98)
 
 ## Functions
 
@@ -74,7 +76,7 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[lib/proof_system.ts:205](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/proof_system.ts#L205)
+[lib/proof_system.ts:189](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L189)
 
 ___
 
@@ -96,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1704](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/account_update.ts#L1704)
+[lib/account_update.ts:1711](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1711)
 
 ___
 
@@ -104,7 +106,7 @@ ___
 
 ▸ **memoizeWitness**<`T`\>(`type`, `compute`): `T`
 
-Like Circuit.witness, but memoizes the witness during transaction construction
+Like Provable.witness, but memoizes the witness during transaction construction
 for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Type parameters
@@ -117,7 +119,7 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`FlexibleProvable`](../README.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
 | `compute` | () => `T` |
 
 #### Returns
@@ -126,4 +128,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/circuit_value.ts:856](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L856)
+[lib/provable.ts:456](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L456)

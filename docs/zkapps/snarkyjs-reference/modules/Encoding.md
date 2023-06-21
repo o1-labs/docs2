@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Encoding
+
 # Namespace: Encoding
 
 ## Table of contents
@@ -44,7 +46,7 @@ bindings/lib/encoding.ts:98
 
 ▸ **bytesFromFields**(`fields`): `Uint8Array`
 
-Decodes a list of [Field](../classes/Field.md) elements into a Uint8Array.
+Decodes a list of [Field](../modules.md#field-1) elements into a Uint8Array.
 
 #### Parameters
 
@@ -66,7 +68,7 @@ ___
 
 ▸ **bytesToFields**(`bytes`): [`Field`](../classes/Field.md)[]
 
-Encodes a Uint8Array into [Field](../classes/Field.md) elements.
+Encodes a Uint8Array into [Field](../modules.md#field-1) elements.
 
 #### Parameters
 
@@ -88,7 +90,7 @@ ___
 
 ▸ **stringFromFields**(`fields`): `string`
 
-Decodes a list of [Field](../classes/Field.md) elements into a JavaScript string.
+Decodes a list of [Field](../modules.md#field-1) elements into a JavaScript string.
 
 This function is not a valid in-snark computation.
 
@@ -112,7 +114,7 @@ ___
 
 ▸ **stringToFields**(`message`): [`Field`](../classes/Field.md)[]
 
-Encodes a JavaScript string into a list of [Field](../classes/Field.md) elements.
+Encodes a JavaScript string into a list of [Field](../modules.md#field-1) elements.
 
 This function is not a valid in-snark computation.
 

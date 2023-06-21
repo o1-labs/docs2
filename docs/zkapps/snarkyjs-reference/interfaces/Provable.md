@@ -1,8 +1,12 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Provable
+
 # Interface: Provable<T\>
 
-`Provable<T>` is the general circuit type interface. It describes how a type `T` is made up of field elements and auxiliary (non-field element) data.
+`Provable<T>` is the general circuit type interface in SnarkyJS. `Provable<T>` interface describes how a type `T` is made up of [Field](../classes/Field.md) elements and "auxiliary" (non-provable) data.
 
-You will find this as the required input type in a few places in snarkyjs. One convenient way to create a `Provable<T>` is using `Struct`.
+`Provable<T>` is the required input type in a few places in SnarkyJS. One convenient way to create a `Provable<T>` is using `Struct`.
+
+The properties and methods on the provable type exist in all base SnarkyJS types as well (aka. [Field](../classes/Field.md), [Bool](../classes/Bool.md), etc.). In most cases, a zkApp developer does not need these functions to create zkApps.
 
 ## Type parameters
 
@@ -33,17 +37,22 @@ You will find this as the required input type in a few places in snarkyjs. One c
 
 ### check
 
-• **check**: (`x`: `T`) => `void`
+• **check**: (`value`: `T`) => `void`
 
 #### Type declaration
 
-▸ (`x`): `void`
+▸ (`value`): `void`
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](../classes/Bool.md) asserts that the value of the element is either 1 or 0.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | the element of type `T` to put assertions on. |
 
 ##### Returns
 
@@ -51,80 +60,94 @@ You will find this as the required input type in a few places in snarkyjs. One c
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L37)
+[snarky.d.ts:75](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L75)
 
 ___
 
 ### fromFields
 
-• **fromFields**: (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => `T`
+• **fromFields**: (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => `T`
 
 #### Type declaration
 
-▸ (`x`, `aux`): `T`
+▸ (`fields`, `aux`): `T`
+
+A function that returns an element of type `T` from the given provable and "auxiliary" data.
+
+**Important**: For any element of type `T`, this function is the reverse operation of calling [toFields](Provable.md#tofields) and toAuxilary methods on an element of type `T`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | [`Field`](../classes/Field.md)[] |
-| `aux` | `any`[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fields` | [`Field`](../classes/Field.md)[] | an array of [Field](../classes/Field.md) elements describing the provable data of the new `T` element. |
+| `aux` | `any`[] | an array of any type describing the "auxiliary" data of the new `T` element, optional. |
 
 ##### Returns
 
 `T`
 
+An element of type `T` generated from the given provable and "auxiliary" data.
+
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L35)
+[snarky.d.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L56)
 
 ___
 
 ### toAuxiliary
 
-• **toAuxiliary**: (`x?`: `T`) => `any`[]
+• **toAuxiliary**: (`value?`: `T`) => `any`[]
 
 #### Type declaration
 
-▸ (`x?`): `any`[]
+▸ (`value?`): `any`[]
+
+A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x?` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value?` | `T` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
 
 ##### Returns
 
 `any`[]
 
+An array of any type describing how this `T` element is made up of "auxiliary" (non-provable) data.
+
 #### Defined in
 
-[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L34)
+[snarky.d.ts:44](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L44)
 
 ___
 
 ### toFields
 
-• **toFields**: (`x`: `T`) => [`Field`](../classes/Field.md)[]
+• **toFields**: (`value`: `T`) => [`Field`](../classes/Field.md)[]
 
 #### Type declaration
 
-▸ (`x`): [`Field`](../classes/Field.md)[]
+▸ (`value`): [`Field`](../classes/Field.md)[]
+
+A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](../classes/Field.md) elements that make up the provable data of `value`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | the element of type `T` to generate the [Field](../classes/Field.md) array from. |
 
 ##### Returns
 
 [`Field`](../classes/Field.md)[]
 
+A [Field](../classes/Field.md) array describing how this `T` element is made up of [Field](../classes/Field.md) elements.
+
 #### Defined in
 
-[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L33)
+[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L35)
 
 ## Methods
 
@@ -132,10 +155,16 @@ ___
 
 ▸ **sizeInFields**(): `number`
 
+Return the size of the `T` type in terms of [Field](../classes/Field.md) type, as [Field](../classes/Field.md) is the primitive type.
+
+**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+
 #### Returns
 
 `number`
 
+A `number` representing the size of the `T` type in terms of [Field](../classes/Field.md) type.
+
 #### Defined in
 
-[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L36)
+[snarky.d.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L65)
