@@ -36,7 +36,7 @@ Internally, what is happening is actually a bit more general than that. The Mana
 For an Account Update to be able to modify state (including sending tokens) on a token account, two things must be true:
 
 1. The account update must meet the criteria of the permissions on the zkApp account itself. If the zkApp Account is set up with the `proof` permission, the Account Update proof must pass the verification key in the account.
-2. The account update must set `mayUseToken` to True. However, an account update on a token account cannot set this property to true. It must get its account update “approved” by its corresponding manager account. The manager account can approve accounts based on its `access` permission.
+2. The account update must set `mayUseToken` to a truthy value. However, to be allowed to do so, a transaction must get its account update “approved” by the corresponding manager account. The manager account can approve accounts based on its `access` permission.
 
 ## zkApp Token Management
 
@@ -78,11 +78,14 @@ const deploy_txn = await Mina.transaction(deployerAddr, () => {
 });
 ```
 
-The special thing to note here is the `approveDeploy(...)` on the `myTokenInstance()` method. Because `tokenHolderInstance()` is going to exist as a token account, it needs approval to be deployed.
+The special thing to note here is the `myTokenInstance.approveDeploy()` method. Because `tokenHolderInstance` is going to exist as a token account, it needs approval to be deployed.
 
-The `myTokenInstance.approveDeploy(...)` code is as follows:
+The `approveDeploy()` code is as follows:
 
 ```typescript
+class MyToken extends SmartContract {
+  // ...
+
   @method approveDeploy(deployUpdate: AccountUpdate) {
     this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
@@ -90,9 +93,30 @@ The `myTokenInstance.approveDeploy(...)` code is as follows:
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
     balanceChange.assertEquals(Int64.from(0));
   }
+}
 ```
 
-This checks that the deployUpdate is a single account update, with no children, that it isn't creating any additional tokens, and that it is starting out with a balance of zero.
+This checks that the `deployUpdate` is a single account update, with no children, and that its balance change is zero.
+
+The balance change check is essential: It means the account update isn't creating any additional tokens. Without the check, a user could pass in an account update
+with a positive balance change, which would simply mint tokens to its account out of thin air.
+
+Conversely, note that a user can call this method with _any account update they like_, if it only has a balance change of zero. For example, a user could make their 8-field on-chain state whatever they want it to be. In other words, the balance change is the only property of token accounts that our token manager contract chooses to "manage".
+
+:::note
+
+The approval mechanism gives developers complete freedom in encoding constraints on account updates in their manager contract logic. The "fungible token" use case presented here is just one example of what you could do with it.
+
+A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract woudn't care about constraining the balance change, and instead the approval logic would contain checks that the on-chain state is only updated in a certain way:
+
+```ts
+this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
+
+// check that the deploy update doesn't modify on-chain state
+deployUpdate.body.update.appState.every((x) => x.isSome.assertFalse());
+```
+
+:::
 
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
