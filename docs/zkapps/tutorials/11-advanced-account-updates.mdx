@@ -21,8 +21,7 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 
 ## zkAppManager Accounts and Tokens
 
-## Overview:
-
+## Overview
 
 In the last tutorial, you learned how zkApp transactions are composed of AccountUpdates and about the structure of Account Updates.
 
@@ -56,24 +55,27 @@ As shown in the example file, a token standard library abstracts many of these d
 These contracts can be set up as follows:
 
 ```typescript
-  const myTokenInstance = new MyToken(myTokenAddr);
-  const tokenUserInstance = new TokenUser(tokenUserAddr);
-  const tokenHolderInstance = new TokenHolder(tokenUserAddr, myTokenInstance.token.id);
+const myTokenInstance = new MyToken(myTokenAddr);
+const tokenUserInstance = new TokenUser(tokenUserAddr);
+const tokenHolderInstance = new TokenHolder(
+  tokenUserAddr,
+  myTokenInstance.token.id
+);
 ```
 
 And deployed as follows:
 
 ```typescript
-  const deploy_txn = await Mina.transaction(deployerAccount, () => {
-    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 4);
-    feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
+const deploy_txn = await Mina.transaction(deployerAddr, () => {
+  let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 4);
+  feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
 
-    myTokenInstance.deploy();
-    tokenUserInstance.deploy();
-    tokenHolderInstance.deploy()
+  myTokenInstance.deploy();
+  tokenUserInstance.deploy();
+  tokenHolderInstance.deploy();
 
-    myTokenInstance.approveDeploy(tokenHolderInstance.self);
-  });
+  myTokenInstance.approveDeploy(tokenHolderInstance.self);
+});
 ```
 
 The special thing to note here is the `approveDeploy(...)` on the `myTokenInstance()` method. Because `tokenHolderInstance()` is going to exist as a token account, it needs approval to be deployed.
@@ -82,10 +84,9 @@ The `myTokenInstance.approveDeploy(...)` code is as follows:
 
 ```typescript
   @method approveDeploy(deployUpdate: AccountUpdate) {
-    // TODO should anything else be asserted here for a "safe" deployment?
     this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
-    // see if balance change is zero
+    // check that balance change is zero
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
     balanceChange.assertEquals(Int64.from(0));
   }
@@ -96,39 +97,34 @@ This checks that the deployUpdate is a single account update, with no children, 
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
 ```typescript
-  const txn2 = await Mina.transaction(deployerAccount, () => {
-    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAccount, 1);
-    tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAccount.toPublicKey());
-  });
+const txn2 = await Mina.transaction(deployerAddr, () => {
+  let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 1);
+  tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
+});
 ```
 
-The `fundNewAccount` call is included as the deployerAccount,  in this case it doesn't have an existing token account.
+The `fundNewAccount` call is included as the deployer account, in this case it doesn't have an existing token account.
 
 `tokenUserInstance.sendMyTokens(...)` is implemented as follows:
 
-
 ```typescript
   @method sendMyTokens(
-    amount: UInt64, 
+    amount: UInt64,
     destination: PublicKey
   ) {
     const tokenHolder = this.tokenHolder;
-    tokenHolder.transfer(destination, amount);
-    this.tokenContract.approveTransfer(tokenHolder.self);
+    tokenHolder.transferAway(amount);
+    this.tokenContract.approveTransfer(tokenHolder.self, destination);
   }
 ```
 
-Which calls the `transfer` contract on `tokenHolder`:
+Which calls the `transferAway` contract on `tokenHolder`:
 
 ```typescript
-  @method transfer(to: PublicKey, amount: UInt64) {
-    const toAccountUpdate = AccountUpdate.create(to, this.tokenId);
-    toAccountUpdate.balance.addInPlace(amount);
-    toAccountUpdate.body.mayUseToken =
-      AccountUpdate.MayUseToken.InheritFromParent;
+  @method transferAway(amount: UInt64) {
+    // TODO: in a real zkApp, here would be application-specific checks for whether we want to allow sending tokens
 
     this.balance.subInPlace(amount);
-
     this.self.body.mayUseToken = AccountUpdate.MayUseToken.ParentsOwnToken;
   }
 ```
@@ -136,26 +132,27 @@ Which calls the `transfer` contract on `tokenHolder`:
 And is approved by the token contract's `approveTransfer`:
 
 ```typescript
-  @method approveTransfer(
-    transferUpdate: AccountUpdate
-  ) {
-    // TODO should anything else be asserted here for a "safe" deployment?
-    this.approve(transferUpdate);
+  @method approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
+    this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
 
-    // TODO should this also assert that all accountUpdates / balanceChanges are for the correct tokenId?
-    this.assertHasNoBalanceChange(transferUpdate);
+    let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
+
+    // assert that the balance change is negative
+    balanceChange.isPositive().not().assertTrue();
+
+    // move the same amount to the receiver
+    this.token.mint({ address: receiver, amount: balanceChange.magnitude });
   }
+
 ```
 
-This uses a helper `assertHasNoBalanceChange` that walks the accountUpdates being approved and ensures that the balance changes haven't created or destroyed any tokens.
-
-The account updates for this transaction look like:
+The account updates for this transaction looks like:
 
 <img src="/img/tutorial-11-txn2.png" width="95%" />
 
-This shows both the account update for the fee payment and the main chain that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This approves two accountUpdates: one update takes tokens away from the `tokenUser` and has the `mayUseToken` field on, and the other update sends tokens to the deployer account.
+This shows both the account update for the fee payment - and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This approves two account updates: one update takes tokens away from the `tokenUser`, and the other update sends tokens to the deployer account. Both have the `mayUseToken` field set to `parentsOwnToken`.
 
-Because of the assertions in the `myToken` approval account, the balances must match between these two account updates. Which it does, and so a valid `proof` can be constructed.
+Because of the logic in the `myToken` approval account, the balances must match between these two account updates. Which they do, and so a valid `proof` can be constructed.
 
 As noted earlier, a token standard library abstracts many of these details away for standard use.
 
@@ -166,4 +163,3 @@ Congratulations! You have explored some of the advanced features of AccountUpdat
 To see how to apply some of this in a more complex example, see the "wrappedMinaToken" implementation [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/src/wrappedMinaMain.ts)
 
 and learned about visualizing the AccountUpdates for a set of transactions. You can build more complicated transactions that involve multiple zkApps. This tutorial builds a foundational understanding of how SnarkyJS and zkApps work to enable permissions, preconditions, and composability.
-
