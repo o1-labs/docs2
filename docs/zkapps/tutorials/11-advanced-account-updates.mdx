@@ -29,14 +29,14 @@ In this tutorial, you learn about more advanced features of account updates. Nam
 
 An earlier tutorial covered how each token is associated with a manager account and how the manager account determines rules for token minting, burning, and transfer.
 
-Under the hood, what is happening is actually a bit more general than that. The Manager Account for a token actually controls all properties of token accounts.
+Internally, what is happening is actually a bit more general than that. The Manager Account for a token actually controls all properties of token accounts.
 
-## zkApp Manager Accounts & Tokens
+## zkApp Manager Accounts and Tokens
 
 For an Account Update to be able to modify state (including sending tokens) on a token account, two things must be true:
 
-1. The account update must meet the criteria of the permissions on the zkApp account itself. If the zkApp Account is setup with the `proof` permission, this means the Account Update proof must pass the verification key in the account
-2. The account update must set `mayUseToken` to True. An account update on a token account cannot set this property to true itself however. It must get its account update “approved” by its corresponding manager account. The manager account can approve accounts based on its `access` permission.
+1. The account update must meet the criteria of the permissions on the zkApp account itself. If the zkApp Account is set up with the `proof` permission, the Account Update proof must pass the verification key in the account.
+2. The account update must set `mayUseToken` to True. However, an account update on a token account cannot set this property to true. It must get its account update “approved” by its corresponding manager account. The manager account can approve accounts based on its `access` permission.
 
 ## zkApp Token Management
 
@@ -45,14 +45,14 @@ As an example, you can write a token that can approve a zkApp account to send to
 To implement this, you would have 3 contracts:
 
 1. `MyToken`: The token contract. On instantiation, serves as the zkAppManagerContract for all instances of the token.
-2. `TokenUser`: A zkApp contract which will manage tokens. This one is instantiated on the Mina (default) tokenId
-3. `TokenHolder`: A zkApp contract which will store tokens on behalf of the `TokenUser` contract. This one is instantiated on the `MyToken` instance TokenId.
+2. `TokenUser`: A zkApp contract that manages tokens. This one is instantiated on the Mina (default) tokenId.
+3. `TokenHolder`: A zkApp contract that stores tokens on behalf of the `TokenUser` contract. This one is instantiated on the `MyToken` instance TokenId.
 
-You can find the full code [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/).
+The full code is provided in the [examples/zkapps/11-advanced-account-updates/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/) file.
 
-A token standard library is in the above which will abstract much of these details away too for standard use. The illustration here though should help explain what that library is doing and how to think about zkAppManagerAccounts in detail.
+As shown in the example file, a token standard library abstracts many of these details away for standard use. The illustration here helps explain what that library is doing and how to think about zkAppManagerAccounts in detail.
 
-These contracts can be setup as follows:
+These contracts can be set up as follows:
 
 ```typescript
 const myTokenInstance = new MyToken(myTokenAddr);
@@ -78,7 +78,7 @@ const deploy_txn = await Mina.transaction(deployerAddr, () => {
 });
 ```
 
-The special thing to note here is the `approveDeploy(...)` on the `myTokenInstance`. Because `tokenHolderInstance` is going to exist as a token account, it needs approval to be deployed.
+The special thing to note here is the `approveDeploy(...)` on the `myTokenInstance()` method. Because `tokenHolderInstance()` is going to exist as a token account, it needs approval to be deployed.
 
 The `myTokenInstance.approveDeploy(...)` code is as follows:
 
@@ -92,7 +92,7 @@ The `myTokenInstance.approveDeploy(...)` code is as follows:
   }
 ```
 
-This checks that the deployUpdate is a single account update, with no children - and that it isn't creating any additional tokens, and is starting out with a balance of zero.
+This checks that the deployUpdate is a single account update, with no children, that it isn't creating any additional tokens, and that it is starting out with a balance of zero.
 
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
@@ -103,7 +103,7 @@ const txn2 = await Mina.transaction(deployerAddr, () => {
 });
 ```
 
-The `fundNewAccount` call is included as the deployer account in this case doesn't have an existing token account.
+The `fundNewAccount` call is included as the deployer account, in this case it doesn't have an existing token account.
 
 `tokenUserInstance.sendMyTokens(...)` is implemented as follows:
 
@@ -146,15 +146,15 @@ And is approved by the token contract's `approveTransfer`:
 
 ```
 
-The account updates for this transcation looks as follows:
+The account updates for this transaction looks like:
 
 <img src="/img/tutorial-11-txn2.png" width="95%" />
 
-This shows both the account update for the fee payment - and the main tree which does the token operations. You can see the call to `tokenUser` at top, followed by a call to `myToken`, that is doing the approving. This approves two account updates - one of which is taking tokens away from the `tokenUser` - and the other of which is sending tokens to the deployer account. Both have the `mayUseToken` field set to `parentsOwnToken`.
+This shows both the account update for the fee payment - and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This approves two account updates: one update takes tokens away from the `tokenUser`, and the other update sends tokens to the deployer account. Both have the `mayUseToken` field set to `parentsOwnToken`.
 
-Because of the logic in the `myToken` approval account, the balances must match out between these two account updates. Which it does, and so a valid `proof` can be constructed.
+Because of the logic in the `myToken` approval account, the balances must match between these two account updates. Which they do, and so a valid `proof` can be constructed.
 
-As noted above, a token standard library is in the above which will abstract much of these details away too for standard use.
+As noted earlier, a token standard library abstracts many of these details away for standard use.
 
 ## Conclusion
 
