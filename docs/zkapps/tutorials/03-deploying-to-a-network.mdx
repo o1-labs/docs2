@@ -38,6 +38,8 @@ This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/z
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
+
+
 ## Create a project
 
 1. Create or change to a directory where you have write privileges.
@@ -116,17 +118,33 @@ In some cases, you might need to create a custom account for your zkApp, for exa
 
 ## Deploy the smart contract 
 
-The `config.json` configuration file was automatically scaffolded when created your project with the `zk project` command. However, the generated file does not yet contain the deploy alias. 
+The `config.json` configuration file was automatically scaffolded when you created your project with the `zk project` command. However, the generated file does not yet contain the deploy alias.
 
-You can have one or more deploy aliases for your project. Using naming patterns is helpful when you have more than one deploy alias. You can change the name at anytime in the `config.json` file.
+You can have one or more deploy aliases for your project. Using naming patterns is helpful when you have more than one deploy alias. 
 
 A deploy alias consists of:
 
 - A self-describing name. This tutorial uses `berkeley`. The deploy alias name can be anything and does not have to match the network name.
 - The Mina GraphQL API URL that defines the network that receives your deploy transaction and broadcast it to the appropriate Mina network (Testnet, Devnet, Mainnet, and so on)
 - The transaction fee (in MINA) to use when deploying
+- Two key pairs:
 
-The `zk config` command helps manage your deployment. The command prompts guide you to create or update a deploy alias in your project `config.json` file. 
+  - Creates a key pair for the zkApp account
+  - Creates or selects an existing key pair to use as a fee payer for updates and deployments
+
+- Fee payer alias
+
+The command prompts guide you to create or update a deploy alias in your project `config.json` file. 
+
+A fee payer account is required. If you don't have a fee payer account, you are prompted to select one of these options:
+
+- Recover fee payer account from an existing base58 private key
+- Create a new fee payer key pair
+
+If you have previously run `zk config` and selected a fee payer account, then you already have a fee payer account. Your prompts are: 
+
+- ❯ Use stored account dev (public key: <yourpublickey>)
+  Use a different account (select to see options)
 
 1. To configure your deployment, run the `zk config` command and respond to the prompts:
 
@@ -139,8 +157,27 @@ The `zk config` command helps manage your deployment. The command prompts guide 
     - name: `berkeley`
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
     - transaction fee: `0.1`
+    - stored account: `testprivatekey1 (public key: <yourpublickey>)`
 
   Public and private keys to use in your application are automatically generated in `keys/berkeley.json`.
+
+  ```text
+  ✔ Create a name (can be anything): · berkeley2
+✔ Set the Mina GraphQL API URL to deploy to: · https://proxy.berkeley.minaexplorer.com/graphql
+
+✔ Set transaction fee to use when deploying (in MINA): · 0.1
+✔ Choose an account to pay transaction fees: · Use stored account testprivatekey1 (public key: <yourhash>)
+✔ Use stored fee payer testprivatekey1 (public key: <yourhash>)
+✔ Create zkApp key pair at keys/berkeley2.json
+✔ Add deploy alias to config.json
+
+Success!
+
+Next steps:
+  - If this is a testnet, request tMINA at:
+    https://faucet.minaprotocol.com/?address=<yourhash>?explorer=minaexplorer
+  - To deploy, run: `zk deploy berkeley2`
+```
 
 1. Request funds from the Testnet Faucet to fund your fee payer account.
 
@@ -149,7 +186,14 @@ The `zk config` command helps manage your deployment. The command prompts guide 
 1. To deploy your project:
 
   ```sh
-  $ zk deploy berkeley
+  $ zk deploy
+  ```
+
+1. At the interactive prompt, select the `berkeley` deploy alias:
+
+  ```text
+  ? Which deploy alias would you like to deploy to? …
+  ❯ berkeley
   ```
 
   A verification key for your smart contract is generated (takes 10-30 seconds). 
