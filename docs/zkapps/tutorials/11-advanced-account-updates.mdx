@@ -101,13 +101,13 @@ This checks that the `deployUpdate` is a single account update, with no children
 The balance change check is essential: It means the account update isn't creating any additional tokens. Without the check, a user could pass in an account update
 with a positive balance change, which would simply mint tokens to its account out of thin air.
 
-Conversely, note that a user can call this method with _any account update they like_, if it only has a balance change of zero. For example, a user could make their 8-field on-chain state whatever they want it to be. In other words, the balance change is the only property of token accounts that our token manager contract chooses to "manage".
+Conversely, note that a user can call this method with _any account update they like_, if it only has a balance change of zero. For example, a user could make their 8-field on-chain state whatever they want it to be. In other words, the balance change is the only property of token accounts that the token manager contract chooses to "manage".
 
 :::note
 
-The approval mechanism gives developers complete freedom in encoding constraints on account updates in their manager contract logic. The "fungible token" use case presented here is just one example of what you could do with it.
+The approval mechanism gives you (the developer) complete freedom in encoding constraints on account updates in your manager contract logic. The "fungible token" use case presented here is just one example of what you could do with it.
 
-A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract woudn't care about constraining the balance change, and instead the approval logic would contain checks that the on-chain state is only updated in a certain way:
+A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
 
 ```ts
 this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
@@ -127,7 +127,7 @@ const txn2 = await Mina.transaction(deployerAddr, () => {
 });
 ```
 
-The `fundNewAccount` call is included as the deployer account, in this case it doesn't have an existing token account.
+The `fundNewAccount` call is included as the deployer account. In this case, it doesn't have an existing token account.
 
 `tokenUserInstance.sendMyTokens(...)` is implemented as follows:
 
@@ -174,7 +174,12 @@ The account updates for this transaction looks like:
 
 <img src="/img/tutorial-11-txn2.png" width="95%" />
 
-This shows both the account update for the fee payment - and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This approves two account updates: one update takes tokens away from the `tokenUser`, and the other update sends tokens to the deployer account. Both have the `mayUseToken` field set to `parentsOwnToken`.
+This shows both the account update for the fee payment - and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This transaction approves two account updates:
+
+- One update takes tokens away from the `tokenUser`
+- The other update sends tokens to the deployer account. 
+
+Both updates have the `mayUseToken` field set to `parentsOwnToken`.
 
 Because of the logic in the `myToken` approval account, the balances must match between these two account updates. Which they do, and so a valid `proof` can be constructed.
 
