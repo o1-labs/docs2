@@ -118,7 +118,9 @@ In some cases, you might need to create a custom account for your zkApp, for exa
 
 ## Deploy the smart contract 
 
-The `config.json` configuration file was automatically scaffolded when you created your project with the `zk project` command. However, the generated file does not yet contain the deploy alias.
+The `config.json` configuration file was automatically scaffolded when you created your project with the `zk project` command. However, the generated configuration file does not yet contain the deploy alias. The `zk config` command prompts guide you to create or update a deploy alias in your project `config.json` file. 
+
+### Deploy alias
 
 You can have one or more deploy aliases for your project. Using naming patterns is helpful when you have more than one deploy alias. 
 
@@ -129,22 +131,16 @@ A deploy alias consists of:
 - The transaction fee (in MINA) to use when deploying
 - Two key pairs:
 
-  - Creates a key pair for the zkApp account
-  - Creates or selects an existing key pair to use as a fee payer for updates and deployments
+  - Creates a key pair for the zkApp account. Public and private keys to use in your application are automatically generated in `keys/berkeley.json`.
 
-- Fee payer alias
+  - Creates or selects an existing key pair to use as a fee payer account for updates and deployments. Public and private keys are stored on your local computer and can be used across multiple projects.
 
-The command prompts guide you to create or update a deploy alias in your project `config.json` file. 
+- Fee payer account alias 
 
 A fee payer account is required. If you don't have a fee payer account, you are prompted to select one of these options:
 
 - Recover fee payer account from an existing base58 private key
 - Create a new fee payer key pair
-
-If you have previously run `zk config` and selected a fee payer account, then you already have a fee payer account. Your prompts are: 
-
-- ❯ Use stored account dev (public key: <yourpublickey>)
-  Use a different account (select to see options)
 
 1. To configure your deployment, run the `zk config` command and respond to the prompts:
 
@@ -157,9 +153,15 @@ If you have previously run `zk config` and selected a fee payer account, then yo
     - name: `berkeley`
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
     - transaction fee: `0.1`
-    - stored account: `testprivatekey1 (public key: <yourpublickey>)`
+    - 
 
-  Public and private keys to use in your application are automatically generated in `keys/berkeley.json`.
+  If you have previously run `zk config` and selected a fee payer account, then you already have a fee payer account. Your prompts are: 
+
+  ```text
+    ❯ Use stored account dev (public key: <yourpublickey>)
+    Use a different account (select to see options)
+  ```
+
 
   ```text
   ✔ Create a name (can be anything): · berkeley2
