@@ -56,7 +56,7 @@ Check out our [guide](https://youtu.be/M9lE2lgyVEo) for how to configure your Mi
 
 ### Ubuntu / Debian
 
-Follow along below to install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Beta) builds.
+Follow along below to install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [Mina Releases Page](https://github.com/MinaProtocol/mina/releases) on GitHub to discover and install pre-release (Beta) builds.
 
 You can set up the new debian `stable` repository and install the latest version as follows:
 
@@ -66,37 +66,37 @@ sudo apt-get update
 sudo apt-get install -y curl unzip mina-mainnet=1.3.1.2-25388a0
 ```
 
-Check that daemon installed correctly by running `mina version`. The output should read `Commit 25388a0fed9695e8e9d04f75f50c2bae1c9c80db on branch master`.
+Check that the daemon installed correctly by running `mina version`. The expected output is `Commit 25388a0fed9695e8e9d04f75f50c2bae1c9c80db on branch master`.
 
 ### Windows
 
-Windows is not yet natively supported. If you are interested in receiving a grant to develop Mina for Windows, please email grants@o1labs.org or reach out in the [Discord server](https://bit.ly/MinaDiscord).
+Windows is not yet natively supported. If you are interested in receiving a grant to develop Mina for Windows, please email grants@o1labs.org or reach out in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
 
-Please instead use the Docker instructions below.
+Instead, use the Docker instructions.
 
 ### macOS
 
-macOS is used by developers, but we are not officially supporting any pre-built packages at this time.
+macOS is used by developers and is not officially supporting any pre-built packages at this time.
 
-Please instead use the Docker instructions below or you may build from source.
+Instead, use the Docker instructions or build from source.
 
 ### Docker
 
-Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Please follow the official installation instructions for your platform on [this page](https://docs.docker.com/get-docker/). Once docker is installed, proceed to the Mina Docker instructions on [Connect to the Network](connecting-to-the-network).
+Docker is cross-platform tool that allows you to run a virtual machine that will execute any needed software. Follow the official installation instructions for your platform. See [Get Docker](https://docs.docker.com/get-docker/). After Docker is installed, proceed to the Mina Docker instructions on [Connect to the Network](connecting-to-the-network).
 
 ### Build from source
 
-If you're running another Linux distro or some version of macOS, you can [try building Mina from source code](https://github.com/MinaProtocol/mina/blob/master/README-dev.md#building-mina). Please note that other operating systems haven't been tested thoroughly, and may have issues. Feel free to share any logs and get troubleshooting help in the [Discord server](https://bit.ly/MinaDiscord).
+If you're running another Linux distro or some version of macOS, you can [try building Mina from source code](https://github.com/MinaProtocol/mina/blob/master/README-dev.md#building-mina). Please note that other operating systems haven't been tested thoroughly, and might have issues. Feel free to share any logs and get troubleshooting help in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
 
 ## Set up port forwarding and any firewalls
 
-If you are running a firewall, you should allow traffic on TCP port 8302. Additionally, unless the `-external-ip YOUR_IP` flag is provided, the daemon will use HTTPS (443) and HTTP (80) to try and determine its own IP address.
+If you are running a firewall, you must allow traffic on TCP port 8302. Additionally, unless the `-external-ip YOUR_IP` flag is provided, the daemon  uses HTTPS (443) and HTTP (80) to try and determine its own IP address.
 
-You may need to configure your router's port forwarding to allow inbound traffic to the following ports through your **external** IP address.
+You might need to configure your router's port forwarding to allow inbound traffic to the following ports through your **external** IP address.
 
 - `TCP` port `8302`
 - _Optionally_ to use the GraphQL service, expose `TCP` port `3085`
 
 ## Next
 
-Now that you've installed Mina and configured your network, let's move on to the next step [generating a keypair](generating-a-keypair).
+Now that you've installed Mina and configured your network, you are ready to move on to the next step: [generating a keypair](generating-a-keypair).
