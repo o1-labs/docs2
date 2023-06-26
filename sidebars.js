@@ -344,7 +344,7 @@ module.exports = {
         'node-operators/delegation-tiebreak',
         'node-operators/bp-sidecar',
         'node-operators/uptime-tracking-system',
-        'node-operators/client-sdk',
+        'node-operators/mina-signer',
         'node-operators/querying-data',
         'node-operators/connecting-to-devnet',
         'node-operators/hardforks',
