@@ -337,6 +337,7 @@ module.exports = {
       type: 'category',
       label: 'Node Operators',
       items: [
+        'node-operators/index',
         'node-operators/getting-started',
         'node-operators/archive-node',
         'node-operators/archive-redundancy',

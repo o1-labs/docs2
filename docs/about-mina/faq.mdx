@@ -1,10 +1,10 @@
 ---
-title: FAQ
+title: Mina FAQ
 ---
 
 import Subhead from "@site/src/components/common/Subhead";
 
-# FAQ
+# Mina FAQ
 
 
 <Subhead>
@@ -17,23 +17,42 @@ The Mina node is written in OCaml. But you don't need to know OCaml to write sma
 
 ### What language are zkApp smart contracts written in?
 
-Mina's zero knowledge smart contracts ("zkApps") are written in TypeScript.
+Mina's zero knowledge smart contracts (zkApps) are written in TypeScript.
 
 Learn more about [how to write a zkApp](/zkapps/how-to-write-a-zkapp).
 
 ### How large is the Mina Blockchain?
 
-22KB
+22 KB
 
-### Given Mina is only 22KB, where are past transactions stored?
+### Given Mina is only 22 KB, where are past transactions stored?
 
-The Mina node can run with an optional flag to make it an archive node. This means it stores historic transactions, which is useful for anyone running a service such as a block explorer. Still, this data is not needed in order to verify the current consensus state of the protocol.
+A Mina node can run with an optional flag to make it an archive node to store historic transactions. Archive nodes are useful for anyone running a service such as a block explorer. Still, this historical data is not required to verify the current consensus state of the protocol.
 
-### What ZK proof system does Mina use?
+### What zk proof system does Mina use?
 
 Mina Protocol uses a custom proof system called Kimchi, which was developed by [O(1) Labs](https://o1labs.org/), and is the only blockchain offering infinite recursion.
 
 Check out the [Mina Book](https://o1-labs.github.io/proof-systems/plonk/overview.html) to learn more about Kimchi and the cryptography powering Mina Protocol.
+
+### What can I do on the Mina network?
+
+Any node can send and receive transactions on the Mina network. Any node can also choose to be a node operator. See [Node Operators](/node-operators). 
+
+### What consensus algorithm does Mina use?
+
+Mina's consensus mechanism is an implementation of Ouroboros Proof-of-Stake. Due to Mina's unique compressed blockchain, certain aspects of the algorithm have diverged from the Ouroboros papers. The version Mina uses is called Ouroboros Samisika. 
+
+#### Is there a Mina block explorer?
+
+Yes, check out these block explorers:
+
+- https://minaexplorer.com/
+- https://minascan.io
+
+### How does Mina achieve scalability?
+
+Mina achieves scalability through the use of recursive zk-SNARKs. By generating a proof that attests to the validity of historic blockchain states, Mina can keep the blockchain size fixed. This allows for increased throughput due to block size limits not being as taxing on the network, thereby increasing the scalability of the network.
 
 ### What security audits have been completed?
 
