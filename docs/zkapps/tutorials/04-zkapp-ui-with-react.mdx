@@ -2,7 +2,7 @@
 title: 'Tutorial 4: Build a zkApp UI in the Browser with React'
 hide_title: true
 sidebar_label: 'Tutorial 4: Build a zkApp UI in the Browser with React'
-description: Guided steps to implement a browser UI using ReactJS that interacts with a smart contract running on the Berkeley Testnet.
+description: Guided steps to implement a browser UI that interacts with a smart contract running on the Berkeley Testnet.
 keywords:
   - smart contracts
   - zkapps
@@ -24,7 +24,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with SnarkyJS. You learned how to use the `zk config` command to create a deploy alias in [Tutorial 3: Deploy to a Live Network](deploying-to-a-network).
+In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with SnarkyJS. You learned to use the `zk config` command to create a deploy alias in [Tutorial 3: Deploy to a Live Network](deploying-to-a-network).
 
 In this tutorial, you implement a browser UI using ReactJS that interacts with a smart contract. 
 
@@ -32,42 +32,53 @@ In this tutorial, you implement a browser UI using ReactJS that interacts with a
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.9.0
-- [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.11.0
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.10.0
+- [SnarkyJS](https://www.npmjs.com/package/snarkyjs) version 0.11.1
 - [Auro Wallet](https://www.aurowallet.com/) version 2.2.1
 
 1. Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
-1. Install the Auro Wallet for Chrome that supports interactions with zkApps. See [Install a Wallet](using-mina/install-a-wallet).
-1. Create an account.
+1. Install the Auro Wallet for Chrome that supports interactions with zkApps. See [Install a Wallet](using-mina/install-a-wallet) and create a MINA account.
 
 ## Use the working application first
 
-Before you go through the tutorial steps, take a look at a working instance that is deployed to GitHub Pages. 
+Before you go through the tutorial steps, take a look at a working zkApp UI example that has already been deployed to GitHub Pages. 
 
 1. In a Chrome web browser with the Auro wallet extension, go to [https://es92.github.io/zkApp-examples/index.html](https://es92.github.io/zkApp-examples/index.html). 
-1. When prompted, select **Connect** to allow the website to view your Auro wallet account.
-
---- __QUESTION?? what terminal? what directory?__ ---
-
-1. Extra info is printed to the console as well when it is run, to give an idea of what it is doing internally.
+1. When prompted, select **Connect** to let the website view your Auro wallet account.
+1. In top middle of the wallet UI, select the **Berkeley** network:
+  <figure>
+    <img
+      src="/img/4_select_berkeley.png"
+      alt="Select Berkeley network in the wallet"
+      width="30%"
+    />
+  </figure>
+1. To look at the console to see what happens when the UI loads SnarkyJS and interacts with the smart contract, right-click the browser window and select **Inspect**:
+  <figure>
+    <img
+      src="/img/4_inspect_console.png"
+      alt="Inspect console in a web browser"
+      width="50%"
+    />
+  </figure>
 
 ## High-Level Overview
 
 In this tutorial, you build an application that:
 
 1. Loads a public key from an extension-based wallet.
-2. Checks if the public key has funds, and if no, directs the user to the faucet.
+2. Checks if the public key has funds and if not, directs the user to the faucet.
 3. Connects to the example zkApp `Add` smart contract that is already deployed on Berkeley Testnet at a fixed address.
 4. Implements a button that sends a transaction.
 5. Implements a button that requests the latest state of the smart contract.
 
-Like previous tutorials, you use the provided helper files, so you can focus on the React implementation itself. 
+Like previous tutorials, you use the provided example files so you can focus on the React implementation itself. 
 
 This example uses an RPC endpoint.
 
 ## Create a project
 
-The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, use 
+The `zk project` command can scaffold the UI for your project. 
 
 1. Create or change to a directory where you have write privileges.
 
@@ -77,34 +88,64 @@ The `zk project` command has the ability to scaffold the UI for your project. Fo
   $ zk project 04-zkapp-browser-ui --ui next
   ```
 
-1. At the `? Do you want to setup your project for deployment to Github Pages? …` prompt, select `yes`.
+1. At the `? Do you want to setup your project for deployment to Github Pages? …` prompt, select **yes**.
 
-1. When prompted to install the required next packages, press `y` to proceed. 
+1. When prompted to install the required next packages, press **y** to proceed. 
 
-1. At the `? Would you like to use TypeScript with this project? › No / Yes` prompt, select `Yes`.
+1. At the `? Would you like to use TypeScript with this project? › No / Yes` prompt, select **Yes**.
 
-1. At the `? Would you like to use ESLint with this project? › No / Yes` prompt, select `Yes`.
+1. At the `? Would you like to use ESLint with this project? › No / Yes` prompt, select **No**.
 
-1. At the `? Would you like to use Tailwind CSS with this project? › No / Yes` prompt, select `Yes`.
+1. At the `? Would you like to use Tailwind CSS with this project? › No / Yes` prompt, select **No**.
 
 Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
 
-- `contracts`: The smart contract code
+- `contracts`: The smart contract code 
 - `ui`: Where you write your UI code
 
-For this tutorial, you run commands from the root of the `04-zkapp-browser-ui` directory as you work in the `ui/pages` directory on files that contain the UI code. 
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
+### Preparing the project
+
+Start by deleting the default files that come with the new project.
+
+1. Change to the `ui/src/pages` directory:
+
+  ```sh
+  $ cd ui/src/pages
+  ```
+
+1. Delete the old files so that you have a clean project to work with:
+
+  ```sh
+  $ rm index.page.tsx
+  ```
+
+1. Change to the `ui/src/styles` directory:
+
+
+  ```sh
+  $ cd ui/src/styles
+  ```
+
+1. Then delete these files:
+
+  ```sh
+  $ rm globals.css
+  $ rm Home.module.css
+  ```
+
 ## Build the default contract
 
-This tutorial uses the default contract `Add`.
+This tutorial uses the default contract `Add` that is always scaffolded with the `zk project` command.
 
 To build the default contract to use in the UI:
 
 ```sh
-$ 04-zkapp-browser-ui
-$ cd contracts/
+$ cd 04-zkapp-browser-ui
+$ cd contracts
 $ npm run build
 ```
 
@@ -114,34 +155,21 @@ If you were to make your own zkApp outside of this tutorial, you edit files in t
 
 The React UI has a few components: the React page itself and the code that uses SnarkyJS.
 
-Because SnarkyJS code is computationally intensive, it's helpful to have the SnarkyJS code in web worker helper files. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+Because SnarkyJS code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
---- __QUESTION?? I didn't have a pages directory?__ ---
-
-1. Create the `pages` directory in `/04-zkapp-browser-ui/ui`.
-
-1. Download the helper files to your local `/04-zkapp-browser-ui/ui/pages` directory:
+1. Download the helper files to your local `/04-zkapp-browser-ui/ui/src/pages` directory:
 
   - [zkappWorker.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/pages/zkappWorker.ts)
   - [zkappWorkerClient.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/pages/zkappWorkerClient.ts)
 
-1. Open each helper file to understand how they work and how you can extend them for your own zkApp.
+1. Review each helper file to understand how they work and how you can extend them for your own zkApp.
 
   - `zkappWorker.ts` is the web worker code
   - `zkappWorkerClient.ts` is the code that is run from React to interact with the web worker
 
-
 ### Add global styles in globals.css
 
-1. Copy the `styles` directory from `https://github.com/o1-labs/docs2/tree/main/examples/zkapps/04-zkapp-browser-ui/ui/styles` to your local `/04-zkapp-browser-ui/ui/` directory.
-
-1. This code at the end of `ui/styles/globals.css` file styles the `<a>` link in the application:
-
-```css
-a {
-  color: blue;
-}
-```
+1. Copy the files in the `styles` directory from `https://github.com/o1-labs/docs2/tree/main/examples/zkapps/04-zkapp-browser-ui/ui/styles` to your local `/04-zkapp-browser-ui/ui/src/styles` directory. 
 
 ### Run the React app
 
@@ -154,7 +182,6 @@ To run the React app, run commands from two different terminal windows in the `u
   ```
 
   This command starts hosting your application at the `localhost:3000` default location. Your browser refreshes automatically when your page has changes.
---- __QUESTION?? what terminal? what directory?__ ---
 
 1. And in the second terminal window:
 
@@ -162,13 +189,11 @@ To run the React app, run commands from two different terminal windows in the `u
   $ npm run ts-watch
   ```
 
-  This command shows typescript errors. As you develop your application, you can watch this window to check for type errors.
+  This command shows TypeScript errors. As you develop your application, you can watch this window to check for type errors.
 
 ### Implement the React app
 
---- __QUESTION?? I didn't have a pages directory? so just copy one file at a time? or?__ ---
-
-1. Copy the `_app.page.tsx` file from `https://github.com/o1-labs/docs2/tree/main/examples/zkapps/04-zkapp-browser-ui/ui/pages` to your local `pages` directory.
+1. Copy the `_app.page.tsx` file from `https://github.com/o1-labs/docs2/tree/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages` to your local `pages` directory.
 
 
 The `import` statements just set up your React project with the imports you need. The `export` statement creates a placeholder empty component:
