@@ -39,7 +39,7 @@ More generally, you can use recursion to verify any zero-knowledge program as pa
 
 In SnarkyJS, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
 
-After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifys the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
+After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
 
 Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _private by default_ and never seen by the Mina network.  Unlike `SmartContract` methods, as the zkApp developer you choose the shape of the public input to all the methods within a `ZkProgram`.
 
