@@ -51,13 +51,13 @@ A node in the [transition frontier](#transition-frontier) that contains the exte
 
 ## C
 
-### catchup
+### catch up
 
-The final stage of the [syncing](#syncing) process. During catchup, the node attempts to catchup to the current [best tip](#best-tip) by determining, and then downloading all [transitions](#transition) between the transition frontier [root](#root-of-transition-frontier) and the current best tip. First, a node requests the missing transition hashes and a transaction chain proof. This proof proves the path provided is valid, for example, that the provided transition hashes lead from the root to the best tip. After the node has all transition hashes, it requests the full external transition for each transition hash from peers.
+The final stage of the [syncing](#syncing) process where the node attempts to catch up to the current [best tip](#best-tip) by determining and then downloading all [transitions](#transition) between the transition frontier [root](#root-of-transition-frontier) and the current best tip. First, a node requests the missing transition hashes and a transaction chain proof. This proof proves the path provided is valid, for example, that the provided transition hashes lead from the root to the best tip. After the node has all transition hashes, it requests the full external transition for each transition hash from peers.
 
-With each external transition, the node builds up its transition frontier by applying each to the prior state to construct a [breadcrumb](#breadcrumb). When catchup is complete, the node's local best tip is the same as the network's best tip, and breadcrumbs have been constructed for all transitions from the transition frontier root (best tip - k) to the current tip, and each has been validated. At this point, the node is [synced](#syncing).
+With each external transition, the node builds up its transition frontier by applying each to the prior state to construct a [breadcrumb](#breadcrumb). When the catch up stage is complete, the node's local best tip is the same as the network's best tip, and breadcrumbs have been constructed for all transitions from the transition frontier root (best tip - k) to the current tip, and each has been validated. At this point, the node is [synced](#syncing).
 
-At any time, a catchup can be triggered if the node sees a disjoint transition in the same path that indicates there are missing transitions.
+A catch up can be triggered at any time if the node sees a disjoint transition in the same path that indicates there are missing transitions.
 
 ### chain strength
 
@@ -139,7 +139,7 @@ A combination of a [private key](#private-key) and [public key](#public-key). Ke
 
 ### Kimchi
 
-The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi is a zero-knowledge proof system that’s a variant of [PLONK](/glossary#plonk).
+The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi is a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk).
 
 ## L
 
