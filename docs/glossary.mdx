@@ -16,7 +16,7 @@ keywords:
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) [I](#i) [J](#j) [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) 
 [P](#p) [Q](#q) [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) [Z](#z)
 
-Are you looking for a Mina term that isn't here yet? To let us know, please [create an issue](https://github.com/o1-labs/docs2/issues) or click **EDIT THIS PAGE** to submit a PR.
+Are you looking for a zero knowledge or Mina term that isn't here yet? To let us know, please [create an issue](https://github.com/o1-labs/docs2/issues) or click **EDIT THIS PAGE** to submit a PR.
 
 ## A
 
@@ -36,7 +36,7 @@ The blockchain's latest block with the highest [chain strength](#chain-strength)
 
 ### block
 
-A set of transactions and consensus information that extend the state of the network, a block includes a proof that the current state of the network is fully valid.
+A set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. See also [extensional blocks](/glossary#extensional-blocks) and [precomputed blocks](/glossary#precomputed-blocks). See [What's in a Block?](/node-operators/whats-in-a-block).
 
 ### blockchain
 
@@ -108,11 +108,19 @@ Because staking MINA requires nodes to be online, some nodes delegate their MINA
 
 Created and updated with the Mina zkApp CLI, a [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in your project `config.json` file contains the details to manage deployments. 
 
+### distributed ledger technology (DLT)
+
+A digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. In contrast to traditional databases, distributed ledgers have no central data store or administration functionality.
+
 ## E
 
 ### epoch
 
 A unit of time equal to 7140 slots at Mainnet. An epoch is divided into [slots](#slot) of 3minutes each.
+
+### extensional blocks
+
+Blocks extracted from the `mina-archive` database contain only the information required to restore data to the archive node and are more lightweight than [precomputed blocks](/glossary#precomputed-blocks).
 
 ### external port
 
@@ -156,6 +164,18 @@ The proof system for Mina, Kimchi is the main machinery that generates the recur
 
 ## L
 
+### layer 1 (L1)
+
+The fundamental, base-level chain in a network. An L1 blockchain provides the essential services to a network like recording transactions on the public ledger and ensuring adequate security. Mina is a layer 1 blockchain.
+
+### layer 2
+
+An off-chain network, system, or technology built on top of a layer 1 blockchain that helps extend the capabilities of the underlying base layer network.
+
+### ledger
+
+A cryptocurrency public record-keeping system. Mina has three types of ledgers: [staged ledger](/glossary#staged-ledger), [staking ledger](/glossary#staking-ledger), and [snarked ledger](/glossary#snarked-ledger).
+
 ### libp2p
 
 Mina uses this peer-to-peer networking library to provides things like message broadcast and file sharing.
@@ -170,9 +190,15 @@ The underlying protocol and the network infrastructure that the system depends o
 
 The unit of the cryptocurrency that is exchanged by participating nodes on the Mina network.
 
+### Mina CLI
+
+The primary way for users to interact with the Mina network. The command line tool provides standard client functionality to create accounts, send transactions, and participate in consensus and advanced client and daemon commands for power users.
+
+The Mina CLI is installed when you [install Mina](/node-operators/getting-started#installation).
+
 ### Mina zkApp CLI
 
-A command line tool that zkApp developers use to scaffold and deploy smart contracts. See [zkApp CLI](https://www.npmjs.com/package/zkapp-cli).
+A command line tool that zkApp developers use to scaffold and deploy smart contracts. Install the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli).
 
 ## N
 
@@ -211,6 +237,10 @@ Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Kno
 ### Pickles SNARK
 
 A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+
+### precomputed block
+
+Precomputed blocks are [blocks](/glossary#block) logged by mina to disk, log file, or to cloud storage.
 
 ### private key
 
@@ -262,7 +292,7 @@ An [(RPC)] (https://en.wikipedia.org/wiki/Remote_procedure_call) is used to comm
 
 ### scan state
 
-A data structure that queues transactions that require transaction SNARK proofs and allows parallel processing of these transaction SNARKs by [SNARK workers](#snark-worker).
+A data structure that allows decoupling the production of transaction SNARKs from block producers to [SNARK workers](#snark-worker). See [Scan State](/node-operators/scan-state).
 
 ### signature
 
@@ -274,7 +304,11 @@ A unit of time. As of Mainnet launch, a slot in Mina is 3minutes long. An [epoch
 
 ### smart contract
 
-A computer program that contains arbitrary logic whose execution can be verified by a decentralized blockchain. On Mina, smart contracts are written with [SnarkyJS](#snarkyjs).
+A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts are written with [SnarkyJS](#snarkyjs).
+
+### SNARK
+
+An acronym for succinct non-interactive argument of knowledge. See [zk-SNARK](/glossary#zk-snark).
 
 ### SNARK pool
 
@@ -365,8 +399,6 @@ A proof by which one party (a prover) can prove to another party (a verifier) th
 ### zkApp
 
 Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. The easiest way to write zk programs is using [SnarkyJS](https://www.npmjs.com/package/snarkyjs).
-
-### zkCPU
 
 ### zk-SNARK
 
