@@ -74,7 +74,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/bool.ts:30](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L30)
+[lib/bool.ts:36](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L36)
 
 ## Properties
 
@@ -84,7 +84,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/bool.ts:28](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L28)
+[lib/bool.ts:34](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L34)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:317](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L317)
+[lib/bool.ts:325](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L325)
 
 ## Methods
 
@@ -123,7 +123,7 @@ this [Bool](Bool.md) and `y` are also true.
 
 #### Defined in
 
-[lib/bool.ts:68](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L68)
+[lib/bool.ts:74](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L74)
 
 ___
 
@@ -146,7 +146,7 @@ Proves that this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:91](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L91)
+[lib/bool.ts:97](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L97)
 
 ___
 
@@ -168,7 +168,7 @@ Proves that this [Bool](Bool.md) is `false`.
 
 #### Defined in
 
-[lib/bool.ts:122](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L122)
+[lib/bool.ts:128](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L128)
 
 ___
 
@@ -190,7 +190,7 @@ Proves that this [Bool](Bool.md) is `true`.
 
 #### Defined in
 
-[lib/bool.ts:108](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L108)
+[lib/bool.ts:114](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L114)
 
 ___
 
@@ -212,7 +212,7 @@ Returns true if this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:137](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L137)
+[lib/bool.ts:143](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L143)
 
 ___
 
@@ -226,7 +226,7 @@ this is Object
 
 #### Defined in
 
-[lib/bool.ts:42](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L42)
+[lib/bool.ts:48](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L48)
 
 ___
 
@@ -242,7 +242,7 @@ a new [Bool](Bool.md) that is the negation of this [Bool](Bool.md).
 
 #### Defined in
 
-[lib/bool.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L56)
+[lib/bool.ts:62](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L62)
 
 ___
 
@@ -265,7 +265,7 @@ this [Bool](Bool.md) or `y` is true.
 
 #### Defined in
 
-[lib/bool.ts:80](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L80)
+[lib/bool.ts:86](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L86)
 
 ___
 
@@ -281,7 +281,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:147](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L147)
+[lib/bool.ts:153](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L153)
 
 ___
 
@@ -298,7 +298,7 @@ This can only be called on non-witness values.
 
 #### Defined in
 
-[lib/bool.ts:178](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L178)
+[lib/bool.ts:184](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L184)
 
 ___
 
@@ -314,7 +314,7 @@ Converts a [Bool](Bool.md) to a [Field](Field.md). `false` becomes 0 and `true` 
 
 #### Defined in
 
-[lib/bool.ts:49](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L49)
+[lib/bool.ts:55](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L55)
 
 ___
 
@@ -330,7 +330,7 @@ Serializes this [Bool](Bool.md) into [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:154](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L154)
+[lib/bool.ts:160](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L160)
 
 ___
 
@@ -347,7 +347,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:170](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L170)
+[lib/bool.ts:176](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L176)
 
 ___
 
@@ -364,7 +364,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:162](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L162)
+[lib/bool.ts:168](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L168)
 
 ___
 
@@ -384,7 +384,7 @@ x is Bool
 
 #### Defined in
 
-[lib/bool.ts:336](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L336)
+[lib/bool.ts:344](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L344)
 
 ___
 
@@ -404,7 +404,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:340](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L340)
+[lib/bool.ts:348](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L348)
 
 ___
 
@@ -427,7 +427,7 @@ Boolean AND operation.
 
 #### Defined in
 
-[lib/bool.ts:205](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L205)
+[lib/bool.ts:213](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L213)
 
 ___
 
@@ -450,7 +450,7 @@ Asserts if both [Bool](Bool.md) are equal.
 
 #### Defined in
 
-[lib/bool.ts:225](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L225)
+[lib/bool.ts:233](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L233)
 
 ___
 
@@ -470,7 +470,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:313](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L313)
+[lib/bool.ts:321](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L321)
 
 ___
 
@@ -493,7 +493,7 @@ Checks two [Bool](Bool.md) for equality.
 
 #### Defined in
 
-[lib/bool.ts:236](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L236)
+[lib/bool.ts:244](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L244)
 
 ___
 
@@ -513,7 +513,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:298](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L298)
+[lib/bool.ts:306](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L306)
 
 ___
 
@@ -535,7 +535,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:260](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L260)
+[lib/bool.ts:268](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L268)
 
 ___
 
@@ -558,7 +558,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:279](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L279)
+[lib/bool.ts:287](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L287)
 
 ___
 
@@ -580,7 +580,7 @@ Boolean negation.
 
 #### Defined in
 
-[lib/bool.ts:195](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L195)
+[lib/bool.ts:203](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L203)
 
 ___
 
@@ -603,7 +603,7 @@ Boolean OR operation.
 
 #### Defined in
 
-[lib/bool.ts:215](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L215)
+[lib/bool.ts:223](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L223)
 
 ___
 
@@ -630,7 +630,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:302](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L302)
+[lib/bool.ts:310](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L310)
 
 ___
 
@@ -644,7 +644,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:309](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L309)
+[lib/bool.ts:317](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L317)
 
 ___
 
@@ -660,7 +660,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:286](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L286)
+[lib/bool.ts:294](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L294)
 
 ___
 
@@ -682,7 +682,7 @@ Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
 #### Defined in
 
-[lib/bool.ts:253](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L253)
+[lib/bool.ts:261](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L261)
 
 ___
 
@@ -702,7 +702,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:294](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L294)
+[lib/bool.ts:302](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L302)
 
 ___
 
@@ -722,7 +722,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:188](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L188)
+[lib/bool.ts:196](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L196)
 
 ___
 
@@ -744,7 +744,7 @@ Static method to serialize a [Bool](Bool.md) into an array of [Field](Field.md) 
 
 #### Defined in
 
-[lib/bool.ts:246](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L246)
+[lib/bool.ts:254](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L254)
 
 ___
 
@@ -768,7 +768,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:290](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L290)
+[lib/bool.ts:298](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L298)
 
 ___
 
@@ -791,4 +791,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:271](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L271)
+[lib/bool.ts:279](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/bool.ts#L279)

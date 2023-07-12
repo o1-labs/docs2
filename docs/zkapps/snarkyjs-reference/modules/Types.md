@@ -34,6 +34,7 @@
 - [TokenId](Types.md#tokenid)
 - [TokenSymbol](Types.md#tokensymbol)
 - [TypeMap](Types.md#typemap)
+- [VerificationKeyHash](Types.md#verificationkeyhash)
 - [ZkappCommand](Types.md#zkappcommand)
 - [ZkappUri](Types.md#zkappuri)
 
@@ -50,6 +51,7 @@
 - [TokenId](Types.md#tokenid-1)
 - [TokenSymbol](Types.md#tokensymbol-1)
 - [TypeMap](Types.md#typemap-1)
+- [VerificationKeyHash](Types.md#verificationkeyhash-1)
 - [ZkappCommand](Types.md#zkappcommand-1)
 - [ZkappUri](Types.md#zkappuri-1)
 - [customTypes](Types.md#customtypes)
@@ -142,9 +144,9 @@ Re-exports [UInt64](../classes/UInt64.md)
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:518
+bindings/mina-transaction/gen/transaction.ts:521
 
-bindings/mina-transaction/gen/transaction.ts:564
+bindings/mina-transaction/gen/transaction.ts:567
 
 ___
 
@@ -338,9 +340,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:317
+bindings/mina-transaction/gen/transaction.ts:320
 
-bindings/mina-transaction/gen/transaction.ts:514
+bindings/mina-transaction/gen/transaction.ts:517
 
 ___
 
@@ -350,9 +352,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:47
+bindings/mina-transaction/transaction-leaves.ts:49
 
-bindings/mina-transaction/transaction-leaves.ts:48
+bindings/mina-transaction/transaction-leaves.ts:50
 
 ___
 
@@ -362,9 +364,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:44
+bindings/mina-transaction/transaction-leaves.ts:46
 
-bindings/mina-transaction/transaction-leaves.ts:45
+bindings/mina-transaction/transaction-leaves.ts:47
 
 ___
 
@@ -382,9 +384,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:26
+bindings/mina-transaction/transaction-leaves.ts:28
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -401,9 +403,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:40
+bindings/mina-transaction/transaction-leaves.ts:42
 
-bindings/mina-transaction/transaction-leaves.ts:45
+bindings/mina-transaction/transaction-leaves.ts:47
 
 ___
 
@@ -413,7 +415,7 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:55
+bindings/mina-transaction/gen/transaction.ts:56
 
 ___
 
@@ -423,9 +425,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:53
+bindings/mina-transaction/transaction-leaves.ts:61
 
-bindings/mina-transaction/transaction-leaves.ts:54
+bindings/mina-transaction/transaction-leaves.ts:62
 
 ___
 
@@ -435,9 +437,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:32
+bindings/mina-transaction/transaction-leaves.ts:34
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -447,9 +449,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:31
+bindings/mina-transaction/transaction-leaves.ts:33
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -466,9 +468,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:33
+bindings/mina-transaction/transaction-leaves.ts:35
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -491,9 +493,21 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:30
+bindings/mina-transaction/gen/transaction.ts:31
 
-bindings/mina-transaction/gen/transaction.ts:41
+bindings/mina-transaction/gen/transaction.ts:42
+
+___
+
+### VerificationKeyHash
+
+Ƭ **VerificationKeyHash**: [`Field`](../modules.md#field-1)
+
+#### Defined in
+
+bindings/mina-transaction/transaction-leaves.ts:55
+
+bindings/mina-transaction/transaction-leaves.ts:56
 
 ___
 
@@ -517,9 +531,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:104
+bindings/mina-transaction/gen/transaction.ts:107
 
-bindings/mina-transaction/gen/transaction.ts:313
+bindings/mina-transaction/gen/transaction.ts:316
 
 ___
 
@@ -536,9 +550,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:34
-
 bindings/mina-transaction/transaction-leaves.ts:36
+
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ## Variables
 
@@ -562,9 +576,9 @@ bindings/mina-transaction/transaction-leaves.ts:36
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:518
+bindings/mina-transaction/gen/transaction.ts:521
 
-bindings/mina-transaction/gen/transaction.ts:564
+bindings/mina-transaction/gen/transaction.ts:567
 
 ___
 
@@ -588,9 +602,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:317
+bindings/mina-transaction/gen/transaction.ts:320
 
-bindings/mina-transaction/gen/transaction.ts:514
+bindings/mina-transaction/gen/transaction.ts:517
 
 ___
 
@@ -614,9 +628,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:47
+bindings/mina-transaction/transaction-leaves.ts:49
 
-bindings/mina-transaction/transaction-leaves.ts:48
+bindings/mina-transaction/transaction-leaves.ts:50
 
 ___
 
@@ -646,9 +660,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:44
+bindings/mina-transaction/transaction-leaves.ts:46
 
-bindings/mina-transaction/transaction-leaves.ts:45
+bindings/mina-transaction/transaction-leaves.ts:47
 
 ___
 
@@ -672,9 +686,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:26
+bindings/mina-transaction/transaction-leaves.ts:28
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -702,9 +716,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:40
+bindings/mina-transaction/transaction-leaves.ts:42
 
-bindings/mina-transaction/transaction-leaves.ts:45
+bindings/mina-transaction/transaction-leaves.ts:47
 
 ___
 
@@ -728,9 +742,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:53
+bindings/mina-transaction/transaction-leaves.ts:61
 
-bindings/mina-transaction/transaction-leaves.ts:54
+bindings/mina-transaction/transaction-leaves.ts:62
 
 ___
 
@@ -754,9 +768,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:32
+bindings/mina-transaction/transaction-leaves.ts:34
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -780,9 +794,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:31
+bindings/mina-transaction/transaction-leaves.ts:33
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -806,9 +820,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:33
+bindings/mina-transaction/transaction-leaves.ts:35
 
-bindings/mina-transaction/transaction-leaves.ts:36
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -831,9 +845,35 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:30
+bindings/mina-transaction/gen/transaction.ts:31
 
-bindings/mina-transaction/gen/transaction.ts:41
+bindings/mina-transaction/gen/transaction.ts:42
+
+___
+
+### VerificationKeyHash
+
+• **VerificationKeyHash**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `check` | (`value`: [`Field`](../classes/Field.md)) => `void` |
+| `emptyValue` | () => [`Field`](../classes/Field.md) |
+| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Field`](../classes/Field.md) |
+| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
+| `toAuxiliary` | (`value?`: [`Field`](../classes/Field.md)) => `any`[] |
+| `toFields` | (`value`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
+| `toInput` | (`x`: [`Field`](../classes/Field.md)) => { `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
+| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `sizeInFields` | () => `number` |
+
+#### Defined in
+
+bindings/mina-transaction/transaction-leaves.ts:55
+
+bindings/mina-transaction/transaction-leaves.ts:56
 
 ___
 
@@ -857,9 +897,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:104
+bindings/mina-transaction/gen/transaction.ts:107
 
-bindings/mina-transaction/gen/transaction.ts:313
+bindings/mina-transaction/gen/transaction.ts:316
 
 ___
 
@@ -869,9 +909,9 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/transaction-leaves.ts:34
-
 bindings/mina-transaction/transaction-leaves.ts:36
+
+bindings/mina-transaction/transaction-leaves.ts:38
 
 ___
 
@@ -881,7 +921,7 @@ ___
 
 #### Defined in
 
-bindings/mina-transaction/gen/transaction.ts:90
+bindings/mina-transaction/gen/transaction.ts:92
 
 ## Functions
 

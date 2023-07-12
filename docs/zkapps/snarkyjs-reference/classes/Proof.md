@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:119](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L119)
+[lib/proof_system.ts:120](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L120)
 
 ## Properties
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:77](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L77)
+[lib/proof_system.ts:78](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L78)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:76](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L76)
+[lib/proof_system.ts:77](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L77)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:74](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L74)
+[lib/proof_system.ts:75](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L75)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:75](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L75)
+[lib/proof_system.ts:76](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L76)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:78](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L78)
+[lib/proof_system.ts:79](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L79)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L66)
+[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L67)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L67)
+[lib/proof_system.ts:68](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L68)
 
 ___
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:68](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L68)
+[lib/proof_system.ts:69](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L69)
 
 ## Methods
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:86](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L86)
+[lib/proof_system.ts:87](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L87)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:80](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L80)
+[lib/proof_system.ts:81](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L81)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:83](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L83)
+[lib/proof_system.ts:84](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L84)
 
 ___
 
@@ -231,4 +231,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:95](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L95)
+[lib/proof_system.ts:96](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/proof_system.ts#L96)

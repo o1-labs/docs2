@@ -18,6 +18,7 @@ An element of a Group.
 ### Accessors
 
 - [generator](Group.md#generator)
+- [zero](Group.md#zero)
 
 ### Methods
 
@@ -27,6 +28,7 @@ An element of a Group.
 - [add](Group.md#add)
 - [assertEquals](Group.md#assertequals)
 - [equals](Group.md#equals)
+- [isZero](Group.md#iszero)
 - [neg](Group.md#neg)
 - [scale](Group.md#scale)
 - [sub](Group.md#sub)
@@ -67,7 +69,7 @@ Coerces anything group-like to a [Group](Group.md).
 
 #### Defined in
 
-[lib/group.ts:27](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L27)
+[lib/group.ts:47](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L47)
 
 ## Properties
 
@@ -77,7 +79,7 @@ Coerces anything group-like to a [Group](Group.md).
 
 #### Defined in
 
-[lib/group.ts:14](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L14)
+[lib/group.ts:15](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L15)
 
 ___
 
@@ -87,7 +89,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:15](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L15)
+[lib/group.ts:16](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L16)
 
 ## Accessors
 
@@ -103,7 +105,32 @@ The generator `g` of the Group.
 
 #### Defined in
 
-[lib/group.ts:20](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L20)
+[lib/group.ts:21](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L21)
+
+___
+
+### zero
+
+• `Static` `get` **zero**(): [`Group`](Group.md)
+
+Unique representation of the `zero` element of the Group (the identity element of addition in this Group).
+
+**Note**: The `zero` element is represented as `(0, 0)`.
+
+```typescript
+// g + -g = 0
+g.add(g.neg()).assertEquals(zero);
+// g + 0 = g
+g.add(zero).assertEquals(g);
+```
+
+#### Returns
+
+[`Group`](Group.md)
+
+#### Defined in
+
+[lib/group.ts:37](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L37)
 
 ## Methods
 
@@ -117,7 +144,7 @@ The generator `g` of the Group.
 
 #### Defined in
 
-[lib/group.ts:68](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L68)
+[lib/group.ts:99](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L99)
 
 ___
 
@@ -137,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:72](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L72)
+[lib/group.ts:103](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L103)
 
 ___
 
@@ -151,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:64](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L64)
+[lib/group.ts:95](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L95)
 
 ___
 
@@ -178,7 +205,7 @@ let g2 = g1.add(g1)
 
 #### Defined in
 
-[lib/group.ts:88](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L88)
+[lib/group.ts:127](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L127)
 
 ___
 
@@ -206,7 +233,7 @@ g1.assertEquals(g2);
 
 #### Defined in
 
-[lib/group.ts:149](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L149)
+[lib/group.ts:261](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L261)
 
 ___
 
@@ -233,7 +260,23 @@ g1.equals(g1); // Bool(true)
 
 #### Defined in
 
-[lib/group.ts:165](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L165)
+[lib/group.ts:277](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L277)
+
+___
+
+### isZero
+
+▸ **isZero**(): [`Bool`](Bool.md)
+
+Checks if this element is the `zero` element `{x: 0, y: 0}`.
+
+#### Returns
+
+[`Bool`](Bool.md)
+
+#### Defined in
+
+[lib/group.ts:114](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L114)
 
 ___
 
@@ -249,7 +292,7 @@ Negates this [Group](Group.md). Under the hood, it simply negates the `y` coordi
 
 #### Defined in
 
-[lib/group.ts:114](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L114)
+[lib/group.ts:225](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L225)
 
 ___
 
@@ -276,13 +319,13 @@ let 5g = g.scale(s);
 
 #### Defined in
 
-[lib/group.ts:127](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L127)
+[lib/group.ts:239](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L239)
 
 ___
 
 ### sub
 
-▸ **sub**(`y`): [`Group`](Group.md)
+▸ **sub**(`g`): [`Group`](Group.md)
 
 Subtracts another [Group](Group.md) element from this one.
 
@@ -290,7 +333,7 @@ Subtracts another [Group](Group.md) element from this one.
 
 | Name | Type |
 | :------ | :------ |
-| `y` | [`Group`](Group.md) |
+| `g` | [`Group`](Group.md) |
 
 #### Returns
 
@@ -298,7 +341,7 @@ Subtracts another [Group](Group.md) element from this one.
 
 #### Defined in
 
-[lib/group.ts:107](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L107)
+[lib/group.ts:218](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L218)
 
 ___
 
@@ -306,7 +349,7 @@ ___
 
 ▸ **toFields**(): [`Field`](Field.md)[]
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable-1) interface.
 
 Returns an array containing this [Group](Group.md) element as an array of [Field](Field.md) elements.
 
@@ -316,7 +359,7 @@ Returns an array containing this [Group](Group.md) element as an array of [Field
 
 #### Defined in
 
-[lib/group.ts:197](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L197)
+[lib/group.ts:304](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L304)
 
 ___
 
@@ -339,7 +382,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:182](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L182)
+[lib/group.ts:289](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L289)
 
 ___
 
@@ -362,7 +405,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L56)
+[lib/group.ts:79](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L79)
 
 ___
 
@@ -385,7 +428,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L60)
+[lib/group.ts:91](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L91)
 
 ___
 
@@ -412,7 +455,7 @@ Adds a [Group](Group.md) element to another one.
 
 #### Defined in
 
-[lib/group.ts:216](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L216)
+[lib/group.ts:323](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L323)
 
 ___
 
@@ -444,7 +487,7 @@ Group.assertEquals(g1, g2);
 
 #### Defined in
 
-[lib/group.ts:266](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L266)
+[lib/group.ts:373](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L373)
 
 ___
 
@@ -466,7 +509,7 @@ Checks that a [Group](Group.md) element is constraint properly by checking that 
 
 #### Defined in
 
-[lib/group.ts:347](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L347)
+[lib/group.ts:454](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L454)
 
 ___
 
@@ -498,7 +541,7 @@ Group.equal(g1, g2); // Bool(true)
 
 #### Defined in
 
-[lib/group.ts:280](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L280)
+[lib/group.ts:387](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L387)
 
 ___
 
@@ -521,7 +564,7 @@ Coerces two x and y coordinates into a [Group](Group.md) element.
 
 #### Defined in
 
-[lib/group.ts:204](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L204)
+[lib/group.ts:311](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L311)
 
 ___
 
@@ -529,7 +572,7 @@ ___
 
 ▸ `Static` **fromFields**(`«destructured»`): [`Group`](Group.md)
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable-1) interface.
 
 Deserializes a [Group](Group.md) element from a list of field elements.
 
@@ -545,7 +588,7 @@ Deserializes a [Group](Group.md) element from a list of field elements.
 
 #### Defined in
 
-[lib/group.ts:307](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L307)
+[lib/group.ts:414](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L414)
 
 ___
 
@@ -571,7 +614,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:334](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L334)
+[lib/group.ts:441](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L441)
 
 ___
 
@@ -601,7 +644,7 @@ let gNeg = Group.neg(g);
 
 #### Defined in
 
-[lib/group.ts:238](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L238)
+[lib/group.ts:345](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L345)
 
 ___
 
@@ -633,7 +676,7 @@ let 5g = Group.scale(g, s);
 
 #### Defined in
 
-[lib/group.ts:252](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L252)
+[lib/group.ts:359](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L359)
 
 ___
 
@@ -641,7 +684,7 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable-1) interface.
 
 Returns 2.
 
@@ -651,7 +694,7 @@ Returns 2.
 
 #### Defined in
 
-[lib/group.ts:316](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L316)
+[lib/group.ts:423](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L423)
 
 ___
 
@@ -678,7 +721,7 @@ Subtracts a [Group](Group.md) element from another one.
 
 #### Defined in
 
-[lib/group.ts:225](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L225)
+[lib/group.ts:332](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L332)
 
 ___
 
@@ -686,7 +729,7 @@ ___
 
 ▸ `Static` **toAuxiliary**(`g?`): `never`[]
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable-1) interface.
 
 Returns an empty array.
 
@@ -702,7 +745,7 @@ Returns an empty array.
 
 #### Defined in
 
-[lib/group.ts:298](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L298)
+[lib/group.ts:405](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L405)
 
 ___
 
@@ -710,7 +753,7 @@ ___
 
 ▸ `Static` **toFields**(`g`): [`Field`](Field.md)[]
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable-1) interface.
 
 Returns an array containing a [Group](Group.md) element as an array of [Field](Field.md) elements.
 
@@ -726,7 +769,7 @@ Returns an array containing a [Group](Group.md) element as an array of [Field](F
 
 #### Defined in
 
-[lib/group.ts:289](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L289)
+[lib/group.ts:396](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L396)
 
 ___
 
@@ -755,4 +798,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:325](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/group.ts#L325)
+[lib/group.ts:432](https://github.com/o1-labs/snarkyjs/blob/79a90a2/src/lib/group.ts#L432)
