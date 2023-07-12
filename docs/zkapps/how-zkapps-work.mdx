@@ -46,7 +46,9 @@ zkApps are based on zero knowledge proofs (zk-SNARKs). As a zkApp developer, you
 
 Provable code is written by using SnarkyJS and generates a prover function and a corresponding verifier function that are derived during the build process.
 
-The prover function is the function that executes a smart contract's custom logic and runs in a user's web browser as part of the zkApp. When interacting with a zkApp UI, users enter any data (for example, buy ABC for y price) that is required as input to the prover function, which then generates a zero knowledge proof.
+The prover function is the function that executes a smart contract's custom logic and runs in a user's web browser as part of the zkApp. The prover function generates a proof of the executed code. 
+
+When interacting with a zkApp UI, users enter any data (for example, buy ABC for y price) that is required as input to the prover function, which then generates a zero knowledge proof.
 
 <figure>
 <img src="/img/4_zkApps_Prover_Function.jpg" width="90%" alt="Diagram showing private and public inputs to prover function to create zero knowledge proof" />
