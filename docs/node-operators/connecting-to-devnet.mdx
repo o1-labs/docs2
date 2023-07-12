@@ -1,5 +1,14 @@
 ---
 title: Connect to Devnet
+description: Steps to install mina and connect to the Devnet network.
+keywords:
+  - how do I connect to the Devnet network
+  - what is a Devnet
+  - how do I test a mina node
+  - install mina
+  - start a mina node
+  - how do I check Devnet connectivity
+  - mina logs
 ---
 
 # Connect to Devnet
@@ -61,6 +70,8 @@ To start a Mina node instance and connect to the Devnet network:
 mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
+The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
+
 ### Docker
 
 To run your daemon using Docker, create a directory on the host machine to mount as a volume:
@@ -109,6 +120,7 @@ If the node crashes, save the log output to a file:
     ```sh
     docker logs mina > mina-log.txt
     ```
+
 Monitor connectivity to the network:
 
     ```sh
