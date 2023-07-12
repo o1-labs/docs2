@@ -1,9 +1,9 @@
 ---
-title: Foundation Delegation Program
+title: Mina Foundation Delegation Program
 ---
 ### Installing and running the uptime sidecar
 
-When participating in the Foundation Delegation Program you will also need to run the uptime sidecar, so please following these instructions and set it up alongside your block producer daemon.
+When participating in the Mina Foundation Delegation Program you will also need to run the uptime sidecar, so please following these instructions and set it up alongside your block producer daemon.
 
 ### Measuring uptime performance
 
@@ -17,7 +17,7 @@ Your position on this leaderboard is an important factor in your public key bein
 
 ### Payout Addresses
 
-You must send computed rewards as described below to the token provider addresses that delegate to you. If the Foundation is delegating to you, the Foundation will pick two addresses from the Foundation address list at the bottom of the page that will appear as delegations to you. You should distribute the rewards to both those addresses. If O(1) Labs is delegating to you, O(1) Labs will pick two addresses from the O(1) Labs address list at the bottom of the page that will appear as delegations to you. You must distribute the rewards to both addresses that are delegating to you.
+You must send computed rewards as described below to the token provider addresses that delegate to you. If the Foundation is delegating to you, the Foundation will pick two addresses from the Foundation address list at the bottom of the page that will appear as delegations to you. You must distribute the rewards to both those addresses. You must distribute the rewards to both addresses that are delegating to you.
 
 ### Payout Frequency
 

@@ -1,9 +1,13 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / ProvablePure
+
 # Interface: ProvablePure<T\>
 
-`ProvablePure<T>` is a special kind of `Provable<T>`, where the auxiliary data is empty. This means the type only consists of field elements,
-in that sense it is "pure".
+`ProvablePure<T>` is a special kind of [Provable](Provable.md) interface, where the "auxiliary" (non-provable) data is empty. This means the type consists only of field elements, in that sense it is "pure".
+Any element on the interface `ProvablePure<T>` is also an element of the interface `Provable<T>` where the "auxiliary" data is empty.
 
 Examples where `ProvablePure<T>` is required are types of on-chain state, events and actions.
+
+It includes the same properties and methods as the [Provable](Provable.md) interface.
 
 ## Type parameters
 
@@ -34,17 +38,22 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 ### check
 
-• **check**: (`x`: `T`) => `void`
+• **check**: (`value`: `T`) => `void`
 
 #### Type declaration
 
-▸ (`x`): `void`
+▸ (`value`): `void`
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, rather creates any number of assertions on the proof to prove `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](../classes/Bool.md) asserts that the value of the element is either 1 or 0.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | the element of type `T` to put assertions on. |
 
 ##### Returns
 
@@ -56,27 +65,33 @@ Examples where `ProvablePure<T>` is required are types of on-chain state, events
 
 #### Defined in
 
-[snarky.d.ts:50](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L50)
+[snarky.d.ts:134](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L134)
 
 ___
 
 ### fromFields
 
-• **fromFields**: (`x`: [`Field`](../classes/Field.md)[]) => `T`
+• **fromFields**: (`fields`: [`Field`](../classes/Field.md)[]) => `T`
 
 #### Type declaration
 
-▸ (`x`): `T`
+▸ (`fields`): `T`
+
+A function that returns an element of type `T` from the given provable data.
+
+**Important**: For any element of type `T`, this function is the reverse operation of calling [toFields](ProvablePure.md#tofields) method on an element of type `T`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | [`Field`](../classes/Field.md)[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fields` | [`Field`](../classes/Field.md)[] | an array of [Field](../classes/Field.md) elements describing the provable data of the new `T` element. |
 
 ##### Returns
 
 `T`
+
+An element of type `T` generated from the given provable data.
 
 #### Overrides
 
@@ -84,27 +99,32 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:48](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L48)
+[snarky.d.ts:115](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L115)
 
 ___
 
 ### toAuxiliary
 
-• **toAuxiliary**: (`x?`: `T`) => []
+• **toAuxiliary**: (`value?`: `T`) => `any`[]
 
 #### Type declaration
 
-▸ (`x?`): []
+▸ (`value?`): `any`[]
+
+A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+As any element of the interface `ProvablePure<T>` includes no "auxiliary" data by definition, this function always returns a default value.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x?` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value?` | `T` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
 
 ##### Returns
 
-[]
+`any`[]
+
+An empty array, as any element of the interface `ProvablePure<T>` includes no "auxiliary" data by definition.
 
 #### Overrides
 
@@ -112,27 +132,31 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:47](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L47)
+[snarky.d.ts:104](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L104)
 
 ___
 
 ### toFields
 
-• **toFields**: (`x`: `T`) => [`Field`](../classes/Field.md)[]
+• **toFields**: (`value`: `T`) => [`Field`](../classes/Field.md)[]
 
 #### Type declaration
 
-▸ (`x`): [`Field`](../classes/Field.md)[]
+▸ (`value`): [`Field`](../classes/Field.md)[]
+
+A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](../classes/Field.md) elements that make up the provable data of `value`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | the element of type `T` to generate the [Field](../classes/Field.md) array from. |
 
 ##### Returns
 
 [`Field`](../classes/Field.md)[]
+
+A [Field](../classes/Field.md) array describing how this `T` element is made up of [Field](../classes/Field.md) elements.
 
 #### Overrides
 
@@ -140,7 +164,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:46](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L46)
+[snarky.d.ts:94](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L94)
 
 ## Methods
 
@@ -148,9 +172,15 @@ ___
 
 ▸ **sizeInFields**(): `number`
 
+Return the size of the `T` type in terms of [Field](../classes/Field.md) type, as [Field](../classes/Field.md) is the primitive type.
+
+**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+
 #### Returns
 
 `number`
+
+A `number` representing the size of the `T` type in terms of [Field](../classes/Field.md) type.
 
 #### Overrides
 
@@ -158,4 +188,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:49](https://github.com/o1-labs/snarkyjs/blob/33a9946/src/snarky.d.ts#L49)
+[snarky.d.ts:124](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L124)

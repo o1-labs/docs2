@@ -61,7 +61,7 @@ yargs(hideBin(process.argv))
 
         // 1. Extract code blocks.
         const regex =
-          /(?<=```)(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?=```)/gs;
+          /(?:[ \t]*```) *(?<infoString>[\w\/\. ]+?)\n(?<code>.+?)\n(?:[ \t]*```)/gs;
         const codeBlocks = Array.from(markdown.matchAll(regex)).map(
           regexMatchToCodeBlock
         );
@@ -91,18 +91,28 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
   if (lang === 'ts') {
     const filePath: string | undefined = infoStringSegments[1];
 
+    // If the code block is tagged with 'ignore', it's meant to be ignored by the tutorial runner.
+    if (filePath === 'ignore') {
+      return {
+        lang: 'sh',
+        commands: [],
+      };
+    }
+
     if (filePath) {
       const getLineNum = (codeLineWithNum: string): number =>
         parseInt(codeLineWithNum.match(/\d+/)[0]);
       const stripLineNum = (codeLineWithNum: string): string => {
-        if (codeLineWithNum.match(/\d+$/)) {
+        if (/^\d+$/.test(codeLineWithNum)) {
           // If there's only a line number, the rest of the line is empty
           return '';
         } else {
           return codeLineWithNum.substring(codeLineWithNum.indexOf(' ') + 1);
         }
       };
-      const codeLinesWithNums = code.split('\n');
+      const codeLinesWithNums = code
+        .split('\n')
+        .map((codeLine) => codeLine.trimStart());
       const startLineNum = getLineNum(codeLinesWithNums[0]);
       const codeLines = codeLinesWithNums.map((codeLineWithNum, index) => {
         if (startLineNum + index !== getLineNum(codeLineWithNum)) {
@@ -118,11 +128,12 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 
       return { lang, startLineNum, filePath, codeLines };
     } else {
-      throw 'Code blocks describing file modifications must include a file path in their info string';
+      throw `Code blocks describing file modifications must include a file path in their info string. InfoString: '${infoString}', Code: '${code}'`;
     }
   } else if (lang === 'sh') {
     const extractCommands = (shellCode: string[]): string[] =>
       shellCode.reduce<string[]>((commands, line) => {
+        line = line.trimStart();
         if (line.startsWith('$ ')) {
           return [...commands, line.slice(2)];
         } else {
@@ -141,7 +152,7 @@ function regexMatchToCodeBlock(match: RegExpMatchArray): CodeBlock {
 function executeShellCommand(shellCommands: ShellCommands): void {
   shellCommands.commands.forEach((shellCommand) => {
     let exitCode;
-
+    shellCommand = shellCommand.trim();
     if (shellCommand.startsWith('zk project')) {
       const nonInteractiveCommand = `${shellCommand} --ui none`;
 
