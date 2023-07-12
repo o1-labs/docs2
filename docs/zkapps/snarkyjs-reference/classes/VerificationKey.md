@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / VerificationKey
+
 # Class: VerificationKey
 
 ## Hierarchy
@@ -54,7 +56,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:467](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L467)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
 
 ## Properties
 
@@ -73,7 +75,7 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1487](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1487)
+[lib/zkapp.ts:1485](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1485)
 
 ___
 
@@ -92,7 +94,7 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1487](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/zkapp.ts#L1487)
+[lib/zkapp.ts:1485](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1485)
 
 ___
 
@@ -111,25 +113,30 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:467](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L467)
+[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`x`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `void`
+▪ `Static` **check**: (`value`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `void`
 
 #### Type declaration
 
-▸ (`x`): `void`
+▸ (`value`): `void`
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](Bool.md) asserts that the value of the element is either 1 or 0.
 
 ##### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `x` | `Object` | `undefined` |
-| `x.data` | `string` | `String` |
-| `x.hash` | [`Field`](Field.md) | `Field` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `value` | `Object` | `undefined` | the element of type `T` to put assertions on. |
+| `value.data` | `string` | `String` | - |
+| `value.hash` | [`Field`](Field.md) | `Field` | - |
 
 ##### Returns
 
@@ -146,28 +153,34 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:37](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L37)
+[snarky.d.ts:75](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L75)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
+▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
 
 #### Type declaration
 
-▸ (`x`, `aux`): `Object`
+▸ (`fields`, `aux`): `Object`
+
+A function that returns an element of type `T` from the given provable and "auxiliary" data.
+
+**Important**: For any element of type `T`, this function is the reverse operation of calling [toFields](../interfaces/Provable.md#tofields) and toAuxilary methods on an element of type `T`.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `x` | [`Field`](Field.md)[] |
-| `aux` | `any`[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fields` | [`Field`](Field.md)[] | an array of [Field](Field.md) elements describing the provable data of the new `T` element. |
+| `aux` | `any`[] | an array of any type describing the "auxiliary" data of the new `T` element, optional. |
 
 ##### Returns
 
 `Object`
+
+An element of type `T` generated from the given provable and "auxiliary" data.
 
 | Name | Type |
 | :------ | :------ |
@@ -185,7 +198,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L35)
+[snarky.d.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L56)
 
 ___
 
@@ -223,29 +236,33 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:475](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L475)
+[lib/circuit_value.ts:373](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L373)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`x?`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `any`[]
 
 #### Type declaration
 
-▸ (`x?`): `any`[]
+▸ (`value?`): `any`[]
+
+A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
 
 ##### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `x?` | `Object` | `undefined` |
-| `x.data` | `string` | `String` |
-| `x.hash` | [`Field`](Field.md) | `Field` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `value?` | `Object` | `undefined` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
+| `value.data` | `string` | `String` | - |
+| `value.hash` | [`Field`](Field.md) | `Field` | - |
 
 ##### Returns
 
 `any`[]
+
+An array of any type describing how this `T` element is made up of "auxiliary" (non-provable) data.
 
 #### Inherited from
 
@@ -258,29 +275,33 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:34](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L34)
+[snarky.d.ts:44](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L44)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`x`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => [`Field`](Field.md)[]
 
 #### Type declaration
 
-▸ (`x`): [`Field`](Field.md)[]
+▸ (`value`): [`Field`](Field.md)[]
+
+A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](Field.md) elements that make up the provable data of `value`.
 
 ##### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `x` | `Object` | `undefined` |
-| `x.data` | `string` | `String` |
-| `x.hash` | [`Field`](Field.md) | `Field` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](Field.md) array from. |
+| `value.data` | `string` | `String` | - |
+| `value.hash` | [`Field`](Field.md) | `Field` | - |
 
 ##### Returns
 
 [`Field`](Field.md)[]
+
+A [Field](Field.md) array describing how this `T` element is made up of [Field](Field.md) elements.
 
 #### Inherited from
 
@@ -293,7 +314,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:33](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L33)
+[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L35)
 
 ___
 
@@ -333,7 +354,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:470](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L470)
+[lib/circuit_value.ts:368](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L368)
 
 ___
 
@@ -368,7 +389,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:474](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/lib/circuit_value.ts#L474)
+[lib/circuit_value.ts:372](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L372)
 
 ## Methods
 
@@ -376,9 +397,15 @@ Struct({
 
 ▸ `Static` **sizeInFields**(): `number`
 
+Return the size of the `T` type in terms of [Field](Field.md) type, as [Field](Field.md) is the primitive type.
+
+**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+
 #### Returns
 
 `number`
+
+A `number` representing the size of the `T` type in terms of [Field](Field.md) type.
 
 #### Inherited from
 
@@ -391,4 +418,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:36](https://github.com/o1-labs/snarkyjs/blob/dcf69e2/src/snarky.d.ts#L36)
+[snarky.d.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L65)
