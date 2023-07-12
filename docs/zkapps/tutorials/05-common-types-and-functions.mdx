@@ -194,8 +194,8 @@ points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20
 
 There are two functions which help do control flow within SnarkyJS:
 
-- [Provable.if](../snarkyjs-reference/classes/Provable#if)
-- [Provable.switch](../snarkyjs-reference/classes/Provable#switch)
+- [Provable.if](../snarkyjs-reference/classes/Circuit#if)
+- [Provable.switch](../snarkyjs-reference/classes/Circuit#switch)
 
 `Provable.if` is similar to a ternary in JavaScript. `Provable.switch` is similar to a switch case statement in JavaScript.
 
@@ -209,7 +209,7 @@ const input2 = Int64.from(-15);
 
 const inputSum = input1.add(input2);
 
-const inputSumAbs = CiProvablercuit.if(
+const inputSumAbs = Provable.if(
   inputSum.isPositive(),
   inputSum,
   inputSum.mul(Int64.minusOne)
