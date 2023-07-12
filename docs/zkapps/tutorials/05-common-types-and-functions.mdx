@@ -205,10 +205,10 @@ points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20
 
 There are two functions which help do control flow within SnarkyJS:
 
-- [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
-- [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
+- [Provable.if](../snarkyjs-reference/classes/Circuit#if)
+- [Provable.switch](../snarkyjs-reference/classes/Circuit#switch)
 
-`Circuit.if` is similar to a ternary in JavaScript. `Circuit.switch` is similar to a switch case statement in JavaScript.
+`Provable.if` is similar to a ternary in JavaScript. `Provable.switch` is similar to a switch case statement in JavaScript.
 
 With these, you can write conditionals inside SnarkyJS.
 
@@ -220,7 +220,7 @@ const input2 = Int64.from(-15);
 
 const inputSum = input1.add(input2);
 
-const inputSumAbs = Circuit.if(
+const inputSumAbs = Provable.if(
   inputSum.isPositive(),
   inputSum,
   inputSum.mul(Int64.minusOne)
@@ -244,7 +244,7 @@ const input3largest = input3
   .isPositive()
   .and(input3.sub(input2).isPositive());
 
-const largest = Circuit.switch(
+const largest = Provable.switch(
   [input1largest, input2largest, input3largest],
   Int64,
   [input1, input2, input3]
@@ -261,7 +261,7 @@ inputSumAbs: 5
 largest: 22
 ```
 
-Note that when using `Circuit.if`, like in a JS ternary, both branches are executed. Unlike normal programming, because SnarkyJS under the hood is creating a zk circuit, there is no primitive for if statements where only one branch is executed.
+Note that when using `Provable.if`, like in a JS ternary, both branches are executed. Unlike normal programming, because SnarkyJS under the hood is creating a zk circuit, there is no primitive for if statements where only one branch is executed.
 
 ## Assertions and Constraints
 
