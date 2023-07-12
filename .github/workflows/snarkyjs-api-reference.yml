@@ -33,10 +33,8 @@ jobs:
           npm ci && npm run build
           cd src/mina-signer && npm ci && npm run build && cd ../../
 
-          # Install markdown-plugin for typedoc and build the SnarkyJS API reference
-          npm install typedoc-plugin-markdown
-          npx typedoc --readme none --name SnarkyJS --plugin typedoc-plugin-markdown --out snarkyjs-reference src/index.ts --hideBreadcrumbs true
-          rm snarkyjs-reference/.nojekyll
+          # Build API reference docs
+          npm run build:docs
 
           # Install dependencies for Docs repo
           cd ../docs/ && npm ci
@@ -45,7 +43,7 @@ jobs:
           rm -rf docs/zkapps/snarkyjs-reference && cp -rv ../snarkyjs/snarkyjs-reference docs/zkapps/snarkyjs-reference
 
           # Update with new enteries and format sidebars.js
-          node update-sidebars-snarkyjs-api.js && npx prettier --config .prettierrc --write sidebars.js
+          npm run update-sidebar
 
           # Configure git and push
           BRANCH_NAME=docs/snarkyjs-api-reference-$(git --git-dir ../snarkyjs/.git rev-parse --short HEAD)
