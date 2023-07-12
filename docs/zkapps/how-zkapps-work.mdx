@@ -91,7 +91,9 @@ When a Mina address contains a verification key, it acts as a zkApp account.
 
 A regular Mina account can receive any transactions. 
 
-Because zkApps are Mina Protocol's smart contracts powered by zero knowledge proofs, a zkApp account can successfully receive only transactions that contain a proof that satisfies the verifier function. Any transactions that do not pass the verifier function are rejected by the Mina network.
+You can specify [permissions](/zkapps/snarkyjs/permissions) so a zkApp account can successfully receive only transactions that satisfy the verifier function. 
+
+Any transactions that do not pass the verifier function are rejected by the Mina network.
 
 When you deploy to a new Mina address, the Mina Protocol charges a 1 MINA fee for account creation. This fee is unrelated to zkApps and helps to prevent Sybil or denial of service attacks.
 
