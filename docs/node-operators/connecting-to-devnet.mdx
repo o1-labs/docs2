@@ -14,8 +14,13 @@ The Devnet network is designed for testing and experimentation. Devnet is a dedi
 
 MINA on this network holds no real value. To request a prefunded account, reach out on [Mina Protocol Discord](https://discord.gg/minaprotocol).
 
-If you are interested in running a node, connect
-to [Mainnet network](connecting-to-the-network) instead.
+If you are interested in running a node, connect to [Mainnet network](connecting-to-the-network) instead.
+
+## High-Level Overview
+
+1. Install or update your node to the required specific mina daemon.
+1. Start a mina node and connect to Devnet.
+1. Check your connectivity.
 
 ## Update your software
 
@@ -27,7 +32,7 @@ Follow the steps for your operating system.
 
 Install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Alpha/Beta) builds.
 
-TO set up the new debian `stable` repository and install the latest version:
+To set up the new debian `stable` repository and install the latest version:
 
 ```sh
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
@@ -91,20 +96,21 @@ minaprotocol/mina-daemon:1.3.1.2-25388a0-bullseye-devnet \
 daemon \
 ```
 
-To follow the logs:
+## Check your connectivity
 
-```sh
-docker logs -f mina
-```
+Follow the logs:
+
+    ```sh
+    docker logs -f mina
+    ```
 
 If the node crashes, save the log output to a file:
 
-```sh
-docker logs mina > mina-log.txt
-```
+    ```sh
+    docker logs mina > mina-log.txt
+    ```
+Monitor connectivity to the network:
 
-To monitor connectivity to the network:
-
-```sh
-docker exec -it mina mina client status
-```
+    ```sh
+    docker exec -it mina mina client status
+    ```
