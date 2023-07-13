@@ -1,4 +1,4 @@
-import { Mina, isReady, PublicKey, fetchAccount } from 'snarkyjs';
+import { Mina, PublicKey, fetchAccount } from 'snarkyjs';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
@@ -15,13 +15,11 @@ const state = {
 // ---------------------------------------------------------------------------------------
 
 const functions = {
-  loadSnarkyJS: async (args: {}) => {
-    await isReady;
-  },
   setActiveInstanceToBerkeley: async (args: {}) => {
     const Berkeley = Mina.Network(
       'https://proxy.berkeley.minaexplorer.com/graphql'
     );
+    console.log('Berkeley Instance Created');
     Mina.setActiveInstance(Berkeley);
   },
   loadContract: async (args: {}) => {
@@ -71,6 +69,7 @@ export type ZkappWorkerReponse = {
   id: number;
   data: any;
 };
+
 if (typeof window !== 'undefined') {
   addEventListener(
     'message',
@@ -85,3 +84,5 @@ if (typeof window !== 'undefined') {
     }
   );
 }
+
+console.log('Web Worker Successfully Initialized.');

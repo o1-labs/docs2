@@ -34,11 +34,10 @@ export default function App() {
 
     (async () => {
       if (!state.hasBeenSetup) {
+        console.log('Loading WebWorker...');
         const zkappWorkerClient = new ZkappWorkerClient();
         await timeout(5);
 
-        console.log('Loading SnarkyJS...');
-        await zkappWorkerClient.loadSnarkyJS();
         console.log('done');
 
         await zkappWorkerClient.setActiveInstanceToBerkeley();

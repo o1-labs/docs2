@@ -1,19 +1,13 @@
-import {
-  fetchAccount,
-  PublicKey,
-  PrivateKey,
-  Field,
-} from 'snarkyjs'
+import { fetchAccount, PublicKey, Field } from 'snarkyjs';
 
-import type { ZkappWorkerRequest, ZkappWorkerReponse, WorkerFunctions } from './zkappWorker';
+import type {
+  ZkappWorkerRequest,
+  ZkappWorkerReponse,
+  WorkerFunctions,
+} from './zkappWorker';
 
 export default class ZkappWorkerClient {
-
   // ---------------------------------------------------------------------------------------
-
-  loadSnarkyJS() {
-    return this._call('loadSnarkyJS', {});
-  }
 
   setActiveInstanceToBerkeley() {
     return this._call('setActiveInstanceToBerkeley', {});
@@ -27,13 +21,21 @@ export default class ZkappWorkerClient {
     return this._call('compileContract', {});
   }
 
-  fetchAccount({ publicKey }: { publicKey: PublicKey }): ReturnType<typeof fetchAccount> {
-    const result = this._call('fetchAccount', { publicKey58: publicKey.toBase58() });
-    return (result as ReturnType<typeof fetchAccount>);
+  fetchAccount({
+    publicKey,
+  }: {
+    publicKey: PublicKey;
+  }): ReturnType<typeof fetchAccount> {
+    const result = this._call('fetchAccount', {
+      publicKey58: publicKey.toBase58(),
+    });
+    return result as ReturnType<typeof fetchAccount>;
   }
 
   initZkappInstance(publicKey: PublicKey) {
-    return this._call('initZkappInstance', { publicKey58: publicKey.toBase58() });
+    return this._call('initZkappInstance', {
+      publicKey58: publicKey.toBase58(),
+    });
   }
 
   async getNum(): Promise<Field> {
@@ -58,12 +60,14 @@ export default class ZkappWorkerClient {
 
   worker: Worker;
 
-  promises: { [id: number]: { resolve: (res: any) => void, reject: (err: any) => void } };
+  promises: {
+    [id: number]: { resolve: (res: any) => void; reject: (err: any) => void };
+  };
 
   nextId: number;
 
   constructor() {
-    this.worker = new Worker(new URL('./zkappWorker.ts', import.meta.url))
+    this.worker = new Worker(new URL('./zkappWorker.ts', import.meta.url));
     this.promises = {};
     this.nextId = 0;
 
@@ -75,7 +79,7 @@ export default class ZkappWorkerClient {
 
   _call(fn: WorkerFunctions, args: any) {
     return new Promise((resolve, reject) => {
-      this.promises[this.nextId] = { resolve, reject }
+      this.promises[this.nextId] = { resolve, reject };
 
       const message: ZkappWorkerRequest = {
         id: this.nextId,
@@ -89,4 +93,3 @@ export default class ZkappWorkerClient {
     });
   }
 }
-
