@@ -158,9 +158,11 @@ export default function App() {
       },
     });
 
-    console.log(
-      'See transaction at https://berkeley.minaexplorer.com/transaction/' + hash
-    );
+    const transactionLink = `https://berkeley.minaexplorer.com/transaction/'${hash}`;
+    console.log(`See transaction at ${transactionLink}`);
+
+    setTransactionLink(transactionLink);
+    setDisplayText(transactionLink);
 
     setState({ ...state, creatingTransaction: false });
   };
@@ -204,10 +206,19 @@ export default function App() {
   let setupText = state.hasBeenSetup
     ? 'SnarkyJS Ready'
     : 'Setting up SnarkyJS...';
+
+  const stepDisplay = transactionlink ? (
+    <a href={displayText} target="_blank" rel="noreferrer">
+      See transaction
+    </a>
+  ) : (
+    displayText
+  );
+
   let setup = (
     <div>
-      {' '}
-      {setupText} {hasWallet}
+      {stepDisplay}
+      {hasWallet}
     </div>
   );
 
