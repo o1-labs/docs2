@@ -4,7 +4,7 @@ type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 // ---------------------------------------------------------------------------------------
 
-import type { Add } from '../../contracts/src/Add';
+import type { Add } from '../../../contracts/src/Add';
 
 const state = {
   Add: null as null | typeof Add,
@@ -25,7 +25,7 @@ const functions = {
     Mina.setActiveInstance(Berkeley);
   },
   loadContract: async (args: {}) => {
-    const { Add } = await import('../../contracts/build/src/Add.js');
+    const { Add } = await import('../../../contracts/build/src/Add.js');
     state.Add = Add;
   },
   compileContract: async (args: {}) => {
