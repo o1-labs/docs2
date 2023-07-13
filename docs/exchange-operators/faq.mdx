@@ -1,12 +1,12 @@
 ---
-title: FAQ
+title: FAQ Listing Mina
 description: Frequently asked questions about listing Mina
 hide_title: true
 ---
 
 import Subhead from "@site/src/components/common/Subhead";
 
-# FAQ
+# FAQ Listing Mina
 
 <Subhead>
 Frequently asked questions about listing Mina.
@@ -26,7 +26,7 @@ The latest third-party audit reports are publicly available here:
 
 :::note
 
-Any news and updates related to exchange listing shared by the Mina Foundation can be found on [www.minaprotocol.com](https://minaprotocol.com) or on the [official Twitter account](https://twitter.com/MinaProtocol). Mina Foundation can not individually answer any listing questions.
+Any news and updates related to exchange listing shared by the Mina Foundation are on [www.minaprotocol.com](https://minaprotocol.com) or the official [Mina Protocol]](https://twitter.com/MinaProtocol) Twitter. Mina Foundation cannot individually answer any listing questions.
 
 :::
 
@@ -36,60 +36,57 @@ Any news and updates related to exchange listing shared by the Mina Foundation c
 
 Rosetta is an open-source specification that helps exchanges and developers integrate blockchains. Since Rosetta is actively maintained and specifically designed to enable simpler, faster, and more reliable blockchain integrations, we highly recommend using Rosetta to integrate Mina blockchain with your exchange.
 
-You can learn more about Mina’s implementation of Rosetta here (coming soon).
-
 ### What if I have a question about Rosetta?
 
-You can post your questions in [Mina’s Github Discussions](https://github.com/MinaProtocol/mina/discussions).
+Ask in [Mina Protocol Discord](https://discord.gg/minaprotocol) or post to the Mina GitHub [Discussions](https://github.com/MinaProtocol/mina/discussions).
 
 ## Accounts
 
 ### Is there an account creation fee?
 
-Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This fee helps protect the network from denial of service-type attacks and the amount may be reduced over time.
+Yes, Mina Protocol charges a fee of 1 MINA when you create a new account. This fee helps protect the network from denial of service-type attacks. Over time, this fee can change.
 
 ## Transactions
 
 ### What is the maximum size of the mempool? How do we work around this?
 
-The max mempool size is 3,000. Once it hits that size, transactions with the lowest fees are discarded.
+The max mempool size is 3,000. After it hits that size, transactions with the lowest fees are discarded.
 
-We recommend setting your fee to an amount higher than 0.001 MINA, which is the current average fee for transactions in the pool.
+Set your fee to an amount higher than 0.001 MINA, the current average fee for transactions in the pool.
 
-You can view the fees for pending transactions here and adjust your fees accordingly: [https://minaexplorer.com/pending-transactions](https://minaexplorer.com/pending-transactions).
+You can view the fees for pending transactions and adjust your fees accordingly: [https://minaexplorer.com/pending-transactions](https://minaexplorer.com/pending-transactions).
 
 ### Why do some users appear to have lost their funds when sending to exchanges?
 
 :::tip
 
 <p>
-  While Mina and its SDKs do support the memo field when sending a transaction,
-  we strongly recommend that you <u>do NOT require a memo for deposits</u> to
+  While Mina and its SDKs do support the memo field when sending a transaction, the recommended best practice is <u>do NOT require a memo for deposits</u> to
   prevent this issue for your exchange.
 </p>
 :::
 
-In order to associate the deposit with the user's account, some exchanges require their users to include a unique memo field when sending MINA deposits to the exchange’s address.
+To associate the deposit with the user's account, some exchanges require their users to include a unique memo field when sending MINA deposits to the exchange's address.
 
 If the user does not include this unique memo when sending their deposit, the receiving exchange may not be able to associate the deposit properly with the user's exchange account.
 
 These funds are <u>NOT lost</u>. The exchanges have received the funds at the exchange's address, but the exchange may not be able to automatically associate the deposit with the user's exchange account without such a memo.
 
-To avoid this above issue, we recommend that exchanges <u>do NOT require a memo</u> for deposits. At the same time, we also recommend that exchanges and wallet creators <u>expose an optional memo field</u> during a Mina send transaction.
+To prevent this issue, we recommend that exchanges <u>do NOT require a memo</u> for deposits. At the same time, exchanges and wallet creators are recommended to <u>expose an optional memo field</u> during a Mina send transaction.
 
-### What is the current maximum number of rollback blocks?
+### What is the maximum number of rollback blocks?
 
-The table here describes how many blocks you will need to wait: [Lifecycle Payment](../node-operators/lifecycle-of-a-payment)
+The table in [Lifecycle of a Payment](../node-operators/lifecycle-of-a-payment) describes how many blocks you wait for a transaction to be confirmed.
 
-### How should we calculate transaction fees?
+### How should I calculate transaction fees?
 
-You can use this tool to calculate your transaction fees: [https://fees.mina.tools](https://fees.mina.tools/)
+To calculate your transaction fees, use [https://fees.mina.tools](https://fees.mina.tools/).
 
 ## Running a node
 
 ### My Mina node gets stuck sometimes. How can I detect this and fix it?
 
-We are aware of this issue and aim to improve this in future versions. For now, we recommend restarting your node whenever this issue is detected.
+This is a known issue for some earlier releases. Restart your mina node whenever this issue is detected.
 
 You can use the following script to run a cron job every 3 minutes (the slot length) or more frequently:
 
@@ -116,17 +113,17 @@ fi
 
 :::
 
-### Our archive node is missing block information after a restart. How can we recover the data?
+### My archive node is missing block information after a restart. How can I recover the data?
 
-Archive node operators often choose to run redundant archive nodes to store block data to one or more locations of their choice (e.g. PostgreSQL, GCP, local files, a logging service, etc) and to backfill any missed block data if needed.
+Archive node operators often choose to run redundant archive nodes to store block data to one or more locations of their choice (for example, PostgreSQL, GCP, local files, or a logging service) and to backfill any missed block data if needed.
 
-For convenience, O(1) Labs makes data from its archive node available [here](https://console.cloud.google.com/storage/browser/mina_network_block_data) to help others in the community backfill any missing information.
+For convenience, [mina_network_block_data](https://console.cloud.google.com/storage/browser/mina_network_block_data) from the archive node is available to help others in the community backfill any missing information.
 
-This bucket contains blocks from various Mina networks — e.g. Mainnet & the most recent Devnet named devnet2. Filter the file names to find those for the network you desire. (Note that this bucket contains blocks for various other networks too, such as QAnet, which we recommend against using for your testing. QAnet is used by O(1) Labs during their iterative development.)
+This bucket contains blocks from various Mina networks — for example, Mainnet and the most recent Devnet `devnet2`. Filter by filename for the network you want. Note that this bucket contains blocks for various other networks too, such as QAnet, which is not recommended for your testing. QAnet is used by O(1) Labs during targeted iterative development.
 
-File names contain the network name, block height, and state hash of the block. Block height was added to the filename more recently, so blocks older than height 25,705 can include only the network name and state hash in the filename.
+Filenames contain the network name, block height, and state hash of the block. Blocks older than height 25,705 include only the network name and state hash in the filename.
 
-Example file names:
+Example filenames:
 
 (Recent)
 
@@ -154,13 +151,13 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 ### How do I query for the canonical block at a certain height from the archive node
 
-This can be accomplished using a recursive query. See Example #3 in the [Archive Node docs](/node-operators/archive-node), for a full example.
+Use a recursive query. See [Query the database](/node-operators/archive-node#query-the-database) examples in the Archive Node docs.
 
 ### Why am I getting this error message: "Not able to connect to the network"?
 
 This error message usually occurs due to a chain ID mismatch from running a Devnet build on Mainnet, or vice versa.
 
-To check whether you are running a Devenet or Mainnet build, run `Mina client status`. Next, compare the output’s chain ID of your node to the expected chain ID below for the network you are trying to connect to:
+To check whether you are running a Devenet or Mainnet build, run `Mina client status`. Next, compare the output's chain ID of your node to the expected chain ID below for the network you are trying to connect to:
 
 Mainnet:
 
@@ -176,25 +173,25 @@ Devnet:
 
 ### Are there any official broadcast nodes that can be used?
 
-No, there are no official broadcast nodes at this time, but it is possible to broadcast transactions using [https://docs.minaexplorer.com/rest-api/ref](https://docs.minaexplorer.com/rest-api/ref). You can consider this as a backup, but we recommend broadcasting transactions yourself. Minaexplorer’s service rarely goes down because they run many nodes and they rarely all break at the same time.
+No, there are no official broadcast nodes at this time. However, you can  broadcast transactions using [https://docs.minaexplorer.com/rest-api/ref](https://docs.minaexplorer.com/rest-api/ref). Use this method as a backup, the recommended method is to broadcast  transactions yourself. The Minaexplorer service rarely goes down because it runs on many nodes.
 
 ## Staking
 
-### Should we be staking our funds?
+### Should I be staking my funds?
 
-Since Mina is a Proof of Stake (PoS) consensus network without lockup for staked tokens, we recommend staking these funds since not staking can hurt the chain quality of the Mina network. Additionally, by not staking, you are missing out on staking rewards that you can otherwise be receiving from the Mina blockchain.
+Since Mina is a Proof of Stake (PoS) consensus network without lockup for staked tokens, it is recommended to stak these funds to support the quality of the Mina network. Additionally, by not staking, you are missing out on staking rewards that you can otherwise be receiving from the Mina blockchain.
 
-You can look into staking this wallet, either by running your own block production node, or just by delegating your funds to a staking pool on the network. Out of these two options, the latter is simpler to set up (though it does incur about a delay between 18 to 29 days before you can begin getting rewards, as explained below).
+You can look into staking this wallet, either by running your own block production node or just by delegating your funds to a staking pool on the network. Delegating to a staking pool is simpler to set up.
 
 :::note
 
-Staking will incur a delay between 18 to 29 days before you will start receiving rewards.
+Newly staked accounts incur a delay of 18 to 29 days before you start receiving rewards.
 
 :::
 
 ### Why is there a delay for staking to take effect?
 
-For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. In other words, the staking ledger will always operate between 18 to 29 days behind the live ledger.
+For purposes of ensuring consensus, there is a delay between when delegations are sent on the blockchain and when they take effect with respect to staking on the network. The staking ledger always operates between 18 to 29 days behind the live ledger.
 
 ### In that case, how long is the delay and when is the next staking snapshot?
 
@@ -204,13 +201,13 @@ Since the timing is based on a combination of consensus timing (epochs) and snar
 
 A conservative estimate is that delegations sent 3 days before the epoch transition can take effect in the upcoming epoch. This means that, for any given delegation, there is an average of 18 to 29 days delay before this delegation updates block production.
 
-You can use this Delegation Calculator tool built by Carbonara, which tells you when the next staking ledger cutoff occurs:
+You can use this Delegation Calculator tool built by Carbonara to see the next staking ledger cutoff:
 [https://epoch.mina.tools](https://epoch.mina.tools/).
 
 ## Testing
 
 ### What is the best way to test tooling and integration with Mina?
 
-We strongly suggest that you test tooling and integrations on Devnet before going live on Mainnet. This includes simulating expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
+Test tooling and integrations on Devnet before going live on Mainnet. The Devnet network is dedicated for developers building on top of the Mina protocol and is designed for testing and experimentation. Be sure to simulate expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
 
-See our [instructions for connecting to DevNet](../node-operators/connecting-to-devnet).
+See [Connect to Devnet](/node-operators/connecting-to-devnet).

@@ -1,5 +1,14 @@
 ---
 title: Connect to Devnet
+description: Steps to install mina and connect to the Devnet network.
+keywords:
+  - how do I connect to the Devnet network
+  - what is a Devnet
+  - how do I test a mina node
+  - install mina
+  - start a mina node
+  - how do I check Devnet connectivity
+  - mina logs
 ---
 
 # Connect to Devnet
@@ -10,66 +19,85 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
-In this section, we'll connect to the `Devnet` network. `Devnet` is a network dedicated for developers building on top of the Mina protocol. It is designed for testing
-and experimentation of developers and holds no real value. Users can reach out on Discord if they would like to request a prefunded account.
+The Devnet network is designed for testing and experimentation. Devnet is a dedicated network for developers who are building on top of the Mina protocol. 
 
-Only use the `Devnet` network if you are a developer and building on top of the Mina protocol. If you are interested in running a node, please connect
-to [Mainnet RC](connecting-to-the-network) instead.
+MINA on this network holds no real value. To request a prefunded account, reach out on [Mina Protocol Discord](https://discord.gg/minaprotocol).
+
+If you are interested in running a node, connect to [Mainnet network](connecting-to-the-network) instead.
+
+## High-Level Overview
+
+1. Install or update your node to the required specific mina daemon.
+1. Start a mina node and connect to Devnet.
+1. Check your connectivity.
 
 ## Update your software
 
-Connecting to `Devnet` requires a specific build of the Mina client as well as a specific version of a peers list. Using the `Devnet` build and peers list does not work for `Zenith`.
+Connecting to Devnet requires a specific build of the Mina client and a specific version of a peers list. 
 
-Follow the instructions below for your operating system below.
+Follow the steps for your operating system.
 
-### Ubuntu 18.04 / Debian 9
+### Ubuntu 18.04 and Debian 9
 
-Follow along below to install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [Github Releases Page](https://github.com/MinaProtocol/mina/releases) to discover and install pre-release (Alpha/Beta) builds.
+Install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Alpha/Beta) builds.
 
-You can set up the new debian `stable` repository and install the latest version as follows:
+To set up the new debian `stable` repository and install the latest version:
 
-```
+```sh
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
 sudo apt-get install --yes apt-transport-https
 sudo apt-get update
 sudo apt-get install --yes curl unzip mina-devnet=1.3.0-9b0369c
 ```
 
-Check that daemon installed correctly by running `mina version`. The output should read `Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master`.
+To check that daemon installed correctly:
 
-## Start up a node
+```sh
+mina version
+```
 
-Run the following commands to start up a Mina node instance and connect to the `Devnet` network:
+The expected output is:
+
+```text
+Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master
+```
+
+## Start and connect a node to Devnet
+
+To start a Mina node instance and connect to the Devnet network:
 
 ```
 mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
+The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
+
 ### Docker
 
-When running your daemon using Docker, first create a directory on the host machine to mount as a volume:
+To run your daemon using Docker, create a directory on the host machine to mount as a volume:
 
-```
+```sh
 cd ~
 mkdir ~/.mina-config
 ```
 
-To produce blocks or otherwise customize the configuration for the mina daemon, create a file `~/.mina-env` containing the following:
+To produce blocks or customize the configuration for the mina daemon, create the `~/.mina-env` file:
 
-```
+```sh
 export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
 PEER_LIST_URL=https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
-Ensure to replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key, for example, `/home/ubuntu/keys/my-wallet`.
 
-If you do not intend to produce blocks then you can keep ~/.mina-env empty except for the PEER_LIST_URL.
+- Replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
 
-Now simply run the image with your ~/.mina-config and ~/.mina-env mounted into the container:
+If you do not want to produce blocks, then provide only the `PEER_LIST_URL`.
 
-```
+Now, run the image with your `~/.mina-config` and `~/.mina-env` files mounted into the container:
+
+```sh
 docker run --name mina -d \
 -p 8302:8302 \
 --restart=always \
@@ -79,6 +107,22 @@ minaprotocol/mina-daemon:1.3.1.2-25388a0-bullseye-devnet \
 daemon \
 ```
 
-Run `docker logs -f mina` to follow the logs, and if it crashes save the log output to a file with `docker logs mina > mina-log.txt`.
+## Check your connectivity
 
-Run `docker exec -it mina mina client status` to monitor connectivity to the network.
+Follow the logs:
+
+    ```sh
+    docker logs -f mina
+    ```
+
+If the node crashes, save the log output to a file:
+
+    ```sh
+    docker logs mina > mina-log.txt
+    ```
+
+Monitor connectivity to the network:
+
+    ```sh
+    docker exec -it mina mina client status
+    ```

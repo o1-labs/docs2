@@ -1,0 +1,106 @@
+---
+title: zkApps Roadmap
+hide_title: true
+sidebar_label: Roadmap
+description: zkApps roadmap, zkApp features, enhancements, and future development plans. Insights on Mina zkApp CLI, SnarkyJS, data availability, and more.
+keywords:
+  - zkapps
+  - mina protocol
+  - roadmap
+  - snarkyjs
+  - zkapps development
+  - zkapps features
+  - smart contracts
+  - zero-knowledge proofs
+---
+
+import Subhead from '@site/src/components/common/Subhead';
+
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
+
+# zkApps Roadmap
+
+<Subhead>High-level overview of features available now, next, and later</Subhead>
+
+## Now
+
+### Mina zkApp CLI
+
+- [Scaffold projects and files](/zkapps/how-to-write-a-zkapp)
+- [Example projects](/zkapps/how-to-write-a-zkapp#option-a-start-with-an-example-recommended)
+- [Deployment](/zkapps/how-to-deploy-a-zkapp)
+- [Create a project with an accompanying UI](/zkapps/how-to-write-a-zkapp-ui) — SvelteKit, NextJS, or NuxtJS
+
+
+To install the Mina zkApp CLI:
+
+```sh
+npm install -g zkapp-cli
+```
+
+To view all of the commands and start building, run `zk --help`.
+
+### SnarkyJS
+
+- [Built-in data types](/zkapps/how-to-write-a-zkapp#built-in-data-types) — Field, Bool, UInt32, UInt64, PublicKey, PrivateKey, Signature, Group, Scalar, and CircuitString
+- [Custom data types](/zkapps/how-to-write-a-zkapp#custom-data-types) — a.k.a. Struct
+- [Composability](/zkapps/how-to-write-a-zkapp#composing-zkapps)
+- [Recursion](/zkapps/snarkyjs/recursion) — a.k.a. ZkProgram
+- [Events](/zkapps/snarkyjs/events) — writing events and [reading them from an archive node](/zkapps/snarkyjs/fetch-events-and-actions)
+- [Actions & reducer](/zkapps/snarkyjs/actions-and-reducer)
+- [Encryption & decryption](/zkapps/snarkyjs-reference/modules/Encryption) — using Mina’s curves
+- [Merkle tree](/zkapps/snarkyjs/merkle-tree)
+- [Custom tokens](/zkapps/snarkyjs/custom-tokens)
+- [Using on-chain values](/zkapps/snarkyjs/on-chain-values) — a.k.a. protocol & account preconditions
+- [Local blockchain](/zkapps/snarkyjs-reference/modules/Mina#localblockchain)
+- [And more...](/zkapps/snarkyjs-reference)
+
+### Mina zkApp CLI
+
+- [Third-party fee payer accounts for deployment transactions](https://github.com/o1-labs/zkapp-cli/issues/129) can be used across multiple projects
+
+### Data Availability
+
+- [On-chain state](/zkapps/how-to-write-a-zkapp#on-chain-state) — 8 x 32 bytes of arbitrary data per zkApp account
+- [Off-chain storage](/zkapps/tutorials/offchain-storage) — for Merkle tree data; see Tutorial 6
+
+### Other
+
+- [Oracles](/zkapps/tutorials/oracle)
+
+## Next
+
+### SnarkyJS
+
+- Remove need for a dev to use a service worker for their UI — ETA H1 2023
+- [Reduce KB file size, for aspects needed for UIs](https://github.com/o1-labs/snarkyjs/issues/610) — ETA H1 2023
+- Improve error messages — ETA H1 2023
+
+### Data Availability
+
+- Off-chain storage for Merkle tree data with better guarantees — WIP; two teams awarded grants by Mina Foundation
+
+### Other
+
+- Archive Node API — Phase I; ETA Q1 2023
+
+## Later
+
+### SnarkyJS
+
+- [Dynamic array access](https://github.com/o1-labs/snarkyjs/issues/90) — awaiting support in proof system for extended lookup tables
+- [Dynamic-length strings](https://github.com/o1-labs/snarkyjs/issues/730) — awaiting dynamic array access
+- [JSON parsing](https://github.com/o1-labs/snarkyjs/issues/91) — awaiting dynamic-length strings
+- [secp256k1](https://github.com/o1-labs/snarkyjs/issues/61) — awaiting support in Kimchi
+- [keccak256](https://github.com/o1-labs/snarkyjs/issues/62) — awaiting support in Kimchi
+- [ECDSA](https://github.com/o1-labs/snarkyjs/issues/732) — awaiting support in Kimchi
+- [sha256](https://github.com/o1-labs/snarkyjs/issues/731) — awaiting support in Kimchi
+
+### Other
+
+- Archive Node API — Phase II; for serverless hosts!
+- zkOracles — with robust privacy guarantees

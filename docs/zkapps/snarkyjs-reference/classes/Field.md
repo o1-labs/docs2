@@ -1,4 +1,42 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Field
+
 # Class: Field
+
+A [Field](Field.md) is an element of a prime order [finite field](https://en.wikipedia.org/wiki/Finite_field).
+Every other provable type is built using the [Field](Field.md) type.
+
+The field is the [pasta base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) of order 2^254 + 0x224698fc094cf91b992d30ed00000001 ([ORDER](Field.md#order)).
+
+You can create a new Field from everything "field-like" (`bigint`, integer `number`, decimal `string`, `Field`).
+
+**`Example`**
+
+```
+Field(10n); // Field contruction from a big integer
+Field(100); // Field construction from a number
+Field("1"); // Field construction from a decimal string
+```
+
+**Beware**: Fields _cannot_ be constructed from fractional numbers or alphanumeric strings:
+```ts
+Field(3.141); // ERROR: Cannot convert a float to a field element
+Field("abc"); // ERROR: Invalid argument "abc"
+```
+
+Creating a Field from a negative number can result in unexpected behavior if you are not familiar with [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
+
+**`Example`**
+
+```
+const x = Field(-1); // Valid Field construction from negative number
+const y = Field(Field.ORDER - 1n); // equivalent to `x`
+```
+
+**Important**: All the functions defined on a Field (arithmetic, logic, etc.) take their arguments as "field-like". A Field itself is also defined as a "field-like" element.
+
+**`Param`**
+
+the value to convert to a [Field](Field.md)
 
 ## Table of contents
 
@@ -8,53 +46,58 @@
 
 ### Properties
 
+- [value](Field.md#value)
 - [ORDER](Field.md#order)
-- [minusOne](Field.md#minusone)
-- [one](Field.md#one)
-- [zero](Field.md#zero)
 
 ### Methods
 
+- [#compare](Field.md##compare)
 - [add](Field.md#add)
-- [assertBoolean](Field.md#assertboolean)
+- [assertBool](Field.md#assertbool)
 - [assertEquals](Field.md#assertequals)
-- [assertGt](Field.md#assertgt)
-- [assertGte](Field.md#assertgte)
-- [assertLt](Field.md#assertlt)
-- [assertLte](Field.md#assertlte)
+- [assertGreaterThan](Field.md#assertgreaterthan)
+- [assertGreaterThanOrEqual](Field.md#assertgreaterthanorequal)
+- [assertLessThan](Field.md#assertlessthan)
+- [assertLessThanOrEqual](Field.md#assertlessthanorequal)
+- [assertNotEquals](Field.md#assertnotequals)
 - [div](Field.md#div)
 - [equals](Field.md#equals)
-- [fromFields](Field.md#fromfields)
-- [gt](Field.md#gt)
-- [gte](Field.md#gte)
+- [greaterThan](Field.md#greaterthan)
+- [greaterThanOrEqual](Field.md#greaterthanorequal)
 - [inv](Field.md#inv)
 - [isConstant](Field.md#isconstant)
 - [isZero](Field.md#iszero)
-- [lt](Field.md#lt)
-- [lte](Field.md#lte)
+- [lessThan](Field.md#lessthan)
+- [lessThanOrEqual](Field.md#lessthanorequal)
 - [mul](Field.md#mul)
 - [neg](Field.md#neg)
 - [rangeCheckHelper](Field.md#rangecheckhelper)
 - [seal](Field.md#seal)
-- [sizeInFields](Field.md#sizeinfields)
 - [sqrt](Field.md#sqrt)
 - [square](Field.md#square)
 - [sub](Field.md#sub)
+- [toAuxiliary](Field.md#toauxiliary)
 - [toBigInt](Field.md#tobigint)
 - [toBits](Field.md#tobits)
 - [toConstant](Field.md#toconstant)
 - [toFields](Field.md#tofields)
 - [toJSON](Field.md#tojson)
 - [toString](Field.md#tostring)
+- [#checkBitLength](Field.md##checkbitlength)
+- [#isField](Field.md##isfield)
+- [#toConst](Field.md##toconst)
+- [#toVar](Field.md##tovar)
 - [check](Field.md#check)
+- [from](Field.md#from)
 - [fromBits](Field.md#frombits)
 - [fromBytes](Field.md#frombytes)
-- [fromFields](Field.md#fromfields-1)
+- [fromFields](Field.md#fromfields)
 - [fromJSON](Field.md#fromjson)
 - [random](Field.md#random)
+- [readBytes](Field.md#readbytes)
 - [sizeInBytes](Field.md#sizeinbytes)
-- [sizeInFields](Field.md#sizeinfields-1)
-- [toAuxiliary](Field.md#toauxiliary)
+- [sizeInFields](Field.md#sizeinfields)
+- [toAuxiliary](Field.md#toauxiliary-1)
 - [toBytes](Field.md#tobytes)
 - [toFields](Field.md#tofields-1)
 - [toInput](Field.md#toinput)
@@ -66,119 +109,124 @@
 
 • **new Field**(`x`)
 
-Coerces anything field-like to a [Field](Field.md).
+Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to a Field.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| `boolean` \| [`Field`](Field.md) |
+| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
 
 #### Defined in
 
-[snarky.d.ts:53](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L53)
+[lib/field.ts:133](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L133)
 
 ## Properties
 
+### value
+
+• **value**: [`FieldVar`](../modules.md#fieldvar-1)
+
+#### Defined in
+
+[lib/field.ts:122](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L122)
+
+___
+
 ### ORDER
 
-▪ `Static` **ORDER**: `bigint`
+▪ `Static` **ORDER**: `bigint` = `Fp.modulus`
 
-The field order as a `bigint`.
-
-#### Defined in
-
-[snarky.d.ts:314](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L314)
-
-___
-
-### minusOne
-
-▪ `Static` **minusOne**: [`Field`](Field.md)
-
-**`Deprecated`**
-
-Static constant values on Field are deprecated in favor of using the constructor `Field(-1)`.
-
-The number -1 as a [[`Field`]].
+The order of the pasta curve that [Field](Field.md) type build on as a `bigint`.
+Order of the [Field](Field.md) is 28948022309329048855892746252171976963363056481941560715954676764349967630337.
 
 #### Defined in
 
-[snarky.d.ts:310](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L310)
-
-___
-
-### one
-
-▪ `Static` **one**: [`Field`](Field.md)
-
-**`Deprecated`**
-
-Static constant values on Field are deprecated in favor of using the constructor `Field(1)`.
-
-The number 1 as a [[`Field`]].
-
-#### Defined in
-
-[snarky.d.ts:298](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L298)
-
-___
-
-### zero
-
-▪ `Static` **zero**: [`Field`](Field.md)
-
-**`Deprecated`**
-
-Static constant values on Field are deprecated in favor of using the constructor `Field(0)`.
-
-The number 0 as a [[`Field`]].
-
-#### Defined in
-
-[snarky.d.ts:304](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L304)
+[lib/field.ts:128](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L128)
 
 ## Methods
+
+### #compare
+
+▸ `Private` **#compare**(`y`): `Object`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | [`FieldVar`](../modules.md#fieldvar-1) |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `less` | [`Bool`](Bool.md) |
+| `lessOrEqual` | [`Bool`](Bool.md) |
+
+#### Defined in
+
+[lib/field.ts:602](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L602)
+
+___
 
 ### add
 
 ▸ **add**(`y`): [`Field`](Field.md)
 
-Adds this [Field](Field.md) element to another to a [Field](Field.md) element.
+Add a "field-like" value to this [Field](Field.md) element.
+
+**`Example`**
 
 ```ts
-let a = Field(3);
-let sum = a.add(5)
+const x = Field(3);
+const sum = x.add(5);
+
+sum.assertEquals(Field(8));
+```
+
+**Warning**: This is a modular addition in the pasta field.
+
+**`Example`**
+
+```ts
+const x = Field(1);
+const sum = x.add(Field(-7));
+
+// If you try to print sum - `console.log(sum.toBigInt())` - you will realize that it prints a very big integer because this is modular arithmetic, and 1 + (-7) circles around the field to become p - 6.
+// You can use the reverse operation of addition (substraction) to prove the sum is calculated correctly.
+
+sum.sub(x).assertEquals(Field(-7));
+sum.sub(Field(-7)).assertEquals(x);
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element equivalent to the modular addition of the two value.
+
 #### Defined in
 
-[snarky.d.ts:86](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L86)
+[lib/field.ts:300](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L300)
 
 ___
 
-### assertBoolean
+### assertBool
 
-▸ **assertBoolean**(`message?`): `void`
+▸ **assertBool**(`message?`): `void`
 
-Assert that this [Field](Field.md) is either 0 or 1.
+Assert that this [Field](Field.md) is equal to 1 or 0 as a "field-like" value.
+Calling this function is equivalent to `Bool.or(Field(...).equals(1), Field(...).equals(0)).assertEquals(Bool(true))`.
 
-```ts
-Field(0).assertBoolean();
-```
-
-This function can only be called inside a checked computation, like a
-SmartContract method, and throws an error if the assertion fails.
+**Important**: If an assertion fails, the code throws an error.
 
 #### Parameters
 
@@ -192,7 +240,7 @@ SmartContract method, and throws an error if the assertion fails.
 
 #### Defined in
 
-[snarky.d.ts:251](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L251)
+[lib/field.ts:866](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L866)
 
 ___
 
@@ -200,18 +248,17 @@ ___
 
 ▸ **assertEquals**(`y`, `message?`): `void`
 
-Assert that this [Field](Field.md) equals another Field-like value.
-Throws an error if the assertion fails.
+Assert that this [Field](Field.md) is equal another "field-like" value.
+Calling this function is equivalent to `Field(...).equals(...).assertEquals(Bool(true))`.
+See [equals](Field.md#equals) for more details.
 
-```ts
-Field(1).assertEquals(1);
-```
+**Important**: If an assertion fails, the code throws an error.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 | `message?` | `string` |
 
 #### Returns
@@ -220,28 +267,28 @@ Field(1).assertEquals(1);
 
 #### Defined in
 
-[snarky.d.ts:240](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L240)
+[lib/field.ts:258](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L258)
 
 ___
 
-### assertGt
+### assertGreaterThan
 
-▸ **assertGt**(`y`, `message?`): `void`
+▸ **assertGreaterThan**(`y`, `message?`): `void`
 
-Assert that this [Field](Field.md) is greater than another Field-like value.
+Assert that this [Field](Field.md) is greater than another "field-like" value.
+Calling this function is equivalent to `Field(...).greaterThan(...).assertEquals(Bool(true))`.
+See [greaterThan](Field.md#greaterthan) for more details.
 
-```ts
-Field(1).assertGt(0);
-```
+**Important**: If an assertion fails, the code throws an error.
 
-This function can only be called inside a checked computation, like a
-SmartContract method, and causes it to fail if the assertion fails.
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 | `message?` | `string` |
 
 #### Returns
@@ -250,28 +297,28 @@ SmartContract method, and causes it to fail if the assertion fails.
 
 #### Defined in
 
-[snarky.d.ts:219](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L219)
+[lib/field.ts:807](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L807)
 
 ___
 
-### assertGte
+### assertGreaterThanOrEqual
 
-▸ **assertGte**(`y`, `message?`): `void`
+▸ **assertGreaterThanOrEqual**(`y`, `message?`): `void`
 
-Assert that this [Field](Field.md) is greater than or equal to another Field-like value.
+Assert that this [Field](Field.md) is greater than or equal to another "field-like" value.
+Calling this function is equivalent to `Field(...).greaterThanOrEqual(...).assertEquals(Bool(true))`.
+See [greaterThanOrEqual](Field.md#greaterthanorequal) for more details.
 
-```ts
-Field(1).assertGte(0);
-```
+**Important**: If an assertion fails, the code throws an error.
 
-This function can only be called inside a checked computation, like a
-SmartContract method, and causes it to fail if the assertion fails.
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 | `message?` | `string` |
 
 #### Returns
@@ -280,28 +327,28 @@ SmartContract method, and causes it to fail if the assertion fails.
 
 #### Defined in
 
-[snarky.d.ts:230](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L230)
+[lib/field.ts:824](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L824)
 
 ___
 
-### assertLt
+### assertLessThan
 
-▸ **assertLt**(`y`, `message?`): `void`
+▸ **assertLessThan**(`y`, `message?`): `void`
 
-Assert that this [Field](Field.md) is lower than another Field-like value.
+Assert that this [Field](Field.md) is less than another "field-like" value.
+Calling this function is equivalent to `Field(...).lessThan(...).assertEquals(Bool(true))`.
+See [lessThan](Field.md#lessthan) for more details.
 
-```ts
-Field(1).assertLt(2);
-```
+**Important**: If an assertion fails, the code throws an error.
 
-This function can only be called inside a checked computation, like a
-SmartContract method, and causes it to fail if the assertion fails.
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 | `message?` | `string` |
 
 #### Returns
@@ -310,28 +357,28 @@ SmartContract method, and causes it to fail if the assertion fails.
 
 #### Defined in
 
-[snarky.d.ts:197](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L197)
+[lib/field.ts:751](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L751)
 
 ___
 
-### assertLte
+### assertLessThanOrEqual
 
-▸ **assertLte**(`y`, `message?`): `void`
+▸ **assertLessThanOrEqual**(`y`, `message?`): `void`
 
-Assert that this [Field](Field.md) is lower than or equal to another Field-like value.
+Assert that this [Field](Field.md) is less than or equal to another "field-like" value.
+Calling this function is equivalent to `Field(...).lessThanOrEqual(...).assertEquals(Bool(true))`.
+See [lessThanOrEqual](Field.md#lessthanorequal) for more details.
 
-```ts
-Field(1).assertLte(2);
-```
+**Important**: If an assertion fails, the code throws an error.
 
-This function can only be called inside a checked computation, like a
-SmartContract method, and causes it to fail if the assertion fails.
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 | `message?` | `string` |
 
 #### Returns
@@ -340,7 +387,38 @@ SmartContract method, and causes it to fail if the assertion fails.
 
 #### Defined in
 
-[snarky.d.ts:208](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L208)
+[lib/field.ts:779](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L779)
+
+___
+
+### assertNotEquals
+
+▸ **assertNotEquals**(`y`, `message?`): `void`
+
+Assert that this [Field](Field.md) does not equal another field-like value.
+
+Note: This uses fewer constraints than `x.equals(y).assertFalse()`.
+
+**`Example`**
+
+```ts
+x.assertNotEquals(0, "expect x to be non-zero");
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+| `message?` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/field.ts:841](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L841)
 
 ___
 
@@ -348,21 +426,50 @@ ___
 
 ▸ **div**(`y`): [`Field`](Field.md)
 
-Divides this [Field](Field.md) element through another coercible to a field.
+Divide another "field-like" value through this [Field](Field.md).
+
+Proves that the denominator is non-zero, or throws a "Division by zero" error.
+
+**`Example`**
+
+```ts
+const x = Field(6);
+const quotient = x.div(Field(3));
+
+quotient.assertEquals(Field(2));
+```
+
+**Warning**: This is a modular division in the pasta field. You can think this as the reverse operation of modular multiplication.
+
+**`Example`**
+
+```ts
+const x = Field(2);
+const y = Field(5);
+
+const quotient = x.div(y);
+
+// If you try to print quotient - `console.log(quotient.toBigInt())` - you will realize that it prints a very big integer because this is a modular inverse.
+// You can use the reverse operation of division (multiplication) to prove the quotient is calculated correctly.
+
+quotient.mul(y).assertEquals(x);
+```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element equivalent to the modular division of the two value.
+
 #### Defined in
 
-[snarky.d.ts:101](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L101)
+[lib/field.ts:470](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L470)
 
 ___
 
@@ -370,102 +477,114 @@ ___
 
 ▸ **equals**(`y`): [`Bool`](Bool.md)
 
-Check if this [Field](Field.md) equals another [Field](Field.md)-like value.
-Returns a [Bool](Bool.md).
+Check if this [Field](Field.md) is equal another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
+**`Example`**
 
 ```ts
-Field(2).equals(2); // Bool(true)
+Field(5).equals(5).assertEquals(Bool(true));
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Bool`](Bool.md)
 
-#### Defined in
-
-[snarky.d.ts:273](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L273)
-
-___
-
-### fromFields
-
-▸ **fromFields**(`fields`): [`Field`](Field.md)
-
-Creates a data structure from an array of serialized [Field](Field.md) elements.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Field`](Field.md)
+A [Bool](Bool.md) representing if this [Field](Field.md) is equal another "field-like" value.
 
 #### Defined in
 
-[snarky.d.ts:351](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L351)
+[lib/field.ts:582](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L582)
 
 ___
 
-### gt
+### greaterThan
 
-▸ **gt**(`y`): [`Bool`](Bool.md)
+▸ **greaterThan**(`y`): [`Bool`](Bool.md)
 
-Check if this [Field](Field.md) is greater than another Field-like value.
-Returns a [Bool](Bool.md).
+Check if this [Field](Field.md) is greater than another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
+**`Example`**
 
 ```ts
-Field(2).gt(1); // Bool(true)
+Field(5).greaterThan(3).assertEquals(Bool(true));
+```
+
+**Warning**: Comparison methods currently only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
+
+**Warning**: As this method compares the bigint value of a [Field](Field.md), it can result in unexpected behaviour when used with negative inputs or modular division.
+
+**`Example`**
+
+```ts
+Field(1).div(Field(2)).greaterThan(Field(1).div(Field(3))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Bool`](Bool.md)
 
+A [Bool](Bool.md) representing if this [Field](Field.md) is greater than another "field-like" value.
+
 #### Defined in
 
-[snarky.d.ts:175](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L175)
+[lib/field.ts:705](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L705)
 
 ___
 
-### gte
+### greaterThanOrEqual
 
-▸ **gte**(`y`): [`Bool`](Bool.md)
+▸ **greaterThanOrEqual**(`y`): [`Bool`](Bool.md)
 
-Check if this [Field](Field.md) is greater than or equal to another Field-like value.
-Returns a [Bool](Bool.md).
+Check if this [Field](Field.md) is greater than or equal another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
+**`Example`**
 
 ```ts
-Field(2).gte(1); // Bool(true)
+Field(3).greaterThanOrEqual(3).assertEquals(Bool(true));
+```
+
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
+
+**Warning**: As this method compares the bigint value of a [Field](Field.md), it can result in unexpected behaviour when used with negative inputs or modular division.
+
+**`Example`**
+
+```ts
+Field(1).div(Field(2)).greaterThanOrEqual(Field(1).div(Field(3))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Bool`](Bool.md)
 
+A [Bool](Bool.md) representing if this [Field](Field.md) is greater than or equal another "field-like" value.
+
 #### Defined in
 
-[snarky.d.ts:184](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L184)
+[lib/field.ts:733](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L733)
 
 ___
 
@@ -473,12 +592,20 @@ ___
 
 ▸ **inv**(): [`Field`](Field.md)
 
-Inverts this [Field](Field.md) element.
+[Modular inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse) of this [Field](Field.md) element.
+Equivalent to 1 divided by this [Field](Field.md), in the sense of modular arithmetic.
 
-```typescript
-const invX = x.inv();
-invX.assertEquals(Field(1).div(x));
+Proves that this Field is non-zero, or throws a "Division by zero" error.
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+const inverse = someField.inv();
+inverse.assertEquals(Field(1).div(example)); // This statement is always true regardless of the value of `someField`
 ```
+
+**Warning**: This is a modular inverse. See [div](Field.md#div) method for more details.
 
 #### Returns
 
@@ -488,23 +615,40 @@ A [Field](Field.md) element that is equivalent to one divided by this element.
 
 #### Defined in
 
-[snarky.d.ts:76](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L76)
+[lib/field.ts:422](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L422)
 
 ___
 
 ### isConstant
 
-▸ **isConstant**(): `boolean`
+▸ **isConstant**(): this is Object
 
-Checks whether this is a hard-coded constant in the Circuit.
+Check whether this [Field](Field.md) element is a hard-coded constant in the constraint system.
+If a [Field](Field.md) is constructed outside a zkApp method, it is a constant.
+
+**`Example`**
+
+```ts
+console.log(Field(42).isConstant()); // true
+```
+
+**`Example`**
+
+```ts
+\@method myMethod(x: Field) {
+   console.log(x.isConstant()); // false
+}
+```
 
 #### Returns
 
-`boolean`
+this is Object
+
+A `boolean` showing if this [Field](Field.md) is a constant or not.
 
 #### Defined in
 
-[snarky.d.ts:283](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L283)
+[lib/field.ts:189](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L189)
 
 ___
 
@@ -512,67 +656,101 @@ ___
 
 ▸ **isZero**(): [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+use `x.equals(0)` which is equivalent
+
 #### Returns
 
 [`Bool`](Bool.md)
 
 #### Defined in
 
-[snarky.d.ts:252](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L252)
+[lib/field.ts:542](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L542)
 
 ___
 
-### lt
+### lessThan
 
-▸ **lt**(`y`): [`Bool`](Bool.md)
+▸ **lessThan**(`y`): [`Bool`](Bool.md)
 
-Check if this [Field](Field.md) is lower than another Field-like value.
-Returns a [Bool](Bool.md).
+Check if this [Field](Field.md) is less than another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used prove to the validity of this statement.
+
+**`Example`**
 
 ```ts
-Field(2).lt(3); // Bool(true)
+Field(2).lessThan(3).assertEquals(Bool(true));
+```
+
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
+
+**Warning**: As this method compares the bigint value of a [Field](Field.md), it can result in unexpected behavior when used with negative inputs or modular division.
+
+**`Example`**
+
+```ts
+Field(1).div(Field(3)).lessThan(Field(1).div(Field(2))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Bool`](Bool.md)
 
+A [Bool](Bool.md) representing if this [Field](Field.md) is less than another "field-like" value.
+
 #### Defined in
 
-[snarky.d.ts:157](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L157)
+[lib/field.ts:645](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L645)
 
 ___
 
-### lte
+### lessThanOrEqual
 
-▸ **lte**(`y`): [`Bool`](Bool.md)
+▸ **lessThanOrEqual**(`y`): [`Bool`](Bool.md)
 
-Check if this [Field](Field.md) is lower than or equal to another Field-like value.
-Returns a [Bool](Bool.md).
+Check if this [Field](Field.md) is less than or equal to another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
+**`Example`**
 
 ```ts
-Field(2).lte(3); // Bool(true)
+Field(3).lessThanOrEqual(3).assertEquals(Bool(true));
+```
+
+**Warning**: Comparison methods only support Field elements of size <= 253 bits in provable code.
+The method will throw if one of the inputs exceeds 253 bits.
+
+**Warning**: As this method compares the bigint value of a [Field](Field.md), it can result in unexpected behaviour when used with negative inputs or modular division.
+
+**`Example`**
+
+```ts
+Field(1).div(Field(3)).lessThanOrEqual(Field(1).div(Field(2))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Bool`](Bool.md)
 
+A [Bool](Bool.md) representing if this [Field](Field.md) is less than or equal another "field-like" value.
+
 #### Defined in
 
-[snarky.d.ts:166](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L166)
+[lib/field.ts:675](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L675)
 
 ___
 
@@ -580,21 +758,32 @@ ___
 
 ▸ **mul**(`y`): [`Field`](Field.md)
 
-Multiplies this [Field](Field.md) element with another coercible to a field.
+Multiply another "field-like" value with this [Field](Field.md) element.
+
+**`Example`**
+
+```ts
+const x = Field(3);
+const product = x.mul(Field(5));
+
+product.assertEquals(Field(15));
+```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element equivalent to the modular difference of the two value.
+
 #### Defined in
 
-[snarky.d.ts:96](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L96)
+[lib/field.ts:383](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L383)
 
 ___
 
@@ -602,41 +791,62 @@ ___
 
 ▸ **neg**(): [`Field`](Field.md)
 
-Negates this [Field](Field.md). This is equivalent to multiplying the [Field](Field.md)
-by -1.
+Negate a [Field](Field.md). This is equivalent to multiplying the [Field](Field.md) by -1.
 
-```typescript
+**`Example`**
+
+```ts
 const negOne = Field(1).neg();
 negOne.assertEquals(-1);
 ```
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+someField.neg().assertEquals(someField.mul(Field(-1))); // This statement is always true regardless of the value of `someField`
+```
+
+**Warning**: This is a modular negation. For details, see the [sub](Field.md#sub) method.
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element that is equivalent to the element multiplied by -1.
+
 #### Defined in
 
-[snarky.d.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L64)
+[lib/field.ts:328](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L328)
 
 ___
 
 ### rangeCheckHelper
 
-▸ **rangeCheckHelper**(`numBits`): [`Field`](Field.md)
+▸ **rangeCheckHelper**(`length`): [`Field`](Field.md)
+
+Create a new [Field](Field.md) element from the first `length` bits of this [Field](Field.md) element.
+
+The `length` has to be a multiple of 16, and has to be between 0 and 255, otherwise the method throws.
+
+As [Field](Field.md) elements are represented using [little endian binary representation](https://en.wikipedia.org/wiki/Endianness),
+the resulting [Field](Field.md) element will equal the original one if it fits in `length` bits.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `numBits` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `length` | `number` | The number of bits to take from this [Field](Field.md) element. |
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element that is equal to the `length` of this [Field](Field.md) element.
+
 #### Defined in
 
-[snarky.d.ts:278](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L278)
+[lib/field.ts:958](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L958)
 
 ___
 
@@ -644,29 +854,23 @@ ___
 
 ▸ **seal**(): [`Field`](Field.md)
 
+**Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
+
+In SnarkyJS, addition and scaling (multiplication of variables by a constant) of variables is represented as an AST - [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree). For example, the expression `x.add(y).mul(2)` is represented as `Scale(2, Add(x, y))`.
+
+ A new internal variable is created only when the variable is needed in a multiplicative or any higher level constraint (for example multiplication of two [Field](Field.md) elements) to represent the operation.
+
+The `seal()` function tells SnarkyJS to stop building an AST and create a new variable right away.
+
 #### Returns
 
 [`Field`](Field.md)
 
-#### Defined in
-
-[snarky.d.ts:276](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L276)
-
-___
-
-### sizeInFields
-
-▸ **sizeInFields**(): `number`
-
-Returns the size of this type.
-
-#### Returns
-
-`number`
+A [Field](Field.md) element that is equal to the result of AST that was previously on this [Field](Field.md) element.
 
 #### Defined in
 
-[snarky.d.ts:141](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L141)
+[lib/field.ts:986](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L986)
 
 ___
 
@@ -674,19 +878,30 @@ ___
 
 ▸ **sqrt**(): [`Field`](Field.md)
 
-Square roots this [Field](Field.md) element.
+Take the square root of this [Field](Field.md) element.
 
-```typescript
-x.square().sqrt().assertEquals(x);
+Proves that the Field element has a square root in the finite field, or throws if it doesn't.
+
+**`Example`**
+
+```ts
+let z = x.sqrt();
+z.mul(z).assertEquals(x); // true for every `x`
 ```
+
+**Warning**: This is a modular square root, which is any number z that satisfies z*z = x (mod p).
+Note that, if a square root z exists, there also exists a second one, -z (which is different if z != 0).
+Therefore, this method leaves an adversarial prover the choice between two different values to return.
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element equivalent to the square root of the [Field](Field.md) element.
+
 #### Defined in
 
-[snarky.d.ts:120](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L120)
+[lib/field.ts:520](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L520)
 
 ___
 
@@ -694,20 +909,28 @@ ___
 
 ▸ **square**(): [`Field`](Field.md)
 
-Squares this [Field](Field.md) element.
+Square this [Field](Field.md) element.
 
-```typescript
-const x2 = x.square();
-x2.assertEquals(x.mul(x));
+**`Example`**
+
+```ts
+const someField = Field(7);
+const square = someField.square();
+
+square.assertEquals(someField.mul(someField)); // This statement is always true regardless of the value of `someField`
 ```
+
+** Warning: This is a modular multiplication. See `mul()` method for more details.
 
 #### Returns
 
 [`Field`](Field.md)
 
+A [Field](Field.md) element equivalent to the multiplication of the [Field](Field.md) element with itself.
+
 #### Defined in
 
-[snarky.d.ts:111](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L111)
+[lib/field.ts:490](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L490)
 
 ___
 
@@ -715,307 +938,55 @@ ___
 
 ▸ **sub**(`y`): [`Field`](Field.md)
 
-Subtracts another [Field](Field.md)-like element from this one.
+Substract another "field-like" value from this [Field](Field.md) element.
+
+**`Example`**
+
+```ts
+const x = Field(3);
+const difference = x.sub(5);
+
+difference.assertEquals(Field(-2));
+```
+
+**Warning**: This is a modular substraction in the pasta field.
+
+**`Example`**
+
+```ts
+const x = Field(1);
+const difference = x.sub(Field(2));
+
+// If you try to print difference - `console.log(difference.toBigInt())` - you will realize that it prints a very big integer because this is modular arithmetic, and 1 - 2 circles around the field to become p - 1.
+// You can use the reverse operation of substraction (addition) to prove the difference is calculated correctly.
+difference.add(Field(2)).assertEquals(x);
+```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `y` | `string` \| `number` \| `boolean` \| [`Field`](Field.md) |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
 
 #### Returns
 
 [`Field`](Field.md)
 
-#### Defined in
-
-[snarky.d.ts:91](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L91)
-
-___
-
-### toBigInt
-
-▸ **toBigInt**(): `bigint`
-
-Serialize this instance of a [Field](Field.md) to a bigint.
-This operation does NOT affect the circuit and can't be used to prove anything about the bigint representation of the Field.
-
-#### Returns
-
-`bigint`
+A [Field](Field.md) element equivalent to the modular difference of the two value.
 
 #### Defined in
 
-[snarky.d.ts:131](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L131)
-
-___
-
-### toBits
-
-▸ **toBits**(): [`Bool`](Bool.md)[]
-
-Little endian binary representation of the field element.
-
-#### Returns
-
-[`Bool`](Bool.md)[]
-
-#### Defined in
-
-[snarky.d.ts:257](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L257)
-
-▸ **toBits**(`length`): [`Bool`](Bool.md)[]
-
-Little endian binary representation of the field element.
-Fails if the field element cannot fit in `length` bits.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `length` | `number` |
-
-#### Returns
-
-[`Bool`](Bool.md)[]
-
-#### Defined in
-
-[snarky.d.ts:263](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L263)
-
-___
-
-### toConstant
-
-▸ **toConstant**(): [`Field`](Field.md)
-
-Returns a constant.
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:288](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L288)
-
-___
-
-### toFields
-
-▸ **toFields**(): [`Field`](Field.md)[]
-
-Serializes this data structure into [Field](Field.md) elements.
-
-#### Returns
-
-[`Field`](Field.md)[]
-
-#### Defined in
-
-[snarky.d.ts:146](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L146)
-
-___
-
-### toJSON
-
-▸ **toJSON**(): `string`
-
-Serialize this instance of a [Field](Field.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:136](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L136)
-
-___
-
-### toString
-
-▸ **toString**(): `string`
-
-Serialize the [Field](Field.md) to a string, e.g. for printing.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[snarky.d.ts:126](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L126)
-
-___
-
-### check
-
-▸ `Static` **check**(`x`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | [`Field`](Field.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[snarky.d.ts:409](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L409)
-
-___
-
-### fromBits
-
-▸ `Static` **fromBits**(`x`): [`Field`](Field.md)
-
-Converts a bit array into a field element (little endian)
-Fails if the field element cannot fit given too many bits.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | (`boolean` \| [`Bool`](Bool.md))[] |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:385](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L385)
-
-___
-
-### fromBytes
-
-▸ `Static` **fromBytes**(`bytes`): [`Field`](Field.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `bytes` | `number`[] |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:414](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L414)
-
-___
-
-### fromFields
-
-▸ `Static` **fromFields**(`fields`): [`Field`](Field.md)
-
-Creates a data structure from an array of serialized [Field](Field.md) elements.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:356](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L356)
-
-___
-
-### fromJSON
-
-▸ `Static` **fromJSON**(`x`): [`Field`](Field.md)
-
-Deserialize a JSON structure into a [Field](Field.md).
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` |
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:407](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L407)
-
-___
-
-### random
-
-▸ `Static` **random**(): [`Field`](Field.md)
-
-A random field element.
-
-#### Returns
-
-[`Field`](Field.md)
-
-#### Defined in
-
-[snarky.d.ts:319](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L319)
-
-___
-
-### sizeInBytes
-
-▸ `Static` **sizeInBytes**(): `number`
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[snarky.d.ts:415](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L415)
-
-___
-
-### sizeInFields
-
-▸ `Static` **sizeInFields**(): `number`
-
-Returns the size of this type.
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[snarky.d.ts:361](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L361)
+[lib/field.ts:364](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L364)
 
 ___
 
 ### toAuxiliary
 
-▸ `Static` **toAuxiliary**(`x?`): []
+▸ **toAuxiliary**(): []
 
-Static method to serialize a [Field](Field.md) into its auxiliary data.
+This function is the implementation of [toAuxiliary](../interfaces/Provable.md#toauxiliary) for the [Field](Field.md) type.
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x?` | [`Field`](Field.md) |
+As the primitive [Field](Field.md) type has no auxiliary data associated with it, this function will always return an empty array.
 
 #### Returns
 
@@ -1023,13 +994,522 @@ Static method to serialize a [Field](Field.md) into its auxiliary data.
 
 #### Defined in
 
-[snarky.d.ts:370](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L370)
+[lib/field.ts:1094](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1094)
+
+___
+
+### toBigInt
+
+▸ **toBigInt**(): `bigint`
+
+Serialize the [Field](Field.md) to a bigint, e.g. for printing. Trying to print a [Field](Field.md) without this function will directly stringify the Field object, resulting in unreadable output.
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the bigint representation of the [Field](Field.md). Use the operation only during debugging.
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+console.log(someField.toBigInt());
+```
+
+#### Returns
+
+`bigint`
+
+A bigint equivalent to the bigint representation of the Field.
+
+#### Defined in
+
+[lib/field.ts:226](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L226)
+
+___
+
+### toBits
+
+▸ **toBits**(`length?`): [`Bool`](Bool.md)[]
+
+Returns an array of [Bool](Bool.md) elements representing [little endian binary representation](https://en.wikipedia.org/wiki/Endianness) of this [Field](Field.md) element.
+
+If you use the optional `length` argument, proves that the field element fits in `length` bits.
+The `length` has to be between 0 and 255 and the method throws if it isn't.
+
+**Warning**: The cost of this operation in a zk proof depends on the `length` you specify,
+which by default is 255 bits. Prefer to pass a smaller `length` if possible.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `length?` | `number` | the number of bits to fit the element. If the element does not fit in `length` bits, the functions throws an error. |
+
+#### Returns
+
+[`Bool`](Bool.md)[]
+
+An array of [Bool](Bool.md) element representing little endian binary representation of this [Field](Field.md).
+
+#### Defined in
+
+[lib/field.ts:903](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L903)
+
+___
+
+### toConstant
+
+▸ **toConstant**(): [`ConstantField`](../modules.md#constantfield)
+
+Create a [Field](Field.md) element equivalent to this [Field](Field.md) element's value,
+but is a constant.
+See [isConstant](Field.md#isconstant) for more information about what is a constant [Field](Field.md).
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+someField.toConstant().assertEquals(someField); // Always true
+```
+
+#### Returns
+
+[`ConstantField`](../modules.md#constantfield)
+
+A constant [Field](Field.md) element equivalent to this [Field](Field.md) element.
+
+#### Defined in
+
+[lib/field.ts:206](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L206)
+
+___
+
+### toFields
+
+▸ **toFields**(): [`Field`](Field.md)[]
+
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) for the [Field](Field.md) type.
+
+The result will be always an array of length 1, where the first and only element equals the [Field](Field.md) itself.
+
+#### Returns
+
+[`Field`](Field.md)[]
+
+A [Field](Field.md) array of length 1 created from this [Field](Field.md).
+
+#### Defined in
+
+[lib/field.ts:1085](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1085)
+
+___
+
+### toJSON
+
+▸ **toJSON**(): `string`
+
+Serialize the [Field](Field.md) to a JSON string, e.g. for printing. Trying to print a [Field](Field.md) without this function will directly stringify the Field object, resulting in unreadable output.
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the JSON string representation of the [Field](Field.md). Use the operation only during debugging.
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+console.log(someField.toJSON());
+```
+
+#### Returns
+
+`string`
+
+A string equivalent to the JSON representation of the [Field](Field.md).
+
+#### Defined in
+
+[lib/field.ts:1113](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1113)
+
+___
+
+### toString
+
+▸ **toString**(): `string`
+
+Serialize the [Field](Field.md) to a string, e.g. for printing. Trying to print a [Field](Field.md) without this function will directly stringify the Field object, resulting in unreadable output.
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the [Field](Field.md). Use the operation only during debugging.
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+console.log(someField.toString());
+```
+
+#### Returns
+
+`string`
+
+A string equivalent to the string representation of the Field.
+
+#### Defined in
+
+[lib/field.ts:244](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L244)
+
+___
+
+### #checkBitLength
+
+▸ `Static` `Private` **#checkBitLength**(`name`, `length`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+| `length` | `number` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/field.ts:881](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L881)
+
+___
+
+### #isField
+
+▸ `Static` `Private` **#isField**(`x`): x is Field
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
+
+#### Returns
+
+x is Field
+
+#### Defined in
+
+[lib/field.ts:153](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L153)
+
+___
+
+### #toConst
+
+▸ `Static` `Private` **#toConst**(`x`): `Uint8Array`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| [`ConstantField`](../modules.md#constantfield) |
+
+#### Returns
+
+`Uint8Array`
+
+#### Defined in
+
+[lib/field.ts:158](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L158)
+
+___
+
+### #toVar
+
+▸ `Static` `Private` **#toVar**(`x`): [`FieldVar`](../modules.md#fieldvar-1)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`FieldVar`](../modules.md#fieldvar-1)
+
+#### Defined in
+
+[lib/field.ts:162](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L162)
+
+___
+
+### check
+
+▸ `Static` **check**(): `void`
+
+This function is the implementation of [check](../interfaces/Provable.md#check) in [Field](Field.md) type.
+
+As any field element can be a [Field](Field.md), this function does not create any assertions, so it does nothing.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/field.ts:1076](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1076)
+
+___
+
+### from
+
+▸ `Static` **from**(`x`): [`Field`](Field.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`Field`](Field.md)
+
+#### Defined in
+
+[lib/field.ts:166](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L166)
+
+___
+
+### fromBits
+
+▸ `Static` **fromBits**(`bits`): [`Field`](Field.md)
+
+Convert a bit array into a [Field](Field.md) element using [little endian binary representation](https://en.wikipedia.org/wiki/Endianness)
+
+The method throws if the given bits do not fit in a single Field element. A Field element can be at most 255 bits.
+
+**Important**: If the given `bytes` array is an array of `booleans` or [Bool](Bool.md) elements that all are `constant`, the resulting [Field](Field.md) element will be a constant as well. Or else, if the given array is a mixture of constants and variables of [Bool](Bool.md) type, the resulting [Field](Field.md) will be a variable as well.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `bits` | (`boolean` \| [`Bool`](Bool.md))[] |
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element matching the [little endian binary representation](https://en.wikipedia.org/wiki/Endianness) of the given `bytes` array.
+
+#### Defined in
+
+[lib/field.ts:929](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L929)
+
+___
+
+### fromBytes
+
+▸ `Static` **fromBytes**(`bytes`): [`Field`](Field.md)
+
+Coerce a new [Field](Field.md) element using the [little-endian](https://en.wikipedia.org/wiki/Endianness) representation of the given `bytes` array.
+Note that the given `bytes` array may have at most 32 elements as the [Field](Field.md) is a `finite-field` in the order of [ORDER](Field.md#order).
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the byte representation of the [Field](Field.md).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bytes` | `number`[] | The bytes array to coerce the [Field](Field.md) from. |
+
+#### Returns
+
+[`Field`](Field.md)
+
+A new [Field](Field.md) element created using the [little-endian](https://en.wikipedia.org/wiki/Endianness) representation of the given `bytes` array.
+
+#### Defined in
+
+[lib/field.ts:1200](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1200)
+
+___
+
+### fromFields
+
+▸ `Static` **fromFields**(`fields`): [`Field`](Field.md)
+
+Implementation of [fromFields](../interfaces/Provable.md#fromfields) for the [Field](Field.md) type.
+
+**Warning**: This function is designed for internal use. It is not intended to be used by a zkApp developer.
+
+Creates a [Field](Field.md) from an array of Fields of length 1.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fields` | [`Field`](Field.md)[] | an array of length 1 serialized from [Field](Field.md) elements. |
+
+#### Returns
+
+[`Field`](Field.md)
+
+The first [Field](Field.md) element of the given array.
+
+#### Defined in
+
+[lib/field.ts:1065](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1065)
+
+___
+
+### fromJSON
+
+▸ `Static` **fromJSON**(`json`): [`Field`](Field.md)
+
+Deserialize a JSON string containing a "field-like" value into a [Field](Field.md) element.
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the [Field](Field.md).
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `json` | `string` |
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) coerced from the given JSON string.
+
+#### Defined in
+
+[lib/field.ts:1145](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1145)
+
+___
+
+### random
+
+▸ `Static` **random**(): [`Field`](Field.md)
+
+A random [Field](Field.md) element.
+
+**`Example`**
+
+```ts
+console.log(Field.random().toBigInt()); // Run this code twice!
+```
+
+#### Returns
+
+[`Field`](Field.md)
+
+A random [Field](Field.md) element.
+
+#### Defined in
+
+[lib/field.ts:1004](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1004)
+
+___
+
+### readBytes
+
+▸ `Static` **readBytes**<`N`\>(`bytes`, `offset`): [value: Field, offset: number]
+
+Part of the `Binable` interface.
+
+**Warning**: This function is for internal use. It is not intended to be used by a zkApp developer.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `N` | extends `number` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `bytes` | `number`[] |
+| `offset` | `NonNegativeInteger`<`N`\> |
+
+#### Returns
+
+[value: Field, offset: number]
+
+#### Defined in
+
+[lib/field.ts:1183](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1183)
+
+___
+
+### sizeInBytes
+
+▸ `Static` **sizeInBytes**(): `number`
+
+**Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
+
+As all [Field](Field.md) elements have 31 bits, this function returns 31.
+
+#### Returns
+
+`number`
+
+The size of a [Field](Field.md) element - 31.
+
+#### Defined in
+
+[lib/field.ts:1211](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1211)
+
+___
+
+### sizeInFields
+
+▸ `Static` **sizeInFields**(): `number`
+
+This function is the implementation of [sizeInFields](../interfaces/Provable.md#sizeinfields) for the [Field](Field.md) type.
+
+Size of the [Field](Field.md) type is 1, as it is the primitive type.
+This function returns a regular number, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+
+**`Example`**
+
+```ts
+console.log(Field.sizeInFields()); // Prints 1
+```
+
+#### Returns
+
+`number`
+
+A number representing the size of the [Field](Field.md) type in terms of [Field](Field.md) type itself.
+
+#### Defined in
+
+[lib/field.ts:1050](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1050)
+
+___
+
+### toAuxiliary
+
+▸ `Static` **toAuxiliary**(): []
+
+This function is the implementation of [toAuxiliary](../interfaces/Provable.md#toauxiliary) for the [Field](Field.md) type.
+
+As the primitive [Field](Field.md) type has no auxiliary data associated with it, this function will always return an empty array.
+
+#### Returns
+
+[]
+
+#### Defined in
+
+[lib/field.ts:1033](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1033)
 
 ___
 
 ### toBytes
 
 ▸ `Static` **toBytes**(`x`): `number`[]
+
+Create an array of digits equal to the [little-endian](https://en.wikipedia.org/wiki/Endianness) byte order of the given [Field](Field.md) element.
+Note that the array has always 32 elements as the [Field](Field.md) is a `finite-field` in the order of [ORDER](Field.md#order).
 
 #### Parameters
 
@@ -1041,9 +1521,11 @@ ___
 
 `number`[]
 
+An array of digits equal to the [little-endian](https://en.wikipedia.org/wiki/Endianness) byte order of the given [Field](Field.md) element.
+
 #### Defined in
 
-[snarky.d.ts:413](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L413)
+[lib/field.ts:1174](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1174)
 
 ___
 
@@ -1051,7 +1533,10 @@ ___
 
 ▸ `Static` **toFields**(`x`): [`Field`](Field.md)[]
 
-Static method to serialize a [Field](Field.md) into an array of [Field](Field.md) elements.
+This function is the implementation of [toFields](../interfaces/Provable.md#tofields) for the [Field](Field.md) type.
+
+Static function to serializes a [Field](Field.md) into an array of [Field](Field.md) elements.
+This will be always an array of length 1, where the first and only element equals the given parameter itself.
 
 #### Parameters
 
@@ -1063,15 +1548,21 @@ Static method to serialize a [Field](Field.md) into an array of [Field](Field.md
 
 [`Field`](Field.md)[]
 
+A [Field](Field.md) array of length 1 created from this [Field](Field.md).
+
 #### Defined in
 
-[snarky.d.ts:366](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L366)
+[lib/field.ts:1022](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1022)
 
 ___
 
 ### toInput
 
 ▸ `Static` **toInput**(`x`): `Object`
+
+**Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
+
+This function is the implementation of `ProvableExtended.toInput()` for the [Field](Field.md) type.
 
 #### Parameters
 
@@ -1083,13 +1574,15 @@ ___
 
 `Object`
 
+An object where the `fields` key is a [Field](Field.md) array of length 1 created from this [Field](Field.md).
+
 | Name | Type |
 | :------ | :------ |
 | `fields` | [`Field`](Field.md)[] |
 
 #### Defined in
 
-[snarky.d.ts:412](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L412)
+[lib/field.ts:1159](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1159)
 
 ___
 
@@ -1097,8 +1590,16 @@ ___
 
 ▸ `Static` **toJSON**(`x`): `string`
 
-Serialize a [Field](Field.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+Serialize the given [Field](Field.md) element to a JSON string, e.g. for printing. Trying to print a [Field](Field.md) without this function will directly stringify the Field object, resulting in unreadable output.
+
+**Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the JSON string representation of the [Field](Field.md). Use the operation only during debugging.
+
+**`Example`**
+
+```ts
+const someField = Field(42);
+console.log(Field.toJSON(someField));
+```
 
 #### Parameters
 
@@ -1110,6 +1611,8 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 `string`
 
+A string equivalent to the JSON representation of the given [Field](Field.md).
+
 #### Defined in
 
-[snarky.d.ts:401](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L401)
+[lib/field.ts:1132](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1132)

@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Scalar
+
 # Class: Scalar
 
 Represents a [Scalar](Scalar.md).
@@ -8,16 +10,32 @@ Represents a [Scalar](Scalar.md).
 
 - [constructor](Scalar.md#constructor)
 
+### Properties
+
+- [constantValue](Scalar.md#constantvalue)
+- [value](Scalar.md#value)
+- [ORDER](Scalar.md#order)
+
 ### Methods
 
+- [#assertConstant](Scalar.md##assertconstant)
 - [add](Scalar.md#add)
 - [div](Scalar.md#div)
+- [isConstant](Scalar.md#isconstant)
 - [mul](Scalar.md#mul)
 - [neg](Scalar.md#neg)
+- [shift](Scalar.md#shift)
 - [sub](Scalar.md#sub)
+- [toBigInt](Scalar.md#tobigint)
+- [toConstant](Scalar.md#toconstant)
 - [toFields](Scalar.md#tofields)
+- [toFieldsCompressed](Scalar.md#tofieldscompressed)
 - [toJSON](Scalar.md#tojson)
+- [unshift](Scalar.md#unshift)
+- [#assertConstantStatic](Scalar.md##assertconstantstatic)
 - [check](Scalar.md#check)
+- [from](Scalar.md#from)
+- [fromBigInt](Scalar.md#frombigint)
 - [fromBits](Scalar.md#frombits)
 - [fromFields](Scalar.md#fromfields)
 - [fromJSON](Scalar.md#fromjson)
@@ -31,16 +49,78 @@ Represents a [Scalar](Scalar.md).
 
 ### constructor
 
-• **new Scalar**()
+• `Private` **new Scalar**(`bits`, `constantValue?`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `bits` | `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `constantValue?` | `bigint` |
+
+#### Defined in
+
+[lib/scalar.ts:31](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L31)
+
+## Properties
+
+### constantValue
+
+• `Optional` **constantValue**: `Uint8Array`
+
+#### Defined in
+
+[lib/scalar.ts:27](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L27)
+
+___
+
+### value
+
+• **value**: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>
+
+#### Defined in
+
+[lib/scalar.ts:26](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L26)
+
+___
+
+### ORDER
+
+▪ `Static` **ORDER**: `bigint` = `Fq.modulus`
+
+#### Defined in
+
+[lib/scalar.ts:29](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L29)
 
 ## Methods
+
+### #assertConstant
+
+▸ `Private` **#assertConstant**(`name`): `bigint`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+
+#### Returns
+
+`bigint`
+
+#### Defined in
+
+[lib/scalar.ts:119](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L119)
+
+___
 
 ### add
 
 ▸ **add**(`y`): [`Scalar`](Scalar.md)
 
 Add scalar field elements.
-Can only be called outside of circuit execution
+
+**Warning**: This method is not available for provable code.
 
 #### Parameters
 
@@ -54,7 +134,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:774](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L774)
+[lib/scalar.ts:139](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L139)
 
 ___
 
@@ -63,7 +143,9 @@ ___
 ▸ **div**(`y`): [`Scalar`](Scalar.md)
 
 Divide scalar field elements.
-Can only be called outside of circuit execution
+Throws if the denominator is zero.
+
+**Warning**: This method is not available for provable code.
 
 #### Parameters
 
@@ -77,7 +159,24 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:792](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L792)
+[lib/scalar.ts:176](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L176)
+
+___
+
+### isConstant
+
+▸ **isConstant**(): this is Scalar & Object
+
+Check whether this [Scalar](Scalar.md) is a hard-coded constant in the constraint system.
+If a [Scalar](Scalar.md) is constructed outside provable code, it is a constant.
+
+#### Returns
+
+this is Scalar & Object
+
+#### Defined in
+
+[lib/scalar.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L56)
 
 ___
 
@@ -86,7 +185,8 @@ ___
 ▸ **mul**(`y`): [`Scalar`](Scalar.md)
 
 Multiply scalar field elements.
-Can only be called outside of circuit execution
+
+**Warning**: This method is not available for provable code.
 
 #### Parameters
 
@@ -100,7 +200,7 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:786](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L786)
+[lib/scalar.ts:163](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L163)
 
 ___
 
@@ -109,7 +209,8 @@ ___
 ▸ **neg**(): [`Scalar`](Scalar.md)
 
 Negate a scalar field element.
-Can only be called outside of circuit execution
+
+**Warning**: This method is not available for provable code.
 
 #### Returns
 
@@ -117,7 +218,21 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:768](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L768)
+[lib/scalar.ts:128](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L128)
+
+___
+
+### shift
+
+▸ **shift**(): [`Scalar`](Scalar.md)
+
+#### Returns
+
+[`Scalar`](Scalar.md)
+
+#### Defined in
+
+[lib/scalar.ts:185](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L185)
 
 ___
 
@@ -126,7 +241,8 @@ ___
 ▸ **sub**(`y`): [`Scalar`](Scalar.md)
 
 Subtract scalar field elements.
-Can only be called outside of circuit execution
+
+**Warning**: This method is not available for provable code.
 
 #### Parameters
 
@@ -140,19 +256,58 @@ Can only be called outside of circuit execution
 
 #### Defined in
 
-[snarky.d.ts:780](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L780)
+[lib/scalar.ts:151](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L151)
+
+___
+
+### toBigInt
+
+▸ **toBigInt**(): `bigint`
+
+Convert this [Scalar](Scalar.md) into a bigint
+
+#### Returns
+
+`bigint`
+
+#### Defined in
+
+[lib/scalar.ts:84](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L84)
+
+___
+
+### toConstant
+
+▸ **toConstant**(): `ConstantScalar`
+
+Convert this [Scalar](Scalar.md) into a constant if it isn't already.
+
+If the scalar is a variable, this only works inside `asProver` or `witness` blocks.
+
+See [FieldVar](../modules.md#fieldvar-1) for an explanation of constants vs. variables.
+
+#### Returns
+
+`ConstantScalar`
+
+#### Defined in
+
+[lib/scalar.ts:67](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L67)
 
 ___
 
 ### toFields
 
-▸ **toFields**(`this`): [`Field`](Field.md)[]
+▸ **toFields**(): [`Field`](Field.md)[]
 
-#### Parameters
+Serialize this Scalar to Field elements.
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`Scalar`](Scalar.md) |
+**Warning**: This function is for internal usage. It returns 255 field elements
+which represent the Scalar in a shifted, bitwise format.
+The fields are not constrained to be boolean.
+
+Check out [toFieldsCompressed](Scalar.md#tofieldscompressed) for a user-friendly serialization
+that can be used outside proofs.
 
 #### Returns
 
@@ -160,7 +315,33 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:762](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L762)
+[lib/scalar.ts:240](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L240)
+
+___
+
+### toFieldsCompressed
+
+▸ **toFieldsCompressed**(): `Object`
+
+Serialize a Scalar into a Field element plus one bit, where the bit is represented as a Bool.
+
+**Warning**: This method is not available for provable code.
+
+Note: Since the Scalar field is slightly larger than the base Field, an additional high bit
+is needed to represent all Scalars. However, for a random Scalar, the high bit will be `false` with overwhelming probability.
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `field` | [`Field`](Field.md) |
+| `highBit` | [`Bool`](Bool.md) |
+
+#### Defined in
+
+[lib/scalar.ts:202](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L202)
 
 ___
 
@@ -168,25 +349,60 @@ ___
 
 ▸ **toJSON**(): `string`
 
+Serializes this Scalar to a string
+
 #### Returns
 
 `string`
 
 #### Defined in
 
-[snarky.d.ts:794](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L794)
+[lib/scalar.ts:306](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L306)
 
 ___
 
-### check
+### unshift
 
-▸ `Static` **check**(`x`): `void`
+▸ **unshift**(): [`Scalar`](Scalar.md)
+
+#### Returns
+
+[`Scalar`](Scalar.md)
+
+#### Defined in
+
+[lib/scalar.ts:189](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L189)
+
+___
+
+### #assertConstantStatic
+
+▸ `Static` `Private` **#assertConstantStatic**(`x`, `name`): `bigint`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `x` | [`Scalar`](Scalar.md) |
+| `name` | `string` |
+
+#### Returns
+
+`bigint`
+
+#### Defined in
+
+[lib/scalar.ts:110](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L110)
+
+___
+
+### check
+
+▸ `Static` **check**(): `void`
+
+Part of the [Provable](../interfaces/Provable.md) interface.
+
+Does nothing.
 
 #### Returns
 
@@ -194,7 +410,55 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:831](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L831)
+[lib/scalar.ts:276](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L276)
+
+___
+
+### from
+
+▸ `Static` **from**(`x`): [`Scalar`](Scalar.md)
+
+Create a constant [Scalar](Scalar.md) from a bigint, number, string or Scalar.
+
+If the input is too large, it is reduced modulo the scalar field size.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`Scalar`](Scalar.md) |
+
+#### Returns
+
+[`Scalar`](Scalar.md)
+
+#### Defined in
+
+[lib/scalar.ts:44](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L44)
+
+___
+
+### fromBigInt
+
+▸ `Static` **fromBigInt**(`x`): [`Scalar`](Scalar.md)
+
+**`Deprecated`**
+
+use [from](Scalar.md#from)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `bigint` |
+
+#### Returns
+
+[`Scalar`](Scalar.md)
+
+#### Defined in
+
+[lib/scalar.ts:77](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L77)
 
 ___
 
@@ -203,6 +467,8 @@ ___
 ▸ `Static` **fromBits**(`bits`): [`Scalar`](Scalar.md)
 
 Creates a data structure from an array of serialized [Bool](Bool.md).
+
+**Warning**: The bits are interpreted as the bits of 2s + 1 + 2^255, where s is the Scalar.
 
 #### Parameters
 
@@ -216,13 +482,15 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[snarky.d.ts:815](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L815)
+[lib/scalar.ts:95](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L95)
 
 ___
 
 ### fromFields
 
 ▸ `Static` **fromFields**(`fields`): [`Scalar`](Scalar.md)
+
+Part of the [Provable](../interfaces/Provable.md) interface.
 
 Creates a data structure from an array of serialized [Field](Field.md) elements.
 
@@ -238,7 +506,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[snarky.d.ts:807](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L807)
+[lib/scalar.ts:258](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L258)
 
 ___
 
@@ -247,13 +515,13 @@ ___
 ▸ `Static` **fromJSON**(`x`): [`Scalar`](Scalar.md)
 
 Deserialize a JSON structure into a [Scalar](Scalar.md).
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Scalar.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `boolean` |
+| `x` | `string` |
 
 #### Returns
 
@@ -261,7 +529,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:830](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L830)
+[lib/scalar.ts:314](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L314)
 
 ___
 
@@ -278,7 +546,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[snarky.d.ts:820](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L820)
+[lib/scalar.ts:103](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L103)
 
 ___
 
@@ -286,7 +554,9 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Returns the size of this type.
+Part of the [Provable](../interfaces/Provable.md) interface.
+
+Returns the size of this type in [Field](Field.md) elements.
 
 #### Returns
 
@@ -294,29 +564,25 @@ Returns the size of this type.
 
 #### Defined in
 
-[snarky.d.ts:811](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L811)
+[lib/scalar.ts:267](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L267)
 
 ___
 
 ### toAuxiliary
 
-▸ `Static` **toAuxiliary**(`x?`): []
+▸ `Static` **toAuxiliary**(): `never`[]
 
-Static method to serialize a [Scalar](Scalar.md) into its auxiliary data.
+Part of the [Provable](../interfaces/Provable.md) interface.
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x?` | [`Scalar`](Scalar.md) |
+Serialize a [Scalar](Scalar.md) into its auxiliary data, which are empty.
 
 #### Returns
 
-[]
+`never`[]
 
 #### Defined in
 
-[snarky.d.ts:803](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L803)
+[lib/scalar.ts:249](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L249)
 
 ___
 
@@ -324,7 +590,13 @@ ___
 
 ▸ `Static` **toFields**(`x`): [`Field`](Field.md)[]
 
-Static method to serialize a [Scalar](Scalar.md) into an array of [Field](Field.md) elements.
+Part of the [Provable](../interfaces/Provable.md) interface.
+
+Serialize a [Scalar](Scalar.md) into an array of [Field](Field.md) elements.
+
+**Warning**: This function is for internal usage. It returns 255 field elements
+which represent the Scalar in a shifted, bitwise format.
+The fields are not constrained to be boolean.
 
 #### Parameters
 
@@ -338,7 +610,7 @@ Static method to serialize a [Scalar](Scalar.md) into an array of [Field](Field.
 
 #### Defined in
 
-[snarky.d.ts:799](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L799)
+[lib/scalar.ts:225](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L225)
 
 ___
 
@@ -347,7 +619,7 @@ ___
 ▸ `Static` **toJSON**(`x`): `string`
 
 Serialize a [Scalar](Scalar.md) to a JSON string.
-This operation does NOT affect the circuit and can't be used to prove anything about the string representation of the Field.
+This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the Scalar.
 
 #### Parameters
 
@@ -361,4 +633,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[snarky.d.ts:825](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/snarky.d.ts#L825)
+[lib/scalar.ts:298](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/scalar.ts#L298)

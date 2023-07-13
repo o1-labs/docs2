@@ -1,0 +1,38 @@
+@use "@site/src/scss/utilities/variables";
+@use "@site/src/scss/utilities/mixins";
+
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 997px) {
+  .docItemCol {
+    max-width: 75% !important;
+  }
+}
+
+.editButtonContainer {
+  margin: 1em 1em 1.5em 0 !important;
+}
+
+.editButtonContainerMobile {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+}
+
+.editLink {
+  @include mixins.minaButtonLink;
+  color: variables.$mina-white;
+  &:hover {
+    text-decoration: none;
+    color: variables.$mina-white;
+  }
+}
+
+.tocContainer {
+  max-height: calc(100vh - (var(--ifm-navbar-height) - 2rem));
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 1rem);
+}
