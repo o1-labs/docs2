@@ -158,7 +158,7 @@ export default function App() {
       },
     });
 
-    const transactionLink = `https://berkeley.minaexplorer.com/transaction/'${hash}`;
+    const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
     console.log(`See transaction at ${transactionLink}`);
 
     setTransactionLink(transactionLink);
@@ -202,10 +202,6 @@ export default function App() {
       </div>
     );
   }
-
-  let setupText = state.hasBeenSetup
-    ? 'SnarkyJS Ready'
-    : 'Setting up SnarkyJS...';
 
   const stepDisplay = transactionlink ? (
     <a href={displayText} target="_blank" rel="noreferrer">
