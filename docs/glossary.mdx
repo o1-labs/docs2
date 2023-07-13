@@ -112,6 +112,14 @@ A digital system for recording the transaction of assets in which the transactio
 
 ## E
 
+## elliptic curves
+
+Equations with a specific template: _y^2 = x^3 + ax^ + b_: [secp256k1](/glossary#secp256k1), 
+
+### elliptic-curve cryptography (ECC)
+
+An approach to public key cryptography based on the algebraic structure of elliptic curves over finite fields. ECC is the basis of how Ethereum and other cryptocurrencies use private keys and digital signatures.
+
 ### epoch
 
 A unit of time equal to 7140 slots at Mainnet. An epoch is divided into [slots](#slot) of 3minutes each.
@@ -228,13 +236,17 @@ Networking systems that rely on peer nodes to distribute information amongst eac
 
 Mina's inductive zk-SNARK composition system. See [Pickles](https://o1-labs.github.io/proof-systems/specs/pickles.html).
 
+### Pickles SNARK
+
+A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+
 ### PLONK
 
 Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge (PLONK) is general-purpose zero knowledge proof scheme.
 
-### Pickles SNARK
+### polynomial commitment
 
-A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+A commitment scheme that allows a committer to commit to a polynomial with a short string that can be used by a verifier to confirm claimed evaluations of the committed polynomial.
 
 ### precomputed block
 
@@ -291,6 +303,10 @@ An [(RPC)] (https://en.wikipedia.org/wiki/Remote_procedure_call) is used to comm
 ### scan state
 
 A data structure that allows decoupling the production of transaction SNARKs from block producers to [SNARK workers](#snark-worker). See [Scan State](/node-operators/scan-state).
+
+### secp256k1
+
+The elliptic curve using this equation _y²=x³+7, a=0 b=7_, constructed in a special non-random way to allow for especially efficient computation. secp256k1 can have a key size of up to 256 bits. All points on this curve are valid public keys.
 
 ### signature
 
