@@ -228,7 +228,7 @@ Continuing, let's setup our smart contract:
 
 Here we add 3 pieces of state to our contract: the public key of the storage server, the "storageNumber"—which is used to ensure the storage server is actively storing states, and the root of the merkle tree.
 
-We also initialize our zkApp's initialize for these three values, by setting them to the public key of our storage server, setting storage number to 0, and storing the root of an empty tree.
+We also initialize our zkApp's state for these three values, by setting them to the public key of our storage server, setting storage number to 0, and storing the root of an empty tree.
 
 Continuing, here is our update function:
 
@@ -320,7 +320,7 @@ Our goal in this function is to:
 
 1. Get the currently stored tree from the storage server
 2. Select a random leaf
-3. Change the value at that leaf to a bigger nubmer
+3. Change the value at that leaf to a bigger number
 4. Create a transaction that performs this update.
 
 To start, let's get the existing tree:
