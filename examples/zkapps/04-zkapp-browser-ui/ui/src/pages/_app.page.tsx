@@ -24,9 +24,18 @@ export default function App() {
   // Do Setup
 
   useEffect(() => {
+    async function timeout(seconds: number): Promise<void> {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, seconds * 1000);
+      });
+    }
+
     (async () => {
       if (!state.hasBeenSetup) {
         const zkappWorkerClient = new ZkappWorkerClient();
+        await timeout(5);
 
         console.log('Loading SnarkyJS...');
         await zkappWorkerClient.loadSnarkyJS();
