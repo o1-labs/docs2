@@ -26,7 +26,7 @@ export class WhitelistedTokenContract extends SmartContract {
 
     const permissionToEdit = Permissions.proofOrSignature();
 
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       editState: permissionToEdit,
       setTokenSymbol: permissionToEdit,
@@ -37,7 +37,7 @@ export class WhitelistedTokenContract extends SmartContract {
 
   @method init() {
     super.init();
-    this.tokenSymbol.set(tokenSymbol);
+    this.account.tokenSymbol.set(tokenSymbol);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
