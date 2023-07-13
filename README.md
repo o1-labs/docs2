@@ -36,7 +36,6 @@ After your local build environment is set, you can run a local build:
 ```sh
 git clone https://github.com/o1-labs/docs2.git
 npm install
-npm install docusaurus 
 npm run dev
 ```
 
