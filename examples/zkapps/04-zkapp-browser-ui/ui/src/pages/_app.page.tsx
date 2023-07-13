@@ -9,7 +9,7 @@ import { PublicKey, Field } from 'snarkyjs';
 let transactionFee = 0.1;
 
 export default function App() {
-  let [state, setState] = useState({
+  const [state, setState] = useState({
     zkappWorkerClient: null as null | ZkappWorkerClient,
     hasWallet: null as null | boolean,
     hasBeenSetup: false,
@@ -19,6 +19,9 @@ export default function App() {
     zkappPublicKey: null as null | PublicKey,
     creatingTransaction: false,
   });
+
+  const [displayText, setDisplayText] = useState('');
+  const [transactionlink, setTransactionLink] = useState('');
 
   // -------------------------------------------------------
   // Do Setup
@@ -34,11 +37,13 @@ export default function App() {
 
     (async () => {
       if (!state.hasBeenSetup) {
-        console.log('Loading WebWorker...');
+        setDisplayText('Loading web worker...');
+        console.log('Loading web worker...');
         const zkappWorkerClient = new ZkappWorkerClient();
         await timeout(5);
 
-        console.log('done');
+        setDisplayText('Done loading web worker');
+        console.log('Done loading web worker');
 
         await zkappWorkerClient.setActiveInstanceToBerkeley();
 
@@ -54,7 +59,9 @@ export default function App() {
 
         console.log('using key', publicKey.toBase58());
 
-        console.log('checking if account exists...');
+        setDisplayText('Checking if fee payer account exists...');
+        console.log('Checking if fee payer account exists...');
+
         const res = await zkappWorkerClient.fetchAccount({
           publicKey: publicKey!,
         });
@@ -62,9 +69,11 @@ export default function App() {
 
         await zkappWorkerClient.loadContract();
 
-        console.log('compiling zkApp');
+        console.log('Compiling zkApp...');
+        setDisplayText('Compiling zkApp...');
         await zkappWorkerClient.compileContract();
         console.log('zkApp compiled');
+        setDisplayText('zkApp compiled...');
 
         const zkappPublicKey = PublicKey.fromBase58(
           'B62qjshG3cddKthD6KjCzHZP4oJM2kGuC8qRHN3WZmKH5B74V9Uddwu'
@@ -72,10 +81,12 @@ export default function App() {
 
         await zkappWorkerClient.initZkappInstance(zkappPublicKey);
 
-        console.log('getting zkApp state...');
+        console.log('Getting zkApp state...');
+        setDisplayText('Getting zkApp state...');
         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
         const currentNum = await zkappWorkerClient.getNum();
-        console.log('current state:', currentNum.toString());
+        console.log(`Current state: ${currentNum.toString()}`);
+        setDisplayText(`Current state: ${currentNum.toString()}`);
 
         setState({
           ...state,
@@ -98,7 +109,8 @@ export default function App() {
     (async () => {
       if (state.hasBeenSetup && !state.accountExists) {
         for (;;) {
-          console.log('checking if account exists...');
+          setDisplayText('Checking if fee payer account exists...');
+          console.log('Checking if fee payer account exists...');
           const res = await state.zkappWorkerClient!.fetchAccount({
             publicKey: state.publicKey!,
           });
@@ -118,7 +130,9 @@ export default function App() {
 
   const onSendTransaction = async () => {
     setState({ ...state, creatingTransaction: true });
-    console.log('sending a transaction...');
+
+    setDisplayText('Sending a transaction...');
+    console.log('Sending a transaction...');
 
     await state.zkappWorkerClient!.fetchAccount({
       publicKey: state.publicKey!,
@@ -126,13 +140,16 @@ export default function App() {
 
     await state.zkappWorkerClient!.createUpdateTransaction();
 
-    console.log('creating proof...');
+    setDisplayText('Creating proof...');
+    console.log('Creating proof...');
     await state.zkappWorkerClient!.proveUpdateTransaction();
 
-    console.log('getting Transaction JSON...');
+    console.log('Requesting send transaction...');
+    setDisplayText('Requesting send transaction...');
     const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
 
-    console.log('requesting send transaction...');
+    setDisplayText('Getting transaction JSON...');
+    console.log('Getting transaction JSON...');
     const { hash } = await (window as any).mina.sendTransaction({
       transaction: transactionJSON,
       feePayer: {
@@ -152,12 +169,14 @@ export default function App() {
   // Refresh the current state
 
   const onRefreshCurrentNum = async () => {
-    console.log('getting zkApp state...');
+    console.log('Getting zkApp state...');
+    setDisplayText('Getting zkApp state...');
+
     await state.zkappWorkerClient!.fetchAccount({
       publicKey: state.zkappPublicKey!,
     });
     const currentNum = await state.zkappWorkerClient!.getNum();
-    console.log('current state:', currentNum.toString());
+    console.log(`Current state: ${currentNum.toString()}`);
 
     setState({ ...state, currentNum });
   };
