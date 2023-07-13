@@ -1,129 +1,209 @@
-.container {
-  padding: 0 2rem;
-}
-
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  padding: 5rem;
+  min-height: 100vh;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+.background {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.background::before {
+  background: url('/assets/hash-pattern.png');
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(20deg, #000 25%, transparent);
+  mask-image: linear-gradient(20deg, #000 25%, transparent);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.backgroundGradients {
+  display: block;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  filter: blur(150px);
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+.container {
+  position: relative;
+  height: 100vh;
 }
 
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+.tagline {
+  font-family: var(--font-monument-light);
+  font-size: 0.875rem;
+  padding-top: 1rem;
+  letter-spacing: 0.082rem;
+  z-index: 99;
 }
 
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
+.start {
+  font-family: var(--font-monument-light);
+  font-size: 1.25rem;
+  letter-spacing: 0.1rem;
+  z-index: 99;
 }
 
 .code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: var(--font-monument-bold);
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(25%, auto));
+  width: var(--max-width);
+  max-width: 100%;
+  margin-bottom: 3rem;
+  justify-items: center;
 }
 
 .card {
+  padding: 0.8rem 1rem;
+  gap: 0.5rem;
   margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  background: rgba(var(--card-rgb), 0);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #2d2d2d;
+  border-radius: 4px 1px;
+  transform-style: preserve-3d;
+  transition: background 200ms, border 200ms;
+  width: 14rem;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.card:after {
+  content: '';
+  position: absolute;
+  inset: 0.4rem -0.4rem -0.4rem 0.4rem;
+  border-radius: 4px 1px;
+  border: 1px solid #2d2d2d;
+  transform: translateZ(-1px);
+  transition: transform 200ms ease-in 0ms, border 50ms ease-in 100ms;
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  justify-content: space-between;
+  letter-spacing: 0.13rem;
+}
+
+.card h2 div {
+  display: flex;
 }
 
 .card p {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  opacity: 0.6;
+  font-size: 0.875rem;
+  padding-right: 0.72rem;
+  line-height: 1.3;
+  max-width: 30ch;
+  font-weight: 300;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 6rem 0;
 }
 
 .logo {
-  height: 1em;
-  margin-left: 0.5rem;
+  position: relative;
+  mix-blend-mode: difference;
+  filter: invert(0.7);
 }
 
-@media (max-width: 600px) {
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    color: #ffff;
+    background: linear-gradient(
+        0deg,
+        rgba(45, 45, 45, 0.66),
+        rgba(45, 45, 45, 0.66)
+      ),
+      url('/assets/button-hover-light.png');
+    border: 1px solid #2d2d2d;
+    background-size: 100% 100%;
+    transform: translateZ(-1px);
+  }
+
+  .card:hover:after {
+    border: 0px solid rgba(0, 0, 0, 0);
+    transform: translate(-0.4rem, -0.4rem);
+    transition: transform 200ms ease-in 0ms, border 50ms ease-in 100ms;
+  }
+
+  .card:hover img {
+    filter: brightness(0) invert(1);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .card:hover span {
+    transform: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .content {
+    padding: 4rem;
+  }
+
   .grid {
-    width: 100%;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    grid-template-rows: repeat(4, minmax(25%, auto));
+  }
+
+  .start {
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+    text-align: center;
+  }
+
+  .card {
+    padding: 0.8rem 1rem 0.6rem 1rem;
+  }
+
+  .center {
+    padding: 0 0 3rem 0.3rem;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+  .grid {
+    grid-template-columns: repeat(2, 50%);
   }
 }

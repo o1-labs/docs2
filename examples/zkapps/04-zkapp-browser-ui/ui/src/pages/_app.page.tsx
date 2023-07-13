@@ -1,12 +1,10 @@
 import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import './reactCOIServiceWorker';
-
-import styles from '../styles/Home.module.css';
-
 import ZkappWorkerClient from './zkappWorkerClient';
-
 import { PublicKey, Field } from 'snarkyjs';
+import GradientBG from '../components/GradientBG.js';
+import styles from '../styles/Home.module.css';
 
 let transactionFee = 0.1;
 
@@ -252,10 +250,12 @@ export default function App() {
   }
 
   return (
-    <div className={styles.main}>
-      {setup}
-      {accountDoesNotExist}
-      {mainContent}
-    </div>
+    <GradientBG>
+      <div className={styles.main}>
+        {setup}
+        {accountDoesNotExist}
+        {mainContent}
+      </div>
+    </GradientBG>
   );
 }
