@@ -2,6 +2,8 @@ import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import './reactCOIServiceWorker';
 
+import styles from '../styles/Home.module.css';
+
 import ZkappWorkerClient from './zkappWorkerClient';
 
 import { PublicKey, Field } from 'snarkyjs';
@@ -191,13 +193,11 @@ export default function App() {
     const auroLink = 'https://www.aurowallet.com/';
     const auroLinkElem = (
       <a href={auroLink} target="_blank" rel="noreferrer">
-        {' '}
         [Link]{' '}
       </a>
     );
     hasWallet = (
       <div>
-        {' '}
         Could not find a wallet. Install Auro wallet here: {auroLinkElem}
       </div>
     );
@@ -226,7 +226,6 @@ export default function App() {
       <div>
         Account does not exist. Please visit the faucet to fund this account
         <a href={faucetLink} target="_blank" rel="noreferrer">
-          {' '}
           [Link]{' '}
         </a>
       </div>
@@ -238,20 +237,22 @@ export default function App() {
     mainContent = (
       <div>
         <button
+          className={styles.card}
           onClick={onSendTransaction}
           disabled={state.creatingTransaction}
         >
-          {' '}
-          Send Transaction{' '}
+          Send Transaction
         </button>
         <div> Current Number in zkApp: {state.currentNum!.toString()} </div>
-        <button onClick={onRefreshCurrentNum}> Get Latest State </button>
+        <button className={styles.card} onClick={onRefreshCurrentNum}>
+          Get Latest State
+        </button>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       {setup}
       {accountDoesNotExist}
       {mainContent}
