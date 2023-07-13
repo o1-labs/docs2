@@ -71,7 +71,7 @@ export type ZkappWorkerReponse = {
   id: number;
   data: any;
 };
-if (process.browser) {
+if (typeof window !== 'undefined') {
   addEventListener(
     'message',
     async (event: MessageEvent<ZkappWorkerRequest>) => {
