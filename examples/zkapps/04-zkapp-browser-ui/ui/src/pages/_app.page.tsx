@@ -57,7 +57,8 @@ export default function App() {
         const publicKeyBase58: string = (await mina.requestAccounts())[0];
         const publicKey = PublicKey.fromBase58(publicKeyBase58);
 
-        console.log('using key', publicKey.toBase58());
+        console.log(`Using key:${publicKey.toBase58()}`);
+        setDisplayText(`Using key:${publicKey.toBase58()}`);
 
         setDisplayText('Checking if fee payer account exists...');
         console.log('Checking if fee payer account exists...');
@@ -85,8 +86,9 @@ export default function App() {
         setDisplayText('Getting zkApp state...');
         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
         const currentNum = await zkappWorkerClient.getNum();
-        console.log(`Current state: ${currentNum.toString()}`);
-        setDisplayText(`Current state: ${currentNum.toString()}`);
+        console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+        setDisplayText('');
+        // setDisplayText(`Current number in zkApp: ${currentNum.toString()}`);
 
         setState({
           ...state,
@@ -131,8 +133,8 @@ export default function App() {
   const onSendTransaction = async () => {
     setState({ ...state, creatingTransaction: true });
 
-    setDisplayText('Sending a transaction...');
-    console.log('Sending a transaction...');
+    setDisplayText('Creating a transaction...');
+    console.log('Creating a transaction...');
 
     await state.zkappWorkerClient!.fetchAccount({
       publicKey: state.publicKey!,
@@ -178,9 +180,10 @@ export default function App() {
       publicKey: state.zkappPublicKey!,
     });
     const currentNum = await state.zkappWorkerClient!.getNum();
-    console.log(`Current state: ${currentNum.toString()}`);
-
     setState({ ...state, currentNum });
+    console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+    setDisplayText('');
+    // setDisplayText(`Current number in zkApp state: ${currentNum.toString()}`);
   };
 
   // -------------------------------------------------------
@@ -210,7 +213,10 @@ export default function App() {
   );
 
   let setup = (
-    <div>
+    <div
+      className={styles.start}
+      style={{ fontWeight: 'bold', fontSize: '1.5rem' }}
+    >
       {stepDisplay}
       {hasWallet}
     </div>
@@ -234,6 +240,9 @@ export default function App() {
   if (state.hasBeenSetup && state.accountExists) {
     mainContent = (
       <div>
+        <div className={styles.center} style={{ padding: 0 }}>
+          Current Number in zkApp: {state.currentNum!.toString()}{' '}
+        </div>
         <button
           className={styles.card}
           onClick={onSendTransaction}
@@ -241,7 +250,6 @@ export default function App() {
         >
           Send Transaction
         </button>
-        <div> Current Number in zkApp: {state.currentNum!.toString()} </div>
         <button className={styles.card} onClick={onRefreshCurrentNum}>
           Get Latest State
         </button>
@@ -251,10 +259,12 @@ export default function App() {
 
   return (
     <GradientBG>
-      <div className={styles.main}>
-        {setup}
-        {accountDoesNotExist}
-        {mainContent}
+      <div className={styles.main} style={{ padding: 0 }}>
+        <div className={styles.center} style={{ padding: 0 }}>
+          {setup}
+          {accountDoesNotExist}
+          {mainContent}
+        </div>
       </div>
     </GradientBG>
   );
