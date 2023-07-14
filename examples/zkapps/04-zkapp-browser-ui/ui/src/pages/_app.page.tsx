@@ -88,7 +88,6 @@ export default function App() {
         const currentNum = await zkappWorkerClient.getNum();
         console.log(`Current number in zkApp state: ${currentNum.toString()}`);
         setDisplayText('');
-        // setDisplayText(`Current number in zkApp: ${currentNum.toString()}`);
 
         setState({
           ...state,
