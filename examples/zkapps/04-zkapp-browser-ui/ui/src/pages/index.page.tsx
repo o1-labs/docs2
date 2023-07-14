@@ -1,4 +1,3 @@
-// import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import './reactCOIServiceWorker';
 import ZkappWorkerClient from './zkappWorkerClient';
@@ -182,7 +181,6 @@ export default function Home() {
     setState({ ...state, currentNum });
     console.log(`Current number in zkApp state: ${currentNum.toString()}`);
     setDisplayText('');
-    // setDisplayText(`Current number in zkApp state: ${currentNum.toString()}`);
   };
 
   // -------------------------------------------------------
