@@ -215,7 +215,7 @@ export default function App() {
   let setup = (
     <div
       className={styles.start}
-      style={{ fontWeight: 'bold', fontSize: '1.5rem' }}
+      style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
     >
       {stepDisplay}
       {hasWallet}
@@ -239,7 +239,7 @@ export default function App() {
   let mainContent;
   if (state.hasBeenSetup && state.accountExists) {
     mainContent = (
-      <div>
+      <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
           Current Number in zkApp: {state.currentNum!.toString()}{' '}
         </div>
