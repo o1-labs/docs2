@@ -115,7 +115,7 @@ const AddOne = Experimental.ZkProgram({
     step: {
       privateInputs: [SelfProof],
 
-      method(publicInput: Field, earlierProof: SelfProof<Field>) {
+      method(publicInput: Field, earlierProof: SelfProof<Field, void>) {
         earlierProof.verify();
         earlierProof.publicInput.add(1).assertEquals(publicInput);
       },
@@ -178,8 +178,8 @@ let RollupAdd = Experimental.ZkProgram({
 
       method(
         publicInput: Field,
-        left: SelfProof<Field>,
-        right: SelfProof<Field>
+        left: SelfProof<Field, void>,
+        right: SelfProof<Field, void>
       ) {
         left.verify();
         right.verify();
