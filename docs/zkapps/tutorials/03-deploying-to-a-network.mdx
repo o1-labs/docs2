@@ -16,6 +16,8 @@ keywords:
   - mina testnet
 ---
 
+import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
+
 :::info
 
 zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
@@ -28,7 +30,7 @@ In previous tutorials, you learned how to deploy and run transactions on a local
 
 In this tutorial, you use the `zk config` command to create a deploy alias, request tMINA funds to pay for transaction fees, and deploy a project to a live network.
 
-Mina zkApps are available only on feature-complete Berkeley, Mina's public Testnet. This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world).
+Mina zkApps are available only on feature-complete Berkeley, Mina's public Testnet. This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world). 
 
 ## Prerequisites
 
@@ -288,6 +290,14 @@ Because this tutorial used the smart contract for Tutorial 1: Hello World, the s
 When you change the smart contract code, the associated verification key also changes. Use the same steps to redeploy the smart contract. 
 
 For a typical smart contract, permissions are set to allow only proof authorization: the proof in zero knowledge proof. You learn more about setting permissions in a later tutorial.
+
+## Video
+
+Watch this tutorial for a step-by-step guide and extra explanations on how to deploy a zkApp.
+
+<ResponsiveVideo src="https://www.youtube.com/embed/Sj9lTmgjDXY" />
+
+The video is provided for educational purposes and uses earlier versions of the zkApp CLI and SnarkyJS, so there are some differences. This tutorial is tested with a specific version of the zkApp CLI and SnarkyJS.
 
 ## Conclusion
 
