@@ -2,12 +2,29 @@
 title: 'Tutorial 5: Common Types and Functions'
 hide_title: true
 sidebar_label: 'Tutorial 5: Common Types and Functions'
+description: Higher-order types are built from Fields and are useful for your development. Learn how to create custom types.
+keywords:
+  - smart contracts
+  - zkapps
+  - types
+  - smart contract fields
+  - field types
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - blockchain
+  - mina
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
+
+:::note
+
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
 
 :::
 
@@ -188,10 +205,10 @@ points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20
 
 There are two functions which help do control flow within SnarkyJS:
 
-- [Circuit.if](../snarkyjs-reference/classes/Circuit#if)
-- [Circuit.switch](../snarkyjs-reference/classes/Circuit#switch)
+- [Provable.if](../snarkyjs-reference/classes/Circuit#if)
+- [Provable.switch](../snarkyjs-reference/classes/Circuit#switch)
 
-`Circuit.if` is similar to a ternary in JavaScript. `Circuit.switch` is similar to a switch case statement in JavaScript.
+`Provable.if` is similar to a ternary in JavaScript. `Provable.switch` is similar to a switch case statement in JavaScript.
 
 With these, you can write conditionals inside SnarkyJS.
 
@@ -203,7 +220,7 @@ const input2 = Int64.from(-15);
 
 const inputSum = input1.add(input2);
 
-const inputSumAbs = Circuit.if(
+const inputSumAbs = Provable.if(
   inputSum.isPositive(),
   inputSum,
   inputSum.mul(Int64.minusOne)
@@ -227,7 +244,7 @@ const input3largest = input3
   .isPositive()
   .and(input3.sub(input2).isPositive());
 
-const largest = Circuit.switch(
+const largest = Provable.switch(
   [input1largest, input2largest, input3largest],
   Int64,
   [input1, input2, input3]
@@ -244,7 +261,7 @@ inputSumAbs: 5
 largest: 22
 ```
 
-Note that when using `Circuit.if`, like in a JS ternary, both branches are executed. Unlike normal programming, because SnarkyJS under the hood is creating a zk circuit, there is no primitive for if statements where only one branch is executed.
+Note that when using `Provable.if`, like in a JS ternary, both branches are executed. Unlike normal programming, because SnarkyJS under the hood is creating a zk circuit, there is no primitive for if statements where only one branch is executed.
 
 ## Assertions and Constraints
 
@@ -261,7 +278,7 @@ Circuits in SnarkyJS currently have a fixed maximum size. Each operation perform
 - about `2^17` field multiplies
 - about `2^17` field additions
 
-If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../advanced-snarkyjs/recursion).
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See more on how to do this in the section [here](../snarkyjs/recursion).
 
 ## Merkle Trees
 
@@ -342,7 +359,7 @@ const deployTxn = await Mina.transaction(deployerAccount, () => {
   zkApp.initState(tree.getRoot());
 });
 await deployTxn.prove();
-await deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]).send();
+deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
 
 const pendingDeployTx = await deployTxn.send();
 /**
@@ -453,8 +470,6 @@ const rootBefore = map.getRoot();
 const key = Field(100);
 
 const witness = map.getWitness(key);
-
-map.set(key, value);
 ...
 // update the smart contract
 const txn1 = await Mina.transaction(deployerAccount, () => {
@@ -462,7 +477,7 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
     contract.update(
       witness,
       key,
-      Field(0), // values start in state zero
+      Field(50),
       Field(5)
     );
   );

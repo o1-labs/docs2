@@ -2,12 +2,27 @@
 title: 'Tutorial 8: Custom Tokens'
 hide_title: true
 sidebar_label: 'Tutorial 8: Custom Tokens'
+description: Mina comes with native support for custom tokens.Learn the smart contract code that creates and manages new tokens.
+keywords:
+  - smart contracts
+  - zkapps
+  - custom tokens
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - blockchain
+  - mina
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
+
+:::note
+
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
 
 :::
 
@@ -21,7 +36,7 @@ Mina comes with native support for custom tokens. Each account on Mina can also 
 
 To create a new token, one creates a smart contract, which becomes the manager for the token, and uses that contract to set the rules around how the token can be mint, burned, and sent.
 
-The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens. 
+The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens.
 
 In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src).
 
@@ -37,35 +52,36 @@ First, we will bring in imports and setup the structure for our smart contract:
 
 ```ts
   1 import {
-  2   Field,
-  3   SmartContract,
-  4   state,
-  5   State,
-  6   method,
-  7   DeployArgs,
-  8   Permissions,
-  9   UInt64,
- 10   PublicKey,
- 11   Signature,
- 12 } from 'snarkyjs';
- 13
- 14 const tokenSymbol = 'MYTKN';
- 15
- 16 export class BasicTokenContract extends SmartContract {
- 17   @state(UInt64) totalAmountInCirculation = State<UInt64>();
- 18
- 19   deploy(args: DeployArgs) {
- 20     super.deploy(args);
- 21
- 22     this.account.permissions.set({
- 23       ...Permissions.default(),
- 24       editState: Permissions.proofOrSignature(),
- 25       setTokenSymbol: Permissions.proofOrSignature(),
- 26       send: Permissions.proofOrSignature(),
- 27       receive: Permissions.proofOrSignature(),
- 28     });
- 29   }
- 30 }
+  2  SmartContract,
+  3  state,
+  4  State,
+  5  method,
+  6  DeployArgs,
+  7  Permissions,
+  8  UInt64,
+  9  PublicKey,
+ 10  Signature,
+ 11 } from 'snarkyjs';
+ 12
+ 13 const tokenSymbol = 'MYTKN';
+ 14
+ 15 export class BasicTokenContract extends SmartContract {
+ 16   @state(UInt64) totalAmountInCirculation = State<UInt64>();
+ 17
+ 18   deploy(args: DeployArgs) {
+ 19     super.deploy(args);
+ 20
+ 21     const permissionToEdit = Permissions.proof();
+ 22
+ 23     this.account.permissions.set({
+ 24       ...Permissions.default(),
+ 25       editState: permissionToEdit,
+ 26       setTokenSymbol: permissionToEdit,
+ 27       send: permissionToEdit,
+ 28       receive: permissionToEdit,
+ 29     });
+ 30   }
+ 31 }
 ```
 
 We include a single state variable, `totalAmountInCirculation`, which we will use to track how many tokens exist.
@@ -73,34 +89,36 @@ We include a single state variable, `totalAmountInCirculation`, which we will us
 Next we will add an init method, and a method that mints tokens:
 
 ```ts
- 31   @method init() {
- 32     super.init();
- 33     this.account.tokenSymbol.set(tokenSymbol);
- 34     this.totalAmountInCirculation.set(UInt64.from(0));
- 35   }
- 36
- 37   @method mint(
- 38     receiverAddress: PublicKey,
- 39     amount: UInt64,
- 40     adminSignature: Signature
- 41   ) {
- 42     let totalAmountInCirculation = this.totalAmountInCirculation.get();
- 43     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
- 44
- 45     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
- 46
- 47     adminSignature.verify(
- 48       this.address,
- 49       amount.toFields().concat(receiverAddress.toFields())
- 50     ).assertTrue();
- 51
- 52     this.token.mint({
- 53       address: receiverAddress,
- 54       amount,
- 55     });
- 56
- 57     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
- 58   }
+ 32   @method init() {
+ 33     super.init();
+ 34     this.account.tokenSymbol.set(tokenSymbol);
+ 35     this.totalAmountInCirculation.set(UInt64.from(0));
+ 36   }
+ 37
+ 38   @method mint(
+ 39     receiverAddress: PublicKey,
+ 40     amount: UInt64,
+ 41     adminSignature: Signature
+ 42   ) {
+ 43     let totalAmountInCirculation = this.totalAmountInCirculation.get();
+ 44     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+ 45
+ 46     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+ 47
+ 48     adminSignature
+ 49       .verify(
+ 50         this.address,
+ 51         amount.toFields().concat(receiverAddress.toFields())
+ 52       )
+ 53       .assertTrue();
+ 54
+ 55     this.token.mint({
+ 56       address: receiverAddress,
+ 57       amount,
+ 58     });
+ 59
+ 60     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
+ 61   }
 ```
 
 In `init`, we set our token symbol (in this case, MYTKN), and start tracking the amount in circulation by setting it to zero.
@@ -112,17 +130,17 @@ In mint, we also track how many tokens are in existence.
 Lastly, we will write a send function:
 
 ```ts
- 59   @method sendTokens(
- 60     senderAddress: PublicKey,
- 61     receiverAddress: PublicKey,
- 62     amount: UInt64
- 63   ) {
- 64     this.token.send({
- 65       from: senderAddress,
- 66       to: receiverAddress,
- 67       amount,
- 68     });
- 69   }
+ 63   @method sendTokens(
+ 64     senderAddress: PublicKey,
+ 65     receiverAddress: PublicKey,
+ 66     amount: UInt64
+ 67   ) {
+ 68     this.token.send({
+ 69       from: senderAddress,
+ 70       to: receiverAddress,
+ 71       amount,
+ 72     });
+ 73   }
 ```
 
 Holders of our token will call this method to send tokens to other Mina accounts.
@@ -141,6 +159,6 @@ This will come in a future part of this tutorial. For now, see this example [her
 
 We have finished building a smart contract to manage a token, and shown how to build a smart contract that places custom rules over tokens!
 
-To learn more on tokens, see [the token docs](/zkapps/advanced-snarkyjs/custom-tokens).
+To learn more on tokens, see [the token docs](/zkapps/snarkyjs/custom-tokens).
 
-Check out our other tutorials and documentation to learn more about SnarkyJS and zkApps!
+Checkout [Tutorial 9](recursion) to learn how to use recursive ZKPs with SnarkyJS, to implement zkRollups, large computations, and more.

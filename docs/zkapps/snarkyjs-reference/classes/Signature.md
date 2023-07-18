@@ -1,3 +1,5 @@
+[SnarkyJS](../README.md) / [Modules](../modules.md) / Signature
+
 # Class: Signature
 
 A Schnorr [Signature](Signature.md) over the Pasta Curves.
@@ -24,12 +26,14 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 - [assertEquals](Signature.md#assertequals)
 - [equals](Signature.md#equals)
 - [isConstant](Signature.md#isconstant)
+- [toBase58](Signature.md#tobase58)
 - [toConstant](Signature.md#toconstant)
 - [toFields](Signature.md#tofields)
 - [toJSON](Signature.md#tojson)
 - [verify](Signature.md#verify)
 - [check](Signature.md#check)
 - [create](Signature.md#create)
+- [fromBase58](Signature.md#frombase58)
 - [fromFields](Signature.md#fromfields)
 - [fromJSON](Signature.md#fromjson)
 - [fromObject](Signature.md#fromobject)
@@ -44,7 +48,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 ### constructor
 
-• **new Signature**(...`props`)
+• **new Signature**(`...props`)
 
 #### Parameters
 
@@ -58,7 +62,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/circuit_value.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L64)
+[lib/circuit_value.ts:70](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L70)
 
 ## Properties
 
@@ -68,7 +72,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/signature.ts:185](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/signature.ts#L185)
+[lib/signature.ts:226](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L226)
 
 ___
 
@@ -78,7 +82,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:186](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/signature.ts#L186)
+[lib/signature.ts:227](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L227)
 
 ## Methods
 
@@ -102,7 +106,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -126,7 +130,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -144,7 +148,23 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L162)
+
+___
+
+### toBase58
+
+▸ **toBase58**(): `string`
+
+Encodes a [Signature](Signature.md) in base58 format.
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[lib/signature.ts:287](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L287)
 
 ___
 
@@ -162,7 +182,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -180,7 +200,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:136](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L136)
+[lib/circuit_value.ts:142](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L142)
 
 ___
 
@@ -198,7 +218,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:140](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L140)
+[lib/circuit_value.ts:146](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L146)
 
 ___
 
@@ -206,7 +226,7 @@ ___
 
 ▸ **verify**(`publicKey`, `msg`): [`Bool`](Bool.md)
 
-Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](../README.md#publickey).
+Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](Types.PublicKey.md).
 
 #### Parameters
 
@@ -219,11 +239,11 @@ Verifies the [Signature](Signature.md) using a message and the corresponding [Pu
 
 [`Bool`](Bool.md)
 
-a [Bool](Bool.md)
+a [Bool](../modules.md#bool-1)
 
 #### Defined in
 
-[lib/signature.ts:209](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/signature.ts#L209)
+[lib/signature.ts:261](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L261)
 
 ___
 
@@ -254,7 +274,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:185](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L185)
+[lib/circuit_value.ts:191](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L191)
 
 ___
 
@@ -279,7 +299,29 @@ a [Signature](Signature.md)
 
 #### Defined in
 
-[lib/signature.ts:192](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/signature.ts#L192)
+[lib/signature.ts:233](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L233)
+
+___
+
+### fromBase58
+
+▸ `Static` **fromBase58**(`signatureBase58`): [`Signature`](Signature.md)
+
+Decodes a base58 encoded signature into a [Signature](Signature.md).
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signatureBase58` | `string` |
+
+#### Returns
+
+[`Signature`](Signature.md)
+
+#### Defined in
+
+[lib/signature.ts:277](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L277)
 
 ___
 
@@ -310,7 +352,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -341,7 +383,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:218](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L218)
+[lib/circuit_value.ts:224](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L224)
 
 ___
 
@@ -372,7 +414,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:81](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L81)
+[lib/circuit_value.ts:87](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L87)
 
 ___
 
@@ -390,7 +432,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:88](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L88)
+[lib/circuit_value.ts:94](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L94)
 
 ___
 
@@ -408,7 +450,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:110](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L110)
+[lib/circuit_value.ts:116](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L116)
 
 ___
 
@@ -439,7 +481,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:199](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L199)
+[lib/circuit_value.ts:205](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L205)
 
 ___
 
@@ -470,7 +512,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:93](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L93)
+[lib/circuit_value.ts:99](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L99)
 
 ___
 
@@ -501,7 +543,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:114](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L114)
+[lib/circuit_value.ts:120](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L120)
 
 ___
 
@@ -532,4 +574,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L213)

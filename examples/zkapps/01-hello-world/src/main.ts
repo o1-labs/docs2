@@ -21,7 +21,7 @@ const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1
 
 // ----------------------------------------------------
 
-// Create a public/private key pair. The public key is our address and where we will deploy to
+// Create a public/private key pair. The public key is your address and where you deploy the zkApp to
 const zkAppPrivateKey = PrivateKey.random();
 const zkAppAddress = zkAppPrivateKey.toPublicKey();
 
@@ -54,7 +54,7 @@ try {
   const txn2 = await Mina.transaction(senderAccount, () => {
     zkAppInstance.update(Field(75));
   });
-  await txn1.prove();
+  await txn2.prove();
   await txn2.sign([senderKey]).send();
 } catch (ex: any) {
   console.log(ex.message);

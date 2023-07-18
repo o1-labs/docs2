@@ -11,7 +11,7 @@ import {
   Signature,
   Poseidon,
   Field,
-  Circuit,
+  Provable,
   MerkleWitness,
   MerkleTree,
   AccountUpdate,
@@ -121,7 +121,7 @@ const input2 = Int64.from(-15);
 
 const inputSum = input1.add(input2);
 
-const inputSumAbs = Circuit.if(
+const inputSumAbs = Provable.if(
   inputSum.isPositive(),
   inputSum,
   inputSum.mul(Int64.minusOne)
@@ -145,7 +145,7 @@ const input3largest = input3
   .isPositive()
   .and(input3.sub(input2).isPositive());
 
-const largest = Circuit.switch(
+const largest = Provable.switch(
   [input1largest, input2largest, input3largest],
   Int64,
   [input1, input2, input3]

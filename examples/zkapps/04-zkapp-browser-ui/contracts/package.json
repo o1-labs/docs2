@@ -1,5 +1,5 @@
 {
-  "name": "04-zkapp-browser-ui",
+  "name": "tutorial-4",
   "version": "0.1.0",
   "description": "",
   "author": "",
@@ -14,12 +14,13 @@
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "coverage": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --coverage",
+    "build": "tsc",
+    "buildw": "tsc --watch",
+    "coverage": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --coverage",
     "format": "prettier --write --ignore-unknown **/*",
-    "prepare": "cd .. && husky install contracts/.husky",
-    "test": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
-    "testw": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
+    "prepare": "husky install",
+    "test": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
+    "testw": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
     "lint": "npx eslint src/* --fix"
   },
   "lint-staged": {
@@ -44,6 +45,8 @@
     "typescript": "^4.7.2"
   },
   "peerDependencies": {
-    "snarkyjs": "^0.8.0"
+    "snarkyjs": "0.12.*"
   }
 }
+
+
