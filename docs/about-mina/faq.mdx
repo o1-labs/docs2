@@ -13,13 +13,13 @@ Frequently Asked Questions about Mina Protocol
 
 ### What language is Mina written in?
 
-The Mina node is written in OCaml. But you don't need to know OCaml to write smart contracts for Mina.
+The Mina node is written in OCaml. You don't need to know OCaml to write smart contracts for Mina.
 
 ### What language are zkApp smart contracts written in?
 
 Mina's zero knowledge smart contracts (zkApps) are written in TypeScript.
 
-Learn more about [how to write a zkApp](/zkapps/how-to-write-a-zkapp).
+See [How to write a zkApp](/zkapps/how-to-write-a-zkapp).
 
 ### How large is the Mina Blockchain?
 
@@ -27,21 +27,21 @@ Learn more about [how to write a zkApp](/zkapps/how-to-write-a-zkapp).
 
 ### Given Mina is only 22 KB, where are past transactions stored?
 
-A Mina node can run with an optional flag to make it an archive node to store historic transactions. Archive nodes are useful for anyone running a service such as a block explorer. Still, this historical data is not required to verify the current consensus state of the protocol.
+A Mina node can run with an optional flag to make it an archive node to store historical transactions. Archive nodes are useful for anyone running a service, such as a block explorer. Still, this historical data is not required to verify the current consensus state of the protocol.
 
-### What zk proof system does Mina use?
+### What zero knowledge (zk) proof system does Mina use?
 
-Mina Protocol uses a custom proof system called Kimchi, which was developed by [O(1) Labs](https://o1labs.org/), and is the only blockchain offering infinite recursion.
+Mina Protocol uses a custom proof system called Kimchi,  developed by [O(1) Labs](https://o1labs.org/). Mina is the only blockchain offering infinite recursion.
 
 Check out the [Mina Book](https://o1-labs.github.io/proof-systems/plonk/overview.html) to learn more about Kimchi and the cryptography powering Mina Protocol.
 
 ### What can I do on the Mina network?
 
-Any node can send and receive transactions on the Mina network. Any node can also choose to be a node operator. See [Node Operators](/node-operators). 
+Any node can send and receive transactions on the Mina network. Any node can also be a [node operator](/node-operators).
 
 ### What consensus algorithm does Mina use?
 
-Mina's consensus mechanism is an implementation of Ouroboros Proof-of-Stake. Due to Mina's unique compressed blockchain, certain aspects of the algorithm have diverged from the Ouroboros papers. The version Mina uses is called Ouroboros Samisika. 
+Mina's consensus mechanism is an implementation of Ouroboros proof of stake. Due to Mina's unique compressed blockchain, certain aspects of the algorithm have diverged from the Ouroboros papers. The version Mina uses is called Ouroboros Samisika and achieves consensus without long-term history.
 
 #### Is there a Mina block explorer?
 
