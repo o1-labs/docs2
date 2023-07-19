@@ -8,6 +8,7 @@ keywords:
   - Smart contract
   - Jest
   - Local blockchain
+  - Docker test
 ---
 
 :::info
@@ -18,9 +19,23 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # How to Test a zkApp
 
-Writing automated tests for your smart contract is essential to ensure your code is well tested during development. All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
+Writing automated tests for your smart contract is essential to ensure your code is well-tested during development. 
+
+## Test zkApps on a lightweight Mina local network
+
+A Docker image for Mina local networks provides a simple and efficient way to deploy and run lightweight Mina blockchain networks for testing zkApps. The `o1labs/mina-local-network` Docker image provides:
+
+- Genesis ledger with pre-funded accounts
+- Accounts manager service
+- Additional port served by reverse proxy to pass requests to the Mina daemon GraphQL endpoint so zkApps work without additional configuration
+- Single commands to launch a single node or multi node network
+
+Pull the [o1labs/mina-local-network]
+(https://hub.docker.com/r/o1labs/mina-local-network) image from Docker Hub.
 
 ## Writing tests for your smart contract
+
+All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
 
 Use the Mina zkApp CLI to create tests for your smart contract.
 
