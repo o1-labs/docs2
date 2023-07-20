@@ -89,16 +89,13 @@ function Footer(): JSX.Element | null {
             <Link href={SocialLinks.Twitter}>
               <TwitterLogo />
             </Link>
-            <Link href={SocialLinks.Facebook}>
-              <FacebookLogo />
-            </Link>
             <Link href={SocialLinks.Telegram}>
               <TelegramLogo />
             </Link>
             <Link href={SocialLinks.WeChat}>
               <WeChatLogo />
             </Link>
-            <Link href={SocialLinks.Youtube}>
+            <Link href={SocialLinks.YouTube}>
               <YoutubeLogo />
             </Link>
           </div>
@@ -198,7 +195,7 @@ function Footer(): JSX.Element | null {
                   <Link href={SocialLinks.Telegram}>Forums</Link>
                 </li>
                 <li>
-                  <Link href={SocialLinks.Github}>Github</Link>
+                  <Link href={SocialLinks.GitHub}>Github</Link>
                 </li>
                 <li>
                   <Link href={SocialLinks.Support}>Contact Us</Link>

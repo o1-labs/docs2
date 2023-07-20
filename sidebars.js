@@ -67,6 +67,7 @@ module.exports = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'zkapps/tutorials/index',
             'zkapps/tutorials/hello-world',
             'zkapps/tutorials/private-inputs-hash-functions',
             'zkapps/tutorials/deploying-to-a-network',
@@ -76,6 +77,8 @@ module.exports = {
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
+            'zkapps/tutorials/account-updates',
+            'zkapps/tutorials/advanced-account-updates',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],
@@ -87,6 +90,11 @@ module.exports = {
             {
               type: 'doc',
               id: 'zkapps/snarkyjs-reference/README',
+              label: 'Introduction',
+            },
+            {
+              type: 'doc',
+              id: 'zkapps/snarkyjs-reference/modules',
               label: 'Overview',
             },
             {
@@ -162,6 +170,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/classes/MerkleTree',
                   label: 'MerkleTree',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/classes/Nullifier',
+                  label: 'Nullifier',
                 },
                 {
                   type: 'doc',
@@ -282,6 +295,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Pickles',
+                  label: 'Pickles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/modules/Snarky',
+                  label: 'Snarky',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/snarkyjs-reference/modules/Types.Json',
                   label: 'Types.Json',
                 },
@@ -289,6 +312,17 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/snarkyjs-reference/modules/Types',
                   label: 'Types',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Enums',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/snarkyjs-reference/enums/FieldType',
+                  label: 'FieldType',
                 },
               ],
             },
@@ -303,6 +337,7 @@ module.exports = {
       type: 'category',
       label: 'Node Operators',
       items: [
+        'node-operators/index',
         'node-operators/getting-started',
         'node-operators/archive-node',
         'node-operators/archive-redundancy',
@@ -310,7 +345,7 @@ module.exports = {
         'node-operators/delegation-tiebreak',
         'node-operators/bp-sidecar',
         'node-operators/uptime-tracking-system',
-        'node-operators/client-sdk',
+        'node-operators/mina-signer',
         'node-operators/querying-data',
         'node-operators/connecting-to-devnet',
         'node-operators/hardforks',

@@ -2,18 +2,25 @@
 title: 'Tutorial 1: Hello World'
 hide_title: true
 sidebar_label: 'Tutorial 1: Hello World'
+description: Guided steps to get started with SnarkyJS, zkApps, and programming with zero-knowledge proofs. Learn to code a zkApp from start to finish.
+keywords:
+  - smart contracts
+  - zkapps
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - data types
+  - snarkyjs
+  - blockchain
+  - mina
+  - typescript
 ---
+
+import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
-
-:::
-
-:::note
-
-This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.7.5` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.9.8`.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 
 :::
 
@@ -41,42 +48,14 @@ To prevent copying line numbers and command prompts as shown in the examples, us
 
 :::
 
-## Setup
+## Prerequisites
 
-First, install the [Mina zkApp CLI](#install-the-zkapp-cli) if you haven't already.
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-### Dependencies
-
-To use the zkApp CLI, your environment requires:
-
-- NodeJS v16 and later (or NodeJS v14 using `--experimental-wasm-threads`)
-- NPM v6 and later
-- Git v2 and later
-
-Use a package manager to install the required versions and upgrade older versions if needed. Package managers for the supported environments are:
-
-- MacOS [Homebrew](https://brew.sh/)
-- Windows [Chocolatey](https://chocolatey.org/)
-- Linux
-
-  - apt, yum, and others
-
-  On Linux, you might need to install a recent Node.js version by using NodeSource. Use [deb](https://github.com/nodesource/distributions#debinstall) or [rpm](https://github.com/nodesource/distributions#rpminstall) as recommended by the Node.js project.
-
-To verify your installed versions, use `npm -v`, `node -v`, and `git -v`.
-
-### Install the zkApp CLI
-
-To install the zkApp CLI:
+In particular, make sure you have the zkApp CLI installed:
 
 ```sh
 $ npm install -g zkapp-cli
-```
-
-To confirm successful installion:
-
-```sh
-$ zk --version
 ```
 
 ## Create a new project
@@ -149,7 +128,7 @@ Now that you have the tooling installed, you can start building your application
 
 For this tutorial, you run commands from the root of the `01-hello-world` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-### Preparing the project
+### Prepare the project
 
 Start by deleting the default files that come with the new project.
 
@@ -210,9 +189,6 @@ The `import` statement brings in other packages and dependencies to use in your 
 All functions used inside a smart contract must operate on SnarkyJS compatible data types: `Field` types and other types built on top of `Field` types. 
 
 :::info
-
-
-This `import` statement brings in items from `snarkyjs` that you use to build your smart contract. 
 
 ```ts src/Square.ts
 1 import {
@@ -288,7 +264,7 @@ The function name `update` is arbitrary, but it makes sense for this example. No
 
 This method contains the logic by which end users are allowed to update the zkApp's account state on chain. 
 
-A zkApp account is an account is on the Mina blockchain were a zkApp smart contract is deployed. A zkApp account has a verification key associated with it. 
+A zkApp account is an account is on the Mina blockchain where a zkApp smart contract is deployed. A zkApp account has a verification key associated with it. 
 
 In this example, the code specifies:
 
@@ -313,7 +289,7 @@ You can also store data publicly on-chain when needed, like  `num` in this examp
 
 Congratulations, you have reviewed the complete smart contract code. 
 
-## Interacting with a smart contract
+## Interact with a smart contract
 
 Next, write a script that interacts with your smart contract. As before, the complete [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file is provided. Follow these steps to build the `main.ts` file so you can can interact with the smart contract.  
 
@@ -377,8 +353,8 @@ const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1
 
 Tip: To preserve line numbers in your local `main.ts` file, add blank lines as needed after you copy the code snippets.
 
-### Building and running
- 
+### Build and run the smart contract
+
 Now that the Square smart contract is complete, these commands run your project as a local blockchain.
 
 To compile the TypeScript code into JavaScript:
@@ -590,6 +566,13 @@ state after txn2: 9
 state after txn3: 81
 Shutting down
 ```
+
+## Follow along
+
+You can follow along in this video as cryptographer, David Wong, learns how to code a Hello World project. 
+<ResponsiveVideo src="https://www.youtube.com/embed/prx2oNpy0vo" />
+
+The video is provided for educational purposes and uses earlier versions of the zkApp CLI and SnarkyJS, so there are some differences. The Hello World tutorial always uses the most recent version of the zkApp CLI and SnarkyJS. 
 
 ## Conclusion
 

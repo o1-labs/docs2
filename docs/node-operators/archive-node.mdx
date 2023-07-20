@@ -1,7 +1,15 @@
 ---
 title: Archive Node
-hide_title: true
+description: Mina archive nodes maintain historical information about the network, block, and transactions. A zkApp can retrieve events and actions from one or more Mina archive nodes.
+keywords:
+  - mina archive node
+  - mina historical information
+  - events and actions
+  - archive process
+  - postgres
 ---
+
+# Archive Node
 
 :::note
 
@@ -9,10 +17,10 @@ A new version of Mina Docs is coming soon! This page will be rewritten.
 
 :::
 
-# Archive Node
 
-Mina nodes are succinct by default, meaning they don't need to maintain historical information about the network, block, or transactions.
-For some usecases, it is useful to maintain this historical data, which you can do by running an **Archive Node.**
+Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions.
+
+For some use cases, it is useful to maintain this historical data on an archive node.
 
 :::tip
 
@@ -20,19 +28,21 @@ A zkApp can retrieve events and actions from one or more Mina archive nodes. If 
 
 :::
 
-An **Archive Node** is just a regular mina daemon that is connected to a running archive process.
-The daemon will regularly send blockchain data to the archive process,
-which will store it in a [Postgres](https://www.postgresql.org/) database.
+An archive node is a regular mina daemon that is connected to a running archive process.
 
-Running an archive node therefore requires some knowledge of managing a Postgres database instance.
-In this section, we'll set up a database, run the Archive Node, connect it to a daemon, and try some queries on the data.
-Let's get started by installing what we need.
+The daemon regularly sends blockchain data to the archive process that stores it in a [PostgreSQL](https://www.postgresql.org/) database.
 
-## Installation
+Running an archive node requires some knowledge of managing a PostgreSQL database instance. You must set up a database, run the archive node, connect it to a daemon, and run queries on the data.
 
-1. Install the latest version of mina. If you haven't upgraded to the latest version of the daemon, head [back to the docs](./getting-started) to get the latest version. You can run `mina -help` to check if the installation succeeded.
-2. Install [Postgres](https://www.postgresql.org/download/).
-3. Install the archive node package.
+## Install Mina, PostgreSQL, and the archive node package
+
+1. Install the latest version of Mina. 
+
+  You must upgrade to the latest version of the daemon. Follow the steps in [Getting Started](getting-started).
+
+1. Download and install [PostgreSQL](https://www.postgresql.org/download/).
+
+1. Install the archive node package.
 
    - Ubuntu/Debian:
 
@@ -41,64 +51,207 @@ Let's get started by installing what we need.
      ```
 
    - Docker:
+
      ```
      minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
      ```
 
-## Setup
+## Set up the archive node
 
-Below are some basic instructions on how to set up everything required to get an archive node running locally. These will be slightly different if you're connecting to a cloud instance of postgres, if your deployment uses docker, or if you want to run these processes on different machines.
+These steps might be different for your operating system, if you're connecting to a cloud instance of PostgreSQL, if your deployment uses Docker, or if you want to run these processes on different machines. 
 
-:::note
+For production, run the archive database in the background, use your operating system service manager (like systemd) to run it for you, or use a postgres service hosted by a cloud provider.
 
-Note: Some of these instructions may depend on how your operating system installs postgres (and assume that it is installed in the first place).
+To run a local archive node to run it in the foreground for testing:
 
-:::
+1. Start a local postgres server and connect to port 5432:
 
-1. Start a local postgres server. This will just run it in the foreground for testing, you will likely want to run it in the background or use your OS's service manager (like systemd) to run it for you. Alternatively, you may use a postgres service hosted by a cloud provider.
+  ```sh
+  postgres -p 5432 -D /usr/local/var/postgres
+  ```
 
-```
-postgres -p 5432 -D /usr/local/var/postgres
-```
+  For macOS:
+  
+  ```sh
+  brew services start postgres
+  ```
 
-For macOS, run `brew services start postgres` to start a local postgres server.
+1. Create a local postgres database called `archive`:
 
-2. Create database (here called `archive`) on server and load the schema into it. This will only need to be done the first time the archive node is set up.
+  ```sh
+  createdb -h localhost -p 5432 -e archive
+  ```
 
-```
-createdb -h localhost -p 5432 -e archive
+1. Load the mina archive schema into the archive database:
 
-psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql)
-```
+  ```sh
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql)
+  ```
 
-3. Start archive process on port 3086, connecting to the postgres database we started on port 5432 in step 1.
+1. Start the archive process on port 3086 and connect to the postgres database that runs on port 5432:
 
-```
-mina-archive run \
-  --postgres-uri postgres://localhost:5432/archive \
-  --server-port 3086
-```
+  ```sh
+  mina-archive run \
+    --postgres-uri postgres://localhost:5432/archive \
+    --server-port 3086
+  ```
 
-4. Start the daemon, connecting it to the archive process that we just started on port 3086. If you want to connect to an archive process on another machine, you can specify a hostname as well, like `localhost:3086`.
+4. Start the mina daemon and connect it to the archive process that you started on port 3086:
 
-```
-mina daemon \
-    .....
-  --archive-address 3086\
-```
+  ```
+  mina daemon \
+      .....
+    --archive-address 3086\
+  ```
+  
+  To connect to an archive process on another machine, specify a hostname with `localhost:3086`.
 
-## Upgrading/Repairing the Archive Data
+## Set up the archive node using Docker
 
-Due to a bug in the originally released archive node version 1.1.5, some early transactions may not be represented properly in your database. See [here](https://gist.github.com/lk86/22b07d3b3f91c765f34e4e4398a84701) for complete instructions on migrating your archive database.
+To get started with installing and running the archive node using Docker, follow the steps below.
+
+1. Install Docker on your machine. For more information, see [Docker](https://docs.docker.com/get-docker/).
+
+2. Pull the archive node image from Docker Hub.
+
+   ```sh
+   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   ```
+
+3. Pull and install the postgres image from Docker Hub.
+
+   ```sh
+   docker pull postgres
+   ```
+
+4. Start the postgres container and expose it's networking to other containers.
+
+   ```sh
+   docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+   ```
+
+5. Create a local postgres database called `archive`.
+
+   ```sh
+   docker exec -it postgres createdb -U postgres archive
+   ```
+
+6. Load the mina archive schema into the archive database.
+
+   ```sh
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+   ```
+
+7. Create a local directory to store the archive node data.
+
+   ```sh
+   mkdir -p /tmp/archive
+   ```
+
+8. Start the archive node.
+
+   ```sh
+   docker run \
+   --name archive \
+   -p 3086:3086 \
+   -v /tmp/archive:/data \
+   minaprotocol/mina-archive:1.3.0-9b0369c-bullseye \
+   mina-archive run \
+   --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
+   --server-port 3086
+
+   ```
+
+9. Start the mina daemon and connect it to the archive process that you started on port 3086:
+
+   ```
+   mina daemon \
+       .....
+     --archive-address 3086\
+   ```
+
+## Set up the archive node using Docker Compose
+
+Docker Compose is a tool for defining and running multi-container Docker applications.
+With Compose, you use a YAML file to configure your application's services. Then, with a single command, you create and start all the services from your configuration.
+
+To run the archive node using Docker Compose:
+
+1. Install Docker on your machine. For more information, see [Docker](https://docs.docker.com/get-docker/).
+
+2. Install Docker Compose on your machine. For more information, see [Docker Compose](https://docs.docker.com/compose/install/).
+
+3. Pull the archive node image from Docker Hub.
+
+   ```sh
+   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   ```
+
+4. Pull and install the postgres image from Docker Hub.
+
+   ```sh
+    docker pull postgres
+   ```
+
+5. Create a local directory to store the archive node data.
+
+   ```sh
+   mkdir -p /tmp/archive
+   ```
+
+6. Create a `docker-compose.yml` file with the following contents:
+
+   ```yml
+   version: '3.8'
+   services:
+     postgres:
+       image: postgres
+       environment:
+         POSTGRES_PASSWORD: postgres
+       volumes:
+         - './postgres-data:/var/lib/postgresql/data'
+       ports:
+         - '5432:5432'
+     archive:
+       image: 'minaprotocol/mina-archive:1.3.0-9b0369c-bullseye'
+       command: >-
+         mina-archive run --postgres-uri
+         postgres://postgres:postgres@postgres:5432/archive --server-port 3086
+       volumes:
+         - '/tmp/archive:/data'
+       ports:
+         - '3086:3086'
+       depends_on:
+         - postgres
+   ```
+
+7. Start the archive node.
+
+   ```sh
+   # If you are running Docker Compose V1:
+   docker-compose up
+
+   # If you are running Docker Compose V2:
+   docker compose up
+   ```
+
+8. Start the mina daemon and connect it to the archive process that you started on port 3086:
+
+   ```
+   mina daemon \
+       .....
+     --archive-address 3086\
+   ```
 
 ## Using the Archive Node
 
-Now that we've got the archive node running, let's take a look at the tables in the database.
+Take a look at the tables in the database.
 
-To list the tables in the database, you can run the `\dt` command, in psql.
-View the full schema of the tables [here](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql).
+To list the tables, run the `\dt` command in psql.
 
-Below are some notable fields in each table.
+Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql).
+
+Notable fields in each table:
 
 ### Table 1: user_commands
 
@@ -106,7 +259,7 @@ Below are some notable fields in each table.
 
 This table keeps track of transactions made on the network.
 
-```
+```text
 ...
   user_command_type          Type of transaction being made
                              Possible values: `'payment', 'delegation'
@@ -119,9 +272,9 @@ This table keeps track of transactions made on the network.
 
 ### Table 2: internal_commands
 
-This table keeps track of rewards earned from snark work or block producing.
+This table keeps track of rewards earned from SNARK work or block producing.
 
-```
+```text
 ...
   internal_command_type      represents whether the command is a `fee_transfer` from snark work or a `coinbase` reward from block producing.
                              Use this field for information about block rewards and snark rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
@@ -132,7 +285,7 @@ This table keeps track of rewards earned from snark work or block producing.
 
 ### Table 3: blocks
 
-```
+```text
 ...
   id
   parent_id                  ID of the previous block in the blockchain
@@ -142,9 +295,9 @@ This table keeps track of rewards earned from snark work or block producing.
 
 ### Join tables
 
-There are two join tables in the archive database, which links blocks to transactions.
-By linking the block table and command tables, these tables allow you to identify
-specific transactions within blocks.
+Two join tables in the archive database link blocks to transactions.
+
+By linking the block table and command tables, these tables allow you to identify specific transactions within blocks.
 
 #### Join table 1: blocks_user_commands
 
@@ -165,11 +318,11 @@ sequence_no                  0-based order of the internal command among the blo
 secondary_sequence_no        0-based order of a fee transfer within a coinbase internal command
 ```
 
-## Try a query
+## Query the database
 
-Now that we've taken a look at the structure of the data, let's try a query.
+Now that you know the structure of the data, try a query.
 
-**Example 1:** Find all blocks that have been created by your public key
+**Example 1:** Find all blocks that were created by your public key:
 
 ```
 SELECT *
@@ -178,7 +331,7 @@ INNER JOIN public_keys AS pk1 ON b.creator_id = pk1.id
 WHERE value = 'MY_PK'
 ```
 
-**Example 2:** Find all payments you’ve received by your public key
+**Example 2:** Find all payments received by your public key:
 
 ```
 SELECT *
@@ -189,7 +342,7 @@ WHERE value = 'MY_PK'
 AND type = 'payment'
 ```
 
-**Example 3:** Find the block at height 12 on the canonical chain
+**Example 3:** Find the block at height 12 on the canonical chain:
 
 ```
 WITH RECURSIVE chain AS (
@@ -208,7 +361,7 @@ WITH RECURSIVE chain AS (
   WHERE c.height = 12
 ```
 
-**Example 3:** List the counts of blocks created by each public key and sort them in descending order
+**Example 3:** List the counts of blocks created by each public key and sort them in descending order"
 
 ```
 SELECT p.value, COUNT(*) FROM blocks
@@ -217,7 +370,7 @@ GROUP BY p.value
 ORDER BY count DESC;
 ```
 
-**Example 4:** List the counts of applied payments created by each public key and sort them in descending order
+**Example 4:** List the counts of applied payments created by each public key and sort them in descending order:
 
 ```
 SELECT p.value, COUNT(*) FROM user_commands

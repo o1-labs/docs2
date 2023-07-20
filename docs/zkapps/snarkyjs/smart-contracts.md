@@ -1,12 +1,28 @@
 ---
-title: Smart Contracts
+title: Smart contracts
 hide_title: true
+description: How to create and interact with a smart contract. How to prove an on-chain value. Learn about the public state of a zkApp and private method parameters.
+keywords:
+  - smart contracts
+  - zkapps
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - zkapp account
+  - snarkyjs
+  - blockchain
+  - mina
+  - typescript
+  - public input
+  - private input
+  - on-chain state
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+Experimental. This API may change.
+
+Specifically, we are looking into refactoring ZkProgram methods to explicitly return values rather than requiring them to be passed as further inputs.
 
 :::
 
@@ -112,7 +128,7 @@ Therefore, when executing your code and trying to read the value of `x` to turn 
 This is why we have a special function for logging stuff from inside your method:
 
 ```ts
-Circuit.log(x);
+Provable.log(x);
 ```
 
 The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.

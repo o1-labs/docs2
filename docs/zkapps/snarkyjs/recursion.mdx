@@ -16,14 +16,13 @@ keywords:
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
 
 Experimental. This API may change.
 
 Specifically, we are looking into refactoring ZkProgram methods to explicitly return values rather than requiring them to be passed as further inputs.
-
-:::
 
 # Recursion
 
@@ -40,7 +39,7 @@ More generally, you can use recursion to verify any zero-knowledge program as pa
 
 In SnarkyJS, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
 
-After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifys the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
+After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
 
 Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _private by default_ and never seen by the Mina network.  Unlike `SmartContract` methods, as the zkApp developer you choose the shape of the public input to all the methods within a `ZkProgram`.
 
@@ -116,7 +115,7 @@ const AddOne = Experimental.ZkProgram({
     step: {
       privateInputs: [SelfProof],
 
-      method(publicInput: Field, earlierProof: SelfProof<Field>) {
+      method(publicInput: Field, earlierProof: SelfProof<Field, void>) {
         earlierProof.verify();
         earlierProof.publicInput.add(1).assertEquals(publicInput);
       },
@@ -179,8 +178,8 @@ let RollupAdd = Experimental.ZkProgram({
 
       method(
         publicInput: Field,
-        left: SelfProof<Field>,
-        right: SelfProof<Field>
+        left: SelfProof<Field, void>,
+        right: SelfProof<Field, void>
       ) {
         left.verify();
         right.verify();

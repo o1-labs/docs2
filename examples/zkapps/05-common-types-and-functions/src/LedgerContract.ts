@@ -8,7 +8,7 @@ import {
   Poseidon,
   PublicKey,
   Signature,
-  Circuit,
+  Provable,
 } from 'snarkyjs';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -59,7 +59,7 @@ export class LedgerContract extends SmartContract {
     const recipientAccountNew = rootSenderAfter.equals(rootRecipientBeforeEmpty);
 
     // check requirements on the recipient state before receiving
-    const recipientAccountPassesRequirements = Circuit.if(
+    const recipientAccountPassesRequirements = Provable.if(
       recipientAccountNew, 
       (() => {
         // new account
