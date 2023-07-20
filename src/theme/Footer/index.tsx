@@ -109,6 +109,11 @@ function Footer(): JSX.Element | null {
                   <Link to="/">Documentation</Link>
                 </li>
                 <li>
+                  <Link href="https://minaprotocol.com/join-zkignite-cohort-2">
+                    zkIgnite, Cohort 2
+                  </Link>
+                </li>
+                <li>
                   <Link to="/zkapps">Write a zkApp</Link>
                 </li>
                 <li>
@@ -116,11 +121,7 @@ function Footer(): JSX.Element | null {
                     Run a Node
                   </Link>
                 </li>
-                <li>
-                  <Link href="https://minaprotocol.com/genesis">
-                    Join Genesis
-                  </Link>
-                </li>
+                
               </ul>
             </li>
             <li>
@@ -163,24 +164,29 @@ function Footer(): JSX.Element | null {
               </ul>
             </li>
             <li>
-              <span>Community</span>
+              <span>Ecosystem</span>
               <ul>
                 <li>
-                  <Link href="https://minaprotocol.com/community">Welcome</Link>
+                  <Link href="https://minaprotocol.com/community">Community</Link>
                 </li>
                 <li>
-                  <Link href="https://minaprotocol.com/genesis">
-                    Genesis Program
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://minaprotocol.com/leaderboard">
-                    Testnet Leaderboard
+                  <Link href="https://minaprotocol.com/grants">
+                    Grants
                   </Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/work-with-mina">
-                    Careers
+                    Work with Mina
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://minafoundation.notion.site/minafoundation/Mina-Community-Blog-91b8fdfd1b9e444ca55ddd1b90bade3c">
+                    Community Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://www.minafoundation.com/">
+                    Mina Foundation
                   </Link>
                 </li>
               </ul>
@@ -192,13 +198,10 @@ function Footer(): JSX.Element | null {
                   <Link href={SocialLinks.Discord}>Discord</Link>
                 </li>
                 <li>
-                  <Link href={SocialLinks.Telegram}>Forums</Link>
+                  <Link href={SocialLinks.Telegram}>Mina Research</Link>
                 </li>
                 <li>
                   <Link href={SocialLinks.GitHub}>Github</Link>
-                </li>
-                <li>
-                  <Link href={SocialLinks.Support}>Contact Us</Link>
                 </li>
               </ul>
             </li>
@@ -226,7 +229,7 @@ function Footer(): JSX.Element | null {
           </ul>
         </div>
         <div className={styles.minaFooter_legals__info}>
-          ©2022 Mina. Started by O(1) Labs.
+          ©2023 Mina. Started by O(1) Labs.
         </div>
       </div>
     </footer>
