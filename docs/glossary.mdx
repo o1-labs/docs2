@@ -82,7 +82,7 @@ Generating a SNARK for a computation output can be thought of as compressing tha
 
 ### consensus
 
-A process through which all the peers of a blockchain network reach a common agreement about the present state of the distributed ledger. A consensus algorithm or set of rules that Mina nodes all agree upon when deciding to update the state of the network. Rules can include what data a new block can contain and how nodes are selected and rewarded for adding a block. Mina implements the [Ouroboros Samisika](/glossary#ouroboros-samisika) consensus mechanism.
+An algorithm or set of rules that Mina nodes all agree upon when deciding to update the state of the network. Rules can include what data a new block can contain and how nodes are selected and rewarded for adding a block. Mina implements the [Ouroboros Samisika](/glossary#ouroboros-samisika) consensus mechanism.
 
 ### consensus node
 
@@ -97,10 +97,6 @@ A digital asset or currency that uses cryptographic primitives to secure financi
 ### daemon
 
 The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a [pub-sub](#pub-sub) model.
-
-### DAO
-
-A decentralized autonomous organization that operates based on rules that are encoded on a blockchain and executed through smart contracts. DAOs are an organizational structure built with blockchain technology.
 
 ### delegating
 
@@ -134,10 +130,6 @@ Also referred to as a [block](#block), an external transition is generated exter
 
 ## F
 
-## fee payer account
-
-A developer account that is funded and can always pay fees immediately. When you configure a zkApp, you can choose to use a stored account or create a new fee payer account.
-
 ### field element
 
 The basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a uint256 in Solidity. For the cryptography inclined, the exact max value that a field can store is 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336.
@@ -166,7 +158,7 @@ A combination of a [private key](#private-key) and [public key](#public-key). Ke
 
 ### Kimchi
 
-The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi, a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk), features a polynomial commitment scheme that supports verifiable computation using traditional Turing machine-based instruction sets.
+The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi is a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk).
 
 ## L
 
@@ -222,14 +214,6 @@ An incrementing number attached to a transaction used to prevent a replay of a t
 
 ## O
 
-### off-chain
-
-A transfer of value or data, including transactions, that occurs outside a given blockchain network. Transactions are executed instantly, speeding up the transaction process and reducing lag time.
-
-### on-chain
-
-A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is time-stamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
-
 ### Ouroboros Samisika
 
 Mina builds on this provably secure proof of stake (PoS) protocol that combines the best features of each iteration of Ouroboros to deliver a PoS consensus mechanism that can resolve long-range forks without requiring history or risking centralization by relying on trusted third parties to provide fork information.
@@ -268,17 +252,9 @@ The state of the network that comprises the previous protocol state hash to link
 
 The hash of hashes of the previous state and [protocol state](#protocol-state) body. Acts as a unique identifier for a block.
 
-### proof of liabilities (PoL)
-
-A cryptographic primitive to prove the size of funds a bank, or centralized exchange (CEX), owes to its customers in a decentralized manner and can be used for solvency audits with better privacy guarantees.
-
 ### proof of stake (PoS)
 
-The Mina consensus algorithm that allows nodes to agree on the state of the network. PoS allows nodes to [stake](node-operators/staking-and-snarking) MINA on the network to increase their chance of being selected as the next block producer. The winning validators are compensated with a percentage yield of the crypto they have staked as an incentive for engaging in this process. See [Proof-of-Work vs Proof-of-Stake](https://minaprotocol.com/blog/proof-of-work-vs-proof-of-stake).
-
-### proof of work (PoW)
-
-The original consensus process used by Bitcoin, the first cryptocurrency. PoW achieves the decentralized consensus needed to add new blocks to a blockchain by using machines to compete against one another by guessing the answer to math problems that have no feasible faster solution. Computational power is a requirement for the PoW protocol success and assumes that those contributing more resources (energy, supercomputers, and infrastructure) to a problem are less likely to want to destroy the protocol. As an incentive to participate in this consensus process, miners are rewarded with tokens. 
+The Mina consensus algorithm that allows nodes to agree on the state of the network. PoS allows nodes to [stake](node-operators/staking-and-snarking) MINA on the network to increase their chance of being selected as the next block producer.
 
 ### prover function
 
