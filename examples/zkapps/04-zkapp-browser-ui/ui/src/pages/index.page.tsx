@@ -191,12 +191,12 @@ export default function Home() {
     const auroLink = 'https://www.aurowallet.com/';
     const auroLinkElem = (
       <a href={auroLink} target="_blank" rel="noreferrer">
-        [Link]{' '}
+        Install Auro wallet here
       </a>
     );
     hasWallet = (
       <div>
-        Could not find a wallet. Install Auro wallet here: {auroLinkElem}
+        Could not find a wallet. {auroLinkElem}
       </div>
     );
   }
@@ -227,7 +227,7 @@ export default function Home() {
       <div>
         Account does not exist. Please visit the faucet to fund this account
         <a href={faucetLink} target="_blank" rel="noreferrer">
-          [Link]{' '}
+          Please visit the faucet to fund this account
         </a>
       </div>
     );
