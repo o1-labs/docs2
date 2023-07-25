@@ -85,7 +85,7 @@ export default function Home() {
         setDisplayText('Getting zkApp state...');
         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
         const currentNum = await zkappWorkerClient.getNum();
-        console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+        console.log(`Current state in zkApp: ${currentNum.toString()}`);
         setDisplayText('');
 
         setState({
@@ -179,7 +179,7 @@ export default function Home() {
     });
     const currentNum = await state.zkappWorkerClient!.getNum();
     setState({ ...state, currentNum });
-    console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+    console.log(`Current state in zkApp: ${currentNum.toString()}`);
     setDisplayText('');
   };
 
@@ -238,7 +238,7 @@ export default function Home() {
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
-          Current Number in zkApp: {state.currentNum!.toString()}{' '}
+          Current state in zkApp: {state.currentNum!.toString()}{' '}
         </div>
         <button
           className={styles.card}
