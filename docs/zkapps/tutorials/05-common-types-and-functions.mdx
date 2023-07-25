@@ -32,17 +32,17 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 
 # Tutorial 5: Common Types and Functions
 
-In previous tutorials, we've seen how to deploy smart contracts to the network, and we've interacted with them from both a React UI and NodeJS.
+In previous tutorials, you learned how to deploy smart contracts to the network interact with them from a React UI and NodeJS.
 
-In this tutorial, we will talk about more types that are useful when building with SnarkyJS, so you can build more applications. So far, we've mostly been using the `Field` type. SnarkyJS provides other higher-order types built from Fields, that will be useful for your development.
+In this tutorial, you learn about types you can use when building with SnarkyJS. Earlier tutorials mostly use the `Field` type. SnarkyJS provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
 
-You can find all of these on the [SnarkyJS Reference page](../snarkyjs-reference), for their full API documentation.
+All types are defined in the [SnarkyJS / Modules / Types](/zkapps/snarkyjs-reference/modules/Types) API reference documentation.
 
-There is also a project [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src), with a [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) demoing the concepts presented in this tutorial, along with smart contracts showing more advanced usage of some of the concepts, particularly Merkle Trees.
+The [example project](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) includes a [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) that shows all of the concepts presented in this tutorial, along with smart contracts showing more advanced usage of some of the concepts, particularly Merkle Trees.
 
 ## Basic Types
 
-To start, we'll discuss 5 basic types derived from the Fields:
+Five basic types are derived from the Fields:
 
 - [Bool](../snarkyjs-reference/classes/Bool)
 - [UInt32](../snarkyjs-reference/classes/UInt32)
@@ -50,9 +50,9 @@ To start, we'll discuss 5 basic types derived from the Fields:
 - [Int64](../snarkyjs-reference/classes/Int64)
 - [Character](../snarkyjs-reference/classes/Character)
 
-These each have their usual programming language semantics.
+Each type has the usual programming language semantics.
 
-For example, we can have the following code:
+For example, the following code:
 
 ```ts
 const num1 = UInt32.from(40);
