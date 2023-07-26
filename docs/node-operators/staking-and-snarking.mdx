@@ -15,19 +15,13 @@ keywords:
   - block rewards
 ---
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
 # Staking & Snarking
 
 You can interact with the Mina network by participating in consensus and helping compress data by generating zk-SNARKs. By operating a node that helps secure the network, you can receive MINA for your efforts. See [Staking Rewards on Mina](https://minaprotocol.com/blog/staking-rewards-on-mina).
 
 ## Participating in Consensus
 
-The Mina network is secured by [proof of stake (PoS) consensus](/glossary#proof-of-stake-pos). With this model of consensus, you don't need to have complex equipment like in Bitcoin mining. By simply having MINA in your wallet, you can choose to stake your MINA or delegate it to another node. 
+The Mina network is secured by [proof of stake (PoS)](/glossary#proof-of-stake-pos) consensus. With this model of consensus, you don't need to have complex equipment like in Bitcoin mining. By simply having MINA in your wallet, you can choose to stake your MINA or delegate it to another node. 
 
 Mina is a public and decentralized blockchain that is open for anyone in the world to participate in actively or passively. You can help increase the security of the network by becoming nodes or block producers, or you can help lower the cost of transactions by becoming SNARK producers, or you can be both.
 
@@ -39,9 +33,9 @@ You can earn block rewards by participating in block production through staking.
 
 To properly remain synced to the network and participate in consensus, your server must run a [clock synchronization protocol](https://en.wikipedia.org/wiki/Clock_synchronization).
 
-Network Time Protocol [(NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) is the most common method for synchronizing computer clocks over a network. 
+Network Time Protocol [(NTP)](https://en.wikipedia.org/wiki/Network_Time_Protocol) is the most common method for synchronizing computer clocks over a network. 
 
-To synchronize your server software clock with internet time servers, set up NTP in a few steps. NTP is installed as a default service on many popular Linux distributions.
+To synchronize your server software clock with internet time servers, be sure to set up NTP. Many popular Linux distributions include NTP as a default service.
 
 
 To stake with your MINA:
@@ -96,11 +90,7 @@ where:
 
 - The `Block producers running` field returns the number of accounts currently staking, with the associated key.
 
-:::caution
-
 When you are staking independently with funds in a account, you must remain connected to the network at all times to successfully produce blocks. If you need to go offline frequently, it might be better to delegate your stake to a node operator.
-
-:::
 
 If you want to send your coinbase to an account other than the one that is staking, use the `-coinbase-receiver` flag when you start your daemon. You can even point the coinbase at a cold wallet.
 
@@ -165,15 +155,13 @@ SNARK-workers can be fairly compute intensive. If you need to limit their CPU us
 
 The roles and responsibilities of a Mina node operator offer you incentives to participate in block production through staking or delegation. Mina is a permissionless peer-to-peer network, so everything is managed and run in a decentralized manner by nodes all over the world. 
 
-### Using daemon.json to configure your mina daemon
+### Configure your mina daemon in daemon.json
 
 By creating a file at `~/.mina-config/daemon.json`, you can configure your mina daemon without providing options on the command line. This can be useful for running mina as a service and to avoiding repetitive typing.
 
-Most of the options that can be passed to `mina daemon` on the command line can also be provided as options in the config file. 
+Most of the options that can be passed to `mina daemon` on the command line can also be provided as options in the config file. See `mina daemon -help` for more details. 
 
-See `mina daemon -help` for more details. In the `~/.mina-config/daemon.json` file, include only the options you want to change
-
-The following example includes usage of all the usable configuration parameters:
+The following example file includes usage of the configuration parameters:
 
 ```json
 {
@@ -198,3 +186,5 @@ The following example includes usage of all the usable configuration parameters:
   }
 }
 ```
+
+In the `~/.mina-config/daemon.json` file, include only the options you want to change.
