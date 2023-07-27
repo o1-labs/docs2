@@ -114,7 +114,7 @@ function Footer(): JSX.Element | null {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/zkapps">Write a zkApp</Link>
+                  <Link to="/zkapps/how-to-write-a-zkapp">Write a zkApp</Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/node-operators">
@@ -201,7 +201,7 @@ function Footer(): JSX.Element | null {
                   <Link href={SocialLinks.Telegram}>Mina Research</Link>
                 </li>
                 <li>
-                  <Link href={SocialLinks.GitHub}>Github</Link>
+                  <Link href={SocialLinks.GitHub}>GitHub</Link>
                 </li>
               </ul>
             </li>
