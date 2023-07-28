@@ -292,7 +292,7 @@ If a program is too large to fit into these constraints, it can be broken up int
 
 ## Merkle Trees
 
-You can use [Merkle trees](../snarkyjs-reference/classes/MerkleTree) to manage large amounts of data within a circuit. The power of Merkle trees is demonstrated in the [05-common-types-and-functions/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) reference project for this tutorial. See the [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts) contract and [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts).
+You can use [Merkle trees](../snarkyjs-reference/classes/MerkleTree) to manage large amounts of data within a circuit. The power of Merkle trees is demonstrated in the [05-common-types-and-functions/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) reference project for this tutorial. See the [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts) contract and [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) that demonstrates how contracts interact with Merkle trees and how to construct them.
 
 The first step is to import `MerkleTree`:
 
@@ -313,7 +313,7 @@ const tree = new MerkleTree(height);
 
 The height variable determines how many leaves are available to the application. For example, a height of 20 leads to a tree with `2^(20-1)`, or 524,288 leaves.
 
-Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The witness represents the Merkle path to the data for which inclusion is being proved.
+Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The [MerkleMapWitness](/zkapps/snarkyjs-reference/classes/MerkleMapWitness) represents the Merkle path to the data for which inclusion is being proved.
 
 A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf. 
 
