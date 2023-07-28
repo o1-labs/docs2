@@ -225,9 +225,9 @@ export default function Home() {
       'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
     accountDoesNotExist = (
       <div>
-        Account does not exist. Please visit the faucet to fund this account
+        Account does not exist. 
         <a href={faucetLink} target="_blank" rel="noreferrer">
-          Please visit the faucet to fund this account
+           Visit the faucet to fund this fee payer account
         </a>
       </div>
     );
