@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   reactStrictMode: false,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+  
+  /*  Used to serve the Next.js app from a subdirectory (the GitHub repo name) and 
+   * assetPrefix is used to serve assets (JS, CSS, images, etc.) from that subdirectory 
+   * when deployed to GitHub Pages. The assetPrefix needs to be added manually to any assets
+   * if they're not loaded by Next.js' automatic handling (for example, in CSS files or in a <img> element).
+   */
+  basePath: isProd ? '/04-zkapp-browser-ui': '',
+  assetPrefix: isProd ? '/04-zkapp-browser-ui': '',
 
   webpack(config) {
     config.resolve.alias = {
