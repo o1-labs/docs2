@@ -1,5 +1,5 @@
 ---
-title: Staking & Snarking
+title: Staking and Snarking
 hide_title: true
 description: Mina Protocol provides block reward incentives to participate in block production through staking or delegation.
 keywords:
@@ -15,7 +15,7 @@ keywords:
   - block rewards
 ---
 
-# Staking & Snarking
+# Staking and Snarking
 
 You can interact with the Mina network by participating in consensus and helping compress data by generating zk-SNARKs. By operating a node that helps secure the network, you can receive MINA for your efforts. See [Staking Rewards on Mina](https://minaprotocol.com/blog/staking-rewards-on-mina).
 
@@ -38,11 +38,17 @@ Network Time Protocol [(NTP)](https://en.wikipedia.org/wiki/Network_Time_Protoco
 To synchronize your server software clock with internet time servers, be sure to set up NTP. Many popular Linux distributions include NTP as a default service.
 
 
-To stake with your MINA:
+To stake with your MINA, use the `delegate-stake` subcommand:
 
 ```sh
-mina client set-staking --public-key $MINA_PUBLIC_KEY
+mina client delegate-stake -receiver <DELEGATE-PUBLIC-KEY> -sender $MINA_PUBLIC_KEY -fee 0.1
 ```
+
+where:
+
+- `-receiver <DELEGATE-PUBLIC-KEY>` is the public key of the validators to receive your stake delegation
+- `-sender $MINA_PUBLIC_KEY` is is the public key of the account from which you want to delegate
+- `-fee 0.1` is the transaction fee required to record the transaction
 
 If your daemon is already running, you can restart the daemon with the `-block-producer-pubkey` flag:
 
