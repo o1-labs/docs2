@@ -85,7 +85,7 @@ export default function Home() {
         setDisplayText('Getting zkApp state...');
         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
         const currentNum = await zkappWorkerClient.getNum();
-        console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+        console.log(`Current state in zkApp: ${currentNum.toString()}`);
         setDisplayText('');
 
         setState({
@@ -179,7 +179,7 @@ export default function Home() {
     });
     const currentNum = await state.zkappWorkerClient!.getNum();
     setState({ ...state, currentNum });
-    console.log(`Current number in zkApp state: ${currentNum.toString()}`);
+    console.log(`Current state in zkApp: ${currentNum.toString()}`);
     setDisplayText('');
   };
 
@@ -191,12 +191,12 @@ export default function Home() {
     const auroLink = 'https://www.aurowallet.com/';
     const auroLinkElem = (
       <a href={auroLink} target="_blank" rel="noreferrer">
-        [Link]{' '}
+        Install Auro wallet here
       </a>
     );
     hasWallet = (
       <div>
-        Could not find a wallet. Install Auro wallet here: {auroLinkElem}
+        Could not find a wallet. {auroLinkElem}
       </div>
     );
   }
@@ -225,9 +225,9 @@ export default function Home() {
       'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
     accountDoesNotExist = (
       <div>
-        Account does not exist. Please visit the faucet to fund this account
+        Account does not exist. 
         <a href={faucetLink} target="_blank" rel="noreferrer">
-          [Link]{' '}
+           Visit the faucet to fund this fee payer account
         </a>
       </div>
     );
@@ -238,7 +238,7 @@ export default function Home() {
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
-          Current Number in zkApp: {state.currentNum!.toString()}{' '}
+          Current state in zkApp: {state.currentNum!.toString()}{' '}
         </div>
         <button
           className={styles.card}
