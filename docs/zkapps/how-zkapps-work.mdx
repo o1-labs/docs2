@@ -137,7 +137,7 @@ When the prover function runs in a web browser, the smart contract outputs a pro
 
 The integrity of these account updates is ensured by passing a hash of the account updates as a public input to the smart contract. The account updates must be present and unmodified for the verification function to pass successfully when it runs on Mina. In this way, the Mina network can confirm the integrity of both the proof and the associated account updates that describe how to update the zkApp account state.
 
-### ZkApp state
+### zkApp state
 
 - On-chain state describes state that lives on the Mina blockchain. 
 
@@ -157,7 +157,7 @@ Off-chain state is not yet supported.
 
 :::
 
-For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/snarkyjs/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references additional off-chain state stored elsewhere, such as [IPFS](https://ipfs.io/) and others.
+For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/snarkyjs/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere.
 
 When the zkApp runs in a user's web browser, it can insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction then proof and state are known to be valid valid so the updates are allowed, then the zkApp transaction can update the root of the Merkle tree that is stored on chain.
 
