@@ -91,7 +91,7 @@ EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
 PEER_LIST_URL=https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
-- Replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
+Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
 
 If you do not want to produce blocks, then provide only the `PEER_LIST_URL`.
 
@@ -111,18 +111,18 @@ daemon \
 
 Follow the logs:
 
-    ```sh
-    docker logs -f mina
-    ```
+```sh
+docker logs -f mina
+```
 
 If the node crashes, save the log output to a file:
 
-    ```sh
-    docker logs mina > mina-log.txt
-    ```
+```sh
+docker logs mina > mina-log.txt
+```
 
 Monitor connectivity to the network:
 
-    ```sh
-    docker exec -it mina mina client status
-    ```
+```sh
+docker exec -it mina mina client status
+```
