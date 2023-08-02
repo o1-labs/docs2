@@ -73,21 +73,22 @@ Auto-restart flows are in place to ensure your nodes perform optimally.
 
 1. Start a standalone mina node to make sure everything works.
 
-    To start a Mina node instance and connect to the live network:
+   To start a Mina node instance and connect to the live network:
 
-    ```sh
-    mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
-    ```
+   ```sh
+   mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
+   ```
 
-    The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
+   The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
 
-    If you have a key with MINA stake and want to produce blocks:
-    
-    ```sh
-    mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/mainnet_seeds.txt --block-producer-key ~/keys/my-wallet
-    ```
-    
-    where `~/keys/my-wallet` is the path to your private key, if not the default.
+   If you have a key with MINA stake and want to produce blocks:
+
+   ```sh
+   mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/mainnet_seeds.txt \
+               --block-producer-key ~/keys/my-wallet
+   ```
+
+   where `~/keys/my-wallet` is the path to your private key, if not the default.
 
 For help solving common issues when first running a node, see Node Operators [Troubleshooting](/node-operators/troubleshooting).
 
@@ -108,36 +109,36 @@ To produce blocks or otherwise customize the configuration for the mina daemon:
 1. Create the `~/.mina-env` file.
 1. To produce blocks, add the required configuration:
 
-    ```
-    MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
-    LOG_LEVEL=Info
-    FILE_LOG_LEVEL=Debug
-    EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-    ```
+   ```
+   MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
+   LOG_LEVEL=Info
+   FILE_LOG_LEVEL=Debug
+   EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
+   ```
 
-    Replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
+   Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
 
-    If you do not want to produce blocks then you can keep `~/.mina-env` empty for now.
+   If you do not want to produce blocks then you can keep `~/.mina-env` empty for now.
 
 1. To change how mina is configured, specify flags to the mina daemon process with space-separated arguments between the quotes in `EXTRA_FLAGS=""`.
 
-    You can change the default values with `EXTRA_FLAGS`:
+   You can change the default values with `EXTRA_FLAGS`:
 
-    - External port 8302
-        - Change with `-external-port`
-    - Mainnet package [https://storage.googleapis.com/seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt)
-        - Change with `--peer-list-url`
+   - External port 8302
+     - Change with `-external-port`
+   - Mainnet package [https://storage.googleapis.com/seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt)
+     - Change with `--peer-list-url`
 
 1. After your `.mina-env` file is ready, start a Mina node instance and connect to the live network:
 
-    ```sh
-    systemctl --user daemon-reload
-    systemctl --user start mina
-    systemctl --user enable mina
-    sudo loginctl enable-linger
-    ```
+   ```sh
+   systemctl --user daemon-reload
+   systemctl --user start mina
+   systemctl --user enable mina
+   sudo loginctl enable-linger
+   ```
 
-    These commands allow the node to continue running after you log out and restart automatically when the machine reboots.
+   These commands allow the node to continue running after you log out and restart automatically when the machine reboots.
 
 ## Check your connectivity
 
@@ -145,56 +146,56 @@ Monitor the mina process that's running in the background and auto-restarting.
 
 Check if `mina` had any trouble getting started:
 
-    ```sh
-    systemctl --user status mina
-    ```
+```sh
+systemctl --user status mina
+```
 
 Stop mina gracefully and stop automatically restarting the service:
 
-    ```sh
-    systemctl --user stop mina
-    ```
+```sh
+systemctl --user stop mina
+```
 
 Manually restart the mina process:
 
-    ```sh
-    systemctl --user restart mina
-    ```
+```sh
+systemctl --user restart mina
+```
 
 Look at logs that show the last 1000 lines, and follow from there:
 
-    ```sh
-    journalctl --user -u mina -n 1000 -f
-    ```
+```sh
+journalctl --user -u mina -n 1000 -f
+```
 
 In some cases, you might need run the following command to view the logs:
 
-    ```sh
-    journalctl --user-unit mina -n 1000 -f
-    ```
+```sh
+journalctl --user-unit mina -n 1000 -f
+```
 
 ### Docker
 
 When running your daemon using Docker, first ensure that your private key has the correct permissions.
 
-    ```sh
-    cd ~
-    chmod 700 ~/keys
-    chmod 600 ~/keys/my-wallet
-    mkdir ~/.mina-config
-    ```
+```sh
+cd ~
+chmod 700 ~/keys
+chmod 600 ~/keys/my-wallet
+mkdir ~/.mina-config
+```
 
 To produce blocks or otherwise customize the configuration for the mina daemon, create a `~/.mina-env` files with the following:
 
-    ```sh
-    export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
-    LOG_LEVEL=Info
-    FILE_LOG_LEVEL=Debug
-    EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-    PEER_LIST_URL=https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
-    ```
+```sh
+export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
+LOG_LEVEL=Info
+FILE_LOG_LEVEL=Debug
+EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
+PEER_LIST_URL=https://storage.googleapis.com/seed-lists/mainnet_seeds.txt
+```
 
-    Replace <BLOCK_PRODUCER_KEY_PATH> with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
+Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
 
 If you do not want to produce blocks, then provide only the `PEER_LIST_URL`.
 
@@ -215,23 +216,23 @@ daemon
 
 Follow the logs:
 
-    ```sh
-    docker logs -f mina
-    ```
+```sh
+docker logs -f mina
+```
 
 If the node crashes, save the log output to a file:
 
-    ```sh
-    docker logs mina > mina-log.txt
-    ```
+```sh
+docker logs mina > mina-log.txt
+```
 
-    Post the output to the [#mentor-nodes](https://discord.com/channels/484437221055922177/746316198806814760) channel on Mina Protocol Discord or attach the full `~/.mina-config/mina.log` to a GitHub issue and link the issue in Discord.
+Post the output to the [#mentor-nodes](https://discord.com/channels/484437221055922177/746316198806814760) channel on Mina Protocol Discord or attach the full `~/.mina-config/mina.log` to a GitHub issue and link the issue in Discord.
 
 Monitor connectivity to the network:
 
-    ```sh
-    docker exec -it mina mina client status
-    ```
+```sh
+docker exec -it mina mina client status
+```
 
 At least 10 peers are expected. Watch the block height and the max observed block height climb.
 
@@ -247,9 +248,9 @@ Monitor the mina client status in a different terminal window.
 
 Now that a node is started and running the Mina daemon, run:
 
-    ```sh
-    mina client status
-    ```
+```sh
+mina client status
+```
 
 When first starting up a node, it can take up to a minute before `mina client status` connects to the daemon. If you see `Error: daemon not running. See mina daemon`, just a wait a bit and try again.
 
