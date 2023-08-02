@@ -27,7 +27,10 @@ Mina is a public and decentralized blockchain that is open for anyone in the wor
 
 ## Staking MINA
 
-You can earn block rewards by participating in block production through staking. Your new stake delegation comes into effect after a latency period of a 2-4 weeks.
+You can earn block rewards by participating in block production through staking. 
+
+- Your new stake delegation comes into effect after a latency period of a 2-4 weeks.
+- You can undelegate at any time with no penalty. Submit a delegation transaction with the new staking service or back to yourself if you want to be a block producer. Updates are made after a delay of 1-2 epochs.
 
 ### Requirements
 
@@ -37,18 +40,9 @@ Network Time Protocol [(NTP)](https://en.wikipedia.org/wiki/Network_Time_Protoco
 
 To synchronize your server software clock with internet time servers, be sure to set up NTP. Many popular Linux distributions include NTP as a default service.
 
+## Set or change the block producer key
 
-To stake with your MINA, use the `delegate-stake` subcommand:
-
-```sh
-mina client delegate-stake -receiver <DELEGATE-PUBLIC-KEY> -sender $MINA_PUBLIC_KEY -fee 0.1
-```
-
-where:
-
-- `-receiver <DELEGATE-PUBLIC-KEY>` is the public key of the validators to receive your stake delegation
-- `-sender $MINA_PUBLIC_KEY` is is the public key of the account from which you want to delegate
-- `-fee 0.1` is the transaction fee required to record the transaction
+Use the `mina client delegate-stake` subcommand to set or change the block producer key. See the [Mina Client](/node-operators/mina-cli-reference#mina-client) CLI help.
 
 If your daemon is already running, you can restart the daemon with the `-block-producer-pubkey` flag:
 
