@@ -86,21 +86,59 @@ Examples are based on the standard project structure and provide additional file
 
 1. Configure your zkApp: `zk config`
 
-  The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
+  The command prompts guide you to add a deploy alias to your project `config.json` file. 
   
-  For Berkeley Testnet, use:
+  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
   
-    - name: `berkeley`
+  For this example on Berkeley Testnet, use:
+ 
+    - Deploy alias name: `berkeley` 
+    
+      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+  
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
-    - transaction fee: `0.1`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
+
+1. When prompted to choose an account to pay transaction feeds, select to use a different account:
+
+  ```sh
+  Use a different account (select to see options)
+  ```
+
+  If this is the first time you run the `zk config` command, you see these options:
+
+  ```text
+  ❯ Recover fee payer account from an existing base58 private key
+  Create a new fee payer key pair
+  ```
+
+The option to choose another account is shown only if the user has a cached fee payer account.
+
+1. Next, select to create a new fee payer key pair:  
+
+  ```sh
+  Create a new fee payer key pair
+  NOTE: the private key will be stored in plain text on this computer.
+  ```
+
+1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+
+  ```sh
+  Create an alias for this account: sudoku
+  ```
+
+  Your key pairs and deploy alias are created.
 
 1. Fund your fee payer account.
 
-  Follow the prompts to request tMINA. 
+  Follow the prompts to request tMINA. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
 
 1. Deploy to Testnet: `zk deploy`
 
-  Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
+  Follow the prompts and select the `sudoku` deploy alias. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
 
 ### Option B: Start your own project
 
@@ -119,7 +157,7 @@ Examples are based on the standard project structure and provide additional file
     none
     ```
     
-    For your selected UI framework, follow the prompts.
+    For your selected UI framework, follow the prompts. See [How to Write a zkApp UI](/zkapps/how-to-write-a-zkapp-ui).
 
     To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
 
@@ -133,13 +171,51 @@ Examples are based on the standard project structure and provide additional file
 
 1. Configure your zkApp: `zk config`
 
-    The command prompts guide you to add a deploy alias to your project `config.json` file. The deploy alias can be anything you want. For this example, use `berkeley`.
-
-    For Berkeley Testnet, use:
-
-    - name: `berkeley`
+  The command prompts guide you to add a deploy alias to your project `config.json` file. 
+  
+  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
+  
+  For this example on Berkeley Testnet, use:
+ 
+    - Deploy alias name: `berkeley` 
+    
+      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+  
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
-    - transaction fee: `0.1`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
+
+1. When prompted to choose an account to pay transaction fees, select to use a different account:
+
+  ```sh
+  Use a different account (select to see options)
+  ```
+
+  If this is the first time you run the `zk config` command, you see these options:
+
+  ```text
+  ❯ Recover fee payer account from an existing base58 private key
+  Create a new fee payer key pair
+  ```
+
+The option to choose another account is shown only if the user has a cached fee payer account.
+
+1. Next, select to create a new fee payer key pair:  
+
+  ```sh
+  Create a new fee payer key pair
+  NOTE: the private key will be stored in plain text on this computer.
+  ```
+
+1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+
+  ```sh
+  Create an alias for this account: sudoku
+  ```
+
+  Your key pairs and deploy alias are created.
 
 1. Fund your fee payer account.
 
