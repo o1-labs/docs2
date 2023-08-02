@@ -166,7 +166,14 @@ $ cd contracts
 $ npm run build
 ```
 
-If you were to make your own zkApp outside of this tutorial, edit files in the `contracts` folder and then rebuild the contract before accessing it from your UI.
+The expected output is:
+
+```text
+> 04-zkapp-browser-ui@0.1.0 build
+> tsc
+```
+
+The workflow for building your own zkApp outside of this tutorial is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI.
 
 ## Implement the UI
 
@@ -174,53 +181,32 @@ The React UI has several components: the React page itself and the code that use
 
 Because SnarkyJS code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
-1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub to your local `/04-zkapp-browser-ui/ui/src/pages` directory:
+1. Download the helper files:
+
+    From the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub:
 
     - [zkappWorker.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorker.ts)
     - [zkappWorkerClient.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorkerClient.ts)
+
+    To your local `/04-zkapp-browser-ui/ui/src/pages` directory.
+
 
 1. Review each helper file to see how they work and how you can extend them for your own zkApp.
 
     - `zkappWorker.ts` is the web worker code
     - `zkappWorkerClient.ts` is the code that is run from React to interact with the web worker
 
-### Run the React app
-
-To run the React app, run commands from two different terminal windows in your local `/04-zkapp-browser-ui/ui/` directory. 
-
-1. In the first terminal window:
-
-  ```sh
-  $ npm run dev
-  ```
-
-  This command starts hosting your application at the `localhost:3000` default location. 
-  
-  The zkApp UI in the web browser shows the current state of the zkApp and has buttons to send a transaction and get the latest state.
-
-  Your browser refreshes automatically when your page has changes. Tip: If you are already hosting a different process on 3000, be sure to stop that process. 
-
-1. If prompted, request funds from the Testnet Faucet to fund your fee payer account.
-
-  Follow the prompts to request tMINA. For this tutorial, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
-
-1. And in the second terminal window:
-
-  ```sh
-  $ npm run ts-watch
-  ```
-
-  This command shows TypeScript errors. As you develop your application, you can watch this window to check for type errors.
-
 ### Implement the React app
 
-1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) file to your local `/04-zkapp-browser-ui/ui/src/pages` directory. 
+The example project has a completed app.
 
-    - `index.page.tsx` contains the main logic for the browser UI that is ready to deploy to GitHub Pages
+1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file to your local `/04-zkapp-browser-ui/ui/src/pages` directory. 
+
+    - `index.page.tsx` is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages
 
 The `import` statements set up your React project with the required imports. The `export` statement creates a placeholder empty component:
 
-```ts
+```ts ignore
   1 import { useEffect, useState } from 'react';
   2 import './reactCOIServiceWorker';
   3 import ZkappWorkerClient from './zkappWorkerClient';
@@ -268,7 +254,7 @@ This code adds a function to set up the application:
 
 - This code also sets up your web worker client that interacts with the web worker running SnarkyJS code to ensure the computationally heavy SnarkyJS code doesn't block the UI thread.
 
-```ts
+```ts ignore
 ...
  25   // -------------------------------------------------------
  26   // Do Setup
@@ -395,6 +381,34 @@ And finally for this function, update the state of the React app:
 ...
 ```
 
+### Run the React app
+
+To run the React app, run commands from your local `/04-zkapp-browser-ui/ui/` directory. 
+
+1. To start hosting your application at the `localhost:3000` default location:
+
+  ```sh
+  $ npm run dev
+  ```
+
+ The zkApp UI in the web browser shows the current state of the zkApp and has buttons to send a transaction and get the latest state.
+
+  Your browser refreshes automatically when your page has changes. 
+  
+  **Tip:** If you are already hosting a different process on 3000, be sure to stop that process.
+
+1. If prompted, request funds from the Testnet Faucet to fund your fee payer account.
+
+  Follow the prompts to request tMINA. For this tutorial, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+
+1. And in the second terminal window:
+
+  ```sh
+  $ npm run ts-watch
+  ```
+
+  This command shows TypeScript errors. As you develop your application, you can watch this window to check for type errors.
+
 ### Write a new effect
 
 Now that the UI setup is finished, a new effect waits for the account to exist if it didn't exist before.
@@ -403,7 +417,7 @@ If the account has been newly created, it must be funded from the faucet.
 
 Later, you add a link in the UI to request funds for new accounts.
 
-```ts ignore 105-128
+```ts ignore
 ...
 105   // -------------------------------------------------------
 106   // Wait for account to exist, if it didn't
@@ -438,7 +452,7 @@ Functions can be triggered when a button is pressed by a user.
 
 First, code for a function that sends a transaction:
 
-```ts 128-
+```ts ignore
 ...
 128   // -------------------------------------------------------
 129   // Send a transaction
@@ -487,7 +501,7 @@ First, code for a function that sends a transaction:
 
 And second, code for a function that gets the latest zkApp state:
 
-```ts 170-186
+```ts ignore
 ...
 170   // -------------------------------------------------------
 171   // Refresh the current state
@@ -512,7 +526,7 @@ And second, code for a function that gets the latest zkApp state:
 
 Replace the `<div/>` placeholder with a UI to show the user the state of your application:
 
-```ts 186-268
+```ts ignore
 ...
 186   // -------------------------------------------------------
 187   // Create UI elements
@@ -607,7 +621,7 @@ The UI has three sections:
 
   The buttons allow the user to create a transaction and refresh the current state of the application by triggering the `onSendTransaction()` and `onRefreshCurrentNum()` functions shown in the code.
 
-And that's it! You have reviewed the code for your application.
+That's it for the code review. 
 
 If you've been using `npm run dev`, you can now interact with the application on `localhost:3000`. The application has all of the functionality that is implemented in this tutorial.
 
@@ -619,13 +633,25 @@ Before you can deploy your project to GitHub Pages, you must push it to a new Gi
 - In this tutorial, the project name is `04-zkapp-browser-ui`.
 - The `zk project` command created the correct project name strings for `04-zkapp-browser-ui` in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files. 
 
-To deploy the UI, run the `npm run deploy` command in your local `/04-zkapp-browser-ui/ui/` directory. 
+To deploy the UI:
 
-After the script builds your application, uploads it to GitHub, and GitHub processes it, your application is available at:
+1. Add two lines of code 
+1. Change to the local `/04-zkapp-browser-ui/ui/` directory.
+1. Run the deploy command:
+
+  ```sh
+  npm run deploy
+  ```
+
+The scripts defined in the `/04-zkapp-browser-ui/ui/package.json` file build your application and upload it to GitHub. 
+
+After the processing is complete, your deployed zkApp is available at:
 
 ```
-https://<username>.github.io/<repo-name>/index.html
+https://<username>.github.io/04-zkapp-browser-ui/
 ```
+
+where `<username>` is your GitHub username.
 
 ## Conclusion
 
