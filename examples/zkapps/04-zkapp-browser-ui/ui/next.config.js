@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-let repoURL = '';
+// Add your repository name here.
+let repoURL = '04-zkapp-browser-ui';
 const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   reactStrictMode: false,
