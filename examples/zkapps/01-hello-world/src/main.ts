@@ -54,7 +54,7 @@ try {
   const txn2 = await Mina.transaction(senderAccount, () => {
     zkAppInstance.update(Field(75));
   });
-  await txn1.prove();
+  await txn2.prove();
   await txn2.sign([senderKey]).send();
 } catch (ex: any) {
   console.log(ex.message);

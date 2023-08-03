@@ -7,23 +7,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export",
     "ts-watch": "tsc --noEmit --incremental --watch",
-    "deploy": "next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m \"Deploy gh-pages\" && cd ../../ && git subtree push --prefix 04-zkapp-browser-ui/ui/out origin gh-pages"
+    "export": "next export",
+    "deploy": "next build && next export && touch out/.nojekyll  && git add -f out && git commit -m \"Deploy gh-pages\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
   },
   "dependencies": {
-    "coi-serviceworker": "^0.1.6",
-    "next": "13.3.1",
+    "@types/node": "20.4.1",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.7",
+    "coi-serviceworker": "^0.1.7",
+    "next": "13.4.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "typescript": "5.1.6",
     "snarkyjs": "0.*"
-  },
-  "devDependencies": {
-    "@types/node": "18.16.1",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.1",
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.0.0",
-    "typescript": "5.0.4"
   }
 }

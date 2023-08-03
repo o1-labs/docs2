@@ -1,24 +1,28 @@
 {
   "index_name": "mina",
-  "start_urls": ["https://docs.minaprotocol.com"],
+  "start_urls": [
+    {
+      "url": "https://docs.minaprotocol.com"
+    }
+  ],
   "sitemap_urls": ["https://docs.minaprotocol.com/sitemap.xml"],
   "sitemap_alternate_links": true,
   "js_render": true,
-  "stop_urls": ["/tests"],
+  "js_wait": 1,
+  "stop_urls": ["https://docs.minaprotocol.com/node-developers"],
+  "selectors_exclude": ["footer"],
   "selectors": {
     "lvl0": {
-      "selector": "(//ul[contains(@class,'menu__list')]//a[contains(@class, 'menu__link menu__link--sublist menu__link--active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
-      "type": "xpath",
-      "global": true,
-      "default_value": "Documentation"
+      "selector": "",
+      "defaultValue": "Documentation"
     },
-    "lvl1": "header h1",
-    "lvl2": "article h2",
-    "lvl3": "article h3",
-    "lvl4": "article h4",
-    "lvl5": "article h5, article td:first-child",
-    "lvl6": "article h6",
-    "text": "article p, article li, article td:last-child"
+    "lvl1": "header h1, article h1, main h1, h1, head > title",
+    "lvl2": "article h2, main h2, h2",
+    "lvl3": "article h3, main h3, h3",
+    "lvl4": "article h4, main h4, h4",
+    "lvl5": "article h5, main h5, h5",
+    "lvl6": "article h6, main h6, h6",
+    "text": "article p, article li, main p, main li, p, li"
   },
   "strip_chars": " .,;:#",
   "custom_settings": {
@@ -31,6 +35,12 @@
       "url",
       "url_without_anchor",
       "type"
+    ],
+    "synonyms": [
+      ["js", "javascript"],
+      ["ts", "typescript"],
+      ["es6", "ECMAScript6", "ECMAScript2015"],
+      ["zk", "zero-knowledge", "zero knoweldge"]
     ]
   },
   "conversation_id": ["833762294"],
