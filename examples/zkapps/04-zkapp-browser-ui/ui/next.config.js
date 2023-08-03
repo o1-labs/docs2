@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+let repoURL = '';
 const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   reactStrictMode: false,
@@ -10,8 +11,8 @@ const nextConfig = {
    * when deployed to GitHub Pages. The assetPrefix needs to be added manually to any assets
    * if they're not loaded by Next.js' automatic handling (for example, in CSS files or in a <img> element).
    */
-  basePath: isProd ? '/04-zkapp-browser-ui': '',
-  assetPrefix: isProd ? '/04-zkapp-browser-ui': '',
+  basePath: isProd ? `/${repoURL}`: '',
+  assetPrefix: isProd ? `/${repoURL}`: '',
 
   webpack(config) {
     config.resolve.alias = {
