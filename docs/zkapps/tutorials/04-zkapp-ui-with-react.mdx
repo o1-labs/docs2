@@ -106,25 +106,40 @@ The `zk project` command can scaffold the UI for your project.
 
 1. Select **No** at the `? Would you like to use Tailwind CSS with this project?` prompt.
 
-Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
+  Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
 
-- `contracts`: The smart contract code 
-- `ui`: Where you write your UI code
+  - `contracts`: The smart contract code 
+  - `ui`: Where you write your UI code
 
-1. Change to the `contracts` directory and run `npm install` to install all of the required dependencies:
+### Install the dependencies
 
-  ```sh
-  $ cd contracts
-  $ npm install
-  ```
-
-1. Change to the `ui` directory and run `npm install` to install all of the required dependencies:
+1. In the `ui` directory:
 
   ```sh
   $ cd ../ui
   $ npm install
   ```
 
+1. In the `contracts` directory:
+
+  ```sh
+  $ cd contracts
+  $ npm install
+  ```
+
+## Create a repository
+
+When you want to interact with your deployed zkApp UI on GitHub pages, you must create a GitHub repository. Go ahead and create your repository now. You can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.	
+
+To interact with a deployed zkApp UI on GitHub pages, you must create a GitHub repository. 
+
+Go ahead and create your repository now. You can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.
+
+1. Go to [https://github.com/new](https://github.com/new).
+1. For the **Repository name**, enter `04-zkapp-browser-ui`.
+1. Optionally, add a description and a README.
+
+Your project repository is ready to use.
 
 ## Project structure
 
@@ -646,7 +661,7 @@ To deploy the UI:
   npm run deploy
   ```
 
-The scripts defined in the `/04-zkapp-browser-ui/ui/package.json` file build your application and upload it to GitHub. 
+The scripts defined in the `/04-zkapp-browser-ui/ui/package.json` file to build your application and upload it to GitHub. 
 
 After the processing is complete, your deployed zkApp is available at:
 
