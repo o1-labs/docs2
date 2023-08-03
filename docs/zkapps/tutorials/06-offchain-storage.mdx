@@ -24,59 +24,55 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Tutorial 6: Off-Chain Storage
 
-In [Tutorial 5: Common Types and Functions](common-types-and-functions), you ended by learning about Merkle trees, and how we can use them to refer to large amounts of data stored off chain, by storing only the tree's root hash on chain
+In [Tutorial 5: Common Types and Functions](common-types-and-functions), you learned how to use Merkle trees to refer to large amounts of data stored off-chain.
 
-In this tutorial, we will share a library and pattern for working with storing merkle trees off-chain, with only the root of the merkle tree stored on chain.
+This tutorial presents a library and pattern to store Merkle trees off-chain and store only the tree's root hash on-chain. 
 
-We intend for this tutorial to be useful towards unlocking a larger set of applications that require off-chain storage. Other solutions are intended to follow that provide more decentralized options for zkApps that need more trustless solutions.
+This approach is a step towards unlocking a larger set of applications that require off-chain storage. Future solutions can provide more decentralized options for zkApps that require more trustless solutions.
 
-This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable.
+This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. 
 
-The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. The single-server solution for prototyping is intended as one of several options for data availability on Mina.
+The single-server solution for prototyping is intended as one of several options for data availability on Mina. Mina doesn't offer an out-of-the-box solution for off-chain storage. 
 
-Mina Foundation values contributions. A grant opportunity is available to improve this library to make it more decentralized and useful in production. For details, see [Further Development of Single-Server Off-Chain Storage](#further-development-of-single-server-off-chain-storage).
-
-
-
-Feel free to skip ahead to the [implementation section](#implementing-a-project-using-off-chain-storage) If you want to jump into how to use single server off-chain storage for prototyping applications. Otherwise, read on to understand more about the different options for off-chain storage, their tradeoffs, and how the single-server solution shared here fits in.
+Mina Foundation values contributions. A [Grant Opportunity to Develop Single-Server Off-Chain Storage](#grant-opportunity-to-develop-single-server-off-chain-storage) is available to improve this library to make it more decentralized and useful in production.
 
 ## Why Off-Chain Storage?
 
-When building an application we'll just use locally and for testing, its fine to just build and store a merkle root locally.
+When you build an application for testing and local use, you can build and store a Merkle root locally.
 
-However, when building a production-ready, distributed zkApp, we need more than this. All users interacting with our zkApp need to be able to retrieve the latest state, and modify it.
+However, when you build a production-ready, distributed zkApp, you need more than this. All users that interact with your zkApp must be able to retrieve and modify the latest state.
 
-If this isn't the case, and someone were able to modify the tree without sharing their modification, the lack of data availability for the new version means that further writes, by other parties that don't have access to the new tree, become impossible. This requires that any data that modifies a zkApp, must be available somewhere for others users to access.
+Any data that modifies a zkApp must be available somewhere for others users to access.
 
 ### Off-Chain Storage and Decentralization
 
-Solutions to storage can be on a spectrum from cheap and more centralized, to more expensive and more decentralized. More decentralized solutions will likely be more expensive due to replicating and proving stored data.
+Solutions to storage span a large spectrum from inexpensive and more centralized to more expensive and more decentralized. The decentralized solutions are more expensive due to replicating and proving stored data.
 
-Given that, we expect there to be different solutions on a continuum, offering multiple options for developers to choose depending on the zkApp they are building and the guarantees they want that zkApp to have.
+Your off-chain storage needs depend on the zkApp you are building and the guarantees you want that zkApp to have.
 
-Some likely things to expect on this spectrum and are under exploration:
+Solutions under exploration:
 
-1. A single-server storage solution (this is what is presented here).
+1. A single-server storage solution, presented here.
 2. A multi-server storage solution that can be run by multiple parties for stronger trust guarantees.
-3. A solution leveraging storage on modular blockchains.
+3. A solution that leverages storage on modular blockchains.
 4. A future hard fork to add purchasable on-chain data storage to Mina.
 5. A future hard fork to add data-storage committees to Mina for horizontally scalable storage.
 
 ### Single-Server Off-Chain Storage
 
-This tutorial shares and explains an implementation of the single-server off-chain storage solution mentioned as the first option above. The library provides a REST server that anyone can run to store data for one or multiple zkApps, as well as a zkApp library to check on-chain if changes have been backed by the server.
+This tutorial implementation is the single-server off-chain storage solution. The library provides a REST server that anyone can run to store data for one or multiple zkApps and a zkApp library to check on-chain if changes have been backed by the server.
 
-This implementation requires a trust assumption for zkApps using it, that both developers and users can trust whoever is running the server.
+This implementation requires a trust assumption for zkApps that use it: both developers and users must trust whoever is running the server.
 
-This makes it useful for both prototyping applications that need off-chain storage, and putting applications into production where these trust assumptions are reasonable, but not for zkApps where a trustless solution is needed.
+This trust assumption makes it useful for prototyping applications that need off-chain storage and putting applications into production where these trust assumptions are reasonable. This implementation is not appropriate for zkApps where a trustless solution is needed.
 
-See the library [here](https://github.com/es92/zkApp-offchain-storage) if you'd like to learn more about this implementation and see how it works.
+See the [zkApp-offchain-storage](https://github.com/es92/zkApp-offchain-storage) library to learn more about this implementation and see how it works.
 
-### Further Development of Single-Server Off-Chain Storage
+### Grant Opportunity to Develop Single-Server Off-Chain Storage
 
-We're looking for a developer to run with the library presented here, improve it, make it more decentralized, and run instances for the community. There is a grant opportunity for taking this on. If interested, please reach out [here](mailto:build@minaprotocol.com).
+This development opportunity seeks a developer to start with the library presented here, improve it, make it more decentralized, and run instances for the community. If interested in this grant opportunity, send an email to [build@minaprotocol.com](mailto:build@minaprotocol.com).
 
-Some suggested improvements:
+Suggested improvements:
 
 - Eliminate DDOS vulnerability by adding a token that limits storage requests.
 - Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
@@ -84,72 +80,104 @@ Some suggested improvements:
 - Switch the project to a more scalable database implementation (e.g. Redis).
 - Write an implementation for an automatically scalable service (e.g. Cloudflare).
 
-## Implementing a Project Using Off-Chain Storage
+## Implement a Project Using Off-Chain Storage
 
-As usual, there is sample code for this project, which you can find [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts).
+The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts) with a focus on:
 
-We will be writing and discussing the [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+- [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts)
+- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) 
 
-This project implements a tree, where each leaf is either empty or stores a number, which will be our data. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an off-chain storage server.
+This project implements a Merkle tree where:
+
+- Each leaf is either empty or stores a number, which is the data. 
+- Updates to the tree can update a leaf if the new number in the leaf is greater than the old number. 
+- The root of the tree is stored on-chain. 
+- The tree itself is stored on an off-chain storage server.
+
+## Prerequisites
+
+This tutorial has been verified with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.11.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.12.1`.
+
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
 ## Project Setup
 
-To start, create a new project with:
+1. Create or change to a directory where you have write privileges.
+2. Create a project by using the `zk project` command:
 
-```sh
-$ zk project 06-off-chain-storage
-```
+  ```sh
+  $ zk project 06-off-chain-storage
+  ```
 
-Now let enter the project, delete the existing files, and create a new smart contract and a main file:
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-```sh
-$ cd 06-off-chain-storage
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-$ zk file src/NumberTreeContract
-$ touch src/main.ts
-```
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
 
-Edit `index.ts` to import and export our new smart contract:
+  The `zk project` command creates the `06-off-chain-storage` directory that contains the scaffolding for your project.
 
-```ts
-import { NumberTreeContract } from './NumberTreeContract.js';
+1. Change to the project directory, delete the existing files, and create a new smart contract and a main file:
 
-export { NumberTreeContract };
-```
+  ```sh
+  $ cd 06-off-chain-storage
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  $ zk file src/NumberTreeContract
+  $ touch src/main.ts
+  ```
 
-Now, add the library for the off-chain storage server we'll be using:
+1. Edit `index.ts` to import and export your new smart contract:
 
-```sh
-$ npm install experimental-zkapp-offchain-storage --save
-```
+  ```ts
+  import { NumberTreeContract } from './NumberTreeContract.js';
 
-Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
+  export { NumberTreeContract };
+  ```
 
-```sh
-$ npm install --save xmlhttprequest-ts
-```
+1. Now, add the library for the off-chain storage server:
+
+  ```sh
+  $ npm install experimental-zkapp-offchain-storage --save
+  ```
+
+1. Install the `xmlhttprequest-ts` TypeScript wrapper for the built-in HttpClient to emulate the browser XMLHttpRequest object:
+
+  ```sh
+  $ npm install --save xmlhttprequest-ts
+  ```
+
+  This project uses this for network requests when running from Node.js where the browser's XMLHttpRequest is not available by default.
+
 
 With that, setup is complete!
 
-### Running our project
+### Add code to the project
 
-As in previous tutorials, you can run `main.ts` with
+As in previous tutorials, you run `main.ts` with:
 
 ```sh
 $ npm run build && node build/src/main.js
 ```
 
-This will fail when first run, but once we start adding code to `main.ts` and `NumberTreeContract.ts`, it should run successfully.
+The expected result is for the command to fail because the new project is not valid until you add code to `main.ts` and `NumberTreeContract.ts`. 
 
-Also for this project, we will need to run our storage server. To do this, in a new terminal window, change into the root of your project and run:
+### Run your storage server
+
+To start a storage server and create a `database.json` file in the current directory to store data for this tutorial, start the storage server from the root directory of your project.
+
+In a new terminal window:
 
 ```sh
+$ cd 06-off-chain-storage
 $ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
 ```
-
-This will start a storage server and create a `database.json` file in the current directory to store our data for this tutorial.
 
 ## Implementing the Smart Contract
 
