@@ -87,6 +87,7 @@ The `zk project` command can scaffold the UI for your project.
 
   The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `next`:
 
+<<<<<<< Updated upstream
   ```
   ? Create an accompanying UI project too? …
 ❯ next
@@ -95,6 +96,9 @@ The `zk project` command can scaffold the UI for your project.
   empty
   none
   ```
+=======
+1. If you are prompted to install the required Next packages, press **y** to proceed. 
+>>>>>>> Stashed changes
 
 1. Select **yes** at the `? Do you want to setup your project for deployment to Github Pages? …` prompt.
 
@@ -106,6 +110,7 @@ The `zk project` command can scaffold the UI for your project.
 
 1. Select **No** at the `? Would you like to use Tailwind CSS with this project?` prompt.
 
+<<<<<<< Updated upstream
   Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
 
   - `contracts`: The smart contract code 
@@ -148,6 +153,24 @@ For all projects, you run `zk` commands from the root of your `04-zkapp-browser-
 For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
 
 Files that contain the UI code are in the `ui/src/pages` directory. 
+=======
+The expected output is:
+
+```text
+➜  source zk project 04-zkapp-browser-ui --ui next
+✔ Do you want to set up your project for deployment to GitHub Pages? · yes
+✔ Would you like to use TypeScript with this project? … No / Yes
+✔ Would you like to use ESLint with this project? … No / Yes
+✔ Would you like to use Tailwind CSS with this project? … No / Yes
+Creating a new Next.js app in <yourfilepath>/04-zkapp-browser-ui/ui.
+
+Using npm.
+
+Initializing project with template: default
+```
+
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
+>>>>>>> Stashed changes
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -651,9 +674,26 @@ Before you can deploy your project to GitHub Pages, you must push it to a new Gi
 - In this tutorial, the project name is `04-zkapp-browser-ui`.
 - The `zk project` command created the correct project name strings for `04-zkapp-browser-ui` in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files. 
 
-To deploy the UI:
+To configure your project to deploy to GitHub Pages:
 
-1. Add two lines of code 
+1. Edit the `/04-zkapp-browser-ui/ui/ghp-postbuild.js` file.
+1. Add your repository name. For this tutorial, use `04-zkapp-browser-ui`:
+
+  ```ts ignore
+   7 // Add your repository name here.
+   8 let repoURL = '04-zkapp-browser-ui';
+  ```
+
+1. Edit the `/zkapps/04-zkapp-browser-ui/ui/next.config.js` file.
+1. Add your repository name. For this tutorial, use `04-zkapp-browser-ui`:
+
+  ```ts ignore
+   3 // Add your repository name here.
+   4 let repoURL = '04-zkapp-browser-ui';
+  ```
+
+To deploy the UI:
+ 
 1. Change to the local `/04-zkapp-browser-ui/ui/` directory.
 1. Run the deploy command:
 
