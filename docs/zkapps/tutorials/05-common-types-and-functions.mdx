@@ -129,12 +129,18 @@ str1: abc..xyz
 Fields in str1: 128
 private key: EKF7vyCyexH6KZpBo4jPG29Ac7tcuYwS1MFwUudhZ6D8v3Ap88SY
 public key: B62qo32qFbpLybPGtFDW8GT5Efu4ZtbUXDoj5vyTrmSp6AXgMh7btAH
-Fields in private key: 255 // bit field element of the scalar field of the curve
-Fields in public key: 2 // (x,y) coordiante
+Fields in private key: 255
+Fields in public key: 2
 signature verified for data1: false
 signature verified for data2: true
-Fields in signature: 256 // bit field scalar nonce + a field element
+Fields in signature: 256
 ```
+
+where:
+
+- `Fields in private key: 255` is a bit field element of the scalar field of the curve
+- `Fields in public key: 2` is (x,y) coordinate
+- `Fields in signature: 256` is a bit field scalar nonce plus a field element
 
 ## Struct
 
