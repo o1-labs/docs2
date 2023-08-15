@@ -1,0 +1,79 @@
+---
+title: ECDSA and Keccak
+hide_title: true
+description: The ECDSA signature scheme and the SHA3 hash function family, including the Keccak cryptographic primitives.  
+keywords:
+  - snarkyjs
+  - ecdsa
+  - keccak
+  - sha3
+  - cryptographic primities
+  - hashing functions
+  - signature scheme
+  - signature protocol
+  - ethereum
+---
+
+# ECDSA and SHA3 in SnarkyJS
+
+You can use the SHA3 and ECDSA primitives in SnarkyJS to interact with Ethereum.
+
+In SnarkyJS, you can do ?? with  the ECDSA signature scheme and the SHA3 hash function family, including the Keccak cryptographic primitives. 
+
+from: https://app.zenhub.com/workspaces/zkapps-product-eng-6130fedb3b0fc600123d8796/issues/gh/o1-labs/snarkyjs/970 
+
+ECDSA is the signature protocol used by Bitcoin, Ethereum and most blockchain
+systems [27, 7], due to both Schnorr's copyright and ECDSA's relatively smaller key
+size, especially when compared to RSA. Most RSA keys are 2,048 bits, but the much
+shorter 256-bit ECDSA key provides roughly equal security to a 3,248 bit RSA key
+[30].
+ECDSA uses the [secp256k1](/glossary#secp256k1) curve.
+
+Most existing blockchain and public key infrastructure uses this curve
+for non-deterministic signatures 
+
+
+## ECDSA
+
+talk about ECDSA in a general way 
+SnarkyJS does not use ECDSA natively because it is inefficient. 
+
+from: https://www.notion.so/minaprotocol/ECDSA-ver-gadget-PoC-PRD-9458c38adf204d6b922deb8eed1ac193 
+The ability to verify EVM-compatible ECDSA signatures in-circuit is an important primitive in enabling compatibility with Ethereum and other EVM-compatible chains. 
+
+## SHA3 and Keccak
+
+talk about SHA3 in a general way
+
+SHA3 algorithm is different than Keccak (talk about different parameters)
+
+
+In SnarkyJS, you have access to multiple flavors of SHA3 combined under the shared namespace `Hash`. 
+
+You can use these functions by calling `Hash.[hash_name].hash(xs)`. 
+
+
+primitives = key building block that you can use to build your zkApp 
+natively for signature verification we are using Schnorr (add to glossary and SnarkyJS FAQ)
+natively for hashing we use Poseidon (add to glossary and SnarkyJS FAQ)
+
+are widely used outside of Mina. For example, Ethereum uses ECDSA over secp256k1 for signatures - in order to "communicate" with the outside world and other blockchains, SnarkyJS (and, therefore Mina) needs to support these primitives as well. This RFC describes how we will leverage the custom gates implemented by the crypto team and expose them to SnarkyJS, making them accessible to smart contract developers.
+
+You can leverage ECDSA and SHA3/Keccak to build applications that integrate with Ethereum and other use cases that require the use of said cryptographic primitives.
+
+## How to interact with Ethereum
+
+example 
+
+## API Overview
+
+Florian and Martin wrote the implementation
+ link to src/examples/zkapps/hashing/hash.ts 
+
+https://github.com/o1-labs/snarkyjs/pull/999 
+
+## Example: Using SHA3 in a smart contract
+
+describe example
+
+https://github.com/o1-labs/snarkyjs/pull/999/files#diff-7074aa210dfcf0c8288f1e8d55838577de49e78e87fed595c35b0366759f7b2a

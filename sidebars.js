@@ -57,6 +57,7 @@ module.exports = {
             'zkapps/snarkyjs/fetch-events-and-actions',
             'zkapps/snarkyjs/on-chain-values',
             'zkapps/snarkyjs/recursion',
+            'zkapps/snarkyjs/ecdsa',
             'zkapps/snarkyjs/custom-tokens',
             'zkapps/snarkyjs/merkle-tree',
             'zkapps/snarkyjs/permissions',
