@@ -30,7 +30,9 @@ This tutorial presents a library and pattern to store Merkle trees off-chain and
 
 This approach is a step towards unlocking a larger set of applications that require off-chain storage. Future solutions can provide other decentralized options for zkApps that require more trustless solutions.
 
+:::info
 This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. 
+:::
 
 The single-server solution for prototyping is intended as one of several options for data availability on Mina. Mina doesn't offer an out-of-the-box solution for off-chain storage. 
 
@@ -64,21 +66,21 @@ This tutorial implementation is the single-server off-chain storage solution. Th
 
 This implementation requires a trust assumption for zkApps that use it: both developers and users must trust whoever is running the server.
 
-This trust assumption makes it useful for prototyping applications that need off-chain storage and putting applications into production where these trust assumptions are reasonable. This implementation is not appropriate for zkApps where a trustless solution is needed.
+This trust assumption makes it useful for prototyping applications that need off-chain storage and for putting applications into production where these trust assumptions are reasonable. This implementation is not appropriate for zkApps where a trustless solution is needed.
 
 See the [zkApp-offchain-storage](https://github.com/es92/zkApp-offchain-storage) library to learn more about this implementation and see how it works.
 
 ### Grant Opportunity to Develop Single-Server Off-Chain Storage
 
-This development opportunity seeks a developer to start with the library presented here, improve it, make it more decentralized, and run instances for the community. If interested in this grant opportunity, send an email to [build@minaprotocol.com](mailto:build@minaprotocol.com).
+This development opportunity seeks a developer to start with the library presented here, improve it, make it more decentralized, and run instances for the community. If you are interested in this grant opportunity, send an email to [build@minaprotocol.com](mailto:build@minaprotocol.com).
 
 Suggested improvements:
 
 - Eliminate DDOS vulnerability by adding a token that limits storage requests.
 - Do not store trees for a smart contract if that contract is misconfigured in a way to prevent cleaning up old data.
 - Add support to the client library for connecting to multiple storage servers, enabling correctness under a majority-honest assumption.
-- Switch the project to a more scalable database implementation (e.g. Redis).
-- Write an implementation for an automatically scalable service (e.g. Cloudflare).
+- Switch the project to a more scalable database implementation (for example, Redis).
+- Write an implementation for an automatically scalable service (for example, Cloudflare).
 
 ## Implement a Project Using Off-Chain Storage
 
@@ -100,10 +102,10 @@ This tutorial has been verified with [zkApp CLI](https://github.com/o1-labs/zkap
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-## Project Setup
+## Create the project
 
 1. Create or change to a directory where you have write privileges.
-2. Create a project by using the `zk project` command:
+1. Create a project by using the `zk project` command:
 
   ```sh
   $ zk project 06-off-chain-storage
@@ -120,9 +122,13 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
   ❯ none
   ```
 
-  The `zk project` command creates the `06-off-chain-storage` directory that contains the scaffolding for your project.
+  The `zk project` command creates the `06-off-chain-storage` directory that contains the scaffolding for your project. The files in the `src` directory files contain the TypeScript code for the smart contract. 
 
-1. Change to the project directory, delete the existing files, and create a new smart contract and a main file:
+  Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+## Prepare the project
+
+1. Change to the project directory, delete the existing files, and create a new `src/NumberTreeContract` smart contract, and a `main.ts` file:
 
   ```sh
   $ cd 06-off-chain-storage
@@ -141,7 +147,7 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
   export { NumberTreeContract };
   ```
 
-1. Now, add the library for the off-chain storage server:
+1. Now, add the experimental library for the off-chain storage server:
 
   ```sh
   $ npm install experimental-zkapp-offchain-storage --save
@@ -154,9 +160,6 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
   ```
 
   This project uses this for network requests when running from Node.js where the browser's XMLHttpRequest is not available by default.
-
-
-With that, setup is complete!
 
 ### Add code to the project
 
@@ -179,80 +182,93 @@ $ cd 06-off-chain-storage
 $ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
 ```
 
-## Implementing the Smart Contract
+## Implement the smart contract
 
-To start, open `NumberTreeContract.ts` in your editor. You can find a full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) for reference.
+For reference, a full copy of NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) example file is provided.
 
-Start by adding our imports:
+1. To start, open `NumberTreeContract.ts` in your editor. 
 
-```ts
-  1 import {
-  2   SmartContract,
-  3   Field,
-  4   MerkleTree,
-  5   state,
-  6   State,
-  7   method,
-  8   DeployArgs,
-  9   Signature,
- 10   PublicKey,
- 11   Permissions,
- 12   Bool,
- 13 } from 'snarkyjs';
- 14
- 15 import {
- 16   OffChainStorage,
- 17   Update,
- 18   MerkleWitness8,
- 19 } from 'experimental-zkapp-offchain-storage';
-...
-```
+1. Start by adding the imports:
 
-Notice we import some items from `zkapp-offchain-storage`:
+    ```ts
+      1 import {
+      2   SmartContract,
+      3   Field,
+      4   MerkleTree,
+      5   state,
+      6   State,
+      7   method,
+      8   DeployArgs,
+      9   Signature,
+     10   PublicKey,
+     11   Permissions,
+     12   Bool,
+     13 } from 'snarkyjs';
+     14
+     15 import {
+     16   OffChainStorage,
+     17   Update,
+     18   MerkleWitness8,
+     19 } from 'experimental-zkapp-offchain-storage';
+    ...
+    ```
 
-- `OffChainStorage` is object containing functions for interacting with off-chain storage. These are:
-  - `getPublicKey`: A function to get the storage server's public key. This is also stored in smart contracts to identify what storage server is storing the smart contract's off-chain data.
-  - `get`: A function for fetching the data for a merkle tree from the storage server, given the root of the tree.
-  - `requestStore`: A function to request storing a tree on the storage server. Returns a proof that the storage server has stored this tree.
-  - `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
-  - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
-- `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
-- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
+    Notice that you import some items from `experimental-zkapp-offchain-storage`:
 
-Continuing, let's setup our smart contract:
+    - `OffChainStorage` is the object that contains the functions for interacting with off-chain storage:
 
-```ts
-...
- 21 export class NumberTreeContract extends SmartContract {
- 22   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
- 23   @state(Field) storageNumber = State<Field>();
- 24   @state(Field) storageTreeRoot = State<Field>();
- 25
- 26
- 27
- 28   deploy(args: DeployArgs) {
- 29     super.deploy(args);
- 30     this.account.permissions.set({
- 31       ...Permissions.default(),
- 32       editState: Permissions.proofOrSignature(),
- 33     });
- 34   }
- 35
- 36   @method initState(storageServerPublicKey: PublicKey) {
- 37     this.storageServerPublicKey.set(storageServerPublicKey);
- 38     this.storageNumber.set(Field(0));
- 39
- 40     const emptyTreeRoot = new MerkleTree(8).getRoot();
- 41     this.storageTreeRoot.set(emptyTreeRoot);
- 42   }
-...
-```
+      - `getPublicKey`: A function to get the storage server's public key. This key is also stored in smart contracts to identify what storage server is storing the smart contract's off-chain data.
+      - `get`: A function for fetching the data for a Merkle tree from the storage server, given the root of the tree.
+      - `requestStore`: A function to request storing a tree on the storage server. Returns a proof that the storage server has stored this tree.
+      - `assertRootUpdateValid`: A function used in smart contracts to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
+      - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 
-Here we add 3 pieces of state to our contract: the public key of the storage server, the "storageNumber"—which is used to ensure the storage server is actively storing states, and the root of the merkle tree.
+    - `Update`: A type for updates to Merkle trees that is used in the smart contract.
 
-We also initialize our zkApp's state for these three values, by setting them to the public key of our storage server, setting storage number to 0, and storing the root of an empty tree.
+    - `MerkleWitness8`: The type of Merkle tree witness required for SnarkyJS to use the same instances of the witness cross-library. Other types of Merkle trees are available for input, such as `MerkleWitness32` and `MerkleWitness256`. 
 
-Continuing, here is our update function:
+1. Now, set up your smart contract:
+
+    ```ts
+    ...
+    21 export class NumberTreeContract extends SmartContract {
+    22   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
+    23   @state(Field) storageNumber = State<Field>();
+    24   @state(Field) storageTreeRoot = State<Field>();
+    25
+    26
+    27
+    28   deploy(args: DeployArgs) {
+    29     super.deploy(args);
+    30     this.account.permissions.set({
+    31       ...Permissions.default(),
+    32       editState: Permissions.proofOrSignature(),
+    33     });
+    34   }
+    35
+    36   @method initState(storageServerPublicKey: PublicKey) {
+    37     this.storageServerPublicKey.set(storageServerPublicKey);
+    38     this.storageNumber.set(Field(0));
+    39
+    40     const emptyTreeRoot = new MerkleTree(8).getRoot();
+    41     this.storageTreeRoot.set(emptyTreeRoot);
+    42   }
+    ...
+    ```
+
+    This code adds three pieces of state to the contract: 
+
+    - The public key of the storage server
+    - The storageNumber used to ensure the storage server is actively storing states
+    - The root of the Merkle tree
+
+    Initialize the zkApp state for these three values by setting:
+
+    - The public key of the storage server
+    - The storage number to 0
+    - Storing the root of an empty tree
+
+1. Continuing, add the code for the `update` function:
 
 ```ts
 ...
