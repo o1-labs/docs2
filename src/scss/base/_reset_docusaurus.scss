@@ -1,5 +1,5 @@
-@use "@site/src/scss/utilities/variables";
-@use "@site/src/scss/utilities/mixins";
+@use '@site/src/scss/utilities/variables';
+@use '@site/src/scss/utilities/mixins';
 
 /* 
 This SCSS file is used to override the default Docusaurus styles. 
@@ -9,7 +9,7 @@ We must use `!important` at times to override some default styles.
 */
 
 #__docusaurus {
-  background-image: url("@site/static/img/mina_background.jpg");
+  background-image: url('@site/static/img/mina_background.jpg');
   background-size: 100%;
 }
 
@@ -29,17 +29,30 @@ We must use `!important` at times to override some default styles.
   & > h1:first-of-type {
     @include mixins.minaHeader1;
   }
+
   & > header > h1:first-of-type {
     @include mixins.minaHeader1;
+  }
+
+  & li {
+    @include mixins.minaParagraph;
   }
 
   & a {
     color: variables.$mina-orange;
   }
+
+  /* Target code snippets that are not code blocks. */
+  & > * code:not([class]) {
+    font-size: 90%;
+    line-height: normal;
+    vertical-align: baseline;
+    padding: 0.05rem 0.1rem;
+  }
 }
 
 .menu__link--sublist-caret::after {
-  background: url("@site/static/svg/common/chevron_up.svg");
+  background: url('@site/static/svg/common/chevron_up.svg');
 }
 
 .menu__link--active {

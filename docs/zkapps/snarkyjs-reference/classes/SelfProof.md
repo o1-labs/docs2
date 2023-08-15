@@ -1,14 +1,17 @@
-# Class: SelfProof<T\>
+[SnarkyJS](../README.md) / [Modules](../modules.md) / SelfProof
+
+# Class: SelfProof<PublicInput, PublicOutput\>
 
 ## Type parameters
 
 | Name |
 | :------ |
-| `T` |
+| `PublicInput` |
+| `PublicOutput` |
 
 ## Hierarchy
 
-- [`Proof`](Proof.md)<`T`\>
+- [`Proof`](Proof.md)<`PublicInput`, `PublicOutput`\>
 
   ↳ **`SelfProof`**
 
@@ -23,8 +26,10 @@
 - [maxProofsVerified](SelfProof.md#maxproofsverified)
 - [proof](SelfProof.md#proof)
 - [publicInput](SelfProof.md#publicinput)
+- [publicOutput](SelfProof.md#publicoutput)
 - [shouldVerify](SelfProof.md#shouldverify)
 - [publicInputType](SelfProof.md#publicinputtype)
+- [publicOutputType](SelfProof.md#publicoutputtype)
 - [tag](SelfProof.md#tag)
 
 ### Methods
@@ -38,22 +43,24 @@
 
 ### constructor
 
-• **new SelfProof**<`T`\>(`__namedParameters`)
+• **new SelfProof**<`PublicInput`, `PublicOutput`\>(`«destructured»`)
 
 #### Type parameters
 
 | Name |
 | :------ |
-| `T` |
+| `PublicInput` |
+| `PublicOutput` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.maxProofsVerified` | ``0`` \| ``2`` \| ``1`` |
-| `__namedParameters.proof` | `unknown` |
-| `__namedParameters.publicInput` | `T` |
+| `«destructured»` | `Object` |
+| › `maxProofsVerified` | ``0`` \| ``2`` \| ``1`` |
+| › `proof` | `unknown` |
+| › `publicInput` | `PublicInput` |
+| › `publicOutput` | `PublicOutput` |
 
 #### Inherited from
 
@@ -61,7 +68,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:97](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L97)
+[lib/proof_system.ts:119](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L119)
 
 ## Properties
 
@@ -75,7 +82,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:64](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L64)
+[lib/proof_system.ts:77](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L77)
 
 ___
 
@@ -89,13 +96,13 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:76](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L76)
 
 ___
 
 ### publicInput
 
-• **publicInput**: `T`
+• **publicInput**: `PublicInput`
 
 #### Inherited from
 
@@ -103,7 +110,21 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:74](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L74)
+
+___
+
+### publicOutput
+
+• **publicOutput**: `PublicOutput`
+
+#### Inherited from
+
+[Proof](Proof.md).[publicOutput](Proof.md#publicoutput)
+
+#### Defined in
+
+[lib/proof_system.ts:75](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L75)
 
 ___
 
@@ -117,13 +138,13 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:65](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L65)
+[lib/proof_system.ts:78](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L78)
 
 ___
 
 ### publicInputType
 
-▪ `Static` **publicInputType**: [`ProvablePure`](../interfaces/ProvablePure.md)<`any`\>
+▪ `Static` **publicInputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
 
 #### Inherited from
 
@@ -131,7 +152,21 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:55](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L55)
+[lib/proof_system.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L66)
+
+___
+
+### publicOutputType
+
+▪ `Static` **publicOutputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
+
+#### Inherited from
+
+[Proof](Proof.md).[publicOutputType](Proof.md#publicoutputtype)
+
+#### Defined in
+
+[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L67)
 
 ___
 
@@ -157,17 +192,17 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:56](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L56)
+[lib/proof_system.ts:68](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L68)
 
 ## Methods
 
 ### toJSON
 
-▸ **toJSON**(): `JsonProof`
+▸ **toJSON**(): [`JsonProof`](../modules.md#jsonproof)
 
 #### Returns
 
-`JsonProof`
+[`JsonProof`](../modules.md#jsonproof)
 
 #### Inherited from
 
@@ -175,7 +210,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:73](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L73)
+[lib/proof_system.ts:86](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L86)
 
 ___
 
@@ -193,7 +228,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:67](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L67)
+[lib/proof_system.ts:80](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L80)
 
 ___
 
@@ -217,13 +252,13 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:70](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L70)
+[lib/proof_system.ts:83](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L83)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`S`\>(`this`, `__namedParameters`): [`Proof`](Proof.md)<`InferInstance`<`S`[``"publicInputType"``]\>\>
+▸ `Static` **fromJSON**<`S`\>(`this`, `«destructured»`): [`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
 
 #### Type parameters
 
@@ -236,11 +271,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `S` |
-| `__namedParameters` | `JsonProof` |
+| `«destructured»` | [`JsonProof`](../modules.md#jsonproof) |
 
 #### Returns
 
-[`Proof`](Proof.md)<`InferInstance`<`S`[``"publicInputType"``]\>\>
+[`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
 
 #### Inherited from
 
@@ -248,4 +283,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:82](https://github.com/o1-labs/snarkyjs/blob/b5e7c38/src/lib/proof_system.ts#L82)
+[lib/proof_system.ts:95](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L95)

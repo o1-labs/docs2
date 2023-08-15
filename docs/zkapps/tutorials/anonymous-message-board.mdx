@@ -1,13 +1,12 @@
 ---
-title: "Example: Anonymous Message Board Tutorial"
+title: 'Example: Anonymous Message Board Tutorial'
 hide_title: true
-sidebar_label: "Example: Anonymous Message Board"
+sidebar_label: 'Example: Anonymous Message Board'
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 
 :::
 
@@ -44,19 +43,19 @@ by the NodeJS Project.
 #### Installation
 
 ```sh
-npm install -g zkapp-cli
+$ npm install -g zkapp-cli
 ```
 
 #### Usage
 
 ```sh
-zk --help
+$ zk --help
 ```
 
 ##### Create a new project
 
 ```sh
-zk project message-board  # or path/to/message-board
+$ zk project message-board  # or path/to/message-board
 
 ✔ Fetch project template
 ✔ Initialize Git repo
@@ -101,7 +100,7 @@ There should be an example smart contract in `./src` called `Add.ts` and tests f
 Let’s create a new contract by running:
 
 ```sh
-zk file message
+$ zk file message
 ```
 
 Now open it (`message.ts`) up and paste in the following:
@@ -120,7 +119,7 @@ import {
   isReady,
   Poseidon,
   Encoding,
-} from "snarkyjs";
+} from 'snarkyjs';
 
 export { isReady, Field, Encoding };
 
@@ -136,16 +135,16 @@ await isReady;
 
 export const users = {
   Bob: PrivateKey.fromBase58(
-    "EKFAdBGSSXrBbaCVqy4YjwWHoGEnsqYRQTqz227Eb5bzMx2bWu3F"
+    'EKFAdBGSSXrBbaCVqy4YjwWHoGEnsqYRQTqz227Eb5bzMx2bWu3F'
   ),
   SuperBob: PrivateKey.fromBase58(
-    "EKEitxmNYYMCyumtKr8xi1yPpY3Bq6RZTEQsozu2gGf44cNxowmg"
+    'EKEitxmNYYMCyumtKr8xi1yPpY3Bq6RZTEQsozu2gGf44cNxowmg'
   ),
   MegaBob: PrivateKey.fromBase58(
-    "EKE9qUDcfqf6Gx9z6CNuuDYPe4XQQPzFBCfduck2X4PeFQJkhXtt"
+    'EKE9qUDcfqf6Gx9z6CNuuDYPe4XQQPzFBCfduck2X4PeFQJkhXtt'
   ), // This one says duck in it :)
   Jack: PrivateKey.fromBase58(
-    "EKFS9v8wxyrrEGfec4HXycCC2nH7xf79PtQorLXXsut9WUrav4Nw"
+    'EKFS9v8wxyrrEGfec4HXycCC2nH7xf79PtQorLXXsut9WUrav4Nw'
   ),
 };
 
@@ -176,8 +175,8 @@ This will serve as the scaffolding for the rest of the tutorial and contains a s
 Every Mina smart contract includes eight on-chain state variables that each store almost 256 bits of information. In more complex smart contracts, these can store commitments (i.e. the hash of a file, the root of a Merkle tree, etc.) to off-chain storage, but in this case, we’ll store everything on-chain for the sake of simplicity.
 
 :::note
-  General purpose off-chain storage libraries are planned, but you can always
-  roll your own solution if desired.
+General purpose off-chain storage libraries are planned, but you can always
+roll your own solution if desired.
 :::
 
 In this smart contract, one state variable will store the last message. Another will store the hash of all the previous messages (so a frontend can validate message history), and three more will store user public keys (we could store additional public keys by Merkelizing them, but we’ll keep it to three here for the sake of brevity).
@@ -292,7 +291,7 @@ this.messageHistoryHash.set(newHash);
 That’s it! Save the file, and let’s make sure everything compiles.
 
 ```sh
-npm run build
+$ npm run build
 ```
 
 If everything is correct, you should see a new `./build` directory. This is where the compiled version of your project lives that you can import into a user interface.
@@ -339,7 +338,13 @@ What would you like to say? (should only work if you are one of the Bobs): Hello
 
 Hopefully you enjoyed this tutorial, and it gave you a sense of what's possible with SnarkyJS. The messaging protocol we built is quite simple but also very powerful. This basic pattern could be used to create a whistleblower system, an anonymous NFT project, or even anonymous DAO voting. SnarkyJS makes it easy for developers to build things that don’t intuitively seem possible, and this is really the point.
 
-Zero-knowledge proofs open the door to an entirely different way of thinking about the internet, and we are so excited to see what people like you will build. Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on [our Discord](https://bit.ly/MinaDiscord), and apply for the [zkApp Builders Program](https://share.hsforms.com/1KUeCPxJzQC6PIZ-LLdZe1g4xuul) if you are interested in building something more complex with the guidance of our team at O(1) Labs. More tutorials are on the way ([suggest ideas](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link)), but these are some logical next steps if you are interested in extending this project.
+Zero-knowledge proofs open the door to an entirely different way of thinking about the internet, and we are so excited to see what people like you will build. 
+
+- Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord.  
+- If you are interested in building something more complex with the guidance of our team at O(1) Labs, you can watch for future zkApp Builders Programs. 
+- To suggest tutorials, submit your ideas in the [SnarkyJS/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link). 
+
+Here are the logical next steps to extend this project.
 
 1. Allow users to pass signers into the `publishMessage()` method directly so that many different organizations can use a single contract. (Hint: You’ll have to store a commitment to the signers on-chain.)
 2. Allow users to pass an arbitrarily large number of signers into the `publishMessage()` method.

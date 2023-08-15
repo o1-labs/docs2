@@ -1,170 +1,306 @@
 ---
-title: 'Tutorial 3: Deploying to a Live Network'
+title: 'Tutorial 3: Deploy to a Live Network'
 hide_title: true
-sidebar_label: 'Tutorial 3: Deploying to a Live Network'
+sidebar_label: 'Tutorial 3: Deploy to a Live Network'
+description: Use the Mina zkApp CLI tool to deploy a smart contract to a live network.
+keywords:
+  - smart contracts
+  - zkapps
+  - deploy a zkapp
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - blockchain
+  - mina
+  - deploy to a live network
+  - mina testnet
 ---
+
+import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 
 :::
 
-# Tutorial 3: Deploying to a Live Network
+# Tutorial 3: Deploy to a Live Network
 
-## Overview
+In previous tutorials, you learned how to deploy and run transactions on a local network. 
 
-In previous tutorials, we've seen how to deploy and run transactions on a local network. In this tutorial, we will see how to deploy against a real, live network.
+In this tutorial, you use the `zk config` command to create a deploy alias, request tMINA funds to pay for transaction fees, and deploy a project to a live network.
 
-Mina's zkApps are currently available on Berkeley, Mina's public testnet, which is in its final stages of testing before Mainnet. In this tutorial, we will deploy our contract to the Berkeley Testnet. Berkeley is feature complete, and only minor changes and bugfixes are expected before Mainnet.
+Mina zkApps are available only on feature-complete Berkeley, Mina's public Testnet. This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world). 
 
-We will reuse the same smart contract from [Tutorial 1](hello-world), the `Square` contract.
+## Prerequisites
 
-## Project setup
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.10.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.11.3`.
 
-First, as usual, setup a new project with
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-```sh
-$ zk project 03-deploying-to-a-live-network
-```
+## Create a project
 
-To start, delete the default generated files by running:
+1. Create or change to a directory where you have write privileges.
 
-```sh
-rm src/Add.ts
-rm src/Add.test.ts
-rm src/interact.ts
-```
+2. Create a project by using the `zk project` command:
 
-And create a new file for our smart contract:
+  ```sh
+  $ zk project 03-deploying-to-a-live-network
+  ```
 
-```sh
-$ zk file src/Square
-```
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-Copy in `src/Square.ts` and `src/index.ts` from the first tutorial - you can find these [here](https://github.com/es92/zkApp-examples/tree/main/01-hello-world/src).
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+  The expected output is:
 
-That's all for setup - let's proceed to deploying to Berkeley Testnet.
+  ```sh
+  ✔ Create an accompanying UI project too? · none
+  ✔ UI: Set up project
+  ✔ Initialize Git repo
+  ✔ Set up project
+  ✔ NPM install
+  ✔ NPM build contract
+  ✔ Set project name
+  ✔ Git init commit
 
-## Deploying the smart contract
+  Success!
 
-A CLI tool is provided for convenience for deploying smart contracts to networks. If you need more custom account creation for your zkApp - say deploying a zkApp to a different key than the fee payer key, programmatically parameterizing a zkApp before initializing it, or creating a Smart Contract programmatically for users as part of an application - see the server-side tutorial mentioned in the [conclusion](#conclusion).
+  Next steps:
+    cd 03-deploying-to-a-live-network
+    git remote add origin <your-repo-url>
+    git push -u origin main
+  ```
 
-### zk config
+  The `zk project` command creates the `03-deploying-to-a-live-network` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework. 
 
-`zk config` is a tool provided for managing cli deployments. It will create a `config.json` in our project's directory, as well as a `keys` folder, containing private and public keys for our application.
+1. Change into the `03-deploying-to-a-live-network` directory.
 
-To use, run:
+For this tutorial, you run commands from the root of the `03-deploying-to-a-live-network` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
 
-```sh
-zk config
-```
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-It will ask you to specify a name (can be anything), URL to deploy to, & fee (in
-MINA) to be used when sending your deploy transaction. The URL is the Mina GraphQL API
-that will receive your deploy transaction and broadcast it to the Mina network.
-Note that this URL is significant because it also determines which network you will
-be deploying to (e.g. QANet, Testnet, Mainnet, etc).
+### Prepare the project
 
-For Berkeley Testnet, let's use the following values:
+Start by deleting the default files that come with the new project.
 
-- **Name**: `berkeley`
-- **URL**: `https://proxy.berkeley.minaexplorer.com/graphql`
-- **Fee**: `0.1`
+1. Delete the default generated files:
 
-:::tip
-If your project contains multiple smart contracts (e.g. `Foo` and `Bar`) that
-you intend to deploy to the same network, we recommend following a naming
-pattern such as `berkeley-foo` and `berkeley-bar` when naming your deploy
-aliases. You can change their names at anytime within `config.json`.
-:::
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
 
-<br />
+1. Now, create a new file for your smart contract:
 
-You will see the following output:
+  ```sh
+  $ zk file src/Square
+  ```
 
-```sh
-$ zk config
+1. Copy the `src/Square.ts` and `src/index.ts` files from the example files for first tutorial [01-hello-world/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world/src) to your local `03-deploying-to-a-live-network/src` directory. If prompted, replace existing files.
 
-Add a new network:
-✔ Choose a name (can be anything): · berkeley
-✔ Set URL to deploy to: · https://proxy.berkeley.minaexplorer.com/graphql
-✔ Set transaction fee to use when deploying (in MINA): · 0.1
-✔ Create key pair at keys/berkeley.json
-✔ Add network to config.json
+Now that your smart contract is in place, you are ready to deploy your smart contract to Berkeley Testnet.
 
-Success!
+## Mina zkApp CLI
 
-Next steps:
+You already installed the Mina zkApp CLI as part of the [Prerequisites](/zkapps/tutorials#prerequisites), so you have the tools to manage deployments.
 
-- If this is a testnet, request tMINA at:
-  https://faucet.minaprotocol.com/?address=<YOUR-ADDRESS>
-- To deploy, run: `zk deploy berkeley`
-```
+In some cases, you might need to create a custom account for your zkApp, for example, to deploy a zkApp to a different key than the fee payer key, programmatically parameterize a zkApp before you initialize it, or create a smart contract programmatically for users as part of an application. For details, see [Interacting with zkApps server-side](/zkapps/tutorials/interacting-with-zkapps-server-side).
 
-This command also generates keys, in `keys/berkeley.json`, that we will use in our application.
+## Deploy the smart contract 
 
-## Request funds from the faucet
+The `config.json` configuration file was automatically scaffolded when you created your project with the `zk project` command. However, the generated configuration file does not yet contain the deploy alias. 
 
-To deploy your zkApp, you will need some funds to pay for transaction fees.
+### Deploy alias
 
-To get funds on the Berkeley Testnet, use the URL that was shown from the CLI output. Visit `https://faucet.minaprotocol.com/?address=<YOUR-ADDRESS>` and click **Request**.
+The `zk config` command prompts guide you to create or update a deploy alias in your project `config.json` file. 
 
-You will have to wait a few minutes for the next block to include your transaction, so you'll have tMINA before proceeding to the next step.
+You can have one or more deploy aliases for your project.  
 
-## Deploy your smart contract
+A deploy alias consists of:
 
-To deploy your smart contract to the network, run the following command:
+- A self-describing name (can be anything). Using naming patterns is helpful when you have more than one deploy alias.
+- The Mina GraphQL API URL that defines the network that receives your deploy transaction and broadcasts it to the appropriate Mina network (Testnet, Devnet, Mainnet, and so on)
+- The transaction fee (in MINA) to use when deploying
+- Two key pairs:
 
-```sh
-zk deploy berkeley
-```
+  - A key pair for the zkApp account. Public and private keys to use in your application are automatically generated in `keys/berkeley.json`.
 
-When running the deploy command, the zkApp CLI will compute a verification key for your smart contract. Computing the verification key can take 1-2 minutes, so please be patient. The zkApp CLI will show you the details of the transaction such as the network name, the URL, and the smart contract that will be deployed.
+  - A key pair to use as a fee payer account for updates and deployments. Public and private keys are stored on your local computer and can be used across multiple projects.
 
-Finally, enter `yes` or `y` when prompted, to confirm and send the transaction.
+- Fee payer account alias
 
-You will see the following output:
+  - A fee payer account is required, you can choose to use an existing account or create a new fee payer account.
 
-```sh
-$ zk deploy berkeley
-✔ Build project
-✔ Generate build.json
-✔ Choose smart contract
-  Only one smart contract exists in the project: Add
-  Your config.json was updated to always use this
-  smart contract when deploying to this network.
-✔ Generate verification key (takes 1-2 min)
-✔ Build transaction
-✔ Confirm to send transaction
-  Are you sure you want to send (yes/no)? · y
-✔ Send to network
+1. To configure your deployment, run the `zk config` command and respond to the prompts:
 
-Success! Deploy transaction sent.
+  ```sh
+  $ zk config
+  ```
 
-Next step:
-  Your smart contract will be live (or updated)
-  as soon as the transaction is included in a block:
-  https://berkeley.minaexplorer.com/transaction/<txn-hash>
-```
+  For this tutorial on Berkeley Testnet, use:
+  
+    - Deploy alias name: `berkeley` 
+    
+      This tutorial uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+  
+    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
 
-After a few minutes, the transaction will be included in the next block. Visit `https://berkeley.minaexplorer.com/transaction/<txn-hash>` to see the transaction in progresss.
 
-Once the transaction is included in a block, your smart contract is deployed!
+1. When prompted to choose an account to pay transaction feeds, select to use a different account:
 
-This means, the Mina account at this public key, now contains the verification key associated with this smart contract.
+  ```sh
+  Use a different account (select to see options)
+  ```
 
-Because we set our smart contract's `editState` permissions to signature or proof when writing it in Tutorial 1, a transaction must contain either a valid ZK proof or a valid signature created by the private key associated with this zkApp account, in order to be accepted by the zkApp account. Typically, you'll only allow proof authorization. More instruction on setting permissions, such as allowing only proofs to modify an account, will come in a later tutorial.
+1. Next, select to create a new fee payer key pair:  
 
-When a user interacts with this smart contract by providing a proof, the proof is generated locally on the user's device, and included in a transaction. When the transaction is submitted to the network, Mina will check the proof, to know it is correct and matches the on-chain verification key. After it is accepted, the proof and transaction will be recursively proved, and bundled into Mina's recursive ZKP.
+  ```sh
+  Create a new fee payer key pair
+  NOTE: the private key will be stored in plain text on this computer.
+  ```
 
-When we change our code, the verification key associated with it will change, and the contract should be redeployed using the same steps as our initial deployment.
+1. When prompted, give an alias to your new fee payer key pair. For this tutorial, use `03-deploy`:
+
+  ```sh
+  Create an alias for this account: 03-deploy
+  ```
+
+  Your key pairs and deploy alias are created:
+
+  ```sh
+  ✔ Create fee payer key pair at /Users/<username>/.cache/zkapp-cli/keys/03-deploy.json
+  ✔ Create zkApp key pair at keys/berkeley2.json
+  ✔ Add deploy alias to config.json
+
+  Success!
+
+  Next steps:
+    - If this is a testnet, request tMINA at:
+      https://faucet.minaprotocol.com/?address=B62qqK5JgYAtmh2DHsQfUjUSKwQ6CFSPkGvyMZd19j1BUHfEJEqpKGo&?explorer=minaexplorer
+    - To deploy, run: `zk deploy berkeley`
+
+1. Request funds from the Testnet Faucet to fund your fee payer account.
+
+  Follow the prompts to request tMINA. For this tutorial, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+
+1. To deploy your project:
+
+  ```sh
+  $ zk deploy
+  ```
+
+1. At the interactive prompt, select the `berkeley` deploy alias:
+
+  ```text
+  ? Which deploy alias would you like to deploy to? …
+  ❯ berkeley
+  ```
+
+  A verification key for your smart contract is generated (takes 10-30 seconds). 
+  
+  The deploy process is output:
+
+  ```text
+  ✔ Build project
+  ✔ Generate build.json
+  ✔ Choose smart contract
+    Only one smart contract exists in the project: Square
+    Your config.json was updated to always use this
+    smart contract when deploying to this deploy alias.
+  ✔ Generate verification key (takes 10-30 sec)
+  ⠋ Build transaction...(node:25066) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  ✔ Build transaction
+  ```
+
+1. Review and confirm the details of the transaction: 
+  
+  ```text
+  ✖ Confirm to send transaction
+
+    ┌─────────────────┬─────────────────────────────────────────────────┐
+    │ Deploy Alias    │ berkeley2                                       │
+    ├─────────────────┼─────────────────────────────────────────────────┤
+    │ Fee-Payer Alias │ 03-deploy                                       │
+    ├─────────────────┼─────────────────────────────────────────────────┤
+    │ URL             │ https://proxy.berkeley.minaexplorer.com/graphql │
+    ├─────────────────┼─────────────────────────────────────────────────┤
+    │ Smart Contract  │ Square                                          │
+    └─────────────────┴─────────────────────────────────────────────────┘
+  ```
+  
+  When prompted, type `yes` to confirm and send the transaction.
+
+  ```text
+  ✔ Send to network
+
+  Success! Deploy transaction sent.
+
+  Next step:
+    Your smart contract will be live (or updated)
+    as soon as the transaction is included in a block:
+  ```
+
+1. To see the zkApp transaction, go to `https://berkeley.minaexplorer.com/transaction/<txn-hash>`, where `<txn-hash>` is the transaction hash that is output to your terminal. 
+
+    - The zkApp Pending Transaction shows until the transaction is included in the next block.
+    - The zkApp Transaction shows after the transaction is included in a block.
+
+## Success
+
+After the transaction is included in a block, your smart contract is deployed!
+
+- The Mina account at this public key now contains the verification key associated with this smart contract.
+
+You ran the `zk config` command to:
+
+- Create a deploy alias
+- Create a fee payer key pair at `/Users/<username>/.cache/zkapp-cli/keys/03deploy.json`
+- Create a zkApp key pair at `keys/berkeley.json`
+
+You requested tMINA to fund your deploy transactions. Use the remaining tMINA to keep building and testing.
+
+You ran the `zk deploy` command to:
+
+- Generate a verification key for your smart contract
+- Add the deploy alias to the project `config.json`
+
+Congratulations!
+
+## About the Smart Contract Transactions
+
+Because this tutorial used the smart contract for Tutorial 1: Hello World, the smart contract `editState` permissions require that a transaction must contain a valid zk proof that was created by the private key associated with this zkApp account. 
+
+- When a user interacts with this smart contract by providing a proof, the proof is generated locally on the user's device and included in a transaction. 
+- When the transaction is submitted to the network, the proof is checked to ensure it is correct and matches the on-chain verification key. 
+- After the transaction is accepted, the proof and transaction are recursively proved and bundled into Mina's recursive zero knowledge proof.
+
+When you change the smart contract code, the associated verification key also changes. Use the same steps to redeploy the smart contract. 
+
+For a typical smart contract, permissions are set to allow only proof authorization: the proof in zero knowledge proof. You learn more about setting permissions in a later tutorial.
+
+## Video
+
+Watch this tutorial for a step-by-step guide and extra explanations on how to deploy a zkApp.
+
+<ResponsiveVideo src="https://www.youtube.com/embed/Sj9lTmgjDXY" />
+
+The video is provided for educational purposes and uses earlier versions of the zkApp CLI and SnarkyJS, so there are some differences. This tutorial is tested with a specific version of the zkApp CLI and SnarkyJS.
 
 ## Conclusion
 
-We have finished deploying to a live network using the zkApp CLI!
+Congratulations! You have successfully deployed a smart contract to a live network.
 
-If you would like to learn how to build server-side scripts that interact with zkApps, see that tutorial [here](./interacting-with-zkapps-server-side).
-
-Checkout [Tutorial 4](zkapp-ui-with-react) to learn how to zkApp UIs with ReactJS that run in the browser with a wallet.
+Check out [Tutorial 4: Build a zkApp UI in the Browser with React](zkapp-ui-with-react) to implement a browser UI that interacts with a smart contract.
