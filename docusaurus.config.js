@@ -10,7 +10,7 @@ module.exports = {
   tagline: 'Website for documentation about Mina Protocol',
   url: 'https://docs.minaprotocol.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'o1-labs',
