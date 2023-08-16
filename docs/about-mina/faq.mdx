@@ -1,10 +1,19 @@
 ---
-title: FAQ
+title: Mina FAQ
+description: Frequently asked questions about Mina Protocol.
+keywords: 
+  - mina faq
+  - mina language
+  - zkapp language
+  - 22 KB
+  - kimchi proof system
+  - mina scalability
+  - mina security audits
 ---
 
 import Subhead from "@site/src/components/common/Subhead";
 
-# FAQ
+# Mina FAQ
 
 
 <Subhead>
@@ -13,24 +22,56 @@ Frequently Asked Questions about Mina Protocol
 
 ### What language is Mina written in?
 
-The Mina node is written in OCaml. But you don't need to know OCaml to write smart contracts for Mina.
+The Mina node is written in OCaml. You don't need to know OCaml to write smart contracts for Mina.
 
 ### What language are zkApp smart contracts written in?
 
-Mina's zero knowledge smart contracts ("zkApps") are written in TypeScript.
+Mina's zero knowledge smart contracts (zkApps) are written in TypeScript.
 
-Learn more about [how to write a zkApp](/zkapps/how-to-write-a-zkapp).
+See [How to write a zkApp](/zkapps/how-to-write-a-zkapp).
 
 ### How large is the Mina Blockchain?
 
-22KB
+22 KB
 
-### Given Mina is only 22KB, where are past transactions stored?
+### Given Mina is only 22 KB, where are past transactions stored?
 
-The Mina node can run with an optional flag to make it an archive node. This means it stores historic transactions, which is useful for anyone running a service such as a block explorer. Still, this data is not needed in order to verify the current consensus state of the protocol.
+A Mina node can run with an optional flag to make it an archive node to store historical transactions. Archive nodes are useful for anyone running a service, such as a block explorer. Still, this historical data is not required to verify the current consensus state of the protocol.
 
-### What ZK proof system does Mina use?
+### What zero knowledge (zk) proof system does Mina use?
 
-Mina Protocol uses a custom proof system called Kimchi, which was developed by [O(1) Labs](https://o1labs.org/), and is the only blockchain offering infinite recursion.
+Mina Protocol uses a custom proof system called Kimchi,  developed by [O(1) Labs](https://o1labs.org/). Mina is the only blockchain offering infinite recursion.
 
 Check out the [Mina Book](https://o1-labs.github.io/proof-systems/plonk/overview.html) to learn more about Kimchi and the cryptography powering Mina Protocol.
+
+### What can I do on the Mina network?
+
+Any node can send and receive transactions on the Mina network. Any node can also be a [node operator](/node-operators).
+
+### What consensus algorithm does Mina use?
+
+Mina's consensus mechanism is an implementation of Ouroboros proof of stake. Due to Mina's unique compressed blockchain, certain aspects of the algorithm have diverged from the Ouroboros papers. The version Mina uses is called Ouroboros Samisika and achieves consensus without long-term history.
+
+#### Is there a Mina block explorer?
+
+Yes, check out these block explorers:
+
+- https://minaexplorer.com/
+- https://minascan.io
+
+### How does Mina achieve scalability?
+
+Mina achieves scalability through the use of recursive zk-SNARKs. By generating a proof that attests to the validity of historic blockchain states, Mina can keep the blockchain size fixed. This allows for increased throughput due to block size limits not being as taxing on the network, thereby increasing the scalability of the network.
+
+### What security audits have been completed?
+
+You can review the results of the completed security audits here:
+
+- On 2020-05-11 [NCC Group Security Audit Results of Mina Protocol](https://research.nccgroup.com/wp-content/uploads/2020/05/NCC_Group_O1Labs_O1LB001_Report_2020-05-11_v1.1.pdf)
+- On 2021-02-05 [Audit of Mina Ledger Application for O(1) Labs](https://leastauthority.com/blog/audits/audit-of-mina-ledger-application-for-o1-labs/)
+- On 2021-09-21 [Mina Signer SDK + StakingPower Wallet
+Security Audit Report Mina Foundation](https://leastauthority.com/wp-content/uploads/2021/09/Least-Authority-Mina-Foundation-Mina-Signer-SDK-StakingPower-Wallet-Final-Audit-Report.pdf)
+- On 2022-02-21 [Mina Client SDK, Signature Library and Base
+Components – Cryptography and
+Implementation Review
+O(1) Labs Operating Co.](https://research.nccgroup.com/wp-content/uploads/2022/02/NCC_Group_O1LabsOperatingCo_Report_2022-02-21_v1.0.pdf)

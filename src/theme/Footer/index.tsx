@@ -1,31 +1,42 @@
-import React from "react";
+import React from 'react';
 
-import Button from "@site/src/components/common/Button";
-import Link from "@docusaurus/Link";
-import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
+import Button from '@site/src/components/common/Button';
+import Link from '@docusaurus/Link';
+import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
 
-import styles from "./Footer.module.scss";
-import { SocialLinks } from "@site/src/constants";
-import MinaLogo from "@site/static/svg/common/mina_logo.svg";
-import DiscordLogo from "@site/static/svg/socials/discord_24x24.svg";
-import TwitterLogo from "@site/static/svg/socials/twitter_24x24.svg";
-import FacebookLogo from "@site/static/svg/socials/facebook_24x24.svg";
-import TelegramLogo from "@site/static/svg/socials/telegram_24x24.svg";
-import WeChatLogo from "@site/static/svg/socials/wechat_24x24.svg";
-import YoutubeLogo from "@site/static/svg/socials/youtube_24x24.svg";
+import styles from './Footer.module.scss';
+import { SocialLinks } from '@site/src/constants';
+import MinaLogo from '@site/static/svg/common/mina_logo.svg';
+import DiscordLogo from '@site/static/svg/socials/discord_24x24.svg';
+import TwitterLogo from '@site/static/svg/socials/twitter_24x24.svg';
+import FacebookLogo from '@site/static/svg/socials/facebook_24x24.svg';
+import TelegramLogo from '@site/static/svg/socials/telegram_24x24.svg';
+import WeChatLogo from '@site/static/svg/socials/wechat_24x24.svg';
+import YoutubeLogo from '@site/static/svg/socials/youtube_24x24.svg';
+import { FormSubmitUrl } from '@site/src/constants';
 
 function Footer(): JSX.Element | null {
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState('');
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  // TODO: add email to newsletter
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email) {
       return;
     }
+    const response = await fetch(FormSubmitUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `email=${email}`,
+    });
+    if (!response.ok) {
+      console.error('Failed to submit form');
+      return;
+    }
     setIsSubmitted(true);
-    // console.log(event, email);
+    window.location.href = 'https://minaprotocol.com/newsletter-confirmation';
   };
 
   const renderForm = () => {
@@ -34,19 +45,20 @@ function Footer(): JSX.Element | null {
     }
     return (
       <form
+        id="newletter_form"
         onSubmit={handleSubmit}
         className={styles.minaFooter_form__submitContainer}
       >
         <input
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          type="email"
+          type={isSubmitted ? 'hidden' : 'email'}
           name="email"
           id="email"
           placeholder="Enter Email"
           className={styles.minaFooter_form_input}
         />
-        <Button color="orange">
+        <Button type="submit" color="orange">
           <span>Submit</span>
           <ArrowRightSmall />
         </Button>
@@ -77,16 +89,13 @@ function Footer(): JSX.Element | null {
             <Link href={SocialLinks.Twitter}>
               <TwitterLogo />
             </Link>
-            <Link href={SocialLinks.Facebook}>
-              <FacebookLogo />
-            </Link>
             <Link href={SocialLinks.Telegram}>
               <TelegramLogo />
             </Link>
             <Link href={SocialLinks.WeChat}>
               <WeChatLogo />
             </Link>
-            <Link href={SocialLinks.Youtube}>
+            <Link href={SocialLinks.YouTube}>
               <YoutubeLogo />
             </Link>
           </div>
@@ -100,18 +109,19 @@ function Footer(): JSX.Element | null {
                   <Link to="/">Documentation</Link>
                 </li>
                 <li>
-                  <Link to="/zkapps">Write a zkApp</Link>
+                  <Link href="https://minaprotocol.com/join-zkignite-cohort-2">
+                    zkIgnite, Cohort 2
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/zkapps/how-to-write-a-zkapp">Write a zkApp</Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/node-operators">
                     Run a Node
                   </Link>
                 </li>
-                <li>
-                  <Link href="https://minaprotocol.com/genesis">
-                    Join Genesis
-                  </Link>
-                </li>
+                
               </ul>
             </li>
             <li>
@@ -154,24 +164,29 @@ function Footer(): JSX.Element | null {
               </ul>
             </li>
             <li>
-              <span>Community</span>
+              <span>Ecosystem</span>
               <ul>
                 <li>
-                  <Link href="https://minaprotocol.com/community">Welcome</Link>
+                  <Link href="https://minaprotocol.com/community">Community</Link>
                 </li>
                 <li>
-                  <Link href="https://minaprotocol.com/genesis">
-                    Genesis Program
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://minaprotocol.com/leaderboard">
-                    Testnet Leaderboard
+                  <Link href="https://minaprotocol.com/grants">
+                    Grants
                   </Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/work-with-mina">
-                    Careers
+                    Work with Mina
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://minafoundation.notion.site/minafoundation/Mina-Community-Blog-91b8fdfd1b9e444ca55ddd1b90bade3c">
+                    Community Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://www.minafoundation.com/">
+                    Mina Foundation
                   </Link>
                 </li>
               </ul>
@@ -183,13 +198,10 @@ function Footer(): JSX.Element | null {
                   <Link href={SocialLinks.Discord}>Discord</Link>
                 </li>
                 <li>
-                  <Link href={SocialLinks.Telegram}>Forums</Link>
+                  <Link href={SocialLinks.Telegram}>Mina Research</Link>
                 </li>
                 <li>
-                  <Link href={SocialLinks.Github}>Github</Link>
-                </li>
-                <li>
-                  <Link href={SocialLinks.Support}>Contact Us</Link>
+                  <Link href={SocialLinks.GitHub}>GitHub</Link>
                 </li>
               </ul>
             </li>
@@ -217,7 +229,7 @@ function Footer(): JSX.Element | null {
           </ul>
         </div>
         <div className={styles.minaFooter_legals__info}>
-          ©2022 Mina. Started by O(1) Labs.
+          ©2023 Mina. Started by O(1) Labs.
         </div>
       </div>
     </footer>

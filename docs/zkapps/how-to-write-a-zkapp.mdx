@@ -1,1012 +1,243 @@
 ---
 title: How to Write a zkApp
 hide_title: true
+description: Guided steps to write a zkApp that includes a smart contract and a UI. Create a smart contract with SnarkyJS for Mina Protocol.
+keywords:
+  - zkApp
+  - smart contract
+  - typescript
+  - snarkyjs
+  - mina protocol
+  - zero knowledge proofs
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 
 :::
 
 # How to Write a zkApp
 
-A zkApp consists of a smart contract and a UI to interact with it. First, install the Mina zkApp CLI and write a smart contract.
+A zkApp consists of a smart contract and a UI to interact with it. 
 
-## Write a smart contract
+Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/). 
 
-Write your smart contract using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli/).
+First, install the Mina zkApp CLI.
 
-Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework (<a href="https://jestjs.io/">Jest</a>), code auto-formatting (<a href="https://prettier.io/
-">Prettier</a>), linting (<a href="https://eslint.org/">ES Lint</a>), & more.
+The Mina zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as SnarkyJS, a test framework [Jest](https://jestjs.io/), code auto-formatting [Prettier](https://prettier.io/
+), linting [ES Lint](https://eslint.org/), and more.
 
-### Install Mina zkApp CLI
+## Install Mina zkApp CLI
 
 ```sh
 npm install -g zkapp-cli
 ```
 
-#### Dependencies:
+Dependencies:
 
 - NodeJS 16+ (or 14 using `node --experimental-wasm-threads`)
 - NPM 6+
 - Git 2+
 
-:::tip
+If you have a later version of a dependency, install the required version using the package manager for your system: 
 
-If you have an older version installed, install a newer version using the package manager for your system: <a href="https://brew.sh/">Homebrew</a> (Mac), <a href="https://chocolatey.org/">Chocolatey</a> (Windows), or apt/yum/etc (Linux). On Linux, you may need to install a recent NodeJS version via NodeSource (<a href="https://github.com/nodesource/distributions#debinstall">deb</a> or <a href="https://github.com/nodesource/distributions#rpminstall">rpm</a>), as recommended by the NodeJS Project.
+- MacOs [Homebrew](https://brew.sh/)
 
-:::
+- Windows [Chocolatey](https://chocolatey.org/)
 
-### Start a project
+- Linux (apt, yum, and others)
 
-Now that you have Mina zkApp CLI installed, you can start with an example or start your own project.
+    As recommended by the Node.js project, you might need to install a recent Node.js version using NodeSource binary distributions: [Debian](https://github.com/nodesource/distributions#debinstall), [rpm](https://github.com/nodesource/distributions#rpminstall).
 
-#### Option A: Start with an example (recommended)
+## Start a project
 
-Examples are based on the standard project structure, but with additional files in the `/src` directory as the only difference.
+Now that you have the Mina zkApp CLI installed, you can start with an example or start your own project.
 
-1. **Install:** Run `zk example sudoku`. This creates a new project and includes
-   the example files (i.e. the smart contract) inside the project’s `src/`
-   directory. Type `ls` & hit enter to see the files that were created or open
-   the directory in a code editor such as VS Code.
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you
-   see all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run tests when you save changes to your code.
-3. **Build the example:** Run `npm run build` to compile your TypeScript
-   into JavaScript inside the project’s `/build` directory.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
+Example projects do not create an accompanying UI. 
 
-You can view a list of <a href="https://github.com/o1-labs/zkapp-cli/tree/main/examples/">all available examples here</a>.
+### Option A: Start with an example (recommended)
 
-#### Option B: Start your own project
+Examples are based on the standard project structure and provide additional files in the `/src` directory.
 
-1. **Install:** Run `zk project <myproj>`. Type `ls` and hit enter to see the
-   newly created project structure. _Note_: If you want to directly scaffold an UI with your new zkApp, you can do so by adding the `--ui` flag to the previous command, like `zk project <myproj> --ui=<framework>`. You can currently choose from the following frameworks: `svelte`, `next` or `nuxt` 
-2. **Run tests:** Run `npm run test`. Tests are written using <a
-   href="https://jestjs.io/">Jest</a>. After running this command, you can
-   see that all tests pass. You can also run `npm run testw` to run tests in watch
-   mode, so tests are automatically re-run you save changes to your code.
-3. **Build:** Run `npm run build` to compile your TypeScript code into
-   JavaScript inside the project’s `/build`.
-4. **Deploy to Testnet:** Run `zk config`. The command walks you through adding a
-   network alias to your project’s `config.json`. For Berkeley Testnet, use `berkeley` as the name, `0.1` for the fee, and
-   `https://proxy.berkeley.minaexplorer.com/graphql` for the url. Then run `zk deploy` and follow the prompts. See the [how to deploy a zkApp](how-to-deploy-a-zkapp) page for further details.
-5. **Deploy to Mainnet:** (Coming soon.)
+1. Create the example project: `zk example`
+
+  The `zk example` command prompts you to select an example project:
+
+  ```text
+  ? Choose an example …
+❯ sudoku
+  tictactoe
+  ```
+
+  Select the `sudoku` example project. 
+
+  The created project includes the example files (the smart contract) in the project's `src/` directory. 
+  
+  To see the files that were created, change to the `sudoku` directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+
+1. Run tests and see the tests pass: `npm run test`  
+  
+  To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+
+1. Build the example: `npm run build`
+
+  Compile your TypeScript into JavaScript in the project `/build` directory.
+
+1. Configure your zkApp: `zk config`
+
+  The command prompts guide you to add a deploy alias to your project `config.json` file. 
+  
+  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
+  
+  For this example on Berkeley Testnet, use:
+ 
+    - Deploy alias name: `berkeley` 
+    
+      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+  
+    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
+
+1. When prompted to choose an account to pay transaction feeds, select to use a different account:
+
+  ```sh
+  Use a different account (select to see options)
+  ```
+
+  If this is the first time you run the `zk config` command, you see these options:
+
+  ```text
+  ❯ Recover fee payer account from an existing base58 private key
+  Create a new fee payer key pair
+  ```
+
+The option to choose another account is shown only if the user has a cached fee payer account.
+
+1. Next, select to create a new fee payer key pair:  
+
+  ```sh
+  Create a new fee payer key pair
+  NOTE: the private key will be stored in plain text on this computer.
+  ```
+
+1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+
+  ```sh
+  Create an alias for this account: sudoku
+  ```
+
+  Your key pairs and deploy alias are created.
+
+1. Fund your fee payer account.
+
+  Follow the prompts to request tMINA. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+
+1. Deploy to Testnet: `zk deploy`
+
+  Follow the prompts and select the `sudoku` deploy alias. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
+
+### Option B: Start your own project
+
+1. Create your own project: `zk project <myproj>`
+
+    The created project includes the files (the smart contract) in the project's `src/` directory. 
+
+1. Select an accompanying UI framework, if any:
+
+    ```text
+    ? Create an accompanying UI project too? …
+  ❯ next
+    svelte
+    nuxt
+    empty
+    none
+    ```
+    
+    For your selected UI framework, follow the prompts. See [How to Write a zkApp UI](/zkapps/how-to-write-a-zkapp-ui).
+
+    To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+
+1. Run tests and see the tests pass: `npm run test`  
+  
+    To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+
+1. Build the example: `npm run build`
+
+    Compile your TypeScript into JavaScript in the project `/build` directory.
+
+1. Configure your zkApp: `zk config`
+
+  The command prompts guide you to add a deploy alias to your project `config.json` file. 
+  
+  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
+  
+  For this example on Berkeley Testnet, use:
+ 
+    - Deploy alias name: `berkeley` 
+    
+      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+  
+    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
+
+1. When prompted to choose an account to pay transaction fees, select to use a different account:
+
+  ```sh
+  Use a different account (select to see options)
+  ```
+
+  If this is the first time you run the `zk config` command, you see these options:
+
+  ```text
+  ❯ Recover fee payer account from an existing base58 private key
+  Create a new fee payer key pair
+  ```
+
+The option to choose another account is shown only if the user has a cached fee payer account.
+
+1. Next, select to create a new fee payer key pair:  
+
+  ```sh
+  Create a new fee payer key pair
+  NOTE: the private key will be stored in plain text on this computer.
+  ```
+
+1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+
+  ```sh
+  Create an alias for this account: sudoku
+  ```
+
+  Your key pairs and deploy alias are created.
+
+1. Fund your fee payer account.
+
+    Follow the prompts to request tMina. 
+
+1. Deploy to Testnet: `zk deploy`
+
+    Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
 
 ### Writing your smart contract
 
-The goal of this section is to explain the concepts that you need to understand how to write a zero-knowledge-based smart contract.
-
-If you haven’t yet read the [how zkApps work](how-zkapps-work) pages, please read it now so that this section makes sense.
-
-##### SnarkyJS
-
 zkApps are written in TypeScript using SnarkyJS. SnarkyJS is a TypeScript library for writing smart contracts based on zero-knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
 
-To view the full SnarkyJS reference, please see the [snarkyJS reference](snarkyjs-reference).
+To get started writing zkApps, begin with these SnarkyJS docs:
 
-##### Concepts
+- [Basic concepts](./snarkyjs/basic-concepts)
+- [Smart contracts](./snarkyjs/smart-contracts)
+- [Interacting with Mina](./snarkyjs/interact-with-mina)
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+For guided steps to create your first zkApp, start with [Tutorial 1: Hello World](./tutorials/hello-world).
 
-:::note
-
-For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336
-
-:::
-
-For example, in typical programming, you might use:
-
-`const sum = 1 + 3`.
-
-In SnarkyJS, you write this as:
-
-`const sum = new Field(1).add(new Field(3))`
-
-This can be simplified as:
-
-`const sum = new Field(1).add(3)`
-
-Note that the 3 is auto-promoted to a field type to make this cleaner.
-
-##### Built-in data types
-
-Some common data types you may use are:
-
-<!-- prettier-ignore -->
-```ts
-new Bool(x);   // accepts true or false
-new Field(x);  // accepts an integer, or a numeric string if you want to represent a number greater than JavaScript can represent but within the max value that a field can store.
-new UInt64(x); // accepts a Field - useful for constraining numbers to 64 bits
-new UInt32(x); // accepts a Field - useful for constraining numbers to 32 bits
-
-PrivateKey, PublicKey, Signature; // useful for accounts and signing
-new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
-Scalar; // the corresponding scalar field (different than Field)
-
-CircuitString.from('some string'); // string of max length 128
-```
-
-In the case of `Field` and `Bool`, you can also call the constructor without `new`:
-
-```ts
-let x = Field(10);
-let b = Bool(true);
-```
-
-##### Conditionals
-
-Traditional conditional statements are not yet supported by SnarkyJS:
-
-```ts
-// this will NOT work
-if (foo) {
-  x.assertEquals(y);
-}
-```
-
-Instead, use SnarkyJS’ built-in `Circuit.if()` method, which is a ternary operator:
-
-```ts
-const x = Circuit.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
-```
-
-##### Functions
-
-Functions work as you would expect in TypeScript. For example:
-
-```ts
-function addOneAndDouble(x: Field): Field {
-  return x.add(1).mul(2);
-}
-```
-
-##### Common methods
-
-Some common methods you will use often are:
-
-```ts
-let x = new Field(4); // x = 4
-x = x.add(3); // x = 7
-x = x.sub(1); // x = 6
-x = x.mul(3); // x = 18
-x = x.div(2); // x = 9
-x = x.square(); // x = 81
-x = x.sqrt(); // x = 9
-
-let b = x.equals(8); // b = Bool(false)
-b = x.greaterThan(8); // b = Bool(true)
-b = b.not().or(b).and(b); // b = Bool(true)
-b.toBoolean(); // true
-
-let hash = Poseidon.hash([x]); // takes array of Fields, returns Field
-
-let privKey = PrivateKey.random(); // create a private key
-let pubKey = PublicKey.fromPrivateKey(privKey); // derive public key
-let msg = [hash];
-let sig = Signature.create(privKey, msg); // sign a message
-sig.verify(pubKey, msg); // Bool(true)
-```
-
-For a full list, see the [SnarkyJS reference](snarkyjs-reference).
-
-##### Smart Contract
-
-<!-- TODOs
-  IMO, needs to be fleshed out a bit more before sending users to "test your zkApp" or "advanced topics".
-  Basics that are missing:
-  * payments
-  * Mina.transaction / at least hinting at the basic mechanics of how to compile / prove
-  * the general notion of a transaction / of an account update (party)?
-  * permissions? (probably an advanced topic)
- -->
-
-Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
-
-Smart contracts are written by extending the base class `SmartContract`:
-
-```ts
-class HelloWorld extends SmartContract {}
-```
-
-The `constructor` of a `SmartContract` is inherited from the base class and should not be overriden.
-It takes the zkApp account address (a public key) as its only argument:
-
-```ts
-let zkAppKey = PrivateKey.random();
-let zkAppAddress = PublicKey.fromPrivateKey(zkAppKey);
-
-let zkApp = new HelloWorld(zkAppAddress);
-```
-
-Later, you learn how to deploy a smart contract to an on-chain account.
-
-:::note
-On Mina, there is no strong distinction between normal "user accounts" and
-"zkApp accounts". A zkApp account is just a normal account that has a smart
-contract deployed to it – which essentially just means there's a verification
-key stored on the account, which can verify zero-knowledge proofs generated
-with the smart contract.
-:::
-
-##### Methods
-
-Interaction with a smart contract happens by calling one or more of its _methods_. You declare methods using the `@method` decorator:
-
-```ts
-class HelloWorld extends SmartContract {
-  @method myMethod(x: Field) {
-    x.mul(2).assertEquals(5);
-  }
-}
-```
-
-Within a method, you can use SnarkyJS' data types and methods to define your custom logic.
-
-Later, you learn how you can...
-
-- run a method (off-chain)
-- create a proof that it executed successfully
-- send that proof to the Mina network, to trigger actions like a state change or payment
-
-To get an idea what "successful execution" means, look at this line in our example above:
-
-```ts
-x.mul(2).assertEquals(5);
-```
-
-Creating a proof for this method is be possible only if the input `x` satisfies the equation `x * 2 === 5`. This is called a "constraint".
-Magically, the proof can be checked without seeing `x` – it's a _private input_.
-
-The method above is not very meaningful yet. To make it more interesting, you need a way to interact with accounts, and record state on-chain.
-Check out the next section for more on that!
-
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](how-to-write-a-zkapp#custom-data-types).
-
-<!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
--->
-
-:::info
-
-Under the hood, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover & verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In ZKP terms, the account updates are the _public input_. The proof will only be accepted on the network if it verifies against the verification key stored in the account. This ensures that indeed, the same code that the zkApp developer wrote also ran on the user's device – thus, the account updates conform to the smart contract's rules.
-
-:::
-
-<!-- TODO: create at least a basic section about zk circuits below this subsection which contains (among other things) a more thourough explanation of what this tip hints at -->
-
-:::tip
-
-You will find that inside a `@method`, things sometimes behave a little differently. For example, the following code can't be used in a method where `x: Field` is an input parameter:
-
-```ts
-console.log(x.toString()); // don't do this inside a `@method`! 😬
-```
-
-This doesn't work because, when we compile the SmartContract into prover and verification keys, we will run your method in an environment where the method inputs don't have any concrete values attached to them. They are like mathematical variables `x`, `y`, `z` which are used to build up abstract computations like `x^2 + y^2`, just by running your method code.
-
-Therefore, when executing your code and trying to read the value of `x` to turn it into a string via `x.toString()`, it will blow up because such a value can't be found. On the other hand, during proof generation all the variables _have_ actual values attached to them (cryptographers call them "witnesses"); and it makes perfect sense to want to log these values for debugging.
-This is why we have a special function for logging stuff from inside your method:
-
-```ts
-Circuit.log(x);
-```
-
-The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
-:::
-
-##### On-chain state
-
-A smart contract can contain **on-chain state**, which is declared as a property
-on the class with the `@state` decorator:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  // ...
-}
-```
-
-Here, `x` is of type `Field`. Like with method inputs, only SnarkyJS structs can be used for state variables.
-In the current design, the state can consist of at most 8 Fields of 32 bytes each. These states are stored on the zkApp account.
-Some structs take up more than one Field: for example, a `PublicKey` needs 2 of the 8 Fields.
-States are initialized with the `State()` function.
-
-A method can modify on-chain state by using `this.<state>.set()`:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  @method setX(x: Field) {
-    this.x.set(x);
-  }
-}
-```
-
-As a zkApp developer, if you add this method to your smart contract, you are saying: "Anyone can call this method, to set `x` on the account to any value they want."
-
-##### Reading state
-
-Often, we also want to _read_ state – check out this example:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  @method increment() {
-    // read state
-    const x = this.x.get();
-    this.x.assertEquals(x);
-
-    // write state
-    this.x.set(x.add(1));
-  }
-}
-```
-
-The `increment()` method fetches the current on-chain state `x` with `this.x.get()`.
-Later, it sets the new state to `x + 1` using `this.x.set()`. Simple!
-
-There's another line though, which looks weird at first:
-
-```ts
-this.x.assertEquals(x);
-```
-
-To understand it, we have to take a step back, and understand what it means to "use an on-chain value" during off-chain execution.
-
-For sure, when we use an on-chain value, we have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify SnarkyJS and make it just use any other value than the current on-chain state – breaking our zkApp.
-
-To prevent that, we link "`x` at proving time" to be the same as "`x` at verification time". We call this a _precondition_ – a condition that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This is what `this.x.assertEquals(x)` does: it adds the precondition that `this.x` – the on-chain state at verification time – has to equal `x` – the value we fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
-
-Side note: `this.<state>.assertEquals` is more flexible than equating with the current value. For example, `this.x.assertEquals(10)` fixes the on-chain `x` to the number `10`.
-
-:::note
-
-Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
-Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
-One such workaround is the use of actions – see [Actions and Reducer](advanced-snarkyjs/actions-and-reducer).
-
-:::
-
-##### Assertions
-
-<!-- TODO: this is _slightly_ misplaced now, because I already had assertEquals earlier -->
-
-Let's modify the `increment()` method to accept a parameter:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  @method increment(xPlus1: Field) {
-    const x = this.x.get();
-    this.x.assertEquals(x);
-
-    x.add(1).assertEquals(xPlus1);
-
-    this.x.set(xPlus1);
-  }
-}
-```
-
-Here, after obtaining the current state `x` and asserting that it equals the on-chain value, we make another assertion:
-
-```ts
-x.add(1).assertEquals(xPlus1);
-```
-
-If the assertion fails, SnarkyJS will throw an error and not submit the transaction.
-On the other hand, if it succeeds, it becomes part of the proof that is verified on-chain.
-
-Because of this, our new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
-update the state `x` to `x + 1`.
-
-:::tip
-You can add optional failure messages to assertions, to make debugging easier. For example, the above example could be written as:
-
-```ts
-x.add(1).assertEquals(xPlus1, 'x + 1 should equal xPlus1');
-```
-
-:::
-
-Assertions can be incredibly useful to constrain state updates. Common assertions you may use are:
-
-<!-- prettier-ignore -->
-```ts
-x.assertEquals(y); // x = y
-x.assertBoolean(); // x = 0 or x = 1
-x.assertLt(y);     // x < y
-x.assertLte(y);    // x <= y
-x.assertGt(y);     // x > y
-x.assertGte(y);    // x >= y
-```
-
-For a full list, see the [SnarkyJS reference](snarkyjs-reference).
-
-##### Public and private inputs
-
-While the state of a zkApp is **public**, method parameters are **private**.
-
-When a smart contract method is called, the proof it produces uses zero-knowledge to hide inputs and details of the computation.
-
-The only way method parameters can be exposed is when the computation explicitly exposes them, as
-in the last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
-
-For example where this is not the case, define a new method called `incrementSecret()`:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  // ...
-
-  @method incrementSecret(secret: Field) {
-    const x = this.x.get();
-    this.x.assertEquals(x);
-
-    Poseidon.hash(secret).assertEquals(x);
-    this.x.set(Poseidon.hash(secret.add(1)));
-  }
-}
-```
-
-This time, the input is called `secret`. Check that the hash of the secret is equal to the current state `x`.
-If this is the case, add 1 to the secret and set `x` to the hash of that.
-
-When running this successfully, it just proves that the code was run with _some_ input `secret` whose hash is `x`,
-and that the new `x` is set to `hash(secret + 1)`.
-However, the secret itself remains private, because it can't be deduced from its hash.
-
-##### Initializing state
-
-You initialize on-chain state in the `init()` method.
-
-Like the constructor, `init()` is predefined on the base `SmartContract` class.
-It is called when you deploy your zkApp with the zkApp CLI, for the first time. It won't be called if you upgrade your contract and deploy a second time.
-You can override this method to add initialization of your on-chain state:
-
-```ts
-class HelloWorld extends SmartContract {
-  @state(Field) x = State<Field>();
-
-  init() {
-    super.init();
-    this.x.set(Field(10)); // initial state
-  }
-}
-```
-
-You must call `super.init()` to set your entire state to 0.
-
-If you don't have any state to initialize to values other than 0, then there's no need to override `init()`, you can just leave it out.
-The previous example set the state `x` to `Field(10)`.
-
-##### Composing zkApps
-
-A powerful feature of zkApps is that they are composable, just like Ethereum smart contracts. You can simply call smart contract methods from other smart contract methods:
-
-```ts
-class HelloWorld extends SmartContract {
-  @method myMethod(otherAddress: PublicKey) {
-    const calledContract = new OtherContract(otherAddress);
-    calledContract.otherMethod();
-  }
-}
-
-class OtherContract extends SmartContract {
-  @method otherMethod() {}
-}
-```
-
-When a user calls `HelloWorld.myMethod()`, SnarkyJS creates two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ proof for the execution of `OtherContract.otherMethod()`. 
-
-The `myMethod()` proof:
-
-- Computes an appropriate hash of the function signature of `otherMethod()` plus any arguments and return values of that function call.
-- Guarantees that this hash matches the `callData` field on the account update produced by `otherMethod()` that is made part of `myMethod()`'s public input. 
-
-Therefore, when you calling another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
-
-To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature. 
-
-Here's an example of returning a `Bool` called `isSuccess`:
-
-```ts
-@method otherMethod(): Bool { // annotated return type
-  // ...
-  return isSuccess;
-}
-```
-
-##### Custom data types
-
-Smart contract method arguments can be any of the built-in SnarkyJS types.
-
-However, what if you want to define your own data type?
-
-You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
-Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
-
-For example, if you want to create a custom data type called `Point` to represent a 2D point on a grid. The `Point` struct has no instance methods and is used only to hold information about the `x` and `y` points.
-You can create a Point class by creating a new class that extends the `Struct` class:
-
-```ts
-class Point extends Struct({
-  x: Field,
-  y: Field,
-}) {}
-```
-
-Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
-
-For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
-
-```ts
-export class Grid extends SmartContract {
-  @state(Point) p = State<Point>();
-
-  @method init() {
-    this.p.set(new Point({ x: Field(1), y: Field(2) }));
-  }
-
-  @method move(newPoint: Point) {
-    const point = this.p.get();
-    this.p.assertEquals(point);
-
-    const newX = point.x.add(newPoint.x);
-    const newY = point.y.add(newPoint.y);
-
-    this.p.set(new Point({ x: newX, y: newY }));
-  }
-}
-```
-
-Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
-This allows for great composability and reusability of structs.
-
-##### Transactions and account updates
-
-Now that you have an idea about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like, and how you can create one.
-
-The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. Account updates are a flexible and powerful data structure that can express all kinds of updates, events and preconditions that you use for developing smart contracts.
-
-A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message. Ignore it for now.
-
-You create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
-
-```ts
-const sender = PublicKey.fromBase58('B62..'); // the user address
-const zkapp = new MyContract(address); // MyContract is a SmartContract
-
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
-});
-```
-
-In this example, the transaction consists of calling a single `SmartContract` method, called `myMethod`. You can inspect the transaction yourself by printing it out as JSON:
-
-```ts
-console.log(tx.toJSON());
-```
-
-If you try this, you see a massive JSON object with lots of fields, most of which are set to their default value. There's also a way to pretty-print transactions in a more human-readable, condensed format:
-
-```ts
-console.log(tx.toPretty());
-```
-
-Depending on the logic of `myMethod()`, this could print something like the following:
-
-```ts
-[
-  {
-    publicKey: '..VeLh',
-    fee: '0',
-    nonce: '0',
-    authorization: '..EzRQ',
-  },
-  {
-    label: 'MyContract.myMethod()',
-    publicKey: '..Nq6w',
-    update: { appState: '["1",null,null,null,null,null,null,null]' },
-    preconditions: {
-      account: '{"state":["0",null,null,null,null,null,null,null]}',
-    },
-    authorizationKind: 'Proof',
-    authorization: undefined,
-  },
-];
-```
-
-From this output, there are several important things we can learn about transactions.
-
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
-
-The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
-
-- `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
-- `update: { appState: [...] }` – shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that aren't updated.
-- `preconditions: { account: { state: [...] } }` – similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction are accepted only if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
-- `authorizationKind: 'Proof'` – this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates.
-- `authorization: undefined` – the proof that's needed on this update isn't there yet! You learn how to add it in a minute.
-
-Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
-
-As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
-
-##### Creating proofs, and what they mean
-
-Let's finally see how to create zero-knowledge proofs!
-
-```ts
-await MyContract.compile(); // this might take a while
-
-// ...
-
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
-});
-await tx.prove(); // this might take a while
-```
-
-There are two new operations here:
-
-- `MyContract.compile()` creates prover and verification keys from your smart contract.[^1] You need to do this before you can create any proofs!
-- `tx.prove()` goes through your transaction, and creates proofs for all the account updates that came from method calls.
-
-[^1]: The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
-
-Both of these are heavy cryptographic operations and can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a base64 string inside the `authorization` field:
-
-```ts
-[
-  // ...
-  {
-    label: 'MyContract.myMethod()',
-    // ...
-    authorization: { proof: '..KSkp' },
-  },
-];
-```
-
-You might wonder: what, exactly, is proved here? How is the proof linked to the account update it is part of?
-
-The proof attests to two different things:
-
-- The execution of `myMethod()`
-- The public input of that execution
-
-Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. In the case of zkApps, **the public input is the account update**. It is passed in implicitly when you do `tx.prove()`. The prover function (i.e., your smart contract logic) creates its own account update and constrains it to equal the public input.
-
-You can think of the public input as data that is shared between the prover and verifier. The verifier passes in the public input when verifying it, and the proof is valid only if it was created with _the same public input_. This means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof is no longer not be valid. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
-
-##### Payments and more on public inputs
-
-To continue the discussion of account updatess, this example is important on its own: Paying out MINA from a zkApp. To send MINA, you can use `this.send()` from your smart contract method:
-
-```ts
-class MyContract extends SmartContract {
-  @method payout(amount: UInt64) {
-    // TODO: logic that determines whether the user is allowed to claim this amount
-
-    this.send({ to: this.sender, amount });
-  }
-}
-```
-
-This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to themselves. Note that you get the sender of the transaction with `this.sender`. In a real zkApp, you add conditions that are checked in this method to determining who can call it with which amounts. To call this method in a transaction and print out the result:
-
-```ts
-const MINA = 1e9;
-
-const tx = await Mina.transaction(sender, () => {
-  zkapp.payout(UInt64.from(5 * MINA));
-});
-await tx.prove();
-console.log(tx.toPretty());
-```
-
-:::info
-
-MINA amounts, in all SnarkyJS APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1e9`.
-
-:::
-
-What's interesting is that the transaction now has 3 account updates:
-
-```ts
-[
-  {
-    // fee payer
-  },
-  {
-    label: 'MyContract.payout()',
-    publicKey: '..Nq6w',
-    balanceChange: { magnitude: '5000000000', sgn: 'Negative' },
-    authorizationKind: 'Proof',
-    authorization: { proof: '..KSkp' },
-  },
-  {
-    publicKey: '..VeLh',
-    balanceChange: { magnitude: '5000000000', sgn: 'Positive' },
-    callDepth: 1,
-    caller: '..umxw',
-    authorizationKind: 'None_given',
-  },
-];
-```
-
-The zkApp update with label `'MyContract.payout()'` has a negative `balanceChange` of 5 billion (= 5 MINA). This makes sense, because you are sending MINA away from the zkApp account.
-Then, there's an additional account update, with a corresponding positive balance change – the user account that receives MINA.
-
-Two quick observations:
-
-- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. SnarkyJS tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
-- The user update has `authorizationKind: 'None_given'`. That means it's not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA, and you're able to send someone MINA without their permission.
-
-In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section.
-
-<!-- TODO: link to permission section when it exists -->
-
-Next, we observe that the user account update has a `callDepth: 1` and a non-default `caller` field. We won't explain this in detail, but it has to do with the fact that it was created from within a zkApp call. Account updates, even though displayed as a flat list here, are implicitly structured as a _list of trees_. Updates with a call depth of 1 or higher are child nodes of another update in that list of trees. In our case, the zkApp (sender) account update is at the top level (`callDepth: 0`) and the user (receiver) account update is a child of it.
-
-So, what is the meaning of this tree structure? Recall that in the last section, we explained how the zkApp account update is public input to its proof. Now, the fully general version of that statement is:
-**In a tree of account updates, all nodes are public inputs to the proof of the root node.** (If there is such a proof. This also holds for sub-trees of each tree.)
-
-<!-- TODO: _ideal_ here would be a little picture of a tree, with a parent and a child node -->
-
-Concretely, in our example, both the zkApp account update and the user account update are public input to the zkApp method call. Intuitively, being public input means that the zkApp can "see" and constrain the update as part of its proof. Here, it means that nobody could change the public key of the receiver, or amount they receive, without making the proof invalid. The update can only contain what the method specified.
-
-All of this is true because `this.send()`, under the hood, placed the receiver update at call depth 1, under the zkApp update. As a counter-example: The fee payer is never part of the public input. It can be anything without affecting the validity of the proof.
-
-A key takeaway is: If you want something to become part of your proof, you have to put it inside your `@method`.
-
-<!-- TODO: This section got a bit long, so I commented out the content below. It educates about a frequent gotcha, but it's too much at this point and could live in some tutorial / deep-dive later -->
-
-<!--
-Let's try to mess around a bit, and see what happens if we move `.send()` _outside_ the `payout()` method, into the `Mina.transaction` callback:
-
-```ts
-class MyContract extends SmartContract {
-  @method payout(amount: UInt64) {
-    // this.send({ to: this.sender, amount }); // commented this out, placed it below
-  }
-}
-
-// ...
-
-const tx = await Mina.transaction(sender, () => {
-  let amount = UInt64.from(5n * MINA);
-  zkapp.payout(amount);
-  zkapp.send({ to: sender, amount }); // here
-});
-await tx.prove();
-```
-
-If you run this, you'll see an error:
-
-```
-Error when proving MyContract.payout()
-...
-```
-
-This error comes about as follows:
-
-- The logic that's proven is what's contained in your method -- `payout()`
-- The method doesn't contain the `this.send()` command, which is therefore not reflected in the account updates the method creates
-- The actual account updates in your transaction do reflect the `send()` command
-- The actual account updates are passed into your method prover as public input
-- The method prover compares that public input to the account updates it itself creates (which makes them sort of a "public output")
-- That comparison check fails, because the two sets of account updates are different
--->
-
-##### Signing transactions, and explicit account updates
-
-Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which were created by SnarkyJS under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
-
-We continue the payment topic of last section, where we paid out MINA from a zkApp. This time, we go the other direction: make a deposit from the user into the zkApp. Payments made from a user account will require a signature by the user. Here's the smart contract code:
-
-```ts
-class MyContract extends SmartContract {
-  @method deposit(amount: UInt64) {
-    let senderUpdate = AccountUpdate.create(this.sender);
-    senderUpdate.requireSignature();
-    senderUpdate.send({ to: this, amount });
-
-    // TODO: logic that gives the user something in return for the deposit
-  }
-}
-```
-
-Let's unpack what happens here. The first line of our method creates a new, empty account update for the sender account:
-
-```ts
-let senderUpdate = AccountUpdate.create(this.sender);
-```
-
-`AccountUpdate` is the class in SnarkyJS that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches the update to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
-
-The next line tells SnarkyJS that this update will be authorized with a signature:
-
-```ts
-senderUpdate.requireSignature();
-```
-
-We'll get into this later. We also could've used a shortcut which does both `AccountUpdate.create()` and `requireSignature()` in one command:
-
-```ts
-let senderUpdate = AccountUpdate.createSigned(this.sender); // create + requireSignature
-```
-
-Finally, we use `.send()` on the sender `AccountUpdate` to deposit into the zkApp, which has the same API as `this.send()`:
-
-```ts
-senderUpdate.send({ to: this, amount });
-```
-
-Note that instead of an address as the `to` field, we pass in `this`, which is a `SmartContract`. This is done so that `.send()` doesn't create an additional update, but uses the one that's already created for our zkApp.
-
-If we create a transaction for calling this method like before, it looks like this:
-
-```ts
-[
-  {
-    // fee payer
-  },
-  {
-    label: 'MyContract.deposit()',
-    balanceChange: { magnitude: '5000000000', sgn: 'Positive' },
-    // ...
-  },
-  {
-    publicKey: '..VeLh',
-    balanceChange: { magnitude: '5000000000', sgn: 'Negative' },
-    callDepth: 1,
-    useFullCommitment: true,
-    caller: '..umxw',
-    authorizationKind: 'Signature',
-    authorization: undefined,
-  },
-];
-```
-
-The third account update is the one we created with `AccountUpdate.create()`. Two changes to it were caused by calling `requireSignature()`:
-
-- `useFullCommitment: true`, which we won't explain here but has to do with replay protection if you're using signatures.
-- `authorizationKind: 'Signature'`
-
-Finally, `authorization: undefined` indicates that we didn't provide the signature yet.
-
-In a user-facing zkApp, user signatures will typically be added by a wallet, not within SnarkyJS. In that case, the missing signature is fine. However, for testing and calling zkApps via node, you need to add the signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's an example:
-
-```ts
-const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
-
-const tx = await Mina.transaction(sender, () => {
-  zkapp.deposit(UInt64.from(5 * MINA));
-});
-await tx.prove();
-
-tx.sign([senderPrivateKey]); // senderKey is a PrivateKey
-```
-
-The example first shows us how we can derive the sender's public key `sender` from its private key `senderPrivateKey`.
-
-Note that `.sign()` takes an array, so you could provide multiple private keys for signing. `.sign()` will go through the transaction and add signatures on all account updates which 1) need a signature and 2) whose public key matches one of the private keys that were provided. In the example above, two account updates are signed with `tx.sign()`: The fee payer and the depositor account update. Both have the `sender` public key on them, which matches `senderPrivateKey.toPublicKey()`.
-
-:::note
-
-SnarkyJS allows you to load and store private and public keys in base58 format. Here's how the sender private key might be created in a script:
-
-```ts
-const senderPrivateKey = PrivateKey.fromBase58('EKEQc95...');
-```
-
-In a real server-side deployment, you probably want to load keys from a file or environment variable, instead of hard-coding them in your source code.
-:::
-
-To summarize, there are three types of authorization that account updates can have, which are typically used in different circumstances:
-
-- Proof authorization – used for zkApp accounts when you do a `@method` call. Proofs are verified against the on-chain verification key.
-- Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
-- No authorization – used on updates which don't require authorization, for example positive balance changes.
-
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](snarkyjs-reference/Interfaces/Permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates - take a look at the [Advanced SnarkyJS Permission](advanced-snarkyjs/permissions) section that goes into detail!.
-
-
-
-##### Sending transactions
-
-The final step of creating a transaction is sending it to the network. Like signing, in a user-facing zkApp this is usually handled by a wallet. But you need to know how to do it yourself for testing and scripting.
-
-To send a transaction, we need to specify what network we're interacting with. This is done by specifying a "Mina instance" at the beginning of your script:
-
-```ts
-const Network = Mina.Network('https://example.com/graphql');
-Mina.setActiveInstance(Network);
-```
-
-The network URL has to be a GraphQL endpoint which exposes a compatible GraphQL API. This URL will not only determine where transactions are sent, but also where SnarkyJS gets account information from, when _creating_ transactions. For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn will cause the account to be fetched from the GraphQL endpoint.
-
-To send a transaction, create it as before and then use `tx.send()`:
-
-```ts
-// set Mina instance
-const Network = Mina.Network('https://example.com/graphql');
-Mina.setActiveInstance(Network);
-
-// create the transaction, add proofs and signatures
-const tx = await Mina.transaction(sender, () => {
-  // ...
-});
-await tx.prove();
-tx.sign([senderPrivateKey]);
-
-// send transaction
-await tx.send();
-```
-
-The output of `tx.send()` can be used to wait for inclusion of this transaction in a block, and to get the transaction hash (which lets you look up the pending transaction on a block explorer):
-
-```ts
-// send transaction, log transaction hash
-let pendingTx = await tx.send();
-console.log(`Got pending transaction with hash ${pendingTx.hash()}`);
-
-// wait until transaction is included in a block
-await pendingTx.wait();
-
-// our account updates are applied on chain!
-```
-
-Apart from `Mina.Metwork`, you can also use a mocked "Mina instance" for local testing:
-
-```ts
-const Local = Mina.LocalBlockchain();
-Mina.setActiveInstance(Local);
-```
-
-Doing this means setting up a fresh, local ledger, which is pre-filled with a couple of accounts with funds on them that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.[^2]
-
-<!-- TODO commenting this out as it overlaps with the testing section
-
-Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally.
-
-To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
-
-```ts
-// local mock Mina instance
-const proofsEnabled = false;
-const Local = Mina.LocalBlockchain({ proofsEnabled });
-Mina.setActiveInstance(Local);
-
-// only need to compile smart contract when proofs are enabled
-if (proofsEnabled) await MyContract.compile();
-
-const tx = await Mina.transaction(sender, () => {
-  // ...
-});
-await tx.prove();
-tx.sign([senderKey]);
-
-await tx.send();
-
-// our accounts updates are applied locally!
-```
-
-Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof. -->
-
-You can learn more about testing in [How to test your zkApp](how-to-test-a-zkapp).
-
-[^2]: Fun fact: `LocalBlockchain` literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
+For comprehensive details about the SnarkyJS API, see the [SnarkyJS reference](snarkyjs-reference).
 
 ## Next Steps
 
