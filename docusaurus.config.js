@@ -266,7 +266,7 @@ module.exports = {
         {
           name: 'keywords',
           content:
-            'Snarkyjs, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
+            'Snarkyjs, o1js, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
         },
         {
           name: 'image',
