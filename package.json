@@ -14,7 +14,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "update-sidebar": "node scripts/update-sidebars-snarkyjs-api.js && npx prettier --config .prettierrc --write sidebars.js"
+    "update-sidebar": "node scripts/update-sidebars-o1js-api.js && npx prettier --config .prettierrc --write sidebars.js"
   },
   "dependencies": {
     "@docusaurus/core": "^2.2.0",
