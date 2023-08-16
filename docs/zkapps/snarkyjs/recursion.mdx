@@ -1,10 +1,10 @@
 ---
 title: Recursion
 hide_title: true
-description: An in-depth look at using recursion and recursive proofs in SnarkyJS to create efficient, infinitely growing structures for applications like Mina. Learn how to use SnarkyJS for constructing and verifying simple and complex recursive programs in your zkApp.
+description: An in-depth look at using recursion and recursive proofs in o1js to create efficient, infinitely growing structures for applications like Mina. Learn how to use o1js for constructing and verifying simple and complex recursive programs in your zkApp.
 keywords:
   - recursion
-  - snarkyjs
+  - o1js
   - zero-knowledge proofs
   - mina blockchain
   - smart contract
@@ -26,7 +26,7 @@ Specifically, we are looking into refactoring ZkProgram methods to explicitly re
 
 # Recursion
 
-Kimchi, the proof system that backs SnarkyJS, supports arbitrary infinite recursive proof construction of circuits through integration with the Pickles recursive system. Recursion is an incredibly powerful primitive that has a wide-array of uses, including:
+Kimchi, the proof system that backs o1js, supports arbitrary infinite recursive proof construction of circuits through integration with the Pickles recursive system. Recursion is an incredibly powerful primitive that has a wide-array of uses, including:
 
 1. Mina uses linear recursive proofs to compress the blockchain, an infinitely growing structure, down to a constant size.
 2. Mina also uses "rollup-like" tree-based recursive proofs to _in parallel_ compress transactions within blocks down to a constant size.
@@ -37,7 +37,7 @@ More generally, you can use recursion to verify any zero-knowledge program as pa
 
 ## Overview
 
-In SnarkyJS, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
+In o1js, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
 
 After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
 
@@ -48,7 +48,7 @@ Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _
 This simple example has only one method that proves the public input it received is zero.
 
 ```typescript
-import { Field, Experimental } from 'snarkyjs';
+import { Field, Experimental } from 'o1js';
 
 const SimpleProgram = Experimental.ZkProgram({
   publicInput: Field,
@@ -93,12 +93,12 @@ In this excample, `foo` is taking the `SimpleProgram` proof as a private argumen
 
 ## Recursively verifying a linear recursive program in a zkApp
 
-This example shows a recursive `ZkProgram` that you can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in SnarkyJS you can describe a recursive ZkProgram with a simple recursive function.
+This example shows a recursive `ZkProgram` that you can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in o1js you can describe a recursive ZkProgram with a simple recursive function.
 
 This program describes a recursive operation of adding one repeatedly to a number. Note that you recursively depend on the older proof as a private argument to your method.
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'snarkyjs';
+import { SelfProof, Field, Experimental, verify } from 'o1js';
 
 const AddOne = Experimental.ZkProgram({
   publicInput: Field,
@@ -161,7 +161,7 @@ Tree recursion is even more rarely seen in other proof systems and zk toolkits. 
 This example program describes a very simple rollup for adding numbers:
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'snarkyjs';
+import { SelfProof, Field, Experimental, verify } from 'o1js';
 
 let RollupAdd = Experimental.ZkProgram({
   publicInput: Field,
@@ -204,7 +204,7 @@ const proof = await MyProgram.base(Field(0));
 Now you can directly verify a JSON-encoded version of the proof to get back a boolean value that tells you if the proof is valid:
 
 ```typescript
-import { verify } from 'snarkyjs';
+import { verify } from 'o1js';
 
 const ok = await verify(proof.toJSON(), verificationKey);
 ```

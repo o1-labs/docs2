@@ -9,7 +9,7 @@ keywords:
   - mina
   - smart contract security
   - smart contract upgradeability
-  - snarkyjs
+  - o1js
   - mina transaction
   - blockchain
   - authorization
@@ -62,7 +62,7 @@ There are 11 different types of permissions that a developer can access and adju
 Authorization determines what resources can be accessed, while permissions just describe who has the ability to execute an action.
 
 A transaction consists of multiple account updates (sort of like instructions to the network) - and each account update must be authorized in one way or another.
-When you inspect an account update directly in SnarkyJS or using an explorer, you see the `authorization` field.
+When you inspect an account update directly in o1js or using an explorer, you see the `authorization` field.
 
 - If the `authorization` field has a proof attached, it means the transaction is authorized by a proof that is checked against the verification key of the account.
 - If the `authorization` field has a signature, it means the account update is authorized by a signature.
@@ -136,7 +136,7 @@ To better understand how to leverage permissions to make your smart contract mor
 
 Some smart contracts manage state and token, such as the native MINA token. To prevent malicious actors from withdrawing all funds, use permissions to secure them.
 
-Consider the following `UnsecureContract` smart contract. [A similar example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) is also provided in the `examples` folder in the `snarkyjs` codebase repo:
+Consider the following `UnsecureContract` smart contract. [A similar example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) is also provided in the `examples` folder in the `o1js` codebase repo:
 
 ```ts
 class UnsecureContract extends SmartContract {
@@ -321,4 +321,4 @@ await tx.sign([feePayerKey, zkappKey]).send();
 ## Where to learn more
 
 Integration tests exercise the behavior of different permissions, including upgradeability.
-If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/upgradability.ts) examples.
+If you want to take a look, check out the [voting integration test](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/test.ts#L50) as well as the [DEX integration test](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/upgradability.ts) examples.

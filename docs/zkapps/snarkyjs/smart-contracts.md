@@ -9,7 +9,7 @@ keywords:
   - zk proof
   - zk
   - zkapp account
-  - snarkyjs
+  - o1js
   - blockchain
   - mina
   - typescript
@@ -37,7 +37,7 @@ Specifically, we are looking into refactoring ZkProgram methods to explicitly re
   * permissions? (probably an advanced topic)
  -->
 
-Now that we have covered the basics of writing SnarkyJS programs, let's see how to create a smart contract.
+Now that we have covered the basics of writing o1js programs, let's see how to create a smart contract.
 
 If you haven't yet read [how zkApps work](../how-zkapps-work), please read it first to build your foundational knowledge.
 
@@ -81,7 +81,7 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Within a method, you can use SnarkyJS' data types and methods to define your custom logic.
+Within a method, you can use o1js data types and methods to define your custom logic.
 
 Later, you learn how you can...
 
@@ -101,7 +101,7 @@ Magically, the proof can be checked without seeing `x` – it's a _private input
 The method above is not very meaningful yet. To make it more interesting, you need a way to interact with accounts, and record state on-chain.
 Check out the next section for more on that!
 
-One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in SnarkyJS type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](#custom-data-types).
+One more note about private inputs: The method above has one input parameter, `x` of type `Field`. In general, arguments can be any of the built-in o1js type that you saw: `Bool`, `UInt64`, `PrivateKey`, etc. From now on, those types are referred to as [structs`](#custom-data-types).
 
 <!-- TODO Gregor's note on the below alert box: too much? too early? I think little "deep dives" like this can be useful to answer questions that more advanced users often have after reading our docs, and spread more understanding of Mina to the internet
 -->
@@ -131,7 +131,7 @@ This is why we have a special function for logging stuff from inside your method
 Provable.log(x);
 ```
 
-The API is like that of `console.log`, but it will automatically handle printing SnarkyJS data types in a nice format. During SmartContract compilation, it will simply do nothing.
+The API is like that of `console.log`, but it will automatically handle printing o1js data types in a nice format. During SmartContract compilation, it will simply do nothing.
 :::
 
 ## On-chain state
@@ -147,7 +147,7 @@ class HelloWorld extends SmartContract {
 }
 ```
 
-Here, `x` is of type `Field`. Like with method inputs, only SnarkyJS structs can be used for state variables.
+Here, `x` is of type `Field`. Like with method inputs, only o1js structs can be used for state variables.
 In the current design, the state can consist of at most 8 Fields of 32 bytes each. These states are stored on the zkApp account.
 Some structs take up more than one Field: for example, a `PublicKey` needs 2 of the 8 Fields.
 States are initialized with the `State()` function.
@@ -196,7 +196,7 @@ this.x.assertEquals(x);
 
 To understand it, we have to take a step back, and understand what it means to "use an on-chain value" during off-chain execution.
 
-For sure, when we use an on-chain value, we have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify SnarkyJS and make it just use any other value than the current on-chain state – breaking our zkApp.
+For sure, when we use an on-chain value, we have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify o1js and make it just use any other value than the current on-chain state – breaking our zkApp.
 
 To prevent that, we link "`x` at proving time" to be the same as "`x` at verification time". We call this a _precondition_ – a condition that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This is what `this.x.assertEquals(x)` does: it adds the precondition that `this.x` – the on-chain state at verification time – has to equal `x` – the value we fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
 
@@ -237,7 +237,7 @@ Here, after obtaining the current state `x` and asserting that it equals the on-
 x.add(1).assertEquals(xPlus1);
 ```
 
-If the assertion fails, SnarkyJS will throw an error and not submit the transaction.
+If the assertion fails, o1js will throw an error and not submit the transaction.
 On the other hand, if it succeeds, it becomes part of the proof that is verified on-chain.
 
 Because of this, our new version of `increment()` is _guaranteed_ to behave like the previous version: It can only ever
@@ -264,7 +264,7 @@ x.assertGt(y);     // x > y
 x.assertGte(y);    // x >= y
 ```
 
-For a full list, see the [SnarkyJS reference](../snarkyjs-reference).
+For a full list, see the [o1js reference](../o1js-reference).
 
 ## Public and private inputs
 
@@ -341,7 +341,7 @@ class OtherContract extends SmartContract {
 }
 ```
 
-When a user calls `HelloWorld.myMethod()`, SnarkyJS creates two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ proof for the execution of `OtherContract.otherMethod()`.
+When a user calls `HelloWorld.myMethod()`, o1js creates two separate proofs — one for the execution of `myMethod()` as usual, and a _separate_ proof for the execution of `OtherContract.otherMethod()`.
 
 The `myMethod()` proof:
 
@@ -363,11 +363,11 @@ Here's an example of returning a `Bool` called `isSuccess`:
 
 ## Custom data types
 
-Smart contract method arguments can be any of the built-in SnarkyJS types.
+Smart contract method arguments can be any of the built-in o1js types.
 
 However, what if you want to define your own data type?
 
-You can create a custom data type for your smart contract using the `Struct` function that SnarkyJS exposes. To do this, create a class that extends `Struct({ })`.
+You can create a custom data type for your smart contract using the `Struct` function that o1js exposes. To do this, create a class that extends `Struct({ })`.
 Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
 For example, if you want to create a custom data type called `Point` to represent a 2D point on a grid. The `Point` struct has no instance methods and is used only to hold information about the `x` and `y` points.
@@ -380,7 +380,7 @@ class Point extends Struct({
 }) {}
 ```
 
-Now that you have defined your Struct, you can use it in your smart contract for any SnarkyJS built-in types.
+Now that you have defined your Struct, you can use it in your smart contract for any o1js built-in types.
 
 For example, the following smart contract uses the `Point` Struct defined above as state and as a method argument:
 
@@ -404,5 +404,5 @@ export class Grid extends SmartContract {
 }
 ```
 
-Note that your Structs can contain SnarkyJS built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
+Note that your Structs can contain o1js built-in types like `Field`, `Bool`, `UInt64`, etc or even other custom types that you've defined which are based on the `Struct` class.
 This allows for great composability and reusability of structs.

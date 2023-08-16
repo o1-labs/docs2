@@ -134,7 +134,7 @@ this.account.receiptChainHash.get(): Field;
 ### Bailing out
 
 In some rare cases, you might, for whatever reason, want to `get()` an on-chain value _without_ constraining it to any value.
-If you try this, SnarkyJS throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
+If you try this, o1js throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
 As an escape hatch, if you want to `get()` a value and are really sure you want to not constrain the on-chain value in any way,
 there's `assertNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
 

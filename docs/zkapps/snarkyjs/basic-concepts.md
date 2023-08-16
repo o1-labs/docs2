@@ -1,5 +1,5 @@
 ---
-title: SnarkyJS Basic Concepts
+title: o1js Basic Concepts
 hide_title: true
 sidebar_label: Basic Concepts
 description: Field elements are the basic unit of data in zero-knowledge proof programming. Learn about built-in data types, functions, and common methods. 
@@ -12,7 +12,7 @@ keywords:
   - zk proof
   - zk
   - data types
-  - snarkyjs
+  - o1js
   - blockchain
   - mina
   - typescript
@@ -25,7 +25,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-# SnarkyJS Basic Concepts
+# o1js Basic Concepts
 
 ## Field
 
@@ -41,7 +41,7 @@ For example, in typical programming, you might use:
 
 `const sum = 1 + 3`.
 
-In SnarkyJS, you write this as:
+In o1js, you write this as:
 
 `const sum = new Field(1).add(new Field(3))`
 
@@ -78,7 +78,7 @@ let b = Bool(true);
 
 ## Conditionals
 
-Traditional conditional statements are not supported by SnarkyJS:
+Traditional conditional statements are not supported by o1js:
 
 ```ts
 // this will NOT work
@@ -87,7 +87,7 @@ if (foo) {
 }
 ```
 
-Instead, use the SnarkyJS built-in `Circuit.if()` method, which is a ternary operator:
+Instead, use the o1js built-in `Circuit.if()` method, which is a ternary operator:
 
 ```ts
 const x = Circuit.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
@@ -130,4 +130,4 @@ let sig = Signature.create(privKey, msg); // sign a message
 sig.verify(pubKey, msg); // Bool(true)
 ```
 
-For a full list, see the [SnarkyJS reference](../snarkyjs-reference).
+For a full list, see the [o1js reference](../o1js-reference).
