@@ -1,25 +1,25 @@
 /**
- * Usage: node scripts/update-sidebars-snarkyjs-api.js
- * This script will update the sidebars.js file with the latest SnarkyJS API. It will only modify the `SnarkyJS API Reference` category.
+ * Usage: node scripts/update-sidebars-o1js-api.js
+ * This script will update the sidebars.js file with the latest o1js API. It will only modify the `o1js API Reference` category.
  */
 
 const fs = require('fs');
 const sidebars = require('../sidebars.js');
 
-function getAllSnarkyJSAPIPathnames(directory) {
+function getAllAPIPathnames(directory) {
   return fs
-    .readdirSync(`./docs/zkapps/snarkyjs-reference/${directory}`)
+    .readdirSync(`./docs/zkapps/o1js-reference/${directory}`)
     .map((file) => {
       const fileName = file.replace('.md', '');
       return {
         type: 'doc',
-        id: `zkapps/snarkyjs-reference/${directory}/${fileName}`,
+        id: `zkapps/o1js-reference/${directory}/${fileName}`,
         label: `${fileName}`,
       };
     });
 }
 
-function findSnarkyjsSidebar(sidebars) {
+function findo1jsSidebar(sidebars) {
   // Find the index of the `zkApp Developers` category in the sidebars
   const zkAppCategory = sidebars.docs.findIndex(
     (item) => item.label === 'zkApp Developers'
@@ -27,7 +27,7 @@ function findSnarkyjsSidebar(sidebars) {
 
   // Find the index of the `SnarkyJS API Reference` category in the sidebars
   const snarkyJSAPICategory = sidebars.docs[zkAppCategory].items.findIndex(
-    (item) => item.label === 'SnarkyJS Reference'
+    (item) => item.label === 'o1js Reference'
   );
 
   return {
@@ -36,48 +36,40 @@ function findSnarkyjsSidebar(sidebars) {
   };
 }
 
-function resetSnarkyjsSidebar(sidebars) {
-  let { zkAppCategory, snarkyJSAPICategory } = findSnarkyjsSidebar(sidebars);
-  sidebars.docs[zkAppCategory].items[snarkyJSAPICategory] = emptySidebar();
+function reseto1jsSidebar(sidebars) {
+  let { zkAppCategory, snarkyJSAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
+  sidebars.docs[zkAppCategory].items[o1jsAPICategory] = emptySidebar();
   return sidebars;
 }
 
-function updateSidebars(sidebars, category, snarkyJSItems) {
-  const { zkAppCategory, snarkyJSAPICategory } = findSnarkyjsSidebar(sidebars);
+function updateSidebars(sidebars, category, o1jsItems) {
+  const { zkAppCategory, snarkyJSAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
 
   const categoryToFind = sidebars.docs[zkAppCategory].items[
-    snarkyJSAPICategory
+    o1jsAPICategory
   ].items.findIndex((item) => {
     return item.label === category;
   });
 
   // Update the category with the new items
-  sidebars.docs[zkAppCategory].items[snarkyJSAPICategory].items[
+  sidebars.docs[zkAppCategory].items[o1jsAPICategory].items[
     categoryToFind
-  ].items = snarkyJSItems;
-
-  console.log(
-    category,
-    categoryToFind,
-    sidebars.docs[zkAppCategory].items[snarkyJSAPICategory].items[
-      categoryToFind
-    ]
-  );
+  ].items = o1jsItems;
 }
 
 function emptySidebar() {
   return {
     type: 'category',
-    label: 'SnarkyJS Reference',
+    label: 'o1js Reference',
     items: [
       {
         type: 'doc',
-        id: 'zkapps/snarkyjs-reference/README',
+        id: 'zkapps/o1js-reference/README',
         label: 'Introduction',
       },
       {
         type: 'doc',
-        id: 'zkapps/snarkyjs-reference/modules',
+        id: 'zkapps/o1js-reference/modules',
         label: 'Overview',
       },
       {
@@ -104,16 +96,16 @@ function emptySidebar() {
   };
 }
 
-const snarkyjsClasses = getAllSnarkyJSAPIPathnames('classes');
-const snarkyjsInterfaces = getAllSnarkyJSAPIPathnames('interfaces');
-const snarkyjsModules = getAllSnarkyJSAPIPathnames('modules');
-const snarkyjsEnums = getAllSnarkyJSAPIPathnames('enums');
+const o1jsClasses = getAllAPIPathnames('classes');
+const o1jsInterfaces = getAllAPIPathnames('interfaces');
+const o1jsModules = getAllAPIPathnames('modules');
+const o1jsEnums = getAllAPIPathnames('enums');
 
-const newSidebars = resetSnarkyjsSidebar(sidebars);
-updateSidebars(newSidebars, 'Classes', snarkyjsClasses);
-updateSidebars(newSidebars, 'Interfaces', snarkyjsInterfaces);
-updateSidebars(newSidebars, 'Modules', snarkyjsModules);
-updateSidebars(newSidebars, 'Enums', snarkyjsEnums);
+const newSidebars = reseto1jsSidebar(sidebars);
+updateSidebars(newSidebars, 'Classes', o1jsClasses);
+updateSidebars(newSidebars, 'Interfaces', o1jsInterfaces);
+updateSidebars(newSidebars, 'Modules', o1jsModules);
+updateSidebars(newSidebars, 'Enums', o1jsEnums);
 
 fs.writeFileSync(
   './sidebars.js',
