@@ -58,4 +58,3 @@ jobs:
           git config --global user.email "test@example.com"
           git config --global user.name "Test"
           npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.md
-        shell: bash
