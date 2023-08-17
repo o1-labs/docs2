@@ -43,10 +43,8 @@ jobs:
           mina-graphql-port: 8080
           max-attempts: 60
           polling-interval-ms: 10000
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Run tutorial
