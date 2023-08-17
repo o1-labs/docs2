@@ -166,7 +166,7 @@ Using npm.
 Initializing project with template: default
 ```
 
-For this tutorial, you run commands from the root of the `04-zkapp-browser-ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -670,22 +670,7 @@ Before you can deploy your project to GitHub Pages, you must push it to a new Gi
 - In this tutorial, the project name is `04-zkapp-browser-ui`.
 - The `zk project` command created the correct project name strings for `04-zkapp-browser-ui` in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files. 
 
-To configure your project to deploy to GitHub Pages:
 
-1. Edit the `/04-zkapp-browser-ui/ui/ghp-postbuild.js` file.
-1. Add your repository name. For this tutorial, use `04-zkapp-browser-ui`:
-
-  ```ts ignore
-   7 // Add your repository name here.
-   8 let repoURL = '04-zkapp-browser-ui';
-  ```
-
-1. Edit the `/zkapps/04-zkapp-browser-ui/ui/next.config.js` file.
-1. Add your repository name. For this tutorial, use `04-zkapp-browser-ui`:
-
-  ```ts ignore
-   3 // Add your repository name here.
-   4 let repoURL = '04-zkapp-browser-ui';
   ```
 
 To deploy the UI:
