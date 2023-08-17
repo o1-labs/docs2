@@ -330,6 +330,7 @@ module.exports = {
         },
         'zkapps/roadmap',
         'zkapps/faq',
+        'zkapps/experimental',    
         'zkapps/zkapps-for-ethereum-developers',
       ],
     },
@@ -404,6 +405,5 @@ module.exports = {
       ],
     },
     'glossary',
-    'experimental',    
   ],
 };
