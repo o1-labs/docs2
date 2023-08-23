@@ -261,6 +261,8 @@ The smart contract initialization this time is:
  35   zkAppInstance.deploy();
  36   zkAppInstance.initState(salt, Field(750));
  37 });
+ 38
+ 39 await deployTxn.prove();
 ...
 ```
 
