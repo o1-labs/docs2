@@ -1,10 +1,10 @@
 ---
 title: Custom Tokens
 hide_title: true
-description: Learn how to use SnarkyJS for common token operations like minting, burning, and sending tokens. Understand the concepts of Token ID, Token Accounts, and Token Owners in the context of custom tokens.
+description: Learn how to use o1js for common token operations like minting, burning, and sending tokens. Understand the concepts of Token ID, Token Accounts, and Token Owners in the context of custom tokens.
 keywords:
   - custom tokens
-  - snarkyjs
+  - o1js
   - token operations
   - minting tokens
   - burning tokens
@@ -23,7 +23,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Custom Token API
 
-This section shows you how to use SnarkyJS to perform common token operations, such as minting, burning, and sending tokens.
+This section shows you how to use o1js to perform common token operations, such as minting, burning, and sending tokens.
 
 ## Minting
 
@@ -92,11 +92,11 @@ class SendExample extends SmartContract {
 
 This example snippet defines a smart contract called `SendExample` with a method called `sendTokens()`. Then, in the same fashion, as minting and burning, the `this.token` property calls the `send()` method.
 
-For a more comprehensive example of how to use custom tokens with a zkApp, see this custom token example provided in [token.test.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts).
+For a more comprehensive example of how to use custom tokens with a zkApp, see this custom token example provided in [token.test.ts](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts).
 
 ## Proof Authorization
 
-When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/snarkyjs/custom-tokens#token-owner).
+When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/o1js/custom-tokens#token-owner).
 
 A token owner can approve a transaction using a **signature** or a **proof**.
 
@@ -197,7 +197,7 @@ await tx.send();
 
 The result of this example is `zkAppB` sending tokens to `account1Address` and `account1Address` receiving tokens from `zkAppB`. The transaction is approved by the token owner without the token owner having to sign the transaction.
 
-For another example of how to approve a transaction with a zkApp, see this [authorization example](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/token_with_proofs.ts) provided.
+For another example of how to approve a transaction with a zkApp, see this [authorization example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/token_with_proofs.ts) provided.
 
 ## Understanding Important Terms
 

@@ -9,7 +9,7 @@ keywords:
   - zero knowledge proofs
   - zk proof
   - zk
-  - snarkyjs
+  - o1js
   - blockchain
   - transaction
   - mina
@@ -35,7 +35,7 @@ The fundamental data structure that Mina transactions are built from is called a
 
 A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message. Ignore it for now.
 
-You create transactions in SnarkyJS by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
+You create transactions in o1js by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
 
 ```ts
 const sender = PublicKey.fromBase58('B62..'); // the user address
@@ -83,7 +83,7 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 
 From this output, there are several important things we can learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, SnarkyJS filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
 The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
 
@@ -95,7 +95,7 @@ The second account update in our list has a label: `'MyContract.myMethod()'` tha
 
 Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
 
-As you might have noticed, these account updates weren't created in a very explicit manner. Instead, SnarkyJS gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
+As you might have noticed, these account updates weren't created in a very explicit manner. Instead, o1js gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
 
 ## Creating proofs and what they mean
 
@@ -171,7 +171,7 @@ console.log(tx.toPretty());
 
 :::info
 
-MINA amounts, in all SnarkyJS APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1e9`.
+MINA amounts, in all o1js APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1e9`.
 
 :::
 
@@ -204,7 +204,7 @@ Then, there's an additional account update, with a corresponding positive balanc
 
 Two quick observations:
 
-- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. SnarkyJS tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
+- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. o1js tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
 - The user update has `authorizationKind: 'None_given'`. That means it's not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA, and you're able to send someone MINA without their permission.
 
 In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section.
@@ -265,7 +265,7 @@ This error comes about as follows:
 
 ## Signing transactions and explicit account updates
 
-Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which were created by SnarkyJS under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
+Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which were created by o1js under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
 
 We continue the payment topic of last section, where we paid out MINA from a zkApp. This time, we go the other direction: make a deposit from the user into the zkApp. Payments made from a user account will require a signature by the user. Here's the smart contract code:
 
@@ -287,9 +287,9 @@ Let's unpack what happens here. The first line of our method creates a new, empt
 let senderUpdate = AccountUpdate.create(this.sender);
 ```
 
-`AccountUpdate` is the class in SnarkyJS that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches the update to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
+`AccountUpdate` is the class in o1js that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches the update to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
 
-The next line tells SnarkyJS that this update will be authorized with a signature:
+The next line tells o1js that this update will be authorized with a signature:
 
 ```ts
 senderUpdate.requireSignature();
@@ -340,7 +340,7 @@ The third account update is the one we created with `AccountUpdate.create()`. Tw
 
 Finally, `authorization: undefined` indicates that we didn't provide the signature yet.
 
-In a user-facing zkApp, user signatures will typically be added by a wallet, not within SnarkyJS. In that case, the missing signature is fine. However, for testing and calling zkApps via node, you need to add the signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's an example:
+In a user-facing zkApp, user signatures will typically be added by a wallet, not within o1js. In that case, the missing signature is fine. However, for testing and calling zkApps via node, you need to add the signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's an example:
 
 ```ts
 const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
@@ -359,7 +359,7 @@ Note that `.sign()` takes an array, so you could provide multiple private keys f
 
 :::note
 
-SnarkyJS allows you to load and store private and public keys in base58 format. Here's how the sender private key might be created in a script:
+o1js allows you to load and store private and public keys in base58 format. Here's how the sender private key might be created in a script:
 
 ```ts
 const senderPrivateKey = PrivateKey.fromBase58('EKEQc95...');
@@ -387,7 +387,7 @@ const Network = Mina.Network('https://example.com/graphql');
 Mina.setActiveInstance(Network);
 ```
 
-The network URL has to be a GraphQL endpoint which exposes a compatible GraphQL API. This URL will not only determine where transactions are sent, but also where SnarkyJS gets account information from, when _creating_ transactions. For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn will cause the account to be fetched from the GraphQL endpoint.
+The network URL has to be a GraphQL endpoint which exposes a compatible GraphQL API. This URL will not only determine where transactions are sent, but also where o1js gets account information from, when _creating_ transactions. For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn will cause the account to be fetched from the GraphQL endpoint.
 
 To send a transaction, create it as before and then use `tx.send()`:
 

@@ -1,12 +1,12 @@
 ---
 title: Time-Locked Accounts
 hide_title: true
-description: This guide dives into the feature of time-locking in Mina to implement vesting schedules and practical examples of setting up a time-lock for MINA tokens using SnarkyJS.
+description: This guide dives into the feature of time-locking in Mina to implement vesting schedules and practical examples of setting up a time-lock for MINA tokens using o1js.
 keywords:
   - time-locked accounts
   - mina blockchain
   - vesting schedules
-  - snarkyjs
+  - o1js
   - mina tokens
   - zkapp
   - account timing
@@ -68,9 +68,9 @@ Because of this restriction, the values of the timing fields cannot be changed w
 After all tokens are unlocked and `isTimed` flips back to `false`, the account timing becomes mutable again.
 :::
 
-### Setting timing in SnarkyJS
+### Setting timing in o1js
 
-In SnarkyJS, `timing` is one of the account fields that can be updated by using an account update:
+In o1js, `timing` is one of the account fields that can be updated by using an account update:
 
 ```ts
 accountUpdate.account.timing.set({ initialMinimumBalance, cliffTime, ...etc });

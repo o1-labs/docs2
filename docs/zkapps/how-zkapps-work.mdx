@@ -36,7 +36,7 @@ A zkApp consists of two parts:
   <img src="/img/3_zkApps_Structure.jpg" width="100%" alt="Diagram showing two parts of a zkApp" />
 </figure>
 
-- The term _smart contract_ refers to the code written with SnarkyJS.
+- The term _smart contract_ refers to the code written with o1js.
 
 - The term _zkApp_ refers to the UI + the smart contract.
 
@@ -44,7 +44,7 @@ A zkApp consists of two parts:
 
 zkApps are based on zero knowledge proofs (zk-SNARKs). As a zkApp developer, you use the zkApp CLI to scaffold and deploy your project. 
 
-Provable code is written by using SnarkyJS and generates a prover function and a corresponding verifier function that are derived during the build process.
+Provable code is written by using o1js and generates a prover function and a corresponding verifier function that are derived during the build process.
 
 The prover function is the function that executes a smart contract's custom logic and runs in a user's web browser as part of the zkApp. The prover function generates a proof of the executed code. 
 
@@ -91,7 +91,7 @@ When a Mina address contains a verification key, it acts as a zkApp account.
 
 A regular Mina account can receive any transactions. 
 
-You can specify [permissions](/zkapps/snarkyjs/permissions) so a zkApp account can successfully receive only transactions that satisfy the verifier function. 
+You can specify [permissions](/zkapps/o1js/permissions) so a zkApp account can successfully receive only transactions that satisfy the verifier function. 
 
 Any transactions that do not pass the verifier function are rejected by the Mina network.
 
@@ -151,7 +151,7 @@ If you anticipate your state to be larger, or if the state accumulates per user 
 
 ### Off-chain state
 
-For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/snarkyjs/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere. Mina doesn't offer an out-of-the-box solution for off-chain storage.
+For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/o1js/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere. Mina doesn't offer an out-of-the-box solution for off-chain storage.
 
 When the zkApp runs in a user's web browser, it can insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction then proof and state are known to be valid valid so the updates are allowed, then the zkApp transaction can update the root of the Merkle tree that is stored on chain.
 

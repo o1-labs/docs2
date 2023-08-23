@@ -1,9 +1,9 @@
 ---
 title: How to Fetch Events and Actions
-description: Use SnarkyJS to retrieve previously emitted events and actions from Mina Archive Node. Connect your zkApp smart contract to an Archive Node API endpoint and fetch and use events and actions.
+description: Use o1js to retrieve previously emitted events and actions from Mina Archive Node. Connect your zkApp smart contract to an Archive Node API endpoint and fetch and use events and actions.
 keywords:
   - mina archive node
-  - snarkyjs
+  - o1js
   - fetch events
   - fetch actions
   - smart contracts
@@ -39,15 +39,15 @@ Since Mina nodes do not store historical network information and events and acti
 
 The Mina archive node offers the ability for node operators to store data using any data store of their choice. However, archive nodes do not expose a built-in API to query this data publicly.
 
-## Using the Archive Node with SnarkyJS
+## Using the Archive Node with o1js
 
-There are two parts to using the archive node with SnarkyJS:
+There are two parts to using the archive node with o1js:
 
 - Archive node operators run the [Mina Archive Node API](https://github.com/o1-labs/archive-node-api) to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
 
-- SnarkyJS developers specify a Mina Archive Node API endpoint to integrate with their zkApp to allow access to archived events and actions.
+- o1js developers specify a Mina Archive Node API endpoint to integrate with their zkApp to allow access to archived events and actions.
 
-The Archive Node API enables SnarkyJS to fetch events and actions. To use the archive node with SnarkyJS, see [Fetching Events from an Archive Node](#fetching-events-from-an-archive-node) and [Fetching Actions from an Archive Node](#fetching-actions-from-an-archive-node).
+The Archive Node API enables o1js to fetch events and actions. To use the archive node with o1js, see [Fetching Events from an Archive Node](#fetching-events-from-an-archive-node) and [Fetching Actions from an Archive Node](#fetching-actions-from-an-archive-node).
 
 ## Fetching Actions from an Archive Node
 
@@ -97,7 +97,7 @@ class MyContract extends SmartContract {
 
 By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionHash`, where the value is an `actionsHash` to indicate the starting point of the actions to be retrieved and processed by your smart contract. Actions that occur _after_ the specified hash are not retrieved—so it is not inclusive.
 
-For an end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see the voting app example [voting.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/voting.ts) file that is provided in the codebase repo.
+For an end-to-end example of zkApp fetching actions from a running network and including them into your zkApp, see the voting app example [voting.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/voting.ts) file that is provided in the codebase repo.
 
 ### Fetching Events from an Archive Node
 
@@ -141,4 +141,4 @@ const fetchedEvents = await fetchEvents({
 
 By default, `fetchEvents()` retrieves all events from the very first ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block. If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
-To see an end-to-end example of zkApp fetching events from a running network, see the example [run_berkeley.ts](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file that is provided in the codebase repo.
+To see an end-to-end example of zkApp fetching events from a running network, see the example [run_berkeley.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/run_berkeley.ts) file that is provided in the codebase repo.

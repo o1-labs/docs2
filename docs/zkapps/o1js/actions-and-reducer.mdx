@@ -7,7 +7,7 @@ keywords:
   - actions
   - reducers
   - zkapps
-  - snarkyjs
+  - o1js
   - blockchain development
   - concurrent state updates
   - off-chain storage
@@ -29,7 +29,7 @@ Using actions and a "lagging state" pattern, you can write zkApps that can _proc
 To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
 
 ```ts
-import { SmartContract, Reducer, Field } from 'snarkyjs';
+import { SmartContract, Reducer, Field } from 'o1js';
 
 class MyContract extends SmartContract {
   reducer = Reducer({ actionType: Field });
@@ -120,4 +120,4 @@ Right now, `getActions` is available for [testing with `LocalBlockchain`](/zkapp
 
 One of the most important use cases for actions is to enable concurrent state updates. This enablement is also why actions were originally added to the protocol.
 
-You can see a full code example in [reducer.ts]](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce()`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.
+You can see a full code example in [reducer.ts]](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/reducer/reducer.ts) that demonstrates this pattern. Leveraging `Reducer.reduce()`, it takes only about 30 lines of code to build a zkApp that handles concurrent state updates.

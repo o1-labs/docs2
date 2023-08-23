@@ -8,7 +8,7 @@ keywords:
   - events
   - merkle tree
   - emit event
-  - snarkyjs
+  - o1js
   - blockchain
   - mina
   - archive nodes
@@ -38,7 +38,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-This example declares events called `"add-merkle-leaf"` and `"update-merkle-leaf"`, both with a type of `Field`. Instead of `Field`, you can also use other built-in SnarkyJS types as well as any `Struct`. In fact, a custom `Struct` is probably better-suited to encode leaves of a Merkle tree -- we just use `Field` for simplicity here.
+This example declares events called `"add-merkle-leaf"` and `"update-merkle-leaf"`, both with a type of `Field`. Instead of `Field`, you can also use other built-in o1js types as well as any `Struct`. In fact, a custom `Struct` is probably better-suited to encode leaves of a Merkle tree -- we just use `Field` for simplicity here.
 
 After declaring your events, you can use `this.emitEvent(name, event)` in any smart contract method, where `event` has to have the type you declared for that `name`. Example:
 
