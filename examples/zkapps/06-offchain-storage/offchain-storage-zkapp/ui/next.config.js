@@ -1,17 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: true,
-
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      snarkyjs: require('path').resolve('./node_modules/snarkyjs'),
-    }
+      snarkyjs: require('path').resolve('node_modules/snarkyjs'),
+    };
+    config.experiments = { ...config.experiments, topLevelAwait: true };
     config.optimization.minimizer = [];
     return config;
   },
+
   // To enable SnarkyJS for the web, we must set the COOP and COEP headers.
   // See here for more information: https://docs.minaprotocol.com/zkapps/how-to-write-a-zkapp-ui#enabling-coop-and-coep-headers
   async headers() {
@@ -31,11 +32,17 @@ const nextConfig = {
       },
     ];
   },
+
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/06-offchain-storage' : undefined,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/06-offchain-storage/' : undefined,
+  images: {
+    unoptimized: true,
+  },
+  basePath:
+    process.env.NODE_ENV === 'production' ? '/06-offchain-storage' : undefined,
+  assetPrefix:
+    process.env.NODE_ENV === 'production' ? '/06-offchain-storage/' : undefined,
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;
