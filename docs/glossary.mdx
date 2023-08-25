@@ -82,7 +82,7 @@ Generating a SNARK for a computation output can be thought of as compressing tha
 
 ### consensus
 
-An algorithm or set of rules that Mina nodes all agree upon when deciding to update the state of the network. Rules can include what data a new block can contain and how nodes are selected and rewarded for adding a block. Mina implements the [Ouroboros Samisika](/glossary#ouroboros-samisika) consensus mechanism.
+A process through which all the peers of a blockchain network reach a common agreement about the present state of the distributed ledger. A consensus algorithm or set of rules that Mina nodes all agree upon when deciding to update the state of the network. Rules can include what data a new block can contain and how nodes are selected and rewarded for adding a block. Mina implements the [Ouroboros Samisika](/glossary#ouroboros-samisika) consensus mechanism.
 
 ### consensus node
 
@@ -98,6 +98,10 @@ A digital asset or currency that uses cryptographic primitives to secure financi
 
 The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a [pub-sub](#pub-sub) model.
 
+### DAO
+
+A decentralized autonomous organization (DAO) operates based on rules that are encoded on a blockchain and executed through smart contracts. DAOs are an organizational structure built with blockchain technology.
+
 ### delegating
 
 Because staking MINA requires nodes to be online, some nodes delegate their MINA to another node that runs a staking service. This process is called delegating a stake. The service provider or staking pool operator can charge a fee that is deducted any time the delegator gets selected to be a block producer.
@@ -111,6 +115,14 @@ Created and updated with the Mina zkApp CLI, a [deploy alias](/zkapps/tutorials/
 A digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. In contrast to traditional databases, distributed ledgers have no central data store or administration functionality.
 
 ## E
+
+## elliptic curves
+
+Equations with a specific template: _y^2 = x^3 + ax^ + b_: [secp256k1](/glossary#secp256k1), 
+
+### elliptic-curve cryptography (ECC)
+
+An approach to public key cryptography based on the algebraic structure of elliptic curves over finite fields. ECC is the basis of how Ethereum and other cryptocurrencies use private keys and digital signatures.
 
 ### epoch
 
@@ -129,6 +141,10 @@ The port that the Mina daemon uses to connect to other nodes on the network. Whe
 Also referred to as a [block](#block), an external transition is generated externally, for example, by another block producer, and gossiped to a node.
 
 ## F
+
+## fee payer account
+
+A developer account that is funded and can always pay fees immediately. When you configure a zkApp, you can choose to use a stored account or create a new fee payer account.
 
 ### field element
 
@@ -160,7 +176,7 @@ A combination of a [private key](#private-key) and [public key](#public-key). Ke
 
 ### Kimchi
 
-The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi is a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk).
+The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi, a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk), features a polynomial commitment scheme that supports verifiable computation using traditional Turing machine-based instruction sets.
 
 ## L
 
@@ -216,6 +232,14 @@ An incrementing number attached to a transaction used to prevent a replay of a t
 
 ## O
 
+### off-chain
+
+A transfer of value or data, including transactions, that occurs outside a given blockchain network. These transfers do not need blockchain network confirmation, which speeds up the transaction process and reduces lag time.
+
+### on-chain
+
+A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is time-stamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
+
 ### Ouroboros Samisika
 
 Mina builds on this provably secure proof of stake (PoS) protocol that combines the best features of each iteration of Ouroboros to deliver a PoS consensus mechanism that can resolve long-range forks without requiring history or risking centralization by relying on trusted third parties to provide fork information.
@@ -230,13 +254,17 @@ Networking systems that rely on peer nodes to distribute information amongst eac
 
 Mina's inductive zk-SNARK composition system. See [Pickles](https://o1-labs.github.io/proof-systems/specs/pickles.html).
 
+### Pickles SNARK
+
+A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+
 ### PLONK
 
 Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge (PLONK) is general-purpose zero knowledge proof scheme.
 
-### Pickles SNARK
+### polynomial commitment
 
-A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+A commitment scheme that allows a committer to commit to a polynomial with a short string that can be used by a verifier to confirm claimed evaluations of the committed polynomial.
 
 ### precomputed block
 
@@ -254,9 +282,17 @@ The state of the network that comprises the previous protocol state hash to link
 
 The hash of hashes of the previous state and [protocol state](#protocol-state) body. Acts as a unique identifier for a block.
 
+### proof of liabilities (PoL)
+
+A cryptographic primitive to prove the size of funds a bank, or centralized exchange (CEX), owes to its customers in a decentralized manner and can be used for solvency audits with better privacy guarantees.
+
 ### proof of stake (PoS)
 
-The Mina consensus algorithm that allows nodes to agree on the state of the network. PoS allows nodes to [stake](node-operators/staking-and-snarking) MINA on the network to increase their chance of being selected as the next block producer.
+The Mina consensus algorithm that allows nodes to agree on the state of the network. PoS allows nodes to [stake](node-operators/staking-and-snarking) MINA on the network to increase their chance of being selected as the next block producer. The winning validators are compensated with a percentage yield of the crypto they have staked as an incentive for engaging in this process. See [Proof-of-Work vs Proof-of-Stake](https://minaprotocol.com/blog/proof-of-work-vs-proof-of-stake).
+
+### proof of work (PoW)
+
+The original consensus process used by Bitcoin, the first cryptocurrency. PoW achieves the decentralized consensus needed to add new blocks to a blockchain by using machines to compete against one another by guessing the answer to math problems that have no feasible faster solution. Computational power is a requirement for the PoW protocol success and assumes that those contributing more resources (energy, supercomputers, and infrastructure) to a problem are less likely to want to destroy the protocol. As an incentive to participate in this consensus process, miners are rewarded with tokens.
 
 ### prover function
 
@@ -293,6 +329,10 @@ An [(RPC)] (https://en.wikipedia.org/wiki/Remote_procedure_call) is used to comm
 ### scan state
 
 A data structure that allows decoupling the production of transaction SNARKs from block producers to [SNARK workers](#snark-worker). See [Scan State](/node-operators/scan-state).
+
+### secp256k1
+
+The elliptic curve using this equation _y²=x³+7, a=0 b=7_, constructed in a special non-random way to allow for especially efficient computation. secp256k1 can have a key size of up to 256 bits. All points on this curve are valid public keys.
 
 ### signature
 
