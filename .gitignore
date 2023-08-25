@@ -1,12 +1,17 @@
 # Dependencies
-/node_modules
+node_modules
+/**/*/node_modules
 
 # Production
-/build
+/**/*/build
+/**/*/dist
+build
+dist
 
 # Generated files
 .docusaurus
 .cache-loader
+
 
 # Misc
 .env
