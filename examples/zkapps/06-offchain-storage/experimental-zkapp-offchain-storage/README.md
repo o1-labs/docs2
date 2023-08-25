@@ -16,7 +16,7 @@ npm install
 
 #### Blockchain Mode
 
-Toggle the `useLocalBlockchain`` variable to switch between local testing and real-world usage.
+Toggle the `useLocalBlockchain` variable to switch between local testing and real-world usage.
 
 #### Account Configuration:
 
