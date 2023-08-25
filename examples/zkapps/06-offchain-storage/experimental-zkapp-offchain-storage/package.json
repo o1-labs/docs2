@@ -4,6 +4,14 @@
   "description": "",
   "author": "",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage"
+  },
+  "homepage": "https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage#README.md",
+  "bugs": {
+    "url": "https://github.com/o1-labs/docs2"
+  },
   "keywords": [
     "mina-zkapp",
     "mina-zk-app",
