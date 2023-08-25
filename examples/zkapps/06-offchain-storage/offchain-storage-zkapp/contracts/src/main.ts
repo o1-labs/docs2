@@ -61,10 +61,9 @@ const serverPublicKey = await OffChainStorage.getPublicKey(
   NodeXMLHttpRequest
 );
 
-if (!useLocal) {
-  console.log('Compiling smart contract...');
-  await NumberTreeContract.compile();
-}
+console.log('Compiling smart contract...');
+await NumberTreeContract.compile();
+console.log('Done compiling smart contract');
 
 const zkapp = new NumberTreeContract(zkappPublicKey);
 
