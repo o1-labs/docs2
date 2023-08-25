@@ -2,23 +2,10 @@ import { NumberTreeContract } from './NumberTreeContract.js';
 import {
   OffChainStorage,
   MerkleWitness8,
-} from 'experimental-zkapp-offchain-storage';
+} from 'experimental-offchain-zkapp-storage';
 import fs from 'fs';
 
-import {
-  Mina,
-  isReady,
-  PublicKey,
-  PrivateKey,
-  AccountUpdate,
-  Group,
-  Character,
-  CircuitString,
-  Signature,
-  Field,
-  Bool,
-  shutdown,
-} from 'snarkyjs';
+import { Mina, PrivateKey, AccountUpdate, Field, Bool } from 'snarkyjs';
 
 import { makeAndSendTransaction, loopUntilAccountExists } from './utils.js';
 
@@ -27,8 +14,6 @@ const NodeXMLHttpRequest =
   XMLHttpRequestTs.XMLHttpRequest as any as typeof XMLHttpRequest;
 
 const useLocal = true;
-
-await isReady;
 
 // ----------------------------------------
 
@@ -90,10 +75,10 @@ if (useLocal) {
     zkapp.initState(serverPublicKey);
   });
   transaction.sign([zkappPrivateKey, feePayerKey]);
-  await transaction.prove()
+  await transaction.prove();
   await transaction.send();
 } else {
-  let zkAppAccount = await loopUntilAccountExists({
+  await loopUntilAccountExists({
     account: zkappPrivateKey.toPublicKey(),
     eachTimeNotExist: () =>
       console.log('waiting for zkApp account to be deployed...'),
@@ -130,8 +115,8 @@ async function updateTree() {
     priorLeafNumber = idx2fields.get(index)![0];
     newLeafNumber = priorLeafNumber.add(3);
   } else {
-    priorLeafNumber = Field.zero;
-    newLeafNumber = Field.one;
+    priorLeafNumber = Field(0);
+    newLeafNumber = Field(1);
   }
 
   // update the leaf, and save it in the storage server
@@ -175,9 +160,8 @@ async function updateTree() {
         doUpdate();
       }
     );
-
     updateTransaction.sign([zkappPrivateKey, feePayerKey]);
-    await updateTransaction.prove()
+    await updateTransaction.prove();
     await updateTransaction.send();
   } else {
     await makeAndSendTransaction({
@@ -198,5 +182,3 @@ for (;;) {
 }
 
 //---------------------------
-
-await shutdown();

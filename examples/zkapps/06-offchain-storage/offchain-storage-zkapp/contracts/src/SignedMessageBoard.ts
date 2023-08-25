@@ -17,7 +17,7 @@ import {
   OffChainStorage,
   Update,
   MerkleWitness8,
-} from 'experimental-zkapp-offchain-storage';
+} from 'experimental-offchain-zkapp-storage';
 
 export class SignedMessageBoard extends SmartContract {
   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
@@ -26,7 +26,7 @@ export class SignedMessageBoard extends SmartContract {
 
   deploy(args: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       editState: Permissions.proofOrSignature(),
     });
@@ -34,7 +34,7 @@ export class SignedMessageBoard extends SmartContract {
 
   @method initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
-    this.storageNumber.set(Field.zero);
+    this.storageNumber.set(Field(0));
 
     const emptyTreeRoot = new MerkleTree(8).getRoot();
     this.storageTreeRoot.set(emptyTreeRoot);
