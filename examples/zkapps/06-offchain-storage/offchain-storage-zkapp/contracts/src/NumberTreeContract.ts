@@ -14,9 +14,8 @@ import {
 
 import {
   OffChainStorage,
-  Update,
   MerkleWitness8,
-} from 'experimental-zkapp-offchain-storage';
+} from 'experimental-offchain-zkapp-storage';
 
 export class NumberTreeContract extends SmartContract {
   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
@@ -33,7 +32,7 @@ export class NumberTreeContract extends SmartContract {
 
   @method initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
-    this.storageNumber.set(Field.zero);
+    this.storageNumber.set(Field(0));
 
     const emptyTreeRoot = new MerkleTree(8).getRoot();
     this.storageTreeRoot.set(emptyTreeRoot);
@@ -60,7 +59,7 @@ export class NumberTreeContract extends SmartContract {
     let newLeaf = [num];
 
     // newLeaf can be a function of the existing leaf
-    newLeaf[0].assertGt(leaf[0]);
+    newLeaf[0].assertGreaterThan(leaf[0]);
 
     const updates = [
       {
@@ -85,4 +84,3 @@ export class NumberTreeContract extends SmartContract {
     this.storageNumber.set(storedNewRootNumber);
   }
 }
-

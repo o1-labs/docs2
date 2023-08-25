@@ -1,9 +1,11 @@
 import { SignedMessageBoard } from './SignedMessageBoard.js';
-import { OffChainStorage, MerkleWitness8 } from 'experimental-zkapp-offchain-storage';
+import {
+  OffChainStorage,
+  MerkleWitness8,
+} from 'experimental-offchain-zkapp-storage';
 
 import {
   Mina,
-  isReady,
   PublicKey,
   PrivateKey,
   AccountUpdate,
@@ -12,7 +14,6 @@ import {
   CircuitString,
   Signature,
   Bool,
-  shutdown,
 } from 'snarkyjs';
 
 import XMLHttpRequestTs from 'xmlhttprequest-ts';
@@ -20,10 +21,7 @@ const NodeXMLHttpRequest =
   XMLHttpRequestTs.XMLHttpRequest as any as typeof XMLHttpRequest;
 
 async function main() {
-  await isReady;
-
   // ----------------------------------------
-
   const transactionFee = 100_000_000;
 
   const treeHeight = 8;
@@ -32,6 +30,7 @@ async function main() {
   Mina.setActiveInstance(Local);
 
   const feePayerKey = Local.testAccounts[0].privateKey;
+  const feePayerPublicKey = feePayerKey.toPublicKey();
 
   const zkappPrivateKey = PrivateKey.random();
   const zkappPublicKey = zkappPrivateKey.toPublicKey();
@@ -47,13 +46,12 @@ async function main() {
 
   const zkapp = new SignedMessageBoard(zkappPublicKey);
 
-  const transaction = await Mina.transaction(feePayerKey, () => {
-    AccountUpdate.fundNewAccount(feePayerKey);
+  const transaction = await Mina.transaction(feePayerPublicKey, () => {
+    AccountUpdate.fundNewAccount(feePayerPublicKey);
     zkapp.deploy({ zkappKey: zkappPrivateKey });
     zkapp.initState(serverPublicKey);
-    zkapp.sign(zkappPrivateKey);
   });
-
+  transaction.sign([feePayerKey, zkappPrivateKey]);
   await transaction.send();
 
   // ----------------------------------------
@@ -84,7 +82,7 @@ async function main() {
 
     const publicKeyFields = fields.slice(0, 2);
     priorLeafSigner = PublicKey.fromGroup(
-      new Group(publicKeyFields[0], publicKeyFields[1])
+      new Group({ x: publicKeyFields[0], y: publicKeyFields[1] })
     );
 
     const messageFields = fields.slice(2);
@@ -112,7 +110,7 @@ async function main() {
 
   // update the smart contract
   const updateTransaction = await Mina.transaction(
-    { feePayerKey, fee: transactionFee },
+    { sender: feePayerPublicKey, fee: transactionFee },
     () => {
       zkapp!.update(
         priorLeafMessage,
@@ -125,18 +123,13 @@ async function main() {
         storedNewStorageNumber,
         storedNewStorageSignature
       );
-      zkapp.sign(zkappPrivateKey);
     }
   );
-
+  updateTransaction.sign([feePayerKey, zkappPrivateKey]);
   await updateTransaction.send();
 
   console.log('root updated to', zkapp.storageTreeRoot.get().toString());
-
   //---------------------------
-
-  await shutdown();
 }
 
 main();
-
