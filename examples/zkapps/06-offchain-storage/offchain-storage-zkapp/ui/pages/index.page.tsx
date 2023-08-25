@@ -120,6 +120,7 @@ export default function Home() {
             privateKey,
             localZkappPrivateKey
           );
+          await zkappWorkerClient.proveUpdateTransaction();
           transactionHash = await zkappWorkerClient.sendUpdateTransaction();
           console.log(
             'See transaction at https://berkeley.minaexplorer.com/transaction/' +
