@@ -338,6 +338,8 @@ We initialize the main.ts script with the boilerplate from the previous tutorial
  35   zkAppInstance.deploy();
  36   zkAppInstance.initState(salt, Field(750));
  37 });
+ 38
+ 39 await deployTxn.prove();
 ...
 ```
 
