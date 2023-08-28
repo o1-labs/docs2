@@ -28,7 +28,7 @@ app.use(express.json());
 
 const maxHeight = 256;
 
-const useLocalBlockchain = false;
+const useLocalBlockchain = true;
 
 const Local = Mina.LocalBlockchain();
 if (useLocalBlockchain) {
