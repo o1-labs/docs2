@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "generate-key": "node scripts/generate_private_key.js",
-    "server": "npm run build && node --enable-source-maps build/src/storageServer.js"
+    "server": "npm run build && node --enable-source-maps build/src/server/storageServer.js"
   },
   "lint-staged": {
     "**/*": [
