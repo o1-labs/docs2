@@ -32,6 +32,7 @@ jobs:
         continue-on-error: false
         run: |
           npm ci
+          npm run build --silent
           git config --global user.email "test@example.com"
           git config --global user.name "Test"
           npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/03-deploying-to-a-network.mdx
