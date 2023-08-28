@@ -31,11 +31,11 @@ export default function Home() {
     hasBeenSetup: false,
     accountExists: false,
     currentNum: null as null | Field,
-    publicKey: null as null | PublicKey,
-    privateKey: null as null | PrivateKey,
+    feePayerPublicKey: null as null | PublicKey,
+    feePayerPrivateKey: null as null | PrivateKey,
     zkappPublicKey: null as null | PublicKey,
     creatingTransaction: false,
-    currentMessages: null as null | Map<number, Field[]>,
+    currentMessages: new Map() as Map<number, Field[]>,
     userMessages: [] as string[],
   });
 
@@ -72,25 +72,24 @@ export default function Home() {
         let publicKey = privateKey.toPublicKey();
         console.log('using key', publicKey.toBase58());
 
-        console.log('checking if account exists...');
+        console.log('checking if fee payer account exists...');
         const res = await zkappWorkerClient.fetchAccount({
           publicKey: publicKey!,
         });
         const accountExists = res.error == null;
-
         await zkappWorkerClient.loadContract();
+
         console.log('Compiling zkApp...');
         await zkappWorkerClient.compileContract();
         console.log('zkApp compiled');
 
         let localZkappPrivateKey = PrivateKey.random();
-
         let zkappPublicKey;
         if (useLocalTestInstance) {
           zkappPublicKey = localZkappPrivateKey.toPublicKey();
         } else {
           zkappPublicKey = PublicKey.fromBase58(
-            'B62qrBBEARoG78KLD1bmYZeEirUfpNXoMPYQboTwqmGLtfqAGLXdWpU'
+            'B62qjshG3cddKthD6KjCzHZP4oJM2kGuC8qRHN3WZmKH5B74V9Uddwu'
           );
         }
 
@@ -129,14 +128,14 @@ export default function Home() {
         }
         console.log('zkApp state fetched');
         const currentMessages = await zkappWorkerClient.getMessages();
-        console.log('current state:', currentMessages.toString());
+        console.log('current state:', JSON.stringify([...currentMessages]));
 
         setState({
           ...state,
           zkappWorkerClient,
           hasBeenSetup: true,
-          publicKey,
-          privateKey,
+          feePayerPublicKey: publicKey,
+          feePayerPrivateKey: privateKey,
           zkappPublicKey,
           accountExists,
           currentMessages,
@@ -153,7 +152,7 @@ export default function Home() {
         for (;;) {
           console.log('checking if account exists...');
           const res = await state.zkappWorkerClient!.fetchAccount({
-            publicKey: state.publicKey!,
+            publicKey: state.feePayerPublicKey!,
           });
           const accountExists = res.error == null;
           if (accountExists) {
@@ -177,10 +176,10 @@ export default function Home() {
       console.log('Message: ', message);
 
       await state.zkappWorkerClient!.fetchAccount({
-        publicKey: state.publicKey!,
+        publicKey: state.feePayerPublicKey!,
       });
       await state.zkappWorkerClient!.createUpdateTransaction(
-        state.privateKey!,
+        state.feePayerPrivateKey!,
         transactionFee,
         i,
         message
@@ -226,7 +225,8 @@ export default function Home() {
   let accountDoesNotExist;
   if (state.hasBeenSetup && !state.accountExists) {
     const faucetLink =
-      'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
+      'https://faucet.minaprotocol.com/?address=' +
+      state.feePayerPublicKey!.toBase58();
     accountDoesNotExist = (
       <div>
         Account does not exist. Please visit the faucet to fund this account
@@ -240,19 +240,20 @@ export default function Home() {
 
   let mainContent;
   if (state.hasBeenSetup && state.accountExists) {
-    var messages = [];
+    let messages = [];
     for (let i = 0; i < 2 ** (8 - 1); i++) {
       let input;
       let onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const userMessages = state.userMessages;
+        const userMessages = [...state.userMessages];
         userMessages[i] = event.target.value;
         setState({ ...state, userMessages });
       };
 
       let signer;
-      if (state.currentMessages!.has(i)) {
-        const value = state.currentMessages!.get(i)!;
+      if (state.currentMessages.has(i)) {
+        const value = state.currentMessages.get(i)!;
         const publicKeyFields = value.slice(0, 2);
+
         const publicKey = PublicKey.fromGroup(
           new Group({ x: publicKeyFields[0], y: publicKeyFields[1] })
         );
@@ -261,20 +262,18 @@ export default function Home() {
         const messageCS = CircuitString.fromCharacters(messageChars);
         const message = messageCS.toString();
         input = (
-          <input key={i} onChange={onChange}>
-            {' '}
-            {message}{' '}
-          </input>
+          <>
+            <input key={i} onChange={onChange} />
+            <p>{`Offchain Value: ${message}`}</p>
+          </>
         );
         const signerLink =
-          'https://berkeley.minaexplorer.com/wallet/' + publicKey.toString();
+          'https://berkeley.minaexplorer.com/wallet/' + publicKey.toBase58();
         signer = (
           <a href={signerLink} target="_blank" rel="noreferrer">
-            {' '}
-            signer{' '}
+            <p>See signer</p>
           </a>
         );
-        publicKey.toString();
       } else {
         input = <input key={i} onChange={onChange}></input>;
       }
