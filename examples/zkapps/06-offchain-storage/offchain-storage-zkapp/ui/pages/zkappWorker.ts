@@ -1,6 +1,5 @@
 import {
   Mina,
-  isReady,
   PublicKey,
   PrivateKey,
   Field,
@@ -61,14 +60,14 @@ const functions = {
     state.storageServerAddress = args.storageServerAddress;
   },
 
-  loadContract: async (args: {}) => {
+  loadContract: async (_args: {}) => {
     const { SignedMessageBoard } = await import(
       '../../contracts/build/src/SignedMessageBoard.js'
     );
     state.SignedMessageBoard = SignedMessageBoard;
   },
 
-  compileContract: async (args: {}) => {
+  compileContract: async (_args: {}) => {
     await state.SignedMessageBoard!.compile();
   },
 
@@ -97,7 +96,7 @@ const functions = {
       treeRoot
     );
     const map: { [key: string]: string[] } = {};
-    for (let [key, fields] of Object.entries(idx2fields)) {
+    for (let [key, fields] of idx2fields) {
       map[key + ''] = fields.map((v: Field) => v.toString());
     }
     return JSON.stringify(map);
@@ -151,7 +150,7 @@ const functions = {
     const message = CircuitString.fromString(args.message);
 
     const publicKey = feePayerKey.toPublicKey();
-    const concat = publicKey.toFields().concat(message.toFields());
+    const concat = publicKey.toGroup().toFields().concat(message.toFields());
     const signature = Signature.create(feePayerKey, concat);
 
     idx2fields.set(BigInt(args.idx), concat);
@@ -213,6 +212,7 @@ const functions = {
     const serverPublicKey = await OffChainStorage.getPublicKey(
       state.storageServerAddress!
     );
+    console.log("Using server's public key", serverPublicKey.toBase58());
 
     const transaction = await Mina.transaction(feePayerAddress, () => {
       state.zkapp!.initState(serverPublicKey);
@@ -228,10 +228,10 @@ const functions = {
 
   sendUpdateTransaction: async (_args: {}) => {
     if (state.isLocal) {
-      await state.transaction!.send();
+      const tx = await state.transaction!.send();
       return 'nohash_islocal';
     } else {
-      var txn_res = await state.transaction!.send();
+      const txn_res = await state.transaction!.send();
       const transactionHash = await txn_res!.hash();
       return transactionHash;
     }

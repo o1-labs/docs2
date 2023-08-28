@@ -60,8 +60,11 @@ export class SignedMessageBoard extends SmartContract {
     let storageServerPublicKey = this.storageServerPublicKey.get();
     this.storageServerPublicKey.assertEquals(storageServerPublicKey);
 
-    const leaf = priorLeafSigner.toFields().concat(priorLeafMessage.toFields());
-    const newLeaf = publicKey.toFields().concat(message.toFields());
+    const leaf = priorLeafSigner
+      .toGroup()
+      .toFields()
+      .concat(priorLeafMessage.toFields());
+    const newLeaf = publicKey.toGroup().toFields().concat(message.toFields());
 
     signature.verify(publicKey, newLeaf).assertTrue();
 
