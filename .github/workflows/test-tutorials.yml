@@ -43,7 +43,7 @@ jobs:
           mina-graphql-port: 8080
           max-attempts: 60
           polling-interval-ms: 10000
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -55,5 +55,5 @@ jobs:
           npm ci
           git config --global user.email "test@example.com"
           git config --global user.name "Test"
-          cd ..
+          ls
           npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.md
