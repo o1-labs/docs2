@@ -1,6 +1,6 @@
 # Mina zkApp: Zkapp Offchain Storage
 
-An experimental library for storing zkApp data offchain. This project is currently under development and should not be used in production. This library is designed to be a reference implementation for [Tutorial 6](https://docs.minaprotocol.com/zkapps/tutorials/offchain-storage) which showcases how to store zkApp data offchain.
+An experimental library designed for storing zkApp data off-chain. The project is currently in development and is not intended for production use. This library serves as a reference implementation for [Tutorial 6](https://docs.minaprotocol.com/zkapps/tutorials/offchain-storage), which illustrates how to store zkApp data off-chain."
 
 ## Usage
 

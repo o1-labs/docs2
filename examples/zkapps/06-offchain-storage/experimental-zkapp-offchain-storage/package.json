@@ -1,7 +1,7 @@
 {
   "name": "experimental-offchain-zkapp-storage",
-  "version": "0.1.1",
-  "description": "",
+  "version": "0.1.2",
+  "description": "This project is currently under development and should not be used in production.",
   "author": "",
   "license": "Apache-2.0",
   "repository": {
