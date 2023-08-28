@@ -1,6 +1,6 @@
 # Mina zkApp: Zkapp Offchain Storage
 
-An experimental library for storing zkApp data offchain. This project is currently under development and should not be used in production.
+An experimental library for storing zkApp data offchain. This project is currently under development and should not be used in production. This library is designed to be a reference implementation for [Tutorial 6](https://docs.minaprotocol.com/zkapps/tutorials/offchain-storage) which showcases how to store zkApp data offchain.
 
 ## Usage
 
@@ -12,11 +12,11 @@ Ensure all required modules are installed. To do so, run the following command:
 npm install
 ```
 
-### Running the Example
+### Configuration
 
 #### Blockchain Mode
 
-Toggle the `useLocalBlockchain` variable to switch between local testing and real-world usage.
+In the `main.ts` file, you can toggle the `useLocalBlockchain` variable to switch between local testing and real-world usage.
 
 #### Account Configuration:
 
@@ -26,8 +26,7 @@ For `Berkeley` mode, you must provide a `deployerPrivateKey` and `zkAppPrivateKe
 To generate these keys, you can use the following command:
 
 ```bash
-npm run generate-keys
-
+npm run generate-key
 ```
 
 ### Running the Application:
@@ -78,35 +77,6 @@ This server is designed to interact with the zkApp and help store and manage zkA
 3. GET `/publicKey`
 
 - Provides the public key of the server.
-
-### Usage
-
-1. Installation: Install all the necessary packages.
-
-```bash
-npm install
-```
-
-2. Running the server: Use the following command to start the server.
-
-```bash
-npm run server
-```
-
-The server will start listening on port 3001.
-
-3. Generate keys: Use the following command to generate keys for the server.
-
-```bash
-npm run generate-keys
-```
-
-4. Run the example: Use the following command to run the example.
-
-```bash
-npm run build
-node build/src/examples/main.js [deployerPrivateKey] [zkAppPrivateKey]
-```
 
 ## License
 
