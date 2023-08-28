@@ -21,28 +21,7 @@ jobs:
   deploying-network:
     timeout-minutes: 25
     runs-on: ubuntu-latest
-    services:
-      mina-local-network:
-        image: o1labs/mina-local-network:rampup-latest-lightnet
-        env:
-          NETWORK_TYPE: 'single-node'
-          PROOF_LEVEL: 'none'
-        ports:
-          - 3085:3085
-          - 5432:5432
-          - 8080:8080
-          - 8181:8181
-        # TODO: Disable logging for container as the workaround of long post-job-cleanup phase
-        # - Will be fixed by improving logging as part of the work on:
-        # - https://hub.docker.com/r/o1labs/mina-local-network
-        options: --log-driver=none
     steps:
-      - name: Wait for Mina Network readiness
-        uses: o1-labs/wait-for-mina-network-action@v1
-        with:
-          mina-graphql-port: 8080
-          max-attempts: 60
-          polling-interval-ms: 10000
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:

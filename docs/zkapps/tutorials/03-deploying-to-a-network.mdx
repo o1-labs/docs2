@@ -44,6 +44,12 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
 
 2. Create a project by using the `zk project` command:
 
+<!-- installing the zkapp cli
+```sh
+$ npm install -g zkapp-cli
+```
+-->
+
 ```sh
 $ zk project 03-deploying-to-a-live-network
 ```
@@ -83,6 +89,12 @@ The `zk project` command creates the `03-deploying-to-a-live-network` directory 
 
 1. Change into the `03-deploying-to-a-live-network` directory.
 
+<!-- changing into working directory
+```sh
+$ cd 03-deploying-to-a-live-network
+```
+-->
+
 For this tutorial, you run commands from the root of the `03-deploying-to-a-live-network` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract.
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
@@ -104,6 +116,42 @@ $ rm src/interact.ts
 ```sh
 $ zk file src/Square
 ```
+
+<!-- initiating the project with the scripts from tutorial 01
+
+```ts src/Square.ts
+1 import {
+2  Field,
+3  SmartContract,
+4  state,
+5  State,
+6  method
+7 } from 'snarkyjs';
+8
+9 export class Square extends SmartContract {
+10   @state(Field) num = State<Field>();
+11
+12   init() {
+13     super.init();
+14     this.num.set(Field(3));
+15   }
+16
+17   @method update(square: Field) {
+18     const currentState = this.num.get();
+19     this.num.assertEquals(currentState);
+20     square.assertEquals(currentState.mul(currentState));
+21     this.num.set(square);
+22   }
+23 }
+```
+
+```ts src/Square.ts
+1 import { Square } from './Square.js';
+2
+3 export { Square };
+```
+
+-->
 
 1. Copy the `src/Square.ts` and `src/index.ts` files from the example files for first tutorial [01-hello-world/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world/src) to your local `03-deploying-to-a-live-network/src` directory. If prompted, replace existing files.
 
@@ -142,8 +190,14 @@ A deploy alias consists of:
 
 1. To configure your deployment, run the `zk config` command and respond to the prompts:
 
+```sh ignore
+zk config
+```
+
 ```sh
-$ zk config
+$ echo '{ "privateKey": "EKE26wiE37cwvnsNHBB1NVQ27RstWdxEyzAbnhrYqnYGa1NoAcBT", "publicKey": "B62qpyCwp3qvU7sULu4RpWwzPUmKsSgFgPUjjFb3XXqYZX6ZUMtG7Ju" }' > keys/live-local-network.json
+$ echo '{ "version": 1, "deployAliases": { "live-local-network": { "url": "https://api.minascan.io/node/berkeley/v1/graphql", "feepayerKeyPath": "keys/live-local-network.json", "feepayerAlias": "cli-fee-payer", "keyPath": "keys/live-local-network.json", "fee": "0.1" } } }' > config.json
+$ zk deploy live-local-network
 ```
 
 For this tutorial on Berkeley Testnet, use:
@@ -160,26 +214,26 @@ For this tutorial on Berkeley Testnet, use:
 
 1. When prompted to choose an account to pay transaction feeds, select to use a different account:
 
-```sh
+```sh ignore
 Use a different account (select to see options)
 ```
 
 1. Next, select to create a new fee payer key pair:
 
-```sh
+```sh ignore
 Create a new fee payer key pair
 NOTE: the private key will be stored in plain text on this computer.
 ```
 
 1. When prompted, give an alias to your new fee payer key pair. For this tutorial, use `03-deploy`:
 
-```sh
+```sh ignore
 Create an alias for this account: 03-deploy
 ```
 
 Your key pairs and deploy alias are created:
 
-````sh
+````sh ignore
 ✔ Create fee payer key pair at /Users/<username>/.cache/zkapp-cli/keys/03-deploy.json
 ✔ Create zkApp key pair at keys/berkeley2.json
 ✔ Add deploy alias to config.json
@@ -197,13 +251,13 @@ Follow the prompts to request tMINA. For this tutorial, your MINA address is pop
 
 1. To deploy your project:
 
-```sh
-$ zk deploy
+```sh ignore
+zk deploy
 ````
 
 1. At the interactive prompt, select the `berkeley` deploy alias:
 
-```text
+```sh ignore
 ? Which deploy alias would you like to deploy to? …
 ❯ berkeley
 ```
@@ -212,7 +266,7 @@ A verification key for your smart contract is generated (takes 10-30 seconds).
 
 The deploy process is output:
 
-```text
+```sh ignore
 ✔ Build project
 ✔ Generate build.json
 ✔ Choose smart contract
@@ -227,7 +281,7 @@ The deploy process is output:
 
 1. Review and confirm the details of the transaction:
 
-```text
+```sh ignore
 ✖ Confirm to send transaction
 
   ┌─────────────────┬─────────────────────────────────────────────────┐
@@ -243,7 +297,7 @@ The deploy process is output:
 
 When prompted, type `yes` to confirm and send the transaction.
 
-```text
+```sh ignore
 ✔ Send to network
 
 Success! Deploy transaction sent.
