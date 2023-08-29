@@ -1,4 +1,4 @@
-import { Mina, PublicKey, fetchAccount } from 'snarkyjs';
+import { Mina, PublicKey, fetchAccount } from 'o1js';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 

@@ -11,7 +11,7 @@ import {
   CircuitString,
   Character,
   Group,
-} from 'snarkyjs'
+} from 'o1js'
 
 const transactionFee = 100_000_000;
 
@@ -39,8 +39,8 @@ export default function App() {
       if (!state.hasBeenSetup) {
         const zkappWorkerClient = new ZkappWorkerClient();
         
-        console.log('Loading SnarkyJS...');
-        await zkappWorkerClient.loadSnarkyJS();
+        console.log('Loading o1js...');
+        await zkappWorkerClient.loadO1jS();
         console.log('done');
 
         if (useLocalTestInstance) {
@@ -179,7 +179,7 @@ export default function App() {
   // -------------------------------------------------------
   // Create UI elements
 
-  let setupText = state.hasBeenSetup ? 'SnarkyJS Ready' : 'Setting up SnarkyJS...';
+  let setupText = state.hasBeenSetup ? 'o1js Ready' : 'Setting up o1js...';
   let setup = <div> { setupText } </div>
 
   let accountDoesNotExist;

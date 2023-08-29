@@ -5,7 +5,7 @@ import {
   State,
   method,
   MerkleWitness,
-} from 'snarkyjs';
+} from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
 

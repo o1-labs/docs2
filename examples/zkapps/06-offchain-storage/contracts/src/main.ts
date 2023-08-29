@@ -18,7 +18,7 @@ import {
   Field,
   Bool,
   shutdown,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { makeAndSendTransaction, loopUntilAccountExists } from './utils.js';
 

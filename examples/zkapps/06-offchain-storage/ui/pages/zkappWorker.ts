@@ -13,7 +13,7 @@ import {
   CircuitString,
   Signature,
   Bool,
-} from 'snarkyjs'
+} from 'o1js'
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
@@ -35,7 +35,7 @@ const state = {
 // ---------------------------------------------------------------------------------------
 
 const functions = {
-  loadSnarkyJS: async (args: {}) => {
+  loadO1js: async (args: {}) => {
     await isReady;
   },
   setActiveInstanceToBerkeley: async (args: {}) => {

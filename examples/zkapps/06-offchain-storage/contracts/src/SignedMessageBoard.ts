@@ -11,7 +11,7 @@ import {
   PublicKey,
   Signature,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import {
   OffChainStorage,

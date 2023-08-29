@@ -5,7 +5,7 @@ import {
   Field,
   Mina,
   AccountUpdate,
-} from 'snarkyjs';
+} from 'o1js';
 import { Square } from './Square';
 
 export { loopUntilAccountExists, deploy };
@@ -29,7 +29,7 @@ async function loopUntilAccountExists({
       eachTimeNotExist();
       await new Promise((resolve) => setTimeout(resolve, 5000));
     } else {
-      // TODO add optional check that verification key is correct once this is available in SnarkyJS
+      // TODO add optional check that verification key is correct once this is available in o1js
       return response.account!;
     }
   }

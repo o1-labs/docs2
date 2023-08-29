@@ -3,7 +3,7 @@ import {
   PublicKey,
   PrivateKey,
   Field,
-} from 'snarkyjs'
+} from 'o1js'
 
 import type { ZkappWorkerRequest, ZkappWorkerReponse, WorkerFunctions } from './zkappWorker';
 
@@ -11,8 +11,8 @@ export default class ZkappWorkerClient {
 
   // ---------------------------------------------------------------------------------------
 
-  loadSnarkyJS() {
-    return this._call('loadSnarkyJS', {});
+  loadO1jS() {
+    return this._call('loadO1js', {});
   }
 
   setActiveInstanceToBerkeley() {

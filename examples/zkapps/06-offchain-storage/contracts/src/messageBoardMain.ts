@@ -13,7 +13,7 @@ import {
   Signature,
   Bool,
   shutdown,
-} from 'snarkyjs';
+} from 'o1js';
 
 import XMLHttpRequestTs from 'xmlhttprequest-ts';
 const NodeXMLHttpRequest =

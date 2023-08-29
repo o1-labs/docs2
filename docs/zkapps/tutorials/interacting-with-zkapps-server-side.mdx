@@ -12,7 +12,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::note
 
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
+This tutorial was last tested with [o1js](https://www.npmjs.com/package/o1js) 0.8.0.
 
 :::
 
@@ -45,15 +45,15 @@ We recommend reading through this code, to understand what it is doing to implem
 
 Open up `main.ts` in a text editor. You can find the complete source for this [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/main.ts).
 
-To start, let's add the imports and SnarkyJS setup:
+To start, let's add the imports and o1js setup:
 
 ```ts
   1 import { Square } from './Square.js';
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'snarkyjs';
+  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
   3
   4 await isReady;
   5
-  6 console.log('SnarkyJS loaded');
+  6 console.log('o1js loaded');
   7
   8 // ----------------------------------------------------
   9
@@ -100,7 +100,7 @@ Now, to finish setting up our code, let's add to our `main.ts`:
 
 ```ts
 ...
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'snarkyjs';
+  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
   3
   4 import fs from 'fs';
   5
@@ -221,7 +221,7 @@ After being certain that our zkApp has been deployed, we fetch the current value
 
 :::info
 
-There is a `provedState` property on accounts present in the protocol, but yet to be exposed in SnarkyJS, that can be used to assert in a proof that the smart contract has been initialized.
+There is a `provedState` property on accounts present in the protocol, but yet to be exposed in o1js, that can be used to assert in a proof that the smart contract has been initialized.
 
 This `provedState` property starts out `false` when a contract is deployed. It is set to true whenever the _entire state_ of the smart contract is overwritten by a proof. TODO. More details will be released as this feature is made available.
 

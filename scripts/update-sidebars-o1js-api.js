@@ -25,25 +25,25 @@ function findo1jsSidebar(sidebars) {
     (item) => item.label === 'zkApp Developers'
   );
 
-  // Find the index of the `SnarkyJS API Reference` category in the sidebars
-  const snarkyJSAPICategory = sidebars.docs[zkAppCategory].items.findIndex(
+  // Find the index of the `o1js API Reference` category in the sidebars
+  const o1jsAPICategory = sidebars.docs[zkAppCategory].items.findIndex(
     (item) => item.label === 'o1js Reference'
   );
 
   return {
     zkAppCategory,
-    snarkyJSAPICategory,
+    o1jsAPICategory,
   };
 }
 
 function reseto1jsSidebar(sidebars) {
-  let { zkAppCategory, snarkyJSAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
+  let { zkAppCategory, o1jsAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
   sidebars.docs[zkAppCategory].items[o1jsAPICategory] = emptySidebar();
   return sidebars;
 }
 
 function updateSidebars(sidebars, category, o1jsItems) {
-  const { zkAppCategory, snarkyJSAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
+  const { zkAppCategory, o1jsAPICategory: o1jsAPICategory } = findo1jsSidebar(sidebars);
 
   const categoryToFind = sidebars.docs[zkAppCategory].items[
     o1jsAPICategory
