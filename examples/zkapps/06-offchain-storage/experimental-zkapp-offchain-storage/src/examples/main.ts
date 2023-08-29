@@ -1,5 +1,5 @@
 /* 
-  Usage: node build/node/main.ts <deployer private key> <zkapp private key>
+  Usage: npm run build && node build/src/examples/main.js <deployer private key> <zkapp private key>
 */
 
 import {

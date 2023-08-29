@@ -33,7 +33,7 @@ export async function initializeKeys(
   } else {
     if (process.argv.length != 4) {
       throw Error(
-        'Usage: node build/node/main.ts <deployer private key> <zkapp private key>'
+        'Usage: node build/src/examples/main.js <deployer private key> <zkapp private key>'
       );
     }
 
