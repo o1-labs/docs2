@@ -40,7 +40,7 @@ jobs:
           cd ../docs/ && npm ci
 
           # Remove the old API reference and copy the newly generated reference
-          rm -rf docs/zkapps/snarkyjs-reference && cp -rv ../snarkyjs/snarkyjs-reference docs/zkapps/snarkyjs-reference
+          rm -rf docs/zkapps/o1js-reference && cp -rv ../snarkyjs/o1js-reference docs/zkapps/o1js-reference
 
           # Update with new enteries and format sidebars.js
           npm run update-sidebar
@@ -50,7 +50,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git switch -c $BRANCH_NAME
-          git add docs/zkapps/snarkyjs-reference
+          git add docs/zkapps/o1js-reference
           git add sidebars.js
           git commit -m "Build and publish new SnarkyJS API reference docs"
 
