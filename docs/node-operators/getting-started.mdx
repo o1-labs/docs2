@@ -25,7 +25,7 @@ This documentation is for the **Mainnet** release.
 
 ## Requirements
 
-**Software**: macOS, Linux (currently supports Debian 9 and Ubuntu 18.04 LTS), or any host with Docker
+**Software**: macOS, Linux (currently supports Debian 10, 11, 12 and Ubuntu 20.04 LTS), or any host with Docker. We only support AMD64 CPU architecture at this time.
 
 :::note
 
@@ -56,17 +56,17 @@ Check out our [guide](https://youtu.be/M9lE2lgyVEo) for how to configure your Mi
 
 ### Ubuntu / Debian
 
-Follow along below to install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [Mina Releases Page](https://github.com/MinaProtocol/mina/releases) on GitHub to discover and install pre-release (Beta) builds.
+Follow along below to install the latest **Stable** [Mina Release 1.4.0](https://github.com/MinaProtocol/mina/releases/tag/1.4.0) or visit the [Mina Releases Page](https://github.com/MinaProtocol/mina/releases) on GitHub to discover and install pre-release (Beta) builds.
 
 You can set up the new debian `stable` repository and install the latest version as follows:
 
 ```
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
 sudo apt-get update
-sudo apt-get install -y curl unzip mina-mainnet=1.3.1.2-25388a0
+sudo apt-get install -y curl unzip mina-mainnet=1.4.0-c980ba8
 ```
 
-Check that the daemon installed correctly by running `mina version`. The expected output is `Commit 25388a0fed9695e8e9d04f75f50c2bae1c9c80db on branch master`.
+Check that the daemon installed correctly by running `mina version`. The expected output is `Commit c980ba87c3417f40a7081225dfe7478c5ee70fd7 on branch master`.
 
 ### Windows
 
