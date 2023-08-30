@@ -40,9 +40,9 @@ The first step to connecting to Mainnet is to install the latest daemon version.
 
 Follow the steps for your operating system.
 
-### Ubuntu 18.04, 20.04 and Debian 9, 10, 11
+### Ubuntu 20.04 and Debian 10, 11, 12
 
-Install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Beta) builds.
+Install the latest **Stable** [Mina Release 1.4.0](https://github.com/MinaProtocol/mina/releases/tag/1.4.0) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Beta) builds.
 
 To set up the new `stable` package repository and install the latest version:
 
@@ -50,7 +50,7 @@ To set up the new `stable` package repository and install the latest version:
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
 sudo apt-get install --yes apt-transport-https
 sudo apt-get update
-sudo apt-get install --yes curl unzip mina-mainnet=1.3.1.2-25388a0
+sudo apt-get install --yes curl unzip mina-mainnet=1.4.0-c980ba8
 ```
 
 To verify the daemon is correctly installed:
@@ -62,7 +62,7 @@ mina version
 The expected output is:
 
 ```text
-Commit 25388a0fed9695e8e9d04f75f50c2bae1c9c80db on branch master
+Commit c980ba87c3417f40a7081225dfe7478c5ee70fd7 on branch master
 ```
 
 ## Start a standalone mina node
@@ -208,7 +208,7 @@ docker run --name mina -d \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:1.3.1.2-25388a0-bullseye-mainnet \
+minaprotocol/mina-daemon:1.4.0-c980ba8-bullseye-mainnet \
 daemon
 ```
 
