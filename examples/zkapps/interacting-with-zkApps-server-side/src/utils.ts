@@ -23,7 +23,7 @@ async function loopUntilAccountExists({
     let response = await fetchAccount({ publicKey: account });
     let accountExists = response.account !== undefined;
     if (isZkAppAccount) {
-      accountExists = response.account?.appState !== undefined;
+      accountExists = response.account?.zkapp?.appState !== undefined;
     }
     if (!accountExists) {
       eachTimeNotExist();
@@ -52,7 +52,7 @@ async function deploy(
   );
 
   let { account } = await fetchAccount({ publicKey: zkAppPublicKey });
-  let isDeployed = account?.verificationKey !== undefined;
+  let isDeployed = account?.zkapp?.verificationKey !== undefined;
 
   if (isDeployed) {
     console.log(

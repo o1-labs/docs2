@@ -17,9 +17,9 @@
     "@types/react-dom": "18.2.7",
     "coi-serviceworker": "^0.1.7",
     "next": "13.4.9",
+    "o1js": "^0.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6",
-    "snarkyjs": "0.*"
+    "typescript": "5.1.6"
   }
 }

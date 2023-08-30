@@ -1,28 +1,22 @@
-import {
-  Field,
-  Mina,
-  PrivateKey,
-  PublicKey,
-  fetchAccount,
-} from 'o1js';
+import { Field, Mina, PrivateKey, PublicKey, fetchAccount } from 'o1js';
 
 // ========================================================
 
-export const loopUntilAccountExists = async (
-  { account,
-    eachTimeNotExist,
-    isZkAppAccount
-  }:
-  { account: PublicKey,
-    eachTimeNotExist: () => void,
-    isZkAppAccount: boolean
-  }
-) => {
+export const loopUntilAccountExists = async ({
+  account,
+  eachTimeNotExist,
+  isZkAppAccount,
+}: {
+  account: PublicKey;
+  eachTimeNotExist: () => void;
+  isZkAppAccount: boolean;
+}) => {
   for (;;) {
     let response = await fetchAccount({ publicKey: account });
     let accountExists = response.error == null;
     if (isZkAppAccount) {
-      accountExists = accountExists && response.account!.appState != null;
+      accountExists =
+        accountExists && response.account!.zkapp!.appState != null;
     }
     if (!accountExists) {
       await eachTimeNotExist();
@@ -40,23 +34,23 @@ interface ToString {
   toString: () => string;
 }
 
-type FetchedAccountResponse = Awaited<ReturnType<typeof fetchAccount>>
-type FetchedAccount =  NonNullable<FetchedAccountResponse["account"]>
+type FetchedAccountResponse = Awaited<ReturnType<typeof fetchAccount>>;
+type FetchedAccount = NonNullable<FetchedAccountResponse['account']>;
 
-export const makeAndSendTransaction = async <State extends ToString>({ 
+export const makeAndSendTransaction = async <State extends ToString>({
   feePayerPrivateKey,
   zkAppPublicKey,
   mutateZkApp,
   transactionFee,
   getState,
-  statesEqual
-}: { 
-  feePayerPrivateKey: PrivateKey,
-  zkAppPublicKey: PublicKey,
-  mutateZkApp: () => void,
-  transactionFee: number,
-  getState: () => State,
-  statesEqual: (state1: State, state2: State) => boolean
+  statesEqual,
+}: {
+  feePayerPrivateKey: PrivateKey;
+  zkAppPublicKey: PublicKey;
+  mutateZkApp: () => void;
+  transactionFee: number;
+  getState: () => State;
+  statesEqual: (state1: State, state2: State) => boolean;
 }) => {
   const initialState = getState();
 
@@ -107,17 +101,20 @@ export const makeAndSendTransaction = async <State extends ToString>({
 
 // ========================================================
 
-export const zkAppNeedsInitialization = async (
-  { zkAppAccount }: 
-  { zkAppAccount: FetchedAccount }
-) => {
-  console.warn('warning: using a `utils.ts` written before `isProved` made available. Check https://docs.minaprotocol.com/zkapps/tutorials/deploying-to-a-live-network for updates');
+export const zkAppNeedsInitialization = async ({
+  zkAppAccount,
+}: {
+  zkAppAccount: FetchedAccount;
+}) => {
+  console.warn(
+    'warning: using a `utils.ts` written before `isProved` made available. Check https://docs.minaprotocol.com/zkapps/tutorials/deploying-to-a-live-network for updates'
+  );
   // TODO when available in the future, use isProved.
-  const allZeros = zkAppAccount.appState!.every((f: Field) =>
-    f.equals(Field.zero).toBoolean()
+  const allZeros = zkAppAccount.zkapp!.appState!.every((f: Field) =>
+    f.equals(Field(0)).toBoolean()
   );
   const needsInitialization = allZeros;
   return needsInitialization;
-}
+};
 
 // ========================================================

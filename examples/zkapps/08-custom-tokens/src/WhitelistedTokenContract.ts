@@ -82,7 +82,7 @@ export class WhitelistedTokenContract extends SmartContract {
     adminSignature.verify(this.address, [newWhitelistRoot]).assertTrue();
 
     // check leaf was empty
-    whitelistWitness.calculateRoot(Field.zero).assertEquals(whitelistTreeRoot);
+    whitelistWitness.calculateRoot(Field(0)).assertEquals(whitelistTreeRoot);
 
     // check its the new root
     whitelistWitness
