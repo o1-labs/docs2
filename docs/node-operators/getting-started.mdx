@@ -49,7 +49,7 @@ O(1) Labs has tested running nodes on several cloud providers. We recommend the 
 - Azure [Standard_F8s_v2](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-compute#fsv2-series-1)
 - Digital Ocean [c-8-16gib](https://cloud.digitalocean.com/droplets/new?size=c-8-16gib)
 
-Check out the [Connecting to the Mina Testnet (Google Cloud)](https://youtu.be/M9lE2lgyVEo) video for steps to configure your Mina node on Google Cloud.
+Check out the [Connecting to the Mina Testnet (Google Cloud)](https://youtu.be/M9lE2lgyVEo) video for steps to configure your mina node on Google Cloud.
 
 ## Installation
 
@@ -79,11 +79,11 @@ The expected output is `Commit c980ba87c3417f40a7081225dfe7478c5ee70fd7 on branc
 
 Windows is not natively supported. Instead, use the [Docker instructions](./#docker). 
 
-If you are interested in receiving a grant to develop Mina for Windows, send an email to grants@o1labs.org or reach out in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
+If you are interested in receiving a grant to develop Mina for Windows, email grants@o1labs.org or reach out in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
 
 ### macOS
 
-macOS is used by developers and is not officially supporting any pre-built packages at this time.
+macOS is used by developers and is not officially supporting any pre-built packages.
 
 Instead, use the Docker instructions or build from source.
 
@@ -103,7 +103,7 @@ Other operating systems haven't been tested thoroughly and might have issues. Yo
 
 If you are running a firewall, you must allow traffic on TCP port 8302.
 
-If the `-external-ip YOUR_IP` flag is not provided, the daemon uses HTTPS (443) and HTTP (80) to determine its own IP address.
+Unless the `-external-ip YOUR_IP` flag is provided, the daemon uses HTTPS (443) and HTTP (80) to determine its own IP address.
 
 Enable port forwarding on your router to allow inbound traffic to the following ports through your **external** IP address:
 
@@ -112,4 +112,4 @@ Enable port forwarding on your router to allow inbound traffic to the following 
 
 ## Next
 
-Now that you've installed Mina and configured your network, you are ready to move on to the next step: [generating a keypair](generating-a-keypair).
+Now that you've installed mina and configured your network, you can move on to the next step: [generating a keypair](generating-a-keypair).
