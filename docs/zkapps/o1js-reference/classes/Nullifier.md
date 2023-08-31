@@ -1,11 +1,11 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Nullifier
+[o1js](../README.md) / [Modules](../modules.md) / Nullifier
 
 # Class: Nullifier
 
 Nullifiers are used as a public commitment to a specific anonymous account,
 to forbid actions like double spending, or allow a consistent identity between anonymous actions.
 
-RFC: https://github.com/o1-labs/snarkyjs/issues/756
+RFC: https://github.com/o1-labs/o1js/issues/756
 
 Paper: https://eprint.iacr.org/2022/1255.pdf
 
@@ -42,6 +42,7 @@ Paper: https://eprint.iacr.org/2022/1255.pdf
 - [key](Nullifier.md#key)
 - [setUsed](Nullifier.md#setused)
 - [verify](Nullifier.md#verify)
+- [createTestNullifier](Nullifier.md#createtestnullifier)
 - [fromJSON](Nullifier.md#fromjson)
 - [sizeInFields](Nullifier.md#sizeinfields)
 
@@ -77,7 +78,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
+[lib/circuit_value.ts:367](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L367)
 
 ## Properties
 
@@ -110,7 +111,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:25](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L25)
+[lib/nullifier.ts:26](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L26)
 
 ___
 
@@ -142,7 +143,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:21](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L21)
+[lib/nullifier.ts:22](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L22)
 
 ___
 
@@ -167,7 +168,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:20](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L20)
+[lib/nullifier.ts:21](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L21)
 
 ___
 
@@ -192,7 +193,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L365)
+[lib/circuit_value.ts:367](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L367)
 
 ___
 
@@ -239,7 +240,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:134](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L134)
+[snarky.d.ts:134](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L134)
 
 ___
 
@@ -290,7 +291,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:115](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L115)
+[snarky.d.ts:115](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L115)
 
 ___
 
@@ -337,7 +338,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:104](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L104)
+[snarky.d.ts:104](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L104)
 
 ___
 
@@ -383,7 +384,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:94](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L94)
+[snarky.d.ts:94](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L94)
 
 ___
 
@@ -430,7 +431,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:368](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L368)
+[lib/circuit_value.ts:370](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L370)
 
 ___
 
@@ -480,7 +481,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:372](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L372)
+[lib/circuit_value.ts:374](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L374)
 
 ## Methods
 
@@ -510,7 +511,7 @@ nullifier.assertUnused();
 
 #### Defined in
 
-[lib/nullifier.ts:136](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L136)
+[lib/nullifier.ts:141](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L141)
 
 ___
 
@@ -532,7 +533,7 @@ let pk = nullifier.getPublicKey();
 
 #### Defined in
 
-[lib/nullifier.ts:165](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L165)
+[lib/nullifier.ts:170](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L170)
 
 ___
 
@@ -562,7 +563,7 @@ let isUnused = nullifier.isUnused();
 
 #### Defined in
 
-[lib/nullifier.ts:116](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L116)
+[lib/nullifier.ts:121](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L121)
 
 ___
 
@@ -586,7 +587,7 @@ let key = nullifier.key();
 
 #### Defined in
 
-[lib/nullifier.ts:103](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L103)
+[lib/nullifier.ts:108](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L108)
 
 ___
 
@@ -615,7 +616,7 @@ let newRoot = nullifier.setUsed(witness);
 
 #### Defined in
 
-[lib/nullifier.ts:151](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L151)
+[lib/nullifier.ts:156](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L156)
 
 ___
 
@@ -645,7 +646,35 @@ nullifier.verify(nullifierMessage);
 
 #### Defined in
 
-[lib/nullifier.ts:46](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L46)
+[lib/nullifier.ts:47](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L47)
+
+___
+
+### createTestNullifier
+
+▸ `Static` **createTestNullifier**(`message`, `sk`): `Nullifier`
+
+_Note_: This is *not* the recommended way to create a Nullifier in production. Please use mina-signer to create Nullifiers.
+Also, this function cannot be run within provable code to avoid unintended creations of Nullifiers - a Nullifier should never be created inside proveable code (e.g. a smart contract) directly, but rather created inside the users wallet (or other secure enclaves, so the private key never leaves that enclave).
+
+PLUME: An ECDSA Nullifier Scheme for Unique
+Pseudonymity within Zero Knowledge Proofs
+https://eprint.iacr.org/2022/1255.pdf chapter 3 page 14
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | [`Field`](Field.md)[] |
+| `sk` | [`PrivateKey`](PrivateKey.md) |
+
+#### Returns
+
+`Nullifier`
+
+#### Defined in
+
+[lib/nullifier.ts:183](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L183)
 
 ___
 
@@ -680,7 +709,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:31](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/nullifier.ts#L31)
+[lib/nullifier.ts:32](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/nullifier.ts#L32)
 
 ___
 
@@ -715,4 +744,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:124](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L124)
+[snarky.d.ts:124](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L124)

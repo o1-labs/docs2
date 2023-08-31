@@ -1,6 +1,6 @@
-[SnarkyJS](README.md) / Modules
+[o1js](README.md) / Modules
 
-# SnarkyJS
+# o1js
 
 ## Table of contents
 
@@ -128,6 +128,7 @@
 - [provable](modules.md#provable-2)
 - [provablePure](modules.md#provablepure)
 - [public\_](modules.md#public_)
+- [readVarMessage](modules.md#readvarmessage)
 - [scaleShifted](modules.md#scaleshifted)
 - [sendZkapp](modules.md#sendzkapp)
 - [setArchiveGraphqlEndpoint](modules.md#setarchivegraphqlendpoint)
@@ -135,6 +136,7 @@
 - [setGraphqlEndpoints](modules.md#setgraphqlendpoints)
 - [shutdown](modules.md#shutdown)
 - [state](modules.md#state-2)
+- [toConstantField](modules.md#toconstantfield)
 - [verify](modules.md#verify)
 - [withMessage](modules.md#withmessage)
 
@@ -146,9 +148,9 @@
 
 #### Defined in
 
-[lib/core.ts:55](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L55)
+[lib/core.ts:70](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L70)
 
-[lib/core.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L56)
+[lib/core.ts:71](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L71)
 
 ___
 
@@ -158,7 +160,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:11](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L11)
+[lib/bool.ts:17](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/bool.ts#L17)
 
 ___
 
@@ -168,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:86](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L86)
+[lib/field.ts:96](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L96)
 
 ___
 
@@ -178,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1506](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1506)
+[lib/zkapp.ts:1505](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1505)
 
 ___
 
@@ -188,9 +190,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -200,9 +202,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:41](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L41)
+[lib/core.ts:42](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L42)
 
-[lib/core.ts:42](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L42)
+[lib/core.ts:43](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L43)
 
 ___
 
@@ -212,9 +214,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L14)
+[lib/field.ts:24](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L24)
 
-[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L23)
+[lib/field.ts:33](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L33)
 
 ___
 
@@ -236,9 +238,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L57)
+[lib/field.ts:67](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L67)
 
-[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L65)
+[lib/field.ts:75](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L75)
 
 ___
 
@@ -254,7 +256,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L60)
+[lib/circuit_value.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L62)
 
 ___
 
@@ -270,7 +272,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L61)
+[lib/circuit_value.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L63)
 
 ___
 
@@ -288,7 +290,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:365](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L365)
+[snarky.d.ts:367](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L367)
 
 ___
 
@@ -298,9 +300,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L61)
+[lib/core.ts:76](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L76)
 
-[lib/core.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L62)
+[lib/core.ts:77](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L77)
 
 ___
 
@@ -334,7 +336,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:358](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L358)
+[snarky.d.ts:360](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L360)
 
 ___
 
@@ -353,7 +355,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:171](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L171)
+[lib/proof_system.ts:171](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L171)
 
 ___
 
@@ -363,7 +365,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:378](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L378)
+[snarky.d.ts:380](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L380)
 
 ___
 
@@ -373,7 +375,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:379](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L379)
+[snarky.d.ts:381](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L381)
 
 ___
 
@@ -383,7 +385,7 @@ ___
 
 `Provable<T>` is the general circuit type interface. It describes how a type `T` is made up of field elements and auxiliary (non-field element) data.
 
-You will find this as the required input type in a few places in SnarkyJS. One convenient way to create a `Provable<T>` is using `Struct`.
+You will find this as the required input type in a few places in o1js. One convenient way to create a `Provable<T>` is using `Struct`.
 
 #### Type parameters
 
@@ -393,9 +395,9 @@ You will find this as the required input type in a few places in SnarkyJS. One c
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L47)
 
 ___
 
@@ -412,7 +414,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:50](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L50)
+[lib/circuit_value.ts:52](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L52)
 
 ___
 
@@ -434,9 +436,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1234](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1234)
+[lib/zkapp.ts:1233](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1233)
 
-[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1553)
+[lib/zkapp.ts:1552](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1552)
 
 ___
 
@@ -466,9 +468,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L20)
 
 ___
 
@@ -484,9 +486,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L359)
 
-[lib/circuit_value.ts:55](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L55)
+[lib/circuit_value.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L57)
 
 ___
 
@@ -502,7 +504,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L650)
+[lib/fetch.ts:650](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L650)
 
 ___
 
@@ -512,9 +514,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -524,9 +526,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -556,9 +558,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1965)
+[lib/account_update.ts:1967](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1967)
 
-[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1969)
+[lib/account_update.ts:1971](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1971)
 
 ## Variables
 
@@ -568,9 +570,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -591,9 +593,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:14](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L14)
+[lib/field.ts:24](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L24)
 
-[lib/field.ts:23](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L23)
+[lib/field.ts:33](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L33)
 
 ___
 
@@ -615,9 +617,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L57)
+[lib/field.ts:67](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L67)
 
-[lib/field.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L65)
+[lib/field.ts:75](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L75)
 
 ___
 
@@ -643,9 +645,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:168](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L168)
+[lib/account_update.ts:166](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L166)
 
-[lib/account_update.ts:240](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L240)
+[lib/account_update.ts:238](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L238)
 
 ___
 
@@ -667,9 +669,9 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:492](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L492)
+[snarky.d.ts:498](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L498)
 
-[snarky.d.ts:510](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L510)
+[snarky.d.ts:516](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L516)
 
 ___
 
@@ -685,11 +687,11 @@ ___
 | `hash` | (`input`: [`Field`](classes/Field.md)[]) => [`Field`](classes/Field.md) |
 | `hashToGroup` | (`input`: [`Field`](classes/Field.md)[]) => { `x`: [`Field`](classes/Field.md) ; `y`: { `x0`: [`Field`](classes/Field.md) ; `x1`: [`Field`](classes/Field.md)  }  } |
 | `initialState` | () => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
-| `update` | (`state`: [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)], `input`: [`Field`](classes/Field.md)[]) => [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)] |
+| `update` | (`state`: [[`Field`](classes/Field.md), [`Field`](classes/Field.md), [`Field`](classes/Field.md)], `input`: [`Field`](classes/Field.md)[]) => [`Field`](classes/Field.md)[] |
 
 #### Defined in
 
-[lib/hash.ts:40](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/hash.ts#L40)
+[lib/hash.ts:42](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/hash.ts#L42)
 
 ___
 
@@ -717,9 +719,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L47)
 
 ___
 
@@ -763,31 +765,30 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `field.toBits` | [object Object] |  |
 | `field.toConstantAndTerms` | [object Object] | Unfolds AST to get `x = c + c0*Var(i0) + ... + cn*Var(in)`, returns `(c, [(c0, i0), ..., (cn, in)])`; c is optional |
 | `field.truncateToBits16` | [object Object] | returns x truncated to the lowest `16 * lengthDiv16` bits => can be used to assert that x fits in `16 * lengthDiv16` bits. more efficient than `toBits()` because it uses the EC_endoscalar gate; does 16 bits per row (vs 1 bits per row that you can do with generic gates). |
-| `group` | { `add`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `assertOnCurve`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => `void` ; `equals`: (`p1`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `p2`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `scale`: (`p`: `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>, `s`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\>  } | - |
-| `group.add` | [object Object] | Addition of two group elements, handles only variables. |
-| `group.assertOnCurve` | [object Object] | - |
-| `group.equals` | [object Object] | - |
+| `group` | { `ecadd`: (`p1`: `MlGroup`, `p2`: `MlGroup`, `p3`: `MlGroup`, `inf`: [`FieldVar`](modules.md#fieldvar-1), `same_x`: [`FieldVar`](modules.md#fieldvar-1), `slope`: [`FieldVar`](modules.md#fieldvar-1), `inf_z`: [`FieldVar`](modules.md#fieldvar-1), `x21_inv`: [`FieldVar`](modules.md#fieldvar-1)) => `MlGroup` ; `scale`: (`p`: `MlGroup`, `s`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlGroup`  } | - |
+| `group.ecadd` | [object Object] | Low-level Elliptic Curve Addition gate. |
 | `group.scale` | [object Object] | - |
-| `poseidon` | { `sponge`: { `absorb`: (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `create`: (`isChecked`: `boolean`) => `unknown` ; `squeeze`: (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1)  } ; `hash`: (`input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [`FieldVar`](modules.md#fieldvar-1) ; `hashToGroup`: (`input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `update`: (`state`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `isChecked`: `boolean`) => [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)]  } | - |
+| `poseidon` | { `sponge`: { `absorb`: (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `create`: (`isChecked`: `boolean`) => `unknown` ; `squeeze`: (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1)  } ; `hashToGroup`: (`input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlTuple`<[`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)\> ; `update`: (`state`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `input`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)]  } | - |
 | `poseidon.sponge` | { `absorb`: (`sponge`: `unknown`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `create`: (`isChecked`: `boolean`) => `unknown` ; `squeeze`: (`sponge`: `unknown`) => [`FieldVar`](modules.md#fieldvar-1)  } | - |
 | `poseidon.sponge.absorb` | [object Object] | - |
 | `poseidon.sponge.create` | [object Object] | - |
 | `poseidon.sponge.squeeze` | [object Object] | - |
-| `poseidon.hash` | [object Object] | - |
 | `poseidon.hashToGroup` | [object Object] | - |
 | `poseidon.update` | [object Object] | - |
-| `asProver` | (`f`: () => `void`) => `void` | Runs code as a prover. |
-| `constraintSystem` | (`f`: () => `void`) => { `digest`: `string` ; `json`: `JsonConstraintSystem` ; `rows`: `number`  } | Returns information about the constraint system in the callback function. |
+| `run` | { `asProver`: (`f`: () => `void`) => `void` ; `constraintSystem`: (`f`: () => `void`) => { `digest`: `string` ; `json`: `JsonConstraintSystem` ; `rows`: `number`  } ; `inProverBlock`: () => `boolean` ; `runAndCheck`: (`f`: () => `void`) => `void` ; `runUnchecked`: (`f`: () => `void`) => `void`  } | APIs that have to do with running provable code |
+| `run.asProver` | [object Object] | Runs code as a prover. |
+| `run.constraintSystem` | [object Object] | Returns information about the constraint system in the callback function. |
+| `run.inProverBlock` | [object Object] | Check whether we are inside an asProver or exists block |
+| `run.runAndCheck` | [object Object] | Runs code and checks its correctness. |
+| `run.runUnchecked` | [object Object] | Runs code in prover mode, without checking correctness. |
 | `exists` | (`sizeInFields`: `number`, `compute`: () => `MlArray`<`Uint8Array`\>) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> | witness `sizeInFields` field element variables Note: this is called "exists" because in a proof, you use it like this: > "I prove that there exists x, such that (some statement)" |
 | `existsVar` | (`compute`: () => `Uint8Array`) => [`FieldVar`](modules.md#fieldvar-1) | witness a single field element variable |
-| `runAndCheck` | (`f`: () => `void`) => `void` | Runs code and checks its correctness. |
-| `runUnchecked` | (`f`: () => `void`) => `void` | Runs code in prover mode, without checking correctness. |
 
 #### Defined in
 
-[snarky.d.ts:137](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L137)
+[snarky.d.ts:139](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L139)
 
-[snarky.d.ts:149](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L149)
+[snarky.d.ts:151](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L151)
 
 ___
 
@@ -824,6 +825,8 @@ ___
 | `hashInputFromJson.permissions` | [object Object] |
 | `hashInputFromJson.timing` | [object Object] |
 | `hashInputFromJson.update` | [object Object] |
+| `poseidon` | { `hashToGroup`: (`input`: `MlArray`<`Uint8Array`\>) => `MlTuple`<`Uint8Array`, `Uint8Array`\>  } |
+| `poseidon.hashToGroup` | [object Object] |
 | `signature` | { `dummySignature`: () => `string` ; `signFieldElement`: (`messageHash`: `Uint8Array`, `privateKey`: `Uint8Array`, `isMainnet`: `boolean`) => `string`  } |
 | `signature.dummySignature` | [object Object] |
 | `signature.signFieldElement` | [object Object] |
@@ -840,7 +843,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:413](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L413)
+[snarky.d.ts:415](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L415)
 
 ___
 
@@ -868,7 +871,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:612](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L612)
+[lib/account_update.ts:610](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L610)
 
 ___
 
@@ -878,9 +881,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -890,9 +893,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -902,9 +905,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1965](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1965)
+[lib/account_update.ts:1967](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1967)
 
-[lib/account_update.ts:1969](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1969)
+[lib/account_update.ts:1971](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1971)
 
 ___
 
@@ -918,7 +921,7 @@ ___
 
 #### Defined in
 
-[index.ts:109](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L109)
+[index.ts:113](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/index.ts#L113)
 
 ## Functions
 
@@ -939,7 +942,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1513](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1513)
+[lib/zkapp.ts:1512](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1512)
 
 ___
 
@@ -947,15 +950,31 @@ ___
 
 ▸ **Bool**(`...args`): [`Bool`](classes/Bool.md)
 
-A boolean value. You can use it like this:
+A boolean value. You can create it like this:
+
+**`Example`**
 
 ```
-const x = new Bool(true);
+const b = Bool(true);
 ```
 
-You can also combine multiple booleans via [[`not`]], [[`and`]], [[`or`]].
+You can also combine multiple Bools with boolean operations:
 
-Use [[assertEquals]] to enforce the value of a Bool.
+**`Example`**
+
+```ts
+const c = Bool(false);
+
+const d = b.or(c).and(false).not();
+
+d.assertTrue();
+```
+
+Bools are often created by methods on other types such as `Field.equals()`:
+
+```ts
+const b: Bool = Field(5).equals(6);
+```
 
 #### Parameters
 
@@ -969,7 +988,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
+[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -987,7 +1006,7 @@ You can create a new Field from everything "field-like" (`bigint`, integer `numb
 **`Example`**
 
 ```
-Field(10n); // Field contruction from a big integer
+Field(10n); // Field construction from a bigint
 Field(100); // Field construction from a number
 Field("1"); // Field construction from a decimal string
 ```
@@ -1003,11 +1022,12 @@ Creating a Field from a negative number can result in unexpected behavior if you
 **`Example`**
 
 ```
-const x = Field(-1); // Valid Field construction from negative number
-const y = Field(Field.ORDER - 1n); // equivalent to `x`
+const x = Field(-1); // valid Field construction from negative number
+const y = Field(Field.ORDER - 1n); // same as `x`
 ```
 
-**Important**: All the functions defined on a Field (arithmetic, logic, etc.) take their arguments as "field-like". A Field itself is also defined as a "field-like" element.
+**Important**: All the functions defined on a Field (arithmetic, logic, etc.) take their arguments as "field-like".
+A Field itself is also defined as a "field-like" element.
 
 #### Parameters
 
@@ -1023,7 +1043,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
+[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -1045,7 +1065,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:66](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/core.ts#L66)
+[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -1069,7 +1089,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:237](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/merkle_tree.ts#L237)
+[lib/merkle_tree.ts:238](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/merkle_tree.ts#L238)
 
 ___
 
@@ -1097,7 +1117,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1553](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1553)
+[lib/zkapp.ts:1552](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1552)
 
 ___
 
@@ -1117,7 +1137,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L73)
 
 ___
 
@@ -1125,7 +1145,7 @@ ___
 
 ▸ **Struct**<`A`, `T`, `J`, `Pure`\>(`type`, `options?`): (`value`: `T`) => `T` & { `_isStruct`: ``true``  } & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](modules.md#provable-1)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](modules.md#field-1)[] ; `packed?`: [[`Field`](modules.md#field-1), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
 
-`Struct` lets you declare composite types for use in snarkyjs circuits.
+`Struct` lets you declare composite types for use in o1js circuits.
 
 These composite types can be passed in as arguments to smart contract methods, used for on-chain state variables
 or as event / action types.
@@ -1175,7 +1195,7 @@ voter.vote(1, Bool(true));
 ```
 
 In addition to creating types composed of Field elements, you can also include auxiliary data which does not become part of the proof.
-This, for example, allows you to re-use the same type outside snarkyjs methods, where you might want to store additional metadata.
+This, for example, allows you to re-use the same type outside o1js methods, where you might want to store additional metadata.
 
 To declare non-proof values of type `string`, `number`, etc, you can use the built-in objects `String`, `Number`, etc.
 Here's how we could add the voter's name (a string) as auxiliary data:
@@ -1215,7 +1235,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:357](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L357)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L359)
 
 ___
 
@@ -1238,7 +1258,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L351)
+[lib/fetch.ts:351](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L351)
 
 ___
 
@@ -1278,7 +1298,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:262](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L262)
+[lib/circuit_value.ts:264](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L264)
 
 ___
 
@@ -1298,7 +1318,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L498)
+[lib/fetch.ts:498](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L498)
 
 ___
 
@@ -1320,7 +1340,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1362,7 +1382,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1539](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L1539)
+[lib/zkapp.ts:1538](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1538)
 
 ___
 
@@ -1422,7 +1442,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L163)
 
 ___
 
@@ -1456,7 +1476,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L131)
+[lib/fetch.ts:131](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L131)
 
 ___
 
@@ -1498,7 +1518,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L820)
+[lib/fetch.ts:820](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L820)
 
 ___
 
@@ -1520,7 +1540,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L394)
+[lib/fetch.ts:394](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L394)
 
 ___
 
@@ -1543,7 +1563,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L625)
+[lib/fetch.ts:625](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L625)
 
 ___
 
@@ -1563,7 +1583,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:363](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/bool.ts#L363)
+[lib/bool.ts:371](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/bool.ts#L371)
 
 ___
 
@@ -1583,7 +1603,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1232](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1232)
+[lib/field.ts:1281](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1281)
 
 ___
 
@@ -1624,7 +1644,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:271](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L271)
+[lib/circuit_value.ts:273](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L273)
 
 ___
 
@@ -1661,7 +1681,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:85](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/zkapp.ts#L85)
+[lib/zkapp.ts:84](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L84)
 
 ___
 
@@ -1683,7 +1703,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:247](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit_value.ts#L247)
+[lib/circuit_value.ts:249](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L249)
 
 ___
 
@@ -1762,7 +1782,29 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit.ts#L196)
+
+___
+
+### readVarMessage
+
+▸ **readVarMessage**(`methodName`, `varName`, `varDescription`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `methodName` | `string` |
+| `varName` | `string` |
+| `varDescription` | `string` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[lib/field.ts:1334](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1334)
 
 ___
 
@@ -1783,7 +1825,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:296](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/signature.ts#L296)
+[lib/signature.ts:301](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/signature.ts#L301)
 
 ___
 
@@ -1808,7 +1850,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L655)
+[lib/fetch.ts:655](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L655)
 
 ___
 
@@ -1830,7 +1872,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L100)
+[lib/fetch.ts:100](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L100)
 
 ___
 
@@ -1850,7 +1892,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L78)
+[lib/fetch.ts:78](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L78)
 
 ___
 
@@ -1870,7 +1912,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/fetch.ts#L71)
+[lib/fetch.ts:71](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L71)
 
 ___
 
@@ -1888,7 +1930,7 @@ ___
 
 #### Defined in
 
-[index.ts:114](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L114)
+[index.ts:118](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/index.ts#L118)
 
 ___
 
@@ -1936,7 +1978,30 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L87)
+
+___
+
+### toConstantField
+
+▸ **toConstantField**(`x`, `methodName`, `varName?`, `varDescription?`): [`ConstantField`](modules.md#constantfield)
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `x` | [`Field`](classes/Field.md) | `undefined` |
+| `methodName` | `string` | `undefined` |
+| `varName` | `string` | `'x'` |
+| `varDescription` | `string` | `'field element'` |
+
+#### Returns
+
+[`ConstantField`](modules.md#constantfield)
+
+#### Defined in
+
+[lib/field.ts:1309](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1309)
 
 ___
 
@@ -1957,7 +2022,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:137](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L137)
+[lib/proof_system.ts:137](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L137)
 
 ___
 
@@ -1978,4 +2043,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1254](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/field.ts#L1254)
+[lib/field.ts:1303](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1303)

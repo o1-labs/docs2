@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Encoding
+[o1js](../README.md) / [Modules](../modules.md) / Encoding
 
 # Namespace: Encoding
 
