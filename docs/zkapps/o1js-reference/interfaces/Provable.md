@@ -1,12 +1,12 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Provable
+[o1js](../README.md) / [Modules](../modules.md) / Provable
 
 # Interface: Provable<T\>
 
-`Provable<T>` is the general circuit type interface in SnarkyJS. `Provable<T>` interface describes how a type `T` is made up of [Field](../classes/Field.md) elements and "auxiliary" (non-provable) data.
+`Provable<T>` is the general circuit type interface in o1js. `Provable<T>` interface describes how a type `T` is made up of [Field](../classes/Field.md) elements and "auxiliary" (non-provable) data.
 
-`Provable<T>` is the required input type in a few places in SnarkyJS. One convenient way to create a `Provable<T>` is using `Struct`.
+`Provable<T>` is the required input type in a few places in o1js. One convenient way to create a `Provable<T>` is using `Struct`.
 
-The properties and methods on the provable type exist in all base SnarkyJS types as well (aka. [Field](../classes/Field.md), [Bool](../classes/Bool.md), etc.). In most cases, a zkApp developer does not need these functions to create zkApps.
+The properties and methods on the provable type exist in all base o1js types as well (aka. [Field](../classes/Field.md), [Bool](../classes/Bool.md), etc.). In most cases, a zkApp developer does not need these functions to create zkApps.
 
 ## Type parameters
 
@@ -60,7 +60,7 @@ For instance, calling check function on the type [Bool](../classes/Bool.md) asse
 
 #### Defined in
 
-[snarky.d.ts:75](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L75)
+[snarky.d.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L75)
 
 ___
 
@@ -91,7 +91,7 @@ An element of type `T` generated from the given provable and "auxiliary" data.
 
 #### Defined in
 
-[snarky.d.ts:56](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L56)
+[snarky.d.ts:56](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L56)
 
 ___
 
@@ -119,7 +119,7 @@ An array of any type describing how this `T` element is made up of "auxiliary" (
 
 #### Defined in
 
-[snarky.d.ts:44](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L44)
+[snarky.d.ts:44](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L44)
 
 ___
 
@@ -147,7 +147,7 @@ A [Field](../classes/Field.md) array describing how this `T` element is made up 
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L35)
+[snarky.d.ts:35](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L35)
 
 ## Methods
 
@@ -167,4 +167,4 @@ A `number` representing the size of the `T` type in terms of [Field](../classes/
 
 #### Defined in
 
-[snarky.d.ts:65](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L65)
+[snarky.d.ts:65](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L65)

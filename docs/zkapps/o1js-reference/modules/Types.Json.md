@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / [Types](Types.md) / Json
+[o1js](../README.md) / [Modules](../modules.md) / [Types](Types.md) / Json
 
 # Namespace: Json
 

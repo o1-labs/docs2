@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Experimental
+[o1js](../README.md) / [Modules](../modules.md) / Experimental
 
 # Namespace: Experimental
 
@@ -35,9 +35,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L97)
+[index.ts:101](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L101)
 
-[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L98)
+[index.ts:102](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L102)
 
 ## Variables
 
@@ -47,9 +47,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:97](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L97)
+[index.ts:101](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L101)
 
-[index.ts:98](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/index.ts#L98)
+[index.ts:102](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L102)
 
 ## Functions
 
@@ -76,7 +76,7 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[lib/proof_system.ts:189](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/proof_system.ts#L189)
+[lib/proof_system.ts:189](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L189)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1711](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/account_update.ts#L1711)
+[lib/account_update.ts:1709](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1709)
 
 ___
 
@@ -128,4 +128,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:456](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/lib/provable.ts#L456)
+[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L456)

@@ -1,4 +1,4 @@
-[SnarkyJS](../README.md) / [Modules](../modules.md) / Snarky
+[o1js](../README.md) / [Modules](../modules.md) / Snarky
 
 # Namespace: Snarky
 
@@ -23,7 +23,7 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:139](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L139)
+[snarky.d.ts:141](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L141)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:138](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L138)
+[snarky.d.ts:140](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L140)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:141](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L141)
+[snarky.d.ts:143](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L143)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:140](https://github.com/o1-labs/snarkyjs/blob/fdc740a/src/snarky.d.ts#L140)
+[snarky.d.ts:142](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L142)
