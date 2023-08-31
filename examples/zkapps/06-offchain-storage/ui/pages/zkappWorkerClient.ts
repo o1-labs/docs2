@@ -1,14 +1,12 @@
-import {
-  fetchAccount,
-  PublicKey,
-  PrivateKey,
-  Field,
-} from 'o1js'
+import { fetchAccount, PublicKey, PrivateKey, Field } from 'o1js';
 
-import type { ZkappWorkerRequest, ZkappWorkerReponse, WorkerFunctions } from './zkappWorker';
+import type {
+  ZkappWorkerRequest,
+  ZkappWorkerReponse,
+  WorkerFunctions,
+} from './zkappWorker';
 
 export default class ZkappWorkerClient {
-
   // ---------------------------------------------------------------------------------------
 
   loadO1jS() {
@@ -40,22 +38,30 @@ export default class ZkappWorkerClient {
     return this._call('compileContract', {});
   }
 
-  fetchAccount({ publicKey }: { publicKey: PublicKey }): ReturnType<typeof fetchAccount> {
-    const result = this._call('fetchAccount', { publicKey58: publicKey.toBase58() });
-    return (result as ReturnType<typeof fetchAccount>);
+  fetchAccount({
+    publicKey,
+  }: {
+    publicKey: PublicKey;
+  }): ReturnType<typeof fetchAccount> {
+    const result = this._call('fetchAccount', {
+      publicKey58: publicKey.toBase58(),
+    });
+    return result as ReturnType<typeof fetchAccount>;
   }
 
   initZkappInstance(publicKey: PublicKey) {
-    return this._call('initZkappInstance', { publicKey58: publicKey.toBase58() });
+    return this._call('initZkappInstance', {
+      publicKey58: publicKey.toBase58(),
+    });
   }
 
   createDeployTransaction(
-    feePayerPrivateKey: PrivateKey, 
-    transactionFee: number, 
+    feePayerPrivateKey: PrivateKey,
+    transactionFee: number,
     zkAppPrivateKey: PrivateKey
   ) {
     return this._call('createDeployTransaction', {
-      feePayerPrivateKey58: feePayerPrivateKey.toBase58(), 
+      feePayerPrivateKey58: feePayerPrivateKey.toBase58(),
       transactionFee,
       zkAppPrivateKey58: zkAppPrivateKey.toBase58(),
     });
@@ -66,18 +72,26 @@ export default class ZkappWorkerClient {
     const map = JSON.parse(result as string);
     const idx2fields = new Map<number, Field[]>();
     for (let strKey in map) {
-      idx2fields.set(parseInt(strKey), map[strKey].map((s: string) => Field.fromString(s)));
+      idx2fields.set(
+        parseInt(strKey),
+        map[strKey].map((s: string) => Field(s))
+      );
     }
     return idx2fields;
   }
 
-  createUpdateTransaction(feePayerPrivateKey: PrivateKey, transactionFee: number, idx: number, message: string) {
+  createUpdateTransaction(
+    feePayerPrivateKey: PrivateKey,
+    transactionFee: number,
+    idx: number,
+    message: string
+  ) {
     const feePayerPrivateKey58 = feePayerPrivateKey.toBase58();
-    return this._call('createUpdateTransaction', { 
-      feePayerPrivateKey58, 
+    return this._call('createUpdateTransaction', {
+      feePayerPrivateKey58,
       message,
       idx,
-      transactionFee
+      transactionFee,
     });
   }
 
@@ -94,12 +108,14 @@ export default class ZkappWorkerClient {
 
   worker: Worker;
 
-  promises: { [id: number]: { resolve: (res: any) => void, reject: (err: any) => void } };
+  promises: {
+    [id: number]: { resolve: (res: any) => void; reject: (err: any) => void };
+  };
 
   nextId: number;
 
   constructor() {
-    this.worker = new Worker(new URL('./zkappWorker.ts', import.meta.url))
+    this.worker = new Worker(new URL('./zkappWorker.ts', import.meta.url));
     this.promises = {};
     this.nextId = 0;
 
@@ -111,7 +127,7 @@ export default class ZkappWorkerClient {
 
   _call(fn: WorkerFunctions, args: any) {
     return new Promise((resolve, reject) => {
-      this.promises[this.nextId] = { resolve, reject }
+      this.promises[this.nextId] = { resolve, reject };
 
       const message: ZkappWorkerRequest = {
         id: this.nextId,
@@ -125,4 +141,3 @@ export default class ZkappWorkerClient {
     });
   }
 }
-
