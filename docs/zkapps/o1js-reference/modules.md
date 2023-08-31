@@ -148,9 +148,9 @@
 
 #### Defined in
 
-[lib/core.ts:70](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L70)
+[lib/core.ts:70](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L70)
 
-[lib/core.ts:71](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L71)
+[lib/core.ts:71](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L71)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:17](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/bool.ts#L17)
+[lib/bool.ts:17](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/bool.ts#L17)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:96](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L96)
+[lib/field.ts:96](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L96)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1505](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1505)
+[lib/zkapp.ts:1505](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1505)
 
 ___
 
@@ -190,9 +190,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -202,9 +202,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:42](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L42)
+[lib/core.ts:42](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L42)
 
-[lib/core.ts:43](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L43)
+[lib/core.ts:43](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L43)
 
 ___
 
@@ -214,9 +214,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:24](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L24)
+[lib/field.ts:24](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L24)
 
-[lib/field.ts:33](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L33)
+[lib/field.ts:33](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L33)
 
 ___
 
@@ -238,9 +238,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L67)
 
-[lib/field.ts:75](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L75)
+[lib/field.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L75)
 
 ___
 
@@ -256,7 +256,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L62)
+[lib/circuit_value.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L62)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L63)
+[lib/circuit_value.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L63)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:367](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L367)
+[snarky.d.ts:367](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L367)
 
 ___
 
@@ -300,9 +300,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:76](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L76)
+[lib/core.ts:76](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L76)
 
-[lib/core.ts:77](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L77)
+[lib/core.ts:77](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L77)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:360](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L360)
+[snarky.d.ts:360](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L360)
 
 ___
 
@@ -355,7 +355,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:171](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L171)
+[lib/proof_system.ts:171](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L171)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:380](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L380)
+[snarky.d.ts:380](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L380)
 
 ___
 
@@ -375,7 +375,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:381](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L381)
+[snarky.d.ts:381](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L381)
 
 ___
 
@@ -395,9 +395,9 @@ You will find this as the required input type in a few places in o1js. One conve
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L47)
 
 ___
 
@@ -414,7 +414,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:52](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L52)
+[lib/circuit_value.ts:52](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L52)
 
 ___
 
@@ -436,9 +436,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1233](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1233)
+[lib/zkapp.ts:1233](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1233)
 
-[lib/zkapp.ts:1552](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1552)
+[lib/zkapp.ts:1552](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1552)
 
 ___
 
@@ -468,9 +468,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L20)
 
 ___
 
@@ -486,9 +486,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:359](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L359)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L359)
 
-[lib/circuit_value.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L57)
+[lib/circuit_value.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L57)
 
 ___
 
@@ -504,7 +504,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L650)
+[lib/fetch.ts:650](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L650)
 
 ___
 
@@ -514,9 +514,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -526,9 +526,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -558,9 +558,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1967](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1967)
+[lib/account_update.ts:1967](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1967)
 
-[lib/account_update.ts:1971](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1971)
+[lib/account_update.ts:1971](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1971)
 
 ## Variables
 
@@ -570,9 +570,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:60](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L60)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:61](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L61)
 
 ___
 
@@ -593,9 +593,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:24](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L24)
+[lib/field.ts:24](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L24)
 
-[lib/field.ts:33](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L33)
+[lib/field.ts:33](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L33)
 
 ___
 
@@ -617,9 +617,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L67)
 
-[lib/field.ts:75](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L75)
+[lib/field.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L75)
 
 ___
 
@@ -645,9 +645,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:166](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L166)
+[lib/account_update.ts:166](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L166)
 
-[lib/account_update.ts:238](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L238)
+[lib/account_update.ts:238](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L238)
 
 ___
 
@@ -669,9 +669,9 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:498](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L498)
+[snarky.d.ts:498](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L498)
 
-[snarky.d.ts:516](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L516)
+[snarky.d.ts:516](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L516)
 
 ___
 
@@ -691,7 +691,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:42](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/hash.ts#L42)
+[lib/hash.ts:42](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/hash.ts#L42)
 
 ___
 
@@ -719,9 +719,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L47)
 
 ___
 
@@ -786,9 +786,9 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:139](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L139)
+[snarky.d.ts:139](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L139)
 
-[snarky.d.ts:151](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L151)
+[snarky.d.ts:151](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L151)
 
 ___
 
@@ -843,7 +843,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:415](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/snarky.d.ts#L415)
+[snarky.d.ts:415](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L415)
 
 ___
 
@@ -871,7 +871,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:610](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L610)
+[lib/account_update.ts:610](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L610)
 
 ___
 
@@ -881,9 +881,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L57)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:58](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L58)
 
 ___
 
@@ -893,9 +893,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L62)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L63)
 
 ___
 
@@ -905,9 +905,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1967](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1967)
+[lib/account_update.ts:1967](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1967)
 
-[lib/account_update.ts:1971](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/account_update.ts#L1971)
+[lib/account_update.ts:1971](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1971)
 
 ___
 
@@ -921,7 +921,7 @@ ___
 
 #### Defined in
 
-[index.ts:113](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/index.ts#L113)
+[index.ts:113](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L113)
 
 ## Functions
 
@@ -942,7 +942,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1512](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1512)
+[lib/zkapp.ts:1512](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1512)
 
 ___
 
@@ -988,7 +988,7 @@ const b: Bool = Field(5).equals(6);
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -1043,7 +1043,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -1065,7 +1065,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
 
 ___
 
@@ -1089,7 +1089,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:238](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/merkle_tree.ts#L238)
+[lib/merkle_tree.ts:238](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/merkle_tree.ts#L238)
 
 ___
 
@@ -1117,7 +1117,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1552](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1552)
+[lib/zkapp.ts:1552](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1552)
 
 ___
 
@@ -1137,7 +1137,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L73)
 
 ___
 
@@ -1235,7 +1235,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:359](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L359)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L359)
 
 ___
 
@@ -1258,7 +1258,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L351)
+[lib/fetch.ts:351](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L351)
 
 ___
 
@@ -1298,7 +1298,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:264](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L264)
+[lib/circuit_value.ts:264](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L264)
 
 ___
 
@@ -1318,7 +1318,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L498)
+[lib/fetch.ts:498](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L498)
 
 ___
 
@@ -1340,7 +1340,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1382,7 +1382,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1538](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L1538)
+[lib/zkapp.ts:1538](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1538)
 
 ___
 
@@ -1442,7 +1442,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L163)
 
 ___
 
@@ -1476,7 +1476,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L131)
+[lib/fetch.ts:131](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L131)
 
 ___
 
@@ -1518,7 +1518,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L820)
+[lib/fetch.ts:820](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L820)
 
 ___
 
@@ -1540,7 +1540,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L394)
+[lib/fetch.ts:394](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L394)
 
 ___
 
@@ -1563,7 +1563,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L625)
+[lib/fetch.ts:625](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L625)
 
 ___
 
@@ -1583,7 +1583,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:371](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/bool.ts#L371)
+[lib/bool.ts:371](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/bool.ts#L371)
 
 ___
 
@@ -1603,7 +1603,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1281](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1281)
+[lib/field.ts:1281](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1281)
 
 ___
 
@@ -1644,7 +1644,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:273](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L273)
+[lib/circuit_value.ts:273](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L273)
 
 ___
 
@@ -1681,7 +1681,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:84](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/zkapp.ts#L84)
+[lib/zkapp.ts:84](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L84)
 
 ___
 
@@ -1703,7 +1703,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:249](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit_value.ts#L249)
+[lib/circuit_value.ts:249](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L249)
 
 ___
 
@@ -1782,7 +1782,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L196)
 
 ___
 
@@ -1804,7 +1804,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1334](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1334)
+[lib/field.ts:1334](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1334)
 
 ___
 
@@ -1825,7 +1825,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:301](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/signature.ts#L301)
+[lib/signature.ts:301](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/signature.ts#L301)
 
 ___
 
@@ -1850,7 +1850,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L655)
+[lib/fetch.ts:655](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L655)
 
 ___
 
@@ -1872,7 +1872,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L100)
+[lib/fetch.ts:100](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L100)
 
 ___
 
@@ -1892,7 +1892,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L78)
+[lib/fetch.ts:78](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L78)
 
 ___
 
@@ -1912,7 +1912,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/fetch.ts#L71)
+[lib/fetch.ts:71](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L71)
 
 ___
 
@@ -1930,7 +1930,7 @@ ___
 
 #### Defined in
 
-[index.ts:118](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/index.ts#L118)
+[index.ts:118](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L118)
 
 ___
 
@@ -1978,7 +1978,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L87)
 
 ___
 
@@ -2001,7 +2001,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1309](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1309)
+[lib/field.ts:1309](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1309)
 
 ___
 
@@ -2022,7 +2022,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:137](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/proof_system.ts#L137)
+[lib/proof_system.ts:137](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L137)
 
 ___
 
@@ -2043,4 +2043,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1303](https://github.com/o1-labs/rename-snarkyjs/blob/fec4d35f/src/lib/field.ts#L1303)
+[lib/field.ts:1303](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1303)
