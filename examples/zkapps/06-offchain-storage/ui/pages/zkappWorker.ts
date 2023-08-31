@@ -13,7 +13,9 @@ import {
   CircuitString,
   Signature,
   Bool,
-} from 'snarkyjs'
+  MerkleTree,
+  MerkleWitness,
+} from 'o1js';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
@@ -28,19 +30,21 @@ const state = {
   zkAppAddress: null as null | PublicKey,
   zkapp: null as null | SignedMessageBoard,
   transaction: null as null | Transaction,
-  testAccounts: null as null | { publicKey: PublicKey; privateKey: PrivateKey; }[],
+  testAccounts: null as
+    | null
+    | { publicKey: PublicKey; privateKey: PrivateKey }[],
   isLocal: false,
-}
+};
 
 // ---------------------------------------------------------------------------------------
 
 const functions = {
-  loadSnarkyJS: async (args: {}) => {
+  loadO1js: async (args: {}) => {
     await isReady;
   },
   setActiveInstanceToBerkeley: async (args: {}) => {
     const Berkeley = Mina.BerkeleyQANet(
-      "https://proxy.berkeley.minaexplorer.com/graphql"
+      'https://proxy.berkeley.minaexplorer.com/graphql'
     );
     Mina.setActiveInstance(Berkeley);
   },
@@ -57,7 +61,9 @@ const functions = {
     state.storageServerAddress = args.storageServerAddress;
   },
   loadContract: async (args: {}) => {
-    const { SignedMessageBoard } = await import('../../contracts/build/src/SignedMessageBoard.js');
+    const { SignedMessageBoard } = await import(
+      '../../contracts/build/src/SignedMessageBoard.js'
+    );
     state.SignedMessageBoard = SignedMessageBoard;
   },
   compileContract: async (args: {}) => {
@@ -84,7 +90,7 @@ const functions = {
       state.storageServerAddress!,
       state.zkAppAddress!,
       8,
-      treeRoot,
+      treeRoot
     );
     var map: { [key: string]: string[] } = {};
     for (let [key, fields] of Object.entries(idx2fields)) {
@@ -92,14 +98,17 @@ const functions = {
     }
     return JSON.stringify(map);
   },
-  createInitTransaction: async (args: { feePayerPrivateKey58: string, transactionFee: number }) => {
+  createInitTransaction: async (args: {
+    feePayerPrivateKey58: string;
+    transactionFee: number;
+  }) => {
     // TODO
   },
-  createUpdateTransaction: async (args: { 
-    feePayerPrivateKey58: string, 
-    transactionFee: number,
-    idx: number,
-    message: string,
+  createUpdateTransaction: async (args: {
+    feePayerPrivateKey58: string;
+    transactionFee: number;
+    idx: number;
+    message: string;
   }) => {
     const feePayerKey = PrivateKey.fromBase58(args.feePayerPrivateKey58);
 
@@ -112,30 +121,30 @@ const functions = {
       state.storageServerAddress!,
       state.zkAppAddress!,
       8,
-      treeRoot,
+      treeRoot
     );
 
-    const priorLeafIsEmpty = !idx2fields.has(args.idx)
+    const priorLeafIsEmpty = !idx2fields.has(args.idx);
     let priorLeafMessage = CircuitString.fromString('');
     let priorLeafSigner = PrivateKey.random().toPublicKey();
     if (!priorLeafIsEmpty) {
       const fields = idx2fields.get(args.idx)!;
 
-      const publicKeyFields = fields.slice(0,2);
-      const messageFields = fields.slice(2,);
+      const publicKeyFields = fields.slice(0, 2);
+      const messageFields = fields.slice(2);
       const messageChars = messageFields.map((f) => new Character(f));
 
-      priorLeafSigner = PublicKey.fromGroup(new Group(publicKeyFields[0], publicKeyFields[1]));
+      priorLeafSigner = PublicKey.fromFields(publicKeyFields);
       priorLeafMessage = CircuitString.fromCharacters(messageChars);
     }
 
-    const tree = new Experimental.MerkleTree(8);
+    const tree = new MerkleTree(8);
     for (let [k, fields] of idx2fields) {
       tree.setLeaf(BigInt(k), Poseidon.hash(fields));
     }
 
-    class MerkleWitness extends Experimental.MerkleWitness(8) {}
-    const leafWitness = new MerkleWitness(tree.getWitness(BigInt(args.idx)));
+    class MerkleWitness8 extends MerkleWitness(8) {}
+    const leafWitness = new MerkleWitness8(tree.getWitness(BigInt(args.idx)));
 
     const message = CircuitString.fromString(args.message);
 
@@ -144,12 +153,13 @@ const functions = {
     const signature = Signature.create(feePayerKey, concat);
 
     idx2fields.set(args.idx, concat);
-    const [storedNewStorageNumber, storedNewStorageSignature] = await OffChainStorage.requestStore(
-      state.storageServerAddress!,
-      state.zkAppAddress!,
-      8,
-      idx2fields
-    );
+    const [storedNewStorageNumber, storedNewStorageSignature] =
+      await OffChainStorage.requestStore(
+        state.storageServerAddress!,
+        state.zkAppAddress!,
+        8,
+        idx2fields
+      );
 
     tree.setLeaf(BigInt(args.idx), Poseidon.hash(concat));
     const storedNewRoot = tree.getRoot();
@@ -158,31 +168,33 @@ const functions = {
       { feePayerKey, fee: args.transactionFee },
       () => {
         state.zkapp!.update(
-          (priorLeafMessage as any),
+          priorLeafMessage as any,
           priorLeafSigner,
           Bool(priorLeafIsEmpty),
           leafWitness,
-          (message as any),
+          message as any,
           publicKey,
           signature,
           storedNewRoot,
           storedNewStorageNumber,
-          storedNewStorageSignature,
+          storedNewStorageSignature
         );
         state.zkapp!.sign(feePayerKey);
       }
     );
     state.transaction = transaction;
   },
-  createDeployTransaction: async (args: { 
-    feePayerPrivateKey58: string, 
-    transactionFee: number,
-    zkAppPrivateKey58: string,
+  createDeployTransaction: async (args: {
+    feePayerPrivateKey58: string;
+    transactionFee: number;
+    zkAppPrivateKey58: string;
   }) => {
     const feePayerKey = PrivateKey.fromBase58(args.feePayerPrivateKey58);
     const zkAppPrivateKey = PrivateKey.fromBase58(args.zkAppPrivateKey58);
 
-    const serverPublicKey = await OffChainStorage.getPublicKey(state.storageServerAddress!);
+    const serverPublicKey = await OffChainStorage.getPublicKey(
+      state.storageServerAddress!
+    );
 
     const transaction = await Mina.transaction(feePayerKey, () => {
       AccountUpdate.fundNewAccount(feePayerKey);
@@ -199,11 +211,11 @@ const functions = {
   },
   sendUpdateTransaction: async (args: {}) => {
     if (state.isLocal) {
-      await state.transaction!.send().wait();
+      (await state.transaction!.send()).wait();
       return 'nohash_islocal';
     } else {
       var txn_res = await state.transaction!.send();
-      const transactionHash = await txn_res!.hash();
+      const transactionHash = txn_res!.hash();
       return transactionHash;
     }
   },
@@ -214,23 +226,26 @@ const functions = {
 export type WorkerFunctions = keyof typeof functions;
 
 export type ZkappWorkerRequest = {
-  id: number,
-  fn: WorkerFunctions,
-  args: any
-}
+  id: number;
+  fn: WorkerFunctions;
+  args: any;
+};
 
 export type ZkappWorkerReponse = {
-  id: number,
-  data: any
-}
+  id: number;
+  data: any;
+};
 if (process.browser) {
-  addEventListener('message', async (event: MessageEvent<ZkappWorkerRequest>) => {
-    const returnData = await functions[event.data.fn](event.data.args);
+  addEventListener(
+    'message',
+    async (event: MessageEvent<ZkappWorkerRequest>) => {
+      const returnData = await functions[event.data.fn](event.data.args);
 
-    const message: ZkappWorkerReponse = {
-      id: event.data.id,
-      data: returnData,
+      const message: ZkappWorkerReponse = {
+        id: event.data.id,
+        data: returnData,
+      };
+      postMessage(message);
     }
-    postMessage(message)
-  });
+  );
 }

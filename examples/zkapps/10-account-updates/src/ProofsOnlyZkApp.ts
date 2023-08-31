@@ -9,7 +9,7 @@ import {
   DeployArgs,
   PublicKey,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();

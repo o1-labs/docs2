@@ -1,5 +1,8 @@
 import { SignedMessageBoard } from './SignedMessageBoard.js';
-import { OffChainStorage, MerkleWitness8 } from 'experimental-zkapp-offchain-storage';
+import {
+  OffChainStorage,
+  MerkleWitness8,
+} from 'experimental-zkapp-offchain-storage';
 
 import {
   Mina,
@@ -13,7 +16,7 @@ import {
   Signature,
   Bool,
   shutdown,
-} from 'snarkyjs';
+} from 'o1js';
 
 import XMLHttpRequestTs from 'xmlhttprequest-ts';
 const NodeXMLHttpRequest =
@@ -84,7 +87,7 @@ async function main() {
 
     const publicKeyFields = fields.slice(0, 2);
     priorLeafSigner = PublicKey.fromGroup(
-      new Group(publicKeyFields[0], publicKeyFields[1])
+      new Group({ x: publicKeyFields[0], y: publicKeyFields[1] })
     );
 
     const messageFields = fields.slice(2);
@@ -139,4 +142,3 @@ async function main() {
 }
 
 main();
-

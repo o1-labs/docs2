@@ -20,7 +20,7 @@ import {
   State,
   state,
   UInt32,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class WrappedMina extends SmartContract {
   deploy(args?: DeployArgs) {

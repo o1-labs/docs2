@@ -11,7 +11,7 @@ import {
   PublicKey,
   Signature,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import {
   OffChainStorage,
@@ -34,7 +34,7 @@ export class SignedMessageBoard extends SmartContract {
 
   @method initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
-    this.storageNumber.set(Field.zero);
+    this.storageNumber.set(Field(0));
 
     const emptyTreeRoot = new MerkleTree(8).getRoot();
     this.storageTreeRoot.set(emptyTreeRoot);
