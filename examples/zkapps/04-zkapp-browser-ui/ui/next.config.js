@@ -6,7 +6,11 @@ const nextConfig = {
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
+<<<<<<< HEAD
       o1js: require('path').resolve('node_modules/o1js'),
+=======
+      snarkyjs: require('path').resolve('node_modules/snarkyjs')
+>>>>>>> 414f3c6da2851c4c5c678fce92bfe8f0d56ca5cc
     };
     config.experiments = { ...config.experiments, topLevelAwait: true };
     config.optimization.minimizer = [];
