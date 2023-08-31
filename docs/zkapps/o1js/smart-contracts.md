@@ -20,9 +20,9 @@ keywords:
 
 :::info
 
-Experimental. This API may change.
+[Experimental](/zkapps/experimental). This API may change.
 
-Specifically, we are looking into refactoring ZkProgram methods to explicitly return values rather than requiring them to be passed as further inputs.
+Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
 
 :::
 
