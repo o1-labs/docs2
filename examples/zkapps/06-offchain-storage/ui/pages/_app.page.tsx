@@ -39,7 +39,7 @@ export default function App() {
         const zkappWorkerClient = new ZkappWorkerClient();
 
         console.log('Loading o1js...');
-        await zkappWorkerClient.loadO1jS();
+        await zkappWorkerClient.loadO1js();
         console.log('done');
 
         if (useLocalTestInstance) {

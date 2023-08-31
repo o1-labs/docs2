@@ -9,7 +9,7 @@ import type {
 export default class ZkappWorkerClient {
   // ---------------------------------------------------------------------------------------
 
-  loadO1jS() {
+  loadO1js() {
     return this._call('loadO1js', {});
   }
 
