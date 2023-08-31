@@ -19,7 +19,7 @@ jobs:
       - name: Checkout o1js repo
         uses: actions/checkout@v3
         with:
-          repository: o1-labs/o1js
+          repository: o1-labs/rename-snarkyjs
           path: o1js
           ref: main
 
