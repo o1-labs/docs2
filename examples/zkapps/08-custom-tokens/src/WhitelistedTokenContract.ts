@@ -11,6 +11,7 @@ import {
   Signature,
   Poseidon,
   MerkleWitness,
+  UInt32,
 } from 'snarkyjs';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -19,6 +20,7 @@ const tokenSymbol = 'MYTKN';
 
 export class WhitelistedTokenContract extends SmartContract {
   @state(UInt64) totalAmountInCirculation = State<UInt64>();
+  @state(UInt32) mintNonce = State<UInt32>();
   @state(Field) whitelistTreeRoot = State<Field>();
 
   deploy(args: DeployArgs) {
@@ -54,11 +56,13 @@ export class WhitelistedTokenContract extends SmartContract {
     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
 
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+    let nonce = this.mintNonce.get();
+    this.mintNonce.assertEquals(nonce);
 
     adminSignature
       .verify(
         this.address,
-        amount.toFields().concat(receiverAddress.toFields())
+        amount.toFields().concat(...receiverAddress.toFields(), ...nonce.toFields())
       )
       .assertTrue();
 
@@ -67,6 +71,7 @@ export class WhitelistedTokenContract extends SmartContract {
       amount,
     });
 
+    this.mintNonce.set(nonce.add(1));
     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
   }
 
