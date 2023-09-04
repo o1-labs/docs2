@@ -5,6 +5,7 @@ node_modules
 # Production
 /**/*/build
 /**/*/dist
+/**/*/out
 build
 dist
 

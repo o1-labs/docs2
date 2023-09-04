@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './reactCOIServiceWorker';
-
+import styles from '../styles/Home.module.css';
+import GradientBG from './components/GradientBG';
 import ZkappWorkerClient from './zkappWorkerClient';
 
 import {
@@ -209,7 +210,7 @@ export default function Home() {
       publicKey: state.zkappPublicKey!,
     });
     const currentMessages = await state.zkappWorkerClient!.getMessages();
-    console.log('current state:', currentMessages.toString());
+    console.log('current state:', JSON.stringify([...currentMessages]));
 
     setState({ ...state, currentMessages });
   };
@@ -294,10 +295,14 @@ export default function Home() {
   }
 
   return (
-    <div>
-      {setup}
-      {accountDoesNotExist}
-      {mainContent}
-    </div>
+    <GradientBG>
+      <div className={styles.main} style={{ padding: 0 }}>
+        <div className={styles.center} style={{ padding: 0 }}>
+          {setup}
+          {accountDoesNotExist}
+          {mainContent}
+        </div>
+      </div>
+    </GradientBG>
   );
 }
