@@ -68,7 +68,7 @@ This implementation requires a trust assumption for zkApps that use it: both dev
 
 This trust assumption makes it useful for prototyping applications that need off-chain storage and for putting applications into production where these trust assumptions are reasonable. This implementation is not appropriate for zkApps where a trustless solution is needed.
 
-See the [zkApp-offchain-storage](https://github.com/es92/zkApp-offchain-storage) library to learn more about this implementation and see how it works.
+See the [zkApp-offchain-storage](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage) library to learn more about this implementation and see how it works.
 
 ### Grant Opportunity to Develop Single-Server Off-Chain Storage
 
@@ -84,10 +84,10 @@ Suggested improvements:
 
 ## Implement a Project Using Off-Chain Storage
 
-The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts) with a focus on:
+The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts) with a focus on:
 
-- [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts)
-- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) 
+- [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts)
+- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) 
 
 This project implements a Merkle tree where:
 
@@ -150,7 +150,7 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
 1. Now, add the experimental library for the off-chain storage server:
 
   ```sh
-  $ npm install experimental-zkapp-offchain-storage --save
+  $ npm install experimental-offchain-zkapp-storage --save
   ```
 
 1. Install the `xmlhttprequest-ts` TypeScript wrapper for the built-in HttpClient to emulate the browser XMLHttpRequest object:
@@ -179,14 +179,14 @@ In a new terminal window:
 
 ```sh
 $ cd 06-off-chain-storage
-$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
+$ node node_modules/experimental-offchain-zkapp-storage/build/src/storageServer.js
 ```
 
 ## Implement the smart contract
 
-For reference, a full copy of NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) example file is provided.
+For reference, a full copy of the [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) example file is provided.
 
-1. To start, open `NumberTreeContract.ts` in your editor. 
+1. To start, download and open `NumberTreeContract.ts` in your editor. 
 
 1. Start by adding the imports:
 
@@ -209,7 +209,7 @@ For reference, a full copy of NumberTreeContract.ts](https://github.com/o1-labs/
      16   OffChainStorage,
      17   Update,
      18   MerkleWitness8,
-     19 } from 'experimental-zkapp-offchain-storage';
+     19 } from 'experimental-offchain-zkapp-storage';
     ...
     ```
 
@@ -320,25 +320,33 @@ For reference, a full copy of NumberTreeContract.ts](https://github.com/o1-labs/
  87 }
 ```
 
-We get and assert the current state of the contract - and then we perform the update.
+Get and assert the current state of the contract, then perform the update.
 
-First, we check that the new leaf is greater than the old leaf.
+First, check that the new leaf is greater than the old leaf.
 
-Then, we check the update itself. In this example, we perform a single update to the tree, however with multiple witnesses, you can chain updates together to change the tree more than once in a single call to the storage server.
+Then, check the update itself. In this example, you perform a single update to the tree, however with multiple witnesses, you can chain updates together to change the tree more than once in a single call to the storage server.
 
-To assert the update is valid, we use a `assertRootUpdateValid` call from the `OffChainStorage` library. This checks that when the update is applied to the tree represented by the existing on-chain tree root, the data for the new tree is being stored by the storage server.
+To assert the update is valid, use a `assertRootUpdateValid` call from the `OffChainStorage` library. This checks that when the update is applied to the tree represented by the existing on-chain tree root, the data for the new tree is being stored by the storage server.
 
 That completes the smart contract!
 
 ## Implementing `main.ts`
 
-You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for reference.
+A full copy of the [src/main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) file is provided for reference.
 
-We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
+In this tutorial, you do not implement all of the code in the full file. Instead, focus on just a few parts of it, since much of the code is repeated from earlier tutorials. 
 
-Note that it contains logic for both running the contract locally and for deploying and interacting with it on Berkeley. This is a useful pattern when developing a new contract. If you would like to try it on Berkeley, deploy our contract as usual with `zk deploy`, set `useLocal` to false in `main.ts`, and add the name of your config to the end of your call to `node main.js`.
+1. To start, download [src/main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) to your src folder, and then open it in your editor. 
 
-To start, we will connect to the off-chain storage server:
+1. Note that the file contains logic for running the contract locally and for deploying and interacting with it on Berkeley. This logic is a useful pattern to follow when you develop a new contract. 
+
+1. To try it on Berkeley, deploy your contract as usual with `zk deploy`, set `useLocal` to `false` in `main.ts`, and then add the name of your config to the end of your call to `node main.js`.
+
+The following code:
+
+- Connects to the off-chain storage server
+- Gets its public key
+- Starts on port 3001
 
 ```ts
 ...
@@ -350,18 +358,16 @@ To start, we will connect to the off-chain storage server:
 ...
 ```
 
-Here, we connect to the storage server, and get its public key. Running the storage server as described above starts it by default on port 3001, and so this code is configured to connect to it there. In a real application, you would run the storage server on an externally exposed machine, and change this address from localhost to match.
+In a real application, you would run the storage server on an externally exposed machine, and change this address from `localhost` to match.
 
-Next we will describe the `updateTree` function, starting on line `120`.
-
-Our goal in this function is to:
+The goal of the `updateTree` function that starts on line 120 is to:
 
 1. Get the currently stored tree from the storage server
 2. Select a random leaf
 3. Change the value at that leaf to a bigger number
-4. Create a transaction that performs this update.
+4. Create a transaction that performs this update
 
-To start, let's get the existing tree:
+To start, get the existing tree:
 
 ```ts
 ...
@@ -383,11 +389,9 @@ To start, let's get the existing tree:
 ...
 ```
 
-Here, we get the current root stored in the contract - and request the data for that root from the storage server.
+Get the current root stored in the contract and request the data for that root from the storage server.
 
-Then, we convert that data from a map to a MerkleTree - and we get a witness for a random index of the merkle tree.
-
-Continuing:
+Then, convert that data from a map to a MerkleTree and get a witness for a random index of the Merkle tree:
 
 ```ts
 ...
@@ -405,7 +409,7 @@ Continuing:
 ...
 ```
 
-Here, we check if the leaf is empty, and shape our update accordingly. If the leaf was empty, we set it to one. Otherwise, we set the leaf to whatever used to be there, plus 3.
+Here, check if the leaf is empty, and shape the update accordingly. If the leaf was empty, set it to one. Otherwise, set the leaf to whatever used to be there, plus 3.
 
 ```ts
 ...
@@ -420,9 +424,9 @@ Here, we check if the leaf is empty, and shape our update accordingly. If the le
 ...
 ```
 
-And lastly, we request that the storage server stores our data. If successful, we are returned a new storage number and a signature, which we will use for updating the smart contract.
+And finally, request that the storage server stores the data. If successful, a new storage number and a signature is returned and is used for updating the smart contract.
 
-We call our smart contract as follows:
+Call your smart contract as follows:
 
 ```ts
 ...
@@ -451,10 +455,10 @@ We call our smart contract as follows:
 ...
 ```
 
-That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for review.
+That completes the review of the code to interact with the off-chain storage server! 
 
 ## Conclusion
 
-Congrats! We have finished building a smart contract that leverages off-chain storage
+Congratulations. You have finished building a smart contract that leverages off-chain storage. 
 
-Checkout [Tutorial 7](oracle) to learn how to use Oracles, to pull in data from the outside world into your zkApp.
+Check out [Tutorial 7: Oracles](/zkapps/tutorials/oracle) to learn how to use oracles to pull in data from the outside world into your zkApp.
