@@ -11,7 +11,7 @@ module.exports = {
   url: 'https://docs.minaprotocol.com',
   baseUrl: '/',
   onBrokenMarkdownLinks: 'warn',
-  onBrokenLinks: 'error',
+  onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'o1-labs',
   projectName: 'docs2',
