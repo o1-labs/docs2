@@ -7,7 +7,7 @@ import {
   Signature,
   PublicKey,
   Provable,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class MerkleWitness4 extends MerkleWitness(4) {}
 export class MerkleWitness8 extends MerkleWitness(8) {}

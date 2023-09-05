@@ -1,4 +1,4 @@
-import { fetchAccount, PublicKey, PrivateKey, Field } from 'snarkyjs';
+import { fetchAccount, PublicKey, PrivateKey, Field } from 'o1js';
 
 import type {
   ZkappWorkerRequest,

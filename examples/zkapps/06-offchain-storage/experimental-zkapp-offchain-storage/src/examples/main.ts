@@ -15,7 +15,7 @@ import {
   fetchAccount,
   Poseidon,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 import { OffChainStorage } from '../index.js';
 import { retryOperation } from '../utils/network.js';
 import { initializeMina, initializeKeys } from '../utils/mina-setup.js';

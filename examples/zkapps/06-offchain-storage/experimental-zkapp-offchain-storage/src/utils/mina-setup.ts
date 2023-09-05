@@ -1,4 +1,4 @@
-import { Mina, PrivateKey, fetchAccount } from 'snarkyjs';
+import { Mina, PrivateKey, fetchAccount } from 'o1js';
 
 type SetupOptions = {
   useLocalBlockchain: boolean;

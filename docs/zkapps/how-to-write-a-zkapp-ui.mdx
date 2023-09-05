@@ -126,9 +126,9 @@ After you have published your smart contract to npm, you can add it to any UI fr
 
 :::tip
 
-For a more performant UI, render your UI before importing and loading your smart contract so the SnarkyJS wasm workers can perform initialization without blocking the UI.
+For a more performant UI, render your UI before importing and loading your smart contract so the o1js wasm workers can perform initialization without blocking the UI.
 
-For example, if your UI is built using React, instead of a top level import, load the smart contract in a `useEffect`  to give the UI time to render its components before loading SnarkyJS.
+For example, if your UI is built using React, instead of a top level import, load the smart contract in a `useEffect`  to give the UI time to render its components before loading o1js.
 
 :::
 
@@ -160,10 +160,10 @@ onMounted(async () => {
 
 ### Enabling COOP and COEP headers
 
-To load SnarkyJS code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
+To load o1js code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
 and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers. 
 
-These headers enable SnarkyJS to use [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) that SnarkyJS relies on to enable important WebAssembly (Wasm) features.
+These headers enable o1js to use [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) that o1js relies on to enable important WebAssembly (Wasm) features.
 
 - Set `Cross-Origin-Opener-Policy` to `same-origin`.
 - Set `Cross-Origin-Embedder-Policy` to `require-corp`.

@@ -18,7 +18,7 @@ import {
   Struct,
   MerkleMap,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { LedgerContract } from './LedgerContract.js';
 import { BasicMerkleTreeContract } from './BasicMerkleTreeContract.js';

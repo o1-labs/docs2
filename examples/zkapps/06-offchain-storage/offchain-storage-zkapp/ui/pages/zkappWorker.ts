@@ -13,7 +13,7 @@ import {
   Bool,
   MerkleTree,
   MerkleWitness,
-} from 'snarkyjs';
+} from 'o1js';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
@@ -101,7 +101,6 @@ const functions = {
     }
     return JSON.stringify(map);
   },
-
   createUpdateTransaction: async (args: {
     feePayerPrivateKey58: string;
     transactionFee: number;
@@ -183,7 +182,6 @@ const functions = {
     transaction.sign([feePayerKey]);
     state.transaction = transaction;
   },
-
   createDeployTransaction: async (args: {
     feePayerPrivateKey58: string;
     transactionFee: number;

@@ -40,7 +40,7 @@ The manager account may also set a token symbol for its token, such as in this e
 
 In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src).
 
-You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts) for reference.
+You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts) for reference.
 
 ## Basic Token Example
 
@@ -61,7 +61,7 @@ First, we will bring in imports and setup the structure for our smart contract:
   8  UInt64,
   9  PublicKey,
  10  Signature,
- 11 } from 'snarkyjs';
+ 11 } from 'o1js';
  12
  13 const tokenSymbol = 'MYTKN';
  14
@@ -153,12 +153,12 @@ And, to see an example of putting rules around a token, see this example of a to
 
 With zkApps, you can also build smart contracts that interact with tokens - say, swapping one token for another, or taking deposits of Mina tokens, etc.
 
-This will come in a future part of this tutorial. For now, see this example [here](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/dex.ts) of a zkApp implementing an AMM-based DEX.
+This will come in a future part of this tutorial. For now, see this example [here](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/dex.ts) of a zkApp implementing an AMM-based DEX.
 
 ## Conclusion
 
 We have finished building a smart contract to manage a token, and shown how to build a smart contract that places custom rules over tokens!
 
-To learn more on tokens, see [the token docs](/zkapps/snarkyjs/custom-tokens).
+To learn more on tokens, see [the token docs](/zkapps/o1js/custom-tokens).
 
-Checkout [Tutorial 9](recursion) to learn how to use recursive ZKPs with SnarkyJS, to implement zkRollups, large computations, and more.
+Checkout [Tutorial 9](recursion) to learn how to use recursive ZKPs with o1js, to implement zkRollups, large computations, and more.

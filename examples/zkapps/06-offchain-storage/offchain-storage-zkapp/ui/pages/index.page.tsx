@@ -11,7 +11,7 @@ import {
   CircuitString,
   Character,
   Group,
-} from 'snarkyjs';
+} from 'o1js';
 
 const transactionFee = 100_000_000;
 

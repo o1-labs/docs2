@@ -33,9 +33,9 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 In previous tutorials, you learned how to deploy smart contracts to the network interact with them from a React UI and NodeJS.
 
-In this tutorial, you learn about types you can use when building with SnarkyJS. Earlier tutorials mostly use the `Field` type. SnarkyJS provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
+In this tutorial, you learn about types you can use when building with o1js. Earlier tutorials mostly use the `Field` type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
 
-All types are defined in the [SnarkyJS / Modules / Types](/zkapps/snarkyjs-reference/modules/Types) API reference documentation.
+All types are defined in the [o1js / Modules / Types](/zkapps/o1js-reference/modules/Types) API reference documentation.
 
 The [example project](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) includes a [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) file that shows all of the concepts presented in this tutorial, along with smart contracts showing more advanced usage of some of the concepts, particularly Merkle Trees.
 
@@ -49,11 +49,11 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
 
 Five basic types are derived from Fields:
 
-- [Bool](../snarkyjs-reference/classes/Bool)
-- [UInt32](../snarkyjs-reference/classes/UInt32)
-- [UInt64](../snarkyjs-reference/classes/UInt64)
-- [Int64](../snarkyjs-reference/classes/Int64)
-- [Character](../snarkyjs-reference/classes/Character)
+- [Bool](../o1js-reference/classes/Bool)
+- [UInt32](../o1js-reference/classes/UInt32)
+- [UInt64](../o1js-reference/classes/UInt64)
+- [Int64](../o1js-reference/classes/Int64)
+- [Character](../o1js-reference/classes/Character)
 
 Each type has the usual programming language semantics.
 
@@ -105,14 +105,14 @@ Fields in char1: 1
 
 Four advanced types are:
 
-- [CircuitString](../snarkyjs-reference/classes/CircuitString)
-- [PrivateKey](../snarkyjs-reference/classes/PrivateKey)
-- [PublicKey](../snarkyjs-reference/classes/Types.PublicKey)
-- [Signature](../snarkyjs-reference/classes/Signature)
+- [CircuitString](../o1js-reference/classes/CircuitString)
+- [PrivateKey](../o1js-reference/classes/PrivateKey)
+- [PublicKey](../o1js-reference/classes/Types.PublicKey)
+- [Signature](../o1js-reference/classes/Signature)
 
-All arguments passed into smart contracts must be arguments SnarkyJS can consume. You cannot pass normal strings. Instead, you must pass in strings that are wrapped to be compatible with circuits. This is accomplished with `Struct`.
+All arguments passed into smart contracts must be arguments o1js can consume. You cannot pass normal strings. Instead, you must pass in strings that are wrapped to be compatible with circuits. This is accomplished with `Struct`.
 
-The default `CircuitString` has a maximum length of 128 characters because SnarkyJS types must be fixed length. However, the `CircuitString` API abstracts this restriction away and can be used like a dynamic length string with the maximum length caveat.
+The default `CircuitString` has a maximum length of 128 characters because o1js types must be fixed length. However, the `CircuitString` API abstracts this restriction away and can be used like a dynamic length string with the maximum length caveat.
 
 You can create custom types to build your own strings, modified to whatever length you want.
 
@@ -167,13 +167,13 @@ There are 255 Fields in a private key and 256 Fields in a signature. If you are 
 
 ## Struct
 
-You can create your own compound data types with the special [Struct](../snarkyjs-reference#struct) type.
+You can create your own compound data types with the special [Struct](../o1js-reference#struct) type.
 
-Define a Struct as one or more data types that SnarkyJS understands. For example, Field, higher-order types built into SnarkyJS based on Field, or other Struct types defined by you. You can also define methods on your Struct to act upon this data type.
+Define a Struct as one or more data types that o1js understands. For example, Field, higher-order types built into o1js based on Field, or other Struct types defined by you. You can also define methods on your Struct to act upon this data type.
 
 The following example demonstrates how to use `Struct` to implement a `Point` structure and an array of points of length 8 structure.
 
-In SnarkyJS, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size. 
+In o1js, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size. 
 
 To meet the fixed-size requirement, this code declares the array in `Points8` structure to be a static size of 8.
 
@@ -212,15 +212,15 @@ points8 Fields: {"points":[{"x":"0","y":"0"},{"x":"1","y":"10"},{"x":"2","y":"20
 
 ## Control Flow
 
-Two functions help do control flow in SnarkyJS:
+Two functions help do control flow in o1js:
 
-- [Provable.if](../snarkyjs-reference/classes/Circuit#if)
+- [Provable.if](../o1js-reference/classes/Circuit#if)
   Similar to a ternary in JavaScript
 
-- [Provable.switch](../snarkyjs-reference/classes/Circuit#switch)
+- [Provable.switch](../o1js-reference/classes/Circuit#switch)
   Similar to a switch case statement in JavaScript
 
-You can write conditionals inside SnarkyJS with these functions.
+You can write conditionals inside o1js with these functions.
 
 For example:
 
@@ -271,28 +271,28 @@ inputSumAbs: 5
 largest: 22
 ```
 
-Both branches are executed when using `Provable.if`, like in a JavaScript ternary. Because SnarkyJS is creating a zk circuit, there is no primitive for `if` statements where only one branch is executed.
+Both branches are executed when using `Provable.if`, like in a JavaScript ternary. Because o1js is creating a zk circuit, there is no primitive for `if` statements where only one branch is executed.
 
 ## Assertions and Constraints
 
-SnarkyJS functions are compiled to generate circuits.
+o1js functions are compiled to generate circuits.
 
-When a transaction is proven in SnarkyJS, the proof is that the program logic is computed according to the written program, and all assertions are holding true.
+When a transaction is proven in o1js, the proof is that the program logic is computed according to the written program, and all assertions are holding true.
 
 In previous tutorials, you learned `a.assertEquals(b)`. The `.assertTrue()` is available on the Bool class.
 
-Circuits in SnarkyJS have a fixed maximum size. Each operation performed in a function counts towards this maximum size. This maximum size is equivalent to:
+Circuits in o1js have a fixed maximum size. Each operation performed in a function counts towards this maximum size. This maximum size is equivalent to:
 
 - about 5,200 hashes on two fields
 - about 2,600 hashes on four fields
 - about `2^17` field multiplies
 - about `2^17` field additions
 
-If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See [Recursion](../snarkyjs/recursion).
+If a program is too large to fit into these constraints, it can be broken up into multiple recursive proof verifications. See [Recursion](../o1js/recursion).
 
 ## Merkle Trees
 
-You can use [Merkle trees](../snarkyjs-reference/classes/MerkleTree) to manage large amounts of data within a circuit. The power of Merkle trees is demonstrated in the [05-common-types-and-functions/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) reference project for this tutorial. See the [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts) contract and [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) that demonstrates how contracts interact with Merkle trees and how to construct them.
+You can use [Merkle trees](../o1js-reference/classes/MerkleTree) to manage large amounts of data within a circuit. The power of Merkle trees is demonstrated in the [05-common-types-and-functions/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) reference project for this tutorial. See the [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts) contract and [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) that demonstrates how contracts interact with Merkle trees and how to construct them.
 
 The first step is to import `MerkleTree`:
 
@@ -313,7 +313,7 @@ const tree = new MerkleTree(height);
 
 The height variable determines how many leaves are available to the application. For example, a height of 20 leads to a tree with `2^(20-1)`, or 524,288 leaves.
 
-Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The [MerkleMapWitness](/zkapps/snarkyjs-reference/classes/MerkleMapWitness) represents the Merkle path to the data for which inclusion is being proved.
+Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The [MerkleMapWitness](/zkapps/o1js-reference/classes/MerkleMapWitness) represents the Merkle path to the data for which inclusion is being proved.
 
 A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf. 
 
@@ -419,7 +419,7 @@ A more advanced example `LedgerContract` implements a basic ledger of tokens, in
 
 ## Merkle Map
 
-See the API reference documentation for the [MerkleMap](../snarkyjs-reference/classes/MerkleMap) class you can use to implement key-value stores.
+See the API reference documentation for the [MerkleMap](../o1js-reference/classes/MerkleMap) class you can use to implement key-value stores.
 
 The API for Merkle Maps is similar to Merkle Trees, just instead of using an index to set a leaf, one uses a key:
 
@@ -499,14 +499,14 @@ const txn1 = await Mina.transaction(deployerAccount, () => {
 ...
 ```
 
-You use [MerkleMaps](/zkapps/snarkyjs-reference/classes/MerkleMap) to implement many useful patterns. For example:
+You use [MerkleMaps](/zkapps/o1js-reference/classes/MerkleMap) to implement many useful patterns. For example:
 
 - A key value store from public keys to booleans, of token accounts to whether they've participated in a voted yet.
 - A nullifier that privately tracks if an input was used, without revealing it.
 
 ## Conclusion
 
-Congratulations! You have finished reviewing more common types and functions in SnarkyJS. With this, you should now be capable of writing many advanced smart contracts and zkApps.
+Congratulations! You have finished reviewing more common types and functions in o1js. With this, you should now be capable of writing many advanced smart contracts and zkApps.
 
 To use more data from your zkApp, check out [Tutorial 6](offchain-storage) to learn how to use off-chain storage.
 

@@ -5,7 +5,7 @@ import {
 } from 'experimental-offchain-zkapp-storage';
 import fs from 'fs';
 
-import { Mina, PrivateKey, AccountUpdate, Field, Bool } from 'snarkyjs';
+import { Mina, PrivateKey, AccountUpdate, Field, Bool } from 'o1js';
 
 import { makeAndSendTransaction, loopUntilAccountExists } from './utils.js';
 

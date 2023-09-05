@@ -1,6 +1,6 @@
 {
   "name": "experimental-offchain-zkapp-storage",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "This project is currently under development and should not be used in production.",
   "author": "",
   "license": "Apache-2.0",
@@ -56,7 +56,7 @@
     "typescript": "^4.7.2"
   },
   "peerDependencies": {
-    "snarkyjs": "^0.12.1"
+    "o1js": "^0.12.1"
   },
   "dependencies": {
     "cors": "^2.8.5",

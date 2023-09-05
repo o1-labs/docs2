@@ -176,7 +176,7 @@ Start by adding our imports:
  10   PublicKey,
  11   Permissions,
  12   Bool,
- 13 } from 'snarkyjs';
+ 13 } from 'o1js';
  14
  15 import {
  16   OffChainStorage,
@@ -195,7 +195,7 @@ Notice we import some items from `zkapp-offchain-storage`:
   - `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
   - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 - `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
-- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
+- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for o1js to use the same instances of the witness cross-library.
 
 Continuing, let's setup our smart contract:
 

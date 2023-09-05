@@ -26,7 +26,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 You're making excellent progress in your zkApp journey:
 
-- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with SnarkyJS. 
+- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js. 
 - In [Tutorial 3: Deploy to a Live Network](deploying-to-a-network), you used the `zk config` command to create a deploy alias.
 
 In this tutorial, you implement a browser UI using ReactJS that interacts with a smart contract. 
@@ -39,7 +39,7 @@ In this tutorial, you implement a browser UI using ReactJS that interacts with a
 This tutorial has been tested with:
 
 - [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.0
-- [SnarkyJS](https://www.npmjs.com/package/snarkyjs) version 0.12.1
+- [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
 - [Auro Wallet](https://www.aurowallet.com/) version 2.2.3
 
 ## Use the working application first
@@ -170,9 +170,9 @@ If you were to make your own zkApp outside of this tutorial, edit files in the `
 
 ## Implement the UI
 
-The React UI has several components: the React page itself and the code that uses SnarkyJS.
+The React UI has several components: the React page itself and the code that uses o1js.
 
-Because SnarkyJS code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+Because o1js code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
 1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub to your local `/04-zkapp-browser-ui/ui/src/pages` directory:
 
@@ -224,7 +224,7 @@ The `import` statements set up your React project with the required imports. The
   1 import { useEffect, useState } from 'react';
   2 import './reactCOIServiceWorker';
   3 import ZkappWorkerClient from './zkappWorkerClient';
-  4 import { PublicKey, Field } from 'snarkyjs';
+  4 import { PublicKey, Field } from 'o1js';
   5 import GradientBG from '../components/GradientBG.js';
   6 import styles from '../styles/Home.module.css';
   7 
@@ -266,7 +266,7 @@ This code adds a function to set up the application:
 
 - The Boolean `hasBeenSetup` ensures that the react feature `useEffect` is run only once. To learn more about `useEffect` Hooks, see [useEffect](https://react.dev/reference/react/useEffect) in the React API Reference documentation. 
 
-- This code also sets up your web worker client that interacts with the web worker running SnarkyJS code to ensure the computationally heavy SnarkyJS code doesn't block the UI thread.
+- This code also sets up your web worker client that interacts with the web worker running o1js code to ensure the computationally heavy o1js code doesn't block the UI thread.
 
 ```ts
 ...
@@ -633,4 +633,4 @@ Congratulations! You built a React UI for your zkApp. The UI allows users to int
 
 You can build a UI for your application using any UI framework, not just React. The zkApp CLI also supports SvelteKit and NuxtJS projects.
 
-You are ready to continue with [Tutorial 5: Common Types and Functions](common-types-and-functions) to learn about different SnarkyJS types you can use in your application.
+You are ready to continue with [Tutorial 5: Common Types and Functions](common-types-and-functions) to learn about different o1js types you can use in your application.
