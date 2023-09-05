@@ -485,6 +485,7 @@ The API for Merkle Maps is similar to Merkle Trees, just instead of using an ind
 $ npm run build
 $ node build/src/run.js
 ```
+-->
 
 Which prints:
 
@@ -495,60 +496,59 @@ value for key 100: 50
 It can be used inside smart contracts with a witness, similar to merkle trees
 
 ```ts ignore
-...
-  @state(Field) mapRoot = State<Field>();
-...
-  @method init(initialRoot: Field) {
-    this.mapRoot.set(initialRoot);
-  }
-  @method update(
-    keyWitness: MerkleMapWitness,
-    keyToChange: Field,
-    valueBefore: Field,
-    incrementAmount: Field,
-  ) {
-    const initialRoot = this.mapRoot.get();
-    this.mapRoot.assertEquals(initialRoot);
-
-    incrementAmount.assertLessThan(Field(10));
-
-    // check the initial state matches what we expect
-    const [ rootBefore, key ] = keyWitness.computeRootAndKey(valueBefore);
-    rootBefore.assertEquals(initialRoot);
-
-    key.assertEquals(keyToChange);
-
-    // compute the root after incrementing
-    const [ rootAfter, _ ] = keyWitness.computeRootAndKey(valueBefore.add(incrementAmount));
-
-    // set the new root
-    this.treeRoot.set(rootAfter);
-  }
+214
+215   @state(Field) mapRoot = State<Field>();
+216
+217   @method init(initialRoot: Field) {
+218     this.mapRoot.set(initialRoot);
+219   }
+220   @method update(
+221     keyWitness: MerkleMapWitness,
+222     keyToChange: Field,
+223     valueBefore: Field,
+224     incrementAmount: Field,
+225   ) {
+226     const initialRoot = this.mapRoot.get();
+227     this.mapRoot.assertEquals(initialRoot);
+228
+229     incrementAmount.assertLessThan(Field(10));
+230
+231     // check the initial state matches what we expect
+232     const [ rootBefore, key ] = keyWitness.computeRootAndKey(valueBefore);
+233     rootBefore.assertEquals(initialRoot);
+234
+235     key.assertEquals(keyToChange);
+236
+237    // compute the root after incrementing
+238     const [ rootAfter, _ ] = keyWitness.computeRootAndKey(valueBefore.add(incrementAmount));
+239
+240     // set the new root
+241     this.treeRoot.set(rootAfter);
+242   }
 ```
 
 With (abbreviated) code to interact with it, similar to the Merkle tree example above:
 
 ```ts ignore
-const map = new MerkleMap();
-
-const rootBefore = map.getRoot();
-
-const key = Field(100);
-
-const witness = map.getWitness(key);
-...
-// update the smart contract
-const txn1 = await Mina.transaction(deployerAccount, () => {
-  zkapp.update(
-    contract.update(
-      witness,
-      key,
-      Field(50),
-      Field(5)
-    );
-  );
-});
-...
+243 const map = new MerkleMap();
+244
+245 const rootBefore = map.getRoot();
+246
+247 const key = Field(100);
+248
+249 const witness = map.getWitness(key);
+250
+251 // update the smart contract
+252 const txn1 = await Mina.transaction(deployerAccount, () => {
+253   zkapp.update(
+254     contract.update(
+255       witness,
+256       key,
+257       Field(50),
+258       Field(5)
+259     );
+260   );
+261 });
 ```
 
 You use [MerkleMaps](/zkapps/snarkyjs-reference/classes/MerkleMap) to implement many useful patterns. For example:
@@ -565,7 +565,3 @@ To use more data from your zkApp, check out [Tutorial 6](offchain-storage) to le
 ## Other Resources
 
 <ResponsiveVideo src="https://www.youtube.com/embed/nxM7VmJqoU4" />
-
-
-
-
