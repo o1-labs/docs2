@@ -2,6 +2,14 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/en", "destination": "/" },
-    { "source": "/en/:path(.*)", "destination": "/:path(.*)" }
+    { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
+    {
+      "source": "/zkapps/snarkyjs/:path(.*)",
+      "destination": "/zkapps/o1js/:path(.*)"
+    },
+    {
+      "source": "/zkapps/snarkyjs-reference/:path(.*)",
+      "destination": "/zkapps/o1js-reference/:path(.*)"
+    }
   ]
 }
