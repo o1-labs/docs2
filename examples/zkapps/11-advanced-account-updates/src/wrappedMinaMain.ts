@@ -9,12 +9,12 @@ import {
   UInt64,
   Token,
   PublicKey,
-} from 'snarkyjs';
+} from 'o1js';
 
 import util from 'util';
 
 // DEX reference code
-// https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/dex.ts
+// https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/dex.ts
 
 (async () => {
   await isReady;

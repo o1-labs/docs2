@@ -15,7 +15,7 @@ import {
   fetchAccount,
   Poseidon,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 import { OffChainStorage } from '../index.js';
 import { retryOperation } from '../utils/network.js';
 import { initializeMina, initializeKeys } from '../utils/mina-setup.js';
@@ -77,7 +77,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await deploy_txn.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      const hash = await res.hash(); // This will change in a future version of SnarkyJS
+      const hash = await res.hash(); // This will change in a future version of o1js
       if (hash == null) {
         console.log('error sending transaction (see above)');
       } else {
@@ -197,7 +197,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await txn1.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      const hash = await res.hash(); // This will change in a future version of SnarkyJS
+      const hash = await res.hash(); // This will change in a future version of o1js
       if (hash == null) {
         console.log('error sending transaction (see above)');
       } else {

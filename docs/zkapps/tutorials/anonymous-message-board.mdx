@@ -119,11 +119,11 @@ import {
   isReady,
   Poseidon,
   Encoding,
-} from 'snarkyjs';
+} from 'o1js';
 
 export { isReady, Field, Encoding };
 
-// Wait till our SnarkyJS instance is ready
+// Wait till our o1js instance is ready
 await isReady;
 
 // These private keys are exported so that experimenting with the contract is
@@ -166,7 +166,7 @@ export class Add extends SmartContract {
 }
 ```
 
-This will serve as the scaffolding for the rest of the tutorial and contains a smart contract called `Message` with two methods: `init()` and `publishMessage()`. The `init()` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. `publishMessage()` is the method that users will invoke when they want to create a new message. The `@method` decorator tells SnarkyJS that users should be allowed to call this method and that it should generate a zero-knowledge proof of its execution.
+This will serve as the scaffolding for the rest of the tutorial and contains a smart contract called `Message` with two methods: `init()` and `publishMessage()`. The `init()` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. `publishMessage()` is the method that users will invoke when they want to create a new message. The `@method` decorator tells o1js that users should be allowed to call this method and that it should generate a zero-knowledge proof of its execution.
 
 ## Writing the Smart Contract
 
@@ -191,9 +191,9 @@ export class Add extends SmartContract {
   @state(PublicKey) user3 = State<PublicKey>();
 ```
 
-The `@state(Field)` decorator tells SnarkyJS that the variable should be stored on-chain as a `Field` type.
+The `@state(Field)` decorator tells o1js that the variable should be stored on-chain as a `Field` type.
 
-For practical purposes, the `Field` type is similar to the `uint256` type in Solidity. It can store large integers, and addition, subtraction, and multiplication all work as expected. The only caveats are division and what happens in the event of an overflow. You can learn a little more about finite fields [here](https://en.wikipedia.org/wiki/Finite_field_arithmetic), but it’s not necessary to understand exactly how field arithmetic works for this tutorial. SnarkyJS also provides `UInt32`, `UInt64`, and `Int64` types, but under the hood, all SnarkyJS types are composed of the Field type (including `PublicKey`, as you see above).
+For practical purposes, the `Field` type is similar to the `uint256` type in Solidity. It can store large integers, and addition, subtraction, and multiplication all work as expected. The only caveats are division and what happens in the event of an overflow. You can learn a little more about finite fields [here](https://en.wikipedia.org/wiki/Finite_field_arithmetic), but it’s not necessary to understand exactly how field arithmetic works for this tutorial. o1js also provides `UInt32`, `UInt64`, and `Int64` types, but under the hood, all o1js types are composed of the Field type (including `PublicKey`, as you see above).
 
 ### Defining the `init()` method
 
@@ -231,7 +231,7 @@ Note that all inputs are private by default and will only exist on the user’s 
 
 ### Computing `signerPublicKey` from `signerPrivateKey`
 
-Now that we have the user’s private key, we’ll need to derive the associated public key to check it against the list of approved publishers. Luckily the `PrivateKey` type in SnarkyJS includes a `toPublicKey()` method.
+Now that we have the user’s private key, we’ll need to derive the associated public key to check it against the list of approved publishers. Luckily the `PrivateKey` type in o1js includes a `toPublicKey()` method.
 
 ```ts
 // Compute signerPublicKey from signerPrivateKey argument
@@ -247,7 +247,7 @@ const user2 = this.user2.get();
 const user3 = this.user3.get();
 ```
 
-Calling the `get()` method tells SnarkyJS to retrieve these values from the zkApp account’s on-chain state. (Note that SnarkyJS uses a single network request to retrieve all on-chain state values simultaneously.)
+Calling the `get()` method tells o1js to retrieve these values from the zkApp account’s on-chain state. (Note that o1js uses a single network request to retrieve all on-chain state values simultaneously.)
 
 Finally, we check if `signerPublicKey` is equal to one of the allowed public keys contained in our `user` variables.
 
@@ -260,7 +260,7 @@ signerPublicKey
   .assertEquals(true);
 ```
 
-Notice that we call the SnarkyJS `equals()` and `or()` methods instead of using the JavaScript operators (`===`, and `||`). The built-in SnarkyJS methods have the same effect, but they work with SnarkyJS types, and their execution can be verified using a zero-knowledge proof.
+Notice that we call the o1js `equals()` and `or()` methods instead of using the JavaScript operators (`===`, and `||`). The built-in o1js methods have the same effect, but they work with o1js types, and their execution can be verified using a zero-knowledge proof.
 
 `assertEquals(true)` at the end means that it will be impossible to generate a valid proof unless `signerPublicKey` is equal to one of the pre-approved users. The Mina network will reject any transaction sent to a zkApp account that doesn’t include a valid zero-knowledge proof for that account. So it will be impossible for users to post new messages unless they have a private key associated with one of the three pre-approved public keys.
 
@@ -336,13 +336,13 @@ What would you like to say? (should only work if you are one of the Bobs): Hello
 
 ## Wrapping up
 
-Hopefully you enjoyed this tutorial, and it gave you a sense of what's possible with SnarkyJS. The messaging protocol we built is quite simple but also very powerful. This basic pattern could be used to create a whistleblower system, an anonymous NFT project, or even anonymous DAO voting. SnarkyJS makes it easy for developers to build things that don’t intuitively seem possible, and this is really the point.
+Hopefully you enjoyed this tutorial, and it gave you a sense of what's possible with o1js. The messaging protocol we built is quite simple but also very powerful. This basic pattern could be used to create a whistleblower system, an anonymous NFT project, or even anonymous DAO voting. o1js makes it easy for developers to build things that don’t intuitively seem possible, and this is really the point.
 
 Zero-knowledge proofs open the door to an entirely different way of thinking about the internet, and we are so excited to see what people like you will build. 
 
 - Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord.  
 - If you are interested in building something more complex with the guidance of our team at O(1) Labs, you can watch for future zkApp Builders Programs. 
-- To suggest tutorials, submit your ideas in the [SnarkyJS/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link). 
+- To suggest tutorials, submit your ideas in the [o1js/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link). 
 
 Here are the logical next steps to extend this project.
 

@@ -5,7 +5,7 @@ import {
   State,
   method,
   MerkleWitness,
-} from 'snarkyjs';
+} from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
 
@@ -24,7 +24,7 @@ export class BasicMerkleTreeContract extends SmartContract {
     const initialRoot = this.treeRoot.get();
     this.treeRoot.assertEquals(initialRoot);
 
-    incrementAmount.assertLt(Field(10));
+    incrementAmount.assertLessThan(Field(10));
 
     // check the initial state matches what we expect
     const rootBefore = leafWitness.calculateRoot(numberBefore);

@@ -11,7 +11,7 @@ import {
   Signature,
   Poseidon,
   MerkleWitness,
-} from 'snarkyjs';
+} from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
 
@@ -82,7 +82,7 @@ export class WhitelistedTokenContract extends SmartContract {
     adminSignature.verify(this.address, [newWhitelistRoot]).assertTrue();
 
     // check leaf was empty
-    whitelistWitness.calculateRoot(Field.zero).assertEquals(whitelistTreeRoot);
+    whitelistWitness.calculateRoot(Field(0)).assertEquals(whitelistTreeRoot);
 
     // check its the new root
     whitelistWitness

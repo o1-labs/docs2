@@ -118,7 +118,7 @@ A digital system for recording the transaction of assets in which the transactio
 
 ## elliptic curves
 
-Equations with a specific template: _y^2 = x^3 + ax^ + b_: [secp256k1](/glossary#secp256k1), 
+Equations with a specific template, including: _y^2 = x^3 + ax^ + b_: [secp256k1](/glossary#secp256k1).
 
 ### elliptic-curve cryptography (ECC)
 
@@ -232,6 +232,10 @@ An incrementing number attached to a transaction used to prevent a replay of a t
 
 ## O
 
+### o1js
+
+A TypeScript library for zk-SNARKs and zkApps. Use o1js to write zk smart contracts based on zero knowledge proofs for the Mina Protocol.
+
 ### off-chain
 
 A transfer of value or data, including transactions, that occurs outside a given blockchain network. These transfers do not need blockchain network confirmation, which speeds up the transaction process and reduces lag time.
@@ -344,7 +348,7 @@ A unit of time. As of Mainnet launch, a slot in Mina is 3minutes long. An [epoch
 
 ### smart contract
 
-A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts are written with [SnarkyJS](#snarkyjs).
+A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts are written with [o1js](#o1js).
 
 ### SNARK
 
@@ -361,10 +365,6 @@ A node on the network that is participating in transaction SNARK generation (the
 ### snarked ledger
 
 The ledger that contains only the transactions that have an associated proof. The snarked ledger is updated after a proof has been emitted from the [scan state](#scan-state).
-
-### SnarkyJS
-
-A TypeScript library for zk-SNARKs and zkApps. Use SnarkyJS to write zk smart contracts based on zero knowledge proofs for the Mina Protocol.
 
 ### staged ledger
 
@@ -392,7 +392,7 @@ The syncing process builds the node's [transition frontier](#transition-frontier
 
 ### time-locked accounts
 
-An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/snarkyjs/time-locked-accounts).
+An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/o1js/time-locked-accounts).
 
 ### transaction pool
 
@@ -408,7 +408,7 @@ A local data store that contains the last `k` blocks of the network. With a rose
 
 ### TypeScript
 
-A superset of JavaScript that adds compile-time type safety. [SnarkyJS](https://www.npmjs.com/package/snarkyjs) is a TypeScript library for zk-SNARKs and zkApps. See the official [TypeScript docs](https://www.typescriptlang.org).
+A superset of JavaScript that adds compile-time type safety. [o1js](https://www.npmjs.com/package/o1js) is a TypeScript library for zk-SNARKs and zkApps. See the official [TypeScript docs](https://www.typescriptlang.org).
 
 ## U
 
@@ -438,7 +438,7 @@ A proof by which one party (a prover) can prove to another party (a verifier) th
 
 ### zkApp
 
-Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. The easiest way to write zk programs is using [SnarkyJS](https://www.npmjs.com/package/snarkyjs).
+Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
 
 ### zk-SNARK
 

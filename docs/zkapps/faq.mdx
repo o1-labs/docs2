@@ -1,27 +1,27 @@
 ---
-title: SnarkyJS FAQ
+title: o1js FAQ
 sidebar_label: FAQ
-description: Answers to common questions about SnarkyJS, a library that creates zk circuits from user code. Learn about the use of built-in SnarkyJS datatypes, functions, and the implications for proof generation.
+description: Answers to common questions about o1js, a library that creates zk circuits from user code. Learn about the use of built-in o1js datatypes, functions, and the implications for proof generation.
 keywords:
-  - SnarkyJS
+  - o1js
   - FAQ
   - zk circuits
   - smart contract
   - proof generation
 ---
 
-## Does SnarkyJS compile my JavaScript code to an arithmetic circuit?
+## Does o1js compile my JavaScript code to an arithmetic circuit?
 
-No, SnarkyJS **does NOT compile into anything else**. In contrast to other zk ecosystems, SnarkyJS is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method myMethod()`, for example, SnarkyJS simply calls `myMethod();` during proof generation.
+No, o1js **does NOT compile into anything else**. In contrast to other zk ecosystems, o1js is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method myMethod()`, for example, o1js simply calls `myMethod();` during proof generation.
 
-This works because SnarkyJS sets up some global state - a "circuit" - where it collects variables and constraints. The use of functions like `Field.mul` or `Bool.assertEquals` inside your smart contract methods add corresponding variables and constraints to the global circuit.
+This works because o1js sets up some global state - a "circuit" - where it collects variables and constraints. The use of functions like `Field.mul` or `Bool.assertEquals` inside your smart contract methods add corresponding variables and constraints to the global circuit.
 
 This has some implications:
 
-- To turn your logic into a proof, you must use SnarkyJS built-in datatypes such as `Field` and use the SnarkyJS functions that operate on them, like `Field.mul()`.
+- To turn your logic into a proof, you must use o1js built-in datatypes such as `Field` and use the o1js functions that operate on them, like `Field.mul()`.
   - A statement like `x.mul(y)` adds a generic PLONK gate to your circuit and returns a variable that you can use in further statements that get wired to the multiplication gate.
-  - Some SnarkyJS methods allow you to convert normal JavaScript datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. Methods like this that don't add anything to your circuit are typically clarified in a doc comment.
-- Conventional JS code such as `'hello world'.split('').join(' ')` that doesn't use SnarkyJS built-ins are not included in your zk proof in any way since it does add anything to your circuit.
+  - Some o1js methods allow you to convert normal JavaScript datatypes into `Field` elements and back, such as `Encoding.stringToFields()`. Methods like this that don't add anything to your circuit are typically clarified in a doc comment.
+- Conventional JS code such as `'hello world'.split('').join(' ')` that doesn't use o1js built-ins are not included in your zk proof in any way since it does add anything to your circuit.
   - Why? Because it doesn't call any of the functions that build the circuit.
   - There's nothing wrong with having non-circuit code inside your method, as long as you're aware of what it's (not) doing.
 - It's fine to use if-statements, for-loops, arrays, objects, and any other JS language constructs to facilitate writing circuits. But beware: these flexible constructs don't allow you to overcome the static nature of circuits.
@@ -35,7 +35,7 @@ for (let y of [5, 10, 15]) {
 }
 ```
 
-The previous for-loop example just stitches together a fixed number of SnarkyJS commands, which is fine. However, the following snippet, where the loop's length is determined from user input, won't work:
+The previous for-loop example just stitches together a fixed number of o1js commands, which is fine. However, the following snippet, where the loop's length is determined from user input, won't work:
 
 ```ts
 // bad

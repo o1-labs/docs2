@@ -10,7 +10,7 @@ import {
   PublicKey,
   Permissions,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { assertRootUpdateValid } from '../offChainStorage.js';
 

@@ -1,4 +1,4 @@
-import { Field, Mina, PrivateKey, PublicKey, fetchAccount } from 'snarkyjs';
+import { Field, Mina, PrivateKey, PublicKey, fetchAccount } from 'o1js';
 
 // ========================================================
 
@@ -21,7 +21,7 @@ export const loopUntilAccountExists = async ({
       await eachTimeNotExist();
       await new Promise((resolve) => setTimeout(resolve, 5000));
     } else {
-      // TODO add optional check that verification key is correct once this is available in SnarkyJS
+      // TODO add optional check that verification key is correct once this is available in o1js
       return response.account!;
     }
   }
@@ -73,7 +73,7 @@ export const makeAndSendTransaction = async <State extends ToString>({
 
   console.log('Sending the transaction...');
   const res = await transaction.send();
-  const hash = await res.hash(); // This will change in a future version of SnarkyJS
+  const hash = await res.hash(); // This will change in a future version of o1js
   if (hash == null) {
     console.log('error sending transaction (see above)');
   } else {

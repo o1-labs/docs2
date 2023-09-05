@@ -11,7 +11,7 @@ import {
   CircuitString,
   Character,
   Group,
-} from 'snarkyjs';
+} from 'o1js';
 
 const transactionFee = 100_000_000;
 
@@ -218,9 +218,7 @@ export default function Home() {
   // -------------------------------------------------------
   // Create UI elements
 
-  let setupText = state.hasBeenSetup
-    ? 'SnarkyJS Ready'
-    : 'Setting up SnarkyJS...';
+  let setupText = state.hasBeenSetup ? 'o1js Ready' : 'Setting up o1js...';
   let setup = <div> {setupText} </div>;
 
   let accountDoesNotExist;

@@ -14,7 +14,7 @@ import {
   CircuitString,
   Signature,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import XMLHttpRequestTs from 'xmlhttprequest-ts';
 const NodeXMLHttpRequest =
