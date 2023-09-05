@@ -25,7 +25,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Introduction to o1js
 
-o1js is a TypeScript (TS) library for:
+o1js, fka. SnarkyJS, is a TypeScript (TS) library for:
 
 - Writing general-purpose zk programs
 - Writing zk smart contracts for Mina
