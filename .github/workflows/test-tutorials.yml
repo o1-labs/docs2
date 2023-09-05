@@ -17,3 +17,16 @@ jobs:
           git config --global user.email "test@example.com"
           git config --global user.name "Test"
           npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.mdx
+  common-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          # In case of version change, update README.md accordingly
+          node-version: 16
+      - run: |
+          npm ci
+          git config --global user.email "test@example.com"
+          git config --global user.name "Test"
+          npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/05-common-types-and-functions.mdx

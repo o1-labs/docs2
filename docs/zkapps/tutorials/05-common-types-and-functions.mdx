@@ -28,7 +28,6 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-
 # Tutorial 5: Common Types and Functions
 
 In previous tutorials, you learned how to deploy smart contracts to the network interact with them from a React UI and NodeJS.
@@ -45,6 +44,15 @@ This tutorial has been verified with [Mina zkApp CLI](https://github.com/o1-labs
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
+<!-- setting up a dummy project
+```sh
+$ npm install -g zkapp-cli
+$ zk project 05-common-types-and-functions
+$ cd 05-common-types-and-functions
+$ touch src/run.ts
+```
+-->
+
 ## Basic Types
 
 Five basic types are derived from Fields:
@@ -59,34 +67,42 @@ Each type has the usual programming language semantics.
 
 For example, the following code:
 
-```ts
-const num1 = UInt32.from(40);
-const num2 = UInt64.from(40);
+<!--
 
-const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
+```ts src/run.ts
+1 import { UInt32, UInt64, Bool, Int64, Character, Signature, PrivateKey, CircuitString, Provable, Struct, Field, MerkleTree, MerkleWitness, MerkleMap,  Mina, SmartContract, AccountUpdate, method, state, State } from 'snarkyjs';
+2
+```
+-->
 
-console.log(`num1 === num2: ${num1EqualsNum2.toString()}`);
-console.log(`Fields in num1: ${num1.toFields().length}`);
-
-// --------------------------------------
-
-const signedNum1 = Int64.from(-3);
-const signedNum2 = Int64.from(45);
-
-const signedNumSum = signedNum1.add(signedNum2);
-
-console.log(`signedNum1 + signedNum2: ${signedNumSum}`);
-console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
-
-// --------------------------------------
-
-const char1 = Character.fromString('c');
-const char2 = Character.fromString('d');
-const char1EqualsChar2: Bool = char1.equals(char2);
-
-console.log(`char1: ${char1}`);
-console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
-console.log(`Fields in char1: ${char1.toFields().length}`);
+```ts src/run.ts
+3 const num1 = UInt32.from(40);
+4 const num2 = UInt64.from(40);
+5
+6 const num1EqualsNum2: Bool = num1.toUInt64().equals(num2);
+7
+8 console.log(`num1 === num2: ${num1EqualsNum2.toString()}`);
+9 console.log(`Fields in num1: ${num1.toFields().length}`);
+10
+11 // --------------------------------------
+12
+13 const signedNum1 = Int64.from(-3);
+14 const signedNum2 = Int64.from(45);
+15
+16 const signedNumSum = signedNum1.add(signedNum2);
+17
+18 console.log(`signedNum1 + signedNum2: ${signedNumSum}`);
+19 console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
+20
+21 // --------------------------------------
+22
+23 const char1 = Character.fromString('c');
+24 const char2 = Character.fromString('d');
+25 const char1EqualsChar2: Bool = char1.equals(char2);
+26
+27 console.log(`char1: ${char1}`);
+28 console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
+29 console.log(`Fields in char1: ${char1.toFields().length}`);
 ```
 
 This result prints to the console when the code is run:
@@ -100,6 +116,13 @@ char1: c
 char1 === char2: false
 Fields in char1: 1
 ```
+
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
+```
+-->
 
 ## More Advanced Types
 
@@ -118,34 +141,41 @@ You can create custom types to build your own strings, modified to whatever leng
 
 A brief example of custom types:
 
-```ts
-const str1 = CircuitString.fromString('abc..xyz');
-console.log(`str1: ${str1}`);
-console.log(`Fields in str1: ${str1.toFields().length}`);
-
-// --------------------------------------
-
-const zkAppPrivateKey = PrivateKey.random();
-const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
-
-const data1 = char2.toFields().concat(signedNumSum.toFields());
-const data2 = char1.toFields().concat(str1.toFields());
-
-const signature = Signature.create(zkAppPrivateKey, data2);
-
-const verifiedData1 = signature.verify(zkAppPublicKey, data1).toString();
-const verifiedData2 = signature.verify(zkAppPublicKey, data2).toString();
-
-console.log(`private key: ${zkAppPrivateKey.toBase58()}`);
-console.log(`public key: ${zkAppPublicKey.toBase58()}`);
-console.log(`Fields in private key: ${zkAppPrivateKey.toFields().length}`);
-console.log(`Fields in public key: ${zkAppPublicKey.toFields().length}`);
-
-console.log(`signature verified for data1: ${verifiedData1}`);
-console.log(`signature verified for data2: ${verifiedData2}`);
-
-console.log(`Fields in signature: ${signature.toFields().length}`);
+```ts src/run.ts
+30 const str1 = CircuitString.fromString('abc..xyz');
+31 console.log(`str1: ${str1}`);
+32 console.log(`Fields in str1: ${str1.toFields().length}`);
+33
+34 // --------------------------------------
+35
+36 const zkAppPrivateKey = PrivateKey.random();
+37 const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
+38
+39 const data1 = char2.toFields().concat(signedNumSum.toFields());
+40 const data2 = char1.toFields().concat(str1.toFields());
+41
+42 const signature = Signature.create(zkAppPrivateKey, data2);
+43
+44 const verifiedData1 = signature.verify(zkAppPublicKey, data1).toString();
+45 const verifiedData2 = signature.verify(zkAppPublicKey, data2).toString();
+46
+47 console.log(`private key: ${zkAppPrivateKey.toBase58()}`);
+48 console.log(`public key: ${zkAppPublicKey.toBase58()}`);
+49 console.log(`Fields in private key: ${zkAppPrivateKey.toFields().length}`);
+50 console.log(`Fields in public key: ${zkAppPublicKey.toFields().length}`);
+51
+52 console.log(`signature verified for data1: ${verifiedData1}`);
+53 console.log(`signature verified for data2: ${verifiedData2}`);
+54
+55 console.log(`Fields in signature: ${signature.toFields().length}`);
 ```
+
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
+```
+-->
 
 And the console output:
 
@@ -173,35 +203,42 @@ Define a Struct as one or more data types that SnarkyJS understands. For example
 
 The following example demonstrates how to use `Struct` to implement a `Point` structure and an array of points of length 8 structure.
 
-In SnarkyJS, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size. 
+In SnarkyJS, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size.
 
 To meet the fixed-size requirement, this code declares the array in `Points8` structure to be a static size of 8.
 
-```ts
-class Point extends Struct({ x: Field, y: Field }) {
-  static add(a: Point, b: Point) {
-    return { x: a.x.add(b.x), y: a.y.add(b.y) };
-  }
-}
-
-const point1 = { x: Field(10), y: Field(4) };
-const point2 = { x: Field(1), y: Field(2) };
-
-const pointSum = Point.add(point1, point2);
-
-console.log(`pointSum Fields: ${Point.toFields(pointSum)}`);
-
-class Points8 extends Struct({
-  points: [Point, Point, Point, Point, Point, Point, Point, Point],
-}) {}
-
-const points = new Array(8)
-  .fill(null)
-  .map((_, i) => ({ x: Field(i), y: Field(i * 10) }));
-const points8: Points8 = { points };
-
-console.log(`points8 JSON: ${JSON.stringify(points8)}`);
+```ts src/run.ts
+56 class Point extends Struct({ x: Field, y: Field }) {
+57   static add(a: Point, b: Point) {
+58     return { x: a.x.add(b.x), y: a.y.add(b.y) };
+59   }
+60 }
+61
+62 const point1 = { x: Field(10), y: Field(4) };
+63 const point2 = { x: Field(1), y: Field(2) };
+64
+65 const pointSum = Point.add(point1, point2);
+66
+67 console.log(`pointSum Fields: ${Point.toFields(pointSum)}`);
+68
+69 class Points8 extends Struct({
+70   points: [Point, Point, Point, Point, Point, Point, Point, Point],
+71 }) {}
+72
+73 const points = new Array(8)
+74   .fill(null)
+75   .map((_, i) => ({ x: Field(i), y: Field(i * 10) }));
+76 const points8: Points8 = { points };
+77
+78 console.log(`points8 JSON: ${JSON.stringify(points8)}`);
 ```
+
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
+```
+-->
 
 The console output:
 
@@ -224,44 +261,50 @@ You can write conditionals inside SnarkyJS with these functions.
 
 For example:
 
-```ts
-const input1 = Int64.from(10);
-const input2 = Int64.from(-15);
-
-const inputSum = input1.add(input2);
-
-const inputSumAbs = Provable.if(
-  inputSum.isPositive(),
-  inputSum,
-  inputSum.mul(Int64.minusOne)
-);
-
-console.log(`inputSum: ${inputSum.toString()}`);
-console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
-
-const input3 = Int64.from(22);
-
-const input1largest = input1
-  .sub(input2)
-  .isPositive()
-  .and(input1.sub(input3).isPositive());
-const input2largest = input2
-  .sub(input1)
-  .isPositive()
-  .and(input2.sub(input3).isPositive());
-const input3largest = input3
-  .sub(input1)
-  .isPositive()
-  .and(input3.sub(input2).isPositive());
-
-const largest = Provable.switch(
-  [input1largest, input2largest, input3largest],
-  Int64,
-  [input1, input2, input3]
-);
-
-console.log(`largest: ${largest.toString()}`);
+```ts src/run.ts
+79 const input1 = Int64.from(10);
+80 const input2 = Int64.from(-15);
+81
+82 const inputSum = input1.add(input2);
+83
+84 const inputSumAbs = Provable.if(
+85  inputSum.isPositive(),
+86  inputSum,
+87  inputSum.mul(Int64.minusOne)
+88 );
+89
+90 console.log(`inputSum: ${inputSum.toString()}`);
+91 console.log(`inputSumAbs: ${inputSumAbs.toString()}`);
+92
+93 const input3 = Int64.from(22);
+94
+95 const input1largest = input1
+96   .sub(input2)
+97   .isPositive()
+98   .and(input1.sub(input3).isPositive());
+99 const input2largest = input2
+100  .sub(input1)
+101  .isPositive()
+102  .and(input2.sub(input3).isPositive());
+103 const input3largest = input3
+104   .sub(input1)
+105   .isPositive()
+106   .and(input3.sub(input2).isPositive());
+107
+108 const largest = Provable.switch(
+109   [input1largest, input2largest, input3largest],
+110   Int64,
+111   [input1, input2, input3]
+112 );
+113 console.log(`largest: ${largest.toString()}`);
 ```
+
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
+```
+-->
 
 With output:
 
@@ -294,122 +337,125 @@ If a program is too large to fit into these constraints, it can be broken up int
 
 You can use [Merkle trees](../snarkyjs-reference/classes/MerkleTree) to manage large amounts of data within a circuit. The power of Merkle trees is demonstrated in the [05-common-types-and-functions/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) reference project for this tutorial. See the [BasicMerkleTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/BasicMerkleTreeContract.ts) contract and [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) that demonstrates how contracts interact with Merkle trees and how to construct them.
 
-The first step is to import `MerkleTree`:
-
-```ts
-import {
-  ...
-  MerkleTree,
-  ...
-} from 'snarkyjs'
-```
-
 To create Merkle trees in your application:
 
-```ts
-const height = 20;
-const tree = new MerkleTree(height);
+```ts src/run.ts
+114 const height = 20;
+115 const tree = new MerkleTree(height);
+116 class MerkleWitness20 extends MerkleWitness(height) {}
 ```
 
 The height variable determines how many leaves are available to the application. For example, a height of 20 leads to a tree with `2^(20-1)`, or 524,288 leaves.
 
 Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The [MerkleMapWitness](/zkapps/snarkyjs-reference/classes/MerkleMapWitness) represents the Merkle path to the data for which inclusion is being proved.
 
-A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf. 
+A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf.
 
 For example, to put a condition on a leaf update, the `update` function checks that the number added was less than 10:
 
-```ts
-...
-  @state(Field) treeRoot = State<Field>();
-...
-  @method initState(initialRoot: Field) {
-    this.treeRoot.set(initialRoot);
-  }
-
-  @method update(
-    leafWitness: MerkleWitness20,
-    numberBefore: Field,
-    incrementAmount: Field
-  ) {
-    const initialRoot = this.treeRoot.get();
-    this.treeRoot.assertEquals(initialRoot);
-
-    incrementAmount.assertLt(Field(10));
-
-    // check the initial state matches what we expect
-    const rootBefore = leafWitness.calculateRoot(numberBefore);
-    rootBefore.assertEquals(initialRoot);
-
-    // compute the root after incrementing
-    const rootAfter = leafWitness.calculateRoot(
-      numberBefore.add(incrementAmount)
-    );
-
-    // set the new root
-    this.treeRoot.set(rootAfter);
-  }
+```ts src/run.ts
+117 class BasicMerkleTreeContract extends SmartContract {
+118   @state(Field) treeRoot = State<Field>();
+119
+120   @method initState(initialRoot: Field) {
+121     this.treeRoot.set(initialRoot);
+122   }
+123
+124   @method update(
+125     leafWitness: MerkleWitness20,
+126     numberBefore: Field,
+127     incrementAmount: Field
+128   ) {
+129     const initialRoot = this.treeRoot.get();
+130     this.treeRoot.assertEquals(initialRoot);
+131
+132     incrementAmount.assertLessThan(Field(10));
+133
+134     // check the initial state matches what we expect
+135     const rootBefore = leafWitness.calculateRoot(numberBefore);
+136     rootBefore.assertEquals(initialRoot);
+137
+138     // compute the root after incrementing
+139     const rootAfter = leafWitness.calculateRoot(
+140       numberBefore.add(incrementAmount)
+141     );
+142
+143     // set the new root
+144     this.treeRoot.set(rootAfter);
+145   }
+146 }
 ```
 
 The code to interact with the smart contract:
 
-```ts
-// initialize the zkapp
-const zkApp = new BasicMerkleTreeContract(basicTreeZkAppAddress);
-await BasicMerkleTreeContract.compile();
-
-// create a new tree
-const height = 20;
-const tree = new MerkleTree(height);
-class MerkleWitness20 extends MerkleWitness(height) {}
-
-// deploy the smart contract
-const deployTxn = await Mina.transaction(deployerAccount, () => {
-  AccountUpdate.fundNewAccount(deployerAccount);
-  zkApp.deploy();
-  // get the root of the new tree to use as the initial tree root
-  zkApp.initState(tree.getRoot());
-});
-await deployTxn.prove();
-deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
-
-const pendingDeployTx = await deployTxn.send();
-/**
- * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash()`
- * `.hash()` returns the transaction hash
- * `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
- */
-await pendingDeployTx.wait();
-
-const incrementIndex = 522n;
-const incrementAmount = Field(9);
-
-// get the witness for the current tree
-const witness = new MerkleWitness20(tree.getWitness(incrementIndex));
-
-// update the leaf locally
-tree.setLeaf(incrementIndex, incrementAmount);
-
-// update the smart contract
-const txn1 = await Mina.transaction(senderPublicKey, () => {
-  zkApp.update(
-    witness,
-    Field(0), // leafs in new trees start at a state of 0
-    incrementAmount
-  );
-});
-await txn1.prove();
-const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
-await pendingTx.wait();
-
-// compare the root of the smart contract tree to our local tree
-console.log(
-  `BasicMerkleTree: local tree root hash after send1: ${tree.getRoot()}`
-);
-console.log(
-  `BasicMerkleTree: smart contract root hash after send1: ${zkApp.treeRoot.get()}`
-);
+```ts src/run.ts
+147 // initialize the zkapp
+148 let basicTreeZkAppPrivateKey = PrivateKey.random();
+149 let basicTreeZkAppAddress = basicTreeZkAppPrivateKey.toPublicKey();
+150
+151 let Local = Mina.LocalBlockchain({ proofsEnabled: false });
+152 Mina.setActiveInstance(Local);
+153 let deployerKey = Local.testAccounts[0].privateKey;
+154 let deployerAccount = deployerKey.toPublicKey();
+155 let senderPrivateKey = Local.testAccounts[1].privateKey;
+156 let senderPublicKey = senderPrivateKey.toPublicKey();
+157 const zkApp = new BasicMerkleTreeContract(basicTreeZkAppAddress);
+158 await BasicMerkleTreeContract.compile();
+159
+160 // deploy the smart contract
+161 const deployTxn = await Mina.transaction(deployerAccount, () => {
+162   AccountUpdate.fundNewAccount(deployerAccount);
+163   zkApp.deploy();
+164   // get the root of the new tree to use as the initial tree root
+165   zkApp.initState(tree.getRoot());
+166 });
+167 await deployTxn.prove();
+168 deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
+169
+170 const pendingDeployTx = await deployTxn.send();
+171 /**
+172  * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash()`
+173  * `.hash()` returns the transaction hash
+174  * `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
+175  */
+176 await pendingDeployTx.wait();
+177
+178 const incrementIndex = 522n;
+179 const incrementAmount = Field(9);
+180
+181 // get the witness for the current tree
+182 const witness = new MerkleWitness20(tree.getWitness(incrementIndex));
+183
+184 // update the leaf locally
+185 tree.setLeaf(incrementIndex, incrementAmount);
+186
+187 // update the smart contract
+188 const txn1 = await Mina.transaction(senderPublicKey, () => {
+189   zkApp.update(
+190     witness,
+191     Field(0), // leafs in new trees start at a state of 0
+192    incrementAmount
+193   );
+194 });
+195 await txn1.prove();
+196 const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
+197 await pendingTx.wait();
+198
+199 // compare the root of the smart contract tree to our local tree
+200 console.log(
+201   `BasicMerkleTree: local tree root hash after send1: ${tree.getRoot()}`
+202 );
+203 console.log(
+204   `BasicMerkleTree: smart contract root hash after send1: ${zkApp.treeRoot.get()}`
+205 );
 ```
+
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
+```
+-->
 
 In this example, leaves are fields. However, you can put more variables in a leaf by hashing an array of fields and setting a leaf to that hash.
 
@@ -423,15 +469,21 @@ See the API reference documentation for the [MerkleMap](../snarkyjs-reference/cl
 
 The API for Merkle Maps is similar to Merkle Trees, just instead of using an index to set a leaf, one uses a key:
 
-```ts
-const map = new MerkleMap();
+```ts ignore
+206 const map = new MerkleMap();
+207
+208 const key = Field(100);
+209 const value = Field(50);
+210
+211 map.set(key, value);
+212
+213 console.log('value for key', key.toString() + ':', map.get(key));
+```
 
-const key = Field(100);
-const value = Field(50);
-
-map.set(key, value);
-
-console.log('value for key', key.toString() + ':', map.get(key));
+<!--
+```sh
+$ npm run build
+$ node build/src/run.js
 ```
 
 Which prints:
@@ -442,7 +494,7 @@ value for key 100: 50
 
 It can be used inside smart contracts with a witness, similar to merkle trees
 
-```ts
+```ts ignore
 ...
   @state(Field) mapRoot = State<Field>();
 ...
@@ -458,7 +510,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
     const initialRoot = this.mapRoot.get();
     this.mapRoot.assertEquals(initialRoot);
 
-    incrementAmount.assertLt(Field(10));
+    incrementAmount.assertLessThan(Field(10));
 
     // check the initial state matches what we expect
     const [ rootBefore, key ] = keyWitness.computeRootAndKey(valueBefore);
@@ -476,7 +528,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 
 With (abbreviated) code to interact with it, similar to the Merkle tree example above:
 
-```ts
+```ts ignore
 const map = new MerkleMap();
 
 const rootBefore = map.getRoot();
@@ -513,3 +565,7 @@ To use more data from your zkApp, check out [Tutorial 6](offchain-storage) to le
 ## Other Resources
 
 <ResponsiveVideo src="https://www.youtube.com/embed/nxM7VmJqoU4" />
+
+
+
+
