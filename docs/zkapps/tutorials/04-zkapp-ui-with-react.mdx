@@ -55,6 +55,9 @@ Before you go through the tutorial steps, take a look at a working zkApp UI exam
       alt="Select Berkeley network in the wallet"
     />
   </figure>
+1. Select **Get Latest State** to view the state of the zkApp.
+1. Next, select **Send Transaction**. 
+1. In your Auro Wallet, select **Confirm** to send the transaction.
 
 ## High-Level Overview
 
@@ -96,6 +99,8 @@ The `zk project` command can scaffold the UI for your project.
     none
   ```
 
+  The Next.js React framework gives you building blocks to create web applications. When you select `next`, the `zk project` command creates the UI for your zkApp. 
+
 1. If you are prompted to install the required Next packages, press **y** to proceed. 
 
 1. Select **yes** at the `? Do you want to set up your project for deployment to Github Pages? …` prompt.
@@ -112,44 +117,6 @@ The `zk project` command can scaffold the UI for your project.
 
   - `contracts`: The smart contract code 
   - `ui`: Where you write your UI code
-
-### Install the dependencies
-
-1. In the `ui` directory:
-
-  ```sh
-  $ cd ../ui
-  $ npm install
-  ```
-
-1. In the `contracts` directory:
-
-  ```sh
-  $ cd contracts
-  $ npm install
-  ```
-
-## Create a repository
-
-When you want to interact with your deployed zkApp UI on GitHub pages, you must create a GitHub repository. Go ahead and create your repository now. You can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.	
-
-To interact with a deployed zkApp UI on GitHub pages, you must create a GitHub repository. 
-
-Go ahead and create your repository now. You can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.
-
-1. Go to [https://github.com/new](https://github.com/new).
-1. For the **Repository name**, enter `04-zkapp-browser-ui`.
-1. Optionally, add a description and a README.
-
-Your project repository is ready to use.
-
-## Project structure
-
-For all projects, you run `zk` commands from the root of your `04-zkapp-browser-ui` project directory. 
-
-For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
-
-Files that contain the UI code are in the `ui/src/pages` directory. 
 
 The expected output is:
 
@@ -169,6 +136,47 @@ Initializing project with template: default
 For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+### Install the dependencies
+
+1. Change to your local project `/04-zkapp-browser-ui/ui` directory:
+
+  ```sh
+  $ cd ../ui
+  ```
+
+1. Install the dependencies:
+
+  ```sh
+  $ npm install
+  ```
+
+1. Install the dependencies in the `/04-zkapp-browser-ui/` directory:
+
+  ```sh
+  $ cd ../contracts
+  $ npm install
+  ```
+
+## Create a repository
+
+To interact with a deployed zkApp UI on GitHub pages, you must create a GitHub repository.
+
+Go ahead and create your repository now. For other projects, you can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.
+
+1. Go to [https://github.com/new](https://github.com/new).
+1. For the **Repository name**, enter `04-zkapp-browser-ui`.
+1. Optionally, add a description and a README.
+
+Your project repository is ready to use.
+
+## Project structure
+
+For all projects, you run `zk` commands from the root of your `04-zkapp-browser-ui` project directory. 
+
+For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
+
+Files that contain the UI code are in the `ui/src/pages` directory. 
 
 ### Preparing the project
 
