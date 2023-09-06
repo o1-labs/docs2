@@ -241,6 +241,17 @@ module.exports = {
           editUrl: 'https://github.com/o1-labs/docs2/edit/main',
           remarkPlugins: [math],
           rehypePlugins: [katex],
+          admonitions: {
+            tag: ':::',
+            keywords: [
+              'note',
+              'tip',
+              'info',
+              'caution',
+              'danger',
+              'experimental',
+            ],
+          },
         },
         theme: {
           customCss: [require.resolve('./src/scss/custom.scss')],
