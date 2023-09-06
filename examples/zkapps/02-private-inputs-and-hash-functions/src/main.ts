@@ -6,11 +6,11 @@ import {
   Mina,
   PrivateKey,
   AccountUpdate,
-} from 'snarkyjs';
+} from 'o1js';
 
 await isReady;
 
-console.log('SnarkyJS loaded');
+console.log('o1js loaded');
 
 const useProof = false;
 

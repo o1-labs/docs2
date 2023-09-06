@@ -10,14 +10,14 @@ import {
   Poseidon,
   MerkleWitness,
   MerkleTree,
-} from 'snarkyjs';
+} from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
 
 (async function main() {
   await isReady;
 
-  console.log('SnarkyJS loaded');
+  console.log('o1js loaded');
 
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });

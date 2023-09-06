@@ -8,7 +8,7 @@ import {
   Permissions,
   UInt64,
   AccountUpdate,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class TokenUser extends SmartContract {
   static tokenSmartContractAddress: PublicKey;
