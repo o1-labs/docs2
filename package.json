@@ -8,6 +8,7 @@
     "dev": "ALGOLIA_APP_ID='.' ALGOLIA_SEARCH_API_KEY='.' docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle --typescript",
+    "swizzle-list": "docusaurus swizzle --list",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
