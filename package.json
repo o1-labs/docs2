@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "dev": "ALGOLIA_APP_ID='.' ALGOLIA_SEARCH_API_KEY='.' docusaurus start",
-    "build": "docusaurus build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -17,14 +17,14 @@
     "update-sidebar": "node scripts/update-sidebars-o1js-api.js && npx prettier --config .prettierrc --write sidebars.js"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.2.0",
-    "@docusaurus/cssnano-preset": "2.2.0",
-    "@docusaurus/plugin-client-redirects": "2.2.0",
-    "@docusaurus/plugin-debug": "2.2.0",
-    "@docusaurus/plugin-sitemap": "2.2.0",
-    "@docusaurus/preset-classic": "2.2.0",
-    "@docusaurus/theme-classic": "2.2.0",
-    "@docusaurus/theme-search-algolia": "2.2.0",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/cssnano-preset": "^2.4.1",
+    "@docusaurus/plugin-client-redirects": "^2.4.1",
+    "@docusaurus/plugin-debug": "^2.4.1",
+    "@docusaurus/plugin-sitemap": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
+    "@docusaurus/theme-classic": "^2.4.1",
+    "@docusaurus/theme-search-algolia": "^2.4.1",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
     "@types/shelljs": "^0.8.11",
@@ -42,7 +42,7 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.2.0",
+    "@docusaurus/module-type-aliases": "^2.4.1",
     "@tsconfig/docusaurus": "^1.0.4",
     "@types/react": "^17.0.20",
     "@types/react-helmet": "^6.1.2",
@@ -65,5 +65,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
