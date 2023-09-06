@@ -43,7 +43,7 @@
 }
 
 .admonitionTip {
-  @include admonition($backgroundColor: variables.$mina-teal);
+  @include admonition($backgroundColor: variables.$mina-lavender);
 }
 
 .admonitionDanger {
