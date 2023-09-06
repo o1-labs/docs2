@@ -29,16 +29,23 @@ You're making excellent progress in your zkApp journey:
 - In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js. 
 - In [Tutorial 3: Deploy to a Live Network](deploying-to-a-network), you used the `zk config` command to create a deploy alias.
 
-In this tutorial, you implement a browser UI using ReactJS that interacts with a smart contract. 
+In this tutorial, you implement a browser UI using React.js that interacts with a smart contract. 
 
 ## Prerequisites
 
+- Make sure you have the latest version of the zkApp CLI installed:
+
+    ```sh
+    $ npm install -g zkapp-cli
+    ```
+
 - Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
 - The Auro Wallet browser extension wallet that supports interactions with zkApps. See [Install a Wallet](/using-mina/install-a-wallet) and create a MINA account.
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.0
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.2
 - [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
 - [Auro Wallet](https://www.aurowallet.com/) version 2.2.3
 
@@ -78,7 +85,7 @@ This example uses an RPC endpoint.
 
 ## Create a project
 
-The `zk project` command can scaffold the UI for your project. 
+You can have the `zk project` command scaffold the UI for your project.
 
 1. Create or change to a directory where you have write privileges.
 
@@ -88,7 +95,7 @@ The `zk project` command can scaffold the UI for your project.
   $ zk project 04-zkapp-browser-ui
   ```
 
-  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `next`:
+  To scaffold the UI for your project with the Next.js React framework, select `next`:
 
   ```
     ? Create an accompanying UI project too? …
@@ -97,9 +104,7 @@ The `zk project` command can scaffold the UI for your project.
     nuxt
     empty
     none
-  ```
-
-  The Next.js React framework gives you building blocks to create web applications. When you select `next`, the `zk project` command creates the UI for your zkApp. 
+  ``` 
 
 1. If you are prompted to install the required Next packages, press **y** to proceed. 
 
@@ -115,25 +120,25 @@ The `zk project` command can scaffold the UI for your project.
 
   Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
 
-  - `contracts`: The smart contract code 
-  - `ui`: Where you write your UI code
+    - `contracts`: The smart contract code 
+    - `ui`: Where you write your UI code
 
-The expected output is:
+  The expected output is:
 
-```text
-➜  source zk project 04-zkapp-browser-ui --ui next
-✔ Do you want to set up your project for deployment to GitHub Pages? · yes
-✔ Would you like to use TypeScript with this project? … No / Yes
-✔ Would you like to use ESLint with this project? … No / Yes
-✔ Would you like to use Tailwind CSS with this project? … No / Yes
-Creating a new Next.js app in <yourfilepath>/04-zkapp-browser-ui/ui.
+  ```text
+  ➜  source zk project 04-zkapp-browser-ui --ui next
+  ✔ Do you want to set up your project for deployment to GitHub Pages? · yes
+  ✔ Would you like to use TypeScript with this project? … No / Yes
+  ✔ Would you like to use ESLint with this project? … No / Yes
+  ✔ Would you like to use Tailwind CSS with this project? … No / Yes
+  Creating a new Next.js app in <yourfilepath>/04-zkapp-browser-ui/ui.
 
-Using npm.
+  Using npm.
 
-Initializing project with template: default
-```
+  Initializing project with template: default
+  ```
 
-For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory as you work in the `ui/src/pages` directory on files that contain the UI code. 
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory. You work in the `ui/src/pages` directory on TypeScript files that contain the UI code. 
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -176,13 +181,13 @@ For all projects, you run `zk` commands from the root of your project directory.
 
 For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
 
-Files that contain the UI code are in the `ui/src/pages` directory. 
+Files that contain the UI code are in the `/04-zkapp-browser-ui/ui/src/pages` directory. 
 
 ### Preparing the project
 
-Start by deleting the default `rm index.page.tsx` file that comes with a new project.
+Start by deleting the default `index.page.tsx` file that comes with a new project so that you have a clean project to work with.
 
-1. In the `ui/src/pages` directory, delete the `index.page.tsx` file so that you have a clean project to work with:
+1. In the `/04-zkapp-browser-ui/ui/src/pages` directory:
 
   ```sh
   $ rm index.page.tsx
@@ -211,6 +216,8 @@ Outside of this tutorial, the workflow for building your own zkApp is to edit fi
 
 The React UI has several components: the React page itself and the code that uses o1js.
 
+### Download helper files
+
 Because o1js code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
 1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub:
@@ -225,13 +232,15 @@ Because o1js code is computationally intensive, it's helpful to use web workers.
     - `zkappWorker.ts` is the web worker code
     - `zkappWorkerClient.ts` is the code that is run from React to interact with the web worker
 
-### Implement the React app
+### Download the main browser UI logic file
 
 The example project has a completed app. The `index.page.tsx` file is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages.
 
 1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file. 
 
 1. Move the `index.page.tsx` file to your local `/04-zkapp-browser-ui/ui/src/pages` directory.
+
+### Import and export statements
 
 First, review the `import` and `export` statements:
 
@@ -391,7 +400,7 @@ This code creates an instance of the contract at a fixed address and gets its cu
 
 ### Update the state of the React app
 
-And finally for this function, update the state of the React app:
+And finally, this function updates the state of the React app:
 
 ```ts ignore
 ...
