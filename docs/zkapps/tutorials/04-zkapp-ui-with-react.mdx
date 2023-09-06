@@ -26,20 +26,27 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 You're making excellent progress in your zkApp journey:
 
-- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with SnarkyJS. 
+- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js. 
 - In [Tutorial 3: Deploy to a Live Network](deploying-to-a-network), you used the `zk config` command to create a deploy alias.
 
-In this tutorial, you implement a browser UI using ReactJS that interacts with a smart contract. 
+In this tutorial, you implement a browser UI using React.js that interacts with a smart contract. 
 
 ## Prerequisites
 
+- Make sure you have the latest version of the zkApp CLI installed:
+
+    ```sh
+    $ npm install -g zkapp-cli
+    ```
+
 - Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
 - The Auro Wallet browser extension wallet that supports interactions with zkApps. See [Install a Wallet](/using-mina/install-a-wallet) and create a MINA account.
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.0
-- [SnarkyJS](https://www.npmjs.com/package/snarkyjs) version 0.12.1
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.2
+- [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
 - [Auro Wallet](https://www.aurowallet.com/) version 2.2.3
 
 ## Use the working application first
@@ -55,10 +62,15 @@ Before you go through the tutorial steps, take a look at a working zkApp UI exam
       alt="Select Berkeley network in the wallet"
     />
   </figure>
+1. Select **Get Latest State** to view the state of the zkApp.
+1. Next, select **Send Transaction**. 
+1. In your Auro Wallet, select **Confirm** to send the transaction.
 
 ## High-Level Overview
 
-In this tutorial, you build an application that:
+In this tutorial, you create a new GitHub repository so you can deploy the UI to GitHub Pages.
+
+You use example code and the zkApp CLI to build an application that:
 
 1. Loads a public key from an extension-based wallet.
 1. Checks if the public key has funds and if not, directs the user to the faucet.
@@ -73,7 +85,7 @@ This example uses an RPC endpoint.
 
 ## Create a project
 
-The `zk project` command can scaffold the UI for your project. 
+You can have the `zk project` command scaffold the UI for your project.
 
 1. Create or change to a directory where you have write privileges.
 
@@ -83,18 +95,20 @@ The `zk project` command can scaffold the UI for your project.
   $ zk project 04-zkapp-browser-ui
   ```
 
-  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `next`:
+  To scaffold the UI for your project with the Next.js React framework, select `next`:
 
   ```
-  ? Create an accompanying UI project too? …
-❯ next
-  svelte
-  nuxt
-  empty
-  none
-  ```
+    ? Create an accompanying UI project too? …
+  ❯ next
+    svelte
+    nuxt
+    empty
+    none
+  ``` 
 
-1. Select **yes** at the `? Do you want to setup your project for deployment to Github Pages? …` prompt.
+1. If you are prompted to install the required Next packages, press **y** to proceed. 
+
+1. Select **yes** at the `? Do you want to set up your project for deployment to Github Pages? …` prompt.
 
 1. If you are prompted to install the required Next packages, press **y** to proceed. 
 
@@ -104,46 +118,76 @@ The `zk project` command can scaffold the UI for your project.
 
 1. Select **No** at the `? Would you like to use Tailwind CSS with this project?` prompt.
 
-Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
+  Your UI is created in the project directory: `/04-zkapp-browser-ui/ui` with two directories:
 
-- `contracts`: The smart contract code 
-- `ui`: Where you write your UI code
+    - `contracts`: The smart contract code 
+    - `ui`: Where you write your UI code
 
-1. Change to the `contracts` directory and run `npm install` to install all of the required dependencies:
+  The expected output is:
 
-  ```sh
-  $ cd contracts
-  $ npm install
+  ```text
+  ➜  source zk project 04-zkapp-browser-ui --ui next
+  ✔ Do you want to set up your project for deployment to GitHub Pages? · yes
+  ✔ Would you like to use TypeScript with this project? … No / Yes
+  ✔ Would you like to use ESLint with this project? … No / Yes
+  ✔ Would you like to use Tailwind CSS with this project? … No / Yes
+  Creating a new Next.js app in <yourfilepath>/04-zkapp-browser-ui/ui.
+
+  Using npm.
+
+  Initializing project with template: default
   ```
 
-1. Change to the `ui` directory and run `npm install` to install all of the required dependencies:
-
-  ```sh
-  $ cd ../ui
-  $ npm install
-  ```
-
-## Project structure
-
-For all projects, you run `zk` commands from the root of your `04-zkapp-browser-ui` project directory. 
-
-For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
-
-Files that contain the UI code are in the `ui/src/pages` directory. 
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory. You work in the `ui/src/pages` directory on TypeScript files that contain the UI code. 
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-### Preparing the project
+### Install the dependencies
 
-Start by deleting the default `rm index.page.tsx` file that comes with a new project.
+When you ran the `zk project` command, your UI was created in the project directory: `/04-zkapp-browser-ui/ui` with two sub-directories:
 
-1. Change to the `ui/src/pages` directory:
+  - `contracts`: The smart contract code 
+  - `ui`: Where you write your UI code
+
+Install the dependencies in each sub-directory.
+
+1. In the `/04-zkapp-browser-ui/ui` directory, run:
 
   ```sh
-  $ cd ui/src/pages
+  $ npm install
   ```
 
-1. Delete the `index.page.tsx` file so that you have a clean project to work with:
+1. In the `/04-zkapp-browser-ui/contracts` directory:
+
+  ```sh
+  $ npm install
+  ```
+
+## Create a repository
+
+To interact with a deployed zkApp UI on GitHub pages, you must create a GitHub repository.
+
+Go ahead and create your repository now. For other projects, you can name your GitHub repository anything you want. For this tutorial, use `04-zkapp-browser-ui`.
+
+1. Go to [https://github.com/new](https://github.com/new).
+1. For the **Repository name**, enter `04-zkapp-browser-ui`.
+1. Optionally, add a description and a README.
+
+Your project repository is ready to use.
+
+## Project structure
+
+For all projects, you run `zk` commands from the root of your project directory. 
+
+For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
+
+Files that contain the UI code are in the `/04-zkapp-browser-ui/ui/src/pages` directory. 
+
+### Preparing the project
+
+Start by deleting the default `index.page.tsx` file that comes with a new project so that you have a clean project to work with.
+
+1. In the `/04-zkapp-browser-ui/ui/src/pages` directory:
 
   ```sh
   $ rm index.page.tsx
@@ -153,78 +197,61 @@ Start by deleting the default `rm index.page.tsx` file that comes with a new pro
 
 This tutorial uses the default contract `Add` that is always scaffolded with the `zk project` command.
 
-Go back to root of your project directory:
+To build the default contract to use in the UI, run this command from the `/04-zkapp-browser-ui/contracts` directory:
 
 ```sh
-$ cd 04-zkapp-browser-ui
-```
-
-To build the default contract to use in the UI:
-
-```sh
-$ cd contracts
 $ npm run build
 ```
 
-If you were to make your own zkApp outside of this tutorial, edit files in the `contracts` folder and then rebuild the contract before accessing it from your UI.
+The expected output is:
+
+```text
+> 04-zkapp-browser-ui@0.1.0 build
+> tsc
+```
+
+Outside of this tutorial, the workflow for building your own zkApp is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI.
 
 ## Implement the UI
 
-The React UI has several components: the React page itself and the code that uses SnarkyJS.
+The React UI has several components: the React page itself and the code that uses o1js.
 
-Because SnarkyJS code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+### Download helper files
 
-1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub to your local `/04-zkapp-browser-ui/ui/src/pages` directory:
+Because o1js code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
+
+1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub:
 
     - [zkappWorker.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorker.ts)
     - [zkappWorkerClient.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorkerClient.ts)
+
+1. Move the files to your local `/04-zkapp-browser-ui/ui/src/pages` directory.
 
 1. Review each helper file to see how they work and how you can extend them for your own zkApp.
 
     - `zkappWorker.ts` is the web worker code
     - `zkappWorkerClient.ts` is the code that is run from React to interact with the web worker
 
-### Run the React app
+### Download the main browser UI logic file
 
-To run the React app, run commands from two different terminal windows in your local `/04-zkapp-browser-ui/ui/` directory. 
+The example project has a completed app. The `index.page.tsx` file is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages.
 
-1. In the first terminal window:
+1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file. 
 
-  ```sh
-  $ npm run dev
-  ```
+1. Move the `index.page.tsx` file to your local `/04-zkapp-browser-ui/ui/src/pages` directory.
 
-  This command starts hosting your application at the `localhost:3000` default location. 
-  
-  The zkApp UI in the web browser shows the current state of the zkApp and has buttons to send a transaction and get the latest state.
+### Import and export statements
 
-  Your browser refreshes automatically when your page has changes. Tip: If you are already hosting a different process on 3000, be sure to stop that process. 
+First, review the `import` and `export` statements:
 
-1. If prompted, request funds from the Testnet Faucet to fund your fee payer account.
+- The `import` statements set up your React project with the required imports. 
+- The `export` statement creates a placeholder empty component.
 
-  Follow the prompts to request tMINA. For this tutorial, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
-
-1. And in the second terminal window:
-
-  ```sh
-  $ npm run ts-watch
-  ```
-
-  This command shows TypeScript errors. As you develop your application, you can watch this window to check for type errors.
-
-### Implement the React app
-
-1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) file to your local `/04-zkapp-browser-ui/ui/src/pages` directory. 
-
-    - `index.page.tsx` contains the main logic for the browser UI that is ready to deploy to GitHub Pages
-
-The `import` statements set up your React project with the required imports. The `export` statement creates a placeholder empty component:
-
-```ts
+```ts ignore
   1 import { useEffect, useState } from 'react';
   2 import './reactCOIServiceWorker';
   3 import ZkappWorkerClient from './zkappWorkerClient';
-  4 import { PublicKey, Field } from 'snarkyjs';
+  4 import { PublicKey, Field } from 'o1js';
   5 import GradientBG from '../components/GradientBG.js';
   6 import styles from '../styles/Home.module.css';
   7 
@@ -237,7 +264,7 @@ The `import` statements set up your React project with the required imports. The
 
 ### Add state
 
-This export statement creates mutable state that you can reference in the UI. The state updates as the application runs:
+This `export` statement creates mutable state that you can reference in the UI. The state updates as the application runs:
 
 ```ts ignore
 ...
@@ -266,9 +293,9 @@ This code adds a function to set up the application:
 
 - The Boolean `hasBeenSetup` ensures that the react feature `useEffect` is run only once. To learn more about `useEffect` Hooks, see [useEffect](https://react.dev/reference/react/useEffect) in the React API Reference documentation. 
 
-- This code also sets up your web worker client that interacts with the web worker running SnarkyJS code to ensure the computationally heavy SnarkyJS code doesn't block the UI thread.
+- This code also sets up your web worker client that interacts with the web worker running o1js code to ensure the computationally heavy o1js code doesn't block the UI thread.
 
-```ts
+```ts ignore
 ...
  25   // -------------------------------------------------------
  26   // Do Setup
@@ -373,7 +400,7 @@ This code creates an instance of the contract at a fixed address and gets its cu
 
 ### Update the state of the React app
 
-And finally for this function, update the state of the React app:
+And finally, this function updates the state of the React app:
 
 ```ts ignore
 ...
@@ -395,6 +422,32 @@ And finally for this function, update the state of the React app:
 ...
 ```
 
+### Run the React app
+
+To run the React app, run commands from your local `/04-zkapp-browser-ui/ui/` directory. 
+
+1. To start hosting your application at the `localhost:3000` default location:
+
+  ```sh
+  $ npm run dev
+  ```
+
+ The zkApp UI in the web browser shows the current state of the zkApp and has buttons to send a transaction and get the latest state.
+
+  Your browser refreshes automatically when your page has changes. 
+
+1. If prompted, request funds from the Testnet Faucet to fund your fee payer account.
+
+  Follow the prompts to request tMINA. For this tutorial, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+
+1. And in the second terminal window:
+
+  ```sh
+  $ npm run ts-watch
+  ```
+
+  This command shows TypeScript errors. As you develop your application, you can watch this window to check for type errors.
+
 ### Write a new effect
 
 Now that the UI setup is finished, a new effect waits for the account to exist if it didn't exist before.
@@ -403,7 +456,7 @@ If the account has been newly created, it must be funded from the faucet.
 
 Later, you add a link in the UI to request funds for new accounts.
 
-```ts ignore 105-128
+```ts ignore
 ...
 105   // -------------------------------------------------------
 106   // Wait for account to exist, if it didn't
@@ -438,7 +491,7 @@ Functions can be triggered when a button is pressed by a user.
 
 First, code for a function that sends a transaction:
 
-```ts 128-
+```ts ignore
 ...
 128   // -------------------------------------------------------
 129   // Send a transaction
@@ -487,7 +540,7 @@ First, code for a function that sends a transaction:
 
 And second, code for a function that gets the latest zkApp state:
 
-```ts 170-186
+```ts ignore
 ...
 170   // -------------------------------------------------------
 171   // Refresh the current state
@@ -512,7 +565,7 @@ And second, code for a function that gets the latest zkApp state:
 
 Replace the `<div/>` placeholder with a UI to show the user the state of your application:
 
-```ts 186-268
+```ts ignore
 ...
 186   // -------------------------------------------------------
 187   // Create UI elements
@@ -607,7 +660,7 @@ The UI has three sections:
 
   The buttons allow the user to create a transaction and refresh the current state of the application by triggering the `onSendTransaction()` and `onRefreshCurrentNum()` functions shown in the code.
 
-And that's it! You have reviewed the code for your application.
+That's it for the code review. 
 
 If you've been using `npm run dev`, you can now interact with the application on `localhost:3000`. The application has all of the functionality that is implemented in this tutorial.
 
@@ -619,13 +672,24 @@ Before you can deploy your project to GitHub Pages, you must push it to a new Gi
 - In this tutorial, the project name is `04-zkapp-browser-ui`.
 - The `zk project` command created the correct project name strings for `04-zkapp-browser-ui` in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files. 
 
-To deploy the UI, run the `npm run deploy` command in your local `/04-zkapp-browser-ui/ui/` directory. 
+To deploy the UI:
+ 
+1. Change to the local `/04-zkapp-browser-ui/ui/` directory.
+1. Run the deploy command:
 
-After the script builds your application, uploads it to GitHub, and GitHub processes it, your application is available at:
+  ```sh
+  npm run deploy
+  ```
+
+The scripts defined in the `/04-zkapp-browser-ui/ui/package.json` file do the work to build your application and upload it to GitHub. 
+
+After the processing is complete, your deployed zkApp is available at:
 
 ```
-https://<username>.github.io/<repo-name>/index.html
+https://<username>.github.io/04-zkapp-browser-ui/
 ```
+
+where `<username>` is your GitHub username.
 
 ## Conclusion
 
@@ -633,4 +697,4 @@ Congratulations! You built a React UI for your zkApp. The UI allows users to int
 
 You can build a UI for your application using any UI framework, not just React. The zkApp CLI also supports SvelteKit and NuxtJS projects.
 
-You are ready to continue with [Tutorial 5: Common Types and Functions](common-types-and-functions) to learn about different SnarkyJS types you can use in your application.
+You are ready to continue with [Tutorial 5: Common Types and Functions](common-types-and-functions) to learn about different o1js types you can use in your application.

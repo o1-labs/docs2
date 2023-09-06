@@ -1,0 +1,59 @@
+name: o1js-API-Reference
+on: workflow_dispatch
+
+jobs:
+  update-o1js-api-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          # In case of version change, update README.md accordingly
+          node-version: 16
+
+      - name: Checkout Docs repo
+        uses: actions/checkout@v3
+        with:
+          path: docs
+
+      - name: Checkout o1js repo
+        uses: actions/checkout@v3
+        with:
+          repository: o1-labs/o1js
+          path: o1js
+          ref: main
+
+      - name: Build API reference docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Install dependencies and build o1js
+          cd o1js
+          git submodule update --init --recursive
+          npm ci && npm run build
+          cd src/mina-signer && npm ci && npm run build && cd ../../
+
+          # Build API reference docs
+          npm run build:docs
+
+          # Install dependencies for Docs repo
+          cd ../docs/ && npm ci
+
+          # Remove the old API reference and copy the newly generated reference
+          rm -rf docs/zkapps/o1js-reference && cp -rv ../o1js/o1js-reference docs/zkapps/o1js-reference
+
+          # Update with new enteries and format sidebars.js
+          npm run update-sidebar
+
+          # Configure git and push
+          BRANCH_NAME=docs/o1js-api-reference-$(git --git-dir ../o1js/.git rev-parse --short HEAD)
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git switch -c $BRANCH_NAME
+          git add docs/zkapps/o1js-reference
+          git add sidebars.js
+          git commit -m "Build and publish new o1js API reference docs"
+
+          # Use Github CLI to create a PR
+          git push --set-upstream origin $BRANCH_NAME
+          gh pr create -B main -H $BRANCH_NAME --title "Build and publish new o1js API reference docs" --body ""

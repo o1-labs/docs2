@@ -7,7 +7,7 @@ keywords:
   - mina protocol
   - zkapps
   - smart contracts
-  - snarkyjs
+  - o1js
   - typescript
   - blockchain
   - scalability
@@ -51,7 +51,7 @@ should be public or private, depending on the requirements of their application.
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Language</td>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Smart contracts are written in <span style={{color: '#7d4bbd'}}>Solidity</span>.</td>
-    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>zkApp smart contracts are written using <span style={{color: '#7d4bbd'}}>SnarkyJS</span> (a <span style={{color: '#7d4bbd'}}>TypeScript</span> library).</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>zkApp smart contracts are written using <span style={{color: '#7d4bbd'}}>o1js</span> (a <span style={{color: '#7d4bbd'}}>TypeScript</span> library).</td>
   </tr>
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Execution Environment</td>
@@ -89,10 +89,10 @@ should be public or private, depending on the requirements of their application.
 ## Example Code
 
 ```ts
-import { Field, SmartContract, state, State, method } from 'snarkyjs';
+import { Field, SmartContract, state, State, method } from 'o1js';
 
 export class Add extends SmartContract {
-  /* The state decorator tells SnarkyJS to store/retrieve num from the Mina
+  /* The state decorator tells o1js to store/retrieve num from the Mina
   blockchain */
   /* The Field type represents elements of a finite field (similar to uint256
   for practical purposes, but loops back to 1 after overflowing) */
@@ -105,13 +105,13 @@ export class Add extends SmartContract {
     this.num.set(Field(1));
   }
 
-  /* The method decorator tells SnarkyJS to be ready to generate a proof of
+  /* The method decorator tells o1js to be ready to generate a proof of
   execution any time this method is called */
   @method update() {
     // Get the state of num from the Mina blockchain and set it to currentState
     const currentState = this.num.get();
     /* Calling add instead of using the JS infix addition operator enables
-    SnarkyJS to prove that the addition is done correctly */
+    o1js to prove that the addition is done correctly */
     const newState = currentState.add(2);
     /* Set the state of num on the Mina blockchain equal to newState (this
     state update will not happen unless the transaction is accompanied by

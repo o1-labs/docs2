@@ -2,4 +2,4 @@ import { Square } from './Square.js';
 
 export { Square };
 
-export * as snarkyjs from 'snarkyjs';
+export * as o1js from 'o1js';
