@@ -13,6 +13,16 @@
     padding: 0.5rem 1rem;
     margin: 0;
     background-color: $backgroundColor;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    & > svg {
+      display: inline-block;
+      height: 1em;
+      width: 1em;
+      fill: white;
+    }
   }
 
   & > :nth-child(2) {
@@ -48,11 +58,4 @@
   display: inline-block;
   vertical-align: middle;
   margin-right: 0.4em;
-}
-
-.admonitionIcon svg {
-  display: inline-block;
-  height: 1.6em;
-  width: 1.6em;
-  fill: white;
 }
