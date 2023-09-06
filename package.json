@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "dev": "ALGOLIA_APP_ID='.' ALGOLIA_SEARCH_API_KEY='.' docusaurus start",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider && docusaurus build",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
