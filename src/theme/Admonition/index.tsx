@@ -192,6 +192,7 @@ export default function Admonition(props: Props): JSX.Element {
   } = processAdmonitionProps(props);
 
   const typeConfig = getAdmonitionConfig(type);
+  const Icon = iconProp ?? typeConfig.iconComponent;
   const titleLabel = title ?? typeConfig.label;
 
   let admonitionStyles = undefined;
@@ -206,9 +207,14 @@ export default function Admonition(props: Props): JSX.Element {
   }
 
   return (
-    <div className={admonitionStyles}>
-      <div>{titleLabel}</div>
-      <div>{children}</div>
-    </div>
+    <>
+      <div className={admonitionStyles}>
+        <div>
+          <Icon />
+          <div>{titleLabel}</div>
+        </div>
+        <div>{children}</div>
+      </div>
+    </>
   );
 }
