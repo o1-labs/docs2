@@ -139,22 +139,22 @@ Each time you make updates, then build or deploy, the TypeScript code is compile
 
 ### Install the dependencies
 
-1. Change to your local project `/04-zkapp-browser-ui/ui` directory:
+When you ran the `zk project` command, your UI was created in the project directory: `/04-zkapp-browser-ui/ui` with two sub-directories:
 
-  ```sh
-  $ cd ../ui
-  ```
+  - `contracts`: The smart contract code 
+  - `ui`: Where you write your UI code
 
-1. Install the dependencies:
+Install the dependencies in each sub-directory.
+
+1. In the `/04-zkapp-browser-ui/ui` directory, run:
 
   ```sh
   $ npm install
   ```
 
-1. Install the dependencies in the `/04-zkapp-browser-ui/` directory:
+1. In the `/04-zkapp-browser-ui/contracts` directory:
 
   ```sh
-  $ cd ../contracts
   $ npm install
   ```
 
@@ -172,7 +172,7 @@ Your project repository is ready to use.
 
 ## Project structure
 
-For all projects, you run `zk` commands from the root of your `04-zkapp-browser-ui` project directory. 
+For all projects, you run `zk` commands from the root of your project directory. 
 
 For this tutorial, run the UI commands from the local `/04-zkapp-browser-ui/ui/` directory.
 
@@ -182,13 +182,7 @@ Files that contain the UI code are in the `ui/src/pages` directory.
 
 Start by deleting the default `rm index.page.tsx` file that comes with a new project.
 
-1. Change to the `ui/src/pages` directory:
-
-  ```sh
-  $ cd ui/src/pages
-  ```
-
-1. Delete the `index.page.tsx` file so that you have a clean project to work with:
+1. In the `ui/src/pages` directory, delete the `index.page.tsx` file so that you have a clean project to work with:
 
   ```sh
   $ rm index.page.tsx
@@ -198,16 +192,9 @@ Start by deleting the default `rm index.page.tsx` file that comes with a new pro
 
 This tutorial uses the default contract `Add` that is always scaffolded with the `zk project` command.
 
-Go back to root of your project directory:
+To build the default contract to use in the UI, run this command from the `/04-zkapp-browser-ui/contracts` directory:
 
 ```sh
-$ cd 04-zkapp-browser-ui
-```
-
-To build the default contract to use in the UI:
-
-```sh
-$ cd contracts
 $ npm run build
 ```
 
@@ -218,7 +205,7 @@ The expected output is:
 > tsc
 ```
 
-The workflow for building your own zkApp outside of this tutorial is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI.
+Outside of this tutorial, the workflow for building your own zkApp is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI.
 
 ## Implement the UI
 
@@ -226,15 +213,12 @@ The React UI has several components: the React page itself and the code that use
 
 Because o1js code is computationally intensive, it's helpful to use web workers. A web worker handles requests from users to ensure the UI thread isn't blocked during long computations like compiling a smart contract or proving a transaction.
 
-1. Download the helper files:
-
-    From the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub:
+1. Download the helper files from the `examples/zkapps/04-zkapp-browser-ui` directory on GitHub:
 
     - [zkappWorker.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorker.ts)
     - [zkappWorkerClient.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/zkappWorkerClient.ts)
 
-    To your local `/04-zkapp-browser-ui/ui/src/pages` directory.
-
+1. Move the files to your local `/04-zkapp-browser-ui/ui/src/pages` directory.
 
 1. Review each helper file to see how they work and how you can extend them for your own zkApp.
 
@@ -243,13 +227,16 @@ Because o1js code is computationally intensive, it's helpful to use web workers.
 
 ### Implement the React app
 
-The example project has a completed app.
+The example project has a completed app. The `index.page.tsx` file is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages.
 
-1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file to your local `/04-zkapp-browser-ui/ui/src/pages` directory. 
+1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file. 
 
-    - `index.page.tsx` is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages
+1. Move the `index.page.tsx` file to your local `/04-zkapp-browser-ui/ui/src/pages` directory.
 
-The `import` statements set up your React project with the required imports. The `export` statement creates a placeholder empty component:
+First, review the `import` and `export` statements:
+
+- The `import` statements set up your React project with the required imports. 
+- The `export` statement creates a placeholder empty component.
 
 ```ts ignore
   1 import { useEffect, useState } from 'react';
@@ -268,7 +255,7 @@ The `import` statements set up your React project with the required imports. The
 
 ### Add state
 
-This export statement creates mutable state that you can reference in the UI. The state updates as the application runs:
+This `export` statement creates mutable state that you can reference in the UI. The state updates as the application runs:
 
 ```ts ignore
 ...
