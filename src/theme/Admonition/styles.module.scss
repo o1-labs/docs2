@@ -1,5 +1,5 @@
-@use "@site/src/scss/utilities/mixins";
-@use "@site/src/scss/utilities/variables";
+@use '@site/src/scss/utilities/mixins';
+@use '@site/src/scss/utilities/variables';
 
 @mixin admonition($backgroundColor: rgb(155, 155, 155)) {
   border: 1px solid rgba(45, 45, 45, 0.25);
@@ -48,6 +48,10 @@
 
 .admonitionDanger {
   @include admonition($backgroundColor: variables.$mina-error);
+}
+
+.admonitionExperimental {
+  @include admonition($backgroundColor: variables.$mina-orange);
 }
 
 .admonitionHeading code {

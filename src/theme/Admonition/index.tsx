@@ -1,8 +1,19 @@
-import React, { type ReactNode } from "react";
-import Translate from "@docusaurus/Translate";
-import type { Props } from "@theme/Admonition";
+import React, { type ReactNode } from 'react';
+import Translate from '@docusaurus/Translate';
+import type { Props } from '@theme/Admonition';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
+
+function ExperimentalIcon() {
+  return (
+    <svg height="24" viewBox="0 -960 960 960" width="24">
+      <path
+        fillRule="evenodd"
+        d="M200-120q-51 0-72.5-45.5T138-250l222-270v-240h-40q-17 0-28.5-11.5T280-800q0-17 11.5-28.5T320-840h320q17 0 28.5 11.5T680-800q0 17-11.5 28.5T640-760h-40v240l222 270q32 39 10.5 84.5T760-120H200Zm0-80h560L520-492v-268h-80v268L200-200Zm280-280Z"
+      />
+    </svg>
+  );
+}
 
 function NoteIcon() {
   return (
@@ -66,9 +77,22 @@ type AdmonitionConfig = {
 };
 
 // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
-const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
+const AdmonitionConfigs: Record<Props['type'], AdmonitionConfig> = {
+  experimental: {
+    infimaClassName: 'secondary',
+    iconComponent: ExperimentalIcon,
+    label: (
+      <Translate
+        id="theme.admonition.experimental"
+        description="The default label used for the Experimental admonition (:::experimental)"
+      >
+        experimental
+      </Translate>
+    ),
+  },
+
   note: {
-    infimaClassName: "secondary",
+    infimaClassName: 'secondary',
     iconComponent: NoteIcon,
     label: (
       <Translate
@@ -80,7 +104,7 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
     ),
   },
   tip: {
-    infimaClassName: "success",
+    infimaClassName: 'success',
     iconComponent: TipIcon,
     label: (
       <Translate
@@ -92,7 +116,7 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
     ),
   },
   danger: {
-    infimaClassName: "danger",
+    infimaClassName: 'danger',
     iconComponent: DangerIcon,
     label: (
       <Translate
@@ -104,7 +128,7 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
     ),
   },
   info: {
-    infimaClassName: "info",
+    infimaClassName: 'info',
     iconComponent: InfoIcon,
     label: (
       <Translate
@@ -116,7 +140,7 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
     ),
   },
   caution: {
-    infimaClassName: "warning",
+    infimaClassName: 'warning',
     iconComponent: CautionIcon,
     label: (
       <Translate
@@ -131,15 +155,15 @@ const AdmonitionConfigs: Record<Props["type"], AdmonitionConfig> = {
 
 // Legacy aliases, undocumented but kept for retro-compatibility
 const aliases = {
-  secondary: "note",
-  important: "info",
-  success: "tip",
-  warning: "danger",
+  secondary: 'note',
+  important: 'info',
+  success: 'tip',
+  warning: 'danger',
 } as const;
 
 function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
   const type =
-    (aliases as { [key: string]: Props["type"] })[unsafeType] ?? unsafeType;
+    (aliases as { [key: string]: Props['type'] })[unsafeType] ?? unsafeType;
   const config = (AdmonitionConfigs as { [key: string]: AdmonitionConfig })[
     type
   ];
@@ -163,7 +187,7 @@ function extractMDXAdmonitionTitle(children: ReactNode): {
     (item) =>
       React.isValidElement(item) &&
       (item.props as { mdxType: string } | null)?.mdxType ===
-        "mdxAdmonitionTitle"
+        'mdxAdmonitionTitle'
   );
   const rest = <>{items.filter((item) => item !== mdxAdmonitionTitle)}</>;
   return {
@@ -196,14 +220,16 @@ export default function Admonition(props: Props): JSX.Element {
   const titleLabel = title ?? typeConfig.label;
 
   let admonitionStyles = undefined;
-  if (type === "note") {
+  if (type === 'note') {
     admonitionStyles = styles.admonitionNote;
-  } else if (type === "tip") {
+  } else if (type === 'tip') {
     admonitionStyles = styles.admonitionTip;
-  } else if (type === "info") {
+  } else if (type === 'info') {
     admonitionStyles = styles.admonitionInfo;
-  } else if (type === "danger" || type === "caution") {
+  } else if (type === 'danger' || type === 'caution') {
     admonitionStyles = styles.admonitionDanger;
+  } else if (type === 'experimental') {
+    admonitionStyles = styles.admonitionExperimental;
   }
 
   return (
