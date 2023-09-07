@@ -30,9 +30,11 @@ This tutorial presents a library and pattern to store Merkle trees off-chain and
 
 This approach is a step towards unlocking a larger set of applications that require off-chain storage. Future solutions can provide other decentralized options for zkApps that require more trustless solutions.
 
-:::info
-This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. 
+:::experimental
+This proposed solution to off-chain storage is experimental and is used only for education purposes. 
 :::
+
+This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. 
 
 The single-server solution for prototyping is intended as one of several options for data availability on Mina. Mina doesn't offer an out-of-the-box solution for off-chain storage. 
 
@@ -209,9 +211,8 @@ A full copy of the [NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob
  14
  15 import {
  16   OffChainStorage,
- 17   Update,
- 18   MerkleWitness8,
- 19 } from 'experimental-offchain-zkapp-storage';
+ 17   MerkleWitness8,
+ 18 } from 'experimental-offchain-zkapp-storage';
 ...
 ```
 
@@ -225,18 +226,16 @@ The `OffChainStorage` object contains the functions for interacting with off-cha
   - `assertRootUpdateValid`: A function used in smart contracts to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
   - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 
-The `Update` type is for updates to Merkle trees that are used in the smart contract.
-
 The `MerkleWitness8` is a type of Merkle tree witness required for o1js to use the same instances of the witness cross-library. Other types of Merkle trees are available for input, such as `MerkleWitness32` and `MerkleWitness256`. 
 
 3. Now, set up your smart contract:
 
 ```ts ignore
 ...
-21 export class NumberTreeContract extends SmartContract {
-22   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
-23   @state(Field) storageNumber = State<Field>();
-24   @state(Field) storageTreeRoot = State<Field>();
+20 export class NumberTreeContract extends SmartContract {
+21   @state(PublicKey) storageServerPublicKey = State<PublicKey>();
+22   @state(Field) storageNumber = State<Field>();
+23   @state(Field) storageTreeRoot = State<Field>();
 25
 26
 27
@@ -270,7 +269,7 @@ Initialize the zkApp state for these three values by setting:
 - The storage number to 0
 - Storing the root of an empty tree
 
-4. Continuing, add the code for the `update` function:
+4. Continuing, add the code for the `update` function on the smart contract:
 
 ```ts ignore
 ...
