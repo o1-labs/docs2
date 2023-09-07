@@ -198,7 +198,7 @@ zk config
 
 ```sh
 $ echo '{ "privateKey": "EKEnVLUhYHDJvgmgQu5SzaV8MWKNfhAXYSkLBRk5KEfudWZRbs4P", "publicKey": "B62qq1miZzh8QMumJ2dhJSvPxdeShGQ2G2cH4YXwxNLpPSvKdRVTb3q" }' > keys/live-local-network.json
-$ echo '{ "version": 1, "deployAliases": { "live-local-network": { "url": "https://proxy.berkeley.minaexplorer.com/graphql", "feepayerKeyPath": "keys/live-local-network.json", "feepayerAlias": "cli-fee-payer", "keyPath": "keys/live-local-network.json", "fee": "0.1" } } }' > config.json 
+$ echo '{ "version": 1, "deployAliases": { "live-local-network": { "url": "http://localhost:8080/graphql", "feepayerKeyPath": "keys/live-local-network.json", "feepayerAlias": "cli-fee-payer", "keyPath": "keys/live-local-network.json", "fee": "0.1" } } }' > config.json 
 $ yes | zk deploy live-local-network
 ```
 --->
