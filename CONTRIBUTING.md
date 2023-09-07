@@ -2,7 +2,7 @@
 
 Welcome to the Mina Docs open source repository. Thank you for your interest in contributing to the [Mina Docs](https://docs.minaprotocol.com/) website. 
 
-We realize that technical documentation is a high-visibility interface with you: our community and our users. We work hard to deliver well-written docs to help you discover, understand, and use the Mina Protocol and SnarkyJS.
+We realize that technical documentation is a high-visibility interface with you: our community and our users. We work hard to deliver well-written docs to help you discover, understand, and use the Mina Protocol and o1js.
 
 We treat documentation like code. The Mina Docs use a docs-as-code workflow to develop and publish product documentation using the same tools and processes as software code development. All user-impacting updates on the codebase require corresponding updates to the relevant documentation in the docs repo. Developers who know the feature best write the first draft of content for all changes and new features. Feature documentation is part of our development “definition of done.”
 
@@ -38,7 +38,7 @@ If you don't find what you are looking for or something in the docs is not worki
 
 ## Reviewing Technical Content PRs
 
-Some of the best content contributions come during the PR review cycles. To ensure quality, follow best practices for technical content PR reviews just like you do for code reviews. When reviewing a pull request, the end-goal is to suggest useful changes to the author.
+Some of the best content contributions come during the pull request (PR) review cycles. To ensure quality, follow best practices for technical content PR reviews just like you do for code reviews. When reviewing a pull request, the end-goal is to suggest useful changes to the author.
 
 - For in-line suggestions, use the [GitHub suggesting feature](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request). 
 - You can comment on one line or several lines. You can provide changes or edits, and the person who authored the PR can easily apply your change, or create their own competing suggestion, and you can discuss it. To invite others to the conversation, tag their GitHub @username in a comment to notify them. In this way, you can discuss any change. It’s transparent and inclusive.
@@ -49,9 +49,9 @@ Some of the best content contributions come during the PR review cycles. To ensu
 
 You are welcome to provide a fix or update directly. We appreciate your contributions!
 
-- For a simple fix to single page, you can select **EDIT THIS PAGE** at the top of the page to make changes to the file in a web browser. In the **Propose changes** section, you can follow the GitHub workflow to submit a pull request.  
+- For a simple fix to single page, you can select **EDIT THIS PAGE** at the top of the page to make changes to the file in a web browser. In the **Propose changes** section, you can follow the GitHub workflow to submit a PR.  
 
-- If you're not a member or maintainer, fork the repo and then submit a pull request (PR) from your forked repo to the `main` branch.
+- If you're not a member or maintainer, fork the repo and then submit a PR from your forked repo to the `main` branch.
 
 Provide a helpful, informative PR title that includes the context and page you are updating. Each PR must address only one issue or feature.
 
@@ -62,8 +62,8 @@ All pull requests must go through the code review process. As the PR submitter, 
 - If you are a member of the docs repo, you can merge the approved PR.
 - If your PR is a fork, the code maintainers will merge the approved PR.
 
-### SnarkyJS Reference
+### o1js Reference
 
-The zkApp Developers > [SnarkyJS Reference](https://docs.minaprotocol.com/zkapps/snarkyjs-reference) docs are generated content and are outside the scope of the Mina Docs repository.
+The zkApp Developers > [o1js Reference](https://docs.minaprotocol.com/zkapps/o1js-reference) docs are generated content and are outside the scope of the Mina Docs repository.
 
 Thank you for contributing to the Mina docs. It's better together.

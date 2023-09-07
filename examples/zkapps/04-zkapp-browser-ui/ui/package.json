@@ -9,7 +9,7 @@
     "lint": "next lint",
     "ts-watch": "tsc --noEmit --incremental --watch",
     "export": "next export",
-    "deploy": "next build && next export && touch out/.nojekyll  && git add -f out && git commit -m \"Deploy gh-pages\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
+    "deploy": "next build && next export && touch out/.nojekyll && git add -f out && node ghp-postbuild && git commit -m \"Deploy gh-pages\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
   },
   "dependencies": {
     "@types/node": "20.4.1",
@@ -17,9 +17,9 @@
     "@types/react-dom": "18.2.7",
     "coi-serviceworker": "^0.1.7",
     "next": "13.4.9",
+    "o1js": "^0.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6",
-    "snarkyjs": "0.*"
+    "typescript": "5.1.6"
   }
 }

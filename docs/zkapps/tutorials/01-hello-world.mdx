@@ -2,7 +2,7 @@
 title: 'Tutorial 1: Hello World'
 hide_title: true
 sidebar_label: 'Tutorial 1: Hello World'
-description: Guided steps to get started with SnarkyJS, zkApps, and programming with zero-knowledge proofs. Learn to code a zkApp from start to finish.
+description: Guided steps to get started with o1js, zkApps, and programming with zero-knowledge proofs. Learn to code a zkApp from start to finish.
 keywords:
   - smart contracts
   - zkapps
@@ -10,7 +10,7 @@ keywords:
   - zk proof
   - zk
   - data types
-  - snarkyjs
+  - o1js
   - blockchain
   - mina
   - typescript
@@ -26,7 +26,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Tutorial 1: Hello World
 
-This Hello World tutorial helps you get started with SnarkyJS, zkApps, and programming with zero-knowledge proofs.
+This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero-knowledge proofs. 
 
 In this step-by-step tutorial, you learn to code a zkApp from start to finish.
 
@@ -187,7 +187,7 @@ The `import` statement brings in other packages and dependencies to use in your 
 
 :::info
 
-All functions used inside a smart contract must operate on SnarkyJS compatible data types: `Field` types and other types built on top of `Field` types.
+All functions used inside a smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. 
 
 :::info
 
@@ -198,12 +198,12 @@ All functions used inside a smart contract must operate on SnarkyJS compatible d
 4   state,
 5   State,
 6   method,
-7 } from 'snarkyjs';
+7 } from 'o1js';
 ```
 
 These items are:
 
-- `Field`: The native number type in SnarkyJS. You can think of Field elements as unsigned integers. Field elements are the most basic type in SnarkyJS. All other SnarkyJS-compatible types are built on top of Field elements.
+- `Field`: The native number type in o1js. You can think of Field elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of Field elements.
 - `SmartContract`: The class that creates zkApp smart contracts.
 - `state`: A convenience decorator used in zkApp smart contracts to create references to state stored on-chain in a zkApp account.
 - `State`: A class used in zkApp smart contracts to create state stored on-chain in a zkApp account.
@@ -244,7 +244,7 @@ Since you're extending `SmartContract` that has its own initialization to perfor
 
 Then, `this.num.set(Field(3))` initializes the on-chain state `num` to a value of `3`.
 
-You can optionally specify permissions. See [setPermissions](/zkapps/snarkyjs-reference/classes/SmartContract#setpermissions) in the SnarkyJS Reference documentation.
+You can optionally specify permissions. See  [setPermissions](/zkapps/o1js-reference/classes/SmartContract#setpermissions) in the o1js Reference documentation.
 
 Finally, this code adds the `update()` function:
 
@@ -280,11 +280,11 @@ Notice that `get()` and `set()` methods are used for retrieving and setting on-c
 
 - Similarly, using `set()` changes the transaction to indicate that changes to this particular on-chain state are updated only when the transaction is received by the Mina network if it contains a valid authorization (usually, a valid authorization is a proof).
 
-The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available methods in the [SnarkyJS Reference](/zkapps/snarkyjs-reference) documentation.
+The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available methods in the [o1js Reference](/zkapps/o1js-reference) documentation. 
 
-You remember that functions in your smart contract must operate on SnarkyJS compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero-knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on SnarkyJS-compatible data types.
+You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero-knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
 
-Importantly, data passed as an input to a smart contract method in SnarkyJS is private and never seen by the network.
+Importantly, data passed as an input to a smart contract method in o1js is private and never seen by the network.
 
 You can also store data publicly on-chain when needed, like `num` in this example. A later tutorial covers an example that leverages privacy.
 
@@ -296,7 +296,7 @@ Next, write a script that interacts with your smart contract. As before, the com
 
 ### Imports
 
-For this tutorial, the `import` statement brings in items from `snarkyjs` that you use to interact with your smart contract.
+For this tutorial, the `import` statement brings in items from `o1js` that you use to interact with your smart contract. 
 
 1. Copy the following lines from [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file into the `src/main.ts` file:
 
@@ -309,15 +309,15 @@ For this tutorial, the `import` statement brings in items from `snarkyjs` that y
 6   Mina,
 7   PrivateKey,
 8   AccountUpdate,
-9 } from 'snarkyjs';
+9 } from 'o1js';
 10
 ```
 
 These import items are:
 
-- `isReady`: An asynchronous promise that resolves when SnarkyJS is loaded and ready. This field is required because SnarkyJS contains WebAssembly (Wasm).
+- `isReady`: An asynchronous promise that resolves when o1js is loaded and ready. This field is required because o1js contains WebAssembly (Wasm).
 - `shutdown`: A function that closes the program.
-- `Field`: The same SnarkyJS unsigned integer type that you learned earlier.
+- `Field`: The same o1js unsigned integer type that you learned earlier.
 - `Mina`: A local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
 - `PrivateKey`: A class with functions for manipulating private keys.
 - `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
@@ -331,7 +331,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 ```ts src/main.ts
 11 await isReady;
 12
-13 console.log('SnarkyJS loaded');
+13 console.log('o1js loaded');
 14
 15 const useProof = false;
 16
@@ -435,7 +435,7 @@ The expected output is:
 > 01-hello-world@0.1.0 build
 > tsc
 
-SnarkyJS loaded
+o1js loaded
 state after init: 3
 Shutting down
 ```
@@ -470,7 +470,7 @@ This code creates a new transaction that attempts to update the field to the val
 ```sh
 $ npm run build && node build/src/main.js
 ...
-SnarkyJS loaded
+o1js loaded
 state after init: 3
 state after txn1: 9
 Shutting down
@@ -519,7 +519,7 @@ The expected output is:
 ```sh
 $ npm run build && node build/src/main.js
 ...
-SnarkyJS loaded
+o1js loaded
 state after init: 3
 state after txn1: 9
 assert_equal: 75 != 81
@@ -561,7 +561,7 @@ The expected output is:
 ```sh
 $ npm run build && node build/src/main.js
 ...
-SnarkyJS loaded
+o1js loaded
 state after init: 3
 state after txn1: 9
 assert_equal: 75 != 81
@@ -576,12 +576,12 @@ You can follow along in this video as cryptographer, David Wong, learns how to c
 
 <ResponsiveVideo src="https://www.youtube.com/embed/prx2oNpy0vo" />
 
-The video is provided for educational purposes and uses earlier versions of the zkApp CLI and SnarkyJS, so there are some differences. The Hello World tutorial always uses the most recent version of the zkApp CLI and SnarkyJS.
+The video is provided for educational purposes and uses earlier versions of the zkApp CLI and o1js, so there are some differences. The Hello World tutorial always uses the most recent version of the zkApp CLI and o1js. 
 
 ## Conclusion
 
-Congratulations! You have successfully completed all of the steps to build your first zkApp with SnarkyJS.
+Congratulations! You have successfully completed all of the steps to build your first zkApp with o1js.
 
-Check out [Tutorial 2: Private Inputs and Hash Functions](private-inputs-hash-functions) to learn how to use private inputs and hash functions with SnarkyJS.
+Check out [Tutorial 2: Private Inputs and Hash Functions](private-inputs-hash-functions) to learn how to use private inputs and hash functions with o1js.
 
 Find more tutorials and resources in the [zkApps docs](/zkapps).

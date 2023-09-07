@@ -8,14 +8,14 @@ import {
   Mina,
   PrivateKey,
   AccountUpdate,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
 (async function main() {
   await isReady;
 
-  console.log('SnarkyJS loaded');
+  console.log('o1js loaded');
 
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });

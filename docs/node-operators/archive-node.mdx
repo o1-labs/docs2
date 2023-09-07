@@ -24,7 +24,7 @@ For some use cases, it is useful to maintain this historical data on an archive 
 
 :::tip
 
-A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../zkapps/snarkyjs/fetch-events-and-actions).
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../zkapps/o1js/fetch-events-and-actions).
 
 :::
 
@@ -47,13 +47,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=1.3.0-9b0369c
+     sudo apt-get install mina-archive=1.4.0-c980ba8
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+     minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
      ```
 
 ## Set up the archive node
@@ -155,7 +155,7 @@ To get started with installing and running the archive node using Docker, follow
    --name archive \
    -p 3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:1.3.0-9b0369c-bullseye \
+   minaprotocol/mina-archive:1.4.0-c980ba8-bullseye \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -213,7 +213,7 @@ To run the archive node using Docker Compose:
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:1.3.0-9b0369c-bullseye'
+       image: 'minaprotocol/mina-archive:1.4.0-c980ba8-bullseye'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086

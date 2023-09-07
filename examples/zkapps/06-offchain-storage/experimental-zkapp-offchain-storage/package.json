@@ -1,0 +1,67 @@
+{
+  "name": "experimental-offchain-zkapp-storage",
+  "version": "0.1.4",
+  "description": "This project is currently under development and should not be used in production.",
+  "author": "",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage"
+  },
+  "homepage": "https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage#README.md",
+  "bugs": {
+    "url": "https://github.com/o1-labs/docs2"
+  },
+  "keywords": [
+    "mina-zkapp",
+    "mina-zk-app",
+    "mina-dapp",
+    "zkapp"
+  ],
+  "type": "module",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "generate-key": "node scripts/generate_private_key.js",
+    "server": "npm run build && node --enable-source-maps build/src/server/storageServer.js",
+    "clean": "rm -rf build && rm -f database.json",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "lint-staged": {
+    "**/*": [
+      "eslint src/* --fix",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.7.0",
+    "eslint-plugin-o1js": "^0.4.0",
+    "husky": "^7.0.1",
+    "i": "^0.3.7",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.0.1",
+    "npm": "^8.19.3",
+    "prettier": "^2.3.2",
+    "random-bigint": "^0.0.1",
+    "source-map-support": "^0.5.21",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.7.2"
+  },
+  "peerDependencies": {
+    "o1js": "^0.12.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "xmlhttprequest": "^1.8.0",
+    "xmlhttprequest-ts": "^1.0.1"
+  }
+}
