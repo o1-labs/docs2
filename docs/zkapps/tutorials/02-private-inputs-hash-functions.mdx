@@ -12,7 +12,7 @@ keywords:
   - zk proof
   - zk
   - data types
-  - snarkyjs
+  - o1js
   - blockchain
   - mina
   - typescript
@@ -27,11 +27,11 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Tutorial 2: Private Inputs and Hash Functions
 
-In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with SnarkyJS with a single state variable that could be updated if you knew the square of that number.
+In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js with a single state variable that could be updated if you knew the square of that number.
 
 In this tutorial, you learn about private inputs and hash functions.
 
-With a zkApp, a smart contract user's local device generates one or more zero knowledge proofs, which are then verified by the Mina network. Each method in a SnarkyJS smart contract corresponds to constructing a proof.
+With a zkApp, a smart contract user's local device generates one or more zero knowledge proofs, which are then verified by the Mina network. Each method in a o1js smart contract corresponds to constructing a proof.
 
 All inputs to a smart contract are private by default. Inputs are never seen by the blockchain unless you store those values as on-chain state in the zkApp account.
 
@@ -170,12 +170,12 @@ The `import` statement in the `IncrementSecret.ts` file brings in other packages
 
 :::info
 
-All functions used inside a smart contract must operate on SnarkyJS compatible data types: `Field` types and other types built on top of `Field` types. 
+All functions used inside a smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. 
 
 :::info
 
 ```ts ignore
-1 import { Field, SmartContract, state, State, method, Poseidon } from 'snarkyjs';
+1 import { Field, SmartContract, state, State, method, Poseidon } from 'o1js';
 ```
 
 ### Exports
@@ -231,7 +231,7 @@ This smart contract uses a secret number and the second Field, `salt`.
 The `incrementSecret()` method checks that the hash of the salt and the secret is equal to the current state `x`:
 
 - If this is the case, add `1` to the secret and set `x` to the hash of the salt and this new secret. 
-- SnarkyJS creates a proof of this fact and a JSON description of the state updates to be made on the zkApp account, such as to store the new hash value.
+- o1js creates a proof of this fact and a JSON description of the state updates to be made on the zkApp account, such as to store the new hash value.
 - Together, this forms a transaction that can be sent to the Mina network to update the zkApp account.
 
 Because zkApp smart contracts are run off chain, your salt and secret remain private and are never transmitted anywhere. 
@@ -261,6 +261,8 @@ The smart contract initialization this time is:
  35   zkAppInstance.deploy();
  36   zkAppInstance.initState(salt, Field(750));
  37 });
+ 38
+ 39 await deployTxn.prove();
 ...
 ```
 
@@ -291,7 +293,7 @@ $ npm run build && node build/src/main.js
 The output looks something like this:
 
 ```text
-SnarkyJS loaded
+o1js loaded
 state after init: 3116464240601550031577632290308565252747064306168758166756574536757280262269
 state after txn1: 15333363135506653312218020664441564145350761288169575380089681962972642150348
 Shutting down

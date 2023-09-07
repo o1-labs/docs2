@@ -24,7 +24,7 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::note
 
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
+This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.12.1.
 
 :::
 
@@ -76,7 +76,7 @@ This implementation requires a trust assumption for zkApps using it, that both d
 
 This makes it useful for both prototyping applications that need off-chain storage, and putting applications into production where these trust assumptions are reasonable, but not for zkApps where a trustless solution is needed.
 
-See the library [here](https://github.com/es92/zkApp-offchain-storage) if you'd like to learn more about this implementation and see how it works.
+See the library [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage) if you'd like to learn more about this implementation and see how it works.
 
 ### Further Development of Single-Server Off-Chain Storage
 
@@ -92,9 +92,9 @@ Some suggested improvements:
 
 ## Implementing a Project Using Off-Chain Storage
 
-As usual, there is sample code for this project, which you can find [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts).
+As usual, there is sample code for this project, which you can find [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts).
 
-We will be writing and discussing the [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) files in this project.
+We will be writing and discussing the [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) and [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) files in this project.
 
 This project implements a tree, where each leaf is either empty or stores a number, which will be our data. Updates to the tree can update a leaf, if the new number in the leaf is greater than the old number. The root of the tree is stored on chain, while the tree itself is stored on an off-chain storage server.
 
@@ -128,7 +128,7 @@ export { NumberTreeContract };
 Now, add the library for the off-chain storage server we'll be using:
 
 ```sh
-$ npm install experimental-zkapp-offchain-storage --save
+$ npm install experimental-offchain-zkapp-storage --save
 ```
 
 Also install `xmlhttprequest-ts`, which we will use to make network requests when running from nodejs, where the browser's XMLHttpRequest is not available by default:
@@ -152,7 +152,7 @@ This will fail when first run, but once we start adding code to `main.ts` and `N
 Also for this project, we will need to run our storage server. To do this, in a new terminal window, change into the root of your project and run:
 
 ```sh
-$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
+$ node node_modules/experimental-offchain-zkapp-storage/build/src/storageServer.js
 ```
 
 This will start a storage server and create a `database.json` file in the current directory to store our data for this tutorial.
@@ -176,13 +176,13 @@ Start by adding our imports:
  10   PublicKey,
  11   Permissions,
  12   Bool,
- 13 } from 'snarkyjs';
+ 13 } from 'o1js';
  14
  15 import {
  16   OffChainStorage,
  17   Update,
  18   MerkleWitness8,
- 19 } from 'experimental-zkapp-offchain-storage';
+ 19 } from 'experimental-offchain-zkapp-storage';
 ...
 ```
 
@@ -195,7 +195,7 @@ Notice we import some items from `zkapp-offchain-storage`:
   - `assertRootUpdateValid`: A function used in smart contracts, to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
   - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 - `Update`: A type for updates to merkle trees. We'll be using this below in the smart contract.
-- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for SnarkyJS to use the same instances of the witness cross-library.
+- `MerkleWitness8`: The type of our merkle tree witness. Others are available for input, such as `MerkleWitness32` and `MerkleWitness256`. This is necessary for o1js to use the same instances of the witness cross-library.
 
 Continuing, let's setup our smart contract:
 
@@ -294,7 +294,7 @@ That completes the smart contract!
 
 ## Implementing `main.ts`
 
-You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for reference.
+You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) for reference.
 
 We will not be implementing this full file, instead just discussing a few parts of it, since much is repeated from earlier tutorials. So download it from the above link, place it in your src folder, and then open it in your editor.
 
@@ -413,7 +413,7 @@ We call our smart contract as follows:
 ...
 ```
 
-That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts) for review.
+That completes our review of the code to interact with the off-chain storage server! As mentioned previously, you can find the full copy of this file [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) for review.
 
 ## Conclusion
 

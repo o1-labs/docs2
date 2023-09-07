@@ -2,7 +2,7 @@
 title: 'Tutorial 10: Account Updates'
 hide_title: true
 sidebar_label: 'Tutorial 10: Account Updates'
-description: Each zkApp transaction constructed by SnarkyJS is composed of one or more account updates. Use account updates to implement permissions, preconditions, composability, and tokens - the core features of zkApps.
+description: Each zkApp transaction constructed by o1js is composed of one or more account updates. Use account updates to implement permissions, preconditions, composability, and tokens - the core features of zkApps.
 keywords:
   - smart contracts
   - zkapps
@@ -35,7 +35,7 @@ This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snar
 
 ## Overview
 
-Each zkApp transaction constructed by SnarkyJS is composed of one or more [AccountUpdates](../snarkyjs-reference/classes/AccountUpdate), which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, etc.
+Each zkApp transaction constructed by o1js is composed of one or more [AccountUpdates](../o1js-reference/classes/AccountUpdate), which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, etc.
 
 Each AccountUpdate can make assertions about its account, apply updates to its account, as well as make assertions about its child AccountUpdates.
 
@@ -43,18 +43,18 @@ Transactions are structured as a list of trees of AccountUpdates applied with a 
 
 Many of the core features of zkApps—permissions, preconditions, composability, and tokens—are implemented using AccountUpdates. In this tutorial, you learn about many of the essential AccountUpdates features.
 
-To learn more, see these SnarkyJS docs:
+To learn more, see these o1js docs:
 
-- [Permissions](../snarkyjs/permissions)
-- [Preconditions](../snarkyjs/on-chain-values)
+- [Permissions](../o1js/permissions)
+- [Preconditions](../o1js/on-chain-values)
 
 ## AccountUpdate contents
 
-Each [AccountUpdate](../snarkyjs-reference/classes/AccountUpdate) has these components:
+Each [AccountUpdate](../o1js-reference/classes/AccountUpdate) has these components:
 
 - `PublicKey`: The account address for the account update
 - `TokenId`: A unique hash representing the custom token. Defaults to the MINA TokenId (`1`). Together, PublicKey and TokenId uniquely identify an account on Mina Protocol.
-- `Preconditions`: Conditions that must be true for the AccountUpdate to be applied. Corresponds to assertions in a SnarkyJS method.
+- `Preconditions`: Conditions that must be true for the AccountUpdate to be applied. Corresponds to assertions in a o1js method.
 - `Updates`: Things changed by the AccountUpdate, such as include the zkApp state, permissions, and verification key.
 - `BalanceChange`: Any changes to the balance
 - `Authorization`: How the zkApp is authorized; can be either a proof (corresponding to the verification key on the account) or a signature.
@@ -386,4 +386,4 @@ As described in the code comment, `callSecondary` sets `this.num` to `12` which 
 
 ## Conclusion
 
-Congratulations! You have explored the core features of AccountUpdates and learned about visualizing the AccountUpdates for a set of transactions. You can build more complicated transactions that involve multiple zkApps. This tutorial builds a foundational understanding of how SnarkyJS and zkApps work to enable permissions, preconditions, and composability.
+Congratulations! You have explored the core features of AccountUpdates and learned about visualizing the AccountUpdates for a set of transactions. You can build more complicated transactions that involve multiple zkApps. This tutorial builds a foundational understanding of how o1js and zkApps work to enable permissions, preconditions, and composability.
