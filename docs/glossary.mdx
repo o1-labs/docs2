@@ -194,7 +194,7 @@ A cryptocurrency public record-keeping system. Mina has three types of ledgers: 
 
 ### libp2p
 
-Mina uses this peer-to-peer networking library to provides things like message broadcast and file sharing.
+Mina uses this peer-to-peer networking library to provide things like message broadcast and file sharing.
 
 ## M
 
@@ -384,7 +384,7 @@ A pool of delegated funds that is run by a staking pool owner. To avoid the requ
 
 ### syncing
 
-To successfully produce a block that extends the Mina blockchain, a node requires the current state. To achieve this, a node initializes to connect to peers, [bootstrap](#bootstrap), and then perform a [catchup](#catchup).
+To successfully produce a block that extends the Mina blockchain, a node requires the current state. To achieve this, a node initializes to connect to peers, [bootstrap](#bootstrap), and then performs a [catchup](#catchup).
 
 The syncing process builds the node's [transition frontier](#transition-frontier) by creating [breadcrumbs](#breadcrumb) for all transitions between the transition frontier's [root](#root-of-transition-frontier) to the current [best tip](#best-tip). When complete, the node is synced.
 
