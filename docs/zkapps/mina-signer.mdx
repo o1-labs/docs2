@@ -131,7 +131,7 @@ client.signTransaction(
     feePayer: keypair.privateKey
   },
   keypair.privateKey
-)
+);
 
 // Sign a simple string payload
 client.signTransaction('Hello World', keypair.privateKey);
@@ -166,6 +166,7 @@ const payment = client.signTransaction(
     amount: '1',
     fee: '1',
     nonce: '0',
+  },
   keypair.privateKey
 );
 const hashedPayment = client.hashPayment(payment);
