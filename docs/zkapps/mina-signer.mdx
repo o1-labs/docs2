@@ -259,4 +259,18 @@ const verifiedFields = client.verifyFields(signedFields);
 
 ### Nullifiers
 
+Mina Signer supports generating nullifiers for zkApp transactions. In the realm of cryptographic mechanisms, nullifiers serve as a unique identifier, safeguarding anonymity while ensuring account integrity and preventing illicit activities such as double-spending.
+They work by publicly committing to an anonymous account, permitting consistent identity establishment for covert actions.
+
+To create a nullifier, specify a message and the private key of the sender. The message must be an array of BigInts.
+
+```js
+import Client from 'mina-signer';
+const client = new Client({ network: 'testnet' });
+const keypair = client.genKeys();
+
+const message = [10n, 20n, 30n, 340817401n, 2091283n, 1n, 0n];
+const nullifier = client.createNullifier(message, keypair.privateKey);
+```
+
 ### Examples
