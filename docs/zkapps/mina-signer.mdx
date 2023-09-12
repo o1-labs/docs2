@@ -231,6 +231,32 @@ Use `o1js` to sign zkApp transactions if you can, as it's more ergonomic and eas
 
 ### Signing/Verifying Field payloads
 
+Mina Signer supports signing and verifying Field payloads. This can be helpful if you want to sign a Field payload with a specific keypair and verify the signature as to make sure that it has not been altered by a third party.
+
+```js
+import Client from 'mina-signer';
+const client = new Client({ network: 'testnet' });
+const keypair = client.genKeys();
+
+const fields = [10n, 20n, 30n, 340817401n, 2091283n, 1n, 0n];
+const signedFields = client.signFields(fields, keypair.privateKey);
+const verifiedFields = client.verifyFields(signedFields);
+```
+
+If you are using `o1js` to generate Field payloads, you must convert the Fields to BigInts before signing/verifying them.
+In Mina Signer, the Field type is a BigInt (while in `o1js` they are a seperate data structure), so you must convert the fields from `o1js` to BigInts before signing/verifying them.
+
+```js
+import Client from 'mina-signer';
+import { Field } from 'o1js';
+const client = new Client({ network: 'testnet' });
+const keypair = client.genKeys();
+
+const fields = [Field(10), Field(20)].map((f) => f.toBigInt());
+const signedFields = client.signFields(fields, keypair.privateKey);
+const verifiedFields = client.verifyFields(signedFields);
+```
+
 ### Nullifiers
 
 ### Examples
