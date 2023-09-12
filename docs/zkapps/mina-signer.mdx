@@ -36,7 +36,7 @@ const TestnetClient = new Client({ network: 'testnet' }); // Specify testnet (Be
 
 ### Generating keys
 
-With Mina Signer, generating keys is straightforward.
+With Mina Signer, generating keypairs is straightforward.
 
 ```js
 import Client from 'mina-signer';
@@ -47,6 +47,7 @@ const keypair = client.genKeys(); // Generates a public and private keypair
 ### Signing/Verifying transactions
 
 The Mina Signer supports signing and verifying both transactions and stake delegations. To sign a transaction or delegation, the private key of the sender must be provided. To verify a transaction or delegation, the public key of the sender must be provided.
+Once the payment or delegation is signed, it can be broadcasted to the network via the Mina Daemon.
 
 #### Payments
 
@@ -101,6 +102,7 @@ This is useful for applications that want to support both different types of tra
 ```js
 import Client from 'mina-signer';
 const client = new Client({ network: 'mainnet' });
+const keypair = client.genKeys();
 
 // Sign a payment
 client.signTransaction(
@@ -187,16 +189,17 @@ const hashedDelegation = client.hashStakeDelegation(delegation);
 
 ## o1js Usage
 
-Mina Signer can seamlessly integrate with `o1js`, offering a wide range of features for zkApps. It can be used to sign zkApp transactions, verify zkApp transactions, generate nullifiers, and more.
+Mina Signer can seamlessly integrate with [o1js](/zkapps/o1js), offering a wide range of features for zkApps. It can be used to sign/verify zkApp transactions, sign/verify Field payloads, sign generate nullifiers, and more.
 
 ### Signing/Verifying zkApp transactions
 
-Mina Signer supports signing and verifying zkApp transactions that have been previously signed with Mina Signer. `o1js` itself can be used to sign zkApp transactions,
-but Mina Signer offers the ability to create a transaction that is easily broadcasted via a running Mina Daemon. This can be very useful for wallet applications that want to support zkApps.
+Mina Signer supports signing and verifying zkApp transactions. `o1js` itself can be used to sign zkApp transactions,
+but Mina Signer offers the ability to sign a zkApp transaction that can easily be broadcasted with a Mina Daemon. This can be very useful for wallet applications that want to support zkApps.
 
 ```js
 import Client from 'mina-signer';
 import { Mina } from 'o1js';
+
 const client = new Client({ network: 'testnet' });
 const keypair = client.genKeys();
 
@@ -274,5 +277,3 @@ const keypair = client.genKeys();
 const message = [10n, 20n, 30n, 340817401n, 2091283n, 1n, 0n];
 const nullifier = client.createNullifier(message, keypair.privateKey);
 ```
-
-### Examples
