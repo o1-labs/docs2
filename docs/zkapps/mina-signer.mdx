@@ -8,7 +8,7 @@ Mina Signer is a NodeJS/Browser compatible JavaScript library built for the Mina
 
 ## Installation
 
-To install the library, run the following command:
+To install the Mina Signer, run the following command:
 
 ```sh
 npm install mina-signer
@@ -16,13 +16,15 @@ npm install mina-signer
 
 ## Mina Protocol Usage
 
-The Mina Signer offers a wide range of features for the Mina Protocol. It can be used to generate keys, sign transactions, verify transactions, and more. Mina Signer also supports compatability between different networks, such as mainnet and testnet.
+Mina Signer offers a wide range of features for the Mina Protocol. It can be used to generate keys, sign transactions, verify transactions, and more. Mina Signer also supports compatability between different networks, such as mainnet and testnet.
 
 ### Specifying the network
 
-When initializing the Mina Signer, the network must be specified. This is done by passing the `network` parameter to the constructor. The network can be either `mainnet` or `testnet`. If no network is specified, the default network is `mainnet`.
+When initializing Mina Signer, the network must be specified. This is because different networks can potentially be using different crytographic methods.
+This is done by passing the `network` parameter to the constructor. The network can be either `mainnet` or `testnet`.
 
 :::tip
+If no network is specified, the default network is `mainnet`.
 If you wish to specify the current Berkeley network, the value of `testnet` should be used
 :::
 
@@ -231,7 +233,7 @@ Use `o1js` to sign zkApp transactions if you can, as it's more ergonomic and eas
 
 ### Signing/Verifying Field payloads
 
-Mina Signer supports signing and verifying Field payloads. This can be helpful if you want to sign a Field payload with a specific keypair and verify the signature as to make sure that it has not been altered by a third party.
+Mina Signer supports signing and verifying Field arbitrary payloads. This can be helpful if you want to sign a Field payload with a specific keypair and verify the signature as to make sure that it has not been altered by a third party.
 
 ```js
 import Client from 'mina-signer';
