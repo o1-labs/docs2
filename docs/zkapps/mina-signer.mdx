@@ -185,7 +185,49 @@ const hashedDelegation = client.hashStakeDelegation(delegation);
 
 ## o1js Usage
 
+Mina Signer can seamlessly integrate with `o1js`, offering a wide range of features for zkApps. It can be used to sign zkApp transactions, verify zkApp transactions, generate nullifiers, and more.
+
 ### Signing/Verifying zkApp transactions
+
+Mina Signer supports signing and verifying zkApp transactions that have been previously signed with Mina Signer. `o1js` itself can be used to sign zkApp transactions,
+but Mina Signer offers the ability to create a transaction that is easily broadcasted via a running Mina Daemon. This can be very useful for wallet applications that want to support zkApps.
+
+```js
+import Client from 'mina-signer';
+import { Mina } from 'o1js';
+const client = new Client({ network: 'testnet' });
+const keypair = client.genKeys();
+
+const zkAppTransaction = await Mina.transaction(feePayerAddress, () => {
+  // ... Interact with a zkApp inside this block to produce a zkApp transaction
+});
+
+// Sign the zkApp transaction with Mina Signer
+const signedZkAppTransaction = client.signZkappCommand(
+  {
+    zkappCommand: JSON.parse(JSON.stringify(txn.transaction)),
+    feePayer: {
+      feePayer: keypair.publicKey,
+      fee: '1',
+      nonce: '0',
+      memo: 'memo',
+    },
+  },
+  keypair.privateKey
+);
+
+// Verify the zkApp transaction with Mina Signer
+const verifiedZkAppTransaction = client.verifyZkappCommand(
+  signedZkAppTransaction
+);
+```
+
+Firstly, when supplying the input parameters for `signZkappCommand()`, we must first parse the zkApp transaction into a string and then into a JSON object. This is because the types generated from `Mina.transaction()` are not compatible with the types used by Mina Signer.
+Secondly, we specify the `feePayer` object which contains the public key of the fee payer, the fee to be paid, the nonce of the fee payer, and the memo of the transaction. The `feePayer` object is used to sign the zkApp transaction.
+
+:::tip
+Use `o1js` to sign zkApp transactions if you can, as it's more ergonomic and easier to use. Only use `Mina Signer` if you need to sign zkApp transactions offline and broadcast at a later time (e.g. wallet software).
+:::
 
 ### Signing/Verifying Field payloads
 
