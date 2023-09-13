@@ -203,7 +203,7 @@ Mina Signer can seamlessly integrate with [o1js](/zkapps/o1js),delivering an arr
 
 ### Signing & Verifying zkApp transactions
 
-Mina Signer supports signing and verifying zkApp transactions. `o1js` itself can be used to sign zkApp transactions,
+Mina Signer supports signing and verifying zkApp transactions. o1js itself can be used to sign zkApp transactions,
 but Mina Signer offers the ability to sign a zkApp transaction that can easily be broadcasted with a Mina Daemon. This can be very useful for wallet applications that want to support zkApps.
 
 ```js
@@ -241,7 +241,7 @@ Firstly, when supplying the input parameters for `signZkappCommand()`, we must f
 Secondly, we specify the `feePayer` object which contains the public key of the fee payer, the fee to be paid, the nonce of the fee payer, and the memo of the transaction. The `feePayer` object is used to sign the zkApp transaction.
 
 :::tip
-Use `o1js` to sign zkApp transactions if you can, as it's more ergonomic and easier to use. Only use `Mina Signer` if you need to sign zkApp transactions offline and broadcast at a later time (e.g. wallet software).
+Use o1js to sign zkApp transactions if you can, as it's more ergonomic and easier to use. Only use `Mina Signer` if you need to sign zkApp transactions offline and broadcast at a later time (e.g. wallet software).
 :::
 
 ### Signing/Verifying Field payloads
@@ -258,8 +258,8 @@ const signedFields = client.signFields(fields, keypair.privateKey);
 const verifiedFields = client.verifyFields(signedFields);
 ```
 
-If you are using `o1js` to generate Field payloads, you must convert the Fields to BigInts before signing/verifying them.
-In Mina Signer, the Field type is a BigInt (while in `o1js` they are a seperate data structure), so you must convert the fields from `o1js` to BigInts before signing/verifying them.
+If you are using o1js to generate Field payloads, you must convert the Fields to BigInts before signing/verifying them.
+In Mina Signer, the Field type is a BigInt (while in o1js they are a seperate data structure), so you must convert the fields from o1js to BigInts before signing/verifying them.
 
 ```js
 import Client from 'mina-signer';
