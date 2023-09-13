@@ -293,7 +293,7 @@ We want our `verify()` method to only emit an event if the user’s credit score
 
 ```ts
 // Check that the provided credit score is greater than 700
-creditScore.assertGte(Field(700));
+creditScore.greaterThanOrEqual(700).assertTrue();
 ```
 
 These assert methods create a constraint that makes it impossible for users to generate a valid zero-knowledge proof unless their condition is met. Without a valid zero-knowledge proof (or a signature) it’s impossible to generate a valid Mina transaction. So, we can now rest assured that users can only call our smart contract method and send a valid transaction if they have a valid signature from our expected oracle and a credit score above 700.
