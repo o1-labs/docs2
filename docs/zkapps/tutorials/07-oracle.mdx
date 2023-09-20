@@ -24,61 +24,83 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Tutorial 7: Oracles
 
-## Overview
+You can use an oracle when your smart contract needs to consume data from the outside world.
 
-If your smart contract needs to consume data from the outside world, you can use an oracle.
-
-Learn about zkOracles in this video:
+Learn about zkOracles in this 5-minute video:
 
 <ResponsiveVideo src="https://www.youtube.com/embed/lvX_l9tb_rQ" />
 
-In this tutorial, we’ll build an oracle that retrieves data from a REST API. We’ll also write a smart contract that consumes information from this oracle.
+## Prerequisites
 
-Specifically, our oracle will retrieve data from a REST API that provides mock credit score information for two users–one with a high credit score and one with a low credit score. Our smart contract will consume this information and allow the user to prove their credit score is above a certain threshold (e.g. >700).
+- Make sure you have the zkApp CLI installed:
 
-Using our smart contract, an end user will be able to generate an attestation that their credit score is above a certain value, which they can present to a third party to prove this fact without needing to share the exact credit score or other personal info with this 3rd party, maintaining their privacy.
+    ```sh
+    $ npm install -g zkapp-cli
+    ```
 
-Although we’re using a mock credit score API as our data source, you can easily swap out the oracle’s HTTP request to use any REST API or GraphQL API source of your choice, to create an oracle for any type of data.
+- Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-## Oracle
+This tutorial has been tested with:
 
-### How it works
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.2
+- [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
 
-Let’s start by understanding how an oracle works.
+## High-Level Overview
 
-Mina smart contracts run off-chain and make it possible to prove that the expected computation was run on private data without revealing the data itself. But if the smart contract consumes data from a 3rd party source, we need a way to verify that this data is authentic–i.e. that it was provided by the expected source.
+In this tutorial, you build an oracle that retrieves data from a REST API and write a smart contract that consumes information from this oracle.
 
-In the future, Mina’s zkOracles will allow a zkApp to consume data trustlessly from any HTTPS data source. But for now, the oracle design described in this tutorial will typically be operated by the zkApp developer, it will fetch and sign the desired data, and then a zkApp can consume this data and will verify the signature to ensure that the data was provided by the expected source.
+1. Retrieve data from a REST API that provides mock credit score information for two users: one with a high credit score and one with a low credit score. 
+1. The smart contract consumes this information and allows users to prove their credit score is above a certain threshold (for example, higher than 700).
 
-:::note
+Using the smart contract, an end user can generate an attestation that their credit score is above a certain value. To maintain their privacy, the user can prove this fact to a third party without sharing the exact credit score or other personal information.
 
-Data providers can also operate response signers (like the one described above) to provide users with an oracle that does not require them to trust an intermediary. In other words, if a credit score or other data provider chooses to sign response data themselves, users can consume data from that source without trusting anybody besides the data provider (who users are already trusting to provide correct data).
+This tutorial uses a mock credit score API as the data source and provides a foundation to create an oracle for any type of data. Just swap out the oracle's HTTP request to use any REST API or GraphQL API source.  
 
-:::
+## How Oracles Work
+
+Oracles connect blockchain smart contracts with the outside world
+to get data on chain. 
+
+Mina smart contracts run off-chain and make it possible to prove that the expected computation was run on private data without revealing the data itself. When the smart contract consumes data from a third-party source, you want to verify that this data is authentic and was provided by the expected source.
+
+Mina zkOracles do not allow a zkApp to consume data trustlessly from any HTTPS data source. The oracle design described in this tutorial is typically operated by the zkApp developer. The oracle fetches and signs the desired data, then a zkApp can consume this data and verify the signature to ensure that the data was provided by the expected source.
+
+Data providers can also operate response signers like the one described to provide users with an oracle that does not require them to trust an intermediary. In other words, if a credit score or other data provider chooses to sign response data themselves, users can consume data from that source without trusting anybody besides the data provider they already trust to provide correct data.
 
 ### Design
 
-Our oracle design will be quite simple.
+The simple oracle design:
 
-We will fetch data from the desired source, sign it using a Mina-compatible private key, and return the data, signature, and public key associated with our private key, so that our signature can be verified by the zkApp.
+- Fetches data from the desired source
+- Signs it using a Mina-compatible private key
+- Returns the data, signature, and public key associated with the private key
+- Allows the signature to be verified by the zkApp
 
 ### Code
 
-You can view the complete oracle code [here](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/index.js) and can generate a Mina-compatible public/private key pair for your oracle by running `npm run keygen` (which will run the code in [this file](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js)).
+The full source code for this tutorial is provided in [Jack's external repo](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/index.js).
 
-For our oracle, we’re using a Koa server hosted on DigitalOcean. It’s short, but you don’t have to dive into the code now. It’s commented to explain each step so you can build something similar for yourself!
+To generate a Mina-compatible public/private key pair for your oracle, run:
 
-You can easily adapt this code to create oracles for other API sources. For example, if you wanted your smart contract to ingest price feed data from an exchange, you could simply query the exchange API, sign the results, and return a response formatted as described below.
+```sh
+npm run keygen
+```
+
+This command runs the script in the [keygen.js](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js) file.
+
+This oracle uses a Koa server hosted on DigitalOcean. It's short, but you don't have to dive into the code now. The code is commented to explain each step so you can build something similar for yourself.
+
+You can adapt this code to create oracles for other API sources. For example, if you want your smart contract to ingest price feed data from an exchange, query the exchange API, sign the results, and return a response in the following response format.
 
 ### Response Format
 
-The oracle returns its response in JSON with three, top-level properties: `data`, `signature`, & `publicKey`.
+The oracle returns its response in JSON with three, top-level properties:
 
-- `data` is an object of the information we are interested in and can have any form.
-- `signature` is a signature for the `data` created using the oracle operator’s private key. Smart contracts will use this to verify that data was provided by the expected source.
-- `publicKey` is the public key of the oracle. This will be the same for all requests to this oracle.
+- `data` is an object of the information you are interested in and can have any form.
+- `signature` is a signature for the `data` created using the oracle operator's private key. Smart contracts use this signature to verify that data was provided by the expected source.
+- `publicKey` is the public key of the oracle is the same for all requests to this oracle.
 
-For example, below is a response from our oracle for the user with an `id` of `1`. In the real world, this `id` might be a social security number or a similar identifier. Notice that the data property contains their credit score and user id.
+The following example is a response from the oracle for the user with an `id` of `1`. In the real world, this `id` might be a social security number or a similar identifier. Notice that the data property contains their credit score and user id.
 
 ```json
 {
@@ -91,7 +113,7 @@ For example, below is a response from our oracle for the user with an `id` of `1
 }
 ```
 
-Our demo oracle also provides a response for a user id of `2`, who has a credit score that will be below our specified threshold when we write our smart contract further below.
+This demo oracle also provides a response for a user id of `2` who has a credit score that is below the threshold specified in the smart contract.
 
 ```json
 {
@@ -104,23 +126,42 @@ Our demo oracle also provides a response for a user id of `2`, who has a credit 
 }
 ```
 
-While the first user has a credit score of `787`, the second user only has a credit score of `536`. We can also see that the `signature` has changed. This makes sense because the payload is different from what we received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
+While the first user has a credit score of `787`, the second user only has a credit score of `536`. The `signature` is also changed. This makes sense because the payload is different from what is received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
 
-For purposes of this tutorial below, you can access our demo oracle at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 and https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2, if you don’t want to set up your own oracle right now.
+For purposes of this tutorial, you can access the demo oracle at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 and https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2, if you don't want to set up your own oracle right now.
 
 ## Smart Contract
 
-Now that we have an oracle that returns signed data, we will write a smart contract that uses this data.
+Now that you have an oracle that returns signed data, you can write a smart contract that uses this data.
 
-### Setup
+### Create a project
 
-The following steps assume you've installed dependencies to your machine as described in [Tutorial 1: Hello World](hello-world) — if not, please do that first.
+1. Create or change to a directory where you have write privileges.
 
-Now, set up a new project with:
+1. Create a project by using the `zk project` command:
 
-```sh
-$ zk project oracle
-```
+  ```sh
+  $ zk project 07-oracles
+  ```
+
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+
+  ```text
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+1. Change into the `07-oracles` directory.
+
+For this tutorial, you run commands from the root of the `07-oracles` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+
+## Prepare the project
 
 Delete the default generated files by running:
 
