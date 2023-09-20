@@ -42,8 +42,8 @@ Learn about zkOracles in this 5-minute video:
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.2
-- [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
+- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version 0.13.0
+- [o1js](https://www.npmjs.com/package/o1js) version 0.13.0
 
 ## High-Level Overview
 
@@ -69,7 +69,7 @@ Data providers can also operate response signers like the one described to provi
 
 ### Design
 
-The simple oracle design:
+This simple oracle design:
 
 - Fetches data from the desired source
 - Signs it using a Mina-compatible private key
@@ -88,17 +88,17 @@ npm run keygen
 
 This command runs the script in the [keygen.js](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js) file.
 
-This oracle uses a Koa server hosted on DigitalOcean. It's short, but you don't have to dive into the code now. The code is commented to explain each step so you can build something similar for yourself.
+This oracle uses a Koa server hosted on DigitalOcean. It's short, but you don't have to dive into the code now. The code is commented to explain each step so you can use it as a model to build something similar.
 
 You can adapt this code to create oracles for other API sources. For example, if you want your smart contract to ingest price feed data from an exchange, query the exchange API, sign the results, and return a response in the following response format.
 
 ### Response Format
 
-The oracle returns its response in JSON with three, top-level properties:
+The oracle returns a JSON-formatted response with these top-level properties:
 
-- `data` is an object of the information you are interested in and can have any form.
-- `signature` is a signature for the `data` created using the oracle operator's private key. Smart contracts use this signature to verify that data was provided by the expected source.
-- `publicKey` is the public key of the oracle is the same for all requests to this oracle.
+- `data`: An object of the information you are interested in and can have any form.
+- `signature`: A signature for the `data` created using the oracle operator's private key. Smart contracts use this signature to verify that data was provided by the expected source.
+- `publicKey`: The public key of the oracle is the same for all requests to this oracle.
 
 The following example is a response from the oracle for the user with an `id` of `1`. In the real world, this `id` might be a social security number or a similar identifier. Notice that the data property contains their credit score and user id.
 
@@ -126,7 +126,7 @@ This demo oracle also provides a response for a user id of `2` who has a credit 
 }
 ```
 
-While the first user has a credit score of `787`, the second user only has a credit score of `536`. The `signature` is also changed. This makes sense because the payload is different from what is received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
+While the first user has a credit score of `787`, the second user has a credit score of `536`. The `signature` is also changed. This makes sense because the payload is different from what is received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
 
 For purposes of this tutorial, you can access the demo oracle at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 and https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2, if you don't want to set up your own oracle right now.
 
@@ -154,30 +154,32 @@ Now that you have an oracle that returns signed data, you can write a smart cont
     empty
   ❯ none
   ```
+
 1. Change into the `07-oracles` directory.
 
-For this tutorial, you run commands from the root of the `07-oracles` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+For this tutorial, you run commands from the root of the `07-oracles` directory.
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-
 ## Prepare the project
 
-Delete the default generated files by running:
+The files in the `src` directory contain the TypeScript code for the smart contract.
 
-```sh
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-```
+1. Delete the default generated files by running:
 
-And create new files:
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
 
-```sh
-$ zk file CreditScoreOracle
-```
+1. Create the `CreditScoreOracle.ts` file and generate the corresponding test file:
 
-And lastly, change `index.ts` to:
+  ```sh
+  $ zk file CreditScoreOracle
+  ```
+
+1. Change `index.ts` to:
 
 ```ts
 import { CreditScoreOracle } from './CreditScoreOracle.js';
@@ -185,9 +187,9 @@ import { CreditScoreOracle } from './CreditScoreOracle.js';
 export { CreditScoreOracle };
 ```
 
-### Writing our Smart Contract
+## Write the smart contract
 
-Open up `/src/CreditScoreOracle.ts` and paste in the following:
+Paste the following content into the `/src/CreditScoreOracle.ts` file:
 
 <!-- prettier-ignore -->
 ```ts
@@ -244,18 +246,20 @@ export class OracleExample extends SmartContract {
 }
 ```
 
-This just adds the basic setup for our smart contract. For more details on the `deploy()` method — see [Tutorial 1: Hello World](hello-world).
+This completes the basic setup for the smart contract. For details on the `deploy()` method, see [Tutorial 1: Hello World](hello-world).
 
-## On-Chain State
+### On-Chain State
 
-Our smart contract will store the public key for the oracle that we choose to retrieve data from as on-chain state so that it is available when end users run the smart contract. The smart contract will then use this to verify the signature of the data to confirm it came from the expected source.
+The smart contract stores the public key for the oracle that you retrieve data from as on-chain state. This makes the public key available when end users run the smart contract. The smart contract then uses this public key to verify the signature of the data to confirm it came from the expected source.
+
+In the `/src/CreditScoreOracle.ts` file:
 
 ```ts
   // Define contract state
   @state(PublicKey) oraclePublicKey = State<PublicKey>();
 ```
 
-We’ll use the `init` method to initialize `oraclePublicKey` to the credit score oracle’s public key.
+Use the `init` method to initialize `oraclePublicKey` to the credit score oracle's public key.
 
 ```ts
   @method init(zkappKey: PrivateKey) {
@@ -267,13 +271,15 @@ We’ll use the `init` method to initialize `oraclePublicKey` to the credit scor
   }
 ```
 
-`init` is a method that the contract developer can run after the contract is deployed, but before users have the chance to interact with it, to set the initial on-chain state and other configuration. You can think of it like a constructor in a Solidity contract.
+After the smart contract is deployed, run the `init()` method before users have the chance to interact with it to set the initial on-chain state and other configuration. You can think of it like a constructor in a Solidity contract.
 
-## Emitting Events
+### Emit Events
 
-Our smart contract will check that a user has a credit score above a certain threshold, but how can we expose the result to the outside world? We can emit events! Events allow smart contracts to publish arbitrary messages that anybody can verify without requiring that we store them in the state of a zkApp account. This property makes them ideal for communication with other parts of your application that don’t live on-chain (like your UI, or even an external service).
+The smart contract checks that a user has a credit score above a certain threshold. But, how do can the user prove it? 
 
-Let’s add an `events` object to our Smart Contract class to define the names and types of the events it will emit.
+To expose the result to the outside world, you can emit events. Events allow smart contracts to publish arbitrary messages that anybody can verify without requiring that them to be stored in the state of a zkApp account. This property makes events ideal for communication with other parts of your application that don't live on-chain, like the UI or even an external service.
+
+This code adds an `events` object to the smart contract class to define the names and types of the events it can emit:
 
 ```ts
 // Define contract events
@@ -282,27 +288,27 @@ events = {
 };
 ```
 
-## Defining our `verify()` Method
+### Define the `verify()` method
 
-Now, let’s add a method to verify a user’s credit score is above 700.
+To verify a that user's credit score is above 700, add a method.
 
-This is defined the same as any other TypeScript method, except that it must have the `@method` decorator in front of it, which tells o1js that this method can be invoked by users when they interact with the smart contract.
+The `verify()` method is defined like any other TypeScript method, except that it must have the `@method` decorator in front of it that tells o1js that this method can be invoked by users when they interact with the smart contract.
 
 ```ts
   @method verify(id: Field, creditScore: Field, signature: Signature) {
 ```
 
-We will pass in a few arguments.
+Pass in these arguments:
 
-- `userId`: The id of the users whose credit score we requested. Necessary to prevent bad actors from querying somebody else data and claiming it as their own.
-- `creditScore`: The (fake) credit score of the user (a number between 350 and 800).
-- `signature`: A cryptographic signature of our `userId` and `creditScore`. This is what our smart contract will use in order to verify that the data was provided by the expected source.
+- `userId`: The id of the user whose credit score is requested is required to prevent bad actors from querying somebody else's data and claiming it as their own.
+- `creditScore`: The credit score of the user that is a number between 350 and 800 (this tutorial uses mock credit scores).
+- `signature`: A cryptographic signature of `userId` and `creditScore`. This is what the smart contract uses to verify that the data was provided by the expected source.
 
-The `verify()` method will not return any values or change any contract state, instead it will emit an `id` event with the user’s id if their credit score is above 700.
+The `verify()` method does not return any values or change any contract state. It only emits an `id` event with the user's id if their credit score is above 700.
 
-### Fetching the Oracle’s Public Key
+### Fetch the oracle's public key
 
-Now let’s get the oracle’s public key from the on-chain state. We will need this to verify the signature of data from the oracle.
+To get the oracle's public key from the on-chain state, verify the signature of data from the oracle:
 
 ```ts
 // Get the oracle public key from the contract state
@@ -310,47 +316,54 @@ const oraclePublicKey = this.oraclePublicKey.get();
 this.oraclePublicKey.assertEquals(oraclePublicKey);
 ```
 
-We use `assertEquals()` to ensure that the public key we retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
+`assertEquals()` ensures that the public key that is retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
 
-### Verify the Signature
+### Verify the signature
 
-Next, we’ll verify that the signature on the data (`id` and `creditScore`) is valid for the expected public key, to ensure it was from our expected source. This will return true if the signature is valid, and false if it is not.
+To ensure the signature was from our expected source, verify that the signature on the data (`id` and `creditScore`) is valid for the expected public key. This code returns true if the signature is valid, and false if it is not.
 
 ```ts
 // Evaluate whether the signature is valid for the provided data
 const validSignature = signature.verify(oraclePublicKey, [id, creditScore]);
 ```
 
-We also want it to make it impossible to generate a valid zero-knowledge proof if `validSignature` is false. We can do this with `assertTrue()`. If the signature is invalid, this will throw an exception and make it impossible to generate a valid ZKP and transaction.
+You always want to make it impossible to generate a valid zero-knowledge proof if `validSignature` is false. You can do this with `assertTrue()`. If the signature is invalid, this throws an exception and makes it impossible to generate a valid zero-knowledge proof and transaction.
 
 ```ts
 // Check that the signature is valid
 validSignature.assertTrue();
 ```
 
-### Check that the Users Credit Score Is Above 700
+### Verify the credit score is 700 or higher
 
-We want our `verify()` method to only emit an event if the user’s credit score is above 700. We can ensure that this condition is met by calling the `assertGte()` (i.e. assert greater than or equal to) on the `creditScore`.
+You want the `verify()` method to emit an event only if the user's credit score is 700 or higher. To ensure that this condition is met, call `assertGte()` (assert greater than or equal to) on `creditScore`.
 
 ```ts
 // Check that the provided credit score is greater than 700
 creditScore.assertGte(Field(700));
 ```
 
-These assert methods create a constraint that makes it impossible for users to generate a valid zero-knowledge proof unless their condition is met. Without a valid zero-knowledge proof (or a signature) it’s impossible to generate a valid Mina transaction. So, we can now rest assured that users can only call our smart contract method and send a valid transaction if they have a valid signature from our expected oracle and a credit score above 700.
+These assert methods create a constraint that makes it impossible for users to generate a valid zero-knowledge proof unless their condition is met. Without a valid zero-knowledge proof (or a signature) it's impossible to generate a valid Mina transaction. Users can call the smart contract method and send a valid transaction only if they have a valid signature from the expected oracle and a credit score 700 or above.
 
-### Emitting our `verified` Event
+### Emit a verified event
 
-Now that we are sure everything checks out, we can emit an event to indicate this. The first argument to `emitEvent()` is an arbitrary string name chosen by the developer (because a smart contract could emit more than one type of event) and the second argument can be any value, as long as it matches the type defined for our event earlier. In this case, our event is `Field`, but it could be a more complicated type built on Fields, if the situation called for it. Emitted events are stored and available on archive nodes in the Mina network.
+With this foundation, you can can emit a verified event. 
+
+- The first argument to `emitEvent()` is an arbitrary string name, because a smart contract could emit more than one type of event.
+- The second argument can be any value, as long as it matches the type defined for the event. 
+
+In this case, the event is `Field`, but it could be a more complicated type built on Fields, if the situation called for it. Emitted events are stored and available on [archive nodes](/node-operators/archive-node) in the Mina network.
 
 ```ts
 // Emit an event containing the verified users id
 this.emitEvent('verified', id);
 ```
 
-## Testing it Out
+## Test your smart contract
 
-The zkApp CLI automatically generated a file called `CreditScoreOracle.test.ts` for us when we ran `zk file CreditScoreOracle`. Let’s add some tests. Open it and paste in the following:
+When you ran the `zk file CreditScoreOracle` command, the zkApp CLI automatically generated a test file called `CreditScoreOracle.test.ts`. 
+
+To add tests, paste the following code in the `CreditScoreOracle.test.ts` file:
 
 ```ts
 import { OracleExample } from './CreditScoreOracle';
@@ -555,9 +568,14 @@ describe('CreditScoreOracle', () => {
 });
 ```
 
-Now save it and run `npm run test`.
+To run the tests:
 
-You might have to try it twice in order for all the tests to pass because we're calling our live API directly. Note that writing a test that calls an API is generally not a best practice, but it’s convenient for the sake of this tutorial. You can also mock your HTTP requests.
+1. Save the `CreditScoreOracle.test.ts` file. 
+1. Run `npm run test`.
+
+You might have to try it twice in order for all the tests to pass because you are calling the live API directly. 
+
+Note that writing a test that calls an API is generally not a best practice, but it's convenient for the sake of this tutorial. You can also mock your HTTP requests.
 
 Congratulations! You have just built a simple oracle using o1js and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
 
