@@ -1,0 +1,3 @@
+[submodule "examples/zkapps/07-oracles/oracle"]
+	path = examples/zkapps/07-oracles/oracle
+	url = https://github.com/jackryanservia/mina-credit-score-signer
