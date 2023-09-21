@@ -1,3 +1,3 @@
 # Mina Oracle Example
 
-Monorepo for [this example](https://docs.minaprotocol.com/zkapps/tutorials/oracle). Check it out! :)
+Monorepo for [Tutorial 7: Oracles](https://docs.minaprotocol.com/zkapps/tutorials/oracle). Check it out! :)
