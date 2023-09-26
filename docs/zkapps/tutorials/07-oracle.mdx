@@ -88,7 +88,7 @@ npm run keygen
 
 This command runs the script in the [keygen.js](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js) file.
 
-This oracle uses a Koa server hosted on DigitalOcean. It's short, but you don't have to dive into the code now. The code is commented to explain each step so you can use it as a model to build something similar.
+This oracle uses a Koa server hosted on DigitalOcean that a computer can interact with. It's short, but you don't have to dive into the code now. The `index.js` code is commented to explain each step so you can use it as a model to build something similar.
 
 You can adapt this code to create oracles for other API sources. For example, if you want your smart contract to ingest price feed data from an exchange, query the exchange API, sign the results, and return a response in the following response format.
 
@@ -102,6 +102,8 @@ The oracle returns a JSON-formatted response with these top-level properties:
 
 The following example is a response from the oracle for the user with an `id` of `1`. In the real world, this `id` might be a social security number or a similar identifier. Notice that the data property contains their credit score and user id.
 
+The demo oracle for user 1 is available at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 shows this response:
+
 ```json
 {
   "data": { "id": "1", "creditScore": "787" },
@@ -113,7 +115,9 @@ The following example is a response from the oracle for the user with an `id` of
 }
 ```
 
-This demo oracle also provides a response for a user id of `2` who has a credit score that is below the threshold specified in the smart contract.
+The demo oracle for user 2 with a lower credit score is available at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2 shows this response:
+
+The user with an `id` of `2` has a credit score that is below the threshold specified in the smart contract.
 
 ```json
 {
@@ -128,7 +132,7 @@ This demo oracle also provides a response for a user id of `2` who has a credit 
 
 While the first user has a credit score of `787`, the second user has a credit score of `536`. The `signature` is also changed. This makes sense because the payload is different from what is received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
 
-For purposes of this tutorial, you can access the demo oracle at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 and https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2, if you don't want to set up your own oracle right now.
+You can modify the example code in `index.js` to create your own Koa oracle on DigitalOcean to deploy in one click, or use these demo oracles for educational purposes.
 
 ## Smart Contract
 
