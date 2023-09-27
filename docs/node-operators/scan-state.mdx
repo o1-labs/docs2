@@ -11,7 +11,7 @@ As the block producers no longer have to produce these transaction SNARKs, the b
 
 The scan state is comprised of a forest of [full-binary trees](https://en.wikipedia.org/wiki/Binary_tree) where each node in the tree is a job to be completed by a SNARK worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
 
-The block producers include the emitted ledger proof in the blockchain SNARK they generate that proves both the chain's current state is valid and attests to the validity of all transactions included in the snarked ledger.
+The block producers include the emitted ledger proof in the blockchain SNARK they generate that proves both the chain's current state is valid and attests to the validity of all transactions included in the SNARKed ledger.
 
 As a result, block times may remain constant regardless of the transaction throughput, with the scan state capable of adjusting to match a desired transaction throughput.
 

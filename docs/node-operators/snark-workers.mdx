@@ -17,7 +17,7 @@ Note: This document primarily targets node operators, and will not cover the the
 
 Mina's unique property is the succinct blockchain. Each block producer, when they propose a new block to the network, must also include a zk-SNARK along with that block. This allows nodes to discard all historical data that's been finalized, and retain just the SNARK. If you are unfamiliar with the Mina protocol, [this video is a good start](https://www.youtube.com/watch?v=eWVGATxEB6M).
 
-However, it is not only sufficient for the block producers in Mina to generate SNARK proofs of blocks. Transactions also need to be snarked. The reason is because the blockchain SNARK does not make any statements of the validity of the transactions included in the block.
+However, it is not only sufficient for the block producers in Mina to generate SNARK proofs of blocks. Transactions also need to be SNARKed. The reason is because the blockchain SNARK does not make any statements of the validity of the transactions included in the block.
 
 For example — let's say the current head of the blockchain has a state hash `a6f8792226...` , and we receive a new block with a state hash `0ffdcf284f...` . This block will contain all the transactions that the block producer has chosen to include in this block, and associated metadata. We will also receive an accompanying SNARK that verifies the statement:
 
@@ -54,7 +54,7 @@ Lucky for us, we can leverage two properties about SNARKs:
 
 What these two properties essentially allow us to do is take advantage of parallelism. If proofs can be merged, and it doesn't matter how they're combined, then SNARK proofs can be generated in parallel. Whichever proof is finished first can be combined later with the proofs in progress. This can be envisioned as a binary tree, where the bottom row (the leaves) consists of the individual transaction proofs, and each parent row, the set of respective merge proofs. We can combine these all the way to the root, which represents a state update performed by applying all the transactions.
 
-In addition, because the SNARK proofs don't depend on each other and we can exploit parallelism, this means anyone can do the work! The end result is that the distributed work pool is permission-less. Anyone with spare compute can join the network as SNARK workers, observe transactions that need to be snarked, and contribute their compute. And of course, they will be compensated for their work in what we affectionately call **the snarketplace**.
+In addition, because the SNARK proofs don't depend on each other and we can exploit parallelism, this means anyone can do the work! The end result is that the distributed work pool is permission-less. Anyone with spare compute can join the network as SNARK workers, observe transactions that need to be SNARKed, and contribute their compute. And of course, they will be compensated for their work in what we affectionately call **the snarketplace**.
 
 Note: To learn more about the details of how this SNARK work scheme evolved, it is highly recommended to watch this video: [High Throughput with Slow Snarks](https://www.youtube.com/watch?v=NZmq1V-Te0E). If you're interested in functional programming and the details of the scan state (the tree structure described above), we have [a video](https://www.youtube.com/watch?v=ztH_Z5TCe9I) covering the technical details.
 
@@ -66,7 +66,7 @@ _Block producers use their block rewards to purchase SNARK work from SNARK worke
 
 There is no protocol involvement in pricing snarks, nor are there any protocol level rewards for SNARK workers to produce snarks. The incentives are purely peer-to-peer, and dynamically established in a public marketplace, aka the snarketplace.
 
-You may ask, why does a block producer need to buy SNARKs? Fair question — the reason is because of what we mentioned earlier. In order to know for sure the state at the head of the Mina blockchain is valid, the transactions need to be snarked. But if we keep adding more transactions without snarking them at an equal rate, then over time we accumulate work that never gets finished. In order to reach a steady state equilibrium, we need work to be processed at roughly the same rate that work is added.
+You may ask, why does a block producer need to buy SNARKs? Fair question — the reason is because of what we mentioned earlier. In order to know for sure the state at the head of the Mina blockchain is valid, the transactions need to be SNARKed. But if we keep adding more transactions without snarking them at an equal rate, then over time we accumulate work that never gets finished. In order to reach a steady state equilibrium, we need work to be processed at roughly the same rate that work is added.
 
 Since block producers profit from including transactions in a block (through transaction fees and the coinbase transaction), they are responsible for offsetting the transactions by purchasing an equal number of completed SNARK work, thereby creating demand for SNARK work. However, their imperative is to purchase SNARK work for the lowest price from the snarketplace. Conversely, the SNARK workers want to maximize their profit while also being able to sell their SNARK work. These two roles act as the two sides of the marketplace, and over time establish an equilibrium at a market price for SNARK work.
 

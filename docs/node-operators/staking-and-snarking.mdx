@@ -111,9 +111,9 @@ There is a latency period of a 2-4 weeks before your new stake delegation comes 
 
 The Mina protocol is unique in that it doesn't require nodes to maintain the full history of the blockchain like other cryptocurrency protocols. By recursively using cryptographic proofs, the Mina protocol effectively compresses the blockchain to constant size. We call this compression, because it reduces terabytes of data to a few kilobytes.
 
-However, this isn't data encoding or compression in the traditional sense - rather nodes "compress" data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as "snark-workers" that generate zk-SNARKs for transactions that have been added to blocks.
+However, this isn't data encoding or compression in the traditional sense - rather nodes "compress" data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as "SNARK-workers" that generate zk-SNARKs for transactions that have been added to blocks.
 
-You can start a snark-worker using these commands:
+You can start a SNARK-worker using these commands:
 
     mina client set-snark-work-fee <FEE>
     mina client set-snark-worker --address $MINA_PUBLIC_KEY
@@ -124,7 +124,7 @@ Alternatively, you can restart the daemon with these flags:
 args={["-run-snark-worker $MINA_PUBLIC_KEY", "-snark-worker-fee <fee>"]}
 ```
 
-As a SNARK worker, you get to share some of the block reward for each block your compressed transactions make it in to. The block producer is responsible for gathering compressed transactions before including them into a block, and will be incentivized by the protocol to reward snark-workers.
+As a SNARK worker, you get to share some of the block reward for each block your compressed transactions make it in to. The block producer is responsible for gathering compressed transactions before including them into a block, and will be incentivized by the protocol to reward SNARK-workers.
 
 SNARK workers can be fairly compute intensive, so if you need to limit their CPU usage, you can specify the number of threads SNARK workers use with the `-snark-worker-parallelism` flag. This can be especially useful if you're trying to run a block producer and SNARK worker on the same machine and having issues producing blocks in time.
 
