@@ -17,7 +17,7 @@ The [archive node](/node-operators/archive-node) stores its data in a PostgreSQL
 
 Archive data is critical for applications that require historical lookup. 
 
-On the protocol side, archive data is important for disaster recovery to reconstruct a certain state. A single [archive node set up](/node-operators/archive-node) might not be sufficient. 
+On the protocol side, archive data is important for disaster recovery to reconstruct a certain state. A single [archive node](/node-operators/archive-node)  set up might not be sufficient. 
 
 If the daemon that sends blocks to the archive process or if the archive process itself fails for some reason, there can be missing blocks in the database. To minimize the risk of archive data loss, employ redundancy techniques.
 
@@ -33,7 +33,7 @@ mina daemon \
   --archive-address <Ip-address>:3086\
 ```
 
-Similarly, it is possible to have multiple archive processes write to the same database. In this case, the postgres uri passed to the archive process would be same across multiple archive processes.
+Similarly, it is possible to have multiple archive processes write to the same database. In this case, the `postgres-uri` passed to the archive process is the same across multiple archive processes.
 
 However, multiple archive processes concurrently writing to a database could cause data inconsistencies (explained in https://github.com/MinaProtocol/mina/issues/7567). To avoid this, set the transaction isolation level of the archive database to `Serializable` with the following query:
 
@@ -55,7 +55,7 @@ Some of the internal data look like this:
 {"data":["Signed_command",{"payload":{"common":{"fee":"100","fee_token":"1","fee_payer_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","nonce":"340","valid_until":"4294967295","memo":"E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH"},"body":["Payment",{"source_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","receiver_pk":"B62qm2GCuGCEK79mEjeyaeiFoukThuZLJCHGe9HAzuAnfbtS5FHtPnP","token_id":"1","amount":"100000000"}]},"signer":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","signature":"7mXGz8Df1gu92HVWGue24wcrGxDWkgQrDK59xQGXc627PKFQvVAPSzZn7JMkHtfdBUXavDHcgLBZy4iR4UmA5seRCPMkFDci"}],"status":["Applied",{"fee_payer_account_creation_fee_paid":null,"receiver_account_creation_fee_paid":null,"created_token":null},{"fee_payer_balance":"31866000100000","source_balance":"31866000100000","receiver_balance":"34099000000"}]}],"coinbase":["One",null],"internal_command_balances":[["Coinbase",{"coinbase_receiver_balance":"75477804514901","fee_transfer_receiver_balance":null}],["Fee_transfer",{"receiver1_balance":"65266376010003","receiver2_balance":"78601129170700"}],["Fee_transfer",{"receiver1_balance":"66001820000000","receiver2_balance":"76870784414900"}],["Fee_transfer",{"receiver1_balance":"71158365898775","receiver2_balance":"59264207944722"}],["Fee_transfer",{"receiver1_balance":"68546088449962","receiver2_balance":"66721919100000"}],["Fee_transfer",{"receiver1_balance":"67700798001000","receiver2_balance":"66372760000000"}],["Fee_transfer",{"receiver1_balance":"85383891400000","receiver2_balance":"107174952265469"}],["Fee_transfer",{"receiver1_balance":"65879310000000","receiver2_balance":"66282230000000"}]]}]},"delta_transition_chain_proof":["jxLZWooV57gKCmanzCHHt1CDbHfUpMu6MkynUdqN9ZkBUJi7B1W",[]]}
 ```
 
-This JSON will evolve as the format of the block and transaction payloads evolve in the network.
+This JSON evolves as the format of the block and transaction payloads evolve in the network.
 
 ### Upload block data to Google Cloud Storage
 
@@ -83,17 +83,17 @@ From a fully synced archive database, you can generate block data for each block
 
 The `mina-extract-blocks` tool generates a file for each block with name `<protocol-state-hash>.json`. 
 
-The tool takes an `--archive-uri`, an `--end-state-hash`, and an optional `--start-state-hash` and writes all the blocks in the chain starting from start-state-hash and ending at end-state-hash (including start and end).
+The tool takes an `--archive-uri`, an `--end-state-hash`, and an optional `--start-state-hash`, and writes all the blocks in the chain starting from start-state-hash and ending at end-state-hash (including start and end).
 
-If only the end hash is provided, then the tool generates blocks starting with the unparented block closest to the end block. This would be the genesis block if there are no missing blocks in between. The block data in these files are called extensional blocks. Since these are generated from the database, they have only the data stored in the archive database and do not contain any other information pertaining to a block (for example, blockchain SNARK) like the precomputed blocks and can only be used to restore blocks in the archive database.
+If only the end hash is provided, then the tool generates blocks starting with the unparented block closest to the end block. This would be the genesis block if there are no missing blocks in between. The block data in these files are called extensional blocks. Since these blocks are generated from the database, they have only the data stored in the archive database and do not contain any other information pertaining to a block (for example, blockchain SNARK) like the precomputed blocks and can only be used to restore blocks in the archive database.
 
 Provide the flag `--all-blocks` to write out all blocks contained in the database.
 
 ## Identify missing blocks
 
-To determine any missing blocks in an archive database, use the `mina-missing-block-auditor` tool. 
+To determine any missing blocks in an archive database, use the `mina-missing-block-auditor` tool.
 
-The tool outputs a list of state hashes of all the blocks in the database that are missing a parent. This list can be used to monitor the archive database for any missing blocks. Specify the URI of the postgres database by using the flag `--archive-uri`.
+The tool outputs a list of state hashes of all the blocks in the database that are missing a parent. You can use this list to monitor the archive database for any missing blocks. To specify the URI of the PostgreSQL database, use the `--archive-uri` flag.
 
 ## Restore blocks
 
