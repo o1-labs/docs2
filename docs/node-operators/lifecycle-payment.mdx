@@ -26,11 +26,11 @@ cryptographically signed with a private key so that the sender’s account can b
 
 ### Step 2: Producing a Block - Bob’s payment gets put in a todo list
 
-A block producer node is chosen on the network for a given time slot. The currently active producer choses in-flight payments based on payment fees and places them in a list to be processed called a transition block. Block producers earn mina for building these blocks. The producer generates a SNARK defining the structure of the transition block as compared to the previous block (but not yet verifying these new payments). The producer transmits this new information for snark workers to process.
+A block producer node is chosen on the network for a given time slot. The currently active producer choses in-flight payments based on payment fees and places them in a list to be processed called a transition block. Block producers earn mina for building these blocks. The producer generates a SNARK defining the structure of the transition block as compared to the previous block (but not yet verifying these new payments). The producer transmits this new information for SNARK workers to process.
 
-### Step 3: Transaction Snark Proving - Bob’s payment gets snark-signed
+### Step 3: Transaction SNARK Proving - Bob’s payment gets snark-signed
 
-Snark worker nodes on the network begin performing snark calculations on each step of the new transition block. These are individual proofs of each payment and then merge proofs of neighboring payments. Eventually all the payments are verified. Snark workers can earn currency by generating these proofs, paid for by block producers from their block rewards. These proofs are transmitted out over the network.
+SNARK worker nodes on the network begin performing SNARK calculations on each step of the new transition block. These are individual proofs of each payment and then merge proofs of neighboring payments. Eventually all the payments are verified. SNARK workers can earn currency by generating these proofs, paid for by block producers from their block rewards. These proofs are transmitted out over the network.
 
 ### Step 4: Payment Verification - Alice and Bob’s accounts show the result of the transfer
 

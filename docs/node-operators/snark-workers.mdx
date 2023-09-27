@@ -1,19 +1,19 @@
 ---
-title: Snark Workers
+title: SNARK Workers
 hide_title: true
 ---
 
-# Snark Workers
+# SNARK Workers
 
-While most protocols have just one primary group of node operators (often called miners, validators, or block producers), Mina has a second group — the **snark worker**.
+While most protocols have just one primary group of node operators (often called miners, validators, or block producers), Mina has a second group — the **SNARK worker**.
 
-Snark workers are integral to the Mina network's health because these nodes are responsible for snarking, or producing SNARK proofs, of transactions in the network. By producing these proofs, snark workers help maintain the succinctness of the Mina blockchain.
+SNARK workers are integral to the Mina network's health because these nodes are responsible for snarking, or producing SNARK proofs, of transactions in the network. By producing these proofs, SNARK workers help maintain the succinctness of the Mina blockchain.
 
-In this document, we'll briefly cover why snark workers are needed, how the economic incentives align, and provide operational details of performing snark work. Feel free to click through to any of the sections above that are most relevant to your needs.
+In this document, we'll briefly cover why SNARK workers are needed, how the economic incentives align, and provide operational details of performing SNARK work. Feel free to click through to any of the sections above that are most relevant to your needs.
 
 Note: This document primarily targets node operators, and will not cover the theory of zk-SNARKs. Deep knowledge of SNARKs is not required to read this section, but it will be helpful to know roughly how SNARKs work and what they are useful for. If this is not the case, please check out [this primer on SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) first.
 
-## Why Snark Workers?
+## Why SNARK Workers?
 
 Mina's unique property is the succinct blockchain. Each block producer, when they propose a new block to the network, must also include a zk-SNARK along with that block. This allows nodes to discard all historical data that's been finalized, and retain just the SNARK. If you are unfamiliar with the Mina protocol, [this video is a good start](https://www.youtube.com/watch?v=eWVGATxEB6M).
 
@@ -48,39 +48,39 @@ Lucky for us, we can leverage two properties about SNARKs:
   />
   <img
     src="/img/Documents_FAQFork_Mobile 1.jpg"
-    alt="Snark Workers"
+    alt="SNARK Workers"
   ></img>
 </picture>
 
 What these two properties essentially allow us to do is take advantage of parallelism. If proofs can be merged, and it doesn't matter how they're combined, then SNARK proofs can be generated in parallel. Whichever proof is finished first can be combined later with the proofs in progress. This can be envisioned as a binary tree, where the bottom row (the leaves) consists of the individual transaction proofs, and each parent row, the set of respective merge proofs. We can combine these all the way to the root, which represents a state update performed by applying all the transactions.
 
-In addition, because the SNARK proofs don't depend on each other and we can exploit parallelism, this means anyone can do the work! The end result is that the distributed work pool is permission-less. Anyone with spare compute can join the network as snark workers, observe transactions that need to be snarked, and contribute their compute. And of course, they will be compensated for their work in what we affectionately call **the snarketplace**.
+In addition, because the SNARK proofs don't depend on each other and we can exploit parallelism, this means anyone can do the work! The end result is that the distributed work pool is permission-less. Anyone with spare compute can join the network as SNARK workers, observe transactions that need to be snarked, and contribute their compute. And of course, they will be compensated for their work in what we affectionately call **the snarketplace**.
 
-Note: To learn more about the details of how this snark work scheme evolved, it is highly recommended to watch this video: [High Throughput with Slow Snarks](https://www.youtube.com/watch?v=NZmq1V-Te0E). If you're interested in functional programming and the details of the scan state (the tree structure described above), we have [a video](https://www.youtube.com/watch?v=ztH_Z5TCe9I) covering the technical details.
+Note: To learn more about the details of how this SNARK work scheme evolved, it is highly recommended to watch this video: [High Throughput with Slow Snarks](https://www.youtube.com/watch?v=NZmq1V-Te0E). If you're interested in functional programming and the details of the scan state (the tree structure described above), we have [a video](https://www.youtube.com/watch?v=ztH_Z5TCe9I) covering the technical details.
 
 ## The Snarketplace
 
-The key dynamic to understand about snark work is:
+The key dynamic to understand about SNARK work is:
 
-_Block producers use their block rewards to purchase snark work from snark workers._
+_Block producers use their block rewards to purchase SNARK work from SNARK workers._
 
-There is no protocol involvement in pricing snarks, nor are there any protocol level rewards for snark workers to produce snarks. The incentives are purely peer-to-peer, and dynamically established in a public marketplace, aka the snarketplace.
+There is no protocol involvement in pricing snarks, nor are there any protocol level rewards for SNARK workers to produce snarks. The incentives are purely peer-to-peer, and dynamically established in a public marketplace, aka the snarketplace.
 
 You may ask, why does a block producer need to buy SNARKs? Fair question — the reason is because of what we mentioned earlier. In order to know for sure the state at the head of the Mina blockchain is valid, the transactions need to be snarked. But if we keep adding more transactions without snarking them at an equal rate, then over time we accumulate work that never gets finished. In order to reach a steady state equilibrium, we need work to be processed at roughly the same rate that work is added.
 
-Since block producers profit from including transactions in a block (through transaction fees and the coinbase transaction), they are responsible for offsetting the transactions by purchasing an equal number of completed snark work, thereby creating demand for snark work. However, their imperative is to purchase snark work for the lowest price from the snarketplace. Conversely, the snark workers want to maximize their profit while also being able to sell their snark work. These two roles act as the two sides of the marketplace, and over time establish an equilibrium at a market price for snark work.
+Since block producers profit from including transactions in a block (through transaction fees and the coinbase transaction), they are responsible for offsetting the transactions by purchasing an equal number of completed SNARK work, thereby creating demand for SNARK work. However, their imperative is to purchase SNARK work for the lowest price from the snarketplace. Conversely, the SNARK workers want to maximize their profit while also being able to sell their SNARK work. These two roles act as the two sides of the marketplace, and over time establish an equilibrium at a market price for SNARK work.
 
-### How to price snark work
+### How to price SNARK work
 
-We anticipate the snarketplace to dynamically rebalance — eg. follow the simple laws of [supply and demand](https://en.wikipedia.org/wiki/Supply_and_demand). While each snark work applies to a different transaction, seen from a larger perspective, snark work is largely a commodity (meaning it doesn't matter which snark worker produces the good — it will be the same). However, there are some nuances, so it may help to have some heuristics for pricing strategy:
+We anticipate the snarketplace to dynamically rebalance — eg. follow the simple laws of [supply and demand](https://en.wikipedia.org/wiki/Supply_and_demand). While each SNARK work applies to a different transaction, seen from a larger perspective, SNARK work is largely a commodity (meaning it doesn't matter which SNARK worker produces the good — it will be the same). However, there are some nuances, so it may help to have some heuristics for pricing strategy:
 
-- if market price is X, it is likely effective to sell snark work for any price below X (eg. X - 1), provided it is profitable after operating expenses.
-- block producers are incentivized to purchase more units of snark work from the same snark worker because there will only be one _fee transfer_ transaction they have to include in the block.
-  - Basically, the way a block producer pays a snark worker is through a special type of transaction called a fee transfer. The BP's incentive is to minimize the number of fee transfers, as each is a discrete transaction that needs to be added to a block (and consequently offset by more snark work). Thus, the best case scenario is to buy a bundle of snark work from the same snark worker.
-- some snark work will be more important to complete ahead of other work, as it would free up an entire tree worth of memory (see the video above for more details). This is made possible by different work selection methods. Currently, the two methods supported natively are sequential and random. Neither of these however takes advantage of dynamic markets, which is an area of improvement that the Mina community can develop solutions for.
+- if market price is X, it is likely effective to sell SNARK work for any price below X (eg. X - 1), provided it is profitable after operating expenses.
+- block producers are incentivized to purchase more units of SNARK work from the same SNARK worker because there will only be one _fee transfer_ transaction they have to include in the block.
+  - Basically, the way a block producer pays a SNARK worker is through a special type of transaction called a fee transfer. The BP's incentive is to minimize the number of fee transfers, as each is a discrete transaction that needs to be added to a block (and consequently offset by more SNARK work). Thus, the best case scenario is to buy a bundle of SNARK work from the same SNARK worker.
+- some SNARK work will be more important to complete ahead of other work, as it would free up an entire tree worth of memory (see the video above for more details). This is made possible by different work selection methods. Currently, the two methods supported natively are sequential and random. Neither of these however takes advantage of dynamic markets, which is an area of improvement that the Mina community can develop solutions for.
 
-Since all the data around snarks and prices are public, there are several ways to inspect the snarketplace. One example is [using the GraphQL API](https://youtu.be/XQlfX-LnK_A), and other options include using the CLI, or rolling a custom solution that tracks snarks in the snark mempool.
+Since all the data around snarks and prices are public, there are several ways to inspect the snarketplace. One example is [using the GraphQL API](https://youtu.be/XQlfX-LnK_A), and other options include using the CLI, or rolling a custom solution that tracks snarks in the SNARK mempool.
 
 Stay tuned for more detailed analysis on snarketplace dynamics. We will also be releasing an economic whitepaper shortly that will provide more context.
 
-See also: [SNARKs and Snark Workers FAQ](/node-operators/faq#snarks-and-snark-workers)
+See also: [SNARKs and SNARK Workers FAQ](/node-operators/faq#snarks-and-snark-workers)
