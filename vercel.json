@@ -4,6 +4,10 @@
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
     {
+      "source": "/zkapps/snarkyjs",
+      "destination": "/zkapps/o1js"
+    },
+    {
       "source": "/zkapps/snarkyjs/:path(.*)",
       "destination": "/zkapps/o1js/:path(.*)"
     },

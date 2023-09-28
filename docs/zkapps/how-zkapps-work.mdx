@@ -109,7 +109,7 @@ Your website must contain the JavaScript `smart_contract.js` file that you gener
 
 ## How users interact with a zkApp
 
-To use a zkApp, users must [Install a Wallet](using-mina/install-a-wallet) that supports interactions with zkApps.
+To use a zkApp, users must [Install a Wallet](../using-mina/install-a-wallet) that supports interactions with zkApps.
 
 After a zkApp is deployed to a host (for example, mycoolzkapp.com), users can interact with it:
 
@@ -153,7 +153,7 @@ If you anticipate your state to be larger, or if the state accumulates per user 
 
 For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/o1js/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere. Mina doesn't offer an out-of-the-box solution for off-chain storage.
 
-When the zkApp runs in a user's web browser, it can insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction then proof and state are known to be valid valid so the updates are allowed, then the zkApp transaction can update the root of the Merkle tree that is stored on chain.
+When the zkApp runs in a user's web browser, it can insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction then proof and state are known to be valid so the updates are allowed, then the zkApp transaction can update the root of the Merkle tree that is stored on chain.
 
 <img src="/img/9_zkApps_Off-Chain_State.jpg" width="95%" />
 
