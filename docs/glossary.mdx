@@ -194,7 +194,7 @@ A combination of a [private key](#private-key) and [public key](#public-key). Ke
 
 ### Kimchi
 
-The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi, a zero-knowledge proof system that's a variant of [PLONK](/glossary#plonk), features a polynomial commitment scheme that supports verifiable computation using traditional Turing machine-based instruction sets.
+The proof system for Mina, Kimchi is the main machinery that generates the recursive proofs that keep the Mina blockchain small (about 22 KB). Kimchi is a zero knowledge proof system that's a variant of [PLONK](/glossary#plonk) and features a polynomial commitment scheme that supports verifiable computation using traditional Turing machine-based instruction sets.
 
 ## L
 
@@ -202,7 +202,7 @@ The proof system for Mina, Kimchi is the main machinery that generates the recur
 
 The fundamental, base-level chain in a network. An L1 blockchain provides the essential services to a network like recording transactions on the public ledger and ensuring adequate security. Mina is a layer 1 blockchain.
 
-### layer 2
+### layer 2 (L2)
 
 An off-chain network, system, or technology built on top of a layer 1 blockchain that helps extend the capabilities of the underlying base layer network.
 
@@ -283,6 +283,10 @@ Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Kno
 ### polynomial commitment
 
 A commitment scheme that allows a committer to commit to a polynomial with a short string that can be used by a verifier to confirm claimed evaluations of the committed polynomial.
+
+### Poseidon
+
+A family of [hash](#hash) functions that can efficiently run in a zk circuit. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation).
 
 ### precomputed block
 
