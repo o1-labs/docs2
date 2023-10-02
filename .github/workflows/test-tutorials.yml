@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           # In case of version change, update README.md accordingly
-          node-version: 16
+          node-version: 18
       - run: |
           npm ci
           git config --global user.email "test@example.com"

@@ -11,20 +11,13 @@ keywords:
 
 # Archive Node
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
-
 Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions.
 
 For some use cases, it is useful to maintain this historical data on an archive node.
 
 :::tip
 
-A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../zkapps/snarkyjs/fetch-events-and-actions).
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../zkapps/o1js/fetch-events-and-actions).
 
 :::
 
@@ -47,13 +40,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=1.3.0-9b0369c
+     sudo apt-get install mina-archive=1.4.0-c980ba8
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+     minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
      ```
 
 ## Set up the archive node
@@ -155,7 +148,7 @@ To get started with installing and running the archive node using Docker, follow
    --name archive \
    -p 3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:1.3.0-9b0369c-bullseye \
+   minaprotocol/mina-archive:1.4.0-c980ba8-bullseye \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -213,7 +206,7 @@ To run the archive node using Docker Compose:
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:1.3.0-9b0369c-bullseye'
+       image: 'minaprotocol/mina-archive:1.4.0-c980ba8-bullseye'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086
@@ -276,8 +269,8 @@ This table keeps track of rewards earned from SNARK work or block producing.
 
 ```text
 ...
-  internal_command_type      represents whether the command is a `fee_transfer` from snark work or a `coinbase` reward from block producing.
-                             Use this field for information about block rewards and snark rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
+  internal_command_type      represents whether the command is a `fee_transfer` from SNARK work or a `coinbase` reward from block producing.
+                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
   receiver_id                public key ID of the receiver
   fee                        amount being sent from the protocol to the receiver
   token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
@@ -289,7 +282,7 @@ This table keeps track of rewards earned from SNARK work or block producing.
 ...
   id
   parent_id                  ID of the previous block in the blockchain
-                             Use this field for information about block rewards and snark rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
+                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
   creator_id                 public key of the block creator
 ```
 

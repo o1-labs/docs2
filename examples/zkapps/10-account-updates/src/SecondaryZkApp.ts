@@ -6,7 +6,7 @@ import {
   method,
   DeployArgs,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();

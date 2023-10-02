@@ -54,7 +54,7 @@ Recursive zero knowledge proofs also make it easy to allow multiple parties to c
 
 ## ZkProgram
 
-Recursive zkApps are built using [ZkProgram](../../zkapps/snarkyjs-reference/modules/Experimental#zkprogram). ZkProgram is similar to the zkApp smart contracts we’ve seen before, but aren’t tied to an on-chain account.
+Recursive zkApps are built using [ZkProgram](../../zkapps/o1js-reference/modules/Experimental#zkprogram). ZkProgram is similar to the zkApp smart contracts we’ve seen before, but aren’t tied to an on-chain account.
 
 Proofs generated via ZkProgram can be passed into zkApp smart contracts (for them to verify recursively), and can even be passed recursively into their own functions for off-chain recursive composition.
 
@@ -246,7 +246,7 @@ class RollupContract extends SmartContract {
 
 Last, is just to fill in the methods above, particularly, `oneStep()`, and `createOneStep()`. This single “step” of the rollup will check the value at an “account” was incremented by a particular amount.
 
-To check that the value at an account was incremented by a particular amount, our code computes an updated state - inside the recursive snark - by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
+To check that the value at an account was incremented by a particular amount, our code computes an updated state - inside the recursive SNARK - by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
 
 ```typescript
 class RollupState extends Struct({
