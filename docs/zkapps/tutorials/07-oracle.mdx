@@ -63,7 +63,7 @@ to get data on chain.
 
 Mina smart contracts run off-chain and make it possible to prove that the expected computation was run on private data without revealing the data itself. When the smart contract consumes data from a third-party source, you want to verify that this data is authentic and was provided by the expected source.
 
-Mina zkOracles do not allow a zkApp to consume data trustlessly from any HTTPS data source. The oracle design described in this tutorial is typically operated by the zkApp developer. The oracle fetches and signs the desired data, then a zkApp can consume this data and verify the signature to ensure that the data was provided by the expected source.
+The [Mina roadmap](https://minaprotocol.com/mina-roadmap) includes zkOracles to allow a zkApp to consume data trustlessly from any HTTPS data source. The oracle design described in this tutorial is typically operated by the zkApp developer. The oracle fetches and signs the desired data, and then a zkApp can consume this data and verify the signature to ensure that the data was provided by the expected source.
 
 Data providers can also operate response signers like the one described to provide users with an oracle that does not require them to trust an intermediary. In other words, if a credit score or other data provider chooses to sign response data themselves, users can consume data from that source without trusting anybody besides the data provider they already trust to provide correct data.
 
