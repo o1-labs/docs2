@@ -2,12 +2,12 @@
 title: zkApps Roadmap
 hide_title: true
 sidebar_label: Roadmap
-description: zkApps roadmap, zkApp features, enhancements, and future development plans. Insights on Mina zkApp CLI, SnarkyJS, data availability, and more.
+description: zkApps roadmap, zkApp features, enhancements, and future development plans. Insights on Mina zkApp CLI, o1js, data availability, and more.
 keywords:
   - zkapps
   - mina protocol
   - roadmap
-  - snarkyjs
+  - o1js
   - zkapps development
   - zkapps features
   - smart contracts
@@ -44,20 +44,20 @@ npm install -g zkapp-cli
 
 To view all of the commands and start building, run `zk --help`.
 
-### SnarkyJS
+### o1js
 
 - [Built-in data types](/zkapps/how-to-write-a-zkapp#built-in-data-types) — Field, Bool, UInt32, UInt64, PublicKey, PrivateKey, Signature, Group, Scalar, and CircuitString
 - [Custom data types](/zkapps/how-to-write-a-zkapp#custom-data-types) — a.k.a. Struct
 - [Composability](/zkapps/how-to-write-a-zkapp#composing-zkapps)
-- [Recursion](/zkapps/snarkyjs/recursion) — a.k.a. ZkProgram
-- [Events](/zkapps/snarkyjs/events) — writing events and [reading them from an archive node](/zkapps/snarkyjs/fetch-events-and-actions)
-- [Actions & reducer](/zkapps/snarkyjs/actions-and-reducer)
-- [Encryption & decryption](/zkapps/snarkyjs-reference/modules/Encryption) — using Mina’s curves
-- [Merkle tree](/zkapps/snarkyjs/merkle-tree)
-- [Custom tokens](/zkapps/snarkyjs/custom-tokens)
-- [Using on-chain values](/zkapps/snarkyjs/on-chain-values) — a.k.a. protocol & account preconditions
-- [Local blockchain](/zkapps/snarkyjs-reference/modules/Mina#localblockchain)
-- [And more...](/zkapps/snarkyjs-reference)
+- [Recursion](/zkapps/o1js/recursion) — a.k.a. ZkProgram
+- [Events](/zkapps/o1js/events) — writing events and [reading them from an archive node](/zkapps/o1js/fetch-events-and-actions)
+- [Actions & reducer](/zkapps/o1js/actions-and-reducer)
+- [Encryption & decryption](/zkapps/o1js-reference/modules/Encryption) — using Mina’s curves
+- [Merkle tree](/zkapps/o1js/merkle-tree)
+- [Custom tokens](/zkapps/o1js/custom-tokens)
+- [Using on-chain values](/zkapps/o1js/on-chain-values) — a.k.a. protocol & account preconditions
+- [Local blockchain](/zkapps/o1js-reference/modules/Mina#localblockchain)
+- [And more...](/zkapps/o1js-reference)
 
 ### Mina zkApp CLI
 
@@ -74,10 +74,10 @@ To view all of the commands and start building, run `zk --help`.
 
 ## Next
 
-### SnarkyJS
+### o1js
 
 - Remove need for a dev to use a service worker for their UI — ETA H1 2023
-- [Reduce KB file size, for aspects needed for UIs](https://github.com/o1-labs/snarkyjs/issues/610) — ETA H1 2023
+- [Reduce KB file size, for aspects needed for UIs](https://github.com/o1-labs/o1js/issues/610) — ETA H1 2023
 - Improve error messages — ETA H1 2023
 
 ### Data Availability
@@ -90,15 +90,15 @@ To view all of the commands and start building, run `zk --help`.
 
 ## Later
 
-### SnarkyJS
+### o1js
 
-- [Dynamic array access](https://github.com/o1-labs/snarkyjs/issues/90) — awaiting support in proof system for extended lookup tables
-- [Dynamic-length strings](https://github.com/o1-labs/snarkyjs/issues/730) — awaiting dynamic array access
-- [JSON parsing](https://github.com/o1-labs/snarkyjs/issues/91) — awaiting dynamic-length strings
-- [secp256k1](https://github.com/o1-labs/snarkyjs/issues/61) — awaiting support in Kimchi
-- [keccak256](https://github.com/o1-labs/snarkyjs/issues/62) — awaiting support in Kimchi
-- [ECDSA](https://github.com/o1-labs/snarkyjs/issues/732) — awaiting support in Kimchi
-- [sha256](https://github.com/o1-labs/snarkyjs/issues/731) — awaiting support in Kimchi
+- [Dynamic array access](https://github.com/o1-labs/o1js/issues/90) — awaiting support in proof system for extended lookup tables
+- [Dynamic-length strings](https://github.com/o1-labs/o1js/issues/730) — awaiting dynamic array access
+- [JSON parsing](https://github.com/o1-labs/o1js/issues/91) — awaiting dynamic-length strings
+- [secp256k1](https://github.com/o1-labs/o1js/issues/61) — awaiting support in Kimchi
+- [keccak256](https://github.com/o1-labs/o1js/issues/62) — awaiting support in Kimchi
+- [ECDSA](https://github.com/o1-labs/o1js/issues/732) — awaiting support in Kimchi
+- [sha256](https://github.com/o1-labs/o1js/issues/731) — awaiting support in Kimchi
 
 ### Other
 
