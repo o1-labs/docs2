@@ -11,13 +11,6 @@ keywords:
 
 # Archive Node
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
-
 Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions.
 
 For some use cases, it is useful to maintain this historical data on an archive node.
@@ -276,8 +269,8 @@ This table keeps track of rewards earned from SNARK work or block producing.
 
 ```text
 ...
-  internal_command_type      represents whether the command is a `fee_transfer` from snark work or a `coinbase` reward from block producing.
-                             Use this field for information about block rewards and snark rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
+  internal_command_type      represents whether the command is a `fee_transfer` from SNARK work or a `coinbase` reward from block producing.
+                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
   receiver_id                public key ID of the receiver
   fee                        amount being sent from the protocol to the receiver
   token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
@@ -289,7 +282,7 @@ This table keeps track of rewards earned from SNARK work or block producing.
 ...
   id
   parent_id                  ID of the previous block in the blockchain
-                             Use this field for information about block rewards and snark rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
+                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
   creator_id                 public key of the block creator
 ```
 
