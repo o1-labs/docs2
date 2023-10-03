@@ -188,6 +188,10 @@ module.exports = {
             from: '/exchange-operators/exchange-faq',
             to: '/exchange-operators/faq',
           },
+          {
+            from: '/zkapps//zkapps/o1js-reference',
+            to: '/exchange-operators/faq',
+          },
         ],
       },
     ],
