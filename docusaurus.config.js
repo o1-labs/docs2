@@ -10,8 +10,8 @@ module.exports = {
   tagline: 'Website for documentation about Mina Protocol',
   url: 'https://docs.minaprotocol.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'o1-labs',
   projectName: 'docs2',
@@ -241,6 +241,17 @@ module.exports = {
           editUrl: 'https://github.com/o1-labs/docs2/edit/main',
           remarkPlugins: [math],
           rehypePlugins: [katex],
+          admonitions: {
+            tag: ':::',
+            keywords: [
+              'note',
+              'tip',
+              'info',
+              'caution',
+              'danger',
+              'experimental',
+            ],
+          },
         },
         theme: {
           customCss: [require.resolve('./src/scss/custom.scss')],
@@ -266,7 +277,7 @@ module.exports = {
         {
           name: 'keywords',
           content:
-            'Snarkyjs, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
+            'Snarkyjs, o1js, ZkApps, Zero Knowledge Proofs, Zkp, Smart Contracts',
         },
         {
           name: 'image',

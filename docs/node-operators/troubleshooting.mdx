@@ -3,12 +3,6 @@ title: Troubleshooting
 hide_title: true
 ---
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
 # Troubleshooting
 
 Here are some common problems you might encounter while trying to set up the Mina daemon. If you can't find your issue here please ask for help on [Discord](https://bit.ly/MinaDiscord) or open an issue on [Github](https://github.com/MinaProtocol/mina/issues).
@@ -18,7 +12,7 @@ Here are some common problems you might encounter while trying to set up the Min
 - [Networking](#networking)
 - [Accounts and Transactions](#accounts-and-transactions)
 - [Block producer](#block-producer)
-- [Snark worker](#snark-worker)
+- [SNARK worker](#snark-worker)
 - [Logging](#logging)
 
 ## General
@@ -235,7 +229,7 @@ If you have a stuck transaction due to a low fee, you will have to wait for it t
 
 ### How many transactions can be included in a block?
 
-On the current network, this is 128, which also includes the coinbase transaction as well as any fee transfers to pay snark workers.
+On the current network, this is 128, which also includes the coinbase transaction as well as any fee transfers to pay SNARK workers.
 
 ### Can I cancel a transaction?
 
@@ -247,9 +241,9 @@ See [this answer](#what-fee-should-i-use-to-send-a-transaction--my-transaction-i
 
 ### Why is the coinbase 0 / there are no transactions included in a block?
 
-In certain circumstances, there is no snark work available to be purchased or is too expensive to be purchased. In this case, it may not be possible to include a coinbase transaction, and so there is no coinbase awarded for the block.
+In certain circumstances, there is no SNARK work available to be purchased or is too expensive to be purchased. In this case, it may not be possible to include a coinbase transaction, and so there is no coinbase awarded for the block.
 
-If transactions are not being included, the transaction fees likely do not cover the cost of the snark work required to be purchased to offset, including the transactions.
+If transactions are not being included, the transaction fees likely do not cover the cost of the SNARK work required to be purchased to offset, including the transactions.
 
 ### Does the order of sending transactions matter?
 
@@ -296,7 +290,7 @@ The line **Next block will be produced in** lets you know the next time you have
 
 The chance of winning a block is determined by a Verifiable Random Function (VRF), with the chance of winning a block being proportional to your stake. The VRF will always return the same result no matter how many times it is run, so there is no way of improving your chance of winning a block. Other than your staking balance, it is down to luck.
 
-The stake associated with your public key is determined in advance at the start of an epoch. There is a delay in it being considered, so receiving funds, block rewards, delegating other funds, and snark worker rewards will **not** improve your chance of winning a block in this epoch as these funds will not be considered in the staking ledger for at least another full epoch (~2 weeks).
+The stake associated with your public key is determined in advance at the start of an epoch. There is a delay in it being considered, so receiving funds, block rewards, delegating other funds, and SNARK worker rewards will **not** improve your chance of winning a block in this epoch as these funds will not be considered in the staking ledger for at least another full epoch (~2 weeks).
 
 ### Why was my block orphaned? Why did I not get a block reward?
 
@@ -312,7 +306,7 @@ Also, you must produce a block within the slot time (3 mins). If you are on less
 
 `Internally generated block $state_hash cannot be rebroadcast because it's not a valid time to do so ($timing)`
 
-It is not recommended to run a snark worker on the same machine at the same time you are producing a block as the snark worker is resource-intensive and may lead to the block not being produced in time. You can disable the snark worker during block production by, for example, using the [snark stopper script](https://github.com/c29r3/mina-snark-stopper).
+It is not recommended to run a SNARK worker on the same machine at the same time you are producing a block as the SNARK worker is resource-intensive and may lead to the block not being produced in time. You can disable the SNARK worker during block production by, for example, using the [SNARK stopper script](https://github.com/c29r3/mina-snark-stopper).
 
 ### Why is the block rate so low / how often should there be a block?
 
@@ -330,25 +324,25 @@ The easiest way is to check a [block explorer](https://minaexplorer.com/). You c
 
 See [this answer](#how-can-i-increase-my-chance-of-winning-a-block).
 
-## Snark worker
+## SNARK worker
 
-### My snark work is not getting bought. What fee should I use for a snark worker?
+### My SNARK work is not getting bought. What fee should I use for a SNARK worker?
 
-If you are running a snark worker and not seeing any work being included in blocks, then likely others are producing cheaper snark work. Multiple snark workers are all competing for the same snark work, with only the lowest fee for each being included in the snark pool to be bought by block producers.
+If you are running a SNARK worker and not seeing any work being included in blocks, then likely others are producing cheaper SNARK work. Multiple SNARK workers are all competing for the same SNARK work, with only the lowest fee for each being included in the SNARK pool to be bought by block producers.
 
-Sometimes high fees will be included in blocks, and this is a function of how snark workers select which work to complete and which work is required to be purchased by the block producer.
+Sometimes high fees will be included in blocks, and this is a function of how SNARK workers select which work to complete and which work is required to be purchased by the block producer.
 
-By default, the work selection for a snark worker is random. You can change this by adding the `-work-selection seq` flag to the `mina daemon` command, which will work on jobs in the order required to be included from the scan state and will likely result in your snarks being included without a potentially lengthy delay.
+By default, the work selection for a SNARK worker is random. You can change this by adding the `-work-selection seq` flag to the `mina daemon` command, which will work on jobs in the order required to be included from the scan state and will likely result in your snarks being included without a potentially lengthy delay.
 
 For choosing fees, you can look at historical blocks to determine prices that have been bought, or look at the table listed [here](https://minaexplorer.com/snark-challenge).
 
-### How can I disable the snark worker?
+### How can I disable the SNARK worker?
 
-Run `mina client set-snark-worker` to disable the snark worker. To enable again, pass your public key `mina client set-snark-worker --address <YOUR_PUBLIC_KEY>`.
+Run `mina client set-snark-worker` to disable the SNARK worker. To enable again, pass your public key `mina client set-snark-worker --address <YOUR_PUBLIC_KEY>`.
 
-### Can I run a snark worker and block producer on the same machine?
+### Can I run a SNARK worker and block producer on the same machine?
 
-Yes, you can, but you should stop the snark worker during block production so as not to compete for resources and miss producing a block. Snark workers also consume more resources in general. See the [snark stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
+Yes, you can, but you should stop the SNARK worker during block production so as not to compete for resources and miss producing a block. SNARK workers also consume more resources in general. See the [SNARK stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
 
 ## Logging
 

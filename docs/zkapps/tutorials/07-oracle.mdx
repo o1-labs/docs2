@@ -161,7 +161,7 @@ import {
   PublicKey,
   Signature,
   PrivateKey,
-} from 'snarkyjs';
+} from 'o1js';
 
 // The public key of our trusted data provider
 const ORACLE_PUBLIC_KEY =
@@ -245,7 +245,7 @@ events = {
 
 Now, let’s add a method to verify a user’s credit score is above 700.
 
-This is defined the same as any other TypeScript method, except that it must have the `@method` decorator in front of it, which tells SnarkyJS that this method can be invoked by users when they interact with the smart contract.
+This is defined the same as any other TypeScript method, except that it must have the `@method` decorator in front of it, which tells o1js that this method can be invoked by users when they interact with the smart contract.
 
 ```ts
   @method verify(id: Field, creditScore: Field, signature: Signature) {
@@ -322,7 +322,7 @@ import {
   PublicKey,
   AccountUpdate,
   Signature,
-} from 'snarkyjs';
+} from 'o1js';
 
 // The public key of our trusted data provider
 const ORACLE_PUBLIC_KEY =
@@ -518,6 +518,6 @@ Now save it and run `npm run test`.
 
 You might have to try it twice in order for all the tests to pass because we're calling our live API directly. Note that writing a test that calls an API is generally not a best practice, but it’s convenient for the sake of this tutorial. You can also mock your HTTP requests.
 
-Congratulations! You have just built a simple oracle using SnarkyJS and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
+Congratulations! You have just built a simple oracle using o1js and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
 
 Checkout [Tutorial 8](custom-tokens) to learn how to launch and use custom tokens.

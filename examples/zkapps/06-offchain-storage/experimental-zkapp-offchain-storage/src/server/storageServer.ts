@@ -12,7 +12,7 @@ import {
   PublicKey,
   fetchAccount,
   Mina,
-} from 'snarkyjs';
+} from 'o1js';
 
 console.log(
   'CAUTION: This project is in development and not to be relied upon to guarantee storage in production environments.'

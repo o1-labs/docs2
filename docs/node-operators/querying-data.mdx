@@ -3,12 +3,6 @@ title: Querying Data
 hide_title: true
 ---
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
 # Querying Data
 
 import Subhead from "@site/src/components/common/Subhead";
@@ -17,7 +11,7 @@ import Subhead from "@site/src/components/common/Subhead";
 Data querying for node operators.
 </Subhead>
 
-Some node operators don't wish to participate in block production or snark work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
+Some node operators don't wish to participate in block production or SNARK work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
 
 ## Preparation
 
@@ -91,7 +85,7 @@ query StakingInfo {
 
 If the delegateAccount.publicKey is null, then this account is "staking directly" and this private key should be used for block production directly.
 
-Note that the actual staking and delegating in the current "epoch" is drawn from the "staking ledger". We are currently implementing a mechanism for accessing this staking ledger directly, but for now you'll need to periodically query for this information and store it internally and then refer to it when it becomes active. On epoch transitions, a new staking ledger is selected by promoting the snarked ledger of the last block two epochs prior. In practice, this is between 2-4 weeks.
+Note that the actual staking and delegating in the current "epoch" is drawn from the "staking ledger". We are currently implementing a mechanism for accessing this staking ledger directly, but for now you'll need to periodically query for this information and store it internally and then refer to it when it becomes active. On epoch transitions, a new staking ledger is selected by promoting the SNARKed ledger of the last block two epochs prior. In practice, this is between 2-4 weeks.
 
 ### Get Transaction Details
 

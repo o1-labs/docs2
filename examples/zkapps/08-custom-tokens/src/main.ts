@@ -7,11 +7,11 @@ import {
   AccountUpdate,
   UInt64,
   Signature,
-} from 'snarkyjs';
+} from 'o1js';
 
 await isReady;
 
-console.log('SnarkyJS loaded');
+console.log('o1js loaded');
 
 const proofsEnabled = false;
 const Local = Mina.LocalBlockchain({ proofsEnabled });

@@ -8,7 +8,7 @@ import {
   PublicKey,
   SmartContract,
   UInt64,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class MyToken extends SmartContract {
   deploy(args?: DeployArgs) {

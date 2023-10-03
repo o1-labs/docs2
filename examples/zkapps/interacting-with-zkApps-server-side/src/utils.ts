@@ -5,7 +5,7 @@ import {
   Field,
   Mina,
   AccountUpdate,
-} from 'snarkyjs';
+} from 'o1js';
 import { Square } from './Square';
 
 export { loopUntilAccountExists, deploy };
@@ -23,13 +23,13 @@ async function loopUntilAccountExists({
     let response = await fetchAccount({ publicKey: account });
     let accountExists = response.account !== undefined;
     if (isZkAppAccount) {
-      accountExists = response.account?.appState !== undefined;
+      accountExists = response.account?.zkapp?.appState !== undefined;
     }
     if (!accountExists) {
       eachTimeNotExist();
       await new Promise((resolve) => setTimeout(resolve, 5000));
     } else {
-      // TODO add optional check that verification key is correct once this is available in SnarkyJS
+      // TODO add optional check that verification key is correct once this is available in o1js
       return response.account!;
     }
   }
@@ -52,7 +52,7 @@ async function deploy(
   );
 
   let { account } = await fetchAccount({ publicKey: zkAppPublicKey });
-  let isDeployed = account?.verificationKey !== undefined;
+  let isDeployed = account?.zkapp?.verificationKey !== undefined;
 
   if (isDeployed) {
     console.log(

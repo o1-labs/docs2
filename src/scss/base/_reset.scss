@@ -1,12 +1,12 @@
-@use "@site/src/scss/utilities/variables";
-@use "@site/src/scss/utilities/mixins";
+@use '@site/src/scss/utilities/variables';
+@use '@site/src/scss/utilities/mixins';
 
 html,
 body {
   overflow-x: hidden;
   background: #fff;
-  font-family: "Monument Grotesk", serif;
-  -webkit-font-smoothing: inherit;
+  font-family: 'Monument Grotesk', serif;
+  -webkit-font-smoothing: antialised;
 }
 
 button {
