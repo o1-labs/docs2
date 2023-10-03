@@ -16,9 +16,14 @@ keywords:
 
 # Generating a Key Pair
 
-To use Mina on Mainnet or to fully participate in a Mina test network, the first step is to generate a key pair that consists of a public key and a private key. 
+Two different key pairs are relevant to node operators: 
 
-In some cases, you want to generate more than one key pair. For example, to run a block producer most securely, you need accounts on both hot and cold wallets. See [Hot and Cold Block Production](/node-operators/hot-cold-block-production).
+- Wallet keypairs you generate with the steps provided here
+- libp2p keypairs that are gossip network identities
+
+To use Mina on Mainnet or to fully participate in a Mina test network, the first step is to generate a wallet key pair that consists of a public key and a private key. 
+
+In some cases, you want to generate more than one wallet key pair. For example, to run a block producer most securely, it is advisable to have accounts on both hot and cold wallets. See [Hot and Cold Block Production](/node-operators/hot-cold-block-production).
 
 The supported tools for generating public/private key pairs are:
 

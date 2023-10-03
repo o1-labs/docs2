@@ -64,17 +64,17 @@ You may be thinking: Why can't I create blocks directly from a secure enclave or
 
 Two components of block production require using a private key in interesting ways: 
 
-- Winning a slot
+- Finding eligible slots to produce blocks in
 - Creating the blockchain SNARK
 
 Creating the SNARK within the secure hardware is extremely difficult and likely impossible to do quickly enough for the protocol with today's technology.
 
-### Winning a slot (out of the SNARK)
+### Finding eligible slots to produce blocks in (out of the SNARK)
 
 A block producer can determine if they've won a slot by evaluating a VRF ( verifiable random function) using their private key. The VRF needs to be evaluated for your account and every account that delegates to you for all slots within an epoch. To our knowledge, no one has ever implemented a VRF on an HSM, but this is likely not too difficult.
 
 ### Creating the blockchain SNARK
 
-When a block producer wins a slot, in addition to just creating and broadcasting a block, a block producer must create a new SNARK proof that proves that the blockchain is valid including this new block. 
+When a block producer wins a slot, in addition to just creating and broadcasting a block, a block producer must create a new SNARK proof that proves that the new block is a valid extension of the existing chain. 
 
 The SNARK proof uses the private key when it embeds the VRF information into the proof. This proof is in place of a simple signature that other protocols ask their validators to perform. Creating this SNARK proof is computationally expensive and relies on a lot of advanced cryptography. No HSMs on the market are capable of creating this SNARK proof efficiently enough even if one spent the time to implement the SNARK proving algorithm on them.
