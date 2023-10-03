@@ -189,7 +189,7 @@ module.exports = {
             to: '/exchange-operators/faq',
           },
           {
-            from: '/zkapps//zkapps/snarkyjs-reference',
+            from: '/zkapps/snarkyjs-reference',
             to: '/zkapps/o1js-reference',
           },
         ],
