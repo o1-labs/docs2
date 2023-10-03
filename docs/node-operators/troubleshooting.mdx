@@ -12,7 +12,7 @@ Here are some common problems you might encounter while trying to set up the Min
 - [Networking](#networking)
 - [Accounts and Transactions](#accounts-and-transactions)
 - [Block producer](#block-producer)
-- [Snark worker](#snark-worker)
+- [SNARK worker](#snark-worker)
 - [Logging](#logging)
 
 ## General
@@ -324,7 +324,7 @@ The easiest way is to check a [block explorer](https://minaexplorer.com/). You c
 
 See [this answer](#how-can-i-increase-my-chance-of-winning-a-block).
 
-## Snark worker
+## SNARK worker
 
 ### My snark work is not getting bought. What fee should I use for a snark worker?
 
@@ -342,7 +342,7 @@ Run `mina client set-snark-worker` to disable the snark worker. To enable again,
 
 ### Can I run a snark worker and block producer on the same machine?
 
-Yes, you can, but you should stop the snark worker during block production so as not to compete for resources and miss producing a block. Snark workers also consume more resources in general. See the [snark stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
+Yes, you can, but you should stop the snark worker during block production so as not to compete for resources and miss producing a block. SNARK workers also consume more resources in general. See the [snark stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
 
 ## Logging
 
