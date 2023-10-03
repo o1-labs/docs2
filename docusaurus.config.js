@@ -189,8 +189,8 @@ module.exports = {
             to: '/exchange-operators/faq',
           },
           {
-            from: '/zkapps//zkapps/o1js-reference',
-            to: '/exchange-operators/faq',
+            from: '/zkapps//zkapps/snarkyjs-reference',
+            to: '/zkapps/o1js-reference',
           },
         ],
       },
