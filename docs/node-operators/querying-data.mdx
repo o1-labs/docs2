@@ -1,6 +1,10 @@
 ---
 title: Querying Data
 hide_title: true
+description: Data querying for node operators.
+keywords:
+  - data queries
+  - node operators
 ---
 
 # Querying Data
@@ -11,19 +15,23 @@ import Subhead from "@site/src/components/common/Subhead";
 Data querying for node operators.
 </Subhead>
 
-Some node operators don't wish to participate in block production or SNARK work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account keypair themselves to run successfully.
+Some node operators don't wish to participate in block production or SNARK work creation, but just want to sit on the network and passively aggregate information for querying or submit signed transactions. These nodes don't require an account key pair themselves to run successfully.
 
 ## Preparation
 
-In addition to [installing the Mina daemon on your machine](/node-operators/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/node-operators/archive-node) and/or archive via [other redundant means](/node-operators/archive-redundancy).
+In addition to [installing the Mina daemon on your machine](/node-operators/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/node-operators/archive-node), archive by using [other redundant means](/node-operators/archive-redundancy), or both.
 
 ## Running a node
 
-The best way to learn how to run a node is to follow the instructions on the [Connecting page](connecting-to-the-network) of the docs.
+The best way to learn how to run a node is to follow the [Connect to the Mina Network](connecting-to-the-network) instructions.
 
-However, you should remove `MINA_PRIVKEY_PASS` and `-block-producer-key ...` flag as we do not wish this node to start as a block producer.
+To prevent this node from starting as a block producer, remove the `MINA_PRIVKEY_PASS` and `-block-producer-key ...` flags.
 
-In order to expose recent information of the blockchain, we'll need to expose the GraphQL REST server. You may want to provide `-rest-server-port XXXX` if the default of 0xc0d or 3085 does not work for you. You may also want to provide `-insecure-rest-server` to make the REST server accessible from outside of `localhost`. However, if you do, make sure you set your firewall up properly. See [GraphQL API page](/node-developers/graphql-api) for more.
+To expose recent information of the blockchain, expose the GraphQL REST server.
+
+You can provide `-rest-server-port XXXX` if the default port of 0xc0d or 3085 does not work for you. 
+
+To make the REST server accessible from outside of `localhost`, provide `-insecure-rest-server`. Make sure you set your firewall up properly. See [GraphQL API](/node-developers/graphql-api) for more information.
 
 ## Querying information
 

@@ -1,19 +1,26 @@
 ---
 title: Scan State
 hide_title: true
+description: A data structure that allows decoupling the production of transaction SNARKs from block producers to SNARK workers.
 ---
 
 # Scan State
 
 The scan state is a data structure that allows decoupling the production of transaction SNARKs from block producers to SNARK workers.
 
+<<<<<<< HEAD
+Block producers do not have to produce transaction SNARKs, so the block production time can remain constant regardless of the transaction throughput. Additionally, the scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [SNARK workers](/node-operators/snark-workers).
+
+The scan state is comprised of a forest of full [binary trees](https://en.wikipedia.org/wiki/Binary_tree), where each node in the tree is a job to be completed by a SNARK worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
+=======
 As the block producers no longer have to produce these transaction SNARKs, the block production time may remain constant regardless of the transaction throughput. Additionally, the scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [SNARK workers](/node-operators/snark-workers).
 
 The scan state is comprised of a forest of [full-binary trees](https://en.wikipedia.org/wiki/Binary_tree) where each node in the tree is a job to be completed by a SNARK worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
+>>>>>>> main
 
 The block producers include the emitted ledger proof in the blockchain SNARK they generate that proves both the chain's current state is valid and attests to the validity of all transactions included in the SNARKed ledger.
 
-As a result, block times may remain constant regardless of the transaction throughput, with the scan state capable of adjusting to match a desired transaction throughput.
+As a result, block times can remain constant regardless of the transaction throughput, with the scan state capable of adjusting to match a desired transaction throughput.
 
 :::tip
 
@@ -23,7 +30,7 @@ In a steady-state, when all slots are filled, and all the required proofs are co
 
 ### Including transactions
 
-A [block producer](/node-operators/block-producers) when constructing a block may include transactions up to the maximum defined by the [scan state constants](#scan-state-constants). By including transactions, they can pick up any available transaction fees and pay themselves a coinbase reward. Each transaction they add are transformed to new base jobs and added to the scan state.
+When constructing a block, a [block producer](/node-operators/block-producers) may include transactions up to the maximum defined by the [scan state constants](#scan-state-constants). By including transactions, they can pick up any available transaction fees and pay themselves a coinbase reward. Each transaction they add are transformed to new base jobs and added to the scan state.
 
 For every transaction added, a block producer must include an equivalent amount of completed SNARK work that corresponds to a sequence of jobs that already exist in the scan state. These completed jobs, when added to scan state, create new merge jobs except when it is for the root node, in which case the proof is simply returned as a result.
 
@@ -198,7 +205,11 @@ While multiple SNARK workers can complete the same work, only the lowest fee is 
 
 :::
 
+<<<<<<< HEAD
+When a block producer includes completed proofs into a block to offset any transactions they add, they can purchase the corresponding work from the SNARK pool. For example, continuing the previous example, consider the next block (12). If the block producer wants to add three transactions, comprised of a coinbase, a user payment, and a fee transfer to the SNARK worker, they need to purchase three completed SNARK works. This corresponds to the 6 `B9`, `B10`s, `M9`, and `M10` (from the seventh tree) proofs, as each SNARK work includes two _workIds_.
+=======
 When a block producer includes completed proofs into a block to offset any transactions they add, they may purchase the corresponding work from the SNARK pool. For example, continuing the example above consider the next block (12). If the block producer wants to add three transactions, comprising a coinbase, a user payment, and a fee transfer to the SNARK worker, they need to purchase three completed SNARK work. This corresponds to the 6 `B9`, `B10`s, `M9`, and `M10` (from the seventh tree) proofs, as each SNARK work includes two _workIds_.
+>>>>>>> main
 
 During the time the block is generated, the SNARK pool may include completed work in addition to the best bids for the required jobs (0.025, 0.165, 0.1 and 0.5) respectively, in the example).
 
@@ -214,6 +225,10 @@ In the case where there is no completed SNARK work available to purchase in the 
 
 :::tip
 
+<<<<<<< HEAD
+The current SNARK pool is visible via [GraphQL](/node-developers/graphql-api) or the Mina CLI by using the `mina advanced snark-pool` command.
+=======
 The current SNARK pool is visible via [GraphQL](/node-developers/graphql-api) or the CLI via the `mina advanced snark-pool` command.
+>>>>>>> main
 
 :::
