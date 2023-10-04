@@ -63,9 +63,9 @@ Lightweight client commands
                         transaction with a fee larger than the cancelled
                         transaction.
   set-staking           Start producing blocks
-  set-snark-worker      Set key you wish to snark work with or disable snark
+  set-snark-worker      Set key you wish to SNARK work with or disable snark
                         working
-  set-snark-work-fee    Set fee reward for doing transaction snark work
+  set-snark-work-fee    Set fee reward for doing transaction SNARK work
   export-logs           Export daemon logs to tar archive
   export-local-logs     Export local logs (no daemon) to tar archive
   stop-daemon           Stop the daemon
@@ -221,7 +221,7 @@ Mina daemon
                                                       daemon interaction
   [--log-block-creation true|false]                   Log the steps involved in
                                                       including transactions and
-                                                      snark work in a block
+                                                      SNARK work in a block
                                                       (default: true)
   [--log-json]                                        Print log output as JSON
                                                       (default: plain text)
@@ -259,7 +259,7 @@ Mina daemon
                                                       (default: No threshold,
                                                       transactions and coinbase
                                                       will be included as long
-                                                      as the required snark work
+                                                      as the required SNARK work
                                                       is available and can be
                                                       paid for)
   [--no-super-catchup]                                Don't use super-catchup
@@ -298,7 +298,7 @@ Mina daemon
                                                       node
   [--snark-worker-fee FEE]                            Amount a worker wants to
                                                       get compensated for
-                                                      generating a snark proof
+                                                      generating a SNARK proof
                                                       (default: 100000000)
   [--snark-worker-parallelism NUM]                    Run the SNARK worker using
                                                       this many threads.
@@ -414,7 +414,7 @@ Advanced client commands
                               token IDs have been allocated
   node-status                 Get node statuses for a set of peers
   object-lifetime-statistics  Dump internal object lifetime statistics to JSON
-  pending-snark-work          List of snark works in JSON format that are not
+  pending-snark-work          List of SNARK works in JSON format that are not
                               available in the pool yet
   pooled-user-commands        Retrieve all the user commands that are pending
                               inclusion
@@ -423,9 +423,9 @@ Advanced client commands
   send-rosetta-transactions   Dispatch one or more transactions, provided to
                               stdin in rosetta format
   set-coinbase-receiver       Set the coinbase receiver
-  snark-job-list              List of snark jobs in JSON format that are yet to
+  snark-job-list              List of SNARK jobs in JSON format that are yet to
                               be included in the blocks
-  snark-pool-list             List of snark works in the snark pool in JSON
+  snark-pool-list             List of SNARK works in the SNARK pool in JSON
                               format
   start-tracing               Start async tracing to
                               $config-directory/trace/$pid.trace

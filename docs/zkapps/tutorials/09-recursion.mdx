@@ -246,7 +246,7 @@ class RollupContract extends SmartContract {
 
 Last, is just to fill in the methods above, particularly, `oneStep()`, and `createOneStep()`. This single “step” of the rollup will check the value at an “account” was incremented by a particular amount.
 
-To check that the value at an account was incremented by a particular amount, our code computes an updated state - inside the recursive snark - by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
+To check that the value at an account was incremented by a particular amount, our code computes an updated state - inside the recursive SNARK - by calling `RollupState.createOneStep()`. And then, asserting that the new state of the recursive snark, is equivalent to the computed state. Inside `createOneStep()`, a single step of the rollup is created.
 
 ```typescript
 class RollupState extends Struct({
