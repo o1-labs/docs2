@@ -199,7 +199,7 @@ While multiple SNARK workers can complete the same work, only the lowest fee is 
 
 :::
 
-When a block producer includes completed proofs into a block to offset any transactions they add, they may purchase the corresponding work from the SNARK pool. For example, continuing the example above consider the next block (12). If the block producer wants to add three transactions, comprising a coinbase, a user payment, and a fee transfer to the SNARK worker, they need to purchase three completed SNARK work. This corresponds to the 6 `B9`, `B10`s, `M9`, and `M10` (from the seventh tree) proofs, as each SNARK work includes two _workIds_.
+When a block producer includes completed proofs into a block to offset any transactions they add, they can purchase the corresponding work from the SNARK pool. For example, continuing the previous example, consider the next block (12). If the block producer wants to add three transactions, comprised of a coinbase, a user payment, and a fee transfer to the SNARK worker, they need to purchase three completed SNARK works. This corresponds to the 6 `B9`, `B10`s, `M9`, and `M10` (from the seventh tree) proofs, as each SNARK work includes two _workIds_.
 
 During the time the block is generated, the SNARK pool may include completed work in addition to the best bids for the required jobs (0.025, 0.165, 0.1 and 0.5) respectively, in the example).
 

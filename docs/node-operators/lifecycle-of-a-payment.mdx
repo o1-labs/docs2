@@ -77,4 +77,4 @@ Several reasons why a transaction shared with peer nodes might not get accepted:
 
 If a transaction is valid and the network is honest, then in all likelihood, a transaction will make it into a block. However, there is one case where a transaction can be dumped from a transaction pool:
 
-- If the transaction pool hits its capacity, or `max_txpool_size`, then it evicts the transaction with the lowest fee in the pool, causing it dumped from memory. If this happens, the sender needs to resend the transaction with a higher fee, according to market dynamics at the time.
+- If the transaction pool hits its capacity, or `max_txpool_size`, then it evicts the transaction with the lowest fee in the pool, causing it to be dumped from memory. If this happens, the sender needs to resend the transaction with a higher fee, according to market dynamics at the time.
