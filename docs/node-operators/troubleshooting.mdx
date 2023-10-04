@@ -342,7 +342,11 @@ Run `mina client set-snark-worker` to disable the SNARK worker. To enable again,
 
 ### Can I run a SNARK worker and block producer on the same machine?
 
+<<<<<<< HEAD
+Yes, you can, but you should stop the snark worker during block production so as not to compete for resources and miss producing a block. SNARK workers also consume more resources in general. See the [snark stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
+=======
 Yes, you can, but you should stop the SNARK worker during block production so as not to compete for resources and miss producing a block. SNARK workers also consume more resources in general. See the [SNARK stopper script](https://github.com/c29r3/mina-snark-stopper) to help in automating this.
+>>>>>>> main
 
 ## Logging
 
