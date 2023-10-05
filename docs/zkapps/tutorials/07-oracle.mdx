@@ -64,9 +64,9 @@ We will fetch data from the desired source, sign it using a Mina-compatible priv
 
 ### Code
 
-You can view the complete oracle code [here](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/index.js) and can generate a Mina-compatible public/private key pair for your oracle by running `npm run keygen` (which will run the code in [this file](https://github.com/jackryanservia/mina-credit-score-signer/blob/main/scripts/keygen.js)).
+You can view the complete oracle code [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/07-oracles/oracle/app/api/credit-score/route.ts) and can generate a Mina-compatible public/private key pair for your oracle by running `npm run keygen` (which will run the code in [this file](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/07-oracles/oracle/scripts/keygen.js)).
 
-For our oracle, we’re using a Koa server hosted on DigitalOcean. It’s short, but you don’t have to dive into the code now. It’s commented to explain each step so you can build something similar for yourself!
+For our oracle, we’re using a Vercel Serverless Function. It’s very simple, but you don’t have to dive into the code now. It’s commented to explain each step so you can build something similar for yourself!
 
 You can easily adapt this code to create oracles for other API sources. For example, if you wanted your smart contract to ingest price feed data from an exchange, you could simply query the exchange API, sign the results, and return a response formatted as described below.
 
@@ -106,7 +106,7 @@ Our demo oracle also provides a response for a user id of `2`, who has a credit 
 
 While the first user has a credit score of `787`, the second user only has a credit score of `536`. We can also see that the `signature` has changed. This makes sense because the payload is different from what we received in the first response. Finally, notice that the `publicKey` is the same because in each case we are querying data from the same provider.
 
-For purposes of this tutorial below, you can access our demo oracle at https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1 and https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2, if you don’t want to set up your own oracle right now.
+For purposes of this tutorial below, you can access our demo oracle at https://07-oracles.vercel.app/api/credit-score?user=1 and https://07-oracles.vercel.app/api/credit-score?user=2, if you don’t want to set up your own oracle right now.
 
 ## Smart Contract
 
@@ -386,7 +386,7 @@ describe('CreditScoreOracle', () => {
       await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
 
       const response = await fetch(
-        'https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1'
+        'https://07-oracles.vercel.app/api/credit-score?user=1'
       );
       const data = await response.json();
 
@@ -414,7 +414,7 @@ describe('CreditScoreOracle', () => {
       await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
 
       const response = await fetch(
-        'https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2'
+        'https://07-oracles.vercel.app/api/credit-score?user=2'
       );
       const data = await response.json();
 
@@ -518,6 +518,6 @@ Now save it and run `npm run test`.
 
 You might have to try it twice in order for all the tests to pass because we're calling our live API directly. Note that writing a test that calls an API is generally not a best practice, but it’s convenient for the sake of this tutorial. You can also mock your HTTP requests.
 
-Congratulations! You have just built a simple oracle using o1js and the Mina Protocol. You can find the complete code for this example [here](https://github.com/jackryanservia/oracle-example).
+Congratulations! You have just built a simple oracle using o1js and the Mina Protocol. You can find the complete code for this example [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/07-oracles).
 
 Checkout [Tutorial 8](custom-tokens) to learn how to launch and use custom tokens.
