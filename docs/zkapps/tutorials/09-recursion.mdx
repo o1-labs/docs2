@@ -2,7 +2,7 @@
 title: 'Tutorial 9: Recursion'
 hide_title: true
 sidebar_label: 'Tutorial 9: Recursion'
-description: Use recursion on-chain and off-chain with zkApps. Learn about use cases to create high-throughput applications, use larger proof sizes, and create multi-party zero knowledge proof constructions.
+description: Use recursion on-chain and off-chain with zkApps. Learn about use cases to create high-throughput applications, use larger proof sizes and create multi-party zero knowledge proof constructions.
 keywords:
   - smart contracts
   - zkapps
@@ -24,19 +24,17 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Tutorial 9: Recursion
 
-## Overview
-
 One of the most powerful features of zkApps is recursion.
 
-With recursion, you can realize composability between zero knowledge proofs. This unlocks many powerful technical abilities, such as creating high-throughput applications, creating proofs of large computations, and constructing multi-party proofs.
+With recursion, you can realize composability between zero knowledge proofs. Recursion unlocks many powerful technical abilities, such as creating high-throughput applications, creating proofs of large computations, and constructing multi-party proofs.
 
 ### Scaling Throughput - zkRollups & App Chains
 
-Verifying large amounts of information is usually challenging for blockchains. But with zero knowledge proofs, and particularly recursive ZKPs, this becomes far easier.
+Verifying large amounts of information is usually challenging for blockchains. With zero knowledge proofs (ZKPs), and particularly recursive ZKPs, this becomes far easier.
 
-By leveraging recursive verification, it is possible to easily construct both zkRollups and app chains. We’ll give an example of a simple zkRollup near the end of this tutorial.
+By leveraging recursive verification, it is possible to easily construct both zkRollups and app chains. This tutorial provides an example of a simple zkRollup.
 
-Recursive composition even gives us flexibility to handle live demand. Recursive composition gives you flexibility to choose between a high tree height (higher throughput, but logarithmically slower latency), and lower tree height (lower throughput, but faster latency). The depth of the tree can be modified live to handle whatever traffic actually present on the network, while still offering optimal latency to commit transactions back to the chain.
+Recursive composition also gives flexibility to handle live demand. Recursive composition gives you flexibility to choose between a high tree height (higher throughput, but logarithmically slower latency), and lower tree height (lower throughput, but faster latency). The depth of the tree can be modified live to handle whatever traffic actually present on the network, while still offering optimal latency to commit transactions back to the chain.
 
 For an example of an ‘app chain’, one could imagine an on-chain trading pair that uses an orderbook. Rolling up the transactions for the application with zero knowledge proofs can allow our app to handle the expensive computations of keeping buy and sell orders sorted, while still posting full verification to the chain.
 
