@@ -152,11 +152,7 @@ args={["-run-snark-worker $MINA_PUBLIC_KEY", "-snark-worker-fee <fee>"]}
 
 As a SNARK-worker, you get to share some of the block rewards for each block that include your compressed transactions. The block producer is responsible for gathering compressed transactions before including them into a block and is incentivized by the protocol to reward SNARK-workers.
 
-<<<<<<< HEAD
-SNARK workers can be fairly compute intensive, so if you need to limit their CPU usage, you can specify the number of threads snark workers use with the `-snark-worker-parallelism` flag. This can be especially useful if you're trying to run a block producer and snark worker on the same machine and having issues producing blocks in time.
-=======
 SNARK-workers can be fairly compute intensive. If you need to limit their CPU usage, specify the number of threads that SNARK-workers use with the `-snark-worker-parallelism` flag. This can be especially useful if you're trying to run a block producer and SNARK-worker on the same machine and having issues producing blocks in time.
->>>>>>> main
 
 The roles and responsibilities of a Mina node operator offer you incentives to participate in block production through staking or delegation. Mina is a permissionless peer-to-peer network, so everything is managed and run in a decentralized manner by nodes all over the world. 
 
