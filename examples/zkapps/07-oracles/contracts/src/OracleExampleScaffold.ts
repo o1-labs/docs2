@@ -4,12 +4,9 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
   PublicKey,
   Signature,
-  PrivateKey,
-} from 'snarkyjs';
+} from 'o1js';
 
 // The public key of our trusted data provider
 const ORACLE_PUBLIC_KEY =
@@ -20,16 +17,8 @@ export class OracleExample extends SmartContract {
 
   // Define contract events
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
-  }
-
-  @method init(zkappKey: PrivateKey) {
-    super.init(zkappKey);
+  init() {
+    super.init();
     // Initialize contract state
 
     // Specify that caller should include signature with tx instead of proof

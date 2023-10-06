@@ -4,12 +4,9 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
   PublicKey,
   Signature,
-  PrivateKey,
-} from 'snarkyjs';
+} from 'o1js';
 
 // The public key of our trusted data provider
 const ORACLE_PUBLIC_KEY =
@@ -24,16 +21,8 @@ export class OracleExample extends SmartContract {
     verified: Field,
   };
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.setPermissions({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
-  }
-
-  @method init(zkappKey: PrivateKey) {
-    super.init(zkappKey);
+  init() {
+    super.init();
     // Initialize contract state
     this.oraclePublicKey.set(PublicKey.fromBase58(ORACLE_PUBLIC_KEY));
     // Specify that caller should include signature with tx instead of proof
@@ -49,7 +38,7 @@ export class OracleExample extends SmartContract {
     // Check that the signature is valid
     validSignature.assertTrue();
     // Check that the provided credit score is greater than 700
-    creditScore.assertGte(Field(700));
+    creditScore.assertGreaterThanOrEqual(Field(700));
     // Emit an event containing the verified users id
     this.emitEvent('verified', id);
   }
