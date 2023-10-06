@@ -16,7 +16,7 @@ import {
   MerkleWitness,
   MerkleMapWitness,
   verify
-} from 'snarkyjs';
+} from 'o1js';
 
 
 const main = () => {

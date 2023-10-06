@@ -6,7 +6,7 @@ import {
   method,
   DeployArgs,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class Square extends SmartContract {
   @state(Field) num = State<Field>();

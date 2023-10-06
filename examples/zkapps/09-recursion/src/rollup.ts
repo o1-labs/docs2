@@ -23,7 +23,7 @@ import {
   DeployArgs,
   Proof,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
 
@@ -32,7 +32,7 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 async function main() {
   await isReady;
 
-  console.log('SnarkyJS loaded');
+  console.log('o1js loaded');
 
   console.log('compiling...');
 
