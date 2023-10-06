@@ -36,7 +36,7 @@ The blockchain's latest block with the highest [chain strength](#chain-strength)
 
 ### block
 
-A set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. See also [extensional blocks](/glossary#extensional-blocks) and [precomputed blocks](/glossary#precomputed-blocks). See [What's in a Block?](/node-operators/whats-in-a-block).
+A set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. See also [extensional blocks](/glossary#extensional-blocks) and [precomputed blocks](/glossary#precomputed-blocks). See [What's in a Block?](/node-operators/whats-in-a-block)
 
 ### blockchain
 
@@ -100,7 +100,7 @@ A digital asset or currency that uses cryptographic primitives to secure financi
 
 ### daemon
 
-The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a [pub-sub](#pub-sub) model.
+The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a publish-subcribe model.
 
 ### DAO
 
@@ -183,10 +183,6 @@ A hot wallet has a private key that is available on a machine that is connected 
 A [transition](#transition) that is produced locally, for example, by a block producer. The generated transition is applied locally and added to the [transition frontier](#transition-frontier) before being broadcast to peers.
 
 ## K
-
-### Kademlia
-
-A distributed hash table (DHT) for decentralized peer-to-peer networks. Mina uses Kademlia for peer discovery so that nodes can find neighbor nodes to share information about the network state.
 
 ### key pair
 
@@ -292,7 +288,7 @@ A commitment scheme that allows a committer to commit to a polynomial with a sho
 
 A family of [hash](#hash) functions that can efficiently run in a zk circuit. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation).
 
-### precomputed block
+### precomputed blocks
 
 Precomputed blocks are [blocks](/glossary#block) logged by mina to disk, log file, or to cloud storage.
 
