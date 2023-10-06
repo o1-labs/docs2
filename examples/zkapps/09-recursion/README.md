@@ -1,4 +1,4 @@
-# zkApp Developer Tutorial: Recursion
+# Mina zkApp: 01 Hello World
 
 This template uses TypeScript.
 

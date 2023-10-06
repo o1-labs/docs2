@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "ES2019",
     "module": "es2022",
     "lib": ["dom", "esnext"],
     "outDir": "./build",
@@ -17,7 +17,9 @@
     "declaration": true,
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "exclude": ["./src/**/*.test.ts"]
 }
