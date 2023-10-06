@@ -72,7 +72,7 @@ describe('CreditScoreOracle', () => {
       await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
 
       const response = await fetch(
-        'https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/1'
+        'https://07-oracles.vercel.app/api/credit-score?user=1'
       );
       const data = await response.json();
 
@@ -100,7 +100,7 @@ describe('CreditScoreOracle', () => {
       await localDeploy(zkAppInstance, zkAppPrivateKey, deployerAccount);
 
       const response = await fetch(
-        'https://mina-credit-score-signer-pe3eh.ondigitalocean.app/user/2'
+        'https://07-oracles.vercel.app/api/credit-score?user=2'
       );
       const data = await response.json();
 
