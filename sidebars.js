@@ -33,6 +33,8 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/getting-started-zkapps',
+        'zkapps/install-zkapp-cli',
         'zkapps/how-zkapps-work',
         {
           type: 'category',
