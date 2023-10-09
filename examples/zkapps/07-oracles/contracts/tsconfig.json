@@ -17,9 +17,7 @@
     "declaration": true,
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["./src"],
-  "exclude": ["./src/**/*.test.ts"]
+  "include": ["./src"]
 }
