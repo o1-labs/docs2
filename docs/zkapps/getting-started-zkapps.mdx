@@ -81,14 +81,13 @@ When you use the zkApp CLI to create a project, tests and examples are included.
     See the `import` statements in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L1-L2) example file.
 
 1. Create a `LocalBlockchain` instance to interact with.
-
-    See the local blockchain code in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
+`LocalBlockchain` code in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
 
 1. Initialize some test accounts that will pay fees and sign transactions. o1js provides an array of 10 such accounts you can start using right away.
 
     See the initialize account code in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file.
 
-1. Deploy the smart contract to the local blockchain.
+1. Deploy the smart contract to the `LocalBlockchain` instance.
 
     See the `localDeploy` function in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L38-L46) example file.
 
