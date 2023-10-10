@@ -98,9 +98,7 @@ Add the logic for your smart contract.
 
 1. Add functionality to the smart contract by implementing a `@method`.
 
-    See the `update` method in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L20) example file.
-
-    <!-- do we point user somewhere for method? or? -->
+    See the `update()` method in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L20) example file.
 
 1. Build the smart contract:
 
@@ -119,7 +117,7 @@ Add the logic for your smart contract.
 
 - Instead of using Jest, create a Node.js script to run the smart contract and test it's functionality, similar to step [4. Add testing code](#4-add-testing-code).
 
-    See the example Node.js script that runs the Add smart contract [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file. 
+    See the example Node.js script that runs the Add smart contract in the [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file. 
 
 <!-- which run.ts file are we referring to? I only found run.ts for the sudoku and tictacktoe tests -->
 
@@ -164,7 +162,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
 
         The option to choose another account is shown only if you have a cached fee payer account.
 
-    - Next, select to create a new fee payer key pair:  
+    - Next, select **Create a new fee payer key pair**:  
 
         ```sh
         Create a new fee payer key pair
