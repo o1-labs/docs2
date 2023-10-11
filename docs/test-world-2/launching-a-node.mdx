@@ -164,6 +164,11 @@ The hardware requirements for Archive Nodes are located [here](./technical-requi
 
 The Archive node requires a non block producing node and PostgreSQL, for more information about running Archive Nodes see [Archive Node](https://docs.minaprotocol.com/node-operators/archive-node). 
 
+The PostgreSQL database requires two schemas:
+
+1. The PostgreSQL schema used by the Mina archive database can be found [here](https://raw.githubusercontent.com/MinaProtocol/mina/25f9de2fa18efdd5579c3b89b622770900ebb1d5/src/app/archive/create_schema.sql). 
+2. The PostgreSQL schema extensions to support zkApp commands can be found [here](https://raw.githubusercontent.com/MinaProtocol/mina/25f9de2fa18efdd5579c3b89b622770900ebb1d5/src/app/archive/zkapp_tables.sql).
+
 
 The non block producing node should be configured with the following flags:
 ```
@@ -205,7 +210,6 @@ The archive node command is:
 mina-archive run --postgres-uri postgres://<postgres user>:<postgres password>@<postgres address>:<postgres port>/<postgres db> --server-port <archive port>
 
 ```
-
 
 ## Port configuration
 Nodes need to have the following ports public (accessible with a node’s external ip):
