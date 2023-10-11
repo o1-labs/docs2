@@ -167,15 +167,11 @@ The Archive node requires a non block producing node and PostgreSQL, for more in
 
 Any updates to setup requirements will be included with the release notes and instructions provided closer to testnet launch. To run Protocol Performance Testing nodes the following flags are needed.
 
-
 ## Port configuration
 Nodes need to have the following ports public (accessible with a node’s external ip):
 
 - Libp2p port (8302 by default)
 - Control GraphQL port (configured with --itn-GraphQL-port) use `3086`
-
-## How to set up 72 hour logging
-
 
 ## Generation of libp2p keypair
 
@@ -187,7 +183,6 @@ mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 ```
 to generate a libp2p keypair on your machine. 
 
-## How to set up a node to restart automatically
 ## Node Restarts
 All nodes to be set up such that they restart on crash
 

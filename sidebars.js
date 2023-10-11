@@ -408,6 +408,7 @@ module.exports = {
       type: 'category',
       label: 'Exchange Operators',
       items: [
+        'exchange-operators/rosetta2',
         'exchange-operators/faq'
     ],
     },
