@@ -23,37 +23,36 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::note
-
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.9.3.
-
-:::
 
 # Tutorial 10: Account Updates
 
 ## Permissions, Preconditions, and Composability
 
-## Overview
+Each zkApp transaction constructed by o1js is composed of one or more [AccountUpdates](../o1js-reference/classes/AccountUpdate) classes, which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, and so on.
 
-Each zkApp transaction constructed by o1js is composed of one or more [AccountUpdates](../o1js-reference/classes/AccountUpdate), which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, etc.
+Each `AccountUpdate` can make assertions about its account, apply updates to its account, and make assertions about its child `AccountUpdates`.
 
-Each AccountUpdate can make assertions about its account, apply updates to its account, as well as make assertions about its child AccountUpdates.
+Transactions are structured as a list of trees of `AccountUpdates` applied with a [pre-order traversal](https://en.wikipedia.org/wiki/Tree_traversal).
 
-Transactions are structured as a list of trees of AccountUpdates applied with a ["pre-order" traversal](https://en.wikipedia.org/wiki/Tree_traversal).
+Permissions, preconditions, composability, and tokens are the core features of zkApps and are implemented using `AccountUpdates`. 
 
-Many of the core features of zkApps—permissions, preconditions, composability, and tokens—are implemented using AccountUpdates. In this tutorial, you learn about many of the essential AccountUpdates features.
+In this tutorial, you learn the essential AccountUpdates features.
 
 To learn more, see these o1js docs:
 
-- [Permissions](../o1js/permissions)
-- [Preconditions](../o1js/on-chain-values)
+- [Permissions](/zkapps/o1js/permissions)
+- [On-Chain Values](/zkapps/o1js/on-chain-values) <!-- why is it called precondition? the link text did not match the target page -->
 
 ## AccountUpdate contents
 
-Each [AccountUpdate](../o1js-reference/classes/AccountUpdate) has these components:
+An `AccountUpdate` is a set of instructions for the Mina network. It includes preconditions <!-- why is it called precondition? --> and a list of state updates that need to be authorized by a signature or proof.
+
+Each [AccountUpdate](/zkapps/o1js-reference/classes/AccountUpdate) class has these components:
 
 - `PublicKey`: The account address for the account update
-- `TokenId`: A unique hash representing the custom token. Defaults to the MINA TokenId (`1`). Together, PublicKey and TokenId uniquely identify an account on Mina Protocol.
+- `TokenId`: A unique hash representing the custom token. Defaults to the MINA TokenId (`1`). 
+  
+  Together, `PublicKey` and `TokenId` uniquely identify an account on the Mina network.
 - `Preconditions`: Conditions that must be true for the AccountUpdate to be applied. Corresponds to assertions in a o1js method.
 - `Updates`: Things changed by the AccountUpdate, such as include the zkApp state, permissions, and verification key.
 - `BalanceChange`: Any changes to the balance
