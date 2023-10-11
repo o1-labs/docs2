@@ -23,12 +23,7 @@ A zkApp consists of a smart contract and a UI to interact with it.
 
 Write your smart contract using the [zkApp CLI](https://www.npmjs.com/package/zkapp-cli/). 
 
-First, install the zkApp CLI.
-
-The zkApp CLI makes it easy to follow recommended best practices by providing project scaffolding including dependencies such as o1js, a test framework ([Jest](https://jestjs.io/)), code auto-formatting ([Prettier](https://prettier.io/
-)), linting ([ES Lint](https://eslint.org/)), and more.
-
-## Install the zkApp CLI
+First, install the zkApp CLI:
 
 ```sh
 npm install -g zkapp-cli
@@ -38,7 +33,7 @@ See [zkApp CLI Installation](/zkapps/install-zkapp-cli).
 
 ## Start a project
 
-Now that you have the Mina zkApp CLI installed, you can start with an example or start your own project.
+Now that you have the zkApp CLI installed, you can start with an example or start your own project.
 
 Example projects do not create an accompanying UI. 
 
@@ -218,8 +213,19 @@ zkApps are written in TypeScript using o1js. o1js is a TypeScript library for wr
 To get started writing zkApps, begin with these o1js docs:
 
 - [Basic concepts](./o1js/basic-concepts)
-- [Smart contracts](./o1js/smart-contracts)
 - [Interacting with Mina](./o1js/interact-with-mina)
+
+Add the smart contract code to your zkApp project using the [o1js](/zkapps/o1js) TypeScript library that was included automatically when you created your project using the zkApp CLI.
+
+A basic smart contract example is generated when you created a zk project. The high-level smart contract code workflow is:
+
+1. Import `o1js`. 
+
+    See the `import` statement in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L1) file.
+
+1. Extend the `SmartContract` class.
+
+    See the exported `class` in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L12) file. 
 
 For guided steps to create your first zkApp, start with [Tutorial 1: Hello World](./tutorials/hello-world).
 
