@@ -27,15 +27,32 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # Interacting With Mina
 
-## Transactions and account updates
+Now that you know about writing zkApp methods, it's time to learn how users can call these methods. 
 
-Now that you have an idea about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like, and how you can create one.
+## Transactions
 
-The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. Account updates are a flexible and powerful data structure that can express all kinds of updates, events and preconditions that you use for developing smart contracts.
+Recall that smart contracts execute off-chain. The result an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. 
 
-A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message. Ignore it for now.
+In this section, you learn what a transaction looks like and how to create one.
 
-You create transactions in o1js by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
+## Account updates
+
+The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. 
+
+For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. 
+
+Account updates are a flexible and powerful data structure that can express all kinds of updates, events, and preconditions you use to develop smart contracts.
+
+### Transaction JSON object
+
+A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`:
+
+- `feePayer` is a special account update of slightly simpler structure. 
+  - In particular, it contains a `fee` field which has to be used to specify the transaction fee. 
+- The `accountUpdates` array is a list of normal account updates that make up the bulk of the transaction. 
+- `memo` is an encoded string that can be used to attach an arbitrary short message.
+
+You create transactions in o1js by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic:
 
 ```ts
 const sender = PublicKey.fromBase58('B62..'); // the user address
@@ -46,19 +63,21 @@ const tx = await Mina.transaction(sender, () => {
 });
 ```
 
-In this example, the transaction consists of calling a single `SmartContract` method, called `myMethod`. You can inspect the transaction yourself by printing it out as JSON:
+In this example, the transaction calls a single `SmartContract` method called `myMethod`. You can inspect the transaction by printing the JSON data to the console:
 
 ```ts
 console.log(tx.toJSON());
 ```
 
-If you try this, you see a massive JSON object with lots of fields, most of which are set to their default value. There's also a way to pretty-print transactions in a more human-readable, condensed format:
+This command outputs a massive JSON object with many fields, most of which are set to their default value. 
+
+Instead, you can output transactions in a more human-readable, condensed format:
 
 ```ts
 console.log(tx.toPretty());
 ```
 
-Depending on the logic of `myMethod()`, this could print something like the following:
+Depending on the logic of `myMethod()`, this command prints something like the following:
 
 ```ts
 [
@@ -81,17 +100,36 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 ];
 ```
 
-From this output, there are several important things we can learn about transactions.
+### Transaction output
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+This output includes several important things to learn about transactions.
 
-The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
+The transaction output is an array with two entries: 
 
-- `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
-- `update: { appState: [...] }` – shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that aren't updated.
-- `preconditions: { account: { state: [...] } }` – similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction are accepted only if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
-- `authorizationKind: 'Proof'` – this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates.
-- `authorization: undefined` – the proof that's needed on this update isn't there yet! You learn how to add it in a minute.
+  - The account updates that make up this transaction. 
+  - 'MyContract.myMethod()'` that corresponds to the method call you performed
+
+Account updates:
+
+  - The first update is always the fee payer, whose public key is passed in as `sender`. 
+  - For the `fee`, which you didn't specify, the o1js default value of 0 is used
+  - The `authorization` was filled with a dummy signature.
+    
+In a user-facing zkApp, you typically don't care about setting those values. Instead, you create a transaction like this in the browser and pass it on to the user's wallet. 
+
+The wallet replaces your fee payer account with one that represents the user account applying the user's settings for the fee. The `authorization` field is filled with a signature created from the user's private key. See [Connecting your zkApp with a user's wallet](/zkapps/how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+
+The second account update has that `'MyContract.myMethod()'` label:
+
+- The update corresponds to the method call you performed. An `@method` call always results in the creation of an account update – an update to the zkApp account itself. 
+
+Other fields in this account update are:
+
+  - `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
+  - `update: { appState: [...] }` – shows how the method updates the on-chain state use `this.<state>.set()`. The names and pretty types defined using `@state` are removed in this representation that shows a raw list of 8 field elements or `null` for state fields that aren't updated.
+  - `preconditions: { account: { state: [...] } }` – similar to the `update`, one entry per field of on-chain state for the preconditions created with `this.<state>.assertEquals()`. In this example, transaction are accepted only if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
+  - `authorizationKind: 'Proof'` – indicates this account update must be authorized with a proof, the default when calling a zkApp method, but not necessarily for other account updates.
+  - `authorization: undefined` – the proof that's needed on this update isn't there yet. You learn how to add it in a minute.
 
 Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
 
