@@ -29,12 +29,36 @@ module.exports = {
       {
         redirects: [
           {
+            from: '/node-operators/scan-state',
+            to: '/mina-protocol/scan-state',
+          },
+          {
+            from: '/node-operators/snark-workers',
+            to: '/mina-protocol/snark-workers',
+          },
+          {
+            from: '/node-operators/time-locked-accounts',
+            to: '/mina-protocol/time-locked-accounts',
+          },
+          {
+            from: '/node-operators/hardforks',
+            to: '/mina-protocol/hardforks',
+          },
+          {
+            from: '/node-operators/lifecycle-of-a-payment',
+            to: '/mina-protocol/lifecycle-of-a-payment',
+          },
+          {
+            from: '/node-operators/sending-a-payment',
+            to: '/mina-protocol/sending-a-payment',
+          },
+          {
             from: '/about-mina/overview',
             to: '/about-mina',
           },
           {
             from: '/architecture/scan-state',
-            to: '/node-operators/scan-state',
+            to: '/mina-protocol/scan-state',
           },
           {
             from: '/architecture/snapps',
