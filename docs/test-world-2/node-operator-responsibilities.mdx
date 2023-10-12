@@ -1,0 +1,183 @@
+---
+title: Node Operators responsibilities
+hide_title: true
+description: Program details about Testworld Mission 2.0, an incentivized testnet to test zkApps and network resilience in preparation for a hard fork that will enable improved zkApp programmability on Mina Mainnet.
+keywords:
+  - Block Producer
+  - Testworld Mission2
+---
+
+# Testworld Mission 2.0 Protocol Performance Testing
+The Testworld Mission 2.0: Protocol Performance Testing program is here. The goal of this program is to stress test the protocol and network with Mina community members to have a high level of confidence for Mina’s upcoming mainnet upgrade that will enable easier zkApps on Mina Mainnet.
+
+The Program gathers experienced node operators to provide the network backbone for the Testworld 2.0 testnet. Participants will perform various node operation testing tasks for different grants. Participants can perform multiple node operation tasks.
+
+## Node Operators Responsibilities
+
+Node operators participating in the Protocol Performance Testing program can perform one or more of the following tasks:
+
+1. [Block Production](#block-production)
+2. [Load Testing](#load-testing)
+3. [SNARK Work](#snark-work)
+4. [Archive Node](#archive-node) 
+
+### Block Production
+
+#### High level responsibilities
+- Run 2 Mina nodes on a cloud provider or hosted solution of your choice from the start until the end of the protocol performance testing. 
+- Run the latest Mina Node version. *The latest Mina Node version will be shared on [Discord](https://discord.com/channels/484437221055922177/1103364666517901342), before the protocol performance testing starts.*
+- Upgrade to a new Mina Node version within 24 hours if required.
+- Ensure high uptime during the testing, *a minimum of 90% uptime is required and is monitored by the snark-work-based uptime system*
+- The Mina Nodes should be configured to restart automatically on crash and to persist the configuration directory across restarts.
+- The Block Producer is expected to raise any abnormal behavior during the protocol performance testing on [Github](https://github.com/MinaProtocol/mina/issues?q=is%3Aopen+OR%3A%3A%3A%3A%3A+label%3ATestworld-2-0-block-producer%2CTestworld-2-0-archive-node%2CTestworld-2-0-load-tester%2CTestworld-2-0-protocol-performance-testing%2CTestworld-2-0-snark-worker), using the labels **Testworld-2-0-protocol-performance-testing** and **Testworld-2-0-block-producer**
+- Configure the Mina Node correctly, configuration instructions can be found [here](./launching-a-node) 
+- Technical requirements for the Block Producer can be found [here](./technical-requirements#block-producer) 
+
+
+#### Configuration setup
+- The private keys will be shared before the protocol performance testing starts.
+- The release notes with the latest software baseline and the configuration instructions will be provided to Block Producers in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel before the start of the program.
+- The Block Producer will run 2 Mina nodes during the baseline load testing.
+- The Block Producer node will join the P2P network using seeds for bootstrapping. 
+
+#### Logs collection 
+- The Block Producer will be notified on how to configure Mina nodes for logging. Instructions about how to send the logs will be shared before the start of the program. 
+- The Block Producer may be requested to submit these logs to faciliate debugging abnormal behavior.
+
+#### Update process
+- The Block Producer will get a notification in advance in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel when a new version of the Mina Node will be available. Release Notes will be provided with any addiitonal configuration instructions.
+- The Block Producer is required to upgrade within 24 hours of an announcement during the testing.
+
+#### Security
+- The Performance Testing Toolset is organized as a separate GraphQL Control interface that is included only in testnet builds * these are not included in any mainnet builds.* The GraphQL Control interface is activated with CLI flags `–itn-graphql-port`, `–itn-keys` that are provided to the node.
+- CLI flag `–itn-keys` specifies Ed25519 public keys that are allowed access to the GraphQL Control interface. An authentication mechanism will ensure that only requests signed by specified public keys are allowed. This protects the node against a range of attacks (such as request replay attack). This ensures that access to the GraphQL Control interface of a node will only be granted to engineers from the Mina ecosystem facilitating the testnet. The GraphQL Control interface provides a way for engineers from the Mina ecosystem to:
+    - Send transactions from a Mina node to the network
+        - Secret keys for transaction sending will be provided by the caller (wallet or Block Producer keys associated with the Mina node will not be used)
+    - Configure a Mina node’s networking
+        - E.g. ban communication to certain peers in Mina network
+    - Access a Mina node’s information (such as slot allocation)
+
+<br />
+
+:::info
+
+The GraphQL Control interface will only use capabilities of Mina nodes and only in a limited way. It grants the caller no access to file system, firewall configuration or any other system configuration. 
+ 
+Any changes made or actions launched to a Mina node via GraphQL Control interface will not persist over a Mina 
+node’s restart.
+ 
+The GraphQL Control interface allows the execution of large scale experiments involving hundreds of Mina nodes without coordination by node operators.
+
+There will be random node restarts via the orchestrator once every 6 hours.
+:::
+
+
+### Load Testing
+
+#### High level responsibilities
+- Run 10 Mina nodes on a cloud provider or hosted solution of your choice from the start until the end of the protocol performance testing. 
+- Run the latest Mina Node version. *The latest Mina Node version will be shared on [Discord](https://discord.com/channels/484437221055922177/1103364666517901342), before the protocol performance testing starts.*
+- Upgrade to a new Mina Node version within 24 hours if required.
+- Ensure high uptime during the testing, *a minimum of 90% uptime is required and is monitored by the snark-work-based uptime system*
+- The Mina Nodes should be configured to restart automatically on crash and to persist the configuration directory across restarts.
+- The Load Tester is expected to raise any abnormal behavior during the protocol performance testing on [Github](https://github.com/MinaProtocol/mina/issues?q=is%3Aopen+OR%3A%3A%3A%3A%3A+label%3ATestworld-2-0-block-producer%2CTestworld-2-0-archive-node%2CTestworld-2-0-load-tester%2CTestworld-2-0-protocol-performance-testing%2CTestworld-2-0-snark-worker), using the labels **Testworld-2-0-protocol-performance-testing** and **Testworld-2-0-load-tester**
+- Configure the Mina Node correctly, configuration instructions can be found [here](./launching-a-node) 
+- Technical requirements for the Load Tester can be found [here](./technical-requirements#load-testing) 
+
+
+#### Stress testing
+- During the testing (on epochs 2 and 3), there will be stress tests of the network for 96h hours each time.
+- The Load Tester will get a notification 24 hours in advance in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel.
+- The Load Tester will spin up 10 extra nodes each during stress testing. 
+- The 10 extra nodes must meet or exceed the minimum hardware requirements.
+- The Load Tester runs the extra nodes in the same way as during the baseline load testing (same configuration, uptime, SW baseline, etc.) but without running consensus (block production disabled)
+
+#### Configuration setup
+- The release notes with the latest software baseline and the configuration instructions will be provided to Load Testers in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel before the start of the program
+- The Load Tester runs 10 non-consensus Mina nodes during the stress  testing windows, in addition to their 2 Block Producer nodes
+- The Load Tester spins down the 10 load testing nodes when asked to in this [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel.
+- The Load Tester node joins the P2P network using seeds for bootstrapping 
+
+#### Logs collection: 
+- The Load Tester will be notified on how to configure Mina nodes for logging. Instructions about how to send the logs will be shared before the start of the program. 
+- The Load Tester may be requested to submit these logs to faciliate debugging abnormal behavior.
+
+#### Update process
+- The Load Tester will get a notification in advance in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel when a new version of the Mina Node will be available. Release Notes will be provided with any addiitonal configuration instructions. 
+- The Load Tester is required to upgrade within 24 hours of the announcement during the testing.
+
+#### Security
+- The Performance Testing Toolset is organized as a separate GraphQL Control interface that is included only in testnet builds * these are not included in any mainnet builds.* The GraphQL Control interface is activated with CLI flags `–itn-graphql-port`, `–itn-keys` that are provided to the node.
+- CLI flag `–itn-keys` specifies Ed25519 public keys that are allowed access to the GraphQL Control interface. An authentication mechanism will ensure that only requests signed by specified public keys are allowed. This protects the node against a range of attacks (such as request replay attack). This ensures that access to the GraphQL Control interface of a node will only be granted to engineers from the Mina ecosystem facilitating the testnet. The GraphQL Control interface provides a way for engineers from the Mina ecosystem to:
+    - Send transactions from a Mina node to the network
+        - Secret keys for transaction sending will be provided by the caller (wallet or Block Producer keys associated with the Mina node will not be used)
+    - Configure a Mina node’s networking
+        - E.g. ban communication to certain peers in Mina network
+    - Access a Mina node’s information (such as slot allocation)
+    - Control block production
+
+<br />
+
+:::info
+
+The GraphQL Control interface will only use capabilities of Mina nodes and only in a limited way. It grants the caller no access to file system, firewall configuration or any other system configuration. 
+ 
+Any changes made or actions launched to a Mina node via GraphQL Control interface will not persist over a Mina 
+node’s restart.
+ 
+:::
+
+### SNARK Work
+
+#### High level responsibilities
+- Run a pool of SNARK workers and 1 SNARK Coordinator on a cloud provider or hosted solution of your choice from the start until the end of the protocol performance testing.
+- The pool of SNARK workers should all connect to your SNARK Coordinator.
+- Run the latest Mina Node version. *The latest Mina Node version will be shared on [Discord](https://discord.com/channels/484437221055922177/1103364666517901342), before the protocol performance testing starts.*
+- Upgrade to a new Mina Node version within 24 hours if required
+- Ensure high uptime % during the testing (minimum of 90% uptime is required) as monitored by the snark-work-based uptime system
+- The Mina Nodes should be configured to restart automatically on crash and to persist the configuration directory across restarts.
+- The SNARK worker Operator is expected to raise any abnormal behavior during the protocol performance testing on [Github](https://github.com/MinaProtocol/mina/issues?q=is%3Aopen+OR%3A%3A%3A%3A%3A+label%3ATestworld-2-0-block-producer%2CTestworld-2-0-archive-node%2CTestworld-2-0-load-tester%2CTestworld-2-0-protocol-performance-testing%2CTestworld-2-0-snark-worker), using the labels **Testworld-2-0-protocol-performance-testing** and **Testworld-2-0-snark-worker**
+- Configure the Mina Node correctly - configuration instructions will be shared before the protocol performance testing starts. Configuration instructions are located [here](./launching-a-node)
+- Technical requirements for the SNARK worker can be found [here](./technical-requirements#snark-work) 
+- Technical requirements for the SNARK Coordinator can be found [here](./technical-requirements#snark-coordinator) 
+
+
+#### Configuration setup
+- Each SNARK worker process should be allocated with 4 cores / 8 threads, bringing the number of SNARK worker processes to 4 per SNARK work server.
+- All SNARK worker processes should be connected to one SNARK coordinator  
+- Private keys will be shared before the protocol performance testing starts. 
+- The release notes with the latest software baseline and the configuration instructions will be provided to Snarkworker Operator in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel before the start of the program.
+ 
+#### Logs collection
+- The SNARK worker operator will be notified about how to configure Mina nodes for logging. Instructions about how to send the logs will be shared before the start of the program.
+- The SNARK worker operator may be requested to submit these logs to faciliate debugging abnormal behavior.
+
+#### Update process
+- The SNARK worker operator will get a notification in advance in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel when a new version of the Mina Node will be available. Release Notes will be provided with any addiitonal configuration instructions.
+- The SNARK worker operator is required to upgrade within 24 hours of the announcement during the testing.
+
+
+### Archive Node
+
+#### High level responsibilities
+- Run the latest Mina node and Archive Processor, with associated PostgreSQL database. *The latest Archive Node version will be shared on [Discord](https://discord.com/channels/484437221055922177/1103364666517901342), before the protocol performance testing starts.*
+- Maintain at least 72 consecutive hours of logs at any time. 
+- Upgrade to a new Archive Node version within 24 hours if required.
+- Ensure high uptime during the testing, *a minimum of 90% uptime is required and is monitored by the snark-work-based uptime system*
+- The Mina Nodes should be configured to restart automatically on crash and to persist the configuration directory across restarts.
+- The Archive Node Operator is expected to raise any abnormal behavior during the protocol performance testing on [Github](https://github.com/MinaProtocol/mina/issues?q=is%3Aopen+OR%3A%3A%3A%3A%3A+label%3ATestworld-2-0-block-producer%2CTestworld-2-0-archive-node%2CTestworld-2-0-load-tester%2CTestworld-2-0-protocol-performance-testing%2CTestworld-2-0-snark-worker), using the labels **Testworld-2-0-protocol-performance-testing** and **Testworld-2-0-archive-node**
+- Configure the Archive Node correctly, configuration instructions can be found [here](./launching-a-node) 
+- Technical requirements for the Archive Node can be found [here](./technical-requirements#archive-node) 
+
+
+#### Configuration setup  
+- The release notes with the latest software baseline and the configuration instructions will be provided to Snarkworker Operator in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel before the start of the program. 
+- The Archive Node joins the P2P network using seeds for bootstrapping. 
+
+#### Logs collection 
+- The Archive Node operator will be notified about how to configure Archive nodes for logging. Instructions about how to send the logs will be shared before the start of the program.
+- The Archive Node operator may be requested to send these logs (to be able to debug abnormal behavior).
+
+#### Update process
+- The Archive Node operator will get a notification in advance in the dedicated [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel when a new version of the Archive Node will be available. Release Notes will be provided with any addiitonal configuration instructions. 
+- The Archive Node operator is required to upgrade within 24 hours of the announcement during the testing.
