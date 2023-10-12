@@ -418,6 +418,7 @@ module.exports = {
       items: [
         'test-world-2/node-operator-responsibilities',
         'test-world-2/technical-requirements',
+        'test-world-2/test-plan',
         'test-world-2/timelines',
         'test-world-2/incentives',
         'test-world-2/bug-reporting',
