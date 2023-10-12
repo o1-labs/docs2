@@ -90,11 +90,11 @@ module.exports = {
           },
           {
             from: '/architecture/snark-workers',
-            to: '/node-operators/snark-workers',
+            to: '/mina-protocol/snark-workers',
           },
           {
             from: '/architecture/timelock',
-            to: '/node-operators/time-locked-accounts',
+            to: '/mina-protocol/time-locked-accounts',
           },
           {
             from: '/architecture',
@@ -174,7 +174,7 @@ module.exports = {
           },
           {
             from: '/node-operators/hardfork',
-            to: '/node-operators/hardforks',
+            to: '/mina-protocol/hardforks',
           },
           {
             from: '/node-operators/ledger-app-mina',
@@ -186,11 +186,11 @@ module.exports = {
           },
           {
             from: '/node-operators/timelock',
-            to: '/node-operators/time-locked-accounts',
+            to: '/mina-protocol/time-locked-accounts',
           },
           {
             from: '/node-operators/lifecycle-payment',
-            to: '/node-operators/lifecycle-of-a-payment',
+            to: '/mina-protocol/lifecycle-of-a-payment',
           },
           {
             from: '/node-operators/keypair',
@@ -202,7 +202,7 @@ module.exports = {
           },
           {
             from: '/node-operators/send-payment',
-            to: '/node-operators/sending-a-payment',
+            to: '/mina-protocol/sending-a-payment',
           },
           {
             from: '/node-operators/staking',
