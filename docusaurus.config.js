@@ -189,10 +189,6 @@ module.exports = {
             to: '/mina-protocol/time-locked-accounts',
           },
           {
-            from: '/node-operators/lifecycle-payment',
-            to: '/mina-protocol/lifecycle-of-a-payment',
-          },
-          {
             from: '/node-operators/keypair',
             to: '/node-operators/generating-a-keypair',
           },
