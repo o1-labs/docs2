@@ -68,7 +68,7 @@ When you use the zkApp CLI to create a project, tests and examples are included.
 
 1. A `LocalBlockchain` instance to interact with is included in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
 
-1. In o1js, an array of 10 test accounts to pay fees and sign transactions are provided for the `LocalBlockchain` instance in the `Local.testAccounts;` in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file. The example accesses two of these public/private key pair accounts. The example uses these names, but the names can be anything:
+1. In o1js, an array of 10 test accounts to pay fees and sign transactions are provided for the `LocalBlockchain` instance. These can be accessed with `Local.testAccounts` as shown in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file. The example uses the public/private key pairs of two of these accounts. The example uses these names, but the names can be anything:
 
     - `deployerAccount` deploys the smart contract
     - `senderAccount` pays transaction fees
@@ -81,7 +81,7 @@ When you use the zkApp CLI to create a project, tests and examples are included.
 
 Add the logic for your smart contract.
 
-1. Start experimenting with iterative development to build and test one method at a time. Add functionality to the smart contract by implementing an `@method`.
+1. Start experimenting with iterative development to build and test one method at a time. Add functionality to the smart contract by implementing a `@method`.
 
     See `@method update()` in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L20-L24) example file.
 
@@ -108,7 +108,7 @@ Add the logic for your smart contract.
 
 To deploy the smart contract to the Testnet, run the `zk` commands from the directory that contains your smart contract. 
 
-1. Configure your zkapp.
+1. Configure your zkApp.
 
     ```sh
     zk config
