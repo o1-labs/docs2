@@ -11,6 +11,7 @@ keywords:
 ---
 
 # Testworld Mission 2.0 Protocol Performance Testing
+
 The Testworld Mission 2.0: Protocol Performance Testing program is here. The goal of this program is to stress test the protocol and network with Mina community members to have a high level of confidence for Mina’s upcoming mainnet upgrade that will enable easier zkApps on Mina Mainnet.
 
 The Program gathers experienced node operators to provide the network backbone for the Testworld 2.0 testnet. Participants will perform various node operation testing tasks for different grants. Participants can perform multiple node operation tasks.
@@ -18,7 +19,7 @@ The Program gathers experienced node operators to provide the network backbone f
 
 :::note
 
-Please refer to the [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel for questions or to find any configuration options, such as the seeds.txt file, which are not detailed below.
+Please refer to the [Discord testworld-2](https://discord.com/channels/484437221055922177/1103364666517901342) channel for questions or to find any configuration options, such as the `seeds.txt` file, which are not detailed below.
 
 :::
 
@@ -32,15 +33,17 @@ Testworld Mission 2.0 nodes must run with the flags specified here in order to c
 4. [SNARK Coordinators](#snark-coordinator)
 5. [Archive Node](#archive-node) 
 
-For more information about running nodes see the [node operators](https://docs.minaprotocol.com/node-operators) section of the Mina docs.
+For more information about running nodes, see the [Node operators](https://docs.minaprotocol.com/node-operators) section of the Mina docs.
 
-Use the latest Testworld Mission 2.0 release, this release can be found at [here](https://github.com/MinaProtocol/mina/releases/tag/2.0.0rampup5), we will announce any future releases on this [Discord](https://discord.com/channels/484437221055922177/1103364666517901342) channel and they will be located in [releases](https://github.com/MinaProtocol/mina/releases) directory.
+Use the latest Testworld Mission 2.0 release, this release can be found at [here](https://github.com/MinaProtocol/mina/releases/tag/2.0.0rampup5), we will announce any future releases on the [Discord testworld-2](https://discord.com/channels/484437221055922177/1103364666517901342) channel. Releases are located in the GitHub [Releases](https://github.com/MinaProtocol/mina/releases) directory.
 
 ## Block Producer
-The hardware requirements for Block Producers are located [here](./technical-requirements#block-producer)
 
-The Block Producer node should be configured with the following flags:
-```
+See the [Block Producer](/technical-requirements#block-producer) hardware requirements.
+
+You must configure the block producer node with the following flags:
+
+```text
 --log-json
 --log-snark-work-gossip true
 --internal-tracing
@@ -65,8 +68,10 @@ The Block Producer node should be configured with the following flags:
 --node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats 
 --file-log-rotations 500
 ```
+
 and the following environment variables:
-```
+
+```test
 RAYON_NUM_THREADS:6
 UPTIME_PRIVKEY_PASS
 MINA_LIBP2P_PASS
@@ -74,10 +79,12 @@ MINA_PRIVKEY_PASS
 ```
 
 ## Load Tester
-The hardware requirements for Load Testers are located [here](./technical-requirements#load-testing)
 
-The Load Tester nodes should be configured with the following flags:
-```
+See the [Load Testing](/technical-requirements#load-testing) hardware requirements.
+
+You must configure Load Testing nodes with the following flags:
+
+```text
 --log-json
 --log-snark-work-gossip true
 --internal-tracing
@@ -104,18 +111,21 @@ The Load Tester nodes should be configured with the following flags:
 ```
 
 and the following environment variables:
-```
+
+```text
 RAYON_NUM_THREADS:6
 UPTIME_PRIVKEY_PASS
 MINA_LIBP2P_PASS
 MINA_PRIVKEY_PASS
 ```
 
-## SNARK Worker
-The hardware requirements for SNARK Workers are located [here](./technical-requirements#snark-work)
+## SNARK Workers
 
-The SNARK workers should be configured with the following flags and will connect to the SNARK Coordinator:
-```
+See the [SNARK Work](/technical-requirements#snark-work) hardware requirements.
+
+You must configure SNARK workers with the following flags to connect to the SNARK Coordinator nodes:
+
+```text
 internal 
 snark-worker 
 --proof-level full
@@ -124,15 +134,18 @@ snark-worker
 ```
 
 and the following environment variables:
-```
+
+```text
 RAYON_NUM_THREADS:8
 ```
 
 ## SNARK Coordinator
-The hardware requirements for SNARK Coordinators are located [here](./technical-requirements#snark-coordinator)
 
-The SNARK Coordinators should be configured with the following flags:
-```
+See the [SNARK Coordinator](./technical-requirements#snark-coordinator) hardware requirements.
+
+You must configure the SNARK coordinators with the following flags:
+
+```text
 --log-json
 --log-snark-work-gossip true
 --internal-tracing
@@ -159,7 +172,8 @@ The SNARK Coordinators should be configured with the following flags:
 ```
 
 and the following environment variables:
-```
+
+```text
 RAYON_NUM_THREADS:6
 UPTIME_PRIVKEY_PASS
 MINA_LIBP2P_PASS
@@ -167,18 +181,20 @@ MINA_LIBP2P_PASS
 
 
 ## Archive Node
-The hardware requirements for Archive Nodes are located [here](./technical-requirements#archive-node)
 
-The Archive node requires a non block producing node and PostgreSQL database, for more information about running Archive Nodes see [Archive Node](https://docs.minaprotocol.com/node-operators/archive-node). 
+See the [Archive Node](/technical-requirements#archive-node) hardware requirements.
+
+The archive node requires a non-block producing node and PostgreSQL database. For more information about running archive nodes, see [Archive Node](/node-operators/archive-node). 
 
 The PostgreSQL database requires two schemas:
 
-1. The PostgreSQL schema used by the Mina archive database can be found [here](https://github.com/MinaProtocol/mina/blob/55b78189c46e1811b8bdb78864cfa95409aeb96a/src/app/archive/create_schema.sql). 
-2. The PostgreSQL schema extensions to support zkApp commands can be found [here](https://github.com/MinaProtocol/mina/blob/55b78189c46e1811b8bdb78864cfa95409aeb96a/src/app/archive/zkapp_tables.sql).
+1. The PostgreSQL schema used by the Mina archive database: [create_schema.sql](https://github.com/MinaProtocol/mina/blob/55b78189c46e1811b8bdb78864cfa95409aeb96a/src/app/archive/create_schema.sql). 
+2. The PostgreSQL schema extensions to support zkApp commands: [zkapp_tables.sql](https://github.com/MinaProtocol/mina/blob/55b78189c46e1811b8bdb78864cfa95409aeb96a/src/app/archive/zkapp_tables.sql).
 
 
-The non block producing node should be configured with the following flags:
-```
+The non-block producing node must be configured with the following flags:
+
+```text
 --log-json
 --internal-tracing
 --insecure-rest-server
@@ -202,14 +218,17 @@ The non block producing node should be configured with the following flags:
 --file-log-rotations 500
 --archive-address <archive_address>:<archive_port - use 3086>
 ```
+
 and the following environment variables:
-```
+
+```text
 RAYON_NUM_THREADS:6
 UPTIME_PRIVKEY_PASS
 MINA_LIBP2P_PASS
 MINA_PRIVKEY_PASS
 ```
-This non block producing node will connect to the archive node with the addresses specificied in the `archive-address` flag, using `archive port` used by the archive node.
+
+This non-block producing node connects to the archive node with the addresses specificied in the `archive-address` flag, using `archive port` used by the archive node.
 
 The archive node command is:
 
@@ -219,7 +238,8 @@ mina-archive run --metrics-port <port> --postgres-uri postgres://<postgres user>
 ```
 
 ## Port configuration
-Nodes need to have the following ports public (accessible with a node’s external ip):
+
+Nodes must have the following ports public (accessible with a node’s external ip):
 
 - libp2p port use 8302 by default
 - itn-graphql-port configured to 3089
@@ -234,11 +254,14 @@ mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 
 ```
 
-## Node Restarts
-All nodes to be set up such that they restart on crash.
+See [Generating a Key Pair](/node-operators/generating-a-keypair).
 
-For detailed information on how to setup automatic restart on crash please refer to [Start a mina node with auto-restart flows](https://docs.minaprotocol.com/node-operators/connecting-to-the-network#start-a-mina-node-with-auto-restart-flows).
+## Node Restarts
+
+All nodes must be set up to restart on crash. See [Start a mina node with auto-restart flows](/node-operators/connecting-to-the-network#start-a-mina-node-with-auto-restart-flows).
 
 ## Feedback and Questions
 
-We have set up a dedicated Discord channel [#testworld-2](https://discord.com/channels/484437221055922177/1103364666517901342), where you can provide feedback and ask questions related to the Testworld Mission 2.0: Protocol Performance Testing program. We look forward to hearing from you!
+Thank you for participating.
+
+Use the dedicated Discord [#testworld-2](https://discord.com/channels/484437221055922177/1103364666517901342) 8302 to provide feedback and ask questions related to the Testworld Mission 2.0: Protocol Performance Testing program. We look forward to hearing from you!
