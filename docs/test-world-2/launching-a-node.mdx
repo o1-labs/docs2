@@ -227,13 +227,12 @@ Nodes need to have the following ports public (accessible with a node’s extern
 
 ## Generation of libp2p keypair
 
-Use
+Each node within the network must possess its own distinct libp2p key pair. This requirement extends to Block Producer nodes as well, despite their utilization of a common block production key. Every node operator should generate its unique libp2p keys locally on their respective machines using the following command:
 
 ```
 mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 
 ```
-to generate a libp2p keypair on your machine. 
 
 ## Node Restarts
 All nodes to be set up such that they restart on crash.
