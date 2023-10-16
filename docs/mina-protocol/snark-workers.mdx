@@ -1,6 +1,16 @@
 ---
 title: SNARK Workers
 hide_title: true
+description: What are snark workers 
+keywords:
+  - snark worker
+  - snarking
+  - snark proofs
+  - succinct blockchain
+  - block producer
+  - node operator
+  - proof
+  - merge proof
 ---
 
 # SNARK Workers
@@ -29,7 +39,7 @@ Notice that this statement says nothing about the validity of the transactions i
 
 ## Snarking Transactions
 
-In order to ensure that nodes can operate without trust on the Mina blockchain, it is important that each node can verify the state of the chain without needing to replay the transactions. In order for this to work, the above blockchain SNARK is not enough. We need to know that the transactions are also valid. Well, since SNARKs are good for exactly that, the naive suggestion might be to generate a SNARK of each transaction as they come in, and then combine them.
+In order to ensure that nodes can operate without trust on the Mina blockchain, it is important that each node can verify the state of the chain without needing to replay the transactions. In order for this to work, the blockchain SNARK is not enough. We need to know that the transactions are also valid. Well, since SNARKs are good for exactly that, the naive suggestion might be to generate a SNARK of each transaction as they come in, and then combine them.
 
 However, generating SNARK proofs is computationally expensive — if we had to compute SNARKs serially for each transaction, throughput would be very low and block times would skyrocket. Furthermore, transactions in a real world environment arrive asynchronously, so it would be very tough to predict when to perform the next item of work.
 

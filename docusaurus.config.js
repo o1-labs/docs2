@@ -29,12 +29,36 @@ module.exports = {
       {
         redirects: [
           {
+            from: '/node-operators/scan-state',
+            to: '/mina-protocol/scan-state',
+          },
+          {
+            from: '/node-operators/snark-workers',
+            to: '/mina-protocol/snark-workers',
+          },
+          {
+            from: '/node-operators/time-locked-accounts',
+            to: '/mina-protocol/time-locked-accounts',
+          },
+          {
+            from: '/node-operators/hardforks',
+            to: '/mina-protocol/hardforks',
+          },
+          {
+            from: '/node-operators/lifecycle-of-a-payment',
+            to: '/mina-protocol/lifecycle-of-a-payment',
+          },
+          {
+            from: '/node-operators/sending-a-payment',
+            to: '/mina-protocol/sending-a-payment',
+          },
+          {
             from: '/about-mina/overview',
             to: '/about-mina',
           },
           {
             from: '/architecture/scan-state',
-            to: '/node-operators/scan-state',
+            to: '/mina-protocol/scan-state',
           },
           {
             from: '/architecture/snapps',
@@ -66,11 +90,11 @@ module.exports = {
           },
           {
             from: '/architecture/snark-workers',
-            to: '/node-operators/snark-workers',
+            to: '/mina-protocol/snark-workers',
           },
           {
             from: '/architecture/timelock',
-            to: '/node-operators/time-locked-accounts',
+            to: '/mina-protocol/time-locked-accounts',
           },
           {
             from: '/architecture',
@@ -150,7 +174,7 @@ module.exports = {
           },
           {
             from: '/node-operators/hardfork',
-            to: '/node-operators/hardforks',
+            to: '/mina-protocol/hardforks',
           },
           {
             from: '/node-operators/ledger-app-mina',
@@ -162,11 +186,7 @@ module.exports = {
           },
           {
             from: '/node-operators/timelock',
-            to: '/node-operators/time-locked-accounts',
-          },
-          {
-            from: '/node-operators/lifecycle-payment',
-            to: '/node-operators/lifecycle-of-a-payment',
+            to: '/mina-protocol/time-locked-accounts',
           },
           {
             from: '/node-operators/keypair',
@@ -178,7 +198,7 @@ module.exports = {
           },
           {
             from: '/node-operators/send-payment',
-            to: '/node-operators/sending-a-payment',
+            to: '/mina-protocol/sending-a-payment',
           },
           {
             from: '/node-operators/staking',
@@ -326,7 +346,7 @@ module.exports = {
           {
             type: 'html',
             position: 'right',
-            value: `<a href="https://github.com/MinaProtocol/mina"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
+            value: `<a href="https://github.com/o1-labs/docs2/"><img class="navbar-icon" src="/svg/socials/github_24x24.svg"/></a>`,
           },
           {
             type: 'html',

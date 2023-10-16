@@ -33,6 +33,8 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/getting-started-zkapps',
+        'zkapps/install-zkapp-cli',
         'zkapps/how-zkapps-work',
         {
           type: 'category',
@@ -335,38 +337,56 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Mina Protocol',
+      items: [
+        'mina-protocol/proof-of-stake',
+        'mina-protocol/whats-in-a-block',
+        'mina-protocol/block-producers',
+        'mina-protocol/snark-workers',
+        'mina-protocol/scan-state',
+        'mina-protocol/hardforks',
+        'mina-protocol/time-locked-accounts',
+        'mina-protocol/sending-a-payment',
+        'mina-protocol/lifecycle-of-a-payment'
+      ],
+    },
+    {
+      type: 'category',
       label: 'Node Operators',
       items: [
         'node-operators/index',
+        {
+          type: 'category',
+          label: 'Delegation Program',
+          items: [
+            'node-operators/foundation-delegation-program',
+            'node-operators/delegation-tiebreak',
+            'node-operators/bp-sidecar',
+            'node-operators/uptime-tracking-system'
+          ],
+        },
         'node-operators/getting-started',
-        'node-operators/archive-node',
-        'node-operators/archive-redundancy',
-        'node-operators/foundation-delegation-program',
-        'node-operators/delegation-tiebreak',
-        'node-operators/bp-sidecar',
-        'node-operators/uptime-tracking-system',
-        'node-operators/mina-signer',
-        'node-operators/querying-data',
-        'node-operators/connecting-to-devnet',
-        'node-operators/hardforks',
-        'node-operators/hot-cold-block-production',
-        'node-operators/rosetta',
-        'node-operators/proof-of-stake',
-        'node-operators/snark-workers',
-        'node-operators/scan-state',
-        'node-operators/time-locked-accounts',
-        'node-operators/block-producers',
-        'node-operators/whats-in-a-block',
-        'node-operators/lifecycle-of-a-payment',
-        'node-operators/seed-peers',
-        'node-operators/staking-service-guidelines',
-        'node-operators/troubleshooting',
-        'node-operators/faq',
         'node-operators/generating-a-keypair',
         'node-operators/connecting-to-the-network',
-        'node-operators/sending-a-payment',
+        'node-operators/connecting-to-devnet',
         'node-operators/staking-and-snarking',
+        'node-operators/hot-cold-block-production',
+        'node-operators/seed-peers',        
+        'node-operators/staking-service-guidelines',
+        'node-operators/mina-signer',
+        {
+          type: 'category',
+          label: 'Data and History',
+          items: [
+            'node-operators/querying-data',
+            'node-operators/archive-node',
+            'node-operators/archive-redundancy',
+            'node-operators/rosetta'
+          ],
+        },
         'node-operators/mina-cli-reference',
+        'node-operators/troubleshooting',
+        'node-operators/faq'
       ],
     },
     {
@@ -389,8 +409,25 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
-      items: ['exchange-operators/faq'],
+      items: [
+        'exchange-operators/rosetta2',
+        'exchange-operators/faq'
+    ],
     },
+    {
+      type: 'category',
+      label: 'Testworld Mission 2.0',
+      items: [
+        'test-world-2/node-operator-responsibilities',
+        'test-world-2/technical-requirements',
+        'test-world-2/test-plan',
+        'test-world-2/timelines',
+        'test-world-2/incentives',
+        'test-world-2/bug-reporting',
+        'test-world-2/launching-a-node',
+        'test-world-2/questions'
+      ],
+    },    
     {
       type: 'category',
       label: 'Participate',

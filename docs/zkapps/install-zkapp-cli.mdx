@@ -1,0 +1,73 @@
+---
+title: Install zkApp CLI
+hide_title: true
+description: Prerequisites and installation steps for the zkApp CLI. 
+keywords:
+  - zkApp CLI
+  - installation
+  - installing the zkApp CLI
+  - scaffold
+  - install zkApp CLI
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
+
+# zkApp CLI Installation
+
+Install and use the zkApp CLI to scaffold, write, test, and deploy zkApps (zero knowledge apps) for Mina Protocol using recommended best practices.
+
+### Dependencies
+
+- NodeJS v16 and later
+- NPM v8 and later
+- Git 2+
+
+If you have a later version of a dependency, install the required version using the package manager for your system: 
+
+- MacOs [Homebrew](https://brew.sh/)
+
+- Windows [Chocolatey](https://chocolatey.org/)
+
+- Linux (apt, yum, and others)
+
+    As recommended by the Node.js project, you might need to install a recent Node.js version using NodeSource binary distributions: [Debian](https://github.com/nodesource/distributions#debinstall), [rpm](https://github.com/nodesource/distributions#rpminstall).
+
+To verify your installed versions of dependencies, use `node -v`, `npm -v`, and `git -v`.
+
+## Usage
+
+To see usage information for all of the zkApp CLI commands:
+
+```sh
+zk --help
+```
+
+## Install the zkApp CLI
+
+To install the latest version:
+
+```sh
+npm install -g zkapp-cli
+```
+
+To confirm successful installation:
+
+```sh
+zk --version
+```
+
+## Update the zkApp CLI
+
+You are prompted to install the new version if you are running an earlier zkApp CLI minor version. For example, if you are running version 0.12.1, but the current version is 0.13.0, you are prompted to update.
+
+You are not prompted to update if you are using an earlier patch version. For example, you are not notified to upgrade when you are running 0.12.0, and the current version is 0.13.1.
+
+To update to the latest version of the zkApp CLI:
+
+```sh
+npm update -g zkapp-cli
+```
