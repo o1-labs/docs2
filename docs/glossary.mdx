@@ -30,6 +30,14 @@ A Mina node that stores the historical chain data to a persistent data source so
 
 ## B
 
+### Base58
+
+A group of encoding/decoding schemes used to switch data between binary format (hexdecimal) and alphanumeric text format (ASCII). The Base58 alphabet includes numbers (1 to 9) and English letters, except O (uppercase o), I (uppercase i), and l (lowercase L). These letters are omitted to avoid confusion.
+
+### Base64
+
+A binary-to-text encoding scheme that represents binary data in a human-readable ASCII string format string. For example, the zero knowledge proof is a Base64 string inside the `authorization` field of a transaction.
+
 ### best tip
 
 The blockchain's latest block with the highest [chain strength](#chain-strength) known to the mina daemon.
@@ -264,6 +272,10 @@ People who run mina nodes.
 
 A [full node](#full-node) in the Mina protocol that does not participate in consensus but can still fully verify the zero knowledge proof to trustlessly validate the state of the chain. The size of Mina as 22 KB is in reference to non-consensus nodes.
 
+### non-upgradeable
+
+If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable.
+
 ### nonce
 
 An incrementing number attached to a transaction used to prevent a replay of a transaction on the network. Transactions are always included in blocks in the sequential order of the nonce.
@@ -319,6 +331,10 @@ A family of [hash](#hash) functions that can efficiently run in a zk circuit. Se
 ### precomputed blocks
 
 Precomputed blocks are [blocks](/glossary#block) logged by mina to disk, log file, or to cloud storage.
+
+### preconditions
+
+Conditions that must be true for the account update to be applied. Corresponds to assertions in an o1js method.
 
 ### private key
 
@@ -394,7 +410,7 @@ A unit of time in the Mina network. As of Mainnet launch, a slot in Mina is 3min
 
 ### smart contract
 
-A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts are written with [o1js](#o1js).
+A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts (zkApps) are written with [o1js](#o1js).
 
 ### SNARK
 
