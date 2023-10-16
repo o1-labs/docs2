@@ -24,27 +24,26 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 # Permissions
 
 Permissions are an integral part of zkApp development because they determine who has the authority to interact and make changes to a specific part of a smart contract.
-
 Naturally, every smart contract must have proper permissions to prevent attacks or security holes.
 Permissions live on-chain, which means they are a part of the account representation on the network. Permissions are checked every time an account update tries to interact with an account.
 
 ## Types of Permissions
 
-There are 11 different types of permissions that you can access and adjust to guard a zkApp account:
+There are 11 different types of permissions that a developer can access and adjust to guard a zkApp account:
 
-- `editState`: The permission describing how the zkApp account's eight on-chain state fields are allowed to be manipulated.
+- `editState`: The permission describing how the zkApp account's eight on-chain state fields are allowed to be manipulated. This permission describes how the on-chate state fields can be manipulated.
 
-- `send`: The permission corresponding to the ability to send transactions from this account. For example, this permission determines whether someone can send a transaction to transfer MINA from this particular account.
+- `send`: The permission corresponding to the ability to send transactions from this account. This permission determines whether someone can send a transaction, for example, transfer MINA from this particular account.
 
 - `receive`: Similar to `send`, the `receive` permission determines whether a particular account can receive transactions, for example, depositing MINA.
 
-- `setDelegate`: The permission corresponding to the ability to set the delegate field of the account. The delegate field is the address of another account that this account is delegating its MINA for staking.
+- `setDelegate`: The permission corresponding to the ability to set the delegate field of the account. The delegate field is the address of another account to whom this account is delegating its MINA for staking.
 
 - `setPermissions`: The permission corresponding to the ability to change the permissions of the account. As the name suggests, this type of permission describes how already set permissions can be changed.
 
 - `setVerificationKey`: The permission corresponding to the ability to change the verification key of the account. Every smart contract has a verification key stored on-chain. The verification key is used to verify off-chain proofs. This permission essentially describes if the verification key can be changed; you can also think of it as the "upgradeability" of smart contracts.
 
-- `setZkappUri`: The permission corresponding to the ability to change the `zkappUri` field of the account that stores metadata about the smart contract, for example, link to the source code.
+- `setZkappUri`: The permission corresponding to the ability to change the zkapp uri field of the account. The `zkappUri` field can be used to store metadata about the smart contract, for example, link to the source code.
 
 - `editActionsState`: The permission that corresponds to the ability to change the actions state of the associated account. Every smart contract can dispatch actions that are committed on-chain. This type of permission describes who can change the actions state.
 
@@ -54,7 +53,7 @@ There are 11 different types of permissions that you can access and adjust to gu
 
 - `setVotingFor`: The permission corresponding to the ability to set the chain hash for this account. The `votingFor` field is an on-chain mechanism to set the chain hash of the hard fork this account is voting for.
 
-- `access`: This permission is more restrictive than all the other permissions combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, the access permission is set to require no authorization. However, for token manager contracts [(custom tokens)](custom-tokens), `access` requires at least proof authorization so that token interactions are approved by calling one of the token manager's methods.
+- `access`: This permission is more restrictive than all the other permissions combined! It corresponds to the ability to include any account update for this account in a transaction, even no-op account updates. Usually, the access permission is set to require no authorization. However, for [token manager contracts](custom-tokens), `access` requires at least proof authorization so that token interactions are approved by calling one of the token manager's methods.
 
 - `setTiming`: The permission corresponding to the ability to control the vesting schedule of time-locked accounts.
 
