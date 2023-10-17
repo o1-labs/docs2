@@ -2,6 +2,15 @@
 title: 'Tutorial 11: Advanced Account Updates'
 hide_title: true
 sidebar_label: 'Tutorial 11: Advanced Account Updates'
+description: Advanced features of account updates: tokens, zkApp manager accounts, and account update assertions.
+keywords:
+  - smart contracts
+  - zkapps
+  - account updates
+  - zkApp manager accounts
+  - token standard library
+  - tokens
+  - balance change check
 ---
 
 :::info
@@ -99,7 +108,7 @@ The approval mechanism gives you (the developer) complete freedom in encoding co
 
 :::
 
-The "fungible token" use case presented here is just one example of what you could do with it. A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
+The fungible token use case is just one example of possibilities. A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
 
 ```ts
 this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
