@@ -11,48 +11,38 @@ zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
-:::note
-
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.9.6.
-
-:::
-
 # Tutorial 11: Advanced Account Updates
-
-## zkAppManager Accounts and Tokens
-
-## Overview
 
 In the last tutorial, you learned how zkApp transactions are composed of account updates and about the structure of account updates.
 
-In this tutorial, you learn about more advanced features of account updates. Namely tokens, zkApp Manager Accounts, and account update assertions.
-
-An earlier tutorial covered how each token is associated with a manager account and how the manager account determines rules for token minting, burning, and transfer.
-
-Internally, what is happening is actually a bit more general than that. The Manager Account for a token actually controls all properties of token accounts.
+In this tutorial, you learn about more advanced features of account updates: tokens, zkApp manager accounts, and account update assertions.
 
 ## zkApp Manager Accounts and Tokens
 
-For an Account Update to be able to modify state (including sending tokens) on a token account, two things must be true:
+Each token is associated with a zkApp manager account. The manager account determines rules for token minting, burning, and transfer.
 
-1. The account update must meet the criteria of the permissions on the zkApp account itself. If the zkApp Account is set up with the `proof` permission, the Account Update proof must pass the verification key in the account.
-2. The account update must set `mayUseToken` to a truthy value. However, to be allowed to do so, a transaction must get its account update “approved” by the corresponding manager account. The manager account can approve accounts based on its `access` permission.
+Internally, it's more general. The Manager Account for a token actually controls all properties of token accounts.
+
+For an account update to be able to modify state (including sending tokens) on a token account, two things must be true:
+
+1. The account update must meet the criteria of the permissions on the zkApp account itself. If the zkApp Account is set up with the `proof` permission, the account update proof must pass the verification key in the account.
+2. The account update must set `mayUseToken` to a truthy value. However, for this to happen, a transaction must get its account update “approved” by the corresponding manager account. The manager account can approve accounts based on its `access` permission.
 
 ## zkApp Token Management
 
-As an example, you can write a token that can approve a zkApp account to send tokens from itself to another zkApp.
+For example, you can write a token that can approve a zkApp account to send tokens from itself to another zkApp.
 
-To implement this, you would have 3 contracts:
+To implement, you need 3 contracts:
 
 1. `MyToken`: The token contract. On instantiation, serves as the zkAppManagerContract for all instances of the token.
-2. `TokenUser`: A zkApp contract that manages tokens. This one is instantiated on the Mina (default) tokenId.
-3. `TokenHolder`: A zkApp contract that stores tokens on behalf of the `TokenUser` contract. This one is instantiated on the `MyToken` instance TokenId.
+2. `TokenUser`: A zkApp contract that manages tokens. This contract is instantiated on the Mina (default) tokenId.
+3. `TokenHolder`: A zkApp contract that stores tokens on behalf of the `TokenUser` contract. This contract is instantiated on the `MyToken` instance tokenId.
 
 The full code is provided in the [examples/zkapps/11-advanced-account-updates/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/) file.
 
-As shown in the example file, a token standard library abstracts many of these details away for standard use. The illustration here helps explain what that library is doing and how to think about zkAppManagerAccounts in detail.
+As shown in the example file, a token standard library abstracts many of these details away for standard use. This tutorial helps you understand what the library is doing and how to think about zkApp manager account.
 
-These contracts can be set up as follows:
+Set up the contracts as follows:
 
 ```typescript
 const myTokenInstance = new MyToken(myTokenAddr);
@@ -63,7 +53,7 @@ const tokenHolderInstance = new TokenHolder(
 );
 ```
 
-And deployed as follows:
+And deploy:
 
 ```typescript
 const deploy_txn = await Mina.transaction(deployerAddr, () => {
@@ -78,7 +68,7 @@ const deploy_txn = await Mina.transaction(deployerAddr, () => {
 });
 ```
 
-The special thing to note here is the `myTokenInstance.approveDeploy()` method. Because `tokenHolderInstance` is going to exist as a token account, it needs approval to be deployed.
+Note the `myTokenInstance.approveDeploy()` method. Because `tokenHolderInstance` is going to exist as a token account, it needs approval to be deployed.
 
 The `approveDeploy()` code is as follows:
 
@@ -105,9 +95,11 @@ Conversely, note that a user can call this method with _any account update they 
 
 :::note
 
-The approval mechanism gives you (the developer) complete freedom in encoding constraints on account updates in your manager contract logic. The "fungible token" use case presented here is just one example of what you could do with it.
+The approval mechanism gives you (the developer) complete freedom in encoding constraints on account updates in your manager contract logic.
 
-A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
+:::
+
+The "fungible token" use case presented here is just one example of what you could do with it. A different manager contract could, for example, store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
 
 ```ts
 this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
@@ -115,8 +107,6 @@ this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 // check that the deploy update doesn't modify on-chain state
 deployUpdate.body.update.appState.every((x) => x.isSome.assertFalse());
 ```
-
-:::
 
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
@@ -170,14 +160,16 @@ And is approved by the token contract's `approveTransfer`:
 
 ```
 
-The account updates for this transaction looks like:
+The account updates for this transaction look like:
 
 <img src="/img/tutorial-11-txn2.png" width="95%" />
 
-This shows both the account update for the fee payment - and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. This transaction approves two account updates:
+This visualization shows both the account update for the fee payment and the main tree that does the token operations. You can see the call to `tokenUser` at the top, followed by a call to `myToken` that is doing the approving. 
 
-- One update takes tokens away from the `tokenUser`
-- The other update sends tokens to the deployer account. 
+This transaction approves two account updates:
+
+- Takes tokens away from the `tokenUser`
+- Sends tokens to the deployer account
 
 Both updates have the `mayUseToken` field set to `parentsOwnToken`.
 
@@ -187,6 +179,6 @@ As noted earlier, a token standard library abstracts many of these details away 
 
 ## Conclusion
 
-Congratulations! You have explored some of the advanced features of account updates. You can now build with Token zkAppManagers.
+Congratulations! You have explored some of the advanced features of account updates. You can now build with token zkApp manager accounts.
 
-To see how to apply token managers in a more complex example, see the ["wrappedMinaToken" implementation](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/src/wrappedMinaMain.ts).
+To see how to apply token managers in a more complex example, see the [wrappedMinaToken implementation](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/src/wrappedMinaMain.ts).
