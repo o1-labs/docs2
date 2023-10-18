@@ -1,4 +1,4 @@
-# Mina zkApp: Snarkyjs Tutorial Message
+# zkApp: o1js Tutorial Message
 
 This template uses TypeScript.
 
