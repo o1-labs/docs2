@@ -43,7 +43,7 @@ For example, if you transfer MINA from one account to another, the balance on tw
 
 Account updates are a flexible and powerful data structure that can express all kinds of updates, events, and preconditions you use to develop smart contracts.
 
-### Transaction JSON object
+## Transaction structure
 
 A _transaction_ is a JSON object of the form: 
 
@@ -110,9 +110,7 @@ First of all, this is an array with two entries -- the two account updates that 
 
 The first entry is always the fee payer, whose public key was passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this in the browser and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
-The second account update has the `'MyContract.myMethod()'` label:
-
-- The update corresponds to the method call. An `@method` call always results in the creation of an account update – an update to the zkApp account itself. 
+The second account update has the `'MyContract.myMethod()'` label. The update corresponds to the method call. An `@method` call always results in the creation of an account update – an update to the zkApp account itself. 
 
 Other fields in this account update are:
 
@@ -264,8 +262,7 @@ In general, there are three kinds of authorizations that an account update can h
 
 - Proof authorization – used for zkApp accounts when you do an `@method` call. Proofs are verified against the on-chain verification key.
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
-- No authorization – used on updates which don't require authorization. For example, positive balance changes. 
-<!-- is it proof or signature only, why would we include "no authorization" here? is it only the state updates that require proof or signature?-->
+- No authorization – used on updates which don't require authorization. For example, positive balance changes.
 
 ## Account update tree structures
 
