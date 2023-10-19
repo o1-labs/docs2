@@ -143,11 +143,11 @@ await tx.prove(); // this might take a while
 
 This example code includes two new operations:
 
-- `MyContract.compile()` creates prover and verification keys from your smart contract. You must create the keys before you can create any proofs.
-
-  - The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
+- `MyContract.compile()` creates prover and verification keys from your smart contract.[^1] You must create the keys before you can create any proofs.
 
 - `tx.prove()` goes through your transaction and creates proofs for all the account updates that came from method calls.
+
+[^1]:The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
 
 Both of these heavy cryptographic operations can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a Base64 string inside the `authorization` field:
 
@@ -257,7 +257,7 @@ Two quick observations:
 
 - The user update has `authorizationKind: 'None_given'`. That means the update is not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA. You can send someone MINA without their permission.
 
-In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section. You can find more details in [our docs about permissions](TODO).
+In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
 
 
 - Proof authorization – used for zkApp accounts when you do an `@method` call. Proofs are verified against the on-chain verification key.
@@ -406,6 +406,7 @@ To create the sender private key in a script:
 
 ```ts
 const senderPrivateKey = PrivateKey.fromBase58('EKEQc95...');
+```
 
 In a real server-side deployment, you probably want to load keys from a file or environment variable, instead of hard-coding them in your source code.
 :::
