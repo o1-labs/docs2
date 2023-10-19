@@ -260,9 +260,6 @@ Two quick observations:
 In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
 
 
-- Proof authorization – used for zkApp accounts when you do an `@method` call. Proofs are verified against the on-chain verification key.
-- Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
-- No authorization – used on updates which don't require authorization. For example, positive balance changes.
 
 ## Account update tree structures
 
