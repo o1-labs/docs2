@@ -257,9 +257,7 @@ Two quick observations:
 
 - The user update has `authorizationKind: 'None_given'`. That means the update is not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA. You can send someone MINA without their permission.
 
-In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
-
-
+In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn more about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
 
 ## Account update tree structures
 
