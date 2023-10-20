@@ -20,15 +20,6 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::experimental
-
-The use of the ZkProgram API with recursion is experimental. This API may change. To learn more, see [Experimental Features](/zkapps/experimental).
-
-Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
-
-:::
-
-
 
 # Recursion
 
@@ -40,6 +31,14 @@ Kimchi, the proof system that backs o1js, supports arbitrary infinite recursive 
 4. App-specific rollups can use recursion to communicate to each other, sort like app chains using IBC or parachains using XCVM to send messages.
 
 More generally, you can use recursion to verify any zero-knowledge program as part of your zkApp.
+
+:::experimental
+
+The use of the ZkProgram API with recursion is experimental. This API may change. To learn more, see [Experimental Features](/zkapps/experimental).
+
+Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
+
+:::
 
 ## Overview
 
