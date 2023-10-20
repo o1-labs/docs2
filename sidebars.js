@@ -401,7 +401,6 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/client-sdk',
         'node-developers/contributing',
         'node-developers/logging',
       ],
