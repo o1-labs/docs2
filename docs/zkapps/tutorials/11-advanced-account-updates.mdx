@@ -111,7 +111,7 @@ The approval mechanism gives you (the developer) complete freedom in encoding co
 
 :::
 
-The fungible token use case is just one example of possibilities. For example, a different zkApp manager contract could store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic would contain checks that the on-chain state is only updated in a certain way:
+The fungible token use case is just one example of possibilities. For example, a different zkApp manager contract could store NFTs (or a commitment to NFTs) in the on-chain state of user accounts. In that case, the on-chain state would be the meaningful part of token accounts. The manager contract wouldn't care about constraining the balance change. Instead, the approval logic contains checks that the on-chain state is updated in a certain way:
 
 ```ts
 this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
