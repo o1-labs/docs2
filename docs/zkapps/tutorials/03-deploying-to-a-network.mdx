@@ -34,9 +34,18 @@ Mina zkApps are available only on feature-complete Berkeley, Mina's public Testn
 
 ## Prerequisites
 
-This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.10.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.11.3`.
-
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
+In particular, make sure you have the zkApp CLI installed:
+
+```sh
+$ npm install -g zkapp-cli
+```
+
+This tutorial has been tested with:
+
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.13.0
+- [o1js](https://www.npmjs.com/package/o1js) version 0.13.1
 
 ## Create a project
 
@@ -104,13 +113,15 @@ Start by deleting the default files that come with the new project.
   $ zk file src/Square
   ```
 
+  The command also generates the `Square.test.ts` test file. 
+
 1. Copy the `src/Square.ts` and `src/index.ts` files from the example files for first tutorial [01-hello-world/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world/src) to your local `03-deploying-to-a-live-network/src` directory. If prompted, replace existing files.
 
 Now that your smart contract is in place, you are ready to deploy your smart contract to Berkeley Testnet.
 
-## Mina zkApp CLI
+## zkApp CLI
 
-You already installed the Mina zkApp CLI as part of the [Prerequisites](/zkapps/tutorials#prerequisites), so you have the tools to manage deployments.
+You already installed the zkApp CLI as part of the [Prerequisites](/zkapps/tutorials#prerequisites), so you have the tools to manage deployments.
 
 In some cases, you might need to create a custom account for your zkApp, for example, to deploy a zkApp to a different key than the fee payer key, programmatically parameterize a zkApp before you initialize it, or create a smart contract programmatically for users as part of an application. For details, see [Interacting with zkApps server-side](/zkapps/tutorials/interacting-with-zkapps-server-side).
 
@@ -231,7 +242,7 @@ A deploy alias consists of:
   ✖ Confirm to send transaction
 
     ┌─────────────────┬─────────────────────────────────────────────────┐
-    │ Deploy Alias    │ berkeley2                                       │
+    │ Deploy Alias    │ berkeley                                       │
     ├─────────────────┼─────────────────────────────────────────────────┤
     │ Fee-Payer Alias │ 03-deploy                                       │
     ├─────────────────┼─────────────────────────────────────────────────┤

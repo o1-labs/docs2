@@ -10,121 +10,125 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::note
-
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
-
-:::
-
 # Interacting with zkApps server-side
 
-## Overview
+While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side or from a developer's machine. For example, when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real-world or on-chain events.
 
-While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side, or from a developer's machine.
+## Prerequisites
 
-This tutorial shows how to do this. This can be useful when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real world or on-chain events.
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
-To start this tutorial, read and complete [Tutorial 3](deploying-to-a-network), to see how to deploy a smart contract. We will use the same project used in Tutorial 3.
+Deploy a smart contract. Read and complete [Tutorial 3: Deploy to a Live Network](deploying-to-a-network) that reuses the smart contract `Square` from [Tutorial 1: Hello World](hello-world).
 
-Note Tutorial 3, and this tutorial, reuse the smart contract `Square` from [Tutorial 1](hello-world).
+This tutorial has been tested with:
 
-## Interacting with our deployed Smart Contract
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.13.0
+- [o1js](https://www.npmjs.com/package/o1js) version 0.13.1
 
-Once you've created your project and deployed it following Tutorial 3, we can write a script to interact with our smart contract.
+## Interact with the deployed smart contract
 
-### utils.ts
+Now that you successfully created and deployed your project following [Tutorial 3: Deploy to a Live Network](deploying-to-a-network), you can write a script to interact with the smart contract.
 
-We will be using a helper function to make this more convenient to write, in a `utils.ts` file. You can find this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/utils.ts). Please download this and place it in your project's `src` folder. It contains two functions:
+### Building on Tutorial 3
 
-- `loopUntilAccountExists()` which waits until an account exists on Berkeley
-- `deploy()` which programmatically deploys your zkApp
+For this tutorial, you update the smart contract that you already built for [Tutorial 3: Deploy to a Live Network](deploying-to-a-network). 
 
-We recommend reading through this code, to understand what it is doing to implement its functionality.
+You run commands from the root of the `03-deploying-to-a-live-network` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
 
-### Imports, main, and Mina.Network
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-Open up `main.ts` in a text editor. You can find the complete source for this [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/main.ts).
+### Helper functions in utils.ts
 
-To start, let's add the imports and o1js setup:
+To make this more script convenient to write, use the provided helper functions.
 
-```ts
-  1 import { Square } from './Square.js';
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
-  3
-  4 await isReady;
-  5
-  6 console.log('o1js loaded');
-  7
-  8 // ----------------------------------------------------
-  9
- 10 // ----------------------------------------------------
- 11
- 12 console.log('Shutting down');
- 13
- 14 await shutdown();
-```
+1. Download the [utils.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/utils.ts) file. 
 
-So far nothing new - but now, let's add connecting to Berkeley:
+1. Place the file in the project `03-deploying-to-a-live-network/src` folder. 
 
-```ts
-...
- 8 // ----------------------------------------------------
- 9
-10 const Berkeley = Mina.Network(
-11   'https://proxy.berkeley.minaexplorer.com/graphql'
-12 );
-13 Mina.setActiveInstance(Berkeley);
-14
-15 const transactionFee = 100_000_000;
-16
-16 // ----------------------------------------------------...
-```
+1. Read through the code to understand what it is doing to implement its functionality.
 
-In past tutorials, we set the active instance to a local blockchain, which is fast for development, but only available on one's local machine, and not decentralized.
+  The `utils.ts` file contains two functions:
 
-We are now setting the active instance to the remote Berkeley network. We are connecting to Berkeley through a GraphQL proxy, which is running a Mina node connected to the Berkeley network. By connecting to Berkeley, we can provide smart contracts that are globally accessible, and provide strong guarantees around state due to both Mina's decentralization and its succinct state proof.
+- `loopUntilAccountExists()` waits until an account exists on Berkeley
+- `deploy()` programmatically deploys your zkApp
 
-With the Ethereum Bridge (to be included in a future tutorial), states and proofs from smart contracts deployed on Mina networks can also be available on Ethereum and other EVM chains.
+### Connect to a remote network
 
-We also set a transaction fee, which we'll use to pay for access to sending transactions and deploying smart contracts on Mina. Transaction fees in code are declared as nanomina. We will use a 0.1 Mina fee as default (100,000,000 nanomina) here.
+1. Download the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/main.ts) example file.
 
-:::note
+1. Because you are building on your earlier work, place the file in the project `03-deploying-to-a-live-network/src` folder. 
 
-While in this case we are connecting to a remote RPC (run by `minaexplorer.com`), you can also run a Mina node locally, and instead use its GraphQL endpoint. While in other blockchains this would be very heavyweight, because Mina is succinct this is actually a reasonable option. See [here](/node-operators/getting-started) to see how to do this.
+1. Review the code that adds the imports and o1js setup:
 
-A version of the Mina node is in the works that runs directly in the browser and within the local node process, so client side users can connect directly to Mina with low resource requirements, while keeping full decentralization guarantees, with no intermediaries that can go down, censor, or otherwise impact you or your users' connection to the network.
+  ```ts
+  import { Square } from './Square.js';
+  import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
 
-:::
+  import fs from 'fs';
+  import { loopUntilAccountExists, deploy } from './utils.js';
 
-Now, to finish setting up our code, let's add to our `main.ts`:
+  await isReady;
 
-```ts
-...
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
-  3
-  4 import fs from 'fs';
-  5
-...
- 17 const transactionFee = 100_000_000;
- 18
- 19 const deployAlias = process.argv[2];
- 20 const deployerKeysFileContents = fs.readFileSync(
- 21   'keys/' + deployAlias + '.json',
- 22   'utf8'
- 23 );
- 24 const deployerPrivateKeyBase58 = JSON.parse(
- 25   deployerKeysFileContents
- 26 ).privateKey;
- 27 const deployerPrivateKey = PrivateKey.fromBase58(deployerPrivateKeyBase58);
- 28 const deployerPublicKey = deployerPrivateKey.toPublicKey();
- 29
- 30 const zkAppPrivateKey = deployerPrivateKey;
- 31
- 32 // ----------------------------------------------------
-...
-```
+  console.log('o1js loaded');
+  ```
 
-This uses the key generated by the `zk config` command, stored in `keys/`. The name of the key file will be provided through an argument on the command line (`process.argv[2]`).
+1. Now, set the active instance to the remote Berkeley network. Earlier tutorials set the active instance to a local blockchain, which is fast for development but only available on one's local machine and not decentralized.
+
+  The connection is through a GraphQL proxy that runs a Mina node connected to the Berkeley network. By connecting to the remote Berkeley network, you can provide smart contracts that are globally accessible and provide strong guarantees around state due to both Mina's decentralization and its succinct state proof.
+
+  Review the code that connects to Berkeley:
+
+  ```ts
+  ...
+  // ----------------------------------------------------
+
+  const Berkeley = Mina.Network(
+    'https://proxy.berkeley.minaexplorer.com/graphql'
+  );
+  Mina.setActiveInstance(Berkeley);
+  ```
+
+1. Set a transaction fee that you use to pay for access to sending transactions and deploying smart contracts on Mina. 
+
+  Transaction fees in code are declared as nanomina. Review the code that sets the default transaction fee to 0.1 MINA (100,000,000 nanomina):
+
+  ```ts
+  ...
+  const transactionFee = 100_000_000;
+  ...
+  ```
+
+This example connects to a remote RPC run by `minaexplorer.com`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
+
+### Public/private key pair
+
+You already generated a public/private key pair when you ran the `zk config` command to configure the deployment in [Tutorial 3: Deploy to a Live Network](/zkapps/tutorials/deploying-to-a-network#deploy-alias) the `zk config` command.
+
+The public/private key pair was created in `keys/berkeley.json`. Public and private keys in Mina are commonly stored in Base58 for easily readability. In Mina, public keys start with `B62` and private keys start with `EKE` for easy differentiability.
+
+1. Still in the `main.ts` file, review the code that specifies that the name of the key file must be provided through an argument on the command line: (`process.argv[2]`):
+
+  ```ts
+  ...
+  const transactionFee = 100_000_000;
+
+  const deployAlias = process.argv[2];
+  const deployerKeysFileContents = fs.readFileSync(
+    'keys/' + deployAlias + '.json',
+    'utf8'
+  );
+  const deployerPrivateKeyBase58 = JSON.parse(
+    deployerKeysFileContents
+  ).privateKey;
+  const deployerPrivateKey = PrivateKey.fromBase58(deployerPrivateKeyBase58);
+  const deployerPublicKey = deployerPrivateKey.toPublicKey();
+
+  const zkAppPrivateKey = PrivateKey.fromBase58(
+    'EKFTMuvTirzrwpeHP8RKe7bGufBGiKs27nTMzD5XyMV8NcK3upt2'
+  );
+  ...
+  ```
+
 
 You can run this now with:
 
