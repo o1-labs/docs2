@@ -1,7 +1,5 @@
 import { Square } from './Square.js';
 import {
-  isReady,
-  shutdown,
   Field,
   Mina,
   PrivateKey,
@@ -76,5 +74,3 @@ console.log('state after txn3:', num3.toString());
 // ----------------------------------------------------
 
 console.log('Shutting down');
-
-await shutdown();
