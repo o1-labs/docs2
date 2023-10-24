@@ -1,10 +1,8 @@
 import { Square } from './Square.js';
-import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
+import { Mina, PrivateKey } from 'o1js';
 
 import fs from 'fs';
 import { loopUntilAccountExists, deploy } from './utils.js';
-
-await isReady;
 
 console.log('o1js loaded');
 
@@ -116,5 +114,3 @@ console.log(`updated state! ${await zkapp.num.fetch()}`);
 // ----------------------------------------------------
 
 console.log('Shutting down');
-
-await shutdown();
