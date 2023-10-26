@@ -32,6 +32,6 @@ See the [Contributing guidelines](https://github.com/o1-labs/o1js/blob/main/CONT
 
 High-quality community packages from open source developers are available for your project.
 
-- **snarkyjs-elgamal** A partially homomorphic encryption library for o1js based on Elgamal encryption: [GitHub](https://github.com/Trivo25/snarkyjs-elgamal) and [npm](https://www.npmjs.com/package/snarkyjs-elgamal)
+- **snarkyjs-elgamal** A partially homomorphic encryption library for o1js based on Elgamal encryption: [GitHub](https://github.com/Trivo25/o1js-elgamal) and [npm](https://www.npmjs.com/package/o1js-elgamal)
 
 To include your package, see [Creating high-quality community packages](https://github.com/o1-labs/o1js/blob/main/CONTRIBUTING.md#creating-high-quality-community-packages).
