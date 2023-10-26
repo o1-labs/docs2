@@ -41,9 +41,9 @@ module.exports = {
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
             'zkapps/how-to-test-a-zkapp',
             'zkapps/how-to-deploy-a-zkapp',
+            'zkapps/how-to-write-a-zkapp-ui',
           ],
         },
         {
