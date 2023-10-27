@@ -68,7 +68,7 @@ const Add = Experimental.ZkProgram({
     addNumber: {
       privateInputs: [SelfProof, Field ],
 
-      method(newState: Field, earlierProof: SelfProof<Field>, numberToAdd: Field) {
+      method(newState: Field, earlierProof: SelfProof<Field, void>, numberToAdd: Field) {
         earlierProof.verify();
         newState.assertEquals(earlierProof.publicInput.add(numberToAdd));
       },
@@ -79,8 +79,8 @@ const Add = Experimental.ZkProgram({
 
       method(
         newState: Field, 
-        earlierProof1: SelfProof<Field>,
-        earlierProof2: SelfProof<Field>,
+        earlierProof1: SelfProof<Field, void>,
+        earlierProof2: SelfProof<Field, void>,
       ) {
         earlierProof1.verify();
         earlierProof2.verify();

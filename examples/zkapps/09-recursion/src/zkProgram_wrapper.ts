@@ -36,7 +36,7 @@ const main = () => {
       step: {
         privateInputs: [ SelfProof ],
 
-        method(earlierProof: SelfProof<Field>) {
+        method(earlierProof: SelfProof<Field, Field>) {
           earlierProof.verify();
           return earlierProof.publicInput.add(1);
         },
