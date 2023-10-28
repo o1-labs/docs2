@@ -9,7 +9,6 @@
   "sitemap_alternate_links": true,
   "js_render": true,
   "js_wait": 1,
-  "stop_urls": ["https://docs.minaprotocol.com/node-developers"],
   "selectors_exclude": ["footer"],
   "selectors": {
     "lvl0": {
