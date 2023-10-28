@@ -69,7 +69,7 @@ Coerces anything group-like to a [Group](Group.md).
 
 #### Defined in
 
-[lib/group.ts:47](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L47)
+[lib/group.ts:44](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L44)
 
 ## Properties
 
@@ -79,7 +79,7 @@ Coerces anything group-like to a [Group](Group.md).
 
 #### Defined in
 
-[lib/group.ts:15](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L15)
+[lib/group.ts:15](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L15)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:16](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L16)
+[lib/group.ts:16](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L16)
 
 ## Accessors
 
@@ -105,7 +105,7 @@ The generator `g` of the Group.
 
 #### Defined in
 
-[lib/group.ts:21](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L21)
+[lib/group.ts:21](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L21)
 
 ___
 
@@ -130,7 +130,7 @@ g.add(zero).assertEquals(g);
 
 #### Defined in
 
-[lib/group.ts:37](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L37)
+[lib/group.ts:37](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L37)
 
 ## Methods
 
@@ -144,7 +144,7 @@ g.add(zero).assertEquals(g);
 
 #### Defined in
 
-[lib/group.ts:99](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L99)
+[lib/group.ts:96](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L96)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:103](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L103)
+[lib/group.ts:100](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L100)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:95](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L95)
+[lib/group.ts:92](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L92)
 
 ___
 
@@ -205,7 +205,7 @@ let g2 = g1.add(g1)
 
 #### Defined in
 
-[lib/group.ts:127](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L127)
+[lib/group.ts:124](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L124)
 
 ___
 
@@ -233,7 +233,7 @@ g1.assertEquals(g2);
 
 #### Defined in
 
-[lib/group.ts:261](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L261)
+[lib/group.ts:246](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L246)
 
 ___
 
@@ -260,7 +260,7 @@ g1.equals(g1); // Bool(true)
 
 #### Defined in
 
-[lib/group.ts:277](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L277)
+[lib/group.ts:262](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L262)
 
 ___
 
@@ -276,7 +276,7 @@ Checks if this element is the `zero` element `{x: 0, y: 0}`.
 
 #### Defined in
 
-[lib/group.ts:114](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L114)
+[lib/group.ts:111](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L111)
 
 ___
 
@@ -292,7 +292,7 @@ Negates this [Group](Group.md). Under the hood, it simply negates the `y` coordi
 
 #### Defined in
 
-[lib/group.ts:225](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L225)
+[lib/group.ts:210](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L210)
 
 ___
 
@@ -319,7 +319,7 @@ let 5g = g.scale(s);
 
 #### Defined in
 
-[lib/group.ts:239](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L239)
+[lib/group.ts:224](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L224)
 
 ___
 
@@ -341,7 +341,7 @@ Subtracts another [Group](Group.md) element from this one.
 
 #### Defined in
 
-[lib/group.ts:218](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L218)
+[lib/group.ts:203](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L203)
 
 ___
 
@@ -359,7 +359,7 @@ Returns an array containing this [Group](Group.md) element as an array of [Field
 
 #### Defined in
 
-[lib/group.ts:304](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L304)
+[lib/group.ts:289](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L289)
 
 ___
 
@@ -382,7 +382,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:289](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L289)
+[lib/group.ts:274](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L274)
 
 ___
 
@@ -405,7 +405,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:79](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L79)
+[lib/group.ts:76](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L76)
 
 ___
 
@@ -428,7 +428,7 @@ ___
 
 #### Defined in
 
-[lib/group.ts:91](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L91)
+[lib/group.ts:88](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L88)
 
 ___
 
@@ -455,7 +455,7 @@ Adds a [Group](Group.md) element to another one.
 
 #### Defined in
 
-[lib/group.ts:323](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L323)
+[lib/group.ts:308](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L308)
 
 ___
 
@@ -487,7 +487,7 @@ Group.assertEquals(g1, g2);
 
 #### Defined in
 
-[lib/group.ts:373](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L373)
+[lib/group.ts:358](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L358)
 
 ___
 
@@ -509,7 +509,7 @@ Checks that a [Group](Group.md) element is constraint properly by checking that 
 
 #### Defined in
 
-[lib/group.ts:454](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L454)
+[lib/group.ts:439](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L439)
 
 ___
 
@@ -541,7 +541,7 @@ Group.equal(g1, g2); // Bool(true)
 
 #### Defined in
 
-[lib/group.ts:387](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L387)
+[lib/group.ts:372](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L372)
 
 ___
 
@@ -564,7 +564,7 @@ Coerces two x and y coordinates into a [Group](Group.md) element.
 
 #### Defined in
 
-[lib/group.ts:311](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L311)
+[lib/group.ts:296](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L296)
 
 ___
 
@@ -588,7 +588,7 @@ Deserializes a [Group](Group.md) element from a list of field elements.
 
 #### Defined in
 
-[lib/group.ts:414](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L414)
+[lib/group.ts:399](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L399)
 
 ___
 
@@ -614,7 +614,7 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:441](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L441)
+[lib/group.ts:426](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L426)
 
 ___
 
@@ -644,7 +644,7 @@ let gNeg = Group.neg(g);
 
 #### Defined in
 
-[lib/group.ts:345](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L345)
+[lib/group.ts:330](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L330)
 
 ___
 
@@ -676,7 +676,7 @@ let 5g = Group.scale(g, s);
 
 #### Defined in
 
-[lib/group.ts:359](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L359)
+[lib/group.ts:344](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L344)
 
 ___
 
@@ -694,7 +694,7 @@ Returns 2.
 
 #### Defined in
 
-[lib/group.ts:423](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L423)
+[lib/group.ts:408](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L408)
 
 ___
 
@@ -721,7 +721,7 @@ Subtracts a [Group](Group.md) element from another one.
 
 #### Defined in
 
-[lib/group.ts:332](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L332)
+[lib/group.ts:317](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L317)
 
 ___
 
@@ -745,7 +745,7 @@ Returns an empty array.
 
 #### Defined in
 
-[lib/group.ts:405](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L405)
+[lib/group.ts:390](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L390)
 
 ___
 
@@ -769,7 +769,7 @@ Returns an array containing a [Group](Group.md) element as an array of [Field](F
 
 #### Defined in
 
-[lib/group.ts:396](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L396)
+[lib/group.ts:381](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L381)
 
 ___
 
@@ -798,4 +798,4 @@ This operation does NOT affect the circuit and can't be used to prove anything a
 
 #### Defined in
 
-[lib/group.ts:432](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/group.ts#L432)
+[lib/group.ts:417](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/group.ts#L417)
