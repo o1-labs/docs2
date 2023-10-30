@@ -5,7 +5,6 @@ import {
   Permissions,
   PublicKey,
   SmartContract,
-  Token,
   UInt64,
 } from 'o1js';
 
