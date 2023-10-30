@@ -7,8 +7,6 @@ import {
 } from 'o1js';
 
 
-console.log('o1js loaded');
-
 const useProof = false;
 
 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
@@ -49,7 +47,3 @@ await txn1.sign([senderKey]).send();
 
 const num1 = zkAppInstance.x.get();
 console.log('state after txn1:', num1.toString());
-
-// ----------------------------------------------------
-
-console.log('Shutting down');
