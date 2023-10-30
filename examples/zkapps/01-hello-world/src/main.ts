@@ -8,10 +8,6 @@ import {
   AccountUpdate,
 } from 'o1js';
 
-await isReady;
-
-console.log('o1js loaded');
-
 const useProof = false;
 
 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
@@ -76,5 +72,3 @@ console.log('state after txn3:', num3.toString());
 // ----------------------------------------------------
 
 console.log('Shutting down');
-
-await shutdown();
