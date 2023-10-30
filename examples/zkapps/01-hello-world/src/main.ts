@@ -1,7 +1,5 @@
 import { Square } from './Square.js';
 import {
-  isReady,
-  shutdown,
   Field,
   Mina,
   PrivateKey,
