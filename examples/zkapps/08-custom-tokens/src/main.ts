@@ -1,7 +1,5 @@
 import { BasicTokenContract } from './BasicTokenContract.js';
 import {
-  isReady,
-  shutdown,
   Mina,
   PrivateKey,
   AccountUpdate,
@@ -9,9 +7,6 @@ import {
   Signature,
 } from 'o1js';
 
-await isReady;
-
-console.log('o1js loaded');
 
 const proofsEnabled = false;
 const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -106,9 +101,3 @@ console.log(
   'zkapp tokens:',
   Mina.getBalance(zkAppAddress, contract.token.id).value.toBigInt()
 );
-
-// ----------------------------------------------------
-
-console.log('Shutting down');
-
-await shutdown();
