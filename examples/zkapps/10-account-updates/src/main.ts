@@ -2,8 +2,6 @@ import { ProofsOnlyZkApp } from './ProofsOnlyZkApp.js';
 import { SecondaryZkApp } from './SecondaryZkApp.js';
 
 import {
-  isReady,
-  shutdown,
   Field,
   Mina,
   PrivateKey,
@@ -13,9 +11,6 @@ import {
 import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
 (async function main() {
-  await isReady;
-
-  console.log('o1js loaded');
 
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -86,9 +81,4 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
   await txn2.send();
 
-  // ----------------------------------------------------
-
-  console.log('Shutting down');
-
-  await shutdown();
 })();
