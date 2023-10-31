@@ -1,3 +1,5 @@
+TEST CHANGE
+
 <img src="https://github.com/MinaProtocol/docs/blob/main/public/static/img/svg/mina-wordmark-redviolet.svg" width="350" alt="Mina logo">
 
 # Mina Docs
