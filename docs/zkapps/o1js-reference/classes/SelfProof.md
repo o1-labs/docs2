@@ -37,6 +37,7 @@
 - [toJSON](SelfProof.md#tojson)
 - [verify](SelfProof.md#verify)
 - [verifyIf](SelfProof.md#verifyif)
+- [dummy](SelfProof.md#dummy)
 - [fromJSON](SelfProof.md#fromjson)
 
 ## Constructors
@@ -68,7 +69,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:119](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L119)
+[lib/proof_system.ts:127](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L127)
 
 ## Properties
 
@@ -82,7 +83,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:77](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L77)
+[lib/proof_system.ts:85](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L85)
 
 ___
 
@@ -96,7 +97,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:76](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L76)
+[lib/proof_system.ts:84](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L84)
 
 ___
 
@@ -110,7 +111,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:74](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L74)
+[lib/proof_system.ts:82](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L82)
 
 ___
 
@@ -124,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L75)
+[lib/proof_system.ts:83](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L83)
 
 ___
 
@@ -138,7 +139,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:78](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L78)
+[lib/proof_system.ts:86](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L86)
 
 ___
 
@@ -152,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:66](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L66)
+[lib/proof_system.ts:74](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L74)
 
 ___
 
@@ -166,7 +167,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L67)
+[lib/proof_system.ts:75](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L75)
 
 ___
 
@@ -192,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:68](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L68)
+[lib/proof_system.ts:76](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L76)
 
 ## Methods
 
@@ -210,7 +211,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:86](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L86)
+[lib/proof_system.ts:94](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L94)
 
 ___
 
@@ -228,7 +229,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:80](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L80)
+[lib/proof_system.ts:88](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L88)
 
 ___
 
@@ -252,7 +253,61 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:83](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L83)
+[lib/proof_system.ts:91](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L91)
+
+___
+
+### dummy
+
+▸ `Static` **dummy**<`Input`, `OutPut`\>(`publicInput`, `publicOutput`, `maxProofsVerified`, `domainLog2?`): `Promise`<[`Proof`](Proof.md)<`Input`, `OutPut`\>\>
+
+Dummy proof. This can be useful for ZkPrograms that handle the base case in the same
+method as the inductive case, using a pattern like this:
+
+```ts
+method(proof: SelfProof<I, O>, isRecursive: Bool) {
+  proof.verifyIf(isRecursive);
+  // ...
+}
+```
+
+To use such a method in the base case, you need a dummy proof:
+
+```ts
+let dummy = await MyProof.dummy(publicInput, publicOutput, 1);
+await myProgram.myMethod(dummy, Bool(false));
+```
+
+**Note**: The types of `publicInput` and `publicOutput`, as well as the `maxProofsVerified` parameter,
+must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs that any of your methods take as arguments.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `Input` |
+| `OutPut` |
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `publicInput` | `Input` | `undefined` |
+| `publicOutput` | `OutPut` | `undefined` |
+| `maxProofsVerified` | ``0`` \| ``2`` \| ``1`` | `undefined` |
+| `domainLog2` | `number` | `14` |
+
+#### Returns
+
+`Promise`<[`Proof`](Proof.md)<`Input`, `OutPut`\>\>
+
+#### Inherited from
+
+[Proof](Proof.md).[dummy](Proof.md#dummy)
+
+#### Defined in
+
+[lib/proof_system.ts:165](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L165)
 
 ___
 
@@ -283,4 +338,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:95](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L95)
+[lib/proof_system.ts:103](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L103)
