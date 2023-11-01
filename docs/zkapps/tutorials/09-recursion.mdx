@@ -65,7 +65,8 @@ To create a ZkProgram, start with the `init()` method.
 
 ```typescript
 const Add = ZkProgram({
-  publicInput: Field,
+  name: 'add-example',
+  publicInputType: Field,
 
   methods: {
     init: {
@@ -264,7 +265,8 @@ class RollupState extends Struct({
 }
 
 const Rollup = ZkProgram({
-  publicInput: RollupState,
+  name: "rollup-example",
+  publicInputType: Field,
 
   methods: {
 	oneStep: {

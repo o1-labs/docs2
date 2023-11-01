@@ -48,7 +48,8 @@ This simple example has only one method that proves the public input it received
 import { Field, ZkProgram } from 'o1js';
 
 const SimpleProgram = ZkProgram({
-  publicInput: Field,
+  name: "simple-program-example",
+  publicInputType: Field,
 
   methods: {
     run: {
@@ -98,7 +99,8 @@ This program describes a recursive operation of adding one repeatedly to a numbe
 import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
 const AddOne = ZkProgram({
-  publicInput: Field,
+  name: "add-one-example",
+  publicInputType: Field,
 
   methods: {
     baseCase: {
@@ -161,7 +163,8 @@ This example program describes a very simple rollup for adding numbers:
 import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
 let RollupAdd = ZkProgram({
-  publicInput: Field,
+  name: "rollup-add-example",
+  publicInputType: Field,
 
   methods: {
     baseCase: {
