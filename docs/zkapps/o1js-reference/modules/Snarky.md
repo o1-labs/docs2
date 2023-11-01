@@ -23,7 +23,7 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:149](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L149)
+[snarky.d.ts:163](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L163)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:148](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L148)
+[snarky.d.ts:162](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L162)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:151](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L151)
+[snarky.d.ts:165](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L165)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:150](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L150)
+[snarky.d.ts:164](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L164)
