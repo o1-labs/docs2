@@ -64,7 +64,7 @@ To create a ZkProgram, start with the `init()` method.
 - The first argument of a ZkProgram method is always the state of the ZkProgram, named `publicInput` since it is public.
 
 ```typescript
-const Add = Experimental.ZkProgram({
+const Add = ZkProgram({
   publicInput: Field,
 
   methods: {
@@ -263,7 +263,7 @@ class RollupState extends Struct({
 ...
 }
 
-const Rollup = Experimental.ZkProgram({
+const Rollup = ZkProgram({
   publicInput: RollupState,
 
   methods: {
