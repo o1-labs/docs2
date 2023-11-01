@@ -1,31 +1,22 @@
 import {
-  Account,
   Bool,
-  Circuit,
   DeployArgs,
-  Field,
   Int64,
-  isReady,
   method,
   Mina,
   AccountUpdate,
   Permissions,
-  PrivateKey,
   PublicKey,
   SmartContract,
-  Token,
   UInt64,
-  VerificationKey,
-  Struct,
   State,
   state,
-  UInt32,
 } from 'o1js';
 
 export class WrappedMina extends SmartContract {
   deploy(args?: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       send: Permissions.proof(),
     });
