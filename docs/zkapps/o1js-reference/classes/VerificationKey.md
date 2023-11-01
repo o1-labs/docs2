@@ -56,7 +56,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:367](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L367)
+[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L366)
 
 ## Properties
 
@@ -75,7 +75,7 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1484](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1484)
+[lib/zkapp.ts:1486](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1486)
 
 ___
 
@@ -94,7 +94,7 @@ Struct({
 
 #### Defined in
 
-[lib/zkapp.ts:1484](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1484)
+[lib/zkapp.ts:1486](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1486)
 
 ___
 
@@ -113,7 +113,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:367](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L367)
+[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L366)
 
 ___
 
@@ -153,7 +153,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L75)
+[snarky.d.ts:83](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L83)
 
 ___
 
@@ -198,7 +198,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:56](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L56)
+[snarky.d.ts:64](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L64)
 
 ___
 
@@ -236,7 +236,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:375](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L375)
+[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L374)
 
 ___
 
@@ -275,7 +275,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:44](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L44)
+[snarky.d.ts:52](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L52)
 
 ___
 
@@ -314,7 +314,7 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:35](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L35)
+[snarky.d.ts:43](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L43)
 
 ___
 
@@ -354,7 +354,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:370](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L370)
+[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L369)
 
 ___
 
@@ -389,7 +389,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L374)
+[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L373)
 
 ## Methods
 
@@ -418,4 +418,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:65](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L65)
+[snarky.d.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L73)

@@ -41,9 +41,9 @@ module.exports = {
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
             'zkapps/how-to-test-a-zkapp',
             'zkapps/how-to-deploy-a-zkapp',
+            'zkapps/how-to-write-a-zkapp-ui',
           ],
         },
         {
@@ -292,6 +292,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Lightnet',
+                  label: 'Lightnet',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Mina',
                   label: 'Mina',
                 },
@@ -314,6 +319,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Types',
                   label: 'Types',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/ZkProgram',
+                  label: 'ZkProgram',
                 },
               ],
             },
@@ -347,7 +357,7 @@ module.exports = {
         'mina-protocol/hardforks',
         'mina-protocol/time-locked-accounts',
         'mina-protocol/sending-a-payment',
-        'mina-protocol/lifecycle-of-a-payment'
+        'mina-protocol/lifecycle-of-a-payment',
       ],
     },
     {
@@ -362,7 +372,7 @@ module.exports = {
             'node-operators/foundation-delegation-program',
             'node-operators/delegation-tiebreak',
             'node-operators/bp-sidecar',
-            'node-operators/uptime-tracking-system'
+            'node-operators/uptime-tracking-system',
           ],
         },
         'node-operators/getting-started',
@@ -371,7 +381,7 @@ module.exports = {
         'node-operators/connecting-to-devnet',
         'node-operators/staking-and-snarking',
         'node-operators/hot-cold-block-production',
-        'node-operators/seed-peers',        
+        'node-operators/seed-peers',
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         {
@@ -381,12 +391,12 @@ module.exports = {
             'node-operators/querying-data',
             'node-operators/archive-node',
             'node-operators/archive-redundancy',
-            'node-operators/rosetta'
+            'node-operators/rosetta',
           ],
         },
         'node-operators/mina-cli-reference',
         'node-operators/troubleshooting',
-        'node-operators/faq'
+        'node-operators/faq',
       ],
     },
     {
@@ -401,7 +411,6 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/client-sdk',
         'node-developers/contributing',
         'node-developers/logging',
       ],
@@ -409,10 +418,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
-      items: [
-        'exchange-operators/rosetta2',
-        'exchange-operators/faq'
-    ],
+      items: ['exchange-operators/rosetta2', 'exchange-operators/faq'],
     },
     {
       type: 'category',
@@ -425,9 +431,9 @@ module.exports = {
         'test-world-2/incentives',
         'test-world-2/bug-reporting',
         'test-world-2/launching-a-node',
-        'test-world-2/questions'
+        'test-world-2/questions',
       ],
-    },    
+    },
     {
       type: 'category',
       label: 'Participate',
