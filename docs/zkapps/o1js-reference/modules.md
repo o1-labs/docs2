@@ -9,10 +9,12 @@
 - [Encoding](modules/Encoding.md)
 - [Encryption](modules/Encryption.md)
 - [Experimental](modules/Experimental.md)
+- [Lightnet](modules/Lightnet.md)
 - [Mina](modules/Mina.md)
 - [Pickles](modules/Pickles.md)
 - [Snarky](modules/Snarky.md)
 - [Types](modules/Types.md)
+- [ZkProgram](modules/ZkProgram.md)
 
 ### Enumerations
 
@@ -61,16 +63,19 @@
 - [ConstantField](modules.md#constantfield)
 - [DeployArgs](modules.md#deployargs)
 - [Empty](modules.md#empty)
+- [FeatureFlags](modules.md#featureflags)
 - [Field](modules.md#field)
 - [FieldConst](modules.md#fieldconst)
 - [FieldVar](modules.md#fieldvar)
 - [FlexibleProvable](modules.md#flexibleprovable)
 - [FlexibleProvablePure](modules.md#flexibleprovablepure)
 - [Gate](modules.md#gate)
+- [GateType](modules.md#gatetype)
 - [Group](modules.md#group)
 - [InferProvable](modules.md#inferprovable)
 - [JsonGate](modules.md#jsongate)
 - [JsonProof](modules.md#jsonproof)
+- [MlFeatureFlags](modules.md#mlfeatureflags)
 - [MlPublicKey](modules.md#mlpublickey)
 - [MlPublicKeyVar](modules.md#mlpublickeyvar)
 - [Provable](modules.md#provable)
@@ -88,6 +93,7 @@
 - [Empty](modules.md#empty-1)
 - [FieldConst](modules.md#fieldconst-1)
 - [FieldVar](modules.md#fieldvar-1)
+- [Gadgets](modules.md#gadgets)
 - [Permissions](modules.md#permissions)
 - [Pickles](modules.md#pickles)
 - [Poseidon](modules.md#poseidon)
@@ -110,6 +116,7 @@
 - [Reducer](modules.md#reducer-1)
 - [State](modules.md#state-1)
 - [Struct](modules.md#struct-1)
+- [ZkProgram](modules.md#zkprogram)
 - [addCachedAccount](modules.md#addcachedaccount)
 - [arrayProp](modules.md#arrayprop)
 - [checkZkappTransaction](modules.md#checkzkapptransaction)
@@ -137,6 +144,7 @@
 - [shutdown](modules.md#shutdown)
 - [state](modules.md#state-2)
 - [toConstantField](modules.md#toconstantfield)
+- [toFp](modules.md#tofp)
 - [verify](modules.md#verify)
 - [withMessage](modules.md#withmessage)
 
@@ -148,9 +156,9 @@
 
 #### Defined in
 
-[lib/core.ts:70](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L70)
+[lib/core.ts:70](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L70)
 
-[lib/core.ts:71](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L71)
+[lib/core.ts:71](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L71)
 
 ___
 
@@ -160,7 +168,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:17](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/bool.ts#L17)
+[lib/bool.ts:17](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/bool.ts#L17)
 
 ___
 
@@ -170,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:96](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L96)
+[lib/field.ts:94](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L94)
 
 ___
 
@@ -180,7 +188,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1505](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1505)
+[lib/zkapp.ts:1507](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1507)
 
 ___
 
@@ -190,9 +198,32 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:68](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L68)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:69](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L69)
+
+___
+
+### FeatureFlags
+
+Ƭ **FeatureFlags**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `foreignFieldAdd` | `boolean` |
+| `foreignFieldMul` | `boolean` |
+| `lookup` | `boolean` |
+| `rangeCheck0` | `boolean` |
+| `rangeCheck1` | `boolean` |
+| `rot` | `boolean` |
+| `runtimeTables` | `boolean` |
+| `xor` | `boolean` |
+
+#### Defined in
+
+[snarky.d.ts:578](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L578)
 
 ___
 
@@ -202,21 +233,21 @@ ___
 
 #### Defined in
 
-[lib/core.ts:42](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L42)
+[lib/core.ts:42](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L42)
 
-[lib/core.ts:43](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L43)
+[lib/core.ts:43](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L43)
 
 ___
 
 ### FieldConst
 
-Ƭ **FieldConst**: `Uint8Array`
+Ƭ **FieldConst**: [``0``, `bigint`]
 
 #### Defined in
 
-[lib/field.ts:24](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L24)
+[lib/field.ts:25](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L25)
 
-[lib/field.ts:33](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L33)
+[lib/field.ts:34](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L34)
 
 ___
 
@@ -238,9 +269,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L67)
+[lib/field.ts:65](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L65)
 
-[lib/field.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L75)
+[lib/field.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L73)
 
 ___
 
@@ -256,7 +287,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L62)
+[lib/circuit_value.ts:62](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L62)
 
 ___
 
@@ -272,7 +303,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L63)
+[lib/circuit_value.ts:63](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L63)
 
 ___
 
@@ -285,12 +316,22 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `coeffs` | `string`[] |
-| `type` | `string` |
+| `type` | [`GateType`](modules.md#gatetype) |
 | `wires` | { `col`: `number` ; `row`: `number`  }[] |
 
 #### Defined in
 
-[snarky.d.ts:367](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L367)
+[snarky.d.ts:447](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L447)
+
+___
+
+### GateType
+
+Ƭ **GateType**: ``"Zero"`` \| ``"Generic"`` \| ``"Poseidon"`` \| ``"CompleteAdd"`` \| ``"VarbaseMul"`` \| ``"EndoMul"`` \| ``"EndoMulScalar"`` \| ``"Lookup"`` \| ``"RangeCheck0"`` \| ``"RangeCheck1"`` \| ``"ForeignFieldAdd"`` \| ``"ForeignFieldMul"`` \| ``"Xor16"`` \| ``"Rot64"``
+
+#### Defined in
+
+[snarky.d.ts:424](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L424)
 
 ___
 
@@ -300,9 +341,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:76](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L76)
+[lib/core.ts:76](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L76)
 
-[lib/core.ts:77](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L77)
+[lib/core.ts:77](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L77)
 
 ___
 
@@ -318,7 +359,7 @@ ___
 
 #### Defined in
 
-bindings/lib/provable-snarky.ts:277
+bindings/lib/provable-snarky.ts:274
 
 ___
 
@@ -330,13 +371,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `coeffs` | `number`[][] |
-| `typ` | `string` |
+| `coeffs` | `string`[] |
+| `typ` | [`GateType`](modules.md#gatetype) |
 | `wires` | { `col`: `number` ; `row`: `number`  }[] |
 
 #### Defined in
 
-[snarky.d.ts:360](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L360)
+[snarky.d.ts:440](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L440)
 
 ___
 
@@ -355,7 +396,17 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:171](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L171)
+[lib/proof_system.ts:215](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L215)
+
+___
+
+### MlFeatureFlags
+
+Ƭ **MlFeatureFlags**: [\_: 0, rangeCheck0: MlBool, rangeCheck1: MlBool, foreignFieldAdd: MlBool, foreignFieldMul: MlBool, xor: MlBool, rot: MlBool, lookup: MlBool, runtimeTables: MlBool]
+
+#### Defined in
+
+[snarky.d.ts:589](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L589)
 
 ___
 
@@ -365,7 +416,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:380](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L380)
+[snarky.d.ts:460](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L460)
 
 ___
 
@@ -375,7 +426,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:381](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L381)
+[snarky.d.ts:461](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L461)
 
 ___
 
@@ -395,9 +446,9 @@ You will find this as the required input type in a few places in o1js. One conve
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L47)
 
 ___
 
@@ -414,7 +465,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:52](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L52)
+[lib/circuit_value.ts:52](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L52)
 
 ___
 
@@ -436,9 +487,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1233](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1233)
+[lib/zkapp.ts:1235](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1235)
 
-[lib/zkapp.ts:1552](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1552)
+[lib/zkapp.ts:1554](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1554)
 
 ___
 
@@ -468,9 +519,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/state.ts#L73)
 
-[lib/state.ts:20](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/state.ts#L20)
 
 ___
 
@@ -486,9 +537,9 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L359)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L359)
 
-[lib/circuit_value.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L57)
+[lib/circuit_value.ts:57](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L57)
 
 ___
 
@@ -504,7 +555,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/fetch.ts:650](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L650)
+[lib/fetch.ts:668](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L668)
 
 ___
 
@@ -514,9 +565,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:65](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L65)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:66](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L66)
 
 ___
 
@@ -526,9 +577,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:70](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L70)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:71](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L71)
 
 ___
 
@@ -558,9 +609,9 @@ transaction.
 
 #### Defined in
 
-[lib/account_update.ts:1967](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1967)
+[lib/account_update.ts:1961](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1961)
 
-[lib/account_update.ts:1971](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1971)
+[lib/account_update.ts:1965](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1965)
 
 ## Variables
 
@@ -570,9 +621,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof_system.ts:60](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L60)
+[lib/proof_system.ts:68](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L68)
 
-[lib/proof_system.ts:61](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L61)
+[lib/proof_system.ts:69](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L69)
 
 ___
 
@@ -584,18 +635,18 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `-1` | `Uint8Array` |
-| `0` | `Uint8Array` |
-| `1` | `Uint8Array` |
-| `fromBigint` | (`x`: `bigint`) => `Uint8Array` |
-| `toBigint` | (`x`: `Uint8Array`) => `Fp` |
-| `equal` | (`x`: `Uint8Array`, `y`: `Uint8Array`) => `boolean` |
+| `-1` | [`FieldConst`](modules.md#fieldconst-1) |
+| `0` | [`FieldConst`](modules.md#fieldconst-1) |
+| `1` | [`FieldConst`](modules.md#fieldconst-1) |
+| `fromBigint` | (`x`: `bigint`) => [`FieldConst`](modules.md#fieldconst-1) |
+| `toBigint` | (`x`: [`FieldConst`](modules.md#fieldconst-1)) => `Fp` |
+| `equal` | (`x`: [`FieldConst`](modules.md#fieldconst-1), `y`: [`FieldConst`](modules.md#fieldconst-1)) => `boolean` |
 
 #### Defined in
 
-[lib/field.ts:24](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L24)
+[lib/field.ts:25](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L25)
 
-[lib/field.ts:33](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L33)
+[lib/field.ts:34](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L34)
 
 ___
 
@@ -607,19 +658,37 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `-1` | [[`Constant`](enums/FieldType.md#constant), `Uint8Array`] |
-| `0` | [[`Constant`](enums/FieldType.md#constant), `Uint8Array`] |
-| `1` | [[`Constant`](enums/FieldType.md#constant), `Uint8Array`] |
+| `-1` | [[`Constant`](enums/FieldType.md#constant), [`FieldConst`](modules.md#fieldconst-1)] |
+| `0` | [[`Constant`](enums/FieldType.md#constant), [`FieldConst`](modules.md#fieldconst-1)] |
+| `1` | [[`Constant`](enums/FieldType.md#constant), [`FieldConst`](modules.md#fieldconst-1)] |
 | `add` | (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) |
-| `constant` | (`x`: `bigint` \| `Uint8Array`) => `ConstantFieldVar` |
+| `constant` | (`x`: `bigint` \| [`FieldConst`](modules.md#fieldconst-1)) => `ConstantFieldVar` |
 | `isConstant` | (`x`: [`FieldVar`](modules.md#fieldvar-1)) => x is ConstantFieldVar |
-| `scale` | (`c`: `Uint8Array`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) |
+| `scale` | (`c`: [`FieldConst`](modules.md#fieldconst-1), `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) |
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L67)
+[lib/field.ts:65](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L65)
 
-[lib/field.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L75)
+[lib/field.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L73)
+
+___
+
+### Gadgets
+
+• `Const` **Gadgets**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `rangeCheck64` | (`x`: [`Field`](classes/Field.md)) => `void` |
+| `rotate` | (`field`: [`Field`](classes/Field.md), `bits`: `number`, `direction`: ``"left"`` \| ``"right"``) => [`Field`](classes/Field.md) |
+| `xor` | (`a`: [`Field`](classes/Field.md), `b`: [`Field`](classes/Field.md), `length`: `number`) => [`Field`](classes/Field.md) |
+
+#### Defined in
+
+[lib/gadgets/gadgets.ts:10](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/gadgets/gadgets.ts#L10)
 
 ___
 
@@ -645,9 +714,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:166](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L166)
+[lib/account_update.ts:166](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L166)
 
-[lib/account_update.ts:238](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L238)
+[lib/account_update.ts:238](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L238)
 
 ___
 
@@ -659,19 +728,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `compile` | (`rules`: `MlArray`<[`Rule`](modules/Pickles.md#rule)\>, `signature`: { `publicInputSize`: `number` ; `publicOutputSize`: `number`  }) => { `getVerificationKey`: () => [\_: 0, data: string, hash: Uint8Array] ; `provers`: `MlArray`<[`Prover`](modules/Pickles.md#prover)\> ; `tag`: `unknown` ; `verify`: (`statement`: [`Statement`](modules/Pickles.md#statement)<`Uint8Array`\>, `proof`: `unknown`) => `Promise`<`boolean`\>  } |
-| `dummyBase64Proof` | () => `string` |
-| `dummyVerificationKey` | () => [\_: 0, data: string, hash: Uint8Array] |
-| `proofOfBase64` | (`base64`: `string`, `maxProofsVerified`: ``0`` \| ``2`` \| ``1``) => [``0`` \| ``2`` \| ``1``, `unknown`] |
+| `compile` | (`rules`: `MlArray`<[`Rule`](modules/Pickles.md#rule)\>, `signature`: { `overrideWrapDomain?`: ``0`` \| ``2`` \| ``1`` ; `publicInputSize`: `number` ; `publicOutputSize`: `number`  }) => { `getVerificationKey`: () => [\_: 0, data: string, hash: FieldConst] ; `provers`: `MlArray`<[`Prover`](modules/Pickles.md#prover)\> ; `tag`: `unknown` ; `verify`: (`statement`: [`Statement`](modules/Pickles.md#statement)<[`FieldConst`](modules.md#fieldconst-1)\>, `proof`: `unknown`) => `Promise`<`boolean`\>  } |
+| `dummyProof` | <N\>(`maxProofsVerified`: `N`, `domainLog2`: `number`) => [`N`, `unknown`] |
+| `dummyVerificationKey` | () => [\_: 0, data: string, hash: FieldConst] |
+| `proofOfBase64` | <N\>(`base64`: `string`, `maxProofsVerified`: `N`) => [`N`, `unknown`] |
 | `proofToBase64` | (`proof`: [``0`` \| ``2`` \| ``1``, `unknown`]) => `string` |
 | `proofToBase64Transaction` | (`proof`: `unknown`) => `string` |
-| `verify` | (`statement`: [`Statement`](modules/Pickles.md#statement)<`Uint8Array`\>, `proof`: `unknown`, `verificationKey`: `string`) => `Promise`<`boolean`\> |
+| `verify` | (`statement`: [`Statement`](modules/Pickles.md#statement)<[`FieldConst`](modules.md#fieldconst-1)\>, `proof`: `unknown`, `verificationKey`: `string`) => `Promise`<`boolean`\> |
 
 #### Defined in
 
-[snarky.d.ts:498](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L498)
+[snarky.d.ts:601](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L601)
 
-[snarky.d.ts:516](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L516)
+[snarky.d.ts:634](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L634)
 
 ___
 
@@ -691,7 +760,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:42](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/hash.ts#L42)
+[lib/hash.ts:42](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/hash.ts#L42)
 
 ___
 
@@ -719,9 +788,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L45)
 
-[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/provable.ts#L47)
+[lib/provable.ts:47](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L47)
 
 ___
 
@@ -743,14 +812,14 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `bool.equals` | [object Object] | - |
 | `bool.not` | [object Object] | - |
 | `bool.or` | [object Object] | - |
-| `circuit` | { `keypair`: { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } ; `compile`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`) => `unknown` ; `prove`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`, `publicInput`: `MlArray`<`Uint8Array`\>, `keypair`: `unknown`) => `unknown` ; `verify`: (`publicInput`: `MlArray`<`Uint8Array`\>, `proof`: `unknown`, `verificationKey`: `unknown`) => `boolean`  } | The circuit API is a low level interface to create zero-knowledge proofs |
+| `circuit` | { `keypair`: { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } ; `compile`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`) => `unknown` ; `prove`: (`main`: [`Main`](modules/Snarky.md#main), `publicInputSize`: `number`, `publicInput`: `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\>, `keypair`: `unknown`) => `unknown` ; `verify`: (`publicInput`: `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\>, `proof`: `unknown`, `verificationKey`: `unknown`) => `boolean`  } | The circuit API is a low level interface to create zero-knowledge proofs |
 | `circuit.keypair` | { `getConstraintSystemJSON`: (`keypair`: `unknown`) => `JsonConstraintSystem` ; `getVerificationKey`: (`keypair`: `unknown`) => `unknown`  } | - |
 | `circuit.keypair.getConstraintSystemJSON` | [object Object] | Returns a low-level JSON representation of the circuit: a list of gates, each of which represents a row in a table, with certain coefficients and wires to other (row, column) pairs |
 | `circuit.keypair.getVerificationKey` | [object Object] | - |
 | `circuit.compile` | [object Object] | Generates a proving key and a verification key for the provable function `main` |
 | `circuit.prove` | [object Object] | Proves a statement using the private input, public input and the keypair of the circuit. |
 | `circuit.verify` | [object Object] | Verifies a proof using the public input, the proof and the verification key of the circuit. |
-| `field` | { `add`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `assertBoolean`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertEqual`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertMul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1), `z`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertSquare`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `compare`: (`bitLength`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, less: FieldVar, lessOrEqual: FieldVar] ; `fromBits`: (`bits`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `mul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `readVar`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `Uint8Array` ; `scale`: (`c`: `Uint8Array`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `seal`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `toBits`: (`length`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> ; `toConstantAndTerms`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, constant: MlOption<Uint8Array\>, terms: MlList<MlTuple<Uint8Array, number\>\>] ; `truncateToBits16`: (`lengthDiv16`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } | APIs to add constraints on field variables |
+| `field` | { `add`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `assertBoolean`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertEqual`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertMul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1), `z`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `assertSquare`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `compare`: (`bitLength`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, less: FieldVar, lessOrEqual: FieldVar] ; `fromBits`: (`bits`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => [`FieldVar`](modules.md#fieldvar-1) ; `mul`: (`x`: [`FieldVar`](modules.md#fieldvar-1), `y`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `readVar`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldConst`](modules.md#fieldconst-1) ; `scale`: (`c`: [`FieldConst`](modules.md#fieldconst-1), `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `seal`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1) ; `toBits`: (`length`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> ; `toConstantAndTerms`: (`x`: [`FieldVar`](modules.md#fieldvar-1)) => [\_: 0, constant: MlOption<FieldConst\>, terms: MlList<MlTuple<FieldConst, number\>\>] ; `truncateToBits16`: (`lengthDiv16`: `number`, `x`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } | APIs to add constraints on field variables |
 | `field.add` | [object Object] | add x, y to get a new AST node Add(x, y); handles if x, y are constants |
 | `field.assertBoolean` | [object Object] | x*x === x without handling of constants |
 | `field.assertEqual` | [object Object] | x === y without handling of constants |
@@ -765,6 +834,11 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `field.toBits` | [object Object] |  |
 | `field.toConstantAndTerms` | [object Object] | Unfolds AST to get `x = c + c0*Var(i0) + ... + cn*Var(in)`, returns `(c, [(c0, i0), ..., (cn, in)])`; c is optional |
 | `field.truncateToBits16` | [object Object] | returns x truncated to the lowest `16 * lengthDiv16` bits => can be used to assert that x fits in `16 * lengthDiv16` bits. more efficient than `toBits()` because it uses the EC_endoscalar gate; does 16 bits per row (vs 1 bits per row that you can do with generic gates). |
+| `gates` | { `rangeCheck0`: (`v0`: [`FieldVar`](modules.md#fieldvar-1), `v0p`: [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)], `v0c`: [``0``, [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1), [`FieldVar`](modules.md#fieldvar-1)], `compact`: [`FieldConst`](modules.md#fieldconst-1)) => `void` ; `rotate`: (`field`: [`FieldVar`](modules.md#fieldvar-1), `rotated`: [`FieldVar`](modules.md#fieldvar-1), `excess`: [`FieldVar`](modules.md#fieldvar-1), `limbs`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `crumbs`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>, `two_to_rot`: [`FieldConst`](modules.md#fieldconst-1)) => `void` ; `xor`: (`in1`: [`FieldVar`](modules.md#fieldvar-1), `in2`: [`FieldVar`](modules.md#fieldvar-1), `out`: [`FieldVar`](modules.md#fieldvar-1), `in1_0`: [`FieldVar`](modules.md#fieldvar-1), `in1_1`: [`FieldVar`](modules.md#fieldvar-1), `in1_2`: [`FieldVar`](modules.md#fieldvar-1), `in1_3`: [`FieldVar`](modules.md#fieldvar-1), `in2_0`: [`FieldVar`](modules.md#fieldvar-1), `in2_1`: [`FieldVar`](modules.md#fieldvar-1), `in2_2`: [`FieldVar`](modules.md#fieldvar-1), `in2_3`: [`FieldVar`](modules.md#fieldvar-1), `out_0`: [`FieldVar`](modules.md#fieldvar-1), `out_1`: [`FieldVar`](modules.md#fieldvar-1), `out_2`: [`FieldVar`](modules.md#fieldvar-1), `out_3`: [`FieldVar`](modules.md#fieldvar-1)) => `void` ; `zero`: (`in1`: [`FieldVar`](modules.md#fieldvar-1), `in2`: [`FieldVar`](modules.md#fieldvar-1), `out`: [`FieldVar`](modules.md#fieldvar-1)) => `void`  } | - |
+| `gates.rangeCheck0` | [object Object] | Range check gate |
+| `gates.rotate` | [object Object] | - |
+| `gates.xor` | [object Object] | - |
+| `gates.zero` | [object Object] | - |
 | `group` | { `ecadd`: (`p1`: `MlGroup`, `p2`: `MlGroup`, `p3`: `MlGroup`, `inf`: [`FieldVar`](modules.md#fieldvar-1), `same_x`: [`FieldVar`](modules.md#fieldvar-1), `slope`: [`FieldVar`](modules.md#fieldvar-1), `inf_z`: [`FieldVar`](modules.md#fieldvar-1), `x21_inv`: [`FieldVar`](modules.md#fieldvar-1)) => `MlGroup` ; `scale`: (`p`: `MlGroup`, `s`: `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\>) => `MlGroup`  } | - |
 | `group.ecadd` | [object Object] | Low-level Elliptic Curve Addition gate. |
 | `group.scale` | [object Object] | - |
@@ -781,14 +855,14 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 | `run.inProverBlock` | [object Object] | Check whether we are inside an asProver or exists block |
 | `run.runAndCheck` | [object Object] | Runs code and checks its correctness. |
 | `run.runUnchecked` | [object Object] | Runs code in prover mode, without checking correctness. |
-| `exists` | (`sizeInFields`: `number`, `compute`: () => `MlArray`<`Uint8Array`\>) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> | witness `sizeInFields` field element variables Note: this is called "exists" because in a proof, you use it like this: > "I prove that there exists x, such that (some statement)" |
-| `existsVar` | (`compute`: () => `Uint8Array`) => [`FieldVar`](modules.md#fieldvar-1) | witness a single field element variable |
+| `exists` | (`sizeInFields`: `number`, `compute`: () => `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\>) => `MlArray`<[`FieldVar`](modules.md#fieldvar-1)\> | witness `sizeInFields` field element variables Note: this is called "exists" because in a proof, you use it like this: > "I prove that there exists x, such that (some statement)" |
+| `existsVar` | (`compute`: () => [`FieldConst`](modules.md#fieldconst-1)) => [`FieldVar`](modules.md#fieldvar-1) | witness a single field element variable |
 
 #### Defined in
 
-[snarky.d.ts:139](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L139)
+[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L147)
 
-[snarky.d.ts:151](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L151)
+[snarky.d.ts:159](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L159)
 
 ___
 
@@ -800,7 +874,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `encoding` | { `memoHashBase58`: (`memoBase58`: `string`) => `Uint8Array` ; `memoToBase58`: (`memoString`: `string`) => `string` ; `ofBase58`: (`base58`: `string`, `versionByte`: `number`) => `MlBytes` ; `privateKeyOfBase58`: (`privateKeyBase58`: `string`) => `Uint8Array` ; `privateKeyToBase58`: (`privateKey`: `Uint8Array`) => `string` ; `publicKeyOfBase58`: (`publicKeyBase58`: `string`) => [`MlPublicKey`](modules.md#mlpublickey) ; `publicKeyToBase58`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey)) => `string` ; `toBase58`: (`s`: `MlBytes`, `versionByte`: `number`) => `string` ; `tokenIdOfBase58`: (`fieldBase58`: `string`) => `Uint8Array` ; `tokenIdToBase58`: (`field`: `Uint8Array`) => `string`  } |
+| `encoding` | { `memoHashBase58`: (`memoBase58`: `string`) => [`FieldConst`](modules.md#fieldconst-1) ; `memoToBase58`: (`memoString`: `string`) => `string` ; `ofBase58`: (`base58`: `string`, `versionByte`: `number`) => `MlBytes` ; `privateKeyOfBase58`: (`privateKeyBase58`: `string`) => `ScalarConst` ; `privateKeyToBase58`: (`privateKey`: `ScalarConst`) => `string` ; `publicKeyOfBase58`: (`publicKeyBase58`: `string`) => [`MlPublicKey`](modules.md#mlpublickey) ; `publicKeyToBase58`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey)) => `string` ; `toBase58`: (`s`: `MlBytes`, `versionByte`: `number`) => `string` ; `tokenIdOfBase58`: (`fieldBase58`: `string`) => [`FieldConst`](modules.md#fieldconst-1) ; `tokenIdToBase58`: (`field`: [`FieldConst`](modules.md#fieldconst-1)) => `string`  } |
 | `encoding.memoHashBase58` | [object Object] |
 | `encoding.memoToBase58` | [object Object] |
 | `encoding.ofBase58` | [object Object] |
@@ -811,13 +885,13 @@ ___
 | `encoding.toBase58` | [object Object] |
 | `encoding.tokenIdOfBase58` | [object Object] |
 | `encoding.tokenIdToBase58` | [object Object] |
-| `fieldsFromJson` | { `accountUpdate`: (`json`: `string`) => `MlArray`<`Uint8Array`\>  } |
+| `fieldsFromJson` | { `accountUpdate`: (`json`: `string`) => `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\>  } |
 | `fieldsFromJson.accountUpdate` | [object Object] |
-| `hashFromJson` | { `accountUpdate`: (`json`: `string`) => `Uint8Array` ; `transactionCommitments`: (`txJson`: `string`) => { `commitment`: [`FieldConst`](modules.md#fieldconst-1) ; `feePayerHash`: [`FieldConst`](modules.md#fieldconst-1) ; `fullCommitment`: [`FieldConst`](modules.md#fieldconst-1)  } ; `zkappPublicInput`: (`txJson`: `string`, `accountUpdateIndex`: `number`) => { `accountUpdate`: [`FieldConst`](modules.md#fieldconst-1) ; `calls`: [`FieldConst`](modules.md#fieldconst-1)  }  } |
+| `hashFromJson` | { `accountUpdate`: (`json`: `string`) => [`FieldConst`](modules.md#fieldconst-1) ; `transactionCommitments`: (`txJson`: `string`) => { `commitment`: [`FieldConst`](modules.md#fieldconst-1) ; `feePayerHash`: [`FieldConst`](modules.md#fieldconst-1) ; `fullCommitment`: [`FieldConst`](modules.md#fieldconst-1)  } ; `zkappPublicInput`: (`txJson`: `string`, `accountUpdateIndex`: `number`) => { `accountUpdate`: [`FieldConst`](modules.md#fieldconst-1) ; `calls`: [`FieldConst`](modules.md#fieldconst-1)  }  } |
 | `hashFromJson.accountUpdate` | [object Object] |
 | `hashFromJson.transactionCommitments` | [object Object] |
 | `hashFromJson.zkappPublicInput` | [object Object] |
-| `hashInputFromJson` | { `accountPrecondition`: (`json`: `String`) => `MlHashInput` ; `body`: (`json`: `String`) => `MlHashInput` ; `networkPrecondition`: (`json`: `String`) => `MlHashInput` ; `packInput`: (`input`: `MlHashInput`) => `MlArray`<`Uint8Array`\> ; `permissions`: (`json`: `String`) => `MlHashInput` ; `timing`: (`json`: `String`) => `MlHashInput` ; `update`: (`json`: `String`) => `MlHashInput`  } |
+| `hashInputFromJson` | { `accountPrecondition`: (`json`: `String`) => `MlHashInput` ; `body`: (`json`: `String`) => `MlHashInput` ; `networkPrecondition`: (`json`: `String`) => `MlHashInput` ; `packInput`: (`input`: `MlHashInput`) => `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\> ; `permissions`: (`json`: `String`) => `MlHashInput` ; `timing`: (`json`: `String`) => `MlHashInput` ; `update`: (`json`: `String`) => `MlHashInput`  } |
 | `hashInputFromJson.accountPrecondition` | [object Object] |
 | `hashInputFromJson.body` | [object Object] |
 | `hashInputFromJson.networkPrecondition` | [object Object] |
@@ -825,12 +899,12 @@ ___
 | `hashInputFromJson.permissions` | [object Object] |
 | `hashInputFromJson.timing` | [object Object] |
 | `hashInputFromJson.update` | [object Object] |
-| `poseidon` | { `hashToGroup`: (`input`: `MlArray`<`Uint8Array`\>) => `MlTuple`<`Uint8Array`, `Uint8Array`\>  } |
+| `poseidon` | { `hashToGroup`: (`input`: `MlArray`<[`FieldConst`](modules.md#fieldconst-1)\>) => `MlTuple`<[`FieldConst`](modules.md#fieldconst-1), [`FieldConst`](modules.md#fieldconst-1)\>  } |
 | `poseidon.hashToGroup` | [object Object] |
-| `signature` | { `dummySignature`: () => `string` ; `signFieldElement`: (`messageHash`: `Uint8Array`, `privateKey`: `Uint8Array`, `isMainnet`: `boolean`) => `string`  } |
+| `signature` | { `dummySignature`: () => `string` ; `signFieldElement`: (`messageHash`: [`FieldConst`](modules.md#fieldconst-1), `privateKey`: `ScalarConst`, `isMainnet`: `boolean`) => `string`  } |
 | `signature.dummySignature` | [object Object] |
 | `signature.signFieldElement` | [object Object] |
-| `tokenId` | { `derive`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey), `tokenId`: `Uint8Array`) => `Uint8Array` ; `deriveChecked`: (`publicKey`: [`MlPublicKeyVar`](modules.md#mlpublickeyvar), `tokenId`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } |
+| `tokenId` | { `derive`: (`publicKey`: [`MlPublicKey`](modules.md#mlpublickey), `tokenId`: [`FieldConst`](modules.md#fieldconst-1)) => [`FieldConst`](modules.md#fieldconst-1) ; `deriveChecked`: (`publicKey`: [`MlPublicKeyVar`](modules.md#mlpublickeyvar), `tokenId`: [`FieldVar`](modules.md#fieldvar-1)) => [`FieldVar`](modules.md#fieldvar-1)  } |
 | `tokenId.derive` | [object Object] |
 | `tokenId.deriveChecked` | [object Object] |
 | `transactionHash` | { `examplePayment`: () => `string` ; `hashPayment`: (`payment`: `string`) => `string` ; `hashPaymentV1`: (`payment`: `string`) => `string` ; `serializeCommon`: (`common`: `string`) => { `data`: `Uint8Array`  } ; `serializePayment`: (`payment`: `string`) => { `data`: `Uint8Array`  } ; `serializePaymentV1`: (`payment`: `string`) => `string`  } |
@@ -843,7 +917,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:415](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L415)
+[snarky.d.ts:495](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L495)
 
 ___
 
@@ -871,7 +945,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:610](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L610)
+[lib/account_update.ts:607](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L607)
 
 ___
 
@@ -881,9 +955,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:57](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L57)
+[lib/proof_system.ts:65](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L65)
 
-[lib/proof_system.ts:58](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L58)
+[lib/proof_system.ts:66](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L66)
 
 ___
 
@@ -893,9 +967,9 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:62](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L62)
+[lib/proof_system.ts:70](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L70)
 
-[lib/proof_system.ts:63](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L63)
+[lib/proof_system.ts:71](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L71)
 
 ___
 
@@ -905,9 +979,9 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1967](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1967)
+[lib/account_update.ts:1961](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1961)
 
-[lib/account_update.ts:1971](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L1971)
+[lib/account_update.ts:1965](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1965)
 
 ___
 
@@ -921,7 +995,7 @@ ___
 
 #### Defined in
 
-[index.ts:113](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L113)
+[index.ts:119](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L119)
 
 ## Functions
 
@@ -942,7 +1016,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1512](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1512)
+[lib/zkapp.ts:1514](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1514)
 
 ___
 
@@ -988,7 +1062,7 @@ const b: Bool = Field(5).equals(6);
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L81)
 
 ___
 
@@ -1033,7 +1107,7 @@ A Field itself is also defined as a "field-like" element.
 
 | Name | Type |
 | :------ | :------ |
-| `...args` | [x: string \| number \| bigint \| Uint8Array \| FieldVar \| Field] |
+| `...args` | [x: string \| number \| bigint \| FieldVar \| FieldConst \| Field] |
 
 #### Returns
 
@@ -1043,7 +1117,7 @@ A [Field](modules.md#field-1) with the value converted from the argument
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L81)
 
 ___
 
@@ -1065,7 +1139,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/core.ts#L81)
 
 ___
 
@@ -1089,7 +1163,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle_tree.ts:238](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/merkle_tree.ts#L238)
+[lib/merkle_tree.ts:238](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/merkle_tree.ts#L238)
 
 ___
 
@@ -1117,7 +1191,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1552](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1552)
+[lib/zkapp.ts:1554](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1554)
 
 ___
 
@@ -1137,13 +1211,13 @@ ___
 
 #### Defined in
 
-[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L73)
+[lib/state.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/state.ts#L73)
 
 ___
 
 ### Struct
 
-▸ **Struct**<`A`, `T`, `J`, `Pure`\>(`type`, `options?`): (`value`: `T`) => `T` & { `_isStruct`: ``true``  } & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](modules.md#provable-1)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](modules.md#field-1)[] ; `packed?`: [[`Field`](modules.md#field-1), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
+▸ **Struct**<`A`, `T`, `J`, `Pure`\>(`type`): (`value`: `T`) => `T` & { `_isStruct`: ``true``  } & `Pure` extends ``true`` ? [`ProvablePure`](interfaces/ProvablePure.md)<`T`\> : [`Provable`](modules.md#provable-1)<`T`\> & { `fromJSON`: (`x`: `J`) => `T` ; `toInput`: (`x`: `T`) => { `fields?`: [`Field`](modules.md#field-1)[] ; `packed?`: [[`Field`](modules.md#field-1), `number`][]  } ; `toJSON`: (`x`: `T`) => `J`  }
 
 `Struct` lets you declare composite types for use in o1js circuits.
 
@@ -1224,8 +1298,6 @@ From the circuit point of view, it simply doesn't exist!
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `type` | `A` | Object specifying the layout of the `Struct` |
-| `options` | `Object` | Advanced option which allows you to force a certain order of object keys |
-| `options.customObjectKeys?` | `string`[] | - |
 
 #### Returns
 
@@ -1235,7 +1307,34 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L359)
+[lib/circuit_value.ts:359](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L359)
+
+___
+
+### ZkProgram
+
+▸ **ZkProgram**<`StatementType`, `Types`\>(`config`): { `analyzeMethods`: () => `ReturnType`<typeof `analyzeMethod`\>[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `StatementType` | extends `Object` |
+| `Types` | extends `Object` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `config` | `StatementType` & { `methods`: { [I in string \| number \| symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> } ; `name`: `string` ; `overrideWrapDomain?`: ``0`` \| ``2`` \| ``1``  } |
+
+#### Returns
+
+{ `analyzeMethods`: () => `ReturnType`<typeof `analyzeMethod`\>[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
+
+#### Defined in
+
+[lib/proof_system.ts:233](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L233)
 
 ___
 
@@ -1258,7 +1357,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:351](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L351)
+[lib/fetch.ts:369](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L369)
 
 ___
 
@@ -1298,7 +1397,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:264](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L264)
+[lib/circuit_value.ts:264](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L264)
 
 ___
 
@@ -1318,7 +1417,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:498](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L498)
+[lib/fetch.ts:516](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L516)
 
 ___
 
@@ -1340,7 +1439,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:232](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L232)
+[lib/circuit.ts:232](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit.ts#L232)
 
 ___
 
@@ -1382,7 +1481,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1538](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L1538)
+[lib/zkapp.ts:1540](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L1540)
 
 ___
 
@@ -1442,7 +1541,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:163](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L163)
+[lib/state.ts:163](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/state.ts#L163)
 
 ___
 
@@ -1476,7 +1575,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:131](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L131)
+[lib/fetch.ts:149](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L149)
 
 ___
 
@@ -1518,7 +1617,7 @@ A promise that resolves to an array of objects containing event data, block info
 
 #### Defined in
 
-[lib/fetch.ts:820](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L820)
+[lib/fetch.ts:838](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L838)
 
 ___
 
@@ -1540,7 +1639,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:394](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L394)
+[lib/fetch.ts:412](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L412)
 
 ___
 
@@ -1563,7 +1662,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:625](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L625)
+[lib/fetch.ts:643](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L643)
 
 ___
 
@@ -1583,7 +1682,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:371](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/bool.ts#L371)
+[lib/bool.ts:371](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/bool.ts#L371)
 
 ___
 
@@ -1603,7 +1702,7 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:1281](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1281)
+[lib/field.ts:1282](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L1282)
 
 ___
 
@@ -1644,7 +1743,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:273](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L273)
+[lib/circuit_value.ts:273](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L273)
 
 ___
 
@@ -1665,7 +1764,7 @@ You can use inside your zkApp class as:
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`SmartContract`](classes/SmartContract.md)<`T`\> |
+| `T` | extends [`SmartContract`](classes/SmartContract.md) |
 
 #### Parameters
 
@@ -1681,7 +1780,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:84](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/zkapp.ts#L84)
+[lib/zkapp.ts:84](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/zkapp.ts#L84)
 
 ___
 
@@ -1703,7 +1802,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:249](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L249)
+[lib/circuit_value.ts:249](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L249)
 
 ___
 
@@ -1723,7 +1822,6 @@ ___
 | :------ | :------ |
 | `typeObj` | `A` |
 | `options?` | `Object` |
-| `options.customObjectKeys?` | `string`[] |
 | `options.isPure?` | `boolean` |
 
 #### Returns
@@ -1738,7 +1836,7 @@ ___
 
 ### provablePure
 
-▸ **provablePure**<`A`\>(`typeObj`, `options?`): [`ProvablePure`](interfaces/ProvablePure.md)<[`InferProvable`](modules.md#inferprovable)<`A`\>\> & `ProvableExtension`<[`InferProvable`](modules.md#inferprovable)<`A`\>, `InferJson`<`A`\>\>
+▸ **provablePure**<`A`\>(`typeObj`): [`ProvablePure`](interfaces/ProvablePure.md)<[`InferProvable`](modules.md#inferprovable)<`A`\>\> & `ProvableExtension`<[`InferProvable`](modules.md#inferprovable)<`A`\>, `InferJson`<`A`\>\>
 
 #### Type parameters
 
@@ -1751,8 +1849,6 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `typeObj` | `A` |
-| `options` | `Object` |
-| `options.customObjectKeys?` | `string`[] |
 
 #### Returns
 
@@ -1760,7 +1856,7 @@ ___
 
 #### Defined in
 
-bindings/lib/provable-snarky.ts:224
+bindings/lib/provable-snarky.ts:222
 
 ___
 
@@ -1782,7 +1878,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:196](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L196)
+[lib/circuit.ts:196](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit.ts#L196)
 
 ___
 
@@ -1804,7 +1900,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1334](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1334)
+[lib/field.ts:1335](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L1335)
 
 ___
 
@@ -1825,7 +1921,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:301](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/signature.ts#L301)
+[lib/signature.ts:301](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L301)
 
 ___
 
@@ -1850,7 +1946,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:655](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L655)
+[lib/fetch.ts:673](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L673)
 
 ___
 
@@ -1872,7 +1968,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:100](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L100)
+[lib/fetch.ts:104](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L104)
 
 ___
 
@@ -1892,7 +1988,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:78](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L78)
+[lib/fetch.ts:82](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L82)
 
 ___
 
@@ -1912,7 +2008,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:71](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/fetch.ts#L71)
+[lib/fetch.ts:75](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L75)
 
 ___
 
@@ -1930,7 +2026,7 @@ ___
 
 #### Defined in
 
-[index.ts:118](https://github.com/o1-labs/o1js/blob/fec4d35f/src/index.ts#L118)
+[index.ts:124](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L124)
 
 ___
 
@@ -1978,7 +2074,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:87](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/state.ts#L87)
+[lib/state.ts:87](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/state.ts#L87)
 
 ___
 
@@ -2001,7 +2097,27 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1309](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1309)
+[lib/field.ts:1310](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L1310)
+
+___
+
+### toFp
+
+▸ **toFp**(`x`): `Fp`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| [`Field`](classes/Field.md) |
+
+#### Returns
+
+`Fp`
+
+#### Defined in
+
+[lib/field.ts:1296](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L1296)
 
 ___
 
@@ -2022,7 +2138,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:137](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L137)
+[lib/proof_system.ts:181](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L181)
 
 ___
 
@@ -2043,4 +2159,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1303](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1303)
+[lib/field.ts:1304](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/field.ts#L1304)
