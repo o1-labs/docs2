@@ -6,6 +6,7 @@
 
 ### Type Aliases
 
+- [Cache](Pickles.md#cache)
 - [Proof](Pickles.md#proof)
 - [Prover](Pickles.md#prover)
 - [Rule](Pickles.md#rule)
@@ -13,13 +14,25 @@
 
 ## Type Aliases
 
+### Cache
+
+Ƭ **Cache**: [\_: 0, read: Function, write: Function, canWrite: MlBool]
+
+Type to configure how Pickles should cache prover keys
+
+#### Defined in
+
+[snarky.d.ts:771](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L771)
+
+___
+
 ### Proof
 
 Ƭ **Proof**: `unknown`
 
 #### Defined in
 
-[snarky.d.ts:602](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L602)
+[snarky.d.ts:742](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L742)
 
 ___
 
@@ -44,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:628](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L628)
+[snarky.d.ts:782](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L782)
 
 ___
 
@@ -65,7 +78,7 @@ A "rule" is a circuit plus some metadata for `Pickles.compile`
 
 #### Defined in
 
-[snarky.d.ts:608](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L608)
+[snarky.d.ts:748](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L748)
 
 ___
 
@@ -81,4 +94,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:603](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L603)
+[snarky.d.ts:743](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L743)
