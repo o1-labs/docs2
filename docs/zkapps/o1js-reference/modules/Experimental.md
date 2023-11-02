@@ -17,7 +17,6 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 ### Functions
 
-- [ZkProgram](Experimental.md#zkprogram)
 - [createChildAccountUpdate](Experimental.md#createchildaccountupdate)
 - [memoizeWitness](Experimental.md#memoizewitness)
 
