@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:127](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L127)
+[lib/proof_system.ts:134](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L134)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:85](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L85)
+[lib/proof_system.ts:92](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L92)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:84](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L84)
+[lib/proof_system.ts:91](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L91)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:82](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L82)
+[lib/proof_system.ts:89](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L89)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:83](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L83)
+[lib/proof_system.ts:90](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L90)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:86](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L86)
+[lib/proof_system.ts:93](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L93)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:74](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L74)
+[lib/proof_system.ts:81](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L81)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:75](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L75)
+[lib/proof_system.ts:82](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L82)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:76](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L76)
+[lib/proof_system.ts:83](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L83)
 
 ## Methods
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:94](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L94)
+[lib/proof_system.ts:101](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L101)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:88](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L88)
+[lib/proof_system.ts:95](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L95)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:91](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L91)
+[lib/proof_system.ts:98](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L98)
 
 ___
 
@@ -255,7 +255,7 @@ must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs t
 
 #### Defined in
 
-[lib/proof_system.ts:165](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L165)
+[lib/proof_system.ts:172](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L172)
 
 ___
 
@@ -282,4 +282,4 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:103](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L103)
+[lib/proof_system.ts:110](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L110)
