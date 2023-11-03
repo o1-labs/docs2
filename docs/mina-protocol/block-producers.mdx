@@ -1,0 +1,74 @@
+---
+title: Block Producers
+hide_title: true
+description: The role of a block producer in Mina is to achieve consensus and provide security to the blockchain.
+keywords:
+  - role of block producer in Mina
+  - block producers
+  - validators
+  - how do I become a block producer
+  - coinbase rewards
+  - supercharged coinbase
+  - how to produce a block
+  - how to select a block producer
+---
+
+# Block Producers
+
+The role of a block producer in Mina is to achieve [consensus](../about-mina/consensus) and provide security to the blockchain. The block producer is responsible for creating new blocks that include recent transactions broadcast on the network and a blockchain proof that proves the current state of the chain is valid.
+
+In Mina, anyone can become a block producer. There is an unbounded number of participants with the chance of producing a block proportional to the funds staked. Funds are not locked and are not subject to slashing.
+
+In return for staking funds and generating the required blockchain proofs, blocks that are produced and included in the canonical chain are rewarded in the form of a coinbase and transaction fees, less any fees paid to purchase required [transaction SNARK work](./snark-workers).
+
+To successfully produce a block, a block producer must have the current state of the blockchain. A block producer must have enough available compute to produce a blockchain SNARK within the slot time and be connected to peers to broadcast the generated block within an acceptable delay as defined by the network consensus parameters.
+
+### Select a block producer
+
+The opportunity to produce a block for a slot is determined by a [verifiable random function](/glossary#verifiable-random-function-vrf) (VRF). Think of this function as a lottery. Each block producer independently runs this VRF for each slot and if the output is greater than a threshold proportional to the producer's stake, they have the chance to produce a block at the designated slot.
+
+This process is secret so that only the private key holder can determine the VRF output and only they know when they are to produce a block. This selection process aids security as it is impossible for an adversary to target a known block producer at a certain slot, e.g., by a denial of service or targeted attack. As a result, multiple producers can be selected for the same slot. When multiple producers produce a valid block for the same slot, ta short-range fork is produced where the consensus rules select the longest chain.
+
+The stake distribution is determined from the SNARKed ledger at the last block of `current epoch-2`, so there is a delay for any recently acquired or [delegated stake](#stake-delegation). For example, if the current epoch is 10, the staking distribution is determined from the SNARKed ledger of the last block of the 8th epoch.
+
+To view the output of the VRF in the logs, look for `Checking VRF evaluations`.
+
+### Generating a block
+
+When a block producer is selected to produce a block for a slot, they perform the following actions:
+
+- Choose the current best tip from their transition frontier (local store of blocks) on which to build the new block.
+
+- Select transactions and any SNARK work required from the transaction and SNARK pools. 
+
+    A block producer must purchase SNARK work at least in equal quantity to the transactions they add to a block. 
+    In addition to any user transactions, a block producer must also add a coinbase transaction as a reward for producing the block and any fee transfers to pay the SNARK workers.
+
+- Generate the proposed next state of the blockchain. 
+
+    - Create a diff of the staged ledger that includes the account ledger and scan state (a queue of transactions yet to have proofs). 
+    - Apply this diff to the existing staged ledger to produce the new state.
+
+- Create a blockchain proof to prove that the new state is valid.
+
+    This SNARK additionally validates the prior protocol state proof.
+
+- Create a delta transition chain proof that proves the validity of the block if it is received within an acceptable network delay as defined by the network consensus parameters.
+
+- Apply this newly generated state locally and add it into the existing transition frontier.
+
+- Broadcast the block (call an external transition) to its peers.
+
+### Stake delegation
+
+Delegated funds are not spendable and can be undelegated at any time by re-delegating the stake back to the original account.
+
+## Supercharged coinbase
+
+To further incentivize staking, if the account that wins the slot does not have any [time-locked tokens](./time-locked-accounts), the block producer receives double the coinbase rewards.
+
+The supercharged coinbase applies to both delegating and staking accounts. The supercharged reward is determined using the account that won the slot. For example:
+
+- If a non-time-locked account delegates to a time-locked account, if the non-time-locked account wins the slot, the coinbase is supercharged.
+
+- If the time-locked account wins, the coinbase is not supercharged.

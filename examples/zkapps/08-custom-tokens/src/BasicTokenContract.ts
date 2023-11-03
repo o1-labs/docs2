@@ -8,7 +8,7 @@ import {
   UInt64,
   PublicKey,
   Signature,
-} from 'snarkyjs';
+} from 'o1js';
 
 const tokenSymbol = 'MYTKN';
 

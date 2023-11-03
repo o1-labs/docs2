@@ -2,7 +2,7 @@
 title: 'Tutorial 8: Custom Tokens'
 hide_title: true
 sidebar_label: 'Tutorial 8: Custom Tokens'
-description: Mina comes with native support for custom tokens.Learn the smart contract code that creates and manages new tokens.
+description: Smart contract code to create and manage new tokens. Mina has native support for custom tokens.
 keywords:
   - smart contracts
   - zkapps
@@ -12,6 +12,7 @@ keywords:
   - zk
   - blockchain
   - mina
+  - tokens
 ---
 
 :::info
@@ -20,17 +21,9 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::note
-
-This tutorial was last tested with [SnarkyJS](https://www.npmjs.com/package/snarkyjs) 0.8.0.
-
-:::
-
 # Tutorial 8: Custom Tokens
 
-## Overview
-
-In this tutorial, we will discuss how to create custom tokens.
+In this tutorial, you learn to create custom tokens.
 
 Mina comes with native support for custom tokens. Each account on Mina can also have tokens associated with it.
 
@@ -38,127 +31,158 @@ To create a new token, one creates a smart contract, which becomes the manager f
 
 The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens.
 
-In this tutorial, we will review smart contract code that creates and manages new tokens. You can find the full code of what we'll be building in this tutorial [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src).
+In this tutorial, you review smart contract code that creates and manages new tokens. 
 
-You can also find a more extensive example, including all the ways to interact with token smart contracts, [here](https://github.com/o1-labs/snarkyjs/blob/main/src/lib/token.test.ts) for reference.
+The full example code is provided in the [08-custom-tokens/src/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src) example files.
+
+For reference, a more extensive example, including all the ways to interact with token smart contracts, is provided in [token.test.ts](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts).
+
+## Prerequisites
+
+- Make sure you have the latest version of the zkApp CLI installed:
+
+    ```sh
+    $ npm install -g zkapp-cli
+    ```
+
+- Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
+This tutorial has been tested with:
+
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.13.0
+- [o1js](https://www.npmjs.com/package/o1js) version 0.13.0
 
 ## Basic Token Example
 
-To create a token manager smart contract, we will create a normal smart contract, whose methods call special functions that manipulate tokens.
+To create a token manager smart contract, create a normal smart contract whose methods call special functions that manipulate tokens.
 
-You can find a full copy of this file [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/BasicTokenContract.ts).
+A full copy of the [BasicTokenContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/BasicTokenContract.ts) is provided.
 
-First, we will bring in imports and setup the structure for our smart contract:
 
-```ts
-  1 import {
-  2  SmartContract,
-  3  state,
-  4  State,
-  5  method,
-  6  DeployArgs,
-  7  Permissions,
-  8  UInt64,
-  9  PublicKey,
- 10  Signature,
- 11 } from 'snarkyjs';
- 12
- 13 const tokenSymbol = 'MYTKN';
- 14
- 15 export class BasicTokenContract extends SmartContract {
- 16   @state(UInt64) totalAmountInCirculation = State<UInt64>();
- 17
- 18   deploy(args: DeployArgs) {
- 19     super.deploy(args);
- 20
- 21     const permissionToEdit = Permissions.proof();
- 22
- 23     this.account.permissions.set({
- 24       ...Permissions.default(),
- 25       editState: permissionToEdit,
- 26       setTokenSymbol: permissionToEdit,
- 27       send: permissionToEdit,
- 28       receive: permissionToEdit,
- 29     });
- 30   }
- 31 }
-```
+### Imports and smart contract structure
 
-We include a single state variable, `totalAmountInCirculation`, which we will use to track how many tokens exist.
+First, bring in imports and set up the structure for the smart contract. 
 
-Next we will add an init method, and a method that mints tokens:
+The single state variable `totalAmountInCirculation` tracks how many tokens exist.
 
 ```ts
- 32   @method init() {
- 33     super.init();
- 34     this.account.tokenSymbol.set(tokenSymbol);
- 35     this.totalAmountInCirculation.set(UInt64.from(0));
- 36   }
- 37
- 38   @method mint(
- 39     receiverAddress: PublicKey,
- 40     amount: UInt64,
- 41     adminSignature: Signature
- 42   ) {
- 43     let totalAmountInCirculation = this.totalAmountInCirculation.get();
- 44     this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
- 45
- 46     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
- 47
- 48     adminSignature
- 49       .verify(
- 50         this.address,
- 51         amount.toFields().concat(receiverAddress.toFields())
- 52       )
- 53       .assertTrue();
- 54
- 55     this.token.mint({
- 56       address: receiverAddress,
- 57       amount,
- 58     });
- 59
- 60     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
- 61   }
+import {
+  SmartContract,
+  state,
+  State,
+  method,
+  DeployArgs,
+  Permissions,
+  UInt64,
+  PublicKey,
+  Signature,
+} from 'o1js';
+
+const tokenSymbol = 'MYTKN';
+
+export class BasicTokenContract extends SmartContract {
+  @state(UInt64) totalAmountInCirculation = State<UInt64>();
+
+  deploy(args: DeployArgs) {
+    super.deploy(args);
+
+    const permissionToEdit = Permissions.proof();
+
+    this.account.permissions.set({
+      ...Permissions.default(),
+      editState: permissionToEdit,
+      setTokenSymbol: permissionToEdit,
+      send: permissionToEdit,
+      receive: permissionToEdit,
+    });
+  }
 ```
 
-In `init`, we set our token symbol (in this case, MYTKN), and start tracking the amount in circulation by setting it to zero.
+### init() and mint() methods
 
-We also write a function to mint new tokens, and send them to a recipient. We check in this function that a signature has been provided by the zkApp account, so that not just anybody can call mint.
+Next, add an init method and a method that mints tokens. 
 
-In mint, we also track how many tokens are in existence.
+- Set the token symbol (MYTKN) in the `init()` method.
+- To start tracking the amount in circulation, set it to zero.
+- Write a function to mint new tokens and send them to a recipient. 
 
-Lastly, we will write a send function:
+  This function checks that a signature has been provided by the zkApp account, so that only the zkApp account can call the `mint()` method.
+
+- In the `mint()` method, track how many tokens are in existence.
 
 ```ts
- 63   @method sendTokens(
- 64     senderAddress: PublicKey,
- 65     receiverAddress: PublicKey,
- 66     amount: UInt64
- 67   ) {
- 68     this.token.send({
- 69       from: senderAddress,
- 70       to: receiverAddress,
- 71       amount,
- 72     });
- 73   }
+  @method init() {
+    super.init();
+    this.account.tokenSymbol.set(tokenSymbol);
+    this.totalAmountInCirculation.set(UInt64.zero);
+  }
+
+  @method mint(
+    receiverAddress: PublicKey,
+    amount: UInt64,
+    adminSignature: Signature
+  ) {
+    let totalAmountInCirculation = this.totalAmountInCirculation.get();
+    this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+
+    let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+
+    adminSignature
+      .verify(
+        this.address,
+        amount.toFields().concat(receiverAddress.toFields())
+      )
+      .assertTrue();
+
+    this.token.mint({
+      address: receiverAddress,
+      amount,
+    });
+
+    this.totalAmountInCirculation.set(newTotalAmountInCirculation);
+  }
 ```
 
-Holders of our token will call this method to send tokens to other Mina accounts.
+### Send function
 
-That completes a basic token! To see an example of interacting with this contract, see [here](https://github.com/es92/zkApp-examples/blob/f65d61e8884691d2cd62b59e1e21568bd6f119a7/08-custom-tokens/src/main.ts).
+Finally, write a send function. 
 
-And, to see an example of putting rules around a token, see this example of a token with a whitelist gating which public keys can interact with it [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/WhitelistedTokenContract.ts).
+- Holders of the MYTKN token call the `sendTokens()` method to send tokens to other Mina accounts.
 
-## Building zkApps that interact with Tokens.
 
-With zkApps, you can also build smart contracts that interact with tokens - say, swapping one token for another, or taking deposits of Mina tokens, etc.
+```ts
+  @method sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    amount: UInt64
+  ) {
+    this.token.send({
+      from: senderAddress,
+      to: receiverAddress,
+      amount,
+    });
+  }
+}
+```
 
-This will come in a future part of this tutorial. For now, see this example [here](https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/dex.ts) of a zkApp implementing an AMM-based DEX.
+That completes a review of a basic token. 
+
+## Examples
+
+To see an example of interacting with this contract, see [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/main.ts).
+
+To see an example of putting rules around a token, see this [example](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/WhitelistedTokenContract.ts) of a token with whitelist gating so that public keys can interact with it.
+
+## Building zkApps that interact with Tokens
+
+With zkApps, you can also build smart contracts that interact with tokens. For example, swapping one token for another or taking deposits of Mina tokens.
+
+For now, see this [example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/dex.ts) of a zkApp implementing an AMM-based DEX.
 
 ## Conclusion
 
-We have finished building a smart contract to manage a token, and shown how to build a smart contract that places custom rules over tokens!
+You have finished reviewing the steps to build a smart contract to manage a token. You learned how to build a smart contract that places custom rules over tokens.
 
-To learn more on tokens, see [the token docs](/zkapps/snarkyjs/custom-tokens).
+To learn more, see [Custom Token API](/zkapps/o1js/custom-tokens).
 
-Checkout [Tutorial 9](recursion) to learn how to use recursive ZKPs with SnarkyJS, to implement zkRollups, large computations, and more.
+Check out [Tutorial 9: Recursion](/zkapps/tutorials/recursion) to learn how to use recursive ZKPs with o1js, to implement zkRollups, large computations, and more.

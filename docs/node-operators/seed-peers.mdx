@@ -1,18 +1,19 @@
 ---
 title: Seed Peers
 hide_title: true
+description: How to run a seed peer. Seed Peers help connect to the network. 
+keywords:
+  - connect to network
+  - running a seed peer
+  - libp2p
+  - mina advanced generate-libp2p-keypair
+  - max-connection
 ---
 
-:::note
-
-A new version of Mina Docs is coming soon! This page will be rewritten.
-:::
 
 # Seed Peers
 
-Seed peers are our helpful allies that make it easy for the rest of us to connect to the network.
-
-Most nodes connect to the Mina network using seed peers that are run explicitly at seed nodes.
+Seed peers are our helpful allies that make it easy for the rest of us to connect to the network. Most nodes connect to the Mina network using seed peers that are run explicitly as seed nodes.
 
 ## Running a Seed Node
 
@@ -52,7 +53,7 @@ This address string can be used for folks to connect to you.
 
 ### Tuning your node for uptime and high connections
 
-Firstly, don't run block production or snark working on this node. Full stop. By doing neither of these things, the surface area for logic executing on this node reduces drastically.
+Firstly, don't run block production or SNARK working on this node. Full stop. By doing neither of these things, the surface area for logic executing on this node reduces drastically.
 
 It would be preferable to run with a larger `--max-connection` flag. At least 100. You'll still be able to seed with more than 100 nodes in total, it's just that you'll only be able to maintain connections with 100 at once.
 

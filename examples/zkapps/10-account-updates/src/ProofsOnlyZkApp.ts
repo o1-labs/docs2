@@ -9,7 +9,7 @@ import {
   DeployArgs,
   PublicKey,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();
@@ -17,7 +17,7 @@ export class ProofsOnlyZkApp extends SmartContract {
 
   deploy(args: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),

@@ -5,9 +5,8 @@ import {
   Permissions,
   PublicKey,
   SmartContract,
-  Token,
   UInt64,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { WrappedMina } from './WrappedMina.js';
 

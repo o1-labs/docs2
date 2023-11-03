@@ -1,7 +1,5 @@
 import {
   Mina,
-  isReady,
-  shutdown,
   UInt32,
   UInt64,
   Int64,
@@ -18,12 +16,10 @@ import {
   Struct,
   MerkleMap,
   Bool,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { LedgerContract } from './LedgerContract.js';
 import { BasicMerkleTreeContract } from './BasicMerkleTreeContract.js';
-
-await isReady;
 
 // --------------------------------------
 console.log('--------------------------------------');
@@ -389,7 +385,3 @@ const value = Field(50);
 map.set(key, value);
 
 console.log(`value for key ${key}: ${map.get(key)}`);
-
-// --------------------------------------
-
-await shutdown();

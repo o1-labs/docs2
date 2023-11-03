@@ -3,21 +3,18 @@ import { TokenPool, TokenPoolWMinaHolder } from './TokenPool.js';
 import {
   Mina,
   PrivateKey,
-  shutdown,
-  isReady,
   AccountUpdate,
   UInt64,
-  Token,
+  TokenId,
   PublicKey,
-} from 'snarkyjs';
+} from 'o1js';
 
 import util from 'util';
 
 // DEX reference code
-// https://github.com/o1-labs/snarkyjs/blob/main/src/examples/zkapps/dex/dex.ts
+// https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/dex.ts
 
 (async () => {
-  await isReady;
 
   let doProofs = false;
 
@@ -57,7 +54,7 @@ import util from 'util';
         if (tokenAddr == null) {
           return Mina.getBalance(addr).toBigInt();
         } else {
-          return Mina.getBalance(addr, Token.getId(tokenAddr)).toBigInt();
+          return Mina.getBalance(addr, TokenId.derive(tokenAddr)).toBigInt();
         }
       } catch (e) {
         return null;
@@ -204,5 +201,4 @@ import util from 'util';
   // TODO
   //    * Add a call to the TokenPool contract that does things that should be outside of scope with WrappedMina in the "approve" call (eg Minting inappropriately)
 
-  await shutdown();
 })();

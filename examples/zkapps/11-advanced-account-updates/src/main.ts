@@ -2,20 +2,15 @@ import { TokenUser, TokenHolder } from './TokenUser.js';
 import { MyToken } from './MyToken.js';
 
 import {
-  isReady,
-  shutdown,
   Mina,
   PrivateKey,
   AccountUpdate,
   UInt64,
-} from 'snarkyjs';
+} from 'o1js';
 
 import { showTxn, saveTxn } from 'mina-transaction-visualizer';
 
 await (async function main() {
-  await isReady;
-
-  console.log('SnarkyJS loaded');
 
   const proofsEnabled = true;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -115,9 +110,4 @@ await (async function main() {
 
   console.log('sent txn2');
 
-  // ----------------------------------------------------
-
-  console.log('Shutting down');
-
-  await shutdown();
 })();

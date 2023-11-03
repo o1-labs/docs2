@@ -151,7 +151,6 @@ describe('Add smart contract integration test', () => {
     txn;
 
   beforeAll(async () => {
-    await isReady;
     // setup local blockchain
     let Local = Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
@@ -170,10 +169,6 @@ describe('Add smart contract integration test', () => {
       zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
     });
     await txn.send();
-  });
-
-  afterAll(async () => {
-    setTimeout(shutdown, 0);
   });
 
   it('sets intitial state of num to 1', async () => {

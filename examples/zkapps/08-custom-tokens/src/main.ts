@@ -1,17 +1,12 @@
 import { BasicTokenContract } from './BasicTokenContract.js';
 import {
-  isReady,
-  shutdown,
   Mina,
   PrivateKey,
   AccountUpdate,
   UInt64,
   Signature,
-} from 'snarkyjs';
+} from 'o1js';
 
-await isReady;
-
-console.log('SnarkyJS loaded');
 
 const proofsEnabled = false;
 const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -24,7 +19,10 @@ const zkAppAddress = zkAppPrivateKey.toPublicKey();
 
 console.log('compiling...');
 
-let { verificationKey } = await BasicTokenContract.compile();
+let verificationKey: any;
+if (proofsEnabled) {
+  ({ verificationKey } = await BasicTokenContract.compile());
+}
 
 console.log('compiled');
 
@@ -40,19 +38,6 @@ await deploy_txn.prove();
 await deploy_txn.sign([deployerAccount]).send();
 
 console.log('deployed');
-
-// ----------------------------------------------------
-
-console.log('initializing...');
-
-const init_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
-  contract.init();
-});
-
-await init_txn.prove();
-await init_txn.sign([deployerAccount]).send();
-
-console.log('initialized');
 
 // ----------------------------------------------------
 
@@ -92,7 +77,7 @@ const send_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
   contract.sendTokens(zkAppAddress, deployerAccount.toPublicKey(), sendAmount);
 });
 await send_txn.prove();
-await send_txn.sign([deployerAccount]).send();
+await send_txn.sign([deployerAccount, zkAppPrivateKey]).send();
 
 console.log('sent');
 
@@ -116,9 +101,3 @@ console.log(
   'zkapp tokens:',
   Mina.getBalance(zkAppAddress, contract.token.id).value.toBigInt()
 );
-
-// ----------------------------------------------------
-
-console.log('Shutting down');
-
-await shutdown();

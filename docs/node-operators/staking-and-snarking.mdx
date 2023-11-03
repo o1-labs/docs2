@@ -1,45 +1,65 @@
 ---
-title: Staking & Snarking
+title: Staking and Snarking
 hide_title: true
+description: Mina Protocol provides block reward incentives to participate in block production through staking or delegation.
+keywords:
+  - proof of stake (PoS)
+  - mina protocol
+  - consensus mechanism
+  - mina consensus
+  - block production
+  - incentives
+  - staking
+  - delegation
+  - delegate
+  - block rewards
 ---
 
-:::note
+# Staking and Snarking
 
-A new version of Mina Docs is coming soon! This page will be rewritten.
-
-:::
-
-# Staking & Snarking
-
-Let's turn our attention to the other ways we can interact with the Mina network - namely, participating in consensus, and helping compress data by generating zk-SNARKs. By operating a node that helps secure the network, you can receive MINA for your efforts.
+You can interact with the Mina network by participating in consensus to produce a cryptographic proof for the data by generating zk-SNARKs. By operating a node that helps secure the network, you can receive MINA for your efforts. See [Staking Rewards on Mina](https://minaprotocol.com/blog/staking-rewards-on-mina).
 
 ## Participating in Consensus
 
-The Mina network is secured by [Proof-of-Stake consensus](../glossary#proof-of-stake) With this model of consensus, you don't need to have complex equipment like in Bitcoin mining. By simply having MINA in our wallet, we can choose to either stake it ourselves, or delegate it to another node. Let's first see how to stake MINA ourselves:
+The Mina network is secured by [proof of stake (PoS)](/glossary#proof-of-stake-pos) consensus. With this model of consensus, you don't need to have complex equipment like in Bitcoin mining. By simply having MINA in your wallet, you can choose to stake your MINA or delegate it to another node. 
 
-:::caution
+Mina is a public and decentralized blockchain that is open for anyone in the world to participate in actively or passively. You can help increase the security of the network by becoming nodes or block producers, or you can help lower the cost of transactions by becoming SNARK producers, or you can be both.
 
-To properly remain synced to the network and participate in consensus, it is important that your server is running some form of a [clock synchronization protocol](https://en.wikipedia.org/wiki/Clock_synchronization). We recommend using [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol), which is relatively easy to setup and comes already installed as a default service on many popular linux distros.
+## Staking MINA
 
-:::
+You can earn block rewards by participating in block production through staking. 
 
-### Staking MINA
+- Your new stake delegation comes into effect after a latency period of a 2-4 weeks.
+- You can undelegate at any time with no penalty. Submit a delegation transaction with the new staking service or back to yourself if you want to be a block producer. Updates are made after a delay of 1-2 epochs.
 
-We can try out staking with our MINA by issuing the following command:
+### Requirements
 
-    mina client set-staking --public-key $MINA_PUBLIC_KEY
+To properly remain synced to the network and participate in consensus, your server must run a [clock synchronization protocol](https://en.wikipedia.org/wiki/Clock_synchronization).
 
-Alternatively, you can restart the daemon with the `-block-producer-pubkey` flag:
+Network Time Protocol [(NTP)](https://en.wikipedia.org/wiki/Network_Time_Protocol) is the most common method for synchronizing computer clocks over a network. 
+
+To synchronize your server software clock with internet time servers, be sure to set up NTP. Many popular Linux distributions include NTP as a default service.
+
+## Set or change the block producer key
+
+Use the `mina client delegate-stake` subcommand to set or change the delegation of the block producer key. See
+ [Delegating MINA](#delegating-mina).
+
+Alternatively, to stake with your own node, start the daemon with the `-block-producer-pubkey` flag:
 
 ```
 args={["-block-producer-pubkey $MINA_PUBLIC_KEY"]} />
 ```
 
-We can always check which accounts we're currently staking with, by using the `mina client status` command:
+To check which accounts you are staking with:
 
-```
+```sh
 mina client status
+```
 
+The expected output is like:
+
+```text
 Mina daemon status
 -----------------------------------
 
@@ -67,82 +87,84 @@ Addresses and ports:        ...
 Libp2p PeerID:              ...
 ```
 
-The `Block producers running` field in the response above returns the number of accounts currently staking, with the associated key.
+where:
 
-:::caution
+- The `Block producers running` field returns the number of accounts currently staking, with the associated key.
 
-Keep in mind that if you are staking independently with funds in a account, you'll need to remain connected to the network at all times to successfully produce blocks. If you need to go offline frequently, it may be better to delegate your stake.
+When you are staking independently with funds in a account, you must remain connected to the network at all times to successfully produce blocks. If you need to go offline frequently, it might be better to delegate your stake to another node operator.
 
-:::
-
-If you'd like to send your coinbase to an account other than the one that is staking, you can use the `-coinbase-receiver` flag when you start your daemon. You can even point the coinbase at a cold wallet!
+If you want to send your coinbase to an account other than the one that is staking, use the `-coinbase-receiver` flag when you start your daemon. You can even point the coinbase at a cold wallet.
 
 ### Delegating MINA
 
-Delegating MINA is an alternative option to staking it directly, with the benefit of not having to maintain a node that is always connected to the network.
+Delegating MINA has the benefit of not having to maintain a node that is always connected to the network. See [Mina Foundation Delegation Program](/node-operators/foundation-delegation-program).
 
-First make sure you've unlocked your account:
+First, make sure you've unlocked your account:
 
-    mina account unlock --public-key $MINA_PUBLIC_KEY
+```sh
+mina account unlock --public-key $MINA_PUBLIC_KEY
+```
 
-And then run this command to delegate your stake:
+To delegate your stake:
 
-    mina client delegate-stake \
-        --receiver <DELEGATE-PUBLIC-KEY> \
-        --sender $MINA_PUBLIC_KEY \
-        --fee 0.1
+```
+mina client delegate-stake \
+    --receiver <DELEGATE-PUBLIC-KEY> \
+    --sender $MINA_PUBLIC_KEY \
+    --fee 0.1
+```
 
-The fields in this command:
+where:
 
-- The `receiver` flag is the public key of the receiver of your stake delegation
-- `sender` is the public key of the account from which you want to delegate
-- `fee` is the cost to send your transaction. It is paid to the network’s block producers.
-- Note there is no _amount_ parameter. Your full Mina balance will be delegated automatically.
+- `receiver` is the public key of the receiver of your stake delegation
+- `sender` is the public key of the account you want to delegate from
+- `fee` is the cost to send your transaction, the fee is paid to the network’s block producers
 
-You'll notice that this command looks suspiciously like a [payment](sending-a-payment) transaction. That's because a stake delegation is also a transaction! This is why we have to pay a small transaction fee in order to change this setting.
+There is no _amount_ parameter. Your full MINA balance is delegated automatically.
+
+This command looks like a [payment](/mina-protocol/sending-a-payment) transaction, because a stake delegation is also a transaction, which is why you have to pay a small transaction fee.
 
 Delegating your stake might be useful if you're interested in:
 
-- Running your own staking node that uses funds from a "cold wallet"
-- Delegating to a "staking pool" which will provide token payouts periodically
-- Or if you don't have enough tokens to make managing a block producer full-time worthwhile
+- Running your own staking node that uses funds from a cold wallet
+- Delegating to a staking pool that periodically provides token payouts
 
-:::note
-
-There is a latency period of a 2-4 weeks before your new stake delegation comes into effect
-
-:::
+You might decide to stake your MINA if you don't have enough MINA tokens to make managing a block producer full-time worthwhile.
 
 ## Compressing data in the Mina network
 
-The Mina protocol is unique in that it doesn't require nodes to maintain the full history of the blockchain like other cryptocurrency protocols. By recursively using cryptographic proofs, the Mina protocol effectively compresses the blockchain to constant size. We call this compression, because it reduces terabytes of data to a few kilobytes.
+The Mina protocol is unique because nodes are not required to maintain the full history of the blockchain like other cryptocurrency protocols. By recursively using cryptographic proofs, the Mina protocol effectively compresses the blockchain to constant size. This compression reduces terabytes of data to a few kilobytes.
 
-However, this isn't data encoding or compression in the traditional sense - rather nodes "compress" data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as "snark-workers" that generate zk-SNARKs for transactions that have been added to blocks.
+However, this isn't data encoding or compression in the traditional sense. Mina nodes _compress_ data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as [SNARK-workers](/glossary#snark-worker) that generate [zk-SNARKs](/glossary#zk-snark) for transactions that have been added to blocks.
 
-You can start a snark-worker using these commands:
+To start a SNARK-worker, run these commands:
 
-    mina client set-snark-work-fee <FEE>
-    mina client set-snark-worker --address $MINA_PUBLIC_KEY
+```sh
+mina client set-snark-work-fee <FEE>
+mina client set-snark-worker --address $MINA_PUBLIC_KEY
+```
 
-Alternatively, you can restart the daemon with these flags:
+If your daemon is already running, restart the daemon with these flags:
 
 ```
 args={["-run-snark-worker $MINA_PUBLIC_KEY", "-snark-worker-fee <fee>"]}
 ```
 
-As a snark worker, you get to share some of the block reward for each block your compressed transactions make it in to. The block producer is responsible for gathering compressed transactions before including them into a block, and will be incentivized by the protocol to reward snark-workers.
+As a SNARK-worker, you get to share some of the block rewards for each block that include your compressed transactions. The block producer is responsible for gathering compressed transactions before including them into a block and is incentivized by the protocol to reward SNARK-workers.
 
-Snark workers can be fairly compute intensive, so if you need to limit their CPU usage, you can specify the number of threads snark workers use with the `-snark-worker-parallelism` flag. This can be especially useful if you're trying to run a block producer and snark worker on the same machine and having issues producing blocks in time.
+SNARK-workers can be fairly compute intensive. If you need to limit their CPU usage, specify the number of threads that SNARK-workers use with the `-snark-worker-parallelism` flag. This can be especially useful if you're trying to run a block producer and SNARK-worker on the same machine and having issues producing blocks in time.
 
-That about covers the roles and responsibilities as a Mina node operator. Since Mina is a permissionless peer-to-peer network, everything is managed and run in a decentralized manner by nodes all over the world. Similarly, the Mina project is also distributed and permissionless to join. The code is all open source, and there is much work to be done, both technical and non-technical. To learn more about how you can get involved with Mina, please check out the [Contributing to Mina section](../participate/github)
+The roles and responsibilities of a Mina node operator offer you incentives to participate in block production through staking or delegation. Mina is a permissionless peer-to-peer network, so everything is managed and run in a decentralized manner by nodes all over the world. 
 
-### Using daemon.json to configure your mina daemon
+### Configure your mina daemon in daemon.json
 
-By creating a file at `~/.mina-config/daemon.json`, you can configure your mina daemon without needing to provide options on the commandline. This can be useful for running mina as a service as well as just for avoiding repetitive typing!
+By creating a file at `~/.mina-config/daemon.json`, you can configure your mina daemon without providing options on the command line. This can be useful for running mina as a service and to avoiding repetitive typing.
 
-Most of the options that can be passed to `mina daemon` on the commandline can also be provided as options in the config file. See `mina daemon -help` for more documentation of the options. Below is an example of usage of all the usable configuration parameters (in your file, you only need to specify the ones you want to change):
+Most of the options that can be passed to `mina daemon` on the command line can also be provided as options in the config file. See `mina daemon -help` for more details. 
 
-```
+The following example file includes usage of the configuration parameters:
+
+```json
 {
   "daemon": {
     "client-port": 1000,
@@ -165,3 +187,5 @@ Most of the options that can be passed to `mina daemon` on the commandline can a
   }
 }
 ```
+
+In the `~/.mina-config/daemon.json` file, include only the options you want to change.

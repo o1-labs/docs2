@@ -6,14 +6,14 @@ import {
   method,
   DeployArgs,
   Permissions,
-} from 'snarkyjs';
+} from 'o1js';
 
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
   deploy(args: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
     });
   }
