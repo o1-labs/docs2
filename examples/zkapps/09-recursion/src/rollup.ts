@@ -6,7 +6,7 @@ import {
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
   Bool,
   Circuit,
@@ -157,7 +157,7 @@ class RollupState extends Struct({
 
 // ===============================================================
 
-const Rollup = Experimental.ZkProgram({
+const Rollup = ZkProgram({
   publicInput: RollupState,
 
   methods: {
@@ -205,7 +205,7 @@ const Rollup = Experimental.ZkProgram({
   },
 });
 
-export let RollupProof_ = Experimental.ZkProgram.Proof(Rollup);
+export let RollupProof_ = ZkProgram.Proof(Rollup);
 export class RollupProof extends RollupProof_ {}
 
 // ===============================================================
