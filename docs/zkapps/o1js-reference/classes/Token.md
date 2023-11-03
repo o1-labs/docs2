@@ -39,7 +39,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:635](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L635)
+[lib/account_update.ts:632](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L632)
 
 ## Properties
 
@@ -49,7 +49,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:632](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L632)
+[lib/account_update.ts:629](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L629)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:633](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L633)
+[lib/account_update.ts:630](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L630)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:634](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L634)
+[lib/account_update.ts:631](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L631)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:626](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L626)
+[lib/account_update.ts:623](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L623)
 
 ## Methods
 
@@ -118,4 +118,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:628](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/account_update.ts#L628)
+[lib/account_update.ts:625](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L625)

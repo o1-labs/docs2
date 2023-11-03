@@ -82,7 +82,7 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 
 #### Defined in
 
-[lib/int.ts:785](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L785)
+[lib/int.ts:788](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L788)
 
 ## Properties
 
@@ -96,7 +96,7 @@ BalanceChange.magnitude
 
 #### Defined in
 
-[lib/int.ts:762](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L762)
+[lib/int.ts:765](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L765)
 
 ___
 
@@ -110,7 +110,7 @@ BalanceChange.sgn
 
 #### Defined in
 
-[lib/int.ts:763](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L763)
+[lib/int.ts:766](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L766)
 
 ## Accessors
 
@@ -126,7 +126,7 @@ Static method to create a [Int64](Int64.md) with value `-1`.
 
 #### Defined in
 
-[lib/int.ts:860](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L860)
+[lib/int.ts:863](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L863)
 
 ___
 
@@ -142,7 +142,7 @@ Static method to create a [Int64](Int64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:854](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L854)
+[lib/int.ts:857](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L857)
 
 ___
 
@@ -158,7 +158,7 @@ Static method to create a [Int64](Int64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:848](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L848)
+[lib/int.ts:851](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L851)
 
 ## Methods
 
@@ -180,7 +180,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:894](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L894)
+[lib/int.ts:897](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L897)
 
 ___
 
@@ -207,7 +207,7 @@ Asserts that two values are equal.
 
 #### Defined in
 
-[lib/int.ts:948](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L948)
+[lib/int.ts:951](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L951)
 
 ___
 
@@ -232,7 +232,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:919](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L919)
+[lib/int.ts:922](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L922)
 
 ___
 
@@ -258,7 +258,7 @@ Checks if two values are equal.
 
 #### Defined in
 
-[lib/int.ts:941](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L941)
+[lib/int.ts:944](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L944)
 
 ___
 
@@ -276,7 +276,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:837](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L837)
+[lib/int.ts:840](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L840)
 
 ___
 
@@ -292,7 +292,7 @@ Checks if the value is postive.
 
 #### Defined in
 
-[lib/int.ts:958](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L958)
+[lib/int.ts:961](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L961)
 
 ___
 
@@ -317,7 +317,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:931](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L931)
+[lib/int.ts:934](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L934)
 
 ___
 
@@ -339,7 +339,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:908](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L908)
+[lib/int.ts:911](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L911)
 
 ___
 
@@ -357,7 +357,7 @@ Negates the value.
 
 #### Defined in
 
-[lib/int.ts:887](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L887)
+[lib/int.ts:890](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L890)
 
 ___
 
@@ -379,7 +379,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:901](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L901)
+[lib/int.ts:904](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L904)
 
 ___
 
@@ -397,7 +397,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L152)
 
 ___
 
@@ -413,7 +413,7 @@ Returns the [Field](../modules.md#field-1) value.
 
 #### Defined in
 
-[lib/int.ts:867](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L867)
+[lib/int.ts:870](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L870)
 
 ___
 
@@ -431,7 +431,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L144)
 
 ___
 
@@ -449,7 +449,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L148)
 
 ___
 
@@ -465,7 +465,7 @@ Turns the [Int64](Int64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:832](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L832)
+[lib/int.ts:835](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L835)
 
 ___
 
@@ -496,7 +496,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L193)
+[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L193)
 
 ___
 
@@ -520,7 +520,7 @@ Check the range if the argument is a constant.
 
 #### Defined in
 
-[lib/int.ts:822](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L822)
+[lib/int.ts:825](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L825)
 
 ___
 
@@ -542,7 +542,7 @@ Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-1
 
 #### Defined in
 
-[lib/int.ts:873](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L873)
+[lib/int.ts:876](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L876)
 
 ___
 
@@ -566,7 +566,7 @@ Does check if the [Field](../modules.md#field-1) is within range.
 
 #### Defined in
 
-[lib/int.ts:794](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L794)
+[lib/int.ts:797](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L797)
 
 ___
 
@@ -597,7 +597,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L168)
 
 ___
 
@@ -628,7 +628,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L226)
+[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L226)
 
 ___
 
@@ -659,7 +659,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L89)
 
 ___
 
@@ -683,7 +683,7 @@ Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
 #### Defined in
 
-[lib/int.ts:812](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/int.ts#L812)
+[lib/int.ts:815](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/int.ts#L815)
 
 ___
 
@@ -701,7 +701,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L96)
 
 ___
 
@@ -719,7 +719,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L118)
 
 ___
 
@@ -750,7 +750,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L207)
 
 ___
 
@@ -781,7 +781,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L101)
 
 ___
 
@@ -812,7 +812,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L122)
+[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L122)
 
 ___
 
@@ -843,4 +843,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit_value.ts#L215)
+[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit_value.ts#L215)

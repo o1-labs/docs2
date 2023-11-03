@@ -6,6 +6,7 @@
 
 ### Type Aliases
 
+- [Cache](Pickles.md#cache)
 - [Proof](Pickles.md#proof)
 - [Prover](Pickles.md#prover)
 - [Rule](Pickles.md#rule)
@@ -13,13 +14,25 @@
 
 ## Type Aliases
 
+### Cache
+
+Ƭ **Cache**: [\_: 0, read: Function, write: Function, canWrite: MlBool]
+
+Type to configure how Pickles should cache prover keys
+
+#### Defined in
+
+[snarky.d.ts:771](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L771)
+
+___
+
 ### Proof
 
 Ƭ **Proof**: `unknown`
 
 #### Defined in
 
-[snarky.d.ts:499](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L499)
+[snarky.d.ts:742](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L742)
 
 ___
 
@@ -44,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:510](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L510)
+[snarky.d.ts:782](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L782)
 
 ___
 
@@ -52,17 +65,20 @@ ___
 
 Ƭ **Rule**: `Object`
 
+A "rule" is a circuit plus some metadata for `Pickles.compile`
+
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `identifier` | `string` |
-| `main` | (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => { `previousStatements`: `MlArray`<[`Statement`](Pickles.md#statement)<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`<[`BoolVar`](../modules.md#boolvar)\>  } |
-| `proofsToVerify` | `MlArray`<{ `isSelf`: ``true``  } \| { `isSelf`: ``false`` ; `tag`: `unknown`  }\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `featureFlags` | [`MlFeatureFlags`](../modules.md#mlfeatureflags) | Feature flags which enable certain custom gates |
+| `identifier` | `string` | - |
+| `main` | (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => { `previousStatements`: `MlArray`<[`Statement`](Pickles.md#statement)<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`<[`BoolVar`](../modules.md#boolvar)\>  } | The main circuit functions |
+| `proofsToVerify` | `MlArray`<{ `isSelf`: ``true``  } \| { `isSelf`: ``false`` ; `tag`: `unknown`  }\> | Description of previous proofs to verify in this rule |
 
 #### Defined in
 
-[snarky.d.ts:501](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L501)
+[snarky.d.ts:748](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L748)
 
 ___
 
@@ -78,4 +94,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:500](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L500)
+[snarky.d.ts:743](https://github.com/o1-labs/o1js/blob/56975fc/src/snarky.d.ts#L743)

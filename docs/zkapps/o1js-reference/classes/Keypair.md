@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:144](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L144)
+[lib/circuit.ts:144](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit.ts#L144)
 
 ## Properties
 
@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:142](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L142)
+[lib/circuit.ts:142](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit.ts#L142)
 
 ## Methods
 
@@ -65,7 +65,7 @@ const json = MyProvable.witnessFromKeypair(keypair);
 
 #### Defined in
 
-[lib/circuit.ts:163](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L163)
+[lib/circuit.ts:163](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit.ts#L163)
 
 ___
 
@@ -79,4 +79,4 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:148](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/circuit.ts#L148)
+[lib/circuit.ts:148](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/circuit.ts#L148)

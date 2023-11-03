@@ -97,6 +97,7 @@ the value to convert to a [Field](Field.md)
 - [fromJSON](Field.md#fromjson)
 - [random](Field.md#random)
 - [readBytes](Field.md#readbytes)
+- [sizeInBits](Field.md#sizeinbits)
 - [sizeInBytes](Field.md#sizeinbytes)
 - [sizeInFields](Field.md#sizeinfields)
 - [toAuxiliary](Field.md#toauxiliary-1)
@@ -117,11 +118,11 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
+| `x` | `string` \| `number` \| `bigint` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`FieldConst`](../modules.md#fieldconst-1) \| [`Field`](Field.md) |
 
 #### Defined in
 
-[lib/field.ts:143](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L143)
+[lib/field.ts:141](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L141)
 
 ## Properties
 
@@ -131,7 +132,7 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 #### Defined in
 
-[lib/field.ts:132](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L132)
+[lib/field.ts:130](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L130)
 
 ___
 
@@ -144,7 +145,7 @@ Order of the [Field](Field.md) is 2894802230932904885589274625217197696336305648
 
 #### Defined in
 
-[lib/field.ts:138](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L138)
+[lib/field.ts:136](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L136)
 
 ## Methods
 
@@ -169,7 +170,7 @@ Order of the [Field](Field.md) is 2894802230932904885589274625217197696336305648
 
 #### Defined in
 
-[lib/field.ts:656](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L656)
+[lib/field.ts:651](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L651)
 
 ___
 
@@ -189,7 +190,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:203](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L203)
+[lib/field.ts:202](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L202)
 
 ___
 
@@ -237,7 +238,7 @@ A [Field](Field.md) element equivalent to the modular addition of the two value.
 
 #### Defined in
 
-[lib/field.ts:311](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L311)
+[lib/field.ts:310](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L310)
 
 ___
 
@@ -262,7 +263,7 @@ Calling this function is equivalent to `Bool.or(Field(...).equals(1), Field(...)
 
 #### Defined in
 
-[lib/field.ts:920](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L920)
+[lib/field.ts:910](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L910)
 
 ___
 
@@ -289,7 +290,7 @@ See [equals](Field.md#equals) for more details.
 
 #### Defined in
 
-[lib/field.ts:269](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L269)
+[lib/field.ts:268](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L268)
 
 ___
 
@@ -319,7 +320,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:861](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L861)
+[lib/field.ts:851](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L851)
 
 ___
 
@@ -349,7 +350,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:878](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L878)
+[lib/field.ts:868](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L868)
 
 ___
 
@@ -379,7 +380,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:805](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L805)
+[lib/field.ts:795](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L795)
 
 ___
 
@@ -409,7 +410,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:833](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L833)
+[lib/field.ts:823](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L823)
 
 ___
 
@@ -440,7 +441,7 @@ x.assertNotEquals(0, "expect x to be non-zero");
 
 #### Defined in
 
-[lib/field.ts:895](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L895)
+[lib/field.ts:885](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L885)
 
 ___
 
@@ -491,7 +492,7 @@ A [Field](Field.md) element equivalent to the modular division of the two value.
 
 #### Defined in
 
-[lib/field.ts:524](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L524)
+[lib/field.ts:523](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L523)
 
 ___
 
@@ -522,7 +523,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is equal another "field
 
 #### Defined in
 
-[lib/field.ts:636](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L636)
+[lib/field.ts:636](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L636)
 
 ___
 
@@ -564,7 +565,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is greater than another
 
 #### Defined in
 
-[lib/field.ts:759](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L759)
+[lib/field.ts:751](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L751)
 
 ___
 
@@ -606,7 +607,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is greater than or equa
 
 #### Defined in
 
-[lib/field.ts:787](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L787)
+[lib/field.ts:778](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L778)
 
 ___
 
@@ -637,7 +638,7 @@ A [Field](Field.md) element that is equivalent to one divided by this element.
 
 #### Defined in
 
-[lib/field.ts:476](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L476)
+[lib/field.ts:475](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L475)
 
 ___
 
@@ -670,7 +671,7 @@ A `boolean` showing if this [Field](Field.md) is a constant or not.
 
 #### Defined in
 
-[lib/field.ts:199](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L199)
+[lib/field.ts:198](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L198)
 
 ___
 
@@ -698,7 +699,7 @@ b.isEven().assertTrue(); // does not throw, as expected!
 
 #### Defined in
 
-[lib/field.ts:393](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L393)
+[lib/field.ts:392](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L392)
 
 ___
 
@@ -716,7 +717,7 @@ use `x.equals(0)` which is equivalent
 
 #### Defined in
 
-[lib/field.ts:596](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L596)
+[lib/field.ts:596](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L596)
 
 ___
 
@@ -758,7 +759,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is less than another "f
 
 #### Defined in
 
-[lib/field.ts:699](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L699)
+[lib/field.ts:691](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L691)
 
 ___
 
@@ -800,7 +801,7 @@ A [Bool](Bool.md) representing if this [Field](Field.md) is less than or equal a
 
 #### Defined in
 
-[lib/field.ts:729](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L729)
+[lib/field.ts:721](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L721)
 
 ___
 
@@ -833,7 +834,7 @@ A [Field](Field.md) element equivalent to the modular difference of the two valu
 
 #### Defined in
 
-[lib/field.ts:437](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L437)
+[lib/field.ts:436](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L436)
 
 ___
 
@@ -867,7 +868,7 @@ A [Field](Field.md) element that is equivalent to the element multiplied by -1.
 
 #### Defined in
 
-[lib/field.ts:339](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L339)
+[lib/field.ts:338](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L338)
 
 ___
 
@@ -896,7 +897,7 @@ A [Field](Field.md) element that is equal to the `length` of this [Field](Field.
 
 #### Defined in
 
-[lib/field.ts:1012](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1012)
+[lib/field.ts:1002](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1002)
 
 ___
 
@@ -920,7 +921,7 @@ A [Field](Field.md) element that is equal to the result of AST that was previous
 
 #### Defined in
 
-[lib/field.ts:1040](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1040)
+[lib/field.ts:1030](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1030)
 
 ___
 
@@ -951,7 +952,7 @@ A [Field](Field.md) element equivalent to the square root of the [Field](Field.m
 
 #### Defined in
 
-[lib/field.ts:574](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L574)
+[lib/field.ts:574](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L574)
 
 ___
 
@@ -980,7 +981,7 @@ A [Field](Field.md) element equivalent to the multiplication of the [Field](Fiel
 
 #### Defined in
 
-[lib/field.ts:544](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L544)
+[lib/field.ts:544](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L544)
 
 ___
 
@@ -1026,7 +1027,7 @@ A [Field](Field.md) element equivalent to the modular difference of the two valu
 
 #### Defined in
 
-[lib/field.ts:375](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L375)
+[lib/field.ts:374](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L374)
 
 ___
 
@@ -1044,7 +1045,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1148](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1148)
+[lib/field.ts:1136](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1136)
 
 ___
 
@@ -1071,7 +1072,7 @@ A bigint equivalent to the bigint representation of the Field.
 
 #### Defined in
 
-[lib/field.ts:237](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L237)
+[lib/field.ts:236](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L236)
 
 ___
 
@@ -1101,7 +1102,7 @@ An array of [Bool](Bool.md) element representing little endian binary representa
 
 #### Defined in
 
-[lib/field.ts:957](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L957)
+[lib/field.ts:947](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L947)
 
 ___
 
@@ -1128,7 +1129,7 @@ A constant [Field](Field.md) element equivalent to this [Field](Field.md) elemen
 
 #### Defined in
 
-[lib/field.ts:220](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L220)
+[lib/field.ts:219](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L219)
 
 ___
 
@@ -1148,7 +1149,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1139](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1139)
+[lib/field.ts:1127](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1127)
 
 ___
 
@@ -1175,7 +1176,7 @@ A string equivalent to the JSON representation of the [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1167](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1167)
+[lib/field.ts:1155](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1155)
 
 ___
 
@@ -1202,7 +1203,7 @@ A string equivalent to the string representation of the Field.
 
 #### Defined in
 
-[lib/field.ts:255](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L255)
+[lib/field.ts:254](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L254)
 
 ___
 
@@ -1223,7 +1224,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:935](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L935)
+[lib/field.ts:925](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L925)
 
 ___
 
@@ -1235,7 +1236,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
+| `x` | `string` \| `number` \| `bigint` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`FieldConst`](../modules.md#fieldconst-1) \| [`Field`](Field.md) |
 
 #### Returns
 
@@ -1243,13 +1244,13 @@ x is Field
 
 #### Defined in
 
-[lib/field.ts:163](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L163)
+[lib/field.ts:162](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L162)
 
 ___
 
 ### #toConst
 
-▸ `Static` `Private` **#toConst**(`x`): `Uint8Array`
+▸ `Static` `Private` **#toConst**(`x`): [`FieldConst`](../modules.md#fieldconst-1)
 
 #### Parameters
 
@@ -1259,11 +1260,11 @@ ___
 
 #### Returns
 
-`Uint8Array`
+[`FieldConst`](../modules.md#fieldconst-1)
 
 #### Defined in
 
-[lib/field.ts:168](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L168)
+[lib/field.ts:167](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L167)
 
 ___
 
@@ -1283,7 +1284,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:172](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L172)
+[lib/field.ts:171](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L171)
 
 ___
 
@@ -1301,7 +1302,7 @@ As any field element can be a [Field](Field.md), this function does not create a
 
 #### Defined in
 
-[lib/field.ts:1130](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1130)
+[lib/field.ts:1118](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1118)
 
 ___
 
@@ -1321,7 +1322,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:176](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L176)
+[lib/field.ts:175](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L175)
 
 ___
 
@@ -1349,7 +1350,7 @@ A [Field](Field.md) element matching the [little endian binary representation](h
 
 #### Defined in
 
-[lib/field.ts:983](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L983)
+[lib/field.ts:973](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L973)
 
 ___
 
@@ -1376,7 +1377,7 @@ A new [Field](Field.md) element created using the [little-endian](https://en.wik
 
 #### Defined in
 
-[lib/field.ts:1254](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1254)
+[lib/field.ts:1242](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1242)
 
 ___
 
@@ -1404,7 +1405,7 @@ The first [Field](Field.md) element of the given array.
 
 #### Defined in
 
-[lib/field.ts:1119](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1119)
+[lib/field.ts:1107](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1107)
 
 ___
 
@@ -1430,7 +1431,7 @@ A [Field](Field.md) coerced from the given JSON string.
 
 #### Defined in
 
-[lib/field.ts:1199](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1199)
+[lib/field.ts:1187](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1187)
 
 ___
 
@@ -1454,7 +1455,7 @@ A random [Field](Field.md) element.
 
 #### Defined in
 
-[lib/field.ts:1058](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1058)
+[lib/field.ts:1046](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1046)
 
 ___
 
@@ -1485,7 +1486,27 @@ Part of the `Binable` interface.
 
 #### Defined in
 
-[lib/field.ts:1237](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1237)
+[lib/field.ts:1225](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1225)
+
+___
+
+### sizeInBits
+
+▸ `Static` **sizeInBits**(): `number`
+
+**Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
+
+As all [Field](Field.md) elements have 255 bits, this function returns 255.
+
+#### Returns
+
+`number`
+
+The size of a [Field](Field.md) element in bits - 255.
+
+#### Defined in
+
+[lib/field.ts:1264](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1264)
 
 ___
 
@@ -1495,17 +1516,17 @@ ___
 
 **Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
 
-As all [Field](Field.md) elements have 31 bits, this function returns 31.
+As all [Field](Field.md) elements have 32 bytes, this function returns 32.
 
 #### Returns
 
 `number`
 
-The size of a [Field](Field.md) element - 31.
+The size of a [Field](Field.md) element - 32.
 
 #### Defined in
 
-[lib/field.ts:1265](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1265)
+[lib/field.ts:1253](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1253)
 
 ___
 
@@ -1532,7 +1553,7 @@ A number representing the size of the [Field](Field.md) type in terms of [Field]
 
 #### Defined in
 
-[lib/field.ts:1104](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1104)
+[lib/field.ts:1092](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1092)
 
 ___
 
@@ -1550,7 +1571,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1087](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1087)
+[lib/field.ts:1075](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1075)
 
 ___
 
@@ -1575,7 +1596,7 @@ An array of digits equal to the [little-endian](https://en.wikipedia.org/wiki/En
 
 #### Defined in
 
-[lib/field.ts:1228](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1228)
+[lib/field.ts:1216](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1216)
 
 ___
 
@@ -1602,7 +1623,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1076](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1076)
+[lib/field.ts:1064](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1064)
 
 ___
 
@@ -1632,7 +1653,7 @@ An object where the `fields` key is a [Field](Field.md) array of length 1 create
 
 #### Defined in
 
-[lib/field.ts:1213](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1213)
+[lib/field.ts:1201](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1201)
 
 ___
 
@@ -1665,4 +1686,4 @@ A string equivalent to the JSON representation of the given [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1186](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1186)
+[lib/field.ts:1174](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/field.ts#L1174)

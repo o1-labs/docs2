@@ -48,20 +48,8 @@ Open up `main.ts` in a text editor. You can find the complete source for this [h
 To start, let's add the imports and o1js setup:
 
 ```ts
-  1 import { Square } from './Square.js';
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
-  3
-  4 await isReady;
-  5
-  6 console.log('o1js loaded');
-  7
-  8 // ----------------------------------------------------
-  9
- 10 // ----------------------------------------------------
- 11
- 12 console.log('Shutting down');
- 13
- 14 await shutdown();
+ 1 import { Square } from './Square.js';
+ 2 import { Mina, PrivateKey } from 'o1js';
 ```
 
 So far nothing new - but now, let's add connecting to Berkeley:
@@ -100,7 +88,7 @@ Now, to finish setting up our code, let's add to our `main.ts`:
 
 ```ts
 ...
-  2 import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
+  2 import { Mina, PrivateKey } from 'o1js';
   3
   4 import fs from 'fs';
   5
@@ -147,7 +135,6 @@ In main, we will import and use the `loopUntilAccountExists()` function from `ut
   4 import fs from 'fs';
   5 import { loopUntilAccountExists } from './utils.js';
   6
-  7 await isReady;
 ...
  33 // ----------------------------------------------------
  34

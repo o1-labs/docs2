@@ -6,10 +6,6 @@ import {
   AccountUpdate,
 } from 'o1js';
 
-await isReady;
-
-console.log('o1js loaded');
-
 const useProof = false;
 
 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
