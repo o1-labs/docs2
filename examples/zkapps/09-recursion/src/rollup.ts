@@ -1,18 +1,8 @@
 import {
-  isReady,
-  shutdown,
   Field,
-  Mina,
-  PrivateKey,
-  AccountUpdate,
   SelfProof,
-  Experimental,
   Struct,
-  Bool,
-  Circuit,
-  Poseidon,
   MerkleMap,
-  MerkleTree,
   MerkleWitness,
   MerkleMapWitness,
   verify,
@@ -23,6 +13,7 @@ import {
   DeployArgs,
   Proof,
   Permissions,
+  ZkProgram
 } from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -30,7 +21,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 // ===============================================================
 
 async function main() {
-  await isReady;
 
   console.log('o1js loaded');
 
@@ -111,8 +101,6 @@ async function main() {
   console.log('ok', ok);
 
   console.log('Shutting down');
-
-  await shutdown();
 };
 
 // ===============================================================
@@ -157,7 +145,8 @@ class RollupState extends Struct({
 
 // ===============================================================
 
-const Rollup = Experimental.ZkProgram({
+const Rollup = ZkProgram({
+  name: 'rollup',
   publicInput: RollupState,
 
   methods: {
@@ -205,7 +194,7 @@ const Rollup = Experimental.ZkProgram({
   },
 });
 
-export let RollupProof_ = Experimental.ZkProgram.Proof(Rollup);
+export let RollupProof_ = ZkProgram.Proof(Rollup);
 export class RollupProof extends RollupProof_ {}
 
 // ===============================================================
