@@ -30,7 +30,7 @@ Get started setting up a Mina node, learn how to generate a keypair for use with
 
 This documentation is for the **Mainnet** release.
 
-## Requirements
+## Block Producer Requirements
 
 **Software**: Supported environments include macOS, Linux (Debian 10, 11, 12 and Ubuntu 20.04 LTS), and any host machine with Docker. 
 
@@ -42,8 +42,23 @@ Running a block producer on the Mina network requires at least:
 
 - 8-core processor
 - 16 GB of RAM
+- 20 GB of free storage (at least)
 
-More RAM is required to run a SNARK worker node at the same time as a block producer.
+**Network**: At least 1 Mbps connection
+
+## Snark Work Requirements
+
+**Software**: Supported environments include macOS, Linux (Debian 10, 11, 12 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+
+**Processor**: Only AMD64 CPU architecture is supported.
+
+**Hardware**: Sending and receiving MINA does not require any special hardware. 
+
+Running a snark worker on the Mina network requires at least:
+
+- 16-core processor with 32 threads
+- 16 GB of RAM
+- 20 GB of free storage (at least)
 
 **Network**: At least 1 Mbps connection
 
