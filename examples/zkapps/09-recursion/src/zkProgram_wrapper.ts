@@ -6,7 +6,7 @@ import {
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
   Bool,
   Circuit,
@@ -63,7 +63,7 @@ const ZkProgram = (config : any) => {
     }
   });
 
-  const originalZkProgram = Experimental.ZkProgram(zkProgramConfig);
+  const originalZkProgram = ZkProgram(zkProgramConfig);
 
   const zkProgram: any = {};
 

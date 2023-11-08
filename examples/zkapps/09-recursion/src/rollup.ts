@@ -1,6 +1,7 @@
 import {
   Field,
   SelfProof,
+  ZkProgram,
   Struct,
   MerkleMap,
   MerkleWitness,

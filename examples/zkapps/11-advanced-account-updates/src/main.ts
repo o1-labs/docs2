@@ -2,8 +2,6 @@ import { TokenUser, TokenHolder } from './TokenUser.js';
 import { MyToken } from './MyToken.js';
 
 import {
-  isReady,
-  shutdown,
   Mina,
   PrivateKey,
   AccountUpdate,
@@ -13,9 +11,6 @@ import {
 import { showTxn, saveTxn } from 'mina-transaction-visualizer';
 
 await (async function main() {
-  await isReady;
-
-  console.log('o1js loaded');
 
   const proofsEnabled = true;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -115,9 +110,4 @@ await (async function main() {
 
   console.log('sent txn2');
 
-  // ----------------------------------------------------
-
-  console.log('Shutting down');
-
-  await shutdown();
 })();

@@ -7,7 +7,7 @@ import {
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
   Bool,
   Circuit,
@@ -53,7 +53,7 @@ async function main() {
   await shutdown();
 }
 
-const Add = Experimental.ZkProgram({
+const Add = ZkProgram({
   publicInput: Field,
 
   methods: {

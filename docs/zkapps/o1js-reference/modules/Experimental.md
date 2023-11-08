@@ -17,7 +17,6 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 ### Functions
 
-- [ZkProgram](Experimental.md#zkprogram)
 - [createChildAccountUpdate](Experimental.md#createchildaccountupdate)
 - [memoizeWitness](Experimental.md#memoizewitness)
 
@@ -35,9 +34,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:107](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L107)
+[index.ts:108](https://github.com/o1-labs/o1js/blob/56975fc/src/index.ts#L108)
 
-[index.ts:108](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L108)
+[index.ts:109](https://github.com/o1-labs/o1js/blob/56975fc/src/index.ts#L109)
 
 ## Variables
 
@@ -47,9 +46,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:107](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L107)
+[index.ts:108](https://github.com/o1-labs/o1js/blob/56975fc/src/index.ts#L108)
 
-[index.ts:108](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L108)
+[index.ts:109](https://github.com/o1-labs/o1js/blob/56975fc/src/index.ts#L109)
 
 ## Functions
 
@@ -81,7 +80,7 @@ The old `Experimental.ZkProgram` API has been deprecated in favor of the new `Zk
 
 #### Defined in
 
-[lib/proof_system.ts:1029](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L1029)
+[lib/proof_system.ts:1064](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/proof_system.ts#L1064)
 
 ___
 
@@ -103,7 +102,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1703](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1703)
+[lib/account_update.ts:1703](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/account_update.ts#L1703)
 
 ___
 
@@ -133,4 +132,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L456)
+[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/provable.ts#L456)

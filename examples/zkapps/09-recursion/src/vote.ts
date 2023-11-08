@@ -7,7 +7,7 @@ import {
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
   Bool,
   Circuit,
@@ -144,7 +144,7 @@ class VoteState extends Struct({
 
 // ===============================================================
 
-const Vote = Experimental.ZkProgram({
+const Vote = ZkProgram({
   publicInput: VoteState,
 
   methods: {
