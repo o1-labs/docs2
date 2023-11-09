@@ -30,7 +30,7 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 #### Defined in
 
-[lib/encryption.ts:45](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/encryption.ts#L45)
+[lib/encryption.ts:45](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/encryption.ts#L45)
 
 ___
 
@@ -58,4 +58,4 @@ Public Key Encryption, using a given array of [Field](../modules.md#field-1) ele
 
 #### Defined in
 
-[lib/encryption.ts:16](https://github.com/o1-labs/o1js/blob/56975fc/src/lib/encryption.ts#L16)
+[lib/encryption.ts:16](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/encryption.ts#L16)
