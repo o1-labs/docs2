@@ -65,7 +65,7 @@ For instance, calling check function on the type [Bool](../classes/Bool.md) asse
 
 #### Defined in
 
-[snarky.d.ts:142](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L142)
+[snarky.d.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L156)
 
 ___
 
@@ -99,7 +99,7 @@ An element of type `T` generated from the given provable data.
 
 #### Defined in
 
-[snarky.d.ts:123](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L123)
+[snarky.d.ts:137](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L137)
 
 ___
 
@@ -132,7 +132,7 @@ An empty array, as any element of the interface `ProvablePure<T>` includes no "a
 
 #### Defined in
 
-[snarky.d.ts:112](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L112)
+[snarky.d.ts:126](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L126)
 
 ___
 
@@ -164,7 +164,7 @@ A [Field](../classes/Field.md) array describing how this `T` element is made up 
 
 #### Defined in
 
-[snarky.d.ts:102](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L102)
+[snarky.d.ts:116](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L116)
 
 ## Methods
 
@@ -188,4 +188,4 @@ A `number` representing the size of the `T` type in terms of [Field](../classes/
 
 #### Defined in
 
-[snarky.d.ts:132](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L132)
+[snarky.d.ts:146](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L146)
