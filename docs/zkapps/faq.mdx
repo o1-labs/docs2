@@ -95,3 +95,66 @@ This example fails for two reasons:
 
 1. `n.toString()` can't be used in circuit code at all. It throws an error during `SmartContract.compile()` because during `compile()`, variables like `n` don't have any JS values attached to them; they represent abstract variables used to build up an abstract arithmetic circuit. So, in general, you can't use any of the methods that read out the JS value of your Field elements: `Field.toString()`, `Field.toBigInt()`, `Bool.toBoolean()` etc.
 2. More subtly, your methods must create the same constraints every time because a proof cannot be verified against a verification key for a differing set of constraints. The code above adds `x.equals(y).assertFalse()` _on condition of_ the value of `n` which leads to constraints varying between executions of the proof.
+
+### Why is the variable currentState set to a value retrieved from the blockchain and then immediately compared to that value?
+
+As represented in the tutorial example code:
+
+```TypeScript
+const currentState = this.num.get();
+
+this.num.assertEquals(currentState);
+```
+
+- The first line of code executes before the proof is generated. 
+- The second line of code creates a precondition that is checked when the proof is sent to the blockchain to be verified. 
+
+This ensures that the transaction fails if the value of the field in question has changed.
+
+### Can I pass hex values into Fields?
+
+Yes, just pass in the appropriate BigInt literal.
+
+`Field(0x1337)`
+
+### Can I pass arguments to the SmartContract init method?
+
+The best practice is no. To test something with more than one initialization state, you can set the state by passing arguments to another user-defined method.
+
+### Can I use TypeScript enums?
+
+You can try! We experimented with this, so it might generate unconstrained functionality.
+
+### How can I use the Field type?
+
+Are there specific reasons I want to specify the `Field` type? 
+
+All provable types are built using the type `Field`. For efficiency, use `Field` only when you do not need to take advantage of the properties of the other provable types in o1js.
+
+### What does the @method decorator do?
+
+It allows the method to be invoked by a user interacting with the smart contract. You can check out the compiled JavaScript in `./build/src` to see exactly what's going on.
+
+### How can you enforce that an account update must be signed by the account owner?
+
+Use the `requireSignature` command. See the [requireSignature](/zkapps/o1js-reference/classes/SmartContract#requiresignature) Method reference.
+
+### How do I configure who has the authority to interact and make changes to a specific part of an account?
+
+Permissions determine who has the authority to interact and make changes to a specific part of a smart contract. See [Permissions](https://docs.minaprotocol.com/zkapps/o1js/permissions). 
+
+### How are proofs generated in the Mina Protocol?
+
+[Kimchi](https://minaprotocol.com/blog/kimchi-the-latest-update-to-minas-proof-system) is the main machinery that generates the recursive proofs that allow the Mina blockchain to remain of a fixed size of about 22 KB. See [Proof systems](https://o1-labs.github.io/proof-systems/).
+
+### Are there proof generation scenarios when recursive proofs are not needed?
+
+Yes. It is possible to use the Kimchi proof system without the Pickles recursion layer. See [Pickles](https://o1-labs.github.io/proof-systems/specs/pickles.html?highlight=pickl#pickles) in the Mina book.
+
+### Which curves are used by the Mina Protocol to generate proofs?
+
+Pasta curves (Pallas and Vesta). See [Pasta Curves](https://o1-labs.github.io/proof-systems/specs/pasta.html?highlight=curves#pasta-curves) in the Mina book.
+
+### When do I use Provable conditional logic? 
+
+Are there situations in which I would not want to use the Provable versions? If the conditional logic is not part of your provable code, you do not need to use Provable conditional statements.
