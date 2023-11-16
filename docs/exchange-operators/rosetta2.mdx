@@ -51,7 +51,10 @@ The container in `/rosetta` includes four entrypoints, which each run a differen
 
 Run the container with following command (replace the image tag with the latest one from dockerhub, also replace `--entrypoint` if needed):
 
-    docker run -it --rm --name rosetta --entrypoint=./docker-start.sh -p 10101:10101 -p 3085:3085 -p 3086:3086 -p 3087:3087 minaprotocol/mina-rosetta:<tag>
+    docker run -it --rm --name rosetta \
+        --entrypoint=./docker-start.sh \
+        -p 10101:10101 -p 3085:3085 -p 3086:3086 -p 3087:3087 \
+        minaprotocol/mina-rosetta:<tag>
 
 :::note
 
