@@ -88,11 +88,15 @@ The easiest way to build natively is to use Nix development environment.
 
 4. Launch the development shell:
 
+
     nix develop mina
+
 
 5. Build Rosetta app:
 
-    dune build --profile=mainnet src/app/rosetta
+```shell
+dune build --profile=mainnet src/app/rosetta
+```
 
 6. After a succesful build, the Rosetta app is available by the following path: `_build/default/src/app/rosetta/rosetta.exe` 
 
