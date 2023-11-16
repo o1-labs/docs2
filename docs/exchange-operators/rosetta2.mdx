@@ -94,9 +94,9 @@ The easiest way to build natively is to use Nix development environment.
 
 5. Build Rosetta app:
 
-```shell
-dune build --profile=mainnet src/app/rosetta
-```
+
+    dune build --profile=mainnet src/app/rosetta
+
 
 6. After a succesful build, the Rosetta app is available by the following path: `_build/default/src/app/rosetta/rosetta.exe` 
 
@@ -107,6 +107,22 @@ You can run it with following command:
         --graphql-uri <URL to Mina GrasphQL instance> 
         --archive-uri postgres://<username>:<password>@m<host>:<port>/<db_name>
 
+
+### Send requests
+
+Once the Rosetta app is running, you can send requests to it.
+For a quick test, lets run `/network/list` request:
+
+    curl -L -X POST 'http://localhost:3087/network/list' \
+        -H 'Content-Type: application/json' \
+        -H 'Accept: application/json' -d '{}'
+
+In case of succesfull setup, you should see a response similar to the one below:
+
+
+```json
+{"network_identifiers":[{"blockchain":"mina","network":"mainnet"}]}
+```
 
 
 ### Questions?
