@@ -1,8 +1,14 @@
 from os import system
 from subprocess import run, PIPE
+from time import sleep
 import json
 from requests import post
 
+
+"""
+Before running this example, make sure you have requests library installed.
+Also for using pprint_json function, you will need jq installed on your machine
+"""
 
 """
 Available endpoints for Mina Rosetta implementation are:
@@ -30,7 +36,7 @@ Available endpoints for Mina Rosetta implementation are:
 
 
 BASE_URL = "http://localhost:3087"
-SIGNER_PATH = '/Users/ii/mina/mina/' \
+SIGNER_PATH = '/Users/i/mina/mina/' \
     '_build/default/src/app/rosetta/ocaml-signer/signer.exe'
 MAINNET_NETWORK_IDENTIFIERS = {
     "mainnet": {
@@ -80,8 +86,8 @@ def _request(path, data=None, network_identifier='mainnet'):
     try:
         r.raise_for_status()
     except Exception as e:
-        pprint_json(r.json())
-        print(r.content)
+        # pprint_json(r.json())
+        # print(r.content)
         raise e
     return r.json()
 
@@ -201,11 +207,19 @@ def tx_metadata(src_pubkey, src_address, dest_address, fee_nano, value_nano):
     })
 
 def tx_payloads(src_pubkey, src_address, dest_address, fee_nano, value_nano):
-    p = _make_transfer_payload(
-        src_address, dest_address, fee_nano, value_nano)
-    m = tx_metadata(
+    """
+    If fee_nano is None, it will get suggested fee from /construction/metadata response
+    """
+    fee_nano = fee_nano or 0
+    meta = tx_metadata(
         src_pubkey, src_address, dest_address, fee_nano, value_nano)
-    return _request("/construction/payloads", {**p, **m})
+
+    if not fee_nano:
+        fee_nano = meta["suggested_fee"][0]["value"]
+
+    operations = _make_transfer_payload(
+        src_address, dest_address, fee_nano, value_nano)
+    return _request("/construction/payloads", {**operations, **meta})
 
 def tx_combine(src_pubkey, tx_payloads_response, signature):
     combine_payload = {
@@ -238,12 +252,62 @@ def tx_submit(signed_transaction_blob):
     })
 
 
-def withdrawal_flow(vault_keypair, dest_address, fee_nano, value_nano):
+"""
+The following are examples for typical operations which Rosetta API users may want to do:
+- block scanning
+- waiting for deposit
+- performing a withdrawal
+"""
+
+def wait_for_block(block_index):
+    """
+    Checks if block with given index exist
+    Once the /block response is succesful - returns the response
+    Otherwise, retries fetching it with 10 seconds delay
+    """
+
+    latest_block = network_status()["current_block_identifier"]["index"]
+    while True:
+        if block_index <= latest_block:
+            return block(block_index)
+        sleep(10)
+        latest_block = network_status()["current_block_identifier"]["index"]
+
+def deposit_flow(deposit_address):
+    # some logic we want to execute on deposit
+    def on_deposit(deposit):
+        pprint_json(deposit)
+    
+    latest_block = network_status()["current_block_identifier"]["index"]
+    while True:
+        # check if transactions to the deposit address are present in the latest block
+        txs = wait_for_block(latest_block)['block']['transactions']
+        deposits = []
+        for tx in txs:
+            for op in tx["operations"]:
+                if op["account"]["address"] == deposit_address \
+                        and op["type"] == "payment_receiver_inc":
+                    deposits.append({
+                        "tx_hash": tx["transaction_identifier"]["hash"],
+                        "amount": op["amount"]["value"]
+                    })
+        
+        # process deposits
+        for d in deposits:
+            on_deposit(d)
+
+        latest_block += 1
+
+def withdrawal_flow(vault_keypair, dest_address, value_nano, fee_nano=None):
     """
     Full withdrawal flow example (without sanity check)
+    If fee_nano is None - fee will be suggested by Rosetta API response
     """
-    # derive vault address
+
     vault_pubkey = vault_keypair["public"]
+    vault_private_key = vault_keypair["private"]
+    
+    # derive vault address
     derive_response = derive_account_identifier(vault_pubkey)
     vault_address = derive_response["account_identifier"]["address"]
     
@@ -252,7 +316,10 @@ def withdrawal_flow(vault_keypair, dest_address, fee_nano, value_nano):
         vault_pubkey, vault_address, dest_address, fee_nano, value_nano)
     
     # sign transfer payload
-    signature = ''
+    signature = sign_transaction(
+        SIGNER_PATH, 
+        vault_private_key,
+        payloads_response["unsigned_transaction"])
 
     # get signed transaction blob
     combine_response = tx_combine(vault_pubkey, payloads_response, signature)
@@ -266,16 +333,23 @@ def withdrawal_flow(vault_keypair, dest_address, fee_nano, value_nano):
     # get future transaction hash
     tx_hash_response = tx_hash(signed_transaction_blob)
     future_tx_hash = tx_hash_response['transaction_identifier']['hash']
-    
-    # submit transaction. this call will fail if tx is not in mempool
-    submit_response = tx_submit(signed_transaction_blob)
-    pprint_json(submit_response)
-    
-    # wait for transaction confirmation
-    latest_block = 304055 # network_options()
 
+    # submit transaction. this call will fail if tx is not in mempool
+    tx_submit(signed_transaction_blob)
+    
+    # wait for transaction confirmation:
+    # for that, track blocks until we meet our transaction in the last one
+    latest_block = network_status()["current_block_identifier"]["index"]
     while True:
-        pass
+        # check if our transaction exists in the latest block
+        txs = wait_for_block(latest_block)['block']['transactions']
+        hashes = [tx['transaction_identifier']['hash'] for tx in txs]
+        if future_tx_hash in hashes:
+            break
+        latest_block += 1
+    
+    return future_tx_hash
+
 
 # $ alias signer=_build/default/src/app/rosetta/ocaml-signer/signer.exe
 # $ signer generate-private-key
@@ -287,27 +361,4 @@ TEST_KEYPAIR = {
         "0C1E18BAE721C5A2733D4DCD09EA4FA83646F905EA1C73C313292D7C4EA74E00",
 }
 TEST_RECEIVER = "B62qmVz7pPiLXPvz2nPkuK3K5akjrePAVtdBVMfeyixrccgqKTQte8K"
-
-pprint_json(network_status())
-# withdrawal_flow(TEST_KEYPAIR, TEST_RECEIVER, 100000000, 200000000)
-
-# parsed1 = tx_parse(tx_payloads_response['unsigned_transaction'], False)
-# signer.exe sign --private-key <private key> --unsigned-transaction <tx_payloads_response['unsigned_transaction']>
-# signature = '673D7A542B6F2B178C1438EEA0E12C7C15EAE16223C6B9D3CE7A60C4AC03EA06C11EE12A2D3E787DEA930BFDA31B64F193682F596FDC6642D16BEDA7D9F03503'
-# combine_response = tx_combine(tx_payloads_response, signature)
-# parsed2 = tx_parse(combine_response['signed_transaction'], True)
-# future_hash = tx_hash(combine_response['signed_transaction'])
-# submit_response = tx_submit(combine_response['signed_transaction'])
-# pprint_json(submit_response)
-
-# pprint_json(mempool_tx(future_hash['transaction_identifier']['hash']))
-
-
-# curl_base = """curl -L -X POST '{path}' \\
-# -H 'Content-Type: application/json' \\
-# -H 'Accept: application/json' -d '{data}' | jq --color-output ."""
-
-
-
-
 
