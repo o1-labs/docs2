@@ -1,7 +1,7 @@
 ---
-title: Events
+title: Gadgets
 hide_title: true
-description: How events in zkApps serve as a light-weight way of attaching information about your smart contract execution, use cases of events, and how to declare and emit events.
+description: How gadgets work in o1js.
 keywords:
   - smart contracts
   - zkapp
@@ -19,10 +19,23 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Gadgets
 
-Gadgets are amalgamations of the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). This simplifies the process of creating new cryptographic primitives. 
+Gadgets are amalgamations of the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). Gadgets in o1js simplify the process of creating new cryptographic primitives. 
 
-In this case, the gadgets form the basis of ECDSA signature verification. These gadgets allow the community to implement other crypto algorithms, such as SHA.
+<!--- I'm grabbing context from other sources SWAG, please review carefully--->
+Think of gadgets as atomic logic gates that mask large circuits. 
 
+Gadgets form the basis of ECDSA signature verification. Gadgets in o1js make it possible for community members to implement other crypto algorithms, such as SHA.
+
+Gadgets and test 
+See https://docs.minaprotocol.com/zkapps/o1js-reference/modules#gadgets 
+
+The https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/gadgets.ts namespace (let's explain). 
+
+Available gadgets are https://github.com/o1-labs/o1js/tree/main/src/lib/gadgets:
+
+Gadgets assume that input is at most 64 bits in size. The input value must be in the range [0, 2^64).
+
+`Gadgets.not()`, new provable method to support bitwise shifting for native field elements. https://github.com/o1-labs/o1js/pull/1198
 Gadgets.rangeCheck64(): A provable method for efficient 64-bit range checks using lookup tables. (0.14.0, #1181)
 Gadgets.rotate(): A provable method to support bitwise rotation for native field elements. (0.14.0, #1182)
 Gadgets.xor(): A provable method to support bitwise XOR operations for native field elements. (0.14.0, #1177)
