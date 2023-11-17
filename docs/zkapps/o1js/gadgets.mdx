@@ -1,0 +1,28 @@
+---
+title: Events
+hide_title: true
+description: How events in zkApps serve as a light-weight way of attaching information about your smart contract execution, use cases of events, and how to declare and emit events.
+keywords:
+  - smart contracts
+  - zkapp
+  - gadgets
+  - bitwise
+  - o1js
+  - blockchain
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Gadgets
+
+Gadgets are amalgamations of the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). This simplifies the process of creating new cryptographic primitives. 
+
+In this case, the gadgets form the basis of ECDSA signature verification. These gadgets allow the community to implement other crypto algorithms, such as SHA.
+
+Gadgets.rangeCheck64(): A provable method for efficient 64-bit range checks using lookup tables. (0.14.0, #1181)
+Gadgets.rotate(): A provable method to support bitwise rotation for native field elements. (0.14.0, #1182)
+Gadgets.xor(): A provable method to support bitwise XOR operations for native field elements. (0.14.0, #1177)
