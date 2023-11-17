@@ -1,0 +1,24 @@
+---
+title: Sending requests
+description: Learn how Mina-specific request/response models look like
+---
+
+# Sending requests
+
+Once the Rosetta app is running, you can send requests to it.
+Lets run `/network/list` request:
+
+    curl -L -X POST 'http://localhost:3087/network/list' \
+        -H 'Content-Type: application/json' \
+        -H 'Accept: application/json' -d '{}'
+
+In case of succesfull setup, you should see a response similar to the one below:
+
+
+```json
+{"network_identifiers":[{"blockchain":"mina","network":"mainnet"}]}
+```
+
+You must pass the `network_identifier` object as a parameter to all other endpoints. In Mina Rosetta implementation, it exists only for the network you run Rosetta for, so this array will always contain one object.
+
+Learn how to use Rosetta API for different use-cases in the [Code Samples](samples) section. 
