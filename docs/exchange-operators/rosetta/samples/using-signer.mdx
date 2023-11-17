@@ -1,5 +1,5 @@
 ---
-title: Using signer tool
+title: Offline signer tool
 description: Using signer tool for keypair generation and signing transactions
 ---
 
@@ -38,3 +38,17 @@ To sign a transaction, run:
 See [Sending Transactions](send-transactions) page to learn more
 
 :::
+
+
+Let's implement a helper function to sign a transaction:
+
+```python
+def sign_transaction(path_to_signer, private_key, unsigned_transaction):
+    cmd = "{signer} sign --private-key {pk} " \
+         "--unsigned-transaction {tx_blob}".format(
+            signer=path_to_signer, 
+            pk=private_key, 
+            tx_blob=unsigned_transaction)
+    r = run(cmd.split(), stdout=PIPE).stdout
+    return r.decode().strip()
+```

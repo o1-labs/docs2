@@ -2,3 +2,332 @@
 title: Requests and Responses
 description: Learn about Mina-specific Rosetta request and response objects
 ---
+
+# About Mina-specific requests and responses
+
+The Rosetta API specification defines high-level description of how requests and response objects should look like.
+Exact json object layouts are different from blockchain to blockchain.
+
+In this article you can learn how Mina-specific Rosetta json objects look like
+We will also implement some helper functions to construct and parse such objects.
+
+### Network Identifier
+
+There is the `network_identifier` object, that should be passed as a parameter to all endpoints (except `/network/list` which returns possible identifiers).
+
+Let's implement generic `request` function to perform a Rosetta API calls injecting that object under the hood:
+
+```python
+def _request(path, data=None):
+    """
+    Generalized logic for sending a request to Rosetta API
+    """
+    data = data or {}
+    nw = {} if path == "/network/list" else MAINNET_NETWORK_IDENTIFIER
+    path = BASE_URL + path
+    data = json.dumps({**data, **nw})
+    r = post(path, data)
+    try:
+        r.raise_for_status()
+    except Exception as e:
+        # we may want to print responses for debugging
+        # pprint_json(r.json())
+        # print(r.content)
+        raise e
+    return r.json()
+```
+
+### Block, Transaction, Account Identifiers and the Pubkey object
+
+According to Rosetta request and response models, each block, transaction and account are identified by an identifier object.
+A pubkey is also represented by special object.
+
+Let's implement helpers to construct such objects:
+
+```python
+def _make_block_identifier(index_or_hash):
+    key = "index" if type(index_or_hash) == int \
+        else "hash" if type(index_or_hash) == str \
+        else None
+    if not key:
+        raise ValueError("index_or_hash should have either int or str type")
+    return {"block_identifier": {key: index_or_hash}}
+
+def _make_tx_identifier(tx_hash):
+    return {"transaction_identifier": {'hash': tx_hash}}
+
+def _make_account_identifier(address):
+    return {
+        "account_identifier": {"address": address, "token_id": MINA_TOKEN_ID}
+    }
+
+def _make_pubkey(pubkey):
+    return {
+        "hex_bytes": pubkey,
+        "curve_type": MINA_CURVE_TYPE
+    }
+```
+
+### Operation object
+
+In Rosetta terminology, each transaction consist of one or more operations.
+In Mina implementation, each operation object has following fields:
+- `operation_identifier` and `related_operations`: a mandatory index of an operation, and optional array of related operations.
+- `type`: the type of an operation.
+- `account`: the account identifier which the operation relates to
+- `amount`: an object with `value` - a signed number representing of the accounts' balance
+
+<details><summary>See sample json object representing an operation</summary>
+
+```json
+{
+  "operation_identifier": {
+    "index": 2
+  },
+  "related_operations": [
+    {
+      "index": 1
+    }
+  ],
+  "type": "payment_receiver_inc",
+  "account": {
+    "address": "B62qqJ1AqK3YQmEEALdJeMw49438Sh6zuQ5cNWUYfCgRsPkduFE2uLU",
+    "metadata": {
+      "token_id": "1"
+    }
+  },
+  "amount": {
+    "value": "90486110",
+    "currency": {
+      "symbol": "MINA",
+      "decimals": 9
+    }
+  }
+}
+```
+
+</details>
+
+:::note
+All possible operation types are available on the `network/options` endpoint. The most common types are `fee_payment`, `payment_source_dec` and `payment_receiver_inc`
+:::
+
+
+### Layout of the transfer transaction
+
+In Mina, each operation represents an [Account Update](../../../zkapps/o1js/interact-with-mina#account-updates). Therefore, a MINA token transfer transaction would be represented by three Account Updates:
+- for decreasing fee payer account balance (the fee payers' account would be the same as senders')
+- for decreasing sender account balance
+- for increasing receiver account balance
+
+<details><summary>See sample object representing a transfer transaction</summary>
+
+```json
+{
+  "transaction_identifier": {
+    "hash": "CkpYVELyYvzbyAwYcnMQryEeQ7Gd6Ws7mZNXpmF5kEAyvwoTiUfbX"
+  },
+  "operations": [
+    {
+      "operation_identifier": {
+        "index": 0
+      },
+      "type": "fee_payment",
+      "account": {
+        "address": "B62qpLST3UC1rpVT6SHfB7wqW2iQgiopFAGfrcovPgLjgfpDUN2LLeg",
+        "metadata": {
+          "token_id": "1"
+        }
+      },
+      "amount": {
+        "value": "-37000000",
+        "currency": {
+          "symbol": "MINA",
+          "decimals": 9
+        }
+      }
+    },
+    {
+      "operation_identifier": {
+        "index": 1
+      },
+      "type": "payment_source_dec",
+      "account": {
+        "address": "B62qpLST3UC1rpVT6SHfB7wqW2iQgiopFAGfrcovPgLjgfpDUN2LLeg",
+        "metadata": {
+          "token_id": "1"
+        }
+      },
+      "amount": {
+        "value": "-58486000",
+        "currency": {
+          "symbol": "MINA",
+          "decimals": 9
+        }
+      }
+    },
+    {
+      "operation_identifier": {
+        "index": 2
+      },
+      "related_operations": [
+        {
+          "index": 1
+        }
+      ],
+      "type": "payment_receiver_inc",
+      "account": {
+        "address": "B62qkiF5CTjeiuV1HSx4SpEytjiCptApsvmjiHHqkb1xpAgVuZTtR14",
+        "metadata": {
+          "token_id": "1"
+        }
+      },
+      "amount": {
+        "value": "58486000",
+        "currency": {
+          "symbol": "MINA",
+          "decimals": 9
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
+
+According to the Rosetta specification, the array of `operation` objects should be passed as a parameter in the `/construction/preprocess` and `/construction/payloads` endpoints.
+
+Let's implement a helper function to construct the operations array for a MINA token transfer:
+
+```python
+def _make_transfer_payload(address_from, address_to, fee_nano, value_nano):
+    """
+    Helper for generating "operations" object in a Rosetta format
+    This helper generates mina native token transfer payloads
+    The resulting object is an array of 3 so called account updates:
+        - for decreasing the sender's balance by the fee amount
+        - for decreasing the sender's balance by the transfer amount
+        - for increasing the receiver's balance by the transfer amount
+    """
+    def _make_operation(idx, related_idxs, op_type, addr, value, is_positive):
+        related_ops = {} if not related_idxs else {
+            "related_operations": [{"index": i} for i in related_idxs]
+        }
+        return {
+            "operation_identifier": {"index": idx},
+            **related_ops,
+            "type": op_type,
+            "account": {
+                "address": addr,
+                "metadata": {
+                    "token_id": MINA_TOKEN_ID
+                }
+            },
+            "amount": {
+                "value": ("" if is_positive else "-") + str(value),
+                "currency": {
+                    "symbol": MINA_SYMBOL,
+                    "decimals": MINA_DECIMALS
+                }
+            }
+        }
+    return {
+        "operations": [
+            _make_operation(
+                0, [], "fee_payment", address_from, fee_nano, False),
+            _make_operation(
+                1, [], "payment_source_dec", address_from, value_nano, False),
+            _make_operation(
+                2, [1], "payment_receiver_inc", address_to, value_nano, True)
+        ]
+    }
+```
+
+### Implementing client methods
+
+Now when we have all helpers in place, lets implement all Rosetta client methods according to the specification:
+
+```python
+def network_list():
+    return _request("/network/list")
+
+def network_status():
+    return _request("/network/status")
+
+def network_options():
+    return _request("/network/options")
+
+def block(index_or_hash):
+    return _request("/block", _make_block_identifier(index_or_hash))
+
+def mempool():
+    return _request("/mempool")
+
+def mempool_tx(tx_hash):
+    return _request("/mempool/transaction", _make_tx_identifier(tx_hash))
+
+def account_balance(address):
+    return _request("/account/balance", _make_account_identifier(address))
+
+def derive_account_identifier(pubkey):
+    return _request("/construction/derive", {
+        "public_key": _make_pubkey(pubkey)
+    })
+
+def tx_preprocess(src, dest, fee_nano, value_nano):
+    return _request(
+        "/construction/preprocess", 
+        _make_transfer_payload(src, dest, fee_nano, value_nano))
+
+def tx_metadata(src_pubkey, src_address, dest_address, fee_nano, value_nano):
+    options = tx_preprocess(src_address, dest_address, fee_nano, value_nano)
+    return _request("/construction/metadata", {
+        **options, "public_keys": [_make_pubkey(src_pubkey)]
+    })
+
+def tx_payloads(src_pubkey, src_address, dest_address, fee_nano, value_nano):
+    """
+    If fee_nano is None, it will get suggested fee from /construction/metadata response
+    """
+    fee_nano = fee_nano or 0
+    meta = tx_metadata(
+        src_pubkey, src_address, dest_address, fee_nano, value_nano)
+
+    if not fee_nano:
+        fee_nano = meta["suggested_fee"][0]["value"]
+
+    operations = _make_transfer_payload(
+        src_address, dest_address, fee_nano, value_nano)
+    return _request("/construction/payloads", {**operations, **meta})
+
+def tx_combine(src_pubkey, tx_payloads_response, signature):
+    combine_payload = {
+        "unsigned_transaction": tx_payloads_response["unsigned_transaction"],
+        "signatures": [
+            {
+                "signing_payload": tx_payloads_response["payloads"][0],
+                "public_key": _make_pubkey(src_pubkey),
+                "signature_type": MINA_SIGNATURE_TYPE,
+                "hex_bytes": signature
+            }
+        ]
+    }
+    return _request("/construction/combine", combine_payload)
+
+def tx_parse(transaction_blob, is_signed):
+    return _request("/construction/parse", {
+        "signed": is_signed,
+        "transaction": transaction_blob
+    })
+
+def tx_hash(signed_transaction_blob):
+    return _request("/construction/hash", {
+        "signed_transaction": signed_transaction_blob
+    })
+
+def tx_submit(signed_transaction_blob):
+    return _request("/construction/submit", {
+        "signed_transaction": signed_transaction_blob
+    })
+```

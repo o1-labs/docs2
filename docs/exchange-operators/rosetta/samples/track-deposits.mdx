@@ -2,3 +2,36 @@
 title: Tracking deposits
 description: Learn how to track deposits on the given address
 ---
+
+Once we have everything ready, let's implement deposit tracking.
+
+For that, we will iterate through all transactions in each block to search for `payment_receiver_inc` operation, with an address matching the address which we are interested in:
+
+
+```python
+def deposit_flow(deposit_address):
+    # some logic we want to execute on deposit
+    def on_deposit(deposit):
+        pprint_json(deposit)
+    
+    latest_block = network_status()["current_block_identifier"]["index"]
+    while True:
+        # check if transactions to the deposit address are present in the latest block
+        txs = wait_for_block(latest_block)['block']['transactions']
+        deposits = []
+        for tx in txs:
+            for op in tx["operations"]:
+                if op["account"]["address"] == deposit_address \
+                        and op["type"] == "payment_receiver_inc":
+                    deposits.append({
+                        "tx_hash": tx["transaction_identifier"]["hash"],
+                        "amount": op["amount"]["value"]
+                    })
+        
+        # process deposits
+        for d in deposits:
+            on_deposit(d)
+
+        latest_block += 1
+```
+

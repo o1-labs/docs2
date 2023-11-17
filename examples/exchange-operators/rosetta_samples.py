@@ -1,7 +1,8 @@
+import json
 from os import system
 from subprocess import run, PIPE
 from time import sleep
-import json
+
 from requests import post
 
 
@@ -38,12 +39,10 @@ Available endpoints for Mina Rosetta implementation are:
 BASE_URL = "http://localhost:3087"
 SIGNER_PATH = '/Users/i/mina/mina/' \
     '_build/default/src/app/rosetta/ocaml-signer/signer.exe'
-MAINNET_NETWORK_IDENTIFIERS = {
-    "mainnet": {
-        "network_identifier": {
-            "blockchain": "mina",
-            "network": "mainnet"
-        }
+MAINNET_NETWORK_IDENTIFIER = {
+    "network_identifier": {
+        "blockchain": "mina",
+        "network": "mainnet"
     }
 }
 MINA_TOKEN_ID = "1"
@@ -73,13 +72,12 @@ def sign_transaction(path_to_signer, private_key, unsigned_transaction):
     r = run(cmd.split(), stdout=PIPE).stdout
     return r.decode().strip()
 
-def _request(path, data=None, network_identifier='mainnet'):
+def _request(path, data=None):
     """
     Generalized logic for sending a request to Rosetta API
     """
     data = data or {}
-    nw = {} if path == "/network/list" \
-        else MAINNET_NETWORK_IDENTIFIERS[network_identifier]
+    nw = {} if path == "/network/list" else MAINNET_NETWORK_IDENTIFIER
     path = BASE_URL + path
     data = json.dumps({**data, **nw})
     r = post(path, data)
@@ -178,8 +176,7 @@ def network_options():
     return _request("/network/options")
 
 def block(index_or_hash):
-    block_identifier = _make_block_identifier(index_or_hash)
-    return _request("/block", {**block_identifier})
+    return _request("/block", _make_block_identifier(index_or_hash))
 
 def mempool():
     return _request("/mempool")
