@@ -108,7 +108,7 @@ Make sure to set a new and secure password for the following commands. Mina will
     
     ```
     cd ~
-    docker run --interactive --tty --rm --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.4.0-c980ba8 --privkey-path /keys/my-wallet
+    docker run --interactive --tty --rm --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.3.1-3e3abec --privkey-path /keys/my-wallet
     ```
     
 1. When prompted, type in the password you intend to use to secure this key. <em>Do NOT forget this password.</em>
@@ -139,7 +139,7 @@ mina-validate-keypair --privkey-path <path-to-the-private-key-file>
 On Docker:
 
 ```
-docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.4.0-c980ba8 --privkey-path /keys/my-wallet
+docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.3.1-3e3abec --privkey-path /keys/my-wallet
 ```
 
 ## Ledger Hardware Wallet
