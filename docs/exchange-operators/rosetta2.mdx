@@ -78,7 +78,7 @@ If you want to run mina daemon and archive natively, follow instructions on the 
 
 :::
 
-The easiest way to build natively is to use Nix development environment.
+The easiest way to build Rosetta natively is to use Nix development environment.
 
 1. Clone the official [mina repository](https://github.com/MinaProtocol/mina.git) and switch to the `compatible` branch
 
@@ -123,6 +123,50 @@ In case of succesfull setup, you should see a response similar to the one below:
 ```json
 {"network_identifiers":[{"blockchain":"mina","network":"mainnet"}]}
 ```
+
+
+### Use offline signer
+
+According to the Rosetta specification, one should use offline tool to sign transactions, and use Rosetta to submit the signed ones.
+Mina Rosetta implementation comes with an offline signer tool. One can generate a keypair, sign a transaction and verify a signature with it.
+
+In a native build, the path to the signer tool is `_build/default/src/app/rosetta/ocaml-signer/signer.exe`.
+
+In a Docker container, the path is `/rosetta/app/mina-ocaml-signer`.
+
+To simplify examples, we will refer to it by `signer` alias.
+
+#### Generate a keypair
+
+Generate a private key:
+
+    signer generate-private-key
+
+Derive public key:
+
+    signer derive-public-key --private-key <private key>
+
+In the output you will also get a Mina account address associated with this keypair.
+
+#### Sign transaction
+
+To sign a transaction, simply run:
+
+    signer sign --private-key <private key> --unsigned-transaction <tx>
+
+:::note 
+
+`<tx>` should be replaced by unsigned transaction string, which you can construct using `construction/payloads` endpoint.
+
+:::
+
+
+### Send transaction
+
+
+
+### Code samples
+
 
 
 ### Questions?
