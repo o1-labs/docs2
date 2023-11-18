@@ -1,13 +1,13 @@
 ---
 title: Sending transactions
-description: Learn how to send transactions using a keypair
+description: Learn how to send transactions using a key pair
 ---
 
 :::info
 This flow is also described in the [Construction API Overview](https://docs.cloud.coinbase.com/rosetta/docs/construction-api-overview) article in the official Rosetta documentation.
 :::
 
-The steps needed to send payment in MINA token are following:
+The steps to send a payment in MINA tokens:
 1. Given a keypair, derive the account indentifier using `/construction/derive` endpoint
 2. Call `/construction/preprocess` and `/construction/metadata` to construct parameters for `/construction/payloads` request
 3. Create an unsigned transaction blob using `construction/payloads` endpoint
@@ -18,8 +18,7 @@ The steps needed to send payment in MINA token are following:
 8. Get a future transaction hash using `/construction/hash` enpoint
 9. Submit the signed transaction blob via `/construction/submit` endpoint
 
-For ease of readability, our sample implementation skips sanity checks (steps 4 and 7).
-We have also combined steps 2 and 3 in a single `tx_payloads` function call.
+For ease of readability, this sample implementation skips the sanity checks (steps 4 and 7) and combines steps 2 and 3 in a single `tx_payloads` function call.
 
 Before running this sample:
 - Make sure you followed [Offline signer tool](using-signer) article and generated a keypair

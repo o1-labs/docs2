@@ -8,7 +8,7 @@ from requests import post
 
 """
 Before running this example, make sure you have requests library installed.
-Also for using pprint_json function, you will need jq installed on your machine
+Also for using pprint_json function, you must have jq installed on your machine
 """
 
 """
@@ -91,10 +91,9 @@ def _request(path, data=None):
 
 
 """
-The following are helpers for generating 
-various objects in a Rosetta format, namely:
+The following helpers are for generating various objects in a Rosetta format, namely:
     - Identifier objects for block, tx, and account
-    - array of operation objects to perform a native mina token transfer
+    - array of operation objects to perform a native MINA token transfer
     - Public key object
 """
 def _make_block_identifier(index_or_hash):
@@ -163,7 +162,7 @@ def _make_transfer_payload(address_from, address_to, fee_nano, value_nano):
 
 
 """
-The following are functions implementing all requests 
+The following functions implement all requests 
 available in the Mina Rosetta API
 """
 def network_list():
@@ -250,7 +249,7 @@ def tx_submit(signed_transaction_blob):
 
 
 """
-The following are examples for typical operations which Rosetta API users may want to do:
+The following examples are for typical operations that Rosetta API users might want to do:
 - block scanning
 - waiting for deposit
 - performing a withdrawal

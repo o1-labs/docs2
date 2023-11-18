@@ -25,7 +25,7 @@ The source code for all code samples is available on the official [Mina Document
 
 # Set up sample project
 
-Let's start with necessary imports and define constants:
+Start with the required imports and define constants:
 
 ```python
 import json
@@ -50,7 +50,7 @@ MINA_CURVE_TYPE = "pallas"
 MINA_SIGNATURE_TYPE = "schnorr_poseidon"
 ```
 
-As we are going to work with json requests and responses, we may want to print highlighted and indented json objects. Let's define a simple function doing that with help of `jq` utility
+To work with JSON requests and responses, you might want to print highlighted and indented JSON objects. You can define a simple function with the help of the `jq` utility:
 
 ```python
 def pprint_json(string_or_dict):
