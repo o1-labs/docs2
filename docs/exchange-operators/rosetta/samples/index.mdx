@@ -9,6 +9,8 @@ The code samples in this section are tested with Python 3.9
 
 :::
 
+## Prerequisites
+
 The following series of guides demonstrate how to perform common Rosetta API use-cases. 
 
 All code samples are written in Python and require the `requests` library to be installed on your Python environment.
@@ -17,13 +19,10 @@ This can be done with a following command:
 
     pip3 install requests
 
-Also for using `pprint_json` function, you will need `jq` installed on your machine. On Linux machines, it is installed by default. For macOS, you can install it with brew package manager:
-
-    brew install jq
 
 The source code for all code samples is available on the official [Mina Documentation Github page](https://github.com/o1-labs/docs2/tree/main/examples/exchange-operators/rosetta_samples.py) and should be used only for demonstration purposes.
 
-# Set up sample project
+## Set up sample project
 
 Start with the required imports and define constants:
 
@@ -48,18 +47,4 @@ MINA_DECIMALS = 9
 MINA_SYMBOL = "MINA"
 MINA_CURVE_TYPE = "pallas"
 MINA_SIGNATURE_TYPE = "schnorr_poseidon"
-```
-
-To work with JSON requests and responses, you might want to print highlighted and indented JSON objects. You can define a simple function with the help of the `jq` utility:
-
-```python
-def pprint_json(string_or_dict):
-    """
-    Helper to print json response 
-    in a beautiful way (needs jq to be installed)
-    """
-    string = string_or_dict if type(string_or_dict) == str \
-        else json.dumps(string_or_dict, separators=(',',':'))
-    escaped = string.translate(str.maketrans({'"': '\\"'}))
-    system('echo "{json}" | jq --color-output .'.format(json=escaped))
 ```
