@@ -12,7 +12,7 @@ For that, iterate through all transactions in each block to search for `payment_
 def deposit_flow(deposit_address):
     # some logic we want to execute on deposit
     def on_deposit(deposit):
-        pprint_json(deposit)
+        print(json.dumps(deposit, indent=2))
     
     latest_block = network_status()["current_block_identifier"]["index"]
     while True:

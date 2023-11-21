@@ -1,15 +1,9 @@
 import json
-from os import system
 from subprocess import run, PIPE
 from time import sleep
 
 from requests import post
 
-
-"""
-Before running this example, make sure you have requests library installed.
-Also for using pprint_json function, you must have jq installed on your machine
-"""
 
 """
 Available endpoints for Mina Rosetta implementation are:
@@ -52,17 +46,6 @@ MINA_CURVE_TYPE = "pallas"
 MINA_SIGNATURE_TYPE = "schnorr_poseidon"
 
 
-def pprint_json(string_or_dict):
-    """
-    Helper to print json response 
-    in a beautiful way (needs jq to be installed)
-    """
-    string = string_or_dict if type(string_or_dict) == str \
-        else json.dumps(string_or_dict, separators=(',',':'))
-    escaped = string.translate(str.maketrans({'"': '\\"'}))
-    system('echo "{json}" | jq --color-output .'.format(json=escaped))
-
-
 def sign_transaction(path_to_signer, private_key, unsigned_transaction):
     cmd = "{signer} sign --private-key {pk} " \
          "--unsigned-transaction {tx_blob}".format(
@@ -84,8 +67,7 @@ def _request(path, data=None):
     try:
         r.raise_for_status()
     except Exception as e:
-        # pprint_json(r.json())
-        # print(r.content)
+        # json.dumps(r.json())
         raise e
     return r.json()
 
@@ -272,7 +254,7 @@ def wait_for_block(block_index):
 def deposit_flow(deposit_address):
     # some logic we want to execute on deposit
     def on_deposit(deposit):
-        pprint_json(deposit)
+        print(json.dumps(deposit, indent=2))
     
     latest_block = network_status()["current_block_identifier"]["index"]
     while True:

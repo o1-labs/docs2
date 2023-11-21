@@ -29,9 +29,7 @@ def _request(path, data=None):
     try:
         r.raise_for_status()
     except Exception as e:
-        # we may want to print responses for debugging
-        # pprint_json(r.json())
-        # print(r.content)
+        # json.dumps(r.json())
         raise e
     return r.json()
 ```
