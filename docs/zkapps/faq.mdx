@@ -115,11 +115,15 @@ This ensures that the transaction fails if the value of the field in question ha
 
 There are a number of ways to accomplish this:
 - Provably add a signed child account update. Then, the method can only be invoked with a signature from the predefined address.
-```// in your method create empty signed account update
-AccountUpdate.createSigned(someAddress);```
+```TypeScript
+// in your method create empty signed account update
+AccountUpdate.createSigned(someAddress);
+```
 
-```// later, sign the tx
-tx.sign([privateKeyOfAddress]);```
+```TypeScript
+// later, sign the tx
+tx.sign([privateKeyOfAddress]);
+```
 
 - Require a private key as a private input, and check that privateKey.toPublicKey().assertEquals(this.address)
 - Require a signature as an input.
