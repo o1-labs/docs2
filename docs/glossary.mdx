@@ -30,13 +30,21 @@ A Mina node that stores the historical chain data to a persistent data source so
 
 ## B
 
+### Base58
+
+A group of encoding/decoding schemes used to switch data between binary format (hexdecimal) and alphanumeric text format (ASCII). The Base58 alphabet includes numbers (1 to 9) and English letters, except O (uppercase o), I (uppercase i), and l (lowercase L). These letters are omitted to avoid confusion.
+
+### Base64
+
+A binary-to-text encoding scheme that represents binary data in a human-readable ASCII string format string. For example, the zero knowledge proof is a Base64 string inside the `authorization` field of a transaction.
+
 ### best tip
 
 The blockchain's latest block with the highest [chain strength](#chain-strength) known to the mina daemon.
 
 ### block
 
-A set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. See also [extensional blocks](/glossary#extensional-blocks) and [precomputed blocks](/glossary#precomputed-blocks). See [What's in a Block?](/node-operators/whats-in-a-block).
+A set of transactions and consensus information that extend the state of the network. A block in Mina includes a proof that the current state of the network is fully valid. See also [extensional blocks](/glossary#extensional-blocks) and [precomputed blocks](/glossary#precomputed-blocks). See [What's in a Block?](/mina-protocol/whats-in-a-block)
 
 ### blockchain
 
@@ -46,13 +54,25 @@ The data structure that is used in a cryptocurrency to maintain a shared state o
 
 The number of blocks added after the reference block. As the number of confirmations increases, the likelihood of a [reorganization](/glossary#reorganization) decreases, thereby increasing the likelihood of all transactions in the reference block being confirmed.
 
+### block explorer
+
+A web-based tool to extract, visualize, and review blockchain network metrics, including transaction histories, wallet balances, and details about individual blocks and transactions. Block explorers for Mina include:
+
+- https://minaexplorer.com/
+- https://minascan.io
+- https://minataur.net/
+
 ### block fill rate
 
 The proportion of [slots](#slot) that should contain a block. Some slots are intentionally empty to ensure the network can [catch up](/glossary#catchup) in case of delay of messages.
 
+### block header
+
+The portion of a block that contains information about the block itself (block metadata), typically includes a timestamp, a hash representation of the block data, the hash of the previous block's header, and a cryptographic nonce (if needed).
+
 ### block producer
 
-A node that participates in a process to determine what blocks it is allowed to produce and then produces blocks containing transactions that can be broadcast to the network. People who run [block producer](/node-operators/block-producers) nodes are also called block producers. 
+A node that participates in a process to determine what blocks it is allowed to produce and then produces blocks containing transactions that can be broadcast to the network. People who run [block producer](/mina-protocol/block-producers) nodes are also called block producers. 
 
 ### bootstrap
 
@@ -100,11 +120,15 @@ A digital asset or currency that uses cryptographic primitives to secure financi
 
 ### daemon
 
-The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a [pub-sub](#pub-sub) model.
+The Mina daemon is a background process that implements the Mina protocol and runs on a node locally so a local client or wallet can talk to the Mina network. For example, when a CLI is used to issue a command to send a transaction, this request is made to the Mina daemon, which then broadcasts it to the peer-to-peer network. The daemon also listens for events like new blocks and relays this to the client by using a publish-subcribe model.
 
 ### DAO
 
 A decentralized autonomous organization (DAO) operates based on rules that are encoded on a blockchain and executed through smart contracts. DAOs are an organizational structure built with blockchain technology.
+
+### Dapp
+
+A decentralized application (Dapp) runs on a blockchain or decentralized network and offers benefits such as transparency, security, and censorship resistance. In the Mina ecosystem, Dapps are known as [zkApps](#zkapps).
 
 ### delegating
 
@@ -112,7 +136,11 @@ Because staking MINA requires nodes to be online, some nodes delegate their MINA
 
 ### deploy alias
 
-Created and updated with the Mina zkApp CLI, a [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in your project `config.json` file contains the details to manage deployments. 
+Created with the zkApp CLI, a [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in your project `config.json` file contains the details to manage deployments.
+
+### Devnet
+
+Dedicated for developers building on top of the Mina protocol, Devnet is designed for testing and experimentation so you can test tooling and integrations before going live on [Mainnet](#mainnet). See [Connect to Devnet](/node-operators/connecting-to-devnet).
 
 ### distributed ledger technology (DLT)
 
@@ -184,13 +212,9 @@ A [transition](#transition) that is produced locally, for example, by a block pr
 
 ## K
 
-### Kademlia
-
-A distributed hash table (DHT) for decentralized peer-to-peer networks. Mina uses Kademlia for peer discovery so that nodes can find neighbor nodes to share information about the network state.
-
 ### key pair
 
-A combination of a [private key](#private-key) and [public key](#public-key). Key pairs can be generated by using a running daemon or using a dedicated keygen tool.
+A combination of a [private key](#private-key) and [public key](#public-key). Key pairs can be generated by using a running daemon or using a dedicated keygen tool, see [Generating a Key Pair](/node-operators/generating-a-keypair). In Mina, public keys start with `B62` and private keys start with `EKE` for easy differentiability.
 
 ### Kimchi
 
@@ -216,13 +240,17 @@ Mina uses this peer-to-peer networking library to provide things like message br
 
 ## M
 
-### Mina
+### Mainnet
 
-The underlying protocol and the network infrastructure that the system depends on.
+The live version of the Mina blockchain network that is fully operational. On the Mina Mainnet public blockchain, real-world transactions are performed. See [Connect to the Mina Network](node-operators/connecting-to-the-network). A Mainnet is different from a [Testnet](#testnet) and [Devnet](#devnet) which are used for development and testing.
 
 ### MINA
 
-The unit of the cryptocurrency that is exchanged by participating nodes on the Mina network.
+The unit of the cryptocurrency that is exchanged by participating nodes on the Mina network. MINA is the exclusive currency of the [snarketplace](#snarketplace).
+
+### Mina
+
+The underlying protocol and the network infrastructure that the system depends on.
 
 ### Mina CLI
 
@@ -236,9 +264,17 @@ The Mina CLI is installed when you [install Mina](/node-operators/getting-starte
 
 A machine running the Mina daemon.
 
+### node operators
+
+People who run mina nodes.
+
 ### non-consensus node
 
 A [full node](#full-node) in the Mina protocol that does not participate in consensus but can still fully verify the zero knowledge proof to trustlessly validate the state of the chain. The size of Mina as 22 KB is in reference to non-consensus nodes.
+
+### non-upgradeable
+
+If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable.
 
 ### nonce
 
@@ -252,17 +288,25 @@ A TypeScript library for zk-SNARKs and zkApps. Use o1js to write zk smart contra
 
 ### off-chain
 
-A transfer of value or data, including transactions, that occurs outside a given blockchain network. These transfers do not need blockchain network confirmation, which speeds up the transaction process and reduces lag time.
+A transfer of value or data, including transactions, that occurs outside a given blockchain network. These transfers do not need blockchain network confirmation, which speeds up the transaction process and reduces lag time. zkApps use an off-chain execution and mostly off-chain state model that allows for private computation and state that can be either private or public.
 
 ### on-chain
 
 A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is time-stamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
+
+### oracle
+
+Specialized software or services that act as intermediaries between blockchain smart contracts and external data sources. [Oracles](/zkapps/tutorials/oracle) connect zkApp smart contracts with the outside world to get data on chain.
 
 ### Ouroboros Samisika
 
 Mina builds on this provably secure proof of stake (PoS) protocol that combines the best features of each iteration of Ouroboros to deliver a PoS consensus mechanism that can resolve long-range forks without requiring history or risking centralization by relying on trusted third parties to provide fork information.
 
 ## P
+
+## pasta curves
+
+A collective term for the Pallas and Vesta elliptic curves that are used by the Mina Protocol to generate proofs. See [Pasta Curves](https://o1-labs.github.io/proof-systems/specs/pasta.html?highlight=curves#pasta-curves) in the Mina book.
 
 ### peer-to-peer networks
 
@@ -274,7 +318,7 @@ Mina's inductive zk-SNARK composition system. See [Pickles](https://o1-labs.gith
 
 ### Pickles SNARK
 
-A proof system and associated toolkit that is the first deployed SNARK capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
+A proof system and associated toolkit that is the first deployed [SNARK](#snark) capable of recursive composition with no trusted setup. Pickles serves as the basis for developers to build private, scalable smart contracts on Mina. [Meet Pickles SNARK: Enabling Smart Contracts on Mina Protocol](https://medium.com/minaprotocol/meet-pickles-snark-enabling-smart-contract-on-coda-protocol-7ede3b54c250).
 
 ### PLONK
 
@@ -288,9 +332,13 @@ A commitment scheme that allows a committer to commit to a polynomial with a sho
 
 A family of [hash](#hash) functions that can efficiently run in a zk circuit. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation).
 
-### precomputed block
+### precomputed blocks
 
 Precomputed blocks are [blocks](/glossary#block) logged by mina to disk, log file, or to cloud storage.
+
+### preconditions
+
+Conditions that must be true for the account update to be applied. Corresponds to assertions in an o1js method.
 
 ### private key
 
@@ -344,7 +392,7 @@ The root of the [transition frontier](#transition-frontier) is the block `k` blo
 
 ### remote procedure call (RPC)
 
-An [(RPC)] (https://en.wikipedia.org/wiki/Remote_procedure_call) is used to communicate between nodes on the network and to interact with the running [daemon](#daemon).
+An [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call) is used to communicate between nodes on the network and to interact with the running [daemon](#daemon).
 
 ## S
 
@@ -362,15 +410,19 @@ Short for digital signature, a way to establish authenticity or ownership of dig
 
 ### slot
 
-A unit of time. As of Mainnet launch, a slot in Mina is 3minutes long. An [epoch](#epoch) is divided into slots. Block producers can win the chance to produce a block during a slot.
+A unit of time in the Mina network. As of Mainnet launch, a slot in Mina is 3minutes long. An [epoch](#epoch) is divided into slots. Block producers can find eligible slots to produce blocks in to earn rewards.
 
 ### smart contract
 
-A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts are written with [o1js](#o1js).
+A tamper-proof program that runs on a blockchain network when certain predefined conditions are satisfied. On Mina, smart contracts (zkApps) are written with [o1js](#o1js).
 
 ### SNARK
 
 An acronym for succinct non-interactive argument of knowledge. See [zk-SNARK](/glossary#zk-snark).
+
+### SNARK coordinator
+
+A role on a mina node in the Mina network. SNARK coordinators generate proofs of transactions by distributing work to a series of [SNARK workers](/node-operators/snark-workers). SNARK coordinators then submit that work to the network and the proofs are sold to block producers.
 
 ### SNARK pool
 
@@ -378,11 +430,15 @@ Referred to as the _snarketplace_, the pool that contains work completed by [SNA
 
 ### SNARK worker
 
-A node on the network that is participating in transaction SNARK generation (the proof). The SNARK worker is incentivized with MINA as compensation to help compress transactions.
+External processes that connect to a Mina node on the network and create zk-SNARK proofs of transactions to compress the transactions so they can be folded into the tiny blockchain proof. The SNARK worker is incentivized with MINA as compensation to help compress transactions. See [What are SNARK Workers and the Snarketplace?](https://minaprotocol.com/blog/what-are-snark-workers-and-the-snarketplace).
 
 ### SNARKed ledger
 
 The ledger that contains only the transactions that have an associated proof. The SNARKed ledger is updated after a proof has been emitted from the [scan state](#scan-state).
+
+### snarketplace
+
+Similar to a marketplace where people, or nodes, exchange services for a fee. It revolves around a fixed-size buffer, like a queue or shelf of work to do. Block producers add work to this shelf in the form of transactions that need to be SNARKed, and then SNARK workers take the work off the shelf and create SNARKs out of them to process the transactions. Block producers purchase SNARK work for the lowest price from the snarketplace. Conversely, the SNARK workers want to maximize their profit while also being able to sell their SNARK work. These two roles act as the two sides of the marketplace, and over time establish an equilibrium at a market price for SNARK work.
 
 ### soft fork
 
@@ -398,7 +454,7 @@ Staking MINA allows nodes on the network to increase their chances of being sele
 
 ### staking ledger
 
-The ledger used to determine block producers for a slot, as the probability of winning a slot is proportional to the amount of stake.
+The ledger used to determine block producers for a slot, as the probability of finding eligible slots to produce blocks in is proportional to the amount of stake.
 
 ### staking pool
 
@@ -412,9 +468,21 @@ The syncing process builds the node's [transition frontier](#transition-frontier
 
 ## T
 
+### Testnet
+
+An instance of a blockchain used for testing and experimentation where MINA tokens have no real value. For example, for [zkApp Developer Tutorials](/zkapps/tutorials) and other development, you can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account). Mina's public Testnet is feature-complete Berkeley. 
+
 ### time-locked accounts
 
 An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/o1js/time-locked-accounts).
+
+### tMINA
+
+MINA tokens that have no real world value. You can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account) during development.
+
+### tokens
+
+A digital asset that typically represents an asset, utility, or value in a particular blockchain ecosystem. The native cryptocurrency of the Mina blockchain is MINA. Tokens can serve a variety of purposes, including accessing platform features (utility tokens), representing ownership of assets (security tokens), or facilitating smart contracts and decentralized applications (Dapps).
 
 ### transaction pool
 
@@ -458,16 +526,28 @@ A function that generates an output that can be cryptographically verified as ra
 
 A proof by which one party (a prover) can prove to another party (a verifier) that they have knowledge of something, without giving away that specific knowledge. Mina uses zero knowledge proofs, specifically zk-SNARKs, to generate a proof attesting to the blockchain's validity and allows any node on the network to verify the validity.
 
-### zkApp
+### zkApps
 
-Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
+Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
 
 ### zkApp CLI
 
 A command line tool that zkApp developers use to scaffold and deploy smart contracts. Install the [zkApp CLI](https://www.npmjs.com/package/zkapp-cli).
 
+### zkApp account
+
+A smart contract account. Each zkApp account provides 8 fields of 32 bytes each of arbitrary storage. When a Mina address contains a verification key, it acts as a zkApp account.
+
+### zkApp manager account
+
+A specific type of smart contract that manages a particular thing. For example, the zkApp manager account for a token controls all properties of token accounts and determines rules for token minting, burning, and transfer.
+
+### zkBridge
+
+Technology that the Mina network uses to connect to other chains.
+
 ### zk-SNARK
 
-A type of zero-knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity that allow for any node to quickly verify the state of the network.
+A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network.
 
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)

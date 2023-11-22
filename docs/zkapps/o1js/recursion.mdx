@@ -20,13 +20,6 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-:::experimental
-
-The use of the ZkProgram API with recursion is experimental. This API may change. To learn more, see [Experimental Features](/zkapps/experimental).
-
-:::
-
-Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
 
 # Recursion
 
@@ -39,9 +32,15 @@ Kimchi, the proof system that backs o1js, supports arbitrary infinite recursive 
 
 More generally, you can use recursion to verify any zero-knowledge program as part of your zkApp.
 
-## Overview
+## ZkProgram Overview
 
-In o1js, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
+:::note
+zkProgram has been moved out of the Experimental namespace and is available as a top-level import directly. `Experimental.ZkProgram` is deprecated.
+
+If you are experiencing issues with zkProgram, be sure to update o1js to the latest version.
+:::
+
+In o1js, you can use `ZkProgram()` to define the steps of a recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
 
 After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
 
@@ -52,9 +51,10 @@ Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _
 This simple example has only one method that proves the public input it received is zero.
 
 ```typescript
-import { Field, Experimental } from 'o1js';
+import { Field, ZkProgram } from 'o1js';
 
-const SimpleProgram = Experimental.ZkProgram({
+const SimpleProgram = ZkProgram({
+  name: "simple-program-example",
   publicInput: Field,
 
   methods: {
@@ -102,10 +102,11 @@ This example shows a recursive `ZkProgram` that you can use to create recursive 
 This program describes a recursive operation of adding one repeatedly to a number. Note that you recursively depend on the older proof as a private argument to your method.
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'o1js';
+import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
-const AddOne = Experimental.ZkProgram({
-  publicInput: Field,
+const AddOne = ZkProgram({
+  name: "add-one-example",
+  publicInputType: Field,
 
   methods: {
     baseCase: {
@@ -165,10 +166,11 @@ Tree recursion is even more rarely seen in other proof systems and zk toolkits. 
 This example program describes a very simple rollup for adding numbers:
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'o1js';
+import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
-let RollupAdd = Experimental.ZkProgram({
-  publicInput: Field,
+let RollupAdd = ZkProgram({
+  name: "rollup-add-example",
+  publicInputType: Field,
 
   methods: {
     baseCase: {

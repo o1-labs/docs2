@@ -144,24 +144,12 @@ Each time you make updates, then build or deploy, the TypeScript code is compile
 
 ### Install the dependencies
 
-When you ran the `zk project` command, your UI was created in the project directory: `/04-zkapp-browser-ui/ui` with two sub-directories:
+When you ran the zk project command, your UI was created in the project directory: `/04-zkapp-browser-ui/ui`. The project has two sub-directories:
 
-  - `contracts`: The smart contract code 
-  - `ui`: Where you write your UI code
+- `contracts`: The smart contract code
+- `ui`: Where you write your UI code
 
-Install the dependencies in each sub-directory.
-
-1. In the `/04-zkapp-browser-ui/ui` directory, run:
-
-  ```sh
-  $ npm install
-  ```
-
-1. In the `/04-zkapp-browser-ui/contracts` directory:
-
-  ```sh
-  $ npm install
-  ```
+The dependencies in each sub-directory are installed automatically by the zkApp-cli.
 
 ## Create a repository
 
@@ -248,19 +236,26 @@ First, review the `import` and `export` statements:
 - The `export` statement creates a placeholder empty component.
 
 ```ts ignore
-  1 import { useEffect, useState } from 'react';
-  2 import './reactCOIServiceWorker';
-  3 import ZkappWorkerClient from './zkappWorkerClient';
-  4 import { PublicKey, Field } from 'o1js';
-  5 import GradientBG from '../components/GradientBG.js';
-  6 import styles from '../styles/Home.module.css';
-  7 
-  8 let transactionFee = 0.1;
-  9 
- 10 export default function Home() {
- 11   return <div/>
- 12 }
+import { useEffect, useState } from 'react';
+import './reactCOIServiceWorker';
+import ZkappWorkerClient from './zkappWorkerClient';
+import { PublicKey, Field } from 'o1js';
+import GradientBG from '../components/GradientBG.js';
+import styles from '../styles/Home.module.css';
+
+let transactionFee = 0.1;
+const ZKAPP_ADDRESS = 'B62qo2Be4Udo5EG1ux9yMJVkXe9Gz945cocN7Bn4W9DSYyeHZr1C3Ea';
+
+export default function Home() {
+  return <div/>
+}
 ```
+
+:::info
+
+The smart contract that the UI interacts with in this tutorial has been deployed to the Berkeley network and the public key is stored as the `ZKAPP_ADDRESS` in the UI project. If you experience problems with the deployed contract, you can deploy the `Add` contract included in the `contracts` folder yourself to the Berkeley network. When deployed, replace `ZKAPP_ADDRESS` with the  public key of your deployment.
+
+:::
 
 ### Add state
 
@@ -268,20 +263,20 @@ This `export` statement creates mutable state that you can reference in the UI. 
 
 ```ts ignore
 ...
- 10 export default function Home() {
- 11   let [state, setState] = useState({
- 12     zkappWorkerClient: null as null | ZkappWorkerClient,
- 13     hasWallet: null as null | boolean,
- 14     hasBeenSetup: false,
- 15     accountExists: false,
- 16     currentNum: null as null | Field,
- 17     publicKey: null as null | PublicKey,
- 18     zkappPublicKey: null as null | PublicKey,
- 19     creatingTransaction: false,
- 20   });
- 21 
- 22   const [displayText, setDisplayText] = useState('');
- 23   const [transactionlink, setTransactionLink] = useState('');
+export default function Home() {
+  const [state, setState] = useState({
+    zkappWorkerClient: null as null | ZkappWorkerClient,
+    hasWallet: null as null | boolean,
+    hasBeenSetup: false,
+    accountExists: false,
+    currentNum: null as null | Field,
+    publicKey: null as null | PublicKey,
+    zkappPublicKey: null as null | PublicKey,
+    creatingTransaction: false
+  });
+
+  const [displayText, setDisplayText] = useState('');
+  const [transactionlink, setTransactionLink] = useState('');
 ...
 ```
 
@@ -297,36 +292,36 @@ This code adds a function to set up the application:
 
 ```ts ignore
 ...
- 25   // -------------------------------------------------------
- 26   // Do Setup
- 27
- 28   useEffect(() => {
- 29      async function timeout(seconds: number): Promise<void> {
- 30       return new Promise<void>((resolve) => {
- 31         setTimeout(() => {
- 32           resolve();
- 33          }, seconds * 1000);
- 34         });
- 35       }
- 36
- 37    (async () => {
- 38      if (!state.hasBeenSetup) {
- 39        setDisplayText('Loading web worker...');
- 40        console.log('Loading web worker...');
- 41        const zkappWorkerClient = new ZkappWorkerClient();
- 42        await timeout(5);
- 43
- 44        setDisplayText('Done loading web worker');
- 45        console.log('Done loading web worker');
- 46
- 47        await zkappWorkerClient.setActiveInstanceToBerkeley();
- 48
- 49         // TODO
- 50       }
- 51     })();
- 52   }, []);
- 53
- 54   // -------------------------------------------------------
+// -------------------------------------------------------
+// Do Setup
+
+  useEffect(() => {
+    async function timeout(seconds: number): Promise<void> {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, seconds * 1000);
+      });
+    }
+
+    (async () => {
+      if (!state.hasBeenSetup) {
+        setDisplayText('Loading web worker...');
+        console.log('Loading web worker...');
+        const zkappWorkerClient = new ZkappWorkerClient();
+        await timeout(5);
+
+        setDisplayText('Done loading web worker');
+        console.log('Done loading web worker');
+
+        await zkappWorkerClient.setActiveInstanceToBerkeley();
+
+        // TODO
+      }
+    })();
+  }, []);
+
+  // -------------------------------------------------------
 ...
 ```
 
@@ -336,31 +331,31 @@ This code loads the contract and compiles it:
 
 ```ts ignore
 ...
- 47        await zkappWorkerClient.setActiveInstanceToBerkeley();
- 48
- 49         const mina = (window as any).mina;
- 50
- 51         if (mina == null) {
- 52           setState({ ...state, hasWallet: false });
- 53           return;
- 54         }
- 55
- 56         const publicKeyBase58: string = (await mina.requestAccounts())[0];
- 57         const publicKey = PublicKey.fromBase58(publicKeyBase58);
- 58
- 59         console.log('using key', publicKey.toBase58());
- 60         setDisplayText(`Using key:${publicKey.toBase58()}`);
- 61         
- 62         setDisplayText('Checking if fee payer account exists...');
- 63         console.log('Checking if fee payer account exists...');
- 64         
- 65         const res = await zkappWorkerClient.fetchAccount({
- 66           publicKey: publicKey!,
- 67         });
- 68         const accountExists = res.error == null;
- 69
- 70         // TODO  
- 71  }
+        await zkappWorkerClient.setActiveInstanceToBerkeley();
+
+        const mina = (window as any).mina;
+
+        if (mina == null) {
+          setState({ ...state, hasWallet: false });
+          return;
+        }
+
+        const publicKeyBase58: string = (await mina.requestAccounts())[0];
+        const publicKey = PublicKey.fromBase58(publicKeyBase58);
+
+        console.log(`Using key:${publicKey.toBase58()}`);
+        setDisplayText(`Using key:${publicKey.toBase58()}`);
+
+        setDisplayText('Checking if fee payer account exists...');
+        console.log('Checking if fee payer account exists...');
+
+        const res = await zkappWorkerClient.fetchAccount({
+          publicKey: publicKey!
+        });
+        const accountExists = res.error == null;
+
+        // TODO  
+    }
 ...
 ```
 
@@ -370,31 +365,28 @@ This code creates an instance of the contract at a fixed address and gets its cu
 
 ```ts ignore
 ...
- 68         const accountExists = res.error == null;
- 69
- 70         await zkappWorkerClient.loadContract();
- 71
- 72         console.log('Compiling zkApp...');
- 73         setDisplayText('Compiling zkApp...');
- 74         await zkappWorkerClient.compileContract();
- 75         console.log('zkApp compiled'); 
- 76         setDisplayText('zkApp compiled...');
- 77         
- 78         const zkappPublicKey = PublicKey.fromBase58(
- 79           'B62qjshG3cddKthD6KjCzHZP4oJM2kGuC8qRHN3WZmKH5B74V9Uddwu'
- 80         );
- 81
- 82         await zkappWorkerClient.initZkappInstance(zkappPublicKey);
- 83         
- 84         console.log('Getting zkApp state...');
- 85         setDisplayText('Getting zkApp state...');
- 86         await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
- 87         const currentNum = await zkappWorkerClient.getNum();
- 88         console.log(`Current number in zkApp state: ${currentNum.toString()}`);
- 89         setDisplayText('');
- 90
- 91        // TODO
- 92       }
+        const accountExists = res.error == null;
+
+        await zkappWorkerClient.loadContract();
+
+        console.log('Compiling zkApp...');
+        setDisplayText('Compiling zkApp...');
+        await zkappWorkerClient.compileContract();
+        console.log('zkApp compiled');
+        setDisplayText('zkApp compiled...');
+
+        const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
+
+        await zkappWorkerClient.initZkappInstance(zkappPublicKey);
+
+        console.log('Getting zkApp state...');
+        setDisplayText('Getting zkApp state...');
+        await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
+        const currentNum = await zkappWorkerClient.getNum();
+        console.log(`Current state in zkApp: ${currentNum.toString()}`);
+        setDisplayText('');
+
+        // TODO
 ...
 ```
 
@@ -404,21 +396,19 @@ And finally, this function updates the state of the React app:
 
 ```ts ignore
 ...
- 89         setDisplayText('');
- 90
- 91         setState({
- 92             ...state,
- 93             zkappWorkerClient,
- 94             hasWallet: true,
- 95             hasBeenSetup: true,
- 96             publicKey,
- 97             zkappPublicKey,
- 98             accountExists,
- 99             currentNum
-100          });
-101        }
-102      })();
-103   }, []);
+        setState({
+          ...state,
+          zkappWorkerClient,
+          hasWallet: true,
+          hasBeenSetup: true,
+          publicKey,
+          zkappPublicKey,
+          accountExists,
+          currentNum
+        });
+      }
+    })();
+  }, []);
 ...
 ```
 
@@ -458,30 +448,29 @@ Later, you add a link in the UI to request funds for new accounts.
 
 ```ts ignore
 ...
-105   // -------------------------------------------------------
-106   // Wait for account to exist, if it didn't
-107
-108   useEffect(() => {
-109     (async () => {
-110       if (state.hasBeenSetup && !state.accountExists) {
-111         for (;;) {
-112           setDisplayText('Checking if fee payer account exists...');
-113           console.log('Checking if fee payer account exists...'); 
-114           const res = await state.zkappWorkerClient!.fetchAccount({
-115             publicKey: state.publicKey!,
-116           });
-117            const accountExists = res.error == null;
-118            if (accountExists) {
-119             break;
-120           }
-121           await new Promise((resolve) => setTimeout(resolve, 5000));
-122         }
-123          setState({ ...state, accountExists: true });
-124        }
-125     })();
-126   }, [state.hasBeenSetup]);
-127
-128   // -------------------------------------------------------
+  // Wait for account to exist, if it didn't
+
+  useEffect(() => {
+    (async () => {
+      if (state.hasBeenSetup && !state.accountExists) {
+        for (;;) {
+          setDisplayText('Checking if fee payer account exists...');
+          console.log('Checking if fee payer account exists...');
+          const res = await state.zkappWorkerClient!.fetchAccount({
+            publicKey: state.publicKey!
+          });
+          const accountExists = res.error == null;
+          if (accountExists) {
+            break;
+          }
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+        }
+        setState({ ...state, accountExists: true });
+      }
+    })();
+  }, [state.hasBeenSetup]);
+
+  // -------------------------------------------------------
 ...
 ```
 
@@ -493,72 +482,71 @@ First, code for a function that sends a transaction:
 
 ```ts ignore
 ...
-128   // -------------------------------------------------------
-129   // Send a transaction
-130
-131    const onSendTransaction = async () => {
-132     setState({ ...state, creatingTransaction: true });
-133  
-134     setDisplayText('Creating a transaction...');
-135     console.log('Creating a transaction...');
-136 
-137     await state.zkappWorkerClient!.fetchAccount({
-138       publicKey: state.publicKey!,
-139     });
-140
-141     await state.zkappWorkerClient!.createUpdateTransaction();
-142 
-143     setDisplayText('Creating proof...');
-144     console.log('Creating proof...');
-145     await state.zkappWorkerClient!.proveUpdateTransaction();
-146
-147     setDisplayText('Requesting send transaction...');
-148     const { hash } = await (window as any).mina.sendTransaction({
-149     const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
-150   
-151     setDisplayText('Getting transaction JSON...');
-152     console.log('Getting transaction JSON...');
-153     const { hash } = await (window as any).mina.sendTransaction({
-154       transaction: transactionJSON,
-155       feePayer: {
-156         fee: transactionFee,
-157         memo: '',
-158        },
-159     });
-160  
-161     const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
-162     console.log(`View transaction at ${transactionLink}`);
-163 
-164     setTransactionLink(transactionLink);
-165     setDisplayText(transactionLink);
-166 
-167     setState({ ...state, creatingTransaction: false });
-168   };
-169  
-170   // -------------------------------------------------------
+  // Send a transaction
+
+  const onSendTransaction = async () => {
+    setState({ ...state, creatingTransaction: true });
+
+    setDisplayText('Creating a transaction...');
+    console.log('Creating a transaction...');
+
+    await state.zkappWorkerClient!.fetchAccount({
+      publicKey: state.publicKey!
+    });
+
+    await state.zkappWorkerClient!.createUpdateTransaction();
+
+    setDisplayText('Creating proof...');
+    console.log('Creating proof...');
+    await state.zkappWorkerClient!.proveUpdateTransaction();
+
+    console.log('Requesting send transaction...');
+    setDisplayText('Requesting send transaction...');
+    const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
+
+    setDisplayText('Getting transaction JSON...');
+    console.log('Getting transaction JSON...');
+    const { hash } = await (window as any).mina.sendTransaction({
+      transaction: transactionJSON,
+      feePayer: {
+        fee: transactionFee,
+        memo: ''
+      }
+    });
+
+    const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
+    console.log(`View transaction at ${transactionLink}`);
+
+    setTransactionLink(transactionLink);
+    setDisplayText(transactionLink);
+
+    setState({ ...state, creatingTransaction: false });
+  };
+
+  // -------------------------------------------------------
 ```
 
 And second, code for a function that gets the latest zkApp state:
 
 ```ts ignore
 ...
-170   // -------------------------------------------------------
-171   // Refresh the current state
-172
-173   const onRefreshCurrentNum = async () => {
-174     console.log('Getting zkApp state...');
-175     setDisplayText('Getting zkApp state...');
-176   
-177     await state.zkappWorkerClient!.fetchAccount({
-178       publicKey: state.zkappPublicKey!,
-179     });
-180     const currentNum = await state.zkappWorkerClient!.getNum();
-181     setState({ ...state, currentNum });
-182     console.log(`Current number in zkApp state: ${currentNum.toString()}`);
-183     setDisplayText('');
-184   };
-185
-186   // -------------------------------------------------------...
+  // Refresh the current state
+
+  const onRefreshCurrentNum = async () => {
+    console.log('Getting zkApp state...');
+    setDisplayText('Getting zkApp state...');
+
+    await state.zkappWorkerClient!.fetchAccount({
+      publicKey: state.zkappPublicKey!
+    });
+    const currentNum = await state.zkappWorkerClient!.getNum();
+    setState({ ...state, currentNum });
+    console.log(`Current state in zkApp: ${currentNum.toString()}`);
+    setDisplayText('');
+  };
+
+  // -------------------------------------------------------
+...
 ```
 
 ### Update placeholder
@@ -567,89 +555,84 @@ Replace the `<div/>` placeholder with a UI to show the user the state of your ap
 
 ```ts ignore
 ...
-186   // -------------------------------------------------------
-187   // Create UI elements
-188
-189   let hasWallet;
-190   if (state.hasWallet != null && !state.hasWallet) {
-191     const auroLink = 'https://www.aurowallet.com/';
-192     const auroLinkElem = (
-193       <a href={auroLink} target="_blank" rel="noreferrer">
-194           [Link]{' '}
-195         </a>
-196     );
-197     hasWallet = (
-198       <div>
-199         Could not find a wallet. Install Auro wallet here: {auroLinkElem}
-200       </div>
-201     );
-202   }
-203 
-204   const stepDisplay = transactionlink ? (    );
-205     <a href={displayText} target="_blank" rel="noreferrer">
-206       View transaction
-207     </a>
-208   ) : (
-209     displayText
-210   );
-211 
-212   let setup = (
-213       <div
-214        className={styles.start}
-215        style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
-216     >
-217       {stepDisplay}
-218       {hasWallet}
-219     </div>
-220   );
-221 
-222   let accountDoesNotExist;
-223     if (state.hasBeenSetup && !state.accountExists) {
-224     const faucetLink =
-225       'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
-226     accountDoesNotExist = (
-227       <div>
-228         Account does not exist. Please visit the faucet to fund this account
-229         <a href={faucetLink} target="_blank" rel="noreferrer">
-230           [Link]{' '}
-231         </a>
-232       </div>
-233     );
-234   }
-235 
-236   let mainContent;
-237   if (state.hasBeenSetup && state.accountExists) {
-238     mainContent = (
-239       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
-240         <div className={styles.center} style={{ padding: 0 }}>
-241           Current Number in zkApp: {state.currentNum!.toString()}{' '}
-242         </div>
-243         <button
-244           className={styles.card}
-245           onClick={onSendTransaction}
-246           disabled={state.creatingTransaction}
-247         >
-248          Send Transaction
-249         </button>
-250         <button className={styles.card} onClick={onRefreshCurrentNum}>
-251           Get Latest State
-252         </button>
-253       </div>
-254     );
-255   }
-256 
-257   return (
-258     <GradientBG>
-259       <div className={styles.main} style={{ padding: 0 }}>
-260         <div className={styles.center} style={{ padding: 0 }}>
-261           {setup}
-262           {accountDoesNotExist}
-263           {mainContent}
-264         </div>
-265       </div>
-266     </GradientBG>
-267   );
-268 }
+  // Create UI elements
+
+  let hasWallet;
+  if (state.hasWallet != null && !state.hasWallet) {
+    const auroLink = 'https://www.aurowallet.com/';
+    const auroLinkElem = (
+      <a href={auroLink} target="_blank" rel="noreferrer">
+        Install Auro wallet here
+      </a>
+    );
+    hasWallet = <div>Could not find a wallet. {auroLinkElem}</div>;
+  }
+
+  const stepDisplay = transactionlink ? (
+    <a href={displayText} target="_blank" rel="noreferrer">
+      View transaction
+    </a>
+  ) : (
+    displayText
+  );
+
+  let setup = (
+    <div
+      className={styles.start}
+      style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
+    >
+      {stepDisplay}
+      {hasWallet}
+    </div>
+  );
+
+  let accountDoesNotExist;
+  if (state.hasBeenSetup && !state.accountExists) {
+    const faucetLink =
+      'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
+    accountDoesNotExist = (
+      <div >
+        <span style={{paddingRight: '1rem'}}>Account does not exist.</span>
+        <a href={faucetLink} target="_blank" rel="noreferrer">
+          Visit the faucet to fund this fee payer account
+        </a>
+      </div>
+    );
+  }
+
+  let mainContent;
+  if (state.hasBeenSetup && state.accountExists) {
+    mainContent = (
+      <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <div className={styles.center} style={{ padding: 0 }}>
+          Current state in zkApp: {state.currentNum!.toString()}{' '}
+        </div>
+        <button
+          className={styles.card}
+          onClick={onSendTransaction}
+          disabled={state.creatingTransaction}
+        >
+          Send Transaction
+        </button>
+        <button className={styles.card} onClick={onRefreshCurrentNum}>
+          Get Latest State
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <GradientBG>
+      <div className={styles.main} style={{ padding: 0 }}>
+        <div className={styles.center} style={{ padding: 0 }}>
+          {setup}
+          {accountDoesNotExist}
+          {mainContent}
+        </div>
+      </div>
+    </GradientBG>
+  );
+}
 ```
 
 The UI has three sections:

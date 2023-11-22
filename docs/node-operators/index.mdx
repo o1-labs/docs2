@@ -16,10 +16,14 @@ keywords:
 
 Mina is secured by proof of stake consensus. Unlike other legacy protocols, any participant in a Mina network can validate transactions like a full node — making decentralization possible.
 
-Node operators play two specific roles:
+Node operators are people who run mina nodes. 
 
-1. Block Producer - this is analogous to being a Bitcoin "miner" or a "validator" in other proof-of-stake networks. By staking MINA, you can be selected to produce a block and win the block reward.
+The Mina nodes fulfill different roles within the network, including:
 
-2. SNARK worker - this job is what helps compress data in Mina's network. The SNARK worker nodes generate proofs of transactions. The block producer buys these proofs on the network (a "snarketplace"). For their efforts, the SNARK worker gets rewarded a part of the block reward.
+1. [Block producers](/mina-protocol/block-producers) - this is analogous to being a Bitcoin "miner" or a "validator" in other proof-of-stake networks. By staking MINA, you can be selected to produce a block and win the block reward.
+
+2. SNARK coordinators - distribute work to a series of [SNARK workers](mina-protocol/snark-workers) in parallel. 
+
+SNARK coordinators generate proofs of transactions by distributing work to a series of SNARK workers. The SNARK coordinators then submit that work to the network and the proofs are sold to block producers. The block producer buys these proofs on the network (a "snarketplace"). For their efforts, the SNARK worker gets rewarded a part of the block reward.
 
 See [Staking and Snarking](/node-operators/staking-and-snarking).

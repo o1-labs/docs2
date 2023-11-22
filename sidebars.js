@@ -33,15 +33,17 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/getting-started-zkapps',
+        'zkapps/install-zkapp-cli',
         'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
             'zkapps/how-to-test-a-zkapp',
             'zkapps/how-to-deploy-a-zkapp',
+            'zkapps/how-to-write-a-zkapp-ui',
           ],
         },
         {
@@ -290,6 +292,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Lightnet',
+                  label: 'Lightnet',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Mina',
                   label: 'Mina',
                 },
@@ -313,6 +320,11 @@ module.exports = {
                   id: 'zkapps/o1js-reference/modules/Types',
                   label: 'Types',
                 },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/ZkProgram',
+                  label: 'ZkProgram',
+                },
               ],
             },
             {
@@ -335,38 +347,56 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Mina Protocol',
+      items: [
+        'mina-protocol/proof-of-stake',
+        'mina-protocol/whats-in-a-block',
+        'mina-protocol/block-producers',
+        'mina-protocol/snark-workers',
+        'mina-protocol/scan-state',
+        'mina-protocol/hardforks',
+        'mina-protocol/time-locked-accounts',
+        'mina-protocol/sending-a-payment',
+        'mina-protocol/lifecycle-of-a-payment',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Node Operators',
       items: [
         'node-operators/index',
+        {
+          type: 'category',
+          label: 'Delegation Program',
+          items: [
+            'node-operators/foundation-delegation-program',
+            'node-operators/delegation-tiebreak',
+            'node-operators/bp-sidecar',
+            'node-operators/uptime-tracking-system',
+          ],
+        },
         'node-operators/getting-started',
-        'node-operators/archive-node',
-        'node-operators/archive-redundancy',
-        'node-operators/foundation-delegation-program',
-        'node-operators/delegation-tiebreak',
-        'node-operators/bp-sidecar',
-        'node-operators/uptime-tracking-system',
-        'node-operators/mina-signer',
-        'node-operators/querying-data',
-        'node-operators/connecting-to-devnet',
-        'node-operators/hardforks',
-        'node-operators/hot-cold-block-production',
-        'node-operators/rosetta',
-        'node-operators/proof-of-stake',
-        'node-operators/snark-workers',
-        'node-operators/scan-state',
-        'node-operators/time-locked-accounts',
-        'node-operators/block-producers',
-        'node-operators/whats-in-a-block',
-        'node-operators/lifecycle-of-a-payment',
-        'node-operators/seed-peers',
-        'node-operators/staking-service-guidelines',
-        'node-operators/troubleshooting',
-        'node-operators/faq',
         'node-operators/generating-a-keypair',
         'node-operators/connecting-to-the-network',
-        'node-operators/sending-a-payment',
+        'node-operators/connecting-to-devnet',
         'node-operators/staking-and-snarking',
+        'node-operators/hot-cold-block-production',
+        'node-operators/seed-peers',
+        'node-operators/staking-service-guidelines',
+        'node-operators/mina-signer',
+        {
+          type: 'category',
+          label: 'Data and History',
+          items: [
+            'node-operators/querying-data',
+            'node-operators/archive-node',
+            'node-operators/archive-redundancy',
+            'node-operators/rosetta',
+          ],
+        },
         'node-operators/mina-cli-reference',
+        'node-operators/troubleshooting',
+        'node-operators/faq',
       ],
     },
     {
@@ -381,7 +411,6 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/client-sdk',
         'node-developers/contributing',
         'node-developers/logging',
       ],
@@ -389,7 +418,50 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
-      items: ['exchange-operators/faq'],
+      items: [
+        {
+          type: 'category',
+          label: 'Rosetta API',
+          link: {
+            type: 'doc',
+            id: 'exchange-operators/rosetta/index'
+          },
+          items: [
+            'exchange-operators/rosetta/run-with-docker',
+            'exchange-operators/rosetta/build-from-sources',
+            'exchange-operators/rosetta/send-requests',
+            {
+              type: 'category',
+              label: 'Code Samples',
+              link: {
+                type: 'doc',
+                id: 'exchange-operators/rosetta/samples/index'
+              },
+              items: [
+                'exchange-operators/rosetta/samples/requests',
+                'exchange-operators/rosetta/samples/using-signer',
+                'exchange-operators/rosetta/samples/scan-blocks',
+                'exchange-operators/rosetta/samples/track-deposits',
+                'exchange-operators/rosetta/samples/send-transactions'
+              ]
+            },
+          ]
+        },
+        'exchange-operators/faq'],
+    },
+    {
+      type: 'category',
+      label: 'Testworld Mission 2.0',
+      items: [
+        'test-world-2/node-operator-responsibilities',
+        'test-world-2/technical-requirements',
+        'test-world-2/test-plan',
+        'test-world-2/timelines',
+        'test-world-2/incentives',
+        'test-world-2/bug-reporting',
+        'test-world-2/launching-a-node',
+        'test-world-2/questions',
+      ],
     },
     {
       type: 'category',

@@ -1,0 +1,234 @@
+---
+title: Scan State
+hide_title: true
+description: A data structure that allows decoupling the production of transaction SNARKs from block producers to snark workers. 
+keywords:
+  - data structure
+  - blockchian
+  - full binary tree
+  - snark
+  - snarked ledger
+---
+
+# Scan State
+
+The scan state is a data structure that allows decoupling the production of transaction SNARKs from block producers to SNARK workers.
+
+[Block producers](/mina-protocol/block-producers) do not have to produce transaction SNARKs, so the block production time can remain constant regardless of the transaction throughput. The scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [SNARK workers](/mina-protocol/snark-workers).
+
+The scan state is comprised of a forest of full [binary trees](https://en.wikipedia.org/wiki/Binary_tree), where each node in the tree is a job to be completed by a SNARK worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
+
+The block producers include the emitted ledger proof in the blockchain SNARK they generate that proves both the chain's current state is valid and attests to the validity of all transactions included in the SNARKed ledger.
+
+As a result, block times can remain constant regardless of the transaction throughput. The scan state is capable of adjusting to match a desired transaction throughput.
+
+:::tip
+
+In a steady state, when all slots are filled and all the required proofs are completed, a ledger proof is emitted every block.
+
+:::
+
+### Including transactions
+
+When constructing a block, a [block producer](/mina-protocol/block-producers) can include transactions up to the maximum defined by the [scan state constants](#scan-state-constants). Block producers can pick up any available transaction fees and pay themselves a coinbase reward by including transactions. Each transaction they add is transformed into new base jobs and added to the scan state.
+
+For every transaction added, a block producer must include an equivalent amount of completed SNARK work corresponding to a sequence of jobs already existing in the scan state. When added to the scan state, these completed jobs create new merge jobs, except for the root node, in which case the proof is returned as a result.
+
+The block producer, rather than completing the work themselves, can purchase the completed work from any SNARK workers from bids available in the SNARK pool (snarketplace).
+
+### Scan state constants
+
+The following constants dictate the structure and behavior of the scan state:
+
+- `transaction_capacity_log_2`
+- `work_delay`
+
+The `transaction_capacity_log_2` constant defines the maximum number of transactions that can be included in a block:
+
+```
+max_no_of_transactions = 2^{transaction_capacity_log_2}
+```
+
+The work delay ensures there is enough time for the SNARK work to be completed by the SNARK workers. The block producer cannot include any transactions if no completed proofs are available. With the work delay, the maximum number of trees that can exist in the scan state is defined by:
+
+```
+max_number_of_trees = (transaction_capacity_log_2 + 1) * (work_delay + 1) + 1
+```
+
+The maximum number of proofs that can be included per block is defined by:
+
+```
+max_number_of_proofs = 2^{transaction\_capacity_log_2 + 1} - 1
+```
+
+These scan state constraints ensure that:
+
+- Only a single proof can be emitted per block
+- The merge node to be updated after adding proofs corresponding to its children is always empty.
+
+While the maximum number of transactions can be fixed, this number can dynamically adjust to the transaction throughput. As such, the scan state can handle an unlimited transaction throughput, albeit at the cost of increasing (logarithmically) the transaction proof latency.
+
+### Example
+
+Consider a scan state with `max_no_of_transactions = 4`, and `work_delay = 1`. Accordingly, this means there can be a maximum amount of work to complete equal to 7 and a maximum of 7 trees. At **genesis**, the scan state is empty.
+
+<img
+  alt="Block 0"
+  src="/img/ZJXLozR.png"
+  width="350"
+/>
+
+**Block 1**: A block producer includes four transactions into the scan state labeled `B1`. These transactions fill the base of the first tree.
+
+<img
+  alt="Block 1"
+  src="/img/mY4MzW0.png"
+  width="350"
+/>
+
+**Block 2**: At the second block, a block producer adds another four transactions (`B2`). These are added to a second tree, once again filling the base. There are no proofs required due to the work delay of 1 block.
+
+<img
+  alt="Block 2"
+  src="/img/jzYrmZf.png"
+  width="700"
+/>
+
+**Block 3**: At the third block, a block producer adds four `B3` transactions to the third tree but must include four proofs for the first tree. As a result of including these completed base proofs, two new `M3` merge jobs are created.
+
+<img
+  alt="Block 3"
+  src="/img/tECFm3I.png"
+  width="100%"
+/>
+
+:::tip
+
+`B` or `M` indicates a base or merge job, with the number indicating the sequence order of being added to the scan state.
+
+:::
+
+**Block 4**: For the fourth block, a block producer adds another four transactions (`B4`) to the base of the fourth tree. They must include four proofs corresponding to the work added in block 2. Again, two `M4` merge jobs are created as a result.
+
+<img
+  alt="Block 4"
+  src="/img/76R2bpU.png"
+  width="100%"
+/>
+
+:::tip
+
+Any pending work (displayed in orange) is work for the SNARK workers to complete. The SNARK workers submit completed work to the SNARK pool. Multiple SNARK workers can complete the work, but only the lowest fee remains in the SNARK pool that can be purchased by the block producers.
+
+:::
+
+**Block 5**: In the fifth block, another four transactions are included to fill the base of tree five (`B5`), and six proofs must be included (`B3`s and `M3`s). The `M3` merge jobs result in a final pending merge job for the first tree (`M5`).
+
+<img
+  alt="Block 5"
+  src="/img/QaqfbXG.png"
+  width="100%"
+/>
+
+**Block 6**: In the sixth block, another four transactions (`B6`) are added, filling the base of the sixth tree. Six proofs are included (`B4` and `M4`), and three new merge jobs are created (`M6`).
+
+<img
+  alt="Block 6"
+  src="/img/y6dM2FT.png"
+  width="100%"
+/>
+
+**Block 7**: In the seventh block, the block producer adds a further four transactions (`B7`), filling the base of the seventh tree. Seven trees are the maximum number of trees according to the specified scan state constants. The maximum number of proofs (7) are included (`B5` and `M5`). These included proofs create three new merge jobs (`M7`);additionally, the top `M5` proof is emitted from the scan state.
+
+<img
+  alt="Block 7"
+  src="/img/RY8umxW.png"
+  width="100%"
+/>
+
+The proof that is emitted from the first tree is the ledger proof corresponding to the transactions added in block 1. The contents of the tree are then removed to create space for additional transactions.
+
+<img
+  alt="Emit proof"
+  src="/img/hQvFVfp.png"
+  width="100%"
+/>
+
+**Block 8**: In the eighth block, the block producer adds two transactions (`B8`) and includes 4 (`B6`) proofs. These included proofs result in two new merge jobs (`M8`). Note that only four proofs are required for adding two transactions.
+
+<img
+  alt="Block 8"
+  src="/img/A3o18oN.png"
+  width="100%"
+/>
+
+:::tip
+
+SNARK work is bundled into a work package typically containing two _workIds_, except for the final root proof of a tree. Prorated work for a transaction is two proofs, ensuring the equality of transactions included and SNARK work to be purchased.
+
+:::
+
+**Block 9**: The block producer adds three transactions (`B9`) in the ninth block. Three proofs (`M6`) are required to occupy the slots in the currently unfilled tree. Four proofs were added in the previous block, so only three more proofs need to be done (given the maximum work is 7). The `M6` proof from tree two is returned as the ledger proof. The third `B9` transaction goes into the now empty tree, and two `B7` proofs are added.
+
+<img
+  alt="Block 9"
+  src="/img/JGlawxh.png"
+  width="100%"
+/>
+
+**Block 10**: In block ten, the block producer adds four transactions and, as a result, includes seven proofs (`B7`, `M7`, and two `B8`s).
+
+<img
+  alt="Block 10"
+  src="/img/kQASfTN.png"
+  width="100%"
+/>
+
+**Block 11**: In the eleventh block, the block producer adds three transactions (`B11`) and completes five proofs (`B9`, `B9`, `M8`, `M8`, `M9`) in that order. In addition, the `M9` ledger proof is returned from the fourth tree.
+
+<img
+  alt="Block 11"
+  src="/img/FaVTmWD.png"
+  width="100%"
+/>
+
+:::tip
+
+To view the contents of the scan state, run the `mina advanced snark-job-list` command.
+
+:::
+
+### Integration with the SNARK Pool
+
+Newly added jobs to the scan state are pending jobs for SNARK workers to complete. SNARK workers complete the required transaction SNARKs, submitting bids for their completed work. When a node receives and validates the completed work, SNARK workers add the completed work to the local SNARK pool if it is valid and has the lowest fee for the required work. The work is also gossiped to other peers in the network.
+
+:::tip
+
+While multiple SNARK workers can complete the same work, only the lowest fee is included in the SNARK pool.
+
+:::
+
+When a block producer includes completed proofs into a block to offset any transactions they add, they may purchase the corresponding work from the SNARK pool. Continuing the previous example, consider the next block (12). If the block producer wants to add three transactions, comprising a coinbase, a user payment, and a fee transfer to the SNARK worker, the block producer must purchase three completed SNARK works. This corresponds to the six `B9`, `B10`s, `M9`, and `M10` (from the seventh tree) proofs, as each SNARK work includes two _workIds_.
+
+During the time the block is generated, the SNARK pool can include completed work and the best bids for the required jobs (0.025, 0.165, 0.1, and 0.5) respectively, in the example.
+
+<img
+  alt="Submitted work"
+  src="/img/fDBZog9.png"
+  width="100%"
+/>
+
+A block producer considers the price of available work before selecting transactions.
+
+- The first transaction a block producer adds is the coinbase transaction for which there is the coinbase reward. 
+- If transaction fees do not cover the SNARK work fees required for them to be included, the transaction is not added. 
+
+A block producer never purchases work if it is not economical.
+
+If completed SNARK work is not available to purchase in the order required, then the corresponding transactions are not included in a block. This situation can result in an empty block, but also, for the case where no transactions can be added (including a coinbase transaction), there is no reward for the block producer.
+
+To view the current SNARK pool, use:
+
+- [GraphQL API](/node-developers/graphql-api)
+- Mina CLI `mina advanced snark-pool` command
+
