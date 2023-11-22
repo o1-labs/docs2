@@ -6,7 +6,7 @@ import {
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
   Bool,
   Circuit,
@@ -36,7 +36,7 @@ const main = () => {
       step: {
         privateInputs: [ SelfProof ],
 
-        method(earlierProof: SelfProof<Field>) {
+        method(earlierProof: SelfProof<Field, Field>) {
           earlierProof.verify();
           return earlierProof.publicInput.add(1);
         },
@@ -63,7 +63,7 @@ const ZkProgram = (config : any) => {
     }
   });
 
-  const originalZkProgram = Experimental.ZkProgram(zkProgramConfig);
+  const originalZkProgram = ZkProgram(zkProgramConfig);
 
   const zkProgram: any = {};
 

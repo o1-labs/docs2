@@ -284,7 +284,7 @@ Notice that `get()` and `set()` methods are used for retrieving and setting on-c
 
 - Similarly, using `set()` changes the transaction to indicate that changes to this particular on-chain state are updated only when the transaction is received by the Mina network if it contains a valid authorization (usually, a valid authorization is a proof).
 
-The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available methods in the [o1js Reference](/zkapps/o1js-reference) documentation. 
+The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available [methods](/zkapps/o1js-reference/classes/Field#methods) in the o1js Reference documentation. 
 
 You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero-knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
 
@@ -307,20 +307,15 @@ For this tutorial, the `import` statement brings in items from `o1js` that you u
 ```ts src/main.ts
 1 import { Square } from './Square.js';
 2 import {
-3   isReady,
-4   shutdown,
-5   Field,
-6   Mina,
-7   PrivateKey,
-8   AccountUpdate,
-9 } from 'o1js';
-10
+3   Field,
+4   Mina,
+5   PrivateKey,
+6   AccountUpdate,
+7 } from 'o1js';
 ```
 
 These import items are:
 
-- `isReady`: An asynchronous promise that resolves when o1js is loaded and ready. This field is required because o1js contains WebAssembly (Wasm).
-- `shutdown`: A function that closes the program.
 - `Field`: The same o1js unsigned integer type that you learned earlier.
 - `Mina`: A local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
 - `PrivateKey`: A class with functions for manipulating private keys.
@@ -333,20 +328,12 @@ Using a local blockchain speeds up development and tests the behavior of your sm
 To initialize your local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
-11 await isReady;
-12
-13 console.log('o1js loaded');
-14
-15 const useProof = false;
-16
-17 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
-18 Mina.setActiveInstance(Local);
-19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
-21
-22 console.log('Shutting down');
-23
-24 await shutdown();
+ 9 const useProof = false;
+10
+11 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
+12 Mina.setActiveInstance(Local);
+13 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
+14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 ```
 
 This local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
@@ -417,12 +404,6 @@ Comments break down each stage:
 36 // get the initial state of Square after deployment
 37 const num0 = zkAppInstance.num.get();
 38 console.log('state after init:', num0.toString());
-39
-40 // ----------------------------------------------------
-41
-42 console.log('Shutting down')
-43
-44 await shutdown();
 ```
 
 Try running this command again:
@@ -459,12 +440,6 @@ To update your local zkApp account with a transaction, add the following code to
 47
 48 const num1 = zkAppInstance.num.get();
 49 console.log('state after txn1:', num1.toString());
-50
-51 // ----------------------------------------------------
-52
-53 console.log('Shutting down');
-54
-55 await shutdown();
 ```
 
 This code creates a new transaction that attempts to update the field to the value `9`. Because of the rules in the `update()` function that is called on the smart contract, this command succeeds when you run it again:
@@ -502,12 +477,6 @@ To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
 61 }
 62 const num2 = zkAppInstance.num.get();
 63 console.log('state after txn2:', num2.toString());
-64
-65 // ----------------------------------------------------
-66
-67 console.log('Shutting down');
-68
-69 await shutdown();
 ```
 
 Try running this command again:
@@ -544,12 +513,6 @@ And finally, be sure to change your `main.ts` file to include the correct update
 72
 73 const num3 = zkAppInstance.num.get();
 74 console.log('state after txn3:', num3.toString());
-75
-76 // ----------------------------------------------------
-77
-78 console.log('Shutting down');
-79
-80 await shutdown();
 ```
 
 Run this command again:

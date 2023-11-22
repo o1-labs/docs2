@@ -49,8 +49,8 @@ To make this more script convenient to write, use the provided helper functions.
 
   The `utils.ts` file contains two functions:
 
-- `loopUntilAccountExists()` waits until an account exists on Berkeley
-- `deploy()` programmatically deploys your zkApp
+  - `loopUntilAccountExists()` waits until an account exists on Berkeley
+  - `deploy()` programmatically deploys your zkApp
 
 ### Connect to a remote network
 
@@ -129,29 +129,27 @@ The public/private key pair was created in `keys/berkeley.json`. Public and priv
   ...
   ```
 
-
 You can run this now with:
 
 ```sh
 $ npm run build && node build/src/main.js berkeley
 ```
 
-Which will read keys from `keys/berkeley.json`. Public and private keys in Mina are commonly stored in `base58` for easily readability. In Mina, public keys start with `B62`, and private keys start with `EKE` for easy differentiability.
+This reads keys from `keys/berkeley.json`. Public and private keys in Mina are commonly stored in `base58` for easily readability. In Mina, public keys start with `B62`, and private keys start with `EKE` for easy differentiability.
 
-Our SmartContract is also deployed to the same account we deployed from. So we set `zkAppPrivateKey = deployerPrivateKey`. Depending on the application, it can also be useful to have separate keys for the zkApp and deployer accounts!
+The SmartContract is also deployed to the same account we deployed from. So we set `zkAppPrivateKey = deployerPrivateKey`. Depending on the application, it can also be useful to have separate keys for the zkApp and deployer accounts!
 
 ### Waiting for accounts to be ready
 
-Next, we will wait for the deployer account to be ready.
+Next, wait for the deployer account to be ready.
 
-In main, we will import and use the `loopUntilAccountExists()` function from `utils.ts`:
+In `main.ts`, import and use the `loopUntilAccountExists()` function from `utils.ts`:
 
 ```ts
 ...
   4 import fs from 'fs';
   5 import { loopUntilAccountExists } from './utils.js';
   6
-  7 await isReady;
 ...
  33 // ----------------------------------------------------
  34
@@ -176,13 +174,13 @@ In main, we will import and use the `loopUntilAccountExists()` function from `ut
 ...
 ```
 
-We wait until our new deployment account exist - if it does not, we share a link with the user to go to the faucet and request funds.
+Wait until the new deployment account exists. If it doesn't, share a link with the user to go to the faucet and request funds.
 
-If the key created from the `zk deploy` command earlier in this tutorial has already been funded, then this should find the account and move on. If that transaction hasn't finished yet, then this will wait until that has completed.
+If the key created from the `zk deploy` command earlier in this tutorial has already been funded, then find the account and move on. If that transaction hasn't finished yet, then wait until that has completed.
 
-Once we find the account, we print out its nonce, and its balance.
+After the account is found, print out its nonce and its balance.
 
-Moving on, we compile the smart contract, and wait for it to have been deployed:
+Moving on, compile the smart contract and wait for it to have been deployed:
 
 ```ts
 ...
@@ -215,11 +213,11 @@ Moving on, we compile the smart contract, and wait for it to have been deployed:
 ...
 ```
 
-To do this, we reuse the helper function `loopUntilAccountExists()` from `utils.js`. This time, we pass in `isZkappAccount: true` which makes it not only check if the account exists, but also whether there is a verification key on the account. An existing verification key indicates that the zkApp has been successfully deployed.
+To do this, reuse the helper function `loopUntilAccountExists()` from `utils.js`. This time, pass in `isZkappAccount: true` checks if the account exists and that there is a verification key on the account. An existing verification key indicates that the zkApp has been successfully deployed.
 
-Note as we deployed our smart contract already with `zk deploy`, programmatic deploy is not needed, and is commented out here. If you would like to see how this works, or it's useful for your application, see code for this [here](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/utils.ts).
+The smart contract was already deployed with `zk deploy` so a programmatic deploy is not required and is commented out here. If you want to see how this works, or it's useful for your application, see the code in [utils.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/interacting-with-zkApps-server-side/src/utils.ts).
 
-After being certain that our zkApp has been deployed, we fetch the current value of `zkapp.num` (the on-chain we defined on the `SmartContract`) and log it. If this is the first time you run this script, the value should be `3` because that's how we set it in our smart contract's `init()` function. The `init()` function is called automatically during the first deploy (not during re-deploys).
+After being certain that the zkApp has been deployed, fetch the current value of `zkapp.num` (the on-chain defined on the `SmartContract`) and log it. If this is the first time you run this script, the value should be `3` because that's how it is set in the smart contract's `init()` function. The `init()` function is called automatically during the first deploy (not during re-deploys).
 
 <!-- note: I'm commenting this out since setting `provedState` with `init()` doesn't work yet anyway because of the missing verification key protocol bug.
 
@@ -233,7 +231,7 @@ This `provedState` property starts out `false` when a contract is deployed. It i
 
 ### Calling update on our transaction
 
-And lastly, let's now send an update to our transaction. If the zkApp was just initialized, this will call update on the newly initialized account. Otherwise, it will call update on whatever the current account state happens to be.
+Finally, send an update to the transaction. If the zkApp was just initialized, this calls an update on the newly initialized account. Otherwise, it calls an update on whatever the current account state happens to be.
 
 ```ts
 ...
@@ -263,13 +261,13 @@ And lastly, let's now send an update to our transaction. If the zkApp was just i
 ...
 ```
 
-To send an update transaction, we perform the following steps:
+To send an update transaction, perform the following steps:
 
-1. Construct the transaction with `Mina.transaction`. This is where we call `zkapp.update()`, which is the custom method defined on our smart contract.
+1. Construct the transaction with `Mina.transaction`. This is where you call `zkapp.update()`, the custom method defined on the smart contract.
 2. Create a proof of the transaction. This can take up to a minute.
 3. Sign the transaction, and send it to the network.
 
-When sending the transaction using `transaction.send()`, we get back an object called `pendingTransaction`. This gives us info about how the transaction went and lets us wait for inclusion in a block:
+When sending the transaction using `transaction.send()`, an object called `pendingTransaction` is returned and provides information about how the transaction went and waits for inclusion in a block:
 
 ```ts
  99 // ----------------------------------------------------
@@ -290,16 +288,16 @@ When sending the transaction using `transaction.send()`, we get back an object c
 114 // ----------------------------------------------------
 ```
 
-Here we use several functionalities of the pending transaction:
+Here you use several functionalities of the pending transaction:
 
-- `pendingTransaction.isSuccess` is a boolean that tells us whether the transaction was successful. Most invalid transactions will be rejected by the GraphQL endpoint immediately and will have `isSuccess === false`.
-- `pendingTransaction.hash()` tells us the transaction hash, which you can use to look up the transaction in a block explorer. (If the transaction failed, this will return `undefined`).
-- `pendingTransaction.wait()` is especially useful: it returns a promise that only resolves after the transaction is included in the latest block on the network. This takes several minutes, so you might not want to block the main thread on this in a real application.
+- `pendingTransaction.isSuccess` is a boolean for whether the transaction was successful. Most invalid transactions are immediately rejected by the GraphQL endpoint immediately with `isSuccess === false`.
+- `pendingTransaction.hash()` is the transaction hash that you can use to look up the transaction in a block explorer. If the transaction failed, returns `undefined`.
+- `pendingTransaction.wait()` is especially useful as it returns a promise that resolves utils.ts after the transaction is included in the latest block on the network. This takes several minutes, so you might not want to block the main thread on this in a real application.
 
-Finally, after the transaction was successfully applied on the Mina blockchain, we can double-check that our state was updated by fetching it again with `zkapp.num.fetch()`.
+Finally, after the transaction was successfully applied on the Mina blockchain, you can double-check that your state was updated by fetching it again with `zkapp.num.fetch()`.
 
 ## Conclusion
 
-We have finished writing a script to initialize the state and interact with it! You can also run this script multiple times, and it should each time, update `x` to its square.
+You have finished writing a script to initialize the state and interact with it! You can also run this script multiple times to update `x` to its square.
 
-Check out out our other tutorials and documentation to keep going!
+Check out other tutorials and documentation to keep going!

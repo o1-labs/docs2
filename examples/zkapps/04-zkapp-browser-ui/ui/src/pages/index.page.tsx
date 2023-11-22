@@ -6,6 +6,7 @@ import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
 
 let transactionFee = 0.1;
+const ZKAPP_ADDRESS = 'B62qo2Be4Udo5EG1ux9yMJVkXe9Gz945cocN7Bn4W9DSYyeHZr1C3Ea';
 
 export default function Home() {
   const [state, setState] = useState({
@@ -75,9 +76,7 @@ export default function Home() {
         console.log('zkApp compiled');
         setDisplayText('zkApp compiled...');
 
-        const zkappPublicKey = PublicKey.fromBase58(
-          'B62qo2Be4Udo5EG1ux9yMJVkXe9Gz945cocN7Bn4W9DSYyeHZr1C3Ea'
-        );
+        const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
 
         await zkappWorkerClient.initZkappInstance(zkappPublicKey);
 
