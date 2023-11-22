@@ -19,21 +19,22 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Gadgets
 
-Gadgets are amalgamations of the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). Gadgets in o1js simplify the process of creating new cryptographic primitives and make it possible to implement other crypto algorithms, such as SHA. 
+Gadgets are elements in TypeScript that the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). Gadgets in o1js simplify the process of creating new cryptographic primitives and make it possible to implement other crypto algorithms, such as SHA. 
 
-<!--- I'm grabbing context from other sources SWAG, please review carefully--->
-Think of gadgets as atomic logic gates that mask large circuits. 
+<!-- notes from a convo with Jack
+Code runs in JS
+In order to prove that code is correctly, it is passed into a circuit to verify proofs
 
-Gadgets are small, reusable building blocks you can use to create more complex cryptographic constructions. 
+We built gates that part of the circuit
 
-Leverage the properties and behavior of these smaller components to build secure and efficient systems.
+Gadgets are bigger parts of the circuit and are made out of gates
+-->
+
 
 Questions: 
-- are all gadgets bitwise provers? do they all use ZkProgram? what does that mean? https://github.com/o1-labs/o1js/blob/main/src/examples/zkprogram/gadgets.ts#L18 
-- are all gadgets used/called as a method that moves the result into one of our 8 fields?
-- handle the constant case by using the added functionality in the bindings. For the prover case, how to describe? or go into detail for each gadget?
+- are all gadgets in ZkProgram? I see only `rot`, `xor`, `and` 
+- some PRs mention "handle the constant case by using the added functionality in the bindings" For the prover case, how to describe? or go into detail for each gadget?
 - do we want to list gadgets in the gadgets namespace separately from gadgets not in the gadgets namespace? (where are these gadgets?)
-- do we have examples other than https://github.com/o1-labs/o1js/blob/main/src/examples/zkprogram/gadgets.ts? 
 - include code snippets? 
 - can we need to describe use cases? or just talk about performance gains? or?
 - primitive constraint system, we replaced Poiseidon with gadget? https://github.com/o1-labs/o1js/pull/1177/files#diff-de4ea0a8fb59a20403ab4c9ab9615587c179a8649e1b1b07297f6c829c94aa88L1 
@@ -51,24 +52,43 @@ Gadgets assume that input is at most 64 bits in size. The input value must be in
 
 ## Gadgets in o1js
 and, xor, rot, not, range checks, left shift and right shift
+https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/gadgets.ts 
 
 ## and()
 
 The AND gadget in the gadgets namespace, which behaves similarly to the & operator in JavaScript. https://github.com/o1-labs/o1js/pull/1193
 
+```ts
+
+```
+
 ## compactMultiRangeCheck()
 
 Building block for non-native arithmetic with BigInt of size up to 264 bits. https://github.com/o1-labs/o1js/pull/1216
 
+```ts
+
+```
+
 ## multiRangeCheck()
 
-A building block for non-native arithmetic with BigInt of size up to 264 bits. A provable method for efficient 64-bit range checks using lookup tables. (0.14.0, #1181)
+A building block for non-native arithmetic with BigInt of size up to 264 bits. A provable method for efficient 64-bit range checks using lookup tables. https://github.com/o1-labs/o1js/pull/1181
+
+```ts
+
+```
 
 ## not()
 
 A provable method to support bitwise shifting for native field elements. https://github.com/o1-labs/o1js/pull/1198
 
 NOT adds the implementation for a NOT gate to the existing Gadgets namespace. A bitwise NOT is an operation that returns 1 in each bit position if the corresponding bit of the operand is 0, and returns 0 if the corresponding bit of the operand is 1.
+
+
+```ts
+
+```
+
 
 ## rotate()
 
@@ -79,13 +99,25 @@ A rotation, often referred to as a bitwise rotation, is an operation that shifts
 Rotate Left (ROL): In this operation, bits are shifted to the left. The bits that fall off the leftmost side wrap around and reappear on the rightmost side.
 Rotate Right (ROR): In this operation, bits are shifted to the right. The bits that fall off the rightmost side wrap around and reappear on the leftmost side.
 
-The ROT implementation handles the constant case by using the added functionality in the bindings. For the prover case, we specify the implementation in this PR.
+The ROT implementation handles the constant case by using the added functionality in the bindings. For the prover case, how to implement?
+
+
+```ts
+
+```
+
 
 ## left shift and right shift
 
-Bitwise shifting is an operation that moves the bits of a binary number to the left or right. Unlike rotation, the bits that "fall off" at the end are discarded and the vacant positions are filled with zeros.
+Provable methods that support bitwise shifting, an operation that moves the bits of a binary number to the left or right. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
 handles the constant case by using the added functionality in the bindings. For the prover case,
+
+
+```ts
+
+```
+
 
 https://github.com/o1-labs/o1js/pull/1194
 
@@ -93,8 +125,14 @@ https://github.com/o1-labs/o1js/pull/1194
 
 A provable method to support bitwise XOR operations for native field elements. https://github.com/o1-labs/o1js/pull/1177 
 
+
+```ts
+
+```
+
+
 ## Examples
 
 are all gadgets in ZkProgram? I see only `rot`, `xor`, `and`
 
-https://github.com/o1-labs/o1js/blob/main/src/examples/zkprogram/gadgets.ts only shows 
+https://github.com/o1-labs/o1js/blob/main/src/examples/zkprogram/gadgets.ts 
