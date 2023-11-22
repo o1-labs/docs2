@@ -6,7 +6,7 @@ import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
 
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qo2Be4Udo5EG1ux9yMJVkXe9Gz945cocN7Bn4W9DSYyeHZr1C3Ea';
+const ZKAPP_ADDRESS = 'B62qkzkNuxitUqJNS16YFCyKGwmH6Nyk2cMdPdgUnPC3Q4xqt9HH7D3';
 
 export default function Home() {
   const [state, setState] = useState({
