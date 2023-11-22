@@ -84,7 +84,7 @@ const FeatureList: FeatureItem[] = [
     title: "Run a Node",
     image: "/svg/homepage/node_operators.svg",
     buttonText: "Node Operators",
-    buttonLink: "/node-operators/getting-started",
+    buttonLink: "/node-operators/block-producer-node/getting-started",
 
     description: (
       <>

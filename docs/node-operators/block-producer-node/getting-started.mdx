@@ -28,7 +28,7 @@ Welcome to Mina!
 
 Get started setting up a Mina node, learn how to generate a keypair for use with the network, connect to the network, and begin producing blocks.
 
-This documentation is for the **Mainnet** release.
+This documentation is for the **Mainnet** release. The releases can be found [here.](https://github.com/MinaProtocol/mina/releases)
 
 ## Block Producer Requirements
 
@@ -73,7 +73,7 @@ O(1) Labs has tested running nodes on several cloud providers. We recommend the 
 
 ## Installation
 
-To install the latest [Mainnet **Stable** Release 1.4.0](https://github.com/MinaProtocol/mina/releases/tag/1.4.0), use the installation steps for your environment.
+To install the latest [Mainnet **Stable** Release 1.4.0](https://github.com/MinaProtocol/mina/releases/tag/1.4.0), use the installation steps for your environment. Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker.
 
 The binary download is around 1 GB, so the installation might take a few minutes.
 
@@ -81,13 +81,22 @@ To discover and install pre-release (Beta) builds, see the [Mina Releases](https
 
 ### Ubuntu and Debian
 
-To set up the new Debian `stable` repository and install the latest binary version:
+Set up the new Debian `stable` repository and install the latest binary version.
+
+Set up and update the rampup Debian Repository for your platform.  
 
 ```
+sudo rm /etc/apt/sources.list.d/mina*.list
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
 sudo apt-get update
+```
+
+Now install the node package.
+
+```
 sudo apt-get install -y curl unzip mina-mainnet=1.4.0-c980ba8
 ```
+
 
 To verify the mina daemon installation, run:
 
@@ -110,7 +119,7 @@ Instead, use the Docker instructions or build from source.
 
 Docker is a cross-platform tool. You can download and install Docker on multiple platforms. 
 
-Use the Docker installation instructions for your platform on [Get Docker](https://docs.docker.com/get-docker/). After Docker is installed, follow the [Connect to the Mina Network](/node-operators/connecting-to-the-network#docker) instructions.
+Use the Docker installation instructions for your platform on [Get Docker](https://docs.docker.com/get-docker/). After Docker is installed, follow the [Connect to the Mina Network](/node-operators/block-producer-node/connecting-to-the-network#docker) instructions.
 
 ### Build from source
 
@@ -131,4 +140,4 @@ Enable port forwarding on your router to allow inbound traffic to the following 
 
 ## Next
 
-Now that you've installed mina and configured your network, you can move on to the next step: [generating a keypair](generating-a-keypair).
+Now that you've installed mina and configured your network, you can move on to the next step: [generating a keypair](../generating-a-keypair).

@@ -63,12 +63,3 @@ When a block producer is selected to produce a block for a slot, they perform th
 
 Delegated funds are not spendable and can be undelegated at any time by re-delegating the stake back to the original account.
 
-## Supercharged coinbase
-
-To further incentivize staking, if the account that wins the slot does not have any [time-locked tokens](./time-locked-accounts), the block producer receives double the coinbase rewards.
-
-The supercharged coinbase applies to both delegating and staking accounts. The supercharged reward is determined using the account that won the slot. For example:
-
-- If a non-time-locked account delegates to a time-locked account, if the non-time-locked account wins the slot, the coinbase is supercharged.
-
-- If the time-locked account wins, the coinbase is not supercharged.

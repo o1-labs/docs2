@@ -363,8 +363,76 @@ module.exports = {
     {
       type: 'category',
       label: 'Node Operators',
+      link: {
+        type: 'doc',
+        id: 'node-operators/index'
+      },
       items: [
         'node-operators/index',
+        'node-operators/staking-and-snarking',
+        'node-operators/generating-a-keypair',
+        {
+          type: 'category',
+          label: 'Block Producing Node',
+          link: {
+            type: 'doc',
+            id: 'node-operators/block-producer-node/index'
+          },
+          items: [
+            'node-operators/block-producer-node/getting-started',
+            'node-operators/block-producer-node/connecting-to-the-network',
+            'node-operators/block-producer-node/connecting-to-devnet',
+            'node-operators/block-producer-node/hot-cold-block-production',
+              ],
+        },
+        {
+          type: 'category',
+          label: 'Snark Workers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/snark-workers/index'
+          },
+          items: [
+            'node-operators/snark-workers/index',            
+              ],
+        },
+        {
+          type: 'category',
+          label: 'Archive Nodes',
+          link: {
+            type: 'doc',
+            id: 'node-operators/archive-nodes/index'
+          },
+          items: [
+            'node-operators/archive-nodes/archive-node',
+            'node-operators/archive-nodes/archive-redundancy',
+            
+              ],
+        },
+        {
+          type: 'category',
+          label: 'Seed Peers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/seed-peers/index'
+          },
+          items: [
+            'node-operators/seed-peers/seed-peers',            
+              ],
+        },
+
+        'node-operators/generating-a-keypair',
+        'node-operators/staking-and-snarking',
+        'node-operators/staking-service-guidelines',
+        'node-operators/mina-signer',
+        {
+          type: 'category',
+          label: 'Data and History',
+          items: [
+            'node-operators/querying-data',
+            'node-operators/rosetta',
+          ],
+        },
         {
           type: 'category',
           label: 'Delegation Program',
@@ -375,25 +443,7 @@ module.exports = {
             'node-operators/uptime-tracking-system',
           ],
         },
-        'node-operators/getting-started',
-        'node-operators/generating-a-keypair',
-        'node-operators/connecting-to-the-network',
-        'node-operators/connecting-to-devnet',
-        'node-operators/staking-and-snarking',
-        'node-operators/hot-cold-block-production',
-        'node-operators/seed-peers',
-        'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
-        {
-          type: 'category',
-          label: 'Data and History',
-          items: [
-            'node-operators/querying-data',
-            'node-operators/archive-node',
-            'node-operators/archive-redundancy',
-            'node-operators/rosetta',
-          ],
-        },
         'node-operators/mina-cli-reference',
         'node-operators/troubleshooting',
         'node-operators/faq',
