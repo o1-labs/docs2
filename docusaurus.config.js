@@ -98,15 +98,15 @@ module.exports = {
           },
           {
             from: '/architecture',
-            to: '/node-operators/getting-started',
+            to: '/node-operators/block-producer-node/getting-started',
           },
           {
             from: '/node-operators',
-            to: '/node-operators/getting-started',
+            to: '/node-operators/block-producer-node/getting-started',
           },
           {
             from: '/advanced',
-            to: '/node-operators/getting-started',
+            to: '/node-operators/block-producer-node/getting-started',
           },
           {
             from: '/node-operators/delegation',
@@ -130,7 +130,7 @@ module.exports = {
           },
           {
             from: '/connecting',
-            to: '/node-operators/connecting-to-the-network',
+            to: '/node-operators/block-producer-node/connecting-to-the-network',
           },
           {
             from: '/staking',
@@ -170,7 +170,7 @@ module.exports = {
           },
           {
             from: '/node-operators/connecting-devnet',
-            to: '/node-operators/connecting-to-devnet',
+            to: '/node-operators/block-producer-node/connecting-to-devnet',
           },
           {
             from: '/node-operators/hardfork',
@@ -194,7 +194,7 @@ module.exports = {
           },
           {
             from: '/node-operators/connecting',
-            to: '/node-operators/connecting-to-the-network',
+            to: '/node-operators/block-producer-node/connecting-to-the-network',
           },
           {
             from: '/node-operators/send-payment',
