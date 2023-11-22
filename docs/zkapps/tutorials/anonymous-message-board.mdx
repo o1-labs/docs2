@@ -116,15 +116,11 @@ import {
   Permissions,
   PrivateKey,
   PublicKey,
-  isReady,
   Poseidon,
   Encoding,
 } from 'o1js';
 
-export { isReady, Field, Encoding };
-
-// Wait till our o1js instance is ready
-await isReady;
+export { Field, Encoding };
 
 // These private keys are exported so that experimenting with the contract is
 // easy. Three of them (the Bobs) are used when the contract is deployed to
