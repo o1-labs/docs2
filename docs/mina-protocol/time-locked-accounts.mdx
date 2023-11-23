@@ -28,10 +28,6 @@ You can still use an account if it has a time-lock, as long as the account holds
 
 For a more technical explanaition of this process, please see [RFC-0025](https://github.com/MinaProtocol/mina/blob/master/rfcs/0025-time-locked-accounts.md) which has a more in-depth overview.
 
-### Supercharged Rewards
-
-Along with time-locked accounts, we have introduced the notion of supercharged rewards. Once an account has no funds under time-lock (either a new account or the entire `initial_minimum_balance` has been vested) the block rewards are increased by a factor of 2x.
-
 ### Liquid Balance Details:
 
 If you'd like to expose liquid balances for vesting accounts at some particular time period it is governed by the following function (Note: this computes the locked portion of an account):
