@@ -110,7 +110,7 @@ module.exports = {
           },
           {
             from: '/node-operators/delegation',
-            to: '/node-operators/foundation-delegation-program',
+            to: '/node-operators/delegation-program/foundation-delegation-program',
           },
           {
             from: '/contributing',
@@ -158,7 +158,7 @@ module.exports = {
           },
           {
             from: '/node-operators/operating-for-data',
-            to: '/node-operators/querying-data',
+            to: '/node-operators/data-and-history/querying-data',
           },
           {
             from: '/node-operators/cli-reference',
@@ -166,7 +166,7 @@ module.exports = {
           },
           {
             from: '/node-operators/uptime-system',
-            to: '/node-operators/uptime-tracking-system',
+            to: '/node-operators/delegation-program/uptime-tracking-system',
           },
           {
             from: '/node-operators/connecting-devnet',
