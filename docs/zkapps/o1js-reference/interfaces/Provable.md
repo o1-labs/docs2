@@ -60,7 +60,7 @@ For instance, calling check function on the type [Bool](../classes/Bool.md) asse
 
 #### Defined in
 
-[snarky.d.ts:83](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L83)
+[snarky.d.ts:97](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L97)
 
 ___
 
@@ -91,7 +91,7 @@ An element of type `T` generated from the given provable and "auxiliary" data.
 
 #### Defined in
 
-[snarky.d.ts:64](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L64)
+[snarky.d.ts:78](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L78)
 
 ___
 
@@ -119,7 +119,7 @@ An array of any type describing how this `T` element is made up of "auxiliary" (
 
 #### Defined in
 
-[snarky.d.ts:52](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L52)
+[snarky.d.ts:66](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L66)
 
 ___
 
@@ -147,7 +147,7 @@ A [Field](../classes/Field.md) array describing how this `T` element is made up 
 
 #### Defined in
 
-[snarky.d.ts:43](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L43)
+[snarky.d.ts:57](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L57)
 
 ## Methods
 
@@ -167,4 +167,4 @@ A `number` representing the size of the `T` type in terms of [Field](../classes/
 
 #### Defined in
 
-[snarky.d.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L73)
+[snarky.d.ts:87](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L87)

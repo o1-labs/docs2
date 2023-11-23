@@ -35,9 +35,9 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:107](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L107)
+[index.ts:108](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L108)
 
-[index.ts:108](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L108)
+[index.ts:109](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L109)
 
 ## Variables
 
@@ -47,15 +47,15 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 #### Defined in
 
-[index.ts:107](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L107)
+[index.ts:108](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L108)
 
-[index.ts:108](https://github.com/o1-labs/o1js/blob/42a18c8d/src/index.ts#L108)
+[index.ts:109](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L109)
 
 ## Functions
 
 ### ZkProgram
 
-▸ **ZkProgram**<`StatementType`, `Types`\>(`config`): { `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
+▸ **ZkProgram**<`StatementType`, `Types`\>(`config`): { `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: (`options?`: { `cache`: [`Cache`](../modules.md#cache-1)  }) => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
 
 **`Deprecated`**
 
@@ -77,11 +77,11 @@ The old `Experimental.ZkProgram` API has been deprecated in favor of the new `Zk
 
 #### Returns
 
-{ `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: () => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
+{ `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: (`options?`: { `cache`: [`Cache`](../modules.md#cache-1)  }) => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
 
 #### Defined in
 
-[lib/proof_system.ts:1029](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/proof_system.ts#L1029)
+[lib/proof_system.ts:1064](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/proof_system.ts#L1064)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1703](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/account_update.ts#L1703)
+[lib/account_update.ts:1703](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L1703)
 
 ___
 
@@ -133,4 +133,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/provable.ts#L456)
+[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/provable.ts#L456)

@@ -1,0 +1,66 @@
+---
+title: Building from source
+description: Build Mina’s implementation of Rosetta API from sources.
+keywords:
+  - historical data
+  - blockchain integration
+  - explorer
+  - wallet
+  - archive node
+  - graphQL
+  - rosetta
+  - nix
+---
+
+
+# Building and running Rosetta from source code
+
+In [Running with Docker](run-with-docker), you learned that the Docker container runs the mina daemon, mina-archive, and Rosetta API. 
+
+If you already have mina-archive up and running, you can also build and run the Rosetta API natively and wire it to the existing mina daemon and mina-archive.
+
+:::tip
+
+To run mina daemon and mina-archive natively, follow the [Archive Node page](node-operators/archive-nodes/getting-started) instructions.
+
+:::
+
+The easiest way to build Rosetta natively is to use the Nix development environment.
+
+1. 
+    Clone the official [mina repository](https://github.com/MinaProtocol/mina.git) and switch to the `compatible` branch.
+
+1. 
+    If you don't already have Nix on your machine, install it following the steps in the [nix/README.md](https://github.com/MinaProtocol/mina/blob/develop/nix/README.md).
+
+1. 
+    Run the `./nix/pin.sh` script to enable submodules to be available to the build:
+
+    ```shell
+    ./nix/pin.sh
+    ```
+
+1. 
+    Launch the development shell:
+
+    ```shell
+    nix develop mina
+    ```
+
+1. 
+    Build Rosetta app:
+
+    ```shell
+    dune build --profile=mainnet src/app/rosetta
+    ```
+
+1. 
+    After a successful build, the Rosetta app is available here: `_build/default/src/app/rosetta/rosetta.exe` 
+
+    You can run it with following command:
+    ```shell
+    MINA_ROSETTA_MAX_DB_POOL_SIZE=64 MINA_ROSETTA_NETWORK=mainnet \
+        _build/default/src/app/rosetta/rosetta.exe --port 3087 \
+        --graphql-uri <URL to Mina GraphQL instance> 
+        --archive-uri postgres://<username>:<password>@<host>:<port>/<db_name>
+    ```

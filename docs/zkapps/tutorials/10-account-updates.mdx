@@ -107,7 +107,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
 
     deploy(args: DeployArgs) {
       super.deploy(args);
-      this.setPermissions({
+      this.account.permissions.set({
         ...Permissions.default(),
         setDelegate: Permissions.proof(),
         setPermissions: Permissions.proof(),

@@ -37,7 +37,7 @@ Key pair
 
 #### Defined in
 
-[lib/fetch.ts:1026](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L1026)
+[lib/fetch.ts:1026](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/fetch.ts#L1026)
 
 ___
 
@@ -63,4 +63,4 @@ Response message from the account manager as string or null if the request faile
 
 #### Defined in
 
-[lib/fetch.ts:1069](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/fetch.ts#L1069)
+[lib/fetch.ts:1069](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/fetch.ts#L1069)

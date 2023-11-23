@@ -363,37 +363,92 @@ module.exports = {
     {
       type: 'category',
       label: 'Node Operators',
+      link: {
+        type: 'doc',
+        id: 'node-operators/index'
+      },
       items: [
         'node-operators/index',
+        'node-operators/staking-and-snarking',
+        'node-operators/generating-a-keypair',
         {
           type: 'category',
-          label: 'Delegation Program',
+          label: 'Block Producing Node',
+          link: {
+            type: 'doc',
+            id: 'node-operators/block-producer-node/index'
+          },
           items: [
-            'node-operators/foundation-delegation-program',
-            'node-operators/delegation-tiebreak',
-            'node-operators/bp-sidecar',
-            'node-operators/uptime-tracking-system',
-          ],
+            'node-operators/block-producer-node/getting-started',
+            'node-operators/block-producer-node/connecting-to-the-network',
+            'node-operators/block-producer-node/connecting-to-devnet',
+            'node-operators/block-producer-node/hot-cold-block-production',
+              ],
         },
-        'node-operators/getting-started',
-        'node-operators/generating-a-keypair',
-        'node-operators/connecting-to-the-network',
-        'node-operators/connecting-to-devnet',
-        'node-operators/staking-and-snarking',
-        'node-operators/hot-cold-block-production',
-        'node-operators/seed-peers',
-        'node-operators/staking-service-guidelines',
-        'node-operators/mina-signer',
+        {
+          type: 'category',
+          label: 'Snark Workers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/snark-workers/index'
+          },
+          items: [
+            'node-operators/snark-workers/getting-started',            
+              ],
+        },
+        {
+          type: 'category',
+          label: 'Archive Nodes',
+          link: {
+            type: 'doc',
+            id: 'node-operators/archive-nodes/index'
+          },
+          items: [
+            'node-operators/archive-nodes/getting-started',
+            'node-operators/archive-nodes/archive-redundancy',
+            
+              ],
+        },
+        {
+          type: 'category',
+          label: 'Seed Peers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/seed-peers/index'
+          },
+          items: [
+            'node-operators/seed-peers/getting-started',            
+              ],
+        },
         {
           type: 'category',
           label: 'Data and History',
+          link: {
+            type: 'doc',
+            id: 'node-operators/data-and-history/index'
+          },
           items: [
-            'node-operators/querying-data',
-            'node-operators/archive-node',
-            'node-operators/archive-redundancy',
-            'node-operators/rosetta',
+            'node-operators/data-and-history/querying-data',
+            'node-operators/data-and-history/rosetta',
           ],
         },
+        {
+          type: 'category',
+          label: 'Delegation Program',
+          link: {
+            type: 'doc',
+            id: 'node-operators/delegation-program/index'
+          },
+
+          items: [
+            'node-operators/delegation-program/foundation-delegation-program',
+            'node-operators/delegation-program/delegation-tiebreak',
+            'node-operators/delegation-program/bp-sidecar',
+            'node-operators/delegation-program/uptime-tracking-system',
+          ],
+        },
+        'node-operators/staking-service-guidelines',
+        'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
         'node-operators/troubleshooting',
         'node-operators/faq',
@@ -418,21 +473,36 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
-      items: ['exchange-operators/rosetta2', 'exchange-operators/faq'],
-    },
-    {
-      type: 'category',
-      label: 'Testworld Mission 2.0',
       items: [
-        'test-world-2/node-operator-responsibilities',
-        'test-world-2/technical-requirements',
-        'test-world-2/test-plan',
-        'test-world-2/timelines',
-        'test-world-2/incentives',
-        'test-world-2/bug-reporting',
-        'test-world-2/launching-a-node',
-        'test-world-2/questions',
-      ],
+        {
+          type: 'category',
+          label: 'Rosetta API',
+          link: {
+            type: 'doc',
+            id: 'exchange-operators/rosetta/index'
+          },
+          items: [
+            'exchange-operators/rosetta/run-with-docker',
+            'exchange-operators/rosetta/build-from-sources',
+            'exchange-operators/rosetta/send-requests',
+            {
+              type: 'category',
+              label: 'Code Samples',
+              link: {
+                type: 'doc',
+                id: 'exchange-operators/rosetta/samples/index'
+              },
+              items: [
+                'exchange-operators/rosetta/samples/requests',
+                'exchange-operators/rosetta/samples/using-signer',
+                'exchange-operators/rosetta/samples/scan-blocks',
+                'exchange-operators/rosetta/samples/track-deposits',
+                'exchange-operators/rosetta/samples/send-transactions'
+              ]
+            },
+          ]
+        },
+        'exchange-operators/faq'],
     },
     {
       type: 'category',

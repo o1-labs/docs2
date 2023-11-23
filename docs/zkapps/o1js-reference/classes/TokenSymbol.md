@@ -56,7 +56,7 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
 
 ## Properties
 
@@ -70,7 +70,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/hash.ts#L153)
+[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L153)
 
 ___
 
@@ -84,7 +84,7 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/hash.ts#L153)
+[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L153)
 
 ___
 
@@ -98,7 +98,7 @@ Struct(TokenSymbolPure).\_isStruct
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
 
 ___
 
@@ -133,7 +133,7 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:83](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L83)
+[snarky.d.ts:97](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L97)
 
 ___
 
@@ -173,7 +173,7 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:64](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L64)
+[snarky.d.ts:78](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L78)
 
 ___
 
@@ -206,7 +206,7 @@ Struct(TokenSymbolPure).fromJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L374)
+[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L374)
 
 ___
 
@@ -240,7 +240,7 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:52](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L52)
+[snarky.d.ts:66](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L66)
 
 ___
 
@@ -274,7 +274,7 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:43](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L43)
+[snarky.d.ts:57](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L57)
 
 ___
 
@@ -309,7 +309,7 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L369)
+[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L369)
 
 ___
 
@@ -339,7 +339,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L373)
+[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L373)
 
 ## Accessors
 
@@ -358,7 +358,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:184](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/hash.ts#L184)
+[lib/hash.ts:184](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L184)
 
 ## Methods
 
@@ -378,7 +378,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:188](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/hash.ts#L188)
+[lib/hash.ts:188](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L188)
 
 ___
 
@@ -402,4 +402,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:73](https://github.com/o1-labs/o1js/blob/42a18c8d/src/snarky.d.ts#L73)
+[snarky.d.ts:87](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L87)

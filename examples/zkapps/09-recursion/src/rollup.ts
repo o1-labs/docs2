@@ -1,18 +1,9 @@
 import {
-  isReady,
-  shutdown,
   Field,
-  Mina,
-  PrivateKey,
-  AccountUpdate,
   SelfProof,
-  Experimental,
+  ZkProgram,
   Struct,
-  Bool,
-  Circuit,
-  Poseidon,
   MerkleMap,
-  MerkleTree,
   MerkleWitness,
   MerkleMapWitness,
   verify,
@@ -23,6 +14,7 @@ import {
   DeployArgs,
   Proof,
   Permissions,
+  ZkProgram
 } from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -30,7 +22,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 // ===============================================================
 
 async function main() {
-  await isReady;
 
   console.log('o1js loaded');
 
@@ -82,7 +73,7 @@ async function main() {
   //   const proof = await Rollup.oneStep(rollup, initialRoot, latestRoot, key, currentValue, increment, witness);
   //   return proof;
   // });
-  const rollupProofs: Proof<RollupState>[] = [];
+  const rollupProofs: Proof<RollupState, void>[] = [];
   for (var { initialRoot, latestRoot, key, currentValue, increment, witness } of rollupStepInfo) {
     const rollup = RollupState.createOneStep(initialRoot, latestRoot, key, currentValue, increment, witness);
     const proof = await Rollup.oneStep(rollup, initialRoot, latestRoot, key, currentValue, increment, witness);
@@ -97,7 +88,7 @@ async function main() {
   //   const rollup = RollupState.createMerged((await a).publicInput, (await b).publicInput);
   //   return await Rollup.merge(rollup, (await a), (await b));
   // });
-  var proof: Proof<RollupState> = rollupProofs[0];
+  var proof: Proof<RollupState, void> = rollupProofs[0];
   for (let i=1; i<rollupProofs.length; i++) {
     const rollup = RollupState.createMerged(proof.publicInput, rollupProofs[i].publicInput);
     let mergedProof = await Rollup.merge(rollup, proof, rollupProofs[i]);
@@ -111,8 +102,6 @@ async function main() {
   console.log('ok', ok);
 
   console.log('Shutting down');
-
-  await shutdown();
 };
 
 // ===============================================================
@@ -157,7 +146,8 @@ class RollupState extends Struct({
 
 // ===============================================================
 
-const Rollup = Experimental.ZkProgram({
+const Rollup = ZkProgram({
+  name: 'rollup',
   publicInput: RollupState,
 
   methods: {
@@ -190,8 +180,8 @@ const Rollup = Experimental.ZkProgram({
 
       method(
         newState: RollupState,
-        rollup1proof: SelfProof<RollupState>,
-        rollup2proof: SelfProof<RollupState>,
+        rollup1proof: SelfProof<RollupState, void>,
+        rollup2proof: SelfProof<RollupState, void>,
       ) {
         rollup1proof.verify();
         rollup2proof.verify();
@@ -205,7 +195,7 @@ const Rollup = Experimental.ZkProgram({
   },
 });
 
-export let RollupProof_ = Experimental.ZkProgram.Proof(Rollup);
+export let RollupProof_ = ZkProgram.Proof(Rollup);
 export class RollupProof extends RollupProof_ {}
 
 // ===============================================================

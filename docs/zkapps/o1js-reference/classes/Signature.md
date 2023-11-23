@@ -62,7 +62,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/circuit_value.ts:72](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L72)
+[lib/circuit_value.ts:72](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L72)
 
 ## Properties
 
@@ -72,7 +72,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Defined in
 
-[lib/signature.ts:231](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L231)
+[lib/signature.ts:231](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L231)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:232](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L232)
+[lib/signature.ts:232](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L232)
 
 ## Methods
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L160)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L156)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L164)
+[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L164)
 
 ___
 
@@ -164,7 +164,7 @@ Encodes a [Signature](Signature.md) in base58 format.
 
 #### Defined in
 
-[lib/signature.ts:292](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L292)
+[lib/signature.ts:292](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L292)
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
 
 ___
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
 
 ___
 
@@ -218,7 +218,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
 
 ___
 
@@ -243,7 +243,7 @@ a [Bool](../modules.md#bool-1)
 
 #### Defined in
 
-[lib/signature.ts:266](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L266)
+[lib/signature.ts:266](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L266)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L193)
+[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L193)
 
 ___
 
@@ -299,7 +299,7 @@ a [Signature](Signature.md)
 
 #### Defined in
 
-[lib/signature.ts:238](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L238)
+[lib/signature.ts:238](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L238)
 
 ___
 
@@ -321,7 +321,7 @@ Decodes a base58 encoded signature into a [Signature](Signature.md).
 
 #### Defined in
 
-[lib/signature.ts:282](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/signature.ts#L282)
+[lib/signature.ts:282](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L282)
 
 ___
 
@@ -352,7 +352,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
 
 ___
 
@@ -383,7 +383,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L226)
+[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L226)
 
 ___
 
@@ -414,7 +414,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
 
 ___
 
@@ -432,7 +432,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
 
 ___
 
@@ -450,7 +450,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
 
 ___
 
@@ -481,7 +481,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
 
 ___
 
@@ -512,7 +512,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
 
 ___
 
@@ -543,7 +543,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L122)
+[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L122)
 
 ___
 
@@ -574,4 +574,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/42a18c8d/src/lib/circuit_value.ts#L215)
+[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L215)
