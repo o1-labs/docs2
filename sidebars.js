@@ -456,7 +456,7 @@ module.exports = {
             id: 'node-operators/snark-workers/index'
           },
           items: [
-            'node-operators/snark-workers/index',            
+            'node-operators/snark-workers/getting-started',            
               ],
         },
         {
@@ -467,7 +467,7 @@ module.exports = {
             id: 'node-operators/archive-nodes/index'
           },
           items: [
-            'node-operators/archive-nodes/archive-node',
+            'node-operators/archive-nodes/getting-started',
             'node-operators/archive-nodes/archive-redundancy',
             
               ],
@@ -480,32 +480,37 @@ module.exports = {
             id: 'node-operators/seed-peers/index'
           },
           items: [
-            'node-operators/seed-peers/seed-peers',            
+            'node-operators/seed-peers/getting-started',            
               ],
         },
-
-        'node-operators/generating-a-keypair',
-        'node-operators/staking-and-snarking',
-        'node-operators/staking-service-guidelines',
-        'node-operators/mina-signer',
         {
           type: 'category',
           label: 'Data and History',
+          link: {
+            type: 'doc',
+            id: 'node-operators/data-and-history/index'
+          },
           items: [
-            'node-operators/querying-data',
-            'node-operators/rosetta',
+            'node-operators/data-and-history/querying-data',
+            'node-operators/data-and-history/rosetta',
           ],
         },
         {
           type: 'category',
           label: 'Delegation Program',
+          link: {
+            type: 'doc',
+            id: 'node-operators/delegation-program/index'
+          },
+
           items: [
-            'node-operators/foundation-delegation-program',
-            'node-operators/delegation-tiebreak',
-            'node-operators/bp-sidecar',
-            'node-operators/uptime-tracking-system',
+            'node-operators/delegation-program/foundation-delegation-program',
+            'node-operators/delegation-program/delegation-tiebreak',
+            'node-operators/delegation-program/bp-sidecar',
+            'node-operators/delegation-program/uptime-tracking-system',
           ],
         },
+        'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
         'node-operators/troubleshooting',
@@ -561,20 +566,6 @@ module.exports = {
           ],
         },
         'exchange-operators/faq',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Testworld Mission 2.0',
-      items: [
-        'test-world-2/node-operator-responsibilities',
-        'test-world-2/technical-requirements',
-        'test-world-2/test-plan',
-        'test-world-2/timelines',
-        'test-world-2/incentives',
-        'test-world-2/bug-reporting',
-        'test-world-2/launching-a-node',
-        'test-world-2/questions',
       ],
     },
     {
