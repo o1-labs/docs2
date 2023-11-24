@@ -4,7 +4,7 @@ import {
   Mina,
   PrivateKey,
   AccountUpdate,
-} from 'o1js';
+} from 'o1js'; 
 
 const useProof = false;
 
