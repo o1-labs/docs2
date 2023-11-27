@@ -106,7 +106,7 @@ import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
 const AddOne = ZkProgram({
   name: "add-one-example",
-  publicInputType: Field,
+  publicInput: Field,
 
   methods: {
     baseCase: {
@@ -170,7 +170,7 @@ import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
 let RollupAdd = ZkProgram({
   name: "rollup-add-example",
-  publicInputType: Field,
+  publicInput: Field,
 
   methods: {
     baseCase: {
