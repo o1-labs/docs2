@@ -419,7 +419,36 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
-      items: ['exchange-operators/rosetta2', 'exchange-operators/faq'],
+      items: [
+        {
+          type: 'category',
+          label: 'Rosetta API',
+          link: {
+            type: 'doc',
+            id: 'exchange-operators/rosetta/index'
+          },
+          items: [
+            'exchange-operators/rosetta/run-with-docker',
+            'exchange-operators/rosetta/build-from-sources',
+            'exchange-operators/rosetta/send-requests',
+            {
+              type: 'category',
+              label: 'Code Samples',
+              link: {
+                type: 'doc',
+                id: 'exchange-operators/rosetta/samples/index'
+              },
+              items: [
+                'exchange-operators/rosetta/samples/requests',
+                'exchange-operators/rosetta/samples/using-signer',
+                'exchange-operators/rosetta/samples/scan-blocks',
+                'exchange-operators/rosetta/samples/track-deposits',
+                'exchange-operators/rosetta/samples/send-transactions'
+              ]
+            },
+          ]
+        },
+        'exchange-operators/faq'],
     },
     {
       type: 'category',
