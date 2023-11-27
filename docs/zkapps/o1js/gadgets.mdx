@@ -19,58 +19,67 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Gadgets
 
-Gadgets are elements in TypeScript that the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). Gadgets in o1js simplify the process of creating new cryptographic primitives and make it possible to implement other crypto algorithms, such as SHA. 
+Gadgets are low-level building blocks that accelerate special computations. Most gadgets build upon custom gates and act as low-level accelerators in the proof system.
 
-<!-- notes from a convo with Jack
-Code runs in JS
-In order to prove that code is correctly, it is passed into a circuit to verify proofs
+Gadgets are elements in TypeScript that the lowest level gates in the proof system (addition, multiplication) into more sophisticated boolean operations (XOR, NOT). Gadgets in o1js simplify the process of creating new cryptographic primitives and make it possible to efficiently implement other crypto algorithms, such as SHA.
 
-We built gates that part of the circuit
-
-Gadgets are bigger parts of the circuit and are made out of gates
--->
-
-
-Questions: 
-- are all gadgets in ZkProgram? I see only `rot`, `xor`, `and` 
-- some PRs mention "handle the constant case by using the added functionality in the bindings" For the prover case, how to describe? or go into detail for each gadget?
-- do we want to list gadgets in the gadgets namespace separately from gadgets not in the gadgets namespace? (where are these gadgets?)
-- include code snippets? 
-- can we need to describe use cases? or just talk about performance gains? or?
-- primitive constraint system, we replaced Poiseidon with gadget? https://github.com/o1-labs/o1js/pull/1177/files#diff-de4ea0a8fb59a20403ab4c9ab9615587c179a8649e1b1b07297f6c829c94aa88L1 
-- resources, what do we want to provide?
-- why are gadgets listed under [variables](https://docs.minaprotocol.com/zkapps/o1js-reference/modules#variables-1) in the reference docs? is it because a gadget variable is already computed when it is used (so performance is faster?) 
-side note: oh weird, we have a -1 here on the reference URL
 
 See https://docs.minaprotocol.com/zkapps/o1js-reference/modules#gadgets 
 
 The https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/gadgets.ts namespace (let's explain). 
 
-Available gadgets are https://github.com/o1-labs/o1js/tree/main/src/lib/gadgets (and other places?)
+## Bitwise Gadgets in o1js
 
-Gadgets assume that input is at most 64 bits in size. The input value must be in the range [0, 2^64).
+Bitwise operations work on two-bit patterns of equal lengths by positionally matching their individual bits. 
 
-## Gadgets in o1js
 and, xor, rot, not, range checks, left shift and right shift
 https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/gadgets.ts 
 
 ## and()
 
-The AND gadget in the gadgets namespace, which behaves similarly to the & operator in JavaScript. https://github.com/o1-labs/o1js/pull/1193
-
 ```ts
-
+and(a: Field, b: Field, length: number) {
+    return and(a, b, length);
 ```
 
-## compactMultiRangeCheck()
+The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
 
-Building block for non-native arithmetic with BigInt of size up to 264 bits. https://github.com/o1-labs/o1js/pull/1216
+- The `and()` gadget works by comparing two bits and returns `1` only if both bits are `1`, otherwise it returns `0`.
+- Can be checked by a double generic gate that verifies the following relationship between the values. In the process, the `and()` gadget also invokes the [xor()](#xor) gadget which creates additional constraints depending on `length`.
 
-```ts
+  The generic gate verifies `a + b = sum` and the conjunction equation `2 * and = sum - xor`.
 
+  where:
+  * `a + b = sum`
+  * `a ^ b = xor`
+  * `a & b = and`
+
+For details about the implementation, see [AND](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#and) in the Mina book.
+
+The `length` parameter:
+
+- Lets you define how many bits should be compared. 
+- Rounds `length` to the nearest multiple of 16, `paddedLength = ceil(length / 16) * 16`.
+- Constrains both input values to fit into `paddedLength` bits. 
+- Guarantees that the output is guaranteed to have at most `paddedLength` bits.
+- **Note:** Specifying a larger `length` parameter adds additional constraints.
+
+Both Field elements must fit into `2^paddedLength - 1` or an error is thrown and no proof is generated.
+
+With `length = 2` (`paddedLength = 16`), `and()` fails for any input that is larger than `2**16`.
+
+Example:
+
+```typescript
+let a = Field(3);    // ... 000011
+let b = Field(5);    // ... 000101
+let c = Gadgets.and(a, b, 2);    // ... 000001
+c.assertEquals(1);
 ```
 
 ## multiRangeCheck()
+
+Building block for non-native arithmetic with BigInt of size up to 264 bits. https://github.com/o1-labs/o1js/pull/1216
 
 A building block for non-native arithmetic with BigInt of size up to 264 bits. A provable method for efficient 64-bit range checks using lookup tables. https://github.com/o1-labs/o1js/pull/1181
 
@@ -88,7 +97,34 @@ NOT adds the implementation for a NOT gate to the existing Gadgets namespace. A 
 ```ts
 
 ```
+## rangecheck64()
 
+/**
+   * Asserts that the input value is in the range [0, 2^64).
+   *
+   * This function proves that the provided field element can be represented with 64 bits.
+   * If the field element exceeds 64 bits, an error is thrown.
+   *
+   * @param x - The value to be range-checked.
+   *
+   * @throws Throws an error if the input value exceeds 64 bits.
+   *
+   * @example
+   * ```ts
+   * const x = Provable.witness(Field, () => Field(12345678n));
+   * Gadgets.rangeCheck64(x); // successfully proves 64-bit range
+   *
+   * const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+   * Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
+   * ```
+   *
+   * **Note**: Small "negative" field element inputs are interpreted as large integers close to the field size,
+   * and don't pass the 64-bit check. If you want to prove that a value lies in the int64 range [-2^63, 2^63),
+   * you could use `rangeCheck64(x.add(1n << 63n))`.
+   */
+  rangeCheck64(x: Field) {
+    return rangeCheck64(x);
+  },
 
 ## rotate()
 
