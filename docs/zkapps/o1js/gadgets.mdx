@@ -45,7 +45,7 @@ and(a: Field, b: Field, length: number) {
 The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
 
 - The `and()` gadget works by comparing two bits and returns `1` only if both bits are `1`, otherwise it returns `0`.
-- Can be checked by a double generic gate that verifies the following relationship between the values. In the process, the `and()` gadget also invokes the [xor()](#xor) gadget which creates additional constraints depending on `length`.
+- Can be checked by a double generic gate that verifies the following relationship between the values. In the process, the `and()` gadget also invokes the [xor()](#xor) gadget that creates additional constraints depending on `length`.
 
   The generic gate verifies `a + b = sum` and the conjunction equation `2 * and = sum - xor`.
 
@@ -89,14 +89,61 @@ A building block for non-native arithmetic with BigInt of size up to 264 bits. A
 
 ## not()
 
+```ts
+not(a: Field, length: number, checked: boolean = false) {
+    return not(a, length, checked);
+  },
+```
+
 A provable method to support bitwise shifting for native field elements. https://github.com/o1-labs/o1js/pull/1198
 
-NOT adds the implementation for a NOT gate to the existing Gadgets namespace. A bitwise NOT is an operation that returns 1 in each bit position if the corresponding bit of the operand is 0, and returns 0 if the corresponding bit of the operand is 1.
 
+
+The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. 
+
+The NOT gate operates only over the amount of bits specified by the `length` parameter.
+A bitwise NOT operation returns `1` in each bit position if the corresponding bit of the operand is `0`, and returns `0` if the corresponding bit of the operand is `1`. 
+
+The `length` parameter:
+
+- Lets you define how many bits to NOT.
+- **Note:** Specifying a larger `length` parameter adds additional constraints.
+
+The operation fails if the length or the input value is larger than 254.
+
+NOT is implemented in two different ways:
+
+- If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all one bitmask the same length. This approach needs as many rows as an XOR requires for a single negation. 
+- If the `checked` parameter is set to `false`, NOT is implemented as a subtraction of the input from the all one bitmask. If not provided, the default implementation uses `false`.
+
+For details about the implementation, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
+
+
+Example not-ing 4 bits with the unchecked version:
 
 ```ts
+let a = Field(0b0101);
+let b = Gadgets.not(a,4,false);
 
+b.assertEquals(0b1010);
 ```
+
+Example not-ing 4 bits with the checked version using the xor() gadget:
+
+```ts
+let a = Field(0b0101);
+let b = Gadgets.not(a,4,true);
+
+b.assertEquals(0b1010);
+```
+
+where:
+- Parameter `a` is the value to apply NOT to. The operation fails if the value is larger than 254.
+- Parameter `length` is the number of bits to be considered for the NOT operation.
+- Parameter `checked` (???) is an optional boolean to determine if the checked or unchecked not implementation is used. If it
+
+The operation throws an error if the input value exceeds 254 bits.
+  
 ## rangecheck64()
 
 /**
