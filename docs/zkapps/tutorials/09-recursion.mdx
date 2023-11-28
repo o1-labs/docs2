@@ -288,33 +288,78 @@ Use recursion to combine two proofs:
 
 Next, write a script that interacts with your smart contract. As before, the complete [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file is provided. Follow these steps to build the `main.ts` file so you can interact with the smart contract.
 
-To use ZkProgram, compile it and then call methods on it:
+### Imports
+
+For this tutorial, the `import` statement brings in items from `o1js` that you use to interact with your smart contract. 
+
+1. Copy the following lines from [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file into the `src/main.ts` file:
+
+```ts src/main.ts
+1 import { Add } from './Add.js';
+2 import { Field, verify } from 'o1js';
+```
+
+### Call Methods
+
+Now we will add methods to call ZkProgram:
 
 ```typescript
-  console.log('compiling...');
-
-  const { verificationKey } = await Add.compile();
-
-  console.log('making proof 0')
-
-  const proof0 = await Add.init(Field(0));
-
-  console.log('making proof 1')
-
-  const proof1 = await Add.addNumber(Field(4), proof0, Field(4));
-
-  console.log('making proof 2')
-
-  const proof2 = await Add.add(Field(4), proof1, proof0);
-
-  console.log('verifying proof 2');
-  console.log('proof 2 data', proof2.publicInput.toString());
-
-  const ok = await verify(proof2.toJSON(), verificationKey);
-  console.log('ok', ok);
+3
+4 async function main() {
+5   console.log('compiling...');
+6 
+7   const { verificationKey } = await Add.compile();
+8 
+9   console.log('making proof 0')
+10  
+11   const proof0 = await Add.init(Field(0));
+12  
+13   console.log('making proof 1')
+14  
+15   const proof1 = await Add.addNumber(Field(4), proof0, Field(4));
+16  
+17   console.log('making proof 2')
+18 
+19   const proof2 = await Add.add(Field(4), proof1, proof0);
+20 
+21   console.log('verifying proof 2');
+22   console.log('proof 2 data', proof2.publicInput.toString());
+23  
+24   const ok = await verify(proof2.toJSON(), verificationKey);
+25   console.log('ok', ok);
+26 }
+27 
+28 main();
 ```
 
 Verification of the proof can occur off-chain using the `verify()` method. This is useful for applications where you want to prove something to an off-chain entity.
+
+### Build and run the smart contract
+
+Now that the Square smart contract is complete, these commands run your project as a local blockchain.
+
+To compile the TypeScript code into JavaScript:
+
+```sh
+$ npm run build
+```
+
+To run the JavaScript code:
+
+```sh
+$ node build/src/main.js
+```
+
+You have the option to combine these commands into one line:
+
+```
+npm run build && node build/src/main.js
+```
+
+- The `npm run build` command creates JavaScript code in the `build` directory. 
+- The `&&` operator links two commands together. The second command runs only if the first command is successful. 
+- The `node build/src/main.js` command runs the code in `src/main.ts`.
+
 
 ## Voting Example
 
