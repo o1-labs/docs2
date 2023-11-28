@@ -1,4 +1,4 @@
-# zkApp: o1js Tutorial Message
+# Mina zkApp: Message Board
 
 This template uses TypeScript.
 
