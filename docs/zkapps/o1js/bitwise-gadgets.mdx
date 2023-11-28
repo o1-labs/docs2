@@ -37,7 +37,9 @@ and(a: Field, b: Field, length: number) {
 
 The bitwise and gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
 
-- The and gadget works by comparing two bits and returns `1` only if both bits are `1`, otherwise it returns `0`.
+The and gadget:
+
+- Compares two bits and returns `1` only if both bits are `1` and returns `0` if both bits are not `1`.
 - Constrains both input values to fit into `paddedLength` bits. 
 - Both Field elements must fit into `2^paddedLength - 1` or an error is thrown.
 - Guarantees that the output is has at most `paddedLength` bits.
@@ -56,7 +58,7 @@ The `length` parameter:
 
 - Defines how many bits to compare. 
 - Rounds `length` to the nearest multiple of 16, `paddedLength = ceil(length / 16) * 16`.
-- Specifying a larger `length` parameter adds additional constraints.
+- A larger `length` parameter adds additional constraints.
 
 With `length = 2` (`paddedLength = 16`), the `and()` operation fails for any input that is larger than `2**16`.
 
@@ -75,7 +77,7 @@ c.assertEquals(1);
 let [x, y] = Gadgets.compactMultiRangeCheck([xy, z]);
 ```
 
-The bitwise compactMultiRangeCheck gadget is a variant of [multiRangeCheck](#multirangecheck) where the first two variables are passed in combined form `xy = x + 2^88*y`. It is similar to the [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operation in JavaScript. ,
+The bitwise compactMultiRangeCheck gadget is a variant of [multiRangeCheck](#multirangecheck) where the first two variables are passed in combined form `xy = x + 2^88*y`.
 
 The compactMultiRangeCheck gadget:
 
@@ -128,7 +130,7 @@ leftShift(xLarge, 32); // throws an error since input exceeds 64 bits
 multiRangeCheck([x, y, z])
 ```
 
-The multiRangeCheck gadget building block for non-native arithmetic with BigInt of size up to 264 bits. The multiRangeCheck gadget is a provable method for efficient 64-bit range checks using lookup tables.
+The multiRangeCheck gadget is a building block for non-native arithmetic with BigInt of size up to 264 bits. It is a provable method for efficient 64-bit range checks using lookup tables.
 
 The multiRangeCheck gadget:
 
@@ -252,7 +254,7 @@ return rotate(field, bits, direction);
 },
 ```
 
-The rotate gadget operates similarly to the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) and [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operators in JavaScript. 
+The rotate gadget operates like the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) and [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operators in JavaScript. 
 
 The rotate gadget is a provable method to support bitwise left or right rotation for native Field elements. 
 
