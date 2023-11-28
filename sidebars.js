@@ -60,7 +60,17 @@ module.exports = {
             'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
-            'zkapps/o1js/gadgets',
+            {
+              type: 'category',
+              label: 'Gadgets',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js/gadgets'
+            },
+            items: [
+              'zkapps/o1js/bitwise-gadgets',
+              'zkapps/o1js/ff-gadgets',
+            ],
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
