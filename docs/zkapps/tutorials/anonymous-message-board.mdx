@@ -112,19 +112,13 @@ import {
   state,
   State,
   method,
-  DeployArgs,
-  Permissions,
   PrivateKey,
   PublicKey,
-  isReady,
   Poseidon,
   Encoding,
 } from 'o1js';
 
-export { isReady, Field, Encoding };
-
-// Wait till our o1js instance is ready
-await isReady;
+export { Field, Encoding };
 
 // These private keys are exported so that experimenting with the contract is
 // easy. Three of them (the Bobs) are used when the contract is deployed to
@@ -148,10 +142,10 @@ export const users = {
   ),
 };
 
-export class Add extends SmartContract {
+export class Message extends SmartContract {
   // On-chain state definitions
 
-  @method init() {
+  init() {
     // Define initial values of on-chain state
   }
 
@@ -182,7 +176,7 @@ roll your own solution if desired.
 In this smart contract, one state variable will store the last message. Another will store the hash of all the previous messages (so a frontend can validate message history), and three more will store user public keys (we could store additional public keys by Merkelizing them, but we’ll keep it to three here for the sake of brevity).
 
 ```ts
-export class Add extends SmartContract {
+export class Message extends SmartContract {
   // On-chain state definitions
   @state(Field) message = State<Field>();
   @state(Field) messageHistoryHash = State<Field>();
@@ -200,7 +194,7 @@ For practical purposes, the `Field` type is similar to the `uint256` type in Sol
 The `init` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. In this case, we’ll set the public keys of users who can post, and initialize `message` and `messageHistoryHash` as zero (our front end will interpret the zero value to mean that no messages have been posted yet).
 
 ```ts
-@method init() {
+init() {
   // Define initial values of on-chain state
   this.user1.set(users['Bob'].toPublicKey());
   this.user2.set(users['SuperBob'].toPublicKey());
