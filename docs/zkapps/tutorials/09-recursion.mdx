@@ -84,7 +84,7 @@ Add another method that takes an existing proof, adds a new number to it, and pr
     addNumber: {
       privateInputs: [SelfProof, Field ],
 
-      method(newState: Field, earlierProof: SelfProof<Field>, numberToAdd: Field) {
+      method(newState: Field, earlierProof: SelfProof<Field, void>, numberToAdd: Field) {
         earlierProof.verify();
         newState.assertEquals(earlierProof.publicInput.add(numberToAdd));
       },
@@ -99,8 +99,8 @@ Use recursion to combine two proofs:
 
     method(
       newState: Field,
-      earlierProof1: SelfProof<Field>,
-      earlierProof2: SelfProof<Field>,
+      earlierProof1: SelfProof<Field, void>,
+      earlierProof2: SelfProof<Field, void>,
     ) {
       earlierProof1.verify();
       earlierProof2.verify();    	
