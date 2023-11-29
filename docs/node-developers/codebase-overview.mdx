@@ -128,9 +128,11 @@ Now we an use these primitives to reimplement the imperative example above as fo
       fun x -> if x mod 2 = 0 then Some x else None
 
     let example x = x >>| add_one >>= bind_even;
+```
 
 OCaml has a `ppx` that makes writing monads much easier to follow, using the let syntax.
 
+```
     let%bind x = y in
       f x
 
@@ -142,7 +144,7 @@ Essentially, this syntax takes the value from the let statement and places it on
 
 ## Async
 
-Under the hood, async uses Monads. However, ivars are the low-level async primitive. `a' Ivar.t` is essentially a mutex that can only be filled once. After the value from a computation returns, it then fills the ivar. The rest of the syntactic sugar takes the ivar and passes them through `Deferred` monads.
+Under the hood, async uses Monads. However, ivars are the low-level async primitive. `'a Ivar.t` is essentially a mutex that can only be filled once. After the value from a computation returns, it then fills the ivar. The rest of the syntactic sugar takes the ivar and passes them through `Deferred` monads.
 
 A `yield` function exists, but avoid using it since it has some weird behavior. Instead, operate on the wrapped values that happen in between `Deferred` bindings.
 
