@@ -70,7 +70,7 @@ c.assertEquals(1);
 not(a: Field, length: number, checked: boolean) => Field
 ```
 
-The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. The `not()` gadget is a provable method to support bitwise shifting for native Field elements.
+The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. It is a provable method to support bitwise shifting for native Field elements.
 
 A bitwise NOT operation returns 1 in each bit position if the corresponding bit of the operand is 0 and returns 0 if the corresponding bit of the operand is 1.
 
@@ -81,7 +81,7 @@ The operation:
     - The `length` parameter defines how many bits to NOT.
     - A larger `length` parameter adds more constraints.
 - Is implemented in two different ways:
-    - If the `checked` parameter is set to `false`, NOT is implemented as a subtraction of the input from the all one bitmask. If the `checked` parameter is not provided, the default implementation uses `false`.
+    - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all one bitmask. If the `checked` parameter is not provided, the default implementation uses `false`.
     - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all one bitmask the same length. This approach needs as many rows as an XOR requires for a single negation. 
 
 For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
@@ -130,7 +130,7 @@ The `xor()` gadget:
     For example, `length = 2` (`paddedLength = 16`) fails for any input that is larger than `2**16`.
 - Guarantees the output has at most `paddedLength` bits.
 
-The `length` parameter defines how many bits to compare. When choosing the `length` parameter, be sure to carefully weigh the trade-off between increased amount of constraints and security:
+The `length` parameter defines how many bits to compare. When choosing the value of the `length` parameter, be sure to carefully weigh the trade-off between an increased number of constraints and security:
 - A larger `length` parameter adds more constraints.
 - A smaller `length` allows the verifier to infer that the length of the original input data. For example, smaller than 16 bit if only one XOR gate was used.
 
@@ -205,9 +205,7 @@ return rotate(field, bits, direction);
 },
 ```
 
-The `rotate()` gadget operates like the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) and [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operators in JavaScript. 
-
-The `rotate()` gadget is a provable method to support bitwise left or right rotation for native Field elements. 
+The `rotate()` gadget operates like the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) and [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operators in JavaScript. It is a provable method to support bitwise left or right rotation for native Field elements. 
 
 The `rotate()` gadget:
 
@@ -300,4 +298,3 @@ compactMultiRangeCheck(xy: Field, z: Field) {
 return compactMultiRangeCheck(xy, z);
 },
 ```
-
