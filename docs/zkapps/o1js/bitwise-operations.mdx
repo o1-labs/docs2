@@ -1,0 +1,303 @@
+---
+title: Bitwise Gadgets
+hide_title: true
+description: Bitwise operations in o1js are implemented as gadgets.
+keywords:
+  - gadgets
+  - bitwise operations
+  - o1js
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Bitwise Operations
+
+In o1js, bitwise operations are implemented as [gadgets](/zkapps/o1js/gadgets).
+
+- [and()](#and)
+- [not()](#not)
+- [xor()](#xor)
+- [leftShift()](#leftshift)
+- [rightShift()](#rightshift)
+- [rotate()](#rotate)
+- [rangeCheck64()](#rangecheck64)
+- [multiRangeCheck()](#multirangecheck)
+- [compactMultiRangeCheck()](#compactmultirangecheck)
+
+See the type declaration for [Gadgets](/zkapps/o1js-reference/modules#gadgets) in the o1js Reference documentation.
+
+## and()
+
+```ts
+and(a: Field, b: Field, length: number) => Field
+```
+
+The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
+
+The `and()` gadget:
+
+- Compares two bits and returns 1 only if both bits are 1 and returns 0 if both bits are not 1.
+- Constrains both input values to fit into `paddedLength` bits. 
+- Both Field elements must fit into `2^paddedLength - 1`.
+- Guarantees that the output is has at most `paddedLength` bits.
+
+For details about the implementation, see [AND](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#and) in the Mina book.
+
+The `length` parameter:
+
+- Defines how many bits to compare. 
+- Rounds `length` to the nearest multiple of 16, `paddedLength = ceil(length / 16) * 16`.
+- A larger `length` parameter adds more constraints.
+
+With `length = 2` (`paddedLength = 16`), the `and()` operation fails for any input that is larger than `2**16`.
+
+Example:
+
+```ts
+let a = Field(3);    // ... 000011
+let b = Field(5);    // ... 000101
+let c = Gadgets.and(a, b, 2);    // ... 000001
+c.assertEquals(1);
+```
+
+## not()
+
+```ts
+not(a: Field, length: number, checked: boolean) => Field
+```
+
+The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. The `not()` gadget is a provable method to support bitwise shifting for native Field elements.
+
+A bitwise NOT operation returns 1 in each bit position if the corresponding bit of the operand is 0 and returns 0 if the corresponding bit of the operand is 1.
+
+The operation:
+
+- Fails if the length or the input value is larger than 254 bits.
+- Operates only over the number of bits specified by the `length` parameter.
+    - The `length` parameter defines how many bits to NOT.
+    - A larger `length` parameter adds more constraints.
+- Is implemented in two different ways:
+    - If the `checked` parameter is set to `false`, NOT is implemented as a subtraction of the input from the all one bitmask. If the `checked` parameter is not provided, the default implementation uses `false`.
+    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all one bitmask the same length. This approach needs as many rows as an XOR requires for a single negation. 
+
+For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
+
+Example NOT-ing 4 bits with the unchecked version:
+
+```ts
+let a = Field(0b0101);
+let b = Gadgets.not(a,4,false);
+
+b.assertEquals(0b1010);
+```
+
+Example NOT-ing 4 bits with the checked version using `xor()`:
+
+```ts
+let a = Field(0b0101);
+let b = Gadgets.not(a,4,true);
+
+b.assertEquals(0b1010);
+```
+
+where:
+- Parameter `a` is the Field value to apply NOT to. The operation fails if the value is larger than 254.
+- Parameter `length` is the number of bits (4 in this example) to be considered for the NOT operation.
+- Parameter `checked` is an optional boolean (true or false) to determine if the checked or unchecked not implementation is used.
+
+
+## xor()
+
+```ts
+xor(a: Field, b: Field, length: number) => Field
+```
+
+The `xor()` gadget is equivalent to the [Bitwise XOR (^)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR) operator in JavaScript. It is a provable method to support bitwise XOR operations for native Field elements. 
+
+The `xor()` gadget:
+
+- Compares two bits and returns 1 if two bits differ and returns 0 if two bits are equal.
+- Recursively builds a chain of XOR gates. 
+- Verifies that each XOR gate can verify at most 16 bits.
+- Adds another XOR gate to the chain if your input elements exceed 16 bits.
+- Rounds `length` to the nearest multiple of 16, `paddedLength = ceil(length / 16) * 16`.
+- Constrains input values to fit into `paddedLength` bits. 
+- Requires that both Field elements fit into `2^paddedLength`.
+    For example, `length = 2` (`paddedLength = 16`) fails for any input that is larger than `2**16`.
+- Guarantees the output has at most `paddedLength` bits.
+
+The `length` parameter defines how many bits to compare. When choosing the `length` parameter, be sure to carefully weigh the trade-off between increased amount of constraints and security:
+- A larger `length` parameter adds more constraints.
+- A smaller `length` allows the verifier to infer that the length of the original input data. For example, smaller than 16 bit if only one XOR gate was used.
+
+For details about the implementation, see [XOR](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#xor-1) in the Mina book.
+
+Example:
+
+```ts
+let a = Field(0b0101);
+let b = Field(0b0011);
+
+let c = Gadgets.xor(a, b, 4); // xor-ing 4 bits
+c.assertEquals(0b0110);
+```
+
+## leftShift()
+
+```ts
+leftShift(field: Field, bits: number) => Field
+```
+
+The `leftShift()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the left. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
+
+The `leftShift()` gadget:
+
+- Performs a left shift operation on a Field element.
+- Shifts bits to the left and discards the overflowing bits.
+- Performs these operations with the big-endian 64-bit representation of the number, where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+- Requires values that are range checked to 64 bits. You can use [rangeCheck64](#rangecheck64).
+
+Example:
+
+```ts
+const x = Provable.witness(Field, () => Field(0b001100)); // 12 in binary
+const y = Gadgets.leftShift(x, 2); // left shift by 2 bits
+y.assertEquals(0b110000); // 48 in binary
+
+const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+leftShift(xLarge, 32); // throws an error since input exceeds 64 bits
+```
+
+## rightShift()
+
+```ts
+rightShift(field: Field, bits: number) => Field
+```
+
+The `rightShift()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the right. Unlike [rotate()](#rotate), the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
+
+The `rightShift()` gadget:
+
+- Performs a right shift operation on a Field element.
+- Shifts bits to the right and discards the overflowing bits.
+- Performs these operations with the big-endian 64-bit representation of the number, where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+- Requires values that are range checked to 64 bits. You can use [rangeCheck64](#rangecheck64).
+
+Example:
+```ts
+const x = Provable.witness(Field, () => Field(0b001100)); // 12 in binary
+const y = Gadgets.rightShift(x, 2); // right shift by 2 bits
+y.assertEquals(0b000011); // 3 in binary
+
+const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+rightShift(xLarge, 32); // throws an error since input exceeds 64 bits
+```
+
+## rotate()
+
+```ts
+rotate(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
+return rotate(field, bits, direction);
+},
+```
+
+The `rotate()` gadget operates like the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) and [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operators in JavaScript. 
+
+The `rotate()` gadget is a provable method to support bitwise left or right rotation for native Field elements. 
+
+The `rotate()` gadget:
+
+- Shifts bits to the left or the right. 
+- The rotate left operation (ROL) shifts bits to the left. The bits that fall off the leftmost side wrap around and reappear on the rightmost side.
+- The rotate right operation (ROR) shifts bits to the right. The bits that fall off the rightmost side wrap around and reappear on the leftmost side.
+- Performs these operations with the big-endian 64-bit representation of the number, where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+- Requires values that are range checked to 64 bits. You can use [rangeCheck64](#rangecheck64).
+
+For implementation details, see [ROTATION](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#rotation) in the Mina book.
+
+Example:
+
+```ts
+const x = Provable.witness(Field, () => Field(0b001100));
+const y = Gadgets.rotate(x, 2, 'left'); // left rotation by 2 bits
+const z = Gadgets.rotate(x, 2, 'right'); // right rotation by 2 bits
+y.assertEquals(0b110000);
+z.assertEquals(0b000011);
+   *
+const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+Gadgets.rotate(xLarge, 32, "left"); // throws an error since input exceeds 64 bits
+```
+  
+## rangecheck64()
+
+```ts
+rangeCheck64(x: Field) => void
+```
+
+The `rangecheck64()` gadget:
+
+- Asserts that the input value is in the range `[0, 2^64)`.
+- Proves that the field element can be represented with 64 bits.
+- Throws an errors if the field element exceeds 64 bits.
+- Interprets small "negative" field element inputs as large integers close to the field size, so they don't pass the 64-bit check. To prove that a value lies in the int64 range `[-2^63, 2^63)`, use `rangeCheck64(x.add(1n << 63n))`.
+
+Example:
+
+```ts
+const x = Provable.witness(Field, () => Field(12345678n));
+Gadgets.rangeCheck64(x); // successfully proves 64-bit range
+
+const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
+```
+
+## multiRangeCheck()
+
+```ts
+multiRangeCheck([x, y, z])
+```
+
+The `multiRangeCheck()` gadget is a building block for non-native arithmetic with BigInt of size up to 264 bits. It is a provable method for efficient 64-bit range checks using lookup tables.
+
+The `multiRangeCheck()` gadget:
+
+- Takes 4 rows and checks `88*3/4 = 66` bits per row, so is slightly more efficient than [64-bit range checks](#rangecheck64).
+- Supports BigInts up to 264 bits (`3x88-bit`) that supports foreign field multiplication with moduli up to `2^259`.
+- Requires input values less than 88 bits. Throws an error if input values exceed 88 bits.
+
+Example:
+
+```ts
+multiRangeCheck(limbs: Field3) {
+    multiRangeCheck(limbs);
+  },
+```
+
+## compactMultiRangeCheck()
+
+```ts
+compactMultiRangeCheck(xy: Field, z: Field) => [Field, Field, Field];
+```
+
+The bitwise `compactMultiRangeCheck()` gadget is a variant of [multiRangeCheck](#multirangecheck) where the first two variables are passed in combined form `xy = x + 2^88*y`.
+
+The `compactMultiRangeCheck()` gadget:
+
+- Splits `xy` into `x` and `y`.
+- Proves that `xy = x + 2^88*y`.
+- Proves that `x, y, z` are all in the range `[0, 2^88)`.
+- Returns the split form `[x, y, z]`.
+- Throws an error if `xy` exceeds `2*88 = 176` bits or if `z` exceeds 88 bits.
+
+Example:
+
+```ts
+compactMultiRangeCheck(xy: Field, z: Field) {
+return compactMultiRangeCheck(xy, z);
+},
+```
+
