@@ -1,4 +1,4 @@
-# Mina zkApp: Message Board
+# zkApp: Anonymous Message Board Tutorial
 
 This template uses TypeScript.
 
