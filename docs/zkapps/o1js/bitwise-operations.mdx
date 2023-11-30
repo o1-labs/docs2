@@ -1,5 +1,5 @@
 ---
-title: Bitwise Gadgets
+title: Bitwise Operations
 hide_title: true
 description: Bitwise operations in o1js are implemented as gadgets.
 keywords:
@@ -104,10 +104,6 @@ let b = Gadgets.not(a,4,true);
 b.assertEquals(0b1010);
 ```
 
-where:
-- Parameter `a` is the Field value to apply NOT to. The operation fails if the value is larger than 254.
-- Parameter `length` is the number of bits (4 in this example) to be considered for the NOT operation.
-- Parameter `checked` is an optional boolean (true or false) to determine if the checked or unchecked not implementation is used.
 
 
 ## xor()
