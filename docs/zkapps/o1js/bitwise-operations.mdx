@@ -40,7 +40,7 @@ The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (
 
 The `and()` gadget:
 
-- Compares two bits and returns 1 only if both bits are 1 and returns 0 if both bits are not 1.
+- Compares two bits and returns 1 only if both bits are 1. Returns 0 if either bit is not 1.
 - Constrains both input values to fit into `paddedLength` bits. 
 - Both Field elements must fit into `2^paddedLength - 1`.
 - Guarantees that the output is has at most `paddedLength` bits.
