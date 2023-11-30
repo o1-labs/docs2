@@ -1,13 +1,13 @@
 import {
-    Field,
-    SmartContract,
-    state,
-    State,
-    method,
-    PrivateKey,
-    PublicKey,
-    Poseidon,
-  } from 'o1js';
+  Field,
+  SmartContract,
+  state,
+  State,
+  method,
+  PrivateKey,
+  PublicKey,
+  Poseidon,
+} from 'o1js';
   
   // These private keys are exported so that experimenting with the contract is
   // easy. Three of them (the Bobs) are used when the contract is deployed to
