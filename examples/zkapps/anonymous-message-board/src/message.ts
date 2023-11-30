@@ -7,10 +7,7 @@ import {
     PrivateKey,
     PublicKey,
     Poseidon,
-    Encoding,
   } from 'o1js';
-  
-  export { Field, Encoding };
   
   // These private keys are exported so that experimenting with the contract is
   // easy. Three of them (the Bobs) are used when the contract is deployed to
@@ -78,5 +75,3 @@ import {
       this.messageHistoryHash.set(newHash);
     }
   }
-
-  // replace Add with Message on Docs   §
