@@ -1,11 +1,14 @@
 {
   "version": 1,
-  "networks": {
+  "deployAliases": {
     "berkeley": {
       "url": "https://proxy.berkeley.minaexplorer.com/graphql",
       "keyPath": "keys/berkeley.json",
-      "fee": "0.1",
+      "feepayerKeyPath": "This is specific to each developer and can be generated with the zkApp-cli. Update with your feepayer keypath to run this tutorial example",
+      "feepayerAlias": "dev",
+      "fee": ".1",
       "smartContract": "Add"
     }
   }
 }
+
