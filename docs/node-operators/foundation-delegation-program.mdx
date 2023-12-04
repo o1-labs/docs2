@@ -34,8 +34,8 @@ Learn how to receive a delegation from Mina Foundation.
 
 The current sidecar tracking system is being phased out to be replaced by the SNARK-work-based uptime tracking system. <u>Until further notice, continue running the sidecar AND SNARK-based tracking system on the SAME node.</u>
 
-- [Instructions for the sidecar tracking system](/node-operators/bp-sidecar)
-- [Instructions for the SNARK-work-based uptime system](/node-operators/uptime-tracking-system)
+- [Instructions for the sidecar tracking system](./bp-sidecar)
+- [Instructions for the SNARK-work-based uptime system](./uptime-tracking-system)
 
 Please follow the latest updates and post questions in the [#delegation-program](https://discord.com/channels/484437221055922177/808895957978447882) channel on Mina Protocol Discord.
 
@@ -76,7 +76,7 @@ Next, run **BOTH** the SNARK-based system and sidecar on the **SAME** node.
 The uptime tracking system sends recent blockchain data from your block producer node's perspective to a service. This service verifies whether this recent data is synced with the chain. If it is synced, it means your node is online.
 
 Instructions for how to run the uptime tracking system:
-- [SNARK-based Uptime System](uptime-tracking-system)
+- [SNARK-based Uptime System](./uptime-tracking-system)
 
 :::info
 
@@ -170,20 +170,34 @@ You must send back at least the amount specified by this mechanism.
 
 At the end of each epoch, do <u>all</u> of the following:
 
-1. Compute the total stake delegated to your account for the epoch
-1. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. ```provider_share = provider_delegation / total_stake```). The resulting share should be between 0 and 1.
 1. 
 
-For each block produced that has a non-zero block-reward on the canonical chain:
-  - If the block is won by a Mina Foundation key:
-    - If the block generated supercharged rewards (1440 MINA), 720 MINA should be sent to the burn address. The remaining 720 MINA should be used for payout calculation. 
-    - If the block did not generate super charged rewards, then use 720 MINAto calculate the rewards.
-  - If the block is won by other stakers, then there is no need to burn any token.
-    - If the block has 720 MINA coinbase value, all the rewards should be calculated based on 720 MINA. (No tokens should be burned).
-    - If the block has 1440 MINA coinbase value, Mina Foundation paybacks should be based on 720 MINA.
+  Compute the total stake delegated to your account for the epoch
 
-1. Calculate the Mina Foundation payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * 720)```.
-1. Send a transaction to the token provider accounts and burn address with the appropriate payout and memo -- please follow the rules in the "Payout Attribution" section with your transaction. More details in the following source code parts: (PayoutCalculatorIsolateSuperCharge.ts)[https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts#L126] and (ConfigurationManager.ts)[https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/configuration/ConfigurationManager.ts#L21C15-L21C15].
+1. 
+
+  Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. ```provider_share = provider_delegation / total_stake```). The resulting share should be between 0 and 1.
+
+1. 
+
+  For each block produced that has a non-zero block-reward on the canonical chain:
+  
+    - If the block is won by a Mina Foundation key:
+      - If the block generated supercharged rewards (1440 MINA), 720 MINA should be sent to the burn address. The remaining 720 MINA should be used for payout calculation. 
+      - If the block did not generate super charged rewards, then use 720 MINAto calculate the rewards.
+    
+    - If the block is won by other stakers, then there is no need to burn any token.
+      - If the block has 720 MINA coinbase value, all the rewards should be calculated based on 720 MINA. (No tokens should be burned).
+      - If the block has 1440 MINA coinbase value, Mina Foundation paybacks should be based on 720 MINA.
+
+1. 
+  
+  Calculate the Mina Foundation payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * 720)```.
+
+1. 
+
+  Send a transaction to the token provider accounts and burn address with the appropriate payout and memo - please follow the rules in the "Payout Attribution" section with your transaction. 
+  More details in the following source code parts: [PayoutCalculatorIsolateSuperCharge.ts](https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts#L126) and [ConfigurationManager.ts](https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/configuration/ConfigurationManager.ts#L21C15-L21C15).
 
 
 The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool.
@@ -221,7 +235,15 @@ Now let's consider Epoch 5. The share of the stake from the Foundation is ```6 m
 1. There is no need to send any token to the burn address.
 1. Mina Foundation payout should be: ```(0.6 * 0.92) * 720 MINA * 3 blocks = 1,192.32 MINA```
 
-#### Example 3
+#### Example 3:
+
+3 blocks are produced in this epoch that end up on the canonical chain. The blocks were won by other stakers with locked accounts.
+
+1. There is no need to send any token to the burn address.
+1. Mina Foundation payout should be: ```(0.6 * 0.92) * 720 MINA * 3 blocks = 1,192.32 MINA```
+
+
+#### Example 4
 
 3 blocks are produced in this epoch that end up on the canonical chain. Each account won a block.
 
@@ -237,8 +259,8 @@ Now let's consider Epoch 5. The share of the stake from the Foundation is ```6 m
 ### Relevant Links
 
 - [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy)
-- [Delegation Program Tiebreak System](/node-operators/delegation-tiebreak)
-- [SNARK-based Uptime System](/node-operators/uptime-system)
+- [Delegation Program Tiebreak System](/node-operators/delegation-program/delegation-tiebreak)
+- [SNARK-based Uptime System](/node-operators/delegation-program/uptime-tracking-system)
 
 #### Need any help? 
 
