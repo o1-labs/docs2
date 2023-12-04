@@ -148,42 +148,43 @@ To see more, please check the  [https://github.com/jrwashburn/mina-pool-payout/b
 
 #### Payout Addresses
 
-You must send computed rewards as described below to the same address that was delegated to you.
+You must return rewards to the address specified in [https://docs.google.com/spreadsheets/d/1Fm4XSS9Xu4eWAhpM06sdySUKvLClR5SculXfP5o5sSc/edit#gid=0](the mapping document). This will be covered when running the script in managing reward payback
 
 #### Payout Frequency
 
-Rewards must be distributed at least once for a given epoch.  You can send rewards more frequently, but the preferred method is to send one payment in the amount of your obligation.  This is the easiest method to avoid confusion in tracking payments, and will reduce the likelihood you will be incorrectly flagged as delinquent.
+Rewards must be distributed at least once for a given epoch, please send one payment in the amount of your obligation to the right return wallet indicated above, and send the right amount to the burn address if applicable. Both payments should have a memo field with the md5 hash value of your block producer public key. This is the easiest method to avoid confusion in tracking payments, and will reduce the likelihood you will be incorrectly flagged as delinquent.
 
 All the rewards for epoch N must be delivered (ie. accepted in a block, not just sent) no later than slot number 3,500 of the next epoch. This gives you about a week to sort out these payments.
 
-:::tip
-Include a memo listing the epoch number your payment corresponds to.
-::: 
-
-### Where do I send my rewards?
-
-Please read instructions below on where and how to return block rewards:
-
-#### Delegation Addresses
-Download the following spreadsheet to see the full list of delegation addresses and designated address to send back rewards:
-
-- [Mina Foundation](https://docs.google.com/spreadsheets/d/1Fm4XSS9Xu4eWAhpM06sdySUKvLClR5SculXfP5o5sSc/)
-
-#### Payout Attribution
-In order for the token provider to associate the transaction with your delegation, please send the transaction to the address listed on the spreadsheet linked above.  In the spreadsheet you can find the Mina Foundation address delegating to you, and directly to the right of the address will be the address you should return the rewards to.
 
 ### How do I calculate the reward payout?
 
+For reference, below is an explanation of how reward returns are calculated. The mandatory script will manage returns to both the MinaFoundation Address and Burn Address
+
+You can find more in the (implementation)[https://github.com/jrwashburn/mina-pool-payout/blob/main/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts]
+
+
 #### Reward Specifications
 
-You must send back at least the amount specified by this mechanism. If you send back more tokens, you will still be regarded as eligible — but you will <u>not</u> be refunded anything.
+You must send back at least the amount specified by this mechanism.
 
 At the end of each epoch, do <u>all</u> of the following:
 
 1. Compute the total stake delegated to your account for the epoch
-2. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. ```provider_share = provider_delegation / total_stake```). The resulting share should be between 0 and 1.
-3. For each block produced that has a non-zero block-reward on the canonical chain, calculate the payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * coinbase)```.
-4. Send a transaction to the token provider accounts with the appropriate payout -- please follow the rules in the "Payout Attribution" section with your transaction.
+1. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. ```provider_share = provider_delegation / total_stake```). The resulting share should be between 0 and 1.
+1. 
+
+For each block produced that has a non-zero block-reward on the canonical chain:
+  - If the block is won by a Mina Foundation key:
+    - If the block generated supercharged rewards (1440 MINA), 720 MINA should be sent to the burn address. The remaining 720 MINA should be used for payout calculation. 
+    - If the block did not generate super charged rewards, then use 720 MINAto calculate the rewards.
+  - If the block is won by other stakers, then there is no need to burn any token.
+    - If the block has 720 MINA coinbase value, all the rewards should be calculated based on 720 MINA. (No tokens should be burned).
+    - If the block has 1440 MINA coinbase value, Mina Foundation paybacks should be based on 720 MINA.
+
+1. Calculate the Mina Foundation payout by multiplying the non-supercharged coinbase reward (equal to ```720 MINA``` at Mainnet launch) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. ```payout = (provider_share * 0.92) * 720)```.
+1. Send a transaction to the token provider accounts and burn address with the appropriate payout and memo -- please follow the rules in the "Payout Attribution" section with your transaction. More details in the following source code parts: (PayoutCalculatorIsolateSuperCharge.ts)[https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts#L126] and (ConfigurationManager.ts)[https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/configuration/ConfigurationManager.ts#L21C15-L21C15].
+
 
 The block producer can keep all of the transaction fees or divide them equally amongst the other members of the pool.
 
