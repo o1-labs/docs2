@@ -194,33 +194,45 @@ The canonical chain will be calculated as 12 blocks behind any tip at slot 3,500
 :::
 
 #### Example of a Reward Payout Calculation
+
 Consider the following:
 - Account A has ```2 million locked MINA```
 - Account B is controlled by the Mina Foundation and has 6 million **locked** MINA.
 - Account C is controlled by a third party and has 2 million MINA fully **unlocked**. This account also delegates to Account A.
 
-In this example, the total amount of stake for Account A is 10 million calculated by adding up the balances from all the accounts. Note that since Account C has all its tokens unlocked, any block rewards won when `winnerAccount` equals Account C will be super-charged.
+In this example, the total amount of stake for Account A is 10 million calculated by adding up the balances from all the accounts. 
 
-Now let's consider Epoch 5. The share of the stake from the Foundation is ```6 million MINA / 10 million MINA = 0.6``` or 60%. Three blocks are produced in this epoch that end up on the canonical chain.
+Note that since Account C has all its tokens unlocked, any block rewards won when `winnerAccount` equals Account C will be super-charged.
 
-The first block has a `winnerAccount` equal to Account A. The total Foundation payout for this block is calculated as `(0.6 * 0.92) * 720 MINA = 397.44 MINA`. In the second block the `winnerAccount` is Account B — the total Foundation payout is again calculated as `(0.6 * 0.92) * 720 MINA = 397.44 MINA`. The third and final block has the `winnerAccount` as Account C. Now the actual coinbase is super-charged for this block and will be 1440 MINA, but despite this the Foundation rewards are still `397.44 MINA` since they are calculated using the non-supercharged coinbase. Thus the total payout to the Foundation from all blocks is `397.44 MINA * 3 blocks = 1,192.32 MINA` .
+Now let's consider Epoch 5. The share of the stake from the Foundation is ```6 million MINA / 10 million MINA = 0.6``` or 60%. 
 
-Finally, before slot 3,500 of the next epoch, a payment is made from any account that this block producer controls to each of the Foundation accounts — remember to follow the rules outlined in the "Payout Attribution" section above -- in this case we will send the transaction from Account A's coinbase receiver. The payment is `1,192.32 MINA` tokens. Note that the transaction fees for these two transactions are paid for by the block producer.
+#### Example 1
 
-This process is to be repeated for each of the token provider accounts that delegate to you. The token provider from the Mina Foundation will check to see that you have sent back with this mechanism by the middle of the next epoch as described above. Failing to do so, can result in ineligibility for receiving delegations.
+3 blocks are produced in this epoch that end up on the canonical chain. The blocks were won by Mina Foundation.
 
-Please repeat the process independently for each delegation, do not sum the results and divide by the number of total delegations.
+1. 3 * 720 = 2160 TOKENS should be sent to the burn address.
+1. Mina Foundation payout should be: (0.6 * 0.92) * 720 MINA * 3 blocks = 1,192.32 MINA
 
-#### Avoiding rounding errors
-If you have computed a reward that has an odd number of nanomina and need to divide it between the two accounts it is okay to round down and keep the extra 1 nanomina.
 
-If you are computing the share of the stake from the Mina Foundation, you can calculate the fraction of stake up to 5 decimal places and then truncate afterwards (ie. always round down).
+#### Example 2
 
-#### Example 1:
-If the Foundation share is 1 million MINA and the total stake is 3 million MINA, you can use 0.33333 as the stake share fraction.
+3 blocks are produced in this epoch that end up on the canonical chain. The blocks were won by other stakers with unlocked accounts.
 
-#### Example 2:
-If the Foundation share is 2 million MINA and the total stake is 3 million MINA, you can use 0.66666 as the stake share fraction.
+1. There is no need to send any token to the burn address.
+1. Mina Foundation payout should be: ```(0.6 * 0.92) * 720 MINA * 3 blocks = 1,192.32 MINA```
+
+### Example 3
+
+3 blocks are produced in this epoch that end up on the canonical chain. Each account won a block.
+
+1. Since Mina Foundation won a block that generated a super-charged reward, then 720 MINA should be sent to the burn address.
+1. Mina Foundation payout should be: ```(0.6 * 0.92) * 720 MINA * 3 blocks = 1,192.32 MINA```
+1. 
+
+  The other payouts should be calculated based on:
+    - 1 block: 720 MINA
+    - 2 blocks: 2 * 1440 MINA
+
 
 ### Relevant Links
 
