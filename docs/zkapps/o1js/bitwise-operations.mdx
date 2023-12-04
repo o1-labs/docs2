@@ -81,7 +81,7 @@ The operation:
     - The `length` parameter defines how many bits to NOT.
     - A larger `length` parameter adds more constraints.
 - Is implemented in two different ways:
-    - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all one bitmask. If the `checked` parameter is not provided, the default implementation uses `false`.
+    - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all-ones bitmask (all the bits in a binary sequence are set to 1). If the `checked` parameter is not provided, the default implementation uses `false`.
     - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all one bitmask the same length. This approach needs as many rows as an XOR requires for a single negation. 
 
 For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
@@ -128,7 +128,7 @@ The `xor()` gadget:
 
 The `length` parameter defines how many bits to compare. When choosing the value of the `length` parameter, be sure to carefully weigh the trade-off between an increased number of constraints and security:
 - A larger `length` parameter adds more constraints.
-- A smaller `length` allows the verifier to infer that the length of the original input data. For example, smaller than 16 bit if only one XOR gate was used.
+- A smaller `length` allows the verifier to infer the length of the original input data. For example, it will be smaller than 16 bits if only one XOR gate is used.
 
 For details about the implementation, see [XOR](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#xor-1) in the Mina book.
 
@@ -197,7 +197,7 @@ rightShift(xLarge, 32); // throws an error since input exceeds 64 bits
 
 ```ts
 rotate(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
-return rotate(field, bits, direction);
+  return rotate(field, bits, direction);
 },
 ```
 
@@ -267,8 +267,8 @@ Example:
 
 ```ts
 multiRangeCheck(limbs: Field3) {
-    multiRangeCheck(limbs);
-  },
+  multiRangeCheck(limbs);
+}
 ```
 
 ## compactMultiRangeCheck()
@@ -291,6 +291,6 @@ Example:
 
 ```ts
 compactMultiRangeCheck(xy: Field, z: Field) {
-return compactMultiRangeCheck(xy, z);
+  return compactMultiRangeCheck(xy, z);
 },
 ```
