@@ -46,7 +46,7 @@ The AND operation:
 
 - Compares two bits and returns 1 only if both bits are 1. Returns 0 if either bit is not 1.
 - Constrains both input values to fit into `paddedLength` bits. 
-- Both Field elements must fit into `2^paddedLength - 1`.
+- Requires both Field elements to fit into `2^paddedLength - 1`.
 - Guarantees that the output has at most `paddedLength` bits.
 
 For details about the implementation, see [AND](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#and) in the Mina book.
@@ -57,7 +57,7 @@ The `length` parameter:
 - Rounds `length` to the nearest multiple of 16, `paddedLength = ceil(length / 16) * 16`.
 - A larger `length` parameter adds more constraints.
 
-With `length = 2` (`paddedLength = 16`), the `and()` operation fails for any input that is larger than `2**16`.
+With `length = 2` (`paddedLength = 16`), the AND operation fails for any input that is larger than `2**16`.
 
 Example:
 
@@ -74,19 +74,20 @@ c.assertEquals(1);
 not(a: Field, length: number, checked: boolean) => Field
 ```
 
-The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. It is a provable method to support bitwise shifting for native Field elements.
-
-A bitwise NOT operation returns 1 in each bit position if the corresponding bit of the operand is 0 and returns 0 if the corresponding bit of the operand is 1.
+The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. It is a provable method for bitwise negation.
 
 The NOT operation:
 
-- Fails if the length or the input value is larger than 254 bits.
+- Changes each bit to its opposite:
+  - Returns 1 in each bit position if the corresponding bit of the operand is 0. 
+  - Returns 0 if the corresponding bit of the operand is 1.
+- Requires the input value to be 254 bits or less.
 - Operates only over the number of bits specified by the `length` parameter.
     - The `length` parameter defines how many bits to NOT.
     - A larger `length` parameter adds more constraints.
 - Is implemented in two different ways:
     - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all-ones bitmask (all the bits in a binary sequence are set to 1). This approach is more efficient, but does not check the length of the input. If the `checked` parameter is not provided, the default implementation uses `false`.
-    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all-ones bitmask of the same length. This approach is less efficient, needing as many rows as an XOR requires for a single negation, but comes with the advantage of making sure the input is of a certain length.
+    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all-ones bitmask of the same length. This approach is less efficient because it needs as many rows as an XOR requires for a single negation, but comes with the advantage of making sure the input is of a certain length.
 
 For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
 
@@ -118,7 +119,7 @@ The `xor()` gadget is equivalent to the [Bitwise XOR (^)](https://developer.mozi
 
 The XOR operation:
 
-- Compares two bits and returns 1 if two bits differ and returns 0 if two bits are equal.
+- Compares two bits and returns 1 if two bits differ. Returns 0 if the two bits are equal.
 - Recursively builds a chain of XOR gates. 
 - Verifies that each XOR gate can verify at most 16 bits.
 - Adds another XOR gate to the chain if your input elements exceed 16 bits.
@@ -151,7 +152,7 @@ c.assertEquals(0b0110);
 addMod32(a: Field, b: Field) => Field
 ```
 
-The `addMod32()` operation adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`.
+The `addMod32()` operation adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`. It is a helper method to interact with 3-limb vectors of Fields.
 
 The operation:
 
@@ -176,11 +177,11 @@ Gadgets.addMod32(a, b).assertEquals(Field(8n));
 divMod32(a: Field, b: Field) => Field
 ```
 
-The `divMod32()` gadget adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`.
+The `divMod32()` gadget adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32` (the remainder and quotient of the operation). It is a helper method to interact with 3-limb vectors of Fields.
 
 The operation:
 
-- Is division modulo `2^32` (provides the remainder of the division when a number is divided by `2^32`).
+- Is division modulo `2^32` to provide the remainder of the division when a number is divided by `2^32`.
 - Decomposes a Field element in the range [0, 2^64) into two 32-bit limbs, `remainder` and `quotient`, using this equation: `n = quotient * 2^32 + remainder`.
 - Acts as a proof that the input is in the range [0, 2^64).
 - Asserts that both `remainder` and `quotient` are in the range [0, 2^32) using [rangeCheck32()](#rangeCheck32).
@@ -341,8 +342,8 @@ The `rotate64()` gadget operates like the [Left shift (<<)](https://developer.mo
 The operation:
 
 - Shifts bits to the left or the right. 
-- The rotate left operation (ROL) shifts bits to the left. The bits that fall off the leftmost side wrap around and reappear on the rightmost side.
-- The rotate right operation (ROR) shifts bits to the right. The bits that fall off the rightmost side wrap around and reappear on the leftmost side.
+  - The rotate left operation (ROL) shifts bits to the left. The bits that fall off the leftmost side wrap around and reappear on the rightmost side.
+  - The rotate right operation (ROR) shifts bits to the right. The bits that fall off the rightmost side wrap around and reappear on the leftmost side.
 - Performs these operations with the big-endian 64-bit representation of the number, where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
 - Requires values that are range checked to 64 bits. You can use [rangeCheck64](#rangecheck64).
 
@@ -371,18 +372,17 @@ The `rangecheck32()` gadget is a helper function that asserts that the input val
 
 The operation:
 
-- Proves that the field element can be represented with 64 bits.
-- Throws an errors if the field element exceeds 64 bits.
-- Interprets small "negative" field element inputs as large integers close to the field size, so they don't pass the 64-bit check. To prove that a value lies in the int64 range `[-2^63, 2^63)`, use `rangeCheck64(x.add(1n << 63n))`.
+- Proves that the field element can be represented with 32 bits.
+- Interprets small "negative" field element inputs as large integers close to the field size, so they do not pass the 32-bit check. To prove that a value lies in the int32 range `[-2^31, 2^31)`, you can use `rangeCheck32(x.add(1n << 31n))`.
 
 Example:
 
 ```ts
 const x = Provable.witness(Field, () => Field(12345678n));
-Gadgets.rangeCheck64(x); // successfully proves 64-bit range
+Gadgets.rangeCheck32(x); // successfully proves 32-bit range
 
 const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
-Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
+Gadgets.rangeCheck32(xLarge); // throws an error since input exceeds 32 bits
 ```
 
 ## rangecheck64()
@@ -421,7 +421,7 @@ The operation is a helper function that:
 
 - Takes 4 rows and checks `88*3/4 = 66` bits per row, so is slightly more efficient than [64-bit range checks](#rangecheck64).
 - Supports BigInts up to 264 bits (`3x88-bit`) that supports foreign field multiplication with moduli up to `2^259`.
-- Requires input values less than 88 bits. Throws an error if input values exceed 88 bits.
+- Requires input values to be 88 bits or less.
 
 Example:
 
