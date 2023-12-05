@@ -22,6 +22,7 @@ In o1js, bitwise operations are implemented as [gadgets](/zkapps/o1js/gadgets).
 - [not()](#not)
 - [xor()](#xor)
 - [addMod32()](#addmod32)
+- [divMod32()](#divmod32)
 - [leftShift32()](#leftshift32)
 - [leftShift64()](#leftshift64)
 - [rightShift32()](#rightshift32)
@@ -41,7 +42,7 @@ and(a: Field, b: Field, length: number) => Field
 
 The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
 
-The `and()` gadget:
+The AND operation:
 
 - Compares two bits and returns 1 only if both bits are 1. Returns 0 if either bit is not 1.
 - Constrains both input values to fit into `paddedLength` bits. 
@@ -77,15 +78,15 @@ The bitwise `not()` gadget on Field elements is similar to the [Bitwise NOT (~)]
 
 A bitwise NOT operation returns 1 in each bit position if the corresponding bit of the operand is 0 and returns 0 if the corresponding bit of the operand is 1.
 
-The operation:
+The NOT operation:
 
 - Fails if the length or the input value is larger than 254 bits.
 - Operates only over the number of bits specified by the `length` parameter.
     - The `length` parameter defines how many bits to NOT.
     - A larger `length` parameter adds more constraints.
 - Is implemented in two different ways:
-    - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all-ones bitmask (all the bits in a binary sequence are set to 1). This is more efficient but we need to know the length of the input upfront as this is not checked. If the `checked` parameter is not provided, the default implementation uses `false`.
-    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all-one bitmask of the same length. This approach is less efficient, needing as many rows as an XOR requires for a single negation, but comes with the advantage of making sure the input is of a certain length.
+    - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all-ones bitmask (all the bits in a binary sequence are set to 1). This approach is more efficient, but does not check the length of the input. If the `checked` parameter is not provided, the default implementation uses `false`.
+    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all-ones bitmask of the same length. This approach is less efficient, needing as many rows as an XOR requires for a single negation, but comes with the advantage of making sure the input is of a certain length.
 
 For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
 
@@ -107,8 +108,6 @@ let b = Gadgets.not(a,4,true);
 b.assertEquals(0b1010);
 ```
 
-
-
 ## xor()
 
 ```ts
@@ -117,7 +116,7 @@ xor(a: Field, b: Field, length: number) => Field
 
 The `xor()` gadget is equivalent to the [Bitwise XOR (^)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR) operator in JavaScript. It is a provable method to support bitwise XOR operations for native Field elements. 
 
-The `xor()` gadget:
+The XOR operation:
 
 - Compares two bits and returns 1 if two bits differ and returns 0 if two bits are equal.
 - Recursively builds a chain of XOR gates. 
@@ -145,6 +144,57 @@ let c = Gadgets.xor(a, b, 4); // xor-ing 4 bits
 c.assertEquals(0b0110);
 ```
 
+
+## addMod32()
+
+```ts
+addMod32(a: Field, b: Field) => Field
+```
+
+The `addMod32()` operation adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`.
+
+The operation:
+
+- Is addition modulo `2^32`.
+- Asserts that the result is in the range [0, 2^32) using [rangeCheck32()](#rangeCheck32).
+- Uses [divMod32()](#divmod32) internally by adding the two Field elements,  decomposing the result into `remainder` and `quotient`, and returning the `remainder`.
+- Requires both inputs to be in the range [0, 2^64). 
+  - If the operation is called with non-range-checked inputs, the sum `a + b` can overflow the native field and the gadget can succeed but return an invalid result.
+
+Example:
+
+```ts
+let a = Field(8n);
+let b = Field(1n << 32n);
+
+Gadgets.addMod32(a, b).assertEquals(Field(8n));
+```
+
+## divMod32()
+
+```ts
+divMod32(a: Field, b: Field) => Field
+```
+
+The `divMod32()` gadget adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`.
+
+The operation:
+
+- Is division modulo `2^32` (provides the remainder of the division when a number is divided by `2^32`).
+- Decomposes a Field element in the range [0, 2^64) into two 32-bit limbs, `remainder` and `quotient`, using this equation: `n = quotient * 2^32 + remainder`.
+- Acts as a proof that the input is in the range [0, 2^64).
+- Asserts that both `remainder` and `quotient` are in the range [0, 2^32) using [rangeCheck32()](#rangeCheck32).
+
+Example:
+
+```ts
+let n = Field((1n << 32n) + 8n)
+let { remainder, quotient } = Gadgets.divMod32(n);
+// remainder = 8, quotient = 1
+
+n.assertEquals(quotient.mul(1n << 32n).add(remainder));
+```
+
 ## leftShift32()
 
 ```ts
@@ -153,7 +203,7 @@ leftShift32(field: Field, bits: number) => Field
 
 The `leftShift32()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the left. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
-The `leftShift32()` gadget:
+The operation:
 
 - Performs a left shift operation on a Field element.
 - Shifts bits to the left and discards the overflowing bits.
@@ -176,7 +226,7 @@ leftShift64(field: Field, bits: number) => Field
 
 The `leftShift64()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the left. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
-The `leftShift64()` gadget:
+The operation:
 
 - Performs a left shift operation on a Field element.
 - Shifts bits to the left and discards the overflowing bits.
@@ -202,7 +252,7 @@ leftShift32(field: Field, bits: number) => Field
 
 The `leftShift32()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the left. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
-The `leftShift32()` gadget:
+The operation:
 
 - Performs a left shift operation on a Field element.
 - Shifts bits to the left and discards the overflowing bits.
@@ -228,7 +278,7 @@ rightShift64(field: Field, bits: number) => Field
 
 The `rightShift64()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the right. Unlike [rotate32()](#rotate32) and [rotate64()](#rotate64), the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
-The `rightShift64()` gadget:
+The operation:
 
 - Performs a right shift operation on a Field element.
 - Shifts bits to the right and discards the overflowing bits.
@@ -255,7 +305,7 @@ rotate32(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 
 The `rotate32()` gadget operates like the [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) and [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) operators in JavaScript except the bits are circulated to the opposite end of a 32-bit representation rather than being discarded. It is a provable method to support bitwise left or right rotation for native Field elements. 
 
-The `rotate32()` gadget:
+The operation:
 
 - Shifts bits to the left or the right.
 - The rotate left operation (ROL) shifts bits to the left. The bits that fall off the leftmost side wrap around and reappear on the right end.
@@ -288,7 +338,7 @@ rotate64(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 
 The `rotate64()` gadget operates like the [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) and [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) operators in JavaScript except the bits are circulated to the opposite end of a 64-bit representation rather than being discarded. It is a provable method to support bitwise left or right rotation for native Field elements. 
 
-The `rotate64()` gadget:
+The operation:
 
 - Shifts bits to the left or the right. 
 - The rotate left operation (ROL) shifts bits to the left. The bits that fall off the leftmost side wrap around and reappear on the rightmost side.
@@ -311,15 +361,40 @@ const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789
 Gadgets.rotate64(xLarge, 32, "left"); // throws an error since input exceeds 64 bits
 ```
 
+## rangecheck32()
+
+```ts
+rangeCheck32(x: Field) => void
+```
+
+The `rangecheck32()` gadget is a helper function that asserts that the input value is in the range `[0, 2^32)`.
+
+The operation:
+
+- Proves that the field element can be represented with 64 bits.
+- Throws an errors if the field element exceeds 64 bits.
+- Interprets small "negative" field element inputs as large integers close to the field size, so they don't pass the 64-bit check. To prove that a value lies in the int64 range `[-2^63, 2^63)`, use `rangeCheck64(x.add(1n << 63n))`.
+
+Example:
+
+```ts
+const x = Provable.witness(Field, () => Field(12345678n));
+Gadgets.rangeCheck64(x); // successfully proves 64-bit range
+
+const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
+Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
+```
+
 ## rangecheck64()
 
 ```ts
 rangeCheck64(x: Field) => void
 ```
 
-The `rangecheck64()` gadget:
+The `rangecheck64()` gadget  is a helper function that asserts that the input value is in the range `[0, 2^64)`.
 
-- Asserts that the input value is in the range `[0, 2^64)`.
+The operation:
+
 - Proves that the field element can be represented with 64 bits.
 - Throws an errors if the field element exceeds 64 bits.
 - Interprets small "negative" field element inputs as large integers close to the field size, so they don't pass the 64-bit check. To prove that a value lies in the int64 range `[-2^63, 2^63)`, use `rangeCheck64(x.add(1n << 63n))`.
@@ -342,7 +417,7 @@ multiRangeCheck([x, y, z])
 
 The `multiRangeCheck()` gadget is a building block for non-native arithmetic with BigInt of size up to 264 bits. It is a provable method for efficient 64-bit range checks using lookup tables.
 
-The `multiRangeCheck()` gadget:
+The operation is a helper function that:
 
 - Takes 4 rows and checks `88*3/4 = 66` bits per row, so is slightly more efficient than [64-bit range checks](#rangecheck64).
 - Supports BigInts up to 264 bits (`3x88-bit`) that supports foreign field multiplication with moduli up to `2^259`.
@@ -364,7 +439,7 @@ compactMultiRangeCheck(xy: Field, z: Field) => [Field, Field, Field];
 
 The bitwise `compactMultiRangeCheck()` gadget is a variant of [multiRangeCheck](#multirangecheck) where the first two variables are passed in combined form `xy = x + 2^88*y`.
 
-The `compactMultiRangeCheck()` gadget:
+The operation:
 
 - Splits `xy` into `x` and `y`.
 - Proves that `xy = x + 2^88*y`.
