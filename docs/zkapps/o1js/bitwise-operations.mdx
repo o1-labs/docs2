@@ -85,7 +85,7 @@ The operation:
     - A larger `length` parameter adds more constraints.
 - Is implemented in two different ways:
     - If the `checked` parameter is set to `false`, it is implemented as a subtraction of the input from the all-ones bitmask (all the bits in a binary sequence are set to 1). This is more efficient but we need to know the length of the input upfront as this is not checked. If the `checked` parameter is not provided, the default implementation uses `false`.
-    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all one bitmask the same length. This approach needs as many rows as an XOR requires for a single negation. 
+    - If the `checked` parameter is set to `true`, the [xor()](#xor) gadget is reused with a second argument to be an all-one bitmask of the same length. This approach is less efficient, needing as many rows as an XOR requires for a single negation, but comes with the advantage of making sure the input is of a certain length.
 
 For implementation details, see [NOT](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not) in the Mina book.
 
