@@ -15,32 +15,39 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 :::
 
-NOT UPDATED
-
 # Foreign Field Arthmetic
 
-A foreign field is a finite field different from the native field of the proof system. The `ForeignField` namespace exposes operations like modular addition and multiplication that work for any finite field of size less than 2^259. 
+A foreign field is a finite field different from the native Field of the proof system. The [ForeignField](https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/foreign-field.ts) namespace exposes operations like modular addition and multiplication that work for any finite field of size less than 2^259. 
 
 Foreign field elements are represented as three limbs of native Field elements.
 
 - Each limb holds 88 bits of the total in little-endian order.
 - All `ForeignField` gadgets expect that their input limbs are constrained to the range [0, 2^88).
-- Range checks on outputs are added by the gadget itself.
+- The gadget itself adds range checks on outputs.
 
-## add 
+In o1js, foreign field arithmetic operations are implemented as gadgets.
+
+- [add()](#add)
+- [sub()](#sub)
+- [neg()](#neg)
+- [sum()](#sum)
+
+## add()
 
 ```ts
-x + y mod f
+add(x: Field3, y: Field3, f: bigint) {
+      return ForeignField.add(x, y, f);
+    }
 ```
 
-The foreign field add gadget:
+The foreign field `add()` gadget:
 
 - Guarantees only that the result is in the correct residue class.
-- Does not assume that inputs are reduced modulo f.
-- Does not prove that the result is reduced modulo f.
+- Does not assume that inputs are reduced modulo `f`.
+- Does not prove that the result is reduced modulo `f`.
 - Does not require that the modulus `f` is prime.
 - Uses inputs and outputs that are 3-tuples of native Fields.
-- Requires that each input limb must be in the range [0, 2^88), otherwise an error is thrown.
+- Requires that each input limb must be in the range `[0, 2^88)`.
 - Guarantees that the result limbs are in the same range.
 
 Example:
@@ -59,25 +66,20 @@ let z = ForeignField.add(x, y, 17n);
 Provable.log(z); // ['2', '0', '0'] = limb representation of 2 = 9 + 10 mod 17
 ```
 
-(Do we want to provide descriptions of parameters??? 
-x left summand
-y right summand
-f modulus
-returns x + y mod f)
+where:
 
-Example:
+- `x` is the left summand
+- `y` is the right summand
+- `f` is the modulus
 
-```ts
-add(x: Field3, y: Field3, f: bigint) {
-      return ForeignField.add(x, y, f);
-    },
-```
+Returns `x + y mod f`.
 
-## subtraction
+## sub()
 
 ```ts
 x - y mod f
 ```
+
 
 
      *
@@ -195,10 +197,3 @@ x - y mod f
    */
   Field3,
 };
-
-export namespace Gadgets {
-  /**
-   * A 3-tuple of Fields, representing a 3-limb bigint.
-   */
-  export type Field3 = [Field, Field, Field];
-}
