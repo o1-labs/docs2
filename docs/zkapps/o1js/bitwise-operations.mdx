@@ -152,14 +152,14 @@ c.assertEquals(0b0110);
 addMod32(a: Field, b: Field) => Field
 ```
 
-The `addMod32()` operation adds two Field elements in the range `[0, 2^64]` and returns the result modulo `2^32`. It is a helper method to interact with 3-limb vectors of Fields.
+The `addMod32()` operation adds two Field elements in the range `[0, 2^64)` and returns the result modulo `2^32`. It is a helper method to interact with 3-limb vectors of Fields.
 
 The operation:
 
 - Is addition modulo `2^32`.
-- Asserts that the result is in the range [0, 2^32) using [rangeCheck32()](#rangeCheck32).
+- Asserts that the result is in the range `[0, 2^32)` using [rangeCheck32()](#rangeCheck32).
 - Uses [divMod32()](#divmod32) internally by adding the two Field elements,  decomposing the result into `remainder` and `quotient`, and returning the `remainder`.
-- Requires both inputs to be in the range [0, 2^64). 
+- Requires both inputs to be in the range `[0, 2^64)`. 
   - If the operation is called with non-range-checked inputs, the sum `a + b` can overflow the native field and the gadget can succeed but return an invalid result.
 
 Example:
@@ -182,9 +182,9 @@ The `divMod32()` gadget adds two Field elements in the range `[0, 2^64]` and ret
 The operation:
 
 - Is division modulo `2^32` to provide the remainder of the division when a number is divided by `2^32`.
-- Decomposes a Field element in the range [0, 2^64) into two 32-bit limbs, `remainder` and `quotient`, using this equation: `n = quotient * 2^32 + remainder`.
+- Decomposes a Field element in the range `[0, 2^64]` into two 32-bit limbs, `remainder` and `quotient`, using this equation: `n = quotient * 2^32 + remainder`.
 - Acts as a proof that the input is in the range [0, 2^64).
-- Asserts that both `remainder` and `quotient` are in the range [0, 2^32) using [rangeCheck32()](#rangeCheck32).
+- Asserts that both `remainder` and `quotient` are in the range `[0, 2^32]` using [rangeCheck32()](#rangeCheck32).
 
 Example:
 
