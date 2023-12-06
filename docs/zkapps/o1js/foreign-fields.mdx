@@ -1,0 +1,29 @@
+---
+title: Foreign Field Arthmetic
+hide_title: true
+description: Foreign field arithmetic gadgets in o1js.
+keywords:
+  - gadgets
+  - ff
+  - foreign field
+  - o1js
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# Foreign Field Arthmetic
+
+A foreign field is a finite field different from the native Field of the proof system. The [ForeignField](https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/foreign-field.ts) namespace exposes operations like modular addition and multiplication that work for any finite field of size less than 2^259. 
+
+Foreign field elements are represented as three limbs of native Field elements.
+
+- Each limb holds 88 bits of the total in little-endian order.
+- All `ForeignField` gadgets expect that their input limbs are constrained to the range [0, 2^88).
+- The gadget itself adds range checks on outputs.
+
+In o1js, foreign field arithmetic operations are implemented as gadgets.
+

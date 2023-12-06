@@ -60,6 +60,7 @@ module.exports = {
             'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
+            'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
@@ -424,7 +425,7 @@ module.exports = {
           label: 'Rosetta API',
           link: {
             type: 'doc',
-            id: 'exchange-operators/rosetta/index'
+            id: 'exchange-operators/rosetta/index',
           },
           items: [
             'exchange-operators/rosetta/run-with-docker',
@@ -435,19 +436,20 @@ module.exports = {
               label: 'Code Samples',
               link: {
                 type: 'doc',
-                id: 'exchange-operators/rosetta/samples/index'
+                id: 'exchange-operators/rosetta/samples/index',
               },
               items: [
                 'exchange-operators/rosetta/samples/requests',
                 'exchange-operators/rosetta/samples/using-signer',
                 'exchange-operators/rosetta/samples/scan-blocks',
                 'exchange-operators/rosetta/samples/track-deposits',
-                'exchange-operators/rosetta/samples/send-transactions'
-              ]
+                'exchange-operators/rosetta/samples/send-transactions',
+              ],
             },
-          ]
+          ],
         },
-        'exchange-operators/faq'],
+        'exchange-operators/faq',
+      ],
     },
     {
       type: 'category',
