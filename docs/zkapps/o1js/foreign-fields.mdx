@@ -1,11 +1,12 @@
 ---
 title: Foreign Field Arthmetic
 hide_title: true
-description: Foreign field arithmetic gadgets in o1js.
+description: Foreign field arithmetic in o1js.
 keywords:
-  - gadgets
-  - ff
   - foreign field
+  - non-native arithmetic
+  - wrong-field
+  - bigint
   - o1js
 ---
 
@@ -15,15 +16,94 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 :::
 
-# Foreign Field Arthmetic
+# Foreign Field Arithmetic
 
-A foreign field is a finite field different from the native Field of the proof system. The [ForeignField](https://github.com/o1-labs/o1js/blob/main/src/lib/gadgets/foreign-field.ts) namespace exposes operations like modular addition and multiplication that work for any finite field of size less than 2^259. 
+A foreign field is a [finite field](https://en.wikipedia.org/wiki/Modular_arithmetic) different from the native field of the proof system. o1js exposes operations like modular addition and multiplication that work in any finite field of size less than 2^256.
 
-Foreign field elements are represented as three limbs of native Field elements.
+Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures ([coming](https://github.com/o1-labs/o1js/pull/1240) [soon](https://github.com/o1-labs/o1js/pull/1291)).
 
-- Each limb holds 88 bits of the total in little-endian order.
-- All `ForeignField` gadgets expect that their input limbs are constrained to the range [0, 2^88).
-- The gadget itself adds range checks on outputs.
+## Why foreign fields?
 
-In o1js, foreign field arithmetic operations are implemented as gadgets.
+If you already know what you need foreign fields for, you can skip this section.
 
+For additional context, recall that the core data type in o1js is `Field`. It represents the field that is _native to the proof system_. In other words, addition and multiplication of `Field`s are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js supports several crypto algorithms natively, with high efficiency. See classes and modules like [Poseidon](../o1js-reference/modules#poseidon), [PublicKey](../o1js-reference/classes/Types.PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature) and [Encryption](../o1js-reference/modules/Encryption).
+
+However, none of these are compatible with the cryptography typically used in the wider world: `Signature.verify()` doesn't let you verify a signed JWT or e-mail, and `Encryption.decrypt()` won't help you with your WhatsApp messages. That's because these use different finite fields than our native `Field` (which was chosen primarily to enable efficient zk proofs).
+
+Here is where foreign fields come in: They let you perform algorithms that connect your zkApp with the outside world of cryptography. Foreign fields come with an efficiency hit compared to the native field, but we heavily engineered them to be efficient enough to unlock many interesting use cases.
+
+## Basic usage
+
+What follows is a brief overview of how to use foreign fields. For more details, refer to the [API reference](../o1js-reference/classes/ForeignField) or the doccomments on each method.
+
+The entry point for using foreign fields is the `createForeignField()` function:
+
+```ts
+import { createForeignField } from 'o1js';
+
+class Field17 extends createForeignField(17n) {}
+```
+
+The only parameter that `createForeignField()` takes is the modulus or size of the field. In the code example, you are passing in `17n`, which means that `SmallField` allows you to perform arithmetic modulo 17 (yes, it's a toy example):
+
+```ts
+let x = Field17.from(16);
+x.assertEquals(-1); // 16 = -1 (mod 17)
+x.mul(x).assertEquals(1); // 16 * 16 = 15 * 17 + 1 = 1 (mod 17)
+```
+
+As modulus, any number of up to 259 bits is supported. This means that `ForeignField` can be used for many elliptic curve algorithms (where bit sizes are often just below 256), but not for RSA with its typical bit size of 2048.
+
+Notably, the modulus does not have to be a prime number. For example, your can create a `UInt256` class where the modulus is `2^256`:
+
+```ts
+class UInt256 extends createForeignField(1n << 256n) {}
+
+// and now you can do arithmetic modulo 2^256!
+let a = UInt256.from(1n << 255n);
+let b = UInt256.from((1n << 255n) + 7n);
+a.add(b).assertEquals(7);
+```
+
+The base type that is common to classes created by `createForeignField()` is `ForeignField`:
+
+```ts
+import { ForeignField } from 'o1js';
+
+// ...
+
+let zero: ForeignField = Field17.from(0);
+let alsoZero: ForeignField = UInt256.from(0);
+```
+
+`ForeignField` supports all the basic arithmetic operations:
+
+```ts
+x.add(x); // addition
+x.sub(2); // subtraction
+x.neg(); // negation
+x.mul(x); // multiplication
+x.div(3); // division
+x.inv(); // inverse
+```
+
+Note that these operations happen modulo the field size. So, `Field17.from(1).div(2)` gives 9 because `2 * 9 = 18 = 1 (mod 17)`.
+
+`ForeignField` also comes with a few other provable methods:
+
+```ts
+x.assertEquals(y); // assert x == y
+x.assertLessThan(2); // assert x < 2
+
+let bits = x.toBits(); // convert to a `Bool` array of size log2(modulus);
+Field17.fromBits(bits); // convert back
+```
+
+And non-provable methods for converting to and from JS values:
+
+```ts
+let y = SmallField.from(5n); // convert from bigint or number
+y.toBigInt() === 5n; // convert to bigint
+```
+
+As usual, you can find much more information about each method in the [API reference](../o1js-reference/classes/ForeignField).
