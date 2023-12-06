@@ -238,38 +238,12 @@ Example:
 
 ```ts
 const x = Provable.witness(Field, () => Field(0b001100)); // 12 in binary
-const y = Gadgets.leftShift(x, 2); // left shift by 2 bits
+const y = Gadgets.leftShift64(x, 2); // left shift by 2 bits
 y.assertEquals(0b110000); // 48 in binary
 
 const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
-leftShift(xLarge, 32); // throws an error since input exceeds 64 bits
+Gadgets.leftShift64(xLarge, 32); // throws an error since input exceeds 64 bits
 ``
-
-## rightShift32()
-
-```ts
-rightShift32(field: Field, bits: number) => Field
-```
-
-The `rightShift32()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the right. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
-
-The operation:
-
-- Performs a right shift operation on a Field element.
-- Shifts bits to the right and discards the overflowing bits.
-- Performs these operations with the big-endian 32-bit representation of the number, where the most significant (32nd) bit is on the left end and the least significant bit is on the right end.
-- Requires values that are range checked to 32 bits. You can use [rangeCheck32](#rangecheck32).
-
-Example:
-
-```ts
-const x = Provable.witness(Field, () => Field(0b001100)); // 12 in binary
-const y = Gadgets.leftShift(x, 2); // left shift by 2 bits
-y.assertEquals(0b110000); // 48 in binary
-
-const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
-leftShift(xLarge, 32); // throws an error since input exceeds 64 bits
-```
 
 ## rightShift64()
 
@@ -293,7 +267,7 @@ const y = Gadgets.rightShift64(x, 2); // right shift by 2 bits
 y.assertEquals(0b000011); // 3 in binary
 
 const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
-rightShift64(xLarge, 32); // throws an error since input exceeds 64 bits
+Gadgets.rightShift64(xLarge, 32); // throws an error since input exceeds 64 bits
 ```
 
 ## rotate32()
