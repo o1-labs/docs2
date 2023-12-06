@@ -25,7 +25,6 @@ In o1js, bitwise operations are implemented as [gadgets](/zkapps/o1js/gadgets).
 - [divMod32()](#divmod32)
 - [leftShift32()](#leftshift32)
 - [leftShift64()](#leftshift64)
-- [rightShift32()](#rightshift32)
 - [rightShift64()](#rightshift64)
 - [rotate32()](#rotate32)
 - [rotate64()](#rotate64)
@@ -243,7 +242,7 @@ y.assertEquals(0b110000); // 48 in binary
 
 const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789012345678n));
 Gadgets.leftShift64(xLarge, 32); // throws an error since input exceeds 64 bits
-``
+```
 
 ## rightShift64()
 
