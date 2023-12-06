@@ -40,7 +40,7 @@ In o1js, bitwise operations are implemented as [gadgets](/zkapps/o1js/gadgets).
 and(a: Field, b: Field, length: number) => Field
 ```
 
-The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. 
+The bitwise `and()` gadget on Field elements is equivalent to the [bitwise AND (&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND) operator in JavaScript. It is a provable method for bitwise and operations.
 
 The AND operation:
 
@@ -119,7 +119,7 @@ The `xor()` gadget is equivalent to the [Bitwise XOR (^)](https://developer.mozi
 
 The XOR operation:
 
-- Compares two bits and returns 1 if two bits differ. Returns 0 if the two bits are equal.
+- Compares two bits and returns 1 if they differ. Returns 0 if the two bits are equal.
 - Recursively builds a chain of XOR gates. 
 - Verifies that each XOR gate can verify at most 16 bits.
 - Adds another XOR gate to the chain if your input elements exceed 16 bits.
@@ -245,20 +245,20 @@ const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789
 leftShift(xLarge, 32); // throws an error since input exceeds 64 bits
 ``
 
-## leftShift32()
+## rightShift32()
 
 ```ts
-leftShift32(field: Field, bits: number) => Field
+rightShift32(field: Field, bits: number) => Field
 ```
 
-The `leftShift32()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the left. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
+The `rightShift32()` gadget is a provable method that supports the bitwise shifting operation that moves the bits of a binary number to the right. Unlike rotation, the bits that fall off at the end are discarded and the vacant positions are filled with zeros.
 
 The operation:
 
-- Performs a left shift operation on a Field element.
-- Shifts bits to the left and discards the overflowing bits.
+- Performs a right shift operation on a Field element.
+- Shifts bits to the right and discards the overflowing bits.
 - Performs these operations with the big-endian 32-bit representation of the number, where the most significant (32nd) bit is on the left end and the least significant bit is on the right end.
-- Requires values that are range checked to 64 bits. You can use [rangeCheck64](#rangecheck64).
+- Requires values that are range checked to 32 bits. You can use [rangeCheck32](#rangecheck32).
 
 Example:
 
