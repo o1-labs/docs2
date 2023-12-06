@@ -284,11 +284,11 @@ The `verify()` method is defined like any other TypeScript method, except that i
 
 Pass in these arguments:
 
-- `userId`: The id of the user whose credit score is requested is required to prevent bad actors from querying somebody else's data and claiming it as their own.
+- `id`: The id of the user whose credit score is requested is required to prevent bad actors from querying somebody else's data and claiming it as their own.
 - `creditScore`: The credit score of the user that is a number between 350 and 800 (this tutorial uses mock credit scores).
-- `signature`: A cryptographic signature of `userId` and `creditScore`. This is what the smart contract uses to verify that the data was provided by the expected source.
+- `signature`: A cryptographic signature of `id` and `creditScore`. This is what the smart contract uses to verify that the data was provided by the expected source.
 
-The `verify()` method does not return any values or change any contract state. It only emits an `id` event with the user's id if their credit score is above 700.
+The `verify()` method does not return any values or change any contract state. It only emits a `verified` event with the user's id if their credit score is above 700.
 
 ### Fetch the oracle's public key
 
