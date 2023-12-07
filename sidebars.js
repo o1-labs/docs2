@@ -111,8 +111,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AlmostForeignField',
+                  label: 'AlmostForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
+                  label: 'CanonicalForeignField',
                 },
                 {
                   type: 'doc',
@@ -138,6 +148,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignField',
+                  label: 'ForeignField',
                 },
                 {
                   type: 'doc',
@@ -238,6 +253,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/UInt64',
                   label: 'UInt64',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Unconstrained',
+                  label: 'Unconstrained',
                 },
                 {
                   type: 'doc',
