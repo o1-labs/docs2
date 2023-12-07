@@ -208,7 +208,7 @@ class MyContract extends SmartContract {
 
 #### What does almost reduced mean?
 
-The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
+The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`.)
 
 However, we actually prove a stronger condition, which lets us save a few constraints in some places:
 
@@ -216,9 +216,9 @@ However, we actually prove a stronger condition, which lets us save a few constr
 
 :::note
 
-Example: Assume `x` is a `Field17` holding the value `1`. After computing `z = x.mul(1)`, it is valid for `z` to be `1*1 + 2^256 * 17`, which is larger than `2^260`.
+Example: Assume `x` is a `UInt256` holding the value `2^130`. After computing `z = x.mul(x)`, it is valid for `z` to be `2^260`.
 
-However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than `2^259` and safe to use in another multiplication. According to our stronger definition, we even have `z < 2^176`.
+However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than `2^259` and safe to use in another multiplication. According to our stronger definition, we even have `z < 2^256`.
 
 :::
 
@@ -259,7 +259,7 @@ The cheapest way to prove that an existing field element is canonical is to show
 
 ```ts
 let zCanonical = z.assertEquals(3);
-assert(uCanonical instanceof Field17.Canonical);
+assert(zCanonical instanceof Field17.Canonical);
 ```
 
 An operation that is only possible on canonical fields is the boolean equality check:
