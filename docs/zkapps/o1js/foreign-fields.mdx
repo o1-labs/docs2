@@ -44,7 +44,7 @@ import { createForeignField } from 'o1js';
 class Field17 extends createForeignField(17n) {}
 ```
 
-The only parameter that `createForeignField()` takes is the modulus or size of the field. This code example passes in `17n` so that `SmallField` allows you to perform arithmetic modulo 17:
+The only parameter that `createForeignField()` takes is the modulus or size of the field. This code example passes in `17n` so that `Field17` allows you to perform arithmetic modulo 17:
 
 ```ts
 let x = Field17.from(16);
