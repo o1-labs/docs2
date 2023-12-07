@@ -34,7 +34,7 @@ Here is where foreign fields come in: They let you perform algorithms that conne
 
 <!-- TODO replace with link to /ForeignField when it exists -->
 
-What follows is a brief overview of how to use foreign fields. For more details, refer to the [API reference](../o1js-reference/classes/Field) or the doccomments on each method.
+What follows is a brief overview of how to use foreign fields. For more details, refer to the o1js [API reference](../o1js-reference/classes/Field) or the doccomments on each method.
 
 The entry point for using foreign fields is the `createForeignField()` function:
 
@@ -87,7 +87,7 @@ x.div(x); // division
 x.inv(); // inverse
 ```
 
-Note that these operations happen modulo the field size. So, `Field17.from(1).div(2)` gives 9 because `2 * 9 = 18 = 1 (mod 17)`.
+Note that these operations are performed modulo the field size. So, `Field17.from(1).div(2)` gives 9 because `2 * 9 = 18 = 1 (mod 17)`.
 
 `ForeignField` also comes with a few other provable methods:
 
