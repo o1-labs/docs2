@@ -118,7 +118,7 @@ If the basic usage examples look straightforward, here is where it gets a bit co
 
 For each class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
 
-#### Unreduced fields
+### Unreduced fields
 
 Most arithmetic operations return unreduced fields:
 
@@ -148,7 +148,7 @@ assert((z as any).inv === undefined);
 assert((z as any).div === undefined);
 ```
 
-#### Almost reduced fields
+### Almost reduced fields
 
 To do multiplication, you need almost reduced fields. You can convert to that by using `.assertAlmostReduced()`:
 
@@ -169,13 +169,30 @@ assert(zz instanceof SmallField.Unreduced);
 assert(zAlmost.inv() instanceof SmallField.AlmostReduced);
 ```
 
-There is an exported base type common to all almost reduced fields:
+It can be convenient to require almost reduced fields as inputs to your smart contract. To do so, create a class which can also serve as a type, and use its `.provable` property when passing to the state decorator:
+
+```ts
+class AlmostField17 extends Field17.AlmostReduced {}
+
+class MyContract extends SmartContract {
+  @state(AlmostField17.provable) x = State<AlmostField17>();
+
+  @method myMethod(y: AlmostField17) {
+    let x = y.mul(2);
+    this.x.set(x.assertAlmostReduced());
+  }
+}
+```
+
+There is also an exported type common to all almost reduced fields:
 
 ```ts
 import { AlmostReducedField } from 'o1js';
 
 zAlmost satisfies AlmostReducedField;
 ```
+
+#### What does almost reduced even mean?
 
 The definition of almost reduced is somewhat technical and we won't dwell on it for too long. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
 
@@ -193,9 +210,15 @@ However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than
 
 Why are we exposing `AlmostReducedField` as a separate type, and don't _always_ prove conditions necessary for multiplication?
 
-To allow you to use the minimum amount of constraints, in a way that is safely guided by the type system!
+To allow you to use the minimum amount of constraints, in a way that is safely guided by the type system! See the section below on [minimizing constraints](#minimizing-constraints) for all the details.
 
-Here is a trick to save constraints: It's most efficient to always reduce field elements in _batches of 3_. Do this when doing many multiplications in a row:
+## Minimizing constraints
+
+#### `ForeignField.assertAlmostReduced()`
+
+Here is a trick to save constraints when you need to "almost reduce" many field elements: Always reduce them in _batches of 3_.
+
+For example, do this when doing many multiplications in a row:
 
 ```ts
 let z1 = x.mul(7);
@@ -208,4 +231,37 @@ z1r.mul(z2r);
 z2r.div(z3r);
 ```
 
-`ForeignField.assertAlmostReduced()` takes any number of inputs, but is most efficient when called with a multiple of 3 inputs.
+`assertAlmostReduced()` takes any number of inputs, but is by far the most efficient with multiples of 3. For example:
+
+- 1 input takes 4.5 constraints
+- 2 inputs take 5 constraints
+- 3 inputs take 5.5 constraints
+
+#### `ForeignField.sum()`
+
+Another opportunity to save constraints is when doing many additions or subtractions in a row. Instead of doing something like `x.add(y).sub(z)`, you can use `ForeignField.sum()`:
+
+```ts
+// u = x + y - z
+let u = Field17.sum([x, y, z], [1, -1]);
+```
+
+The second argument is a list of signs: either 1 or -1, depending on whether you want to add or subtract the corresponding field element.
+
+- The 1 in this example means: "add x and y".
+- The -1 means: "subtract z".
+
+To give a few more examples:
+
+```ts
+// u = x - y - z
+let u = Field17.sum([x, y, z], [-1, -1]);
+
+// u = 2*x + y
+let u = Field17.sum([x, x, y], [1, 1]);
+
+// u = -3*z
+let u = Field17.sum([0, z, z, z], [-1, -1, -1]);
+```
+
+Doing small multiplications like `-3*z` like this is more efficient than doing it with `mul()`. `sum()` only uses 1 additional constraint per summand.
