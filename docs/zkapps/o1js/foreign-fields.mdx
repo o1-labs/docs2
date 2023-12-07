@@ -118,6 +118,8 @@ If the basic usage examples look straightforward, here is where it gets a bit co
 
 For each class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
 
+In the following, we explain when to use the different variants, and how to convert between them. You don't need to learn all of this, though: The type system will guide you to use the right variant in each situation.
+
 ### Unreduced fields
 
 Most arithmetic operations return unreduced fields:
@@ -150,7 +152,7 @@ assert((z as any).div === undefined);
 
 ### Almost reduced fields
 
-To do multiplication, you need almost reduced fields. You can convert to that by using `.assertAlmostReduced()`:
+To do multiplication, you need almost reduced fields. You can convert to them by using `.assertAlmostReduced()`:
 
 ```ts
 let zAlmost = z.assertAlmostReduced();
@@ -165,7 +167,7 @@ let zz = zAlmost.mul(zAlmost); // zAlmost.mul() is defined
 // but .mul() returns an unreduced field again:
 assert(zz instanceof SmallField.Unreduced);
 
-// zAlmost.inv() is defined, and returns an almost reduced result!
+// zAlmost.inv() is defined, and returns an almost reduced field:
 assert(zAlmost.inv() instanceof SmallField.AlmostReduced);
 ```
 
@@ -194,11 +196,11 @@ zAlmost satisfies AlmostReducedField;
 
 #### What does almost reduced even mean?
 
-The definition of almost reduced is somewhat technical and we won't dwell on it for too long. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
+The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
 
-However, we usually prove a stronger condition, which lets us save a few constraints in some places:
+However, we actually prove a stronger condition, which lets us save a few constraints in some places:
 
-`z` is **almost reduced** modulo `f`, if `z >> 176` is smaller or equal than `f >> 176`. (`>>` means a right shift.)
+`z` is **almost reduced** modulo `f`, if `z >> 176` is smaller or equal than `f >> 176`. (`>>` means a [right shift](https://en.wikipedia.org/wiki/Arithmetic_shift).)
 
 :::note
 
@@ -214,7 +216,7 @@ To allow you to use the minimum amount of constraints, in a way that is safely g
 
 ## Minimizing constraints
 
-#### `ForeignField.assertAlmostReduced()`
+#### `assertAlmostReduced()`
 
 Here is a trick to save constraints when you need to "almost reduce" many field elements: Always reduce them in _batches of 3_.
 
@@ -237,19 +239,16 @@ z2r.div(z3r);
 - 2 inputs take 5 constraints
 - 3 inputs take 5.5 constraints
 
-#### `ForeignField.sum()`
+#### `sum()`
 
-Another opportunity to save constraints is when doing many additions or subtractions in a row. Instead of doing something like `x.add(y).sub(z)`, you can use `ForeignField.sum()`:
+Another opportunity to save constraints is when doing many additions or subtractions in a row. Instead of doing something like `x.add(y).sub(z)`, use `ForeignField.sum()`:
 
 ```ts
 // u = x + y - z
 let u = Field17.sum([x, y, z], [1, -1]);
 ```
 
-The second argument is a list of signs: either 1 or -1, depending on whether you want to add or subtract the corresponding field element.
-
-- The 1 in this example means: "add x and y".
-- The -1 means: "subtract z".
+The second argument is a list of signs: either 1 or -1, depending on whether you want to add or subtract the corresponding value. So, the 1 in this example means "add x and y", and the -1 means "subtract z".
 
 To give a few more examples:
 
@@ -264,4 +263,4 @@ let u = Field17.sum([x, x, y], [1, 1]);
 let u = Field17.sum([0, z, z, z], [-1, -1, -1]);
 ```
 
-Doing small multiplications like `-3*z` like this is more efficient than doing it with `mul()`. `sum()` only uses 1 additional constraint per summand.
+Doing small multiplications like `-3*z` like this is more efficient than using `mul()` for the task. `sum()` uses 6 constraints for the first two summands but only 1 constraint per additional summand.
