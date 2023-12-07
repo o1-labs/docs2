@@ -6,8 +6,8 @@ Container which holds an unconstrained value. This can be used to pass values
 between the out-of-circuit blocks in provable code.
 
 Invariants:
-- An `Unconstrained`'s value can only be accessed in auxiliary contexts.
-- An `Unconstrained` can be empty when compiling, but never empty when running as the prover.
+- An `Unconstrained`'s value can be accessed only in auxiliary contexts.
+- An `Unconstrained` container can be empty when compiling, but never empty when running as the prover.
   (there is no way to create an empty `Unconstrained` in the prover)
 
 **`Example`**
@@ -76,7 +76,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit_value.ts:514](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L514)
+[lib/circuit_value.ts:514](https://github.com/o1-labs/o1js/blob/9d34c7fcf/src/lib/circuit_value.ts#L514)
 
 ## Properties
 
