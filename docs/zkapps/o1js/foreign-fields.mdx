@@ -112,19 +112,39 @@ y.toBigInt() === 5n; // convert to bigint
 
 As usual, you can find more information about each method in the [API reference](../o1js-reference/classes/Field).
 
-## The kinds of `ForeignField`
+## Three kinds of foreign field
 
 If the basic usage examples look straightforward, here is where it gets a bit complicated.
 
-For each class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
+For each `ForeignField` class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
 
-In the following, we explain when to use the different variants, and how to convert between them. You don't need to learn all of this, though: The type system will guide you to use the right variant in each situation.
+You find the variants as static properties on the class; they are themselves classes:
+
+```ts
+let x = new Field17.Unreduced(0);
+let y = new Field17.AlmostReduced(0);
+let z = new Field17.Canonical(0);
+```
+
+And there are three base types that are common to each variant:
+
+```ts
+import { UnreducedField, AlmostReducedField, CanonicalField } from 'o1js';
+
+x satisfies UnreducedField;
+y satisfies AlmostReducedField;
+z satisfies CanonicalField;
+```
+
+In the following, we explain when to use the different variants, and how to convert between them. You don't need to learn all of it, though: The type system will guide you to use the right variant in each situation.
 
 ### Unreduced fields
 
 Most arithmetic operations return unreduced fields:
 
 ```ts
+import assert from 'assert';
+
 let z = x.add(x);
 assert(z instanceof Field17.Unreduced);
 ```
@@ -140,7 +160,7 @@ A malicious prover _could_ make it larger, by slightly modifying their local ver
 
 :::
 
-Unreduced fields can be added and subtracted, but not be used in multiplication or division:
+Unreduced fields can be added and subtracted, but not multiplied or divided:
 
 ```ts
 z.add(1).sub(x); // works
@@ -186,15 +206,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-There is also an exported type common to all almost reduced fields:
-
-```ts
-import { AlmostReducedField } from 'o1js';
-
-zAlmost satisfies AlmostReducedField;
-```
-
-#### What does almost reduced even mean?
+#### What does almost reduced mean?
 
 The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
 
@@ -210,9 +222,55 @@ However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than
 
 :::
 
-Why are we exposing `AlmostReducedField` as a separate type, and don't _always_ prove conditions necessary for multiplication?
+Why are we exposing `AlmostReducedField` as a separate type, and don't _always_ prove conditions necessary for multiplication? Because that would take up additional constraints!
 
-To allow you to use the minimum amount of constraints, in a way that is safely guided by the type system! See the section below on [minimizing constraints](#minimizing-constraints) for all the details.
+`ForeignField` is built to allow you to use the minimum amount of constraints, in a way that is safely guided by the type system. See the section below on [minimizing constraints](#minimizing-constraints) for more details.
+
+### Canonical fields
+
+Canonical fields are the strictest variant. They are guaranteed to be smaller than the modulus.
+
+When you create fields from constants, they always get fully reduced. The type signature of `ForeignField.from()` reflects this and returns a canonical field:
+
+```ts
+let constant = Field17.from(16);
+assert(constant instanceof Field17.Canonical);
+
+// these also work, because `from()` takes the input mod 17:
+Field17.from(100000000n) satisfies CanonicalForeignField;
+Field17.from(-1) satisfies CanonicalForeignField;
+```
+
+You can convert any field to canonical by calling `.assertCanonical()`:
+
+```ts
+let zCanonical = z.assertCanonical();
+assert(zCanonical instanceof Field17.Canonical);
+```
+
+Canonical fields are a special case of almost reduced fields at the type level:
+
+```ts
+constant satisfies AlmostForeignField;
+constant.mul(constant); // works
+```
+
+The cheapest way to prove that an existing field element is canonical is to show that it is equal to a constant:
+
+```ts
+let zCanonical = z.assertEquals(3);
+assert(uCanonical instanceof Field17.Canonical);
+```
+
+An operation that is only possible on canonical fields is the boolean equality check:
+
+```ts
+let xCanonical = x.assertCanonical();
+let yCanonical = y.assertCanonical();
+let isEqual = xCanonical.equals(yCanonical);
+```
+
+We require inputs to be canonical for this because we check for strict equality, not equality modulo the field size. Note that being strictly unequal does not imply being unequal as field elements, so `equals()` on non-canonical fields would be error-prone.
 
 ## Minimizing constraints
 
