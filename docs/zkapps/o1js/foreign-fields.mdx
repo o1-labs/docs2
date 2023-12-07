@@ -122,12 +122,11 @@ let y = new Field17.AlmostReduced(0);
 let z = new Field17.Canonical(0);
 ```
 
-And there are three base types that are common to each variant:
+Unreduced field elements just have the `ForeignField` type. For the other two variants, there are narrower base types that are common to each variant:
 
 ```ts
-import { UnreducedField, AlmostReducedField, CanonicalField } from 'o1js';
+import { AlmostReducedField, CanonicalField } from 'o1js';
 
-x satisfies UnreducedField;
 y satisfies AlmostReducedField;
 z satisfies CanonicalField;
 ```
