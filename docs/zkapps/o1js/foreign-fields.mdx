@@ -111,3 +111,64 @@ y.toBigInt() === 5n; // convert to bigint
 <!-- TODO replace with link to /ForeignField when it exists -->
 
 As usual, you can find more information about each method in the [API reference](../o1js-reference/classes/Field).
+
+## The kinds of `ForeignField`
+
+If the basic usage examples look straightforward, here is where it gets a bit complicated.
+
+For each class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
+
+#### Unreduced fields
+
+Most arithmetic operations return unreduced fields:
+
+```ts
+let z = x.add(x);
+assert(z instanceof Field17.Unreduced);
+```
+
+In short, **unreduced** means that a value can be larger than the modulus.
+
+For example, if `x` has the value 16, it is valid for `x.add(x)` to contain the value 32. The addition is correct modulo 17, but doesn't guarantee a result smaller than 17.
+
+:::note
+
+Unreduced doesn't usually mean that the underlying witness is larger than the modulus. It just means that we have not _proved_ it to be smaller.
+A malicious prover _could_ make it larger, by slightly modifying their local version of o1js and creating a proof with that.
+
+:::
+
+Unreduced fields can be added and subtracted, but not be used in multiplication or division:
+
+```ts
+z.add(1).sub(x); // works
+
+assert((z as any).mul === undefined); // z.mul() is not defined
+assert((z as any).inv === undefined);
+assert((z as any).div === undefined);
+```
+
+#### Almost reduced fields
+
+To do multiplication, you need almost reduced fields. You can convert to that by using `.assertAlmostReduced()`:
+
+```ts
+let zAlmost = z.assertAlmostReduced();
+assert(zAlmost instanceof SmallField.AlmostReduced);
+
+let zz = zAlmost.mul(zAlmost); // zAlmost.mul() is defined
+
+// but .mul() returns an unreduced field again:
+assert(zz instanceof SmallField.Unreduced);
+
+// zAlmost.inv() is defined, and returns an almost reduced result!
+assert(zAlmost.inv() instanceof SmallField.Unreduced);
+```
+
+The type common to all almost reduced fields is `AlmostReducedField`:
+
+```ts
+import { AlmostReducedField } from 'o1js';
+
+zAlmost satisfies AlmostReducedField;
+```
