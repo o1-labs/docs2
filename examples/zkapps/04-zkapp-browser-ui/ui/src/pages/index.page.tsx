@@ -6,7 +6,7 @@ import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
 
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qkzkNuxitUqJNS16YFCyKGwmH6Nyk2cMdPdgUnPC3Q4xqt9HH7D3';
+const ZKAPP_ADDRESS = 'B62qknCphH8ikE9Bu46dFgamUeYRcE9FtKr5ahh5tcJDf7ibRXJdzWV';
 
 export default function Home() {
   const [state, setState] = useState({
@@ -219,8 +219,8 @@ export default function Home() {
     const faucetLink =
       'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
     accountDoesNotExist = (
-      <div >
-        <span style={{paddingRight: '1rem'}}>Account does not exist.</span>
+      <div>
+        <span style={{ paddingRight: '1rem' }}>Account does not exist.</span>
         <a href={faucetLink} target="_blank" rel="noreferrer">
           Visit the faucet to fund this fee payer account
         </a>
