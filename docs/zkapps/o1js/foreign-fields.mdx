@@ -18,19 +18,17 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Foreign Field Arithmetic
 
-A foreign field is a [finite field](https://en.wikipedia.org/wiki/Modular_arithmetic) different from the native field of the proof system. o1js exposes operations like modular addition and multiplication that work in any finite field of size less than 2^259.
+A foreign field is a [finite field](https://en.wikipedia.org/wiki/Modular_arithmetic) different from the native field of the proof system. o1js exposes operations like modular addition and multiplication that work in any finite field of size less than `2^259`.
 
-Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures ([coming](https://github.com/o1-labs/o1js/pull/1007) [soon](https://github.com/o1-labs/o1js/pull/1291)).
+Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures<!-- ([coming](https://github.com/o1-labs/o1js/pull/1007) [soon](https://github.com/o1-labs/o1js/pull/1291))-->.
 
 ## Why foreign fields?
 
-If you already know what you need foreign fields for, you can skip this section.
+The core data type in o1js is `Field` that represents the field that is _native to the proof system_. In other words, addition and multiplication of Fields are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js natively supports several cryptographic algorithms with high efficiency. See classes and modules like [Poseidon](../o1js-reference/modules#poseidon), [PublicKey](../o1js-reference/classes/Types.PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature), and [Encryption](../o1js-reference/modules/Encryption).
 
-For additional context, recall that the core data type in o1js is `Field`. It represents the field that is _native to the proof system_. In other words, addition and multiplication of `Field`s are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js supports several crypto algorithms natively, with high efficiency. See classes and modules like [Poseidon](../o1js-reference/modules#poseidon), [PublicKey](../o1js-reference/classes/Types.PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature) and [Encryption](../o1js-reference/modules/Encryption).
+However, these classes and modules are not compatible with the cryptography used in the wider world: `Signature.verify()` doesn't let you verify a signed JWT or email, and `Encryption.decrypt()` won't help you with your WhatsApp messages. That's because these methods use different finite fields than the native Field that was chosen primarily to enable efficient zk proofs.
 
-However, none of these are compatible with the cryptography used in the wider world: `Signature.verify()` doesn't let you verify a signed JWT or e-mail, and `Encryption.decrypt()` won't help you with your WhatsApp messages. That's because these use different finite fields than our native `Field` (which was chosen primarily to enable efficient zk proofs).
-
-Here is where foreign fields come in: They let you perform algorithms that connect your zkApp with the outside world of cryptography. Foreign fields come with an efficiency hit compared to the native field, but we heavily engineered them to be efficient enough to unlock many interesting use cases.
+Here is where foreign fields come in: They let you perform algorithms that connect your zkApp with the outside world of cryptography. Foreign fields come with an efficiency hit compared to the native Field, but the heavily engineered foreign fields are efficient enough to unlock many interesting use cases.
 
 ## Basic usage
 
@@ -46,7 +44,7 @@ import { createForeignField } from 'o1js';
 class Field17 extends createForeignField(17n) {}
 ```
 
-The only parameter that `createForeignField()` takes is the modulus or size of the field. In the code example, you are passing in `17n`, which means that `SmallField` allows you to perform arithmetic modulo 17 (yes, it's a toy example):
+The only parameter that `createForeignField()` takes is the modulus or size of the field. This code example passes in `17n` so that `SmallField` allows you to perform arithmetic modulo 17:
 
 ```ts
 let x = Field17.from(16);
@@ -54,9 +52,9 @@ x.assertEquals(-1); // 16 = -1 (mod 17)
 x.mul(x).assertEquals(1); // 16 * 16 = 15 * 17 + 1 = 1 (mod 17)
 ```
 
-As modulus, any number of up to 259 bits is supported. This means that `ForeignField` can be used for many elliptic curve algorithms (where bit sizes are often just below 256), but not for RSA with its typical bit size of 2048.
+As modulus, any number of up to 259 bits is supported. This means that `ForeignField` can be used for many elliptic curve algorithms (where bit sizes are often just below 256) but not for RSA with its typical bit size of 2048.
 
-Notably, the modulus does not have to be a prime number. For example, your can create a `UInt256` class where the modulus is `2^256`:
+Notably, the modulus does not have to be a prime number. For example, you can create a `UInt256` class where the modulus is `2^256`:
 
 ```ts
 class UInt256 extends createForeignField(1n << 256n) {}
@@ -110,4 +108,4 @@ y.toBigInt() === 5n; // convert to bigint
 
 <!-- TODO replace with link to /ForeignField when it exists -->
 
-As usual, you can find more information about each method in the [API reference](../o1js-reference/classes/Field).
+As usual, you can find more information about each method in the o1js [API reference](../o1js-reference/classes/Field).
