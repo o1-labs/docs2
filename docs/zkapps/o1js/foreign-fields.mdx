@@ -155,20 +155,57 @@ To do multiplication, you need almost reduced fields. You can convert to that by
 ```ts
 let zAlmost = z.assertAlmostReduced();
 assert(zAlmost instanceof SmallField.AlmostReduced);
+```
 
+Now you can do multiplication and division:
+
+```ts
 let zz = zAlmost.mul(zAlmost); // zAlmost.mul() is defined
 
 // but .mul() returns an unreduced field again:
 assert(zz instanceof SmallField.Unreduced);
 
 // zAlmost.inv() is defined, and returns an almost reduced result!
-assert(zAlmost.inv() instanceof SmallField.Unreduced);
+assert(zAlmost.inv() instanceof SmallField.AlmostReduced);
 ```
 
-The type common to all almost reduced fields is `AlmostReducedField`:
+There is an exported base type common to all almost reduced fields:
 
 ```ts
 import { AlmostReducedField } from 'o1js';
 
 zAlmost satisfies AlmostReducedField;
 ```
+
+The definition of almost reduced is somewhat technical and we won't dwell on it for too long. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`).
+
+However, we usually prove a stronger condition, which lets us save a few constraints in some places:
+
+`z` is **almost reduced** modulo `f`, if `z >> 176` is smaller or equal than `f >> 176`. (`>>` means a right shift.)
+
+:::note
+
+Example: Assume `x` is a `Field17` holding the value `1`. After computing `z = x.mul(1)`, it is valid for `z` to be `1*1 + 2^256 * 17`, which is larger than `2^260`.
+
+However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than `2^259` and safe to use in another multiplication. According to our stronger definition, we even have `z < 2^176`.
+
+:::
+
+Why are we exposing `AlmostReducedField` as a separate type, and don't _always_ prove conditions necessary for multiplication?
+
+To allow you to use the minimum amount of constraints, in a way that is safely guided by the type system!
+
+Here is a trick to save constraints: It's most efficient to always reduce field elements in _batches of 3_. Do this when doing many multiplications in a row:
+
+```ts
+let z1 = x.mul(7);
+let z2 = x.add(11);
+let z3 = x.sub(13);
+
+let [z1r, z2r, z3r] = Field17.assertAlmostReduced(z1, z2, z3);
+
+z1r.mul(z2r);
+z2r.div(z3r);
+```
+
+`ForeignField.assertAlmostReduced()` takes any number of inputs, but is most efficient when called with a multiple of 3 inputs.
