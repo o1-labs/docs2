@@ -20,7 +20,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 A foreign field is a [finite field](https://en.wikipedia.org/wiki/Modular_arithmetic) different from the native field of the proof system. o1js exposes operations like modular addition and multiplication that work in any finite field of size less than `2^259`.
 
-Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures<!-- ([coming](https://github.com/o1-labs/o1js/pull/1007) [soon](https://github.com/o1-labs/o1js/pull/1291))-->.
+Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures.
 
 ## Why foreign fields?
 
@@ -267,6 +267,8 @@ Inputs must be canonical for `equals()` because the operation checks for strict 
 
 ## Minimizing constraints
 
+Follow these strategies to minimize constraints.
+
 #### `assertAlmostReduced()`
 
 Here is a trick to save constraints when you need to "almost reduce" many field elements: Always reduce them in _batches of 3_.
@@ -284,7 +286,7 @@ z1r.mul(z2r);
 z2r.div(z3r);
 ```
 
-`assertAlmostReduced()` takes any number of inputs, but is by far the most efficient with multiples of 3. For example:
+`assertAlmostReduced()` takes any number of inputs, but is the most efficient with multiples of 3. For example:
 
 - 1 input takes 4.5 constraints
 - 2 inputs take 5 constraints
