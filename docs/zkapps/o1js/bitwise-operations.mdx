@@ -16,7 +16,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Bitwise Operations
 
-Bitwise operations manipulate individual bits within a binary represenbtation of a number. They can at times resemble boolean operations but will apply to a sequence of bits instead of booleans. Bitwise operations are generally available in most programming languages, including TypeScript. o1js provides versions of them that operate on `Field` elements and result in the necessary circuit constraints to generate a zero-knowledge proof of the computation. This is especially useful when implementing hashing algorithms such as SHA256.
+Bitwise operations manipulate individual bits within a binary represenbtation of a number. They can at times resemble boolean operations but apply to a sequence of bits instead of booleans. Bitwise operations are generally available in most programming languages, including TypeScript. o1js provides versions of them that operate on `Field` elements and result in the necessary circuit constraints to generate a zero knowledge proof of the computation. This is especially useful when implementing hashing algorithms such as SHA256.
 
 In o1js, bitwise operations and their attendant helper functions are implemented as [gadgets](/zkapps/o1js/gadgets).
 
@@ -70,7 +70,7 @@ not(a: Field, length: number, checked: boolean) => Field
 
 The bitwise `not()` gadget is a provable equivalent to the [Bitwise NOT (~)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) operator in JavaScript. It receives a `Field` element and negates each bit of its binary representation, turning all the `1`s into `0`s and all the `0`s into `1`s. It essentially flips all the bits in a `Field` element. This results in a new binary number which is returned as a `Field` element.
 
-The implementation varies depending on whether the input length is checked. Not checking the input length is more efficient. The input is substracted from an all-ones bitmask (where all the bits in a binary sequence are set to 1). The tradeoff is that we need to know the input length upfront. This is safe when the input `Field` is the result of some other proven operation with a known output length. When the input length is checked, however, the [xor()](#xor) gadget is reused. An all-ones bitmask of equal length to the input `Field` is supplied as second argument. This results in the same operation with proven input length and more constraints.
+The implementation varies depending on whether the input length is checked. Not checking the input length is more efficient. The input is substracted from an all-ones bitmask (where all the bits in a binary sequence are set to 1). The tradeoff is that you need to know the input length upfront. This is safe when the input `Field` is the result of some other proven operation with a known output length. When the input length is checked, however, the [xor()](#xor) gadget is reused. An all-ones bitmask of equal length to the input `Field` is supplied as second argument. This results in the same operation with proven input length and more constraints.
 
 The input `Field` must be 254 bits or less.
 
@@ -187,7 +187,7 @@ rotate32(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 },
 ```
 
-The `rotate32()` gadget performs provable bit rotation on 32 bit numbers. It is similar to left- and right shift, except the bits that fall off the end will wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
+The `rotate32()` gadget performs provable bit rotation on 32-bit numbers. It is similar to left- and right shift, except the bits that fall off the end wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
 
 The input `Field` should not 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
 
@@ -214,7 +214,7 @@ rotate64(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 },
 ```
 
-The `rotate64()` gadget performs provable bit rotation on 32 bit numbers. It is similar to left- and right shift, except the bits that fall off the end will wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
+The `rotate64()` gadget performs provable bit rotation on 32-bit numbers. It is similar to left- and right shift, except the bits that fall off the end wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
 
 The input `Field` should not 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
 
@@ -240,7 +240,7 @@ Gadgets.rotate64(xLarge, 32, "left"); // throws an error since input exceeds 64 
 addMod32(a: Field, b: Field) => Field
 ```
 
-The `addMod32()` helper performs addition that will overflow on 32 bit numbers, much like the `int32` type. It returns the result of addition modulo `2^32` in a new `Field` element.
+The `addMod32()` helper performs addition that overflows on 32-bit numbers, much like the `int32` type. It returns the result of addition modulo `2^32` in a new `Field` element.
 
 The input `Field`s should not 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
 
@@ -261,7 +261,7 @@ divMod32(field: Field) => [Field, Field]
 
 The `divMod32()` helper performs division modulo `2^32`, decomposing a `Field` element into two 32-bit limbs, `remainder` and `quotient`. It returns a tuple of two `Field` elements.
 
-The helper will assert that the input is no larger than 64 bits in size, and that both outputs are no larger than 32 bits in size. It is therefore unnecessary to perform range checks.
+The helper asserts that the input is no larger than 64 bits in size, and that both outputs are no larger than 32 bits in size. It is therefore unnecessary to perform range checks.
 
 Example:
 
@@ -315,8 +315,7 @@ Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
 multiRangeCheck([x, y, z]: [Field, Field, Field]) => void
 ```
 
-The `multiRangeCheck()` helper asserts that all three input `Field`s do not exceed 88 bits in size. This is done more efficiently than the standalone range check helpers. The 3x88-bit range check supports bigints up to 264 bits, which is enough for foreign field multiplication with moduli up to 2^259.
-
+The `multiRangeCheck()` helper asserts that all three input `Field`s do not exceed 88 bits in size. This is done more efficiently than the standalone range check helpers. The 3x88-bit range check supports BigInts up to 264 bits, which is enough for foreign field multiplication with moduli up to 2^259.
 
 Example:
 
@@ -336,7 +335,7 @@ Gadgets.multiRangeCheck([xLarge, y, z]); // fails
 compactMultiRangeCheck(xy: Field, z: Field) => [Field, Field, Field];
 ```
 
-The `compactMultiRangeCheck()` helper is a variant of [multiRangeCheck](#multirangecheck) where the first two inputs `x` and `y` are passed in combined form `xy = x + 2^88*y`. It will split `x` and `y`, perform the range check, and return `x`, `y` and `z` seperately.
+The `compactMultiRangeCheck()` helper is a variant of [multiRangeCheck](#multirangecheck) where the first two inputs `x` and `y` are passed in combined form `xy = x + 2^88*y`. It splits `x` and `y`, performs the range check, and returns `x`, `y` and `z` seperately.
 
 Example:
 
