@@ -275,7 +275,7 @@ let { remainder, quotient } = Gadgets.divMod32(n);
 n.assertEquals(quotient.mul(1n << 32n).add(remainder));
 ```
 
-## rangecheck32()
+## rangeCheck32()
 
 ```ts
 rangeCheck32(x: Field) => void
@@ -293,7 +293,7 @@ const xLarge = Provable.witness(Field, () => Field(12345678901234567890123456789
 Gadgets.rangeCheck32(xLarge); // throws an error since input exceeds 32 bits
 ```
 
-## rangecheck64()
+## rangeCheck64()
 
 ```ts
 rangeCheck64(x: Field) => void
