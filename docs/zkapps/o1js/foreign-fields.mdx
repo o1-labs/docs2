@@ -106,11 +106,11 @@ y.toBigInt() === 5n; // convert to bigint
 
 As usual, you can find more information about each method in the [API reference](../o1js-reference/classes/ForeignField).
 
-## Three kinds of foreign field
+## Three kinds of foreign fields
 
 If the basic usage examples look straightforward, here is where it gets a bit complicated.
 
-For each `ForeignField` class created with `createForeignField()`, there are actually three different variants. We call them _unreduced_, _almost reduced_ and _canonical_.
+For each `ForeignField` class created with `createForeignField()`, there are actually three different variants: _unreduced_, _almost reduced_, and _canonical_.
 
 You find the variants as static properties on the class; they are themselves classes:
 
@@ -129,7 +129,7 @@ y satisfies AlmostReducedField;
 z satisfies CanonicalField;
 ```
 
-In the following, we explain when to use the different variants, and how to convert between them. You don't need to learn all of it, though: The type system will guide you to use the right variant in each situation.
+In the following section, you learn when to use the different variants, and how to convert between them. You don't need to remember all of it, though: The type system guides you to use the right variant in each situation.
 
 ### Unreduced fields
 
@@ -148,8 +148,8 @@ For example, if `x` has the value 16, it is valid for `x.add(x)` to contain the 
 
 :::note
 
-Unreduced doesn't usually mean that the underlying witness is larger than the modulus. It just means that we have not _proved_ it to be smaller.
-A malicious prover _could_ make it larger, by slightly modifying their local version of o1js and creating a proof with that.
+Unreduced doesn't usually mean that the underlying witness is larger than the modulus. It just means that it is not _proved_ to be smaller.
+A malicious prover _could_ make it larger by slightly modifying their local version of o1js and creating a proof with that version.
 
 :::
 
@@ -184,7 +184,7 @@ assert(zz instanceof SmallField.Unreduced);
 assert(zAlmost.inv() instanceof SmallField.AlmostReduced);
 ```
 
-It can be convenient to require almost reduced fields as inputs to your smart contract. To do so, create a class which can also serve as a type, and use its `.provable` property when passing to the state decorator:
+It can be convenient to require almost reduced fields as inputs to your smart contract. To do that, create a class that can also serve as a type and use its `.provable` property when passing to the state decorator:
 
 ```ts
 class AlmostField17 extends Field17.AlmostReduced {}
@@ -201,9 +201,9 @@ class MyContract extends SmartContract {
 
 #### What does almost reduced mean?
 
-The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way we prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that we require the modulus to be `< 2^259`.)
+The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way you prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that the modulus is required to be `< 2^259`.)
 
-However, we actually prove a stronger condition, which lets us save a few constraints in some places:
+However, you actually prove a stronger condition, which saves a few constraints in some places:
 
 `z` is **almost reduced** modulo `f`, if `z >> 176` is smaller or equal than `f >> 176`. (`>>` means a [right shift](https://en.wikipedia.org/wiki/Arithmetic_shift).)
 
@@ -217,7 +217,7 @@ However, by calling `z.assertAlmostReduced()`, we prove that `z` is smaller than
 
 Why are we exposing `AlmostReducedField` as a separate type, and don't _always_ prove conditions necessary for multiplication? Because that would take up additional constraints!
 
-`ForeignField` is built to allow you to use the minimum amount of constraints, in a way that is safely guided by the type system. See the section below on [minimizing constraints](#minimizing-constraints) for more details.
+`ForeignField` is built to allow you to use the minimum amount of constraints in a way that is safely guided by the type system. See [minimizing constraints](#minimizing-constraints) for more details.
 
 ### Canonical fields
 
@@ -263,7 +263,7 @@ let yCanonical = y.assertCanonical();
 let isEqual = xCanonical.equals(yCanonical);
 ```
 
-We require inputs to be canonical for this because we check for strict equality, not equality modulo the field size. Note that being strictly unequal does not imply being unequal as field elements, so `equals()` on non-canonical fields would be error-prone.
+Inputs must be canonical for `equals()` because the operation checks for strict equality, not equality modulo the field size. Note that being strictly unequal does not imply being unequal as field elements, so `equals()` on non-canonical fields would be error-prone.
 
 ## Minimizing constraints
 
@@ -292,7 +292,7 @@ z2r.div(z3r);
 
 #### `sum()`
 
-Another opportunity to save constraints is when doing many additions or subtractions in a row. Instead of doing something like `x.add(y).sub(z)`, use `ForeignField.sum()`:
+Another opportunity to save constraints is when many additions or subtractions are performed in a row. Instead of doing something like `x.add(y).sub(z)`, use `ForeignField.sum()`:
 
 ```ts
 // u = x + y - z
