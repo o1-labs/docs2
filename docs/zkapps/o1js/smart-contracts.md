@@ -20,9 +20,7 @@ keywords:
 
 :::info
 
-[Experimental](/zkapps/experimental). This API may change.
-
-Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
 
 :::
 
