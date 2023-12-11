@@ -167,7 +167,7 @@ rightShift64(field: Field, bits: number) => Field
 
 The `rightShift64()` gadget is a provable equivalent to the [Right shift (>>)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift) operator in JavaScript. It moves the bits of a binary number to the right by the specified number of `bits`. Any bits that fall off the right side are discarded. `0`s are padded in from the left. It returns a new `Field` element.
 
-The input `Field` should not 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
+The input `Field` must not exceed 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
 
 Example:
 ```ts
@@ -189,7 +189,7 @@ rotate32(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 
 The `rotate32()` gadget performs provable bit rotation on 32-bit numbers. It is similar to left- and right shift, except the bits that fall off the end wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
 
-The input `Field` should not 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
+The input `Field` must not exceed 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
 
 For implementation details, see [ROTATION](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#rotation) in the Mina book.
 
@@ -216,7 +216,7 @@ rotate64(field: Field, bits: number, direction: 'left' | 'right' = 'left') {
 
 The `rotate64()` gadget performs provable bit rotation on 32-bit numbers. It is similar to left- and right shift, except the bits that fall off the end wrap around to reappear on the opposite side instead of being discarded. It accepts a `Field` element, the number of `bits` to rotate, and a `direction` of 'left' or 'right'. The default direction is 'left'.
 
-The input `Field` should not 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
+The input `Field` must not exceed 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
 
 For implementation details, see [ROTATION](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#rotation) in the Mina book.
 
@@ -242,7 +242,7 @@ addMod32(a: Field, b: Field) => Field
 
 The `addMod32()` helper performs addition that overflows on 32-bit numbers, much like the `int32` type. It returns the result of addition modulo `2^32` in a new `Field` element.
 
-The input `Field`s should not 64 bits in size. You can use [rangeCheck64](#rangecheck64) to ensure this.
+The input `Field`s must not exceed 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
 
 Example:
 
@@ -256,7 +256,7 @@ Gadgets.addMod32(a, b).assertEquals(Field(8n));
 ## divMod32()
 
 ```ts
-divMod32(field: Field) => [Field, Field]
+divMod32(field: Field) => { remainder: Field, quotient: Field }
 ```
 
 The `divMod32()` helper performs division modulo `2^32`, decomposing a `Field` element into two 32-bit limbs, `remainder` and `quotient`. It returns a tuple of two `Field` elements.
