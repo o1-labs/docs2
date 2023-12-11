@@ -128,7 +128,7 @@ leftShift32(field: Field, bits: number) => Field
 
 The `leftShift32()` gadget is a provable equivalent to the [Left shift (<<)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift) operator in JavaScript. It moves the bits of a binary number to the left by the specified number of `bits`. Any bits that fall off the left side are discarded. `0`s are padded in from the right. It returns a new `Field` element that is range checked to 32 bits.
 
-The input `Field` should not 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
+The input `Field` must not exceed 32 bits in size. You can use [rangeCheck32](#rangecheck32) to ensure this.
 
 Example:
 
