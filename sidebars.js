@@ -36,6 +36,7 @@ module.exports = {
         'zkapps/index',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
+        'zkapps/lightnet',
         'zkapps/how-zkapps-work',
         {
           type: 'category',
