@@ -1,0 +1,129 @@
+---
+title: Lightnet zkApp Testing
+hide_title: true
+description: Use the zkApp lightnet for testing on a local blockchain before you test with a live network. 
+keywords:
+  - zkApp CLI
+  - lightnet
+  - zkApp testing
+  - local testing
+  - using zk lightnet
+---
+
+# Lightnet zkApp Testing
+
+The most efficient way to deploy and run a lightweight Mina blockchain network for testing purposes is to spin up a lightweight Mina network (lightnet) in a single Docker container. The lightnet is a resource-efficient solution with fast startup and syncing times.
+
+A lightnet lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
+
+Using the lightnet provides the following benefits:
+
+- Reduces the time from ideation to launch by letting you test your applications and changes against a close-to-real Mina network.
+- Starts a single-node network or a multi-node network with diverse types of participants.
+- Creates and funds accounts so that you can deploy and interact with your zkApp. The genesis ledger is configured with 1000 pre-funded accounts with a 1550 MINA balance on each account.
+- Optionally runs the Mina [archive node](/node-operators/archive-node).
+- Provides the Mina accounts manager service so you can automate account retrieval.
+- Launches the Lightweight Mina Explorer in a web browser so you can monitor transactions.
+
+:::info
+
+The lightnet blockchain is appropriate for local development only. It is not intended to replicate all aspects of the full network.
+
+:::
+
+## Prerequisites
+
+Docker Engine is required for your environment. 
+
+1. [Install Docker Engine](
+https://docs.docker.com/engine/install/).
+1. Start Docker Engine. 
+
+Docker Engine must be running before you can start the Docker container.
+
+## Start a single node network
+
+To start a single node network with default behavior:
+
+```sh
+zk lightnet start
+```
+
+This command uses default settings that successfully serve the majority of testing requirements:
+
+- Pulls the latest Docker image for your environment from the [Docker Hub](https://hub.docker.com/r/o1labs/mina-local-network) repository
+- Prepares the file system
+- Downloads the and updates the lightweight Mina Explorer
+- Forms the network with a single node
+- Configures the network to be fast
+- Disables the blockchain SNARK proofs
+- Uses the `o1js-main` branch of the Mina repository
+- Starts the Mina archive process and the archive node API
+- Waits for the network to reach a synchronized state
+- Sets the Mina process logging level to trace
+
+## Start a local network with other settings
+
+To see the options to start a local blockchain network with non-default settings:
+
+```sh
+zk lightnet start --help
+```
+
+You can configure different network properties. For example, to start a multi-node local blockchain network with slower, close-to-real-world properties:
+
+```sh
+zk lightnet start --mode multi-node --type real
+```
+
+## Keep current versions
+
+New Docker images are built and published to the Docker Hub every night. You might not always want to get the latest product versions. For example, when your zkApp relies on well-defined APIs and you want to continue developing in your current environment. 
+
+To keep your current working versions of o1js and Mina:
+
+```sh
+zk lightnet start --no-pull
+```
+
+## Stop the local network
+
+To stop the local network, remove the Docker container, and clean up the environment:
+
+```sh
+zk lightnet stop
+```
+
+The Docker container services log files are saved to the host file system at `/Users/<username>/.cache/zkapp-cli/lightnet/logs/`.
+
+To disable saving of log files:
+
+```sh
+zk lightnet stop --no-save-logs
+```
+
+## Troubleshooting transactions
+
+Log files for different processes are saved inside the Docker container as:
+
+- `/root/logs/*.log`
+- `/root/.mina-network/mina-local-network-2-1-1/nodes/**/logs/*.log`
+
+## Lightnet status
+
+To get the network status:
+
+```sh
+zk lightnet status
+```
+
+The network status is returned, including useful URLs. For example, the default single node network status returns:
+
+```text
+- Mina Daemon GraphQL endpoint │ http://localhost:8080/graphql
+- Accounts Manager endpoint    │ http://localhost:8181
+- Archive-Node-API endpoint    │ http://localhost:8282
+- PostgreSQL connection string │ postgresql://postgres:postgres@localhost:5432/archive
+```
+
+The status includes the Docker container state and a code snippet of a zkApp using o1js API. 
