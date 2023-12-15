@@ -22,31 +22,33 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 # ECDSA
 
 ECDSA, or Elliptic Curve Digital Signature Algorithm, is a cryptographic algorithm used to sign and verify messages. It is used in many blockchains, including Ethereum, to sign transactions.
-ECDSA works with different elliptic curves but most commonly with the secp256k1 curve. This curve is also used in Bitcoin and Ethereum.
+ECDSA works with different elliptic curves but most commonly with the [secp256k1](/glossary#secp256k1) curve. This curve is also used in Bitcoin and Ethereum.
 
-# Why ECDSA?
+## Why ECDSA?
 
-In order to interact with other blockchains or verify data from the outside world, o1js needs to be able to verify signatures.
-ECDSA is a widely used algorithm that is supported by many libraries and tools. It is also used in Ethereum, so it is important to support it in o1js as well. For example, Ethereum transactions are signed using ECDSA over the secp256k1 curve.
-If a zkApp developer wanted to verify an Ethereum transaction and make a statement about it, they would need to be able to verify the signature of the transaction. This is why ECDSA is important for zkApps.
+To interact with other blockchains and verify data from the outside world, o1js needs to be able to verify signatures.
+ECDSA is a widely used algorithm that is supported by many libraries and tools. For example, Ethereum transactions are signed using ECDSA over the secp256k1 curve.
+As a zkApp developer, when you want to verify an Ethereum transaction and make a statement about it, you must be able to verify the signature of the transaction which is why ECDSA is important for zkApps.
 
-# Basic usage
+## Basic usage
 
-The ECDSA gadget is used to verify ECDSA signatures. It takes as input the message, the signature, and the public key of the signer. It outputs a `Bool` indicating whether the signature is valid or not.
+The ECDSA gadget is used to verify ECDSA signatures. The gadget takes as input the message, the signature, and the public key of the signer. It outputs a `Bool` indicating whether the signature is valid.
 
-Before we can verify a signature, we must initiate the gadget with a curve configuration. The most commonly used curve is secp256k1, which is also used in Ethereum. We can initiate the curve as follows:
+Before you can verify a signature, you must initiate the gadget with a curve configuration. 
+
+To initiate the curve:
 
 ```ts
 // create a secp256k1 curve
 class Secp256k1 extends createForeignCurve(Crypto.CurveParams.Secp256k1) {}
 ```
 
-By default, o1js exports a set of already defined curves. We can use the `createForeignCurve` function to create a curve from a `CurveParams` object. The `CurveParams` object contains the parameters of the curve, such as the modulus, the generator and the parameters `a` and `b` of the cruve equation `y^2 = x^3 + ax + b`.
+By default, o1js exports a set of predefined curves. You can use the `createForeignCurve` function to create a curve from a `CurveParams` object. The `CurveParams` object contains the parameters of the curve, such as the modulus, the generator, and the parameters `a` and `b` of the curve equation `y^2 = x^3 + ax + b`.
 
-The namespace `Crypto.CurveParams` exports a few pre-defined curves, such as `Pallas`, `Vesta` and `Secp256k1`.
+The namespace `Crypto.CurveParams` exports predefined curves, such as `Pallas`, `Vesta`, and `Secp256k1`.
 
 ```ts
-// predefined curve paramters
+// predefined curve parameters
 CurveParams: {
   Secp256k1: CurveParams;
   Pallas: CurveParams;
@@ -54,16 +56,16 @@ CurveParams: {
 }
 ```
 
-As previously mentioned, `Secp256k1` is used in Ethereum - this is the curve we will use in this example.
-Now that we have a curve, we can create an instance of the ECDSA gadget:
+This example uses `Secp256k1` as used in Ethereum. 
+Now that you have a curve, you can create an instance of the ECDSA gadget:
 
 ```ts
 // create an instance of ECDSA over secp256k1, previously specified
 class Ecdsa extends createEcdsa(Secp256k1) {}
 ```
 
-Before we can verify a signature, we need to create one by signing a message (messages are of type `Bytes`, for a detailed explanation of `Bytes` take a look at the [Keccak section](keccak#bytes---api-reference)).
-We can do this using the `sign` function of the `Ecdsa` class. Please note that signing is not a provable operation, only verifying is.
+Before you can verify a signature, you must create one by signing a message. Messages are of type `Bytes`, see [Bytes - API reference](keccak#bytes---api-reference).
+To sign a message, use the `sign` function of the `Ecdsa` class. Note that signing is not a provable operation, only verifying is.
 
 ```ts
 // a private key is a random scalar of secp256k1
@@ -77,17 +79,16 @@ let message = Bytes32.fromString('cat');
 let signature = Ecdsa.sign(message.toBytes(), privateKey.toBigInt());
 ```
 
-Most usages require you to verify a hash of a message instead of the message itself. In Ethereum, for example, the message is the Keccak hash of the transaction data.
-Please take a look at the [Keccak section](keccak) for more information about hashing using Keccak.
+Most usages require you to verify a hash of a message instead of the message itself. In Ethereum, for example, the message is the [Keccak](keccak) hash of the transaction data.
 
-Finally, we can verify the signature using the `verify` method:
+Finally, you can verify the signature using the `verify` method:
 
 ```ts
 // verify the signature, returns a Bool indicating whether the signature is valid or not
 let isValid: Bool = signature.verify(message, publicKey);
 ```
 
-Please check out the o1js repository for an example of how to use ECDSA. The example can be found [here](https://github.com/o1-labs/o1js/tree/main/src/examples/crypto/ecdsa).
+See the o1js repository for an [example](https://github.com/o1-labs/o1js/tree/main/src/examples/crypto/ecdsa) of how to use ECDSA.
 
 ### ECDSA - API reference
 
