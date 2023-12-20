@@ -121,7 +121,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
     }
 
     @method init() {
-      this.account.provedState.assertEquals(this.account.provedState.get());
+      this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertFalse();
 
       super.init();
@@ -146,22 +146,22 @@ This zkApp has methods that call other methods to let you explore the impacts to
     ...
 
     @method add(incrementBy: Field) {
-      this.account.provedState.assertEquals(this.account.provedState.get());
+      this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
       const num = this.num.get();
-      this.num.assertEquals(num);
+      this.num.requireEquals(num);
       this.num.set(num.add(incrementBy));
 
       this.incrementCalls();
     }
 
     @method incrementCalls() {
-      this.account.provedState.assertEquals(this.account.provedState.get());
+      this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
       const calls = this.calls.get();
-      this.calls.assertEquals(calls);
+      this.calls.requireEquals(calls);
       this.calls.set(calls.add(Field(1)));
     }
 
@@ -182,13 +182,13 @@ This zkApp has methods that call other methods to let you explore the impacts to
     ...
 
     @method callSecondary(secondaryAddr: PublicKey) {
-      this.account.provedState.assertEquals(this.account.provedState.get());
+      this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
       const secondaryContract = new SecondaryZkApp(secondaryAddr);
 
       const num = this.num.get();
-      this.num.assertEquals(num);
+      this.num.requireEquals(num);
 
       secondaryContract.add(num);
 
@@ -212,18 +212,18 @@ export class SecondaryZkApp extends SmartContract {
   @method init() {
     super.init();
 
-    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertFalse();
 
     this.num.set(Field(12));
   }
 
   @method add(incrementBy: Field) {
-    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
     const num = this.num.get();
-    this.num.assertEquals(num);
+    this.num.requireEquals(num);
     this.num.set(num.add(incrementBy));
   }
 }
@@ -342,22 +342,22 @@ As a reminder, this update corresponds to code:
 ```typescript
   ...
   @method add(incrementBy: Field) {
-    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
     const num = this.num.get();
-    this.num.assertEquals(num);
+    this.num.requireEquals(num);
     this.num.set(num.add(incrementBy));
 
     this.incrementCalls();
   }
 
   @method incrementCalls() {
-    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
     const calls = this.calls.get();
-    this.calls.assertEquals(calls);
+    this.calls.requireEquals(calls);
     this.calls.set(calls.add(Field(1)));
   }
   ...
@@ -393,13 +393,13 @@ And a quick reminder of the code for `callSecondary()`:
 
 ```typescript
   @method callSecondary(secondaryAddr: PublicKey) {
-    this.account.provedState.assertEquals(this.account.provedState.get());
+    this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
     const secondaryContract = new SecondaryZkApp(secondaryAddr);
 
     const num = this.num.get();
-    this.num.assertEquals(num);
+    this.num.requireEquals(num);
 
     secondaryContract.add(num);
 
