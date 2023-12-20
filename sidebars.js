@@ -67,6 +67,7 @@ module.exports = {
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
             'zkapps/o1js/keccak',
+            'zkapps/o1js/ecdsa',
           ],
         },
         {
