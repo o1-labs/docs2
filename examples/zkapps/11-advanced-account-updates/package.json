@@ -44,7 +44,7 @@
     "typescript": "^4.7.2"
   },
   "peerDependencies": {
-    "o1js": "^0.12.1"
+    "o1js": "0.15.0"
   },
   "dependencies": {
     "mina-transaction-visualizer": "^0.1.0"
