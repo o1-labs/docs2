@@ -162,6 +162,10 @@ In later tutorials, you learn how to interact with a smart contract from the bro
 
   The `src/index.ts` file contains all of the exports you want to make available for consumption from outside your smart contract project, such as from a UI.
 
+  :::info 
+  The error message `File 'Square.ts' is not a module.` will disappear once the `Square` module is written, so it can be ignored for now.
+  :::
+
 ## Write the zkApp Smart Contract
 
 Now, the fun part! Write your smart contract in the `src/Square.ts` file. 
@@ -253,7 +257,7 @@ Finally, this code adds the `update()` function:
 16
 17   @method update(square: Field) {
 18     const currentState = this.num.get();
-19     this.num.assertEquals(currentState);
+19     this.num.requireEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));
 21     this.num.set(square);
 22   }
@@ -485,10 +489,9 @@ The expected output is:
 ```sh
 $ npm run build && node build/src/main.js
 ...
-o1js loaded
 state after init: 3
 state after txn1: 9
-assert_equal: 75 != 81
+Field.assertEquals(): 75 != 81
 state after txn2: 9
 Shutting down
 ```
@@ -524,7 +527,7 @@ $ npm run build && node build/src/main.js
 o1js loaded
 state after init: 3
 state after txn1: 9
-assert_equal: 75 != 81
+Field.assertEquals(): 75 != 81
 state after txn2: 9
 state after txn3: 81
 Shutting down
