@@ -216,7 +216,7 @@ This method updates the state:
   9
  10   @method incrementSecret(salt: Field, secret: Field) {
  11     const x = this.x.get();
- 12     this.x.assertEquals(x);
+ 12     this.x.requireEquals(x);
  13
  14     Poseidon.hash([ salt, secret ]).assertEquals(x);
  15     this.x.set(Poseidon.hash([ salt, secret.add(1) ]));

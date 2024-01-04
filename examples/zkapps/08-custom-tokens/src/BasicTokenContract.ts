@@ -41,7 +41,7 @@ export class BasicTokenContract extends SmartContract {
     adminSignature: Signature
   ) {
     let totalAmountInCirculation = this.totalAmountInCirculation.get();
-    this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+    this.totalAmountInCirculation.requireEquals(totalAmountInCirculation);
 
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
 

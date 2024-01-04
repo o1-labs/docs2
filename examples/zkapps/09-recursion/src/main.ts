@@ -30,15 +30,15 @@ async function main() {
 
   const { verificationKey } = await Add.compile();
 
-  console.log('making proof 0')
+  console.log('making proof 0');
 
   const proof0 = await Add.init(Field(0));
 
-  console.log('making proof 1')
+  console.log('making proof 1');
 
   const proof1 = await Add.addNumber(Field(4), proof0, Field(4));
 
-  console.log('making proof 2')
+  console.log('making proof 2');
 
   const proof2 = await Add.add(Field(4), proof1, proof0);
 
@@ -54,6 +54,7 @@ async function main() {
 }
 
 const Add = ZkProgram({
+  name: 'add-example',
   publicInput: Field,
 
   methods: {
@@ -80,7 +81,7 @@ const Add = ZkProgram({
       method(
         newState: Field, 
         earlierProof1: SelfProof<Field, void>,
-        earlierProof2: SelfProof<Field, void>,
+        earlierProof2: SelfProof<Field, void>
       ) {
         earlierProof1.verify();
         earlierProof2.verify();
