@@ -36,7 +36,7 @@ You will:
 - The contract logic allows this number to be replaced only by its square; for example, 3 -> 9 -> 81, and so on. 
 - Create a project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
 - Write your smart contract code
-- Use a local Mina blockchain to interact with your smart contract.
+- Use a simulated local Mina blockchain to interact with your smart contract.
 
 Later tutorials introduce more concepts and patterns.  
 
@@ -318,14 +318,14 @@ These import items are:
 
 ### Simulated Local Blockchain
 
-Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to deploy a zkApp to live Mina networks.
+Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to use a lightweight Mina network (Lightnet) in a single Docker container to test your zkApp before you deploy the zkApp to live Mina networks.
 
 :::info
 - The term _simulated local blockchain_ refers to the local testing blockchain you use in the first phase of testing as described here. 
-- The term _lightnet_ is used to describe the lightweight Mina network (lightnet) that is a more accurate representation of the Mina blockchain. See [Lightnet zkApp Testing](/zkapps/lightnet).
+- The term _Lightnet_ is used to describe the lightweight Mina network (Lightnet) that is a more accurate representation of the Mina blockchain. See [Lightnet zkApp Testing](/zkapps/lightnet).
 :::
 
-To initialize your simulated blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
+To initialize your simulated local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
  9 const useProof = false;
@@ -336,7 +336,7 @@ To initialize your simulated blockchain, add the following code from the [main.t
 14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 ```
 
-This local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
+This simulated local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
 
 ```ts ignore
 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
@@ -347,7 +347,7 @@ Tip: To preserve line numbers in your local `main.ts` file, add blank lines as n
 
 ### Build and run the smart contract
 
-Now that the Square smart contract is complete, these commands run your project as a local blockchain.
+Now that the Square smart contract is complete, these commands run your project as a simulated local blockchain.
 
 To compile the TypeScript code into JavaScript:
 
