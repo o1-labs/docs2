@@ -33,7 +33,7 @@ export class WrappedMina extends SmartContract {
       address: this.address,
       amount: UInt64.from(0),
     });
-    // required that the receiving account is new, so this can be only done once
+    // require that the receiving account is new, so this can be only done once
     receiver.account.isNew.requireEquals(Bool(true));
     // pay fees for opened account
     this.balance.subInPlace(Mina.accountCreationFee());
