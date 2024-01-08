@@ -34,7 +34,7 @@ Mina zkApps are available only on feature-complete Berkeley, Mina's public Testn
 
 ## Prerequisites
 
-This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.15.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.14.1`.
+This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.15.2`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -159,22 +159,17 @@ A deploy alias consists of:
   
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
   
-    - Transaction fee to use when deploying: `0.1`
+    - Transaction fee to use when deploying (in MINA): `0.1`
   
-    - Account to pay transaction fees: Create a new fee payer pair
-
-
-1. When prompted to choose an account to pay transaction feeds, select to use a different account:
+1. When prompted to choose an account to pay transaction fees, select `Create a new fee payer key pair`:
 
   ```sh
-  Use a different account (select to see options)
+  Choose an account to pay transaction fees:
   ```
-
-1. Next, select to create a new fee payer key pair:  
 
   ```sh
   Create a new fee payer key pair
-  NOTE: the private key will be stored in plain text on this computer.
+  NOTE: The private key is created on this computer and is stored in plain text.
   ```
 
 1. When prompted, give an alias to your new fee payer key pair. For this tutorial, use `03-deploy`:
@@ -187,7 +182,7 @@ A deploy alias consists of:
 
   ```sh
   ✔ Create fee payer key pair at /Users/<username>/.cache/zkapp-cli/keys/03-deploy.json
-  ✔ Create zkApp key pair at keys/berkeley2.json
+  ✔ Create zkApp key pair at keys/berkeley.json
   ✔ Add deploy alias to config.json
 
   Success!
@@ -226,8 +221,6 @@ A deploy alias consists of:
     Your config.json was updated to always use this
     smart contract when deploying to this deploy alias.
   ✔ Generate verification key (takes 10-30 sec)
-  ⠋ Build transaction...(node:25066) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
-  (Use `node --trace-warnings ...` to show where the warning was created)
   ✔ Build transaction
   ```
 
@@ -237,7 +230,7 @@ A deploy alias consists of:
   ✖ Confirm to send transaction
 
     ┌─────────────────┬─────────────────────────────────────────────────┐
-    │ Deploy Alias    │ berkeley2                                       │
+    │ Deploy Alias    │ berkeley                                       │
     ├─────────────────┼─────────────────────────────────────────────────┤
     │ Fee-Payer Alias │ 03-deploy                                       │
     ├─────────────────┼─────────────────────────────────────────────────┤
@@ -273,7 +266,7 @@ After the transaction is included in a block, your smart contract is deployed!
 You ran the `zk config` command to:
 
 - Create a deploy alias
-- Create a fee payer key pair at `/Users/<username>/.cache/zkapp-cli/keys/03deploy.json`
+- Create a fee payer key pair at `/Users/<username>/.cache/zkapp-cli/keys/03-deploy.json`
 - Create a zkApp key pair at `keys/berkeley.json`
 
 You requested tMINA to fund your deploy transactions. Use the remaining tMINA to keep building and testing.
