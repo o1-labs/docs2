@@ -22,7 +22,7 @@ export class BasicMerkleTreeContract extends SmartContract {
     incrementAmount: Field
   ) {
     const initialRoot = this.treeRoot.get();
-    this.treeRoot.assertEquals(initialRoot);
+    this.treeRoot.requireEquals(initialRoot);
 
     incrementAmount.assertLessThan(Field(10));
 

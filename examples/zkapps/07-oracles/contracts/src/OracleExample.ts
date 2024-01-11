@@ -32,7 +32,7 @@ export class OracleExample extends SmartContract {
   @method verify(id: Field, creditScore: Field, signature: Signature) {
     // Get the oracle public key from the contract state
     const oraclePublicKey = this.oraclePublicKey.get();
-    this.oraclePublicKey.assertEquals(oraclePublicKey);
+    this.oraclePublicKey.requireEquals(oraclePublicKey);
     // Evaluate whether the signature is valid for the provided data
     const validSignature = signature.verify(oraclePublicKey, [id, creditScore]);
     // Check that the signature is valid

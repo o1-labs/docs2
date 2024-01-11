@@ -215,7 +215,7 @@ class RollupContract extends SmartContract {
 
   @method update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
-    this.state.assertEquals(currentState);
+    this.state.requireEquals(currentState);
 
     rollupStateProof.publicInput.initialRoot.assertEquals(currentState);
 

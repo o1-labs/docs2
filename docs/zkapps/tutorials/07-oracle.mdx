@@ -297,10 +297,10 @@ To get the oracle's public key from the on-chain state, verify the signature of 
 ```ts
 // Get the oracle public key from the contract state
 const oraclePublicKey = this.oraclePublicKey.get();
-this.oraclePublicKey.assertEquals(oraclePublicKey);
+this.oraclePublicKey.requireEquals(oraclePublicKey);
 ```
 
-`assertEquals()` ensures that the public key that is retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
+`requireEquals()` ensures that the public key that is retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
 
 ### Verify the signature
 

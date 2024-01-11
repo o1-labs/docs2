@@ -123,7 +123,7 @@ Next, add an init method and a method that mints tokens.
     adminSignature: Signature
   ) {
     let totalAmountInCirculation = this.totalAmountInCirculation.get();
-    this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+    this.totalAmountInCirculation.requireEquals(totalAmountInCirculation);
 
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
 
