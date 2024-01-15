@@ -58,13 +58,6 @@ class VotingApp extends SmartContract {
 
 A more refined example could store the current start date in an on-chain state variable, which can then be reset by some process that is also encoded by the zkApp.
 
-In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. In this case, the range would be `[now, now + 1h]`:
-
-```ts
-const now = this.network.timestamp.get();
-this.network.timestamp.requireBetween(now, now.add(60 * 60 * 1000));
-```
-
 ### Network reference
 
 For completeness, here is the full list of network states you can use and make assertions about in your zkApp.
