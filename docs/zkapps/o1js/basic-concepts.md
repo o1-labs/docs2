@@ -116,7 +116,7 @@ x = x.sub(1); // x = 6
 x = x.mul(3); // x = 18
 x = x.div(2); // x = 9
 x = x.square(); // x = 81
-x = x.sqrt(); // x = 9
+x = x.sqrt(); // x = 28948022309329048855892746252171976963363056481941560715954676764349967630328
 
 let b = x.equals(8); // b = Bool(false)
 b = x.greaterThan(8); // b = Bool(true)
