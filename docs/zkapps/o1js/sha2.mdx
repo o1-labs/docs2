@@ -1,0 +1,76 @@
+---
+title: SHA2-256
+hide_title: true
+description: A comprehensive guide on how to use SHA2 hashes in o1js.
+keywords:
+  - sha2
+  - sha256
+  - hash
+  - ethereum
+  - bitcoin
+  - mina blockchain
+  - blockchain technology
+  - data structures
+---
+
+:::info
+
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
+
+:::
+
+# SHA2-256
+
+SHA-2 is a set of cryptographic hash functions designed by the National Security Agency (NSA) as an improved version of SHA-1, offering enhanced security and comprising multiple variants based on hash size, such as SHA-256 and SHA-512.
+It is also the predecessor of Keccak/SHA3. The SHA2 family is available with different output lenghts, such as 256 bit (SHA256) or 512 bit (SHA512). However, we currently only support SHA2 with an output length of 256 bit.
+
+## What is SHA2-256?
+
+SHA-256, a part of the SHA-2 family, is a cryptographic hash function that generates a 256-bit (32-byte) hash output,
+widely used for traditional web2 applications and protocols and blockchain technology. For example, Bitcoin's block headers are hashed twice using SHA256. 
+
+
+## SHA256 and Poseidon
+
+As an o1js developer, you are likely familar with the [Poseidon](https://o1-labs.github.io/proof-systems/specs/poseidon.html) zero knowledge native hash function. Poseidon operates over the native [Pallas base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) and uses parameters generated specifically for Mina which makes Poseidon the most efficient hash function available in o1js.
+
+In contrast, SHA2 is a hash function that requires binary arithmetic. It operates over binary data and is not native to most zero knowledge proofs. For this reason, Keccak is not as efficient as Poseidon, but it is still very useful for verifying Ethereum transactions and blocks.
+So, when you choose what hash function to use, it is important to consider the use case and the data that needs to be hashed.
+
+## Basic usage
+
+SHA256 is available in the following configuration that are available under the `Hash` namespace in o1js:
+
+- `Hash.SHA2_256`: SHA2-256 hash function with output size of 256 bits.
+
+Because SHA2 operates over binary data instead of native Field elements like Poseidon, o1js uses the `Bytes` type. `Bytes` is a fixed-length array of bytes that can be used to represent binary data.
+Under the hood, `Bytes` is represented as an array of `UInt8` elements.
+
+In order to use `Bytes`, you need to extend the `Bytes` class and specify the length of bytes. For a detailed explanation, please take a look at [How Keccak utilizes Bytes](keccak#bytes---api-reference)
+
+
+```ts
+// define a preimage
+let preimage = 'The quick brown fox jumps over the lazy dog';
+
+// create a Bytes class that represents 43 bytes
+class Bytes43 extends Bytes(43) {}
+
+// convert the preimage to bytes
+let preimageBytes = Bytes43.fromString(preimage);
+
+// hash the preimage
+let hash = Hash.SHA2_256.hash(preimageBytes);
+
+console.log(hash.toHex());
+//d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592
+```
+
+See the o1js repository for an [example](https://github.com/o1-labs/o1js/tree/main/src/examples/zkapps/hashing) of how to use Keccak. 
+
+### SHA256 - API reference
+
+```ts
+// hash bytes using SHA256 with output size of 256 bits
+Hash.SHA2_256.hash(bytes);
+```
