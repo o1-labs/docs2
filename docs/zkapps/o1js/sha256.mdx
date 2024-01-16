@@ -34,16 +34,16 @@ widely used for traditional web2 applications and protocols and blockchain techn
 
 As an o1js developer, you are likely familar with the [Poseidon](https://o1-labs.github.io/proof-systems/specs/poseidon.html) zero knowledge native hash function. Poseidon operates over the native [Pallas base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) and uses parameters generated specifically for Mina which makes Poseidon the most efficient hash function available in o1js.
 
-In contrast, SHA2 is a hash function that requires binary arithmetic. It operates over binary data and is not native to most zero knowledge proofs. For this reason, Keccak is not as efficient as Poseidon, but it is still very useful for verifying Ethereum transactions and blocks.
+In contrast, SHA2 is a hash function that requires binary arithmetic. It operates over binary data and is not native to most zero knowledge proofs. For this reason, SHA256 is not as efficient as Poseidon, but it is still very useful for verifying Ethereum transactions and blocks.
 So, when you choose what hash function to use, it is important to consider the use case and the data that needs to be hashed.
 
 ## Basic usage
 
-SHA256 is available in the following configuration that are available under the `Hash` namespace in o1js:
+SHA256 is available in the following configuration under the `Hash` namespace in o1js:
 
 - `Hash.SHA2_256`: SHA2-256 hash function with output size of 256 bits.
 
-Because SHA2 operates over binary data instead of native Field elements like Poseidon, o1js uses the `Bytes` type. `Bytes` is a fixed-length array of bytes that can be used to represent binary data.
+Because SHA256 operates over binary data instead of native Field elements like Poseidon, o1js uses the `Bytes` type. `Bytes` is a fixed-length array of bytes that can be used to represent binary data.
 Under the hood, `Bytes` is represented as an array of `UInt8` elements.
 
 In order to use `Bytes`, you need to extend the `Bytes` class and specify the length of bytes. For a detailed explanation, please take a look at [How Keccak utilizes Bytes](keccak#bytes---api-reference)
