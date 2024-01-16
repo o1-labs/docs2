@@ -22,8 +22,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 
 async function main() {
 
-  console.log('o1js loaded');
-
   console.log('compiling...');
 
   const { verificationKey } = await Rollup.compile();
@@ -100,7 +98,6 @@ async function main() {
   const ok = await verify(proof.toJSON(), verificationKey);
   console.log('ok', ok);
 
-  console.log('Shutting down');
 };
 
 // ===============================================================
