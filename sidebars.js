@@ -60,9 +60,14 @@ module.exports = {
             'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
+            'zkapps/o1js/gadgets',
+            'zkapps/o1js/bitwise-operations',
+            'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
+            'zkapps/o1js/keccak',
+            'zkapps/o1js/ecdsa',
           ],
         },
         {
@@ -110,8 +115,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AlmostForeignField',
+                  label: 'AlmostForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
+                  label: 'CanonicalForeignField',
                 },
                 {
                   type: 'doc',
@@ -137,6 +152,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignField',
+                  label: 'ForeignField',
                 },
                 {
                   type: 'doc',
@@ -237,6 +257,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/UInt64',
                   label: 'UInt64',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Unconstrained',
+                  label: 'Unconstrained',
                 },
                 {
                   type: 'doc',
@@ -479,7 +504,7 @@ module.exports = {
           label: 'Rosetta API',
           link: {
             type: 'doc',
-            id: 'exchange-operators/rosetta/index'
+            id: 'exchange-operators/rosetta/index',
           },
           items: [
             'exchange-operators/rosetta/run-with-docker',
@@ -490,19 +515,20 @@ module.exports = {
               label: 'Code Samples',
               link: {
                 type: 'doc',
-                id: 'exchange-operators/rosetta/samples/index'
+                id: 'exchange-operators/rosetta/samples/index',
               },
               items: [
                 'exchange-operators/rosetta/samples/requests',
                 'exchange-operators/rosetta/samples/using-signer',
                 'exchange-operators/rosetta/samples/scan-blocks',
                 'exchange-operators/rosetta/samples/track-deposits',
-                'exchange-operators/rosetta/samples/send-transactions'
-              ]
+                'exchange-operators/rosetta/samples/send-transactions',
+              ],
             },
-          ]
+          ],
         },
-        'exchange-operators/faq'],
+        'exchange-operators/faq',
+      ],
     },
     {
       type: 'category',

@@ -111,14 +111,14 @@ class Leaderboard extends SmartContract {
   @method guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
     // we fetch z from the chain
     const z = this.z.get();
-    this.z.assertEquals(z);
+    this.z.requireEquals(z);
 
     // if our guess preimage hashes to our target, we won a point!
     Poseidon.hash([guess]).assertEquals(z);
 
     // we fetch the on-chain commitment/root
     const root = this.root.get();
-    this.root.assertEquals(root);
+    this.root.requireEquals(root);
 
     // we check that the account is within the committed Merkle Tree
     path.calculateRoot(account.hash()).assertEquals(root);
@@ -135,7 +135,7 @@ class Leaderboard extends SmartContract {
   @method claimReward(account: Account, path: MerkleWitness) {
     // we fetch the on-chain commitment
     const root = this.root.get();
-    this.root.assertEquals(root);
+    this.root.requireEquals(root);
 
     // we check that the account is within the committed Merkle Tree
     path.calculateRoot(account.hash()).assertEquals(root);

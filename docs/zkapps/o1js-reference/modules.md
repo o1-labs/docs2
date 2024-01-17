@@ -23,11 +23,14 @@
 ### Classes
 
 - [AccountUpdate](classes/AccountUpdate.md)
+- [AlmostForeignField](classes/AlmostForeignField.md)
+- [CanonicalForeignField](classes/CanonicalForeignField.md)
 - [Bool](classes/Bool.md)
 - [Character](classes/Character.md)
 - [Circuit](classes/Circuit.md)
 - [CircuitString](classes/CircuitString.md)
 - [CircuitValue](classes/CircuitValue.md)
+- [ForeignField](classes/ForeignField.md)
 - [Field](classes/Field.md)
 - [Group](classes/Group.md)
 - [Int64](classes/Int64.md)
@@ -48,6 +51,7 @@
 - [TokenSymbol](classes/TokenSymbol.md)
 - [UInt32](classes/UInt32.md)
 - [UInt64](classes/UInt64.md)
+- [Unconstrained](classes/Unconstrained.md)
 - [VerificationKey](classes/VerificationKey.md)
 
 ### Interfaces
