@@ -7,23 +7,65 @@ keywords:
   - node operators
   - mina protocol
   - block producers
-  - snarking
-  - staking
-  - earn rewards
+  - snark workers
+  - archive node
+  - seed node
 ---
 
-# Node Operators
+# Introduction
 
-Mina is secured by proof of stake consensus. Unlike other legacy protocols, any participant in a Mina network can validate transactions like a full node — making decentralization possible.
+The [Mina Protocol](/mina-protocol) is a layer 1 blockchain which is secured by [proof of stake consensus](/mina-protocol/proof-of-stake).
 
-Node operators are people who run mina nodes. 
+Currently there are three public Mina networks:
 
-The Mina nodes fulfill different roles within the network, including:
+1. Mainnet - the production network
+2. Devnet - the test network based on the same software versions as the mainnet
+3. Berkley Test Network - a development network, where new features are trialed
 
-1. [Block producers](/mina-protocol/block-producers) - this is analogous to being a Bitcoin "miner" or a "validator" in other proof-of-stake networks. By staking MINA, you can be selected to produce a block and win the block reward.
+## Node Operators
 
-2. SNARK coordinators - distribute work to a series of [SNARK workers](mina-protocol/snark-workers) in parallel. 
+Node operators are network participants who run mina nodes on a Mina network.
 
-SNARK coordinators generate proofs of transactions by distributing work to a series of SNARK workers. The SNARK coordinators then submit that work to the network and the proofs are sold to block producers. The block producer buys these proofs on the network (a "snarketplace"). For their efforts, the SNARK worker gets rewarded a part of the block reward.
+In this section we describe operations on Mina and how the Node Operators can run Mina nodes.
 
-See [Staking and Snarking](/node-operators/staking-and-snarking).
+- [Staking and Snarking](/node-operators/staking-and-snarking) - How to stake your Mina
+- [Generating a Key Pair](/node-operators/generating-a-keypair) - How to generate key pairs
+- [Block Producing Node](/node-operators/block-producer-node) - Running a Block Producer
+- [SNARK Workers](/node-operators/snark-workers) - Running a SNARK worker
+- [Archive Nodes](/node-operators/archive-nodes) - Running an Archive Node
+- [Seed Peers](/node-operators/seed-peers) - Running a Seed Peer
+- [Data and History](/node-operators/data-and-history) - Lets look at retreiving historic data.
+- [Delegation Program](/node-operators/delegation-program) - The Mina Foundation Delegation Prgram for Block Producers 
+- [Staking Service Guidelines](/node-operators/staking-service-guidelines)
+- [Mina Signer](/node-operators/mina-signer)
+- [Mina CLI Reference](/node-operators/mina-cli-reference) - Guide to CLI interactions with Mina networks 
+- [Troubleshooting](/node-operators/troubleshooting)
+- [FAQ](/node-operators/faq)
+
+
+## Mina Nodes
+
+Mina nodes fulfill different roles within the network:
+
+1. Block Producer - this is analogous to being a Bitcoin "miner" or a "validator" in other proof-of-stake networks. By staking MINA, you can be selected to produce a block and win the block reward.
+
+2. SNARK Coordinators - distribute work to a series of SNARK workers in parallel to block production.
+
+3. Snark Workers -  Snark workers create [zk-snarks](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. These `zk-snarks` are used to create recursive `zk-snarks` proving the correctness of a block and in turn these `zk-snarks` are used to create a recursive `zk-snark` which proves the the correctness of the network. These `zk-snark` help provide the Mina Protocol with succinctness. 
+
+4. Archive Nodes - A Mina node configued to store historical chain data to a persistent data source, currently PostgreSQL
+
+5. Seed Nodes - Keep a record of nodes in the network and enable nodes joining the network to connect to peer nodes
+
+
+## Mina Protocol
+
+[Mina Protocol](../mina-protocol) describes how the MIna Protocol works.
+
+## Node Developers
+
+[Node Developers](../node-developers) are developers who add to and improve mina nodes.
+
+## Exchange Operators
+
+[Exchange Operators](../exchange-operators/faq) connect to mina networks to provide access to the mina token.

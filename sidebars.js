@@ -1248,6 +1248,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Mina Protocol',
+      link: {
+        type: 'doc',
+        id: 'mina-protocol/index'
+      },
       items: [
         'mina-protocol/proof-of-stake',
         'mina-protocol/whats-in-a-block',
@@ -1268,7 +1272,6 @@ module.exports = {
         id: 'node-operators/index'
       },
       items: [
-        'node-operators/index',
         'node-operators/staking-and-snarking',
         'node-operators/generating-a-keypair',
         {
@@ -1357,8 +1360,11 @@ module.exports = {
     {
       type: 'category',
       label: 'Node Developers',
+      link: {
+        type: 'doc',
+        id: 'node-developers/index'
+      },
       items: [
-        'node-developers/index',
         'node-developers/codebase-overview',
         'node-developers/repository-structure',
         'node-developers/bip44',
