@@ -51,7 +51,7 @@ A node is a machine running the Mina daemon. Different nodes fulfill different r
 
 2. SNARK Coordinators - distribute work to a series of SNARK workers in parallel to block production.
 
-3. Snark Workers -  Snark workers create [zk-snarks](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. These `zk-snarks` are used to create recursive `zk-snarks` proving the correctness of a block and in turn these `zk-snarks` are used to create a recursive `zk-snark` which proves the the correctness of the network. These `zk-snark` help provide the Mina Protocol with succinctness. 
+3. SNARK Workers -  SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. These zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. These zk-SNARKs help provide the Mina Protocol with succinctness. 
 
 4. Archive Nodes - A Mina node configued to store historical chain data to a persistent data source, currently PostgreSQL
 
