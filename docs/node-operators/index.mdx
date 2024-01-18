@@ -53,7 +53,7 @@ A node is a machine running the Mina daemon. Different nodes fulfill different r
 
 3. SNARK Workers -  SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. These zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. These zk-SNARKs help provide the Mina Protocol with succinctness. 
 
-4. Archive Nodes - A Mina node configued to store historical chain data to a persistent data source, currently PostgreSQL
+4. [Archive Nodes](https://docs.minaprotocol.com/node-operators/archive-node) - A regular mina daemon that is connected to a running archive process. The daemon regularly sends blockchain data to the archive process that stores it in a [PostgreSQL](https://www.postgresql.org/) database.
 
 5. Seed Nodes - Keep a record of nodes in the network and enable nodes joining the network to connect to peer nodes.
 
