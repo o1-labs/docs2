@@ -404,6 +404,10 @@ A data structure that allows decoupling the production of transaction SNARKs fro
 
 The elliptic curve using this equation _y²=x³+7, a=0 b=7_, constructed in a special non-random way to allow for especially efficient computation. secp256k1 can have a key size of up to 256 bits. All points on this curve are valid public keys.
 
+### seed nodes
+
+A Mina node that keeps a record of nodes in the network and enable nodes joining the network to connect to peer nodes.
+
 ### signature
 
 Short for digital signature, a way to establish authenticity or ownership of digitally signed messages.
@@ -548,6 +552,6 @@ Technology that the Mina network uses to connect to other chains.
 
 ### zk-SNARK
 
-A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network.
+A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network. SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. 
 
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)
