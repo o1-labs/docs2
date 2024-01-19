@@ -17,26 +17,15 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 :::
 
-# How to Test a zkApp
+# Testing zkApps Locally
 
-Writing automated tests for your smart contract is essential to ensure your code is well-tested during development. 
-
-## Test zkApps on a lightweight Mina local network
-
-A Docker image for Mina local networks provides a simple and efficient way to deploy and run lightweight Mina blockchain networks for testing zkApps. The `o1labs/mina-local-network` Docker image provides:
-
-- Genesis ledger with pre-funded accounts
-- Accounts manager service
-- Additional port served by reverse proxy to pass requests to the Mina daemon GraphQL endpoint so zkApps work without additional configuration
-- Single commands to launch a single node or multi node network
-
-Pull the [o1labs/mina-local-network](https://hub.docker.com/r/o1labs/mina-local-network) image from Docker Hub.
+Before you can test your zkApps, create automated tests for your smart contract. Test automation is essential to ensure your code is well-tested during development. 
 
 ## Writing tests for your smart contract
 
-All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
+All zkApp projects that are created using the zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
 
-Use the Mina zkApp CLI to create tests for your smart contract.
+Use the zkApp CLI to create tests for your smart contract.
 
 To scaffold a TypeScript file with a corresponding test file, run:
 
@@ -46,7 +35,7 @@ The `foo.ts` and `foo.test.ts` files are generated.
 
 The `foo.test.ts` file is a great place to start writing your smart contract test code. To write valid unit tests, be sure you understand your smart contract functionality.
 
-It's good practice to break down the functionality of your smart contract into `describe` blocks to organize your test groupings in the same file. By mapping out your unit tests using the `describe` convention, you provide documentation to developers who read your smart contract.
+It's good practice to break down the functionality of your smart contract into `describe` blocks to organize your test groupings in the same file. By mapping out your unit tests using the `describe` convention, you provide helpful documentation to developers who read your smart contract.
 
 The following example shows the describe block for `test` in the `foo.test.ts` file:
 
@@ -75,9 +64,9 @@ To generate a test coverage report for your project, run:
 
 The code coverage result is output to your terminal and shows the percentage of tested code.
 
-### Creating a local blockchain
+### Creating a simulated local blockchain
 
-You can quickly test your smart contract by running it locally on a mock blockchain.
+You can quickly test your smart contract by running it on a simulated local blockchain.
 
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
@@ -98,9 +87,9 @@ You can also programmatically enable and disable the `proofsEnabled` flag in you
 
 ### Deploying a contract locally
 
-The mock Mina local blockchain contains test accounts you can use to deploy smart contracts and pay transaction fees.
+The simulated local blockchain contains test accounts you can use to deploy smart contracts and pay transaction fees.
 
-First, access a test account provided by the local blockchain.
+First, access a test account provided by the simulated local blockchain.
 
 ```ts
 // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
@@ -195,4 +184,4 @@ See the [Jest Getting Started](https://jestjs.io/docs/getting-started) documenta
 
 ## Next Steps
 
-Now that you know how to test a smart contract, you can learn [how to deploy a zkApp](how-to-deploy-a-zkapp).
+Now that you know how to test a smart contract on a simulated local blockchain, you can move on to [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet) before you learn [how to deploy a zkApp](how-to-deploy-a-zkapp).

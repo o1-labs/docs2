@@ -33,22 +33,26 @@ Use of Lightnet blockchain is appropriate for local development and testing only
 
 ## Prerequisites
 
-Docker Engine is required for your environment. 
-
 1. [Install Docker Engine](
 https://docs.docker.com/engine/install/).
+
+  Docker Engine is required for your environment. 
+  
 1. Start Docker Engine. 
 
-Docker Engine must be running before you can start the Docker container.
+  Docker Engine must be running before you can start the Docker container.
 
-## High-Level Workflow
+1. [Write tests for your smart contract](/testing-zkapps-locally#writing-tests-for-your-smart-contract)
+1. [Test zkApps Locally](/zkapps/testing-zkapps-locally) on a simulated local blockchain
+
+## High-Level Workflow for Lightnet
 
 1. Start Docker Engine 
-2. [Start Lightnet](#start-a-local-network)
-3. Manage the [log files](#log-files) of the local network
-4. Use [Lightweight Mina Explorer](#lightweight-mina-explorer) to visualize the local network state
-5. Develop, iterate, and [troubleshoot](#troubleshooting-transactions)
-6. [Stop the local network](#stop-the-local-network)
+1. [Start Lightnet](#start-a-local-network)
+1. Manage the [log files](#log-files) of the local network
+1. Use [Lightweight Mina Explorer](#lightweight-mina-explorer) to visualize the local network state
+1. Develop, iterate, and [troubleshoot](#troubleshoot-transactions)
+1. [Stop the local network](#stop-the-local-network)
 
 ## Start a local network
 
@@ -124,7 +128,7 @@ To disable saving of log files:
 zk lightnet stop --no-save-logs
 ```
 
-## Troubleshooting transactions
+## Troubleshoot transactions
 
 Tools are provided for troubleshooting.
 
@@ -174,7 +178,7 @@ zk lightnet logs follow
 Select the Docker container process to follow. Press Ctrl+C to stop streaming.
 
 
-## Lightnet status
+### Lightnet status
 
 To get the network status:
 
