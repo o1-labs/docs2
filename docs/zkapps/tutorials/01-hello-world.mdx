@@ -247,7 +247,7 @@ Finally, this code adds the `update()` function:
 16
 17   @method update(square: Field) {
 18     const currentState = this.num.get();
-19     this.num.requireEquals(currentState);
+19     this.num.assertEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));
 21     this.num.set(square);
 22   }
