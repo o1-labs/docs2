@@ -253,7 +253,7 @@ Finally, this code adds the `update()` function:
 16
 17   @method update(square: Field) {
 18     const currentState = this.num.get();
-19     this.num.assertEquals(currentState);
+19     this.num.requireEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));
 21     this.num.set(square);
 22   }
@@ -379,8 +379,8 @@ All smart contracts that you create with the zkApp CLI use similar code:
 Comments break down each stage:
 
 ```ts src/main.ts
-19 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-20 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
+19
+20
 21
 22 // ----------------------------------------------------
 23

@@ -66,7 +66,7 @@ To create a ZkProgram, start with the `init()` method.
 ```typescript
 const Add = ZkProgram({
   name: 'add-example',
-  publicInputType: Field,
+  publicInput: Field,
 
   methods: {
     init: {
@@ -215,7 +215,7 @@ class RollupContract extends SmartContract {
 
   @method update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
-    this.state.assertEquals(currentState);
+    this.state.requireEquals(currentState);
 
     rollupStateProof.publicInput.initialRoot.assertEquals(currentState);
 
@@ -266,7 +266,7 @@ class RollupState extends Struct({
 
 const Rollup = ZkProgram({
   name: "rollup-example",
-  publicInputType: Field,
+  publicInput: Field,
 
   methods: {
 	oneStep: {

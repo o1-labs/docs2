@@ -333,7 +333,7 @@ For example, to put a condition on a leaf update, the `update` function checks t
     incrementAmount: Field
   ) {
     const initialRoot = this.treeRoot.get();
-    this.treeRoot.assertEquals(initialRoot);
+    this.treeRoot.requireEquals(initialRoot);
 
     incrementAmount.assertLt(Field(10));
 
@@ -456,7 +456,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
     incrementAmount: Field,
   ) {
     const initialRoot = this.mapRoot.get();
-    this.mapRoot.assertEquals(initialRoot);
+    this.mapRoot.requireEquals(initialRoot);
 
     incrementAmount.assertLt(Field(10));
 
