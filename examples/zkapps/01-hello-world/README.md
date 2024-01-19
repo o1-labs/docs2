@@ -1,49 +1,38 @@
-# zkApp: Hello World
+# Mina zkApp: 01 Hello World
 
-This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs.
+This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero-knowledge proofs.
 
-## Version
-- o1js: **0.17.***
+## Version:
+- o1js: **0.15.2**
 
 ## Tutorial
 
-For the step-by-step tutorial, see [Tutorial 1: Hello World](https://docs.minaprotocol.com/zkapps/tutorials/hello-world).
+For step by step tutorial, you can follow this [link](https://docs.minaprotocol.com/zkapps/tutorials/hello-world).
 
-## How to install and run this example project
+## How to compile/build the project code:
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/o1-labs/docs2.git
-    ```
-2. Change directory to the project location:
-    ```sh
-    cd docs2/examples/zkapps/01-hello-world
-    ```
-3. Install dependencies:
-    ```sh
-    npm install
-    ```
+```sh
+npm run build
+```
 
-4. Build the project:
-    ```sh
-    npm run build
-    ```
+## How to run compiled code:
 
-5. Run the compiled code:
-    ```sh
-    node build/src/main.js
-    ```
-    To run and build the compiled code with a single command:
-    ```sh
-    npm run build && node build/src/main.js
-    ```
+```sh
+node build/src/main.js
+```
 
-## Expected output
+## How to build and run code using single command:
+
+```sh
+npm run build && node build/src/main.js
+```
+
+## Expected output:
 ![01output](01output.png)
 
-## Last audit date
+## Last Audit Date:
  
-**14-February-2024**
+**19-January-2024**
 
 ## License
 
