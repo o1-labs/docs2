@@ -68,5 +68,3 @@ const num3 = zkAppInstance.num.get();
 console.log('state after txn3:', num3.toString());
 
 // ----------------------------------------------------
-
-console.log('Shutting down');

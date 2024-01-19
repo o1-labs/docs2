@@ -1,25 +1,38 @@
 # Mina zkApp: 01 Hello World
 
-This template uses TypeScript.
+This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero-knowledge proofs.
 
-## How to build
+## Version:
+- o1js: **0.15.2**
+
+## Tutorial
+
+For step by step tutorial, you can follow this [link](https://docs.minaprotocol.com/zkapps/tutorials/hello-world).
+
+## How to compile/build the project code:
 
 ```sh
 npm run build
 ```
 
-## How to run tests
+## How to run compiled code:
 
 ```sh
-npm run test
-npm run testw # watch mode
+node build/src/main.js
 ```
 
-## How to run coverage
+## How to build and run code using single command:
 
 ```sh
-npm run coverage
+npm run build && node build/src/main.js
 ```
+
+## Expected output:
+![01output](01output.png)
+
+## Last Audit Date:
+ 
+**19-January-2024**
 
 ## License
 
