@@ -35,14 +35,15 @@ module.exports = {
         'zkapps/index',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/lightnet',
+        'zkapps/testing-zkapps-lightnet',
         'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
           ],
@@ -67,8 +68,6 @@ module.exports = {
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
-            'zkapps/o1js/keccak',
-            'zkapps/o1js/ecdsa',
           ],
         },
         {
