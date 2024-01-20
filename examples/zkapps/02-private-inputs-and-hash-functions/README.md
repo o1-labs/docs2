@@ -1,25 +1,53 @@
-# Mina zkApp: 02 Private Inputs And Hash Functions
+# Mina zkApp: 01 Hello World
 
-This template uses TypeScript.
+This Private Inputs and Hash Functions tutorial helps you to learn about private inputs, hash functions, and adding a second value as an input.
 
-## How to build
+## Version:
+- o1js: **0.15.2**
 
-```sh
-npm run build
-```
+## Tutorial
 
-## How to run tests
+For the step-by-step tutorial, see [Tutorial 2: Private Inputs and Hash Functions](https://docs.minaprotocol.com/zkapps/tutorials/private-inputs-hash-functions).
 
-```sh
-npm run test
-npm run testw # watch mode
-```
+## How to install & run this example project:
 
-## How to run coverage
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/o1-labs/docs2.git
+    ```
+2. Change Directory to project location:
+    ```sh
+    cd docs2/examples/zkapps/02-private-inputs-and-hash-functions
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-```sh
-npm run coverage
-```
+4. Build the project:
+    ```sh
+    npm run build
+    ```
+
+5. Run the compiled code:
+    ```sh
+    node build/src/main.js
+    ```
+
+    ### OR
+   
+    Build & Run code:
+
+    ```sh
+    npm run build && node build/src/main.js
+    ```
+
+## Expected output:
+![02output](02output.png)
+
+## Last Audit Date:
+ 
+**20-January-2024**
 
 ## License
 
