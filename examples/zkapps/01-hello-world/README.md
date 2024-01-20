@@ -7,7 +7,7 @@ This Hello World tutorial helps you get started with o1js, zkApps, and programmi
 
 ## Tutorial
 
-For the step-by-step tutorial, see [Tutorial 1: Hello World](/zkapps/tutorials/hello-world).
+For the step-by-step tutorial, see [Tutorial 1: Hello World](https://docs.minaprotocol.com/zkapps/tutorials/hello-world).
 
 ## How to install & run this example project:
 
