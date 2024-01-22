@@ -39,11 +39,11 @@ So, when you choose what hash function to use, an important consideration is the
 
 ## Basic usage
 
-SHA256 is available in the following configuration under the `Hash` namespace in o1js:
+SHA-256 is available in the following configuration under the `Hash` namespace in o1js:
 
 - `Hash.SHA2_256`: SHA2-256 hash function with output size of 256 bits.
 
-Because SHA256 operates over binary data instead of native Field elements like Poseidon, o1js uses the `Bytes` type. `Bytes` is a fixed-length array of bytes that can be used to represent binary data.
+Because SHA-256 operates over binary data instead of native Field elements like Poseidon, o1js uses the `Bytes` type. `Bytes` is a fixed-length array of bytes that can be used to represent binary data.
 Under the hood, `Bytes` is represented as an array of `UInt8` elements.
 
 In order to use `Bytes`, you need to extend the `Bytes` class and specify the length of bytes. For a detailed explanation, please take a look at [How Keccak utilizes Bytes](keccak#bytes---api-reference)
