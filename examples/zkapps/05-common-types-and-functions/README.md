@@ -1,21 +1,21 @@
-# zkApp: 05 Common Types And Functions
+# Mina zkApp: 05 Common Types And Functions
 
-This tutorial helps you learn about types you can use when building with o1js. Earlier tutorials mostly use the `Field` type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
+This tutorial will help you learn about types you can use when building with o1js. Earlier tutorials mostly use the Field type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
 
-## Version
+## Version:
 - o1js: **0.15.2**
 
 ## Tutorial
 
 For the step-by-step tutorial, see [Tutorial 5: Common Types And Functions](https://docs.minaprotocol.com/zkapps/tutorials/common-types-and-functions).
 
-## How to install and run this example project
+## How to install & run this example project:
 
 1. Clone the repository:
     ```sh
     git clone https://github.com/o1-labs/docs2.git
     ```
-2. Change directory to the project location:
+2. Change Directory to project location:
     ```sh
     cd docs2/examples/zkapps/05-common-types-and-functions
     ```
@@ -33,15 +33,19 @@ For the step-by-step tutorial, see [Tutorial 5: Common Types And Functions](http
     ```sh
     node build/src/main.js
     ```
-    To run and build the compiled code with a single command:
+
+    ### OR
+   
+    Build & Run code:
+
     ```sh
     npm run build && node build/src/main.js
     ```
 
-## Expected output
+## Expected output:
 ![05output](05output.png)
 
-## Last audit date
+## Last Audit Date:
  
 **22-January-2024**
 
