@@ -2,20 +2,20 @@
 
 This Private Inputs and Hash Functions tutorial helps you to learn about private inputs, hash functions, and adding a second value as an input.
 
-## Version:
+## Version
 - o1js: **0.15.2**
 
 ## Tutorial
 
 For the step-by-step tutorial, see [Tutorial 2: Private Inputs and Hash Functions](https://docs.minaprotocol.com/zkapps/tutorials/private-inputs-hash-functions).
 
-## How to install & run this example project:
+## How to install and run this example project
 
 1. Clone the repository:
     ```sh
     git clone https://github.com/o1-labs/docs2.git
     ```
-2. Change Directory to project location:
+2. Change directory to the project location:
     ```sh
     cd docs2/examples/zkapps/02-private-inputs-and-hash-functions
     ```
@@ -33,19 +33,15 @@ For the step-by-step tutorial, see [Tutorial 2: Private Inputs and Hash Function
     ```sh
     node build/src/main.js
     ```
-
-    ### OR
-   
-    Build & Run code:
-
+    To run and build the compiled code with a single command:
     ```sh
     npm run build && node build/src/main.js
     ```
 
-## Expected output:
+## Expected output
 ![02output](02output.png)
 
-## Last Audit Date:
+## Last audit date
  
 **20-January-2024**
 
