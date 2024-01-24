@@ -2,14 +2,14 @@
 
 This Custom Token tutorial helps you to learn to create custom tokens.
 
-## Version:
+## Version
 - o1js: **0.15.3**
 
 ## Tutorial
 
 For the step-by-step tutorial, see [Tutorial 8: Custom Tokens](https://docs.minaprotocol.com/zkapps/tutorials/custom-tokens).
 
-## How to install & run this example project:
+## How to install and run this example project
 
 1. Clone the repository:
     ```sh
@@ -33,24 +33,12 @@ For the step-by-step tutorial, see [Tutorial 8: Custom Tokens](https://docs.mina
     ```sh
     node build/src/main.js
     ```
-
-    ```sh
-    node build/src/mainWhitelist.js
-    ```
-
-    ### OR
-   
-    Build & Run code:
-
+    To run and build the compiled code with a single command:
     ```sh
     npm run build && node build/src/main.js
     ```
 
-    ```sh
-    npm run build && node build/src/mainWhitelist.js
-    ```
-
-## Expected output:
+## Expected output
 
 - ### Output after running main.js:
 
@@ -60,7 +48,7 @@ For the step-by-step tutorial, see [Tutorial 8: Custom Tokens](https://docs.mina
 
     ![082output](082output.png)
 
-## Last Audit Date:
+## Last audit date
  
 **24-January-2024**
 
