@@ -15,7 +15,7 @@ keywords:
 
 # zkApps Getting Started
 
-You can start writing zkApps with just a few steps. You can write zkApps for your project in other ways, this Getting Started Guide provides a high-level workflow to build and deploy quickly.
+You can start writing zkApps with just a few steps. You can write zkApps for your project in other ways. The focus of this Getting Started Guide is a high-level workflow to build and deploy quickly.
 
 ## High-Level Workflow
 
@@ -23,8 +23,8 @@ You can start writing zkApps with just a few steps. You can write zkApps for you
 1. [Create a project](#2-create-a-project)
 1. [Add testing code](#3-add-testing-code)
 1. [Add functionality](#4-add-functionality)
-1. [Create an integration test](#5-create-an-integration-test)
-1. [Test with a lightnet](#6-test-with-a-lightnet)
+1. [Create integration tests and test locally](#5-create-an-integration-test)
+1. [Test with Lightnet](#6-test-with-lightnet)
 1. [Test with a live network](#7-test-with-a-live-network)
 
 ### 1. Install or update the zkApp CLI
@@ -93,23 +93,25 @@ Add the logic for your smart contract.
     - If it works as expected with no errors, add more functionality.
     - If there are errors, look through the stack traces to find the source of the errors and update the contract to resolve them.
 
-### 5. Create an integration test.
+### 5. Create an integration test
 
 - Create a Node.js script to run the smart contract and test it's functionality, similar to step [3. Add testing code](#3-add-testing-code).
 
     For an example, see the Node.js script that runs the Tic Tac Toe smart contract in the [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file.
 
-### 6. Test with a lightnet
+- [Test zkApps locally](/zkapps/testing-zkapps-locally) with a simulated local blockchain.
 
-To test your zkApp locally on a lightnet that is an accurate representation of Mina blockchain:
+### 6. Test with Lightnet
 
-1. Start a local blockchain:
+To test your zkApp with an accurate representation of Mina blockchainwith, start Lightnet:
+
+1. Spin up a Lightnet blockchain:
 
     ```sh
     zk lightnet start
     ```
 
-    Use the start configuration options appropriate for your use case. See [Start a local network with other settings](/zkapps/lightnet#start-a-local-network-with-other-settings).
+    In most cases, a single node is appropriate for testing. Use the start configuration options appropriate for your use case. See [Start a local network with other settings](/zkapps/lightnet#start-a-local-network-with-other-settings).
 
 1. Verify the status of the local blockchain:
 
@@ -119,19 +121,17 @@ To test your zkApp locally on a lightnet that is an accurate representation of M
 
 1. Communicate with the Account Manager service to fetch account details.
 
-1. Configure your zkApp for the lightnet blockchain. Use the helpful URLs from the lightnet status.     
+1. Configure your zkApp for Lightnet blockchain. Use the helpful URLs provided by the `zk lightnet status` command.     
 
     - Deploy name
     - Set the Mina GraphQL API URL to deploy to: http://localhost:8080/graphql
     - Set transaction fee to use when deploying (in MINA): 0.1
-    (how do we want to do the account step? needs revamp)
 
-1. Deploy your zkApp to the lightnet blockchain:
+1. Deploy your zkApp to Lightnet:
 
     ```sh
     zk deploy
     ```
-
 
 ### 7. Test with a live network
 
@@ -145,7 +145,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
 
     Follow the prompts to specify a deploy alias name (can be anything), URL to deploy to, fee (in MINA) to be used when sending your deploy transaction, and the fee payer account. 
 
-    For the Berkeley Testnet, use: <!-- or whatever the ITN is called, let's give that specific information -->
+    For the Berkeley Testnet, use:
  
     - Deploy alias name: `berkeley` 
   
@@ -213,7 +213,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
     node build/src/interact.js
     ```
 
-1. Keep building and experimenting! After you add features to your contract, repeat [7. Test with a live network](#6-test-with-a-live-network) to test with a live network.
+1. Keep building and experimenting! After you add features to your contract, repeat [7. Test with a live network](#7-test-with-a-live-network) to test with a live network.
 
 ## Learn more
 
