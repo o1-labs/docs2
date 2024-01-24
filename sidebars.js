@@ -503,6 +503,18 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Hard Fork Upgrade',
+      link: {
+        type: 'doc',
+        id: 'hard-fork-upgrade/index'
+      },
+      items: [
+        'hard-fork-upgrade/prerequisites-and-planning',
+        'hard-fork-upgrade/migrating-mainnet-database-to-berkeley'
+      ],
+    },
+    {
+      type: 'category',
       label: 'Exchange Operators',
       items: [
         {
