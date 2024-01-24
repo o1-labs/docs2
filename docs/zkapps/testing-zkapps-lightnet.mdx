@@ -220,20 +220,14 @@ Blockchain network properties include:
 
 Each Docker image is packaged with a genesis ledger that is configured with more than 1000 prefunded accounts. Each account has a balance of 1550 MINA.
 
-The Mina accounts manager helper tool provides a random public/private key pair that operates with accounts already configured in the genesis ledger. 
+The Mina Accounts-Manager helper tool provides a random public/private key pair that operates with accounts already configured in the genesis ledger. On Lightnet, the Mina Accounts-Manager is deployed to http://localhost:8181/ with HTTP endpoints. This endpoint is the same for all users and is available when Lightnet is up and running.
 
-**Advanced** To access the genesis ledger configuration file `daemon.json`, you must manually access the Docker container file system with `docker exec -it mina-local-lightnet bash`.
+**Advanced** The genesis ledger configuration file is `daemon.json`. You can manually access the Docker container file system to view and download the file.
 
 ### zkApp Account Interactions
 
-The `acquireKeyPair()`, `releaseKeyPair()`,  and `listAcquiredKeyPairs()` methods in the `Lightnet` o1js API namespace handle zkApp access to account information, including public keys, private keys, and secret keys. For details, see the [doc comments](https://github.com/o1-labs/o1js/blob/f5db874a3fd52635d3d77628696bc8e97f78b76c/src/lib/fetch.ts#L1012) in the code. 
+The `acquireKeyPair()`, `releaseKeyPair()`,  and `listAcquiredKeyPairs()` methods in the `Lightnet` o1js API namespace handle zkApp access to account information, including public keys, private keys, and secret keys. 
+
+For details, see the [doc comments](https://github.com/o1-labs/o1js/blob/f5db874a3fd52635d3d77628696bc8e97f78b76c/src/lib/fetch.ts#L1012) in the code. 
 
 For a real-world example of using Lightnet accounts, see [run_live.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/hello_world/run_live.ts) example file used in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world).
-
-### Accounts Outside of zkApps
-
-To get the accounts information outside of the zkApp program, use the Accounts-Manager Docker container service at the endpoint: http://localhost:8181/. This endpoint is the same for all users and is available when the Lightnet Docker container is up and running.
-
-<!-- 
-Question for Serhii: how to release unused accounts? 
--->
