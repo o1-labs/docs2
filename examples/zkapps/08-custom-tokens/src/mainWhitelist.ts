@@ -1,7 +1,5 @@
 import { WhitelistedTokenContract } from './WhitelistedTokenContract.js';
 import {
-  isReady,
-  shutdown,
   Mina,
   PrivateKey,
   AccountUpdate,
@@ -15,9 +13,6 @@ import {
 class MerkleWitness20 extends MerkleWitness(20) {}
 
 (async function main() {
-  await isReady;
-
-  console.log('o1js loaded');
 
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -162,9 +157,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 
   // ----------------------------------------------------
 
-  console.log('Shutting down');
-
-  await shutdown();
 })().catch((f) => {
   console.log(f);
 });
