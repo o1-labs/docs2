@@ -170,23 +170,23 @@ $ rm src/Add.test.ts
 $ rm src/interact.ts
 ```
 
-1. Create the `CreditScoreOracle.ts` file and generate the corresponding test file:
+1. Create the `OracleExample.ts` file and generate the corresponding test file:
 
 ```sh
-$ zk file CreditScoreOracle
+$ zk file OracleExample
 ```
 
 1. Change `index.ts` to:
 
 ```ts
-import { CreditScoreOracle } from './CreditScoreOracle.js';
+import { OracleExample } from './OracleExample.js';
 
-export { CreditScoreOracle };
+export { OracleExample };
 ```
 
 ### Write the smart contract
 
-Paste the following content into the `/src/CreditScoreOracle.ts` file:
+Paste the following content into the `/src/OracleExample.ts` file:
 
 <!-- prettier-ignore -->
 ```ts
@@ -238,7 +238,7 @@ This completes the basic setup for the smart contract. For details on the `init(
 
 The smart contract stores the public key for the oracle that you retrieve data from as on-chain state. This makes the public key available when end users run the smart contract. The smart contract then uses this public key to verify the signature of the data to confirm it came from the expected source.
 
-In the `/src/CreditScoreOracle.ts` file:
+In the `/src/OracleExample.ts` file:
 
 ```ts
   // Define contract state
@@ -345,9 +345,9 @@ this.emitEvent('verified', id);
 
 ## Test your smart contract
 
-When you ran the `zk file CreditScoreOracle` command, the zkApp CLI automatically generated a test file called `CreditScoreOracle.test.ts`.
+When you ran the `zk file OracleExample` command, the zkApp CLI automatically generated a test file called `OracleExample.test.ts`.
 
-To add tests, paste the following code in the `CreditScoreOracle.test.ts` file:
+To add tests, paste the following code in the `OracleExample.test.ts` file:
 
 ```ts
 import { OracleExample } from './OracleExample';
@@ -509,7 +509,7 @@ describe('OracleExample', () => {
 
 To run the tests:
 
-1. Save the `CreditScoreOracle.test.ts` file.
+1. Save the `OracleExample.test.ts` file.
 1. Run `npm run test`.
 
 Note that writing a test that calls an API is generally not a best practice, but it's convenient for the sake of this tutorial. You can also mock your HTTP requests.
