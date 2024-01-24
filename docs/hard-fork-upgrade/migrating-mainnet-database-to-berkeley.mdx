@@ -1,8 +1,8 @@
 ---
-title: Archive migration 
-sidebar_label: Mainnet to Berkeley archive migration
+title: Mainnet to Berkeley Archive Migration 
+sidebar_label: Archive migration
 hide_title: true
-description: Mina protocol havily relies on its archive node. It is crucial to properly migrate archives from mainnet to berkeley 
+description: Steps to properly migrate archives from Mainnet to Berkeley.
 keywords:
   - hard fork
   - upgrade
@@ -15,11 +15,9 @@ keywords:
 
 # Before we start
 
-Please refer article You are now ready to perform migration. Please proceed to article:
+Complete the steps in [How to prepare for archive migration](/hard-fork-upgrade/prerequisites-and-planning).
 
-[How to prepare for archive migration](/hard-fork-upgrade/prerequisites-and-planning)
-
-## Download Migration applications
+## Download migration applications
 
 Migration applications are distributed as part of the Docker archive, daemon Dockers, or Debian packages.
 
@@ -142,7 +140,7 @@ Run the provided replayer app in migration mode:
    mina-replayer -- --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file replayer_config_input.json --checkpoint-interval 100  --checkpoint-file-prefix migration
    ```
 
-## How to Verify a Successful Migration
+## How to verify a successful migration
 
 o1Labs and the Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archives variations. 
 
