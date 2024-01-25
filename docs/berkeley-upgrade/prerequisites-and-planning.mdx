@@ -33,7 +33,7 @@ Mainnet database requires to be migrated in two steps. Each step uses an applica
 
 ### Incrementality
 
-The applications are able to work incrementally so that part of the Mainnet database can be migrated and, as new blocks are added to the Mainnet, the new data in the database can be migrated.
+The berkeley-migration and replayer applications are able to work incrementally so that part of the Mainnet database can be migrated and, as new blocks are added to the Mainnet, the new data in the database can be migrated.
 
 To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It can continue migrating starting at the next block in the Mainnet data. The replayer app in migration mode can use the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
 
@@ -151,4 +151,4 @@ The best practice is to collect precomputed blocks by yourself or by other third
 
 You are now ready to perform migration. See:
 
-- [How to perform archive migration](/hard-fork-upgrade/migrating-mainne-database-to-berkeley)
+- [How to perform archive migration](/berkeley/migrating-mainnet-database-to-berkeley)
