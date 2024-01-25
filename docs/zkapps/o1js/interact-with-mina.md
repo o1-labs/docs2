@@ -465,7 +465,7 @@ await pendingTx.wait();
 // our account updates are applied on chain!
 ```
 
-In addition to `Mina.Metwork`, you can also use a simulated local blockchain for local testing:
+In addition to `Mina.Network`, you can also use a simulated local blockchain for local testing:
 
 ```ts
 const Local = Mina.LocalBlockchain();
