@@ -511,8 +511,8 @@ module.exports = {
         id: 'berkeley-upgrade/index'
       },
       items: [
-        'berkeley-upgrade/prerequisites-and-planning',
-        'berkeley-upgrade/migrating-mainnet-database-to-berkeley'
+        'berkeley-upgrade/planning-archive-migration',
+        'berkeley-upgrade/migrating-archive-database-to-berkeley'
       ],
     },
     {

@@ -13,13 +13,13 @@ keywords:
   - archive node
 ---
 
-# Migrating Mainnet Database to Berkeley
+# Planning the Archive Migration
 
-Before you start planning the migration of your Mainnet database into the Berkeley version of the Mina network, read this document in entirety.
+Before you start the migration of your archive node database into the Berkeley version of the Mina network, read this document in entirety.
 
 ## Overview
 
-Mainnet database requires to be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and o1Labs teams:
+The archive database must be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and o1Labs teams:
 
 1. **berkeley-migration**
 
@@ -27,9 +27,9 @@ Mainnet database requires to be migrated in two steps. Each step uses an applica
   
   This application runs against the Mainnet and the new database.
 
-2. **replayer in migration mode**
+2. **replayer application in migration mode**
 
-  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also performs the checks performed by the standard replayer, except that ledger hashes are not checked because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new database.
+  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new archive database.
 
 ### Incrementality
 
@@ -49,9 +49,8 @@ PostgreSQL database in version 15.0 or later.
 
 #### Migration host
 
-- **[Optional]** Docker in version 23.0 or later
-- If Docker is used, then any of the supported OS by Mina (Bullseye, Focal, or Buster)
-at least 32 GB of RAM
+- (Optional) Docker in version 23.0 or later
+- If Docker is used, then any of the supported OS by Mina (Bullseye, Focal, or Buster) with at least 32 GB of RAM
 - gsutil application from Google Cloud Suite in version 5 or later
 
 ## Prerequisites
@@ -68,11 +67,9 @@ If you don't have an existing database with Mainnet archive data, you can always
    curl https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-{date}_0000.sql.tar.gz
    ```
 
-
    You can filter the dumps by date. Replace `{date}` using the required `yyyy-dd-mm` format. For example, for January 15, 2024 you can provide `2024-01-15`
 
    :warning: In some cases, the 0000 suffix in the date might be different (0001).
-
 
 - gsutil:
    
@@ -151,4 +148,4 @@ The best practice is to collect precomputed blocks by yourself or by other third
 
 You are now ready to perform migration. See:
 
-- [How to perform archive migration](/berkeley-upgrade/migrating-mainnet-database-to-berkeley)
+- [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)
