@@ -16,18 +16,19 @@ The most efficient way to deploy and run a lightweight Mina blockchain network f
 
 Lightnet lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
 
-Using Lightnet provides the following benefits:
+Lightnet provides the following benefits:
 
 - Reduces the time from ideation to launch by letting you test your applications and changes against a close-to-real Mina network.
 - Starts a single-node network or a multi-node network with diverse types of participants.
 - Creates and funds accounts so that you can deploy and interact with your zkApp. The genesis ledger is configured with 1000 pre-funded accounts with a 1550 MINA balance on each account.
-- Optionally runs the Mina [archive node](/node-operators/archive-node).
+- Optionally runs a Mina [archive node](/node-operators/archive-node).
 - Provides the Mina accounts manager helper tool so you can automate account retrieval.
 - Launches the lightweight Mina Explorer in a web browser so you can monitor transactions.
+- Simplifies zkApp troubleshooting by providing convenient access to detailed logs.
 
 :::info
 
-Use of Lightnet blockchain is appropriate for local development and testing only. It is not intended to replicate all aspects of the full network.
+Use of Lightnet is appropriate for local development and testing only. It is not intended to replicate all aspects of the full network.
 
 :::
 
@@ -49,7 +50,7 @@ To start a single node network with default behavior:
 zk lightnet start
 ```
 
-This command uses default settings that successfully serve the majority of testing requirements:
+This command performs the following operations using default settings that successfully serve the majority of testing requirements:
 
 - Pulls the latest Docker image for your environment from the [Docker Hub](https://hub.docker.com/r/o1labs/mina-local-network) repository
 - Prepares the file system
@@ -134,7 +135,7 @@ zk lightnet explorer use <version>
 
 ### Log files
 
-Log files for different processes are saved inside the Docker container as:
+Log files for various processes are saved inside the Docker container as:
 
 - `/root/logs/*.log`
 - `/root/.mina-network/mina-local-network-2-1-1/nodes/**/logs/*.log`
@@ -164,7 +165,7 @@ To get the network status:
 zk lightnet status
 ```
 
-The network status is returned, including useful URLs. For example, the default single node network status returns these useful URLs:
+The network status is returned, including useful URLs. For example, the default single node network status returns these endpoints:
 
 ```text
 - Mina Daemon GraphQL endpoint │ http://localhost:8080/graphql
