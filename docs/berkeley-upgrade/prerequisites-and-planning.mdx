@@ -2,7 +2,7 @@
 title: Archive migration prerequisites
 sidebar_label: Archive migration prerequisites
 hide_title: true
-description: Mina protocol havily relies on its archive node. It is crucial to properly migrate archives from Mainnet to Berkeley.
+description: Mina protocol heavily relies on its archive node. It is crucial to properly migrate archives from Mainnet to Berkeley.
 keywords:
   - Berkeley
   - upgrade
@@ -21,15 +21,15 @@ Before you start planning the migration of your Mainnet database into the Berkel
 
 Mainnet database requires to be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and o1Labs teams:
 
-- **berkeley-migration**
+1. **berkeley-migration**
 
   The berkeley-migration application migrates as much data as possible from the Mainnet database and downloads precomputed blocks to get the window density data. 
   
   This application runs against the Mainnet and the new database.
 
-- **replayer in migration mode**
+2. **replayer in migration mode**
 
-  The replayer application is an existing appliction, but enhanced with a new mode: migration mode. Replayer in migration mode analyze The transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also performs the checks performed by the standard replayer, except that ledger hashes are not checked because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new database.
+  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also performs the checks performed by the standard replayer, except that ledger hashes are not checked because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new database.
 
 ### Incrementality
 
