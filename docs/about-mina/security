@@ -1,9 +1,11 @@
 ---
 title: Mina Security
-description: Check out some resources to see what measures are in place to keep Mina secure. 
+description: Security audits, tools, and resources to keep Mina secure. 
 keywords:
   - audit
   - Ouroboros Samasika
+  - security
+  - mina
 ---
 
 # Mina Security
