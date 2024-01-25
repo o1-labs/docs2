@@ -23,7 +23,7 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 # Custom Token API
 
-This section shows you how to use o1js to perform common token operations, such as minting, burning, and sending tokens.
+You can use o1js to perform common token operations, such as minting, burning, and sending tokens.
 
 ## Minting
 
@@ -63,11 +63,7 @@ class BurnExample extends SmartContract {
 
 This example snippet defines a smart contract called `BurnExample` with a method called `burnTokens`. Similar to minting, the `this.token` property calls the `burn()` method. This specifies the amount of tokens to burn for the specified address.
 
-:::note
-
-A zkApp cannot burn more tokens than the specified account has. If there is such a case, an error is thrown and no such transaction is made.
-
-:::
+A zkApp cannot burn more tokens than the specified account has. An error is thrown and no such transaction is made.
 
 ## Sending
 
@@ -92,7 +88,7 @@ class SendExample extends SmartContract {
 
 This example snippet defines a smart contract called `SendExample` with a method called `sendTokens()`. Then, in the same fashion, as minting and burning, the `this.token` property calls the `send()` method.
 
-For a more comprehensive example of how to use custom tokens with a zkApp, see this custom token example provided in [token.test.ts](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts).
+For a comprehensive example of how to use custom tokens with a zkApp, see the custom token example provided in [token.test.ts](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts).
 
 ## Proof Authorization
 
@@ -114,7 +110,7 @@ let tx = await Mina.transaction(feePayerKey, () => {
 await tx.send();
 ```
 
-This signature authorization is simple and easy to use, but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, it makes more sense to let the token owner approve with a proof.
+Signature authorization is simple and easy to use, but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, it makes more sense to let the token owner approve with a proof.
 
 ### Proof Authorization
 
@@ -218,11 +214,7 @@ Token accounts are specific for each type of custom token, meaning that a single
 
 A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
 
-:::info
-
-Suppose a token account is being created for the first time. In that case, an account creation fee must be paid similarly to creating a new standard account.
-
-:::
+When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
 
 Aside from sending custom tokens, custom tokens can be minted and burned by a **token owner account**. A token owner account is the governing zkApp account for a specific custom token.
 
