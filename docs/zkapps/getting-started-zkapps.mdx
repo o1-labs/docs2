@@ -7,7 +7,7 @@ keywords:
   - zkapps
   - mina protocol
   - smart contracts
-  - zero-knowledge proofs
+  - zero knowledge proofs
   - off-chain execution
   - typescript
   - quickstart zkapps
@@ -29,9 +29,10 @@ You can start writing zkApps with just a few steps. You can write zkApps for you
 1. [Create a project](#2-create-a-project)
 1. [Add testing code](#3-add-testing-code)
 1. [Add functionality](#4-add-functionality)
-1. [Create integration tests and test locally](#5-create-an-integration-test)
-1. [Test with Lightnet](#6-test-with-lightnet)
-1. [Test with a live network](#7-test-with-a-live-network)
+1. [Create integration test](#5-create-an-integration-test)
+1. [Test locally](#6-test-with-local-simulated-blockchain)
+1. [Test with Lightnet](#7-test-with-lightnet)
+1. [Test with a live network](#8-test-with-a-live-network)
 
 ### 1. Install or update the zkApp CLI
 
@@ -99,15 +100,17 @@ Add the logic for your smart contract.
     - If it works as expected with no errors, add more functionality.
     - If there are errors, look through the stack traces to find the source of the errors and update the contract to resolve them.
 
-### 5. Create an integration test
+### 5. Create integration test
 
 - Create a Node.js script to run the smart contract and test it's functionality, similar to step [3. Add testing code](#3-add-testing-code).
 
     For an example, see the Node.js script that runs the Tic Tac Toe smart contract in the [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file.
 
+### 6. Test locally
+
 - [Test zkApps locally](/zkapps/testing-zkapps-locally) with a simulated local blockchain.
 
-### 6. Test with Lightnet
+### 7. Test with Lightnet
 
 To test your zkApp with an accurate representation of Mina blockchain, start Lightnet:
 
@@ -139,7 +142,7 @@ To test your zkApp with an accurate representation of Mina blockchain, start Lig
     zk deploy
     ```
 
-### 7. Test with a live network
+### 8. Test with a live network
 
 To deploy the smart contract to the Testnet, run the `zk` commands from the directory that contains your smart contract. 
 
