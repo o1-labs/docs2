@@ -4,7 +4,7 @@ sidebar_label: Archive migration
 hide_title: true
 description: Steps to properly migrate archives from Mainnet to Berkeley.
 keywords:
-  - hard fork
+  - Berkeley
   - upgrade
   - archive migration
   - planning 
@@ -196,7 +196,7 @@ The cron job performs the same steps in an automated fashion:
 
 Be sure to monitor the cron job in case there are errors.
 
-Just before the hard fork, migrate the last few blocks by running locally:
+Just before the Berkeley, migrate the last few blocks by running locally:
 
 1. Download the Mainnet archive data directly from the k8s PostgreSQL node, not from the archive dump, and load it into PostgreSQL.
 2. Download the most recent migrated database and load it into PostgresQL.

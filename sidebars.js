@@ -503,14 +503,14 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Hard Fork Upgrade',
+      label: 'Berkeley Upgrade',
       link: {
         type: 'doc',
-        id: 'hard-fork-upgrade/index'
+        id: 'berkeley-upgrade/index'
       },
       items: [
-        'hard-fork-upgrade/prerequisites-and-planning',
-        'hard-fork-upgrade/migrating-mainnet-database-to-berkeley'
+        'berkeley-upgrade/prerequisites-and-planning',
+        'berkeley-upgrade/migrating-mainnet-database-to-berkeley'
       ],
     },
     {

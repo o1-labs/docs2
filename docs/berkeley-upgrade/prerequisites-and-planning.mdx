@@ -4,7 +4,7 @@ sidebar_label: Archive migration prerequisites
 hide_title: true
 description: Mina protocol havily relies on its archive node. It is crucial to properly migrate archives from Mainnet to Berkeley.
 keywords:
-  - hard fork
+  - Berkeley
   - upgrade
   - archive migration
   - planning 
@@ -29,7 +29,7 @@ Mainnet database requires to be migrated in two steps. Each step uses an applica
 
 - **replayer in migration mode**
 
-  The replayer application is an existing appliction, but enhanced with a new mode: migration mode. Replayer in migration mode analyze The transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also performs the checks performed by the standard replayer, except that ledger hashes are not checked because the hard fork ledger has greater depth, which results in different hashes. This application runs only against the new database.
+  The replayer application is an existing appliction, but enhanced with a new mode: migration mode. Replayer in migration mode analyze The transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also performs the checks performed by the standard replayer, except that ledger hashes are not checked because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new database.
 
 ### Incrementality
 
@@ -37,7 +37,7 @@ The applications are able to work incrementally so that part of the Mainnet data
 
 To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It can continue migrating starting at the next block in the Mainnet data. The replayer app in migration mode can use the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
 
-To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual hard fork, only a small amount of data will need to be migrated.
+To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley, only a small amount of data will need to be migrated.
 
 ## Requirements
 
