@@ -34,15 +34,16 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/how-zkapps-work',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
           ],
