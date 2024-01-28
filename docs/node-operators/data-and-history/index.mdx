@@ -11,20 +11,17 @@ keywords:
   - blockchain data
 ---
 
-# Data and History
+# Introduction
 
+Mina is a succinct blockchain, and as a result, consensus nodes only store the recent history of the chain before discarding it (the last k blocks, currently 290). Recent history can be accessed via graphQL from a running `mina daemon`.
 
+While prior transaction history is not required to prove the current state is valid (this is handled via a recursive zero-knowledge proof), many applications would like access to this prior transaction history. Examples include block explorers and wallets.
 
-### Recent Data
+To access historic data users may optionally run an [archive node](/node-operators/archive-nodes/getting-started) a process stores a summary of each block seen in a Postgres database. The archive node is requires a `mina-archive` running that connects to a running `mina daemon` and a [PostgreSQL](https://www.postgresql.org/) database.
 
-Presented [here](./querying-data.mdx) are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. 
+## Data and History
 
-The best way to explore all the specific details available for each of the GraphQL objects is to visit your favorite web browser pointing to the REST server running from within a Mina daemon that hosts a GraphQL sandbox. Visit the [GraphQL API page](/node-developers/graphql-api) to learn more. Documentation is also present on most of the individual fields, you can learn more about each field by hovering over the entries in the sandbox or by visiting the hosted schema (coming soon).
+This section describes how to query data in the Mina protocol.
 
-
-### Historic Data
-
-As Mina is a succinct blockchain, historical information can be accessed using [an archival process](/node-operators/archive-nodes/getting-started).
-
-
-
+- [Querying Data](data-and-history/querying-data) - Examples for querying data.
+- [Rosetta](data-and-history/rosetta) - An open-source specification and set of tools used for deploying and interacting with the Mina Protocol.
