@@ -26,9 +26,9 @@ keywords:
 
 Welcome to Mina! 
 
-Get started setting up a Mina node, learn how to generate a keypair for use with the network, connect to the network, and begin producing blocks.
+Get started setting up a Mina node, learn how to generate a keypair for use with the network [here](/node-operators/generating-a-keypair), and install the `mina daemon`.
 
-This documentation is for the **Mainnet** release. The releases can be found [here.](https://github.com/MinaProtocol/mina/releases)
+This documentation is for the **Mainnet** release. The releases can be found [here](https://github.com/MinaProtocol/mina/releases), check this page for version specific flags.
 
 ## Block Producer Requirements
 
@@ -41,24 +41,8 @@ This documentation is for the **Mainnet** release. The releases can be found [he
 Running a block producer on the Mina network requires at least:
 
 - 8-core processor
-- 16 GB of RAM
-- 20 GB of free storage (at least)
-
-**Network**: At least 1 Mbps connection
-
-## Snark Work Requirements
-
-**Software**: Supported environments include macOS, Linux (Debian 10, 11, 12 and Ubuntu 20.04 LTS), and any host machine with Docker. 
-
-**Processor**: Only AMD64 CPU architecture is supported.
-
-**Hardware**: Sending and receiving MINA does not require any special hardware. 
-
-Running a snark worker on the Mina network requires at least:
-
-- 16-core processor with 32 threads
-- 16 GB of RAM
-- 20 GB of free storage (at least)
+- 32 GB of RAM
+- 64 GB of free storage (at least)
 
 **Network**: At least 1 Mbps connection
 
@@ -104,6 +88,15 @@ To verify the mina daemon installation, run:
 
 The expected output is `Commit c980ba87c3417f40a7081225dfe7478c5ee70fd7 on branch master`.
 
+# If you are using Ufw, allow these permissions
+
+``` text
+sudo ufw enable
+sudo ufw allow 22
+sudo ufw allow 8302
+sudo ufw allow 3089
+```
+
 ### Windows
 Windows is not natively supported. Instead, use the [Docker instructions](getting-started#docker). 
 
@@ -138,6 +131,3 @@ Enable port forwarding on your router to allow inbound traffic to the following 
 - TCP port `8302`
 - To use the GraphQL service, expose TCP port `3085`
 
-## Next
-
-Now that you've installed mina and configured your network, you can move on to the next step: [generating a keypair](../generating-a-keypair).

@@ -5,7 +5,7 @@ hide_title: true
 
 # Staking Service Guidelines
 
-An important part of running a staking service is predicting/determining winning slots in which you can produce blocks, as well as paying out participants. The Mina protocol does not automatically payout rewards to delegates, so part of running a staking service is manually paying out participants.
+The important parts of running a staking service are predicting/determining winning slots in which you can produce blocks and paying out participants. The Mina protocol does not automatically payout rewards to delegates, so part of running a staking service is manually paying out participants by [sending many transactions](#sending-many-transactions).
 
 This document aims to explain the different components that you should think about when managing those payouts. Specifically, this document provides an understanding of odds of winning blocks, gathering data from the ledger for later use, and computing relevant staking payout information from this data.
 
@@ -17,7 +17,35 @@ The coinbase reward for producing a block is 720 tokens.
 
 In order to compute odds of winning a block for a given epoch, or to retroactively compute the coinbase reward a given account would receive, you need to have the staking ledger from that epoch. Mina daemons only keep around the staking ledger for the current epoch and the staking ledger for the next epoch, so if you want to capture a staking ledger for an epoch, you need to do it before or during that epoch.
 
-The `mina ledger export` command can be used to export ledgers from a running daemon. It takes, as an argument, an identifier of the ledger you wish to export. The table below describes what each of these identifiers represent.
+The `mina ledger export` command can be used to export ledgers from a running daemon:
+
+```
+Print the specified ledger (default: staged ledger at the best tip). Note: Exporting snarked ledger is an expensive operation and can take a few seconds
+
+  mina ledger export STAGED-LEDGER|SNARKED-LEDGER|STAKING-EPOCH-LEDGER|NEXT-EPOCH-LEDGER
+
+=== flags ===
+
+  [--daemon-port HOST:PORT/LOCALHOST-PORT]  Client to local daemon
+                                            communication. If HOST is omitted,
+                                            then localhost is assumed to be
+                                            HOST. (examples: 8301,
+                                            154.97.53.97:8301) (default: 8301)
+                                            (alias: -daemon-port)
+  [--plaintext]                             Use plaintext input or output
+                                            (default: JSON)
+                                            (alias: -plaintext)
+  [--state-hash STATE-HASH]                 State hash, if printing a staged
+                                            ledger (default: state hash for the
+                                            best tip)
+                                            (alias: -state-hash)
+  [-help]                                   print this help text and exit
+                                            (alias: -?)
+
+```
+
+
+It requires an argument to identifier of the ledger you wish to export. The table below describes what each of these identifiers represent.
 
 <br />
 
@@ -26,8 +54,10 @@ The `mina ledger export` command can be used to export ledgers from a running da
 | staking-epoch-ledger | The staking ledger for the current epoch.                       |
 | next-epoch-ledger    | The staking ledger for the next epoch (epoch after current).    |
 | staged-ledger        | The most recent staged ledger (from the best tip of that node). |
+| snarked-ledger       | The most recent snarked ledger (from the best tip of that node).|
 
 <br />
+
 
 In order to ensure you always have each staking ledger available for use after epochs have expired, we recommend exporting the staking-epoch-ledger every $\dfrac{7140\times3}{60} = 357$ hours (there are $7140$ slots in an epoch, and each slot is $3$ minutes long).
 
@@ -86,4 +116,6 @@ As an example, let's say there is an account on the network which has $10^6$ (1 
 
 ## Sending Many Transactions
 
-See [Sending Many Transactions](/mina-protocol/sending-a-payment#sending-many-transactions).
+It is important to pay out rewards to participants who have delegated their stake to your staking service.
+
+Follow this link to see how to send many payments [Sending Many Transactions](/mina-protocol/sending-a-payment#sending-many-transactions).
