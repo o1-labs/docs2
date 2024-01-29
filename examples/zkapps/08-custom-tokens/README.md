@@ -50,7 +50,7 @@ For the step-by-step tutorial, see [Tutorial 8: Custom Tokens](https://docs.mina
 
 ## Last audit date
  
-**24-January-2024**
+**29-January-2024**
 
 ## License
 

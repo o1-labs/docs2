@@ -38,8 +38,8 @@ class MerkleWitness20 extends MerkleWitness(20) {}
   console.log('deploying...');
 
   const contract = new WhitelistedTokenContract(zkAppAddress);
-  const deploy_txn = await Mina.transaction(deployerAccount, () => {
-    AccountUpdate.fundNewAccount(deployerAccount);
+  const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
     if (proofsEnabled) {
       contract.deploy({ zkappKey: zkAppPrivateKey });
     } else {
@@ -66,7 +66,7 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 
   console.log('initializing...');
 
-  const init_txn = await Mina.transaction(deployerAccount, () => {
+  const init_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
     contract.initState(tree.getRoot());
   });
 
@@ -90,8 +90,8 @@ class MerkleWitness20 extends MerkleWitness(20) {}
     mintAmount.toFields().concat(zkAppAddress.toFields())
   );
 
-  const mint_txn = await Mina.transaction(deployerAccount, () => {
-    AccountUpdate.fundNewAccount(deployerAccount);
+  const mint_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
     contract.mint(zkAppAddress, mintAmount, mintSignature);
   });
   if (!proofsEnabled) {
@@ -117,8 +117,8 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 
   const sendWitness = new MerkleWitness20(tree.getWitness(BigInt(0)));
 
-  const send_txn = await Mina.transaction(deployerAccount, () => {
-    AccountUpdate.fundNewAccount(deployerAccount);
+  const send_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
     contract.sendTokens(
       zkAppAddress,
       deployerAccount.toPublicKey(),
