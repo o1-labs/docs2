@@ -1,0 +1,282 @@
+---
+title: Testing zkApps with Lightnet
+hide_title: true
+description: Use lightweight Mina blockchain network (Lightnet) for testing on a local blockchain before you test with a live network. 
+keywords:
+  - zkApp CLI
+  - lightnet
+  - zkApp testing
+  - Docker image
+  - using zk lightnet
+---
+
+# Testing zkApps with Lightnet
+
+The most efficient way to deploy and run a lightweight Mina blockchain network for testing purposes is to spin up a lightweight Mina network (Lightnet) in a single Docker container. Lightnet is a resource-efficient solution with fast startup and syncing times.
+
+Lightnet lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
+
+Lightnet provides the following benefits:
+
+- Reduces the time from ideation to launch by letting you test your applications and changes against a close-to-real Mina network.
+- Starts a single-node network or a multi-node network with diverse types of participants.
+- Creates and funds accounts so that you can deploy and interact with your zkApp. The genesis ledger is configured with 1000 pre-funded accounts with a 1550 MINA balance on each account.
+- Optionally runs a Mina [archive node](/node-operators/archive-node).
+- Provides the Mina accounts manager helper tool so you can automate account retrieval.
+- Launches the lightweight Mina Explorer in a web browser so you can monitor transactions.
+- Simplifies zkApp troubleshooting by providing convenient access to detailed logs.
+
+:::info
+
+Use of Lightnet is appropriate for local development and testing only. It is not intended to replicate all aspects of the full network.
+
+:::
+
+## Prerequisites
+
+
+1. [Write tests for your smart contract](/zkapps/testing-zkapps-locally#writing-tests-for-your-smart-contract).
+
+1. [Test zkApps Locally](/zkapps/testing-zkapps-locally) on a simulated local blockchain.
+
+1. [Install Docker Engine](
+https://docs.docker.com/engine/install/).
+
+  Docker Engine is required for your environment. 
+
+1. Start Docker Engine. 
+
+  Docker Engine must be running before you can start the Lightnet Docker container.
+
+## High-Level Workflow for Lightnet
+
+1. [Write tests for your smart contract](/zkapps/testing-zkapps-locally#writing-tests-for-your-smart-contract) and test locally on a simulated local blockchain
+1. Start Docker Engine 
+1. [Start Lightnet](#start-a-local-network)
+1. Manage the [log files](#log-files) of the local network
+1. Use [Lightweight Mina Explorer](#lightweight-mina-explorer) to visualize the local network state
+1. Develop, iterate, and [troubleshoot](#troubleshoot-transactions)
+1. [Stop the local network](#stop-the-local-network)
+
+## Start a local network
+
+Most of your zkApp testing can be done on a single node network. 
+
+### Start a single node network
+
+To start a single node network with default behavior:
+
+```sh
+zk lightnet start
+```
+
+This command performs the following operations that successfully serve the majority of testing requirements:
+
+- Pulls the latest Docker image for your environment from the [Docker Hub](https://hub.docker.com/r/o1labs/mina-local-network) repository
+- Prepares the file system
+- Downloads and updates the lightweight Mina Explorer
+- Forms the network with a single node
+- Configures the network to be fast
+- Disables the blockchain SNARK proofs
+- Uses the `o1js-main` branch of the Mina repository
+- Starts the Mina archive process and the archive node API
+- Waits for the network to reach a synchronized state
+- Sets the Mina process logging level to trace
+
+### Start a local network with other settings
+
+To see the options to start a local blockchain network with non-default settings:
+
+```sh
+zk lightnet start --help
+```
+
+You can configure different network properties. For example, to start a multi-node local blockchain network with slower, close-to-real-world properties:
+
+```sh
+zk lightnet start --mode multi-node --type real
+```
+
+### Keep current versions
+
+New Docker images are built and published to the Docker Hub every night. You might not always want to get the latest product versions. For example, when your zkApp relies on well-defined APIs and you want to continue developing in your current environment. 
+
+To keep your current working versions of o1js and Mina:
+
+```sh
+zk lightnet start --no-pull
+```
+
+### Restart for a clean slate
+
+To reinstantiate Lightnet so you can redeploy and retest:
+
+```sh
+zk lightnet stop
+zk lightnet start
+```
+
+## Stop the local network
+
+To stop the local network, remove the Docker container, and clean up the environment:
+
+```sh
+zk lightnet stop
+```
+
+When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `/Users/<username>/.cache/zkapp-cli/lightnet/logs/`.
+
+To disable saving of log files:
+
+```sh
+zk lightnet stop --no-save-logs
+```
+
+## Troubleshoot transactions
+
+Tools are provided for troubleshooting.
+
+### Lightweight Mina Explorer
+
+To monitor transactions, launch the lightweight Mina Explorer:
+
+```sh
+zk lightnet explorer
+```
+
+By default, the latest version is launched. 
+
+To list versions, their published dates, and show the version in use:
+
+```sh
+zk lightnet explorer list true
+```
+
+To use a specific version of the lightweight Mina Explorer:
+
+```sh
+zk lightnet explorer use <version>
+```
+
+### Log files
+
+Log files for various processes are saved inside the Docker container as:
+
+- `/root/logs/*.log`
+- `/root/.mina-network/mina-local-network-2-1-1/nodes/**/logs/*.log`
+
+To save the log files that are produced by Docker container processes to the host machine file system:
+
+```sh
+zk lightnet logs save
+```
+
+To debug your zkApp, you can monitor the Docker container process logs in real time. 
+
+On a different terminal window, to stream the process logs:
+
+```sh
+zk lightnet logs follow
+```
+
+Select the Docker container process to follow. Press Ctrl+C to stop streaming.
+
+
+### Lightnet status
+
+To get the network status:
+
+```sh
+zk lightnet status
+```
+
+The network status is returned, including HTTP endpoints. For example, the default single node network status returns these endpoints:
+
+```text
+- Mina Daemon GraphQL endpoint │ http://localhost:8080/graphql
+- Accounts Manager endpoint    │ http://localhost:8181
+- Archive-Node-API endpoint    │ http://localhost:8282
+- PostgreSQL connection string │ postgresql://postgres:postgres@localhost:5432/archive
+```
+
+Use these URLs when you configure your zkApp.
+
+Lightnet status includes blockchain network properties, the Docker container state, and a code snippet of a zkApp using o1js API. 
+
+Blockchain network properties include:
+
+- Sync status
+- Commit ID
+- Chain ID
+- Consensus mechanism
+- Consensus configuration
+  - Transaction finality ("k" blocks)
+  - Slot duration (new block every ~)
+  - Slots per Epoch
+- SNARK work fee
+- Known accounts
+- Uptime
+
+## Accounts
+
+Each Docker image is packaged with a genesis ledger that is configured with more than 1000 prefunded accounts. Each account has a balance of 1550 MINA.
+
+The Mina Accounts-Manager helper tool provides a random public/private key pair that operates with accounts already configured in the genesis ledger. On Lightnet, the Mina Accounts-Manager is deployed to http://localhost:8181/. This endpoint is the same for all users and is available when Lightnet is up and running.
+
+Use HTTP endpoints to acquire, release, list, lock, and unlock accounts:
+
+```text
+.:: Mina Accounts-Manager ::.
+-----------------------------
+
+Application initialized and is running at: http://localhost:8181
+Available endpoints:
+
+   HTTP GET:
+   http://localhost:8181/acquire-account
+   Supported Query params: 
+                           isRegularAccount=<boolean>, default: true
+                           Useful if you need to get non-zkApp account.
+                           
+                           unlockAccount=<boolean>, default: false
+                           Useful if you need to get unlocked account.
+   Returns JSON account key-pair:
+   { pk:"", sk:"" }
+   
+   HTTP PUT:
+   http://localhost:8181/release-account
+   Accepts JSON account key-pair as request payload:
+   { pk:"", sk:"" }
+   Returns JSON status message
+   
+   HTTP GET:
+   http://localhost:8181/list-acquired-accounts
+   Returns JSON list of acquired accounts key-pairs:
+   [ { pk:"", sk:"" }, ... ]
+   
+   HTTP PUT:
+   http://localhost:8181/lock-account
+   Accepts JSON account key-pair as request payload:
+   { pk:"", sk:"" }
+   Returns JSON status message
+   
+   HTTP PUT:
+   http://localhost:8181/unlock-account
+   Accepts JSON account key-pair as request payload:
+   { pk:"", sk:"" }
+   Returns JSON status message
+   
+Operating with:
+   Mina Genesis ledger:   /root/.mina-network/mina-local-network-2-1-1/daemon.json
+   Mina GraphQL endpoint: http://localhost:8080/graphql
+```
+
+**Advanced** The genesis ledger configuration file is `daemon.json`. You can manually access the Docker container file system to view and download the file.
+
+### zkApp Account Interactions
+
+The `acquireKeyPair()`, `releaseKeyPair()`,  and `listAcquiredKeyPairs()` methods in the `Lightnet` o1js API namespace handle zkApp access to account information, including public keys, private keys, and secret keys. 
+
+For details, see the [doc comments](https://github.com/o1-labs/o1js/blob/f5db874a3fd52635d3d77628696bc8e97f78b76c/src/lib/fetch.ts#L1012) in the code. 
+
+For a real-world example of using Lightnet accounts, see [run_live.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/hello_world/run_live.ts) example file used in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world).
