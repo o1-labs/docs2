@@ -11,7 +11,7 @@ Paper: https://eprint.iacr.org/2022/1255.pdf
 
 ## Hierarchy
 
-- { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }
+- \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }
 
   ↳ **`Nullifier`**
 
@@ -28,6 +28,7 @@ Paper: https://eprint.iacr.org/2022/1255.pdf
 - [publicKey](Nullifier.md#publickey)
 - [\_isStruct](Nullifier.md#_isstruct)
 - [check](Nullifier.md#check)
+- [empty](Nullifier.md#empty)
 - [fromFields](Nullifier.md#fromfields)
 - [toAuxiliary](Nullifier.md#toauxiliary)
 - [toFields](Nullifier.md#tofields)
@@ -57,19 +58,19 @@ Paper: https://eprint.iacr.org/2022/1255.pdf
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `value` | `Object` | `undefined` |
-| `value.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
-| `value.public` | { nullifier: Group; s: Scalar; } | `undefined` |
+| `value.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
+| `value.public` | \{ nullifier: Group; s: Scalar; } | `undefined` |
 | `value.publicKey` | [`Group`](Group.md) | `Group` |
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -78,7 +79,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:381](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L381)
 
 ## Properties
 
@@ -96,13 +97,13 @@ Struct({
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -111,7 +112,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:26](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L26)
+[lib/nullifier.ts:26](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L26)
 
 ___
 
@@ -128,13 +129,13 @@ ___
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -143,7 +144,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:22](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L22)
+[lib/nullifier.ts:22](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L22)
 
 ___
 
@@ -153,13 +154,13 @@ ___
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -168,7 +169,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:21](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L21)
+[lib/nullifier.ts:21](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L21)
 
 ___
 
@@ -178,13 +179,13 @@ ___
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -193,13 +194,13 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:381](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L381)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`value`: { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => `void`
+▪ `Static` **check**: (`value`: \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => `void`
 
 #### Type declaration
 
@@ -215,8 +216,8 @@ For instance, calling check function on the type [Bool](Bool.md) asserts that th
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `value` | `Object` | `undefined` | the element of type `T` to put assertions on. |
-| `value.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
-| `value.public` | { nullifier: Group; s: Scalar; } | `undefined` | - |
+| `value.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
+| `value.public` | \{ nullifier: Group; s: Scalar; } | `undefined` | - |
 | `value.publicKey` | [`Group`](Group.md) | `Group` | - |
 
 ##### Returns
@@ -225,13 +226,13 @@ For instance, calling check function on the type [Bool](Bool.md) asserts that th
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -240,13 +241,52 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L156)
+[snarky.d.ts:157](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L157)
+
+___
+
+### empty
+
+▪ `Static` **empty**: () => \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }
+
+#### Type declaration
+
+▸ (): `Object`
+
+##### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } |
+| `public` | \{ nullifier: Group; s: Scalar; } |
+| `publicKey` | [`Group`](Group.md) |
+
+#### Inherited from
+
+Struct(\{
+  publicKey: Group,
+  public: \{
+    nullifier: Group,
+    s: Scalar,
+  },
+  private: \{
+    c: Field,
+    g\_r: Group,
+    h\_m\_pk\_r: Group,
+  },
+}).empty
+
+#### Defined in
+
+[lib/circuit_value.ts:390](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L390)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[]) => { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }
+▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[]) => \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }
 
 #### Type declaration
 
@@ -270,19 +310,19 @@ An element of type `T` generated from the given provable data.
 
 | Name | Type |
 | :------ | :------ |
-| `private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } |
-| `public` | { nullifier: Group; s: Scalar; } |
+| `private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } |
+| `public` | \{ nullifier: Group; s: Scalar; } |
 | `publicKey` | [`Group`](Group.md) |
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -291,13 +331,13 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:137](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L137)
+[snarky.d.ts:138](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L138)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`value?`: { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => `any`[]
 
 #### Type declaration
 
@@ -311,8 +351,8 @@ As any element of the interface `ProvablePure<T>` includes no "auxiliary" data b
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `value?` | `Object` | `undefined` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
-| `value.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
-| `value.public` | { nullifier: Group; s: Scalar; } | `undefined` | - |
+| `value.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
+| `value.public` | \{ nullifier: Group; s: Scalar; } | `undefined` | - |
 | `value.publicKey` | [`Group`](Group.md) | `Group` | - |
 
 ##### Returns
@@ -323,13 +363,13 @@ An empty array, as any element of the interface `ProvablePure<T>` includes no "a
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -338,13 +378,13 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:126](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L126)
+[snarky.d.ts:127](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L127)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => [`Field`](Field.md)[]
 
 #### Type declaration
 
@@ -357,8 +397,8 @@ A function that takes `value`, an element of type `T`, as argument and returns a
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](Field.md) array from. |
-| `value.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
-| `value.public` | { nullifier: Group; s: Scalar; } | `undefined` | - |
+| `value.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` | - |
+| `value.public` | \{ nullifier: Group; s: Scalar; } | `undefined` | - |
 | `value.publicKey` | [`Group`](Group.md) | `Group` | - |
 
 ##### Returns
@@ -369,13 +409,13 @@ A [Field](Field.md) array describing how this `T` element is made up of [Field](
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -384,13 +424,13 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:116](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L116)
+[snarky.d.ts:117](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L117)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
 
 #### Type declaration
 
@@ -401,8 +441,8 @@ ___
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `x` | `Object` | `undefined` |
-| `x.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
-| `x.public` | { nullifier: Group; s: Scalar; } | `undefined` |
+| `x.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
+| `x.public` | \{ nullifier: Group; s: Scalar; } | `undefined` |
 | `x.publicKey` | [`Group`](Group.md) | `Group` |
 
 ##### Returns
@@ -416,13 +456,13 @@ ___
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -431,13 +471,13 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L369)
+[lib/circuit_value.ts:384](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L384)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: { `private`: { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: { nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => { `private`: { c: string; g\_r: { x: string; y: string; }; h\_m\_pk\_r: { x: string; y: string; }; } ; `public`: { nullifier: { x: string; y: string; }; s: string; } ; `publicKey`: { `x`: `string` ; `y`: `string`  } = Group }
+▪ `Static` **toJSON**: (`x`: \{ `private`: \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } ; `public`: \{ nullifier: Group; s: Scalar; } ; `publicKey`: [`Group`](Group.md) = Group }) => \{ `private`: \{ c: string; g\_r: \{ x: string; y: string; }; h\_m\_pk\_r: \{ x: string; y: string; }; } ; `public`: \{ nullifier: \{ x: string; y: string; }; s: string; } ; `publicKey`: \{ `x`: `string` ; `y`: `string`  } = Group }
 
 #### Type declaration
 
@@ -448,8 +488,8 @@ ___
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `x` | `Object` | `undefined` |
-| `x.private` | { c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
-| `x.public` | { nullifier: Group; s: Scalar; } | `undefined` |
+| `x.private` | \{ c: Field; g\_r: Group; h\_m\_pk\_r: Group; } | `undefined` |
+| `x.public` | \{ nullifier: Group; s: Scalar; } | `undefined` |
 | `x.publicKey` | [`Group`](Group.md) | `Group` |
 
 ##### Returns
@@ -458,21 +498,21 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `private` | { c: string; g\_r: { x: string; y: string; }; h\_m\_pk\_r: { x: string; y: string; }; } |
-| `public` | { nullifier: { x: string; y: string; }; s: string; } |
-| `publicKey` | { `x`: `string` ; `y`: `string`  } |
+| `private` | \{ c: string; g\_r: \{ x: string; y: string; }; h\_m\_pk\_r: \{ x: string; y: string; }; } |
+| `public` | \{ nullifier: \{ x: string; y: string; }; s: string; } |
+| `publicKey` | \{ `x`: `string` ; `y`: `string`  } |
 | `publicKey.x` | `string` |
 | `publicKey.y` | `string` |
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -481,7 +521,7 @@ Struct({
 
 #### Defined in
 
-[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L373)
+[lib/circuit_value.ts:388](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L388)
 
 ## Methods
 
@@ -490,13 +530,6 @@ Struct({
 ▸ **assertUnused**(`witness`, `root`): `void`
 
 Checks if the Nullifier has been used before.
-
-**`Example`**
-
-```ts
-// asserts that the nullifier has not been used before, throws an error otherwise
-nullifier.assertUnused();
-```
 
 #### Parameters
 
@@ -509,9 +542,16 @@ nullifier.assertUnused();
 
 `void`
 
+**`Example`**
+
+```ts
+// asserts that the nullifier has not been used before, throws an error otherwise
+nullifier.assertUnused();
+```
+
 #### Defined in
 
-[lib/nullifier.ts:141](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L141)
+[lib/nullifier.ts:141](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L141)
 
 ___
 
@@ -521,19 +561,19 @@ ___
 
 Returns the [PublicKey](Types.PublicKey.md) that is associated with this Nullifier.
 
+#### Returns
+
+[`PublicKey`](Types.PublicKey.md)
+
 **`Example`**
 
 ```ts
 let pk = nullifier.getPublicKey();
 ```
 
-#### Returns
-
-[`PublicKey`](Types.PublicKey.md)
-
 #### Defined in
 
-[lib/nullifier.ts:170](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L170)
+[lib/nullifier.ts:170](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L170)
 
 ___
 
@@ -542,13 +582,6 @@ ___
 ▸ **isUnused**(`witness`, `root`): [`Bool`](Bool.md)
 
 Returns the state of the Nullifier.
-
-**`Example`**
-
-```ts
-// returns a Bool based on whether or not the nullifier has been used before
-let isUnused = nullifier.isUnused();
-```
 
 #### Parameters
 
@@ -561,9 +594,16 @@ let isUnused = nullifier.isUnused();
 
 [`Bool`](Bool.md)
 
+**`Example`**
+
+```ts
+// returns a Bool based on whether or not the nullifier has been used before
+let isUnused = nullifier.isUnused();
+```
+
 #### Defined in
 
-[lib/nullifier.ts:121](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L121)
+[lib/nullifier.ts:121](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L121)
 
 ___
 
@@ -574,6 +614,10 @@ ___
 The key of the nullifier, which belongs to a unique message and a public key.
 Used as an index in Merkle trees.
 
+#### Returns
+
+[`Field`](Field.md)
+
 **`Example`**
 
 ```ts
@@ -581,13 +625,9 @@ Used as an index in Merkle trees.
 let key = nullifier.key();
 ```
 
-#### Returns
-
-[`Field`](Field.md)
-
 #### Defined in
 
-[lib/nullifier.ts:108](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L108)
+[lib/nullifier.ts:108](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L108)
 
 ___
 
@@ -596,13 +636,6 @@ ___
 ▸ **setUsed**(`witness`): [`Field`](Field.md)
 
 Sets the Nullifier, returns the new Merkle root.
-
-**`Example`**
-
-```ts
-// calculates the new root of the Merkle tree in which the nullifier is set to used
-let newRoot = nullifier.setUsed(witness);
-```
 
 #### Parameters
 
@@ -614,9 +647,16 @@ let newRoot = nullifier.setUsed(witness);
 
 [`Field`](Field.md)
 
+**`Example`**
+
+```ts
+// calculates the new root of the Merkle tree in which the nullifier is set to used
+let newRoot = nullifier.setUsed(witness);
+```
+
 #### Defined in
 
-[lib/nullifier.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L156)
+[lib/nullifier.ts:156](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L156)
 
 ___
 
@@ -625,14 +665,6 @@ ___
 ▸ **verify**(`message`): `void`
 
 Verifies that the Nullifier belongs to a specific message. Throws an error if the Nullifier is incorrect.
-
-**`Example`**
-
-```ts
-let nullifierMessage = [voteId, ...otherData];
-// throws an error if the nullifier is invalid or doesn't belong to this specific message
-nullifier.verify(nullifierMessage);
-```
 
 #### Parameters
 
@@ -644,9 +676,17 @@ nullifier.verify(nullifierMessage);
 
 `void`
 
+**`Example`**
+
+```ts
+let nullifierMessage = [voteId, ...otherData];
+// throws an error if the nullifier is invalid or doesn't belong to this specific message
+nullifier.verify(nullifierMessage);
+```
+
 #### Defined in
 
-[lib/nullifier.ts:47](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L47)
+[lib/nullifier.ts:47](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L47)
 
 ___
 
@@ -674,7 +714,7 @@ https://eprint.iacr.org/2022/1255.pdf chapter 3 page 14
 
 #### Defined in
 
-[lib/nullifier.ts:183](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L183)
+[lib/nullifier.ts:183](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L183)
 
 ___
 
@@ -694,13 +734,13 @@ ___
 
 #### Overrides
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -709,7 +749,7 @@ Struct({
 
 #### Defined in
 
-[lib/nullifier.ts:32](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/nullifier.ts#L32)
+[lib/nullifier.ts:32](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/nullifier.ts#L32)
 
 ___
 
@@ -729,13 +769,13 @@ A `number` representing the size of the `T` type in terms of [Field](Field.md) t
 
 #### Inherited from
 
-Struct({
+Struct(\{
   publicKey: Group,
-  public: {
+  public: \{
     nullifier: Group,
     s: Scalar,
   },
-  private: {
+  private: \{
     c: Field,
     g\_r: Group,
     h\_m\_pk\_r: Group,
@@ -744,4 +784,4 @@ Struct({
 
 #### Defined in
 
-[snarky.d.ts:146](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L146)
+[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L147)

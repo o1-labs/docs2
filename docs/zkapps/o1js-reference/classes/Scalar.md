@@ -18,7 +18,6 @@ Represents a [Scalar](Scalar.md).
 
 ### Methods
 
-- [#assertConstant](Scalar.md##assertconstant)
 - [add](Scalar.md#add)
 - [div](Scalar.md#div)
 - [isConstant](Scalar.md#isconstant)
@@ -54,12 +53,12 @@ Represents a [Scalar](Scalar.md).
 
 | Name | Type |
 | :------ | :------ |
-| `bits` | `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `bits` | `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\> |
 | `constantValue?` | `bigint` |
 
 #### Defined in
 
-[lib/scalar.ts:37](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L37)
+[lib/scalar.ts:37](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L37)
 
 ## Properties
 
@@ -69,17 +68,17 @@ Represents a [Scalar](Scalar.md).
 
 #### Defined in
 
-[lib/scalar.ts:33](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L33)
+[lib/scalar.ts:33](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L33)
 
 ___
 
 ### value
 
-• **value**: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>
+• **value**: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\>
 
 #### Defined in
 
-[lib/scalar.ts:32](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L32)
+[lib/scalar.ts:32](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L32)
 
 ___
 
@@ -89,29 +88,9 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:35](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L35)
+[lib/scalar.ts:35](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L35)
 
 ## Methods
-
-### #assertConstant
-
-▸ `Private` **#assertConstant**(`name`): `bigint`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-
-#### Returns
-
-`bigint`
-
-#### Defined in
-
-[lib/scalar.ts:115](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L115)
-
-___
 
 ### add
 
@@ -133,7 +112,7 @@ Add scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:135](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L135)
+[lib/scalar.ts:131](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L131)
 
 ___
 
@@ -158,7 +137,7 @@ Throws if the denominator is zero.
 
 #### Defined in
 
-[lib/scalar.ts:172](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L172)
+[lib/scalar.ts:168](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L168)
 
 ___
 
@@ -175,7 +154,7 @@ this is Scalar & Object
 
 #### Defined in
 
-[lib/scalar.ts:62](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L62)
+[lib/scalar.ts:62](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L62)
 
 ___
 
@@ -199,7 +178,7 @@ Multiply scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:159](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L159)
+[lib/scalar.ts:155](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L155)
 
 ___
 
@@ -217,7 +196,7 @@ Negate a scalar field element.
 
 #### Defined in
 
-[lib/scalar.ts:124](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L124)
+[lib/scalar.ts:120](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L120)
 
 ___
 
@@ -231,7 +210,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:181](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L181)
+[lib/scalar.ts:177](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L177)
 
 ___
 
@@ -255,7 +234,7 @@ Subtract scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:147](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L147)
+[lib/scalar.ts:143](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L143)
 
 ___
 
@@ -271,7 +250,7 @@ Convert this [Scalar](Scalar.md) into a bigint
 
 #### Defined in
 
-[lib/scalar.ts:90](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L90)
+[lib/scalar.ts:90](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L90)
 
 ___
 
@@ -291,7 +270,7 @@ See [FieldVar](../modules.md#fieldvar-1) for an explanation of constants vs. var
 
 #### Defined in
 
-[lib/scalar.ts:73](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L73)
+[lib/scalar.ts:73](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L73)
 
 ___
 
@@ -314,7 +293,7 @@ that can be used outside proofs.
 
 #### Defined in
 
-[lib/scalar.ts:236](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L236)
+[lib/scalar.ts:232](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L232)
 
 ___
 
@@ -340,7 +319,7 @@ is needed to represent all Scalars. However, for a random Scalar, the high bit w
 
 #### Defined in
 
-[lib/scalar.ts:198](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L198)
+[lib/scalar.ts:194](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L194)
 
 ___
 
@@ -356,7 +335,7 @@ Serializes this Scalar to a string
 
 #### Defined in
 
-[lib/scalar.ts:302](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L302)
+[lib/scalar.ts:298](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L298)
 
 ___
 
@@ -370,7 +349,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:185](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L185)
+[lib/scalar.ts:181](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L181)
 
 ___
 
@@ -388,7 +367,7 @@ Does nothing.
 
 #### Defined in
 
-[lib/scalar.ts:272](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L272)
+[lib/scalar.ts:268](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L268)
 
 ___
 
@@ -412,17 +391,13 @@ If the input is too large, it is reduced modulo the scalar field size.
 
 #### Defined in
 
-[lib/scalar.ts:50](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L50)
+[lib/scalar.ts:50](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L50)
 
 ___
 
 ### fromBigInt
 
 ▸ `Static` **fromBigInt**(`x`): [`Scalar`](Scalar.md)
-
-**`Deprecated`**
-
-use [from](Scalar.md#from)
 
 #### Parameters
 
@@ -434,9 +409,13 @@ use [from](Scalar.md#from)
 
 [`Scalar`](Scalar.md)
 
+**`Deprecated`**
+
+use [from](Scalar.md#from)
+
 #### Defined in
 
-[lib/scalar.ts:83](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L83)
+[lib/scalar.ts:83](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L83)
 
 ___
 
@@ -460,7 +439,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[lib/scalar.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L101)
+[lib/scalar.ts:101](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L101)
 
 ___
 
@@ -484,7 +463,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:254](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L254)
+[lib/scalar.ts:250](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L250)
 
 ___
 
@@ -507,7 +486,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:310](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L310)
+[lib/scalar.ts:306](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L306)
 
 ___
 
@@ -524,7 +503,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[lib/scalar.ts:109](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L109)
+[lib/scalar.ts:109](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L109)
 
 ___
 
@@ -542,7 +521,7 @@ Returns the size of this type in [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:263](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L263)
+[lib/scalar.ts:259](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L259)
 
 ___
 
@@ -560,7 +539,7 @@ Serialize a [Scalar](Scalar.md) into its auxiliary data, which are empty.
 
 #### Defined in
 
-[lib/scalar.ts:245](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L245)
+[lib/scalar.ts:241](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L241)
 
 ___
 
@@ -588,7 +567,7 @@ The fields are not constrained to be boolean.
 
 #### Defined in
 
-[lib/scalar.ts:221](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L221)
+[lib/scalar.ts:217](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L217)
 
 ___
 
@@ -611,4 +590,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:294](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/scalar.ts#L294)
+[lib/scalar.ts:290](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/scalar.ts#L290)

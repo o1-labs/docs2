@@ -49,6 +49,7 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 - [toJSON](Int64.md#tojson)
 - [toString](Int64.md#tostring)
 - [check](Int64.md#check)
+- [empty](Int64.md#empty)
 - [from](Int64.md#from)
 - [fromField](Int64.md#fromfield)
 - [fromFieldUnchecked](Int64.md#fromfieldunchecked)
@@ -82,7 +83,7 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 
 #### Defined in
 
-[lib/int.ts:788](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L788)
+[lib/int.ts:1122](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1122)
 
 ## Properties
 
@@ -96,7 +97,7 @@ BalanceChange.magnitude
 
 #### Defined in
 
-[lib/int.ts:765](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L765)
+[lib/int.ts:1099](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1099)
 
 ___
 
@@ -110,7 +111,7 @@ BalanceChange.sgn
 
 #### Defined in
 
-[lib/int.ts:766](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L766)
+[lib/int.ts:1100](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1100)
 
 ## Accessors
 
@@ -126,7 +127,7 @@ Static method to create a [Int64](Int64.md) with value `-1`.
 
 #### Defined in
 
-[lib/int.ts:863](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L863)
+[lib/int.ts:1197](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1197)
 
 ___
 
@@ -142,7 +143,7 @@ Static method to create a [Int64](Int64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:857](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L857)
+[lib/int.ts:1191](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1191)
 
 ___
 
@@ -158,7 +159,7 @@ Static method to create a [Int64](Int64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:851](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L851)
+[lib/int.ts:1185](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1185)
 
 ## Methods
 
@@ -180,7 +181,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:897](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L897)
+[lib/int.ts:1231](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1231)
 
 ___
 
@@ -207,7 +208,7 @@ Asserts that two values are equal.
 
 #### Defined in
 
-[lib/int.ts:951](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L951)
+[lib/int.ts:1285](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1285)
 
 ___
 
@@ -232,7 +233,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:922](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L922)
+[lib/int.ts:1256](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1256)
 
 ___
 
@@ -258,7 +259,7 @@ Checks if two values are equal.
 
 #### Defined in
 
-[lib/int.ts:944](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L944)
+[lib/int.ts:1278](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1278)
 
 ___
 
@@ -276,7 +277,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:840](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L840)
+[lib/int.ts:1174](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1174)
 
 ___
 
@@ -284,7 +285,7 @@ ___
 
 ▸ **isPositive**(): [`Bool`](Bool.md)
 
-Checks if the value is postive.
+Checks if the value is positive.
 
 #### Returns
 
@@ -292,7 +293,7 @@ Checks if the value is postive.
 
 #### Defined in
 
-[lib/int.ts:961](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L961)
+[lib/int.ts:1295](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1295)
 
 ___
 
@@ -317,7 +318,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:934](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L934)
+[lib/int.ts:1268](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1268)
 
 ___
 
@@ -339,7 +340,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:911](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L911)
+[lib/int.ts:1245](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1245)
 
 ___
 
@@ -357,7 +358,7 @@ Negates the value.
 
 #### Defined in
 
-[lib/int.ts:890](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L890)
+[lib/int.ts:1224](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1224)
 
 ___
 
@@ -379,7 +380,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:904](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L904)
+[lib/int.ts:1238](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1238)
 
 ___
 
@@ -397,7 +398,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -413,7 +414,7 @@ Returns the [Field](../modules.md#field-1) value.
 
 #### Defined in
 
-[lib/int.ts:870](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L870)
+[lib/int.ts:1204](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1204)
 
 ___
 
@@ -431,7 +432,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -449,7 +450,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -465,13 +466,13 @@ Turns the [Int64](Int64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:835](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L835)
+[lib/int.ts:1169](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1169)
 
 ___
 
 ### check
 
-▸ `Static` **check**<`T`\>(`this`, `v`): `void`
+▸ `Static` **check**\<`T`\>(`this`, `v`): `void`
 
 #### Type parameters
 
@@ -484,7 +485,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -496,7 +497,31 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L193)
+[lib/circuit_value.ts:199](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L199)
+
+___
+
+### empty
+
+▸ `Static` **empty**\<`T`\>(): `InstanceType`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
+
+#### Returns
+
+`InstanceType`\<`T`\>
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+
+#### Defined in
+
+[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L254)
 
 ___
 
@@ -520,7 +545,7 @@ Check the range if the argument is a constant.
 
 #### Defined in
 
-[lib/int.ts:825](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L825)
+[lib/int.ts:1159](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1159)
 
 ___
 
@@ -542,7 +567,7 @@ Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-1
 
 #### Defined in
 
-[lib/int.ts:876](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L876)
+[lib/int.ts:1210](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1210)
 
 ___
 
@@ -566,13 +591,13 @@ Does check if the [Field](../modules.md#field-1) is within range.
 
 #### Defined in
 
-[lib/int.ts:797](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L797)
+[lib/int.ts:1131](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1131)
 
 ___
 
 ### fromFields
 
-▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+▸ `Static` **fromFields**\<`T`\>(`this`, `xs`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -589,7 +614,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -597,13 +622,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L174)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -620,7 +645,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -628,13 +653,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L226)
+[lib/circuit_value.ts:232](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L232)
 
 ___
 
 ### fromObject
 
-▸ `Static` **fromObject**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromObject**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -647,11 +672,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `NonMethods`<`InstanceType`<`T`\>\> |
+| `value` | `NonMethods`\<`InstanceType`\<`T`\>\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -659,7 +684,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L95)
 
 ___
 
@@ -683,7 +708,7 @@ Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
 #### Defined in
 
-[lib/int.ts:815](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L815)
+[lib/int.ts:1149](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1149)
 
 ___
 
@@ -701,7 +726,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L102)
 
 ___
 
@@ -719,13 +744,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L124)
 
 ___
 
 ### toConstant
 
-▸ `Static` **toConstant**<`T`\>(`this`, `t`): `InstanceType`<`T`\>
+▸ `Static` **toConstant**\<`T`\>(`this`, `t`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -738,11 +763,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `t` | `InstanceType`<`T`\> |
+| `t` | `InstanceType`\<`T`\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -750,13 +775,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L213)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
 
 #### Type parameters
 
@@ -769,7 +794,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -781,13 +806,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L107)
 
 ___
 
 ### toInput
 
-▸ `Static` **toInput**<`T`\>(`this`, `v`): `HashInput`
+▸ `Static` **toInput**\<`T`\>(`this`, `v`): `HashInput`
 
 #### Type parameters
 
@@ -800,7 +825,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -812,13 +837,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L122)
+[lib/circuit_value.ts:128](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L128)
 
 ___
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`this`, `v`): `any`
+▸ `Static` **toJSON**\<`T`\>(`this`, `v`): `any`
 
 #### Type parameters
 
@@ -831,7 +856,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -843,4 +868,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L215)
+[lib/circuit_value.ts:221](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L221)

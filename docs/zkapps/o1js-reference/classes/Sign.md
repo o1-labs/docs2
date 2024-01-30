@@ -40,7 +40,7 @@
 - [toJSON](Sign.md#tojson)
 - [toString](Sign.md#tostring)
 - [check](Sign.md#check)
-- [emptyValue](Sign.md#emptyvalue)
+- [empty](Sign.md#empty)
 - [fromFields](Sign.md#fromfields)
 - [fromJSON](Sign.md#fromjson)
 - [fromObject](Sign.md#fromobject)
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:72](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L72)
+[lib/circuit_value.ts:78](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L78)
 
 ## Properties
 
@@ -79,7 +79,7 @@
 
 #### Defined in
 
-[lib/int.ts:714](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L714)
+[lib/int.ts:1048](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1048)
 
 ## Accessors
 
@@ -93,7 +93,7 @@
 
 #### Defined in
 
-[lib/int.ts:719](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L719)
+[lib/int.ts:1053](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1053)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:716](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L716)
+[lib/int.ts:1050](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1050)
 
 ## Methods
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L164)
+[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L170)
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:748](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L748)
+[lib/int.ts:1082](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1082)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:745](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L745)
+[lib/int.ts:1079](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1079)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:742](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L742)
+[lib/int.ts:1076](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1076)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:751](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L751)
+[lib/int.ts:1085](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1085)
 
 ___
 
@@ -313,27 +313,37 @@ ___
 
 #### Defined in
 
-[lib/int.ts:722](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L722)
+[lib/int.ts:1056](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1056)
 
 ___
 
-### emptyValue
+### empty
 
-▸ `Static` **emptyValue**(): [`Sign`](Sign.md)
+▸ `Static` **empty**\<`T`\>(): `InstanceType`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
 
 #### Returns
 
-[`Sign`](Sign.md)
+`InstanceType`\<`T`\>
+
+#### Overrides
+
+[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
 
 #### Defined in
 
-[lib/int.ts:726](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L726)
+[lib/int.ts:1060](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1060)
 
 ___
 
 ### fromFields
 
-▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+▸ `Static` **fromFields**\<`T`\>(`this`, `xs`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -350,7 +360,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -358,13 +368,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L174)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**\<`T`\>(`x`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -380,7 +390,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Overrides
 
@@ -388,13 +398,13 @@ ___
 
 #### Defined in
 
-[lib/int.ts:737](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L737)
+[lib/int.ts:1071](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1071)
 
 ___
 
 ### fromObject
 
-▸ `Static` **fromObject**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromObject**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -407,11 +417,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `NonMethods`<`InstanceType`<`T`\>\> |
+| `value` | `NonMethods`\<`InstanceType`\<`T`\>\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -419,7 +429,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L95)
 
 ___
 
@@ -437,7 +447,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L102)
 
 ___
 
@@ -455,13 +465,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L124)
 
 ___
 
 ### toConstant
 
-▸ `Static` **toConstant**<`T`\>(`this`, `t`): `InstanceType`<`T`\>
+▸ `Static` **toConstant**\<`T`\>(`this`, `t`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -474,11 +484,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `t` | `InstanceType`<`T`\> |
+| `t` | `InstanceType`\<`T`\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -486,13 +496,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L213)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
 
 #### Type parameters
 
@@ -505,7 +515,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -517,7 +527,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L107)
 
 ___
 
@@ -541,7 +551,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:729](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L729)
+[lib/int.ts:1063](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1063)
 
 ___
 
@@ -565,4 +575,4 @@ ___
 
 #### Defined in
 
-[lib/int.ts:732](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L732)
+[lib/int.ts:1066](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/int.ts#L1066)

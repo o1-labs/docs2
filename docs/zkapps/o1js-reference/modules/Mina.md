@@ -13,6 +13,7 @@
 - [ActionStates](Mina.md#actionstates)
 - [CurrentTransaction](Mina.md#currenttransaction)
 - [FeePayerSpec](Mina.md#feepayerspec)
+- [NetworkConstants](Mina.md#networkconstants)
 - [Transaction](Mina.md#transaction)
 
 ### Variables
@@ -36,6 +37,8 @@
 - [getAccount](Mina.md#getaccount)
 - [getActions](Mina.md#getactions)
 - [getBalance](Mina.md#getbalance)
+- [getNetworkConstants](Mina.md#getnetworkconstants)
+- [getNetworkId](Mina.md#getnetworkid)
 - [getNetworkState](Mina.md#getnetworkstate)
 - [getProofsEnabled](Mina.md#getproofsenabled)
 - [hasAccount](Mina.md#hasaccount)
@@ -60,7 +63,7 @@
 
 #### Defined in
 
-[lib/mina.ts:161](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L161)
+[lib/mina.ts:166](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L166)
 
 ___
 
@@ -80,19 +83,37 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:119](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L119)
+[lib/mina.ts:124](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L124)
 
 ___
 
 ### FeePayerSpec
 
-Ƭ **FeePayerSpec**: [`PublicKey`](../classes/Types.PublicKey.md) \| { `fee?`: `number` \| `string` \| [`UInt64`](../classes/UInt64.md) ; `memo?`: `string` ; `nonce?`: `number` ; `sender`: [`PublicKey`](../classes/Types.PublicKey.md)  } \| `undefined`
+Ƭ **FeePayerSpec**: [`PublicKey`](../classes/Types.PublicKey.md) \| \{ `fee?`: `number` \| `string` \| [`UInt64`](../classes/UInt64.md) ; `memo?`: `string` ; `nonce?`: `number` ; `sender`: [`PublicKey`](../classes/Types.PublicKey.md)  } \| `undefined`
 
 Allows you to specify information about the fee payer account and the transaction.
 
 #### Defined in
 
-[lib/mina.ts:132](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L132)
+[lib/mina.ts:137](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L137)
+
+___
+
+### NetworkConstants
+
+Ƭ **NetworkConstants**: `Object`
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `accountCreationFee` | [`UInt64`](../classes/UInt64.md) | - |
+| `genesisTimestamp` | [`UInt64`](../classes/UInt64.md) | - |
+| `slotTime` | [`UInt64`](../classes/UInt64.md) | Duration of 1 slot in milliseconds |
+
+#### Defined in
+
+[lib/mina.ts:171](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L171)
 
 ___
 
@@ -105,8 +126,8 @@ ___
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `transaction` | `ZkappCommand` | Transaction structure used to describe a state transition on the Mina blockchain. |
-| `prove` | () => `Promise`<(`undefined` \| [`Proof`](../classes/Proof.md)<[`ZkappPublicInput`](../modules.md#zkapppublicinput-1), `undefined`\>)[]\> | Generates proofs for the [Transaction](Mina.md#transaction-1). This can take some time. |
-| `send` | () => `Promise`<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> | Sends the [Transaction](Mina.md#transaction-1) to the network. |
+| `prove` | () => `Promise`\<(`undefined` \| [`Proof`](../classes/Proof.md)\<[`ZkappPublicInput`](../modules.md#zkapppublicinput-1), `undefined`\>)[]\> | Generates proofs for the [Transaction](Mina.md#transaction-1). This can take some time. |
+| `send` | () => `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> | Sends the [Transaction](Mina.md#transaction-1) to the network. |
 | `sign` | (`additionalKeys?`: [`PrivateKey`](../classes/PrivateKey.md)[]) => [`Transaction`](Mina.md#transaction-1) | Signs all [AccountUpdate](../classes/AccountUpdate.md)s included in the [Transaction](Mina.md#transaction-1) that require a signature. [AccountUpdate](../classes/AccountUpdate.md)s that require a signature can be specified with `{AccountUpdate\|SmartContract}.requireSignature()`. |
 | `toGraphqlQuery` | () => `string` | Returns the GraphQL query for the Mina daemon. |
 | `toJSON` | () => `string` | Returns a JSON representation of the [Transaction](Mina.md#transaction-1). |
@@ -114,9 +135,9 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:74](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L74)
+[lib/mina.ts:79](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L79)
 
-[lib/mina.ts:111](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L111)
+[lib/mina.ts:116](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L116)
 
 ## Variables
 
@@ -132,9 +153,9 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:74](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L74)
+[lib/mina.ts:79](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L79)
 
-[lib/mina.ts:111](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L111)
+[lib/mina.ts:116](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L116)
 
 ___
 
@@ -144,18 +165,13 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:996](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L996)
+[lib/mina.ts:1029](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1029)
 
 ## Functions
 
 ### BerkeleyQANet
 
 ▸ **BerkeleyQANet**(`graphqlEndpoint`): `Mina`
-
-**`Deprecated`**
-
-This is deprecated in favor of [Network](Mina.md#network), which is exactly the same function.
-The name `BerkeleyQANet` was misleading because it suggested that this is specific to a particular network.
 
 #### Parameters
 
@@ -167,9 +183,14 @@ The name `BerkeleyQANet` was misleading because it suggested that this is specif
 
 `Mina`
 
+**`Deprecated`**
+
+This is deprecated in favor of [Network](Mina.md#network), which is exactly the same function.
+The name `BerkeleyQANet` was misleading because it suggested that this is specific to a particular network.
+
 #### Defined in
 
-[lib/mina.ts:992](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L992)
+[lib/mina.ts:1025](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1025)
 
 ___
 
@@ -184,8 +205,8 @@ A mock Mina blockchain running locally and useful for testing.
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `accountCreationFee` | `undefined` \| `string` \| `number` |
 | › `enforceTransactionLimits` | `undefined` \| `boolean` |
+| › `networkId` | `undefined` \| `NetworkId` |
 | › `proofsEnabled` | `undefined` \| `boolean` |
 
 #### Returns
@@ -196,28 +217,29 @@ A mock Mina blockchain running locally and useful for testing.
 | :------ | :------ |
 | `accountCreationFee` | () => [`UInt64`](../classes/UInt64.md) |
 | `addAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `balance`: `string`) => `void` |
+| `getNetworkId` | () => `NetworkId` |
 | `proofsEnabled` | `boolean` |
-| `testAccounts` | { `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }[] |
+| `testAccounts` | \{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }[] |
 | `applyJsonTransaction` | (`json`: `string`) => `void` |
 | `currentSlot` | () => [`UInt32`](../classes/UInt32.md) |
-| `fetchActions` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `actionStates?`: [`ActionStates`](Mina.md#actionstates), `tokenId`: [`Field`](../classes/Field.md)) => `Promise`<{ `actions`: `string`[][] ; `hash`: `string`  }[]\> |
-| `fetchEvents` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `Promise`<`any`\> |
+| `fetchActions` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `actionStates?`: [`ActionStates`](Mina.md#actionstates), `tokenId`: [`Field`](../classes/Field.md)) => `Promise`\<\{ `actions`: `string`[][] ; `hash`: `string`  }[]\> |
+| `fetchEvents` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `Promise`\<`any`\> |
 | `getAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => [`Account`](Types.md#account-1) |
-| `getActions` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `actionStates?`: [`ActionStates`](Mina.md#actionstates), `tokenId`: [`Field`](../classes/Field.md)) => { `actions`: `string`[][] ; `hash`: `string`  }[] |
-| `getNetworkConstants` | () => { `accountCreationFee`: [`UInt64`](../classes/UInt64.md) ; `genesisTimestamp`: [`UInt64`](../classes/UInt64.md) ; `slotTime`: [`UInt64`](../classes/UInt64.md)  } |
-| `getNetworkState` | () => `PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\> |
+| `getActions` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `actionStates?`: [`ActionStates`](Mina.md#actionstates), `tokenId`: [`Field`](../classes/Field.md)) => \{ `actions`: `string`[][] ; `hash`: `string`  }[] |
+| `getNetworkConstants` | () => \{ `accountCreationFee`: [`UInt64`](../classes/UInt64.md) ; `genesisTimestamp`: [`UInt64`](../classes/UInt64.md) ; `slotTime`: [`UInt64`](../classes/UInt64.md)  } |
+| `getNetworkState` | () => `PreconditionBaseTypes`\<\{ `blockchainLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\> |
 | `hasAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `boolean` |
 | `incrementGlobalSlot` | (`increment`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
-| `sendTransaction` | (`txn`: [`Transaction`](Mina.md#transaction-1)) => `Promise`<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> |
+| `sendTransaction` | (`txn`: [`Transaction`](Mina.md#transaction-1)) => `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> |
 | `setBlockchainLength` | (`height`: [`UInt32`](../classes/UInt32.md)) => `void` |
 | `setGlobalSlot` | (`slot`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
 | `setProofsEnabled` | (`newProofsEnabled`: `boolean`) => `void` |
 | `setTotalCurrency` | (`currency`: [`UInt64`](../classes/UInt64.md)) => `void` |
-| `transaction` | (`sender`: `DeprecatedFeePayerSpec`, `f`: () => `void`) => `Promise`<[`Transaction`](Mina.md#transaction-1)\> |
+| `transaction` | (`sender`: `DeprecatedFeePayerSpec`, `f`: () => `void`) => `Promise`\<[`Transaction`](Mina.md#transaction-1)\> |
 
 #### Defined in
 
-[lib/mina.ts:376](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L376)
+[lib/mina.ts:392](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L392)
 
 ___
 
@@ -239,18 +261,19 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:679](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L679)
+[lib/mina.ts:698](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L698)
 
-▸ **Network**(`endpoints`): `Mina`
+▸ **Network**(`options`): `Mina`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `endpoints` | `Object` |
-| `endpoints.archive?` | `string` \| `string`[] |
-| `endpoints.lightnetAccountManager?` | `string` |
-| `endpoints.mina` | `string` \| `string`[] |
+| `options` | `Object` |
+| `options.archive?` | `string` \| `string`[] |
+| `options.lightnetAccountManager?` | `string` |
+| `options.mina` | `string` \| `string`[] |
+| `options.networkId?` | `NetworkId` |
 
 #### Returns
 
@@ -258,7 +281,7 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:680](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L680)
+[lib/mina.ts:699](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L699)
 
 ___
 
@@ -272,9 +295,13 @@ Returns the default account creation fee.
 
 [`UInt64`](../classes/UInt64.md)
 
+**`Deprecated`**
+
+use [getNetworkConstants](Mina.md#getnetworkconstants)
+
 #### Defined in
 
-[lib/mina.ts:1197](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1197)
+[lib/mina.ts:1249](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1249)
 
 ___
 
@@ -300,7 +327,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:174](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L174)
+[lib/mina.ts:188](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L188)
 
 ___
 
@@ -316,7 +343,7 @@ The current slot number, according to the active Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1162](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1162)
+[lib/mina.ts:1199](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1199)
 
 ___
 
@@ -330,13 +357,13 @@ ___
 
 #### Defined in
 
-[lib/global-context.ts:6](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/global-context.ts#L6)
+[lib/global-context.ts:6](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/global-context.ts#L6)
 
 ___
 
 ### faucet
 
-▸ **faucet**(`pub`, `network?`): `Promise`<`void`\>
+▸ **faucet**(`pub`, `network?`): `Promise`\<`void`\>
 
 Requests the [testnet faucet](https://faucet.minaprotocol.com/api/v1/faucet) to fund a public key.
 
@@ -349,17 +376,17 @@ Requests the [testnet faucet](https://faucet.minaprotocol.com/api/v1/faucet) to 
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[lib/mina.ts:1577](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1577)
+[lib/mina.ts:1630](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1630)
 
 ___
 
 ### fetchActions
 
-▸ **fetchActions**(`publicKey`, `actionStates?`, `tokenId?`): `Promise`<{ `actions`: `string`[][] ; `hash`: `string`  }[] \| { `error`: { `statusCode`: `number` = 404; `statusText`: `string`  }  }\>
+▸ **fetchActions**(`publicKey`, `actionStates?`, `tokenId?`): `Promise`\<\{ `actions`: `string`[][] ; `hash`: `string`  }[] \| \{ `error`: \{ `statusCode`: `number` = 404; `statusText`: `string`  }  }\>
 
 #### Parameters
 
@@ -371,19 +398,19 @@ ___
 
 #### Returns
 
-`Promise`<{ `actions`: `string`[][] ; `hash`: `string`  }[] \| { `error`: { `statusCode`: `number` = 404; `statusText`: `string`  }  }\>
+`Promise`\<\{ `actions`: `string`[][] ; `hash`: `string`  }[] \| \{ `error`: \{ `statusCode`: `number` = 404; `statusText`: `string`  }  }\>
 
 A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1219](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1219)
+[lib/mina.ts:1271](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1271)
 
 ___
 
 ### fetchEvents
 
-▸ **fetchEvents**(`publicKey`, `tokenId`, `filterOptions?`): `Promise`<{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](../classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: { `data`: `string`[] ; `transactionInfo`: { `hash`: `string` ; `memo`: `string` ; `status`: `string`  }  }[] ; `globalSlot`: [`UInt32`](../classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash }[]\>
+▸ **fetchEvents**(`publicKey`, `tokenId`, `filterOptions?`): `Promise`\<\{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](../classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: \{ `data`: `string`[] ; `transactionInfo`: \{ `hash`: `string` ; `memo`: `string` ; `status`: `string`  }  }[] ; `globalSlot`: [`UInt32`](../classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash }[]\>
 
 #### Parameters
 
@@ -395,13 +422,13 @@ ___
 
 #### Returns
 
-`Promise`<{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](../classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: { `data`: `string`[] ; `transactionInfo`: { `hash`: `string` ; `memo`: `string` ; `status`: `string`  }  }[] ; `globalSlot`: [`UInt32`](../classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash }[]\>
+`Promise`\<\{ `blockHash`: `string` = event.blockInfo.stateHash; `blockHeight`: [`UInt32`](../classes/UInt32.md) ; `chainStatus`: `string` = event.blockInfo.chainStatus; `events`: \{ `data`: `string`[] ; `transactionInfo`: \{ `hash`: `string` ; `memo`: `string` ; `status`: `string`  }  }[] ; `globalSlot`: [`UInt32`](../classes/UInt32.md) ; `parentBlockHash`: `string` = event.blockInfo.parentHash }[]\>
 
 A list of emitted events associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1208](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1208)
+[lib/mina.ts:1260](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1260)
 
 ___
 
@@ -427,7 +454,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1534](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1534)
+[lib/mina.ts:1587](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1587)
 
 ___
 
@@ -450,13 +477,13 @@ The account data associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1169](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1169)
+[lib/mina.ts:1206](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1206)
 
 ___
 
 ### getActions
 
-▸ **getActions**(`publicKey`, `actionStates?`, `tokenId?`): { `actions`: `string`[][] ; `hash`: `string`  }[]
+▸ **getActions**(`publicKey`, `actionStates?`, `tokenId?`): \{ `actions`: `string`[][] ; `hash`: `string`  }[]
 
 #### Parameters
 
@@ -468,13 +495,13 @@ ___
 
 #### Returns
 
-{ `actions`: `string`[][] ; `hash`: `string`  }[]
+\{ `actions`: `string`[][] ; `hash`: `string`  }[]
 
 A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1230](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1230)
+[lib/mina.ts:1282](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1282)
 
 ___
 
@@ -497,23 +524,55 @@ The balance associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1190](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1190)
+[lib/mina.ts:1241](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1241)
+
+___
+
+### getNetworkConstants
+
+▸ **getNetworkConstants**(): [`NetworkConstants`](Mina.md#networkconstants)
+
+#### Returns
+
+[`NetworkConstants`](Mina.md#networkconstants)
+
+Data associated with the current Mina network constants.
+
+#### Defined in
+
+[lib/mina.ts:1227](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1227)
+
+___
+
+### getNetworkId
+
+▸ **getNetworkId**(): `NetworkId`
+
+#### Returns
+
+`NetworkId`
+
+The current Mina network ID.
+
+#### Defined in
+
+[lib/mina.ts:1220](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1220)
 
 ___
 
 ### getNetworkState
 
-▸ **getNetworkState**(): `PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\>
+▸ **getNetworkState**(): `PreconditionBaseTypes`\<\{ `blockchainLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\>
 
 #### Returns
 
-`PreconditionBaseTypes`<{ `blockchainLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: { `epochLength`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: { `hash`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: { `isSome`: [`Bool`](../classes/Bool.md) ; `value`: { `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\>
+`PreconditionBaseTypes`\<\{ `blockchainLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\>
 
 Data associated with the current state of the Mina network.
 
 #### Defined in
 
-[lib/mina.ts:1183](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1183)
+[lib/mina.ts:1234](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1234)
 
 ___
 
@@ -527,7 +586,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1238](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1238)
+[lib/mina.ts:1290](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1290)
 
 ___
 
@@ -550,13 +609,13 @@ Checks if an account exists within the ledger.
 
 #### Defined in
 
-[lib/mina.ts:1176](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1176)
+[lib/mina.ts:1213](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1213)
 
 ___
 
 ### sendTransaction
 
-▸ **sendTransaction**(`txn`): `Promise`<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
+▸ **sendTransaction**(`txn`): `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
 
 #### Parameters
 
@@ -566,11 +625,11 @@ ___
 
 #### Returns
 
-`Promise`<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
+`Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
 
 #### Defined in
 
-[lib/mina.ts:1201](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1201)
+[lib/mina.ts:1253](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1253)
 
 ___
 
@@ -588,7 +647,7 @@ Throws an error if not inside a transaction, or the sender wasn't passed in.
 
 #### Defined in
 
-[lib/mina.ts:1138](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1138)
+[lib/mina.ts:1175](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1175)
 
 ___
 
@@ -610,13 +669,13 @@ Set the currently used Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1078](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1078)
+[lib/mina.ts:1115](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1115)
 
 ___
 
 ### transaction
 
-▸ **transaction**(`sender`, `f`): `Promise`<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
 
 Construct a smart contract transaction. Within the callback passed to this function,
 you can call into the methods of smart contracts.
@@ -637,15 +696,15 @@ let tx = await Mina.transaction(sender, () => {
 
 #### Returns
 
-`Promise`<[`Transaction`](Mina.md#transaction-1)\>
+`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
 
 A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:1095](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1095)
+[lib/mina.ts:1132](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1132)
 
-▸ **transaction**(`f`): `Promise`<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
 
 #### Parameters
 
@@ -655,13 +714,24 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Returns
 
-`Promise`<[`Transaction`](Mina.md#transaction-1)\>
+`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
 
 #### Defined in
 
-[lib/mina.ts:1096](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1096)
+[lib/mina.ts:1133](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1133)
 
-▸ **transaction**(`sender`, `f`): `Promise`<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | `DeprecatedFeePayerSpec` |
+| `f` | () => `void` |
+
+#### Returns
+
+`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
 
 **`Deprecated`**
 
@@ -676,26 +746,15 @@ Mina.transaction(privateKey, ...);
 Mina.transaction({ feePayerKey: privateKey }, ...);
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `sender` | `DeprecatedFeePayerSpec` |
-| `f` | () => `void` |
-
-#### Returns
-
-`Promise`<[`Transaction`](Mina.md#transaction-1)\>
-
 #### Defined in
 
-[lib/mina.ts:1109](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1109)
+[lib/mina.ts:1146](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1146)
 
 ___
 
 ### waitForFunding
 
-▸ **waitForFunding**(`address`): `Promise`<`void`\>
+▸ **waitForFunding**(`address`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -705,8 +764,8 @@ ___
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[lib/mina.ts:1553](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L1553)
+[lib/mina.ts:1606](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L1606)

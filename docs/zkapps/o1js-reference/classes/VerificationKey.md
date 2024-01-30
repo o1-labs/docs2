@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
+- \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
 
   ↳ **`VerificationKey`**
 
@@ -20,6 +20,7 @@
 - [hash](VerificationKey.md#hash)
 - [\_isStruct](VerificationKey.md#_isstruct)
 - [check](VerificationKey.md#check)
+- [empty](VerificationKey.md#empty)
 - [fromFields](VerificationKey.md#fromfields)
 - [fromJSON](VerificationKey.md#fromjson)
 - [toAuxiliary](VerificationKey.md#toauxiliary)
@@ -47,16 +48,16 @@
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:381](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L381)
 
 ## Properties
 
@@ -66,16 +67,16 @@ Struct({
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).data
 
 #### Defined in
 
-[lib/zkapp.ts:1488](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/zkapp.ts#L1488)
+[lib/proof_system.ts:493](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/proof_system.ts#L493)
 
 ___
 
@@ -85,16 +86,16 @@ ___
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).hash
 
 #### Defined in
 
-[lib/zkapp.ts:1488](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/zkapp.ts#L1488)
+[lib/proof_system.ts:493](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/proof_system.ts#L493)
 
 ___
 
@@ -104,22 +105,22 @@ ___
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).\_isStruct
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit_value.ts:381](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L381)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`value`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `void`
+▪ `Static` **check**: (`value`: \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `void`
 
 #### Type declaration
 
@@ -144,22 +145,54 @@ For instance, calling check function on the type [Bool](Bool.md) asserts that th
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).check
 
 #### Defined in
 
-[snarky.d.ts:97](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L97)
+[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L98)
+
+___
+
+### empty
+
+▪ `Static` **empty**: () => \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
+
+#### Type declaration
+
+▸ (): `Object`
+
+##### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `data` | `string` |
+| `hash` | [`Field`](Field.md) |
+
+#### Inherited from
+
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
+    return data;
+  },
+}).empty
+
+#### Defined in
+
+[lib/circuit_value.ts:390](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L390)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
+▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
 
 #### Type declaration
 
@@ -189,22 +222,22 @@ An element of type `T` generated from the given provable and "auxiliary" data.
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).fromFields
 
 #### Defined in
 
-[snarky.d.ts:78](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L78)
+[snarky.d.ts:79](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L79)
 
 ___
 
 ### fromJSON
 
-▪ `Static` **fromJSON**: (`x`: `string`) => { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
+▪ `Static` **fromJSON**: (`x`: `string`) => \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }
 
 #### Type declaration
 
@@ -227,22 +260,22 @@ ___
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).fromJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L374)
+[lib/circuit_value.ts:389](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L389)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`value?`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `any`[]
 
 #### Type declaration
 
@@ -266,22 +299,22 @@ An array of any type describing how this `T` element is made up of "auxiliary" (
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:66](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L66)
+[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L67)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => [`Field`](Field.md)[]
 
 #### Type declaration
 
@@ -305,22 +338,22 @@ A [Field](Field.md) array describing how this `T` element is made up of [Field](
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).toFields
 
 #### Defined in
 
-[snarky.d.ts:57](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L57)
+[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L58)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
 
 #### Type declaration
 
@@ -345,22 +378,22 @@ ___
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L369)
+[lib/circuit_value.ts:384](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L384)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: { `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `string`
+▪ `Static` **toJSON**: (`x`: \{ `data`: `string` = String; `hash`: [`Field`](Field.md) = Field }) => `string`
 
 #### Type declaration
 
@@ -380,16 +413,16 @@ ___
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L373)
+[lib/circuit_value.ts:388](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L388)
 
 ## Methods
 
@@ -409,13 +442,13 @@ A `number` representing the size of the `T` type in terms of [Field](Field.md) t
 
 #### Inherited from
 
-Struct({
-  ...provable({ data: String, hash: Field }),
-  toJSON({ data }: { data: string }) {
+Struct(\{
+  ...provable(\{ data: String, hash: Field }),
+  toJSON(\{ data }: \{ data: string }) \{
     return data;
   },
 }).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:87](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L87)
+[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L88)

@@ -1,13 +1,13 @@
-[o1js](../README.md) / [Exports](../modules.md) / Unconstrained
+[o1js](../README.md) / [Modules](../modules.md) / Unconstrained
 
-# Class: Unconstrained<T\>
+# Class: Unconstrained\<T\>
 
 Container which holds an unconstrained value. This can be used to pass values
 between the out-of-circuit blocks in provable code.
 
 Invariants:
-- An `Unconstrained`'s value can be accessed only in auxiliary contexts.
-- An `Unconstrained` container can be empty when compiling, but never empty when running as the prover.
+- An `Unconstrained`'s value can only be accessed in auxiliary contexts.
+- An `Unconstrained` can be empty when compiling, but never empty when running as the prover.
   (there is no way to create an empty `Unconstrained` in the prover)
 
 **`Example`**
@@ -59,7 +59,7 @@ class MyContract extends SmartContract {
 
 ### constructor
 
-• `Private` **new Unconstrained**<`T`\>(`isSome`, `value?`)
+• `Private` **new Unconstrained**\<`T`\>(`isSome`, `value?`)
 
 #### Type parameters
 
@@ -76,27 +76,27 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit_value.ts:514](https://github.com/o1-labs/o1js/blob/9d34c7fcf/src/lib/circuit_value.ts#L514)
+[lib/circuit_value.ts:514](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L514)
 
 ## Properties
 
 ### option
 
-• `Private` **option**: { `isSome`: ``true`` ; `value`: `T`  } \| { `isSome`: ``false`` ; `value`: `undefined`  }
+• `Private` **option**: \{ `isSome`: ``true`` ; `value`: `T`  } \| \{ `isSome`: ``false`` ; `value`: `undefined`  }
 
 #### Defined in
 
-[lib/circuit_value.ts:510](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L510)
+[lib/circuit_value.ts:510](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L510)
 
 ___
 
 ### provable
 
-▪ `Static` **provable**: [`Provable`](../modules.md#provable-1)<[`Unconstrained`](Unconstrained.md)<`any`\>\>
+▪ `Static` **provable**: [`Provable`](../modules.md#provable-1)\<[`Unconstrained`](Unconstrained.md)\<`any`\>\>
 
 #### Defined in
 
-[lib/circuit_value.ts:558](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L558)
+[lib/circuit_value.ts:558](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L558)
 
 ## Methods
 
@@ -114,7 +114,7 @@ Note: Can only be called outside provable code.
 
 #### Defined in
 
-[lib/circuit_value.ts:523](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L523)
+[lib/circuit_value.ts:523](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L523)
 
 ___
 
@@ -136,13 +136,13 @@ Modify the unconstrained value.
 
 #### Defined in
 
-[lib/circuit_value.ts:537](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L537)
+[lib/circuit_value.ts:537](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L537)
 
 ___
 
 ### from
 
-▸ `Static` **from**<`T`\>(`value`): [`Unconstrained`](Unconstrained.md)<`T`\>
+▸ `Static` **from**\<`T`\>(`value`): [`Unconstrained`](Unconstrained.md)\<`T`\>
 
 Create an `Unconstrained` with the given `value`.
 
@@ -160,17 +160,17 @@ Create an `Unconstrained` with the given `value`.
 
 #### Returns
 
-[`Unconstrained`](Unconstrained.md)<`T`\>
+[`Unconstrained`](Unconstrained.md)\<`T`\>
 
 #### Defined in
 
-[lib/circuit_value.ts:544](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L544)
+[lib/circuit_value.ts:544](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L544)
 
 ___
 
 ### witness
 
-▸ `Static` **witness**<`T`\>(`compute`): [`Unconstrained`](Unconstrained.md)<`T`\>
+▸ `Static` **witness**\<`T`\>(`compute`): [`Unconstrained`](Unconstrained.md)\<`T`\>
 
 Create an `Unconstrained` from a witness computation.
 
@@ -188,8 +188,8 @@ Create an `Unconstrained` from a witness computation.
 
 #### Returns
 
-[`Unconstrained`](Unconstrained.md)<`T`\>
+[`Unconstrained`](Unconstrained.md)\<`T`\>
 
 #### Defined in
 
-[lib/circuit_value.ts:551](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/circuit_value.ts#L551)
+[lib/circuit_value.ts:551](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/circuit_value.ts#L551)

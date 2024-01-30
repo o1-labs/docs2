@@ -152,8 +152,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/EcdsaSignature',
+                  label: 'EcdsaSignature',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignCurve',
+                  label: 'ForeignCurve',
                 },
                 {
                   type: 'doc',
@@ -262,6 +272,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/UInt8',
+                  label: 'UInt8',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Unconstrained',
                   label: 'Unconstrained',
                 },
@@ -302,6 +317,16 @@ module.exports = {
               type: 'category',
               label: 'Modules',
               items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Bytes',
+                  label: 'Bytes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Crypto',
+                  label: 'Crypto',
+                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Encoding',

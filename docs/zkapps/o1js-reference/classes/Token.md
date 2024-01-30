@@ -39,7 +39,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:632](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L632)
+[lib/account_update.ts:632](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L632)
 
 ## Properties
 
@@ -49,7 +49,7 @@ use `TokenId` instead of `Token.Id` and `TokenId.derive()` instead of `Token.get
 
 #### Defined in
 
-[lib/account_update.ts:629](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L629)
+[lib/account_update.ts:629](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L629)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:630](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L630)
+[lib/account_update.ts:630](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L630)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:631](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L631)
+[lib/account_update.ts:631](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L631)
 
 ___
 
@@ -83,12 +83,12 @@ ___
 | :------ | :------ |
 | `check` | (`x`: [`Field`](Field.md)) => `void` |
 | `default` | [`Field`](Field.md) |
+| `empty` | () => [`Field`](Field.md) |
 | `fromFields` | (`x`: [`Field`](Field.md)[], `aux`: `any`[]) => [`Field`](Field.md) |
 | `toAuxiliary` | (`x?`: [`Field`](Field.md)) => `any`[] |
 | `toFields` | (`x`: [`Field`](Field.md)) => [`Field`](Field.md)[] |
-| `toInput` | (`x`: [`Field`](Field.md)) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
+| `toInput` | (`x`: [`Field`](Field.md)) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  } |
 | `derive` | (`tokenOwner`: [`PublicKey`](Types.PublicKey.md), `parentTokenId`: [`Field`](Field.md)) => [`Field`](Field.md) |
-| `emptyValue` | () => [`Field`](Field.md) |
 | `fromBase58` | (`base58`: `string`) => [`Field`](Field.md) |
 | `fromJSON` | (`x`: `string`) => [`Field`](Field.md) |
 | `sizeInFields` | () => `number` |
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:623](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L623)
+[lib/account_update.ts:623](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L623)
 
 ## Methods
 
@@ -118,4 +118,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:625](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L625)
+[lib/account_update.ts:625](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/account_update.ts#L625)

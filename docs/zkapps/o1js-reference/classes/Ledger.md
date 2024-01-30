@@ -44,7 +44,7 @@ Adds an account and its balance to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:615](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L615)
+[snarky.d.ts:596](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L596)
 
 ___
 
@@ -68,7 +68,7 @@ Applies a JSON transaction to the ledger.
 
 #### Defined in
 
-[snarky.d.ts:620](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L620)
+[snarky.d.ts:601](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L601)
 
 ___
 
@@ -91,7 +91,7 @@ Returns an account.
 
 #### Defined in
 
-[snarky.d.ts:629](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L629)
+[snarky.d.ts:610](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L610)
 
 ___
 
@@ -107,4 +107,4 @@ Creates a fresh ledger.
 
 #### Defined in
 
-[snarky.d.ts:610](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L610)
+[snarky.d.ts:591](https://github.com/o1-labs/o1js/blob/c19ea70/src/snarky.d.ts#L591)

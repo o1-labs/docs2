@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[lib/mina.ts:69](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L69)
+[lib/mina.ts:74](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L74)
 
 ## Methods
 
@@ -37,13 +37,13 @@
 
 #### Defined in
 
-[lib/mina.ts:71](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L71)
+[lib/mina.ts:76](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L76)
 
 ___
 
 ### wait
 
-▸ **wait**(`options?`): `Promise`<`void`\>
+▸ **wait**(`options?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -55,8 +55,8 @@ ___
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[lib/mina.ts:70](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/mina.ts#L70)
+[lib/mina.ts:75](https://github.com/o1-labs/o1js/blob/c19ea70/src/lib/mina.ts#L75)
