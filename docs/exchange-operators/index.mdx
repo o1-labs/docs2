@@ -1,0 +1,40 @@
+---
+title: Exchange Operators
+hide_title: true
+description: Learn how to integrate Mina with an exchange
+keywords:
+  - historical data
+  - blockchain integration
+  - explorer
+  - wallet
+  - archive node
+  - graphQL
+  - rosetta
+---
+
+# Introduction
+
+Exchange operators are network participants who run mina nodes on a Mina network, but usually don't produce blocks.
+
+Instead of running Mina Node and Mina Archive, we recommend to run Rosetta API, designed specifically for exchange operators needs.
+
+It implements an [open-source blockchain-agnostic specification](https://docs.cloud.coinbase.com/rosetta/docs/welcome) designed by Coinbase.
+
+## Rosetta API
+
+This section describes how to install, run and use the Rosetta API instance connected to the Mina network
+
+- [Running with Docker](/exchange-operators/rosetta/run-with-docker) - How to install Rosetta from Docker image
+- [Building from source](/exchange-operators/rosetta/build-from-sources) - How to build and run Rosetta from source code
+- [Sending requests](/exchange-operators/rosetta/send-requests) - How to send request to a Rosetta API
+- [Code Samples](/exchange-operators/rosetta/samples) - Sample code for Rosetta integration integration
+    - [Requests and Responses](/exchange-operators/rosetta/samples/requests) - Implementing basic requests
+    - [Offline Signer Tool](/exchange-operators/rosetta/samples/using-signer) - Generating keys and signing transactions offline
+    - [Scanning Blocks](/exchange-operators/rosetta/samples/scan-blocks) - Example implementation of block scanning
+    - [Tracking Deposits](/exchange-operators/rosetta/samples/track-deposits) - Example implementation of deposit tracking
+    - [Sending Transactions](/exchange-operators/rosetta/samples/send-transactions) - Example implementation of withdrawal flow
+
+
+## FAQ
+
+Answers to the most frequently asked questions about listing Mina can be found in [FAQ Listing Mina](/exchange-operators/faq) section
