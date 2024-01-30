@@ -506,6 +506,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Exchange Operators',
+      link: {
+        type: 'doc',
+        id: 'exchange-operators/index'
+      },
       items: [
         {
           type: 'category',
@@ -514,6 +518,7 @@ module.exports = {
             type: 'doc',
             id: 'exchange-operators/rosetta/index',
           },
+          collapsible: false,
           items: [
             'exchange-operators/rosetta/run-with-docker',
             'exchange-operators/rosetta/build-from-sources',
