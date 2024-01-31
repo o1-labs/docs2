@@ -17,7 +17,7 @@ Mina is a succinct blockchain, and as a result, consensus nodes store only the r
 
 While prior transaction history is not required to prove the current state is valid (this is handled by using a recursive zero-knowledge proof), many applications need to access prior transaction history. Examples include block explorers and wallets.
 
-To access historic data users may optionally run an [archive node](/node-operators/archive-nodes/getting-started) a process stores a summary of each block seen in a Postgres database. The archive node is requires a `mina-archive` running that connects to a running `mina daemon` and a [PostgreSQL](https://www.postgresql.org/) database.
+You can optionally run an [archive node](/node-operators/archive-nodes/getting-started) to access historic data. The archive node process stores a summary of each block in a Postgres database. The archive node requires a running mina-archive daemon that connects to a running mina daemon and a [PostgreSQL](https://www.postgresql.org/) database.
 
 ## Data and History
 
