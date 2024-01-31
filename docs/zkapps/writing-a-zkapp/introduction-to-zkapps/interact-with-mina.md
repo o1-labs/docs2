@@ -19,6 +19,12 @@ keywords:
   - authorization types
 ---
 
+:::info
+
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will be gradually lifted after the Mainnet upgrade.
+
+:::
+
 # Interacting With Mina
 
 Now that you know about writing zkApp methods, it's time to learn how users can call these methods. 
