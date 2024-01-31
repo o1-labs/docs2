@@ -20,9 +20,10 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
 
 :::
+
 
 # Tutorial 2: Private Inputs and Hash Functions
 
@@ -38,7 +39,7 @@ In this tutorial, you build a smart contract with a piece of private state that 
 
 ## Prerequisites
 
-This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.20.1`.
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -60,7 +61,7 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
     svelte
     nuxt
     empty
-  > none
+  ❯ none
   ```
   The expected output is:
 
@@ -82,7 +83,7 @@ Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisite
     git push -u origin main
   ```
   
-  The `zk project` command creates the `02-private-inputs-and-hash-functions` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest Javascript testing framework. 
+  The `zk project` command creates the `02-private-inputs-and-hash-functions` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework. 
 
 1. Change into the `02-private-inputs-and-hash-functions` directory and list the contents:
 
@@ -197,7 +198,7 @@ The `initState()` method is intended to run once to set up the initial state on 
 ```ts ignore
 ...
   5
-  6   @method async initState(salt: Field, firstSecret: Field) {
+  6   @method initState(salt: Field, firstSecret: Field) {
   7     this.x.set(Poseidon.hash([ salt, firstSecret ]));
   8   }
 ```
@@ -213,7 +214,7 @@ This method updates the state:
 ```ts ignore
 ...
   9
- 10   @method async incrementSecret(salt: Field, secret: Field) {
+ 10   @method incrementSecret(salt: Field, secret: Field) {
  11     const x = this.x.get();
  12     this.x.requireEquals(x);
  13
@@ -255,10 +256,10 @@ The smart contract initialization this time is:
 ...
  24 const salt = Field.random();
 ...
- 28 const deployTxn = await Mina.transaction(deployerAccount, async () => {
+ 28 const deployTxn = await Mina.transaction(deployerAccount, () => {
  29   AccountUpdate.fundNewAccount(deployerAccount);
- 30   await zkAppInstance.deploy();
- 31   await zkAppInstance.initState(salt, Field(750));
+ 30   zkAppInstance.deploy();
+ 31   zkAppInstance.initState(salt, Field(750));
  32 });
  33 await deployTxn.prove();
 ...
@@ -270,8 +271,8 @@ This code creates a user transaction to update the on-chain state:
 
 ```ts
 ...
- 42 const txn1 = await Mina.transaction(senderAccount, async () => {
- 43   await zkAppInstance.incrementSecret(salt, Field(750));
+ 42 const txn1 = await Mina.transaction(senderAccount, () => {
+ 43   zkAppInstance.incrementSecret(salt, Field(750));
  44 });
 ...
 ```

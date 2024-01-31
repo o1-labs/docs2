@@ -17,7 +17,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
 
 :::
 
@@ -135,7 +135,7 @@ To better understand how to leverage permissions to make your smart contract mor
 
 Some smart contracts manage state and token, such as the native MINA token. To prevent malicious actors from withdrawing all funds, use permissions to secure them.
 
-Consider the following `UnsecureContract` smart contract. A similar [simple-zkapp-payment.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/simple-zkapp-payment.ts) contract is also provided in the `examples` folder:
+Consider the following `UnsecureContract` smart contract. A similar [simple_zkapp_payment.ts](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/simple_zkapp_payment.ts) contract is also provided in the `examples` folder:
 
 ```ts
 class UnsecureContract extends SmartContract {
@@ -147,7 +147,7 @@ class UnsecureContract extends SmartContract {
     });
   }
 
-  @method async withdraw(amount: UInt64) {
+  @method withdraw(amount: UInt64) {
     this.send({ to: this.sender, amount });
   }
 }
@@ -160,9 +160,9 @@ But first, notice that the permissions specified in the `init()` method have set
 Take a look at the following malicious transaction that abuses this permission:
 
 ```ts
-tx = await Mina.transaction(account1Address, async () => {
+tx = await Mina.transaction(account1Address, () => {
   let withdrawal = AccountUpdate.create(zkappAddress);
-  await withdrawal.send({ to: account1Address, amount: 1e9 });
+  withdrawal.send({ to: account1Address, amount: 1e9 });
 });
 await tx.sign([account1Key]).send();
 ```
@@ -184,9 +184,9 @@ If you try to run the same transaction as before, the manual account update fail
 You can slightly modify the withdraw transaction to include a valid signature by adding `.requireSignature()` on the withdrawal account update and providing the private key of the smart contract account to `tx.send([zkappKey])`:
 
 ```ts
-tx = await Mina.transaction(account1Address, async () => {
+tx = await Mina.transaction(account1Address, () => {
   let withdrawal = AccountUpdate.create(zkappAddress);
-  await withdrawal.send({ to: account1Address, amount: 1e9 });
+  withdrawal.send({ to: account1Address, amount: 1e9 });
   withdrawal.requireSignature();
 });
 await tx.sign([account1Key, zkappKey]).send();
@@ -227,9 +227,9 @@ The contract already has an `@method` that you can use: `withdraw()`.
 To create a withdrawal transaction that contains a valid proof:
 
 ```ts
-tx = await Mina.transaction(account1Address, async () => {
+tx = await Mina.transaction(account1Address, () => {
   let zkapp = new UnsecureContract(zkappAddress);
-  await zkapp.withdraw(UInt64.from(1e9));
+  zkapp.withdraw(UInt64.from(1e9));
 });
 await tx.prove();
 await tx.sign([account1Key, zkappKey]).send();
@@ -354,7 +354,7 @@ class UpgradeabilityImpossible extends SmartContract {
     });
   }
 
-  @method async updateVerificationKey(vk: VerificationKey) {
+  @method updateVerificationKey(vk: VerificationKey) {
     this.account.verificationKey.set(vk);
   }
 }
@@ -365,8 +365,8 @@ But since `setVerificationKey` permission is specified to be `impossibleDuringCu
 
 ```ts
 console.log('try upgrading vk');
-tx = await Mina.transaction(feePayer, async () => {
-  await zkapp.updateVerificationKey(newVerificationKey);
+tx = await Mina.transaction(feePayer, () => {
+  zkapp.updateVerificationKey(newVerificationKey);
 });
 await tx.prove();
 await tx.sign([feePayerKey, zkappKey]).send();
@@ -388,7 +388,7 @@ Modify the method `updateVerificationKey` to do some checks before you can updat
 For now, just check that you can provide an `x` that is greater than or equal to 5. If this check succeeds, then update the verification key.
 
 ```ts
-@method async updateVerificationKey(vk: VerificationKey, x: Field) {
+@method updateVerificationKey(vk: VerificationKey, x: Field) {
   let y = Field(5);
   x.gte(y).assertTrue();
 
@@ -409,8 +409,8 @@ Now when you invoke the `updateVerificationKey` method, the transaction generate
 
 ```ts
 console.log('try upgrading vk');
-tx = await Mina.transaction(feePayer, async () => {
-  await zkapp.updateVerificationKey(newVerificationKey);
+tx = await Mina.transaction(feePayer, () => {
+  zkapp.updateVerificationKey(newVerificationKey);
 });
 await tx.prove();
 await tx.sign([feePayerKey, zkappKey]).send();

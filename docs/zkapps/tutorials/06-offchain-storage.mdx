@@ -18,7 +18,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
 
 :::
 
@@ -108,8 +108,8 @@ This project implements a Merkle tree where:
 
 This tutorial has been tested with:
 
-- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.11.2`
-- [o1js](https://www.npmjs.com/package/o1js) version `0.12.1`
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.11.2
+- [o1js](https://www.npmjs.com/package/o1js) version 0.12.1
 
 ## Create the project
 
@@ -128,7 +128,7 @@ This tutorial has been tested with:
     svelte
     nuxt
     empty
-  > none
+  ❯ none
   ```
 
 ## Project structure
@@ -183,7 +183,7 @@ When you start this experimental local storage server, a `database.json` file is
 In a new terminal window, run this command from the root directory of your project:
 
 ```sh
-$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
+$ node node_modules/experimental-offchain-zkapp-storage/build/src/storageServer.js
 ```
 
 ## Implement the smart contract
@@ -212,7 +212,7 @@ import {
 import {
   OffChainStorage,
   MerkleWitness8,
-} from 'experimental-zkapp-offchain-storage';
+} from 'experimental-offchain-zkapp-storage';
 ...
 ```
 
@@ -245,7 +245,7 @@ export class NumberTreeContract extends SmartContract {
     });
   }
 
-  @method async initState(storageServerPublicKey: PublicKey) {
+  @method initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
     this.storageNumber.set(Field(0));
 
@@ -271,7 +271,7 @@ Initialize the zkApp state for these three values by setting:
 
 ```ts ignore
 ...
-  @method async update(
+  @method update(
     leafIsEmpty: Bool,
     oldNum: Field,
     num: Field,
@@ -339,13 +339,13 @@ Since much of the logic in the `main.ts` file is repeated from earlier tutorials
 
 1. Open it in your editor.
 
-The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Devnet. 
+The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Berkeley. 
 
 This is a useful pattern when developing a new contract. 
 
 ### Connect to the off-chain storage server
 
-To try your contract on Devnet, deploy the contract as usual with `zk deploy`.
+To try your contract on Berkeley, deploy the contract as usual with `zk deploy`.
 
 In `main.ts`, set `useLocal` to false.
 
