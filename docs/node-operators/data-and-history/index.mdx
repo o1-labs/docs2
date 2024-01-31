@@ -15,7 +15,7 @@ keywords:
 
 Mina is a succinct blockchain, and as a result, consensus nodes store only the recent history of the chain before discarding it (the last k blocks, currently 290). You can access recent history by using graphQL from a running mina daemon.
 
-While prior transaction history is not required to prove the current state is valid (this is handled via a recursive zero-knowledge proof), many applications would like access to this prior transaction history. Examples include block explorers and wallets.
+While prior transaction history is not required to prove the current state is valid (this is handled by using a recursive zero-knowledge proof), many applications need to access prior transaction history. Examples include block explorers and wallets.
 
 To access historic data users may optionally run an [archive node](/node-operators/archive-nodes/getting-started) a process stores a summary of each block seen in a Postgres database. The archive node is requires a `mina-archive` running that connects to a running `mina daemon` and a [PostgreSQL](https://www.postgresql.org/) database.
 
