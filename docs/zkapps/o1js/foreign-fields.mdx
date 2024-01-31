@@ -12,7 +12,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
 
 :::
 
@@ -24,7 +24,7 @@ Foreign fields are useful for implementing cryptographic algorithms in provable 
 
 ## Why foreign fields?
 
-The core data type in o1js is `Field` that represents the field that is _native to the proof system_. In other words, addition and multiplication of Fields are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js natively supports several cryptographic algorithms with high efficiency. See classes and modules like [Poseidon](../o1js-reference/variables/poseidon), [PublicKey](../o1js-reference/classes/PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature), and [Encryption](../o1js-reference/namespaces/Encryption).
+The core data type in o1js is `Field` that represents the field that is _native to the proof system_. In other words, addition and multiplication of Fields are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js natively supports several cryptographic algorithms with high efficiency. See classes and modules like [Poseidon](../o1js-reference/modules#poseidon), [PublicKey](../o1js-reference/classes/Types.PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature), and [Encryption](../o1js-reference/modules/Encryption).
 
 However, these classes and modules are not compatible with the cryptography used in the wider world: `Signature.verify()` doesn't let you verify a signed JWT or email, and `Encryption.decrypt()` won't help you with your WhatsApp messages. That's because these methods use different finite fields than the native Field that was chosen primarily to enable efficient zk proofs.
 
@@ -192,7 +192,7 @@ class AlmostField17 extends Field17.AlmostReduced {}
 class MyContract extends SmartContract {
   @state(AlmostField17.provable) x = State<AlmostField17>();
 
-  @method async myMethod(y: AlmostField17) {
+  @method myMethod(y: AlmostField17) {
     let x = y.mul(2);
     this.x.set(x.assertAlmostReduced());
   }

@@ -1,5 +1,5 @@
 ---
-title: Testing zkApps Locally
+title: How to Test a zkApp
 hide_title: true
 description: Guided steps to write and run tests for your zkApp using the Jest JavaScript testing framework, create and run tests, create a local blockchain, deploy a contract locally, and write integration tests.
 keywords:
@@ -13,19 +13,30 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
 
 :::
 
-# Testing zkApps Locally
+# How to Test a zkApp
 
-Before you can test your zkApps, create automated tests for your smart contract and test with a simulated local blockchain. Test automation is essential to ensure your code is well-tested during development.
+Writing automated tests for your smart contract is essential to ensure your code is well-tested during development. 
+
+## Test zkApps on a lightweight Mina local network
+
+A Docker image for Mina local networks provides a simple and efficient way to deploy and run lightweight Mina blockchain networks for testing zkApps. The `o1labs/mina-local-network` Docker image provides:
+
+- Genesis ledger with pre-funded accounts
+- Accounts manager service
+- Additional port served by reverse proxy to pass requests to the Mina daemon GraphQL endpoint so zkApps work without additional configuration
+- Single commands to launch a single node or multi node network
+
+Pull the [o1labs/mina-local-network](https://hub.docker.com/r/o1labs/mina-local-network) image from Docker Hub.
 
 ## Writing tests for your smart contract
 
-All zkApp projects that are created using the zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
+All projects created using the Mina zkApp CLI include the [Jest](https://jestjs.io/) JavaScript testing framework. Although you can use any testing framework, the instructions in this document are supported for Jest.
 
-Use the zkApp CLI to create tests for your smart contract.
+Use the Mina zkApp CLI to create tests for your smart contract.
 
 To scaffold a TypeScript file with a corresponding test file, run:
 
@@ -35,7 +46,7 @@ The `foo.ts` and `foo.test.ts` files are generated.
 
 The `foo.test.ts` file is a great place to start writing your smart contract test code. To write valid unit tests, be sure you understand your smart contract functionality.
 
-It's good practice to break down the functionality of your smart contract into `describe` blocks to organize your test groupings in the same file. By mapping out your unit tests using the `describe` convention, you provide helpful documentation to developers who read your smart contract.
+It's good practice to break down the functionality of your smart contract into `describe` blocks to organize your test groupings in the same file. By mapping out your unit tests using the `describe` convention, you provide documentation to developers who read your smart contract.
 
 The following example shows the describe block for `test` in the `foo.test.ts` file:
 
@@ -64,14 +75,14 @@ To generate a test coverage report for your project, run:
 
 The code coverage result is output to your terminal and shows the percentage of tested code.
 
-### Creating a simulated local blockchain
+### Creating a local blockchain
 
-You can quickly test your smart contract by running it on a simulated local blockchain.
+You can quickly test your smart contract by running it locally on a mock blockchain.
 
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
-const Local = await Mina.LocalBlockchain();
+const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
@@ -87,13 +98,13 @@ You can also programmatically enable and disable the `proofsEnabled` flag in you
 
 ### Deploying a contract locally
 
-The simulated local blockchain contains test accounts you can use to deploy smart contracts and pay transaction fees.
+The mock Mina local blockchain contains test accounts you can use to deploy smart contracts and pay transaction fees.
 
-First, access a test account provided by the simulated local blockchain.
+First, access a test account provided by the local blockchain.
 
 ```ts
 // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
-let feePayer = Local.testAccounts[0].key;
+let feePayer = Local.testAccounts[0].privateKey;
 ```
 
 Next, generate a zkApp account and a new instance of the smart contract to deploy locally for testing.
@@ -108,15 +119,15 @@ let zkAppInstance = new Add(zkAppAddress);
 Then, use the test account and zkApp keys to construct a transaction to pay account creation fees and deploy your smart contract. This transaction is sent to the local blockchain.
 
 ```ts
-let txn = await Mina.transaction(feePayer, async () => {
+let txn = await Mina.transaction(feePayer, () => {
   AccountUpdate.fundNewAccount(feePayer);
-  async zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+  zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
 });
 
 const txPromise = await  txn.send();
 /*
-`txn.send()` returns a promise with two closures - `.wait()` and `.hash`
-`.hash` returns the transaction hash, as the name might indicate
+`txn.send()` returns a promise with two closures - `.wait()` and `.hash()`
+`.hash()` returns the transaction hash, as the name might indicate
 `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
 */
 
@@ -141,11 +152,11 @@ describe('Add smart contract integration test', () => {
 
   beforeAll(async () => {
     // setup local blockchain
-    let Local = await Mina.LocalBlockchain();
+    let Local = Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
 
     // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
-    feePayer = Local.testAccounts[0].key;
+    feePayer = Local.testAccounts[0].privateKey;
 
     // zkapp account
     zkAppPrivateKey = PrivateKey.random();
@@ -153,15 +164,11 @@ describe('Add smart contract integration test', () => {
     zkAppInstance = new Add(zkAppAddress);
 
     // deploy zkapp
-    txn = await Mina.transaction(feePayer, async () => {
+    txn = await Mina.transaction(feePayer, () => {
       AccountUpdate.fundNewAccount(feePayer);
-      await zkAppInstance.deploy();
+      zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
     });
-
-    await txn.prove();
-
-    // this tx needs .sign(), because `deploy()` adds an account update that requires signature authorization
-    await txn.sign([feePayerKey, zkAppPrivateKey]).send();
+    await txn.send();
   });
 
   it('sets intitial state of num to 1', async () => {
@@ -170,11 +177,11 @@ describe('Add smart contract integration test', () => {
   });
 
   it('correctly updates num from intial state to 3', async () => {
-    txn = await Mina.transaction(feePayer, async () => {
-      await zkApp.update();
+    txn = await Mina.transaction(feePayer, () => {
+      zkAppInstance.update();
+      zkAppInstance.sign(zkAppPrivateKey);
     });
-    await txn.prove();
-    await txn.sign([feePayerKeyKey]).send();
+    txn.send();
 
     currentState = zkAppInstance.num.get();
     expect(currentState).toEqual(Field(3));
@@ -188,4 +195,4 @@ See the [Jest Getting Started](https://jestjs.io/docs/getting-started) documenta
 
 ## Next Steps
 
-Now that you know how to test a smart contract on a simulated local blockchain, you can move on to [Testing zkApps with Lightnet](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet) before you learn [how to deploy your zkApp](how-to-deploy-a-zkapp) to public networks.
+Now that you know how to test a smart contract, you can learn [how to deploy a zkApp](how-to-deploy-a-zkapp).
