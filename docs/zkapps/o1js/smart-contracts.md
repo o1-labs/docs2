@@ -18,12 +18,6 @@ keywords:
   - on-chain state
 ---
 
-:::info
-
-The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
-
-:::
-
 # Smart Contracts
 
 <!-- TODOs
