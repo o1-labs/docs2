@@ -13,7 +13,7 @@ keywords:
 
 # Introduction
 
-Mina is a succinct blockchain, and as a result, consensus nodes only store the recent history of the chain before discarding it (the last k blocks, currently 290). Recent history can be accessed via graphQL from a running `mina daemon`.
+Mina is a succinct blockchain, and as a result, consensus nodes store only the recent history of the chain before discarding it (the last k blocks, currently 290). You can access recent history by using graphQL from a running mina daemon.
 
 While prior transaction history is not required to prove the current state is valid (this is handled via a recursive zero-knowledge proof), many applications would like access to this prior transaction history. Examples include block explorers and wallets.
 
