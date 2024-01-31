@@ -19,15 +19,9 @@ keywords:
   - methods
 ---
 
-:::info
-
-The maximum number of zkApp transactions per block is currently capped at 24. This restriction will gradually be lifted following the mainnet upgrade.
-
-:::
-
 # o1js Basic Concepts
 
-o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js, formerly known as SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
 
 ## Field
 
