@@ -142,4 +142,4 @@ No, when a new block is generated, Mina computes the proof recursively over the 
 
 #### How do you control or limit the number of threads that SNARK workers use?
 
-When starting up `mina daemon`, use the `-snark-worker-parallelism` flag. This is Equivalent to setting OMP_NUM_THREADS, but doesn't affect block production.
+When you start the mina daemon, use the `-snark-worker-parallelism` flag. This flag is equivalent to setting `OMP_NUM_THREADS`, but doesn't affect block production.
