@@ -17,7 +17,14 @@ Writing automated tests for your smart contract is essential to ensure your code
 
 ## Test zkApps on a lightweight Mina local network
 
-A Docker image for Mina local networks provides a simple and efficient way to deploy and run a lightweight Mina blockchain network for testing zkApps. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet).
+A Docker image for Mina local networks provides a simple and efficient way to deploy and run lightweight Mina blockchain networks for testing zkApps. The `o1labs/mina-local-network` Docker image provides:
+
+- Genesis ledger with pre-funded accounts
+- Accounts manager service
+- Additional port served by reverse proxy to pass requests to the Mina daemon GraphQL endpoint so zkApps work without additional configuration
+- Single commands to launch a single node or multi node network
+
+Pull the [o1labs/mina-local-network](https://hub.docker.com/r/o1labs/mina-local-network) image from Docker Hub.
 
 ## Writing tests for your smart contract
 
