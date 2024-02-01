@@ -2,7 +2,7 @@
 title: o1js Basic Concepts
 hide_title: true
 sidebar_label: Basic Concepts
-description: Field elements are the basic unit of data in zero-knowledge proof programming. Learn about built-in data types, functions, and common methods. 
+description: Field elements are the basic unit of data in zero knowledge proof programming. Learn about built-in data types, functions, and common methods. 
 keywords:
   - smart contracts
   - zkapps
@@ -31,7 +31,7 @@ o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk
 
 ## Field
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
 
 :::note
 

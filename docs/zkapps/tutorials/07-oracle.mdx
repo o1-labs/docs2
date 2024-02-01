@@ -311,7 +311,7 @@ To ensure the signature was from our expected source, verify that the signature 
 const validSignature = signature.verify(oraclePublicKey, [id, creditScore]);
 ```
 
-You always want to make it impossible to generate a valid zero-knowledge proof if `validSignature` is false. You can do this with `assertTrue()`. If the signature is invalid, this throws an exception and makes it impossible to generate a valid zero-knowledge proof and transaction.
+You always want to make it impossible to generate a valid zero knowledge proof if `validSignature` is false. You can do this with `assertTrue()`. If the signature is invalid, this throws an exception and makes it impossible to generate a valid zero knowledge proof and transaction.
 
 ```ts
 // Check that the signature is valid
@@ -327,7 +327,7 @@ You want the `verify()` method to emit an event only if the user's credit score 
 creditScore.assertGreaterThanOrEqual(Field(700));
 ```
 
-These assert methods create a constraint that makes it impossible for users to generate a valid zero-knowledge proof unless their condition is met. Without a valid zero-knowledge proof (or a signature) it's impossible to generate a valid Mina transaction. Users can call the smart contract method and send a valid transaction only if they have a valid signature from the expected oracle and a credit score 700 or above.
+These assert methods create a constraint that makes it impossible for users to generate a valid zero knowledge proof unless their condition is met. Without a valid zero knowledge proof (or a signature) it's impossible to generate a valid Mina transaction. Users can call the smart contract method and send a valid transaction only if they have a valid signature from the expected oracle and a credit score 700 or above.
 
 ### Emit a verified event
 
