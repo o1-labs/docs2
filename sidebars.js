@@ -417,7 +417,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Snark Workers',
+          label: 'SNARK Workers',
           link: {
             type: 'doc',
             id: 'node-operators/snark-workers/index'
