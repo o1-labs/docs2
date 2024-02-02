@@ -36,9 +36,11 @@ npm install
 npm run dev
 ```
 
+The `npm run dev` command does not run with broken link detection.
+
 ## Debugging build errors
 
-If you need to debug Vercel CI failures, you can gather more information on your local build:
+To build the site with broken link detection and to debug Vercel CI failures, you can gather more information on your local build:
 
 ```sh
 npm run build

@@ -22,7 +22,7 @@ export class Square extends SmartContract {
 
   @method update(square: Field) {
     const currentState = this.num.get();
-    this.num.assertEquals(currentState);
+    this.num.requireEquals(currentState);
     square.assertEquals(currentState.mul(currentState));
     this.num.set(square);
   }

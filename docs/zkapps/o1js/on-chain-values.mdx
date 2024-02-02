@@ -38,15 +38,15 @@ For example, the timestamp on `this.network.timestamp` has four methods:
 
 ```ts
 this.network.timestamp.get();
-this.network.timestamp.assertEquals(timestamp);
-this.network.timestamp.assertBetween(lower, upper);
+this.network.timestamp.requireEquals(timestamp);
+this.network.timestamp.requireBetween(lower, upper);
 ```
 
-The familiar on-chain state has the same `get()` and `assertEquals()` methods. The `assertBetween()` method has even more power: it allows you to make assert that the timestamp is between `lower` and `upper` (inclusive).
+The familiar on-chain state has the same `get()` and `requireEquals()` methods. The `requireBetween()` method has even more power: it allows you to make assert that the timestamp is between `lower` and `upper` (inclusive).
 
 ### Example: restricting timestamps
 
-You can see how to use the `assertBetween()` method in the voting example that was mentioned earlier. Assume you want to allow voting throughout September 2022. Timestamps are represented as a `UInt64` in milliseconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). You can use the JS `Date` object to easily convert to this representation. In the simplest case, a zkApp could just hard-code the dates:
+You can see how to use the `requireBetween()` method in the voting example that was mentioned earlier. Assume you want to allow voting throughout September 2022. Timestamps are represented as a `UInt64` in milliseconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). You can use the JS `Date` object to easily convert to this representation. In the simplest case, a zkApp could just hard-code the dates:
 
 ```ts
 const startDate = UInt64.from(Date.UTC(2022, 9, 1));
@@ -56,7 +56,7 @@ class VotingApp extends SmartContract {
   // ...
 
   @method vote(...) {
-    this.network.timestamp.assertBetween(startDate, endDate);
+    this.network.timestamp.requireBetween(startDate, endDate);
     // ...
   }
 }
@@ -64,19 +64,12 @@ class VotingApp extends SmartContract {
 
 A more refined example could store the current start date in an on-chain state variable, which can then be reset by some process that is also encoded by the zkApp.
 
-In addition to using a predefined range, you can also construct a range that depends on another variable, such as the current time. For example, a DEX with an order book could support orders that expire after an hour. In this case, the range would be `[now, now + 1h]`:
-
-```ts
-const now = this.network.timestamp.get();
-this.network.timestamp.assertBetween(now, now.add(60 * 60 * 1000));
-```
-
 ### Network reference
 
 For completeness, here is the full list of network states you can use and make assertions about in your zkApp.
 
-All of these fields have a `get()` and an `assertEquals()` method. The subset that represents
-"ordered values" (those that are `UInt32` or `UInt64`) also have `assertBetween()`.
+All of these fields have a `get()` and an `requireEquals()` method. The subset that represents
+"ordered values" (those that are `UInt32` or `UInt64`) also have `requireBetween()`.
 
 Of course, there's no need to remember this -- just type `this.network.` and let intelligent code complete guide you!
 
@@ -112,8 +105,8 @@ this.network.nextEpochData.startCheckpoint.get(): Field;
 
 ### Account reference
 
-Here's the full list of values you can access on the zkApp account. Like the network states, these values have `get()` and `assertEquals()`.
-Balance and nonce also have `assertBetween()`.
+Here's the full list of values you can access on the zkApp account. Like the network states, these values have `get()` and `requireEquals()`.
+Balance and nonce also have `requireBetween()`.
 
 ```ts
 // the account balance; this might be nanoMINA or a custom token
@@ -134,13 +127,13 @@ this.account.receiptChainHash.get(): Field;
 ### Bailing out
 
 In some rare cases, you might, for whatever reason, want to `get()` an on-chain value _without_ constraining it to any value.
-If you try this, o1js throws a helpful error reminding you to use `assertEquals()` and `asserBetween()`.
+If you try this, o1js throws a helpful error reminding you to use `requireEquals()` and `requireBetween()`.
 As an escape hatch, if you want to `get()` a value and are really sure you want to not constrain the on-chain value in any way,
-there's `assertNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
+there's `requireNothing()` on all of these fields (including on-chain state). **Use at your own risk.**
 
 :::danger
 
-`assertNothing()` should be rarely used and could cause security issues through unexpected behavior if used improperly. Be certain you know what you're doing before using this.
+`requireNothing()` should be rarely used and could cause security issues through unexpected behavior if used improperly. Be certain you know what you're doing before using this.
 
 :::
 

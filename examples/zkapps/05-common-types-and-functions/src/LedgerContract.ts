@@ -31,7 +31,7 @@ export class LedgerContract extends SmartContract {
     sendAmount: Field
   ) {
     const initialLedgerRoot = this.ledgerRoot.get();
-    this.ledgerRoot.assertEquals(initialLedgerRoot);
+    this.ledgerRoot.requireEquals(initialLedgerRoot);
 
     // check the sender's signature
     senderSignature

@@ -1,7 +1,6 @@
 import {
   Field,
   SelfProof,
-  ZkProgram,
   Struct,
   MerkleMap,
   MerkleWitness,
@@ -14,7 +13,7 @@ import {
   DeployArgs,
   Proof,
   Permissions,
-  ZkProgram
+  ZkProgram,
 } from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -217,7 +216,7 @@ class RollupContract extends SmartContract {
 
   @method update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
-    this.state.assertEquals(currentState);
+    this.state.requireEquals(currentState);
 
     rollupStateProof.publicInput.initialRoot.assertEquals(currentState);
 

@@ -1,4 +1,4 @@
-# zkApp: o1js Tutorial Message
+# zkApp: Anonymous Message Board Tutorial
 
 This template uses TypeScript.
 
