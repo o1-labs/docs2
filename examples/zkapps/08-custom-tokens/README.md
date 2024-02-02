@@ -1,6 +1,6 @@
 # Mina zkApp: 08 Custom Tokens
 
-This Custom Token tutorial helps you to learn to create custom tokens.
+This Custom Token tutorial helps you learn to create custom tokens.
 
 ## Version
 - o1js: **0.15.3**
