@@ -34,6 +34,7 @@ Use of Lightnet is appropriate for local development and testing only. It is not
 
 ## Prerequisites
 
+1. [Install zkApp CLI](/zkapps/install-zkapp-cli). 
 
 1. [Write tests for your smart contract](/zkapps/testing-zkapps-locally#writing-tests-for-your-smart-contract).
 
@@ -74,12 +75,12 @@ This command performs the following operations that successfully serve the major
 
 - Pulls the latest Docker image for your environment from the [Docker Hub](https://hub.docker.com/r/o1labs/mina-local-network) repository
 - Prepares the file system
-- Downloads and updates the lightweight Mina Explorer
 - Forms the network with a single node
 - Configures the network to be fast
 - Disables the blockchain SNARK proofs
 - Uses the `o1js-main` branch of the Mina repository
-- Starts the Mina archive process and the archive node API
+- Starts the Mina archive process and the [archive-node-API](https://github.com/o1-labs/Archive-Node-API) application.
+   This application runs alongside other applications in the Docker contain and talks to the PostgreSQL database, which is populated with data by the mina archive process.
 - Waits for the network to reach a synchronized state
 - Sets the Mina process logging level to trace
 
@@ -124,7 +125,7 @@ To stop the local network, remove the Docker container, and clean up the environ
 zk lightnet stop
 ```
 
-When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `/Users/<username>/.cache/zkapp-cli/lightnet/logs/`.
+When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `${HOME}/.cache/zkapp-cli/lightnet/logs/`.
 
 To disable saving of log files:
 
@@ -144,12 +145,12 @@ To monitor transactions, launch the lightweight Mina Explorer:
 zk lightnet explorer
 ```
 
-By default, the latest version is launched. 
+This command downloads and updates a lightweight Mina explorer. By default, the latest version is downloaded (if needed) and launched. 
 
 To list versions, their published dates, and show the version in use:
 
 ```sh
-zk lightnet explorer list true
+zk lightnet explorer list
 ```
 
 To use a specific version of the lightweight Mina Explorer:
