@@ -22,7 +22,7 @@ Type to configure how Pickles should cache prover keys
 
 #### Defined in
 
-[snarky.d.ts:771](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L771)
+[snarky.d.ts:752](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L752)
 
 ___
 
@@ -32,32 +32,32 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:742](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L742)
+[snarky.d.ts:723](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L723)
 
 ___
 
 ### Prover
 
-Ƭ **Prover**: (`publicInput`: `MlArray`<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: `MlArray`<[`Proof`](Pickles.md#proof)\>) => `Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
+Ƭ **Prover**: (`publicInput`: `MlArray`\<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: `MlArray`\<[`Proof`](Pickles.md#proof)\>) => `Promise`\<[\_: 0, publicOutput: MlArray\<FieldConst\>, proof: Proof]\>
 
 #### Type declaration
 
-▸ (`publicInput`, `previousProofs`): `Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
+▸ (`publicInput`, `previousProofs`): `Promise`\<[\_: 0, publicOutput: MlArray\<FieldConst\>, proof: Proof]\>
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `publicInput` | `MlArray`<[`FieldConst`](../modules.md#fieldconst-1)\> |
-| `previousProofs` | `MlArray`<[`Proof`](Pickles.md#proof)\> |
+| `publicInput` | `MlArray`\<[`FieldConst`](../modules.md#fieldconst-1)\> |
+| `previousProofs` | `MlArray`\<[`Proof`](Pickles.md#proof)\> |
 
 ##### Returns
 
-`Promise`<[\_: 0, publicOutput: MlArray<FieldConst\>, proof: Proof]\>
+`Promise`\<[\_: 0, publicOutput: MlArray\<FieldConst\>, proof: Proof]\>
 
 #### Defined in
 
-[snarky.d.ts:782](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L782)
+[snarky.d.ts:763](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L763)
 
 ___
 
@@ -73,18 +73,18 @@ A "rule" is a circuit plus some metadata for `Pickles.compile`
 | :------ | :------ | :------ |
 | `featureFlags` | [`MlFeatureFlags`](../modules.md#mlfeatureflags) | Feature flags which enable certain custom gates |
 | `identifier` | `string` | - |
-| `main` | (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => { `previousStatements`: `MlArray`<[`Statement`](Pickles.md#statement)<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`<[`BoolVar`](../modules.md#boolvar)\>  } | The main circuit functions |
-| `proofsToVerify` | `MlArray`<{ `isSelf`: ``true``  } \| { `isSelf`: ``false`` ; `tag`: `unknown`  }\> | Description of previous proofs to verify in this rule |
+| `main` | (`publicInput`: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\>) => \{ `previousStatements`: `MlArray`\<[`Statement`](Pickles.md#statement)\<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`\<[`BoolVar`](../modules.md#boolvar)\>  } | The main circuit functions |
+| `proofsToVerify` | `MlArray`\<\{ `isSelf`: ``true``  } \| \{ `isSelf`: ``false`` ; `tag`: `unknown`  }\> | Description of previous proofs to verify in this rule |
 
 #### Defined in
 
-[snarky.d.ts:748](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L748)
+[snarky.d.ts:729](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L729)
 
 ___
 
 ### Statement
 
-Ƭ **Statement**<`F`\>: [\_: 0, publicInput: MlArray<F\>, publicOutput: MlArray<F\>]
+Ƭ **Statement**\<`F`\>: [\_: 0, publicInput: MlArray\<F\>, publicOutput: MlArray\<F\>]
 
 #### Type parameters
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:743](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L743)
+[snarky.d.ts:724](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L724)
