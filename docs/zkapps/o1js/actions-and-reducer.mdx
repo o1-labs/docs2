@@ -26,7 +26,7 @@ Like events, **actions** are _public_ arbitrary information that are passed alon
 
 Using actions and a "lagging state" pattern, you can write zkApps that can _process concurrent state updates by multiple users_. With this capability, you can imagine all kinds of use cases where actions act as a built-in, "append-only" off-chain storage layer.
 
-To use actions, we first have to declare their type on the smart contract. The object we declare is called a **reducer** -- because it can take a list of actions and reduce them:
+To use actions, you first have to declare their type on the smart contract. The object to declare is called a **reducer** -- because it can take a list of actions and reduce them:
 
 ```ts
 import { SmartContract, Reducer, Field } from 'o1js';
@@ -36,27 +36,33 @@ class MyContract extends SmartContract {
 }
 ```
 
-Contrary to events, for actions you only have one type per smart contract; they also don't have a name. The `actionType` in this example is `Field`.
+Contrary to events, actions have only one type per smart contract. This type doesn't have a name. The `actionType` in this example is `Field`.
 
-On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce()`. "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
+On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce()`. 
+
+- "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
 
 ```ts
 this.reducer.dispatch(Field(1000));
 ```
 
-"Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example. Say we have a list of actions and want to find out if one of them is equal to `1000`. In JavaScript, there's a built-in function on `Array` which does this:
+- "Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example where you have a list of actions and want to find out if one of actions is equal to `1000`. 
+
+In JavaScript, a built-in function on `Array` does this:
 
 ```ts
 let has1000 = array.some((x) => x === 1000);
 ```
 
-However, as you might know, you can also implement this with `Array.reduce`:
+However, you can also implement this with `Array.reduce`:
 
 ```ts
 let has1000 = array.reduce((acc, x) => acc || x === 1000, false);
 ```
 
-In fact, `Array.reduce` is powerful enough to let you do pretty much all array processing you can think of. With `Reducer.reduce`, we give you an in-SNARK operation which is just as powerful:
+In fact, `Array.reduce` is powerful enough to let you do pretty much all of the array processing you can think of. 
+
+With `Reducer.reduce`, an in-SNARK operation is just as powerful:
 
 ```ts
 // type for the "accumulated output" of reduce -- the `stateType`
@@ -79,17 +85,15 @@ let { state, actionState } = this.reducer.reduce(
 );
 ```
 
-The `acc` shown earlier is now `state`; you also have to pass in the state's type as a parameter. In addition, you have to pass in an `actionState` which refers to one particular point in the action's history. Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionState -- so you can store it to use when you reduce the next batch of actions. One last difference to JS reduce is that this takes a _list of lists_ of actions instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
+The `acc` shown earlier is now `state`; you must pass in the state's type as a parameter and pass in an `actionState` which refers to one particular point in the action's history. 
+
+Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionState -- so you can store it to use when you reduce the next batch of actions. One last difference to JavaScript `reduce` is that it takes a _list of lists_ of actions, instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
 
 As an astute reader, you might have noticed that this use of `state` is eerily similar to a standard "Elm architecture" that scans over an implicit infinite stream of actions (though here they are aggregated in chunks). This problem is familiar to web developers through its instantiation by using the Redux library or more recently by using the `useReducer` hook in React.
 
 There is one interesting nuance here when compared to traditional Elm Architecture/Redux/useReducer instantiations: Because multiple actions are handled concurrently in an undefined order, it is important that actions [commute](https://en.wikipedia.org/wiki/Commutative_property) against any possible state to prevent race conditions in your zkApp. Given any two actions a1 and a2 applying to some state s, `s * a1 * a2` means the same as `s * a2 * a1`.
 
-:::tip
-
 A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](fetch-events-and-actions).
-
-:::
 
 ### Reducer - API reference
 
