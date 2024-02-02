@@ -92,25 +92,9 @@ For a comprehensive example of how to use custom tokens with a zkApp, see the cu
 
 ## Proof Authorization
 
-When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](/zkapps/o1js/custom-tokens#token-owner).
+When a zkApp interacts with a custom token that it did not originally create, the calling zkApp must get authorization from the [token owner](#token-owner).
 
-A token owner can approve a transaction using a **signature** or a **proof**.
-
-### Signature Authorization
-
-Signature authorization is the simplest way for a token owner to approve a custom token transfer; however, it is the least flexible. If two separate accounts want to trade a specific custom token, the token owner must sign the transaction before the transaction can be broadcast.
-
-Token zkApps must provide a `send()` method. By providing a `send()` method, the token zkApp can approve a transaction between two separate accounts and sign it as the token owner. For example:
-
-```ts
-let tx = await Mina.transaction(feePayerKey, () => {
-  zkapp.sendTokens(senderAddress, receiverAddress, UInt64.from(1_000)); // Sends 1,000 tokens from `senderAddress` to `receiverAddress`
-  zkapp.sign(zkappKey); // Signs the transaction with the token owner key
-});
-await tx.send();
-```
-
-Signature authorization is simple and easy to use, but it is not flexible. If two accounts wanted to trade a custom token, the token owner must sign the transaction before the transaction can be broadcasted. To allow zkApps to get authorization from a token owner without a signature, it makes more sense to let the token owner approve with a proof.
+A token owner approves a transaction using a **proof**.
 
 ### Proof Authorization
 
@@ -199,7 +183,7 @@ For another example of how to approve a transaction with a zkApp, see this [auth
 
 If your zkApp interacts with custom tokens, be sure you understand the following essential terms:
 
-### Token Id
+### Token id
 
 Token ids are unique identifiers that are used to distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network.
 
@@ -216,7 +200,7 @@ A token account is automatically created for a public key whenever an existing a
 
 When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
 
-Aside from sending custom tokens, custom tokens can be minted and burned by a **token owner account**. A token owner account is the governing zkApp account for a specific custom token.
+In addition to sending custom tokens, a **token owner account** can mint and burn custom tokens. A token owner account is the governing zkApp account for a specific custom token.
 
 ### Token Owner
 
@@ -224,4 +208,4 @@ A token owner is an account that creates, facilitates, and governs how a custom 
 
 In addition to being the only account that can mint and burn tokens, the token owner is the only account that can approve sending tokens between two accounts.
 If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner generates the changes the two accounts want to make and can then make assertions about those changes.
-The token owner can approve the transaction with a signature or proof.
+The token owner can approve the transaction with a proof.
