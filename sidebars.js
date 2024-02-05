@@ -431,11 +431,11 @@ module.exports = {
           label: 'Archive Nodes',
           link: {
             type: 'doc',
-            id: 'node-operators/archive-nodes/index'
+            id: 'node-operators/archive-node/index'
           },
           items: [
-            'node-operators/archive-nodes/getting-started',
-            'node-operators/archive-nodes/archive-redundancy',
+            'node-operators/archive-node/getting-started',
+            'node-operators/archive-node/archive-redundancy',
             
               ],
         },
