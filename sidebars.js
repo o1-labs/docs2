@@ -512,10 +512,6 @@ module.exports = {
         {
           type: 'category',
           label: 'Rosetta API',
-          link: {
-            type: 'doc',
-            id: 'exchange-operators/rosetta/index',
-          },
           collapsible: false,
           items: [
             'exchange-operators/rosetta/run-with-docker',
