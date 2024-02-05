@@ -1,4 +1,4 @@
-[o1js](../README.md) / [Exports](../modules.md) / ForeignField
+[o1js](../README.md) / [Modules](../modules.md) / ForeignField
 
 # Class: ForeignField
 
@@ -11,6 +11,7 @@
 ### Properties
 
 - [value](ForeignField.md#value)
+- [\_Bigint](ForeignField.md#_bigint)
 - [\_modulus](ForeignField.md#_modulus)
 - [\_provable](ForeignField.md#_provable)
 - [\_variants](ForeignField.md#_variants)
@@ -20,6 +21,7 @@
 - [Constructor](ForeignField.md#constructor-1)
 - [modulus](ForeignField.md#modulus)
 - [AlmostReduced](ForeignField.md#almostreduced)
+- [Bigint](ForeignField.md#bigint)
 - [Canonical](ForeignField.md#canonical)
 - [Unreduced](ForeignField.md#unreduced)
 - [modulus](ForeignField.md#modulus-1)
@@ -33,7 +35,6 @@
 - [assertCanonical](ForeignField.md#assertcanonical)
 - [assertEquals](ForeignField.md#assertequals)
 - [assertLessThan](ForeignField.md#assertlessthan)
-- [equals](ForeignField.md#equals)
 - [isConstant](ForeignField.md#isconstant)
 - [neg](ForeignField.md#neg)
 - [sub](ForeignField.md#sub)
@@ -45,8 +46,8 @@
 - [check](ForeignField.md#check)
 - [from](ForeignField.md#from)
 - [fromBits](ForeignField.md#frombits)
+- [random](ForeignField.md#random)
 - [sum](ForeignField.md#sum)
-- [toLimbs](ForeignField.md#tolimbs)
 
 ## Constructors
 
@@ -56,21 +57,21 @@
 
 Create a new [ForeignField](ForeignField.md) from a bigint, number, string or another ForeignField.
 
-**`Example`**
-
-```ts
-let x = new ForeignField(5);
-```
-
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `string` \| `number` \| `bigint` \| `Field3` \| [`ForeignField`](ForeignField.md) |
 
+**`Example`**
+
+```ts
+let x = new ForeignField(5);
+```
+
 #### Defined in
 
-[lib/foreign-field.ts:85](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L85)
+[lib/foreign-field.ts:96](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L96)
 
 ## Properties
 
@@ -82,7 +83,17 @@ The internal representation of a foreign field element, as a tuple of 3 limbs.
 
 #### Defined in
 
-[lib/foreign-field.ts:39](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L39)
+[lib/foreign-field.ts:50](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L50)
+
+___
+
+### \_Bigint
+
+▪ `Static` **\_Bigint**: `undefined` \| \{ `M`: `bigint` = twoadicity; `modulus`: `bigint` = p; `sizeInBits`: `number` ; `t`: `bigint` = oddFactor; `twoadicRoot`: `bigint` ; `add`: (`x`: `bigint`, `y`: `bigint`) => `bigint` ; `div`: (`x`: `bigint`, `y`: `bigint`) => `undefined` \| `bigint` ; `dot`: (`x`: `bigint`[], `y`: `bigint`[]) => `bigint` ; `equal`: (`x`: `bigint`, `y`: `bigint`) => `boolean` ; `fromBigint`: (`x`: `bigint`) => `bigint` ; `fromNumber`: (`x`: `number`) => `bigint` ; `inverse`: (`x`: `bigint`) => `undefined` \| `bigint` ; `isEven`: (`x`: `bigint`) => `boolean` ; `isSquare`: (`x`: `bigint`) => `boolean` ; `leftShift`: (`x`: `bigint`, `bits`: `number`, `maxBitSize`: `number`) => `bigint` ; `mod`: (`x`: `bigint`) => `bigint` ; `mul`: (`x`: `bigint`, `y`: `bigint`) => `bigint` ; `negate`: (`x`: `bigint`) => `bigint` ; `not`: (`x`: `bigint`, `bits`: `number`) => `bigint` ; `power`: (`x`: `bigint`, `n`: `bigint`) => `bigint` ; `random`: () => `bigint` ; `rightShift`: (`x`: `bigint`, `bits`: `number`) => `bigint` ; `rot`: (`x`: `bigint`, `bits`: `bigint`, `direction`: ``"left"`` \| ``"right"``, `maxBits`: `bigint`) => `bigint` ; `sqrt`: (`x`: `bigint`) => `undefined` \| `bigint` ; `square`: (`x`: `bigint`) => `bigint` ; `sub`: (`x`: `bigint`, `y`: `bigint`) => `bigint`  } = `undefined`
+
+#### Defined in
+
+[lib/foreign-field.ts:28](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L28)
 
 ___
 
@@ -92,7 +103,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:22](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L22)
+[lib/foreign-field.ts:29](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L29)
 
 ___
 
@@ -102,19 +113,19 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:406](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L406)
+[lib/foreign-field.ts:399](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L399)
 
 ___
 
 ### \_variants
 
-▪ `Static` **\_variants**: `undefined` \| { `almostReduced`: typeof [`AlmostForeignField`](AlmostForeignField.md) ; `canonical`: typeof [`CanonicalForeignField`](CanonicalForeignField.md) ; `unreduced`: typeof `UnreducedForeignField`  } = `undefined`
+▪ `Static` **\_variants**: `undefined` \| \{ `almostReduced`: typeof [`AlmostForeignField`](AlmostForeignField.md) ; `canonical`: typeof [`CanonicalForeignField`](CanonicalForeignField.md) ; `unreduced`: typeof `UnreducedForeignField`  } = `undefined`
 
 Sibling classes that represent different ranges of field elements.
 
 #### Defined in
 
-[lib/foreign-field.ts:48](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L48)
+[lib/foreign-field.ts:59](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L59)
 
 ## Accessors
 
@@ -128,7 +139,7 @@ typeof [`ForeignField`](ForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:41](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L41)
+[lib/foreign-field.ts:52](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L52)
 
 ___
 
@@ -142,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:29](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L29)
+[lib/foreign-field.ts:40](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L40)
 
 ___
 
@@ -158,7 +169,50 @@ typeof [`AlmostForeignField`](AlmostForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:66](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L66)
+[lib/foreign-field.ts:77](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L77)
+
+___
+
+### Bigint
+
+• `Static` `get` **Bigint**(): `Object`
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `M` | `bigint` |
+| `modulus` | `bigint` |
+| `sizeInBits` | `number` |
+| `t` | `bigint` |
+| `twoadicRoot` | `bigint` |
+| `add` | (`x`: `bigint`, `y`: `bigint`) => `bigint` |
+| `div` | (`x`: `bigint`, `y`: `bigint`) => `undefined` \| `bigint` |
+| `dot` | (`x`: `bigint`[], `y`: `bigint`[]) => `bigint` |
+| `equal` | (`x`: `bigint`, `y`: `bigint`) => `boolean` |
+| `fromBigint` | (`x`: `bigint`) => `bigint` |
+| `fromNumber` | (`x`: `number`) => `bigint` |
+| `inverse` | (`x`: `bigint`) => `undefined` \| `bigint` |
+| `isEven` | (`x`: `bigint`) => `boolean` |
+| `isSquare` | (`x`: `bigint`) => `boolean` |
+| `leftShift` | (`x`: `bigint`, `bits`: `number`, `maxBitSize`: `number`) => `bigint` |
+| `mod` | (`x`: `bigint`) => `bigint` |
+| `mul` | (`x`: `bigint`, `y`: `bigint`) => `bigint` |
+| `negate` | (`x`: `bigint`) => `bigint` |
+| `not` | (`x`: `bigint`, `bits`: `number`) => `bigint` |
+| `power` | (`x`: `bigint`, `n`: `bigint`) => `bigint` |
+| `random` | () => `bigint` |
+| `rightShift` | (`x`: `bigint`, `bits`: `number`) => `bigint` |
+| `rot` | (`x`: `bigint`, `bits`: `bigint`, `direction`: ``"left"`` \| ``"right"``, `maxBits`: `bigint`) => `bigint` |
+| `sqrt` | (`x`: `bigint`) => `undefined` \| `bigint` |
+| `square` | (`x`: `bigint`) => `bigint` |
+| `sub` | (`x`: `bigint`, `y`: `bigint`) => `bigint` |
+
+#### Defined in
+
+[lib/foreign-field.ts:32](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L32)
 
 ___
 
@@ -174,7 +228,7 @@ typeof [`CanonicalForeignField`](CanonicalForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:73](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L73)
+[lib/foreign-field.ts:84](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L84)
 
 ___
 
@@ -190,7 +244,7 @@ typeof `UnreducedForeignField`
 
 #### Defined in
 
-[lib/foreign-field.ts:59](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L59)
+[lib/foreign-field.ts:70](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L70)
 
 ___
 
@@ -204,7 +258,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:25](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L25)
+[lib/foreign-field.ts:36](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L36)
 
 ___
 
@@ -220,7 +274,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:411](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L411)
+[lib/foreign-field.ts:404](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L404)
 
 ___
 
@@ -234,7 +288,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:32](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L32)
+[lib/foreign-field.ts:43](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L43)
 
 ## Methods
 
@@ -243,12 +297,6 @@ ___
 ▸ **add**(`y`): `UnreducedForeignField`
 
 Finite field addition
-
-**`Example`**
-
-```ts
-x.add(2); // x + 2 mod p
-```
 
 #### Parameters
 
@@ -260,9 +308,15 @@ x.add(2); // x + 2 mod p
 
 `UnreducedForeignField`
 
+**`Example`**
+
+```ts
+x.add(2); // x + 2 mod p
+```
+
 #### Defined in
 
-[lib/foreign-field.ts:203](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L203)
+[lib/foreign-field.ts:208](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L208)
 
 ___
 
@@ -288,7 +342,7 @@ ensuring validity of all our non-native field arithmetic methods.
 
 #### Defined in
 
-[lib/foreign-field.ts:156](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L156)
+[lib/foreign-field.ts:163](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L163)
 
 ___
 
@@ -307,7 +361,7 @@ Returns the field element as a [CanonicalForeignField](CanonicalForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:189](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L189)
+[lib/foreign-field.ts:194](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L194)
 
 ___
 
@@ -316,6 +370,17 @@ ___
 ▸ **assertEquals**(`y`, `message?`): [`CanonicalForeignField`](CanonicalForeignField.md)
 
 Assert equality with a ForeignField-like value
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `number` \| `bigint` \| [`CanonicalForeignField`](CanonicalForeignField.md) |
+| `message?` | `string` |
+
+#### Returns
+
+[`CanonicalForeignField`](CanonicalForeignField.md)
 
 **`Example`**
 
@@ -333,20 +398,9 @@ let xChecked = x.assertEquals(1, "x is 1");
 xChecked satisfies CanonicalForeignField;
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `number` \| `bigint` \| [`CanonicalForeignField`](CanonicalForeignField.md) |
-| `message?` | `string` |
-
-#### Returns
-
-[`CanonicalForeignField`](CanonicalForeignField.md)
-
 #### Defined in
 
-[lib/foreign-field.ts:278](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L278)
+[lib/foreign-field.ts:286](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L286)
 
 ▸ **assertEquals**(`y`, `message?`): [`AlmostForeignField`](AlmostForeignField.md)
 
@@ -363,7 +417,7 @@ xChecked satisfies CanonicalForeignField;
 
 #### Defined in
 
-[lib/foreign-field.ts:282](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L282)
+[lib/foreign-field.ts:290](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L290)
 
 ▸ **assertEquals**(`y`, `message?`): [`ForeignField`](ForeignField.md)
 
@@ -380,7 +434,7 @@ xChecked satisfies CanonicalForeignField;
 
 #### Defined in
 
-[lib/foreign-field.ts:283](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L283)
+[lib/foreign-field.ts:291](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L291)
 
 ___
 
@@ -391,12 +445,6 @@ ___
 Assert that this field element is less than a constant c: `x < c`.
 
 The constant must satisfy `0 <= c < 2^264`, otherwise an error is thrown.
-
-**`Example`**
-
-```ts
-x.assertLessThan(10);
-```
 
 #### Parameters
 
@@ -409,37 +457,15 @@ x.assertLessThan(10);
 
 `void`
 
-#### Defined in
-
-[lib/foreign-field.ts:325](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L325)
-
-___
-
-### equals
-
-▸ **equals**(`y`): `Bool`
-
-Check equality with a ForeignField-like value
-
 **`Example`**
 
 ```ts
-let isXZero = x.equals(0);
+x.assertLessThan(10);
 ```
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `number` \| `bigint` \| [`ForeignField`](ForeignField.md) |
-
-#### Returns
-
-`Bool`
 
 #### Defined in
 
-[lib/foreign-field.ts:344](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L344)
+[lib/foreign-field.ts:333](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L333)
 
 ___
 
@@ -449,7 +475,7 @@ ___
 
 Checks whether this field element is a constant.
 
-See FieldVar to understand constants vs variables.
+See [FieldVar](../modules.md#fieldvar-1) to understand constants vs variables.
 
 #### Returns
 
@@ -457,15 +483,19 @@ See FieldVar to understand constants vs variables.
 
 #### Defined in
 
-[lib/foreign-field.ts:119](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L119)
+[lib/foreign-field.ts:126](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L126)
 
 ___
 
 ### neg
 
-▸ **neg**(): `UnreducedForeignField`
+▸ **neg**(): [`AlmostForeignField`](AlmostForeignField.md)
 
 Finite field negation
+
+#### Returns
+
+[`AlmostForeignField`](AlmostForeignField.md)
 
 **`Example`**
 
@@ -473,13 +503,9 @@ Finite field negation
 x.neg(); // -x mod p = p - x
 ```
 
-#### Returns
-
-`UnreducedForeignField`
-
 #### Defined in
 
-[lib/foreign-field.ts:214](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L214)
+[lib/foreign-field.ts:219](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L219)
 
 ___
 
@@ -488,12 +514,6 @@ ___
 ▸ **sub**(`y`): `UnreducedForeignField`
 
 Finite field subtraction
-
-**`Example`**
-
-```ts
-x.sub(1); // x - 1 mod p
-```
 
 #### Parameters
 
@@ -505,9 +525,15 @@ x.sub(1); // x - 1 mod p
 
 `UnreducedForeignField`
 
+**`Example`**
+
+```ts
+x.sub(1); // x - 1 mod p
+```
+
 #### Defined in
 
-[lib/foreign-field.ts:226](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L226)
+[lib/foreign-field.ts:234](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L234)
 
 ___
 
@@ -523,15 +549,15 @@ Convert this field element to a bigint.
 
 #### Defined in
 
-[lib/foreign-field.ts:139](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L139)
+[lib/foreign-field.ts:146](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L146)
 
 ___
 
 ### toBits
 
-▸ **toBits**(`length?`): `Bool`[]
+▸ **toBits**(`length?`): [`Bool`](Bool.md)[]
 
-Unpack a field element to its bits, as a [Bool](../modules.md#bool)[] array.
+Unpack a field element to its bits, as a [Bool](Bool.md)[] array.
 
 This method is provable!
 
@@ -543,11 +569,11 @@ This method is provable!
 
 #### Returns
 
-`Bool`[]
+[`Bool`](Bool.md)[]
 
 #### Defined in
 
-[lib/foreign-field.ts:363](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L363)
+[lib/foreign-field.ts:352](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L352)
 
 ___
 
@@ -557,7 +583,7 @@ ___
 
 Convert this field element to a constant.
 
-See FieldVar to understand constants vs variables.
+See [FieldVar](../modules.md#fieldvar-1) to understand constants vs variables.
 
 **Warning**: This function is only useful in [witness](../modules.md#witness) or [asProver](../modules.md#asprover) blocks,
 that is, in situations where the prover computes a value outside provable code.
@@ -568,29 +594,29 @@ that is, in situations where the prover computes a value outside provable code.
 
 #### Defined in
 
-[lib/foreign-field.ts:131](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L131)
+[lib/foreign-field.ts:138](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L138)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): `Field`[]
+▸ **toFields**(): [`Field`](Field.md)[]
 
-Instance version of `Provable<ForeignField>.toFields`, see [toFields](TokenSymbol.md#tofields)
+Instance version of `Provable<ForeignField>.toFields`, see [toFields](../interfaces/Provable.md#tofields)
 
 #### Returns
 
-`Field`[]
+[`Field`](Field.md)[]
 
 #### Defined in
 
-[lib/foreign-field.ts:398](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L398)
+[lib/foreign-field.ts:391](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L391)
 
 ___
 
 ### assertAlmostReduced
 
-▸ `Static` **assertAlmostReduced**<`T`\>(`...xs`): [...{ [i in string \| number \| symbol]: AlmostForeignField }[]]
+▸ `Static` **assertAlmostReduced**\<`T`\>(`...xs`): [...\{ [i in string \| number \| symbol]: AlmostForeignField }[]]
 
 Assert that one or more field elements lie in the range [0, 2^k),
 where k = ceil(log2(p)) and p is the foreign field modulus.
@@ -601,7 +627,7 @@ This is most efficient than when checking a multiple of 3 field elements at once
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `Tuple`<[`ForeignField`](ForeignField.md)\> |
+| `T` | extends `Tuple`\<[`ForeignField`](ForeignField.md)\> |
 
 #### Parameters
 
@@ -611,11 +637,11 @@ This is most efficient than when checking a multiple of 3 field elements at once
 
 #### Returns
 
-[...{ [i in string \| number \| symbol]: AlmostForeignField }[]]
+[...\{ [i in string \| number \| symbol]: AlmostForeignField }[]]
 
 #### Defined in
 
-[lib/foreign-field.ts:172](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L172)
+[lib/foreign-field.ts:177](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L177)
 
 ___
 
@@ -635,7 +661,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:402](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L402)
+[lib/foreign-field.ts:395](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L395)
 
 ___
 
@@ -657,7 +683,23 @@ Coerce the input to a [ForeignField](ForeignField.md).
 
 #### Defined in
 
-[lib/foreign-field.ts:108](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L108)
+[lib/foreign-field.ts:114](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L114)
+
+▸ `Static` **from**(`x`): [`ForeignField`](ForeignField.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | `string` \| `number` \| `bigint` \| [`ForeignField`](ForeignField.md) |
+
+#### Returns
+
+[`ForeignField`](ForeignField.md)
+
+#### Defined in
+
+[lib/foreign-field.ts:115](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L115)
 
 ___
 
@@ -673,7 +715,7 @@ This method is provable!
 
 | Name | Type |
 | :------ | :------ |
-| `bits` | `Bool`[] |
+| `bits` | [`Bool`](Bool.md)[] |
 
 #### Returns
 
@@ -681,7 +723,21 @@ This method is provable!
 
 #### Defined in
 
-[lib/foreign-field.ts:384](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L384)
+[lib/foreign-field.ts:373](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L373)
+
+___
+
+### random
+
+▸ `Static` **random**(): [`CanonicalForeignField`](CanonicalForeignField.md)
+
+#### Returns
+
+[`CanonicalForeignField`](CanonicalForeignField.md)
+
+#### Defined in
+
+[lib/foreign-field.ts:384](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L384)
 
 ___
 
@@ -690,6 +746,17 @@ ___
 ▸ `Static` **sum**(`xs`, `operations`): `UnreducedForeignField`
 
 Sum (or difference) of multiple finite field elements.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `xs` | (`number` \| `bigint` \| [`ForeignField`](ForeignField.md))[] |
+| `operations` | (``1`` \| ``-1``)[] |
+
+#### Returns
+
+`UnreducedForeignField`
 
 **`Example`**
 
@@ -709,37 +776,6 @@ where the sum is computed in finite field arithmetic.
 **Important:** For more than two summands, this is significantly more efficient
 than chaining calls to [add](ForeignField.md#add) and [sub](ForeignField.md#sub).
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `xs` | (`number` \| `bigint` \| [`ForeignField`](ForeignField.md))[] |
-| `operations` | (``1`` \| ``-1``)[] |
-
-#### Returns
-
-`UnreducedForeignField`
-
 #### Defined in
 
-[lib/foreign-field.ts:251](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L251)
-
-___
-
-### toLimbs
-
-▸ `Static` `Private` **toLimbs**(`x`): `Field3`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`ForeignField`](ForeignField.md) |
-
-#### Returns
-
-`Field3`
-
-#### Defined in
-
-[lib/foreign-field.ts:100](https://github.com/o1-labs/snarkyjs/blob/9d34c7fcf/src/lib/foreign-field.ts#L100)
+[lib/foreign-field.ts:259](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/foreign-field.ts#L259)
