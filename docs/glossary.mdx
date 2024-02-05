@@ -13,7 +13,7 @@ keywords:
 
 # Glossary
 
-[A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) 
+[A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) [G](#g) [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) 
 [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)
 
 Are you looking for a zero knowledge or Mina term that isn't here yet? To let us know, please [create an issue](https://github.com/o1-labs/docs2/issues) or click **EDIT THIS PAGE** to submit a PR.
@@ -41,6 +41,10 @@ A binary-to-text encoding scheme that represents binary data in a human-readable
 ### best tip
 
 The blockchain's latest block with the highest [chain strength](#chain-strength) known to the mina daemon.
+
+### bitwise operations
+
+Generally available in most programming languages, including TypeScript, [bitwise operations](/zkapps/o1js/bitwise-operations) manipulate individual bits within a binary representation of a number. o1js provides versions of bitwise operations that operate on Field elements and result in the necessary circuit constraints to generate a zero knowledge proof of the computation.
 
 ### block
 
@@ -148,6 +152,10 @@ A digital system for recording the transaction of assets in which the transactio
 
 ## E
 
+## ECDSA
+
+Elliptic Curve Digital Signature Algorithm ([ECDSA](/zkapps/o1js/ecdsa)) a cryptographic algorithm used to sign and verify messages. It is used in many blockchains, including Ethereum, to sign transactions.
+
 ## elliptic curves
 
 Equations with a specific template, including: _y^2 = x^3 + ax^ + b_: [secp256k1](/glossary#secp256k1).
@@ -186,9 +194,19 @@ The basic unit of data in zero knowledge proof programming. Each field element c
 
 A consensus constant `k` is the point at which chain [reorganizations](#reorganization) are no longer possible. After a block has `k` [block confirmations](#block-confirmations) as defined by the consensus constants, it is considered final.
 
+## foreign field
+
+A finite field different from the native field of the proof system. [Foreign Field Arithmetic](/zkapps/o1js/foreign-fields) lets you perform algorithms that connect your zkApp with the outside world of cryptography.
+
 ### full node
 
 A Mina node that is able to verify the state of the network trustlessly. In Mina, every node is a full node since all nodes can receive and verify zk-SNARKs.
+
+# G
+
+## gadgets
+
+Small, reusable low-level building blocks that simplify the process of creating new cryptographic primitives. Most [gadgets](/zkapps/o1js/gadgets) build upon custom gates and act as low-level accelerators in the proof system.
 
 ## H
 
@@ -211,6 +229,10 @@ A hot wallet has a private key that is available on a machine that is connected 
 A [transition](#transition) that is produced locally, for example, by a block producer. The generated transition is applied locally and added to the [transition frontier](#transition-frontier) before being broadcast to peers.
 
 ## K
+
+## Keccak
+
+[Keccak (SHA-3)](/zkapps/o1js/keccak) is a flexible cryptographic hash function that provides more security than traditional SHA hash algorithms.
 
 ### key pair
 
@@ -238,6 +260,14 @@ A cryptocurrency public record-keeping system. Mina has three types of ledgers: 
 
 Mina uses this peer-to-peer networking library to provide things like message broadcast and file sharing.
 
+### Lightnet
+
+A lightweight Mina network in a single Docker container. [Lightnet](/zkapps/testing-zkapps-lightnet) is a resource-efficient solution with fast startup and syncing times that lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
+
+### lightweight Mina Explorer
+
+Provided in Lightnet, lightweight Mina Explorer lets you can monitor transactions on your local network.
+
 ## M
 
 ### Mainnet
@@ -258,6 +288,10 @@ The primary way for users to interact with the Mina network. The [Mina CLI](/nod
 
 The Mina CLI is installed when you [install Mina](/node-operators/block-producer-node/getting-started#installation).
 
+### Mina nodes
+
+Mina nodes fulfill different roles within the network, including [block producers](#block-producer) and [SNARK coordinators)[#snark-coordinator].
+
 ## N
 
 ### node
@@ -266,7 +300,7 @@ A machine running the Mina daemon.
 
 ### node operators
 
-People who run mina nodes.
+People who run Mina nodes. Node operators participate in consensus to create new blocks and help compress data by generating zk-SNARKs.
 
 ### non-consensus node
 
@@ -290,9 +324,17 @@ A TypeScript library for zk-SNARKs and zkApps. Use o1js to write zk smart contra
 
 A transfer of value or data, including transactions, that occurs outside a given blockchain network. These transfers do not need blockchain network confirmation, which speeds up the transaction process and reduces lag time. zkApps use an off-chain execution and mostly off-chain state model that allows for private computation and state that can be either private or public.
 
+### off-chain state
+
+State stored anywhere other than the Mina blockchain.
+
 ### on-chain
 
 A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is time-stamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
+
+### on-chain state
+
+State that lives on the Mina blockchain. Each zkApp account provides eight fields of 32 bytes each of arbitrary storage for the on-chain state. 
 
 ### oracle
 
@@ -330,7 +372,7 @@ A commitment scheme that allows a committer to commit to a polynomial with a sho
 
 ### Poseidon
 
-A family of [hash](#hash) functions that can efficiently run in a zk circuit. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation).
+A family of [hash](#hash) functions that can efficiently run in a zk circuit. Poseidon operates over the native [Pallas base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) and uses parameters generated specifically for Mina which makes Poseidon the most efficient hash function available in o1js. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation). 
 
 ### precomputed blocks
 
@@ -404,6 +446,22 @@ A data structure that allows decoupling the production of transaction SNARKs fro
 
 The elliptic curve using this equation _y²=x³+7, a=0 b=7_, constructed in a special non-random way to allow for especially efficient computation. secp256k1 can have a key size of up to 256 bits. All points on this curve are valid public keys.
 
+### seed nodes
+
+A Mina node that keeps a record of nodes in the network and enables nodes that are joining the network to connect to peer nodes.
+
+### SHA-2
+
+Secure Hash Algorithm 2 (SHA-2) is a family of two similar hash functions with different block sizes known as SHA-256 and SHA-512. They differ in the word size. SHA-256 uses 32-bit words and SHA-512 uses 64-bit words. 
+
+### SHA-256
+
+SHA-256, a part of the SHA-2 family, is a cryptographic hash function that generates a 256-bit (32-byte) hash output and is widely used for traditional Web2 applications and protocols as well as blockchain technology.
+
+### SHA-3
+
+Secure Hash Algorithm 3 (SHA-3) is the latest member of the Secure Hash Algorithm family of standards, released by NIST on August 5, 2015. [Keccak](#keccak) was standardized as SHA-3.
+
 ### signature
 
 Short for digital signature, a way to establish authenticity or ownership of digitally signed messages.
@@ -459,6 +517,10 @@ The ledger used to determine block producers for a slot, as the probability of f
 ### staking pool
 
 A pool of delegated funds that is run by a staking pool owner. To avoid the requirement of being online, other nodes can choose to delegate funds to a staking pool.
+
+### state
+
+The current status or snapshot of all data stored within the blockchain.
 
 ### syncing
 
@@ -548,6 +610,6 @@ Technology that the Mina network uses to connect to other chains.
 
 ### zk-SNARK
 
-A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network.
+A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network. SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. 
 
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)
