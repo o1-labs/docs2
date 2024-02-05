@@ -25,8 +25,8 @@ on privacy and scalability.
 
 The Mina Protocol works differently. It verifies transactions (and previous
 blocks) cryptographically using recursive zero-knowledge proofs. Smart contract
-code is written in TypeScript and executes off chain. Mina nodes only need to
-verify a small proof in order to validate the associated execution. Better
+code is written in TypeScript and executes off chain. Mina nodes need to
+verify only a small proof in order to validate the associated execution. Better
 still, the proof does not reveal any information about the underlying
 computation, meaning developers can choose whether their inputs and outputs
 should be public or private, depending on the requirements of their application.
@@ -65,7 +65,7 @@ should be public or private, depending on the requirements of their application.
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Developer Tooling</td>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>New developer tools with unusual patterns like <span style={{color: '#7d4bbd'}}>Hardhat</span>, and <span style={{color: '#7d4bbd'}}>Truffle</span> are needed in order to manage the deployment of Ethereum smart contracts.</td>
-    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}><span style={{color: '#7d4bbd'}}>The Mina zkApp CLI</span> manages scaffolding, linting, testing, and deployment using common JavaScript/TypeScript tools you are already familiar with.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}><span style={{color: '#7d4bbd'}}>The zkApp CLI</span> manages scaffolding, linting, testing, and deployment using common JavaScript/TypeScript tools you are already familiar with.</td>
   </tr>
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Scaling</td>
@@ -115,9 +115,7 @@ export class Add extends SmartContract {
 }
 ```
 
-## FAQ
-
-### How does Mina bridge to Ethereum?
+## How does Mina bridge to Ethereum?
 
 Mina proofs are small and easy to verify; this means that any Turing complete
 blockchain (like Ethereum) can validate the entire Mina state in a single
