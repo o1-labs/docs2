@@ -21,7 +21,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+The maximum number of zkApp transactions per block is currently capped at 24. This restriction will be gradually lifted after the Mainnet upgrade.
 
 :::
 

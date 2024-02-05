@@ -18,11 +18,6 @@ keywords:
   - typescript library
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
-:::
-
 # Introduction to o1js
 
 o1js, fka. SnarkyJS, is a TypeScript (TS) library for:
