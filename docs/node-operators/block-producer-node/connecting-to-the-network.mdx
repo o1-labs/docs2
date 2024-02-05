@@ -1,5 +1,5 @@
 ---
-title: Connect to the Mina Network
+title: Connect to the Mainnet
 hide_title: true
 description: Steps to install mina and connect to the Mina Mainnet network.
 keywords:
@@ -69,7 +69,7 @@ For help solving common issues when first running a node, see Node Operators [Tr
 
     Press `Ctrl+C`.
 
-## Start a mina node with auto-restart flows
+## Start a mina node with auto-restart flows using systemd
 
 Now that you've confirmed things are okay by running the standalone process, start mina with auto-restart workflows that allow the node to continue running after you log out and restart automatically when the machine restarts.
 
@@ -100,7 +100,7 @@ To produce blocks or otherwise customize the configuration for the mina daemon:
    - Mainnet package [https://storage.googleapis.com/seed-lists/mainnet_seeds.txt](https://storage.googleapis.com/seed-lists/mainnet_seeds.txt)
      - Change with `--peer-list-url`
 
-1. After your `.mina-env` file is ready, start a mina node instance and connect to the live network:
+1. After your `.mina-env` file is ready, start a mina node instance and connect to the live network using systemctl to control systemd:
 
    ```sh
    systemctl --user daemon-reload

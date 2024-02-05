@@ -1,5 +1,6 @@
 ---
-title: Archive Node
+title: Archive Nodes Getting Started
+sidebar_label: Getting Started
 description: Mina archive nodes maintain historical information about the network, block, and transactions. A zkApp can retrieve events and actions from one or more Mina archive nodes.
 keywords:
   - mina archive node
@@ -9,7 +10,7 @@ keywords:
   - postgres
 ---
 
-# Archive Node
+# Archive Nodes Getting Started
 
 Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions.
 
@@ -21,9 +22,23 @@ A zkApp can retrieve events and actions from one or more Mina archive nodes. If 
 
 :::
 
-An archive node is a regular mina daemon that is connected to a running archive process.
+An archive node is a regular non-block producing mina daemon that is connected to a running `mina-archive` process using the `--archive-address` flag.
 
 The daemon regularly sends blockchain data to the archive process that stores it in a [PostgreSQL](https://www.postgresql.org/) database.
+
+## Archive Node Requirements
+
+**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+
+**Processor**: Only AMD64 CPU architecture is supported.
+
+**Hardware**: Running an archive node does not require any special hardware. 
+
+In addition to the [PostgreSQL](https://www.postgresql.org/) database requirements, running an archive node on the Mina network requires at least:
+
+- 8-core processor
+- 32 GB of RAM
+- 64 GB of free storage  
 
 Running an archive node requires some knowledge of managing a PostgreSQL database instance. You must set up a database, run the archive node, connect it to a daemon, and run queries on the data.
 

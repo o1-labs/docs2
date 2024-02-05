@@ -2,7 +2,7 @@
 title: 'Tutorial 1: Hello World'
 hide_title: true
 sidebar_label: 'Tutorial 1: Hello World'
-description: Guided steps to get started with o1js, zkApps, and programming with zero-knowledge proofs. Learn to code a zkApp from start to finish.
+description: Guided steps to get started with o1js, zkApps, and programming with zero knowledge proofs. Learn to code a zkApp from start to finish.
 keywords:
   - smart contracts
   - zkapps
@@ -20,7 +20,7 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 # Tutorial 1: Hello World
 
-This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero-knowledge proofs. 
+This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs. 
 
 In this step-by-step tutorial, you learn to code a zkApp from start to finish.
 
@@ -30,7 +30,7 @@ You will:
 - The contract logic allows this number to be replaced only by its square; for example, 3 -> 9 -> 81, and so on. 
 - Create a project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
 - Write your smart contract code
-- Use a local Mina blockchain to interact with your smart contract.
+- Use a simulated local Mina blockchain to interact with your smart contract.
 
 Later tutorials introduce more concepts and patterns.  
 
@@ -265,7 +265,7 @@ In this example, the code specifies:
 - If the user provides a number (for example, 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (for example, 3), then update the `num` value that is stored on-chain to the provided value (in this case, 9). 
 - If the user provides a number that does not meet these conditions, they are unable to generate a proof or update the on-chain state.
 
-These update conditions are accomplished by using assertions within the method. When a user invokes a method on a smart contract, all assertions must be true to generate the zero-knowledge proof from that smart contract. The Mina network accepts the transaction and updates the on-chain state only if the attached proof is valid. This assertion is how you can achieve predictable behavior in an off-chain execution model.
+These update conditions are accomplished by using assertions within the method. When a user invokes a method on a smart contract, all assertions must be true to generate the zero knowledge proof from that smart contract. The Mina network accepts the transaction and updates the on-chain state only if the attached proof is valid. This assertion is how you can achieve predictable behavior in an off-chain execution model.
 
 Notice that `get()` and `set()` methods are used for retrieving and setting on-chain state. 
 
@@ -275,7 +275,7 @@ Notice that `get()` and `set()` methods are used for retrieving and setting on-c
 
 The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available [methods](/zkapps/o1js-reference/classes/Field#methods) in the o1js Reference documentation. 
 
-You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero-knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
+You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
 
 Importantly, data passed as an input to a smart contract method in o1js is private and never seen by the network.
 
@@ -310,11 +310,16 @@ These import items are:
 - `PrivateKey`: A class with functions for manipulating private keys.
 - `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
 
-### Local Blockchain
+### Simulated Local Blockchain
 
-Using a local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to deploy a zkApp to live Mina networks.
+Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to use a lightweight Mina network (Lightnet) to test your zkApp before you deploy to live networks.
 
-To initialize your local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
+:::info
+- The term _simulated local blockchain_ refers to the local testing blockchain you use in the first phase of testing as described here. 
+- The term _Lightnet_ is used to describe the lightweight Mina network (Lightnet) that is a more accurate representation of the Mina blockchain. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet).
+:::
+
+To initialize your simulated local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
  9 const useProof = false;
@@ -325,7 +330,7 @@ To initialize your local blockchain, add the following code from the [main.ts](h
 14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 ```
 
-This local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
+This simulated local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
 
 ```ts ignore
 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
@@ -336,7 +341,7 @@ Tip: To preserve line numbers in your local `main.ts` file, add blank lines as n
 
 ### Build and run the smart contract
 
-Now that the Square smart contract is complete, these commands run your project as a local blockchain.
+Now that the Square smart contract is complete, these commands run your project as a simulated local blockchain.
 
 To compile the TypeScript code into JavaScript:
 

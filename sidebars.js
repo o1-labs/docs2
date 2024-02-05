@@ -9,6 +9,7 @@ module.exports = {
         'about-mina/what-are-zero-knowledge-proofs',
         'about-mina/protocol-architecture',
         'about-mina/consensus',
+        'about-mina/security',
         'about-mina/faq',
         {
           type: 'link',
@@ -33,15 +34,16 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/how-zkapps-work',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
           ],
@@ -415,7 +417,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Snark Workers',
+          label: 'SNARK Workers',
           link: {
             type: 'doc',
             id: 'node-operators/snark-workers/index'
@@ -429,11 +431,11 @@ module.exports = {
           label: 'Archive Nodes',
           link: {
             type: 'doc',
-            id: 'node-operators/archive-nodes/index'
+            id: 'node-operators/archive-node/index'
           },
           items: [
-            'node-operators/archive-nodes/getting-started',
-            'node-operators/archive-nodes/archive-redundancy',
+            'node-operators/archive-node/getting-started',
+            'node-operators/archive-node/archive-redundancy',
             
               ],
         },
@@ -478,6 +480,7 @@ module.exports = {
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
+        'node-operators/logging',
         'node-operators/troubleshooting',
         'node-operators/faq',
       ],
@@ -497,8 +500,7 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/contributing',
-        'node-developers/logging',
+        'node-developers/contributing'
       ],
     },
     {

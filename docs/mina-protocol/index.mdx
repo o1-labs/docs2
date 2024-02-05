@@ -25,9 +25,17 @@ Mina offers an elegant solution: replacing the blockchain with an easily verifia
 
 There are three public Mina Protocol networks:
 
-1. Mainnet - the production network
-2. Devnet - the test network based on the same software versions as the mainnet
-3. Berkeley Testnet - a development network where new features are trialed
+1. `mainnet`  - the production network
+2. `devnet`   - the test network based on the same software versions as the Mainnet
+3. `berkeley` - a development network where new features are trialed
+
+You check the identity of the network with this graphQL query:
+
+```
+query MyQuery {
+  networkID
+}
+```
 
 This section describes how the Mina Protocol works.
 
@@ -43,12 +51,12 @@ This section describes how the Mina Protocol works.
 
 ## Node Operators
 
-[Node Operators](../node-operators) are network participants who run mina nodes on a Mina network. Mina nodes fulfill different roles within the network.
+[Node Operators](../node-operators) describes how to run Mina nodes on a Mina network. Mina nodes fulfill different roles within the network.
 
 ## Node Developers
 
-[Node Developers](../node-developers) are developers who add to and improve mina nodes.
+[Node Developers](../node-developers) describes how developers can add to and improve Mina nodes.
 
 ## Exchange Operators
 
-[Exchange Operators](../exchange-operators/faq) are people who connect to Mina networks to provide access to the MINA token.
+[Exchange Operators](../exchange-operators/faq) describes how to connect to Mina networks and provide access to the MINA token.
