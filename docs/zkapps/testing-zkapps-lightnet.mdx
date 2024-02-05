@@ -59,7 +59,7 @@ https://docs.docker.com/engine/install/).
 1. Develop, iterate, and [troubleshoot](#troubleshoot-transactions)
 1. [Stop the local network](#stop-the-local-network)
 
-The best way experience Lightnet is by using it from the zkApp CLI command line.
+The best way to experience Lightnet is by using it from the zkApp CLI.
 
 ## Start a local network
 
@@ -82,7 +82,6 @@ This command performs the following operations that successfully serve the major
 - Disables the blockchain SNARK proofs
 - Uses the `o1js-main` branch of the Mina repository
 - Starts the Mina archive process and the [Archive-Node-API](https://github.com/o1-labs/Archive-Node-API) application.
-   This application runs alongside other applications in the Docker contain and talks to the PostgreSQL database, which is populated with data by the mina archive process.
 - Waits for the network to reach a synchronized state
 - Sets the Mina process logging level to trace
 
@@ -147,12 +146,12 @@ To monitor transactions, launch the lightweight Mina Explorer:
 zk lightnet explorer
 ```
 
-This command downloads and updates a lightweight Mina explorer. By default, the latest version is downloaded (if needed) and launched. 
+By default, this command downloads (if needed) and launches the latest version of [lightweight Mina explorer](https://github.com/o1-labs/mina-lightweight-explorer). 
 
 To list versions, their published dates, and show the version in use:
 
 ```sh
-zk lightnet explorer list
+zk lightnet explorer --list
 ```
 
 To use a specific version of the lightweight Mina Explorer:
