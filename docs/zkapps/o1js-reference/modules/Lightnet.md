@@ -7,13 +7,14 @@
 ### Functions
 
 - [acquireKeyPair](Lightnet.md#acquirekeypair)
+- [listAcquiredKeyPairs](Lightnet.md#listacquiredkeypairs)
 - [releaseKeyPair](Lightnet.md#releasekeypair)
 
 ## Functions
 
 ### acquireKeyPair
 
-▸ **acquireKeyPair**(`options?`): `Promise`<{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }\>
+▸ **acquireKeyPair**(`options?`): `Promise`\<\{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }\>
 
 Gets random key pair (public and private keys) from account manager
 that operates with accounts configured in target network Genesis Ledger.
@@ -26,24 +27,49 @@ the data is returned.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `options` | `Object` | - |
-| `options.isRegularAccount?` | `boolean` | Whether to acquire regular or zkApp account (one with already configured verification key) |
+| `options.isRegularAccount?` | `boolean` | Whether to acquire key pair of regular or zkApp account (one with already configured verification key) |
 | `options.lightnetAccountManagerEndpoint?` | `string` | Account manager endpoint to fetch from |
 
 #### Returns
 
-`Promise`<{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }\>
+`Promise`\<\{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }\>
 
 Key pair
 
 #### Defined in
 
-[lib/fetch.ts:1026](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/fetch.ts#L1026)
+[lib/fetch.ts:1091](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1091)
+
+___
+
+### listAcquiredKeyPairs
+
+▸ **listAcquiredKeyPairs**(`options`): `Promise`\<\{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }[] \| ``null``\>
+
+Gets previously acquired key pairs list.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | `Object` | - |
+| `options.lightnetAccountManagerEndpoint?` | `string` | Account manager endpoint to fetch from |
+
+#### Returns
+
+`Promise`\<\{ `privateKey`: [`PrivateKey`](../classes/PrivateKey.md) ; `publicKey`: [`PublicKey`](../classes/Types.PublicKey.md)  }[] \| ``null``\>
+
+Key pairs list or null if the request failed
+
+#### Defined in
+
+[lib/fetch.ts:1171](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1171)
 
 ___
 
 ### releaseKeyPair
 
-▸ **releaseKeyPair**(`options`): `Promise`<`string` \| ``null``\>
+▸ **releaseKeyPair**(`options`): `Promise`\<`string` \| ``null``\>
 
 Releases previously acquired key pair by public key.
 
@@ -57,10 +83,10 @@ Releases previously acquired key pair by public key.
 
 #### Returns
 
-`Promise`<`string` \| ``null``\>
+`Promise`\<`string` \| ``null``\>
 
 Response message from the account manager as string or null if the request failed
 
 #### Defined in
 
-[lib/fetch.ts:1069](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/fetch.ts#L1069)
+[lib/fetch.ts:1134](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1134)
