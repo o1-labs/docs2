@@ -27,7 +27,7 @@ Some node operators don't wish to participate in block production or SNARK work 
 
 ## Preparation
 
-In addition to [installing the Mina daemon on your machine](/node-operators/block-producer-node/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/node-operators/archive-nodes/getting-started), archive by using [other redundant means](/node-operators/archive-nodes/archive-redundancy), or both.
+In addition to [installing the Mina daemon on your machine](/node-operators/block-producer-node/getting-started), you may also want to have some system set up to archive historical information on your machine. To do so you can setup an [archive node](/node-operators/archive-node/getting-started), archive by using [other redundant means](/node-operators/archive-node/archive-redundancy), or both.
 
 ## Running a node
 
@@ -43,7 +43,7 @@ To make the REST server accessible from outside of `localhost`, provide `-insecu
 
 ## Querying information
 
-Presented here are examples about querying for _recent_ information on the chain -- in practice exposed is ~10 hours of recent activity in the remaining testnets and the first version of Mainnet. As Mina is a succinct blockchain, historical information can be accessed using [an archival process](/node-operators/archive-nodes/archive-redundancy).
+Presented here are examples about querying for _recent_ information on the chain -- around 290 blocks, in practice around 10 hours of recent activity. 
 
 The best way to explore all the specific details available for each of the GraphQL objects is to visit your favorite web browser pointing to the REST server running from within a Mina daemon that hosts a GraphQL sandbox. Visit the [GraphQL API page](/node-developers/graphql-api) to learn more. Documentation is also present on most of the individual fields, you can learn more about each field by hovering over the entries in the sandbox or by visiting the hosted schema (coming soon).
 

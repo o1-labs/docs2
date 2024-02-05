@@ -1,21 +1,88 @@
 ---
-title: Snark Workers
+title: SNARK workers Getting Started
+sidebar_label: Getting Started
 hide_title: true
-description: How to run a Snark Worker. Snark Workers are essential to keep the network producing transactions in blocks. 
+description: How to run a SNARK worker. SNARK workers are essential to keep the network producing transactions in blocks. 
 keywords:
   - connect to network
   - running a snark worker
 ---
 
+# SNARK Workers Getting Started 
+
 The Mina protocol is unique because nodes are not required to maintain the full history of the blockchain like other cryptocurrency protocols. By recursively using cryptographic proofs, the Mina protocol effectively compresses the blockchain to constant size. This compression reduces terabytes of data to a few kilobytes.
 
-However, this isn't data encoding or compression in the traditional sense. Mina nodes _compress_ data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as [SNARK-workers](/glossary#snark-worker) that generate [zk-SNARKs](/glossary#zk-snark) for transactions that have been added to blocks.
+However, this isn't data encoding or compression in the traditional sense. Mina nodes _compress_ data in the network by generating cryptographic proofs. Node operators play a crucial role in this process by designating themselves as [SNARK workers](/glossary#snark-worker) that generate [zk-SNARKs](/glossary#zk-snark) for transactions that have been added to blocks. 
 
-To start a SNARK-worker, run these commands:
+You can connect a SNARK worker to the network or use a SNARK coordinator. [SNARK coordinators](/glossary#snark-coordinator) can be used to coordinate and distribute work to any [SNARK workers](/glossary#snark-worker) that you are running. If you are running a SNARK coordinator, connect the SNARK coordinator to the network, then connect SNARK workers to the SNARK coordinator.
+
+
+## SNARK Coordinator Requirements
+
+**Software**: Supported environments include macOS, Linux (Debian 10, 11, 12 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+
+**Processor**: Only AMD64 CPU architecture is supported.
+
+**Hardware**: Sending and receiving MINA does not require any special hardware. 
+
+Running a SNARK coordinator on the Mina network requires at least:
+
+- 8-core processor
+- 32 GB of RAM
+- 64 GB of free storage
+
+**Network**: At least 1 Mbps connection
+
+## SNARK Worker Requirements
+
+**Software**: Supported environments include macOS, Linux (Debian 10, 11, 12 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+
+**Processor**: Only AMD64 CPU architecture is supported.
+
+**Hardware**: Sending and receiving MINA does not require any special hardware. 
+
+Running a SNARK worker on the Mina network requires at least:
+
+- 16-core processor with 32 threads
+- 32 GB of RAM
+- 64 GB of free storage
+
+**Network**: At least 1 Mbps connection
+
+## Running a SNARK coordinator
+
+To start a SNARK coordinator, run a mina daemon with these additional flags:
+
+```sh
+--run-snark-coordinator <PUBLICKEY>\ --snark-worker-fee <FEE> --work-selection seq
+```
+
+## Running a SNARK worker connected to a SNARK coordinator
+
+To start a SNARK-worker connected to a SNARK-coordinator, run `mina` with these flags:
+
+```sh
+internal snark-worker --proof-level full --shutdown-on-disconnect false --daemon-address <snark coordinator IP and port - IP:port>
+```
+
+## Running a SNARK-worker
+
+To start a SNARK-worker, run `mina daemon` with these flags:
+
+```sh
+--run-snark-worker <PUBLICKEY>\ --snark-worker-fee <FEE> --work-selection <seq|rand>
+```
+
+Use the `--snark-worker-parallelism` flag to set the number of threads used in snark working, this does not affect block production.
+
+## Setting a Node to be a SNARK-worker 
+
+To make a node a SNARK-worker, run these commands:
 
 ```sh
 mina client set-snark-work-fee <FEE>
 mina client set-snark-worker --address $MINA_PUBLIC_KEY
+
 ```
 
 If your daemon is already running, restart the daemon with these flags:

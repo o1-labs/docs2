@@ -453,7 +453,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Snark Workers',
+          label: 'SNARK Workers',
           link: {
             type: 'doc',
             id: 'node-operators/snark-workers/index'
@@ -467,11 +467,11 @@ module.exports = {
           label: 'Archive Nodes',
           link: {
             type: 'doc',
-            id: 'node-operators/archive-nodes/index'
+            id: 'node-operators/archive-node/index'
           },
           items: [
-            'node-operators/archive-nodes/getting-started',
-            'node-operators/archive-nodes/archive-redundancy',
+            'node-operators/archive-node/getting-started',
+            'node-operators/archive-node/archive-redundancy',
             
               ],
         },
@@ -516,6 +516,7 @@ module.exports = {
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
+        'node-operators/logging',
         'node-operators/troubleshooting',
         'node-operators/faq',
       ],
@@ -535,8 +536,7 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/contributing',
-        'node-developers/logging',
+        'node-developers/contributing'
       ],
     },
     {

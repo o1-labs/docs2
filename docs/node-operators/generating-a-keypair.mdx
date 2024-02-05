@@ -16,18 +16,21 @@ keywords:
 
 # Generating a Key Pair
 
+## About Key Pairs
+
 Two different key pairs are relevant to node operators: 
 
 - Wallet keypairs you generate with the steps provided here
 - libp2p keypairs that are gossip network identities
 
-To use Mina on Mainnet or to fully participate in a Mina test network, the first step is to generate a wallet key pair that consists of a public key and a private key. 
+To use Mina on Mainnet or to fully participate in a Mina test network, the first step is to generate a wallet key pair that consists of a public key and a private key. The public key identifies each block producer on the network.
 
 In some cases, you want to generate more than one wallet key pair. For example, to run a block producer most securely, it is advisable to have accounts on both hot and cold wallets. See [Hot and Cold Block Production](/node-operators/block-producer-node/hot-cold-block-production).
 
 The supported tools for generating public/private key pairs are:
 
 - [mina-generate-keypair](#mina-generate-keypair) command line utility
+- [mina libp2p generate-keypair](#mina-libp2p-generate-keypair) mina subcommand
 - [Mina Signer](/node-operators/mina-signer)
 - [Mina command line wallet package](https://github.com/jspada/ledger-app-mina/blob/v1.0.0-beta.2/README.md#command-line-wallet) that interfaces with your Ledger device and Mina blockchain to generate addresses on the Ledger hardware wallet
 
@@ -42,9 +45,25 @@ Never give out your private key.
 
 If you lose your private key or if a malicious actor gains access to your private key, you will lose access to your account and lose your account funds. 
 
-## Command line utility
+## Mina Generate Keypair
 
 The `mina-generate-keypair` command line utility is the simplest method to create a public/private key pair.
+
+```
+Generate a new public, private keypair
+
+  mina-generate-keypair 
+
+=== flags ===
+
+  --privkey-path FILE  File to write private key into (public key will be
+                       FILE.pub)
+                       (alias: -privkey-path)
+  [-build-info]        print info about this build and exit
+  [-version]           print the version of this build and exit
+  [-help]              print this help text and exit
+                       (alias: -?)
+```
 
 ### Installation on Ubuntu and Debian
 
@@ -140,6 +159,60 @@ On Docker:
 
 ```
 docker run --interactive --tty --rm --entrypoint=mina-validate-keypair --volume $(pwd)/keys:/keys minaprotocol/mina-generate-keypair:1.3.1-3e3abec --privkey-path /keys/my-wallet
+```
+
+## mina libp2p generate-keypair
+
+Each node in the Mina network must possess its own distinct libp2p key pair. This requirement extends to block producer nodes, despite their utilization of a common block production key. Every node operator must generate unique libp2p keys locally on their respective machines.
+
+Use the `mina` subcommand `libp2p` command line utility to create a libp2p key pair.
+
+
+```
+Mina
+
+  mina SUBCOMMAND
+
+=== subcommands ===
+
+  accounts                    Client commands concerning account management
+  daemon                      Mina daemon
+  client                      Lightweight client commands
+  advanced                    Advanced client commands
+  ledger                      Ledger commands
+  libp2p                      Libp2p commands
+  internal                    Internal commands
+  parallel-worker             internal use only
+  transaction-snark-profiler  transaction snark profiler
+  version                     print version information
+  help                        explain a given subcommand (perhaps recursively)
+  ```
+
+  The `libp2p` subcommand is used to create the libp2p key pair.
+
+  ```
+  Generate a new libp2p keypair and print out the peer ID
+
+  mina libp2p generate-keypair 
+
+=== flags ===
+
+  --privkey-path FILE  File to write private key into (public key will be
+                       FILE.pub)
+                       (alias: -privkey-path)
+  [-help]              print this help text and exit
+                       (alias: -?)
+  ``` 
+### Installation Instructions
+
+See [Getting Started](./block-producer-node/getting-started)
+
+## Generate your libp2p keys
+
+Use the following command:
+
+```
+mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 ```
 
 ## Ledger Hardware Wallet

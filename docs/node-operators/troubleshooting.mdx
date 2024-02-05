@@ -87,7 +87,7 @@ See the requirements for the current network [here](./block-producer-node/gettin
 
 ### I would like the mina service to start on boot?
 
-If you use `systemd` to manage the Mina daemon then it will not automatically restart on a reboot of the machine. You can manually run the service via `systemctl --user start mina` or run `systemctl --user enable mina` to have the service automatically start on boot.
+If you use `systemd` to manage the Mina daemon then it will not automatically restart on a reboot of the machine. You can manually run the service with `start` via `systemctl --user start mina` or start the service automatically at boot with `enable` by using `systemctl --user enable mina`.
 
 ### What should I add for MINA_PRIVKEY_PASS?
 
@@ -95,7 +95,7 @@ When you generated a keypair, you created a password. Use the password you creat
 
 ### I get an error about ~/.mina-config/daemon.json missing?
 
-This is an optional file to pass [configuration options](https://github.com/MinaProtocol/mina/blob/develop/docs/daemon.md) to the daemon (rather than passing via the command line). The daemon looks for it by default, which results in an error if you do not include it. Just ignore this error (unless you are trying to include it) as it is not fatal, and the daemon will start as per normal.
+This is an optional file to pass [configuration options](./mina-cli-reference#mina-daemon) to the daemon (rather than passing via the command line). The daemon looks for it by default, which results in an error if you do not include it. Just ignore this error (unless you are trying to include it) as it is not fatal, and the daemon will start as per normal.
 
 ### I see messages about prover/verifier being killed periodically
 
@@ -111,7 +111,7 @@ Yes. Set the `MINA_PRIVKEY_PASS` environment variable to be your password.
 
 ### I am trying to install on Ubuntu 20.04 / Debian 10 and get dependency errors?
 
-See this [guide for ubuntu 20.04](https://discordapp.com/channels/484437221055922177/583400552487059546/822269019687354418) on Mina Protocol Discord to manually resolve the required dependencies. Alternatively, use a supported OS (Ubuntu 18.04/Debian 9) or use Docker.
+See this [guide for ubuntu 20.04](https://discordapp.com/channels/484437221055922177/583400552487059546/822269019687354418) on Mina Protocol Discord to manually resolve the required dependencies. Alternatively, use a [supported OS](https://github.com/MinaProtocol/mina/releases) or use Docker.
 
 ## Syncing a node
 
@@ -148,11 +148,10 @@ We only need the last `k` (290) blocks of the blockchain to produce blocks. So o
 
 ### My sync status is offline?
 
-This status indicates that you have not received any messages from peers for the last ~24 minutes. Ensure that you are using the latest peers.txt file. You can add new peers to a running node via this command:
+This status indicates that you have not received any messages from peers for the last ~24 minutes. Ensure that you use the `--peer-list` argument that points to `https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`
 
-```
-cat peers.txt | xargs -I % mina advanced add-peers %
-```
+See [Connect to Mainnet](./block-producer-node/connecting-to-the-network). 
+
 
 ## Networking
 
@@ -192,11 +191,9 @@ The client port `8301` should **never** be exposed to the internet. There may be
 
 ### Node fails with "Failed to find any peers, crashing as this is not a seed node"?
 
-First, ensure that you have downloaded the latest peers file from the email received - the URL does not change, but the list of peers is updated very frequently.
+Ensure that you use the `--peer-list` argument that points to `https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`
 
-Next, depending on the method you use to start the node, ensure that you are passing the correct path to this file. For example, if using `systemd`, there must be a `peers.txt` file in your home directory.
-
-This error should have been resolved by a recent update, so ensure you are on the latest release and have the latest peers file.
+See [Connect to Mainnet](./block-producer-node/connecting-to-the-network). 
 
 ### I get an error couldn't determine our IP from the internet?
 
@@ -242,7 +239,7 @@ On the current network, this is 128, which also includes the coinbase transactio
 
 ### Can I cancel a transaction?
 
-Not currently due to [this bug](https://github.com/MinaProtocol/mina/issues/6605).
+You can cancel pending transactions. See [Mina Client](./mina-cli-reference#mina-client) or wallet instructions.
 
 ### I sent a transaction, but it was never included in a block?
 
@@ -256,7 +253,7 @@ If transactions are not being included, the transaction fees likely do not cover
 
 ### Does the order of sending transactions matter?
 
-Yes, transactions are processed in order according to the nonce associated with the transaction. So, if you send a transaction that is stuck, with, for example, a low fee, all following transactions will also be stuck regardless of the fees used in the later transactions. Unfortunately, there is no way to currently cancel a transaction due to a known issue, so you have to wait for either the transaction to be included or to be evicted from the transaction pool.
+Yes, transactions are processed in order according to the nonce associated with the transaction. So, if you send a transaction that is stuck, with, for example, a low fee, all following transactions will also be stuck regardless of the fees used in the later transactions. Try to cancel the stuck transaction. 
 
 ### Why does my account say "locked"?
 
@@ -384,7 +381,7 @@ The logs are noisy and often contain "scary" looking messages such as failure to
 
 ### How many logs are kept / where are the logs located?
 
-The `~/.mina-config` directory contains the Mina logs. This directory contains the following:
+The `~/.mina-config` directory contains the Mina logs, see [Logging](logging). This directory contains the following:
 
 - `mina.log` - This file contains the latest logs of the daemon. Each log file is limited to 10 MiB in size and rotates through 50 log files. Rotated log files are named `mina.log.x` from `mina.log.0` to `mina.log.50`.
 - `mina-best-tip.log` - This is used to write the best tip logs to make it easier to collect the required logs from nodes to determine the state for a hard fork. Each file is limited to 5 MiB and rotates through a maximum of 5 files from` mina-best-tip.log.0` to `mina-best-tip.log.5`.
