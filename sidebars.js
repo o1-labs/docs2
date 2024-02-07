@@ -505,6 +505,18 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Berkeley Upgrade',
+      link: {
+        type: 'doc',
+        id: 'berkeley-upgrade/index'
+      },
+      items: [
+        'berkeley-upgrade/planning-archive-migration',
+        'berkeley-upgrade/migrating-archive-database-to-berkeley'
+      ],
+    },
+    {
+      type: 'category',
       label: 'Exchange Operators',
       link: {
         type: 'doc',
