@@ -9,7 +9,7 @@ import type { Add } from '../../../contracts/src/Add';
 const state = {
   Add: null as null | typeof Add,
   zkapp: null as null | Add,
-  transaction: null as null | Transaction,
+  transaction: null as null | Transaction
 };
 
 // ---------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ const state = {
 const functions = {
   setActiveInstanceToBerkeley: async (args: {}) => {
     const Berkeley = Mina.Network(
-      'https://proxy.berkeley.minaexplorer.com/graphql'
+      'https://api.minascan.io/node/berkeley/v1/graphql'
     );
     console.log('Berkeley Instance Created');
     Mina.setActiveInstance(Berkeley);
@@ -52,7 +52,7 @@ const functions = {
   },
   getTransactionJSON: async (args: {}) => {
     return state.transaction!.toJSON();
-  },
+  }
 };
 
 // ---------------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ if (typeof window !== 'undefined') {
 
       const message: ZkappWorkerReponse = {
         id: event.data.id,
-        data: returnData,
+        data: returnData
       };
       postMessage(message);
     }

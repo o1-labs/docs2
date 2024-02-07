@@ -23,7 +23,7 @@ Lightnet provides the following benefits:
 - Creates and funds accounts so that you can deploy and interact with your zkApp. The genesis ledger is configured with 1000 pre-funded accounts with a 1550 MINA balance on each account.
 - Optionally runs a Mina [archive node](/node-operators/archive-node).
 - Provides the Mina accounts manager helper tool so you can automate account retrieval.
-- Launches the lightweight Mina Explorer in a web browser so you can monitor transactions.
+- Launches a lightweight Mina explorer in a web browser so you can monitor transactions.
 - Simplifies zkApp troubleshooting by providing convenient access to detailed logs.
 
 :::info
@@ -34,6 +34,7 @@ Use of Lightnet is appropriate for local development and testing only. It is not
 
 ## Prerequisites
 
+1. [Install zkApp CLI](/zkapps/install-zkapp-cli). 
 
 1. [Write tests for your smart contract](/zkapps/testing-zkapps-locally#writing-tests-for-your-smart-contract).
 
@@ -58,6 +59,8 @@ https://docs.docker.com/engine/install/).
 1. Develop, iterate, and [troubleshoot](#troubleshoot-transactions)
 1. [Stop the local network](#stop-the-local-network)
 
+The best way to experience Lightnet is by using it from the zkApp CLI.
+
 ## Start a local network
 
 Most of your zkApp testing can be done on a single node network. 
@@ -74,12 +77,11 @@ This command performs the following operations that successfully serve the major
 
 - Pulls the latest Docker image for your environment from the [Docker Hub](https://hub.docker.com/r/o1labs/mina-local-network) repository
 - Prepares the file system
-- Downloads and updates the lightweight Mina Explorer
 - Forms the network with a single node
 - Configures the network to be fast
 - Disables the blockchain SNARK proofs
 - Uses the `o1js-main` branch of the Mina repository
-- Starts the Mina archive process and the archive node API
+- Starts the Mina archive process and the [Archive-Node-API](https://github.com/o1-labs/Archive-Node-API) application.
 - Waits for the network to reach a synchronized state
 - Sets the Mina process logging level to trace
 
@@ -124,7 +126,7 @@ To stop the local network, remove the Docker container, and clean up the environ
 zk lightnet stop
 ```
 
-When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `/Users/<username>/.cache/zkapp-cli/lightnet/logs/`.
+When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `${HOME}/.cache/zkapp-cli/lightnet/logs/`.
 
 To disable saving of log files:
 
@@ -144,12 +146,12 @@ To monitor transactions, launch the lightweight Mina Explorer:
 zk lightnet explorer
 ```
 
-By default, the latest version is launched. 
+By default, this command downloads (if needed) and launches the latest version of [lightweight Mina explorer](https://github.com/o1-labs/mina-lightweight-explorer). 
 
 To list versions, their published dates, and show the version in use:
 
 ```sh
-zk lightnet explorer list true
+zk lightnet explorer --list
 ```
 
 To use a specific version of the lightweight Mina Explorer:

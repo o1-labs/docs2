@@ -27,11 +27,11 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # o1js Basic Concepts
 
-o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
 
 ## Field
 
-Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a uint256 in Solidity.
 
 :::note
 
@@ -107,7 +107,7 @@ function addOneAndDouble(x: Field): Field {
 
 ## Common methods
 
-Some common methods you will use often are:
+Some frequently used common methods are:
 
 ```ts
 let x = new Field(4); // x = 4
