@@ -63,7 +63,7 @@ Later, you learn how to deploy a smart contract to an on-chain account.
 On Mina, there is no strong distinction between normal "user accounts" and
 "zkApp accounts". A zkApp account is just a normal account that has a smart
 contract deployed to it – which essentially just means there's a verification
-key stored on the account, which can verify zero-knowledge proofs generated
+key stored on the account, which can verify zero knowledge proofs generated
 with the smart contract.
 :::
 
@@ -268,7 +268,7 @@ For a full list, see the [o1js reference](../o1js-reference).
 
 While the state of a zkApp is **public**, method parameters are **private**.
 
-When a smart contract method is called, the proof it produces uses zero-knowledge to hide inputs and details of the computation.
+When a smart contract method is called, the proof it produces uses zero knowledge to hide inputs and details of the computation.
 
 The only way method parameters can be exposed is when the computation explicitly exposes them, as
 in the last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
