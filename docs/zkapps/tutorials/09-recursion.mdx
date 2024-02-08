@@ -56,7 +56,7 @@ You build recursive zkApps with [ZkProgram](/zkapps/o1js-reference/modules/Exper
 
 Proofs generated using a ZkProgram can be passed into zkApp smart contracts for them to verify recursively. They can even be passed recursively into their own functions for off-chain recursive composition.
 
-The full source code for the following ZkProgram tutorial is provided in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/main.ts) directory on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp!
+The following example code for the ZkProgram tutorial is provided in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/main.ts) file on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp!
 
 
 ## Prerequisites
@@ -76,19 +76,23 @@ Now that you have the tooling installed, you can start building your application
 1. Create or change to a directory where you have write privileges.
 1. Now, create a project using the `zk project` command:
 
-```sh
-$ zk project 09-recursion
-```
+    ```sh
+    $ zk project 09-recursion
+    ```
+    
+    As you learned in earlier tutorials, the `zk project` command creates the `09-recursion` directory that contains the scaffolding for your project.
 
-As you learned in earlier tutorials, the `zk project` command creates the `09-recursion` directory that contains the scaffolding for your project.
+1. Change into the `09-recursion` directory. 
 
-1. Change into the `09-recursion` directory. Like all projects, you run commands from the root of the `09-recursion` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+Like all projects, you run `zk` commands from the root of the `09-recursion` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
 ### Prepare the project
 
-Like earlier tutorials, you can prepare your project by deleting the default files that come with the new project and create new file called Add.
+Like earlier tutorials, you can prepare your project by deleting the default files that come with the new project and creating a smart contract called `Add`.
 
-Open `src/index.ts` in a text editor and import the Add smart contract, like:
+Open `src/index.ts` in a text editor and import the `Add` smart contract, like:
 	
 	```ts src/index.ts
 	import { Add } from './Add.js';
@@ -103,7 +107,7 @@ A final version of the smart contract is provided in the [Add.ts](https://github
 
 ### Copy the example
 
-Use the Add code already completed in the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
+Use the existing code in the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
 
 1. First, open the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
 	
@@ -126,10 +130,10 @@ import { Field, SelfProof, ZkProgram, verify } from 'o1js';
 
 These items are:
 
-- `Field`: The native number type in o1js. You can think of Field elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of Field elements.
-- `SelfProof`: The class in o1js which extends Proof class. It allows user to pass in a Proof of a Circuit in one of it's own methods.
+- `Field`: The native number type in o1js. You can think of `Field` elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of `Field` elements.
+- `SelfProof`: The class in o1js that extends the `Proof` class and allows you to pass in a proof of a circuit in one of its own methods.
 - `ZkProgram`: The o1js general purpose API for creating zero knowledge proofs. A ZkProgram is similar to zkApp smart contracts but isn't tied to an on-chain account.
-- `verify`: Verifies the Signature using a message and the corresponding PublicKey.
+- `verify`: Verifies the signature using a message and the corresponding `PublicKey`.
 
 ### ZkProgram
 
