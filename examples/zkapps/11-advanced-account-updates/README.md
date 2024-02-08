@@ -1,25 +1,39 @@
-# Mina zkApp: 11 Advanced Account Updates
+# zkApp: Advanced Account Updates
 
-This template uses TypeScript.
+Explored some of the advanced features of account updates.
 
-## How to build
+## Tutorial
 
-```sh
-npm run build
-```
+See [Tutorial 11: Advanced Account Updates](https://docs.minaprotocol.com/zkapps/tutorials/advanced-account-updates).
 
-## How to run tests
+## How to install and run this example project
 
-```sh
-npm run test
-npm run testw # watch mode
-```
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/o1-labs/docs2.git
+    ```
+2. Change directory to the project location:
+    ```sh
+    cd docs2/examples/zkapps/11-advanced-account-updates
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-## How to run coverage
+4. Build the project:
+    ```sh
+    npm run build
+    ```
 
-```sh
-npm run coverage
-```
+5. Run the compiled code:
+    ```sh
+    node build/src/main.js
+    ```
+    To run and build the compiled code with a single command:
+    ```sh
+    npm run build && node build/src/main.js
+    ```
 
 ## License
 
