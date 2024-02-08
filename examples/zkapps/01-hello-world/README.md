@@ -1,4 +1,4 @@
-# Mina zkApp: 01 Hello World
+# zkApp: 01 Hello World
 
 This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs.
 
