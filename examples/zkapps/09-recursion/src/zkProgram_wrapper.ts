@@ -1,12 +1,9 @@
 import {
-  isReady,
-  shutdown,
   Field,
   Mina,
   PrivateKey,
   AccountUpdate,
   SelfProof,
-  ZkProgram,
   Struct,
   Bool,
   Circuit,
