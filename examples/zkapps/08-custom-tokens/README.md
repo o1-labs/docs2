@@ -1,6 +1,6 @@
-# Mina zkApp: 08 Custom Tokens
+# zkApp: Custom Tokens
 
-This Custom Token tutorial helps you learn to create custom tokens.
+This tutorial helps you learn to create custom tokens.
 
 ## Version
 - o1js: **0.15.3**
@@ -15,10 +15,12 @@ For the step-by-step tutorial, see [Tutorial 8: Custom Tokens](https://docs.mina
     ```sh
     git clone https://github.com/o1-labs/docs2.git
     ```
-2. Change Directory to project location:
+
+2. Change directory to project location:
     ```sh
     cd docs2/examples/zkapps/08-custom-tokens
     ```
+
 3. Install dependencies:
     ```sh
     npm install

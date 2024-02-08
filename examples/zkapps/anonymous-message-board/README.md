@@ -1,25 +1,39 @@
 # zkApp: Anonymous Message Board Tutorial
 
-This template uses TypeScript.
+Build a smart contract that allows users to publish messages semi-anonymously. 
 
-## How to build
+## Tutorial
 
-```sh
-npm run build
-```
+See [Anonymous Message Board Tutorial](https://docs.minaprotocol.com/zkapps/tutorials/recursion).
 
-## How to run tests
+## How to install and run this example project
 
-```sh
-npm run test
-npm run testw # watch mode
-```
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/o1-labs/docs2.git
+    ```
+2. Change directory to the project location:
+    ```sh
+    cd docs2/examples/zkapps/anonymous-message-board
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-## How to run coverage
+4. Build the project:
+    ```sh
+    npm run build
+    ```
 
-```sh
-npm run coverage
-```
+5. Run the compiled code:
+    ```sh
+    node build/src/main.js
+    ```
+    To run and build the compiled code with a single command:
+    ```sh
+    npm run build && node build/src/main.js
+    ```
 
 ## License
 
