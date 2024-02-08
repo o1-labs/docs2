@@ -32,7 +32,7 @@ A Mina node that stores the historical chain data to a persistent data source so
 
 ### Base58
 
-A group of encoding/decoding schemes used to switch data between binary format (hexdecimal) and alphanumeric text format (ASCII). The Base58 alphabet includes numbers (1 to 9) and English letters, except O (uppercase o), I (uppercase i), and l (lowercase L). These letters are omitted to avoid confusion.
+A group of encoding/decoding schemes used to switch data between binary format (hexadecimal) and alphanumeric text format (ASCII). The Base58 alphabet includes numbers (1 to 9) and English letters, except O (uppercase o), I (uppercase i), and l (lowercase L). These letters are omitted to avoid confusion.
 
 ### Base64
 
@@ -206,17 +206,17 @@ A Mina node that is able to verify the state of the network trustlessly. In Mina
 
 ## gadgets
 
-Small, reusable low-level building blocks that simplify the process of creating new cryptographic primitives. Most [gadgets](/zkapps/o1js/gadgets) build upon custom gates and act as low-level accelerators in the proof system.
+Small, reusable, low-level building blocks that simplify the process of creating new cryptographic primitives. Most [gadgets](/zkapps/o1js/gadgets) build upon custom gates and act as low-level accelerators in the proof system.
 
 ## H
 
 ### hard fork
 
-Changes to the network that makes the old chain incompatible with the new chain. A [hard fork](/node-operators/hardforks) requires all nodes or users to upgrade to the latest version of the protocol software.
+Changes to the network that makes the old chain incompatible with the new chain. The Mina network uses [major upgrade](#major-upgrade) terminology. A [hard fork](/node-operators/hardforks) requires all nodes or users to upgrade to the latest version of the protocol software.
 
 ### hash
 
-A mathematical cryptographic function that converts an input of arbitrary length into an encrypted output of a fixed length. Hashing provides security through encryption and is an efficient store of data, because the hash is of a fixed size.
+A mathematical cryptographic function that converts an input of arbitrary length into an encrypted output of a fixed length. Hashing provides security through encryption and is an efficient store of data because the hash is of a fixed size.
 
 ### hot wallet
 
@@ -246,7 +246,7 @@ The proof system for Mina, Kimchi is the main machinery that generates the recur
 
 ### layer 1 (L1)
 
-The fundamental, base-level chain in a network. An L1 blockchain provides the essential services to a network like recording transactions on the public ledger and ensuring adequate security. Mina is a layer 1 blockchain.
+The fundamental, base-level chain in a network. An L1 blockchain provides the essential services to a network, like recording transactions on the public ledger and ensuring adequate security. Mina is a layer 1 blockchain.
 
 ### layer 2 (L2)
 
@@ -270,9 +270,13 @@ Provided in Lightnet, a lightweight Mina Explorer lets you monitor transactions 
 
 ## M
 
+### major upgrade
+
+Changes to the network that make the old chain incompatible with the new chain. A major upgrade to the Mina network requires all nodes or users to upgrade to the latest version of the protocol software.
+
 ### Mainnet
 
-The live version of the Mina blockchain network that is fully operational. On the Mina Mainnet public blockchain, real-world transactions are performed. See [Connect to the Mina Network](node-operators/connecting-to-the-network). A Mainnet is different from a [Testnet](#testnet) and [Devnet](#devnet) which are used for development and testing.
+The live version of the Mina blockchain network that is fully operational. On the Mina Mainnet public blockchain, real-world transactions are performed. See [Connect to the Mina Network](node-operators/connecting-to-the-network). A Mainnet is different from a [Testnet](#testnet) and [Devnet](#devnet), which are used for development and testing.
 
 ### MINA
 
@@ -308,7 +312,7 @@ A [full node](#full-node) in the Mina protocol that does not participate in cons
 
 ### non-upgradeable
 
-If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable.
+If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable. You can make a smart contract upgradeable or not upgradeable using [permissions](/zkapps/o1js/permissions#upgradeability-of-smart-contracts).
 
 ### nonce
 
@@ -330,7 +334,7 @@ State stored anywhere other than the Mina blockchain.
 
 ### on-chain
 
-A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is time-stamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
+A transfer of value or data, including transactions, that exist on and have been verified to a blockchain network. All relevant information is timestamped and stored on the public ledger. On-chain transactions are recorded on the blockchain and need network confirmation before they are completed.
 
 ### on-chain state
 
@@ -338,7 +342,7 @@ State that lives on the Mina blockchain. Each zkApp account provides eight field
 
 ### oracle
 
-Specialized software or services that act as intermediaries between blockchain smart contracts and external data sources. [Oracles](/zkapps/tutorials/oracle) connect zkApp smart contracts with the outside world to get data on chain.
+Specialized software or services that act as intermediaries between blockchain smart contracts and external data sources. [Oracles](/zkapps/tutorials/oracle) connect zkApp smart contracts with the outside world to get data on-chain.
 
 ### Ouroboros Samisika
 
@@ -364,7 +368,7 @@ A proof system and associated toolkit that is the first deployed [SNARK](#snark)
 
 ### PLONK
 
-Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge (PLONK) is general-purpose zero knowledge proof scheme.
+Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge (PLONK) is a general-purpose zero knowledge proof scheme.
 
 ### polynomial commitment
 
@@ -372,7 +376,7 @@ A commitment scheme that allows a committer to commit to a polynomial with a sho
 
 ### Poseidon
 
-A family of [hash](#hash) functions that can efficiently run in a zk circuit. Poseidon operates over the native [Pallas base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) and uses parameters generated specifically for Mina which makes Poseidon the most efficient hash function available in o1js. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation). 
+A family of [hash](#hash) functions that can efficiently run in a zk circuit. Poseidon operates over the native [Pallas base field](https://electriccoin.co/blog/the-pasta-curves-for-halo-2-and-beyond/) and uses parameters generated specifically for Mina, which makes Poseidon the most efficient hash function available in o1js. See [Poseidon: ZK-friendly Hashing](https://www.poseidon-hash.info/). Poseidon is a sponge construction based on the Hades permutation, with a state composed of field elements and a permutation based on field element operation (addition and exponentiation). 
 
 ### precomputed blocks
 
@@ -384,7 +388,7 @@ Conditions that must be true for the account update to be applied. Corresponds t
 
 ### private key
 
-A component of public key cryptography, private keys are held private while public keys can be issued publicly. Only the holder of the public key's corresponding private key can attest to ownership of the public key. This allows for signing transactions to prove that you are the honest holder of any funds associated with any given public key.
+A component of public key cryptography, private keys are held privately, while public keys can be issued publicly. Only the holder of the public key's corresponding private key can attest to ownership of the public key. This allows for signing transactions to prove that you are the honest holder of any funds associated with any given public key. In Mina, private keys start with `EKE` for easy differentiability from [public keys](#public-key).
 
 ### protocol state
 
@@ -412,11 +416,11 @@ The function that generates a zero knowledge proof from the smart contract logic
 
 ### public key
 
-A component of public key cryptography, public keys can be widely shared with the world and can be thought of as _addresses_ or identifiers for the person who holds the corresponding private key.
+A component of public key cryptography, public keys can be widely shared with the world and can be thought of as _addresses_ or identifiers for the person who holds the corresponding private key. In Mina, public keys start with `B62` for easy differentiability from [private keys](#private-key).
 
 ### publish-subscribe (pub-sub)
 
-A messaging pattern where message senders broadcast messages, and any listeners that have previously subscribed to that sender's messages are notified. Mina utilizes pub-sub as a way to notify clients when a new block has been added to the chain. This event can be heard by all listeners, so each listener does not need to independently poll for new data.
+A messaging pattern where message senders broadcast messages and notifies any listeners that have previously subscribed to that sender's messages. Mina utilizes pub-sub as a way to notify clients when a new block has been added to the chain. This event can be heard by all listeners, so each listener does not need to independently poll for new data.
 
 ## R
 
@@ -452,7 +456,7 @@ A Mina node that keeps a record of nodes in the network and enables nodes that a
 
 ### SHA-2
 
-Secure Hash Algorithm 2 (SHA-2) is a family of two similar hash functions with different block sizes known as SHA-256 and SHA-512. They differ in the word size. SHA-256 uses 32-bit words and SHA-512 uses 64-bit words. 
+Secure Hash Algorithm 2 (SHA-2) is a family of two similar hash functions with different block sizes known as SHA-256 and SHA-512 that differ in word size. SHA-256 uses 32-bit words and SHA-512 uses 64-bit words. 
 
 ### SHA-256
 
@@ -484,7 +488,7 @@ An acronym for succinct non-interactive argument of knowledge. See [zk-SNARK](/g
 
 ### SNARK coordinator
 
-A role on a mina node in the Mina network. SNARK coordinators generate proofs of transactions by distributing work to a series of [SNARK workers](/node-operators/snark-workers). SNARK coordinators then submit that work to the network and the proofs are sold to block producers.
+A role on a mina node in the Mina network. SNARK coordinators generate proofs of transactions by distributing work to a series of [SNARK workers](/node-operators/snark-workers). SNARK coordinators then submit that work to the network, and the proofs are sold to block producers.
 
 ### SNARK pool
 
@@ -500,7 +504,7 @@ The ledger that contains only the transactions that have an associated proof. Th
 
 ### snarketplace
 
-Similar to a marketplace where people, or nodes, exchange services for a fee. It revolves around a fixed-size buffer, like a queue or shelf of work to do. Block producers add work to this shelf in the form of transactions that need to be SNARKed, and then SNARK workers take the work off the shelf and create SNARKs out of them to process the transactions. Block producers purchase SNARK work for the lowest price from the snarketplace. Conversely, the SNARK workers want to maximize their profit while also being able to sell their SNARK work. These two roles act as the two sides of the marketplace, and over time establish an equilibrium at a market price for SNARK work.
+Similar to a marketplace where people, or nodes, exchange services for a fee. It revolves around a fixed-size buffer like a queue or shelf of work to do. Block producers add work to this shelf in the form of transactions that need to be SNARKed, and then SNARK workers take the work off the shelf and create SNARKs out of them to process the transactions. Block producers purchase SNARK work for the lowest price from the snarketplace. Conversely, the SNARK workers want to maximize their profit while also being able to sell their SNARK work. These two roles act as the two sides of the marketplace and, over time, establish an equilibrium at a market price for SNARK work.
 
 ### soft fork
 
@@ -544,7 +548,7 @@ An account with a non-vested amount of tokens that cannot be moved until a speci
 
 ### tMINA
 
-MINA tokens that have no real world value. You can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account) during development.
+MINA tokens that have no real-world value. You can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account) during development.
 
 ### tokens
 
@@ -556,7 +560,7 @@ An in-memory store of all the transactions that peer has heard on the network. S
 
 ### transition
 
-A transition in Mina is synonymous to a [block](#block).
+A transition in Mina is synonymous with a [block](#block).
 
 ### transition frontier
 
@@ -594,7 +598,7 @@ A proof by which one party (a prover) can prove to another party (a verifier) th
 
 ### zkApps
 
-Zero knowledge apps (zkApps) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
+Zero knowledge apps ([zkApps](/zkapps)) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
 
 ### zkApp CLI
 
@@ -614,6 +618,6 @@ Technology that the Mina network uses to connect to other chains.
 
 ### zk-SNARK
 
-A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity which allow for any node to quickly verify the state of the network. SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. 
+A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-interactive argument of knowledge. Specific properties of interest in Mina's implementation of SNARKs are succinctness and non-interactivity, which allow for any node to quickly verify the state of the network. SNARK workers create [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) for each transaction. zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of a block, and in turn, these zk-SNARKs are used to create recursive zk-SNARKs that prove the correctness of the network. 
 
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)
