@@ -147,7 +147,10 @@ For example, here's how to change permissions on an account:
 ```ts
 this.account.permissions.set({
   ...Permissions.default(),
-  setVerificationKey: Permissions.impossible(),
+  setVerificationKey: {
+    auth: Permissions.proof(),
+    txnVersion: TransactionVersion.current(),
+  },
 });
 ```
 
