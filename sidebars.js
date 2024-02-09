@@ -385,7 +385,6 @@ module.exports = {
         'mina-protocol/block-producers',
         'mina-protocol/snark-workers',
         'mina-protocol/scan-state',
-        'mina-protocol/hardforks',
         'mina-protocol/time-locked-accounts',
         'mina-protocol/sending-a-payment',
         'mina-protocol/lifecycle-of-a-payment',

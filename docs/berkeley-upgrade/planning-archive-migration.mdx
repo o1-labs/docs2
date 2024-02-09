@@ -19,7 +19,7 @@ Before you start the migration of your archive node database into the Berkeley v
 
 ## Overview
 
-The archive database must be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and o1Labs teams:
+The archive database must be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and O(1) Labs teams:
 
 1. **berkeley-migration**
 
@@ -105,7 +105,7 @@ Missing blocks or invalid ledger hashes are the most frequent issues when dealin
 
 The daemon node unavailability can cause the archive node to miss some of the blocks. 
 
-If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks () and preserve chain continuity. 
+If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks and preserve chain continuity. 
 
 To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/rampup/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, you must run it from within the database host.
 
