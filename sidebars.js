@@ -398,6 +398,18 @@ module.exports = {
         id: 'node-operators/index'
       },
       items: [
+        {
+          type: 'category',
+          label: 'Berkeley Upgrade',
+          link: {
+            type: 'doc',
+            id: 'berkeley-upgrade/index'
+          },
+          items: [
+            'berkeley-upgrade/planning-archive-migration',
+            'berkeley-upgrade/migrating-archive-database-to-berkeley'
+          ],
+        },
         'node-operators/staking-and-snarking',
         'node-operators/generating-a-keypair',
         {
@@ -500,18 +512,6 @@ module.exports = {
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
         'node-developers/contributing'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Berkeley Upgrade',
-      link: {
-        type: 'doc',
-        id: 'berkeley-upgrade/index'
-      },
-      items: [
-        'berkeley-upgrade/planning-archive-migration',
-        'berkeley-upgrade/migrating-archive-database-to-berkeley'
       ],
     },
     {
