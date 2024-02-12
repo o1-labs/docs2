@@ -78,11 +78,11 @@ module.exports = {
           },
           {
             from: '/tutorials',
-            to: '/zkapps/tutorials/hello-world',
+            to: '/zkapps/tutorials/',
           },
           {
-            from: '/zkapps/tutorials',
-            to: '/zkapps/tutorials/hello-world',
+            from: '/zkapps/how-to-test-a-zkapp',
+            to: '/zkapps/testing-zkapps-locally',
           },
           {
             from: '/zkapps/simple-anonymous-message-board-tutorial',

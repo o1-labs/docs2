@@ -128,7 +128,7 @@ In the end, the entire transaction is sent to the network as one atomic update. 
 
 ## Creating proofs
 
-Finally, here's how to create zero-knowledge proofs!
+Finally, here's how to create zero knowledge proofs!
 
 ```ts
 await MyContract.compile(); // this might take a while
@@ -465,15 +465,15 @@ await pendingTx.wait();
 // our account updates are applied on chain!
 ```
 
-In addition to `Mina.Metwork`, you can also use a mocked "Mina instance" for local testing:
+In addition to `Mina.Network`, you can also use a simulated local blockchain for local testing:
 
 ```ts
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
-Doing this means setting up a fresh, local ledger that is pre-filled with a couple of accounts with funds that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.
+Doing this means setting up a fresh, local ledger that is pre-filled with a couple of accounts with funds that you have access to. "Sending" a transaction here just means applying your account updates to that local simulated Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.
 
-Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
+Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JavaScript with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
-You can learn more about testing in [How to test your zkApp](/zkapps/how-to-test-a-zkapp).
+You can learn more about testing in [Test zkApps Locally](/zkapps/testing-zkapps-locally).

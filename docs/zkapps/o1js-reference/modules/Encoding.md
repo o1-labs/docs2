@@ -25,12 +25,12 @@
 
 | Name | Type |
 | :------ | :------ |
-| `Fp` | { `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
+| `Fp` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
 | `Fp.fromBytes` | (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] |
 | `Fp.toBytes` | (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` |
 | `Fp.fromString` | [object Object] |
 | `Fp.toString` | [object Object] |
-| `Fq` | { `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
+| `Fq` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
 | `Fq.fromBytes` | (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] |
 | `Fq.toBytes` | (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` |
 | `Fq.fromString` | [object Object] |

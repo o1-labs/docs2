@@ -49,8 +49,48 @@ For reference, a more extensive example, including all the ways to interact with
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.13.0
-- [o1js](https://www.npmjs.com/package/o1js) version 0.13.0
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0`
+- [o1js](https://www.npmjs.com/package/o1js) version `0.15.3`
+
+## Create the project
+
+1. Create or change to a directory where you have write privileges.
+1. Create a project by using the `zk project` command:
+
+  ```sh
+  $ zk project 08-custom-tokens
+  ```
+
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+## Prepare the project
+
+1. Change to the project directory, delete the existing files, and create a new `src/BasicTokenContract` smart contract, and a `index.ts` file:
+
+  ```sh
+  $ cd 08-custom-tokens
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  $ zk file src/BasicTokenContract
+  $ touch src/index.ts
+  ```
+
+1. Edit `index.ts` to import and export your new smart contract:
+
+  ```ts
+  import { BasicTokenContract } from './BasicTokenContract.js';
+
+  export { BasicTokenContract };
+  ```
 
 ## Basic Token Example
 

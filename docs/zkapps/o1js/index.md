@@ -53,6 +53,6 @@ In the previous example code, `Poseidon.hash()` and `Field.assertEquals()` are e
 
 o1js is a general-purpose zk framework that gives you the tools to create zk proofs. It lets you write arbitrary zk programs leveraging a rich set of built-in provable operations, like basic arithmetic, hashing, signatures, boolean operations, comparisons, and more. Use the o1js framework to write zkApps on Mina, smart contracts that execute client-side and have private inputs.
 
-All of the o1js framework is packaged as a single TS library that can be used in major web browsers and Node.js. The best way to get started with o1js is [using the zkApp CLI](./how-to-write-a-zkapp). You can also install o1js from npm with `npm i o1js`.
+All of the o1js framework is packaged as a single TS library that can be used in major web browsers and Node.js. The best way to get started with o1js is [using the zkApp CLI](./how-to-write-a-zkapp). You can also install o1js from npm with `npm i o1js`. 
 
 Start your o1js journey by learning about [basic zk programming concepts](./o1js/basic-concepts).

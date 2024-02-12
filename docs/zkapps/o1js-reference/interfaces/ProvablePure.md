@@ -1,6 +1,6 @@
 [o1js](../README.md) / [Modules](../modules.md) / ProvablePure
 
-# Interface: ProvablePure<T\>
+# Interface: ProvablePure\<T\>
 
 `ProvablePure<T>` is a special kind of [Provable](Provable.md) interface, where the "auxiliary" (non-provable) data is empty. This means the type consists only of field elements, in that sense it is "pure".
 Any element on the interface `ProvablePure<T>` is also an element of the interface `Provable<T>` where the "auxiliary" data is empty.
@@ -17,7 +17,7 @@ It includes the same properties and methods as the [Provable](Provable.md) inter
 
 ## Hierarchy
 
-- [`Provable`](Provable.md)<`T`\>
+- [`Provable`](Provable.md)\<`T`\>
 
   ↳ **`ProvablePure`**
 
@@ -65,7 +65,7 @@ For instance, calling check function on the type [Bool](../classes/Bool.md) asse
 
 #### Defined in
 
-[snarky.d.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L156)
+[snarky.d.ts:157](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L157)
 
 ___
 
@@ -99,7 +99,7 @@ An element of type `T` generated from the given provable data.
 
 #### Defined in
 
-[snarky.d.ts:137](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L137)
+[snarky.d.ts:138](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L138)
 
 ___
 
@@ -132,7 +132,7 @@ An empty array, as any element of the interface `ProvablePure<T>` includes no "a
 
 #### Defined in
 
-[snarky.d.ts:126](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L126)
+[snarky.d.ts:127](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L127)
 
 ___
 
@@ -164,7 +164,7 @@ A [Field](../classes/Field.md) array describing how this `T` element is made up 
 
 #### Defined in
 
-[snarky.d.ts:116](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L116)
+[snarky.d.ts:117](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L117)
 
 ## Methods
 
@@ -188,4 +188,4 @@ A `number` representing the size of the `T` type in terms of [Field](../classes/
 
 #### Defined in
 
-[snarky.d.ts:146](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L146)
+[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L147)
