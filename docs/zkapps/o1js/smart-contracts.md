@@ -268,9 +268,10 @@ However, the secret itself remains private, because it can't be deduced from its
 You initialize on-chain state in the `init()` method.
 
 Like the constructor, `init()` is predefined on the base `SmartContract` class.
-It is called when you deploy your zkApp with the zkApp CLI for the first time. 
 
-It is not called if you upgrade your contract and deploy a second time.
+- It is called when you deploy your zkApp with the zkApp CLI for the first time. 
+- It is not called if you upgrade your contract and deploy a second time.
+
 You can override this method to add initialization of your on-chain state:
 
 ```ts
@@ -306,7 +307,7 @@ class OtherContract extends SmartContract {
 }
 ```
 
-When a user calls `HelloWorld.myMethod()`, o1js creates two separate proofs:
+When a zkApp user calls `HelloWorld.myMethod()`, o1js creates two separate proofs:
 
 - One proof for the execution of `myMethod()` as usual
 - A _separate_ proof for the execution of `OtherContract.otherMethod()`
