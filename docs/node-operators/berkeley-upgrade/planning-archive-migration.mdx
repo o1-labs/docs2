@@ -59,7 +59,7 @@ PostgreSQL database in version 15.0 or later.
 
 If you don't have an existing database with Mainnet archive data, you can always download it from our Google Cloud bucket. 
 
-1. Download the Mainnet archive data using cURL or gsutils:
+1. Download the Mainnet archive data using cURL or gsutil:
 
 - cUrl:
 
@@ -88,7 +88,7 @@ If you don't have an existing database with Mainnet archive data, you can always
    Run this command at the database server:
 
    ```sh
-   psql -U {user} -f mainnet-archive-dump-{date}_0000.sql`
+   psql -U {user} -f mainnet-archive-dump-{date}_0000.sql
    ```
 
    An **archive_balances_migrated** schema is created with the Mainnet archive.
@@ -107,7 +107,7 @@ The daemon node unavailability can cause the archive node to miss some of the bl
 
 If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks and preserve chain continuity. 
 
-To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/rampup/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, you must run it from within the database host.
+To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, you must run it from within the database host.
 
 1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-rosetta:1.4.0-c980ba8-bullseye` Docker image.
 
@@ -148,4 +148,4 @@ The best practice is to collect precomputed blocks by yourself or by other third
 
 You are now ready to perform migration. See:
 
-- [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)
+- [How to perform archive migration](/node-operators/berkeley-upgrade/migrating-archive-database-to-berkeley)
