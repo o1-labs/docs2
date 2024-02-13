@@ -403,11 +403,11 @@ module.exports = {
           label: 'Berkeley Upgrade',
           link: {
             type: 'doc',
-            id: 'berkeley-upgrade/index'
+            id: 'node-operators/berkeley-upgrade/index'
           },
           items: [
-            'berkeley-upgrade/planning-archive-migration',
-            'berkeley-upgrade/migrating-archive-database-to-berkeley'
+            'node-operators/berkeley-upgrade/planning-archive-migration',
+            'node-operators/berkeley-upgrade/migrating-archive-database-to-berkeley'
           ],
         },
         'node-operators/staking-and-snarking',

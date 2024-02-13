@@ -29,7 +29,7 @@ You can choose packages as you wish. The following commands help you install Deb
 CODENAME=bullseye
 CHANNEL=unstable
 # Berkeley nightly version
-VERSION=2.0.0rampup8-berkeley-b9e1116
+VERSION=2.0.0berkeley-rc1-1551e2f
 
 echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
 apt-get update
@@ -41,13 +41,13 @@ apt-get install --allow-downgrades -y "mina-berkeley=$VERSION" "mina-replayer=$V
 The Berkeley migration app:
 
 ```
-docker pull gcr.io/o1labs-192920/mina-berkeley:2.0.0rampup8-berkeley-b9e1116-bullseye-berkeley
+docker pull gcr.io/o1labs-192920/mina-berkeley:2.0.0berkeley-rc1-1551e2f-bullseye-berkeley
 ```
 
 Replayer:
 
 ```
-docker pull gcr.io/o1labs-192920/mina-archive:2.0.0rampup8-berkeley-b9e1116-bullseye
+docker pull gcr.io/o1labs-192920/mina-archive:2.0.0berkeley-rc1-1551e2f-bullseye
 ```
 
 ## Mainnet Genesis Ledger
@@ -109,7 +109,7 @@ Run the provided replayer app in migration mode:
    CODENAME=bullseye
    CHANNEL=unstable
    # Berkeley nightly version
-   VERSION=2.0.0rampup8-berkeley-b9e1116
+   VERSION=2.0.0berkeley-rc1-1551e2f
 
    echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
    apt-get update
