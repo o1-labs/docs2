@@ -27,109 +27,125 @@ zkApp programmability is not yet available on the Mina Mainnet. You can get star
 
 # o1js Basic Concepts
 
-o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose ZK programs and writing ZK smart contracts for the Mina Blockchain. In order to create a ZKP (zero knowledge proof), you should use types and operations that can be converted into a ZKP. o1js gives you a lot of different built in types and customizable structures that you can use to create ZKPs.
 
-## Field
+## Field Type
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+`Field` elements are the basic unit of data in ZK programming. Every other data type (either built-in or composite) in o1js is made up of `Field` elements.
+
+Each `Field` element can store a number up to almost 256 bits in size. You can think of it as a `uint256` in Solidity, but there are some fundamental differences explained below.
 
 :::note
 
-For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336
+For the cryptography inclined, the prime order of the o1js `Field` is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336
 
 :::
 
-For example, in typical programming, you might use:
+## Creating a Field Element
 
-`const sum = 1 + 3`.
-
-In o1js, you write this as:
-
-`const sum = new Field(1).add(new Field(3))`
-
-This can be simplified as:
-
-`const sum = new Field(1).add(3)`
-
-Note that the 3 is auto-promoted to a field type to make this cleaner.
-
-## Built-in data types
-
-Some common data types you may use are:
+You can create a `Field` either with the `new` constructor or by directly calling the `Field` as a constructor. The best practice is to use `Field` without the `new` constructor.
 
 <!-- prettier-ignore -->
 ```ts
-new Bool(x);   // accepts true or false
-new Field(x);  // accepts an integer, or a numeric string if you want to represent a number greater than JavaScript can represent but within the max value that a field can store.
-new UInt64(x); // accepts a Field - useful for constraining numbers to 64 bits
-new UInt32(x); // accepts a Field - useful for constraining numbers to 32 bits
-
-PrivateKey, PublicKey, Signature; // useful for accounts and signing
-new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
-Scalar; // the corresponding scalar field (different than Field)
-
-CircuitString.from('some string'); // string of max length 128
+const x = new Field(42);
+const y = Field(923); // Best practice
 ```
 
-In the case of `Field` and `Bool`, you can also call the constructor without `new`:
+You can create a `Field` from anything that is "field-like": `number`, `string`, `bigint`, or another `Field`. Note that the argument you give must be an integer in the `Field` range.
 
+<!-- prettier-ignore -->
 ```ts
-let x = Field(10);
-let b = Bool(true);
+const x = Field("12347"); // From string
+const y = Field(172384782343434n); // From bigint
+const z = Field(x); // From another Field
+
+const k = Field("asdf"); // Throws, as this is not a number
+const l = Field("234.34"); // Throws, as this is not an integer
 ```
 
-## Conditionals
+Nevertheless, you can create a `Field` from a negative number. This method implicity calculates the [modular inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse) of the given argument. This is an advanced level information, and you do not need it for simple zkApps.
 
-Traditional conditional statements are not supported by o1js:
-
+<!-- prettier-ignore -->
 ```ts
-// this will NOT work
-if (foo) {
-  x.assertEquals(y);
-}
+const x = Field(-1); // If you try printing this to the screen, you will see a very big integer
 ```
 
-Instead, use the o1js built-in `Circuit.if()` method, which is a ternary operator:
+## Methods in the Field Type
 
+`Field` type includes a lot of built in methods. You can call all methods in the `Field` type either with a `Field` or with a "field-like" value. In the latter case, the argument is implicity converted to a `Field`.
+
+All common arithmetic operations exist in the `Field` type. They create and return a new `Field` element.
+
+<!-- prettier-ignore -->
 ```ts
-const x = Circuit.if(new Bool(foo), a, b); // behaves like `foo ? a : b`
+const x = Field(45);
+const y = Field(78);
+
+const sum = x.add(y);
+const sub = x.sub(y);
+const mul = x.mul(47); // You can also use "field-like" values
+const div = x.div(89); // This is a modular division
+const neg = x.neg(); // This is equivalent to x.mul(-1)
+
+const square = x.square(); // x^2, equivalent to x.mul(x)
+const sqrt = x.sqrt(); // Modular square root of x
+const inv = x.inv(); // Modular inverse of x
 ```
 
-## Functions
+You can also perform logical operations and comparisons with `Field` elements. These methods return a [Bool](./common-types-and-functions.md#bool) element, which is another common o1js built in type, equivalent to `boolean` in other languages and frameworks.
 
-Functions work as you would expect in TypeScript. For example:
-
+<!-- prettier-ignore -->
 ```ts
-function addOneAndDouble(x: Field): Field {
-  return x.add(1).mul(2);
-}
+const x = Field(45);
+
+x.equals(45); // True
+x.greaterThan(45); // False
+x.greaterThanOrEquals(45); // True
+x.lessThan(45); // False
+x.lessThanOrEquals(45); // True
+
+// It is also possible to check if a Field is even or not
+x.isEven(); // False
 ```
 
-## Common methods
+## Assertions in o1js
 
-Some common methods you will use often are:
+If you want to reject a TX (transaction) in your zkApp smart contract, you can use assertions in o1js. If you create an assertion inside your ZKP, the proof fails if the assertion does not evaluate to `true`. All conditional methods on the `Field` type can be used as assertions.
 
+<!-- prettier-ignore -->
 ```ts
-let x = new Field(4); // x = 4
-x = x.add(3); // x = 7
-x = x.sub(1); // x = 6
-x = x.mul(3); // x = 18
-x = x.div(2); // x = 9
-x = x.square(); // x = 81
-x = x.sqrt(); // x = 9
+const x = Field(45);
 
-let b = x.equals(8); // b = Bool(false)
-b = x.greaterThan(8); // b = Bool(true)
-b = b.not().or(b).and(b); // b = Bool(true)
-b.toBoolean(); // true
-
-let hash = Poseidon.hash([x]); // takes array of Fields, returns Field
-
-let privKey = PrivateKey.random(); // create a private key
-let pubKey = PublicKey.fromPrivateKey(privKey); // derive public key
-let msg = [hash];
-let sig = Signature.create(privKey, msg); // sign a message
-sig.verify(pubKey, msg); // Bool(true)
+x.assertEquals(45); // True - passes
+x.assertGreaterThan(45); // False - throws
+x.assertGreaterThanOrEquals(45); // True - passes
+x.assertLessThan(45); // False - throws
+x.assertLessThanOrEquals(45); // True - passes
 ```
 
-For a full list, see the [o1js reference](../o1js-reference).
+You can think assertions in o1js similar to `require()` function in Solidity.
+
+## Printing a Field to the Screen
+
+`Field` elements are stored as classes in o1js. This is why if you print a `Field` without a conversion, you will get an unreadable output. Hopefully, o1js gives a variety of conversion methods to print `Field` elements to the screen.
+
+<!-- prettier-ignore -->
+```ts
+const x = Field(45);
+
+console.log(x.toString()); // string
+console.log(x.toBigInt()); // bigint
+console.log(x.toJSON()); // JSON string
+```
+
+However, note that these methods are _not_ provable, meaning you cannot use them in your final zkApp as a part of the ZKP. Use them only to debug your code.
+
+<!-- prettier-ignore -->
+```ts
+const x = Field(45);
+const y = Field(x.toString()); // You should NOT write this
+```
+
+## Other Types and Methods
+
+In addition to the `Field` type, o1js gives you a variety structures to help you build a powerful zkApp. You can learn more about them in the next chapter, [Common Types and Functions](./common-types-and-functions.md).
