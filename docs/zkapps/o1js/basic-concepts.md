@@ -2,7 +2,7 @@
 title: o1js Basic Concepts
 hide_title: true
 sidebar_label: Basic Concepts
-description: Field elements are the basic unit of data in zero-knowledge proof programming. Learn about built-in data types, functions, and common methods. 
+description: Field elements are the basic unit of data in zero knowledge proof programming. Learn about built-in data types, functions, and common methods. 
 keywords:
   - smart contracts
   - zkapps
@@ -21,17 +21,17 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
 # o1js Basic Concepts
 
-o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
 
 ## Field
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a uint256 in Solidity.
 
 :::note
 
@@ -107,7 +107,7 @@ function addOneAndDouble(x: Field): Field {
 
 ## Common methods
 
-Some common methods you will use often are:
+Some frequently used common methods are:
 
 ```ts
 let x = new Field(4); // x = 4
@@ -116,7 +116,7 @@ x = x.sub(1); // x = 6
 x = x.mul(3); // x = 18
 x = x.div(2); // x = 9
 x = x.square(); // x = 81
-x = x.sqrt(); // x = 9
+x = x.sqrt(); // x = -9
 
 let b = x.equals(8); // b = Bool(false)
 b = x.greaterThan(8); // b = Bool(true)

@@ -20,7 +20,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -63,7 +63,7 @@ Later, you learn how to deploy a smart contract to an on-chain account.
 On Mina, there is no strong distinction between normal "user accounts" and
 "zkApp accounts". A zkApp account is just a normal account that has a smart
 contract deployed to it – which essentially just means there's a verification
-key stored on the account, which can verify zero-knowledge proofs generated
+key stored on the account, which can verify zero knowledge proofs generated
 with the smart contract.
 :::
 
@@ -175,7 +175,7 @@ class HelloWorld extends SmartContract {
   @method increment() {
     // read state
     const x = this.x.get();
-    this.x.assertEquals(x);
+    this.x.requireEquals(x);
 
     // write state
     this.x.set(x.add(1));
@@ -189,20 +189,20 @@ Later, it sets the new state to `x + 1` using `this.x.set()`. Simple!
 There's another line though, which looks weird at first:
 
 ```ts
-this.x.assertEquals(x);
+this.x.requireEquals(x);
 ```
 
 To understand it, we have to take a step back, and understand what it means to "use an on-chain value" during off-chain execution.
 
 For sure, when we use an on-chain value, we have to _prove_ that this is the on-chain value. Verification has to fail if it's a different value! Otherwise, a malicious user could modify o1js and make it just use any other value than the current on-chain state – breaking our zkApp.
 
-To prevent that, we link "`x` at proving time" to be the same as "`x` at verification time". We call this a _precondition_ – a condition that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This is what `this.x.assertEquals(x)` does: it adds the precondition that `this.x` – the on-chain state at verification time – has to equal `x` – the value we fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
+To prevent that, we link "`x` at proving time" to be the same as "`x` at verification time". We call this a _precondition_ – a condition that is checked by the verifier (a Mina node) when it receives the proof in a transaction. This is what `this.x.requireEquals(x)` does: it adds the precondition that `this.x` – the on-chain state at verification time – has to equal `x` – the value we fetched from the chain on the client-side. In zkSNARK language, `x` becomes part of the public input.
 
-Side note: `this.<state>.assertEquals` is more flexible than equating with the current value. For example, `this.x.assertEquals(10)` fixes the on-chain `x` to the number `10`.
+Side note: `this.<state>.requireEquals` is more flexible than equating with the current value. For example, `this.x.requireEquals(10)` fixes the on-chain `x` to the number `10`.
 
 :::note
 
-Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.assertEquals(x)`?
+Why didn't we just make `this.x.get()` add the precondition, automatically, so that you didn't have to write `this.x.requireEquals(x)`?
 Well, we like to keep things explicit. The assertion reminds us that we add logic which can make the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. So, reading on-chain values has to be done with care if many users are supposed to read and update state concurrently. It is applicable in some situations, but might cause races, and call for workarounds, in other situations.
 One such workaround is the use of actions – see [Actions and Reducer](./actions-and-reducer).
 
@@ -220,7 +220,7 @@ class HelloWorld extends SmartContract {
 
   @method increment(xPlus1: Field) {
     const x = this.x.get();
-    this.x.assertEquals(x);
+    this.x.requireEquals(x);
 
     x.add(1).assertEquals(xPlus1);
 
@@ -268,7 +268,7 @@ For a full list, see the [o1js reference](../o1js-reference).
 
 While the state of a zkApp is **public**, method parameters are **private**.
 
-When a smart contract method is called, the proof it produces uses zero-knowledge to hide inputs and details of the computation.
+When a smart contract method is called, the proof it produces uses zero knowledge to hide inputs and details of the computation.
 
 The only way method parameters can be exposed is when the computation explicitly exposes them, as
 in the last example where the input was directly stored in the public state: `this.x.set(xPlus1);`
@@ -283,7 +283,7 @@ class HelloWorld extends SmartContract {
 
   @method incrementSecret(secret: Field) {
     const x = this.x.get();
-    this.x.assertEquals(x);
+    this.x.requireEquals(x);
 
     Poseidon.hash(secret).assertEquals(x);
     this.x.set(Poseidon.hash(secret.add(1)));
@@ -392,7 +392,7 @@ export class Grid extends SmartContract {
 
   @method move(newPoint: Point) {
     const point = this.p.get();
-    this.p.assertEquals(point);
+    this.p.requireEquals(point);
 
     const newX = point.x.add(newPoint.x);
     const newY = point.y.add(newPoint.y);

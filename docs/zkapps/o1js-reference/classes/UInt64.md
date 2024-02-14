@@ -29,6 +29,7 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 ### Methods
 
 - [add](UInt64.md#add)
+- [and](UInt64.md#and)
 - [assertEquals](UInt64.md#assertequals)
 - [assertGreaterThan](UInt64.md#assertgreaterthan)
 - [assertGreaterThanOrEqual](UInt64.md#assertgreaterthanorequal)
@@ -46,12 +47,16 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 - [gt](UInt64.md#gt)
 - [gte](UInt64.md#gte)
 - [isConstant](UInt64.md#isconstant)
+- [leftShift](UInt64.md#leftshift)
 - [lessThan](UInt64.md#lessthan)
 - [lessThanOrEqual](UInt64.md#lessthanorequal)
 - [lt](UInt64.md#lt)
 - [lte](UInt64.md#lte)
 - [mod](UInt64.md#mod)
 - [mul](UInt64.md#mul)
+- [not](UInt64.md#not)
+- [rightShift](UInt64.md#rightshift)
+- [rotate](UInt64.md#rotate)
 - [sub](UInt64.md#sub)
 - [toBigInt](UInt64.md#tobigint)
 - [toConstant](UInt64.md#toconstant)
@@ -60,9 +65,11 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 - [toString](UInt64.md#tostring)
 - [toUInt32](UInt64.md#touint32)
 - [toUInt32Clamped](UInt64.md#touint32clamped)
+- [xor](UInt64.md#xor)
 - [MAXINT](UInt64.md#maxint)
 - [check](UInt64.md#check)
 - [checkConstant](UInt64.md#checkconstant)
+- [empty](UInt64.md#empty)
 - [from](UInt64.md#from)
 - [fromFields](UInt64.md#fromfields)
 - [fromJSON](UInt64.md#fromjson)
@@ -78,21 +85,21 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 
 ### constructor
 
-• **new UInt64**(`...props`)
+• **new UInt64**(`x`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...props` | `any`[] |
+| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) |
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
 
 #### Defined in
 
-[lib/circuit_value.ts:72](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L72)
+[lib/int.ts:22](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L22)
 
 ## Properties
 
@@ -102,7 +109,7 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 
 #### Defined in
 
-[lib/int.ts:14](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L14)
+[lib/int.ts:19](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L19)
 
 ___
 
@@ -112,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:15](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L15)
+[lib/int.ts:20](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L20)
 
 ## Accessors
 
@@ -128,7 +135,7 @@ Static method to create a [UInt64](UInt64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:26](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L26)
+[lib/int.ts:37](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L37)
 
 ___
 
@@ -144,7 +151,7 @@ Static method to create a [UInt64](UInt64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:20](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L20)
+[lib/int.ts:31](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L31)
 
 ## Methods
 
@@ -166,7 +173,51 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:192](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L192)
+[lib/int.ts:202](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L202)
+
+___
+
+### and
+
+▸ **and**(`x`): [`UInt64`](UInt64.md)
+
+Bitwise AND gadget on [UInt64](UInt64.md) elements. Equivalent to the [bitwise AND `&` operator in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND).
+The AND gate works by comparing two bits and returning `1` if both bits are `1`, and `0` otherwise.
+
+It can be checked by a double generic gate that verifies the following relationship between the values below.
+
+The generic gate verifies:\
+`a + b = sum` and the conjunction equation `2 * and = sum - xor`\
+Where:\
+`a + b = sum`\
+`a ^ b = xor`\
+`a & b = and`
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#and)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | [`UInt64`](UInt64.md) |
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```typescript
+let a = UInt64.from(3);    // ... 000011
+let b = UInt64.from(5);    // ... 000101
+
+let c = a.and(b);    // ... 000001
+c.assertEquals(1);
+```
+
+#### Defined in
+
+[lib/int.ts:372](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L372)
 
 ___
 
@@ -190,7 +241,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -213,7 +264,7 @@ Asserts that a [UInt64](UInt64.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:339](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L339)
+[lib/int.ts:506](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L506)
 
 ___
 
@@ -236,7 +287,7 @@ Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:371](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L371)
+[lib/int.ts:538](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L538)
 
 ___
 
@@ -244,12 +295,6 @@ ___
 
 ▸ **assertGt**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertGreaterThan](UInt64.md#assertgreaterthan) instead.
-
-Asserts that a [UInt64](UInt64.md) is greater than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -261,9 +306,15 @@ Asserts that a [UInt64](UInt64.md) is greater than another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertGreaterThan](UInt64.md#assertgreaterthan) instead.
+
+Asserts that a [UInt64](UInt64.md) is greater than another one.
+
 #### Defined in
 
-[lib/int.ts:332](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L332)
+[lib/int.ts:499](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L499)
 
 ___
 
@@ -271,12 +322,6 @@ ___
 
 ▸ **assertGte**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertGreaterThanOrEqual](UInt64.md#assertgreaterthanorequal) instead.
-
-Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -288,9 +333,15 @@ Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertGreaterThanOrEqual](UInt64.md#assertgreaterthanorequal) instead.
+
+Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:364](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L364)
+[lib/int.ts:531](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L531)
 
 ___
 
@@ -313,7 +364,7 @@ Asserts that a [UInt64](UInt64.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:307](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L307)
+[lib/int.ts:474](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L474)
 
 ___
 
@@ -336,7 +387,7 @@ Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:263](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L263)
+[lib/int.ts:430](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L430)
 
 ___
 
@@ -344,12 +395,6 @@ ___
 
 ▸ **assertLt**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertLessThan](UInt64.md#assertlessthan) instead.
-
-Asserts that a [UInt64](UInt64.md) is less than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -361,9 +406,15 @@ Asserts that a [UInt64](UInt64.md) is less than another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertLessThan](UInt64.md#assertlessthan) instead.
+
+Asserts that a [UInt64](UInt64.md) is less than another one.
+
 #### Defined in
 
-[lib/int.ts:300](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L300)
+[lib/int.ts:467](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L467)
 
 ___
 
@@ -371,12 +422,6 @@ ___
 
 ▸ **assertLte**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertLessThanOrEqual](UInt64.md#assertlessthanorequal) instead.
-
-Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -388,9 +433,15 @@ Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertLessThanOrEqual](UInt64.md#assertlessthanorequal) instead.
+
+Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:256](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L256)
+[lib/int.ts:423](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L423)
 
 ___
 
@@ -415,7 +466,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:166](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L166)
+[lib/int.ts:176](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L176)
 
 ___
 
@@ -444,7 +495,7 @@ Integer division with remainder.
 
 #### Defined in
 
-[lib/int.ts:123](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L123)
+[lib/int.ts:133](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L133)
 
 ___
 
@@ -468,7 +519,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -490,7 +541,7 @@ Checks if a [UInt64](UInt64.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:323](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L323)
+[lib/int.ts:490](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L490)
 
 ___
 
@@ -512,7 +563,7 @@ Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:355](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L355)
+[lib/int.ts:522](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L522)
 
 ___
 
@@ -520,12 +571,6 @@ ___
 
 ▸ **gt**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [greaterThan](UInt64.md#greaterthan) instead.
-
-Checks if a [UInt64](UInt64.md) is greater than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -536,9 +581,15 @@ Checks if a [UInt64](UInt64.md) is greater than another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [greaterThan](UInt64.md#greaterthan) instead.
+
+Checks if a [UInt64](UInt64.md) is greater than another one.
+
 #### Defined in
 
-[lib/int.ts:316](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L316)
+[lib/int.ts:483](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L483)
 
 ___
 
@@ -546,12 +597,6 @@ ___
 
 ▸ **gte**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [greaterThanOrEqual](UInt64.md#greaterthanorequal) instead.
-
-Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -562,9 +607,15 @@ Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [greaterThanOrEqual](UInt64.md#greaterthanorequal) instead.
+
+Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:348](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L348)
+[lib/int.ts:515](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L515)
 
 ___
 
@@ -582,7 +633,42 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L164)
+[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L170)
+
+___
+
+### leftShift
+
+▸ **leftShift**(`bits`): [`UInt64`](UInt64.md)
+
+Performs a left shift operation on the provided [UInt64](UInt64.md) element.
+This operation is similar to the `<<` shift operation in JavaScript,
+where bits are shifted to the left, and the overflowing bits are discarded.
+
+It’s important to note that these operations are performed considering the big-endian 64-bit representation of the number,
+where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bits` | `number` | Amount of bits to shift the [UInt64](UInt64.md) element to the left. The amount should be between 0 and 64 (or else the shift will fail). |
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```ts
+const x = UInt64.from(0b001100); // 12 in binary
+const y = x.leftShift(2); // left shift by 2 bits
+y.assertEquals(0b110000); // 48 in binary
+```
+
+#### Defined in
+
+[lib/int.ts:322](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L322)
 
 ___
 
@@ -604,7 +690,7 @@ Checks if a [UInt64](UInt64.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:290](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L290)
+[lib/int.ts:457](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L457)
 
 ___
 
@@ -626,7 +712,7 @@ Checks if a [UInt64](UInt64.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:233](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L233)
+[lib/int.ts:401](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L401)
 
 ___
 
@@ -634,12 +720,6 @@ ___
 
 ▸ **lt**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [lessThan](UInt64.md#lessthan) instead.
-
-Checks if a [UInt64](UInt64.md) is less than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -650,9 +730,15 @@ Checks if a [UInt64](UInt64.md) is less than another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [lessThan](UInt64.md#lessthan) instead.
+
+Checks if a [UInt64](UInt64.md) is less than another one.
+
 #### Defined in
 
-[lib/int.ts:282](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L282)
+[lib/int.ts:449](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L449)
 
 ___
 
@@ -660,12 +746,6 @@ ___
 
 ▸ **lte**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [lessThanOrEqual](UInt64.md#lessthanorequal) instead.
-
-Checks if a [UInt64](UInt64.md) is less than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -676,9 +756,15 @@ Checks if a [UInt64](UInt64.md) is less than or equal to another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [lessThanOrEqual](UInt64.md#lessthanorequal) instead.
+
+Checks if a [UInt64](UInt64.md) is less than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:212](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L212)
+[lib/int.ts:381](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L381)
 
 ___
 
@@ -703,7 +789,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:176](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L176)
+[lib/int.ts:186](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L186)
 
 ___
 
@@ -725,7 +811,127 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:183](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L183)
+[lib/int.ts:193](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L193)
+
+___
+
+### not
+
+▸ **not**(): [`UInt64`](UInt64.md)
+
+Bitwise NOT gate on [Field](../modules.md#field-1) elements. Similar to the [bitwise
+NOT `~` operator in JavaScript](https://developer.mozilla.org/en-US/docs/
+Web/JavaScript/Reference/Operators/Bitwise_NOT).
+
+**Note:** The NOT gate operates over 64 bit for UInt64 types.
+
+A NOT gate works by returning `1` in each bit position if the
+corresponding bit of the operand is `0`, and returning `0` if the
+corresponding bit of the operand is `1`.
+
+NOT is implemented as a subtraction of the input from the all one bitmask
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not)
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```ts
+// NOTing 4 bits with the unchecked version
+let a = UInt64.from(0b0101);
+let b = a.not(false);
+
+console.log(b.toBigInt().toString(2));
+// 1111111111111111111111111111111111111111111111111111111111111010
+
+```
+
+#### Defined in
+
+[lib/int.ts:269](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L269)
+
+___
+
+### rightShift
+
+▸ **rightShift**(`bits`): [`UInt64`](UInt64.md)
+
+Performs a left right operation on the provided [UInt64](UInt64.md) element.
+This operation is similar to the `>>` shift operation in JavaScript,
+where bits are shifted to the right, and the overflowing bits are discarded.
+
+It’s important to note that these operations are performed considering the big-endian 64-bit representation of the number,
+where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bits` | `number` | Amount of bits to shift the [UInt64](UInt64.md) element to the right. The amount should be between 0 and 64 (or else the shift will fail). |
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```ts
+const x = UInt64.from(0b001100); // 12 in binary
+const y = x.rightShift(2); // left shift by 2 bits
+y.assertEquals(0b000011); // 48 in binary
+```
+
+#### Defined in
+
+[lib/int.ts:343](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L343)
+
+___
+
+### rotate
+
+▸ **rotate**(`bits`, `direction?`): [`UInt64`](UInt64.md)
+
+A (left and right) rotation operates similarly to the shift operation (`<<` for left and `>>` for right) in JavaScript,
+with the distinction that the bits are circulated to the opposite end of a 64-bit representation rather than being discarded.
+For a left rotation, this means that bits shifted off the left end reappear at the right end.
+Conversely, for a right rotation, bits shifted off the right end reappear at the left end.
+
+It’s important to note that these operations are performed considering the big-endian 64-bit representation of the number,
+where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+The `direction` parameter is a string that accepts either `'left'` or `'right'`, determining the direction of the rotation.
+
+To safely use `rotate()`, you need to make sure that the value passed in is range-checked to 64 bits;
+for example, using [rangeCheck64](../modules.md#rangecheck64).
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#rotation)
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `bits` | `number` | `undefined` | amount of bits to rotate this [UInt64](UInt64.md) element with. |
+| `direction` | ``"left"`` \| ``"right"`` | `'left'` | left or right rotation direction. |
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```ts
+const x = UInt64.from(0b001100);
+const y = x.rotate(2, 'left');
+const z = x.rotate(2, 'right'); // right rotation by 2 bits
+y.assertEquals(0b110000);
+z.assertEquals(0b000011);
+```
+
+#### Defined in
+
+[lib/int.ts:301](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L301)
 
 ___
 
@@ -747,7 +953,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:201](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L201)
+[lib/int.ts:211](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L211)
 
 ___
 
@@ -763,7 +969,7 @@ Turns the [UInt64](UInt64.md) into a BigInt.
 
 #### Defined in
 
-[lib/int.ts:40](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L40)
+[lib/int.ts:51](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L51)
 
 ___
 
@@ -781,7 +987,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -799,7 +1005,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -817,7 +1023,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -833,7 +1039,7 @@ Turns the [UInt64](UInt64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:33](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L33)
+[lib/int.ts:44](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L44)
 
 ___
 
@@ -849,7 +1055,7 @@ Turns the [UInt64](UInt64.md) into a [UInt32](UInt32.md), asserting that it fits
 
 #### Defined in
 
-[lib/int.ts:47](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L47)
+[lib/int.ts:58](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L58)
 
 ___
 
@@ -868,7 +1074,44 @@ UInt64.from(4294967296).toUInt32Clamped().toString(); // "4294967295"
 
 #### Defined in
 
-[lib/int.ts:59](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L59)
+[lib/int.ts:70](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L70)
+
+___
+
+### xor
+
+▸ **xor**(`x`): [`UInt64`](UInt64.md)
+
+Bitwise XOR gadget on [Field](../modules.md#field-1) elements. Equivalent to the [bitwise XOR `^` operator in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR).
+A XOR gate works by comparing two bits and returning `1` if two bits differ, and `0` if two bits are equal.
+
+This gadget builds a chain of XOR gates recursively.
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#xor-1)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `x` | [`UInt64`](UInt64.md) | [UInt64](UInt64.md) element to XOR. |
+
+#### Returns
+
+[`UInt64`](UInt64.md)
+
+**`Example`**
+
+```ts
+let a = UInt64.from(0b0101);
+let b = UInt64.from(0b0011);
+
+let c = a.xor(b);
+c.assertEquals(0b0110);
+```
+
+#### Defined in
+
+[lib/int.ts:236](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L236)
 
 ___
 
@@ -884,7 +1127,7 @@ Creates a [UInt64](UInt64.md) with a value of 18,446,744,073,709,551,615.
 
 #### Defined in
 
-[lib/int.ts:114](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L114)
+[lib/int.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L124)
 
 ___
 
@@ -908,7 +1151,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:68](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L68)
+[lib/int.ts:79](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L79)
 
 ___
 
@@ -928,7 +1171,31 @@ ___
 
 #### Defined in
 
-[lib/int.ts:91](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L91)
+[lib/int.ts:101](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L101)
+
+___
+
+### empty
+
+▸ `Static` **empty**\<`T`\>(): `InstanceType`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
+
+#### Returns
+
+`InstanceType`\<`T`\>
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+
+#### Defined in
+
+[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L254)
 
 ___
 
@@ -950,13 +1217,13 @@ Creates a new [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:106](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L106)
+[lib/int.ts:116](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L116)
 
 ___
 
 ### fromFields
 
-▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+▸ `Static` **fromFields**\<`T`\>(`this`, `xs`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -973,7 +1240,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -981,13 +1248,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L174)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**\<`T`\>(`x`): `InstanceType`\<`T`\>
 
 Decodes a JSON-like object into this structure.
 
@@ -1005,7 +1272,7 @@ Decodes a JSON-like object into this structure.
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Overrides
 
@@ -1013,13 +1280,13 @@ Decodes a JSON-like object into this structure.
 
 #### Defined in
 
-[lib/int.ts:87](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L87)
+[lib/int.ts:97](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L97)
 
 ___
 
 ### fromObject
 
-▸ `Static` **fromObject**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromObject**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -1032,11 +1299,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `NonMethods`<`InstanceType`<`T`\>\> |
+| `value` | `NonMethods`\<`InstanceType`\<`T`\>\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -1044,7 +1311,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L95)
 
 ___
 
@@ -1062,7 +1329,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L102)
 
 ___
 
@@ -1080,13 +1347,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L124)
 
 ___
 
 ### toConstant
 
-▸ `Static` **toConstant**<`T`\>(`this`, `t`): `InstanceType`<`T`\>
+▸ `Static` **toConstant**\<`T`\>(`this`, `t`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -1099,11 +1366,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `t` | `InstanceType`<`T`\> |
+| `t` | `InstanceType`\<`T`\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -1111,13 +1378,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L213)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
 
 #### Type parameters
 
@@ -1130,7 +1397,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -1142,7 +1409,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L107)
 
 ___
 
@@ -1166,7 +1433,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:73](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L73)
+[lib/int.ts:83](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L83)
 
 ___
 
@@ -1192,4 +1459,4 @@ Encodes this structure into a JSON-like object.
 
 #### Defined in
 
-[lib/int.ts:80](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L80)
+[lib/int.ts:90](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L90)

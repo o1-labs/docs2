@@ -9,6 +9,7 @@ module.exports = {
         'about-mina/what-are-zero-knowledge-proofs',
         'about-mina/protocol-architecture',
         'about-mina/consensus',
+        'about-mina/security',
         'about-mina/faq',
         {
           type: 'link',
@@ -33,15 +34,16 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/how-zkapps-work',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
           ],
@@ -68,6 +70,7 @@ module.exports = {
             'zkapps/o1js/time-locked-accounts',
             'zkapps/o1js/keccak',
             'zkapps/o1js/ecdsa',
+            'zkapps/o1js/sha256',
           ],
         },
         {
@@ -150,8 +153,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/EcdsaSignature',
+                  label: 'EcdsaSignature',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignCurve',
+                  label: 'ForeignCurve',
                 },
                 {
                   type: 'doc',
@@ -162,6 +175,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Group',
                   label: 'Group',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Hashed',
+                  label: 'Hashed',
                 },
                 {
                   type: 'doc',
@@ -197,6 +215,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Nullifier',
                   label: 'Nullifier',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Packed',
+                  label: 'Packed',
                 },
                 {
                   type: 'doc',
@@ -260,6 +283,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/UInt8',
+                  label: 'UInt8',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Unconstrained',
                   label: 'Unconstrained',
                 },
@@ -300,6 +328,16 @@ module.exports = {
               type: 'category',
               label: 'Modules',
               items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Bytes',
+                  label: 'Bytes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Crypto',
+                  label: 'Crypto',
+                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Encoding',

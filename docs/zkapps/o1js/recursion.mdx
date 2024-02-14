@@ -5,7 +5,7 @@ description: An in-depth look at using recursion and recursive proofs in o1js to
 keywords:
   - recursion
   - o1js
-  - zero-knowledge proofs
+  - Zero knowledge proofs
   - mina blockchain
   - smart contract
   - zkapp
@@ -16,7 +16,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -30,7 +30,7 @@ Kimchi, the proof system that backs o1js, supports arbitrary infinite recursive 
 3. A Mastermind game that uses linear recursive proofs, an example of an application-specific rollup, to progress the state-machine of the application without needing to sync back to the game.
 4. App-specific rollups can use recursion to communicate to each other, sort like app chains using IBC or parachains using XCVM to send messages.
 
-More generally, you can use recursion to verify any zero-knowledge program as part of your zkApp.
+More generally, you can use recursion to verify any zero knowledge program as part of your zkApp.
 
 ## ZkProgram Overview
 
@@ -97,7 +97,7 @@ In this excample, `foo` is taking the `SimpleProgram` proof as a private argumen
 
 ## Recursively verifying a linear recursive program in a zkApp
 
-This example shows a recursive `ZkProgram` that you can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in o1js you can describe a recursive ZkProgram with a simple recursive function.
+This example shows a recursive `ZkProgram` that you can use to create recursive zero knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in o1js you can describe a recursive ZkProgram with a simple recursive function.
 
 This program describes a recursive operation of adding one repeatedly to a number. Note that you recursively depend on the older proof as a private argument to your method.
 
@@ -199,7 +199,7 @@ let RollupAdd = ZkProgram({
 
 ## Bonus: Using ZkPrograms outside of zkApps
 
-You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge programs (also known as circuits).
+You can also use ZkProgram directly to prove and verify arbitrary zero knowledge programs (also known as circuits).
 
 ```typescript
 const { verificationKey } = await MyProgram.compile();

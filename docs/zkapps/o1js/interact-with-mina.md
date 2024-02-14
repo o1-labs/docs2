@@ -21,7 +21,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -116,7 +116,7 @@ Other fields in this account update are:
 
   - `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
   - `update: { appState: [...] }` – shows how the method updates the on-chain state, using `this.<state>.set()`. The names and pretty types defined using `@state` are removed in this representation, showing a raw list of 8 field elements or `null` for state fields that aren't updated.
-  - `preconditions: { account: { state: [...] } }` – similar to the `update`, one entry per field of on-chain state for the preconditions created with `this.<state>.assertEquals()`. This example accepts transactions only if the first of the 8 state fields equals 0. The `null` values mean that no condition is set on the other 7 state fields.
+  - `preconditions: { account: { state: [...] } }` – similar to the `update`, one entry per field of on-chain state for the preconditions created with `this.<state>.requireEquals()`. This example accepts transactions only if the first of the 8 state fields equals 0. The `null` values mean that no condition is set on the other 7 state fields.
   - `authorizationKind: 'Proof'` – indicates this account update must be authorized with a proof. Proof authorization is the default when calling a zkApp method, but not necessarily for other account updates.
   - `authorization: undefined` – the proof needed on this update isn't there yet. You learn how to add it in a minute.
 
@@ -128,7 +128,7 @@ In the end, the entire transaction is sent to the network as one atomic update. 
 
 ## Creating proofs
 
-Finally, here's how to create zero-knowledge proofs!
+Finally, here's how to create zero knowledge proofs!
 
 ```ts
 await MyContract.compile(); // this might take a while
@@ -465,15 +465,15 @@ await pendingTx.wait();
 // our account updates are applied on chain!
 ```
 
-In addition to `Mina.Metwork`, you can also use a mocked "Mina instance" for local testing:
+In addition to `Mina.Network`, you can also use a simulated local blockchain for local testing:
 
 ```ts
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
-Doing this means setting up a fresh, local ledger that is pre-filled with a couple of accounts with funds that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.
+Doing this means setting up a fresh, local ledger that is pre-filled with a couple of accounts with funds that you have access to. "Sending" a transaction here just means applying your account updates to that local simulated Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.
 
-Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
+Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JavaScript with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
-You can learn more about testing in [How to test your zkApp](/zkapps/how-to-test-a-zkapp).
+You can learn more about testing in [Test zkApps Locally](/zkapps/testing-zkapps-locally).
