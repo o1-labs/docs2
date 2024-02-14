@@ -492,22 +492,7 @@ Field.assertEquals(): 75 != 81
 state after txn2: 9
 ```
 
-And finally, be sure to change your `main.ts` file to include the correct update:
-
-```ts src/main.ts
-63 console.log('state after txn2:', num2.toString());
-64
-65 // ----------------------------------------------------
-66
-67 const txn3 = await Mina.transaction(senderAccount, () => {
-68   zkAppInstance.update(Field(81));
-69 });
-70 await txn3.prove();
-71 await txn3.sign([senderKey]).send();
-72
-73 const num3 = zkAppInstance.num.get();
-74 console.log('state after txn3:', num3.toString());
-```
+And finally, be sure to change your `main.ts` file to include the correct update to change the state to `81` in `zkAppInstance.update(Field(81))`. 
 
 Run this command again:
 
@@ -518,15 +503,12 @@ $ npm run build && node build/src/main.js
 The expected output is:
 
 ```sh
-$ npm run build && node build/src/main.js
-...
-o1js loaded
+> 01-hello-world@0.1.0 build
+> tsc
+
 state after init: 3
 state after txn1: 9
-assert_equal: 75 != 81
-state after txn2: 9
-state after txn3: 81
-Shutting down
+state after txn2: 81
 ```
 
 ## Follow along
