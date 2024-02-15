@@ -18,7 +18,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -56,15 +56,94 @@ You build recursive zkApps with [ZkProgram](/zkapps/o1js-reference/modules/Exper
 
 Proofs generated using a ZkProgram can be passed into zkApp smart contracts for them to verify recursively. They can even be passed recursively into their own functions for off-chain recursive composition.
 
-The following ZkProgram example code is provided in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/main.ts) example file.
+The following example code for the ZkProgram tutorial is provided in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/main.ts) file on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp!
 
-To create a ZkProgram, start with the `init()` method. 
 
-- For each method, declare the inputs it will receive. 
+## Prerequisites
+
+Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
+In particular, make sure you have the zkApp CLI installed:
+
+```sh
+$ npm install -g zkapp-cli
+```
+
+## Create a new project
+
+Now that you have the tooling installed, you can start building your application.
+
+1. Create or change to a directory where you have write privileges.
+1. Now, create a project using the `zk project` command:
+
+    ```sh
+    $ zk project 09-recursion
+    ```
+    
+    As you learned in earlier tutorials, the `zk project` command creates the `09-recursion` directory that contains the scaffolding for your project.
+
+1. Change into the `09-recursion` directory. 
+
+Like all projects, you run `zk` commands from the root of the `09-recursion` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+### Prepare the project
+
+Like earlier tutorials, you can prepare your project by deleting the default files that come with the new project and creating a smart contract called `Add`.
+
+Open `src/index.ts` in a text editor and import the `Add` smart contract, like:
+	
+	```ts src/index.ts
+	import { Add } from './Add.js';
+	
+	export { Add };
+
+## Write the ZkProgram
+
+Now, the fun part! Write your smart contract in the `src/Add.ts` file.
+
+A final version of the smart contract is provided in the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
+
+### Copy the example
+
+Use the existing code in the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
+
+1. First, open the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
+	
+1. Copy the file's entire contents into your project `src/Add.ts` file.
+
+
+### Imports
+
+The `import` statement brings in other packages and dependencies to use in your ZkProgram.
+
+:::info
+
+All functions used inside a ZkProgram must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types.
+
+:::info
+
+```ts src/Add.ts
+import { Field, SelfProof, ZkProgram, verify } from 'o1js';
+```
+
+These items are:
+
+- `Field`: The native number type in o1js. You can think of `Field` elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of `Field` elements.
+- `SelfProof`: The class in o1js that extends the `Proof` class and allows you to pass in a proof of a circuit in one of its own methods.
+- `ZkProgram`: The o1js general purpose API for creating zero knowledge proofs. A ZkProgram is similar to zkApp smart contracts but isn't tied to an on-chain account.
+- `verify`: Verifies the signature using a message and the corresponding `PublicKey`.
+
+### ZkProgram
+
+To create a ZkProgram, start with the `init()` method.
+
+- For each method, declare the inputs it will receive.
 - The first argument of a ZkProgram method is always the state of the ZkProgram, named `publicInput` since it is public.
 
 ```typescript
-const Add = ZkProgram({
+ export const Add = ZkProgram({
   name: 'add-example',
   publicInput: Field,
 
@@ -76,42 +155,54 @@ const Add = ZkProgram({
         state.assertEquals(Field(0));
       },
     },
+  },
+ });
+
 ```
 
 Add another method that takes an existing proof, adds a new number to it, and produces a new proof:
 
 ```typescript
-    addNumber: {
-      privateInputs: [SelfProof, Field ],
 
-      method(newState: Field, earlierProof: SelfProof<Field>, numberToAdd: Field) {
-        earlierProof.verify();
-        newState.assertEquals(earlierProof.publicInput.add(numberToAdd));
-      },
-    },
+   addNumber: {
+     privateInputs: [SelfProof, Field],
+
+     method(
+       newState: Field,
+       earlierProof: SelfProof<Field, void>,
+       numberToAdd: Field
+     ) {
+       earlierProof.verify();
+       newState.assertEquals(earlierProof.publicInput.add(numberToAdd));
+     },
+   },
 ```
 
 Use recursion to combine two proofs:
 
 ```typescript
-  add: {
-    privateInputs: [ SelfProof, SelfProof ],
 
-    method(
-      newState: Field,
-      earlierProof1: SelfProof<Field>,
-      earlierProof2: SelfProof<Field>,
-    ) {
-      earlierProof1.verify();
-      earlierProof2.verify();    	
-      newState.assertEquals(earlierProof1.publicInput.add(earlierProof2.publicInput));
-    },
-  },
+   add: {
+     privateInputs: [SelfProof, SelfProof],
+
+     method(
+       newState: Field,
+       earlierProof1: SelfProof<Field, void>,
+       earlierProof2: SelfProof<Field, void>
+     ) {
+       earlierProof1.verify();
+       earlierProof2.verify();
+       newState.assertEquals(
+         earlierProof1.publicInput.add(earlierProof2.publicInput)
+       );
+     },
+   },
 ```
 
 To use ZkProgram, compile it and then call methods on it:
 
 ```typescript
+async function main() {
   console.log('compiling...');
 
   const { verificationKey } = await Add.compile();
@@ -133,6 +224,10 @@ To use ZkProgram, compile it and then call methods on it:
 
   const ok = await verify(proof2.toJSON(), verificationKey);
   console.log('ok', ok);
+
+}
+
+main();
 ```
 
 Verification of the proof can occur off-chain using the `verify()` method. This is useful for applications where you want to prove something to an off-chain entity.
