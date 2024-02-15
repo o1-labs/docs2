@@ -41,87 +41,146 @@ Example projects do not create an accompanying UI.
 
 Examples are based on the standard project structure and provide additional files in the `/src` directory.
 
-1. Create the example project: `zk example`
+1. Create the example project:
 
-  The `zk example` command prompts you to select an example project:
+    ```sh
+    zk example
+    ```
 
-  ```text
-  ? Choose an example …
-❯ sudoku
-  tictactoe
-  ```
+    The command prompts you to select an example project:
 
-  Select the `sudoku` example project. 
+    ```text
+    ? Choose an example …
+  ❯ sudoku
+    tictactoe
+    ```
 
-  The created project includes the example files (the smart contract) in the project's `src/` directory. 
-  
-  To see the files that were created, change to the `sudoku` directory and run the `ls` command or open the directory in a code editor, such as VS Code.
+    Select the `sudoku` example project. 
 
-1. Run tests and see the tests pass: `npm run test`  
-  
-  To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
-
-1. Build the example: `npm run build`
-
-  Compile your TypeScript into JavaScript in the project `/build` directory.
-
-1. Configure your zkApp: `zk config`
-
-  The command prompts guide you to add a deploy alias to your project `config.json` file. 
-  
-  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
-  
-  For this example on Berkeley Testnet, use:
- 
-    - Deploy alias name: `berkeley` 
+    The created project includes the example files (the smart contract) in the project's `src` directory. 
     
-      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+1. View the files that were created:
+
+    - Change to the `sudoku` directory.
+    - Run the `ls` command
   
-    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+    Or open the directory in a code editor, such as VS Code.
+
+1. Because this example zkApp was created using the zkApp CLI, tests are already included in `sudoku.test.ts`. To run tests and see the tests pass: 
+
+    ```sh
+    npm run test
+    ```
+    
+    To rerun tests automatically after you save changes to your code, you can run the tests in watch mode:
+
+    ```sh
+    npm run testw
+    ```
+ 
+1. Now that you have confirmed that tests run correctly, you can compile your TypeScript into JavaScript in the project `/build` directory. 
+
+    To build the example:
+
+    ```sh
+    npm run build
+    ```
+    
+    - The `npm run build` command builds the TypeScript files in `sudoku/src` that contain the code for the smart contract.
+    - This build command compiles the TypeScript code into JavaScript in the `sudoku/build` directory.  
+
+1. Configure your zkApp:
+
+    ```sh
+    zk config
+    ```
+
+    The command prompts guide you to add a deploy alias to your project `config.json` file. 
+    
+1. Define a name for the deploy alias. 
+
+    For this example, use:
   
-    - Transaction fee to use when deploying: `0.1`
+    ```text
+    berkeley
+    ``` 
+      
+    The deploy alias name does not have to match the network name.
+
+1. Choose the target network:
+
+    ```text
+    Testnet
+    ``` 
+ 
+ 1. Set the Mina GraphQL API URL to deploy to: 
+
+    ```text
+    https://proxy.berkeley.minaexplorer.com/graphql
+    ``` 
   
-    - Account to pay transaction fees: Create a new fee payer pair
+1. Set the transaction fee to use when deploying: 
 
-1. When prompted to choose an account to pay transaction fees, select to use a different account:
+    ```text
+    0.1
+    ``` 
+ 
+1. When prompted to choose an account to pay transaction fees, select:
 
-  ```sh
-  Use a different account (select to see options)
-  ```
+    ```text
+    Use a different account (select to see options)
+    ```
 
-  If this is the first time you run the `zk config` command, you see these options:
+    If this is the first time you are running the `zk config` command, you see these options:
 
-  ```text
-  ❯ Recover fee payer account from an existing base58 private key
-  Create a new fee payer key pair
-  ```
+    ```text
+    ❯ Recover fee payer account from an existing base58 private key
+    Create a new fee payer key pair
+    ```
 
-The option to choose another account is shown only if the user has a cached fee payer account.
+    The option to choose another account is shown only if you have a cached fee payer account.
 
-1. Next, select to create a new fee payer key pair:  
+1. Select to create a new fee payer key pair:  
 
-  ```sh
-  Create a new fee payer key pair
-  NOTE: the private key will be stored in plain text on this computer.
-  ```
+    ```sh
+    Create a new fee payer key pair
+    NOTE: the private key will be stored in plain text on this computer.
+    ```
 
-1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+    A fee payer account is a funded developer account that can always pay fees immediately.
 
-  ```sh
-  Create an alias for this account: sudoku
-  ```
+1. When prompted to create an alias for this account, give an alias to your new fee payer key pair:
 
-  Your key pairs and deploy alias are created.
+    ```text
+    sudoku
+    ```
+
+    Your key pairs and deploy alias are created.
 
 1. Fund your fee payer account.
 
-  Follow the prompts to request tMINA. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+    Follow the prompts to request tMINA. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
 
-1. Deploy to Testnet: `zk deploy`
+1. Deploy to Testnet:
 
-  Follow the prompts and select the `sudoku` deploy alias. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
+    ```sh
+    zk deploy
+    ```
+
+    Follow the prompts to select the `berkeley` deploy alias and confirm that you want to send the transaction. 
+    
+    Your smart contract transaction is pending until the transaction is included in a block.
+
+1. To view your transaction, click the block explorer link. 
+
+    For example: 
+    https://minascan.io/berkeley/tx/5JvGe2RRzExoeKWXBFm9hNW48TW8zTk5xnquN8vmhqcWbUpzsGRu?type=zk-tx
+    
+    For details, see [How to Deploy a zkApp](how-to-deploy-a-zkapp).
 
 ### Option B: Start your own project
+
+Instead of using a provided example, you can follow these steps to create your own project. 
 
 1. Create your own project: `zk project <myproj>`
 
@@ -142,80 +201,66 @@ The option to choose another account is shown only if the user has a cached fee 
 
     To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
 
-1. Run tests and see the tests pass: `npm run test`  
-  
-    To rerun tests automatically when you save changes to your code, run the tests in watch mode with `npm run testw`.
+1. Because you used the zkApp CLI to create this project, tests were automatically created in `yourproject.test.ts`. 
 
-1. Build the example: `npm run build`
-
-    Compile your TypeScript into JavaScript in the project `/build` directory.
-
-1. Configure your zkApp: `zk config`
-
-  The command prompts guide you to add a deploy alias to your project `config.json` file. 
-  
-  The deploy alias can be anything you want. For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
-  
-  For this example on Berkeley Testnet, use:
- 
-    - Deploy alias name: `berkeley` 
+    ```sh
+    npm run test
+    ```
     
-      This example uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
-  
-    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
-  
-    - Transaction fee to use when deploying: `0.1`
-  
-    - Account to pay transaction fees: Create a new fee payer pair
+    To rerun tests automatically after you save changes to your code, you can run the tests in watch mode:
 
-1. When prompted to choose an account to pay transaction fees, select to use a different account:
+    ```sh
+    npm run testw
+    ```
 
-  ```sh
-  Use a different account (select to see options)
-  ```
+1. To compile your TypeScript into JavaScript in the project `/build` directory, build the example:
 
-  If this is the first time you run the `zk config` command, you see these options:
+    ```sh
+    npm run build
+    ```
+    
+  The `npm run build` command builds the TypeScript files in `yourproject/src` that contain the code for the smart contract. This build command compiles the TypeScript code into JavaScript in the `yourproject/build` directory.  
 
-  ```text
-  ❯ Recover fee payer account from an existing base58 private key
-  Create a new fee payer key pair
-  ```
+1. Configure your zkApp:
 
-The option to choose another account is shown only if the user has a cached fee payer account.
+    ```sh
+    zk config
+    ```
 
-1. Next, select to create a new fee payer key pair:  
+    The command prompts guide you to add a deploy alias to your project `config.json` file. 
+    
+1. To configure your deploy alias, follow the prompts:
+ 
+    - Create a (deploy alias) name: _yourprojecttestnet_ 
+    - Choose the target network: `Testnet`    
+    - Set the Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`  
+    - Set transaction fee to use when deploying (in MINA): `0.1`  
+    - Choose an account to pay transaction fees: 
+      - `Create a new fee payer key pair`
+    - Create an alias for this account: _yourdeployalias_
 
-  ```sh
-  Create a new fee payer key pair
-  NOTE: the private key will be stored in plain text on this computer.
-  ```
+    Your key pair and deploy alias are created.
 
-1. When prompted, give an alias to your new fee payer key pair. For this example, use `sudoku`:
+1. Fund your fee payer account. Follow the prompts to request tMina. 
 
-  ```sh
-  Create an alias for this account: sudoku
-  ```
+1. Deploy to Testnet: 
 
-  Your key pairs and deploy alias are created.
+    ```sh
+    zk deploy yourprojecttestnet
+    ```
 
-1. Fund your fee payer account.
+    Follow the prompts. 
+      
+To learn more about deploying, see [How to Deploy a zkApp](how-to-deploy-a-zkapp).
 
-    Follow the prompts to request tMina. 
+## Writing your smart contract
 
-1. Deploy to Testnet: `zk deploy`
-
-    Follow the prompts. For details, see [how to deploy a zkApp](how-to-deploy-a-zkapp).
-
-### Writing your smart contract
-
-zkApps are written in TypeScript using o1js. o1js is a TypeScript library for writing smart contracts based on zero knowledge proofs for the Mina Protocol. It is included automatically when creating a new project using the Mina zkApp CLI.
+zkApps are written in TypeScript using o1js. o1js is a TypeScript library for writing smart contracts based on zero knowledge proofs for the Mina Protocol. o1js is automatically included when you create a project using the Mina zkApp CLI.
 
 To get started writing zkApps, begin with these o1js docs:
 
 - [Basic concepts](./o1js/basic-concepts)
 - [Interacting with Mina](./o1js/interact-with-mina)
-
-Add the smart contract code to your zkApp project using the [o1js](/zkapps/o1js) TypeScript library that was included automatically when you created your project using the zkApp CLI.
 
 A basic smart contract example is generated when you created a zk project. The high-level smart contract code workflow is:
 
