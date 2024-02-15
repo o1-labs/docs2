@@ -106,7 +106,7 @@ Now that you have the tooling installed, you can start building your application
 
   ```sh
   $ cd 01-hello-world
-  $ ls -l
+  $ ls
   ```
 
   The output shows these results:
@@ -469,8 +469,8 @@ To test a failure, add these next lines of code from the `src/main.ts` file and 
 50   });
 51   await txn2.prove();
 52   await txn2.sign([senderKey]).send();
-53 } catch (ex: any) {
-54   console.log(ex.message);
+53 } catch (error: any) {
+54   console.log(error.message);
 55 }
 56 const num2 = zkAppInstance.num.get();
 57 console.log('state after txn2:', num2.toString());
@@ -490,7 +490,6 @@ The expected output is:
 
 state after init: 3
 state after txn1: 9
-Field.assertEquals(): 75 != 81
 Field.assertEquals(): 75 != 81
 state after txn2: 9
 ```
