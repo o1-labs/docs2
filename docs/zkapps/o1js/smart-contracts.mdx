@@ -46,10 +46,13 @@ let zkApp = new HelloWorld(zkAppAddress);
 ## zkApp Accounts
 
 On Mina, there is no strong distinction between normal "user accounts" and
-"zkApp accounts". A zkApp account is just a normal account that has a smart
-contract deployed to it – which essentially just means there's a verification
-key stored on the account that can verify zero knowledge proofs generated
-with the smart contract.
+"zkApp accounts". A zkApp account:
+
+- Is an account on the Mina blockchain where a zkApp smart contract is deployed. 
+
+- Has a verification key associated with it. 
+
+The verification key stored on the zkApp account can verify zero knowledge proofs generated with the smart contract. The verification key lives on-chain for a given zkApp account and is used by the Mina network to verify that a zero knowledge proof has met all constraints defined in the prover. See [Prover Function and Verification Key](/zkapps/how-zkapps-work#prover-function-and-verification-key).
 
 ## Methods
 
