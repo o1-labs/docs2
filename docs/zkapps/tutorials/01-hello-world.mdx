@@ -34,7 +34,7 @@ You will:
 
 - Write a basic smart contract that stores a number as on-chain state.
 - The contract logic allows this number to be replaced only by its square; for example, 3 -> 9 -> 81, and so on. 
-- Create a project using the [Mina zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
+- Create a project using the [zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
 - Write your smart contract code
 - Use a simulated local Mina blockchain to interact with your smart contract.
 
@@ -79,6 +79,7 @@ Now that you have the tooling installed, you can start building your application
     empty
   ❯ none
   ```
+  
   The expected output is:
 
   ```sh
@@ -99,7 +100,7 @@ Now that you have the tooling installed, you can start building your application
     git push -u origin main
   ```
 
-  The `zk project` command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework. 
+  The `zk project` command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
 
 1. Change into the `01-hello-world` directory and list the contents:
 
@@ -148,7 +149,7 @@ Start by deleting the default files that come with the new project.
   ```
 
   - The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files.
-  - However, this tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works. 
+  - This tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works. 
 
 In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user. 
 
@@ -203,7 +204,7 @@ All functions used inside a smart contract must operate on o1js compatible data 
 
 These items are:
 
-- `Field`: The native number type in o1js. You can think of Field elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of Field elements.
+- `Field`: The native number type in o1js. You can think of field elements as unsigned integers. Field elements are the most basic type in o1js. All other o1js-compatible types are built on top of field elements.
 - `SmartContract`: The class that creates zkApp smart contracts.
 - `state`: A convenience decorator used in zkApp smart contracts to create references to state stored on-chain in a zkApp account.
 - `State`: A class used in zkApp smart contracts to create state stored on-chain in a zkApp account.
@@ -236,11 +237,9 @@ Now, this code adds the `init` method to set up the initial state of the smart c
 13     super.init();
 14     this.num.set(Field(3));
 15   }
-16
-17 }
 ```
 
-Since you're extending `SmartContract` that has its own initialization to perform, calling `super.init()` invokes this function on the base class.
+Since this code extends `SmartContract` that has its own initialization to perform, calling `super.init()` invokes this function on the base class.
 
 Then, `this.num.set(Field(3))` initializes the on-chain state `num` to a value of `3`.
 
@@ -282,7 +281,7 @@ Notice that `get()` and `set()` methods are used for retrieving and setting on-c
 
 The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available [methods](/zkapps/o1js-reference/classes/Field#methods) in the o1js Reference documentation. 
 
-You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero knowledge circuit, functions from random NPM packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
+You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero knowledge circuit, functions from random npm packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
 
 Importantly, data passed as an input to a smart contract method in o1js is private and never seen by the network.
 
@@ -313,7 +312,7 @@ For this tutorial, the `import` statement brings in items from `o1js` that you u
 These import items are:
 
 - `Field`: The same o1js unsigned integer type that you learned earlier.
-- `Mina`: A local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
+- `Mina`: A simulated local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
 - `PrivateKey`: A class with functions for manipulating private keys.
 - `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
 
@@ -335,16 +334,20 @@ To initialize your simulated local blockchain, add the following code from the [
 12 Mina.setActiveInstance(Local);
 13 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
-```
-
-This simulated local blockchain also provides pre-funded accounts. These lines create local test accounts with test MINA to use for this tutorial:
-
-```ts ignore
-const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1]; 
+15
 ```
 
 Tip: To preserve line numbers in your local `main.ts` file, add blank lines as needed after you copy the code snippets.
+
+This simulated local blockchain provides pre-funded accounts. Add these lines to create local test accounts with test MINA (tMINA) to use for this tutorial:
+
+```ts src/main.ts
+16 // ----------------------------------------------------
+17 
+18 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
+19 const zkAppPrivateKey = PrivateKey.random();
+20 const zkAppAddress = zkAppPrivateKey.toPublicKey();
+```
 
 ### Build and run the smart contract
 
@@ -378,33 +381,25 @@ To initialize your smart contract, add more code from the [main.ts](https://gith
 
 All smart contracts that you create with the zkApp CLI use similar code:
 
-- Create a public/private key pair; the public key is your address and where you deploy the zkApp to
+- Create a public/private key pair; the public key is an address on the Mina network where you deploy the zkApp to
 - Create an instance of your smart contract `Square` and deploy it to `zkAppAddress`
 - Get the initial state of `Square` after deployment
 
 Comments break down each stage:
 
 ```ts src/main.ts
-19
-20
 21
-22 // ----------------------------------------------------
-23
-24 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
-25 const zkAppPrivateKey = PrivateKey.random();
-26 const zkAppAddress = zkAppPrivateKey.toPublicKey();
-27
-28 // create an instance of Square - and deploy it to zkAppAddress
-29 const zkAppInstance = new Square(zkAppAddress);
-30 const deployTxn = await Mina.transaction(deployerAccount, () => {
-31   AccountUpdate.fundNewAccount(deployerAccount);
-32   zkAppInstance.deploy();
-33 });
-34 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
-35
-36 // get the initial state of Square after deployment
-37 const num0 = zkAppInstance.num.get();
-38 console.log('state after init:', num0.toString());
+22 // create an instance of Square - and deploy it to zkAppAddress
+23 const zkAppInstance = new Square(zkAppAddress);
+24 const deployTxn = await Mina.transaction(deployerAccount, () => {
+25   AccountUpdate.fundNewAccount(deployerAccount);
+26   zkAppInstance.deploy();
+27 });
+28 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
+29
+30 // get the initial state of Square after deployment
+31 const num0 = zkAppInstance.num.get();
+32 console.log('state after init:', num0.toString());
 ```
 
 Try running this command again:
@@ -421,7 +416,6 @@ The expected output is:
 
 o1js loaded
 state after init: 3
-Shutting down
 ```
 
 ### Update your zkApp account with a transaction
@@ -429,55 +423,57 @@ Shutting down
 To update your local zkApp account with a transaction, add the following code to the `src/main.ts` file:
 
 ```ts src/main.ts
-38 console.log('state after init:', num0.toString());
-39
-40 // ----------------------------------------------------
+33
+34 // ----------------------------------------------------
+35
+36 const txn1 = await Mina.transaction(senderAccount, () => {
+37   zkAppInstance.update(Field(9));
+38 });
+39 await txn1.prove();
+40 await txn1.sign([senderKey]).send();
 41
-42 const txn1 = await Mina.transaction(senderAccount, () => {
-43   zkAppInstance.update(Field(9));
-44 });
-45 await txn1.prove();
-46 await txn1.sign([senderKey]).send();
-47
-48 const num1 = zkAppInstance.num.get();
-49 console.log('state after txn1:', num1.toString());
+42 const num1 = zkAppInstance.num.get();
+43 console.log('state after txn1:', num1.toString());
 ```
 
 This code creates a new transaction that attempts to update the field to the value `9`. Because of the rules in the `update()` function that is called on the smart contract, this command succeeds when you run it again:
 
 ```sh
 $ npm run build && node build/src/main.js
-...
-o1js loaded
-state after init: 3
-state after txn1: 9
-Shutting down
 ```
 
+The expected output is:
+
+```sh
+> 01-hello-world@0.1.0 build
+> tsc
+
+state after init: 3
+state after txn1: 9
+```
 ### Add a transaction that fails
 
 It's time to do some testing. To add a transaction that fails, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file. 
 
 The contract logic allows the number that is stored as on-chain state to be replaced only by its square. Now that `num` is in state `9`, updating is possible only with `81`. 
 
-To test a failure, update the state to 75 in `zkAppInstance.update(Field(75))`:
+To test a failure, add these next lines of code from the `src/main.ts` file and change the state to `75` in `zkAppInstance.update(Field(75))`:
 
 ```ts src/main.ts
-49 console.log('state after txn1:', num1.toString());
-50
-51 // ----------------------------------------------------
-52
-53 try {
-54   const txn2 = await Mina.transaction(senderAccount, () => {
-55     zkAppInstance.update(Field(75));
-56   });
-57   await txn2.prove();
-58   await txn2.sign([senderKey]).send();
-59 } catch (ex: any) {
-60   console.log(ex.message);
-61 }
-62 const num2 = zkAppInstance.num.get();
-63 console.log('state after txn2:', num2.toString());
+44
+45 // ----------------------------------------------------
+46
+47 try {
+48   const txn2 = await Mina.transaction(senderAccount, () => {
+49     zkAppInstance.update(Field(75));
+50   });
+51   await txn2.prove();
+52   await txn2.sign([senderKey]).send();
+53 } catch (error: any) {
+54   console.log(error.message);
+55 }
+56 const num2 = zkAppInstance.num.get();
+57 console.log('state after txn2:', num2.toString());
 ```
 
 Try running this command again:
@@ -489,31 +485,16 @@ $ npm run build && node build/src/main.js
 The expected output is:
 
 ```sh
-$ npm run build && node build/src/main.js
-...
+> 01-hello-world@0.1.0 build
+> tsc
+
 state after init: 3
 state after txn1: 9
 Field.assertEquals(): 75 != 81
 state after txn2: 9
-Shutting down
 ```
 
-And finally, be sure to change your `main.ts` file to include the correct update:
-
-```ts src/main.ts
-63 console.log('state after txn2:', num2.toString());
-64
-65 // ----------------------------------------------------
-66
-67 const txn3 = await Mina.transaction(senderAccount, () => {
-68   zkAppInstance.update(Field(81));
-69 });
-70 await txn3.prove();
-71 await txn3.sign([senderKey]).send();
-72
-73 const num3 = zkAppInstance.num.get();
-74 console.log('state after txn3:', num3.toString());
-```
+And finally, be sure to change your `main.ts` file to include the correct update to change the state to `81` in `zkAppInstance.update(Field(81))`. 
 
 Run this command again:
 
@@ -524,15 +505,12 @@ $ npm run build && node build/src/main.js
 The expected output is:
 
 ```sh
-$ npm run build && node build/src/main.js
-...
-o1js loaded
+> 01-hello-world@0.1.0 build
+> tsc
+
 state after init: 3
 state after txn1: 9
-Field.assertEquals(): 75 != 81
-state after txn2: 9
-state after txn3: 81
-Shutting down
+state after txn2: 81
 ```
 
 ## Follow along
