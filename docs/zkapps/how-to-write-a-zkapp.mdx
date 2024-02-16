@@ -33,7 +33,7 @@ See [zkApp CLI Installation](/zkapps/install-zkapp-cli).
 
 ## Start a project
 
-Now that you have the zkApp CLI installed, you can start with an example or start your own project.
+Now that you have the zkApp CLI installed, you can start with an example or create your own project.
 
 Example projects do not create an accompanying UI. 
 
@@ -57,7 +57,7 @@ Examples are based on the standard project structure and provide additional file
 
     Select the `sudoku` example project. 
 
-    The created project includes the example files (the smart contract) in the project's `src` directory. 
+    The created project includes the example files (the smart contract) and the example test files in the project's `src` directory. 
     
 1. View the files that were created:
 
@@ -66,7 +66,7 @@ Examples are based on the standard project structure and provide additional file
   
     Or open the directory in a code editor, such as VS Code.
 
-1. Because this example zkApp was created using the zkApp CLI, tests are already included in `sudoku.test.ts`. To run tests and see the tests pass: 
+1. This example zkApp includes the `sudoku.test.ts` test file. To run tests and see the tests pass: 
 
     ```sh
     npm run test
@@ -116,10 +116,10 @@ Examples are based on the standard project structure and provide additional file
  1. Set the Mina GraphQL API URL to deploy to: 
 
     ```text
-    https://proxy.berkeley.minaexplorer.com/graphql
+    https://api.minascan.io/node/berkeley/v1/graphql
     ``` 
-  
-1. Set the transaction fee to use when deploying: 
+
+1. Set the transaction fee to use when deploying:
 
     ```text
     0.1
@@ -147,7 +147,7 @@ Examples are based on the standard project structure and provide additional file
     NOTE: the private key will be stored in plain text on this computer.
     ```
 
-    A fee payer account is a funded developer account that can always pay fees immediately.
+    A fee payer account is a developer account that can always pay fees immediately for local testing. Do not use an account that holds a substantial amount of MINA.
 
 1. When prompted to create an alias for this account, give an alias to your new fee payer key pair:
 
@@ -157,9 +157,9 @@ Examples are based on the standard project structure and provide additional file
 
     Your key pairs and deploy alias are created.
 
-1. Fund your fee payer account.
+1. Fund the fee payer account. After you fund the fee payer account, you can use to to pay fees across multiple zkApps.
 
-    Follow the prompts to request tMINA. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
+    Follow the prompts to request tMINA to fund your fee payer account. For this example, your MINA address is populated on the Testnet Faucet. tMINA arrives at your address when the next block is produced (~3 minutes).
 
 1. Deploy to Testnet:
 
@@ -182,9 +182,13 @@ Examples are based on the standard project structure and provide additional file
 
 Instead of using a provided example, you can follow these steps to create your own project. 
 
-1. Create your own project: `zk project <myproj>`
+1. Create your own project: 
 
-    The created project includes the files (the smart contract) in the project's `src/` directory. 
+    ```sh
+    zk project <myproj>
+    ```
+
+    The created project includes the smart contract files in the project's `src/` directory. 
 
 1. Select an accompanying UI framework, if any:
 
@@ -201,7 +205,7 @@ Instead of using a provided example, you can follow these steps to create your o
 
     To see the files that were created, change to the project (whatever you called `<myproj>`) directory and run the `ls` command or open the directory in a code editor, such as VS Code.
 
-1. Because you used the zkApp CLI to create this project, tests were automatically created in `yourproject.test.ts`. 
+1. When you use the zkApp CLI to create a project, the default `Add` smart contract is included along with the `Add.test.ts` test files. 
 
     ```sh
     npm run test
@@ -233,7 +237,7 @@ Instead of using a provided example, you can follow these steps to create your o
  
     - Create a (deploy alias) name: _yourprojecttestnet_ 
     - Choose the target network: `Testnet`    
-    - Set the Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`  
+    - Set the Mina GraphQL API URL: `https://api.minascan.io/node/berkeley/v1/graphql`  
     - Set transaction fee to use when deploying (in MINA): `0.1`  
     - Choose an account to pay transaction fees: 
       - `Create a new fee payer key pair`
@@ -241,7 +245,7 @@ Instead of using a provided example, you can follow these steps to create your o
 
     Your key pair and deploy alias are created.
 
-1. Fund your fee payer account. Follow the prompts to request tMina. 
+1. Fund your fee payer account. Follow the prompts to request tMina.
 
 1. Deploy to Testnet: 
 
