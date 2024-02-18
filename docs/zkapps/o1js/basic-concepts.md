@@ -27,15 +27,15 @@ zkApp programmability is not yet available on the Mina Mainnet, but zkApps can n
 
 # o1js Basic Concepts
 
-o1js is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js is a TypeScript (TS) library for writing general-purpose zero knowledge (zk) programs and writing zk smart contracts for Mina.
 
 ## Field
 
-Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a uint256 in Solidity.
+Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a `uint256` in Solidity.
 
 :::note
 
-For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336
+For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336.
 
 :::
 
@@ -51,7 +51,7 @@ This can be simplified as:
 
 `const sum = new Field(1).add(3)`
 
-Note that the 3 is auto-promoted to a field type to make this cleaner.
+Note that the `3` is auto-promoted to a field type to make this cleaner.
 
 ## Built-in data types
 
