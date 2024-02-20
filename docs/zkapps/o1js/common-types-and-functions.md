@@ -39,31 +39,33 @@ o1js includes built in types and methods that you can use inside your zkApp and 
 
 <!-- prettier-ignore -->
 ```ts
-const x = new Bool(true);
-const y = new Bool(false);
+let x = new Bool(true);
+let y = new Bool(false);
 ```
 
-With the `Bool` type, you can call the contructor without `new`, just like the `Field` type. The best practice is to use the constructor function without `new`:
+With the `Bool` type, you can call the contructor without `new`, just like the `Field` type. The convention is to use the constructor function without `new`:
 
 <!-- prettier-ignore -->
 ```ts
-const x = Bool(true);
-const y = Bool(false);
+let x = Bool(true);
+let y = Bool(false);
 ```
 
 You can also create a `Bool` from another `Bool`.
 
 <!-- prettier-ignore -->
 ```ts
-const x = Bool(true);
-const y = Bool(x);
+let x = Bool(true);
+let y = Bool(x);
 ```
 
 It is also possible to convert a `Field` into a `Bool`. However, you should make sure that the `Field` is "bool-like" (with a value either 1 or 0) before converting it.
 
 ```ts
 let x = Field(1);
-x.assertBool(); // Asserts that x has a value either 1 or 0
+
+// The line below makes sure x can be safely converted into a `Bool`.
+x.equals(Field(1)).or(x.equals(Field(0))).assertTrue(); // You will learn about the methods used here below.
 
 let x_bool = Bool(x.value);
 ```
@@ -72,25 +74,25 @@ let x_bool = Bool(x.value);
 
 <!-- prettier-ignore -->
 ```ts
-const x = Bool(true);
-const y = Bool(false);
-const z = y.not(); // True
+let x = Bool(true);
+let y = Bool(false);
+let z = y.not(); // True
 
-const equals = x.equals(y); // False
-const and = x.and(y); // False
-const or = x.or(y); // True
+let equals = x.equals(y); // False
+let and = x.and(y); // False
+let or = x.or(y); // True
 
-const equals_from_boolean = x.equals(true); // True
-const and_from_boolean = x.and(true); // True
-const or_from_boolean = y.or(false); // False
+let equals_from_boolean = x.equals(true); // True
+let and_from_boolean = x.and(true); // True
+let or_from_boolean = y.or(false); // False
 ```
 
-You can also assert `Bool` variables. When you assert something, your zkApp method throws if the assertion fails.
+You can also assert `Bool` variables. When you assert something, your zkApp method throws if the assertion fails. You can read more about assertions in the [basic concepts](./basic-concepts.md#assertions-in-o1js) chapter.
 
 <!-- prettier-ignore -->
 ```ts
-const x = Bool(true);
-const y = Bool(false);
+let x = Bool(true);
+let y = Bool(false);
 
 x.assertEquals(y); // Throws
 x.assertTrue(); // Nothing happens, as assertion passes
@@ -101,30 +103,30 @@ You can also combine multiple logical expressions one after another.
 
 <!-- prettier-ignore -->
 ```ts
-const x = Bool(true);
-const y = Bool(false);
+let x = Bool(true);
+let y = Bool(false);
 
 x.not().and(y).or(true); // True
 ```
 
-**Important:** All logical expressions are executed in the method call order, as with any other regular language or framework. However, as these are logical statements inside ZKPs, all expressions are always evaluated regardless of the logical ordering. Please see conditionals chapter [below](./common-types-and-functions.md#conditionals) for more details.
+**Important:** All logical expressions are executed in the method call order, as with any other regular language or framework. However, as these are logical statements inside ZKPs, all expressions are always evaluated regardless of the logical ordering. See [Conditionals](./common-types-and-functions.md#conditionals) for more details.
 
 ## UInt32
 
-`UInt32` type is a 32 bit positive integer. You can create it using the `new` constructor or the `UInt32.from()` static method. The best practice is to use `UInt32.from()`.
+`UInt32` type is a 32 bit positive integer. You can create it using the `new` constructor or the `UInt32.from()` static method. The convention is to use `UInt32.from()`.
 
-Both the constructor and `UInt32.from()` method accepts `number`, `string`, `bigint`, `Field`, and `UInt32` type. In order the conversion to be successful, the type should evaluate to "uint32-like", meaning an integer in the range [0, $2^{32}$].
+Both the constructor and `UInt32.from()` method accepts `number`, `string`, `bigint`, `Field`, and `UInt32` type. In order the conversion to be successful, the type should evaluate to "uint32-like", meaning an integer in the range [0, $2^{32} - 1$].
 
 <!-- prettier-ignore -->
 ```ts
-const x = new UInt32(45); // From number, use from() rather than the new constructor
-const y = UInt32.from("788"); // From string
-const z = UInt32.from(812934812n); // From bigint
-const v = UInt32.from(Field(34)); // From Field
-const w = UInt32.from(v); // From UInt32
+let x = new UInt32(45); // From number, use from() rather than the new constructor
+let y = UInt32.from("788"); // From string
+let z = UInt32.from(812934812n); // From bigint
+let v = UInt32.from(Field(34)); // From Field
+let w = UInt32.from(v); // From UInt32
 
-const k = UInt32.from("asdfas"); // Throws, as this is not a number
-const l = UInt32.from(9182394814234n) // Throws, as this bigint is bigger than 2^32
+let k = UInt32.from("asdfas"); // Throws, as this is not a number
+let l = UInt32.from(9182394814234n) // Throws, as this bigint is bigger than 2^32 - 1
 ```
 
 You can perform arithmetic operations on `UInt32` variables using built in methods. These methods can also be called with "uint32-like" values. Each method creates and returns a new `UInt32`.
@@ -133,21 +135,21 @@ If the result of a method is not in the range of `UIn32`, either a too big or a 
 
 <!-- prettier-ignore -->
 ```ts
-const x = UInt32.from(45);
-const y = UInt32.from(94);
+let x = UInt32.from(45);
+let y = UInt32.from(94);
 
-const add = x.add(y); // Regular addition
-const sub = x.sub(y); // If the result is out of range of the UInt32, the code throws
-const mul = x.mul(47); // You can also use "uint32-like" values
-const div = x.div(33); // This is an integer division, different from the Field type
-const divMod = x.divMod(33); // Returns an object with the keys `quotient` and `rest`, both of the UInt32 type. 
+let add = x.add(y); // Regular addition
+let sub = x.sub(y); // If the result is out of range of the UInt32, the code throws
+let mul = x.mul(47); // You can also use "uint32-like" values
+let div = x.div(33); // This is an integer division, different from the Field type
+let divMod = x.divMod(33); // Returns an object with the keys `quotient` and `rest`, both of the UInt32 type. 
 ```
 
 You can also perform logical operations on `UInt32` types. All logical methods return a `Bool` variable.
 
 <!-- prettier-ignore -->
 ```ts
-const x = UInt32.from(45);
+let x = UInt32.from(45);
 
 x.equals(45); // True
 x.greaterThan(45); // False
@@ -160,7 +162,7 @@ Similarly to the `Bool` type, you can assert logical statements.
 
 <!-- prettier-ignore -->
 ```ts
-const x = UInt32.from(45);
+let x = UInt32.from(45);
 
 x.assertEquals(45); // True - passes
 x.assertGreaterThan(45); // False - throws
@@ -173,8 +175,8 @@ Finally, you can convert a `UInt32` to a `Field` by calling the `.value` propert
 
 <!-- prettier-ignore -->
 ```ts
-const x = UInt32.from(45);
-const y = x.value; // This is a Field with the value 45
+let x = UInt32.from(45);
+let y = x.value; // This is a Field with the value 45
 ```
 
 ## UInt64
@@ -185,22 +187,22 @@ const y = x.value; // This is a Field with the value 45
 ```ts
 // Constructors
 
-const x = new UInt64(45); // From number, use from() rather than the new constructor
-const y = UInt64.from("788"); // From string
-const z = UInt64.from(812934812n); // From bigint
-const v = UInt64.from(Field(34)); // From Field
-const w = UInt64.from(v); // From UInt64
+let x = new UInt64(45); // From number, use from() rather than the new constructor
+let y = UInt64.from("788"); // From string
+let z = UInt64.from(812934812n); // From bigint
+let v = UInt64.from(Field(34)); // From Field
+let w = UInt64.from(v); // From UInt64
 
-const k = UInt64.from("asdfas"); // Throws, as this is not a number
-const l = UInt64.from(91823948182394892384923849348923849238494234n) // Throws, as this bigint is bigger than 2^64
+let k = UInt64.from("asdfas"); // Throws, as this is not a number
+let l = UInt64.from(91823948182394892384923849348923849238494234n) // Throws, as this bigint is bigger than 2^64
 
 // Arithmetic Operations
 
-const add = x.add(y); // Regular addition
-const sub = x.sub(y); // If the result is out of range of the UInt64, the code throws
-const mul = x.mul(47); // You can also use "uint64-like" values
-const div = x.div(33); // This is an integer division, different from the Field type
-const divMod = x.divMod(33); // Returns an object with the keys `quotient` and `rest`, both of the UInt64 type. 
+let add = x.add(y); // Regular addition
+let sub = x.sub(y); // If the result is out of range of the UInt64, the code throws
+let mul = x.mul(47); // You can also use "uint64-like" values
+let div = x.div(33); // This is an integer division, different from the Field type
+let divMod = x.divMod(33); // Returns an object with the keys `quotient` and `rest`, both of the UInt64 type. 
 
 // Logical Operators
 
@@ -220,7 +222,7 @@ x.assertLessThanOrEquals(45); // True - passes
 
 // Converting to Field
 
-const y = x.value; // This is a Field with the value 45
+let y = x.value; // This is a Field with the value 45
 ```
 
 ## Public and Private Keys
@@ -229,20 +231,18 @@ For accessing Mina blockchain accounts, you can use `PublicKey` and `PrivateKey`
 
 <!-- prettier-ignore -->
 ```ts
-const x_private = PrivateKey.fromBase58("base58_private_key");
-const y_private = PrivateKey.fromJSON("base58_private_key");
+const x_private = PrivateKey.fromBase58("EKEAzkozjN3TAQHLzBKD7RoscLojWeFMKLY2qgKEV8qqpxJYwpKb");
+const y_private = PrivateKey.fromJSON("EKEAzkozjN3TAQHLzBKD7RoscLojWeFMKLY2qgKEV8qqpxJYwpKb");
 
-const x = PublicKey.fromBase58("B62qq8sm7JdsED6VuDKNWKLAi1Tvz1jrnffuud5gXMq3mgtd");
-const y = PublicKey.fromJSON("B62qq8sm7JdsED6VuDKNWKLAi1Tvz1jrnffuud5gXMq3mgtd");
+const x = PublicKey.fromBase58("B62qp8KyqqSyKs8eQqtmzoRjuEG3Th9bD4ABuvMEGBCnkMKh3pWvGaQ");
+const y = PublicKey.fromJSON("B62qp8KyqqSyKs8eQqtmzoRjuEG3Th9bD4ABuvMEGBCnkMKh3pWvGaQ");
 ```
 
-You can also create a random `PrivateKey`, an empty `PublicKey`, or convert a `PrivateKey` to a `PublicKey`.
+You can also create a random `PrivateKey` or convert a `PrivateKey` to a `PublicKey`.
 
 <!-- prettier-ignore -->
 ```ts
 const random = PrivateKey.random();
-const empty = PublicKey.empty();
-
 const fromPrivKey = PublicKey.fromPrivateKey(random); // or equivalently random.toPublicKey()
 ```
 
@@ -262,7 +262,7 @@ Nevertheless, you can use the o1js built-in `Provable.if()` method, which is a t
 
 <!-- prettier-ignore -->
 ```ts
-const x = Provable.if(
+let x = Provable.if(
   Bool(foo), // The condition to evaluate inside if, must be of type Bool
   a, // You can return any provable type from Provable.if
   b // a and b must be of the same provable type
@@ -271,17 +271,18 @@ const x = Provable.if(
 
 `Provable.if()` allows you to include any logical computation you need inside your ZKP. There is nothing wrong with evaluating more complex expressions inside `Provable.if()` and returning the final result.
 
-However, it works differently from ternary statements in the other languages and frameworks. Both arguments of `Provable.if()` _always_ executes, regardless of the truth value of the condition. `Provable.if()` choses which one to return based on the truth value and sets the new variable. This is why you should never assign anything outside of the if scope or assert anything.
+However, it works differently from ternary statements in the other languages and frameworks. Both arguments of `Provable.if()` _always_ execute, regardless of the truth value of the condition. `Provable.if()` chooses which one to return based on the truth value and sets the new variable. This is why you should never assign anything outside of the if scope or assert anything.
 
 <!-- prettier-ignore -->
 ```ts
-const x = Provable.if(
+let x = Provable.if(
   Bool(foo),
+  // Note both of the functions below will be executed regardless of the value of `Bool(foo)`
   (() => { // Here, we use arrow functions to return a Field element, but you can use any function that returns a provable type
     return Field(5).div(3);
   })(),
   (() => {
-    return Field(5).div(2);
+    return Field(5).div(2); 
   })()
 ); // This variable is of type Field
 ```
@@ -298,35 +299,36 @@ while (foo) {
 }
 ```
 
-You can overcome this limitation by using static sized loops that iterate always the same amount of time. You can perform provable operations with these loops using the `Provable.if`.
+You can overcome this limitation by using static sized loops that iterate always the same amount of time. You can perform provable operations with these loops using `Provable.if()`.
+
+Note that the example below is very inefficient due to the expensive `Field` comparison operations. This example is just to show how static sized loops may be used with `Provable.if()`. A much more efficient way of achieving the same would be using o1js [recursion](./recursion.mdx).
 
 <!-- prettier-ignore -->
 ```ts
-function powerOfTwo(pow: Field): Field {
-  const MAX_ITERATION_COUNT = 64;
-
-  pow.assertGreaterThanOrEqual(0);
-  pow.assertSmallerThanOrEqual(MAX_ITERATION_COUNT); // This code is to calculate up to 2^64, you can optimize this based on your needs
+function powerOfTwo(pow: UInt64): Field {
+  const MAX_ITERATION_COUNT = 64; // pow is 64 bits
 
   let result = Field(1); // Result of the calculation
-  let power = Field(0); // Current power of the iteration
+  let power = UInt64.from(0); // Current power of the iteration
   let loopEnded = Bool(false); // Checking if the loop has ended yet
 
   for (let i = 0; i <= MAX_ITERATION_COUNT; i++) { // Static sized loop
     loopEnded = Provable.if( // End Condition
-      Field(i).greaterThanOrEqual(power),
+      UInt64.from(i).equals(power), // In o1js, equality checks are much more efficient than comparisons
       Bool(true),
-      Bool(false)
+      loopEnded
     );
+
     result = result.mul(Provable.if( // Result
       loopEnded,
       Field(1),
       Field(2)
     ));
+
     power = power.add(Provable.if( // Power
       loopEnded,
-      Field(0),
-      Field(1)
+      UInt64.from(0),
+      UInt64.from(1)
     ));
   };
 
@@ -336,7 +338,7 @@ function powerOfTwo(pow: Field): Field {
 
 # Functions
 
-Functions work as you would expect in TS. However, your functions inside ZKPs must take provable arguments and return provable types, just like anything in o1js. For example:
+Functions work as you would expect in TS. However, your functions inside ZKPs must return provable types, just like anything in o1js. For example:
 
 <!-- prettier-ignore -->
 ```ts
@@ -345,7 +347,7 @@ function addOneAndDouble(x: Field): Field {
 }
 ```
 
-**Warning:** You should _not_ use recursion with functions in o1js. If you want to recurse a ZKP, you can use [o1js recursion](./recursion.mdx).
+**Warning:** You should _not_ use dynamically sized recursion with functions in o1js, just like dynamically sized loops. Static sized recursion is safe to use as the end condition is known at the compilation time. If you want to dynamically recurse a ZKP, you can use [o1js recursion](./recursion.mdx).
 
 :::info
 
