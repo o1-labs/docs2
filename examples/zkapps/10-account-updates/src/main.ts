@@ -43,7 +43,7 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   // ----------------------------------------------------
 
   const deploy_txn = await Mina.transaction(deployerPubkey, () => {
-    AccountUpdate.fundNewAccount(deployerPubkey);
+    AccountUpdate.fundNewAccount(deployerPubkey, 2);
     proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
     secondaryInstance.deploy({ zkappKey: secondarySk });
   });
@@ -67,7 +67,7 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   await showTxn(txn1, 'txn1', legend);
   await saveTxn(txn1, 'txn1', legend, './txn1.png');
 
-  await txn1.send();
+  await txn1.sign([deployerAccount]).send();
 
   // ----------------------------------------------------
 
@@ -80,6 +80,6 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
   await showTxn(txn2, 'txn2', legend);
   await saveTxn(txn2, 'txn2', legend, './txn2.png');
 
-  await txn2.send();
+  await txn2.sign([deployerAccount]).send();
 
 })();

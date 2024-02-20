@@ -1,6 +1,6 @@
 # zkApp: Account Updates
 
-Each zkApp transaction constructed by o1js is composed of one or more `AccountUpdate`` classes, which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, and so on.
+Each zkApp transaction constructed by o1js is composed of one or more `AccountUpdate` classes, which are a set of instructions for the Mina network to perform, such as altering on-chain state, emitting an event, and so on.
 
 ## Tutorial
 
@@ -34,6 +34,10 @@ For the step-by-step tutorial, see [Tutorial 10: Account Updates](https://docs.m
     ```sh
     npm run build && node build/src/main.js
     ```
+
+## Last audit date
+
+**20-Februrary-2024**
 
 ## License
 
