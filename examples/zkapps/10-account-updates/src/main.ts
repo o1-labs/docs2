@@ -8,7 +8,7 @@ import {
   AccountUpdate,
 } from 'o1js';
 
-import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
+// import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
 (async function main() {
 
@@ -64,8 +64,8 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
   await txn1.prove();
 
-  await showTxn(txn1, 'txn1', legend);
-  await saveTxn(txn1, 'txn1', legend, './txn1.png');
+  // await showTxn(txn1, 'txn1', legend);
+  // await saveTxn(txn1, 'txn1', legend, './txn1.png');
 
   await txn1.sign([deployerAccount]).send();
 
@@ -77,8 +77,8 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
   await txn2.prove();
 
-  await showTxn(txn2, 'txn2', legend);
-  await saveTxn(txn2, 'txn2', legend, './txn2.png');
+  // await showTxn(txn2, 'txn2', legend);
+  // await saveTxn(txn2, 'txn2', legend, './txn2.png');
 
   await txn2.sign([deployerAccount]).send();
 
