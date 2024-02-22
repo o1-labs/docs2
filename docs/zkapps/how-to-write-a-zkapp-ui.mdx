@@ -37,6 +37,8 @@ You can use one of the provided scaffolding options and add your smart contract 
 
 The `index.ts` file is the entry point of your project that imports all smart contract classes you want access to and exports them to your smart contract. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
 
+In `index.ts`:
+
 ```ts
 import { YourSmartContract } from './YourSmartContract.js';
 
@@ -59,7 +61,13 @@ To test iteratively and use your smart contract within your UI project during lo
   npm link <your-package-name>
   ```
 
-  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`.
+  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`. 
+
+  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) is `sudoku`:
+
+  ```text
+  "name": "sudoku",
+  ```
 
 1. To import the smart contracts into your UI project, add the import statement to the `index.ts` file:
 
@@ -67,7 +75,15 @@ To test iteratively and use your smart contract within your UI project during lo
   import { YourSmartContract } from 'your-package-name';`
   ```
 
-1. After making changes, build your project so that the changes are reflected in the smart contract consumed by your UI project:
+  For example, to import the `sudoku` example project, your `index.ts` file is:
+
+  ```ts
+  import { SudokuZkApp } from './sudoku.js';
+
+  export { SudokuZkApp };
+  ```
+
+1. After you make changes to your project files, you must build your project so that the changes are reflected in the smart contract consumed by your UI project:
 
   ```sh
   npm run build
