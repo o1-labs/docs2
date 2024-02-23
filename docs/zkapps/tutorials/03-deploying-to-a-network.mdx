@@ -30,11 +30,14 @@ In previous tutorials, you learned how to deploy and run transactions on a local
 
 In this tutorial, you use the `zk config` command to create a deploy alias, request tMINA funds to pay for transaction fees, and deploy a project to a live network.
 
-Mina zkApps are available only on feature-complete Berkeley, Mina's public Testnet. This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world). 
+This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world). 
 
 ## Prerequisites
 
-This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.15.2`.
+This tutorial has been tested with:
+
+- [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.17.2`
+- [o1js](https://www.npmjs.com/package/o1js) version `0.16.2`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -114,15 +117,17 @@ Start by deleting the default files that come with the new project.
 
 Now that your smart contract is in place, you are ready to deploy your smart contract to Berkeley Testnet.
 
-## Mina zkApp CLI
+## zkApp CLI
 
-You already installed the Mina zkApp CLI as part of the [Prerequisites](/zkapps/tutorials#prerequisites), so you have the tools to manage deployments.
+You installed the zkApp CLI as part of the [Prerequisites](/zkapps/tutorials#prerequisites), so you already have the tools to manage deployments.
 
 In some cases, you might need to create a custom account for your zkApp, for example, to deploy a zkApp to a different key than the fee payer key, programmatically parameterize a zkApp before you initialize it, or create a smart contract programmatically for users as part of an application. For details, see [Interacting with zkApps server-side](/zkapps/tutorials/interacting-with-zkapps-server-side).
 
 ## Deploy the smart contract 
 
-The `config.json` configuration file was automatically scaffolded when you created your project with the `zk project` command. However, the generated configuration file does not yet contain the deploy alias. 
+The `config.json` configuration file contains the configuration to deploy your zkApp. This file was automatically scaffolded when you created your project with the `zk project` command. 
+
+However, the generated configuration file does not yet contain the deploy alias. 
 
 ### Deploy alias
 
@@ -132,7 +137,7 @@ You can have one or more deploy aliases for your project.
 
 A deploy alias consists of:
 
-- A self-describing name (can be anything). Using naming patterns is helpful when you have more than one deploy alias.
+- A self-describing name that can be anything. Using naming patterns is helpful when you have more than one deploy alias.
 - The Mina GraphQL API URL that defines the network that receives your deploy transaction and broadcasts it to the appropriate Mina network (Testnet, Devnet, Mainnet, and so on)
 - The transaction fee (in MINA) to use when deploying
 - Two key pairs:
@@ -157,31 +162,54 @@ A deploy alias consists of:
     
       This tutorial uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
   
+    - Target network: `testnet`
+    
     - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
   
     - Transaction fee to use when deploying (in MINA): `0.1`
-  
-1. When prompted to choose an account to pay transaction fees, select `Create a new fee payer key pair`:
 
-  ```sh
-  Choose an account to pay transaction fees:
-  ```
+1. When prompted to choose an account to pay transaction fees, select:
 
-  ```sh
-  Create a new fee payer key pair
-  NOTE: The private key is created on this computer and is stored in plain text.
-  ```
+    ```text
+    Use a different account (select to see options)
+    ```
+
+    If this is the first time you are running the `zk config` command, you see these options:
+
+    ```text
+    ❯ Recover fee payer account from an existing base58 private key
+    Create a new fee payer key pair
+    ```
+
+    A third option to choose another saved fee payer account is shown only if you have a cached fee payer account.
+
+1. Select to create a new fee payer key pair:  
+
+    ```sh
+    Create a new fee payer key pair
+    NOTE: the private key will be stored in plain text on this computer.
+    ```
+
+    A fee payer account is a developer account that can always pay fees immediately for local testing. Do not use an account that holds a substantial amount of MINA.
+
+1. When prompted to create an alias for this account, give an alias to your new fee payer key pair:
+
+    ```text
+    testing-feepayer
+    ```
+
+    Your key pairs and deploy alias are created.
 
 1. When prompted, give an alias to your new fee payer key pair. For this tutorial, use `03-deploy`:
 
   ```sh
-  Create an alias for this account: 03-deploy
+  Create an alias for this account: berkeley
   ```
 
   Your key pairs and deploy alias are created:
 
   ```sh
-  ✔ Create fee payer key pair at /Users/<username>/.cache/zkapp-cli/keys/03-deploy.json
+  ✔ Create fee payer key pair at ${HOME}/.cache/zkapp-cli/keys/03-deploy.json
   ✔ Create zkApp key pair at keys/berkeley.json
   ✔ Add deploy alias to config.json
 
@@ -191,6 +219,7 @@ A deploy alias consists of:
     - If this is a testnet, request tMINA at:
       https://faucet.minaprotocol.com/?address=B62qqK5JgYAtmh2DHsQfUjUSKwQ6CFSPkGvyMZd19j1BUHfEJEqpKGo&?explorer=minaexplorer
     - To deploy, run: `zk deploy berkeley`
+  ```
 
 1. Request funds from the Testnet Faucet to fund your fee payer account.
 
@@ -229,18 +258,18 @@ A deploy alias consists of:
   ```text
   ✖ Confirm to send transaction
 
-    ┌─────────────────┬─────────────────────────────────────────────────┐
-    │ Deploy Alias    │ berkeley                                       │
-    ├─────────────────┼─────────────────────────────────────────────────┤
-    │ Fee-Payer Alias │ 03-deploy                                       │
-    ├─────────────────┼─────────────────────────────────────────────────┤
-    │ URL             │ https://proxy.berkeley.minaexplorer.com/graphql │
-    ├─────────────────┼─────────────────────────────────────────────────┤
-    │ Smart Contract  │ Square                                          │
-    └─────────────────┴─────────────────────────────────────────────────┘
+    ┌─────────────────┬──────────────────────────────────────────────────┐
+    │ Deploy Alias    │ berkeley                                         │
+    ├─────────────────┼──────────────────────────────────────────────────┤
+    │ Fee-Payer Alias │ 03-deploy                                        │
+    ├─────────────────┼──────────────────────────────────────────────────┤
+    │ URL             │ https://proxy.berkeley.minaexplorer.com/graphql  │
+    ├─────────────────┼──────────────────────────────────────────────────┤
+    │ Smart Contract  │ Square                                           │
+    └─────────────────┴──────────────────────────────────────────────────┘
   ```
   
-  When prompted, type `yes` to confirm and send the transaction.
+  When prompted, type `yes` to confirm and send the transaction to the network.
 
   ```text
   ✔ Send to network
@@ -252,9 +281,9 @@ A deploy alias consists of:
     as soon as the transaction is included in a block:
   ```
 
-1. To see the zkApp transaction, go to `https://berkeley.minaexplorer.com/transaction/<txn-hash>`, where `<txn-hash>` is the transaction hash that is output to your terminal. 
+1. To see the zkApp transaction, go to `https://minascan.io/berkeley/tx/<txn-hash>`, where `<txn-hash>` is the transaction hash that is output to your terminal. 
 
-    - The zkApp Pending Transaction shows until the transaction is included in the next block.
+    - The zkApp Pending Transaction (Transaction Type `zkApp Tx`) shows until the transaction is included in the next block.
     - The zkApp Transaction shows after the transaction is included in a block.
 
 ## Success
@@ -266,7 +295,7 @@ After the transaction is included in a block, your smart contract is deployed!
 You ran the `zk config` command to:
 
 - Create a deploy alias
-- Create a fee payer key pair at `/Users/<username>/.cache/zkapp-cli/keys/03-deploy.json`
+- Create a fee payer key pair at `${HOME}/.cache/zkapp-cli/keys/03-deploy.json`
 - Create a zkApp key pair at `keys/berkeley.json`
 
 You requested tMINA to fund your deploy transactions. Use the remaining tMINA to keep building and testing.
