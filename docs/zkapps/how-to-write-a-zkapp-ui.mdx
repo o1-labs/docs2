@@ -63,10 +63,12 @@ To test iteratively and use your smart contract within your UI project during lo
 
   where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`. 
 
-  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) is `sudoku`:
+  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) is `sudoku`. 
+  
+  To create the symlinks for `sudoku`:
 
-  ```text
-  "name": "sudoku",
+  ```sh
+  npm link sudoku
   ```
 
 1. To import the smart contracts into your UI project, add the import statement to the `index.ts` file:
@@ -83,7 +85,7 @@ To test iteratively and use your smart contract within your UI project during lo
   export { SudokuZkApp };
   ```
 
-1. After you make changes to your project files, you must build your project so that the changes are reflected in the smart contract consumed by your UI project:
+1. After you make changes to your project files, be sure to build your project so that the changes are reflected in the smart contract consumed by your UI project:
 
   ```sh
   npm run build
@@ -114,7 +116,6 @@ Package names must be unique. An error occurs if the package name already exists
 To check existing package names on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command. 
 
 To avoid naming collisions, npm allows you to publish scoped packages: `@your-username/your-package-name`. See [Introduction to packages and modules](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules) in the npm reference docs.
-
 
 ### Consuming your smart contract in your UI
 
