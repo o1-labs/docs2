@@ -1,7 +1,6 @@
 import {
   Field,
   SelfProof,
-  ZkProgram,
   Struct,
   MerkleMap,
   MerkleWitness,
@@ -14,7 +13,7 @@ import {
   DeployArgs,
   Proof,
   Permissions,
-  ZkProgram
+  ZkProgram,
 } from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -22,8 +21,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 // ===============================================================
 
 async function main() {
-
-  console.log('o1js loaded');
 
   console.log('compiling...');
 
@@ -101,7 +98,6 @@ async function main() {
   const ok = await verify(proof.toJSON(), verificationKey);
   console.log('ok', ok);
 
-  console.log('Shutting down');
 };
 
 // ===============================================================
@@ -205,7 +201,7 @@ class RollupContract extends SmartContract {
 
   deploy(args: DeployArgs) {
     super.deploy(args);
-    this.setPermissions({
+    this.account.permissions.set({
       ...Permissions.default(),
       editState: Permissions.proofOrSignature(),
     });
@@ -217,7 +213,7 @@ class RollupContract extends SmartContract {
 
   @method update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
-    this.state.assertEquals(currentState);
+    this.state.requireEquals(currentState);
 
     rollupStateProof.publicInput.initialRoot.assertEquals(currentState);
 

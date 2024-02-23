@@ -58,6 +58,7 @@ You must configure the block producer node with the following flags:
 
 ```text
 --log-json
+--itn-max-logs 10000
 --log-snark-work-gossip true
 --internal-tracing
 --insecure-rest-server
@@ -98,6 +99,7 @@ You must configure Load Testing nodes with the following flags:
 
 ```text
 --log-json
+--itn-max-logs 10000
 --log-snark-work-gossip true
 --internal-tracing
 --insecure-rest-server
@@ -157,6 +159,7 @@ You must configure the SNARK coordinators with the following flags:
 
 ```text
 --log-json
+--itn-max-logs 10000
 --log-snark-work-gossip true
 --internal-tracing
 --insecure-rest-server
@@ -206,6 +209,7 @@ The non-block producing node must be configured with the following flags:
 
 ```text
 --log-json
+--itn-max-logs 10000
 --internal-tracing
 --insecure-rest-server
 --log-level Debug

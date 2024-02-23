@@ -9,6 +9,7 @@ module.exports = {
         'about-mina/what-are-zero-knowledge-proofs',
         'about-mina/protocol-architecture',
         'about-mina/consensus',
+        'about-mina/security',
         'about-mina/faq',
         {
           type: 'link',
@@ -33,15 +34,16 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/how-zkapps-work',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
           ],
@@ -60,9 +62,15 @@ module.exports = {
             'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
+            'zkapps/o1js/gadgets',
+            'zkapps/o1js/bitwise-operations',
+            'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
+            'zkapps/o1js/keccak',
+            'zkapps/o1js/ecdsa',
+            'zkapps/o1js/sha256',
           ],
         },
         {
@@ -110,8 +118,18 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AlmostForeignField',
+                  label: 'AlmostForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
+                  label: 'CanonicalForeignField',
                 },
                 {
                   type: 'doc',
@@ -135,13 +153,33 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/EcdsaSignature',
+                  label: 'EcdsaSignature',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignCurve',
+                  label: 'ForeignCurve',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignField',
+                  label: 'ForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Group',
                   label: 'Group',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Hashed',
+                  label: 'Hashed',
                 },
                 {
                   type: 'doc',
@@ -177,6 +215,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Nullifier',
                   label: 'Nullifier',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Packed',
+                  label: 'Packed',
                 },
                 {
                   type: 'doc',
@@ -240,6 +283,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/UInt8',
+                  label: 'UInt8',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Unconstrained',
+                  label: 'Unconstrained',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/VerificationKey',
                   label: 'VerificationKey',
                 },
@@ -275,6 +328,16 @@ module.exports = {
               type: 'category',
               label: 'Modules',
               items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Bytes',
+                  label: 'Bytes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Crypto',
+                  label: 'Crypto',
+                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Encoding',
@@ -424,7 +487,7 @@ module.exports = {
           label: 'Rosetta API',
           link: {
             type: 'doc',
-            id: 'exchange-operators/rosetta/index'
+            id: 'exchange-operators/rosetta/index',
           },
           items: [
             'exchange-operators/rosetta/run-with-docker',
@@ -435,19 +498,20 @@ module.exports = {
               label: 'Code Samples',
               link: {
                 type: 'doc',
-                id: 'exchange-operators/rosetta/samples/index'
+                id: 'exchange-operators/rosetta/samples/index',
               },
               items: [
                 'exchange-operators/rosetta/samples/requests',
                 'exchange-operators/rosetta/samples/using-signer',
                 'exchange-operators/rosetta/samples/scan-blocks',
                 'exchange-operators/rosetta/samples/track-deposits',
-                'exchange-operators/rosetta/samples/send-transactions'
-              ]
+                'exchange-operators/rosetta/samples/send-transactions',
+              ],
             },
-          ]
+          ],
         },
-        'exchange-operators/faq'],
+        'exchange-operators/faq',
+      ],
     },
     {
       type: 'category',

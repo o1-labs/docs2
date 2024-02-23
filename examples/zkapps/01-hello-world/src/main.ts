@@ -50,8 +50,8 @@ try {
   });
   await txn2.prove();
   await txn2.sign([senderKey]).send();
-} catch (ex: any) {
-  console.log(ex.message);
+} catch (error: any) {
+  console.log(error.message);
 }
 const num2 = zkAppInstance.num.get();
 console.log('state after txn2:', num2.toString());
@@ -68,5 +68,3 @@ const num3 = zkAppInstance.num.get();
 console.log('state after txn3:', num3.toString());
 
 // ----------------------------------------------------
-
-console.log('Shutting down');

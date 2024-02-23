@@ -1,11 +1,6 @@
-import { Square } from './Square.js';
 import {
-  isReady,
-  shutdown,
   Field,
-  Mina,
   PrivateKey,
-  AccountUpdate,
   SelfProof,
   ZkProgram,
   Struct,
@@ -16,7 +11,6 @@ import {
   MerkleTree,
   MerkleWitness,
   MerkleMapWitness,
-  verify
 } from 'o1js';
 
 class MerkleWitness20 extends MerkleWitness(20) {}
@@ -24,10 +18,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 // ===============================================================
 
 async function main() {
-  await isReady;
-
-  console.log('o1js loaded');
-
   console.log('compiling...');
 
   const { verificationKey } = await Vote.compile();
@@ -71,9 +61,6 @@ async function main() {
   const ok = await Vote.verify(proof2);
   console.log('ok', ok);
 
-  console.log('Shutting down');
-
-  await shutdown();
 };
 
 // ===============================================================
@@ -103,10 +90,10 @@ class VoteState extends Struct({
     voterWitness: MerkleWitness20,
     nullifierWitness: MerkleMapWitness,
   ) {
-    const publicKey = privateKey.toPublicKey()
+    const publicKey = privateKey.toPublicKey();
 
     const voterRoot = voterWitness.calculateRoot(Poseidon.hash(publicKey.toFields()));
-    voterRoot.assertEquals(state.votersTreeRoot)
+    voterRoot.assertEquals(state.votersTreeRoot);
 
     let nullifier = Poseidon.hash(privateKey.toFields());
 
@@ -125,8 +112,8 @@ class VoteState extends Struct({
   }
 
   static assertInitialState(state: VoteState) {
-    state.voteFor.assertEquals(Field(0))
-    state.voteAgainst.assertEquals(Field(0))
+    state.voteFor.assertEquals(Field(0));
+    state.voteAgainst.assertEquals(Field(0));
 
     const emptyMap = new MerkleMap();
     state.nullifierMapRoot.assertEquals(emptyMap.getRoot());
@@ -145,6 +132,7 @@ class VoteState extends Struct({
 // ===============================================================
 
 const Vote = ZkProgram({
+  name: 'vote-example',
   publicInput: VoteState,
 
   methods: {
