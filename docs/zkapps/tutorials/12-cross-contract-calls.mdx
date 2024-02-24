@@ -2,14 +2,79 @@
 title: 'Tutorial 12: Cross Contract Calls'
 hide_title: true
 sidebar_label: 'Tutorial 12: Cross Contract Calls'
+description: Guided steps to learn about the ways to interact with a smart contract from another smart contract.
+keywords:
+  - smart contracts
+  - zkapps
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - cross contract call
+  - mina
 ---
 
 :::info
 
-Please note that zkApp programmability is not yet available on Mina Mainnet, but
-zkApps can now be deployed to Berkeley Testnet.
+Please note that zkApp programmability is not yet available on Mina Mainnet, but zkApps can now be deployed to Berkeley Testnet.
 
 :::
 
 
 # Tutorial 12: Cross Contract Calls
+
+In this tutorial, you learn how smart contracts on a blockchain can interact by calling functions in each other's code, enabling building modular and complex decentralized applications.
+
+Cross contract calls allow smart contracts on a blockchain to interact with each other. This enables building complex decentralized applications (dApps) from multiple modular components. In a cross contract call, a function in one smart contract can call a function in another smart contract to leverage existing code and functionality.
+
+In this tutorial you will learn about passing data between contracts, handling events and return values when contracts call each other. 
+
+The full example code is provided in the [12-cross-contract-calls/src/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/12-cross-contract-calls/src) example files.
+
+## Prerequisites
+
+- Make sure you have the latest version of the zkApp CLI installed:
+
+    ```sh
+    $ npm install -g zkapp-cli
+    ```
+
+- Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
+This tutorial has been tested with:
+
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0`
+- [o1js](https://www.npmjs.com/package/o1js) version `0.16.2`
+
+## Create a new project
+
+Now that you have the tooling installed, you can start building your application.
+
+1. Create or change to a directory where you have write privileges.
+1. Now, create a project using the `zk project` command:
+
+    ```sh
+    $ zk project 12-cross-contract-calls
+    ```
+    
+    As you learned in earlier tutorials, the `zk project` command creates the `12-cross-contract-calls` directory that contains the scaffolding for your project.
+
+1. Change into the `12-cross-contract-calls` directory. 
+
+Like all projects, you run `zk` commands from the root of the `12-cross-contract-calls` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+
+Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
+
+### Prepare the project
+
+Like earlier tutorials, you can prepare your project by deleting the default files that come with the new project and creating a smart contract called `Composability`.
+
+Open `src/index.ts` in a text editor and import the `Add` smart contract, like:
+	
+	```ts src/index.ts
+	import { Composability } from './Composability.js';
+	
+	export { Composability };
+
+## Conclusion
+
+Congratulations! You have learned how to implement cross contract calls, allowing smart contracts to interact and unlocking new possibilities for modular blockchain applications.
