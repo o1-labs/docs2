@@ -9,9 +9,6 @@ import {
   State,
 } from 'o1js';
 
-const doProofs = true;
-
-
 // contract which can add 1 to a number
 class Incrementer extends SmartContract {
   @method increment(x: Field): Field {
@@ -44,6 +41,7 @@ class Caller extends SmartContract {
   }
 }
 
+const doProofs = true;
 
 let Local = Mina.LocalBlockchain({ proofsEnabled: doProofs });
 Mina.setActiveInstance(Local);
