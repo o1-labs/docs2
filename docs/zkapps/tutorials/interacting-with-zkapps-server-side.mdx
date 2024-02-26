@@ -18,7 +18,7 @@ zkApp programmability is not yet available on the Mina Mainnet, but zkApps can n
 
 # Interacting with zkApps server-side
 
-While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side or on your own machine. For example, when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real-world or on-chain events.
+While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side or on your own machine. For example, when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real-world (periodically updating an on-chain value with signed data, like a keeper for an oracle) or on-chain events. 
 
 Interacting with zkApps server-side is useful for some use cases. For example, if you need to create a custom account for your zkApp to deploy a zkApp to a different key than the fee payer key. You can programmatically parameterize a zkApp before you initialize it. You can even create a smart contract programmatically for users as part of an application.
 
@@ -213,9 +213,9 @@ The smart contract was already deployed with `zk deploy` so a programmatic deplo
 
 After the zkApp has been deployed, fetch the current value of `zkapp.num` (the on-chain defined on the `SmartContract`) and log it. If this is the first time you have run this script, the value is `3` because that's how it is set in the smart contract's `init()` function. The `init()` function is called automatically during the first deploy (not during re-deploys).
 
-### Call an update on the transaction
+### Send an update transaction
 
-Finally, send an update to the transaction. If the zkApp was just initialized, this calls an update on the newly initialized account. Otherwise, it calls an update on whatever the current account state happens to be.
+Finally, here is code that sends an update to the transaction. If the zkApp was just initialized, this calls an update on the newly initialized account. Otherwise, it calls an update on whatever the current account state happens to be.
 
 ```ts
 ...
