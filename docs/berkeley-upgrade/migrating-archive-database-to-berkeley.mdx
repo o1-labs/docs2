@@ -38,7 +38,10 @@ apt-get update
 apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$VERSION"
 ```
 
-### Docker image
+### Docker Image
+
+To get the Docker image:
+
 
 ```
 docker pull gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:1.0.0umt-tooling
@@ -46,18 +49,18 @@ docker pull gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:1.0.0um
 
 ## Mainnet Genesis Ledger
 
-Mainnet genesis ledger is stored in github in mina repository under `genesis_ledgers` subfolder. However if you are already running daemon connected
-to mainnet network you should already have it locally.
+The Mina Mainnet genesis ledger is stored in GitHub in the `mina` repository under the `genesis_ledgers` subfolder. However, if you are already running a daemon that is connected to the Mina Mainnet network, you already have the genesis ledger locally.
 
 ## Berkeley database schema files
 
-Berkeley schema files can also be obtained from different locations:
+You can get the Berkeley schema files from different locations:
 
-- Github repository under berkeley branch. Please note, that berkeley branch can contain new updates regarding schema files 
-so it is recommended not to use already downloaded schema but try to get always newest one. 
-- Archive/Rosetta docker from berkeley version
+- GitHub repository under `berkeley` branch. 
 
-### Example: Downloading schema sources from Github
+    Note: The `berkeley` branch can contain new updates regarding schema files, so always get the latest schema files instead of using an already downloaded schema. 
+- Archive/Rosetta Docker from `berkeley` version
+
+### Example: Downloading schema sources from GitHub
 
    ```sh
    wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
@@ -68,8 +71,8 @@ so it is recommended not to use already downloaded schema but try to get always 
 
 ### Migration process
 
-As mentioned in section regarding migration preparation mainnet migration can take up to couple of days. 
-Therefore it is recommended to spit migration into 3 stages:
+As mentioned in [Planning the Archive Migration](/berkeley-upgrade/planning-archive-migration), the mainnet migration can take up to a couple of days. 
+Therefore, it is recommended to split migration into 3 stages:
 
 - **Stage1:** Initial migration
 
@@ -79,25 +82,24 @@ Therefore it is recommended to spit migration into 3 stages:
 
 Each stage has two migration phases:
 
-- **Phase 1:** Copying data from mainnet database and precomputed blocks (berkeley_migration app)
+- **Phase 1:** Copying data from mainnet database and precomputed blocks using the **berkeley_migration** app.
 
-- **Phase 2:** Populating new berkeley tables (replayer in migration mode)
+- **Phase 2:** Populating new berkeley tables using the **replayer app in migration mode**
 
-Below we will describe each phase and stage
+Review these phases and stages before you start the migration:
 
 #### Stage 1: Initial migration
 
-This stage is a very first one which requires initial berkeley schema and is a foundation for next migrations
-as it populates migrated database and initial checkpoint for further incremental migration
+This stage is the very first one, which requires the initial `berkeley` schema. It is a foundation for the next migration stage because it populates the migrated database and creates an initial checkpoint for further incremental migration.
 
 - Inputs
    - Unmigrated mainnet database
    - Mainnet genesis ledger 
-   - Empty berkeley schema 
+   - Empty `berkeley` schema 
 
 - Outputs
-   - Migrated mainnet database to berkeley from genesis up to last canonical block
-   - Replayer checkpoint which can be use for incremental migration
+   - Migrated `mainnet` database to the `berkeley` database from genesis up to the last canonical block
+   - Replayer checkpoint, which can be used for incremental migration
 
 ##### Phase 1: Berkeley migration app run
 
@@ -112,7 +114,7 @@ where:
 
 ##### Phase 2: Replayer in migration mode run
 
-Replayer config must contain the Mainnet ledger as starting point. So first we need to prepare replayer config file:
+Replayer config must contain the Mainnet ledger as the starting point. So first, you must prepare the replayer config file:
 
 ```
  jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
@@ -125,8 +127,7 @@ Then:
 
 #### Stage 2: Incremental migration
 
-After initial migration we have migrated data till last canonical block. However mainnet data is progressing with new blocks 
-which we need to migrate again and again until fork block is announced 
+After the initial migration, the data is migrated data up to the last canonical block. However, `mainnet` data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
 
 
 - Inputs
@@ -163,8 +164,8 @@ Incremental migration can be run continuously on top initial migration or last i
 
 #### Stage 3: Remainder migration
 
-When fork block is announced we can tackle the remainder migration this is the last migration run 
-we would want to perform.
+When the fork block is announced, you must tackle the remainder migration. This is the last migration run 
+you need to perform.
 
 - Inputs
    - Newest mainnet database
@@ -180,8 +181,7 @@ we would want to perform.
 
 ##### Phase 1: Berkeley migration app run
 
-Noticed decrease in `batch-size` for precomputed blocks as tool may hit missing precomputed blocks problem if we would like 
-to fetch too many of them in single batch while trying to migrate newest blocks in the chain
+You might notice a decrease in `batch-size` for precomputed blocks as the tool might hit missing precomputed blocks problem if you fetch too many of them in a single batch while trying to migrate the newest blocks in the chain:
 
 ```
 mina-berkeley-migration --batch-size 2 --config-file genesis_ledgers/mainnet.json
@@ -190,10 +190,10 @@ mina-berkeley-migration --batch-size 2 --config-file genesis_ledgers/mainnet.jso
 ```
 where: 
 `--network` - precomputed blocks prefix 
-`--fork-state-hash` last migrated block which will be used for as a fork point 
+`--fork-state-hash` last migrated block which will be used as a fork point 
 
-:info: When running berkeley migration app with fork-state-hash, there is no requirement for fork state block to be canonical.
-Tool will automatically converts all pending blocks in subchain including fork block to canonical
+**Info** When running the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
+The tool automatically converts all pending blocks in the subchain, including the fork block, to canonical blocks.
 
 ##### Phase 2: Replayer in migration mode run
 
@@ -282,7 +282,7 @@ It is important to save checkpoint which was dumped from replayer run, as it wil
    mina-berkeley-migration.exe --batch-size 2000 --config-file /etc/mina/genesis_ledgers/mainnet.json --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated --mainnet-blocks-bucket mina_network_block_data --network mainnet --fork-state-hash "3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM" 
    ```
 
-   :warning: 3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM - is some random hash, please do not user it on actual migration but learn from MF what is the fork point
+   :warning: 3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM - is an example random hash, please **do not user this hash** on the actual migration. Use the official hash as provided by Mina Foundation for the fork point.
 
    5.b) Phase 2:
 
