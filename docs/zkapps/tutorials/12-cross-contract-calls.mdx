@@ -87,7 +87,7 @@ Use the existing code in the [Composability.ts](https://github.com/o1-labs/docs2
 
 First, bring in imports and set up the first smart contract `Incrementer`.
 
-```
+```typescript
 import {
   Field,
   method,
@@ -113,7 +113,7 @@ This Incrementer contract will add 1 to the Field argument which is passed.
 Let's bring in the second contract `Adder` which will return the addtion of two numbers and add 1 to the result.
 The addition of 1 to the result is outsourced to the Incrementer smart contract by creating a new object by passing it's address.
 
-```
+```typescript
 class Adder extends SmartContract {
   @method addPlus1(x: Field, y: Field): Field {
     let sum = x.add(y);
@@ -128,7 +128,7 @@ class Adder extends SmartContract {
 
 The final smart contract `Caller` will call the `addPlus1` method of `Adder` smart contract and emit the stored result return by it.
 
-```
+```typescript
 class Caller extends SmartContract {
   @state(Field) sum = State<Field>();
   events = { sum: Field };
@@ -140,9 +140,69 @@ class Caller extends SmartContract {
     this.sum.set(sum);
   }
 }
+
 ```
 
+The code to interact with the smart contract:
 
+```typescript
+const doProofs = true;
+
+let Local = Mina.LocalBlockchain({ proofsEnabled: doProofs });
+Mina.setActiveInstance(Local);
+
+let feePayerKey = Local.testAccounts[0].privateKey;
+let feePayer = Local.testAccounts[0].publicKey;
+
+let incrementerKey = PrivateKey.random();
+let incrementerAddress = incrementerKey.toPublicKey();
+
+let adderKey = PrivateKey.random();
+let adderAddress = adderKey.toPublicKey();
+
+let zkappKey = PrivateKey.random();
+let zkappAddress = zkappKey.toPublicKey();
+
+let zkapp = new Caller(zkappAddress);
+let adderZkapp = new Adder(adderAddress);
+let incrementerZkapp = new Incrementer(incrementerAddress);
+
+if (doProofs) {
+  console.log('compile (incrementer)');
+  await Incrementer.compile();
+  console.log('compile (adder)');
+  await Adder.compile();
+  console.log('compile (caller)');
+  await Caller.compile();
+}
+
+console.log('deploy');
+let tx = await Mina.transaction(feePayer, () => {
+  AccountUpdate.fundNewAccount(feePayer, 3);
+  zkapp.deploy();
+  adderZkapp.deploy();
+  incrementerZkapp.deploy();
+});
+await tx.sign([feePayerKey, zkappKey, adderKey, incrementerKey]).send();
+
+console.log('call interaction');
+tx = await Mina.transaction(feePayer, () => {
+  zkapp.callAddAndEmit(Field(5), Field(6));
+});
+console.log('proving (3 proofs.. can take a bit!)');
+await tx.prove();
+console.log(tx.toPretty());
+await tx.sign([feePayerKey]).send();
+
+console.log('state: ' + zkapp.sum.get());
+
+``` 
+
+In this example, we are spinning up the Mina chain locally and deploying all three smart contracts locally.
+
+Then we are calling `callAddAndEmit` method from `Caller` smart contract which will take two numbers as arguments, then call the `Adder` smart contract which will add these two numbers and pass the result in `Incrementer` smart contract which will increment the result by 1.
+
+In our case we should see state equal to 12.
 
 ## Conclusion
 
