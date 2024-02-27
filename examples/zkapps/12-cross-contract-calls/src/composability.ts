@@ -9,15 +9,12 @@ import {
   State,
 } from 'o1js';
 
-// contract which can add 1 to a number
 class Incrementer extends SmartContract {
   @method increment(x: Field): Field {
     return x.add(1);
   }
 }
 
-// contract which can add two numbers, plus 1, and return the result
-// incrementing by one is outsourced to another contract (it's cleaner that way, we want to stick to the single responsibility principle)
 class Adder extends SmartContract {
   @method addPlus1(x: Field, y: Field): Field {
     // compute result
@@ -28,7 +25,6 @@ class Adder extends SmartContract {
   }
 }
 
-// contract which calls the Adder, stores the result on chain & emits an event
 class Caller extends SmartContract {
   @state(Field) sum = State<Field>();
   events = { sum: Field };
@@ -46,17 +42,15 @@ const doProofs = true;
 let Local = Mina.LocalBlockchain({ proofsEnabled: doProofs });
 Mina.setActiveInstance(Local);
 
-// a test account that pays all the fees, and puts additional funds into the zkapp
 let feePayerKey = Local.testAccounts[0].privateKey;
 let feePayer = Local.testAccounts[0].publicKey;
 
-// the first contract's address
 let incrementerKey = PrivateKey.random();
 let incrementerAddress = incrementerKey.toPublicKey();
-// the second contract's address
+
 let adderKey = PrivateKey.random();
 let adderAddress = adderKey.toPublicKey();
-// the third contract's address
+
 let zkappKey = PrivateKey.random();
 let zkappAddress = zkappKey.toPublicKey();
 
@@ -75,7 +69,6 @@ if (doProofs) {
 
 console.log('deploy');
 let tx = await Mina.transaction(feePayer, () => {
-  // TODO: enable funding multiple accounts properly
   AccountUpdate.fundNewAccount(feePayer, 3);
   zkapp.deploy();
   adderZkapp.deploy();
@@ -85,7 +78,6 @@ await tx.sign([feePayerKey, zkappKey, adderKey, incrementerKey]).send();
 
 console.log('call interaction');
 tx = await Mina.transaction(feePayer, () => {
-  // we just call one contract here, nothing special to do
   zkapp.callAddAndEmit(Field(5), Field(6));
 });
 console.log('proving (3 proofs.. can take a bit!)');
@@ -93,5 +85,4 @@ await tx.prove();
 console.log(tx.toPretty());
 await tx.sign([feePayerKey]).send();
 
-// should hopefully be 12 since we added 5 + 6 + 1
 console.log('state: ' + zkapp.sum.get());
