@@ -29,7 +29,7 @@ You can choose packages as you wish. The following commands help you install Deb
 CODENAME=bullseye
 CHANNEL=unstable
 # Berkeley nightly version
-VERSION=2.0.0berkeley-rc1-berkeley-c308efc-bullseye
+VERSION=2.0.0berkeley-rc1-berkeley-c308efc
 
 echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
 apt-get update
@@ -39,7 +39,7 @@ apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$
 ### Docker image
 
 ```
-docker pull gcr.io/o1labs-192920/gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:2.0.0berkeley-rc1-berkeley-c308efc-bullseyey
+docker pull gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:1.0.0umt-tooling
 ```
 
 ## Mainnet Genesis Ledger

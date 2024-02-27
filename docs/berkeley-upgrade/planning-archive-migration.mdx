@@ -45,7 +45,7 @@ To successfully migrate the Mainnet database into the Berkeley version of the Mi
 
 #### Database server
 
-PostgreSQL database in version 15.0 or later.
+PostgreSQL database
 
 #### Migration host
 
@@ -69,7 +69,7 @@ If you don't have an existing database with Mainnet archive data, you can always
 
    You can filter the dumps by date. Replace `{date}` using the required `yyyy-dd-mm` format. For example, for January 15, 2024 you can provide `2024-01-15`
 
-   :warning: In some cases, the 0000 suffix in the date might be different (0001).
+   :warning: Majority of backups are suffixed with 0000, in case download with that name is not available, try incrementing it once or twice(0001, 0002)..
 
 - gsutil:
    
@@ -107,9 +107,9 @@ The daemon node unavailability can cause the archive node to miss some of the bl
 
 If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks () and preserve chain continuity. 
 
-To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/rampup/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, you must run it from within the database host.
+To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/rampup/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, unless you modify PG_CONN in `download_missing_block.sh`, script assumes that psql is running on localhost on 5432 port.
 
-1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-rosetta:1.4.0-c980ba8-bullseye` Docker image.
+1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-archive:1.4.0-c980ba8-bullseye` Docker image.
 
 2. Export the `BLOCKS_BUCKET`:
 
@@ -129,8 +129,17 @@ To verify Mainnet archive data, the replayer application was developed. You must
 To run replayer:
 
 ```sh
-mina-replayer --archive-uri {db_connection_string} --input-file reference_replayer_input.json --output-file reference_replayer_output.json --checkpoint-interval 100
+mina-replayer --archive-uri {db_connection_string} --input-file reference_replayer_input.json --output-file reference_replayer_output.json --checkpoint-interval 10000
 ```
+
+where:
+ - `reference_replayer_input.json` is a file constructed our of mainnet genesis ledger:
+  
+   ```
+   echo '{ "genesis_ledger": { "accounts": [ ], "add_genesis_winner" : true } }' > input-file.json
+
+   jq --argfile genesis ./genesis_ledger_mainnet.json '.genesis_ledger.accounts += $genesis.ledger.accounts' ./input-file.json > replayer-reference-input.json
+   ```
 
 :warning: Running a replayer from scratch on a Mainnet database can take up to a couple of days. The recommended best practice is to break the replayer into smaller parts by using the checkpoint capabilities of the replayer.
 
@@ -140,7 +149,10 @@ mina-replayer --archive-uri {db_connection_string} --input-file reference_replay
 
 The Mainnet to Berkeley archive data migration requires access to precomputed blocks that are uploaded by daemons connected to the Mainnet network. The Berkeley migration app uses the gsutil app to download blocks. If you didn't store precomputed blocks during first phase of migration, you can use the precomputed blocks provided by Mina Foundation:
 
-`gs://mina_network_block_data`
+`gsutil cp gs://mina_network_block_data/mainnet-*.json .`
+
+:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time 
+
 
 The best practice is to collect precomputed blocks by yourself or by other third parties to preserve idea of decentralization. 
 
