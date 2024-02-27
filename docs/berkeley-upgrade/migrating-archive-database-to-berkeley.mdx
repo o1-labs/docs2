@@ -15,81 +15,196 @@ keywords:
 
 # Mainnet to Berkeley Archive Migration
 
-Before you start the migration, complete the steps in [How to prepare for archive migration](/berkeley-upgrade/planning-archive-migration).
+Before you start the migration, please read [How to prepare for archive migration](/berkeley-upgrade/planning-archive-migration).
 
 ## Download migration applications
 
-Migration applications are distributed as part of the Docker archive, daemon Dockers, or Debian packages.
+Migration applications are distributed as part of the archive migration Docker and Debian packages.
 
-You can choose packages as you wish. The following commands help you install Debian packages or Docker images.
+Choose packages appropriate for your environment. 
+
+The following commands help you install Debian packages or Docker images.
 
 ### Debian packages
 
 ```
 CODENAME=bullseye
-CHANNEL=unstable
-# Berkeley nightly version
-VERSION=2.0.0rampup8-berkeley-b9e1116
+CHANNEL=umt
+VERSION=1.0.0umt-tooling
 
 echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
 apt-get update
-apt-get install --allow-downgrades -y "mina-berkeley=$VERSION" "mina-replayer=$VERSION"
+apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$VERSION"
 ```
 
-### Docker images
+### Docker Image
 
-The Berkeley migration app:
+To get the Docker image:
 
-```
-docker pull gcr.io/o1labs-192920/mina-berkeley:2.0.0rampup8-berkeley-b9e1116-bullseye-berkeley
-```
-
-Replayer:
 
 ```
-docker pull gcr.io/o1labs-192920/mina-archive:2.0.0rampup8-berkeley-b9e1116-bullseye
+docker pull gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:1.0.0umt-tooling
 ```
 
 ## Mainnet Genesis Ledger
 
+The Mina Mainnet genesis ledger is stored in GitHub in the `mina` repository under the `genesis_ledgers` subfolder. However, if you are already running a daemon that is connected to the Mina Mainnet network, you already have the genesis ledger locally.
+
 ## Berkeley database schema files
 
-### Schema sources files
+You can get the Berkeley schema files from different locations:
+
+- GitHub repository under `berkeley` branch. 
+
+    Note: The `berkeley` branch can contain new updates regarding schema files, so always get the latest schema files instead of using an already downloaded schema. 
+- Archive/Rosetta Docker from `berkeley` version
+
+### Example: Downloading schema sources from GitHub
+
    ```sh
-   docker cp $id:/etc/mina/rosetta/archive/create_schema.sql - > create_schema.sql
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
 
-   docker cp $id:/etc/mina/rosetta/archive/zkapp_tables.sql - > zkapp_tables.sql
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
 
-   docker rm -v $id
    ```
 
-### Migration Phase 1: Berkeley migration app run
+### Migration process
 
-Run the provided Berkeley migration application:
+As mentioned in [Planning the Archive Migration](/berkeley-upgrade/planning-archive-migration), the mainnet migration can take up to a couple of days. 
+Therefore, it is recommended to split migration into 3 stages:
+
+- **Stage1:** Initial migration
+
+- **Stage2:** Incremental migration
+
+- **Stage3:** Remainder migration
+
+Each stage has two migration phases:
+
+- **Phase 1:** Copying data from mainnet database and precomputed blocks using the **berkeley_migration** app.
+
+- **Phase 2:** Populating new berkeley tables using the **replayer app in migration mode**
+
+Review these phases and stages before you start the migration:
+
+#### Stage 1: Initial migration
+
+This stage is the very first one, which requires the initial `berkeley` schema. It is a foundation for the next migration stage because it populates the migrated database and creates an initial checkpoint for further incremental migration.
+
+- Inputs
+   - Unmigrated mainnet database
+   - Mainnet genesis ledger 
+   - Empty `berkeley` schema 
+
+- Outputs
+   - Migrated `mainnet` database to the `berkeley` database from genesis up to the last canonical block
+   - Replayer checkpoint, which can be used for incremental migration
+
+##### Phase 1: Berkeley migration app run
 
 ```
-mina-berkeley-migration --batch-size 100 --config-file genesis_ledgers/mainnet.json
+mina-berkeley-migration --batch-size 1000 --config-file genesis_ledgers/mainnet.json
 --mainnet-archive-uri {mainnet_connection_string} --migrated-archive-uri {migrated_connection_string} --mainnet-blocks-bucket 
-{bucket name}
+{bucket name} --network "mainnet"
+```
+where: 
+`--network` - precomputed blocks prefix 
+
+
+##### Phase 2: Replayer in migration mode run
+
+Replayer config must contain the Mainnet ledger as the starting point. So first, you must prepare the replayer config file:
+
+```
+ jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
 ```
 
-### Migration Phase 2: Replayer in migration mode runs
+Then:
+```
+ mina-replayer --migration-mode --archive-uri {migrated_connection_string}  --input-file replayer_input_config.json --checkpoint-interval 10000
+```
 
-Run the provided replayer app in migration mode:
+#### Stage 2: Incremental migration
 
-1. Prepare replayer config file.
+After the initial migration, the data is migrated data up to the last canonical block. However, `mainnet` data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
 
-   Replayer config must contain the Mainnet ledger as starting point:
 
-   ```
-   jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
-   ```
+- Inputs
+   - Newest mainnet database
+   - Mainnet genesis ledger
+   - Replayer checkpoint from last run 
+   - Migrated berkeley schema from initial migration 
 
-2. Run the import in migration mode:
+- Outputs
+   - Migrated mainnet database to berkeley from up to last canonical block
+   - Replayer checkpoint which can be used for next incremental migration
 
-   ```
-   mina-replayer --migration-mode --archive-uri {migrated_connection_string}  --input-file replayer_input_config.json --checkpoint-interval 100 --output-file  replayer_output.json 
-   ```
+##### Phase 1: Berkeley migration app run
+
+```
+mina-berkeley-migration --batch-size 1000 --config-file genesis_ledgers/mainnet.json
+--mainnet-archive-uri {mainnet_connection_string} --migrated-archive-uri {migrated_connection_string} --mainnet-blocks-bucket 
+{bucket name} --network "mainnet"
+```
+where: 
+`--network` - precomputed blocks prefix 
+
+
+##### Phase 2: Replayer in migration mode run
+
+```
+ mina-replayer --migration-mode --archive-uri {migrated_connection_string}  --input-file replayer-checkpoint-XXXXX.json --checkpoint-interval 10000
+```
+
+where `replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
+
+
+Incremental migration can be run continuously on top initial migration or last incremental until fork block is anounced 
+
+#### Stage 3: Remainder migration
+
+When the fork block is announced, you must tackle the remainder migration. This is the last migration run 
+you need to perform.
+
+- Inputs
+   - Newest mainnet database
+   - Mainnet genesis ledger
+   - Replayer checkpoint from last run 
+   - Migrated berkeley schema from last run
+   - Fork block state hash
+
+- Outputs
+   - Migrated mainnet database to berkeley from up fork point
+   - Replayer checkpoint which can be used for replayer run on berkeley schema
+
+
+##### Phase 1: Berkeley migration app run
+
+You might notice a decrease in `batch-size` for precomputed blocks as the tool might hit missing precomputed blocks problem if you fetch too many of them in a single batch while trying to migrate the newest blocks in the chain:
+
+```
+mina-berkeley-migration --batch-size 2 --config-file genesis_ledgers/mainnet.json
+--mainnet-archive-uri {mainnet_connection_string} --migrated-archive-uri {migrated_connection_string} --mainnet-blocks-bucket 
+{bucket name} --network "mainnet" **--fork-state-hash {fork-state-hash}**
+```
+where: 
+`--network` - precomputed blocks prefix 
+`--fork-state-hash` last migrated block which will be used as a fork point 
+
+**Info** When running the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
+The tool automatically converts all pending blocks in the subchain, including the fork block, to canonical blocks.
+
+##### Phase 2: Replayer in migration mode run
+
+```
+ mina-replayer --migration-mode --archive-uri {migrated_connection_string}  --input-file replayer-checkpoint-XXXXX.json --checkpoint-interval 10000 --output-file replayer_output.json 
+```
+
+where:
+`replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
+`replayer-output.json` - will contain a very last checkpoint which can be used for berkeley replayer validation
+
+It is important to save checkpoint which was dumped from replayer run, as it will be use in next migrations
 
 ### Example steps using Mina Foundation data
 
@@ -109,42 +224,77 @@ Run the provided replayer app in migration mode:
    CODENAME=bullseye
    CHANNEL=unstable
    # Berkeley nightly version
-   VERSION=2.0.0rampup8-berkeley-b9e1116
+   VERSION=2.0.0berkeley-rc1-berkeley-c308efc-bullseye
 
    echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
    apt-get update
-   apt-get install --allow-downgrades -y "mina-berkeley=$VERSION" "mina-replayer=$VERSION"
+   apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$VERSION"
    ```
 
 3. Create migrated schema:
 
    ```sh
-   cd /etc/mina/rosetta/archive
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
+
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
 
    psql  -U postgres -c "CREATE DATABASE berkeley_migrated;"
 
    psql -U postgres -d berkeley_migrated -a -f create_schema.sql"
    ```
 
-4. Phase 1:
+4. Stage 1: Initial migration
+
+   4.a) Phase 1:
 
    ```sh
-   mina-berkeley_migration.exe -- --batch-size 2 --config-file /etc/mina/genesis_ledgers/mainnet.json --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated--mainnet-blocks-bucket mina_network_block_data 
+   mina-berkeley-migration.exe --batch-size 2000 --config-file /etc/mina/genesis_ledgers/mainnet.json --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated --mainnet-blocks-bucket mina_network_block_data --network mainnet
    ```
 
-4. Phase 2:
+   4.b) Phase 2:
 
    ```sh
    jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
 
-   mina-replayer -- --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file replayer_config_input.json --checkpoint-interval 100  --checkpoint-file-prefix migration
+   mina-replayer --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file replayer_config_input.json --checkpoint-interval 100  --checkpoint-file-prefix migration
    ```
+
+5. Stage 2: Initial migration
+
+   5.a) Phase 1:
+
+   ```sh
+   mina-berkeley-migration.exe --batch-size 2000 --config-file /etc/mina/genesis_ledgers/mainnet.json --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated --mainnet-blocks-bucket mina_network_block_data --network mainnet
+   ```
+
+   5.b) Phase 2:
+
+   ```sh
+   mina-replayer --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file checkpoint-XXXX.json --checkpoint-interval 100  --checkpoint-file-prefix migration
+   ```
+
+5. Stage 2: Remainder migration
+
+   5.a) Phase 1:
+
+   ```sh
+   mina-berkeley-migration.exe --batch-size 2000 --config-file /etc/mina/genesis_ledgers/mainnet.json --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated --mainnet-blocks-bucket mina_network_block_data --network mainnet --fork-state-hash "3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM" 
+   ```
+
+   :warning: 3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM - is an example random hash, please **do not user this hash** on the actual migration. Use the official hash as provided by Mina Foundation for the fork point.
+
+   5.b) Phase 2:
+
+   ```sh
+   mina-replayer --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file checkpoint-XXXX.json --checkpoint-interval 100  --checkpoint-file-prefix migration --output-file migrated-checkpoint-at-fork-block.json
+   ```
+
 
 ## How to verify a successful migration
 
 o1Labs and the Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archives variations. 
 
-Follow this checklist to perform major verifications after migration to ensure data correctness. 
+Follow this checklist to perform major versification's after migration to ensure data correctness. 
 
 1. #### The Replayer from the Mainnet version generates the same ledger hash as the migrated
 
@@ -257,20 +407,14 @@ In the second phase of migration, add property `target_epoch_ledgers_state_hash`
 }
 ```
 
+#### I am receiving errors from gsutil regarding missing precomputed blocks
+
+When migrating last chunk of blocks from mainnet, there can be an issue for runs with
+large `batch-size` argument inputs. As an optimization gsutil is trying to fetch as `block-size` amount of precomputed blocks.
+However, when precomputed blocks bucket has not contain enough (= `block-size` amount) precomputed blocks gsutil may panic stopping migration process.
+Our recommendation is to restart process with smaller number of `batch-size`. If you are running migration just after fork block is announced it is best
+to have `--block-size` argument set up to 5.
+
 #### How to start replayer migration from latest checkpoint
 
 Instead of using Mainnet ledger as input config, provide the checkpoint for the `--input-config` parameter.
-
-### Migration app parameters reference
-
-For more advanced users and operators, all the parameters that can influence the migration process are listed here:
-
-##### Berkeley migration app
-
-- **batch-size NN**  - is used when downloading precomputed blocks. The bigger the buffer, the more precomputed blocks are downloaded in a single fetch.
-- **end-global-slot NN (Optional)** - Last global slot since genesis to include in the migration (if omitted, the default is to migrate only canonical blocks).
-
-##### Replayer in migration mode
-
-- **checkpoint-interval NN** - Write a checkpoint file for every NN slot.
-- **continue-on-error** - Continue processing after errors
