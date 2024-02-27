@@ -29,9 +29,8 @@ The following commands help you install Debian packages or Docker images.
 
 ```
 CODENAME=bullseye
-CHANNEL=unstable
-# Berkeley nightly version
-VERSION=2.0.0berkeley-rc1-berkeley-c308efc
+CHANNEL=umt
+VERSION=1.0.0umt-tooling
 
 echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
 apt-get update
