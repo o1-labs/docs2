@@ -51,11 +51,12 @@ Minimum hardware resources are required for Lightnet to operate properly.
 
   More resources are required for a closer-to-real network. See [Start a multi-node local network](#start-a-multi-node-local-network).
 
-## High-Level Workflow for Lightnet
+## High-level workflow for Lightnet
 
 1. [Write tests for your smart contract](/zkapps/testing-zkapps-locally#writing-tests-for-your-smart-contract) and test locally on a simulated local blockchain
 1. Start Docker Engine
 1. [Start Lightnet](#start-a-local-network)
+1. [Configure and deploy your zkApp to Lightnet](#configure-your-zkapp)
 1. Manage the [log files](#log-files) of the local network
 1. Use [Lightweight Mina Explorer](#lightweight-mina-explorer) to visualize the local network state
 1. Develop, iterate, celebrate, and [troubleshoot](#troubleshoot-transactions)
@@ -129,6 +130,22 @@ To disable the archive node:
 zk lightnet start --no-archive
 ```
 
+### Keep current product versions
+
+New Docker images are built and published to the Docker Hub every night. You might not always want to get the latest product versions. For example, when your zkApp relies on well-defined APIs and you want to continue developing in your current environment. 
+
+To keep your current working versions of o1js and Mina:
+
+```sh
+zk lightnet start --no-pull
+```
+
+To list versions, their published dates, and show the version in use:
+
+```sh
+zk lightnet explorer --list
+```
+
 ### Start a multi-node local network
 
 You can start a local network with multiple network participants. This network uses more resources.
@@ -137,16 +154,6 @@ To start a multi-node local network with closer-to-real-world properties:
 
 ```sh
 zk lightnet start --mode multi-node --type real
-```
-
-### Keep current versions
-
-New Docker images are built and published to the Docker Hub every night. You might not always want to get the latest product versions. For example, when your zkApp relies on well-defined APIs and you want to continue developing in your current environment. 
-
-To keep your current working versions of o1js and Mina:
-
-```sh
-zk lightnet start --no-pull
 ```
 
 ### Restart for a clean slate
@@ -174,13 +181,23 @@ To disable saving of log files:
 zk lightnet stop --no-save-logs
 ```
 
+## Configure your zkApp
+
+When you first build your zkApp, you test it locally and create a deploy alias as described in [Tutorial 3: Deploy to a Live Network](/zkapps/tutorials/deploying-to-a-network#deploy-alias). With Lightnet, the complexities are removed and the deploy alias is automatically configured to be compatible with the lightweight Mina blockchain network. 
+
+Now that you have Lightnet running, you can run a single command to configure your zkApp:
+
+```sh
+zk config --lightnet
+```
+
 ## Troubleshoot transactions
 
 Tools are provided for troubleshooting.
 
 ### Lightweight Mina Explorer
 
-To monitor transactions and visualize the , launch the lightweight Mina Explorer:
+To monitor transactions and visualize the network, launch the lightweight Mina Explorer:
 
 ```sh
 zk lightnet explorer
@@ -241,7 +258,7 @@ The network status is returned, including HTTP endpoints. For example, the defau
 - PostgreSQL connection string │ postgresql://postgres:postgres@localhost:5432/archive
 ```
 
-Use these URLs when you configure your zkApp.
+These URLs are used when you configure your zkApp with `zk config --lightnet`.
 
 Lightnet status includes blockchain network properties, the Docker container state, and a code snippet of a zkApp using o1js API. 
 
@@ -325,4 +342,4 @@ For a real-world example of using Lightnet accounts, see [run-live.ts](https://g
 
 ## Feedback and contributions
 
-You can add contributions, create feature requests, and let us know about problems by creating issues for Lightnet in the https://github.com/o1-labs/zkapp-cli repository. Be sure to add the `lightnet` label. 
+You can add contributions, submit feature requests, and create issues to let us know about problems with Lightnet in the https://github.com/o1-labs/zkapp-cli repository. Be sure to add the `lightnet` label. 
