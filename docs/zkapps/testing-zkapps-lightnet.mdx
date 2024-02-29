@@ -118,13 +118,13 @@ zk lightnet start --help
 
 You can configure different network properties as appropriate to your testing requirements. 
 
-### Start a local network without the archive node
+### Start a local network without the archive data-related services
 
-The default when starting Lightnet is to start the PostgreSQL service, the Mina archive process, and the Archive-Node-API application.
+The default when starting Lightnet is to start the PostgreSQL (RDBMS and database) service, the Mina archive process, and the Archive-Node-API application.
 
 To use fewer resources when your testing does not require an `Archive-Node-API` application, you can start a local network without the archive data-related service. 
 
-To disable the archive node:
+To disable the archive data-related services:
 
 ```sh
 zk lightnet start --no-archive
@@ -138,12 +138,6 @@ To keep your current working versions of o1js and Mina:
 
 ```sh
 zk lightnet start --no-pull
-```
-
-To list versions, their published dates, and show the version in use:
-
-```sh
-zk lightnet explorer --list
 ```
 
 ### Start a multi-node local network
