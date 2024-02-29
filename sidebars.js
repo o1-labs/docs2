@@ -89,6 +89,7 @@ module.exports = {
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',
+            'zkapps/tutorials/cross-contract-calls',
             'zkapps/tutorials/anonymous-message-board',
             'zkapps/tutorials/interacting-with-zkapps-server-side',
           ],

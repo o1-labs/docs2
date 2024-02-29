@@ -24,9 +24,9 @@ Please note that zkApp programmability is not yet available on Mina Mainnet, but
 
 In this tutorial, you learn how smart contracts on a blockchain can interact by calling functions in each other's code, enabling building modular and complex decentralized applications.
 
-Cross contract calls allow smart contracts on a blockchain to interact with each other. This enables building complex decentralized applications (dApps) from multiple modular components. In a cross contract call, a function in one smart contract can call a function in another smart contract to leverage existing code and functionality.
+Cross contract calls allow smart contracts on a blockchain to interact with each other. This enables the building of complex decentralized applications (Dapps) from multiple modular components. In a cross-contract call, a function in one smart contract can call a function in another smart contract to leverage existing code and functionality.
 
-In this tutorial you will learn about passing data between contracts, handling events and return values when contracts call each other. 
+This tutorial demonstrates passing data between contracts, handling events, and returning values when contracts call each other.
 
 The full example code is provided in the [12-cross-contract-calls/src/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/12-cross-contract-calls/src) example files.
 
@@ -106,12 +106,12 @@ class Incrementer extends SmartContract {
 }
 
 ```
-This Incrementer contract will add 1 to the Field argument which is passed.
+This Incrementer contract adds `1` to the `Field` argument, which is passed.
 
 ### Adder smart contract 
 
-Let's bring in the second contract `Adder` which will return the addtion of two numbers and add 1 to the result.
-The addition of 1 to the result is outsourced to the Incrementer smart contract by creating a new object by passing it's address.
+Now bring in the second contract `Adder` that returns the addition of two numbers and adds `1` to the result.
+The addition of `1` to the result is outsourced to the `Incrementer` smart contract by creating a new object by passing its address.
 
 ```typescript
 class Adder extends SmartContract {
@@ -126,7 +126,7 @@ class Adder extends SmartContract {
 
 ### Caller smart contract 
 
-The final smart contract `Caller` will call the `addPlus1` method of `Adder` smart contract and emit the stored result return by it.
+The final smart contract `Caller` calls the `addPlus1()` method of the `Adder` smart contract and emits the stored result that is returned.
 
 ```typescript
 class Caller extends SmartContract {
@@ -198,11 +198,11 @@ console.log('state: ' + zkapp.sum.get());
 
 ``` 
 
-In this example, we are spinning up the Mina chain locally and deploying all three smart contracts locally.
+In this example, you spin up the Mina chain and deploy all three smart contracts locally.
 
-Then we are calling `callAddAndEmit` method from `Caller` smart contract which will take two numbers as arguments, then call the `Adder` smart contract which will add these two numbers and pass the result in `Incrementer` smart contract which will increment the result by 1.
+Then you call the `callAddAndEmit` method from the `Caller` smart contract, which takes two numbers as arguments, then call the `Adder` smart contract, which adds these two numbers and passes the result in the `Incrementer` smart contract, which increments the result by 1.
 
-In our case we should see state equal to 12.
+When run successfully, the state is equal to 12.
 
 ## Conclusion
 
