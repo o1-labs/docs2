@@ -1,78 +1,80 @@
-[o1js](../README.md) / [Modules](../modules.md) / SmartContract
+[o1js](../README.md) / [Modules](../modules.md) / TokenContract
 
-# Class: SmartContract
+# Class: TokenContract
 
-The main zkapp class. To write a zkapp, extend this class as such:
-
-```
-class YourSmartContract extends SmartContract {
-  // your smart contract code here
-}
-```
+Base token contract which
+- implements the `Approvable` API, with the `approveBase()` method left to be defined by subclasses
+- implements the `Transferable` API as a wrapper around the `Approvable` API
 
 ## Hierarchy
 
-- `SmartContractBase`
+- [`SmartContract`](SmartContract.md)
 
-  ↳ **`SmartContract`**
-
-  ↳↳ [`TokenContract`](TokenContract.md)
+  ↳ **`TokenContract`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](SmartContract.md#constructor)
+- [constructor](TokenContract.md#constructor)
 
 ### Properties
 
-- [#\_senderState](SmartContract.md##_senderstate)
-- [#executionState](SmartContract.md##executionstate)
-- [address](SmartContract.md#address)
-- [events](SmartContract.md#events)
-- [tokenId](SmartContract.md#tokenid)
-- [\_maxProofsVerified](SmartContract.md#_maxproofsverified)
-- [\_methodMetadata](SmartContract.md#_methodmetadata)
-- [\_methods](SmartContract.md#_methods)
-- [\_provers](SmartContract.md#_provers)
-- [\_verificationKey](SmartContract.md#_verificationkey)
+- [#\_senderState](TokenContract.md##_senderstate)
+- [#executionState](TokenContract.md##executionstate)
+- [address](TokenContract.md#address)
+- [events](TokenContract.md#events)
+- [tokenId](TokenContract.md#tokenid)
+- [\_maxProofsVerified](TokenContract.md#_maxproofsverified)
+- [\_methodMetadata](TokenContract.md#_methodmetadata)
+- [\_methods](TokenContract.md#_methods)
+- [\_provers](TokenContract.md#_provers)
+- [\_verificationKey](TokenContract.md#_verificationkey)
 
 ### Accessors
 
-- [account](SmartContract.md#account)
-- [balance](SmartContract.md#balance)
-- [currentSlot](SmartContract.md#currentslot)
-- [network](SmartContract.md#network)
-- [self](SmartContract.md#self)
-- [sender](SmartContract.md#sender)
-- [token](SmartContract.md#token)
-- [tokenSymbol](SmartContract.md#tokensymbol)
+- [account](TokenContract.md#account)
+- [balance](TokenContract.md#balance)
+- [currentSlot](TokenContract.md#currentslot)
+- [internal](TokenContract.md#internal)
+- [network](TokenContract.md#network)
+- [self](TokenContract.md#self)
+- [sender](TokenContract.md#sender)
+- [token](TokenContract.md#token)
+- [tokenSymbol](TokenContract.md#tokensymbol)
 
 ### Methods
 
-- [approve](SmartContract.md#approve)
-- [deploy](SmartContract.md#deploy)
-- [emitEvent](SmartContract.md#emitevent)
-- [fetchEvents](SmartContract.md#fetchevents)
-- [init](SmartContract.md#init)
-- [newSelf](SmartContract.md#newself)
-- [requireSignature](SmartContract.md#requiresignature)
-- [send](SmartContract.md#send)
-- [setPermissions](SmartContract.md#setpermissions)
-- [setValue](SmartContract.md#setvalue)
-- [sign](SmartContract.md#sign)
-- [skipAuthorization](SmartContract.md#skipauthorization)
-- [Proof](SmartContract.md#proof)
-- [analyzeMethods](SmartContract.md#analyzemethods)
-- [compile](SmartContract.md#compile)
-- [digest](SmartContract.md#digest)
-- [runOutsideCircuit](SmartContract.md#runoutsidecircuit)
+- [approve](TokenContract.md#approve)
+- [approveAccountUpdate](TokenContract.md#approveaccountupdate)
+- [approveAccountUpdates](TokenContract.md#approveaccountupdates)
+- [approveBase](TokenContract.md#approvebase)
+- [checkZeroBalanceChange](TokenContract.md#checkzerobalancechange)
+- [deploy](TokenContract.md#deploy)
+- [deriveTokenId](TokenContract.md#derivetokenid)
+- [emitEvent](TokenContract.md#emitevent)
+- [fetchEvents](TokenContract.md#fetchevents)
+- [forEachUpdate](TokenContract.md#foreachupdate)
+- [init](TokenContract.md#init)
+- [newSelf](TokenContract.md#newself)
+- [requireSignature](TokenContract.md#requiresignature)
+- [send](TokenContract.md#send)
+- [setPermissions](TokenContract.md#setpermissions)
+- [setValue](TokenContract.md#setvalue)
+- [sign](TokenContract.md#sign)
+- [skipAuthorization](TokenContract.md#skipauthorization)
+- [transfer](TokenContract.md#transfer)
+- [Proof](TokenContract.md#proof)
+- [analyzeMethods](TokenContract.md#analyzemethods)
+- [compile](TokenContract.md#compile)
+- [digest](TokenContract.md#digest)
+- [runOutsideCircuit](TokenContract.md#runoutsidecircuit)
 
 ## Constructors
 
 ### constructor
 
-• **new SmartContract**(`address`, `tokenId?`)
+• **new TokenContract**(`address`, `tokenId?`)
 
 #### Parameters
 
@@ -81,9 +83,9 @@ class YourSmartContract extends SmartContract {
 | `address` | [`PublicKey`](Types.PublicKey.md) |
 | `tokenId?` | [`Field`](Field.md) |
 
-#### Overrides
+#### Inherited from
 
-SmartContractBase.constructor
+[SmartContract](SmartContract.md).[constructor](SmartContract.md#constructor)
 
 #### Defined in
 
@@ -102,6 +104,10 @@ SmartContractBase.constructor
 | `sender` | [`PublicKey`](Types.PublicKey.md) |
 | `transactionId` | `number` |
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[#_senderState](SmartContract.md##_senderstate)
+
 #### Defined in
 
 [lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L822)
@@ -112,6 +118,10 @@ ___
 
 • `Private` **#executionState**: `undefined` \| `ExecutionState`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[#executionState](SmartContract.md##executionstate)
+
 #### Defined in
 
 [lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L541)
@@ -121,6 +131,10 @@ ___
 ### address
 
 • **address**: [`PublicKey`](Types.PublicKey.md)
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[address](SmartContract.md#address)
 
 #### Defined in
 
@@ -138,6 +152,10 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 ▪ [key: `string`]: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)\<`any`\>
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[events](SmartContract.md#events)
+
 #### Defined in
 
 [lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L928)
@@ -147,6 +165,10 @@ ___
 ### tokenId
 
 • **tokenId**: [`Field`](Field.md)
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[tokenId](SmartContract.md#tokenid)
 
 #### Defined in
 
@@ -158,6 +180,10 @@ ___
 
 ▪ `Static` `Optional` **\_maxProofsVerified**: ``0`` \| ``2`` \| ``1``
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[_maxProofsVerified](SmartContract.md#_maxproofsverified)
+
 #### Defined in
 
 [lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L559)
@@ -167,6 +193,10 @@ ___
 ### \_methodMetadata
 
 ▪ `Static` `Optional` **\_methodMetadata**: `Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[_methodMetadata](SmartContract.md#_methodmetadata)
 
 #### Defined in
 
@@ -178,6 +208,10 @@ ___
 
 ▪ `Static` `Optional` **\_methods**: `MethodInterface`[]
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[_methods](SmartContract.md#_methods)
+
 #### Defined in
 
 [lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L547)
@@ -187,6 +221,10 @@ ___
 ### \_provers
 
 ▪ `Static` `Optional` **\_provers**: [`Prover`](../modules/Pickles.md#prover)[]
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[_provers](SmartContract.md#_provers)
 
 #### Defined in
 
@@ -205,6 +243,10 @@ ___
 | `data` | `string` |
 | `hash` | [`Field`](Field.md) |
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[_verificationKey](SmartContract.md#_verificationkey)
+
 #### Defined in
 
 [lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L560)
@@ -220,6 +262,10 @@ Current account of the [SmartContract](SmartContract.md).
 #### Returns
 
 `Account`
+
+#### Inherited from
+
+SmartContract.account
 
 #### Defined in
 
@@ -242,6 +288,10 @@ Balance of this [SmartContract](SmartContract.md).
 | `addInPlace` | (`x`: `string` \| `number` \| `bigint` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`Int64`](Int64.md)) => `void` |
 | `subInPlace` | (`x`: `string` \| `number` \| `bigint` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`Int64`](Int64.md)) => `void` |
 
+#### Inherited from
+
+SmartContract.balance
+
 #### Defined in
 
 [lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L922)
@@ -260,9 +310,35 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 `CurrentSlot`
 
+#### Inherited from
+
+SmartContract.currentSlot
+
 #### Defined in
 
 [lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L867)
+
+___
+
+### internal
+
+• `get` **internal**(): `Object`
+
+Helper methods to use from within a token contract.
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `burn` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `mint` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+| `send` | (`__namedParameters`: \{ `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:76](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L76)
 
 ___
 
@@ -275,6 +351,10 @@ Current network state of the [SmartContract](SmartContract.md).
 #### Returns
 
 `Network`
+
+#### Inherited from
+
+SmartContract.network
 
 #### Defined in
 
@@ -291,6 +371,10 @@ Returns the current [AccountUpdate](AccountUpdate.md) associated to this [SmartC
 #### Returns
 
 [`AccountUpdate`](AccountUpdate.md)
+
+#### Inherited from
+
+SmartContract.self
 
 #### Defined in
 
@@ -312,6 +396,10 @@ A malicious prover could use any other public key without affecting the validity
 #### Returns
 
 [`PublicKey`](Types.PublicKey.md)
+
+#### Inherited from
+
+SmartContract.sender
 
 #### Defined in
 
@@ -343,6 +431,10 @@ Instead of `SmartContract.token.id`, use `TokenContract.deriveTokenId()`.
 
 For security reasons, it is recommended to use [TokenContract](TokenContract.md) as the base contract for all tokens.
 
+#### Inherited from
+
+SmartContract.token
+
 #### Defined in
 
 [lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L877)
@@ -364,6 +456,10 @@ ___
 **`Deprecated`**
 
 use `this.account.tokenSymbol`
+
+#### Inherited from
+
+SmartContract.tokenSymbol
 
 #### Defined in
 
@@ -405,35 +501,27 @@ excluding important information from the public input.
 
 `void`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[approve](SmartContract.md#approve)
+
 #### Defined in
 
 [lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L902)
 
 ___
 
-### deploy
+### approveAccountUpdate
 
-▸ **deploy**(`«destructured»?`): `void`
+▸ **approveAccountUpdate**(`accountUpdate`): `void`
 
-Deploys a [SmartContract](SmartContract.md).
-
-```ts
-let tx = await Mina.transaction(sender, () => {
-  AccountUpdate.fundNewAccount(sender);
-  zkapp.deploy();
-});
-tx.sign([senderKey, zkAppKey]);
-```
+Approve a single account update (with arbitrarily many children).
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `«destructured»` | `Object` |
-| › `verificationKey?` | `Object` |
-| › `verificationKey.data` | `string` |
-| › `verificationKey.hash` | `string` \| [`Field`](Field.md) |
-| › `zkappKey?` | [`PrivateKey`](PrivateKey.md) |
+| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) \| [`AccountUpdateTree`](AccountUpdateTree.md) |
 
 #### Returns
 
@@ -441,7 +529,133 @@ tx.sign([senderKey, zkAppKey]);
 
 #### Defined in
 
-[lib/zkapp.ts:663](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L663)
+[lib/mina/token/token-contract.ts:137](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L137)
+
+___
+
+### approveAccountUpdates
+
+▸ **approveAccountUpdates**(`accountUpdates`): `void`
+
+Approve a list of account updates (with arbitrarily many children).
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `accountUpdates` | ([`AccountUpdate`](AccountUpdate.md) \| [`AccountUpdateTree`](AccountUpdateTree.md))[] |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:145](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L145)
+
+___
+
+### approveBase
+
+▸ `Abstract` **approveBase**(`forest`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `forest` | [`AccountUpdateForest`](AccountUpdateForest.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:83](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L83)
+
+___
+
+### checkZeroBalanceChange
+
+▸ **checkZeroBalanceChange**(`updates`): `void`
+
+Use `forEachUpdate()` to prove that the total balance change of child account updates is zero.
+
+This is provided out of the box as it is both a good example, and probably the most common implementation, of `approveBase()`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `updates` | [`AccountUpdateForest`](AccountUpdateForest.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:121](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L121)
+
+___
+
+### deploy
+
+▸ **deploy**(`args?`): `void`
+
+Deploys a [TokenContract](TokenContract.md).
+
+In addition to base smart contract deployment, this adds two steps:
+- set the `access` permission to `proofOrSignature()`, to prevent against unauthorized token operations
+  - not doing this would imply that anyone can bypass token contract authorization and simply mint themselves tokens
+- require the zkapp account to be new, using the `isNew` precondition.
+  this guarantees that the access permission is set from the very start of the existence of this account.
+  creating the zkapp account before deployment would otherwise be a security vulnerability that is too easy to introduce.
+
+Note that because of the `isNew` precondition, the zkapp account must not be created prior to calling `deploy()`.
+
+If the contract needs to be re-deployed, you can switch off this behaviour by overriding the `isNew` precondition:
+```ts
+deploy() {
+  super.deploy();
+  // DON'T DO THIS ON THE INITIAL DEPLOYMENT!
+  this.account.isNew.requireNothing();
+}
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | [`DeployArgs`](../modules.md#deployargs) |
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[SmartContract](SmartContract.md).[deploy](SmartContract.md#deploy)
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:51](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L51)
+
+___
+
+### deriveTokenId
+
+▸ **deriveTokenId**(): [`Field`](Field.md)
+
+Returns the `tokenId` of the token managed by this contract.
+
+#### Returns
+
+[`Field`](Field.md)
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L69)
 
 ___
 
@@ -467,6 +681,10 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 #### Returns
 
 `void`
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[emitEvent](SmartContract.md#emitevent)
 
 #### Defined in
 
@@ -508,9 +726,38 @@ const events = await myZkapp.fetchEvents(startHeight, endHeight);
 console.log(events);
 ```
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[fetchEvents](SmartContract.md#fetchevents)
+
 #### Defined in
 
 [lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L980)
+
+___
+
+### forEachUpdate
+
+▸ **forEachUpdate**(`updates`, `callback`): `void`
+
+Iterate through the account updates in `updates` and apply `callback` to each.
+
+This method is provable and is suitable as a base for implementing `approveUpdates()`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `updates` | [`AccountUpdateForest`](AccountUpdateForest.md) |
+| `callback` | (`update`: [`AccountUpdate`](AccountUpdate.md), `usesToken`: [`Bool`](Bool.md)) => `void` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:90](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L90)
 
 ___
 
@@ -534,6 +781,10 @@ class MyContract extends SmartContract {
 
 `void`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[init](SmartContract.md#init)
+
 #### Defined in
 
 [lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L734)
@@ -555,6 +806,10 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 #### Returns
 
 [`AccountUpdate`](AccountUpdate.md)
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[newSelf](SmartContract.md#newself)
 
 #### Defined in
 
@@ -580,6 +835,10 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 `void`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[requireSignature](SmartContract.md#requiresignature)
+
 #### Defined in
 
 [lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L755)
@@ -601,6 +860,10 @@ ___
 #### Returns
 
 [`AccountUpdate`](AccountUpdate.md)
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[send](SmartContract.md#send)
 
 #### Defined in
 
@@ -625,6 +888,10 @@ ___
 **`Deprecated`**
 
 use `this.account.permissions.set()`
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[setPermissions](SmartContract.md#setpermissions)
 
 #### Defined in
 
@@ -657,6 +924,10 @@ ___
 
 use `this.account.<field>.set()`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[setValue](SmartContract.md#setvalue)
+
 #### Defined in
 
 [lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1154)
@@ -681,6 +952,10 @@ ___
 
 `this.sign()` is deprecated in favor of `this.requireSignature()`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[sign](SmartContract.md#sign)
+
 #### Defined in
 
 [lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L761)
@@ -702,9 +977,37 @@ authorization flow.
 
 `void`
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[skipAuthorization](SmartContract.md#skipauthorization)
+
 #### Defined in
 
 [lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L772)
+
+___
+
+### transfer
+
+▸ **transfer**(`from`, `to`, `amount`): `void`
+
+Transfer `amount` of tokens from `from` to `to`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `from` | [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) |
+| `to` | [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) |
+| `amount` | `number` \| `bigint` \| [`UInt64`](UInt64.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/mina/token/token-contract.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L155)
 
 ___
 
@@ -717,6 +1020,10 @@ Returns a Proof type that belongs to this [SmartContract](SmartContract.md).
 #### Returns
 
 typeof `__class`
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[Proof](SmartContract.md#proof)
 
 #### Defined in
 
@@ -758,6 +1065,10 @@ an object, keyed by method name, each entry containing:
  - `actions` the number of actions the method dispatches
  - `gates` the constraint system, represented as an array of gates
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[analyzeMethods](SmartContract.md#analyzemethods)
+
 #### Defined in
 
 [lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1100)
@@ -793,6 +1104,10 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 `Promise`\<\{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: \{ `data`: `string` ; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: [`Statement`](../modules/Pickles.md#statement)\<[`FieldConst`](../modules.md#fieldconst-1)\>, `proof`: `unknown`) => `Promise`\<`boolean`\>  }\>
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[compile](SmartContract.md#compile)
+
 #### Defined in
 
 [lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L602)
@@ -813,6 +1128,10 @@ a cached verification key can be used.
 
 the digest, as a hex string
 
+#### Inherited from
+
+[SmartContract](SmartContract.md).[digest](SmartContract.md#digest)
+
 #### Defined in
 
 [lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L643)
@@ -832,6 +1151,10 @@ ___
 #### Returns
 
 `void`
+
+#### Inherited from
+
+[SmartContract](SmartContract.md).[runOutsideCircuit](SmartContract.md#runoutsidecircuit)
 
 #### Defined in
 
