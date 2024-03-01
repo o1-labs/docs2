@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:78](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L78)
+[lib/circuit-value.ts:79](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L79)
 
 ## Methods
 
@@ -90,7 +90,7 @@
 
 #### Defined in
 
-[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L166)
+[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L167)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L162)
+[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L163)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L170)
+[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L171)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L158)
+[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L159)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L150)
+[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L151)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L154)
+[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L155)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:199](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L199)
+[lib/circuit-value.ts:200](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L200)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L254)
+[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L255)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L174)
+[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L175)
 
 ___
 
@@ -267,7 +267,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:232](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L232)
+[lib/circuit-value.ts:233](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L233)
 
 ___
 
@@ -294,7 +294,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L95)
+[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L96)
 
 ___
 
@@ -308,7 +308,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L102)
+[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L103)
 
 ___
 
@@ -322,7 +322,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L124)
+[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L125)
 
 ___
 
@@ -349,7 +349,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L213)
+[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L214)
 
 ___
 
@@ -376,7 +376,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L107)
+[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L108)
 
 ___
 
@@ -403,7 +403,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:128](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L128)
+[lib/circuit-value.ts:129](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L129)
 
 ___
 
@@ -430,4 +430,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:221](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L221)
+[lib/circuit-value.ts:222](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L222)

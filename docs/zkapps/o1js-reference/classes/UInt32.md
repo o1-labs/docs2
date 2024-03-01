@@ -99,7 +99,7 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 
 #### Defined in
 
-[lib/int.ts:549](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L549)
+[lib/int.ts:549](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L549)
 
 ## Properties
 
@@ -109,7 +109,7 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 
 #### Defined in
 
-[lib/int.ts:546](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L546)
+[lib/int.ts:546](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L546)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:547](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L547)
+[lib/int.ts:547](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L547)
 
 ## Accessors
 
@@ -135,7 +135,7 @@ Static method to create a [UInt32](UInt32.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:565](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L565)
+[lib/int.ts:565](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L565)
 
 ___
 
@@ -151,7 +151,7 @@ Static method to create a [UInt32](UInt32.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:558](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L558)
+[lib/int.ts:558](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L558)
 
 ## Methods
 
@@ -173,7 +173,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:712](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L712)
+[lib/int.ts:712](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L712)
 
 ___
 
@@ -195,7 +195,7 @@ Addition modulo 2^32. Check [addMod32](../modules.md#addmod32) for a detailed de
 
 #### Defined in
 
-[lib/int.ts:638](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L638)
+[lib/int.ts:638](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L638)
 
 ___
 
@@ -239,7 +239,7 @@ c.assertEquals(1);
 
 #### Defined in
 
-[lib/int.ts:883](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L883)
+[lib/int.ts:883](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L883)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L166)
+[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L167)
 
 ___
 
@@ -286,7 +286,7 @@ Asserts that a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:1009](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1009)
+[lib/int.ts:1009](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1009)
 
 ___
 
@@ -309,7 +309,7 @@ Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:1042](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1042)
+[lib/int.ts:1042](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1042)
 
 ___
 
@@ -336,7 +336,7 @@ Asserts that a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:1002](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1002)
+[lib/int.ts:1002](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1002)
 
 ___
 
@@ -363,7 +363,7 @@ Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:1035](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1035)
+[lib/int.ts:1035](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1035)
 
 ___
 
@@ -386,7 +386,7 @@ Asserts that a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:977](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L977)
+[lib/int.ts:977](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L977)
 
 ___
 
@@ -409,7 +409,7 @@ Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:935](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L935)
+[lib/int.ts:935](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L935)
 
 ___
 
@@ -436,7 +436,7 @@ Asserts that a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:970](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L970)
+[lib/int.ts:970](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L970)
 
 ___
 
@@ -463,7 +463,7 @@ Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:928](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L928)
+[lib/int.ts:928](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L928)
 
 ___
 
@@ -488,7 +488,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:689](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L689)
+[lib/int.ts:689](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L689)
 
 ___
 
@@ -517,7 +517,7 @@ Integer division with remainder.
 
 #### Defined in
 
-[lib/int.ts:647](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L647)
+[lib/int.ts:647](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L647)
 
 ___
 
@@ -541,7 +541,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L162)
+[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L163)
 
 ___
 
@@ -563,7 +563,7 @@ Checks if a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:993](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L993)
+[lib/int.ts:993](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L993)
 
 ___
 
@@ -585,7 +585,7 @@ Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:1025](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1025)
+[lib/int.ts:1025](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1025)
 
 ___
 
@@ -611,7 +611,7 @@ Checks if a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:986](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L986)
+[lib/int.ts:986](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L986)
 
 ___
 
@@ -637,7 +637,7 @@ Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:1018](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1018)
+[lib/int.ts:1018](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1018)
 
 ___
 
@@ -655,7 +655,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L170)
+[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L171)
 
 ___
 
@@ -692,7 +692,7 @@ y.assertEquals(0b110000); // 48 in binary
 
 #### Defined in
 
-[lib/int.ts:831](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L831)
+[lib/int.ts:831](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L831)
 
 ___
 
@@ -714,7 +714,7 @@ Checks if a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:961](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L961)
+[lib/int.ts:961](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L961)
 
 ___
 
@@ -736,7 +736,7 @@ Checks if a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:909](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L909)
+[lib/int.ts:909](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L909)
 
 ___
 
@@ -762,7 +762,7 @@ Checks if a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:954](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L954)
+[lib/int.ts:954](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L954)
 
 ___
 
@@ -788,7 +788,7 @@ Checks if a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:892](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L892)
+[lib/int.ts:892](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L892)
 
 ___
 
@@ -799,7 +799,7 @@ ___
 Integer remainder.
 
 `x.mod(y)` returns the value `z` such that `0 <= z < y` and
-`x - z` is divisble by `y`.
+`x - z` is divisible by `y`.
 
 #### Parameters
 
@@ -813,7 +813,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:698](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L698)
+[lib/int.ts:698](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L698)
 
 ___
 
@@ -835,7 +835,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:704](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L704)
+[lib/int.ts:704](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L704)
 
 ___
 
@@ -874,7 +874,7 @@ console.log(b.toBigInt().toString(2));
 
 #### Defined in
 
-[lib/int.ts:776](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L776)
+[lib/int.ts:776](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L776)
 
 ___
 
@@ -909,7 +909,7 @@ y.assertEquals(0b000011); // 48 in binary
 
 #### Defined in
 
-[lib/int.ts:854](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L854)
+[lib/int.ts:854](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L854)
 
 ___
 
@@ -954,7 +954,7 @@ z.assertEquals(0b000011);
 
 #### Defined in
 
-[lib/int.ts:808](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L808)
+[lib/int.ts:808](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L808)
 
 ___
 
@@ -976,7 +976,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:720](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L720)
+[lib/int.ts:720](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L720)
 
 ___
 
@@ -992,7 +992,7 @@ Turns the [UInt32](UInt32.md) into a BigInt.
 
 #### Defined in
 
-[lib/int.ts:577](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L577)
+[lib/int.ts:577](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L577)
 
 ___
 
@@ -1010,7 +1010,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L158)
+[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L159)
 
 ___
 
@@ -1028,7 +1028,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L150)
+[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L151)
 
 ___
 
@@ -1046,7 +1046,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L154)
+[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L155)
 
 ___
 
@@ -1062,7 +1062,7 @@ Turns the [UInt32](UInt32.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:571](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L571)
+[lib/int.ts:571](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L571)
 
 ___
 
@@ -1078,7 +1078,7 @@ Turns the [UInt32](UInt32.md) into a [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:583](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L583)
+[lib/int.ts:583](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L583)
 
 ___
 
@@ -1115,7 +1115,7 @@ c.assertEquals(0b0110);
 
 #### Defined in
 
-[lib/int.ts:745](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L745)
+[lib/int.ts:745](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L745)
 
 ___
 
@@ -1131,7 +1131,7 @@ Creates a [UInt32](UInt32.md) with a value of 4,294,967,295.
 
 #### Defined in
 
-[lib/int.ts:631](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L631)
+[lib/int.ts:631](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L631)
 
 ___
 
@@ -1155,7 +1155,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:588](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L588)
+[lib/int.ts:588](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L588)
 
 ___
 
@@ -1175,7 +1175,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:608](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L608)
+[lib/int.ts:608](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L608)
 
 ___
 
@@ -1199,7 +1199,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L254)
+[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L255)
 
 ___
 
@@ -1221,7 +1221,7 @@ Creates a new [UInt32](UInt32.md).
 
 #### Defined in
 
-[lib/int.ts:623](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L623)
+[lib/int.ts:623](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L623)
 
 ___
 
@@ -1252,7 +1252,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L174)
+[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L175)
 
 ___
 
@@ -1284,7 +1284,7 @@ Decodes a JSON-like object into this structure.
 
 #### Defined in
 
-[lib/int.ts:604](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L604)
+[lib/int.ts:604](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L604)
 
 ___
 
@@ -1315,7 +1315,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L95)
+[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L96)
 
 ___
 
@@ -1333,7 +1333,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L102)
+[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L103)
 
 ___
 
@@ -1351,7 +1351,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L124)
+[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L125)
 
 ___
 
@@ -1382,7 +1382,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L213)
+[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L214)
 
 ___
 
@@ -1413,7 +1413,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L107)
+[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L108)
 
 ___
 
@@ -1437,7 +1437,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:591](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L591)
+[lib/int.ts:591](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L591)
 
 ___
 
@@ -1463,4 +1463,4 @@ Encodes this structure into a JSON-like object.
 
 #### Defined in
 
-[lib/int.ts:597](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L597)
+[lib/int.ts:597](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L597)

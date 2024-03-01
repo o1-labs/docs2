@@ -83,7 +83,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1314](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1314)
+[lib/int.ts:1314](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1314)
 
 ## Properties
 
@@ -99,7 +99,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1304](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1304)
+[lib/int.ts:1304](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1304)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:1306](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1306)
+[lib/int.ts:1306](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1306)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:1320](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1320)
+[lib/int.ts:1320](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1320)
 
 ___
 
@@ -141,7 +141,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit_value.ts:381](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L381)
+[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L382)
 
 ___
 
@@ -169,7 +169,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit_value.ts:390](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L390)
+[lib/circuit-value.ts:391](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L391)
 
 ___
 
@@ -209,7 +209,7 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:138](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L138)
+[snarky.d.ts:138](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L138)
 
 ___
 
@@ -244,7 +244,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit_value.ts:389](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L389)
+[lib/circuit-value.ts:390](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L390)
 
 ___
 
@@ -280,7 +280,7 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:127](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L127)
+[snarky.d.ts:127](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L127)
 
 ___
 
@@ -315,7 +315,7 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:117](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L117)
+[snarky.d.ts:117](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L117)
 
 ___
 
@@ -350,7 +350,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit_value.ts:388](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L388)
+[lib/circuit-value.ts:389](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L389)
 
 ## Methods
 
@@ -384,7 +384,7 @@ if the result is greater than 255.
 
 #### Defined in
 
-[lib/int.ts:1344](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1344)
+[lib/int.ts:1344](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1344)
 
 ___
 
@@ -409,7 +409,7 @@ Assert that this [UInt8](UInt8.md) is equal another [UInt8](UInt8.md) value.
 
 #### Defined in
 
-[lib/int.ts:1598](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1598)
+[lib/int.ts:1598](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1598)
 
 ___
 
@@ -434,7 +434,7 @@ Assert that this [UInt8](UInt8.md) is greater than another [UInt8](UInt8.md) val
 
 #### Defined in
 
-[lib/int.ts:1574](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1574)
+[lib/int.ts:1574](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1574)
 
 ___
 
@@ -459,7 +459,7 @@ Assert that this [UInt8](UInt8.md) is greater than or equal to another [UInt8](U
 
 #### Defined in
 
-[lib/int.ts:1586](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1586)
+[lib/int.ts:1586](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1586)
 
 ___
 
@@ -484,7 +484,7 @@ Assert that this [UInt8](UInt8.md) is less than another [UInt8](UInt8.md) value.
 
 #### Defined in
 
-[lib/int.ts:1494](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1494)
+[lib/int.ts:1494](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1494)
 
 ___
 
@@ -509,7 +509,7 @@ Assert that this [UInt8](UInt8.md) is less than or equal to another [UInt8](UInt
 
 #### Defined in
 
-[lib/int.ts:1518](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1518)
+[lib/int.ts:1518](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1518)
 
 ___
 
@@ -540,7 +540,7 @@ quotient.assertEquals(3);
 
 #### Defined in
 
-[lib/int.ts:1397](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1397)
+[lib/int.ts:1397](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1397)
 
 ___
 
@@ -571,7 +571,7 @@ The quotient `q` and remainder `r`.
 
 #### Defined in
 
-[lib/int.ts:1424](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1424)
+[lib/int.ts:1424](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1424)
 
 ___
 
@@ -601,7 +601,7 @@ UInt8.from(5).greaterThan(3);
 
 #### Defined in
 
-[lib/int.ts:1548](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1548)
+[lib/int.ts:1548](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1548)
 
 ___
 
@@ -631,7 +631,7 @@ UInt8.from(3).greaterThanOrEqual(3);
 
 #### Defined in
 
-[lib/int.ts:1562](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1562)
+[lib/int.ts:1562](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1562)
 
 ___
 
@@ -660,7 +660,7 @@ UInt8.from(2).lessThan(UInt8.from(3));
 
 #### Defined in
 
-[lib/int.ts:1478](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1478)
+[lib/int.ts:1478](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1478)
 
 ___
 
@@ -689,7 +689,7 @@ UInt8.from(3).lessThanOrEqual(UInt8.from(5));
 
 #### Defined in
 
-[lib/int.ts:1461](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1461)
+[lib/int.ts:1461](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1461)
 
 ___
 
@@ -719,7 +719,7 @@ mod.assertEquals(20);
 
 #### Defined in
 
-[lib/int.ts:1411](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1411)
+[lib/int.ts:1411](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1411)
 
 ___
 
@@ -753,7 +753,7 @@ if the result is greater than 255.
 
 #### Defined in
 
-[lib/int.ts:1380](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1380)
+[lib/int.ts:1380](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1380)
 
 ___
 
@@ -787,7 +787,7 @@ if the result is less than 0.
 
 #### Defined in
 
-[lib/int.ts:1362](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1362)
+[lib/int.ts:1362](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1362)
 
 ___
 
@@ -805,7 +805,7 @@ Serialize the [UInt8](UInt8.md) to a bigint.
 
 #### Defined in
 
-[lib/int.ts:1626](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1626)
+[lib/int.ts:1626](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1626)
 
 ___
 
@@ -823,7 +823,7 @@ Serialize the [UInt8](UInt8.md) to a number.
 
 #### Defined in
 
-[lib/int.ts:1617](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1617)
+[lib/int.ts:1617](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1617)
 
 ___
 
@@ -841,7 +841,7 @@ Serialize the [UInt8](UInt8.md) to a string, e.g. for printing.
 
 #### Defined in
 
-[lib/int.ts:1608](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1608)
+[lib/int.ts:1608](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1608)
 
 ___
 
@@ -857,7 +857,7 @@ Turns a [UInt8](UInt8.md) into a [UInt32](UInt32.md).
 
 #### Defined in
 
-[lib/int.ts:1646](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1646)
+[lib/int.ts:1646](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1646)
 
 ___
 
@@ -873,7 +873,7 @@ Turns a [UInt8](UInt8.md) into a [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:1653](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1653)
+[lib/int.ts:1653](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1653)
 
 ___
 
@@ -889,7 +889,7 @@ Creates a [UInt8](UInt8.md) with a value of 255.
 
 #### Defined in
 
-[lib/int.ts:1660](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1660)
+[lib/int.ts:1660](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1660)
 
 ___
 
@@ -918,7 +918,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1634](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1634)
+[lib/int.ts:1634](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1634)
 
 ___
 
@@ -938,7 +938,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:1678](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1678)
+[lib/int.ts:1678](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1678)
 
 ___
 
@@ -960,7 +960,7 @@ Creates a new [UInt8](UInt8.md).
 
 #### Defined in
 
-[lib/int.ts:1667](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1667)
+[lib/int.ts:1667](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1667)
 
 ___
 
@@ -986,7 +986,7 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/5d8e331/src/snarky.d.ts#L147)
+[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L147)
 
 ___
 
@@ -1013,4 +1013,4 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1639](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/int.ts#L1639)
+[lib/int.ts:1639](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1639)
