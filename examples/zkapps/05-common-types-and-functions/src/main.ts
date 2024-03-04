@@ -187,8 +187,8 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
 
   const pendingDeployTx = await deployTxn.send();
   /**
-   * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash()`
-   * `.hash()` returns the transaction hash
+   * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash`
+   * `.hash` returns the transaction hash
    * `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
    */
   await pendingDeployTx.wait();

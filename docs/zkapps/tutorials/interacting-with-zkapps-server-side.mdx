@@ -260,7 +260,7 @@ if (!pendingTransaction.isSuccess) {
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash()}
+  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();
@@ -271,7 +271,7 @@ console.log(`updated state! ${await zkapp.num.fetch()}`);
 This code uses several functionalities of the pending transaction:
 
 - `pendingTransaction.isSuccess` is a boolean for whether the transaction was successful. Most invalid transactions are immediately rejected by the GraphQL endpoint with `isSuccess === false`.
-- `pendingTransaction.hash()` is the transaction hash that you can use to look up the transaction in a block explorer. If the transaction failed, it returns `undefined`.
+- `pendingTransaction.hash` is the transaction hash that you can use to look up the transaction in a block explorer. If the transaction failed, it returns `undefined`.
 - `pendingTransaction.wait()` is especially useful as it returns a promise that resolves `utils.ts` after the transaction is included in the latest block on the network. This takes several minutes, so you might not want to block the main thread on this in a real application.
 
 Finally, after the transaction was successfully applied on the Mina blockchain, you can double-check that your state was updated by fetching it again with `zkapp.num.fetch()`.

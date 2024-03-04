@@ -100,7 +100,7 @@ if (!pendingTransaction.isSuccess) {
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash()}
+  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();

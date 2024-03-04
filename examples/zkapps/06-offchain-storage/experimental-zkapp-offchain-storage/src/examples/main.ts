@@ -77,13 +77,12 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await deploy_txn.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      const hash = await res.hash(); // This will change in a future version of o1js
-      if (hash == null) {
+      if (!res.isSuccess) {
         console.log('error sending transaction (see above)');
       } else {
         console.log(
           'See deploy transaction at',
-          'https://berkeley.minaexplorer.com/transaction/' + hash
+          'https://berkeley.minaexplorer.com/transaction/' + res.hash
         );
         console.log('Waiting for zkApp to be deployed...');
         await retryOperation(async () => {
@@ -197,13 +196,12 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await txn1.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      const hash = await res.hash(); // This will change in a future version of o1js
-      if (hash == null) {
+      if (!res.isSuccess) {
         console.log('error sending transaction (see above)');
       } else {
         console.log(
           'See transaction at',
-          'https://berkeley.minaexplorer.com/transaction/' + hash
+          'https://berkeley.minaexplorer.com/transaction/' + res.hash
         );
         console.log('Waiting for transaction...');
         await retryOperation(async () => {
