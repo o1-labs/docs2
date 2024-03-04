@@ -128,7 +128,7 @@ In the end, the entire transaction is sent to the network as one atomic update. 
 
 ## Creating proofs
 
-Finally, here's how to create zero-knowledge proofs!
+Finally, here's how to create zero knowledge proofs!
 
 ```ts
 await MyContract.compile(); // this might take a while
