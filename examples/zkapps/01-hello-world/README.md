@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 # Mina zkApp: 01 Hello World
+=======
+# zkApp: Hello World
+>>>>>>> main
 
 This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs.
 
 ## Version
+<<<<<<< HEAD
 - o1js: **0.15.2**
+=======
+- o1js: **0.17.***
+>>>>>>> main
 
 ## Tutorial
 
@@ -43,7 +51,11 @@ For the step-by-step tutorial, see [Tutorial 1: Hello World](https://docs.minapr
 
 ## Last audit date
  
+<<<<<<< HEAD
 **20-January-2024**
+=======
+**14-February-2024**
+>>>>>>> main
 
 ## License
 

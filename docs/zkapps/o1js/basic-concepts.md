@@ -2,7 +2,7 @@
 title: o1js Basic Concepts
 hide_title: true
 sidebar_label: Basic Concepts
-description: Field elements are the basic unit of data in zero-knowledge proof programming. Learn about built-in data types, functions, and common methods. 
+description: Field elements are the basic unit of data in zero knowledge proof programming. Learn about built-in data types, functions, and common methods. 
 keywords:
   - smart contracts
   - zkapps
@@ -19,17 +19,26 @@ keywords:
   - methods
 ---
 
+<<<<<<< HEAD
+=======
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+
+:::
+
+>>>>>>> main
 # o1js Basic Concepts
 
-o1js, fka. SnarkyJS, is a TypeScript (TS) library for writing general-purpose zk programs and writing zk smart contracts for Mina.
+o1js is a TypeScript (TS) library for writing general-purpose zero knowledge (zk) programs and writing zk smart contracts for Mina.
 
 ## Field
 
-Field elements are the basic unit of data in zero-knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of it as a uint256 in Solidity.
+Field elements are the basic unit of data in zero knowledge proof programming. Each field element can store a number up to almost 256 bits in size. You can think of a field element as a `uint256` in Solidity.
 
 :::note
 
-For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336
+For the cryptography inclined, the exact max value that a field can store is: 28,948,022,309,329,048,855,892,746,252,171,976,963,363,056,481,941,560,715,954,676,764,349,967,630,336.
 
 :::
 
@@ -45,7 +54,7 @@ This can be simplified as:
 
 `const sum = new Field(1).add(3)`
 
-Note that the 3 is auto-promoted to a field type to make this cleaner.
+Note that the `3` is auto-promoted to a field type to make this cleaner.
 
 ## Built-in data types
 
@@ -101,7 +110,7 @@ function addOneAndDouble(x: Field): Field {
 
 ## Common methods
 
-Some common methods you will use often are:
+Some frequently used common methods are:
 
 ```ts
 let x = new Field(4); // x = 4

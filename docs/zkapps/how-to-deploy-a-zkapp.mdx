@@ -9,21 +9,31 @@ keywords:
   - configure a zkapp
 ---
 
+<<<<<<< HEAD
+=======
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+
+:::
+
+>>>>>>> main
 # How to Deploy a zkApp
+
+Before deploying, you must first define a few settings, such as which network you are deploying to. 
 
 ## Add a deploy alias to config.json
 
-Before deploying, you must first define a few settings, such as which network you are deploying to. Create a "deploy alias" in the `config.json` file in your smart contract project.
-.
+Create a [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in the `config.json` file in your smart contract project.
 
-First, change into the directory containing your smart contract and then run the
+First, change into the directory that contains your smart contract and then run the
 following command:
 
 ```sh
 zk config
 ```
 
-When prompted, specify a name (can be anything), URL to deploy to, fee (in
+When prompted, specify a name (can be anything), the target network (`testnet` or `mainnet`), the URL to deploy to, fee (in
 MINA) to be used when sending your deploy transaction, and the fee payer account. 
 
 For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
@@ -98,8 +108,10 @@ Next step:
   https://berkeley.minaexplorer.com/transaction/<txn-hash>
 ```
 
-After a few minutes, the transaction is included in the next block. To see your changes, search for the address that you used on [berkeley.minaexplorer.com](https://berkeley.minaexplorer.com).
+After a few minutes, the transaction is included in the next block. To see your changes, go to on [berkeley.minaexplorer.com](https://berkeley.minaexplorer.com) and search for the address that you used.
 
 ## Next Steps
+
+More local development and testing! Use Lightnet to test your zkApp locally on an accurate representation of the Mina blockchain. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet).
 
 Now that you've learned how to deploy a smart contract, you can now learn [how to write a UI for your zkApp](how-to-write-a-zkapp-ui).

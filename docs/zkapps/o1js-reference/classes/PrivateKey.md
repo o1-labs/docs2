@@ -32,6 +32,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 - [toJSON](PrivateKey.md#tojson)
 - [toPublicKey](PrivateKey.md#topublickey)
 - [check](PrivateKey.md#check)
+- [empty](PrivateKey.md#empty)
 - [fromBase58](PrivateKey.md#frombase58)
 - [fromBigInt](PrivateKey.md#frombigint)
 - [fromBits](PrivateKey.md#frombits)
@@ -65,7 +66,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:30](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L30)
+[lib/signature.ts:30](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L30)
 
 ## Properties
 
@@ -75,7 +76,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:28](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L28)
+[lib/signature.ts:28](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L28)
 
 ## Methods
 
@@ -99,7 +100,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L160)
+[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L166)
 
 ___
 
@@ -123,7 +124,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L156)
+[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L162)
 
 ___
 
@@ -141,7 +142,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L164)
+[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L170)
 
 ___
 
@@ -159,7 +160,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:95](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L95)
+[lib/signature.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L95)
 
 ___
 
@@ -175,7 +176,7 @@ Convert this [PrivateKey](PrivateKey.md) to a bigint
 
 #### Defined in
 
-[lib/signature.ts:58](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L58)
+[lib/signature.ts:58](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L58)
 
 ___
 
@@ -193,7 +194,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
+[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L158)
 
 ___
 
@@ -211,7 +212,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
+[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L150)
 
 ___
 
@@ -229,7 +230,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
+[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L154)
 
 ___
 
@@ -247,13 +248,13 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:77](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L77)
+[lib/signature.ts:77](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L77)
 
 ___
 
 ### check
 
-▸ `Static` **check**<`T`\>(`this`, `v`): `void`
+▸ `Static` **check**\<`T`\>(`this`, `v`): `void`
 
 #### Type parameters
 
@@ -266,7 +267,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -278,7 +279,31 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:193](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L193)
+[lib/circuit_value.ts:199](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L199)
+
+___
+
+### empty
+
+▸ `Static` **empty**\<`T`\>(): `InstanceType`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
+
+#### Returns
+
+`InstanceType`\<`T`\>
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+
+#### Defined in
+
+[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L254)
 
 ___
 
@@ -302,7 +327,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:86](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L86)
+[lib/signature.ts:86](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L86)
 
 ___
 
@@ -327,7 +352,7 @@ Be careful that you don't use this method to create private keys that were sampl
 
 #### Defined in
 
-[lib/signature.ts:68](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L68)
+[lib/signature.ts:68](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L68)
 
 ___
 
@@ -351,13 +376,13 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:51](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L51)
+[lib/signature.ts:51](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L51)
 
 ___
 
 ### fromFields
 
-▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+▸ `Static` **fromFields**\<`T`\>(`this`, `xs`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -374,7 +399,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -382,13 +407,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
+[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L174)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -405,7 +430,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -413,13 +438,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:226](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L226)
+[lib/circuit_value.ts:232](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L232)
 
 ___
 
 ### fromObject
 
-▸ `Static` **fromObject**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromObject**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -432,11 +457,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `NonMethods`<`InstanceType`<`T`\>\> |
+| `value` | `NonMethods`\<`InstanceType`\<`T`\>\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -444,7 +469,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
+[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L95)
 
 ___
 
@@ -464,7 +489,7 @@ a new [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:41](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L41)
+[lib/signature.ts:41](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L41)
 
 ___
 
@@ -482,7 +507,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
+[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L102)
 
 ___
 
@@ -500,7 +525,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
+[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L124)
 
 ___
 
@@ -525,13 +550,13 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:104](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/signature.ts#L104)
+[lib/signature.ts:104](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L104)
 
 ___
 
 ### toConstant
 
-▸ `Static` **toConstant**<`T`\>(`this`, `t`): `InstanceType`<`T`\>
+▸ `Static` **toConstant**\<`T`\>(`this`, `t`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -544,11 +569,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `t` | `InstanceType`<`T`\> |
+| `t` | `InstanceType`\<`T`\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -556,13 +581,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
+[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L213)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
 
 #### Type parameters
 
@@ -575,7 +600,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -587,13 +612,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
+[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L107)
 
 ___
 
 ### toInput
 
-▸ `Static` **toInput**<`T`\>(`this`, `v`): `HashInput`
+▸ `Static` **toInput**\<`T`\>(`this`, `v`): `HashInput`
 
 #### Type parameters
 
@@ -606,7 +631,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -618,13 +643,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:122](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L122)
+[lib/circuit_value.ts:128](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L128)
 
 ___
 
 ### toJSON
 
-▸ `Static` **toJSON**<`T`\>(`this`, `v`): `any`
+▸ `Static` **toJSON**\<`T`\>(`this`, `v`): `any`
 
 #### Type parameters
 
@@ -637,7 +662,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -649,4 +674,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:215](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L215)
+[lib/circuit_value.ts:221](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L221)

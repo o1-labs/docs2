@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Mina zkApp: 05 Common Types And Functions
 
 This tutorial helps you learn about types you can use when building with o1js. Earlier tutorials mostly use the Field type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
+=======
+# zkApp: 05 Common Types And Functions
+
+This tutorial helps you learn about types you can use when building with o1js. Earlier tutorials mostly use the `Field` type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
+>>>>>>> main
 
 ## Version
 - o1js: **0.15.2**

@@ -21,7 +21,11 @@ keywords:
 
 :::info
 
+<<<<<<< HEAD
 The maximum number of zkApp transactions per block is currently capped at 24. This restriction will be gradually lifted after the Mainnet upgrade.
+=======
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+>>>>>>> main
 
 :::
 
@@ -128,7 +132,7 @@ In the end, the entire transaction is sent to the network as one atomic update. 
 
 ## Creating proofs
 
-Finally, here's how to create zero-knowledge proofs!
+Finally, here's how to create zero knowledge proofs!
 
 ```ts
 await MyContract.compile(); // this might take a while
