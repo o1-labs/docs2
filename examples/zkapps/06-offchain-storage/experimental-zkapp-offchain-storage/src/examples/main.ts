@@ -77,7 +77,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await deploy_txn.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      if (!res.isSuccess) {
+      if (res.status === 'rejected') {
         console.log('error sending transaction (see above)');
       } else {
         console.log(
@@ -196,7 +196,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     const res = await txn1.send();
 
     if (!USE_LOCAL_BLOCKCHAIN) {
-      if (!res.isSuccess) {
+      if (res.status === 'rejected') {
         console.log('error sending transaction (see above)');
       } else {
         console.log(

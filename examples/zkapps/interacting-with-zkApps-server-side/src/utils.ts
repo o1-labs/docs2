@@ -75,7 +75,7 @@ async function deploy(
 
     console.log('Sending the deploy transaction...');
     const res = await transaction.send();
-    if (!res.isSuccess) {
+    if (res.status === 'rejected') {
       console.log('error sending transaction (see above)');
     } else {
       console.log(

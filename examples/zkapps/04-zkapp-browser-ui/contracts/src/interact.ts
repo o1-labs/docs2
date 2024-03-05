@@ -76,7 +76,7 @@ try {
 } catch (err) {
   console.log(err);
 }
-if (sentTx.isSuccess !== undefined) {
+if (sentTx.status === 'pending') {
   console.log(`
 Success! Update transaction sent.
 
