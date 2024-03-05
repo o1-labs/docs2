@@ -26,9 +26,15 @@ Impactful changes related to the major upgrade include:
 
 ## Changed
 
-- [Block Producer Requirements](https://docs.minaprotocol.com//node-operators/block-producer-node/getting-started#block-producer-requirements)
-- [SNARK Worker Requirements](https://docs.minaprotocol.com/node-operators/snark-workers/getting-started)
-- [SNARK Coordinator Requirements](https://docs.minaprotocol.com/node-operators/snark-workers/getting-started#snark-coordinator-requirements)
+- Increased memory and storage requirements for [Block Producers](https://docs.minaprotocol.com/node-operators/block-producer-node/getting-started#block-producer-requirements)
+    - 32 GB of RAM
+    - 64 GB of free storage 
+- Increased memory and storage requirements for [SNARK Workers](https://docs.minaprotocol.com/node-operators/snark-workers/getting-started)
+    - 32 GB of RAM
+    - 64 GB of free storage 
+- Increased memory and storage requirements for [SNARK Coordinators](https://docs.minaprotocol.com/node-operators/snark-workers/getting-started#snark-coordinator-requirements)
+    - 32 GB of RAM
+    - 64 GB of free storage 
 
 ## zkApp Developer Docs
 
