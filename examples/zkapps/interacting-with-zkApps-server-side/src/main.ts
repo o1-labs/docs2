@@ -94,7 +94,7 @@ let pendingTransaction = await transaction.send();
 
 // ----------------------------------------------------
 
-if (!pendingTransaction.isSuccess) {
+if (pendingTransaction.status === 'rejected') {
   console.log('error sending transaction (see above)');
   process.exit(0);
 }

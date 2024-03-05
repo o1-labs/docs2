@@ -73,7 +73,7 @@ export const makeAndSendTransaction = async <State extends ToString>({
 
   console.log('Sending the transaction...');
   const res = await transaction.send();
-  if (!res.isSuccess) {
+  if (res.status === 'rejected') {
     console.log('error sending transaction (see above)');
   } else {
     console.log(
