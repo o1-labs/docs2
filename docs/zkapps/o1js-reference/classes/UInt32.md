@@ -29,6 +29,8 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 ### Methods
 
 - [add](UInt32.md#add)
+- [addMod32](UInt32.md#addmod32)
+- [and](UInt32.md#and)
 - [assertEquals](UInt32.md#assertequals)
 - [assertGreaterThan](UInt32.md#assertgreaterthan)
 - [assertGreaterThanOrEqual](UInt32.md#assertgreaterthanorequal)
@@ -46,12 +48,16 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 - [gt](UInt32.md#gt)
 - [gte](UInt32.md#gte)
 - [isConstant](UInt32.md#isconstant)
+- [leftShift](UInt32.md#leftshift)
 - [lessThan](UInt32.md#lessthan)
 - [lessThanOrEqual](UInt32.md#lessthanorequal)
 - [lt](UInt32.md#lt)
 - [lte](UInt32.md#lte)
 - [mod](UInt32.md#mod)
 - [mul](UInt32.md#mul)
+- [not](UInt32.md#not)
+- [rightShift](UInt32.md#rightshift)
+- [rotate](UInt32.md#rotate)
 - [sub](UInt32.md#sub)
 - [toBigint](UInt32.md#tobigint)
 - [toConstant](UInt32.md#toconstant)
@@ -59,9 +65,11 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 - [toJSON](UInt32.md#tojson)
 - [toString](UInt32.md#tostring)
 - [toUInt64](UInt32.md#touint64)
+- [xor](UInt32.md#xor)
 - [MAXINT](UInt32.md#maxint)
 - [check](UInt32.md#check)
 - [checkConstant](UInt32.md#checkconstant)
+- [empty](UInt32.md#empty)
 - [from](UInt32.md#from)
 - [fromFields](UInt32.md#fromfields)
 - [fromJSON](UInt32.md#fromjson)
@@ -77,21 +85,21 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 
 ### constructor
 
-• **new UInt32**(`...props`)
+• **new UInt32**(`x`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...props` | `any`[] |
+| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt32`](UInt32.md) |
 
-#### Inherited from
+#### Overrides
 
 [CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
 
 #### Defined in
 
-[lib/circuit_value.ts:72](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L72)
+[lib/int.ts:549](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L549)
 
 ## Properties
 
@@ -101,7 +109,7 @@ A 32 bit unsigned integer with values ranging from 0 to 4,294,967,295.
 
 #### Defined in
 
-[lib/int.ts:379](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L379)
+[lib/int.ts:546](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L546)
 
 ___
 
@@ -111,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:380](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L380)
+[lib/int.ts:547](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L547)
 
 ## Accessors
 
@@ -127,7 +135,7 @@ Static method to create a [UInt32](UInt32.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:392](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L392)
+[lib/int.ts:565](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L565)
 
 ___
 
@@ -143,7 +151,7 @@ Static method to create a [UInt32](UInt32.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:385](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L385)
+[lib/int.ts:558](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L558)
 
 ## Methods
 
@@ -165,7 +173,73 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:532](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L532)
+[lib/int.ts:712](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L712)
+
+___
+
+### addMod32
+
+▸ **addMod32**(`y`): [`UInt32`](UInt32.md)
+
+Addition modulo 2^32. Check [addMod32](../modules.md#addmod32) for a detailed description.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | [`UInt32`](UInt32.md) |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+#### Defined in
+
+[lib/int.ts:638](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L638)
+
+___
+
+### and
+
+▸ **and**(`x`): [`UInt32`](UInt32.md)
+
+Bitwise AND gadget on [UInt32](UInt32.md) elements. Equivalent to the [bitwise AND `&` operator in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND).
+The AND gate works by comparing two bits and returning `1` if both bits are `1`, and `0` otherwise.
+
+It can be checked by a double generic gate that verifies the following relationship between the values below.
+
+The generic gate verifies:\
+`a + b = sum` and the conjunction equation `2 * and = sum - xor`\
+Where:\
+`a + b = sum`\
+`a ^ b = xor`\
+`a & b = and`
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#and)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | [`UInt32`](UInt32.md) |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```typescript
+let a = UInt32.from(3);    // ... 000011
+let b = UInt32.from(5);    // ... 000101
+
+let c = a.and(b, 2);    // ... 000001
+c.assertEquals(1);
+```
+
+#### Defined in
+
+[lib/int.ts:883](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L883)
 
 ___
 
@@ -189,7 +263,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:160](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L160)
+[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L167)
 
 ___
 
@@ -212,7 +286,7 @@ Asserts that a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:675](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L675)
+[lib/int.ts:1009](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1009)
 
 ___
 
@@ -235,7 +309,7 @@ Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:708](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L708)
+[lib/int.ts:1042](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1042)
 
 ___
 
@@ -243,12 +317,6 @@ ___
 
 ▸ **assertGt**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertGreaterThan](UInt32.md#assertgreaterthan) instead.
-
-Asserts that a [UInt32](UInt32.md) is greater than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -260,9 +328,15 @@ Asserts that a [UInt32](UInt32.md) is greater than another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertGreaterThan](UInt32.md#assertgreaterthan) instead.
+
+Asserts that a [UInt32](UInt32.md) is greater than another one.
+
 #### Defined in
 
-[lib/int.ts:668](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L668)
+[lib/int.ts:1002](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1002)
 
 ___
 
@@ -270,12 +344,6 @@ ___
 
 ▸ **assertGte**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertGreaterThanOrEqual](UInt32.md#assertgreaterthanorequal) instead.
-
-Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -287,9 +355,15 @@ Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertGreaterThanOrEqual](UInt32.md#assertgreaterthanorequal) instead.
+
+Asserts that a [UInt32](UInt32.md) is greater than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:701](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L701)
+[lib/int.ts:1035](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1035)
 
 ___
 
@@ -312,7 +386,7 @@ Asserts that a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:643](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L643)
+[lib/int.ts:977](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L977)
 
 ___
 
@@ -335,7 +409,7 @@ Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:601](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L601)
+[lib/int.ts:935](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L935)
 
 ___
 
@@ -343,12 +417,6 @@ ___
 
 ▸ **assertLt**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertLessThan](UInt32.md#assertlessthan) instead.
-
-Asserts that a [UInt32](UInt32.md) is less than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -360,9 +428,15 @@ Asserts that a [UInt32](UInt32.md) is less than another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertLessThan](UInt32.md#assertlessthan) instead.
+
+Asserts that a [UInt32](UInt32.md) is less than another one.
+
 #### Defined in
 
-[lib/int.ts:636](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L636)
+[lib/int.ts:970](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L970)
 
 ___
 
@@ -370,12 +444,6 @@ ___
 
 ▸ **assertLte**(`y`, `message?`): `void`
 
-**`Deprecated`**
-
-Use [assertLessThanOrEqual](UInt32.md#assertlessthanorequal) instead.
-
-Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -387,9 +455,15 @@ Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
 
 `void`
 
+**`Deprecated`**
+
+Use [assertLessThanOrEqual](UInt32.md#assertlessthanorequal) instead.
+
+Asserts that a [UInt32](UInt32.md) is less than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:594](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L594)
+[lib/int.ts:928](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L928)
 
 ___
 
@@ -414,7 +488,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:509](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L509)
+[lib/int.ts:689](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L689)
 
 ___
 
@@ -443,7 +517,7 @@ Integer division with remainder.
 
 #### Defined in
 
-[lib/int.ts:467](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L467)
+[lib/int.ts:647](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L647)
 
 ___
 
@@ -467,7 +541,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:156](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L156)
+[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L163)
 
 ___
 
@@ -489,7 +563,7 @@ Checks if a [UInt32](UInt32.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:659](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L659)
+[lib/int.ts:993](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L993)
 
 ___
 
@@ -511,7 +585,7 @@ Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:691](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L691)
+[lib/int.ts:1025](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1025)
 
 ___
 
@@ -519,12 +593,6 @@ ___
 
 ▸ **gt**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [greaterThan](UInt32.md#greaterthan) instead.
-
-Checks if a [UInt32](UInt32.md) is greater than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -535,9 +603,15 @@ Checks if a [UInt32](UInt32.md) is greater than another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [greaterThan](UInt32.md#greaterthan) instead.
+
+Checks if a [UInt32](UInt32.md) is greater than another one.
+
 #### Defined in
 
-[lib/int.ts:652](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L652)
+[lib/int.ts:986](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L986)
 
 ___
 
@@ -545,12 +619,6 @@ ___
 
 ▸ **gte**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [greaterThanOrEqual](UInt32.md#greaterthanorequal) instead.
-
-Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -561,9 +629,15 @@ Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [greaterThanOrEqual](UInt32.md#greaterthanorequal) instead.
+
+Checks if a [UInt32](UInt32.md) is greater than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:684](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L684)
+[lib/int.ts:1018](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L1018)
 
 ___
 
@@ -581,7 +655,44 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:164](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L164)
+[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L171)
+
+___
+
+### leftShift
+
+▸ **leftShift**(`bits`): [`UInt32`](UInt32.md)
+
+Performs a left shift operation on the provided [UInt32](UInt32.md) element.
+This operation is similar to the `<<` shift operation in JavaScript,
+where bits are shifted to the left, and the overflowing bits are discarded.
+
+It’s important to note that these operations are performed considering the big-endian 32-bit representation of the number,
+where the most significant (32th) bit is on the left end and the least significant bit is on the right end.
+
+The operation expects the input to be range checked to 32 bit.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bits` | `number` | Amount of bits to shift the [UInt32](UInt32.md) element to the left. The amount should be between 0 and 32 (or else the shift will fail). |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```ts
+const x = UInt32.from(0b001100); // 12 in binary
+const y = x.leftShift(2); // left shift by 2 bits
+y.assertEquals(0b110000); // 48 in binary
+```
+
+#### Defined in
+
+[lib/int.ts:831](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L831)
 
 ___
 
@@ -603,7 +714,7 @@ Checks if a [UInt32](UInt32.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:627](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L627)
+[lib/int.ts:961](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L961)
 
 ___
 
@@ -625,7 +736,7 @@ Checks if a [UInt32](UInt32.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:571](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L571)
+[lib/int.ts:909](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L909)
 
 ___
 
@@ -633,12 +744,6 @@ ___
 
 ▸ **lt**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [lessThan](UInt32.md#lessthan) instead.
-
-Checks if a [UInt32](UInt32.md) is less than another one.
-
 #### Parameters
 
 | Name | Type |
@@ -649,9 +754,15 @@ Checks if a [UInt32](UInt32.md) is less than another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [lessThan](UInt32.md#lessthan) instead.
+
+Checks if a [UInt32](UInt32.md) is less than another one.
+
 #### Defined in
 
-[lib/int.ts:620](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L620)
+[lib/int.ts:954](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L954)
 
 ___
 
@@ -659,12 +770,6 @@ ___
 
 ▸ **lte**(`y`): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-Use [lessThanOrEqual](UInt32.md#lessthanorequal) instead.
-
-Checks if a [UInt32](UInt32.md) is less than or equal to another one.
-
 #### Parameters
 
 | Name | Type |
@@ -675,9 +780,15 @@ Checks if a [UInt32](UInt32.md) is less than or equal to another one.
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+Use [lessThanOrEqual](UInt32.md#lessthanorequal) instead.
+
+Checks if a [UInt32](UInt32.md) is less than or equal to another one.
+
 #### Defined in
 
-[lib/int.ts:550](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L550)
+[lib/int.ts:892](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L892)
 
 ___
 
@@ -688,7 +799,7 @@ ___
 Integer remainder.
 
 `x.mod(y)` returns the value `z` such that `0 <= z < y` and
-`x - z` is divisble by `y`.
+`x - z` is divisible by `y`.
 
 #### Parameters
 
@@ -702,7 +813,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:518](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L518)
+[lib/int.ts:698](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L698)
 
 ___
 
@@ -724,7 +835,126 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:524](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L524)
+[lib/int.ts:704](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L704)
+
+___
+
+### not
+
+▸ **not**(): [`UInt32`](UInt32.md)
+
+Bitwise NOT gate on [UInt32](UInt32.md) elements. Similar to the [bitwise
+NOT `~` operator in JavaScript](https://developer.mozilla.org/en-US/docs/
+Web/JavaScript/Reference/Operators/Bitwise_NOT).
+
+**Note:** The NOT gate operates over 32 bit for UInt32 types.
+
+A NOT gate works by returning `1` in each bit position if the
+corresponding bit of the operand is `0`, and returning `0` if the
+corresponding bit of the operand is `1`.
+
+NOT is implemented as a subtraction of the input from the all one bitmask.
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#not)
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```ts
+// NOTing 4 bits with the unchecked version
+let a = UInt32.from(0b0101);
+let b = a.not();
+
+console.log(b.toBigInt().toString(2));
+// 11111111111111111111111111111010
+```
+
+#### Defined in
+
+[lib/int.ts:776](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L776)
+
+___
+
+### rightShift
+
+▸ **rightShift**(`bits`): [`UInt32`](UInt32.md)
+
+Performs a left right operation on the provided [UInt32](UInt32.md) element.
+This operation is similar to the `>>` shift operation in JavaScript,
+where bits are shifted to the right, and the overflowing bits are discarded.
+
+It’s important to note that these operations are performed considering the big-endian 32-bit representation of the number,
+where the most significant (32th) bit is on the left end and the least significant bit is on the right end.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bits` | `number` | Amount of bits to shift the [UInt32](UInt32.md) element to the right. The amount should be between 0 and 32 (or else the shift will fail). The operation expects the input to be range checked to 32 bit. |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```ts
+const x = UInt32.from(0b001100); // 12 in binary
+const y = x.rightShift(2); // left shift by 2 bits
+y.assertEquals(0b000011); // 48 in binary
+```
+
+#### Defined in
+
+[lib/int.ts:854](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L854)
+
+___
+
+### rotate
+
+▸ **rotate**(`bits`, `direction?`): [`UInt32`](UInt32.md)
+
+A (left and right) rotation operates similarly to the shift operation (`<<` for left and `>>` for right) in JavaScript,
+with the distinction that the bits are circulated to the opposite end of a 64-bit representation rather than being discarded.
+For a left rotation, this means that bits shifted off the left end reappear at the right end.
+Conversely, for a right rotation, bits shifted off the right end reappear at the left end.
+
+It’s important to note that these operations are performed considering the big-endian 64-bit representation of the number,
+where the most significant (64th) bit is on the left end and the least significant bit is on the right end.
+The `direction` parameter is a string that accepts either `'left'` or `'right'`, determining the direction of the rotation.
+
+To safely use `rotate()`, you need to make sure that the value passed in is range-checked to 64 bits;
+for example, using [rangeCheck64](../modules.md#rangecheck64).
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#rotation)
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `bits` | `number` | `undefined` | amount of bits to rotate this [UInt32](UInt32.md) element with. |
+| `direction` | ``"left"`` \| ``"right"`` | `'left'` | left or right rotation direction. |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```ts
+const x = UInt32.from(0b001100);
+const y = x.rotate(2, 'left');
+const z = x.rotate(2, 'right'); // right rotation by 2 bits
+y.assertEquals(0b110000);
+z.assertEquals(0b000011);
+```
+
+#### Defined in
+
+[lib/int.ts:808](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L808)
 
 ___
 
@@ -746,7 +976,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:540](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L540)
+[lib/int.ts:720](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L720)
 
 ___
 
@@ -762,7 +992,7 @@ Turns the [UInt32](UInt32.md) into a BigInt.
 
 #### Defined in
 
-[lib/int.ts:404](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L404)
+[lib/int.ts:577](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L577)
 
 ___
 
@@ -780,7 +1010,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:152](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L152)
+[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L159)
 
 ___
 
@@ -798,7 +1028,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L144)
+[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L151)
 
 ___
 
@@ -816,7 +1046,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L148)
+[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L155)
 
 ___
 
@@ -832,7 +1062,7 @@ Turns the [UInt32](UInt32.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:398](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L398)
+[lib/int.ts:571](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L571)
 
 ___
 
@@ -848,7 +1078,44 @@ Turns the [UInt32](UInt32.md) into a [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:410](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L410)
+[lib/int.ts:583](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L583)
+
+___
+
+### xor
+
+▸ **xor**(`x`): [`UInt32`](UInt32.md)
+
+Bitwise XOR gadget on [UInt32](UInt32.md) elements. Equivalent to the [bitwise XOR `^` operator in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR).
+A XOR gate works by comparing two bits and returning `1` if two bits differ, and `0` if two bits are equal.
+
+This gadget builds a chain of XOR gates recursively.
+
+You can find more details about the implementation in the [Mina book](https://o1-labs.github.io/proof-systems/specs/kimchi.html?highlight=gates#xor-1)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `x` | [`UInt32`](UInt32.md) | [UInt32](UInt32.md) element to compare. |
+
+#### Returns
+
+[`UInt32`](UInt32.md)
+
+**`Example`**
+
+```ts
+let a = UInt32.from(0b0101);
+let b = UInt32.from(0b0011);
+
+let c = a.xor(b);
+c.assertEquals(0b0110);
+```
+
+#### Defined in
+
+[lib/int.ts:745](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L745)
 
 ___
 
@@ -864,7 +1131,7 @@ Creates a [UInt32](UInt32.md) with a value of 4,294,967,295.
 
 #### Defined in
 
-[lib/int.ts:458](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L458)
+[lib/int.ts:631](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L631)
 
 ___
 
@@ -888,7 +1155,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:415](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L415)
+[lib/int.ts:588](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L588)
 
 ___
 
@@ -908,7 +1175,31 @@ ___
 
 #### Defined in
 
-[lib/int.ts:436](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L436)
+[lib/int.ts:608](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L608)
+
+___
+
+### empty
+
+▸ `Static` **empty**\<`T`\>(): `InstanceType`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyConstructor` |
+
+#### Returns
+
+`InstanceType`\<`T`\>
+
+#### Inherited from
+
+[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+
+#### Defined in
+
+[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L255)
 
 ___
 
@@ -930,13 +1221,13 @@ Creates a new [UInt32](UInt32.md).
 
 #### Defined in
 
-[lib/int.ts:451](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L451)
+[lib/int.ts:623](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L623)
 
 ___
 
 ### fromFields
 
-▸ `Static` **fromFields**<`T`\>(`this`, `xs`): `InstanceType`<`T`\>
+▸ `Static` **fromFields**\<`T`\>(`this`, `xs`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -953,7 +1244,7 @@ ___
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -961,13 +1252,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:168](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L168)
+[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L175)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`T`\>(`x`): `InstanceType`<`T`\>
+▸ `Static` **fromJSON**\<`T`\>(`x`): `InstanceType`\<`T`\>
 
 Decodes a JSON-like object into this structure.
 
@@ -985,7 +1276,7 @@ Decodes a JSON-like object into this structure.
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Overrides
 
@@ -993,13 +1284,13 @@ Decodes a JSON-like object into this structure.
 
 #### Defined in
 
-[lib/int.ts:432](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L432)
+[lib/int.ts:604](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L604)
 
 ___
 
 ### fromObject
 
-▸ `Static` **fromObject**<`T`\>(`this`, `value`): `InstanceType`<`T`\>
+▸ `Static` **fromObject**\<`T`\>(`this`, `value`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -1012,11 +1303,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `value` | `NonMethods`<`InstanceType`<`T`\>\> |
+| `value` | `NonMethods`\<`InstanceType`\<`T`\>\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -1024,7 +1315,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:89](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L89)
+[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L96)
 
 ___
 
@@ -1042,7 +1333,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:96](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L96)
+[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L103)
 
 ___
 
@@ -1060,13 +1351,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L118)
+[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L125)
 
 ___
 
 ### toConstant
 
-▸ `Static` **toConstant**<`T`\>(`this`, `t`): `InstanceType`<`T`\>
+▸ `Static` **toConstant**\<`T`\>(`this`, `t`): `InstanceType`\<`T`\>
 
 #### Type parameters
 
@@ -1079,11 +1370,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `t` | `InstanceType`<`T`\> |
+| `t` | `InstanceType`\<`T`\> |
 
 #### Returns
 
-`InstanceType`<`T`\>
+`InstanceType`\<`T`\>
 
 #### Inherited from
 
@@ -1091,13 +1382,13 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:207](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L207)
+[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L214)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
 
 #### Type parameters
 
@@ -1110,7 +1401,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `v` | `InstanceType`<`T`\> |
+| `v` | `InstanceType`\<`T`\> |
 
 #### Returns
 
@@ -1122,7 +1413,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:101](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L101)
+[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L108)
 
 ___
 
@@ -1146,7 +1437,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:419](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L419)
+[lib/int.ts:591](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L591)
 
 ___
 
@@ -1172,4 +1463,4 @@ Encodes this structure into a JSON-like object.
 
 #### Defined in
 
-[lib/int.ts:425](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/int.ts#L425)
+[lib/int.ts:597](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/int.ts#L597)

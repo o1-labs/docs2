@@ -7,60 +7,16 @@ This module exposes APIs that are unstable, in the sense that the API surface is
 
 ## Table of contents
 
-### Type Aliases
-
-- [Callback](Experimental.md#callback)
-
-### Variables
-
-- [Callback](Experimental.md#callback-1)
-
 ### Functions
 
 - [ZkProgram](Experimental.md#zkprogram)
-- [createChildAccountUpdate](Experimental.md#createchildaccountupdate)
 - [memoizeWitness](Experimental.md#memoizewitness)
-
-## Type Aliases
-
-### Callback
-
-Ƭ **Callback**<`Result`\>: `Callback_`<`Result`\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `Result` |
-
-#### Defined in
-
-[index.ts:108](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L108)
-
-[index.ts:109](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L109)
-
-## Variables
-
-### Callback
-
-• **Callback**: typeof `Callback` = `Experimental_.Callback`
-
-#### Defined in
-
-[index.ts:108](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L108)
-
-[index.ts:109](https://github.com/o1-labs/o1js/blob/5ca4368/src/index.ts#L109)
 
 ## Functions
 
 ### ZkProgram
 
-▸ **ZkProgram**<`StatementType`, `Types`\>(`config`): { `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: (`options?`: { `cache`: [`Cache`](../modules.md#cache-1)  }) => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
-
-**`Deprecated`**
-
-`ZkProgram` has moved out of the Experimental namespace and is now directly available as a top-level import `ZkProgram`.
-The old `Experimental.ZkProgram` API has been deprecated in favor of the new `ZkProgram` top-level import.
+▸ **ZkProgram**\<`StatementType`, `Types`\>(`config`): \{ `analyzeMethods`: () => \{ [I in string \| number \| symbol]: Object } ; `compile`: (`options?`: \{ `cache?`: [`Cache`](../modules.md#cache-1) ; `forceRecompile?`: `boolean`  }) => `Promise`\<\{ `verificationKey`: \{ `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }\> ; `digest`: () => `string` ; `name`: `string` ; `privateInputTypes`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\>["privateInputs"] } ; `publicInputType`: `ProvableOrUndefined`\<`Get`\<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`\<`Get`\<`StatementType`, ``"publicOutput"``\>\> ; `rawMethods`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\>["method"] } ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)\<`InferProvableOrUndefined`\<`Get`\<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`\<`Get`\<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`\<`boolean`\>  } & \{ [I in string \| number \| symbol]: Prover\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\> }
 
 #### Type parameters
 
@@ -73,43 +29,26 @@ The old `Experimental.ZkProgram` API has been deprecated in favor of the new `Zk
 
 | Name | Type |
 | :------ | :------ |
-| `config` | `StatementType` & { `methods`: { [I in string \| number \| symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> } ; `name?`: `string` ; `overrideWrapDomain?`: ``0`` \| ``2`` \| ``1``  } |
+| `config` | `StatementType` & \{ `methods`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\> } ; `name?`: `string` ; `overrideWrapDomain?`: ``0`` \| ``2`` \| ``1``  } |
 
 #### Returns
 
-{ `analyzeMethods`: () => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `unknown` ; `rows`: `number`  }[] ; `compile`: (`options?`: { `cache`: [`Cache`](../modules.md#cache-1)  }) => `Promise`<{ `verificationKey`: `string`  }\> ; `digest`: () => `string` ; `name`: `string` ; `publicInputType`: `ProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\> ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)<`InferProvableOrUndefined`<`Get`<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`<`Get`<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`<`boolean`\>  } & { [I in string \| number \| symbol]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput"\>\>, InferProvableOrVoid<Get<StatementType, "publicOutput"\>\>, Types[I]\> }
+\{ `analyzeMethods`: () => \{ [I in string \| number \| symbol]: Object } ; `compile`: (`options?`: \{ `cache?`: [`Cache`](../modules.md#cache-1) ; `forceRecompile?`: `boolean`  }) => `Promise`\<\{ `verificationKey`: \{ `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }  }\> ; `digest`: () => `string` ; `name`: `string` ; `privateInputTypes`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\>["privateInputs"] } ; `publicInputType`: `ProvableOrUndefined`\<`Get`\<`StatementType`, ``"publicInput"``\>\> ; `publicOutputType`: `ProvableOrVoid`\<`Get`\<`StatementType`, ``"publicOutput"``\>\> ; `rawMethods`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\>["method"] } ; `verify`: (`proof`: [`Proof`](../classes/Proof.md)\<`InferProvableOrUndefined`\<`Get`\<`StatementType`, ``"publicInput"``\>\>, `InferProvableOrVoid`\<`Get`\<`StatementType`, ``"publicOutput"``\>\>\>) => `Promise`\<`boolean`\>  } & \{ [I in string \| number \| symbol]: Prover\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\> }
+
+**`Deprecated`**
+
+`ZkProgram` has moved out of the Experimental namespace and is now directly available as a top-level import `ZkProgram`.
+The old `Experimental.ZkProgram` API has been deprecated in favor of the new `ZkProgram` top-level import.
 
 #### Defined in
 
-[lib/proof_system.ts:1064](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/proof_system.ts#L1064)
-
-___
-
-### createChildAccountUpdate
-
-▸ **createChildAccountUpdate**(`parent`, `childAddress`, `tokenId?`): [`AccountUpdate`](../classes/AccountUpdate.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `parent` | [`AccountUpdate`](../classes/AccountUpdate.md) |
-| `childAddress` | [`PublicKey`](../classes/Types.PublicKey.md) |
-| `tokenId?` | [`Field`](../classes/Field.md) |
-
-#### Returns
-
-[`AccountUpdate`](../classes/AccountUpdate.md)
-
-#### Defined in
-
-[lib/account_update.ts:1703](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/account_update.ts#L1703)
+[lib/proof-system.ts:1092](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L1092)
 
 ___
 
 ### memoizeWitness
 
-▸ **memoizeWitness**<`T`\>(`type`, `compute`): `T`
+▸ **memoizeWitness**\<`T`\>(`type`, `compute`): `T`
 
 Like Provable.witness, but memoizes the witness during transaction construction
 for reuse by the prover. This is needed to witness non-deterministic values.
@@ -124,7 +63,7 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 | `compute` | () => `T` |
 
 #### Returns
@@ -133,4 +72,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:456](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/provable.ts#L456)
+[lib/provable.ts:473](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L473)

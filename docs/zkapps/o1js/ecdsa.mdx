@@ -1,0 +1,126 @@
+---
+title: ECDSA
+hide_title: true
+description: ECDSA in o1js.
+keywords:
+  - smart contracts
+  - zkapp
+  - gadgets
+  - ecdsa
+  - ethereum
+  - signature
+  - o1js
+  - blockchain
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+
+:::
+
+# ECDSA
+
+ECDSA, or Elliptic Curve Digital Signature Algorithm, is a cryptographic algorithm used to sign and verify messages. It is used in many blockchains, including Ethereum, to sign transactions.
+ECDSA works with different elliptic curves. Bitcoin and Ethereum both use the [secp256k1](/glossary#secp256k1) curve.
+
+## Why ECDSA?
+
+To interact with other blockchains and verify data from the outside world, o1js needs to be able to verify signatures.
+ECDSA is a widely used algorithm that is supported by many libraries and tools. For example, Ethereum transactions are signed using ECDSA over the secp256k1 curve.
+As a zkApp developer, when you want to verify an Ethereum transaction and make a statement about it, you must be able to verify the signature of the transaction which is why ECDSA is important for zkApps.
+
+## Basic usage
+
+The ECDSA gadget is used to verify ECDSA signatures. The gadget takes as input the message, the signature, and the public key of the signer. It outputs a `Bool` indicating whether the signature is valid.
+
+Before you can verify a signature, you must initiate the gadget with a curve configuration.
+
+To initiate the curve:
+
+```ts
+// create a secp256k1 curve
+class Secp256k1 extends createForeignCurve(Crypto.CurveParams.Secp256k1) {}
+```
+
+By default, o1js exports a set of predefined curves. You can use the `createForeignCurve` function to create a curve from a `CurveParams` object. The `CurveParams` object contains the parameters of the curve, such as the modulus, the generator, and the parameters `a` and `b` of the curve equation `y^2 = x^3 + ax + b`.
+
+The namespace `Crypto.CurveParams` exports predefined curves, such as `Pallas`, `Vesta`, and `Secp256k1`.
+
+```ts
+// predefined curve parameters
+CurveParams: {
+  Secp256k1: CurveParams;
+  Pallas: CurveParams;
+  Vesta: CurveParams;
+}
+```
+
+This example uses `Secp256k1` as used in Ethereum.
+Now that you have a curve, you can create an instance of the ECDSA gadget:
+
+```ts
+// create an instance of ECDSA over secp256k1, previously specified
+class Ecdsa extends createEcdsa(Secp256k1) {}
+```
+
+Before you can verify a signature, you must create one by signing a message. Messages are of type `Bytes`, see [Bytes - API reference](keccak#bytes---api-reference).
+To sign a message, use the `sign` function of the `Ecdsa` class. Note that signing is not a provable operation, only verifying is.
+
+```ts
+// a private key is a random scalar of secp256k1
+let privateKey = Secp256k1.Scalar.random();
+let publicKey = Secp256k1.generator.scale(privateKey);
+
+// create a message, for a detailed explanation of `Bytes` take a look at the Keccak overview
+let message = Bytes32.fromString('cat');
+
+// sign a message - this is not a provable method!
+let signature = Ecdsa.sign(message.toBytes(), privateKey.toBigInt());
+```
+
+Finally, you can verify the signature using the `verify` method:
+
+```ts
+// verify the signature, returns a Bool indicating whether the signature is valid or not
+let isValid: Bool = signature.verify(message, publicKey);
+```
+
+See the o1js repository for an [example](https://github.com/o1-labs/o1js/tree/main/src/examples/crypto/ecdsa) of how to use ECDSA.
+
+### ECDSA - API reference
+
+```ts
+// create a secp256k1 curve from a set of predefined parameters
+class Secp256k1 extends createForeignCurve(Crypto.CurveParams.Secp256k1) {}
+
+// create an instance of ECDSA over secp256k1
+class Ecdsa extends createEcdsa(Secp256k1) {}
+
+// a private key is a random scalar of secp256k1 - not provable!
+let privateKey = Secp256k1.Scalar.random();
+
+// a public key is a point on the curve
+let publicKey = Secp256k1.generator.scale(privateKey);
+
+// sign an array of bytes - not provable!
+let signature = Ecdsa.sign(bytes, privateKey.toBigInt());
+
+// sign a hash of a message - not provable!
+let signature = Ecdsa.signHash(hash, privateKey.toBigInt());
+
+// verify a signature
+let isValid: Bool = signature.verify(message, publicKey);
+
+// verify a hash of a message
+let isValid: Bool = signature.verifyHash(hash, publicKey);
+
+// create a signature from a hex string
+let signature = Ecdsa.fromHex('6f6d6e69627573206f6e206120636174...');
+
+// create a signature from s and r, which can be of type `AlmostForeignField`, `Field3`, `bigint` or `number`
+let signature = Ecdsa.fromScalars({ r, s });
+
+// convert a signature into a r and s of type bigint
+let { r, s } = signature.toBigInt();
+```

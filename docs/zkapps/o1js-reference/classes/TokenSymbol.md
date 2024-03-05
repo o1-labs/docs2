@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+- \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
 
   ↳ **`TokenSymbol`**
 
@@ -20,16 +20,13 @@
 - [symbol](TokenSymbol.md#symbol)
 - [\_isStruct](TokenSymbol.md#_isstruct)
 - [check](TokenSymbol.md#check)
+- [empty](TokenSymbol.md#empty)
 - [fromFields](TokenSymbol.md#fromfields)
 - [fromJSON](TokenSymbol.md#fromjson)
 - [toAuxiliary](TokenSymbol.md#toauxiliary)
 - [toFields](TokenSymbol.md#tofields)
 - [toInput](TokenSymbol.md#toinput)
 - [toJSON](TokenSymbol.md#tojson)
-
-### Accessors
-
-- [empty](TokenSymbol.md#empty)
 
 ### Methods
 
@@ -56,7 +53,7 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L382)
 
 ## Properties
 
@@ -70,7 +67,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L153)
+[lib/hash.ts:194](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hash.ts#L194)
 
 ___
 
@@ -84,7 +81,7 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:153](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L153)
+[lib/hash.ts:194](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hash.ts#L194)
 
 ___
 
@@ -98,13 +95,13 @@ Struct(TokenSymbolPure).\_isStruct
 
 #### Defined in
 
-[lib/circuit_value.ts:366](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L366)
+[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L382)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`value`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `void`
+▪ `Static` **check**: (`value`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `void`
 
 #### Type declaration
 
@@ -133,13 +130,40 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:97](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L97)
+[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L98)
+
+___
+
+### empty
+
+▪ `Static` **empty**: () => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+
+#### Type declaration
+
+▸ (): `Object`
+
+##### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `field` | [`Field`](Field.md) |
+| `symbol` | `string` |
+
+#### Inherited from
+
+Struct(TokenSymbolPure).empty
+
+#### Defined in
+
+[lib/circuit-value.ts:391](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L391)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -173,13 +197,13 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:78](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L78)
+[snarky.d.ts:79](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L79)
 
 ___
 
 ### fromJSON
 
-▪ `Static` **fromJSON**: (`x`: `string`) => { `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromJSON**: (`x`: `string`) => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -206,13 +230,13 @@ Struct(TokenSymbolPure).fromJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:374](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L374)
+[lib/circuit-value.ts:390](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L390)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`value?`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `any`[]
 
 #### Type declaration
 
@@ -240,13 +264,13 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:66](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L66)
+[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L67)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => [`Field`](Field.md)[]
 
 #### Type declaration
 
@@ -274,13 +298,13 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:57](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L57)
+[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L58)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => { `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
 
 #### Type declaration
 
@@ -309,13 +333,13 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit_value.ts:369](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L369)
+[lib/circuit-value.ts:385](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L385)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: { `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `string`
+▪ `Static` **toJSON**: (`x`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `string`
 
 #### Type declaration
 
@@ -339,26 +363,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit_value.ts:373](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit_value.ts#L373)
-
-## Accessors
-
-### empty
-
-• `Static` `get` **empty**(): `Object`
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `field` | [`Field`](Field.md) |
-| `symbol` | `string` |
-
-#### Defined in
-
-[lib/hash.ts:184](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L184)
+[lib/circuit-value.ts:389](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L389)
 
 ## Methods
 
@@ -378,7 +383,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:188](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/hash.ts#L188)
+[lib/hash.ts:227](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hash.ts#L227)
 
 ___
 
@@ -402,4 +407,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:87](https://github.com/o1-labs/o1js/blob/5ca4368/src/snarky.d.ts#L87)
+[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L88)

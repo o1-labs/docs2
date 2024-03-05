@@ -41,31 +41,27 @@
 
 ### \_main
 
-▪ `Static` **\_main**: `CircuitData`<`any`, `any`\>
+▪ `Static` **\_main**: `CircuitData`\<`any`, `any`\>
 
 #### Defined in
 
-[lib/circuit.ts:14](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L14)
+[lib/circuit.ts:15](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L15)
 
 ___
 
 ### array
 
-▪ `Static` **array**: <A\>(`elementType`: `A`, `length`: `number`) => `InferredProvable`<`A`[]\> = `Provable.Array`
+▪ `Static` **array**: \<A\>(`elementType`: `A`, `length`: `number`) => `InferredProvable`\<`A`[]\> = `Provable.Array`
 
 #### Type declaration
 
-▸ <`A`\>(`elementType`, `length`): `InferredProvable`<`A`[]\>
-
-**`Deprecated`**
-
-use [Array](../modules.md#array)
+▸ \<`A`\>(`elementType`, `length`): `InferredProvable`\<`A`[]\>
 
 ##### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `A` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)<`any`\> |
+| `A` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)\<`any`\> |
 
 ##### Parameters
 
@@ -76,11 +72,15 @@ use [Array](../modules.md#array)
 
 ##### Returns
 
-`InferredProvable`<`A`[]\>
+`InferredProvable`\<`A`[]\>
+
+**`Deprecated`**
+
+use [Array](../modules.md#array)
 
 #### Defined in
 
-[lib/circuit.ts:110](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L110)
+[lib/circuit.ts:111](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L111)
 
 ___
 
@@ -92,10 +92,6 @@ ___
 
 ▸ (`f`): `void`
 
-**`Deprecated`**
-
-use [asProver](../modules.md#asprover)
-
 ##### Parameters
 
 | Name | Type |
@@ -106,23 +102,23 @@ use [asProver](../modules.md#asprover)
 
 `void`
 
+**`Deprecated`**
+
+use [asProver](../modules.md#asprover)
+
 #### Defined in
 
-[lib/circuit.ts:94](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L94)
+[lib/circuit.ts:95](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L95)
 
 ___
 
 ### assertEqual
 
-▪ `Static` **assertEqual**: <T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\>, `x`: `T`, `y`: `T`) => `void`<T\>(`x`: `T`, `y`: `T`) => `void` = `Provable.assertEqual`
+▪ `Static` **assertEqual**: \<T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\>, `x`: `T`, `y`: `T`) => `void`\<T\>(`x`: `T`, `y`: `T`) => `void` = `Provable.assertEqual`
 
 #### Type declaration
 
-▸ <`T`\>(`type`, `x`, `y`): `void`
-
-**`Deprecated`**
-
-use [assertEqual](../modules.md#assertequal)
+▸ \<`T`\>(`type`, `x`, `y`): `void`
 
 ##### Type parameters
 
@@ -134,7 +130,7 @@ use [assertEqual](../modules.md#assertequal)
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 | `x` | `T` |
 | `y` | `T` |
 
@@ -142,11 +138,11 @@ use [assertEqual](../modules.md#assertequal)
 
 `void`
 
-▸ <`T`\>(`x`, `y`): `void`
-
 **`Deprecated`**
 
 use [assertEqual](../modules.md#assertequal)
+
+▸ \<`T`\>(`x`, `y`): `void`
 
 ##### Type parameters
 
@@ -165,23 +161,23 @@ use [assertEqual](../modules.md#assertequal)
 
 `void`
 
+**`Deprecated`**
+
+use [assertEqual](../modules.md#assertequal)
+
 #### Defined in
 
-[lib/circuit.ts:114](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L114)
+[lib/circuit.ts:115](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L115)
 
 ___
 
 ### constraintSystem
 
-▪ `Static` **constraintSystem**: <T\>(`f`: () => `T`) => { `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `T` ; `rows`: `number`  } = `Provable.constraintSystem`
+▪ `Static` **constraintSystem**: \<T\>(`f`: () => `T`) => \{ `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `publicInputSize`: `number` ; `result`: `T` ; `rows`: `number` ; `print`: () => `void` ; `summary`: () => `Partial`\<`Record`\<[`GateType`](../modules.md#gatetype) \| ``"Total rows"``, `number`\>\>  } = `Provable.constraintSystem`
 
 #### Type declaration
 
-▸ <`T`\>(`f`): `Object`
-
-**`Deprecated`**
-
-use [constraintSystem](../modules.md#constraintsystem)
+▸ \<`T`\>(`f`): `Object`
 
 ##### Type parameters
 
@@ -206,24 +202,26 @@ use [constraintSystem](../modules.md#constraintsystem)
 | `publicInputSize` | `number` |
 | `result` | `T` |
 | `rows` | `number` |
+| `print` | () => `void` |
+| `summary` | () => `Partial`\<`Record`\<[`GateType`](../modules.md#gatetype) \| ``"Total rows"``, `number`\>\> |
+
+**`Deprecated`**
+
+use [constraintSystem](../modules.md#constraintsystem)
 
 #### Defined in
 
-[lib/circuit.ts:106](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L106)
+[lib/circuit.ts:107](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L107)
 
 ___
 
 ### equal
 
-▪ `Static` **equal**: <T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\>, `x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1)<T\>(`x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1) = `Provable.equal`
+▪ `Static` **equal**: \<T\>(`type`: [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\>, `x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1)\<T\>(`x`: `T`, `y`: `T`) => [`Bool`](../modules.md#bool-1) = `Provable.equal`
 
 #### Type declaration
 
-▸ <`T`\>(`type`, `x`, `y`): [`Bool`](../modules.md#bool-1)
-
-**`Deprecated`**
-
-use [equal](../modules.md#equal)
+▸ \<`T`\>(`type`, `x`, `y`): [`Bool`](../modules.md#bool-1)
 
 ##### Type parameters
 
@@ -235,7 +233,7 @@ use [equal](../modules.md#equal)
 
 | Name | Type |
 | :------ | :------ |
-| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 | `x` | `T` |
 | `y` | `T` |
 
@@ -243,11 +241,11 @@ use [equal](../modules.md#equal)
 
 [`Bool`](../modules.md#bool-1)
 
-▸ <`T`\>(`x`, `y`): [`Bool`](../modules.md#bool-1)
-
 **`Deprecated`**
 
 use [equal](../modules.md#equal)
+
+▸ \<`T`\>(`x`, `y`): [`Bool`](../modules.md#bool-1)
 
 ##### Type parameters
 
@@ -266,23 +264,23 @@ use [equal](../modules.md#equal)
 
 [`Bool`](../modules.md#bool-1)
 
+**`Deprecated`**
+
+use [equal](../modules.md#equal)
+
 #### Defined in
 
-[lib/circuit.ts:118](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L118)
+[lib/circuit.ts:119](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L119)
 
 ___
 
 ### if
 
-▪ `Static` **if**: <T\>(`condition`: [`Bool`](Bool.md), `type`: [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\>, `x`: `T`, `y`: `T`) => `T`<T\>(`condition`: [`Bool`](Bool.md), `x`: `T`, `y`: `T`) => `T` = `Provable.if`
+▪ `Static` **if**: \<T\>(`condition`: [`Bool`](Bool.md), `type`: [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\>, `x`: `T`, `y`: `T`) => `T`\<T\>(`condition`: [`Bool`](Bool.md), `x`: `T`, `y`: `T`) => `T` = `Provable.if`
 
 #### Type declaration
 
-▸ <`T`\>(`condition`, `type`, `x`, `y`): `T`
-
-**`Deprecated`**
-
-use [if](../modules.md#if)
+▸ \<`T`\>(`condition`, `type`, `x`, `y`): `T`
 
 ##### Type parameters
 
@@ -295,7 +293,7 @@ use [if](../modules.md#if)
 | Name | Type |
 | :------ | :------ |
 | `condition` | [`Bool`](Bool.md) |
-| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `type` | [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 | `x` | `T` |
 | `y` | `T` |
 
@@ -303,11 +301,11 @@ use [if](../modules.md#if)
 
 `T`
 
-▸ <`T`\>(`condition`, `x`, `y`): `T`
-
 **`Deprecated`**
 
 use [if](../modules.md#if)
+
+▸ \<`T`\>(`condition`, `x`, `y`): `T`
 
 ##### Type parameters
 
@@ -327,9 +325,13 @@ use [if](../modules.md#if)
 
 `T`
 
+**`Deprecated`**
+
+use [if](../modules.md#if)
+
 #### Defined in
 
-[lib/circuit.ts:122](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L122)
+[lib/circuit.ts:123](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L123)
 
 ___
 
@@ -341,17 +343,17 @@ ___
 
 ▸ (): `boolean`
 
-**`Deprecated`**
-
-use [inCheckedComputation](../modules.md#incheckedcomputation)
-
 ##### Returns
 
 `boolean`
 
+**`Deprecated`**
+
+use [inCheckedComputation](../modules.md#incheckedcomputation)
+
 #### Defined in
 
-[lib/circuit.ts:134](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L134)
+[lib/circuit.ts:135](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L135)
 
 ___
 
@@ -363,17 +365,17 @@ ___
 
 ▸ (): `boolean`
 
-**`Deprecated`**
-
-use [inProver](../modules.md#inprover)
-
 ##### Returns
 
 `boolean`
 
+**`Deprecated`**
+
+use [inProver](../modules.md#inprover)
+
 #### Defined in
 
-[lib/circuit.ts:130](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L130)
+[lib/circuit.ts:131](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L131)
 
 ___
 
@@ -385,10 +387,6 @@ ___
 
 ▸ (`...args`): `void`
 
-**`Deprecated`**
-
-use [log](../modules.md#log)
-
 ##### Parameters
 
 | Name | Type |
@@ -399,9 +397,13 @@ use [log](../modules.md#log)
 
 `void`
 
+**`Deprecated`**
+
+use [log](../modules.md#log)
+
 #### Defined in
 
-[lib/circuit.ts:138](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L138)
+[lib/circuit.ts:139](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L139)
 
 ___
 
@@ -413,10 +415,6 @@ ___
 
 ▸ (`f`): `void`
 
-**`Deprecated`**
-
-use [runAndCheck](../modules.md#runandcheck)
-
 ##### Parameters
 
 | Name | Type |
@@ -427,9 +425,13 @@ use [runAndCheck](../modules.md#runandcheck)
 
 `void`
 
+**`Deprecated`**
+
+use [runAndCheck](../modules.md#runandcheck)
+
 #### Defined in
 
-[lib/circuit.ts:98](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L98)
+[lib/circuit.ts:99](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L99)
 
 ___
 
@@ -441,10 +443,6 @@ ___
 
 ▸ (`f`): `void`
 
-**`Deprecated`**
-
-use [runUnchecked](../modules.md#rununchecked)
-
 ##### Parameters
 
 | Name | Type |
@@ -455,30 +453,30 @@ use [runUnchecked](../modules.md#rununchecked)
 
 `void`
 
+**`Deprecated`**
+
+use [runUnchecked](../modules.md#rununchecked)
+
 #### Defined in
 
-[lib/circuit.ts:102](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L102)
+[lib/circuit.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L103)
 
 ___
 
 ### switch
 
-▪ `Static` **switch**: <T, A\>(`mask`: [`Bool`](Bool.md)[], `type`: `A`, `values`: `T`[]) => `T` = `Provable.switch`
+▪ `Static` **switch**: \<T, A\>(`mask`: [`Bool`](Bool.md)[], `type`: `A`, `values`: `T`[]) => `T` = `Provable.switch`
 
 #### Type declaration
 
-▸ <`T`, `A`\>(`mask`, `type`, `values`): `T`
-
-**`Deprecated`**
-
-use [switch](../modules.md#switch)
+▸ \<`T`, `A`\>(`mask`, `type`, `values`): `T`
 
 ##### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
-| `A` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `A` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 
 ##### Parameters
 
@@ -492,30 +490,30 @@ use [switch](../modules.md#switch)
 
 `T`
 
+**`Deprecated`**
+
+use [switch](../modules.md#switch)
+
 #### Defined in
 
-[lib/circuit.ts:126](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L126)
+[lib/circuit.ts:127](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L127)
 
 ___
 
 ### witness
 
-▪ `Static` **witness**: <T, S\>(`type`: `S`, `compute`: () => `T`) => `T` = `Provable.witness`
+▪ `Static` **witness**: \<T, S\>(`type`: `S`, `compute`: () => `T`) => `T` = `Provable.witness`
 
 #### Type declaration
 
-▸ <`T`, `S`\>(`type`, `compute`): `T`
-
-**`Deprecated`**
-
-use [witness](../modules.md#witness)
+▸ \<`T`, `S`\>(`type`, `compute`): `T`
 
 ##### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
-| `S` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> = [`FlexibleProvable`](../modules.md#flexibleprovable)<`T`\> |
+| `S` | extends [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> = [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
 
 ##### Parameters
 
@@ -528,17 +526,25 @@ use [witness](../modules.md#witness)
 
 `T`
 
+**`Deprecated`**
+
+use [witness](../modules.md#witness)
+
 #### Defined in
 
-[lib/circuit.ts:90](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L90)
+[lib/circuit.ts:91](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L91)
 
 ## Methods
 
 ### generateKeypair
 
-▸ `Static` **generateKeypair**(): `Promise`<[`Keypair`](Keypair.md)\>
+▸ `Static` **generateKeypair**(): `Promise`\<[`Keypair`](Keypair.md)\>
 
 Generates a proving key and a verification key for this circuit.
+
+#### Returns
+
+`Promise`\<[`Keypair`](Keypair.md)\>
 
 **`Example`**
 
@@ -546,28 +552,17 @@ Generates a proving key and a verification key for this circuit.
 const keypair = await MyCircuit.generateKeypair();
 ```
 
-#### Returns
-
-`Promise`<[`Keypair`](Keypair.md)\>
-
 #### Defined in
 
-[lib/circuit.ts:23](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L23)
+[lib/circuit.ts:24](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L24)
 
 ___
 
 ### prove
 
-▸ `Static` **prove**(`privateInput`, `publicInput`, `keypair`): `Promise`<`Proof`\>
+▸ `Static` **prove**(`privateInput`, `publicInput`, `keypair`): `Promise`\<`Proof`\>
 
 Proves a statement using the private input, public input, and the [Keypair](Keypair.md) of the circuit.
-
-**`Example`**
-
-```ts
-const keypair = await MyCircuit.generateKeypair();
-const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
-```
 
 #### Parameters
 
@@ -579,27 +574,26 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 #### Returns
 
-`Promise`<`Proof`\>
-
-#### Defined in
-
-[lib/circuit.ts:42](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L42)
-
-___
-
-### verify
-
-▸ `Static` **verify**(`publicInput`, `verificationKey`, `proof`): `Promise`<`boolean`\>
-
-Verifies a proof using the public input, the proof, and the initial [Keypair](Keypair.md) of the circuit.
+`Promise`\<`Proof`\>
 
 **`Example`**
 
 ```ts
 const keypair = await MyCircuit.generateKeypair();
 const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
-const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 ```
+
+#### Defined in
+
+[lib/circuit.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L43)
+
+___
+
+### verify
+
+▸ `Static` **verify**(`publicInput`, `verificationKey`, `proof`): `Promise`\<`boolean`\>
+
+Verifies a proof using the public input, the proof, and the initial [Keypair](Keypair.md) of the circuit.
 
 #### Parameters
 
@@ -611,8 +605,16 @@ const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
+
+**`Example`**
+
+```ts
+const keypair = await MyCircuit.generateKeypair();
+const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
+const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
+```
 
 #### Defined in
 
-[lib/circuit.ts:68](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L68)
+[lib/circuit.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L69)

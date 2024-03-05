@@ -18,7 +18,7 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -170,23 +170,23 @@ $ rm src/Add.test.ts
 $ rm src/interact.ts
 ```
 
-1. Create the `CreditScoreOracle.ts` file and generate the corresponding test file:
+1. Create the `OracleExample.ts` file and generate the corresponding test file:
 
 ```sh
-$ zk file CreditScoreOracle
+$ zk file OracleExample
 ```
 
 1. Change `index.ts` to:
 
 ```ts
-import { CreditScoreOracle } from './CreditScoreOracle.js';
+import { OracleExample } from './OracleExample.js';
 
-export { CreditScoreOracle };
+export { OracleExample };
 ```
 
 ### Write the smart contract
 
-Paste the following content into the `/src/CreditScoreOracle.ts` file:
+Paste the following content into the `/src/OracleExample.ts` file:
 
 <!-- prettier-ignore -->
 ```ts
@@ -238,7 +238,7 @@ This completes the basic setup for the smart contract. For details on the `init(
 
 The smart contract stores the public key for the oracle that you retrieve data from as on-chain state. This makes the public key available when end users run the smart contract. The smart contract then uses this public key to verify the signature of the data to confirm it came from the expected source.
 
-In the `/src/CreditScoreOracle.ts` file:
+In the `/src/OracleExample.ts` file:
 
 ```ts
   // Define contract state
@@ -284,11 +284,11 @@ The `verify()` method is defined like any other TypeScript method, except that i
 
 Pass in these arguments:
 
-- `userId`: The id of the user whose credit score is requested is required to prevent bad actors from querying somebody else's data and claiming it as their own.
+- `id`: The id of the user whose credit score is requested is required to prevent bad actors from querying somebody else's data and claiming it as their own.
 - `creditScore`: The credit score of the user that is a number between 350 and 800 (this tutorial uses mock credit scores).
-- `signature`: A cryptographic signature of `userId` and `creditScore`. This is what the smart contract uses to verify that the data was provided by the expected source.
+- `signature`: A cryptographic signature of `id` and `creditScore`. This is what the smart contract uses to verify that the data was provided by the expected source.
 
-The `verify()` method does not return any values or change any contract state. It only emits an `id` event with the user's id if their credit score is above 700.
+The `verify()` method does not return any values or change any contract state. It only emits a `verified` event with the user's id if their credit score is above 700.
 
 ### Fetch the oracle's public key
 
@@ -297,10 +297,10 @@ To get the oracle's public key from the on-chain state, verify the signature of 
 ```ts
 // Get the oracle public key from the contract state
 const oraclePublicKey = this.oraclePublicKey.get();
-this.oraclePublicKey.assertEquals(oraclePublicKey);
+this.oraclePublicKey.requireEquals(oraclePublicKey);
 ```
 
-`assertEquals()` ensures that the public key that is retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
+`requireEquals()` ensures that the public key that is retrieved at execution time is the same as the public key that exists within the zkApp account on the Mina network when the transaction is processed by the network.
 
 ### Verify the signature
 
@@ -311,7 +311,7 @@ To ensure the signature was from our expected source, verify that the signature 
 const validSignature = signature.verify(oraclePublicKey, [id, creditScore]);
 ```
 
-You always want to make it impossible to generate a valid zero-knowledge proof if `validSignature` is false. You can do this with `assertTrue()`. If the signature is invalid, this throws an exception and makes it impossible to generate a valid zero-knowledge proof and transaction.
+You always want to make it impossible to generate a valid zero knowledge proof if `validSignature` is false. You can do this with `assertTrue()`. If the signature is invalid, this throws an exception and makes it impossible to generate a valid zero knowledge proof and transaction.
 
 ```ts
 // Check that the signature is valid
@@ -327,7 +327,7 @@ You want the `verify()` method to emit an event only if the user's credit score 
 creditScore.assertGreaterThanOrEqual(Field(700));
 ```
 
-These assert methods create a constraint that makes it impossible for users to generate a valid zero-knowledge proof unless their condition is met. Without a valid zero-knowledge proof (or a signature) it's impossible to generate a valid Mina transaction. Users can call the smart contract method and send a valid transaction only if they have a valid signature from the expected oracle and a credit score 700 or above.
+These assert methods create a constraint that makes it impossible for users to generate a valid zero knowledge proof unless their condition is met. Without a valid zero knowledge proof (or a signature) it's impossible to generate a valid Mina transaction. Users can call the smart contract method and send a valid transaction only if they have a valid signature from the expected oracle and a credit score 700 or above.
 
 ### Emit a verified event
 
@@ -345,9 +345,9 @@ this.emitEvent('verified', id);
 
 ## Test your smart contract
 
-When you ran the `zk file CreditScoreOracle` command, the zkApp CLI automatically generated a test file called `CreditScoreOracle.test.ts`.
+When you ran the `zk file OracleExample` command, the zkApp CLI automatically generated a test file called `OracleExample.test.ts`.
 
-To add tests, paste the following code in the `CreditScoreOracle.test.ts` file:
+To add tests, paste the following code in the `OracleExample.test.ts` file:
 
 ```ts
 import { OracleExample } from './OracleExample';
@@ -509,7 +509,7 @@ describe('OracleExample', () => {
 
 To run the tests:
 
-1. Save the `CreditScoreOracle.test.ts` file.
+1. Save the `OracleExample.test.ts` file.
 1. Run `npm run test`.
 
 Note that writing a test that calls an API is generally not a best practice, but it's convenient for the sake of this tutorial. You can also mock your HTTP requests.

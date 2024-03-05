@@ -33,8 +33,8 @@ export class WrappedMina extends SmartContract {
       address: this.address,
       amount: UInt64.from(0),
     });
-    // assert that the receiving account is new, so this can be only done once
-    receiver.account.isNew.assertEquals(Bool(true));
+    // require that the receiving account is new, so this can be only done once
+    receiver.account.isNew.requireEquals(Bool(true));
     // pay fees for opened account
     this.balance.subInPlace(Mina.accountCreationFee());
     this.priorMina.set(UInt64.from(0));
@@ -44,12 +44,12 @@ export class WrappedMina extends SmartContract {
 
   @method mintWrappedMina(amount: UInt64, destination: PublicKey) {
     const priorMina = this.priorMina.get();
-    this.priorMina.assertEquals(this.priorMina.get());
+    this.priorMina.requireEquals(this.priorMina.get());
 
     const newMina = amount.add(priorMina);
 
     // TODO is there a way to directly get the balance change for this transaction?
-    this.account.balance.assertBetween(newMina, UInt64.MAXINT());
+    this.account.balance.requireBetween(newMina, UInt64.MAXINT());
 
     this.token.mint({ address: destination, amount });
 
@@ -76,7 +76,7 @@ export class WrappedMina extends SmartContract {
 
     // update priorMina
     const priorMina = this.priorMina.get();
-    this.priorMina.assertEquals(this.priorMina.get());
+    this.priorMina.requireEquals(this.priorMina.get());
     const newMina = priorMina.sub(amount);
     this.priorMina.set(newMina);
   }
@@ -91,7 +91,7 @@ export class WrappedMina extends SmartContract {
     this.token.burn({ address: source, amount });
 
     const priorMina = this.priorMina.get();
-    this.priorMina.assertEquals(this.priorMina.get());
+    this.priorMina.requireEquals(this.priorMina.get());
 
     const newMina = priorMina.sub(amount);
 
@@ -139,7 +139,7 @@ export class WrappedMina extends SmartContract {
   @method getBalance(publicKey: PublicKey): UInt64 {
     let accountUpdate = AccountUpdate.create(publicKey, this.token.id);
     let balance = accountUpdate.account.balance.get();
-    accountUpdate.account.balance.assertEquals(
+    accountUpdate.account.balance.requireEquals(
       accountUpdate.account.balance.get()
     );
     return balance;

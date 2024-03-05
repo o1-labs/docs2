@@ -20,7 +20,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -39,7 +39,7 @@ In this tutorial, you build a smart contract with a piece of private state that 
 
 ## Prerequisites
 
-This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.9.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.11.0`.
+This tutorial has been tested with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -133,7 +133,7 @@ Start by deleting the default files that come with the new project.
   $ touch src/main.ts
   ```
 
-    - The `zk file` command created the `src/IncrementSecret` file and the `src/IncrementSecret.test.ts` test file.
+    - The `zk file` command created the `src/IncrementSecret.ts` file and the `src/IncrementSecret.test.ts` test file.
     - However, this tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works. 
 
 1. Now, open `src/index.ts` in a text editor and change it to look like:
@@ -184,9 +184,9 @@ The smart contract called `IncrementSecret` has one element of on-chain state na
 
 ```ts ignore
 ...
-3 export class IncrementSecret extends SmartContract {
-  @state(Field) x = State<Field>();
-}
+  3 export class IncrementSecret extends SmartContract {
+  4  @state(Field) x = State<Field>();
+  5 }
 ```
 
 This code adds the basic structure for the smart contract. You are familiar with the import and export code from [Tutorial 01: Hello World](hello-world).
@@ -216,7 +216,7 @@ This method updates the state:
   9
  10   @method incrementSecret(salt: Field, secret: Field) {
  11     const x = this.x.get();
- 12     this.x.assertEquals(x);
+ 12     this.x.requireEquals(x);
  13
  14     Poseidon.hash([ salt, secret ]).assertEquals(x);
  15     this.x.set(Poseidon.hash([ salt, secret.add(1) ]));
@@ -256,13 +256,12 @@ The smart contract initialization this time is:
 ...
  24 const salt = Field.random();
 ...
- 33 const deployTxn = await Mina.transaction(deployerAccount, () => {
- 34   AccountUpdate.fundNewAccount(deployerAccount);
- 35   zkAppInstance.deploy();
- 36   zkAppInstance.initState(salt, Field(750));
- 37 });
- 38
- 39 await deployTxn.prove();
+ 28 const deployTxn = await Mina.transaction(deployerAccount, () => {
+ 29   AccountUpdate.fundNewAccount(deployerAccount);
+ 30   zkAppInstance.deploy();
+ 31   zkAppInstance.initState(salt, Field(750));
+ 32 });
+ 33 await deployTxn.prove();
 ...
 ```
 
@@ -272,9 +271,9 @@ This code creates a user transaction to update the on-chain state:
 
 ```ts
 ...
- 47 const txn1 = await Mina.transaction(senderAccount, () => {
- 48   zkAppInstance.incrementSecret(salt, Field(750));
- 49 });
+ 42 const txn1 = await Mina.transaction(senderAccount, () => {
+ 43   zkAppInstance.incrementSecret(salt, Field(750));
+ 44 });
 ...
 ```
 
@@ -293,10 +292,8 @@ $ npm run build && node build/src/main.js
 The output looks something like this:
 
 ```text
-o1js loaded
 state after init: 3116464240601550031577632290308565252747064306168758166756574536757280262269
 state after txn1: 15333363135506653312218020664441564145350761288169575380089681962972642150348
-Shutting down
 ```
 
 The `state` strings are different because `Field.random()` generates the salt.

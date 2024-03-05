@@ -7,7 +7,7 @@ keywords:
   - zkapps
   - mina protocol
   - smart contracts
-  - zero-knowledge proofs
+  - zero knowledge proofs
   - off-chain execution
   - typescript
   - quickstart zkapps
@@ -15,13 +15,13 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
 # zkApps Getting Started
 
-You can start writing zkApps with just a few steps. You can write zkApps for your project in other ways, this Getting Started Guide provides a high-level workflow to build and deploy quickly.
+You can start writing zkApps with just a few steps. The focus of this Getting Started Guide is a high-level workflow to build and deploy quickly.
 
 ## High-Level Workflow
 
@@ -30,7 +30,9 @@ You can start writing zkApps with just a few steps. You can write zkApps for you
 1. [Add testing code](#3-add-testing-code)
 1. [Add functionality](#4-add-functionality)
 1. [Create an integration test](#5-create-an-integration-test)
-1. [Test with a live network](#6-test-with-a-live-network)
+1. [Test locally](#6-test-with-local-simulated-blockchain)
+1. [Test with Lightnet](#7-test-with-lightnet)
+1. [Test with a live network](#8-test-with-a-live-network)
 
 ### 1. Install or update the zkApp CLI
 
@@ -66,14 +68,14 @@ When you use the zkApp CLI to create a project, tests and examples are included.
 
 1. See the `import` statements in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L1-L2) example file.
 
-1. A `LocalBlockchain` instance to interact with is included in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
+1. A simulated `LocalBlockchain` instance you can interact with is included in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
 
-1. In o1js, an array of 10 test accounts to pay fees and sign transactions are provided for the `LocalBlockchain` instance. These can be accessed with `Local.testAccounts` as shown in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file. The example uses the public/private key pairs of two of these accounts. The example uses these names, but the names can be anything:
+1. In o1js, an array of 10 test accounts to pay fees and sign transactions are provided for the simulated `LocalBlockchain` instance. These can be accessed with `Local.testAccounts` as shown in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file. The example uses the public/private key pairs of two of these accounts. The example uses these names, but the names can be anything:
 
     - `deployerAccount` deploys the smart contract
     - `senderAccount` pays transaction fees
 
-1. Deploy the smart contract to the `LocalBlockchain` instance that simulates a network for testing purposes.
+1. Deploy the smart contract to the simulated `LocalBlockchain` instance that simulates a network for testing purposes.
 
     See the `localDeploy` function in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L38-L46) example file.
 
@@ -98,13 +100,52 @@ Add the logic for your smart contract.
     - If it works as expected with no errors, add more functionality.
     - If there are errors, look through the stack traces to find the source of the errors and update the contract to resolve them.
 
-### 5. Create an integration test.
+### 5. Create integration test
 
 - Create a Node.js script to run the smart contract and test it's functionality, similar to step [3. Add testing code](#3-add-testing-code).
 
     For an example, see the Node.js script that runs the Tic Tac Toe smart contract in the [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file.
 
-### 6. Test with a live network
+### 6. Test locally
+
+- [Test zkApps locally](/zkapps/testing-zkapps-locally) with a simulated local blockchain.
+
+### 7. Test with Lightnet
+
+- Use [Lightnet](/zkapps/testing-zkapps-lightnet) to test your zkApp with an accurate representation of Mina blockchain. 
+
+1. Start Lightnet:
+
+    ```sh
+    zk lightnet start
+    ```
+
+    The default settings start a single node that successfully serves the majority of testing requirements.
+
+1. Verify the status of the local blockchain:
+
+    ```sh
+    zk lightnet status
+    ```
+
+1. Communicate with the Mina Accounts-Manager service to fetch account details.
+
+    - Mina Accounts-Manager is deployed to http://localhost:8181/ 
+    - Use HTTP endpoints to acquire, release, list, lock, and unlock accounts
+
+1. Configure your zkApp for Lightnet blockchain. Use the endpoints provided by the `zk lightnet status` command.
+
+    - Deploy name
+    - Set the Mina GraphQL API URL to deploy to: http://localhost:8080/graphql
+    - Set transaction fee to use when deploying (in MINA): 0.1
+
+1. Deploy your zkApp to Lightnet:
+
+    ```sh
+    zk deploy
+    ```
+
+### 8. Test with a live network
 
 To deploy the smart contract to the Testnet, run the `zk` commands from the directory that contains your smart contract. 
 
@@ -116,7 +157,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
 
     Follow the prompts to specify a deploy alias name (can be anything), URL to deploy to, fee (in MINA) to be used when sending your deploy transaction, and the fee payer account. 
 
-    For the Berkeley Testnet, use: <!-- or whatever the ITN is called, let's give that specific information -->
+    For the Berkeley Testnet, use:
  
     - Deploy alias name: `berkeley` 
   
@@ -174,7 +215,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
 
     See the example files:
     - https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/interact.ts
-    - https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/hello_world/run_live.ts
+    - https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/hello-world/run-live.ts
 
 1. Run your script.
 
@@ -184,7 +225,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
     node build/src/interact.js
     ```
 
-1. Keep building and experimenting! After you add features to your contract, repeat [7. Test with a live network](#6-test-with-a-live-network) to test with a live network.
+1. Keep building and experimenting! After you add features to your contract, repeat [7. Test with a live network](#7-test-with-a-live-network) to test with a live network.
 
 ## Learn more
 

@@ -12,14 +12,14 @@
 
 ### Proof
 
-▸ **Proof**<`PublicInputType`, `PublicOutputType`\>(`program`): typeof `ZkProgramProof`
+▸ **Proof**\<`PublicInputType`, `PublicOutputType`\>(`program`): typeof `ZkProgramProof`
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `PublicInputType` | extends [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\> |
-| `PublicOutputType` | extends [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\> |
+| `PublicInputType` | extends [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)\<`any`\> |
+| `PublicOutputType` | extends [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)\<`any`\> |
 
 #### Parameters
 
@@ -36,4 +36,4 @@ typeof `ZkProgramProof`
 
 #### Defined in
 
-[lib/proof_system.ts:902](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/proof_system.ts#L902)
+[lib/proof-system.ts:929](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L929)

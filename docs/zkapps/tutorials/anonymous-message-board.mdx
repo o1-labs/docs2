@@ -2,23 +2,23 @@
 title: 'Example: Anonymous Message Board Tutorial'
 hide_title: true
 sidebar_label: 'Example: Anonymous Message Board'
+description: Steps to design and implement a semi-anonymous messaging protocol.
+keywords:
+  - smart contracts
+  - zkapps
+  - messages
+  - permissions
+  - DAO
+  - mina
 ---
-
-:::info
-
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
-
-:::
 
 # Anonymous Message Board Tutorial
 
-[How to write a zkApp](/zkapps/how-to-write-a-zkapp) provides a high-level overview of everything you need to know to build applications on Mina. 
-
-Now, you can see how to put these ideas into practice as you walk through designing and implementing of a semi-anonymous messaging protocol.
+This example shows you how to put building zkApp ideas into practice as you walk through designing and implementing of a semi-anonymous messaging protocol.
 
 In this tutorial, you build a smart contract that allows users to publish messages semi-anonymously. 
-- The contract will allow a specific set of users to create new messages but will not disclose which user within the set has done so. 
-- This way, people can leverage one aspect of their identity without revealing exactly who they are. 
+- The contract allows a specific set of users to create new messages but does not disclose which user creates the message. 
+- This semi-anonymous messaging leverages one aspect of a person's identity without revealing exactly who they are. 
 
 An example use case for this semi-anonymous contract is to enable a DAO member to make credible statements on behalf of their DAO without revealing their specific individual identity.
 
@@ -34,8 +34,8 @@ $ npm install -g zkapp-cli
 
 This tutorial has been tested with:
 
-- [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.13.0
-- [o1js](https://www.npmjs.com/package/o1js) version 0.13.1
+- [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.17.2
+- [o1js](https://www.npmjs.com/package/o1js) version 0.16.2
 
 ## Create the message-board project
 
@@ -46,9 +46,20 @@ This tutorial has been tested with:
   $ zk project message-board
   ```
 
-  The `zk project` command can scaffold the UI for your project. For this tutorial, select `none`.
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-This command creates a directory with a new project template that is fully set up and ready for local development.
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+  
+The `zk project` command creates a directory with a new project template that is fully set up and ready for local development. Like all zk projects, a git repository is initialized in the project directory. By convention, the `main` branch is the default branch. 
+
+For this tutorial, you run commands from the root of the `message-board` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory. See the included [README](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/anonymous-message-board/README.md) file with usage instructions.
 
 ### Prepare the project
 
@@ -69,21 +80,7 @@ Now that your project is set up, you can open it in your IDE or `cd message-boar
   $ zk file message
   ```
 
-1. Download the `message.ts` file from the examples repository. 
-
-  This tutorial walks you through the `Message` smart contract code already completed in the `src/Square.ts` example file.  
-
-### Copy the example 
-
-This tutorial describes each part of the completed code in the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file. 
-
-1. First, open the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file.
-
-1. Copy the entire contents of the file into your smart contract in the `src/Square.ts` file.
-
-Now you are ready to review the imports in the smart contract. 
-
-1. Review the following:
+1. Copy the entire contents of the [message.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/anonymous-message-board/src/message.ts) example file into your local `message-board/src/message.ts` file. 
 
   ```ts
   import {
@@ -92,19 +89,10 @@ Now you are ready to review the imports in the smart contract.
     state,
     State,
     method,
-    DeployArgs,
-    Permissions,
     PrivateKey,
     PublicKey,
-    isReady,
     Poseidon,
-    Encoding,
   } from 'o1js';
-
-  export { isReady, Field, Encoding };
-
-  // Wait till our o1js instance is ready
-  await isReady;
 
   // These private keys are exported so that experimenting with the contract is
   // easy. Three of them (the Bobs) are used when the contract is deployed to
@@ -128,20 +116,48 @@ Now you are ready to review the imports in the smart contract.
     ),
   };
 
-  export class Add extends SmartContract {
+  export class Message extends SmartContract {
     // On-chain state definitions
+    @state(Field) message = State<Field>();
+    @state(Field) messageHistoryHash = State<Field>();
+    @state(PublicKey) user1 = State<PublicKey>();
+    @state(PublicKey) user2 = State<PublicKey>();
+    @state(PublicKey) user3 = State<PublicKey>();
 
-    @method init() {
+    init() {
       // Define initial values of on-chain state
+      this.user1.set(users['Bob'].toPublicKey());
+      this.user2.set(users['SuperBob'].toPublicKey());
+      this.user3.set(users['MegaBob'].toPublicKey());
+      this.message.set(Field(0));
+      this.messageHistoryHash.set(Field(0));
     }
 
     @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
       // Compute signerPublicKey from signerPrivateKey argument
+      const signerPublicKey = signerPrivateKey.toPublicKey();
+
       // Get approved public keys
+      const user1 = this.user1.get();
+      const user2 = this.user2.get();
+      const user3 = this.user3.get();
+
       // Assert that signerPublicKey is one of the approved public keys
-      // Update on-chain message variable
+      signerPublicKey
+        .equals(user1)
+        .or(signerPublicKey.equals(user2))
+        .or(signerPublicKey.equals(user3))
+        .assertEquals(true);
+
+      // Update on-chain message state
+      this.message.set(message);
+
       // Computer new messageHistoryHash
+      const oldHash = this.messageHistoryHash.get();
+      const newHash = Poseidon.hash([message, oldHash]);
+
       // Update on-chain messageHistoryHash
+      this.messageHistoryHash.set(newHash);
     }
   }
   ```
@@ -154,7 +170,7 @@ This code serves as the scaffolding for the rest of the tutorial and contains a 
   The `@method` decorator tells o1js to:
 
   - Allow users to call this method
-  - Generate a zero-knowledge proof of its execution
+  - Generate a zero knowledge proof (ZKP) of its execution
 
 ### Define on-chain state
 
@@ -166,10 +182,12 @@ For simplicity, this tutorial stores everything on-chain.
 General purpose off-chain storage libraries are appropriate only for development. See [Tutorial 6: Off-Chain Storage](/zkapps/tutorials/offchain-storage).
 :::
 
-In this smart contract, one state variable stores the last message. Another stores the hash of all the previous messages so a frontend can validate message history. Three more state variables can store user public keys. It's possible to store additional public keys by Merkelizing them, but for this tutorial uses three for simplicity.
+In this smart contract, one state variable stores the last message. Another stores the hash of all the previous messages so a frontend can validate message history. Three more state variables can store user public keys. 
+
+It's possible to store additional public keys by Merkelizing them, but for simplicity this tutorial uses only three keys:
 
 ```ts
-export class Add extends SmartContract {
+export class Message extends SmartContract {
   // On-chain state definitions
   @state(Field) message = State<Field>();
   @state(Field) messageHistoryHash = State<Field>();
@@ -180,7 +198,7 @@ export class Add extends SmartContract {
 
 The `@state(Field)` decorator tells o1js that the variable is stored on-chain as a `Field` type.
 
-For practical purposes, the `Field` type is similar to the `uint256` type in Solidity. It can store large integers, and addition, subtraction, and multiplication all work as expected. The only caveats are division and what happens in the event of an overflow. To learn more about finite fields, see [Finite field arithmetic](https://en.wikipedia.org/wiki/Finite_field_arithmetic). It is not required to understand exactly how field arithmetic works for this tutorial. 
+For practical purposes, the `Field` type is similar to the `uint256` type in Solidity. It can store large integers and addition, subtraction, and multiplication all work as expected. The only caveats are division and what happens in the event of an overflow. To learn more about finite fields, see [Finite field arithmetic](https://en.wikipedia.org/wiki/Finite_field_arithmetic). It is not required to understand exactly how field arithmetic works for this tutorial. 
 
 o1js also provides `UInt32`, `UInt64`, and `Int64` types. All o1js types are composed of the `Field` type, including `PublicKey` as shown in the previous example.
 
@@ -189,7 +207,7 @@ o1js also provides `UInt32`, `UInt64`, and `Int64` types. All o1js types are com
 The `init` method is similar to the `constructor` in Solidity. It's where you define any setup that needs to happen before users begin interacting with the contract. In this case, set the public keys of users who can post and initialize `message` and `messageHistoryHash` as zero. The front end interprets the zero value to mean that no messages have been posted yet.
 
 ```ts
-@method init() {
+init() {
   // Define initial values of on-chain state
   this.user1.set(users['Bob'].toPublicKey());
   this.user2.set(users['SuperBob'].toPublicKey());
@@ -206,14 +224,7 @@ The `publishMessage` method allows an approved user to publish a message. The `@
 For this example, pass in `message` and `signerPrivateKey` arguments to check that the user holds a private key associated with one of the three on-chain public keys before allowing them to update the message:
 
 ```ts
-  @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
-    // Compute signerPublicKey from signerPrivateKey argument
-    // Get approved public keys
-    // Assert that signerPublicKey is one of the approved public keys
-    // Update on-chain message state
-    // Computer new messageHistoryHash
-    // Update on-chain messageHistoryHash
-  }
+@method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
 ```
 
 Note that all inputs are private by default and exist only on the user's local machine when the smart contract runs. The Mina network never sees private inputs. 
@@ -222,7 +233,7 @@ The smart contract sends only values that are stored as state to the Mina blockc
 
 ### Compute `signerPublicKey` from `signerPrivateKey`
 
-Now that you have the user's private key, you need to derive the associated public key to check it against the list of approved publishers. Luckily, the `PrivateKey` type in o1js includes a `toPublicKey()` method:
+Now that you have the user's private key, you need to derive the associated public key to check it against the list of approved publishers. The `PrivateKey` type in o1js includes a `toPublicKey()` method:
 
 ```ts
 // Compute signerPublicKey from signerPrivateKey argument
@@ -238,7 +249,7 @@ const user2 = this.user2.get();
 const user3 = this.user3.get();
 ```
 
-Calling the `get()` method tells o1js to retrieve these values from the zkApp account on-chain state. 
+Calling the `get()` method retrieves these values from the zkApp account on-chain state. 
 
 :::note
 o1js uses a single network request to retrieve all on-chain state values simultaneously.
@@ -248,16 +259,16 @@ Finally, check if `signerPublicKey` is equal to one of the allowed public keys c
 
 ```ts
 // Assert that signerPublicKey is one of the approved public keys
-signerPublicKey
-  .equals(user1)
-  .or(signerPublicKey.equals(user2))
-  .or(signerPublicKey.equals(user3))
-  .assertEquals(true);
+  signerPublicKey
+    .equals(user1)
+    .or(signerPublicKey.equals(user2))
+    .or(signerPublicKey.equals(user3))
+    .assertEquals(true);
 ```
 
-Notice that you call the o1js `equals()` and `or()` methods instead of using the JavaScript operators (`===`, and `||`). The built-in o1js methods have the same effect, but they work with o1js types, and their execution can be verified using a zero-knowledge proof.
+Notice the `equals()` and `or()` methods are used instead of the JavaScript operators (`===`, and `||`). The built-in o1js methods have the same effect, but they work with o1js types and their execution can be verified using a zero knowledge proof.
 
-`assertEquals(true)` at the end means that it is impossible to generate a valid proof unless `signerPublicKey` is equal to one of the pre-approved users. The Mina network rejects any transaction sent to a zkApp account that doesn't include a valid zero-knowledge proof for that account. So it is impossible for users to post new messages unless they have a private key associated with one of the three pre-approved public keys.
+`assertEquals(true)` at the end means that a valid proof is not generated unless `signerPublicKey` is equal to one of the pre-approved users. The Mina network rejects any transaction sent to a zkApp account that doesn't include a valid zero knowledge proof for that account. So it is impossible for users to post new messages unless they have a private key associated with one of the three pre-approved public keys.
 
 ### Update `message`
 
@@ -274,7 +285,7 @@ The `set()` method asks the Mina nodes to update the value of their on-chain sta
 
 There's one more thing to do. If you want users to be able to keep track of what has been said, then you need to store a commitment to the message history on-chain. 
 
-There are a few ways to do this, but the simplest is to store a hash of your new `message` and your old `messageHistoryHash` every time you call `publishMessage`:
+There are a few ways to do this, but the simplest way is to store a hash of your new `message` and your old `messageHistoryHash` every time you call `publishMessage`:
 
 ```ts
 // Compute new messageHistoryHash
@@ -293,45 +304,6 @@ $ npm run build
 
 If everything is correct, you see a new `./build` directory where the compiled version of your project lives that you can import into a user interface.
 
-<!--
-
-## Integrating with a User Interface (Coming Soon)
-
-One of the benefits of writing smart contracts in TypeScript, is that the compiled JavaScript and WASM smart contract is easy to [integrate into your website UI](./zkapps/how-to-write-a-zkapp-ui).
-
-We won’t make you write a UI for this tutorial, but we have created a simple command-line interface so you can interact with your smart contract as a user to get a sense of how it works, and experiment with what you have just built. You can clone it from [this](https://github.com/) repository.
-
-```sh
-git clone https://placeholder.com
-cd ./placeholder
-```
-
-Now install your smart contract:
-
-```sh
-npm install ../zk-message
-```
-
-And start the front end:
-
-```sh
-npm run start
-
-Who are you? (Bob, SuperBob, MegaBob, Jack): Bob
-
-What would you like to say? (should only work if you are one of the Bobs): Snarky is a nice sharky.
-
-Message history:
-Snarky is a nice sharky.
-
-Who are you? (Bob, SuperBob, MegaBob, Jack): Jack
-
-What would you like to say? (should only work if you are one of the Bobs): Hello World!
-
-** GNARLY ERROR **
-```
--->
-
 ## Wrapping up
 
 This tutorial gives you a sense of what's possible with o1js. 
@@ -340,12 +312,9 @@ The messaging protocol you built is quite simple but also very powerful. You can
 
 The main point is that o1js makes it easy for you to build things that don't intuitively seem possible.
 
-Zero knowledge proofs open the door to an entirely different way of thinking about the internet.
-
-We are excited to see what people like you will build. 
+Zero knowledge proofs open the door to an entirely different way of thinking about the internet. We are so excited to see what people like you will build. 
 
 Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord.  
-<!-- - To suggest tutorials, submit your ideas in the [o1js/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link). I did a test form response to see if this form response is monitored... awaiting results -->
 
 ## Keep going 
 

@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:144](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L144)
+[lib/circuit.ts:145](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L145)
 
 ## Properties
 
@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:142](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L142)
+[lib/circuit.ts:143](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L143)
 
 ## Methods
 
@@ -52,6 +52,10 @@
 Returns a low-level JSON representation of the [Circuit](Circuit.md) from its [Keypair](Keypair.md):
 a list of gates, each of which represents a row in a table, with certain coefficients and wires to other (row, column) pairs
 
+#### Returns
+
+[`Gate`](../modules.md#gate)[]
+
 **`Example`**
 
 ```ts
@@ -59,13 +63,9 @@ const keypair = await MyCircuit.generateKeypair();
 const json = MyProvable.witnessFromKeypair(keypair);
 ```
 
-#### Returns
-
-[`Gate`](../modules.md#gate)[]
-
 #### Defined in
 
-[lib/circuit.ts:163](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L163)
+[lib/circuit.ts:164](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L164)
 
 ___
 
@@ -79,4 +79,4 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:148](https://github.com/o1-labs/o1js/blob/5ca4368/src/lib/circuit.ts#L148)
+[lib/circuit.ts:149](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L149)
