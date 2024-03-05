@@ -8,9 +8,9 @@ The published docs always contain the most up-to-date content available because 
 
 Because docs are a high-visibility interface with our community and our users, we work hard to deliver content to help you discover, understand, and use the Mina Protocol and o1js. We are a small team working fast to keep up with the documentation demands of a continuously changing product. The documentation is open source and anyone can [contribute to the docs](https://github.com/o1-labs/docs2/blob/main/CONTRIBUTING.md). 
 
-## DevNet Upgrade
+## Devnet Upgrade
 
-(any docs just for DevNet?)
+For Devnet upgrade docs, see [Devnet preview of the Mina Docs](https://docs2-git-major-upgrade-minadocs.vercel.app/).
 
 ## Major Upgrade to Berkeley 
 
