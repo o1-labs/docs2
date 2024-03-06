@@ -16,7 +16,7 @@ Answers to frequently asked questions about Mina Protocol.
 
 ### What language is Mina written in?
 
-The Mina node is written in OCaml. You don't need to know OCaml to write smart contracts for Mina.
+The Mina node is written in OCaml and RUST. You don't need to know OCaml/RUST to write smart contracts for Mina.
 
 ### What language are zkApp smart contracts written in?
 
@@ -24,11 +24,7 @@ Mina's zero knowledge smart contracts (zkApps) are written in TypeScript.
 
 See [How to write a zkApp](/zkapps/how-to-write-a-zkapp).
 
-### How large is the Mina Blockchain?
-
-22 KB
-
-### Given Mina is only 22 KB, where are past transactions stored?
+### Where are past transactions stored?
 
 A Mina node can run with an optional flag to make it an archive node to store historical transactions. Archive nodes are useful for anyone running a service, such as a block explorer. Still, this historical data is not required to verify the current consensus state of the protocol.
 
@@ -50,9 +46,11 @@ Mina's consensus mechanism is an implementation of Ouroboros proof of stake. Due
 
 Yes, check out these block explorers:
 
-- https://minataur.net 
-- https://minaexplorer.com
-- https://minascan.io
+- [Mina Explorer](https://minaexplorer.com/)
+- [MinaScan](https://minascan.io/)
+- [MinaSearch](https://minasearch.com/) (in development by Granola)
+- [Minataur](https://minataur.net/)
+- [Minaverse](https://minaverse.xyz/)
 
 ### How does Mina achieve scalability?
 

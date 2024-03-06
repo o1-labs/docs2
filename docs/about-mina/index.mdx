@@ -16,11 +16,19 @@ Mina is an L1 blockchain based on zero knowledge proofs (ZKP) with smart contrac
 
 ## Why Mina?
 
-Mina Protocol uses zero knowledge proofs to build a more ideal blockchain architecture.
+The Mina Protocol is a native ZK blockchain, but what does this mean? The Mina Protocol is a layer 1 blockchain built to use zero knowledge proofs. The Mina Protocol uses zk-SNARKS.
 
-Early blockchains, like Bitcoin and Ethereum, accumulate data over time and are currently hundreds of gigabytes in size. As time goes on, their blockchains will continue to increase in size. The entire chain history is required to verify the current consensus state of these networks.
+Some advantages of this approach are:
+
+- A succinct blockchain, facilitating decentralisation. The lightweight design allows a node to sync faster and reduces both storage and bandwidth requirements for [node operators](../node-operators).
+- Zero knowledge proofs are used to secure the blockchain. Using recursive zk-Snarks, the blockchain remains a constant size — about 22KB.
+- Client side code execution, zkApps run code on the client, helping to scale blockchian technology. Client side code execution generates zk-SNARKS (proofs) to prove correct execution. Transactions send these proofs to the blockchain and are verified on-chain.    
+
+*** delete me
+Early blockchains, like Bitcoin and Ethereum, accumulate data over time and are currently hundreds of gigabytes / terabytes in size. As time goes on, their blockchains will continue to increase in size. The entire chain history is required to verify the current consensus state of these networks.
 
 With Mina, the blockchain always remains a constant size — about 22KB (the size of a few tweets). It's possible to verify the current consensus state of the protocol using this one recursive, 22KB zero knowledge proof. This means participants can quickly sync and verify the current consensus state of the network.
+*** delete me
 
 Learn more about Mina's unique [protocol architecture](about-mina/protocol-architecture).
 
@@ -32,7 +40,7 @@ Learn more in this video about [zero knowledge proofs](about-mina/what-are-zero-
 
 ## What are zkApps?
 
-Mina's zero knowledge smart contracts are referred to as zkApps. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more.
+Mina's zero-knowledge smart contracts, known as zkApps, offer distinct features, including off-chain proving, extensive off-chain execution capabilities, on-chain verification, privacy for confidential data (private inputs, the default, are not sent to the blockchain), the option to code smart contracts in TypeScript, and additional functionalities.
 
 See [zkApps Overview](/zkapps).
 
