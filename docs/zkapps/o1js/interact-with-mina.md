@@ -457,7 +457,7 @@ The output of `tx.send()` can be used to:
 ```ts
 // send transaction, log transaction hash
 let pendingTx = await tx.send();
-console.log(`Got pending transaction with hash ${pendingTx.hash()}`);
+console.log(`Got pending transaction with hash ${pendingTx.hash}`);
 
 // wait until transaction is included in a block
 await pendingTx.wait();

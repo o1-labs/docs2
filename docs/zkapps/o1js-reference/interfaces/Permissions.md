@@ -48,7 +48,7 @@ Permissions\_.access
 
 #### Defined in
 
-[lib/account_update.ts:236](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L236)
+[lib/account-update.ts:271](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L271)
 
 ___
 
@@ -64,7 +64,7 @@ Permissions\_.editActionState
 
 #### Defined in
 
-[lib/account_update.ts:215](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L215)
+[lib/account-update.ts:250](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L250)
 
 ___
 
@@ -81,7 +81,7 @@ Permissions\_.editState
 
 #### Defined in
 
-[lib/account_update.ts:171](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L171)
+[lib/account-update.ts:203](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L203)
 
 ___
 
@@ -95,7 +95,7 @@ Permissions\_.incrementNonce
 
 #### Defined in
 
-[lib/account_update.ts:224](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L224)
+[lib/account-update.ts:259](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L259)
 
 ___
 
@@ -112,7 +112,7 @@ Permissions\_.receive
 
 #### Defined in
 
-[lib/account_update.ts:183](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L183)
+[lib/account-update.ts:215](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L215)
 
 ___
 
@@ -129,7 +129,7 @@ Permissions\_.send
 
 #### Defined in
 
-[lib/account_update.ts:177](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L177)
+[lib/account-update.ts:209](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L209)
 
 ___
 
@@ -146,7 +146,7 @@ Permissions\_.setDelegate
 
 #### Defined in
 
-[lib/account_update.ts:189](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L189)
+[lib/account-update.ts:221](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L221)
 
 ___
 
@@ -163,7 +163,7 @@ Permissions\_.setPermissions
 
 #### Defined in
 
-[lib/account_update.ts:195](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L195)
+[lib/account-update.ts:227](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L227)
 
 ___
 
@@ -177,7 +177,7 @@ Permissions\_.setTiming
 
 #### Defined in
 
-[lib/account_update.ts:226](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L226)
+[lib/account-update.ts:261](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L261)
 
 ___
 
@@ -194,17 +194,24 @@ Permissions\_.setTokenSymbol
 
 #### Defined in
 
-[lib/account_update.ts:221](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L221)
+[lib/account-update.ts:256](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L256)
 
 ___
 
 ### setVerificationKey
 
-• **setVerificationKey**: [`AuthRequired`](../modules/Types.md#authrequired-1)
+• **setVerificationKey**: `Object`
 
 The Permission corresponding to the ability to set the verification
 key associated with the circuit tied to this account. Effectively
 "upgradeability" of the smart contract.
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `auth` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `txnVersion` | [`UInt32`](../classes/UInt32.md) |
 
 #### Overrides
 
@@ -212,7 +219,7 @@ Permissions\_.setVerificationKey
 
 #### Defined in
 
-[lib/account_update.ts:202](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L202)
+[lib/account-update.ts:234](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L234)
 
 ___
 
@@ -226,7 +233,7 @@ Permissions\_.setVotingFor
 
 #### Defined in
 
-[lib/account_update.ts:225](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L225)
+[lib/account-update.ts:260](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L260)
 
 ___
 
@@ -245,4 +252,4 @@ Permissions\_.setZkappUri
 
 #### Defined in
 
-[lib/account_update.ts:210](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L210)
+[lib/account-update.ts:245](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L245)

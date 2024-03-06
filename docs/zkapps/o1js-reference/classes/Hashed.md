@@ -51,7 +51,6 @@ let value = hashed.unhash();
 
 - [Constructor](Hashed.md#constructor-1)
 - [innerProvable](Hashed.md#innerprovable)
-- [provable](Hashed.md#provable)
 
 ### Methods
 
@@ -82,7 +81,7 @@ let value = hashed.unhash();
 
 #### Defined in
 
-[lib/provable-types/packed.ts:200](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L200)
+[lib/provable-types/packed.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L214)
 
 ## Properties
 
@@ -92,7 +91,7 @@ let value = hashed.unhash();
 
 #### Defined in
 
-[lib/provable-types/packed.ts:171](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L171)
+[lib/provable-types/packed.ts:178](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L178)
 
 ___
 
@@ -102,27 +101,27 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:172](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L172)
+[lib/provable-types/packed.ts:179](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L179)
 
 ___
 
 ### \_innerProvable
 
-▪ `Static` **\_innerProvable**: `undefined` \| `ProvableHashable`\<`any`\>
+▪ `Static` **\_innerProvable**: `undefined` \| [`ProvableHashable`](../modules.md#provablehashable)\<`any`\>
 
 #### Defined in
 
-[lib/provable-types/packed.ts:238](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L238)
+[lib/provable-types/packed.ts:261](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L261)
 
 ___
 
 ### \_provable
 
-▪ `Static` **\_provable**: `undefined` \| `ProvableHashable`\<[`Hashed`](Hashed.md)\<`any`\>\>
+▪ `Static` **\_provable**: `undefined` \| [`ProvableHashable`](../modules.md#provablehashable)\<[`Hashed`](Hashed.md)\<`any`\>\>
 
 #### Defined in
 
-[lib/provable-types/packed.ts:237](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L237)
+[lib/provable-types/packed.ts:260](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L260)
 
 ## Accessors
 
@@ -136,35 +135,21 @@ typeof [`Hashed`](Hashed.md)
 
 #### Defined in
 
-[lib/provable-types/packed.ts:240](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L240)
+[lib/provable-types/packed.ts:263](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L263)
 
 ___
 
 ### innerProvable
 
-• `Static` `get` **innerProvable**(): `ProvableHashable`\<`any`\>
+• `Static` `get` **innerProvable**(): [`ProvableHashable`](../modules.md#provablehashable)\<`any`\>
 
 #### Returns
 
-`ProvableHashable`\<`any`\>
+[`ProvableHashable`](../modules.md#provablehashable)\<`any`\>
 
 #### Defined in
 
-[lib/provable-types/packed.ts:248](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L248)
-
-___
-
-### provable
-
-• `Static` `get` **provable**(): `ProvableHashable`\<[`Hashed`](Hashed.md)\<`any`\>\>
-
-#### Returns
-
-`ProvableHashable`\<[`Hashed`](Hashed.md)\<`any`\>\>
-
-#### Defined in
-
-[lib/provable-types/packed.ts:244](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L244)
+[lib/provable-types/packed.ts:267](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L267)
 
 ## Methods
 
@@ -178,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:232](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L232)
+[lib/provable-types/packed.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L255)
 
 ___
 
@@ -194,7 +179,7 @@ Unwrap a value from its hashed variant.
 
 #### Defined in
 
-[lib/provable-types/packed.ts:220](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L220)
+[lib/provable-types/packed.ts:243](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L243)
 
 ___
 
@@ -214,13 +199,13 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:205](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L205)
+[lib/provable-types/packed.ts:219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L219)
 
 ___
 
 ### create
 
-▸ `Static` **create**\<`T`\>(`type`, `hash?`): typeof [`Hashed`](Hashed.md)
+▸ `Static` **create**\<`T`\>(`type`, `hash?`): typeof [`Hashed`](Hashed.md) & \{ `provable`: [`ProvableHashable`](../modules.md#provablehashable)\<[`Hashed`](Hashed.md)\<`T`\>\>  }
 
 Create a hashed representation of `type`. You can then use `HashedType.hash(x)` to wrap a value in a `Hashed`.
 
@@ -234,24 +219,30 @@ Create a hashed representation of `type`. You can then use `HashedType.hash(x)` 
 
 | Name | Type |
 | :------ | :------ |
-| `type` | `ProvableHashable`\<`T`\> |
+| `type` | [`ProvableHashable`](../modules.md#provablehashable)\<`T`\> |
 | `hash?` | (`t`: `T`) => [`Field`](Field.md) |
 
 #### Returns
 
-typeof [`Hashed`](Hashed.md)
+typeof [`Hashed`](Hashed.md) & \{ `provable`: [`ProvableHashable`](../modules.md#provablehashable)\<[`Hashed`](Hashed.md)\<`T`\>\>  }
 
 #### Defined in
 
-[lib/provable-types/packed.ts:177](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L177)
+[lib/provable-types/packed.ts:184](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L184)
 
 ___
 
 ### hash
 
-▸ `Static` **hash**\<`T`\>(`value`): [`Hashed`](Hashed.md)\<`T`\>
+▸ `Static` **hash**\<`T`\>(`value`, `hash?`): [`Hashed`](Hashed.md)\<`T`\>
 
 Wrap a value, and represent it by its hash in provable code.
+
+```ts
+let hashed = HashedType.hash(value);
+```
+
+Optionally, if you already have the hash, you can pass it in and avoid recomputing it.
 
 #### Type parameters
 
@@ -264,6 +255,7 @@ Wrap a value, and represent it by its hash in provable code.
 | Name | Type |
 | :------ | :------ |
 | `value` | `T` |
+| `hash?` | [`Field`](Field.md) |
 
 #### Returns
 
@@ -271,4 +263,4 @@ Wrap a value, and represent it by its hash in provable code.
 
 #### Defined in
 
-[lib/provable-types/packed.ts:212](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/provable-types/packed.ts#L212)
+[lib/provable-types/packed.ts:232](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L232)

@@ -254,13 +254,13 @@ To send an update transaction, perform the following steps:
 When sending the transaction using `transaction.send()`, an object called `pendingTransaction` is returned and provides information about how the transaction went and waits for inclusion in a block:
 
 ```ts
-if (!pendingTransaction.isSuccess) {
+if (pendingTransaction.status === "rejected") {
   console.log('error sending transaction (see above)');
   process.exit(0);
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash()}
+  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();
@@ -270,9 +270,9 @@ console.log(`updated state! ${await zkapp.num.fetch()}`);
 
 This code uses several functionalities of the pending transaction:
 
-- `pendingTransaction.isSuccess` is a boolean for whether the transaction was successful. Most invalid transactions are immediately rejected by the GraphQL endpoint with `isSuccess === false`.
-- `pendingTransaction.hash()` is the transaction hash that you can use to look up the transaction in a block explorer. If the transaction failed, it returns `undefined`.
-- `pendingTransaction.wait()` is especially useful as it returns a promise that resolves `utils.ts` after the transaction is included in the latest block on the network. This takes several minutes, so you might not want to block the main thread on this in a real application.
+- `pendingTransaction.status indicates the initial processing status of the transaction, with pending signifying that the transaction has been accepted for processing by the network, and rejected indicating that the transaction was immediately deemed invalid and rejected by the GraphQL endpoint.
+- `pendingTransaction.hash` is the transaction hash that you can use to look up the transaction in a block explorer. If the transaction failed, it returns `undefined`.
+- `pendingTransaction.wait()` is especially useful as it returns a promise that resolves whether a transaction is included into a block or rejected. This takes several minutes, so you might not want to block the main thread on this in a real application.
 
 Finally, after the transaction was successfully applied on the Mina blockchain, you can double-check that your state was updated by fetching it again with `zkapp.num.fetch()`.
 

@@ -30,11 +30,11 @@ For the step-by-step tutorial, see [Tutorial 9: Recursion](https://docs.minaprot
 
 5. Run the compiled code:
     ```sh
-    node build/src/main.js
+    node build/src/add.js
     ```
     To run and build the compiled code with a single command:
     ```sh
-    npm run build && node build/src/main.js
+    npm run build && node build/src/add.js
     ```
 
 ## License

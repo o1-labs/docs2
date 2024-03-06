@@ -38,7 +38,7 @@ Key pair
 
 #### Defined in
 
-[lib/fetch.ts:1091](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1091)
+[lib/fetch.ts:816](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L816)
 
 ___
 
@@ -63,7 +63,7 @@ Key pairs list or null if the request failed
 
 #### Defined in
 
-[lib/fetch.ts:1171](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1171)
+[lib/fetch.ts:896](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L896)
 
 ___
 
@@ -89,4 +89,4 @@ Response message from the account manager as string or null if the request faile
 
 #### Defined in
 
-[lib/fetch.ts:1134](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/fetch.ts#L1134)
+[lib/fetch.ts:859](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L859)

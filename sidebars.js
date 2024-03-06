@@ -119,6 +119,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AccountUpdateForest',
+                  label: 'AccountUpdateForest',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AccountUpdateTree',
+                  label: 'AccountUpdateTree',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/AlmostForeignField',
                   label: 'AlmostForeignField',
                 },
@@ -199,6 +209,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/MerkleList',
+                  label: 'MerkleList',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/MerkleListIterator',
+                  label: 'MerkleListIterator',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/MerkleMap',
                   label: 'MerkleMap',
                 },
@@ -264,6 +284,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/TokenAccountUpdateIterator',
+                  label: 'TokenAccountUpdateIterator',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/TokenContract',
+                  label: 'TokenContract',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/TokenSymbol',
                   label: 'TokenSymbol',
                 },
@@ -303,11 +333,6 @@ module.exports = {
               type: 'category',
               label: 'Interfaces',
               items: [
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/Mina.TransactionId',
-                  label: 'Mina.TransactionId',
-                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/interfaces/Permissions',

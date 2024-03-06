@@ -21,16 +21,13 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 - [account](AccountUpdate.md#account)
 - [authorization](AccountUpdate.md#authorization)
 - [body](AccountUpdate.md#body)
-- [children](AccountUpdate.md#children)
 - [currentSlot](AccountUpdate.md#currentslot)
 - [id](AccountUpdate.md#id)
 - [isSelf](AccountUpdate.md#isself)
 - [label](AccountUpdate.md#label)
 - [lazyAuthorization](AccountUpdate.md#lazyauthorization)
 - [network](AccountUpdate.md#network)
-- [parent](AccountUpdate.md#parent)
 - [Actions](AccountUpdate.md#actions)
-- [Layout](AccountUpdate.md#layout)
 - [check](AccountUpdate.md#check)
 - [signingInfo](AccountUpdate.md#signinginfo)
 - [sizeInFields](AccountUpdate.md#sizeinfields)
@@ -40,6 +37,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 ### Accessors
 
 - [balance](AccountUpdate.md#balance)
+- [balanceChange](AccountUpdate.md#balancechange)
 - [publicKey](AccountUpdate.md#publickey)
 - [tokenId](AccountUpdate.md#tokenid)
 - [tokenSymbol](AccountUpdate.md#tokensymbol)
@@ -49,6 +47,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 ### Methods
 
 - [approve](AccountUpdate.md#approve)
+- [extractTree](AccountUpdate.md#extracttree)
 - [hash](AccountUpdate.md#hash)
 - [isDummy](AccountUpdate.md#isdummy)
 - [requireSignature](AccountUpdate.md#requiresignature)
@@ -58,7 +57,6 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 - [toPretty](AccountUpdate.md#topretty)
 - [toPrettyLayout](AccountUpdate.md#toprettylayout)
 - [toPublicInput](AccountUpdate.md#topublicinput)
-- [token](AccountUpdate.md#token)
 - [assertBetween](AccountUpdate.md#assertbetween)
 - [assertEquals](AccountUpdate.md#assertequals)
 - [attachToTransaction](AccountUpdate.md#attachtotransaction)
@@ -82,8 +80,6 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 - [toJSON](AccountUpdate.md#tojson-1)
 - [unlink](AccountUpdate.md#unlink)
 - [witness](AccountUpdate.md#witness)
-- [witnessChildren](AccountUpdate.md#witnesschildren)
-- [witnessTree](AccountUpdate.md#witnesstree)
 
 ## Constructors
 
@@ -102,7 +98,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account_update.ts:686](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L686)
+[lib/account-update.ts:621](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L621)
 
 ## Properties
 
@@ -112,7 +108,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account_update.ts:667](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L667)
+[lib/account-update.ts:613](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L613)
 
 ___
 
@@ -133,7 +129,7 @@ Types.AccountUpdate.authorization
 
 #### Defined in
 
-[lib/account_update.ts:664](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L664)
+[lib/account-update.ts:610](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L610)
 
 ___
 
@@ -147,24 +143,7 @@ Types.AccountUpdate.body
 
 #### Defined in
 
-[lib/account_update.ts:663](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L663)
-
-___
-
-### children
-
-• **children**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `accountUpdates` | [`AccountUpdate`](AccountUpdate.md)[] |
-| `callsType` | \{ `type`: ``"None"``  } \| \{ `type`: ``"Witness"``  } \| \{ `type`: ``"Equals"`` ; `value`: [`Field`](Field.md)  } |
-
-#### Defined in
-
-[lib/account_update.ts:670](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L670)
+[lib/account-update.ts:609](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L609)
 
 ___
 
@@ -174,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:669](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L669)
+[lib/account-update.ts:615](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L615)
 
 ___
 
@@ -184,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:657](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L657)
+[lib/account-update.ts:603](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L603)
 
 ___
 
@@ -194,7 +173,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:682](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L682)
+[lib/account-update.ts:617](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L617)
 
 ___
 
@@ -207,7 +186,7 @@ was created. Can be modified by applications to add richer information.
 
 #### Defined in
 
-[lib/account_update.ts:662](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L662)
+[lib/account-update.ts:608](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L608)
 
 ___
 
@@ -217,7 +196,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:665](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L665)
+[lib/account-update.ts:611](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L611)
 
 ___
 
@@ -227,17 +206,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:668](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L668)
-
-___
-
-### parent
-
-• **parent**: `undefined` \| [`AccountUpdate`](AccountUpdate.md) = `undefined`
-
-#### Defined in
-
-[lib/account_update.ts:680](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L680)
+[lib/account-update.ts:614](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L614)
 
 ___
 
@@ -266,50 +235,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:684](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L684)
-
-___
-
-### Layout
-
-▪ `Static` **Layout**: `Object`
-
-Describes the children of an account update, which are laid out in a tree.
-
-The tree layout is described recursively by using a combination of `AccountUpdate.Layout.NoChildren`, `AccountUpdate.Layout.StaticChildren(...)` and `AccountUpdate.Layout.AnyChildren`.
-- `NoChildren` means an account update that can't have children
-- `AnyChildren` means an account update can have an arbitrary amount of children, which means you can't access those children in your circuit (because the circuit is static).
-- `StaticChildren` means the account update must have a certain static amount of children and expects as arguments a description of each of those children.
-  As a shortcut, you can also pass `StaticChildren` a number, which means it has that amount of children but no grandchildren.
-
-This is best understood by examples:
-
-```ts
-let { NoChildren, AnyChildren, StaticChildren } = AccounUpdate.Layout;
-
-NoChildren                 // an account update with no children
-AnyChildren                // an account update with arbitrary children
-StaticChildren(NoChildren) // an account update with 1 child, which doesn't have children itself
-StaticChildren(1)          // shortcut for StaticChildren(NoChildren)
-StaticChildren(2)          // shortcut for StaticChildren(NoChildren, NoChildren)
-StaticChildren(0)          // equivalent to NoChildren
-
-// an update with 2 children, of which one has arbitrary children and the other has exactly 1 descendant
-StaticChildren(AnyChildren, StaticChildren(1))
-```
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `AnyChildren` | ``"AnyChildren"`` |
-| `NoChildren` | `number` |
-| `NoDelegation` | ``"NoDelegation"`` |
-| `StaticChildren` | (`n`: `number`) => `AccountUpdatesLayout`(...`args`: `AccountUpdatesLayout`[]) => `AccountUpdatesLayout` |
-
-#### Defined in
-
-[lib/account_update.ts:1425](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1425)
+[lib/account-update.ts:619](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L619)
 
 ___
 
@@ -333,7 +259,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1309](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1309)
+[lib/account-update.ts:1156](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1156)
 
 ___
 
@@ -343,7 +269,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1016](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1016)
+[lib/account-update.ts:866](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L866)
 
 ___
 
@@ -361,7 +287,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1285](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1285)
+[lib/account-update.ts:1143](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1143)
 
 ___
 
@@ -385,7 +311,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1286](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1286)
+[lib/account-update.ts:1144](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1144)
 
 ___
 
@@ -409,7 +335,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1305](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1305)
+[lib/account-update.ts:1152](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1152)
 
 ## Accessors
 
@@ -428,7 +354,37 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:877](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L877)
+[lib/account-update.ts:720](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L720)
+
+___
+
+### balanceChange
+
+• `get` **balanceChange**(): [`Int64`](Int64.md)
+
+#### Returns
+
+[`Int64`](Int64.md)
+
+#### Defined in
+
+[lib/account-update.ts:735](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L735)
+
+• `set` **balanceChange**(`x`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `x` | [`Int64`](Int64.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[lib/account-update.ts:738](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L738)
 
 ___
 
@@ -442,7 +398,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:960](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L960)
+[lib/account-update.ts:810](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L810)
 
 ___
 
@@ -456,7 +412,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:817](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L817)
+[lib/account-update.ts:650](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L650)
 
 ___
 
@@ -478,7 +434,7 @@ use `this.account.tokenSymbol`
 
 #### Defined in
 
-[lib/account_update.ts:824](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L824)
+[lib/account-update.ts:657](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L657)
 
 ___
 
@@ -496,9 +452,9 @@ ___
 | `delegate` | \{ `isSome`: [`Bool`](Bool.md) ; `value`: [`PublicKey`](Types.PublicKey.md)  } |
 | `delegate.isSome` | [`Bool`](Bool.md) |
 | `delegate.value` | [`PublicKey`](Types.PublicKey.md) |
-| `permissions` | \{ `isSome`: [`Bool`](Bool.md) ; `value`: \{ `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  }  } |
+| `permissions` | \{ `isSome`: [`Bool`](Bool.md) ; `value`: \{ `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: \{ `auth`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `txnVersion`: [`UInt32`](UInt32.md)  } ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  }  } |
 | `permissions.isSome` | [`Bool`](Bool.md) |
-| `permissions.value` | \{ `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  } |
+| `permissions.value` | \{ `access`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editActionState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `editState`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `incrementNonce`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `receive`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `send`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setDelegate`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setPermissions`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTiming`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setTokenSymbol`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setVerificationKey`: \{ `auth`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `txnVersion`: [`UInt32`](UInt32.md)  } ; `setVotingFor`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `setZkappUri`: [`AuthRequired`](../modules/Types.md#authrequired-1)  } |
 | `permissions.value.access` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `permissions.value.editActionState` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `permissions.value.editState` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
@@ -509,7 +465,9 @@ ___
 | `permissions.value.setPermissions` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `permissions.value.setTiming` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `permissions.value.setTokenSymbol` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
-| `permissions.value.setVerificationKey` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setVerificationKey` | \{ `auth`: [`AuthRequired`](../modules/Types.md#authrequired-1) ; `txnVersion`: [`UInt32`](UInt32.md)  } |
+| `permissions.value.setVerificationKey.auth` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
+| `permissions.value.setVerificationKey.txnVersion` | [`UInt32`](UInt32.md) |
 | `permissions.value.setVotingFor` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `permissions.value.setZkappUri` | [`AuthRequired`](../modules/Types.md#authrequired-1) |
 | `timing` | \{ `isSome`: [`Bool`](Bool.md) ; `value`: \{ `cliffAmount`: [`UInt64`](UInt64.md) ; `cliffTime`: [`UInt32`](UInt32.md) ; `initialMinimumBalance`: [`UInt64`](UInt64.md) ; `vestingIncrement`: [`UInt64`](UInt64.md) ; `vestingPeriod`: [`UInt32`](UInt32.md)  }  } |
@@ -541,7 +499,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:892](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L892)
+[lib/account-update.ts:742](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L742)
 
 ___
 
@@ -571,23 +529,28 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1439](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1439)
+[lib/account-update.ts:1181](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1181)
 
 ## Methods
 
 ### approve
 
-▸ **approve**(`childUpdate`, `layout?`): `void`
+▸ **approve**(`child`): `void`
 
-Makes an [AccountUpdate](AccountUpdate.md) a child-[AccountUpdate](AccountUpdate.md) of this and
-approves it.
+Makes another [AccountUpdate](AccountUpdate.md) a child of this one.
+
+The parent-child relationship means that the child becomes part of the "statement"
+of the parent, and goes into the commitment that is authorized by either a signature
+or a proof.
+
+For a proof in particular, child account updates are contained in the public input
+of the proof that authorizes the parent account update.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `childUpdate` | [`AccountUpdate`](AccountUpdate.md) | `undefined` |
-| `layout` | `AccountUpdatesLayout` | `AccountUpdate.Layout.NoChildren` |
+| Name | Type |
+| :------ | :------ |
+| `child` | [`AccountUpdate`](AccountUpdate.md) \| [`AccountUpdateTree`](AccountUpdateTree.md) \| [`AccountUpdateForest`](AccountUpdateForest.md) |
 
 #### Returns
 
@@ -595,7 +558,21 @@ approves it.
 
 #### Defined in
 
-[lib/account_update.ts:869](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L869)
+[lib/account-update.ts:708](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L708)
+
+___
+
+### extractTree
+
+▸ **extractTree**(): [`AccountUpdateTree`](AccountUpdateTree.md)
+
+#### Returns
+
+[`AccountUpdateTree`](AccountUpdateTree.md)
+
+#### Defined in
+
+[lib/account-update.ts:982](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L982)
 
 ___
 
@@ -609,7 +586,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1076](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1076)
+[lib/account-update.ts:921](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L921)
 
 ___
 
@@ -623,7 +600,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1131](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1131)
+[lib/account-update.ts:1000](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1000)
 
 ___
 
@@ -651,7 +628,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account_update.ts:979](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L979)
+[lib/account-update.ts:829](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L829)
 
 ___
 
@@ -673,7 +650,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:834](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L834)
+[lib/account-update.ts:667](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L667)
 
 ___
 
@@ -697,7 +674,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:985](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L985)
+[lib/account-update.ts:835](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L835)
 
 ___
 
@@ -711,7 +688,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1065](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1065)
+[lib/account-update.ts:910](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L910)
 
 ___
 
@@ -728,27 +705,34 @@ default [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account_update.ts:1471](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1471)
+[lib/account-update.ts:1213](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1213)
 
 ___
 
 ### toPrettyLayout
 
-▸ **toPrettyLayout**(): `string`
+▸ **toPrettyLayout**(): `void`
 
 #### Returns
 
-`string`
+`void`
 
 #### Defined in
 
-[lib/account_update.ts:1099](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1099)
+[lib/account-update.ts:976](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L976)
 
 ___
 
 ### toPublicInput
 
-▸ **toPublicInput**(): [`ZkappPublicInput`](../modules.md#zkapppublicinput-1)
+▸ **toPublicInput**(`«destructured»`): [`ZkappPublicInput`](../modules.md#zkapppublicinput-1)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `«destructured»` | `Object` |
+| › `accountUpdates` | [`AccountUpdate`](AccountUpdate.md)[] |
 
 #### Returns
 
@@ -756,30 +740,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1093](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1093)
-
-___
-
-### token
-
-▸ **token**(): `Object`
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `id` | [`Field`](Field.md) |
-| `parentTokenId` | [`Field`](Field.md) |
-| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
-| `burn` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `mint` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `send` | (`__namedParameters`: \{ `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-
-#### Defined in
-
-[lib/account_update.ts:723](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L723)
+[lib/account-update.ts:946](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L946)
 
 ___
 
@@ -809,7 +770,7 @@ Constrain a property to lie between lower and upper bounds.
 
 #### Defined in
 
-[lib/account_update.ts:920](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L920)
+[lib/account-update.ts:770](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L770)
 
 ___
 
@@ -838,7 +799,7 @@ Fix a property to a certain value.
 
 #### Defined in
 
-[lib/account_update.ts:947](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L947)
+[lib/account-update.ts:797](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L797)
 
 ___
 
@@ -861,7 +822,7 @@ Attach account update to the current transaction
 
 #### Defined in
 
-[lib/account_update.ts:1175](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1175)
+[lib/account-update.ts:1044](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1044)
 
 ___
 
@@ -883,7 +844,7 @@ Clones the [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account_update.ts:704](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L704)
+[lib/account-update.ts:636](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L636)
 
 ___
 
@@ -910,7 +871,7 @@ becomes part of the proof.
 
 #### Defined in
 
-[lib/account_update.ts:1156](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1156)
+[lib/account-update.ts:1025](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1025)
 
 ___
 
@@ -945,7 +906,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account_update.ts:1222](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1222)
+[lib/account-update.ts:1080](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1080)
 
 ▸ `Static` **createSigned**(`signer`, `tokenId?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -966,7 +927,7 @@ in favor of calling this function with a `PublicKey` as `signer`
 
 #### Defined in
 
-[lib/account_update.ts:1226](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1226)
+[lib/account-update.ts:1084](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1084)
 
 ___
 
@@ -987,7 +948,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1123](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1123)
+[lib/account-update.ts:992](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L992)
 
 ___
 
@@ -1008,7 +969,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1135](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1135)
+[lib/account-update.ts:1004](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1004)
 
 ___
 
@@ -1022,7 +983,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1126](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1126)
+[lib/account-update.ts:995](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L995)
 
 ___
 
@@ -1036,7 +997,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1144](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1144)
+[lib/account-update.ts:1013](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1013)
 
 ___
 
@@ -1050,7 +1011,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1306](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1306)
+[lib/account-update.ts:1153](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1153)
 
 ___
 
@@ -1071,7 +1032,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1310](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1310)
+[lib/account-update.ts:1157](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1157)
 
 ___
 
@@ -1091,7 +1052,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1071](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1071)
+[lib/account-update.ts:916](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L916)
 
 ___
 
@@ -1120,7 +1081,7 @@ they [AccountUpdate](AccountUpdate.md) for the account which pays the fee
 
 #### Defined in
 
-[lib/account_update.ts:1254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1254)
+[lib/account-update.ts:1112](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1112)
 
 ▸ `Static` **fundNewAccount**(`feePayer`, `options?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -1146,7 +1107,7 @@ feePayerUpdate.send({ to: receiverAddress, amount: initialBalance });
 
 #### Defined in
 
-[lib/account_update.ts:1266](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1266)
+[lib/account-update.ts:1124](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1124)
 
 ___
 
@@ -1166,7 +1127,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1012](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1012)
+[lib/account-update.ts:862](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L862)
 
 ___
 
@@ -1191,7 +1152,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1021](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1021)
+[lib/account-update.ts:871](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L871)
 
 ___
 
@@ -1216,7 +1177,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1029](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1029)
+[lib/account-update.ts:879](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L879)
 
 ___
 
@@ -1243,7 +1204,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:896](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L896)
+[lib/account-update.ts:746](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L746)
 
 ___
 
@@ -1264,13 +1225,13 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1003](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1003)
+[lib/account-update.ts:853](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L853)
 
 ___
 
 ### toAuxiliary
 
-▸ `Static` **toAuxiliary**(`a?`): (`any`[] \| \{ `children`: \{ `accountUpdates`: [`AccountUpdate`](AccountUpdate.md)[] ; `callsType`: \{ `type`: ``"None"``  } \| \{ `type`: ``"Witness"``  } \| \{ `type`: ``"Equals"`` ; `value`: [`Field`](Field.md)  }  } ; `id`: `number` ; `label`: `string` ; `lazyAuthorization`: `undefined` \| `LazySignature` \| `LazyProof` \| `LazyNone` ; `parent`: `undefined` \| [`AccountUpdate`](AccountUpdate.md)  })[]
+▸ `Static` **toAuxiliary**(`a?`): (`any`[] \| \{ `id`: `number` ; `label`: `string` ; `lazyAuthorization`: `undefined` \| `LazySignature` \| `LazyProof` \| `LazyNone`  })[]
 
 #### Parameters
 
@@ -1280,11 +1241,11 @@ ___
 
 #### Returns
 
-(`any`[] \| \{ `children`: \{ `accountUpdates`: [`AccountUpdate`](AccountUpdate.md)[] ; `callsType`: \{ `type`: ``"None"``  } \| \{ `type`: ``"Witness"``  } \| \{ `type`: ``"Equals"`` ; `value`: [`Field`](Field.md)  }  } ; `id`: `number` ; `label`: `string` ; `lazyAuthorization`: `undefined` \| `LazySignature` \| `LazyProof` \| `LazyNone` ; `parent`: `undefined` \| [`AccountUpdate`](AccountUpdate.md)  })[]
+(`any`[] \| \{ `id`: `number` ; `label`: `string` ; `lazyAuthorization`: `undefined` \| `LazySignature` \| `LazyProof` \| `LazyNone`  })[]
 
 #### Defined in
 
-[lib/account_update.ts:1287](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1287)
+[lib/account-update.ts:1145](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1145)
 
 ___
 
@@ -1304,7 +1265,7 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1068](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1068)
+[lib/account-update.ts:913](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L913)
 
 ___
 
@@ -1326,7 +1287,7 @@ Disattach an account update from where it's currently located in the transaction
 
 #### Defined in
 
-[lib/account_update.ts:1195](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1195)
+[lib/account-update.ts:1061](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1061)
 
 ___
 
@@ -1360,65 +1321,4 @@ ___
 
 #### Defined in
 
-[lib/account_update.ts:1318](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1318)
-
-___
-
-### witnessChildren
-
-▸ `Static` **witnessChildren**(`accountUpdate`, `childLayout`, `options?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) |
-| `childLayout` | `AccountUpdatesLayout` |
-| `options?` | `Object` |
-| `options.skipCheck` | `boolean` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[lib/account_update.ts:1334](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1334)
-
-___
-
-### witnessTree
-
-▸ `Static` **witnessTree**\<`T`\>(`resultType`, `childLayout`, `compute`, `options?`): `Object`
-
-Like AccountUpdate.witness, but lets you specify a layout for the
-accountUpdate's children, which also get witnessed
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `resultType` | [`FlexibleProvable`](../modules.md#flexibleprovable)\<`T`\> |
-| `childLayout` | `AccountUpdatesLayout` |
-| `compute` | () => \{ `accountUpdate`: [`AccountUpdate`](AccountUpdate.md) ; `result`: `T`  } |
-| `options?` | `Object` |
-| `options.skipCheck` | `boolean` |
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) |
-| `result` | `T` |
-
-#### Defined in
-
-[lib/account_update.ts:1380](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/account_update.ts#L1380)
+[lib/account-update.ts:1165](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1165)
