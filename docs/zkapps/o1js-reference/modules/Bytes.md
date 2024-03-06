@@ -36,7 +36,7 @@ Inputs smaller than `this.size` are padded with zero bytes.
 
 #### Defined in
 
-[lib/provable-types/provable-types.ts:19](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L19)
+[lib/provable-types/provable-types.ts:19](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L19)
 
 ___
 
@@ -64,7 +64,7 @@ Inputs smaller than `this.size` are padded with zero bytes.
 
 #### Defined in
 
-[lib/provable-types/provable-types.ts:20](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L20)
+[lib/provable-types/provable-types.ts:20](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L20)
 
 ___
 
@@ -92,4 +92,4 @@ Inputs smaller than `this.size` are padded with zero bytes.
 
 #### Defined in
 
-[lib/provable-types/provable-types.ts:21](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L21)
+[lib/provable-types/provable-types.ts:21](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L21)

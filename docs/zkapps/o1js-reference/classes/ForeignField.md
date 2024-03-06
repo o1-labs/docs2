@@ -71,7 +71,7 @@ let x = new ForeignField(5);
 
 #### Defined in
 
-[lib/foreign-field.ts:96](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L96)
+[lib/foreign-field.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L96)
 
 ## Properties
 
@@ -83,7 +83,7 @@ The internal representation of a foreign field element, as a tuple of 3 limbs.
 
 #### Defined in
 
-[lib/foreign-field.ts:50](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L50)
+[lib/foreign-field.ts:50](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L50)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:28](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L28)
+[lib/foreign-field.ts:28](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L28)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:29](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L29)
+[lib/foreign-field.ts:29](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L29)
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:399](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L399)
+[lib/foreign-field.ts:399](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L399)
 
 ___
 
@@ -125,7 +125,7 @@ Sibling classes that represent different ranges of field elements.
 
 #### Defined in
 
-[lib/foreign-field.ts:59](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L59)
+[lib/foreign-field.ts:59](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L59)
 
 ## Accessors
 
@@ -139,7 +139,7 @@ typeof [`ForeignField`](ForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:52](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L52)
+[lib/foreign-field.ts:52](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L52)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:40](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L40)
+[lib/foreign-field.ts:40](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L40)
 
 ___
 
@@ -169,7 +169,7 @@ typeof [`AlmostForeignField`](AlmostForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:77](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L77)
+[lib/foreign-field.ts:77](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L77)
 
 ___
 
@@ -212,7 +212,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:32](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L32)
+[lib/foreign-field.ts:32](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L32)
 
 ___
 
@@ -228,7 +228,7 @@ typeof [`CanonicalForeignField`](CanonicalForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:84](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L84)
+[lib/foreign-field.ts:84](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L84)
 
 ___
 
@@ -244,7 +244,7 @@ typeof `UnreducedForeignField`
 
 #### Defined in
 
-[lib/foreign-field.ts:70](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L70)
+[lib/foreign-field.ts:70](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L70)
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:36](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L36)
+[lib/foreign-field.ts:36](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L36)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:404](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L404)
+[lib/foreign-field.ts:404](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L404)
 
 ___
 
@@ -288,7 +288,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L43)
+[lib/foreign-field.ts:43](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L43)
 
 ## Methods
 
@@ -316,7 +316,7 @@ x.add(2); // x + 2 mod p
 
 #### Defined in
 
-[lib/foreign-field.ts:208](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L208)
+[lib/foreign-field.ts:208](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L208)
 
 ___
 
@@ -342,7 +342,7 @@ ensuring validity of all our non-native field arithmetic methods.
 
 #### Defined in
 
-[lib/foreign-field.ts:163](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L163)
+[lib/foreign-field.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L163)
 
 ___
 
@@ -361,7 +361,7 @@ Returns the field element as a [CanonicalForeignField](CanonicalForeignField.md)
 
 #### Defined in
 
-[lib/foreign-field.ts:194](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L194)
+[lib/foreign-field.ts:194](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L194)
 
 ___
 
@@ -400,7 +400,7 @@ xChecked satisfies CanonicalForeignField;
 
 #### Defined in
 
-[lib/foreign-field.ts:286](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L286)
+[lib/foreign-field.ts:286](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L286)
 
 ▸ **assertEquals**(`y`, `message?`): [`AlmostForeignField`](AlmostForeignField.md)
 
@@ -417,7 +417,7 @@ xChecked satisfies CanonicalForeignField;
 
 #### Defined in
 
-[lib/foreign-field.ts:290](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L290)
+[lib/foreign-field.ts:290](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L290)
 
 ▸ **assertEquals**(`y`, `message?`): [`ForeignField`](ForeignField.md)
 
@@ -434,7 +434,7 @@ xChecked satisfies CanonicalForeignField;
 
 #### Defined in
 
-[lib/foreign-field.ts:291](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L291)
+[lib/foreign-field.ts:291](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L291)
 
 ___
 
@@ -465,7 +465,7 @@ x.assertLessThan(10);
 
 #### Defined in
 
-[lib/foreign-field.ts:333](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L333)
+[lib/foreign-field.ts:333](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L333)
 
 ___
 
@@ -483,7 +483,7 @@ See [FieldVar](../modules.md#fieldvar-1) to understand constants vs variables.
 
 #### Defined in
 
-[lib/foreign-field.ts:126](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L126)
+[lib/foreign-field.ts:126](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L126)
 
 ___
 
@@ -505,7 +505,7 @@ x.neg(); // -x mod p = p - x
 
 #### Defined in
 
-[lib/foreign-field.ts:219](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L219)
+[lib/foreign-field.ts:219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L219)
 
 ___
 
@@ -533,7 +533,7 @@ x.sub(1); // x - 1 mod p
 
 #### Defined in
 
-[lib/foreign-field.ts:234](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L234)
+[lib/foreign-field.ts:234](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L234)
 
 ___
 
@@ -549,7 +549,7 @@ Convert this field element to a bigint.
 
 #### Defined in
 
-[lib/foreign-field.ts:146](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L146)
+[lib/foreign-field.ts:146](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L146)
 
 ___
 
@@ -573,7 +573,7 @@ This method is provable!
 
 #### Defined in
 
-[lib/foreign-field.ts:352](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L352)
+[lib/foreign-field.ts:352](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L352)
 
 ___
 
@@ -594,7 +594,7 @@ that is, in situations where the prover computes a value outside provable code.
 
 #### Defined in
 
-[lib/foreign-field.ts:138](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L138)
+[lib/foreign-field.ts:138](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L138)
 
 ___
 
@@ -610,7 +610,7 @@ Instance version of `Provable<ForeignField>.toFields`, see [toFields](../interfa
 
 #### Defined in
 
-[lib/foreign-field.ts:391](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L391)
+[lib/foreign-field.ts:391](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L391)
 
 ___
 
@@ -641,7 +641,7 @@ This is most efficient than when checking a multiple of 3 field elements at once
 
 #### Defined in
 
-[lib/foreign-field.ts:177](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L177)
+[lib/foreign-field.ts:177](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L177)
 
 ___
 
@@ -661,7 +661,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:395](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L395)
+[lib/foreign-field.ts:395](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L395)
 
 ___
 
@@ -683,7 +683,7 @@ Coerce the input to a [ForeignField](ForeignField.md).
 
 #### Defined in
 
-[lib/foreign-field.ts:114](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L114)
+[lib/foreign-field.ts:114](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L114)
 
 ▸ `Static` **from**(`x`): [`ForeignField`](ForeignField.md)
 
@@ -699,7 +699,7 @@ Coerce the input to a [ForeignField](ForeignField.md).
 
 #### Defined in
 
-[lib/foreign-field.ts:115](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L115)
+[lib/foreign-field.ts:115](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L115)
 
 ___
 
@@ -723,7 +723,7 @@ This method is provable!
 
 #### Defined in
 
-[lib/foreign-field.ts:373](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L373)
+[lib/foreign-field.ts:373](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L373)
 
 ___
 
@@ -737,7 +737,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-field.ts:384](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L384)
+[lib/foreign-field.ts:384](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L384)
 
 ___
 
@@ -778,4 +778,4 @@ than chaining calls to [add](ForeignField.md#add) and [sub](ForeignField.md#sub)
 
 #### Defined in
 
-[lib/foreign-field.ts:259](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L259)
+[lib/foreign-field.ts:259](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L259)

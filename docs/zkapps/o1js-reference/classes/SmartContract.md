@@ -87,7 +87,7 @@ SmartContractBase.constructor
 
 #### Defined in
 
-[lib/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L574)
+[lib/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L574)
 
 ## Properties
 
@@ -104,7 +104,7 @@ SmartContractBase.constructor
 
 #### Defined in
 
-[lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L822)
+[lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L822)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L541)
+[lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L541)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:538](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L538)
+[lib/zkapp.ts:538](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L538)
 
 ___
 
@@ -140,7 +140,7 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 #### Defined in
 
-[lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L928)
+[lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L928)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:539](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L539)
+[lib/zkapp.ts:539](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L539)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L559)
+[lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L559)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:548](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L548)
+[lib/zkapp.ts:548](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L548)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L547)
+[lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L547)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:558](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L558)
+[lib/zkapp.ts:558](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L558)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L560)
+[lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L560)
 
 ## Accessors
 
@@ -223,7 +223,7 @@ Current account of the [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:853](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L853)
+[lib/zkapp.ts:853](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L853)
 
 ___
 
@@ -244,7 +244,7 @@ Balance of this [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L922)
+[lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L922)
 
 ___
 
@@ -262,7 +262,7 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 #### Defined in
 
-[lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L867)
+[lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L867)
 
 ___
 
@@ -278,7 +278,7 @@ Current network state of the [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:859](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L859)
+[lib/zkapp.ts:859](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L859)
 
 ___
 
@@ -294,7 +294,7 @@ Returns the current [AccountUpdate](AccountUpdate.md) associated to this [SmartC
 
 #### Defined in
 
-[lib/zkapp.ts:779](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L779)
+[lib/zkapp.ts:779](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L779)
 
 ___
 
@@ -315,7 +315,7 @@ A malicious prover could use any other public key without affecting the validity
 
 #### Defined in
 
-[lib/zkapp.ts:832](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L832)
+[lib/zkapp.ts:832](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L832)
 
 ___
 
@@ -345,7 +345,7 @@ For security reasons, it is recommended to use [TokenContract](TokenContract.md)
 
 #### Defined in
 
-[lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L877)
+[lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L877)
 
 ___
 
@@ -367,7 +367,7 @@ use `this.account.tokenSymbol`
 
 #### Defined in
 
-[lib/zkapp.ts:916](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L916)
+[lib/zkapp.ts:916](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L916)
 
 ## Methods
 
@@ -407,7 +407,7 @@ excluding important information from the public input.
 
 #### Defined in
 
-[lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L902)
+[lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L902)
 
 ___
 
@@ -441,7 +441,7 @@ tx.sign([senderKey, zkAppKey]);
 
 #### Defined in
 
-[lib/zkapp.ts:663](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L663)
+[lib/zkapp.ts:663](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L663)
 
 ___
 
@@ -470,7 +470,7 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Defined in
 
-[lib/zkapp.ts:934](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L934)
+[lib/zkapp.ts:934](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L934)
 
 ___
 
@@ -510,7 +510,7 @@ console.log(events);
 
 #### Defined in
 
-[lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L980)
+[lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L980)
 
 ___
 
@@ -536,7 +536,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L734)
+[lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L734)
 
 ___
 
@@ -558,7 +558,7 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 
 #### Defined in
 
-[lib/zkapp.ts:814](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L814)
+[lib/zkapp.ts:814](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L814)
 
 ___
 
@@ -582,7 +582,7 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 #### Defined in
 
-[lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L755)
+[lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L755)
 
 ___
 
@@ -604,7 +604,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L906)
+[lib/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L906)
 
 ___
 
@@ -628,7 +628,7 @@ use `this.account.permissions.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1161](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1161)
+[lib/zkapp.ts:1161](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1161)
 
 ___
 
@@ -659,7 +659,7 @@ use `this.account.<field>.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1154)
+[lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1154)
 
 ___
 
@@ -683,7 +683,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L761)
+[lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L761)
 
 ___
 
@@ -704,7 +704,7 @@ authorization flow.
 
 #### Defined in
 
-[lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L772)
+[lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L772)
 
 ___
 
@@ -720,7 +720,7 @@ typeof `__class`
 
 #### Defined in
 
-[lib/zkapp.ts:565](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L565)
+[lib/zkapp.ts:565](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L565)
 
 ___
 
@@ -760,7 +760,7 @@ an object, keyed by method name, each entry containing:
 
 #### Defined in
 
-[lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1100)
+[lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1100)
 
 ___
 
@@ -795,7 +795,7 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 #### Defined in
 
-[lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L602)
+[lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L602)
 
 ___
 
@@ -815,7 +815,7 @@ the digest, as a hex string
 
 #### Defined in
 
-[lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L643)
+[lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L643)
 
 ___
 
@@ -835,4 +835,4 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1074](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1074)
+[lib/zkapp.ts:1074](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1074)

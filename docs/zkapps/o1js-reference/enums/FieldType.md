@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[lib/field.ts:50](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L50)
+[lib/field.ts:50](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L50)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:48](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L48)
+[lib/field.ts:48](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L48)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:51](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L51)
+[lib/field.ts:51](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L51)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:49](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L49)
+[lib/field.ts:49](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L49)

@@ -50,7 +50,7 @@ Create a new [EcdsaSignature](EcdsaSignature.md) from an object containing the s
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:37](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L37)
+[lib/foreign-ecdsa.ts:37](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L37)
 
 ## Properties
 
@@ -60,7 +60,7 @@ Create a new [EcdsaSignature](EcdsaSignature.md) from an object containing the s
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:30](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L30)
+[lib/foreign-ecdsa.ts:30](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L30)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:31](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L31)
+[lib/foreign-ecdsa.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L31)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:164](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L164)
+[lib/foreign-ecdsa.ts:164](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L164)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:165](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L165)
+[lib/foreign-ecdsa.ts:165](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L165)
 
 ## Accessors
 
@@ -104,7 +104,7 @@ typeof [`EcdsaSignature`](EcdsaSignature.md)
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:161](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L161)
+[lib/foreign-ecdsa.ts:161](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L161)
 
 ___
 
@@ -120,7 +120,7 @@ typeof [`ForeignCurve`](ForeignCurve.md)
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:173](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L173)
+[lib/foreign-ecdsa.ts:173](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L173)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:180](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L180)
+[lib/foreign-ecdsa.ts:180](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L180)
 
 ## Methods
 
@@ -157,7 +157,7 @@ Convert this signature to an object with bigint fields.
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:65](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L65)
+[lib/foreign-ecdsa.ts:65](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L65)
 
 ___
 
@@ -214,7 +214,7 @@ isValid.assertTrue('signature verifies');
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L103)
+[lib/foreign-ecdsa.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L103)
 
 ___
 
@@ -241,7 +241,7 @@ choosing the hashing algorithm.
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:116](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L116)
+[lib/foreign-ecdsa.ts:116](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L116)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L155)
+[lib/foreign-ecdsa.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L155)
 
 ___
 
@@ -283,7 +283,7 @@ Coerce the input to a [EcdsaSignature](EcdsaSignature.md).
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:48](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L48)
+[lib/foreign-ecdsa.ts:48](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L48)
 
 ___
 
@@ -306,7 +306,7 @@ Create an [EcdsaSignature](EcdsaSignature.md) from a raw 130-char hex string as 
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:57](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L57)
+[lib/foreign-ecdsa.ts:57](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L57)
 
 ___
 
@@ -331,7 +331,7 @@ Note: This method is not provable, and only takes JS bigints as input.
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:135](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L135)
+[lib/foreign-ecdsa.ts:135](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L135)
 
 ___
 
@@ -360,4 +360,4 @@ Note: This method is not provable, and only takes JS bigints as input.
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:150](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L150)
+[lib/foreign-ecdsa.ts:150](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L150)

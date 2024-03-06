@@ -48,7 +48,7 @@ Permissions\_.access
 
 #### Defined in
 
-[lib/account-update.ts:271](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L271)
+[lib/account-update.ts:271](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L271)
 
 ___
 
@@ -64,7 +64,7 @@ Permissions\_.editActionState
 
 #### Defined in
 
-[lib/account-update.ts:250](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L250)
+[lib/account-update.ts:250](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L250)
 
 ___
 
@@ -81,7 +81,7 @@ Permissions\_.editState
 
 #### Defined in
 
-[lib/account-update.ts:203](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L203)
+[lib/account-update.ts:203](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L203)
 
 ___
 
@@ -95,7 +95,7 @@ Permissions\_.incrementNonce
 
 #### Defined in
 
-[lib/account-update.ts:259](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L259)
+[lib/account-update.ts:259](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L259)
 
 ___
 
@@ -112,7 +112,7 @@ Permissions\_.receive
 
 #### Defined in
 
-[lib/account-update.ts:215](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L215)
+[lib/account-update.ts:215](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L215)
 
 ___
 
@@ -129,7 +129,7 @@ Permissions\_.send
 
 #### Defined in
 
-[lib/account-update.ts:209](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L209)
+[lib/account-update.ts:209](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L209)
 
 ___
 
@@ -146,7 +146,7 @@ Permissions\_.setDelegate
 
 #### Defined in
 
-[lib/account-update.ts:221](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L221)
+[lib/account-update.ts:221](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L221)
 
 ___
 
@@ -163,7 +163,7 @@ Permissions\_.setPermissions
 
 #### Defined in
 
-[lib/account-update.ts:227](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L227)
+[lib/account-update.ts:227](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L227)
 
 ___
 
@@ -177,7 +177,7 @@ Permissions\_.setTiming
 
 #### Defined in
 
-[lib/account-update.ts:261](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L261)
+[lib/account-update.ts:261](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L261)
 
 ___
 
@@ -194,7 +194,7 @@ Permissions\_.setTokenSymbol
 
 #### Defined in
 
-[lib/account-update.ts:256](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L256)
+[lib/account-update.ts:256](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L256)
 
 ___
 
@@ -219,7 +219,7 @@ Permissions\_.setVerificationKey
 
 #### Defined in
 
-[lib/account-update.ts:234](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L234)
+[lib/account-update.ts:234](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L234)
 
 ___
 
@@ -233,7 +233,7 @@ Permissions\_.setVotingFor
 
 #### Defined in
 
-[lib/account-update.ts:260](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L260)
+[lib/account-update.ts:260](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L260)
 
 ___
 
@@ -252,4 +252,4 @@ Permissions\_.setZkappUri
 
 #### Defined in
 
-[lib/account-update.ts:245](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L245)
+[lib/account-update.ts:245](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L245)

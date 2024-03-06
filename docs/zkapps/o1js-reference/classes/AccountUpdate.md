@@ -98,7 +98,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account-update.ts:621](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L621)
+[lib/account-update.ts:621](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L621)
 
 ## Properties
 
@@ -108,7 +108,7 @@ be authorized by either a [Signature](Signature.md) or [Proof](Proof.md).
 
 #### Defined in
 
-[lib/account-update.ts:613](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L613)
+[lib/account-update.ts:613](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L613)
 
 ___
 
@@ -129,7 +129,7 @@ Types.AccountUpdate.authorization
 
 #### Defined in
 
-[lib/account-update.ts:610](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L610)
+[lib/account-update.ts:610](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L610)
 
 ___
 
@@ -143,7 +143,7 @@ Types.AccountUpdate.body
 
 #### Defined in
 
-[lib/account-update.ts:609](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L609)
+[lib/account-update.ts:609](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L609)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:615](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L615)
+[lib/account-update.ts:615](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L615)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:603](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L603)
+[lib/account-update.ts:603](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L603)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:617](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L617)
+[lib/account-update.ts:617](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L617)
 
 ___
 
@@ -186,7 +186,7 @@ was created. Can be modified by applications to add richer information.
 
 #### Defined in
 
-[lib/account-update.ts:608](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L608)
+[lib/account-update.ts:608](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L608)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:611](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L611)
+[lib/account-update.ts:611](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L611)
 
 ___
 
@@ -206,7 +206,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:614](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L614)
+[lib/account-update.ts:614](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L614)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:619](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L619)
+[lib/account-update.ts:619](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L619)
 
 ___
 
@@ -259,7 +259,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1156](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1156)
+[lib/account-update.ts:1156](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1156)
 
 ___
 
@@ -269,7 +269,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:866](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L866)
+[lib/account-update.ts:866](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L866)
 
 ___
 
@@ -287,7 +287,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1143](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1143)
+[lib/account-update.ts:1143](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1143)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1144](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1144)
+[lib/account-update.ts:1144](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1144)
 
 ___
 
@@ -335,7 +335,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1152](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1152)
+[lib/account-update.ts:1152](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1152)
 
 ## Accessors
 
@@ -354,7 +354,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:720](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L720)
+[lib/account-update.ts:720](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L720)
 
 ___
 
@@ -368,7 +368,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:735](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L735)
+[lib/account-update.ts:735](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L735)
 
 • `set` **balanceChange**(`x`): `void`
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:738](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L738)
+[lib/account-update.ts:738](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L738)
 
 ___
 
@@ -398,7 +398,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:810](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L810)
+[lib/account-update.ts:810](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L810)
 
 ___
 
@@ -412,7 +412,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:650](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L650)
+[lib/account-update.ts:650](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L650)
 
 ___
 
@@ -434,7 +434,7 @@ use `this.account.tokenSymbol`
 
 #### Defined in
 
-[lib/account-update.ts:657](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L657)
+[lib/account-update.ts:657](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L657)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:742](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L742)
+[lib/account-update.ts:742](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L742)
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1181](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1181)
+[lib/account-update.ts:1181](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1181)
 
 ## Methods
 
@@ -558,7 +558,7 @@ of the proof that authorizes the parent account update.
 
 #### Defined in
 
-[lib/account-update.ts:708](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L708)
+[lib/account-update.ts:708](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L708)
 
 ___
 
@@ -572,7 +572,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:982](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L982)
+[lib/account-update.ts:982](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L982)
 
 ___
 
@@ -586,7 +586,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:921](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L921)
+[lib/account-update.ts:921](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L921)
 
 ___
 
@@ -600,7 +600,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1000](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1000)
+[lib/account-update.ts:1000](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1000)
 
 ___
 
@@ -628,7 +628,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account-update.ts:829](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L829)
+[lib/account-update.ts:829](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L829)
 
 ___
 
@@ -650,7 +650,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:667](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L667)
+[lib/account-update.ts:667](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L667)
 
 ___
 
@@ -674,7 +674,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:835](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L835)
+[lib/account-update.ts:835](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L835)
 
 ___
 
@@ -688,7 +688,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:910](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L910)
+[lib/account-update.ts:910](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L910)
 
 ___
 
@@ -705,7 +705,7 @@ default [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account-update.ts:1213](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1213)
+[lib/account-update.ts:1213](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1213)
 
 ___
 
@@ -719,7 +719,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:976](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L976)
+[lib/account-update.ts:976](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L976)
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:946](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L946)
+[lib/account-update.ts:946](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L946)
 
 ___
 
@@ -770,7 +770,7 @@ Constrain a property to lie between lower and upper bounds.
 
 #### Defined in
 
-[lib/account-update.ts:770](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L770)
+[lib/account-update.ts:770](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L770)
 
 ___
 
@@ -799,7 +799,7 @@ Fix a property to a certain value.
 
 #### Defined in
 
-[lib/account-update.ts:797](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L797)
+[lib/account-update.ts:797](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L797)
 
 ___
 
@@ -822,7 +822,7 @@ Attach account update to the current transaction
 
 #### Defined in
 
-[lib/account-update.ts:1044](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1044)
+[lib/account-update.ts:1044](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1044)
 
 ___
 
@@ -844,7 +844,7 @@ Clones the [AccountUpdate](AccountUpdate.md).
 
 #### Defined in
 
-[lib/account-update.ts:636](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L636)
+[lib/account-update.ts:636](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L636)
 
 ___
 
@@ -871,7 +871,7 @@ becomes part of the proof.
 
 #### Defined in
 
-[lib/account-update.ts:1025](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1025)
+[lib/account-update.ts:1025](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1025)
 
 ___
 
@@ -906,7 +906,7 @@ be (can be) authorized by a signature.
 
 #### Defined in
 
-[lib/account-update.ts:1080](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1080)
+[lib/account-update.ts:1080](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1080)
 
 ▸ `Static` **createSigned**(`signer`, `tokenId?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -927,7 +927,7 @@ in favor of calling this function with a `PublicKey` as `signer`
 
 #### Defined in
 
-[lib/account-update.ts:1084](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1084)
+[lib/account-update.ts:1084](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1084)
 
 ___
 
@@ -948,7 +948,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:992](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L992)
+[lib/account-update.ts:992](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L992)
 
 ___
 
@@ -969,7 +969,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1004](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1004)
+[lib/account-update.ts:1004](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1004)
 
 ___
 
@@ -983,7 +983,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:995](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L995)
+[lib/account-update.ts:995](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L995)
 
 ___
 
@@ -997,7 +997,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1013](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1013)
+[lib/account-update.ts:1013](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1013)
 
 ___
 
@@ -1011,7 +1011,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1153](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1153)
+[lib/account-update.ts:1153](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1153)
 
 ___
 
@@ -1032,7 +1032,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1157](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1157)
+[lib/account-update.ts:1157](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1157)
 
 ___
 
@@ -1052,7 +1052,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:916](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L916)
+[lib/account-update.ts:916](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L916)
 
 ___
 
@@ -1081,7 +1081,7 @@ they [AccountUpdate](AccountUpdate.md) for the account which pays the fee
 
 #### Defined in
 
-[lib/account-update.ts:1112](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1112)
+[lib/account-update.ts:1112](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1112)
 
 ▸ `Static` **fundNewAccount**(`feePayer`, `options?`): [`AccountUpdate`](AccountUpdate.md)
 
@@ -1107,7 +1107,7 @@ feePayerUpdate.send({ to: receiverAddress, amount: initialBalance });
 
 #### Defined in
 
-[lib/account-update.ts:1124](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1124)
+[lib/account-update.ts:1124](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1124)
 
 ___
 
@@ -1127,7 +1127,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:862](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L862)
+[lib/account-update.ts:862](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L862)
 
 ___
 
@@ -1152,7 +1152,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:871](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L871)
+[lib/account-update.ts:871](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L871)
 
 ___
 
@@ -1177,7 +1177,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:879](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L879)
+[lib/account-update.ts:879](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L879)
 
 ___
 
@@ -1204,7 +1204,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:746](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L746)
+[lib/account-update.ts:746](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L746)
 
 ___
 
@@ -1225,7 +1225,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:853](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L853)
+[lib/account-update.ts:853](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L853)
 
 ___
 
@@ -1245,7 +1245,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1145](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1145)
+[lib/account-update.ts:1145](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1145)
 
 ___
 
@@ -1265,7 +1265,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:913](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L913)
+[lib/account-update.ts:913](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L913)
 
 ___
 
@@ -1287,7 +1287,7 @@ Disattach an account update from where it's currently located in the transaction
 
 #### Defined in
 
-[lib/account-update.ts:1061](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1061)
+[lib/account-update.ts:1061](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1061)
 
 ___
 
@@ -1321,4 +1321,4 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1165](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1165)
+[lib/account-update.ts:1165](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1165)
