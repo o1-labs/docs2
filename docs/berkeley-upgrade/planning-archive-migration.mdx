@@ -59,7 +59,7 @@ PostgreSQL database
 
 If you don't have an existing database with Mainnet archive data, you can always download it from our Google Cloud bucket. 
 
-1. Download the Mainnet archive data using cURL or gsutils:
+1. Download the Mainnet archive data using cURL or gsutil:
 
 - cUrl:
 
@@ -88,7 +88,7 @@ If you don't have an existing database with Mainnet archive data, you can always
    Run this command at the database server:
 
    ```sh
-   psql -U {user} -f mainnet-archive-dump-{date}_0000.sql`
+   psql -U {user} -f mainnet-archive-dump-{date}_0000.sql
    ```
 
    An **archive_balances_migrated** schema is created with the Mainnet archive.
@@ -105,9 +105,9 @@ Missing blocks or invalid ledger hashes are the most frequent issues when dealin
 
 The daemon node unavailability can cause the archive node to miss some of the blocks. 
 
-If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks () and preserve chain continuity. 
+If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks and preserve chain continuity. 
 
-To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/rampup/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, unless you modify PG_CONN in `download_missing_block.sh`, script assumes that psql is running on localhost on 5432 port.
+To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, unless you modify PG_CONN in `download_missing_block.sh`, script assumes that psql is running on localhost on 5432 port.
 
 1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-archive:1.4.0-c980ba8-bullseye` Docker image.
 
