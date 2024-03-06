@@ -22,7 +22,7 @@ Type to configure how Pickles should cache prover keys
 
 #### Defined in
 
-[snarky.d.ts:756](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L756)
+[snarky.d.ts:756](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L756)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:727](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L727)
+[snarky.d.ts:727](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L727)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:767](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L767)
+[snarky.d.ts:767](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L767)
 
 ___
 
@@ -78,7 +78,7 @@ A "rule" is a circuit plus some metadata for `Pickles.compile`
 
 #### Defined in
 
-[snarky.d.ts:733](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L733)
+[snarky.d.ts:733](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L733)
 
 ___
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:728](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L728)
+[snarky.d.ts:728](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L728)

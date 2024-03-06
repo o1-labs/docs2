@@ -73,7 +73,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/bool.ts:36](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L36)
+[lib/bool.ts:36](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L36)
 
 ## Properties
 
@@ -83,7 +83,7 @@ Use [[assertEquals]] to enforce the value of a Bool.
 
 #### Defined in
 
-[lib/bool.ts:34](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L34)
+[lib/bool.ts:34](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L34)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:327](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L327)
+[lib/bool.ts:327](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L327)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:321](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L321)
+[lib/bool.ts:321](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L321)
 
 ## Methods
 
@@ -132,7 +132,7 @@ this [Bool](Bool.md) and `y` are also true.
 
 #### Defined in
 
-[lib/bool.ts:74](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L74)
+[lib/bool.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L74)
 
 ___
 
@@ -155,7 +155,7 @@ Proves that this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:97](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L97)
+[lib/bool.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L97)
 
 ___
 
@@ -177,7 +177,7 @@ Proves that this [Bool](Bool.md) is `false`.
 
 #### Defined in
 
-[lib/bool.ts:128](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L128)
+[lib/bool.ts:128](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L128)
 
 ___
 
@@ -199,7 +199,7 @@ Proves that this [Bool](Bool.md) is `true`.
 
 #### Defined in
 
-[lib/bool.ts:114](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L114)
+[lib/bool.ts:114](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L114)
 
 ___
 
@@ -221,7 +221,7 @@ Returns true if this [Bool](Bool.md) is equal to `y`.
 
 #### Defined in
 
-[lib/bool.ts:143](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L143)
+[lib/bool.ts:143](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L143)
 
 ___
 
@@ -235,7 +235,7 @@ this is Object
 
 #### Defined in
 
-[lib/bool.ts:48](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L48)
+[lib/bool.ts:48](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L48)
 
 ___
 
@@ -251,7 +251,7 @@ a new [Bool](Bool.md) that is the negation of this [Bool](Bool.md).
 
 #### Defined in
 
-[lib/bool.ts:62](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L62)
+[lib/bool.ts:62](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L62)
 
 ___
 
@@ -274,7 +274,7 @@ this [Bool](Bool.md) or `y` is true.
 
 #### Defined in
 
-[lib/bool.ts:86](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L86)
+[lib/bool.ts:86](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L86)
 
 ___
 
@@ -290,7 +290,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:153](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L153)
+[lib/bool.ts:153](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L153)
 
 ___
 
@@ -307,7 +307,7 @@ This can only be called on non-witness values.
 
 #### Defined in
 
-[lib/bool.ts:184](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L184)
+[lib/bool.ts:184](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L184)
 
 ___
 
@@ -323,7 +323,7 @@ Converts a [Bool](Bool.md) to a [Field](Field.md). `false` becomes 0 and `true` 
 
 #### Defined in
 
-[lib/bool.ts:55](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L55)
+[lib/bool.ts:55](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L55)
 
 ___
 
@@ -339,7 +339,7 @@ Serializes this [Bool](Bool.md) into [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:160](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L160)
+[lib/bool.ts:160](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L160)
 
 ___
 
@@ -356,7 +356,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:176](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L176)
+[lib/bool.ts:176](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L176)
 
 ___
 
@@ -373,7 +373,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:168](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L168)
+[lib/bool.ts:168](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L168)
 
 ___
 
@@ -396,7 +396,7 @@ Boolean AND operation.
 
 #### Defined in
 
-[lib/bool.ts:213](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L213)
+[lib/bool.ts:213](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L213)
 
 ___
 
@@ -419,7 +419,7 @@ Asserts if both [Bool](Bool.md) are equal.
 
 #### Defined in
 
-[lib/bool.ts:233](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L233)
+[lib/bool.ts:233](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L233)
 
 ___
 
@@ -439,7 +439,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:323](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L323)
+[lib/bool.ts:323](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L323)
 
 ___
 
@@ -453,7 +453,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:298](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L298)
+[lib/bool.ts:298](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L298)
 
 ___
 
@@ -476,7 +476,7 @@ Checks two [Bool](Bool.md) for equality.
 
 #### Defined in
 
-[lib/bool.ts:244](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L244)
+[lib/bool.ts:244](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L244)
 
 ___
 
@@ -496,7 +496,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:310](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L310)
+[lib/bool.ts:310](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L310)
 
 ___
 
@@ -518,7 +518,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/bool.ts:268](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L268)
+[lib/bool.ts:268](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L268)
 
 ___
 
@@ -541,7 +541,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:287](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L287)
+[lib/bool.ts:287](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L287)
 
 ___
 
@@ -563,7 +563,7 @@ Boolean negation.
 
 #### Defined in
 
-[lib/bool.ts:203](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L203)
+[lib/bool.ts:203](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L203)
 
 ___
 
@@ -586,7 +586,7 @@ Boolean OR operation.
 
 #### Defined in
 
-[lib/bool.ts:223](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L223)
+[lib/bool.ts:223](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L223)
 
 ___
 
@@ -613,7 +613,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:314](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L314)
+[lib/bool.ts:314](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L314)
 
 ___
 
@@ -629,7 +629,7 @@ Returns the size of this type.
 
 #### Defined in
 
-[lib/bool.ts:294](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L294)
+[lib/bool.ts:294](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L294)
 
 ___
 
@@ -651,7 +651,7 @@ Static method to serialize a [Bool](Bool.md) into its auxiliary data.
 
 #### Defined in
 
-[lib/bool.ts:261](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L261)
+[lib/bool.ts:261](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L261)
 
 ___
 
@@ -671,7 +671,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:306](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L306)
+[lib/bool.ts:306](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L306)
 
 ___
 
@@ -691,7 +691,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:196](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L196)
+[lib/bool.ts:196](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L196)
 
 ___
 
@@ -713,7 +713,7 @@ Static method to serialize a [Bool](Bool.md) into an array of [Field](Field.md) 
 
 #### Defined in
 
-[lib/bool.ts:254](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L254)
+[lib/bool.ts:254](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L254)
 
 ___
 
@@ -737,7 +737,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:302](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L302)
+[lib/bool.ts:302](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L302)
 
 ___
 
@@ -760,4 +760,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/bool.ts:279](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L279)
+[lib/bool.ts:279](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L279)

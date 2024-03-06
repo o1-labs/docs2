@@ -89,7 +89,7 @@ Base token contract which
 
 #### Defined in
 
-[lib/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L574)
+[lib/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L574)
 
 ## Properties
 
@@ -110,7 +110,7 @@ Base token contract which
 
 #### Defined in
 
-[lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L822)
+[lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L822)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L541)
+[lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L541)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:538](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L538)
+[lib/zkapp.ts:538](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L538)
 
 ___
 
@@ -158,7 +158,7 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 #### Defined in
 
-[lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L928)
+[lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L928)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:539](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L539)
+[lib/zkapp.ts:539](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L539)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L559)
+[lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L559)
 
 ___
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:548](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L548)
+[lib/zkapp.ts:548](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L548)
 
 ___
 
@@ -214,7 +214,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L547)
+[lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L547)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:558](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L558)
+[lib/zkapp.ts:558](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L558)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L560)
+[lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L560)
 
 ## Accessors
 
@@ -269,7 +269,7 @@ SmartContract.account
 
 #### Defined in
 
-[lib/zkapp.ts:853](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L853)
+[lib/zkapp.ts:853](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L853)
 
 ___
 
@@ -294,7 +294,7 @@ SmartContract.balance
 
 #### Defined in
 
-[lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L922)
+[lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L922)
 
 ___
 
@@ -316,7 +316,7 @@ SmartContract.currentSlot
 
 #### Defined in
 
-[lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L867)
+[lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L867)
 
 ___
 
@@ -338,7 +338,7 @@ Helper methods to use from within a token contract.
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:76](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L76)
+[lib/mina/token/token-contract.ts:76](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L76)
 
 ___
 
@@ -358,7 +358,7 @@ SmartContract.network
 
 #### Defined in
 
-[lib/zkapp.ts:859](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L859)
+[lib/zkapp.ts:859](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L859)
 
 ___
 
@@ -378,7 +378,7 @@ SmartContract.self
 
 #### Defined in
 
-[lib/zkapp.ts:779](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L779)
+[lib/zkapp.ts:779](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L779)
 
 ___
 
@@ -403,7 +403,7 @@ SmartContract.sender
 
 #### Defined in
 
-[lib/zkapp.ts:832](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L832)
+[lib/zkapp.ts:832](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L832)
 
 ___
 
@@ -437,7 +437,7 @@ SmartContract.token
 
 #### Defined in
 
-[lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L877)
+[lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L877)
 
 ___
 
@@ -463,7 +463,7 @@ SmartContract.tokenSymbol
 
 #### Defined in
 
-[lib/zkapp.ts:916](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L916)
+[lib/zkapp.ts:916](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L916)
 
 ## Methods
 
@@ -507,7 +507,7 @@ excluding important information from the public input.
 
 #### Defined in
 
-[lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L902)
+[lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L902)
 
 ___
 
@@ -529,7 +529,7 @@ Approve a single account update (with arbitrarily many children).
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:137](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L137)
+[lib/mina/token/token-contract.ts:137](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L137)
 
 ___
 
@@ -551,7 +551,7 @@ Approve a list of account updates (with arbitrarily many children).
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:145](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L145)
+[lib/mina/token/token-contract.ts:145](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L145)
 
 ___
 
@@ -571,7 +571,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:83](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L83)
+[lib/mina/token/token-contract.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L83)
 
 ___
 
@@ -595,7 +595,7 @@ This is provided out of the box as it is both a good example, and probably the m
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:121](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L121)
+[lib/mina/token/token-contract.ts:121](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L121)
 
 ___
 
@@ -639,7 +639,7 @@ deploy() {
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:51](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L51)
+[lib/mina/token/token-contract.ts:51](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L51)
 
 ___
 
@@ -655,7 +655,7 @@ Returns the `tokenId` of the token managed by this contract.
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L69)
+[lib/mina/token/token-contract.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L69)
 
 ___
 
@@ -688,7 +688,7 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Defined in
 
-[lib/zkapp.ts:934](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L934)
+[lib/zkapp.ts:934](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L934)
 
 ___
 
@@ -732,7 +732,7 @@ console.log(events);
 
 #### Defined in
 
-[lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L980)
+[lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L980)
 
 ___
 
@@ -757,7 +757,7 @@ This method is provable and is suitable as a base for implementing `approveUpdat
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:90](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L90)
+[lib/mina/token/token-contract.ts:90](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L90)
 
 ___
 
@@ -787,7 +787,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L734)
+[lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L734)
 
 ___
 
@@ -813,7 +813,7 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 
 #### Defined in
 
-[lib/zkapp.ts:814](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L814)
+[lib/zkapp.ts:814](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L814)
 
 ___
 
@@ -841,7 +841,7 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 #### Defined in
 
-[lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L755)
+[lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L755)
 
 ___
 
@@ -867,7 +867,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L906)
+[lib/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L906)
 
 ___
 
@@ -895,7 +895,7 @@ use `this.account.permissions.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1161](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1161)
+[lib/zkapp.ts:1161](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1161)
 
 ___
 
@@ -930,7 +930,7 @@ use `this.account.<field>.set()`
 
 #### Defined in
 
-[lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1154)
+[lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1154)
 
 ___
 
@@ -958,7 +958,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L761)
+[lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L761)
 
 ___
 
@@ -983,7 +983,7 @@ authorization flow.
 
 #### Defined in
 
-[lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L772)
+[lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L772)
 
 ___
 
@@ -1007,7 +1007,7 @@ Transfer `amount` of tokens from `from` to `to`.
 
 #### Defined in
 
-[lib/mina/token/token-contract.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/token-contract.ts#L155)
+[lib/mina/token/token-contract.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/token-contract.ts#L155)
 
 ___
 
@@ -1027,7 +1027,7 @@ typeof `__class`
 
 #### Defined in
 
-[lib/zkapp.ts:565](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L565)
+[lib/zkapp.ts:565](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L565)
 
 ___
 
@@ -1071,7 +1071,7 @@ an object, keyed by method name, each entry containing:
 
 #### Defined in
 
-[lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1100)
+[lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1100)
 
 ___
 
@@ -1110,7 +1110,7 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 #### Defined in
 
-[lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L602)
+[lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L602)
 
 ___
 
@@ -1134,7 +1134,7 @@ the digest, as a hex string
 
 #### Defined in
 
-[lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L643)
+[lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L643)
 
 ___
 
@@ -1158,4 +1158,4 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1074](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1074)
+[lib/zkapp.ts:1074](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1074)

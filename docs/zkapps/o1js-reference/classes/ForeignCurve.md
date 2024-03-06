@@ -72,7 +72,7 @@ let x = new ForeignCurve({ x: 1n, y: 1n });
 
 #### Defined in
 
-[lib/foreign-curve.ts:45](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L45)
+[lib/foreign-curve.ts:45](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L45)
 
 ## Properties
 
@@ -82,7 +82,7 @@ let x = new ForeignCurve({ x: 1n, y: 1n });
 
 #### Defined in
 
-[lib/foreign-curve.ts:30](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L30)
+[lib/foreign-curve.ts:30](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L30)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:31](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L31)
+[lib/foreign-curve.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L31)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:240](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L240)
+[lib/foreign-curve.ts:240](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L240)
 
 ___
 
@@ -195,7 +195,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:241](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L241)
+[lib/foreign-curve.ts:241](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L241)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:242](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L242)
+[lib/foreign-curve.ts:242](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L242)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:243](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L243)
+[lib/foreign-curve.ts:243](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L243)
 
 ## Accessors
 
@@ -229,7 +229,7 @@ typeof [`ForeignCurve`](ForeignCurve.md)
 
 #### Defined in
 
-[lib/foreign-curve.ts:237](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L237)
+[lib/foreign-curve.ts:237](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L237)
 
 ___
 
@@ -245,7 +245,7 @@ The size of the curve's base field.
 
 #### Defined in
 
-[lib/foreign-curve.ts:81](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L81)
+[lib/foreign-curve.ts:81](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L81)
 
 ___
 
@@ -342,7 +342,7 @@ Curve arithmetic on JS bigints.
 
 #### Defined in
 
-[lib/foreign-curve.ts:251](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L251)
+[lib/foreign-curve.ts:251](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L251)
 
 ___
 
@@ -358,7 +358,7 @@ typeof [`AlmostForeignField`](AlmostForeignField.md)
 
 #### Defined in
 
-[lib/foreign-curve.ts:258](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L258)
+[lib/foreign-curve.ts:258](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L258)
 
 ___
 
@@ -374,7 +374,7 @@ typeof [`AlmostForeignField`](AlmostForeignField.md)
 
 #### Defined in
 
-[lib/foreign-curve.ts:265](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L265)
+[lib/foreign-curve.ts:265](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L265)
 
 ___
 
@@ -390,7 +390,7 @@ The constant generator point.
 
 #### Defined in
 
-[lib/foreign-curve.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L69)
+[lib/foreign-curve.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L69)
 
 ___
 
@@ -406,7 +406,7 @@ The size of the curve's base field.
 
 #### Defined in
 
-[lib/foreign-curve.ts:75](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L75)
+[lib/foreign-curve.ts:75](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L75)
 
 ___
 
@@ -422,7 +422,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:272](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L272)
+[lib/foreign-curve.ts:272](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L272)
 
 ## Methods
 
@@ -460,7 +460,7 @@ if the inputs are inverses of each other.
 
 #### Defined in
 
-[lib/foreign-curve.ts:121](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L121)
+[lib/foreign-curve.ts:121](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L121)
 
 ___
 
@@ -492,7 +492,7 @@ if the inputs are equal or inverses of each other.
 
 #### Defined in
 
-[lib/foreign-curve.ts:139](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L139)
+[lib/foreign-curve.ts:139](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L139)
 
 ___
 
@@ -511,7 +511,7 @@ it performs the full scalar multiplication `order*P` and is expensive.
 
 #### Defined in
 
-[lib/foreign-curve.ts:219](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L219)
+[lib/foreign-curve.ts:219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L219)
 
 ___
 
@@ -528,7 +528,7 @@ Assert that this point lies on the elliptic curve, which means it satisfies the 
 
 #### Defined in
 
-[lib/foreign-curve.ts:203](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L203)
+[lib/foreign-curve.ts:203](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L203)
 
 ___
 
@@ -550,7 +550,7 @@ let r = p.double(); // r = 2 * p
 
 #### Defined in
 
-[lib/foreign-curve.ts:158](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L158)
+[lib/foreign-curve.ts:158](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L158)
 
 ___
 
@@ -568,7 +568,7 @@ See [FieldVar](../modules.md#fieldvar) to understand constants vs variables.
 
 #### Defined in
 
-[lib/foreign-curve.ts:90](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L90)
+[lib/foreign-curve.ts:90](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L90)
 
 ___
 
@@ -590,7 +590,7 @@ let r = p.negate(); // r = -p
 
 #### Defined in
 
-[lib/foreign-curve.ts:172](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L172)
+[lib/foreign-curve.ts:172](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L172)
 
 ___
 
@@ -624,7 +624,7 @@ let r = p.scale(s); // r = s * p
 
 #### Defined in
 
-[lib/foreign-curve.ts:188](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L188)
+[lib/foreign-curve.ts:188](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L188)
 
 ___
 
@@ -640,7 +640,7 @@ Convert this curve point to a point with bigint coordinates.
 
 #### Defined in
 
-[lib/foreign-curve.ts:97](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L97)
+[lib/foreign-curve.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L97)
 
 ___
 
@@ -660,7 +660,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:207](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L207)
+[lib/foreign-curve.ts:207](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L207)
 
 ___
 
@@ -680,7 +680,7 @@ ___
 
 #### Defined in
 
-[lib/foreign-curve.ts:195](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L195)
+[lib/foreign-curve.ts:195](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L195)
 
 ___
 
@@ -705,7 +705,7 @@ Check that this is a valid element of the target subgroup of the curve:
 
 #### Defined in
 
-[lib/foreign-curve.ts:229](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L229)
+[lib/foreign-curve.ts:229](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L229)
 
 ___
 
@@ -727,4 +727,4 @@ Coerce the input to a [ForeignCurve](ForeignCurve.md).
 
 #### Defined in
 
-[lib/foreign-curve.ts:61](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L61)
+[lib/foreign-curve.ts:61](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L61)

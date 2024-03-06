@@ -61,7 +61,7 @@ We still can't avoid processing some account updates that don't use the token, t
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:59](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L59)
+[lib/mina/token/forest-iterator.ts:59](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L59)
 
 ## Properties
 
@@ -71,7 +71,7 @@ We still can't avoid processing some account updates that don't use the token, t
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:55](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L55)
+[lib/mina/token/forest-iterator.ts:55](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L55)
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:57](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L57)
+[lib/mina/token/forest-iterator.ts:57](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L57)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L56)
+[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L56)
 
 ## Methods
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:140](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L140)
+[lib/mina/token/forest-iterator.ts:140](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L140)
 
 ___
 
@@ -140,7 +140,7 @@ caller handle the irrelevant case where `usesThisToken` is false.
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:88](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L88)
+[lib/mina/token/forest-iterator.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L88)
 
 ___
 
@@ -161,4 +161,4 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/token/forest-iterator.ts#L69)
+[lib/mina/token/forest-iterator.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L69)
