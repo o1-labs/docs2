@@ -116,13 +116,26 @@ where:
 Replayer config must contain the Mainnet ledger as the starting point. So first, you must prepare the replayer config file:
 
 ```
- jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
+ jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
 ```
+
+where:
+   genesis_ledger.json is genesis file from which deamon bootstrap on particular network
 
 Then:
 ```
  mina-replayer --migration-mode --archive-uri {migrated_connection_string}  --input-file replayer_input_config.json --checkpoint-interval 10000
 ```
+
+where:
+ - `archive-uri` - connection string to archive datbase 
+ - `output-file` - file which will hold ledger with auxiliary information like global slot and blockchain height which will be dumped on last block
+ - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
+ - `reference_replayer_input.json` is a file constructed out of network genesis ledger:
+ 
+   ```
+      jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
+   ```
 
 #### Stage 2: Incremental migration
 
@@ -159,12 +172,14 @@ where:
 where `replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
 
 
-Incremental migration can be run continuously on top initial migration or last incremental until fork block is anounced 
+Incremental migration can be run continuously on top initial migration or last incremental until fork block is announced 
 
 #### Stage 3: Remainder migration
 
 When the fork block is announced, you must tackle the remainder migration. This is the last migration run 
-you need to perform.
+you need to perform. In this stage we are closing migration cycle by last migration of remainder blocks between 
+current last canonical block and fork block (which can be pending, so we don't need to wait 290 blocks until it would become canonical) 
+Here we need to use `--fork-state-hash` as additional parameter to berkeley-migation app
 
 - Inputs
    - Newest mainnet database
@@ -254,7 +269,9 @@ It is important to save checkpoint which was dumped from replayer run, as it wil
    4.b) Phase 2:
 
    ```sh
-   jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json"
+
+   # mainnet.json is genesis file from which deamon bootstrap on particular network
+   jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
 
    mina-replayer --migration-mode --archive-uri postgres://postgres:postgres@localhost/ --input-file replayer_config_input.json --checkpoint-interval 100  --checkpoint-file-prefix migration
    ```
@@ -302,7 +319,7 @@ Ensure that replayer from Mainnet and berkeley generate the same ledger for the 
 
 - To verify, start the Mainnet replayer with the same input config as Berkeley. 
 
-- When you run replayer from Mainnet version on Mainnet, archive it with the `--output-config` option to generate a reference replayer output that can be compared with the migrated replayer output.
+- When you run replayer from Mainnet version on Mainnet, archive it with the `--output-file` option to generate a reference replayer output that can be compared with the migrated replayer output.
 
 2. #### All transaction (user command and internal command) hashes are left intact
 
