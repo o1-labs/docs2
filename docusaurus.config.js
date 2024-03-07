@@ -41,10 +41,6 @@ module.exports = {
             to: '/mina-protocol/time-locked-accounts',
           },
           {
-            from: '/node-operators/hardforks',
-            to: '/mina-protocol/hardforks',
-          },
-          {
             from: '/node-operators/lifecycle-of-a-payment',
             to: '/mina-protocol/lifecycle-of-a-payment',
           },
@@ -171,10 +167,6 @@ module.exports = {
           {
             from: '/node-operators/connecting-devnet',
             to: '/node-operators/block-producer-node/connecting-to-devnet',
-          },
-          {
-            from: '/node-operators/hardfork',
-            to: '/mina-protocol/hardforks',
           },
           {
             from: '/node-operators/ledger-app-mina',
