@@ -9,22 +9,26 @@ import {
   State,
 } from 'o1js';
 
+// Contract which adds 1 to a number
 class Incrementer extends SmartContract {
   @method increment(x: Field): Field {
     return x.add(1);
   }
 }
 
+// Contract which add two numbers and plus 1 to their sum and return the result
+// Incrementing by one is outsourced to Incrementer contract
 class Adder extends SmartContract {
   @method addPlus1(x: Field, y: Field): Field {
-    // compute result
+    // Compute result
     let sum = x.add(y);
-    // call the other contract to increment
+    // Call the Incrementer contract to increment by 1
     let incrementer = new Incrementer(incrementerAddress);
     return incrementer.increment(sum);
   }
 }
 
+// Contract which calls the Adder contract, stores the result on chain & emits an event
 class Caller extends SmartContract {
   @state(Field) sum = State<Field>();
   events = { sum: Field };
@@ -39,25 +43,31 @@ class Caller extends SmartContract {
 
 const doProofs = true;
 
+// Deploy and interact with smart contract locally
 let Local = Mina.LocalBlockchain({ proofsEnabled: doProofs });
 Mina.setActiveInstance(Local);
 
+// Test account that pays all the fees, and puts additional funds into the zkapp
 let feePayerKey = Local.testAccounts[0].privateKey;
 let feePayer = Local.testAccounts[0].publicKey;
 
+// The Incrementer contract's address
 let incrementerKey = PrivateKey.random();
 let incrementerAddress = incrementerKey.toPublicKey();
 
+// The Adder contract's address
 let adderKey = PrivateKey.random();
 let adderAddress = adderKey.toPublicKey();
 
-let zkappKey = PrivateKey.random();
-let zkappAddress = zkappKey.toPublicKey();
+// The Caller contract's address
+let callerKey = PrivateKey.random();
+let callerAddress = callerKey.toPublicKey();
 
-let zkapp = new Caller(zkappAddress);
+let callerZkapp = new Caller(callerAddress);
 let adderZkapp = new Adder(adderAddress);
 let incrementerZkapp = new Incrementer(incrementerAddress);
 
+// When doProofs is true, compile contracts to generate prover and verifier keys
 if (doProofs) {
   console.log('compile (incrementer)');
   await Incrementer.compile();
@@ -67,22 +77,26 @@ if (doProofs) {
   await Caller.compile();
 }
 
+// Create transaction to deploy contracts
 console.log('deploy');
 let tx = await Mina.transaction(feePayer, () => {
   AccountUpdate.fundNewAccount(feePayer, 3);
-  zkapp.deploy();
+  callerZkapp.deploy();
   adderZkapp.deploy();
   incrementerZkapp.deploy();
 });
-await tx.sign([feePayerKey, zkappKey, adderKey, incrementerKey]).send();
+// Sign all four account updates by 
+// passing the corresponding private key for the mentioned public addresses
+await tx.sign([feePayerKey, callerKey, adderKey, incrementerKey]).send();
 
+// Create transaction to interact with the callAddAndEmit method of Caller contract
 console.log('call interaction');
 tx = await Mina.transaction(feePayer, () => {
-  zkapp.callAddAndEmit(Field(5), Field(6));
+  callerZkapp.callAddAndEmit(Field(5), Field(6));
 });
 console.log('proving (3 proofs.. can take a bit!)');
 await tx.prove();
 console.log(tx.toPretty());
 await tx.sign([feePayerKey]).send();
 
-console.log('state: ' + zkapp.sum.get());
+console.log('state: ' + callerZkapp.sum.get());
