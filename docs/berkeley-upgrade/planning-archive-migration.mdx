@@ -133,12 +133,13 @@ mina-replayer --archive-uri {db_connection_string} --input-file reference_replay
 ```
 
 where:
+ - `archive-uri` - connection string to archive datbase 
+ - `output-file` - file which will hold ledger with auxiliary information like global slot and blockchain height which will be dumped on last block
+ - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
  - `reference_replayer_input.json` is a file constructed our of mainnet genesis ledger:
   
    ```
-   echo '{ "genesis_ledger": { "accounts": [ ], "add_genesis_winner" : true } }' > input-file.json
-
-   jq --argfile genesis ./genesis_ledger_mainnet.json '.genesis_ledger.accounts += $genesis.ledger.accounts' ./input-file.json > replayer-reference-input.json
+      jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
    ```
 
 :warning: Running a replayer from scratch on a Mainnet database can take up to a couple of days. The recommended best practice is to break the replayer into smaller parts by using the checkpoint capabilities of the replayer.
