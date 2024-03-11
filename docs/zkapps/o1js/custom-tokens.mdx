@@ -39,7 +39,7 @@ A token manager smart contract sets the rules around minting, burning, and sendi
 
 - Minting generates new tokens. The zkApp updates an account's balance by adding the newly created tokens to it. You can send minted tokens to any existing account in the network.
 - Burning tokens is the opposite of minting. Burning tokens deducts the balance of a certain address by the specified amount. A zkApp cannot burn more tokens than the specified account has.
-- Sending tokens between two accounts can be approved by a zkApp. (Question: required?)
+- Sending tokens between two accounts must be approved by a zkApp.
 
 ## TokenContract class
 
@@ -107,7 +107,7 @@ In addition to sending custom tokens, a **token owner account** can mint and bur
 
 ### Token Owner
 
-A token owner is an account that creates, facilitates, and governs how a custom token can be used. The token owner is the account that created the custom token and is the only account that can:
+A token owner is an zkApp account that creates, facilitates, and governs how a custom token can be used. The token owner is the account that created the custom token and is the only account that can:
 
 - Mint tokens
 - Burn tokens
