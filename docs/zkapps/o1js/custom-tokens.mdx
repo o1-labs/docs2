@@ -33,7 +33,7 @@ Each account on Mina can have tokens associated with it. With zkApps, you build 
 
 ## Token manager account
 
-The token manager account can set a token symbol for its token. For example, `MYTKN`. Uniqueness is not enforced for token names because the public key of the manager account is used to identify tokens.
+The token manager account can set a token symbol (also called token name) for its token. For example, `MYTKN`. Uniqueness is not enforced for token names because the public key of the manager account is used to identify tokens.
 
 A token manager smart contract sets the rules around minting, burning, and sending the custom token:
 
@@ -61,7 +61,11 @@ this.internal.mint({ address: this.address, amount: this.SUPPLY });
 
 ### How to burn tokens
 
-Question: do we have an example?
+To burn the specified amount of tokens for the sender:
+
+```ts
+this.internal.burn({ address: sender, amount});
+```
 
 ## How to transfer tokens
 
@@ -74,10 +78,7 @@ let transferTx = await Mina.transaction(sender, () => {
 });
 ```
 
-### How to transfer tokens
-
 Many use cases exist for transferring tokens, like calling a DEX contract's `swap()` method that authorizes the spending of a `Y` token and then calls `tokenY.transfer()` with `dexY.self` as the sender. The receiver is an EOA specified by an address as usual.
-
 
 ## Custom Token Terminology
 
@@ -89,8 +90,6 @@ Token ids are unique identifiers that distinguish between different types of cus
 
 Token ids are derived from a zkApp. To check the token id of a zkApp, use the `this.token.id` property.
 
-Question: are token names the same as custom token identifiers (the token id?) because the public key of the manager account is used to identify tokens. 
-
 ### Token Accounts
 
 Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account and is specified by a public key _and_ a token id. 
@@ -98,8 +97,6 @@ Token accounts are like regular accounts, but they hold a balance of a specific 
 Token accounts are specific for each type of custom token, so a single public key can have many different token accounts.
 
 A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token. 
-
-Question: is this sentence saying the same thing? "If an existing account receives a transaction that is specified by a custom token, a token account for that public key and token id is created if it does not exist.""
 
 When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
 
@@ -115,19 +112,10 @@ A token owner is an zkApp account that creates, facilitates, and governs how a c
 
 If two accounts want to send tokens to each other, the token owner must approve the transaction. The token owner generates the changes the two accounts want to make and can then make assertions about those changes. The token owner can approve the transaction with a proof.
 
-Question: what is this code sample?
-
-```ts
-import { tokenToString } from "typescript"
-```
-
 ## Approval
 
-Use the `approveBase` method
+Use the `approveBase` method.
 
 
-
-Question: do we talk about UnfinishedForest, and new classes AccountUpdateTree and AccountUpdateForest that represent a layout of account updates explicitly. Both types (which types? is a type the same as a class?) are accepted as inputs to approve().
-accountUpdate.extractTree() to obtain the tree associated with an account update in the current transaction context
-
+import ts from "typescript"
 
