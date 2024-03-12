@@ -30,8 +30,8 @@ console.log('state after init:', num0.toString());
 
 // ----------------------------------------------------
 
-const txn1 = await Mina.transaction(senderAccount, () => {
-  zkAppInstance.update(Field(9));
+const txn1 = await Mina.transaction(senderAccount, async () => {
+  await zkAppInstance.update(Field(9));
 });
 await txn1.prove();
 await txn1.sign([senderKey]).send();
