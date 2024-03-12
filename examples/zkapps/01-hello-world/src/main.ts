@@ -42,8 +42,8 @@ console.log('state after txn1:', num1.toString());
 // ----------------------------------------------------
 
 try {
-  const txn2 = await Mina.transaction(senderAccount, () => {
-    zkAppInstance.update(Field(75));
+  const txn2 = await Mina.transaction(senderAccount, async () => {
+    await zkAppInstance.update(Field(75));
   });
   await txn2.prove();
   await txn2.sign([senderKey]).send();
@@ -55,8 +55,8 @@ console.log('state after txn2:', num2.toString());
 
 // ----------------------------------------------------
 
-const txn3 = await Mina.transaction(senderAccount, () => {
-  zkAppInstance.update(Field(81));
+const txn3 = await Mina.transaction(senderAccount, async () => {
+  await zkAppInstance.update(Field(81));
 });
 await txn3.prove();
 await txn3.sign([senderKey]).send();
