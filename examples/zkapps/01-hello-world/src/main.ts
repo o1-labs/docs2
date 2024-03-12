@@ -1,17 +1,14 @@
 import { Square } from './Square.js';
-import {
-  Field,
-  Mina,
-  PrivateKey,
-  AccountUpdate,
-} from 'o1js';
+import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
 
 const useProof = false;
 
 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
 Mina.setActiveInstance(Local);
-const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
+const { privateKey: deployerKey, publicKey: deployerAccount } =
+  Local.testAccounts[0];
+const { privateKey: senderKey, publicKey: senderAccount } =
+  Local.testAccounts[1];
 
 // ----------------------------------------------------
 
@@ -21,9 +18,9 @@ const zkAppAddress = zkAppPrivateKey.toPublicKey();
 
 // create an instance of Square - and deploy it to zkAppAddress
 const zkAppInstance = new Square(zkAppAddress);
-const deployTxn = await Mina.transaction(deployerAccount, () => {
+const deployTxn = await Mina.transaction(deployerAccount, async () => {
   AccountUpdate.fundNewAccount(deployerAccount);
-  zkAppInstance.deploy();
+  await zkAppInstance.deploy();
 });
 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 
