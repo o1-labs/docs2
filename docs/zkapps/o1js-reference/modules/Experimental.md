@@ -42,7 +42,7 @@ The old `Experimental.ZkProgram` API has been deprecated in favor of the new `Zk
 
 #### Defined in
 
-[lib/proof-system.ts:1092](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L1092)
+[lib/proof-system.ts:1092](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L1092)
 
 ___
 
@@ -72,4 +72,4 @@ for reuse by the prover. This is needed to witness non-deterministic values.
 
 #### Defined in
 
-[lib/provable.ts:473](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L473)
+[lib/provable.ts:473](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable.ts#L473)

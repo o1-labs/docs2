@@ -70,7 +70,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L487)
+[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L487)
 
 ## Properties
 
@@ -88,7 +88,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1410](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1410)
+[lib/account-update.ts:1410](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1410)
 
 ___
 
@@ -106,7 +106,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1411](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1411)
+[lib/account-update.ts:1411](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1411)
 
 ___
 
@@ -124,7 +124,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1409](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1409)
+[lib/account-update.ts:1409](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1409)
 
 ___
 
@@ -142,7 +142,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L487)
+[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L487)
 
 ___
 
@@ -182,7 +182,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L98)
+[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L98)
 
 ___
 
@@ -221,7 +221,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L67)
+[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L67)
 
 ___
 
@@ -260,7 +260,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L58)
+[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L58)
 
 ___
 
@@ -300,7 +300,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:490](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L490)
+[lib/circuit-value.ts:490](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L490)
 
 ## Methods
 
@@ -325,7 +325,7 @@ See [approve](AccountUpdate.md#approve).
 
 #### Defined in
 
-[lib/account-update.ts:1430](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1430)
+[lib/account-update.ts:1430](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1430)
 
 ___
 
@@ -347,7 +347,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1446](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1446)
+[lib/account-update.ts:1446](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1446)
 
 ___
 
@@ -370,7 +370,7 @@ Create a tree of account updates which only consists of a root.
 
 #### Defined in
 
-[lib/account-update.ts:1416](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1416)
+[lib/account-update.ts:1416](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1416)
 
 ___
 
@@ -399,7 +399,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1443](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1443)
+[lib/account-update.ts:1443](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1443)
 
 ___
 
@@ -427,4 +427,4 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L88)
+[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L88)

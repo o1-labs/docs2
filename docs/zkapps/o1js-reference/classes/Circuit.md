@@ -45,7 +45,7 @@
 
 #### Defined in
 
-[lib/circuit.ts:15](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L15)
+[lib/circuit.ts:15](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L15)
 
 ___
 
@@ -80,7 +80,7 @@ use [Array](../modules.md#array)
 
 #### Defined in
 
-[lib/circuit.ts:111](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L111)
+[lib/circuit.ts:111](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L111)
 
 ___
 
@@ -108,7 +108,7 @@ use [asProver](../modules.md#asprover)
 
 #### Defined in
 
-[lib/circuit.ts:95](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L95)
+[lib/circuit.ts:95](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L95)
 
 ___
 
@@ -167,7 +167,7 @@ use [assertEqual](../modules.md#assertequal)
 
 #### Defined in
 
-[lib/circuit.ts:115](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L115)
+[lib/circuit.ts:115](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L115)
 
 ___
 
@@ -211,7 +211,7 @@ use [constraintSystem](../modules.md#constraintsystem)
 
 #### Defined in
 
-[lib/circuit.ts:107](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L107)
+[lib/circuit.ts:107](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L107)
 
 ___
 
@@ -270,7 +270,7 @@ use [equal](../modules.md#equal)
 
 #### Defined in
 
-[lib/circuit.ts:119](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L119)
+[lib/circuit.ts:119](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L119)
 
 ___
 
@@ -331,7 +331,7 @@ use [if](../modules.md#if)
 
 #### Defined in
 
-[lib/circuit.ts:123](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L123)
+[lib/circuit.ts:123](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L123)
 
 ___
 
@@ -353,7 +353,7 @@ use [inCheckedComputation](../modules.md#incheckedcomputation)
 
 #### Defined in
 
-[lib/circuit.ts:135](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L135)
+[lib/circuit.ts:135](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L135)
 
 ___
 
@@ -375,7 +375,7 @@ use [inProver](../modules.md#inprover)
 
 #### Defined in
 
-[lib/circuit.ts:131](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L131)
+[lib/circuit.ts:131](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L131)
 
 ___
 
@@ -403,7 +403,7 @@ use [log](../modules.md#log)
 
 #### Defined in
 
-[lib/circuit.ts:139](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L139)
+[lib/circuit.ts:139](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L139)
 
 ___
 
@@ -431,7 +431,7 @@ use [runAndCheck](../modules.md#runandcheck)
 
 #### Defined in
 
-[lib/circuit.ts:99](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L99)
+[lib/circuit.ts:99](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L99)
 
 ___
 
@@ -459,7 +459,7 @@ use [runUnchecked](../modules.md#rununchecked)
 
 #### Defined in
 
-[lib/circuit.ts:103](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L103)
+[lib/circuit.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L103)
 
 ___
 
@@ -496,7 +496,7 @@ use [switch](../modules.md#switch)
 
 #### Defined in
 
-[lib/circuit.ts:127](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L127)
+[lib/circuit.ts:127](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L127)
 
 ___
 
@@ -532,7 +532,7 @@ use [witness](../modules.md#witness)
 
 #### Defined in
 
-[lib/circuit.ts:91](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L91)
+[lib/circuit.ts:91](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L91)
 
 ## Methods
 
@@ -554,7 +554,7 @@ const keypair = await MyCircuit.generateKeypair();
 
 #### Defined in
 
-[lib/circuit.ts:24](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L24)
+[lib/circuit.ts:24](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L24)
 
 ___
 
@@ -585,7 +585,7 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 #### Defined in
 
-[lib/circuit.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L43)
+[lib/circuit.ts:43](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L43)
 
 ___
 
@@ -617,4 +617,4 @@ const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 
 #### Defined in
 
-[lib/circuit.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L69)
+[lib/circuit.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L69)

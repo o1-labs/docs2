@@ -192,9 +192,9 @@
 
 #### Defined in
 
-[lib/core.ts:70](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L70)
+[lib/core.ts:70](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L70)
 
-[lib/core.ts:71](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L71)
+[lib/core.ts:71](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L71)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[lib/bool.ts:17](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/bool.ts#L17)
+[lib/bool.ts:17](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/bool.ts#L17)
 
 ___
 
@@ -214,15 +214,15 @@ ___
 
 #### Defined in
 
-[lib/provable-types/provable-types.ts:16](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L16)
+[lib/provable-types/provable-types.ts:16](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L16)
 
-[lib/provable-types/provable-types.ts:5](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L5)
+[lib/provable-types/provable-types.ts:5](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L5)
 
-[lib/provable-types/provable-types.ts:19](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L19)
+[lib/provable-types/provable-types.ts:19](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L19)
 
-[lib/provable-types/provable-types.ts:20](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L20)
+[lib/provable-types/provable-types.ts:20](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L20)
 
-[lib/provable-types/provable-types.ts:21](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L21)
+[lib/provable-types/provable-types.ts:21](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L21)
 
 ___
 
@@ -255,9 +255,9 @@ Per smart contract or ZkProgram, several different keys are created:
 
 #### Defined in
 
-[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/cache.ts#L31)
+[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/cache.ts#L31)
 
-[lib/proof-system/cache.ts:199](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/cache.ts#L199)
+[lib/proof-system/cache.ts:199](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/cache.ts#L199)
 
 ___
 
@@ -271,7 +271,7 @@ Both `uniqueId` and `programId` can safely be used as a file path.
 
 #### Defined in
 
-[lib/proof-system/cache.ts:98](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/cache.ts#L98)
+[lib/proof-system/cache.ts:98](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/cache.ts#L98)
 
 ___
 
@@ -281,7 +281,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:109](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L109)
+[lib/field.ts:109](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L109)
 
 ___
 
@@ -291,7 +291,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1443](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1443)
+[lib/zkapp.ts:1443](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1443)
 
 ___
 
@@ -301,9 +301,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:77](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L77)
+[lib/proof-system.ts:77](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L77)
 
-[lib/proof-system.ts:78](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L78)
+[lib/proof-system.ts:78](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L78)
 
 ___
 
@@ -326,7 +326,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:703](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L703)
+[snarky.d.ts:703](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L703)
 
 ___
 
@@ -336,9 +336,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:42](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L42)
+[lib/core.ts:42](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L42)
 
-[lib/core.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L43)
+[lib/core.ts:43](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L43)
 
 ___
 
@@ -348,9 +348,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:27](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L27)
+[lib/field.ts:27](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L27)
 
-[lib/field.ts:36](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L36)
+[lib/field.ts:36](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L36)
 
 ___
 
@@ -372,9 +372,9 @@ Both constants and variables can be combined into an AST using the Add and Scale
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L67)
 
-[lib/field.ts:76](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L76)
+[lib/field.ts:76](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L76)
 
 ___
 
@@ -390,7 +390,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:69](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L69)
+[lib/circuit-value.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L69)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:70](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L70)
+[lib/circuit-value.ts:70](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L70)
 
 ___
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:568](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L568)
+[snarky.d.ts:568](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L568)
 
 ___
 
@@ -434,7 +434,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:545](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L545)
+[snarky.d.ts:545](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L545)
 
 ___
 
@@ -444,9 +444,9 @@ ___
 
 #### Defined in
 
-[lib/core.ts:76](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L76)
+[lib/core.ts:76](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L76)
 
-[lib/core.ts:77](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L77)
+[lib/core.ts:77](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L77)
 
 ___
 
@@ -480,7 +480,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:561](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L561)
+[snarky.d.ts:561](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L561)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:226](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L226)
+[lib/proof-system.ts:226](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L226)
 
 ___
 
@@ -509,7 +509,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:714](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L714)
+[snarky.d.ts:714](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L714)
 
 ___
 
@@ -519,7 +519,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:581](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L581)
+[snarky.d.ts:581](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L581)
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:582](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L582)
+[snarky.d.ts:582](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L582)
 
 ___
 
@@ -549,9 +549,9 @@ You will find this as the required input type in a few places in o1js. One conve
 
 #### Defined in
 
-[lib/provable.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L43)
+[lib/provable.ts:43](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable.ts#L43)
 
-[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable.ts#L45)
 
 ___
 
@@ -568,7 +568,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L59)
+[lib/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L59)
 
 ___
 
@@ -584,7 +584,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:30](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hash.ts#L30)
+[lib/hash.ts:30](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hash.ts#L30)
 
 ___
 
@@ -606,9 +606,9 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1166](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1166)
+[lib/zkapp.ts:1166](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1166)
 
-[lib/zkapp.ts:1490](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1490)
+[lib/zkapp.ts:1490](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1490)
 
 ___
 
@@ -641,9 +641,9 @@ Gettable and settable state that can be checked for equality.
 
 #### Defined in
 
-[lib/state.ts:85](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/state.ts#L85)
+[lib/state.ts:85](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/state.ts#L85)
 
-[lib/state.ts:20](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/state.ts#L20)
+[lib/state.ts:20](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/state.ts#L20)
 
 ___
 
@@ -659,9 +659,9 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:375](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L375)
+[lib/circuit-value.ts:375](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L375)
 
-[lib/circuit-value.ts:64](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L64)
+[lib/circuit-value.ts:64](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L64)
 
 ___
 
@@ -677,7 +677,7 @@ UNKNOWN: The transaction has either been snarked, reached finality through conse
 
 #### Defined in
 
-[lib/mina/graphql.ts:213](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/mina/graphql.ts#L213)
+[lib/mina/graphql.ts:213](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/graphql.ts#L213)
 
 ___
 
@@ -687,9 +687,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:74](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L74)
+[lib/proof-system.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L74)
 
-[lib/proof-system.ts:75](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L75)
+[lib/proof-system.ts:75](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L75)
 
 ___
 
@@ -699,9 +699,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1363](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1363)
+[lib/field.ts:1363](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1363)
 
-[lib/field.ts:110](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L110)
+[lib/field.ts:110](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L110)
 
 ___
 
@@ -711,7 +711,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:74](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L74)
+[lib/field.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L74)
 
 ___
 
@@ -721,9 +721,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:79](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L79)
+[lib/proof-system.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L79)
 
-[lib/proof-system.ts:80](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L80)
+[lib/proof-system.ts:80](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L80)
 
 ___
 
@@ -740,11 +740,11 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:244](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L244)
+[lib/proof-system.ts:244](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L244)
 
-[lib/proof-system.ts:474](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L474)
+[lib/proof-system.ts:474](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L474)
 
-[lib/proof-system.ts:929](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L929)
+[lib/proof-system.ts:929](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L929)
 
 ___
 
@@ -773,9 +773,9 @@ transaction.
 
 #### Defined in
 
-[lib/account-update.ts:1998](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1998)
+[lib/account-update.ts:1998](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1998)
 
-[lib/account-update.ts:2002](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L2002)
+[lib/account-update.ts:2002](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L2002)
 
 ## Variables
 
@@ -793,9 +793,9 @@ transaction.
 
 #### Defined in
 
-[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/cache.ts#L31)
+[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/cache.ts#L31)
 
-[lib/proof-system/cache.ts:199](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/cache.ts#L199)
+[lib/proof-system/cache.ts:199](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/cache.ts#L199)
 
 ___
 
@@ -815,9 +815,9 @@ ___
 
 #### Defined in
 
-[lib/crypto.ts:8](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/crypto.ts#L8)
+[lib/crypto.ts:8](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/crypto.ts#L8)
 
-[lib/crypto.ts:22](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/crypto.ts#L22)
+[lib/crypto.ts:22](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/crypto.ts#L22)
 
 ___
 
@@ -827,9 +827,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:77](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L77)
+[lib/proof-system.ts:77](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L77)
 
-[lib/proof-system.ts:78](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L78)
+[lib/proof-system.ts:78](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L78)
 
 ___
 
@@ -850,9 +850,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:27](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L27)
+[lib/field.ts:27](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L27)
 
-[lib/field.ts:36](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L36)
+[lib/field.ts:36](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L36)
 
 ___
 
@@ -875,9 +875,9 @@ ___
 
 #### Defined in
 
-[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L67)
+[lib/field.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L67)
 
-[lib/field.ts:76](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L76)
+[lib/field.ts:76](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L76)
 
 ___
 
@@ -930,9 +930,9 @@ ___
 
 #### Defined in
 
-[lib/gadgets/gadgets.ts:31](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/gadgets/gadgets.ts#L31)
+[lib/gadgets/gadgets.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/gadgets/gadgets.ts#L31)
 
-[lib/gadgets/gadgets.ts:822](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/gadgets/gadgets.ts#L822)
+[lib/gadgets/gadgets.ts:822](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/gadgets/gadgets.ts#L822)
 
 ___
 
@@ -972,7 +972,7 @@ A collection of hash functions which can be used in provable code.
 
 #### Defined in
 
-[lib/hashes-combined.ts:11](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hashes-combined.ts#L11)
+[lib/hashes-combined.ts:11](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hashes-combined.ts#L11)
 
 ___
 
@@ -990,7 +990,7 @@ ___
 
 #### Defined in
 
-[lib/keccak.ts:11](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/keccak.ts#L11)
+[lib/keccak.ts:11](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/keccak.ts#L11)
 
 ___
 
@@ -1016,9 +1016,9 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:198](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L198)
+[lib/account-update.ts:198](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L198)
 
-[lib/account-update.ts:273](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L273)
+[lib/account-update.ts:273](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L273)
 
 ___
 
@@ -1047,9 +1047,9 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:726](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L726)
+[snarky.d.ts:726](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L726)
 
-[snarky.d.ts:773](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L773)
+[snarky.d.ts:773](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L773)
 
 ___
 
@@ -1071,7 +1071,7 @@ ___
 
 #### Defined in
 
-[lib/hash.ts:49](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/hash.ts#L49)
+[lib/hash.ts:49](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hash.ts#L49)
 
 ___
 
@@ -1101,9 +1101,9 @@ ___
 
 #### Defined in
 
-[lib/provable.ts:43](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L43)
+[lib/provable.ts:43](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable.ts#L43)
 
-[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable.ts#L45)
+[lib/provable.ts:45](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable.ts#L45)
 
 ___
 
@@ -1185,9 +1185,9 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:162](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L162)
+[snarky.d.ts:162](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L162)
 
-[snarky.d.ts:174](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L174)
+[snarky.d.ts:174](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L174)
 
 ___
 
@@ -1243,7 +1243,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:616](https://github.com/o1-labs/o1js/blob/64a4beb/src/snarky.d.ts#L616)
+[snarky.d.ts:616](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L616)
 
 ___
 
@@ -1271,7 +1271,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:553](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L553)
+[lib/account-update.ts:553](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L553)
 
 ___
 
@@ -1287,7 +1287,7 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:108](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L108)
+[lib/account-update.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L108)
 
 ___
 
@@ -1297,9 +1297,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:74](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L74)
+[lib/proof-system.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L74)
 
-[lib/proof-system.ts:75](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L75)
+[lib/proof-system.ts:75](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L75)
 
 ___
 
@@ -1309,9 +1309,9 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:79](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L79)
+[lib/proof-system.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L79)
 
-[lib/proof-system.ts:80](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L80)
+[lib/proof-system.ts:80](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L80)
 
 ___
 
@@ -1321,9 +1321,9 @@ ___
 
 #### Defined in
 
-[lib/account-update.ts:1998](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L1998)
+[lib/account-update.ts:1998](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1998)
 
-[lib/account-update.ts:2002](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/account-update.ts#L2002)
+[lib/account-update.ts:2002](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L2002)
 
 ___
 
@@ -1337,7 +1337,7 @@ ___
 
 #### Defined in
 
-[index.ts:150](https://github.com/o1-labs/o1js/blob/64a4beb/src/index.ts#L150)
+[index.ts:150](https://github.com/o1-labs/o1js/blob/659a59e/src/index.ts#L150)
 
 ## Functions
 
@@ -1358,7 +1358,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1450](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1450)
+[lib/zkapp.ts:1450](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1450)
 
 ___
 
@@ -1404,7 +1404,7 @@ const b: Bool = Field(5).equals(6);
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L81)
 
 ___
 
@@ -1432,7 +1432,7 @@ typeof `Bytes`
 
 #### Defined in
 
-[lib/provable-types/provable-types.ts:16](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/provable-types/provable-types.ts#L16)
+[lib/provable-types/provable-types.ts:16](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/provable-types.ts#L16)
 
 ___
 
@@ -1487,7 +1487,7 @@ A Field itself is also defined as a "field-like" element.
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L81)
 
 ___
 
@@ -1509,7 +1509,7 @@ An element of a Group.
 
 #### Defined in
 
-[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/core.ts#L81)
+[lib/core.ts:81](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/core.ts#L81)
 
 ___
 
@@ -1533,7 +1533,7 @@ A circuit-compatible Merkle Witness.
 
 #### Defined in
 
-[lib/merkle-tree.ts:237](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/merkle-tree.ts#L237)
+[lib/merkle-tree.ts:237](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L237)
 
 ___
 
@@ -1561,7 +1561,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1490](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1490)
+[lib/zkapp.ts:1490](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1490)
 
 ___
 
@@ -1581,7 +1581,7 @@ ___
 
 #### Defined in
 
-[lib/state.ts:85](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/state.ts#L85)
+[lib/state.ts:85](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/state.ts#L85)
 
 ___
 
@@ -1677,7 +1677,7 @@ Class which you can extend
 
 #### Defined in
 
-[lib/circuit-value.ts:375](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L375)
+[lib/circuit-value.ts:375](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L375)
 
 ___
 
@@ -1697,7 +1697,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1363](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1363)
+[lib/field.ts:1363](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1363)
 
 ___
 
@@ -1724,7 +1724,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:244](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L244)
+[lib/proof-system.ts:244](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L244)
 
 ___
 
@@ -1747,7 +1747,7 @@ Adds an account to the local cache, indexed by a GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:407](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L407)
+[lib/fetch.ts:407](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L407)
 
 ___
 
@@ -1787,7 +1787,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:280](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L280)
+[lib/circuit-value.ts:280](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L280)
 
 ___
 
@@ -1811,7 +1811,7 @@ asserts stmt
 
 #### Defined in
 
-[lib/gadgets/common.ts:70](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/gadgets/common.ts#L70)
+[lib/gadgets/common.ts:70](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/gadgets/common.ts#L70)
 
 ___
 
@@ -1833,7 +1833,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1301](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1301)
+[lib/field.ts:1301](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1301)
 
 ___
 
@@ -1854,7 +1854,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:506](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L506)
+[lib/fetch.ts:506](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L506)
 
 ___
 
@@ -1876,7 +1876,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:233](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L233)
+[lib/circuit.ts:233](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L233)
 
 ___
 
@@ -1898,7 +1898,7 @@ typeof [`EcdsaSignature`](classes/EcdsaSignature.md)
 
 #### Defined in
 
-[lib/foreign-ecdsa.ts:189](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-ecdsa.ts#L189)
+[lib/foreign-ecdsa.ts:189](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-ecdsa.ts#L189)
 
 ___
 
@@ -1932,7 +1932,7 @@ typeof [`ForeignCurve`](classes/ForeignCurve.md)
 
 #### Defined in
 
-[lib/foreign-curve.ts:293](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-curve.ts#L293)
+[lib/foreign-curve.ts:293](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-curve.ts#L293)
 
 ___
 
@@ -1998,7 +1998,7 @@ typeof `UnreducedForeignField`
 
 #### Defined in
 
-[lib/foreign-field.ts:627](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/foreign-field.ts#L627)
+[lib/foreign-field.ts:627](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/foreign-field.ts#L627)
 
 ___
 
@@ -2040,7 +2040,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 #### Defined in
 
-[lib/zkapp.ts:1476](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L1476)
+[lib/zkapp.ts:1476](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1476)
 
 ___
 
@@ -2100,7 +2100,7 @@ declareState(MyContract, { x: Field });
 
 #### Defined in
 
-[lib/state.ts:175](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/state.ts#L175)
+[lib/state.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/state.ts#L175)
 
 ___
 
@@ -2134,7 +2134,7 @@ zkapp information on the specified account or an error is thrown
 
 #### Defined in
 
-[lib/fetch.ts:171](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L171)
+[lib/fetch.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L171)
 
 ___
 
@@ -2176,7 +2176,7 @@ console.log(events);
 
 #### Defined in
 
-[lib/fetch.ts:637](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L637)
+[lib/fetch.ts:637](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L637)
 
 ___
 
@@ -2198,7 +2198,7 @@ Fetches the last block on the Mina network.
 
 #### Defined in
 
-[lib/fetch.ts:450](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L450)
+[lib/fetch.ts:450](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L450)
 
 ___
 
@@ -2221,7 +2221,7 @@ Fetches the status of a transaction.
 
 #### Defined in
 
-[lib/fetch.ts:587](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L587)
+[lib/fetch.ts:587](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L587)
 
 ___
 
@@ -2276,7 +2276,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:289](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L289)
+[lib/circuit-value.ts:289](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L289)
 
 ___
 
@@ -2313,7 +2313,7 @@ You can use inside your zkApp class as:
 
 #### Defined in
 
-[lib/zkapp.ts:91](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/zkapp.ts#L91)
+[lib/zkapp.ts:91](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L91)
 
 ___
 
@@ -2335,7 +2335,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:265](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L265)
+[lib/circuit-value.ts:265](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L265)
 
 ___
 
@@ -2411,7 +2411,7 @@ ___
 
 #### Defined in
 
-[lib/circuit.ts:197](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit.ts#L197)
+[lib/circuit.ts:197](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit.ts#L197)
 
 ___
 
@@ -2433,7 +2433,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1343](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1343)
+[lib/field.ts:1343](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1343)
 
 ___
 
@@ -2454,7 +2454,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:323](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/signature.ts#L323)
+[lib/signature.ts:323](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L323)
 
 ___
 
@@ -2479,7 +2479,7 @@ Sends a zkApp command (transaction) to the specified GraphQL endpoint.
 
 #### Defined in
 
-[lib/fetch.ts:607](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L607)
+[lib/fetch.ts:607](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L607)
 
 ___
 
@@ -2501,7 +2501,7 @@ Sets up a GraphQL endpoint to be used for fetching information from an Archive N
 
 #### Defined in
 
-[lib/fetch.ts:126](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L126)
+[lib/fetch.ts:126](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L126)
 
 ___
 
@@ -2521,7 +2521,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:104](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L104)
+[lib/fetch.ts:104](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L104)
 
 ___
 
@@ -2541,7 +2541,7 @@ ___
 
 #### Defined in
 
-[lib/fetch.ts:97](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/fetch.ts#L97)
+[lib/fetch.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/fetch.ts#L97)
 
 ___
 
@@ -2569,7 +2569,7 @@ setNumberOfWorkers(2); // set the number of workers to 2
 
 #### Defined in
 
-[lib/proof-system/workers.ts:15](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system/workers.ts#L15)
+[lib/proof-system/workers.ts:15](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system/workers.ts#L15)
 
 ___
 
@@ -2587,7 +2587,7 @@ ___
 
 #### Defined in
 
-[index.ts:155](https://github.com/o1-labs/o1js/blob/64a4beb/src/index.ts#L155)
+[index.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/index.ts#L155)
 
 ___
 
@@ -2635,7 +2635,7 @@ you can use the following in the declaration of your zkapp:
 
 #### Defined in
 
-[lib/state.ts:99](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/state.ts#L99)
+[lib/state.ts:99](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/state.ts#L99)
 
 ___
 
@@ -2658,7 +2658,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1318](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1318)
+[lib/field.ts:1318](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1318)
 
 ___
 
@@ -2678,7 +2678,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1259](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1259)
+[lib/field.ts:1259](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1259)
 
 ___
 
@@ -2699,7 +2699,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:190](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/proof-system.ts#L190)
+[lib/proof-system.ts:190](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L190)
 
 ___
 
@@ -2720,4 +2720,4 @@ ___
 
 #### Defined in
 
-[lib/field.ts:1277](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/field.ts#L1277)
+[lib/field.ts:1277](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1277)

@@ -78,7 +78,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit-value.ts:533](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L533)
+[lib/circuit-value.ts:533](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L533)
 
 ## Properties
 
@@ -88,7 +88,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit-value.ts:529](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L529)
+[lib/circuit-value.ts:529](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L529)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/circuit-value.ts:602](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L602)
+[lib/circuit-value.ts:602](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L602)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Note: Can only be called outside provable code.
 
 #### Defined in
 
-[lib/circuit-value.ts:542](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L542)
+[lib/circuit-value.ts:542](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L542)
 
 ___
 
@@ -138,7 +138,7 @@ Modify the unconstrained value.
 
 #### Defined in
 
-[lib/circuit-value.ts:556](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L556)
+[lib/circuit-value.ts:556](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L556)
 
 ___
 
@@ -160,7 +160,7 @@ Set the unconstrained value to the same as another `Unconstrained`.
 
 #### Defined in
 
-[lib/circuit-value.ts:563](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L563)
+[lib/circuit-value.ts:563](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L563)
 
 ___
 
@@ -182,7 +182,7 @@ Update an `Unconstrained` by a witness computation.
 
 #### Defined in
 
-[lib/circuit-value.ts:595](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L595)
+[lib/circuit-value.ts:595](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L595)
 
 ___
 
@@ -218,7 +218,7 @@ let xWrapped = Unconstrained.witness(() => Provable.toConstant(type, x));
 
 #### Defined in
 
-[lib/circuit-value.ts:578](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L578)
+[lib/circuit-value.ts:578](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L578)
 
 ___
 
@@ -246,4 +246,4 @@ Create an `Unconstrained` from a witness computation.
 
 #### Defined in
 
-[lib/circuit-value.ts:585](https://github.com/o1-labs/o1js/blob/64a4beb/src/lib/circuit-value.ts#L585)
+[lib/circuit-value.ts:585](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L585)
