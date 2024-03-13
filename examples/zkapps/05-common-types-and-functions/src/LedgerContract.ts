@@ -16,11 +16,11 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 export class LedgerContract extends SmartContract {
   @state(Field) ledgerRoot = State<Field>();
 
-  @method initState(initialLedgerRoot: Field) {
+  @method async initState(initialLedgerRoot: Field) {
     this.ledgerRoot.set(initialLedgerRoot);
   }
 
-  @method sendBalance(
+  @method async sendBalance(
     senderWitness: MerkleWitness20,
     recipientWitness: MerkleWitness20,
     senderBalanceBefore: Field,
