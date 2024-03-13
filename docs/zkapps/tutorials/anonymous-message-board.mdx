@@ -43,7 +43,7 @@ This tutorial has been tested with:
 1. Create the project:
 
   ```sh
-  $ zk project message-board
+  $ zk project zk file message
   ```
 
   The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
@@ -57,9 +57,17 @@ This tutorial has been tested with:
   ❯ none
   ```
   
-The `zk project` command creates a directory with a new project template that is fully set up and ready for local development. Like all zk projects, a git repository is initialized in the project directory. By convention, the `main` branch is the default branch. 
+  The `zk project` command creates a directory with a new project template that is fully set up and ready for local development. Like all zk projects, a git repository is initialized in the project directory. By convention, the `main` branch is the default branch. 
 
-For this tutorial, you run commands from the root of the `message-board` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory. See the included [README](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/anonymous-message-board/README.md) file with usage instructions.
+1. Change to the project directory:
+
+  ```sh 
+  cd message-board
+  ```
+
+  For this tutorial, you run commands from the root of the `message-board` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+  
+  Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory. See the included [README](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/anonymous-message-board/README.md) file with usage instructions.
 
 ### Prepare the project
 
@@ -71,8 +79,6 @@ Example smart contract files come with the new project, you can delete them if y
   $ rm src/Add.ts
   $ rm src/Add.test.ts
   ```
-
-Now that your project is set up, you can open it in your IDE or `cd message-board` if you work from the command line.
 
 1. To create the `src/message.ts` file and generate the corresponding `src/message.test.ts` test file:
 
@@ -152,7 +158,7 @@ Now that your project is set up, you can open it in your IDE or `cd message-boar
       // Update on-chain message state
       this.message.set(message);
 
-      // Computer new messageHistoryHash
+      // Compute new messageHistoryHash
       const oldHash = this.messageHistoryHash.get();
       const newHash = Poseidon.hash([message, oldHash]);
 
@@ -272,7 +278,7 @@ Notice the `equals()` and `or()` methods are used instead of the JavaScript oper
 
 ### Update `message`
 
-Up to this point, you have worked to ensure that only approved users can call `publishMessage()`. When they do, the contract updates the on-chain `message` variable to their new message:
+Up to this point, the contract ensures that only approved users can call `publishMessage()`. When they do, the contract updates the on-chain `message` variable to their new message:
 
 ```ts
 // Update on-chain message state
@@ -325,3 +331,5 @@ The logical next steps to extend this project include:
 - Allow users to pass an arbitrarily large number of signers into the `publishMessage()` method.
 - Store the message history in a Merkle tree so a user interface can quickly check a subset of the messages without evaluating the entire history.
 - Build a shiny front end!
+import { showCompletionScript } from "yargs"
+
