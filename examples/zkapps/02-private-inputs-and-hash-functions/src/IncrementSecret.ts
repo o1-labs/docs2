@@ -7,7 +7,7 @@ export class IncrementSecret extends SmartContract {
     this.x.set(Poseidon.hash([salt, firstSecret]));
   }
 
-  @method incrementSecret(salt: Field, secret: Field) {
+  @method async incrementSecret(salt: Field, secret: Field) {
     const x = this.x.get();
     this.x.requireEquals(x);
 
