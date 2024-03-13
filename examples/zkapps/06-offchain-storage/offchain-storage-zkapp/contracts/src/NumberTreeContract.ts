@@ -30,7 +30,7 @@ export class NumberTreeContract extends SmartContract {
     });
   }
 
-  @method async initState(storageServerPublicKey: PublicKey) {
+  @method initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
     this.storageNumber.set(Field(0));
 
@@ -38,7 +38,7 @@ export class NumberTreeContract extends SmartContract {
     this.storageTreeRoot.set(emptyTreeRoot);
   }
 
-  @method async update(
+  @method update(
     leafIsEmpty: Bool,
     oldNum: Field,
     num: Field,
