@@ -67,9 +67,12 @@ await Add.compile();
 try {
   // call update() and send transaction
   console.log('build transaction and create proof...');
-  let tx = await Mina.transaction({ sender: feepayerAddress, fee }, () => {
-    zkApp.update();
-  });
+  let tx = await Mina.transaction(
+    { sender: feepayerAddress, fee },
+    async () => {
+      await zkApp.update();
+    }
+  );
   await tx.prove();
   console.log('send transaction...');
   sentTx = await tx.sign([feepayerKey]).send();
