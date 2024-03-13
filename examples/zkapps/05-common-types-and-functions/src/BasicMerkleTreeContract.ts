@@ -16,7 +16,7 @@ export class BasicMerkleTreeContract extends SmartContract {
     this.treeRoot.set(initialRoot);
   }
 
-  @method async update(
+  @method update(
     leafWitness: MerkleWitness20,
     numberBefore: Field,
     incrementAmount: Field
