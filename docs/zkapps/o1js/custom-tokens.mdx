@@ -36,7 +36,7 @@ Each account on Mina can have tokens associated with it. With zkApps, you build 
 
 ## Token manager account
 
-The token manager account can set a token symbol (also called token name) for its token. For example, `MYTKN`. Uniqueness is not enforced for token names because the public key of the manager account is used to identify tokens.
+The token manager account can set a token symbol (also called token name) for its token. For example, `MYTKN`. Uniqueness is not enforced for token names because the public key of the manager account is used to derive a unique identifier for each token.
 
 A token manager smart contract sets the rules around minting, burning, and sending the custom token:
 
@@ -51,37 +51,56 @@ Use the `TokenContract` class to perform common token operations, such as mintin
 As shown in this [example code](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/token/token-contract.unit-test.ts#L13), you inherit from the `TokenContract` class:
 
 ```ts
-class ExampleTokenContract extends TokenContract {
+class ExampleTokenContract extends TokenContract { 
+  // your custom token implementation
+}
 ```
 
-### How to mint tokens
+## TokenContract API
 
-To mint the entire supply to the token account with the same address as the smart contract:
+The `TokenContract` comes with a set of prebuilt methods and helpers to get you started in your token journey. The base token smart contract implements the following two APIs:
+
+- `Approvable` leaves the `approveBase()` method to be defined by the subclass
+- `Transferable` a wrapper around `Approvable` that deals with transfers of token
+
+Additionally, the token smart contract also comes with an `internal` namespace which contains helper methods that can be used from within a token contract only.
 
 ```ts
-this.internal.mint({ address: this.address, amount: this.SUPPLY });
+TokenContract.internal: {
+    /**
+     * Mints token balance to `address`. Returns the mint account update.
+     */
+    mint(
+      address: PublicKey | AccountUpdate | SmartContract;
+      amount: number | bigint | UInt64;
+    ): AccountUpdate;
+    /**
+     * Burn token balance on `address`. Returns the burn account update.
+     */
+    burn(
+      address: PublicKey | AccountUpdate | SmartContract;
+      amount: number | bigint | UInt64;
+    ): AccountUpdate;
+    /**
+     * Move token balance from `from` to `to`. Returns the `to` account update.
+     */
+    send(
+      from: PublicKey | AccountUpdate | SmartContract;
+      to: PublicKey | AccountUpdate | SmartContract;
+      amount: number | bigint | UInt64;
+    ): AccountUpdate;
+}
 ```
 
-### How to burn tokens
+### The Approvable API
 
-To burn the specified amount of tokens for the sender:
+Each subclass token contract that inherits the default `TokenContract` must implement the core `approveBase()` method. It has the following signature:
 
 ```ts
-this.internal.burn({ address: sender, amount});
+approveBase(forest: AccountUpdateForest): void;
 ```
 
-## How to transfer tokens
-
-This example code demonstrates how to transfer tokens between two accounts:
-
-```ts
-let transferTx = await Mina.transaction(sender, () => {
-  AccountUpdate.fundNewAccount(sender);
-  token.transfer(tokenAddress, otherAddress, UInt64.one);
-});
-```
-
-Many use cases exist for transferring tokens, like calling a DEX contract's `swap()` method that authorizes the spending of a `Y` token and then calls `tokenY.transfer()` with `dexY.self` as the sender. The receiver is an EOA specified by an address as usual.
+### The Transferable API
 
 ## Custom Token Terminology
 
