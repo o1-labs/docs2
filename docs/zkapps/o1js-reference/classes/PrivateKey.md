@@ -40,6 +40,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 - [fromJSON](PrivateKey.md#fromjson)
 - [fromObject](PrivateKey.md#fromobject)
 - [random](PrivateKey.md#random)
+- [randomKeypair](PrivateKey.md#randomkeypair)
 - [sizeInFields](PrivateKey.md#sizeinfields)
 - [toAuxiliary](PrivateKey.md#toauxiliary)
 - [toBase58](PrivateKey.md#tobase58-1)
@@ -66,7 +67,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:30](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L30)
+[lib/signature.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L31)
 
 ## Properties
 
@@ -76,7 +77,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/signature.ts:28](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L28)
+[lib/signature.ts:29](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L29)
 
 ## Methods
 
@@ -100,7 +101,7 @@ A signing key. You can generate one via [random](PrivateKey.md#random).
 
 #### Defined in
 
-[lib/circuit_value.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L166)
+[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L167)
 
 ___
 
@@ -124,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:162](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L162)
+[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L163)
 
 ___
 
@@ -142,7 +143,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:170](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L170)
+[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L171)
 
 ___
 
@@ -160,7 +161,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L95)
+[lib/signature.ts:111](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L111)
 
 ___
 
@@ -176,7 +177,7 @@ Convert this [PrivateKey](PrivateKey.md) to a bigint
 
 #### Defined in
 
-[lib/signature.ts:58](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L58)
+[lib/signature.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L74)
 
 ___
 
@@ -194,7 +195,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:158](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L158)
+[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L159)
 
 ___
 
@@ -212,7 +213,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:150](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L150)
+[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L151)
 
 ___
 
@@ -230,7 +231,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:154](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L154)
+[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L155)
 
 ___
 
@@ -248,7 +249,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:77](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L77)
+[lib/signature.ts:93](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L93)
 
 ___
 
@@ -279,7 +280,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:199](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L199)
+[lib/circuit-value.ts:200](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L200)
 
 ___
 
@@ -303,7 +304,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:254](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L254)
+[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L255)
 
 ___
 
@@ -327,7 +328,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:86](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L86)
+[lib/signature.ts:102](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L102)
 
 ___
 
@@ -352,7 +353,7 @@ Be careful that you don't use this method to create private keys that were sampl
 
 #### Defined in
 
-[lib/signature.ts:68](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L68)
+[lib/signature.ts:84](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L84)
 
 ___
 
@@ -376,7 +377,7 @@ a [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:51](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L51)
+[lib/signature.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L67)
 
 ___
 
@@ -407,7 +408,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:174](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L174)
+[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L175)
 
 ___
 
@@ -438,7 +439,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:232](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L232)
+[lib/circuit-value.ts:233](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L233)
 
 ___
 
@@ -469,7 +470,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:95](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L95)
+[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L96)
 
 ___
 
@@ -477,9 +478,13 @@ ___
 
 ▸ `Static` **random**(): [`PrivateKey`](PrivateKey.md)
 
-You can use this method to generate a private key. You can then obtain
-the associated public key via [toPublicKey](PrivateKey.md#topublickey). And generate signatures
-via [create](Signature.md#create).
+Generate a random private key.
+
+You can obtain the associated public key via [toPublicKey](PrivateKey.md#topublickey).
+And generate signatures via [create](Signature.md#create).
+
+Note: This uses node or browser built-in APIs to obtain cryptographically strong randomness,
+and can be safely used to generate a real private key.
 
 #### Returns
 
@@ -489,7 +494,31 @@ a new [PrivateKey](PrivateKey.md).
 
 #### Defined in
 
-[lib/signature.ts:41](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L41)
+[lib/signature.ts:46](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L46)
+
+___
+
+### randomKeypair
+
+▸ `Static` **randomKeypair**(): `Object`
+
+Create a random keypair `{ privateKey: PrivateKey, publicKey: PublicKey }`.
+
+Note: This uses node or browser built-in APIs to obtain cryptographically strong randomness,
+and can be safely used to generate a real keypair.
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `privateKey` | [`PrivateKey`](PrivateKey.md) |
+| `publicKey` | [`PublicKey`](Types.PublicKey.md) |
+
+#### Defined in
+
+[lib/signature.ts:56](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L56)
 
 ___
 
@@ -507,7 +536,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:102](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L102)
+[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L103)
 
 ___
 
@@ -525,7 +554,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L124)
+[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L125)
 
 ___
 
@@ -550,7 +579,7 @@ a base58 encoded string
 
 #### Defined in
 
-[lib/signature.ts:104](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/signature.ts#L104)
+[lib/signature.ts:120](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L120)
 
 ___
 
@@ -581,7 +610,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L213)
+[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L214)
 
 ___
 
@@ -612,7 +641,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:107](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L107)
+[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L108)
 
 ___
 
@@ -643,7 +672,7 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:128](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L128)
+[lib/circuit-value.ts:129](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L129)
 
 ___
 
@@ -674,4 +703,4 @@ ___
 
 #### Defined in
 
-[lib/circuit_value.ts:221](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/circuit_value.ts#L221)
+[lib/circuit-value.ts:222](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L222)
