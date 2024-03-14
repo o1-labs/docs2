@@ -123,7 +123,7 @@ To get started with installing and running the archive node using Docker, follow
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -147,7 +147,7 @@ To get started with installing and running the archive node using Docker, follow
 6. Load the mina archive schema into the archive database.
 
    ```sh
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/c980ba8/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
    ```
 
 7. Create a local directory to store the archive node data.
@@ -192,7 +192,7 @@ To run the archive node using Docker Compose:
 3. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
    ```
 
 4. Pull and install the postgres image from Docker Hub.
