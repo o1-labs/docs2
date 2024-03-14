@@ -100,7 +100,74 @@ Each subclass token contract that inherits the default `TokenContract` must impl
 approveBase(forest: AccountUpdateForest): void;
 ```
 
+The `TokenContract` also containts helper methods that make it easy to iterate through and approve a forest of child account updates.
+The usual implementation is as easy as this:
+
+
+```ts
+@method approveBase(forest: AccountUpdateForest) {
+  this.checkZeroBalanceChange(forest);
+}
+```
+
+However, if you want to do a custom implementation for every child account update, you can utilize the `forEachUpdate()` method.
+
+```ts
+@method
+approveBase(updates: AccountUpdateForest) {
+  let totalBalanceChange = Int64.zero;
+
+  this.forEachUpdate(updates, (accountUpdate, usesToken) => {
+    totalBalanceChange = totalBalanceChange.add(
+      Provable.if(usesToken, accountUpdate.balanceChange, Int64.zero)
+    );
+    // additional logic
+  });
+
+  // prove that the total balance change is zero
+  totalBalanceChange.assertEquals(0);
+}
+```
+
+
+The `Approvable` API also provides easy to use wrappers around `approveBase()`, such as the following:
+
+```ts
+abstract class TokenContract extends SmartContract {
+  /**
+    * Approve a single account update (with arbitrarily many children).
+    */
+  approveAccountUpdate(accountUpdate: AccountUpdate): Promise<void>;;
+  /**
+    * Approve a list of account updates (with arbitrarily many children).
+    */
+  approveAccountUpdates(accountUpdates: AccountUpdate[]): Promise<void>;;
+  /**
+    * Transfer `amount` of tokens from `from` to `to`.
+    */
+  transfer(from: PublicKey | AccountUpdate, to: PublicKey | AccountUpdate, amount: UInt64): Promise<void>;;
+}
+```
+
 ### The Transferable API
+
+
+The `Transferable` API is a simple wrapper around the `Approvable` API. It implements the following method:
+
+```ts
+abstract class TokenContract extends SmartContract {
+  /**
+    * Transfer `amount` of tokens from `from` to `to`.
+    */
+  transfer(
+    from: PublicKey | AccountUpdate,
+    to: PublicKey | AccountUpdate,
+    amount: UInt64 | number | bigint
+  ): Promise<void>;
+}
+```
+
+Which utlizses the `Approvable` API to send token from an account to another one.
 
 ## Custom Token Terminology
 
