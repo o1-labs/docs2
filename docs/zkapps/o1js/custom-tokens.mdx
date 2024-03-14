@@ -21,13 +21,16 @@ keywords:
 
 Blockchain applications have various use cases for custom tokens, including a real-world financial asset, stake in an on-chain protocol, or even skill points in a game.
 
-Most blockchains, like Ethereum, do not natively support custom tokens. You implement custom tokens as smart contracts on top of the execution layer of the underlying protocol. Token standards ensure the interoperability of applications on Etherum, including [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/). The Ethereum community has created other reference implementations that are audited and easy to configure. 
+Most blockchains, like Ethereum, do not natively support custom tokens. You implement custom tokens as smart contracts on top of the execution layer of the underlying protocol.
+Token standards ensure the interoperability of applications on Etherum, these standardisations are agree upon in ERCs, Ethereum Request for customElements, such as the fungible token standard [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/).
+The Ethereum community has created and agreed upon other reference implementations and standardisation that are audited and easy to configure, such as [ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) for NFTs. 
 
 Mina supports custom token functionality at a low level in the tech stack. Mina treats custom tokens almost the same way as the native MINA token. This approach offers the following benefits:
 
 - As a developer, you do not have to manage as many boilerplate contracts.
+- Developers don't need to keep track of accounts and balances themselves.
 - It is more secure because fewer vulnerabilities can result from incorrect configuration and deployment.
-- Interacting with custom tokens is more efficient: End users experience lower transaction fees, you can build applications that might otherwise be infeasible, and node operators have lower hardware requirements. 
+- Interacting with custom tokens is more efficient: End users experience lower transaction fees because of less computation at the execution layer. 
 
 Each account on Mina can have tokens associated with it. With zkApps, you build smart contracts that interact with tokens, such as swapping one token for another or depositing MINA tokens. A token manager smart contract is a standard smart contract with the `TokenContract` class that manipulates tokens. 
 
