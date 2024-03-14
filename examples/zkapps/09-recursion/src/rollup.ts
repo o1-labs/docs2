@@ -21,28 +21,18 @@ class MerkleWitness20 extends MerkleWitness(20) {}
 // ===============================================================
 
 async function main() {
-
   console.log('compiling...');
 
   const { verificationKey } = await Rollup.compile();
 
   console.log('generating transition information');
 
-  const transitions = 
-    [
-      { key: Field(8),
-        increment: Field(3),
-      },
-      { key: Field(43),
-        increment: Field(2),
-      },
-      { key: Field(6),
-        increment: Field(3999),
-      },
-      { key: Field(8),
-        increment: Field(400),
-      },
-  ]
+  const transitions = [
+    { key: Field(8), increment: Field(3) },
+    { key: Field(43), increment: Field(2) },
+    { key: Field(6), increment: Field(3999) },
+    { key: Field(8), increment: Field(400) },
+  ];
 
   let map = new MerkleMap();
 
@@ -58,7 +48,14 @@ async function main() {
     map.set(key, updatedValue);
     const latestRoot = map.getRoot();
 
-    rollupStepInfo.push({ initialRoot, latestRoot, key, currentValue, increment, witness });
+    rollupStepInfo.push({
+      initialRoot,
+      latestRoot,
+      key,
+      currentValue,
+      increment,
+      witness,
+    });
   });
 
   console.log('making first set of proofs');
@@ -71,9 +68,31 @@ async function main() {
   //   return proof;
   // });
   const rollupProofs: Proof<RollupState, void>[] = [];
-  for (var { initialRoot, latestRoot, key, currentValue, increment, witness } of rollupStepInfo) {
-    const rollup = RollupState.createOneStep(initialRoot, latestRoot, key, currentValue, increment, witness);
-    const proof = await Rollup.oneStep(rollup, initialRoot, latestRoot, key, currentValue, increment, witness);
+  for (var {
+    initialRoot,
+    latestRoot,
+    key,
+    currentValue,
+    increment,
+    witness,
+  } of rollupStepInfo) {
+    const rollup = RollupState.createOneStep(
+      initialRoot,
+      latestRoot,
+      key,
+      currentValue,
+      increment,
+      witness
+    );
+    const proof = await Rollup.oneStep(
+      rollup,
+      initialRoot,
+      latestRoot,
+      key,
+      currentValue,
+      increment,
+      witness
+    );
     rollupProofs.push(proof);
   }
 
@@ -86,8 +105,11 @@ async function main() {
   //   return await Rollup.merge(rollup, (await a), (await b));
   // });
   var proof: Proof<RollupState, void> = rollupProofs[0];
-  for (let i=1; i<rollupProofs.length; i++) {
-    const rollup = RollupState.createMerged(proof.publicInput, rollupProofs[i].publicInput);
+  for (let i = 1; i < rollupProofs.length; i++) {
+    const rollup = RollupState.createMerged(
+      proof.publicInput,
+      rollupProofs[i].publicInput
+    );
     let mergedProof = await Rollup.merge(rollup, proof, rollupProofs[i]);
     proof = mergedProof;
   }
@@ -97,40 +119,41 @@ async function main() {
 
   const ok = await verify(proof.toJSON(), verificationKey);
   console.log('ok', ok);
-
-};
+}
 
 // ===============================================================
 
 class RollupState extends Struct({
   initialRoot: Field,
   latestRoot: Field,
-}) { 
-
+}) {
   static createOneStep(
-    initialRoot: Field, 
-    latestRoot: Field, 
-    key: Field, 
+    initialRoot: Field,
+    latestRoot: Field,
+    key: Field,
     currentValue: Field,
-    incrementAmount: Field, 
-    merkleMapWitness: MerkleMapWitness,
+    incrementAmount: Field,
+    merkleMapWitness: MerkleMapWitness
   ) {
-    const [ witnessRootBefore, witnessKey ] = merkleMapWitness.computeRootAndKey(currentValue);
+    const [witnessRootBefore, witnessKey] =
+      merkleMapWitness.computeRootAndKey(currentValue);
     initialRoot.assertEquals(witnessRootBefore);
     witnessKey.assertEquals(key);
-    const [ witnessRootAfter, _ ] = merkleMapWitness.computeRootAndKey(currentValue.add(incrementAmount));
+    const [witnessRootAfter, _] = merkleMapWitness.computeRootAndKey(
+      currentValue.add(incrementAmount)
+    );
     latestRoot.assertEquals(witnessRootAfter);
 
     return new RollupState({
       initialRoot,
-      latestRoot
+      latestRoot,
     });
   }
 
   static createMerged(state1: RollupState, state2: RollupState) {
     return new RollupState({
       initialRoot: state1.initialRoot,
-      latestRoot: state2.latestRoot
+      latestRoot: state2.latestRoot,
     });
   }
 
@@ -148,46 +171,47 @@ const Rollup = ZkProgram({
 
   methods: {
     oneStep: {
-      privateInputs: [ Field, Field, Field, Field, Field, MerkleMapWitness ],
+      privateInputs: [Field, Field, Field, Field, Field, MerkleMapWitness],
 
       method(
-        state: RollupState, 
-        initialRoot: Field, 
-        latestRoot: Field, 
-        key: Field, 
+        state: RollupState,
+        initialRoot: Field,
+        latestRoot: Field,
+        key: Field,
         currentValue: Field,
-        incrementAmount: Field, 
+        incrementAmount: Field,
         merkleMapWitness: MerkleMapWitness
       ) {
         const computedState = RollupState.createOneStep(
-          initialRoot, 
-          latestRoot, 
-          key, 
-          currentValue, 
-          incrementAmount, 
+          initialRoot,
+          latestRoot,
+          key,
+          currentValue,
+          incrementAmount,
           merkleMapWitness
         );
         RollupState.assertEquals(computedState, state);
-      }
+      },
     },
 
     merge: {
-      privateInputs: [ SelfProof, SelfProof ],
+      privateInputs: [SelfProof, SelfProof],
 
       method(
         newState: RollupState,
         rollup1proof: SelfProof<RollupState, void>,
-        rollup2proof: SelfProof<RollupState, void>,
+        rollup2proof: SelfProof<RollupState, void>
       ) {
         rollup1proof.verify();
         rollup2proof.verify();
 
-        rollup2proof.publicInput.initialRoot.assertEquals(rollup1proof.publicInput.latestRoot);
+        rollup2proof.publicInput.initialRoot.assertEquals(
+          rollup1proof.publicInput.latestRoot
+        );
         rollup1proof.publicInput.initialRoot.assertEquals(newState.initialRoot);
         rollup2proof.publicInput.latestRoot.assertEquals(newState.latestRoot);
-      }
-    }
-
+      },
+    },
   },
 });
 
@@ -207,11 +231,11 @@ class RollupContract extends SmartContract {
     });
   }
 
-  @method initStateRoot(stateRoot: Field) {
+  @method async initStateRoot(stateRoot: Field) {
     this.state.set(stateRoot);
   }
 
-  @method update(rollupStateProof: RollupProof) {
+  @method async update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
     this.state.requireEquals(currentState);
 
