@@ -230,7 +230,7 @@ const functions = {
       return 'nohash_islocal';
     } else {
       const txn_res = await state.transaction!.send();
-      const transactionHash = await txn_res!.hash();
+      const transactionHash = await txn_res!.hash;
       return transactionHash;
     }
   },
