@@ -29,7 +29,7 @@ export class OracleExample extends SmartContract {
     this.requireSignature();
   }
 
-  @method verify(id: Field, creditScore: Field, signature: Signature) {
+  @method async verify(id: Field, creditScore: Field, signature: Signature) {
     // Get the oracle public key from the contract state
     const oraclePublicKey = this.oraclePublicKey.get();
     this.oraclePublicKey.requireEquals(oraclePublicKey);
