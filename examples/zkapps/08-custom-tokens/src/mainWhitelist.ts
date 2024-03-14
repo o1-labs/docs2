@@ -13,7 +13,6 @@ import {
 class MerkleWitness20 extends MerkleWitness(20) {}
 
 (async function main() {
-
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
@@ -38,15 +37,18 @@ class MerkleWitness20 extends MerkleWitness(20) {}
   console.log('deploying...');
 
   const contract = new WhitelistedTokenContract(zkAppAddress);
-  const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
-    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
-    if (proofsEnabled) {
-      contract.deploy({ zkappKey: zkAppPrivateKey });
-    } else {
-      contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
-      contract.requireSignature();
+  const deploy_txn = await Mina.transaction(
+    deployerAccount.toPublicKey(),
+    () => {
+      AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+      if (proofsEnabled) {
+        contract.deploy({ zkappKey: zkAppPrivateKey });
+      } else {
+        contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
+        contract.requireSignature();
+      }
     }
-  });
+  );
   await deploy_txn.prove();
   deploy_txn.sign([zkAppPrivateKey]);
   await deploy_txn.send();
@@ -156,7 +158,6 @@ class MerkleWitness20 extends MerkleWitness(20) {}
   );
 
   // ----------------------------------------------------
-
 })().catch((f) => {
   console.log(f);
 });
