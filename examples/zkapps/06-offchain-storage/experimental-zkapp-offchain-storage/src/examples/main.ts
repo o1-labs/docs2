@@ -68,9 +68,9 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     console.log('Deploying zkapp...');
     const deploy_txn = await Mina.transaction(
       { sender: deployerAccount.publicKey, fee: TRANSACTION_FEE },
-      () => {
+      async () => {
         AccountUpdate.fundNewAccount(deployerAccount.publicKey);
-        zkAppInstance.deploy({ zkappKey: zkAppAccount.privateKey });
+        await zkAppInstance.deploy({ zkappKey: zkAppAccount.privateKey });
       }
     );
     deploy_txn.sign([deployerAccount.privateKey, zkAppAccount.privateKey]);

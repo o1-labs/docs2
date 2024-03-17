@@ -68,11 +68,14 @@ console.log('Done compiling smart contract');
 const zkapp = new NumberTreeContract(zkappPublicKey);
 
 if (useLocal) {
-  const transaction = await Mina.transaction(feePayerKey.toPublicKey(), () => {
-    AccountUpdate.fundNewAccount(feePayerKey.toPublicKey());
-    zkapp.deploy({ zkappKey: zkappPrivateKey });
-    zkapp.initState(serverPublicKey);
-  });
+  const transaction = await Mina.transaction(
+    feePayerKey.toPublicKey(),
+    async () => {
+      AccountUpdate.fundNewAccount(feePayerKey.toPublicKey());
+      await zkapp.deploy({ zkappKey: zkappPrivateKey });
+      await zkapp.initState(serverPublicKey);
+    }
+  );
   transaction.sign([zkappPrivateKey, feePayerKey]);
   await transaction.prove();
   await transaction.send();
