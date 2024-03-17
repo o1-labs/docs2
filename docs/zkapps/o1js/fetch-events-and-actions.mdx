@@ -78,7 +78,7 @@ Within your smart contract, you can use `getActions()` to retrieve actions emitt
 ```ts
 class MyContract extends SmartContract {
   ...
-  @method getActionsExample() {
+  @method async getActionsExample() {
     // Get all actions for this zkApp
     let pendingActions = this.reducer.getActions({
       fromActionHash: actionsHash,
