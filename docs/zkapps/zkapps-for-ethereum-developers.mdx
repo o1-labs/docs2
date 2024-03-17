@@ -107,7 +107,7 @@ export class Add extends SmartContract {
 
   /* The method decorator tells o1js to be ready to generate a proof of
   execution any time this method is called */
-  @method update() {
+  @method async update() {
     // Get the state of num from the Mina blockchain and set it to currentState
     const currentState = this.num.get();
     /* Calling add instead of using the JS infix addition operator enables
