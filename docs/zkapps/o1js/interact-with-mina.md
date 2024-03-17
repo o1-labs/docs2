@@ -192,7 +192,7 @@ To send MINA, use `this.send()` from a smart contract method:
 
 ```ts
 class MyContract extends SmartContract {
-  @method payout(amount: UInt64) {
+  @method async payout(amount: UInt64) {
     // TODO: logic that determines whether the user is allowed to claim this amount
 
     this.send({ to: this.sender, amount });
@@ -200,7 +200,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-The `@method payout()` pays out a given amount of nanoMINA to the sender of the transaction, which you get with `this.sender`.
+The `@method async payout()` pays out a given amount of nanoMINA to the sender of the transaction, which you get with `this.sender`.
 
 In a real zkApp, you would add conditions to this method to determine who can call it with which amounts.
 
@@ -295,7 +295,7 @@ Here's the smart contract code:
 
 ```ts
 class MyContract extends SmartContract {
-  @method deposit(amount: UInt64) {
+  @method async deposit(amount: UInt64) {
     let senderUpdate = AccountUpdate.create(this.sender);
     senderUpdate.requireSignature();
     senderUpdate.send({ to: this, amount });
