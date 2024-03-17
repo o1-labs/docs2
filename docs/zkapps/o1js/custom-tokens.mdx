@@ -34,7 +34,7 @@ To mint new tokens using a zkApp, this example of the `this.token` property on t
 ```ts
 class MintExample extends SmartContract {
 ...
-@method mintNewTokens(receiverAddress: PublicKey) {
+@method async mintNewTokens(receiverAddress: PublicKey) {
     this.token.mint({
       address: receiverAddress,
       amount: 100_000,
@@ -52,7 +52,7 @@ Burning tokens is the opposite of minting. Burning tokens deducts the balance of
 ```ts
 class BurnExample extends SmartContract {
 ...
-@method burnTokens(addressToDecrease: PublicKey) {
+@method async burnTokens(addressToDecrease: PublicKey) {
     this.token.burn({
       address: addressToDecrease,
       amount: 100_000,
@@ -72,7 +72,7 @@ To send a custom token, use the `send()` method available on `this.token`. This 
 ```ts
 class SendExample extends SmartContract {
 ...
-@method sendTokens(
+@method async sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
     amount: UInt64
@@ -121,7 +121,7 @@ class TokenContract extends SmartContract {
    * authorizing the deduction with a proof. It then creates the receiver
    * from `receiverAddress` and sends the amount.
    */
-  @method sendTokens(
+  @method async sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
     amount: UInt64,
@@ -153,7 +153,7 @@ class ZkAppB extends SmartContract {
   * the token owner is the one who created the custom token. To debit their
   * balance, we must get authorization from the token owner
   */
-  @method approveSend(amount: UInt64) {
+  @method async approveSend(amount: UInt64) {
     this.balance.subInPlace(amount);
   }
 }
