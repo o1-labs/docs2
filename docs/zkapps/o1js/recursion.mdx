@@ -84,7 +84,7 @@ const proof = await SimpleProgram.run(Field(0));
 To verify this proof from within any method of your `SmartContract` class:
 
 ```typescript
-@method foo(proof: SimpleProgram.Proof) {
+@method async foo(proof: SimpleProgram.Proof) {
   proof.verify().assertTrue();
   const output: Field = proof.value;
   // ...the rest of our method.
@@ -154,7 +154,7 @@ const proof2 = await AddOne.step(Field(2), proof1);
 Finally, verify the proof from within a SmartContract like the earlier example:
 
 ```typescript
-@method foo(proof: Proof) {
+@method async foo(proof: Proof) {
   proof.verify().assertTrue();
   /* ... the rest of our method
    * For example using the total value as the fee for some other transaction. */
