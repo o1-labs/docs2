@@ -60,7 +60,7 @@ Interaction with a smart contract happens by calling one or more of its _methods
 
 ```ts
 class HelloWorld extends SmartContract {
-  @method myMethod(x: Field) {
+  @method async myMethod(x: Field) {
     x.mul(2).assertEquals(5);
   }
 }
@@ -124,7 +124,7 @@ A method can modify on-chain state by using `this.<state>.set()`:
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  @method setX(x: Field) {
+  @method async setX(x: Field) {
     this.x.set(x);
   }
 }
@@ -140,7 +140,7 @@ This example _reads_ state:
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  @method increment() {
+  @method async increment() {
     // read state
     const x = this.x.get();
     this.x.requireEquals(x);
@@ -204,7 +204,7 @@ To modify the `increment()` method to accept a parameter:
 class HelloWorld extends SmartContract {
   @state(Field) x = State<Field>();
 
-  @method increment(xPlus1: Field) {
+  @method async increment(xPlus1: Field) {
     const x = this.x.get();
     this.x.requireEquals(x);
 
@@ -250,7 +250,7 @@ class HelloWorld extends SmartContract {
 
   // ...
 
-  @method incrementSecret(secret: Field) {
+  @method async incrementSecret(secret: Field) {
     const x = this.x.get();
     this.x.requireEquals(x);
 
@@ -299,14 +299,14 @@ A powerful feature of zkApps is that they are composable, just like Ethereum sma
 
 ```ts
 class HelloWorld extends SmartContract {
-  @method myMethod(otherAddress: PublicKey) {
+  @method async myMethod(otherAddress: PublicKey) {
     const calledContract = new OtherContract(otherAddress);
     calledContract.otherMethod();
   }
 }
 
 class OtherContract extends SmartContract {
-  @method otherMethod() {}
+  @method async otherMethod() {}
 }
 ```
 
@@ -327,7 +327,7 @@ To ensure other methods can use a return value of your `@method`, you must annot
 Here's an example of returning a `Bool` called `isSuccess`:
 
 ```ts
-@method otherMethod(): Bool { // annotated return type
+@method async otherMethod(): Bool { // annotated return type
   // ...
   return isSuccess;
 }
@@ -363,11 +363,11 @@ For example, the following smart contract uses the `Point` struct defined earlie
 export class Grid extends SmartContract {
   @state(Point) p = State<Point>();
 
-  @method init() {
+  @method async init() {
     this.p.set(new Point({ x: Field(1), y: Field(2) }));
   }
 
-  @method move(newPoint: Point) {
+  @method async move(newPoint: Point) {
     const point = this.p.get();
     this.p.requireEquals(point);
 

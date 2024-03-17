@@ -323,11 +323,11 @@ For example, to put a condition on a leaf update, the `update` function checks t
 ...
   @state(Field) treeRoot = State<Field>();
 ...
-  @method initState(initialRoot: Field) {
+  @method async initState(initialRoot: Field) {
     this.treeRoot.set(initialRoot);
   }
 
-  @method update(
+  @method async update(
     leafWitness: MerkleWitness20,
     numberBefore: Field,
     incrementAmount: Field
@@ -446,10 +446,10 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 ...
   @state(Field) mapRoot = State<Field>();
 ...
-  @method init(initialRoot: Field) {
+  @method async init(initialRoot: Field) {
     this.mapRoot.set(initialRoot);
   }
-  @method update(
+  @method async update(
     keyWitness: MerkleMapWitness,
     keyToChange: Field,
     valueBefore: Field,

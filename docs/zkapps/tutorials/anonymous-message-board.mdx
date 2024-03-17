@@ -151,11 +151,11 @@ export const users = {
 export class Add extends SmartContract {
   // On-chain state definitions
 
-  @method init() {
+  @method async init() {
     // Define initial values of on-chain state
   }
 
-  @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
+  @method async publishMessage(message: Field, signerPrivateKey: PrivateKey) {
     // Compute signerPublicKey from signerPrivateKey argument
     // Get approved public keys
     // Assert that signerPublicKey is one of the approved public keys
@@ -200,7 +200,7 @@ For practical purposes, the `Field` type is similar to the `uint256` type in Sol
 The `init` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. In this case, we’ll set the public keys of users who can post, and initialize `message` and `messageHistoryHash` as zero (our front end will interpret the zero value to mean that no messages have been posted yet).
 
 ```ts
-@method init() {
+@method async init() {
   // Define initial values of on-chain state
   this.user1.set(users['Bob'].toPublicKey());
   this.user2.set(users['SuperBob'].toPublicKey());
@@ -217,7 +217,7 @@ The `publishMessage` method will allow an approved user to publish a message. No
 For our example, we’ll pass in `message` and `signerPrivateKey` arguments to check that the user holds a private key associated with one of the three on-chain public keys before allowing them to update the message.
 
 ```ts
-  @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
+  @method async publishMessage(message: Field, signerPrivateKey: PrivateKey) {
     // Compute signerPublicKey from signerPrivateKey argument
     // Get approved public keys
     // Assert that signerPublicKey is one of the approved public keys

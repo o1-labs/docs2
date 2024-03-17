@@ -217,7 +217,7 @@ export class OracleExample extends SmartContract {
     this.requireSignature();
   }
 
-  @method verify(id: Field, creditScore: Field, signature: Signature) {
+  @method async verify(id: Field, creditScore: Field, signature: Signature) {
     // Get the oracle public key from the contract state
 
     // Evaluate whether the signature is valid for the provided data
@@ -279,7 +279,7 @@ To verify a that user's credit score is above 700, add a method.
 The `verify()` method is defined like any other TypeScript method, except that it must have the `@method` decorator in front of it that tells o1js that this method can be invoked by users when they interact with the smart contract.
 
 ```ts
-  @method verify(id: Field, creditScore: Field, signature: Signature) {
+  @method async verify(id: Field, creditScore: Field, signature: Signature) {
 ```
 
 Pass in these arguments:

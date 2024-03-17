@@ -151,13 +151,13 @@ Next, add an init method and a method that mints tokens.
 - In the `mint()` method, track how many tokens are in existence.
 
 ```ts
-  @method init() {
+  @method async init() {
     super.init();
     this.account.tokenSymbol.set(tokenSymbol);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
-  @method mint(
+  @method async mint(
     receiverAddress: PublicKey,
     amount: UInt64,
     adminSignature: Signature
@@ -191,7 +191,7 @@ Finally, write a send function.
 
 
 ```ts
-  @method sendTokens(
+  @method async sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
     amount: UInt64

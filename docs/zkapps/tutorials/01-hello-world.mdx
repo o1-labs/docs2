@@ -251,7 +251,7 @@ Finally, this code adds the `update()` function:
 14     this.num.set(Field(3));
 15   }
 16
-17   @method update(square: Field) {
+17   @method async update(square: Field) {
 18     const currentState = this.num.get();
 19     this.num.requireEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));

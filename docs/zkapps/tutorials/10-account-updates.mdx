@@ -120,7 +120,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
       });
     }
 
-    @method init() {
+    @method async init() {
       this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertFalse();
 
@@ -145,7 +145,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
   ```typescript
     ...
 
-    @method add(incrementBy: Field) {
+    @method async add(incrementBy: Field) {
       this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
@@ -156,7 +156,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
       this.incrementCalls();
     }
 
-    @method incrementCalls() {
+    @method async incrementCalls() {
       this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
@@ -181,7 +181,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
   ```typescript
     ...
 
-    @method callSecondary(secondaryAddr: PublicKey) {
+    @method async callSecondary(secondaryAddr: PublicKey) {
       this.account.provedState.requireEquals(this.account.provedState.get());
       this.account.provedState.get().assertTrue();
 
@@ -209,7 +209,7 @@ Finally, look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tr
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
-  @method init() {
+  @method async init() {
     super.init();
 
     this.account.provedState.requireEquals(this.account.provedState.get());
@@ -218,7 +218,7 @@ export class SecondaryZkApp extends SmartContract {
     this.num.set(Field(12));
   }
 
-  @method add(incrementBy: Field) {
+  @method async add(incrementBy: Field) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -341,7 +341,7 @@ As a reminder, this update corresponds to code:
 
 ```typescript
   ...
-  @method add(incrementBy: Field) {
+  @method async add(incrementBy: Field) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -352,7 +352,7 @@ As a reminder, this update corresponds to code:
     this.incrementCalls();
   }
 
-  @method incrementCalls() {
+  @method async incrementCalls() {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -392,7 +392,7 @@ This [txn2 visualization](/img/tutorial-10-txn2.png) is best viewed in a new tab
 And a quick reminder of the code for `callSecondary()`:
 
 ```typescript
-  @method callSecondary(secondaryAddr: PublicKey) {
+  @method async callSecondary(secondaryAddr: PublicKey) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 

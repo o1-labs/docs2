@@ -86,7 +86,7 @@ The `approveDeploy()` code is as follows:
 class MyToken extends SmartContract {
   // ...
 
-  @method approveDeploy(deployUpdate: AccountUpdate) {
+  @method async approveDeploy(deployUpdate: AccountUpdate) {
     this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
     // check that balance change is zero
@@ -132,7 +132,7 @@ The `fundNewAccount` call is included as the deployer account. In this case, it 
 `tokenUserInstance.sendMyTokens(...)` is implemented as follows:
 
 ```typescript
-  @method sendMyTokens(
+  @method async sendMyTokens(
     amount: UInt64,
     destination: PublicKey
   ) {
@@ -145,7 +145,7 @@ The `fundNewAccount` call is included as the deployer account. In this case, it 
 Which calls the `transferAway()` method on `tokenHolder`:
 
 ```typescript
-  @method transferAway(amount: UInt64) {
+  @method async transferAway(amount: UInt64) {
     // TODO: in a real zkApp, here would be application-specific checks for whether we want to allow sending tokens
 
     this.balance.subInPlace(amount);
@@ -156,7 +156,7 @@ Which calls the `transferAway()` method on `tokenHolder`:
 And is approved by the token contract's `approveTransfer`:
 
 ```typescript
-  @method approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
+  @method async approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
     this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
 
     let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
