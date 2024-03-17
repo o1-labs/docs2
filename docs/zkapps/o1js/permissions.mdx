@@ -147,7 +147,7 @@ class UnsecureContract extends SmartContract {
     });
   }
 
-  @method withdraw(amount: UInt64) {
+  @method async withdraw(amount: UInt64) {
     this.send({ to: this.sender, amount });
   }
 }
@@ -269,7 +269,7 @@ class UpgradeabilityImpossible extends SmartContract {
     });
   }
 
-  @method updateVerificationKey(vk: VerificationKey) {
+  @method async updateVerificationKey(vk: VerificationKey) {
     this.account.verificationKey.set(vk);
   }
 }
@@ -303,7 +303,7 @@ Modify the method `updateVerificationKey` to do some checks before you can updat
 For now, just check that you can provide an `x` that is greater than or equal to 5. If this check succeeds, then update the verification key.
 
 ```ts
-@method updateVerificationKey(vk: VerificationKey, x: Field) {
+@method async updateVerificationKey(vk: VerificationKey, x: Field) {
   let y = Field(5);
   x.gte(y).assertTrue();
 
