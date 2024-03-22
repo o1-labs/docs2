@@ -22,7 +22,7 @@ A zkApp can retrieve events and actions from one or more Mina archive nodes. If 
 
 :::
 
-An archive node is a regular non-block producing mina daemon that is connected to a running `mina-archive` process using the `--archive-address` flag.
+An archive node is a regular mina daemon that is connected to a running `mina-archive` process using the `--archive-address` flag.
 
 The daemon regularly sends blockchain data to the archive process that stores it in a [PostgreSQL](https://www.postgresql.org/) database.
 
@@ -93,9 +93,9 @@ To run a local archive node to run it in the foreground for testing:
 1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
 
   ```sh
-  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql)
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql)
   
-  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/zkapp_tables.sql)
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql)
   
   ```
 
@@ -112,10 +112,11 @@ To run a local archive node to run it in the foreground for testing:
   ```
   mina daemon \
       .....
-    --archive-address 3086\
+    --archive-address 3086
+
   ```
   
-  To connect to an archive process on another machine, specify a hostname with `localhost:3086`.
+  To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
 
 ## Set up the archive node using Docker
 
@@ -150,9 +151,9 @@ To get started with installing and running the archive node using Docker, follow
 6. Load the mina archive schemas into the archive database, (create_schema.sql and zkapp_tables.sql.)
 
    ```sh
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/c980ba8/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
 
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/c980ba8/src/app/archive/zkapp_tables.sql | docker exec -i postgres psql -U postgres -d archive
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql | docker exec -i postgres psql -U postgres -d archive
 
    ```
 
@@ -181,8 +182,11 @@ To get started with installing and running the archive node using Docker, follow
    ```
    mina daemon \
        .....
-     --archive-address 3086\
+     --archive-address 3086
+
    ```
+  To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
+
 
 ## Set up the archive node using Docker Compose
 
@@ -254,8 +258,12 @@ To run the archive node using Docker Compose:
    ```
    mina daemon \
        .....
-     --archive-address 3086\
+     --archive-address 3086
+
    ```
+
+     To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
+
 
 ## Using the Archive Node
 
