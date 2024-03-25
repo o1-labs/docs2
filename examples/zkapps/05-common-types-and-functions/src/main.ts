@@ -203,8 +203,8 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
   tree.setLeaf(incrementIndex, incrementAmount);
 
   // update the smart contract
-  const txn1 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.update(
+  const txn1 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.update(
       witness,
       Field(0), // leafs in new trees start at a state of 0
       incrementAmount
