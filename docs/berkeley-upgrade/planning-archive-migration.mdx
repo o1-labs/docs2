@@ -19,7 +19,13 @@ Before you start the migration of your archive node database into the Berkeley v
 
 ## Overview
 
-The archive database must be migrated in two steps. Each step uses an application that is shipped by Mina Foundation and o1Labs teams:
+Archive node migration is a crucial part of Berkeley upgrade. We need to convert mainnet database to berkeley one in order to preserves historical data and assure archive node chain continuity.
+For this purpose o1Labs and mina-foundation teams prepared two packages:
+
+### Archive Node Berkeley migration package
+
+This package contains applications needed to migrated existing mainnet database into new bekeley schema.
+Briefly it contains 3 apps and 1 usability script:
 
 1. **berkeley-migration**
 
@@ -27,11 +33,19 @@ The archive database must be migrated in two steps. Each step uses an applicatio
   
   This application runs against the Mainnet and the new database.
 
-2. **replayer application in migration mode**
+2. **replayer in migration mode**
 
   The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new archive database.
 
-### Incrementality
+4. **berkeley-migration-verifier**
+
+  The berkeley-migration-verifier is a verification software which helps to determine if migration (even incomplete) was successful by utilizing validations on migrated database
+
+5. ** end-to-end migration script**
+
+  Migration script is a shell script which wraps all phases and stages of migration into single script. It is provided purely for node operators usability and is equivalent of running berkely-migration, replayer in migration mode and berkeley-migration-verifier apps in correct order
+
+#### Incrementality
 
 The berkeley-migration and replayer applications are able to work incrementally so that part of the Mainnet database can be migrated and, as new blocks are added to the Mainnet, the new data in the database can be migrated.
 
@@ -39,25 +53,49 @@ To obtain that incrementality, the berkeley-migration application can look at th
 
 To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley, only a small amount of data will need to be migrated.
 
-## Requirements
 
-To successfully migrate the Mainnet database into the Berkeley version of the Mina network, the foundational requirements are:
+### Mainnet Node Archive maintenance package
 
-#### Database server
-
-PostgreSQL database
-
-#### Migration host
-
-- (Optional) Docker in version 23.0 or later
-- If Docker is used, then any of the supported OS by Mina (Bullseye, Focal, or Buster) with at least 32 GB of RAM
-- gsutil application from Google Cloud Suite in version 5 or later
+Archive Node Berkeley migration package is sufficient for staisfying migration from mainnet to Berkeley.
+However, it has some limitations. For example it won't migrate non-canonical chain. It will skip orphaned (blocks which are not part of canonical-chain). 
+For this purpose we are also releasing mainnet archive maintenance package for those Archive Node operators who wants to still mainntain copy of mainnet database for historical reasons.
 
 ## Prerequisites
 
-### (Optional) Download and import Mainnet dump
+To successfully migrate the Mainnet database into the Berkeley version of the Mina network, the foundational requirements are:
 
-If you don't have an existing database with Mainnet archive data, you can always download it from our Google Cloud bucket. 
+#### Migration host
+
+- PostgreSQL database for datbase server
+- If Docker is used, then any of the supported OS by Mina (Bullseye, Focal, or Buster) with at least 32 GB of RAM
+- gsutil application from Google Cloud Suite in version 5 or later
+- (Optional) Docker in version 23.0 or later
+
+
+#### (Optional) Mainnet database 
+
+One of the most obvious prerequisite is a mainnt database.
+If you don't have an existing database with Mainnet archive data, you can always download it from our Google Cloud bucket. However, we strongly encourage to perform migration on your own data in order to preserve idea of decentralization
+As mentioned
+
+#### (Optional) Google Cloud bucket with Mainnet precomputed blocks
+
+Precomputed blocks are the jsons files which correctly configured node will updload to gcloud bucket.
+The Mainnet to Berkeley archive data migration requires access to precomputed blocks that are uploaded by daemons connected to the Mainnet network. The Berkeley migration app uses the gsutil app to download blocks. If you didn't store precomputed blocks during first phase of migration, you can use the precomputed blocks provided by Mina Foundation.
+However, we strongly encourage to perform migration on your own data in order to preserve idea of decentralization:
+
+`gsutil cp gs://mina_network_block_data/mainnet-*.json .`
+
+:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time 
+
+The best practice is to collect precomputed blocks by yourself or by other third parties to preserve idea of decentralization. 
+
+
+## Instalation
+
+#### Download o1labs mainnet archive database
+
+We strongly encourage to perform migration on your own data in order to preserve idea of decentralization.
 
 1. Download the Mainnet archive data using cURL or gsutil:
 
@@ -93,72 +131,75 @@ If you don't have an existing database with Mainnet archive data, you can always
 
    An **archive_balances_migrated** schema is created with the Mainnet archive.
 
+### Ensure location of Google Cloud bucket with Mainnet precomputed blocks
+
+We strongly encourage to perform migration on your own data in order to preserve idea of decentralization
+
+`gsutil cp gs://mina_network_block_data/mainnet-*.json .`
+
+:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time. Berkeley migration app will download them incrementally only when needed 
+
 ### Validate the Mainnet database
 
 The correct Mainnet database state is crucial for a successful migration. 
 
 Missing blocks or invalid ledger hashes are the most frequent issues when dealing with the Mainnet archive. Although this step is optional, it is strongly recommended to verify the archive condition before you start the migration process.
 
-### Known issues
+Please refer to our guide for more information: [How to maintain archive data](/berkeley-upgrade/mainnet-database-maintenance)
 
-##### Missing blocks on archive node
+## Download migration applications
 
-The daemon node unavailability can cause the archive node to miss some of the blocks. 
+Migration applications are distributed as part of the archive migration Docker and Debian packages.
 
-If you are uploading the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks and preserve chain continuity. 
+Choose packages appropriate for your environment. 
 
-To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. Because the `download-missing-blocks` script uses localhost as the database host, unless you modify `PG_CONN` in `download_missing_block.sh`, the script assumes that psql is running on localhost on port 5432.
+The following commands help you install Debian packages or Docker images.
 
-1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-archive:1.4.0-c980ba8-bullseye` Docker image.
+### Debian packages
 
-2. Export the `BLOCKS_BUCKET`:
+```
+CODENAME=bullseye
+CHANNEL=umt
+VERSION=1.0.0umt-tooling
 
-   ```sh
-   export BLOCKS_BUCKET="https://storage.googleapis.com/my_bucket_with_precomputed_blocks"
-
-3. Run the `mina-missing-blocks-auditor` script from the database host:
-
-   ```sh
-   download-missing-blocks.sh mainnet {db_user} {db_password}
-   ```
-
-##### Bad ledger hashes
-
-To verify Mainnet archive data, the replayer application was developed. You must run the replayer application against your existing Mainnet database to verify the blockchain state.
-
-To run replayer:
-
-```sh
-mina-replayer --archive-uri {db_connection_string} --input-file reference_replayer_input.json --output-file reference_replayer_output.json --checkpoint-interval 10000
+echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
+apt-get update
+apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$VERSION"
 ```
 
-where:
- - `archive-uri` - connection string to archive datbase 
- - `output-file` - file which will hold ledger with auxiliary information like global slot and blockchain height which will be dumped on last block
- - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
- - `reference_replayer_input.json` is a file constructed our of mainnet genesis ledger:
-  
+### Docker Image
+
+To get the Docker image:
+
+
+```
+docker pull gcr.io/o1labs-192920/mina-archive-berkeley-archive-migration:1.0.0umt-tooling
+```
+
+## Mainnet Genesis Ledger
+
+The Mina Mainnet genesis ledger is stored in GitHub in the `mina` repository under the `genesis_ledgers` subfolder. However, if you are already running a daemon that is connected to the Mina Mainnet network, you already have the genesis ledger locally.
+
+## Berkeley database schema files
+
+You can get the Berkeley schema files from different locations:
+
+- GitHub repository under `berkeley` branch. 
+
+    Note: The `berkeley` branch can contain new updates regarding schema files, so always get the latest schema files instead of using an already downloaded schema. 
+- Archive/Rosetta Docker from `berkeley` version
+
+### Example: Downloading schema sources from GitHub
+
+   ```sh
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
+
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
+
    ```
-      jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
-   ```
 
-:warning: Running a replayer from scratch on a Mainnet database can take up to a couple of days. The recommended best practice is to break the replayer into smaller parts by using the checkpoint capabilities of the replayer.
-
-:warning: You must run replayer from the Mainnet version. You can run it from the Docker image at minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
-
-### Google Cloud bucket with Mainnet precomputed blocks
-
-The Mainnet to Berkeley archive data migration requires access to precomputed blocks that are uploaded by daemons connected to the Mainnet network. The Berkeley migration app uses the gsutil app to download blocks. If you didn't store precomputed blocks during first phase of migration, you can use the precomputed blocks provided by Mina Foundation:
-
-`gsutil cp gs://mina_network_block_data/mainnet-*.json .`
-
-:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time 
-
-
-The best practice is to collect precomputed blocks by yourself or by other third parties to preserve idea of decentralization. 
-
-## Migration process
+## Next steps
 
 You are now ready to perform migration. See:
 
-- [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)
+- [How to perform archive migration](/berkeley-upgrade/planning-archive-migration)
