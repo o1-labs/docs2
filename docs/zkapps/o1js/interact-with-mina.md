@@ -62,8 +62,8 @@ You create transactions in o1js by calling `Mina.transaction(...)`, which takes 
 const sender = PublicKey.fromBase58('B62..'); // the user address
 const zkapp = new MyContract(address); // MyContract is a SmartContract
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.myMethod(someArgument);
 });
 ```
 
@@ -135,8 +135,8 @@ await MyContract.compile(); // this might take a while
 
 // ...
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.myMethod(someArgument);
 });
 await tx.prove(); // this might take a while
 ```
@@ -209,8 +209,8 @@ To call this method in a transaction and print the result:
 ```ts
 const MINA = 1e9;
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.payout(UInt64.from(5 * MINA));
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.payout(UInt64.from(5 * MINA));
 });
 await tx.prove();
 console.log(tx.toPretty());
@@ -376,8 +376,8 @@ For example:
 ```ts
 const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.deposit(UInt64.from(5 * MINA));
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.deposit(UInt64.from(5 * MINA));
 });
 await tx.prove();
 
@@ -439,7 +439,7 @@ const Network = Mina.Network('https://example.com/graphql');
 Mina.setActiveInstance(Network);
 
 // create the transaction, add proofs and signatures
-const tx = await Mina.transaction(sender, () => {
+const tx = await Mina.transaction(sender, async () => {
   // ...
 });
 await tx.prove();
