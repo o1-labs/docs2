@@ -165,8 +165,8 @@ const functions = {
 
     const transaction = await Mina.transaction(
       { sender: feePayerAddress, fee: args.transactionFee },
-      () => {
-        state.zkapp!.update(
+      async () => {
+        await state.zkapp!.update(
           priorLeafMessage as any,
           priorLeafSigner,
           Bool(priorLeafIsEmpty),
@@ -191,9 +191,9 @@ const functions = {
     const feePayerAddress = feePayerKey.toPublicKey();
     const zkAppPrivateKey = PrivateKey.fromBase58(args.zkAppPrivateKey58);
 
-    const transaction = await Mina.transaction(feePayerAddress, () => {
+    const transaction = await Mina.transaction(feePayerAddress, async () => {
       AccountUpdate.fundNewAccount(feePayerAddress);
-      state.zkapp!.deploy({ zkappKey: zkAppPrivateKey });
+      await state.zkapp!.deploy({ zkappKey: zkAppPrivateKey });
     });
     transaction.sign([feePayerKey, zkAppPrivateKey]);
     state.transaction = transaction;
@@ -212,8 +212,8 @@ const functions = {
     );
     console.log("Using server's public key", serverPublicKey.toBase58());
 
-    const transaction = await Mina.transaction(feePayerAddress, () => {
-      state.zkapp!.initState(serverPublicKey);
+    const transaction = await Mina.transaction(feePayerAddress, async () => {
+      await state.zkapp!.initState(serverPublicKey);
       state.zkapp!.requireSignature();
     });
     transaction.sign([feePayerKey, zkAppPrivateKey]);
