@@ -267,7 +267,7 @@ where:
 
 where `replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
 
-Incremental migration can be run continuously on top initial migration or last incremental until fork block is announced 
+Incremental migration can be run continuously on top of initial migration or last incremental until fork block is announced 
 
 ##### Phase 3: Validations
 
@@ -282,15 +282,15 @@ berkeley_migration_verifier app is capable of performing checks for both fully m
 
 where:
  - `mainnet-archive-uri` - connection string to original archive database 
- - `migrated-archive-uri` - connection string to migrated archive database 
- 
+
+Incremental migration can be run continuously on top of initial migration or last incremental until fork block is announced. 
 
 #### Stage 3: Remainder migration
 
 When the fork block is announced, you must tackle the remainder migration. This is the last migration run 
-you need to perform. In this stage we are closing migration cycle by last migration of remainder blocks between 
-current last canonical block and fork block (which can be pending, so we don't need to wait 290 blocks until it would become canonical) 
-Here we need to use `--fork-state-hash` as additional parameter to berkeley-migation app
+you need to perform. In this stage, we are closing migration cycle by last migration of remainder blocks between 
+current last canonical block and fork block (which can be pending, so we don't need to wait 290 blocks until it would become canonical). 
+Here you need to use `--fork-state-hash` as additional parameter to berkeley-migration app
 
 - Inputs
    - Newest mainnet database
