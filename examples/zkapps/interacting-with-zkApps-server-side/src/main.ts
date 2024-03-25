@@ -94,13 +94,13 @@ let pendingTransaction = await transaction.send();
 
 // ----------------------------------------------------
 
-if (!pendingTransaction.isSuccess) {
+if (pendingTransaction.status === 'rejected') {
   console.log('error sending transaction (see above)');
   process.exit(0);
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash()}
+  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();

@@ -73,13 +73,12 @@ export const makeAndSendTransaction = async <State extends ToString>({
 
   console.log('Sending the transaction...');
   const res = await transaction.send();
-  const hash = await res.hash(); // This will change in a future version of o1js
-  if (hash == null) {
+  if (res.status === 'rejected') {
     console.log('error sending transaction (see above)');
   } else {
     console.log(
       'See transaction at',
-      'https://berkeley.minaexplorer.com/transaction/' + hash
+      'https://berkeley.minaexplorer.com/transaction/' + res.hash
     );
   }
 

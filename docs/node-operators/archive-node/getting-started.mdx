@@ -90,10 +90,13 @@ To run a local archive node to run it in the foreground for testing:
   createdb -h localhost -p 5432 -e archive
   ```
 
-1. Load the mina archive schema into the archive database:
+1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
 
   ```sh
   psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql)
+  
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/zkapp_tables.sql)
+  
   ```
 
 1. Start the archive process on port 3086 and connect to the postgres database that runs on port 5432:
@@ -123,7 +126,7 @@ To get started with installing and running the archive node using Docker, follow
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -144,10 +147,13 @@ To get started with installing and running the archive node using Docker, follow
    docker exec -it postgres createdb -U postgres archive
    ```
 
-6. Load the mina archive schema into the archive database.
+6. Load the mina archive schemas into the archive database, (create_schema.sql and zkapp_tables.sql.)
 
    ```sh
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/master/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/c980ba8/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/c980ba8/src/app/archive/zkapp_tables.sql | docker exec -i postgres psql -U postgres -d archive
+
    ```
 
 7. Create a local directory to store the archive node data.
@@ -192,7 +198,7 @@ To run the archive node using Docker Compose:
 3. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.3.0-9b0369c-bullseye
+   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
    ```
 
 4. Pull and install the postgres image from Docker Hub.
@@ -255,80 +261,97 @@ To run the archive node using Docker Compose:
 
 Take a look at the tables in the database.
 
-To list the tables, run the `\dt` command in psql.
-
-Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql).
-
-Notable fields in each table:
-
-### Table 1: user_commands
-
-#
-
-This table keeps track of transactions made on the network.
-
-```text
-...
-  user_command_type          Type of transaction being made
-                             Possible values: `'payment', 'delegation'
-                             To see a specific type of transaction, i.e. payments or creating a token, specify this field in your queries.
-  source_id                  public key of the sender
-  receiver_id                public key of the receiver
-  amount                     amount being sent from the sender to the receiver
-  token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
-```
-
-### Table 2: internal_commands
-
-This table keeps track of rewards earned from SNARK work or block producing.
-
-```text
-...
-  internal_command_type      represents whether the command is a `fee_transfer` from SNARK work or a `coinbase` reward from block producing.
-                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
-  receiver_id                public key ID of the receiver
-  fee                        amount being sent from the protocol to the receiver
-  token                      ID of a token **If you are querying for different type of token transactions, specify this field.**
-```
-
-### Table 3: blocks
-
-```text
-...
-  id
-  parent_id                  ID of the previous block in the blockchain
-                             Use this field for information about block rewards and SNARK rewards (there is also an extra fee_transfer added to support sending all the transaction fees summed together to the block_creator)
-  creator_id                 public key of the block creator
-```
-
-### Join tables
-
-Two join tables in the archive database link blocks to transactions.
-
-By linking the block table and command tables, these tables allow you to identify specific transactions within blocks.
-
-#### Join table 1: blocks_user_commands
+To list the tables, run the `\dt` command in psql. The output will look like this:
 
 ```
-...
-block_id                     ID of the block containing the user command
-user_command_id              ID of the user command
-sequence_no                  0-based order of the user command among the block transactions
+                  List of relations
+ Schema |             Name              | Type  | Owner 
+--------+-------------------------------+-------+-------
+ public | account_identifiers           | table | mina
+ public | accounts_accessed             | table | mina
+ public | accounts_created              | table | mina
+ public | blocks                        | table | mina
+ public | blocks_internal_commands      | table | mina
+ public | blocks_user_commands          | table | mina
+ public | blocks_zkapp_commands         | table | mina
+ public | epoch_data                    | table | mina
+ public | internal_commands             | table | mina
+ public | protocol_versions             | table | mina
+ public | public_keys                   | table | mina
+ public | snarked_ledger_hashes         | table | mina
+ public | timing_info                   | table | mina
+ public | token_symbols                 | table | mina
+ public | tokens                        | table | mina
+ public | user_commands                 | table | mina
+ public | voting_for                    | table | mina
+ public | zkapp_account_precondition    | table | mina
+ public | zkapp_account_update          | table | mina
+ public | zkapp_account_update_body     | table | mina
+ public | zkapp_account_update_failures | table | mina
+ public | zkapp_accounts                | table | mina
+ public | zkapp_action_states           | table | mina
+ public | zkapp_amount_bounds           | table | mina
+ public | zkapp_balance_bounds          | table | mina
+ public | zkapp_commands                | table | mina
+ public | zkapp_epoch_data              | table | mina
+ public | zkapp_epoch_ledger            | table | mina
+ public | zkapp_events                  | table | mina
+ public | zkapp_fee_payer_body          | table | mina
+ public | zkapp_field                   | table | mina
+ public | zkapp_field_array             | table | mina
+ public | zkapp_global_slot_bounds      | table | mina
+ public | zkapp_length_bounds           | table | mina
+ public | zkapp_network_precondition    | table | mina
+ public | zkapp_nonce_bounds            | table | mina
+ public | zkapp_permissions             | table | mina
+ public | zkapp_states                  | table | mina
+ public | zkapp_states_nullable         | table | mina
+ public | zkapp_timing_info             | table | mina
+ public | zkapp_token_id_bounds         | table | mina
+ public | zkapp_updates                 | table | mina
+ public | zkapp_uris                    | table | mina
+ public | zkapp_verification_key_hashes | table | mina
+ public | zkapp_verification_keys       | table | mina
+(45 rows)
+
 ```
 
-#### Join table 2: blocks_internal_commands
+Use the `\d table_name` to look at the structure of a table in the database.
+
+For example to see the structure of the user_commands table, run the `\d user_commands` command in psql. The output will look like this:
 
 ```
-...
-block_id                     ID of the block containing the internal command
-internal_command_id          ID of the internal command
-sequence_no                  0-based order of the internal command among the block transactions
-secondary_sequence_no        0-based order of a fee transfer within a coinbase internal command
+                                    Table "public.user_commands"
+    Column    |       Type        | Collation | Nullable |                  Default                  
+--------------+-------------------+-----------+----------+-------------------------------------------
+ id           | integer           |           | not null | nextval('user_commands_id_seq'::regclass)
+ command_type | user_command_type |           | not null | 
+ fee_payer_id | integer           |           | not null | 
+ source_id    | integer           |           | not null | 
+ receiver_id  | integer           |           | not null | 
+ nonce        | bigint            |           | not null | 
+ amount       | text              |           |          | 
+ fee          | text              |           | not null | 
+ valid_until  | bigint            |           |          | 
+ memo         | text              |           | not null | 
+ hash         | text              |           | not null | 
+Indexes:
+    "user_commands_pkey" PRIMARY KEY, btree (id)
+    "user_commands_hash_key" UNIQUE CONSTRAINT, btree (hash)
+Foreign-key constraints:
+    "user_commands_fee_payer_id_fkey" FOREIGN KEY (fee_payer_id) REFERENCES public_keys(id)
+    "user_commands_receiver_id_fkey" FOREIGN KEY (receiver_id) REFERENCES public_keys(id)
+    "user_commands_source_id_fkey" FOREIGN KEY (source_id) REFERENCES public_keys(id)
+Referenced by:
+    TABLE "blocks_user_commands" CONSTRAINT "blocks_user_commands_user_command_id_fkey" FOREIGN KEY (user_command_id) REFERENCES user_commands(id) ON DELETE CASCADE
+    
 ```
+
+Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql) and [/archive/zkapp_tables.sql](https://github.com/MinaProtocol/mina/blob/berkeley/src/app/archive/zkapp_tables.sql)
 
 ## Query the database
 
-Now that you know the structure of the data, try a query.
+Now that you know the structure of the data, try some queries.
 
 **Example 1:** Find all blocks that were created by your public key:
 
@@ -386,4 +409,28 @@ INNER JOIN public_keys AS p ON source_id = p.id
 WHERE status = 'applied'
 AND type = 'payment'
 GROUP BY p.value ORDER BY count DESC;
+```
+**Example 5** Get the latest block:
+
+```
+SELECT 
+height as blockheight, 
+global_slot_since_genesis as globalslotsincegenesis,
+global_slot_since_hard_fork as globalslot,
+state_hash as statehash,
+parent_hash as parenthash,
+ledger_hash as ledgerhash,
+to_char(to_timestamp(cast ("timestamp" as bigint) / 1000) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS') || '.' || 
+    LPAD(((cast("timestamp" as bigint) % 1000)::text), 3, '0') || 'Z' as datetime
+FROM blocks
+WHERE id in (SELECT MAX(id) FROM blocks);
+
+```
+
+**Example 6** Identify blocks with missing parents, between blockheight 500 and blockheight 5000
+```
+SELECT height 
+FROM blocks 
+WHERE parent_id is null AND height >= 500 AND height <= 5000 and height > 1;
+
 ```

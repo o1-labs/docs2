@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[lib/crypto.ts:29](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/crypto.ts#L29)
+[lib/crypto.ts:29](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/crypto.ts#L29)
 
 ___
 
@@ -30,4 +30,4 @@ y^2 = x^3 + ax + b
 
 #### Defined in
 
-[lib/crypto.ts:27](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/crypto.ts#L27)
+[lib/crypto.ts:27](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/crypto.ts#L27)

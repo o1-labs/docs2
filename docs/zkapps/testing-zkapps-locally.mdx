@@ -115,8 +115,8 @@ let txn = await Mina.transaction(feePayer, () => {
 
 const txPromise = await  txn.send();
 /*
-`txn.send()` returns a promise with two closures - `.wait()` and `.hash()`
-`.hash()` returns the transaction hash, as the name might indicate
+`txn.send()` returns a promise with two closures - `.wait()` and `.hash`
+`.hash` returns the transaction hash, as the name might indicate
 `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
 */
 

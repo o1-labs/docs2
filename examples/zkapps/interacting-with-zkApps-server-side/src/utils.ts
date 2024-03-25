@@ -75,13 +75,12 @@ async function deploy(
 
     console.log('Sending the deploy transaction...');
     const res = await transaction.send();
-    const hash = res.hash();
-    if (hash === undefined) {
+    if (res.status === 'rejected') {
       console.log('error sending transaction (see above)');
     } else {
       console.log(
         'See deploy transaction at',
-        'https://berkeley.minaexplorer.com/transaction/' + hash
+        'https://berkeley.minaexplorer.com/transaction/' + res.hash
       );
       console.log('waiting for zkApp account to be deployed...');
       await res.wait();

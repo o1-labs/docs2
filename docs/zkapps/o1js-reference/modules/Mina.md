@@ -4,21 +4,19 @@
 
 ## Table of contents
 
-### Interfaces
-
-- [TransactionId](../interfaces/Mina.TransactionId.md)
-
 ### Type Aliases
 
 - [ActionStates](Mina.md#actionstates)
-- [CurrentTransaction](Mina.md#currenttransaction)
 - [FeePayerSpec](Mina.md#feepayerspec)
+- [IncludedTransaction](Mina.md#includedtransaction)
 - [NetworkConstants](Mina.md#networkconstants)
+- [PendingTransaction](Mina.md#pendingtransaction)
+- [PendingTransactionStatus](Mina.md#pendingtransactionstatus)
+- [RejectedTransaction](Mina.md#rejectedtransaction)
 - [Transaction](Mina.md#transaction)
 
 ### Variables
 
-- [Transaction](Mina.md#transaction-1)
 - [activeInstance](Mina.md#activeinstance)
 
 ### Functions
@@ -27,9 +25,8 @@
 - [LocalBlockchain](Mina.md#localblockchain)
 - [Network](Mina.md#network)
 - [accountCreationFee](Mina.md#accountcreationfee)
-- [createTransaction](Mina.md#createtransaction)
 - [currentSlot](Mina.md#currentslot)
-- [currentTransaction](Mina.md#currenttransaction-1)
+- [currentTransaction](Mina.md#currenttransaction)
 - [faucet](Mina.md#faucet)
 - [fetchActions](Mina.md#fetchactions)
 - [fetchEvents](Mina.md#fetchevents)
@@ -42,10 +39,9 @@
 - [getNetworkState](Mina.md#getnetworkstate)
 - [getProofsEnabled](Mina.md#getproofsenabled)
 - [hasAccount](Mina.md#hasaccount)
-- [sendTransaction](Mina.md#sendtransaction)
 - [sender](Mina.md#sender)
 - [setActiveInstance](Mina.md#setactiveinstance)
-- [transaction](Mina.md#transaction-2)
+- [transaction](Mina.md#transaction-1)
 - [waitForFunding](Mina.md#waitforfunding)
 
 ## Type Aliases
@@ -63,27 +59,7 @@
 
 #### Defined in
 
-[lib/mina.ts:166](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L166)
-
-___
-
-### CurrentTransaction
-
-Ƭ **CurrentTransaction**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `accountUpdates` | [`AccountUpdate`](../classes/AccountUpdate.md)[] |
-| `fetchMode` | `FetchMode` |
-| `isFinalRunOutsideCircuit` | `boolean` |
-| `numberOfRuns` | ``0`` \| ``1`` \| `undefined` |
-| `sender?` | [`PublicKey`](../classes/Types.PublicKey.md) |
-
-#### Defined in
-
-[lib/mina.ts:124](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L124)
+[lib/mina/mina-instance.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L83)
 
 ___
 
@@ -95,7 +71,19 @@ Allows you to specify information about the fee payer account and the transactio
 
 #### Defined in
 
-[lib/mina.ts:137](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L137)
+[lib/mina/mina-instance.ts:54](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L54)
+
+___
+
+### IncludedTransaction
+
+Ƭ **IncludedTransaction**: `Pick`\<[`PendingTransaction`](Mina.md#pendingtransaction), ``"transaction"`` \| ``"toJSON"`` \| ``"toPretty"`` \| ``"hash"`` \| ``"data"``\> & \{ `status`: ``"included"``  }
+
+Represents a transaction that has been successfully included in a block.
+
+#### Defined in
+
+[lib/mina/transaction.ts:231](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L231)
 
 ___
 
@@ -109,11 +97,47 @@ ___
 | :------ | :------ | :------ |
 | `accountCreationFee` | [`UInt64`](../classes/UInt64.md) | - |
 | `genesisTimestamp` | [`UInt64`](../classes/UInt64.md) | - |
-| `slotTime` | [`UInt64`](../classes/UInt64.md) | Duration of 1 slot in milliseconds |
+| `slotTime` | [`UInt64`](../classes/UInt64.md) | Duration of 1 slot in millisecondw |
 
 #### Defined in
 
-[lib/mina.ts:171](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L171)
+[lib/mina/mina-instance.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L88)
+
+___
+
+### PendingTransaction
+
+Ƭ **PendingTransaction**: `Pick`\<[`Transaction`](Mina.md#transaction), ``"transaction"`` \| ``"toJSON"`` \| ``"toPretty"``\> & \{ `data?`: `SendZkAppResponse` ; `errors`: `string`[] ; `hash`: `string` ; `status`: [`PendingTransactionStatus`](Mina.md#pendingtransactionstatus) ; `safeWait`: (`options?`: \{ `interval?`: `number` ; `maxAttempts?`: `number`  }) => `Promise`\<[`RejectedTransaction`](Mina.md#rejectedtransaction) \| [`IncludedTransaction`](Mina.md#includedtransaction)\> ; `wait`: (`options?`: \{ `interval?`: `number` ; `maxAttempts?`: `number`  }) => `Promise`\<[`IncludedTransaction`](Mina.md#includedtransaction)\>  }
+
+Represents a transaction that has been submitted to the blockchain but has not yet reached a final state.
+The [PendingTransaction](Mina.md#pendingtransaction) type extends certain functionalities from the base [Transaction](Mina.md#transaction) type,
+adding methods to monitor the transaction's progress towards being finalized (either included in a block or rejected).
+
+#### Defined in
+
+[lib/mina/transaction.ts:130](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L130)
+
+___
+
+### PendingTransactionStatus
+
+Ƭ **PendingTransactionStatus**: ``"pending"`` \| ``"rejected"``
+
+#### Defined in
+
+[lib/mina/transaction.ts:124](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L124)
+
+___
+
+### RejectedTransaction
+
+Ƭ **RejectedTransaction**: `Pick`\<[`PendingTransaction`](Mina.md#pendingtransaction), ``"transaction"`` \| ``"toJSON"`` \| ``"toPretty"`` \| ``"hash"`` \| ``"data"``\> & \{ `errors`: `string`[] ; `status`: ``"rejected"``  }
+
+Represents a transaction that has been rejected and not included in a blockchain block.
+
+#### Defined in
+
+[lib/mina/transaction.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L255)
 
 ___
 
@@ -121,43 +145,28 @@ ___
 
 Ƭ **Transaction**: `Object`
 
+Defines the structure and operations associated with a transaction.
+This type encompasses methods for serializing the transaction, signing it, generating proofs,
+and submitting it to the network.
+
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `transaction` | `ZkappCommand` | Transaction structure used to describe a state transition on the Mina blockchain. |
-| `prove` | () => `Promise`\<(`undefined` \| [`Proof`](../classes/Proof.md)\<[`ZkappPublicInput`](../modules.md#zkapppublicinput-1), `undefined`\>)[]\> | Generates proofs for the [Transaction](Mina.md#transaction-1). This can take some time. |
-| `send` | () => `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> | Sends the [Transaction](Mina.md#transaction-1) to the network. |
-| `sign` | (`additionalKeys?`: [`PrivateKey`](../classes/PrivateKey.md)[]) => [`Transaction`](Mina.md#transaction-1) | Signs all [AccountUpdate](../classes/AccountUpdate.md)s included in the [Transaction](Mina.md#transaction-1) that require a signature. [AccountUpdate](../classes/AccountUpdate.md)s that require a signature can be specified with `{AccountUpdate\|SmartContract}.requireSignature()`. |
-| `toGraphqlQuery` | () => `string` | Returns the GraphQL query for the Mina daemon. |
-| `toJSON` | () => `string` | Returns a JSON representation of the [Transaction](Mina.md#transaction-1). |
-| `toPretty` | () => `any` | Returns a pretty-printed JSON representation of the [Transaction](Mina.md#transaction-1). |
+| `prove` | () => `Promise`\<(`undefined` \| [`Proof`](../classes/Proof.md)\<[`ZkappPublicInput`](../modules.md#zkapppublicinput-1), `undefined`\>)[]\> | Initiates the proof generation process for the [Transaction](Mina.md#transaction). This asynchronous operation is crucial for zero-knowledge-based transactions, where proofs are required to validate state transitions. This can take some time. **`Example`** ```ts await transaction.prove(); ``` |
+| `safeSend` | () => `Promise`\<[`PendingTransaction`](Mina.md#pendingtransaction) \| [`RejectedTransaction`](Mina.md#rejectedtransaction)\> | Sends the [Transaction](Mina.md#transaction) to the network. Unlike the standard [send](Mina.md#send), this function does not throw an error if internal errors are detected. Instead, it returns a [PendingTransaction](Mina.md#pendingtransaction) if the transaction is successfully sent for processing or a [RejectedTransaction](Mina.md#rejectedtransaction) if it encounters errors during processing or is outright rejected by the Mina daemon. **`Example`** ```ts const result = await transaction.safeSend(); if (result.status === 'pending') { console.log('Transaction sent successfully to the Mina daemon.'); } else if (result.status === 'rejected') { console.error('Transaction failed with errors:', result.errors); } ``` |
+| `send` | () => `Promise`\<[`PendingTransaction`](Mina.md#pendingtransaction)\> | Submits the [Transaction](Mina.md#transaction) to the network. This method asynchronously sends the transaction for processing. If successful, it returns a [PendingTransaction](Mina.md#pendingtransaction) instance, which can be used to monitor the transaction's progress. If the transaction submission fails, this method throws an error that should be caught and handled appropriately. **`Throws`** An error if the transaction cannot be sent or processed by the network, containing details about the failure. **`Example`** ```ts try { const pendingTransaction = await transaction.send(); console.log('Transaction sent successfully to the Mina daemon.'); } catch (error) { console.error('Failed to send transaction to the Mina daemon:', error); } ``` |
+| `sign` | (`additionalKeys?`: [`PrivateKey`](../classes/PrivateKey.md)[]) => [`Transaction`](Mina.md#transaction) | Signs all [AccountUpdate](../classes/AccountUpdate.md)s included in the [Transaction](Mina.md#transaction) that require a signature. [AccountUpdate](../classes/AccountUpdate.md)s that require a signature can be specified with `{AccountUpdate\|SmartContract}.requireSignature()`. **`Example`** ```ts const signedTx = transaction.sign([userPrivateKey]); console.log('Transaction signed successfully.'); ``` |
+| `toGraphqlQuery` | () => `string` | Constructs the GraphQL query string used for submitting the transaction to a Mina daemon. |
+| `toJSON` | () => `string` | Serializes the transaction to a JSON string. |
+| `toPretty` | () => `any` | Produces a pretty-printed JSON representation of the [Transaction](Mina.md#transaction). |
 
 #### Defined in
 
-[lib/mina.ts:79](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L79)
-
-[lib/mina.ts:116](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L116)
+[lib/mina/transaction.ts:49](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L49)
 
 ## Variables
-
-### Transaction
-
-• **Transaction**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `fromJSON` | (`json`: [`ZkappCommand`](Types.Json.md#zkappcommand)) => [`Transaction`](Mina.md#transaction-1) |
-
-#### Defined in
-
-[lib/mina.ts:79](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L79)
-
-[lib/mina.ts:116](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L116)
-
-___
 
 ### activeInstance
 
@@ -165,7 +174,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1029](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1029)
+[lib/mina/mina-instance.ts:131](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L131)
 
 ## Functions
 
@@ -190,7 +199,7 @@ The name `BerkeleyQANet` was misleading because it suggested that this is specif
 
 #### Defined in
 
-[lib/mina.ts:1025](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1025)
+[lib/mina.ts:467](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L467)
 
 ___
 
@@ -230,16 +239,16 @@ A mock Mina blockchain running locally and useful for testing.
 | `getNetworkState` | () => `PreconditionBaseTypes`\<\{ `blockchainLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `globalSlotSinceGenesis`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `minWindowDensity`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `nextEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `snarkedLedgerHash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `stakingEpochData`: \{ `epochLength`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt32`](../classes/UInt32.md) ; `upper`: [`UInt32`](../classes/UInt32.md)  }  } ; `ledger`: \{ `hash`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  } ; `lockCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `seed`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  } ; `startCheckpoint`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: [`Field`](../classes/Field.md)  }  } ; `totalCurrency`: \{ `isSome`: [`Bool`](../classes/Bool.md) ; `value`: \{ `lower`: [`UInt64`](../classes/UInt64.md) ; `upper`: [`UInt64`](../classes/UInt64.md)  }  }  }\> |
 | `hasAccount` | (`publicKey`: [`PublicKey`](../classes/Types.PublicKey.md), `tokenId`: [`Field`](../classes/Field.md)) => `boolean` |
 | `incrementGlobalSlot` | (`increment`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
-| `sendTransaction` | (`txn`: [`Transaction`](Mina.md#transaction-1)) => `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\> |
+| `sendTransaction` | (`txn`: [`Transaction`](Mina.md#transaction)) => `Promise`\<[`PendingTransaction`](Mina.md#pendingtransaction)\> |
 | `setBlockchainLength` | (`height`: [`UInt32`](../classes/UInt32.md)) => `void` |
 | `setGlobalSlot` | (`slot`: `number` \| [`UInt32`](../classes/UInt32.md)) => `void` |
 | `setProofsEnabled` | (`newProofsEnabled`: `boolean`) => `void` |
 | `setTotalCurrency` | (`currency`: [`UInt64`](../classes/UInt64.md)) => `void` |
-| `transaction` | (`sender`: `DeprecatedFeePayerSpec`, `f`: () => `void`) => `Promise`\<[`Transaction`](Mina.md#transaction-1)\> |
+| `transaction` | (`sender`: `DeprecatedFeePayerSpec`, `f`: () => `void`) => `Promise`\<[`Transaction`](Mina.md#transaction)\> |
 
 #### Defined in
 
-[lib/mina.ts:392](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L392)
+[lib/mina/local-blockchain.ts:45](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/local-blockchain.ts#L45)
 
 ___
 
@@ -261,7 +270,7 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:698](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L698)
+[lib/mina.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L108)
 
 ▸ **Network**(`options`): `Mina`
 
@@ -281,7 +290,7 @@ Represents the Mina blockchain running on a real network
 
 #### Defined in
 
-[lib/mina.ts:699](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L699)
+[lib/mina.ts:109](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L109)
 
 ___
 
@@ -301,33 +310,7 @@ use [getNetworkConstants](Mina.md#getnetworkconstants)
 
 #### Defined in
 
-[lib/mina.ts:1249](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1249)
-
-___
-
-### createTransaction
-
-▸ **createTransaction**(`feePayer`, `f`, `numberOfRuns`, `«destructured»?`): [`Transaction`](Mina.md#transaction-1)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `feePayer` | `DeprecatedFeePayerSpec` |
-| `f` | () => `unknown` |
-| `numberOfRuns` | `undefined` \| ``0`` \| ``1`` |
-| `«destructured»` | `Object` |
-| › `fetchMode` | `undefined` \| `FetchMode` |
-| › `isFinalRunOutsideCircuit` | `undefined` \| `boolean` |
-| › `proofsEnabled` | `undefined` \| `boolean` |
-
-#### Returns
-
-[`Transaction`](Mina.md#transaction-1)
-
-#### Defined in
-
-[lib/mina.ts:188](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L188)
+[lib/mina/mina-instance.ts:211](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L211)
 
 ___
 
@@ -343,21 +326,21 @@ The current slot number, according to the active Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1199](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1199)
+[lib/mina/mina-instance.ts:161](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L161)
 
 ___
 
 ### currentTransaction
 
-▸ **currentTransaction**(): `undefined` \| [`CurrentTransaction`](Mina.md#currenttransaction)
+▸ **currentTransaction**(): `undefined` \| `CurrentTransaction`
 
 #### Returns
 
-`undefined` \| [`CurrentTransaction`](Mina.md#currenttransaction)
+`undefined` \| `CurrentTransaction`
 
 #### Defined in
 
-[lib/global-context.ts:6](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/global-context.ts#L6)
+[lib/global-context.ts:6](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/global-context.ts#L6)
 
 ___
 
@@ -380,7 +363,7 @@ Requests the [testnet faucet](https://faucet.minaprotocol.com/api/v1/faucet) to 
 
 #### Defined in
 
-[lib/mina.ts:1630](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1630)
+[lib/mina.ts:527](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L527)
 
 ___
 
@@ -404,7 +387,7 @@ A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1271](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1271)
+[lib/mina/mina-instance.ts:229](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L229)
 
 ___
 
@@ -428,7 +411,7 @@ A list of emitted events associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1260](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1260)
+[lib/mina/mina-instance.ts:218](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L218)
 
 ___
 
@@ -454,7 +437,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1587](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1587)
+[lib/mina/transaction-validation.ts:130](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction-validation.ts#L130)
 
 ___
 
@@ -477,7 +460,7 @@ The account data associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1206](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1206)
+[lib/mina/mina-instance.ts:168](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L168)
 
 ___
 
@@ -501,7 +484,7 @@ A list of emitted sequencing actions associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1282](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1282)
+[lib/mina/mina-instance.ts:240](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L240)
 
 ___
 
@@ -524,7 +507,7 @@ The balance associated to the given public key.
 
 #### Defined in
 
-[lib/mina.ts:1241](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1241)
+[lib/mina/mina-instance.ts:203](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L203)
 
 ___
 
@@ -540,7 +523,7 @@ Data associated with the current Mina network constants.
 
 #### Defined in
 
-[lib/mina.ts:1227](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1227)
+[lib/mina/mina-instance.ts:189](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L189)
 
 ___
 
@@ -556,7 +539,7 @@ The current Mina network ID.
 
 #### Defined in
 
-[lib/mina.ts:1220](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1220)
+[lib/mina/mina-instance.ts:182](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L182)
 
 ___
 
@@ -572,7 +555,7 @@ Data associated with the current state of the Mina network.
 
 #### Defined in
 
-[lib/mina.ts:1234](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1234)
+[lib/mina/mina-instance.ts:196](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L196)
 
 ___
 
@@ -586,7 +569,7 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1290](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1290)
+[lib/mina/mina-instance.ts:248](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L248)
 
 ___
 
@@ -609,27 +592,7 @@ Checks if an account exists within the ledger.
 
 #### Defined in
 
-[lib/mina.ts:1213](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1213)
-
-___
-
-### sendTransaction
-
-▸ **sendTransaction**(`txn`): `Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `txn` | [`Transaction`](Mina.md#transaction-1) |
-
-#### Returns
-
-`Promise`\<[`TransactionId`](../interfaces/Mina.TransactionId.md)\>
-
-#### Defined in
-
-[lib/mina.ts:1253](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1253)
+[lib/mina/mina-instance.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L175)
 
 ___
 
@@ -647,7 +610,7 @@ Throws an error if not inside a transaction, or the sender wasn't passed in.
 
 #### Defined in
 
-[lib/mina.ts:1175](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1175)
+[lib/mina.ts:476](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L476)
 
 ___
 
@@ -669,13 +632,13 @@ Set the currently used Mina instance.
 
 #### Defined in
 
-[lib/mina.ts:1115](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1115)
+[lib/mina/mina-instance.ts:150](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/mina-instance.ts#L150)
 
 ___
 
 ### transaction
 
-▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 Construct a smart contract transaction. Within the callback passed to this function,
 you can call into the methods of smart contracts.
@@ -696,15 +659,15 @@ let tx = await Mina.transaction(sender, () => {
 
 #### Returns
 
-`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+`Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 A transaction that can subsequently be submitted to the chain.
 
 #### Defined in
 
-[lib/mina.ts:1132](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1132)
+[lib/mina/transaction.ts:468](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L468)
 
-▸ **transaction**(`f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`f`): `Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 #### Parameters
 
@@ -714,13 +677,13 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Returns
 
-`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+`Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 #### Defined in
 
-[lib/mina.ts:1133](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1133)
+[lib/mina/transaction.ts:469](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L469)
 
-▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+▸ **transaction**(`sender`, `f`): `Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 #### Parameters
 
@@ -731,7 +694,7 @@ A transaction that can subsequently be submitted to the chain.
 
 #### Returns
 
-`Promise`\<[`Transaction`](Mina.md#transaction-1)\>
+`Promise`\<[`Transaction`](Mina.md#transaction)\>
 
 **`Deprecated`**
 
@@ -748,7 +711,7 @@ Mina.transaction({ feePayerKey: privateKey }, ...);
 
 #### Defined in
 
-[lib/mina.ts:1146](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1146)
+[lib/mina/transaction.ts:482](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/transaction.ts#L482)
 
 ___
 
@@ -768,4 +731,4 @@ ___
 
 #### Defined in
 
-[lib/mina.ts:1606](https://github.com/o1-labs/o1js/blob/5d8e331/src/lib/mina.ts#L1606)
+[lib/mina.ts:503](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina.ts#L503)
