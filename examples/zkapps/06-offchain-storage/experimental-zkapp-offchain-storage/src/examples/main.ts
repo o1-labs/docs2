@@ -169,8 +169,8 @@ const SERVER_ADDRESS = 'http://localhost:3001';
     console.log('updating zkApp...');
     const txn1 = await Mina.transaction(
       { sender: deployerAccount.publicKey, fee: TRANSACTION_FEE },
-      () => {
-        zkAppInstance.update(
+      async () => {
+        await zkAppInstance.update(
           leafIsEmpty,
           oldNum,
           newNum,
