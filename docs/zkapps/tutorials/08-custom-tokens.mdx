@@ -1,0 +1,252 @@
+---
+title: 'Tutorial 8: Custom Tokens'
+hide_title: true
+sidebar_label: 'Tutorial 8: Custom Tokens'
+description: Smart contract code to create and manage new tokens. Mina has native support for custom tokens.
+keywords:
+  - smart contracts
+  - zkapps
+  - custom tokens
+  - zero knowledge proof programming
+  - zk proof
+  - zk
+  - blockchain
+  - mina
+  - tokens
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+
+:::
+
+# Tutorial 8: Custom Tokens
+
+In this tutorial, you learn to create custom tokens.
+
+Mina comes with native support for custom tokens. Each account on Mina can also have tokens associated with it.
+
+To create a new token, one creates a smart contract, which becomes the manager for the token, and uses that contract to set the rules around how the token can be mint, burned, and sent.
+
+The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens.
+
+In this tutorial, you review smart contract code that creates and manages new tokens. 
+
+The full example code is provided in the [08-custom-tokens/src/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src) example files.
+
+For reference, a more extensive example, including all the ways to interact with token smart contracts, is provided in [token.test.ts](https://github.com/o1-labs/o1js/blob/main/src/lib/token.test.ts).
+
+## Prerequisites
+
+- Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
+
+This tutorial has been tested with:
+
+- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version 0.17.2
+- [o1js](https://www.npmjs.com/package/o1js) version 0.17.0
+
+## Create the project
+
+1. Create or change to a directory where you have write privileges.
+1. Create a project by using the `zk project` command:
+
+  ```sh
+  $ zk project 08-custom-tokens
+  ```
+
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+## Prepare the project
+
+1. Change to the project directory, delete the existing files, and create a new `src/BasicTokenContract` smart contract, and a `index.ts` file:
+
+  ```sh
+  $ cd 08-custom-tokens
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  $ zk file src/BasicTokenContract
+  $ touch src/index.ts
+  ```
+
+1. Edit `index.ts` to import and export your new smart contract:
+
+  ```ts
+  import { BasicTokenContract } from './BasicTokenContract.js';
+
+  export { BasicTokenContract };
+  ```
+
+1. Add the official token standard implementation to your project dependencies
+
+  ```sh
+  $ npm i mina-fungible-token
+  ```
+
+## Concepts
+
+As mentioned above, Mina comes with custom token mechanism built-in.
+
+Let's pause to explore terms and ideas, that are essential for understanding how this mechanism is implemented in Mina.
+
+### Token Manager
+
+The token manager account is a zkApp that can:
+
+- Set a token symbol (also called token name) for its token. Uniqueness is not enforced for token names because the public key of the manager account is used to derive a unique identifier for each token.
+- Mint new tokens. The zkApp updates an account's balance by adding the newly created tokens to it. You can send minted tokens to any existing account in the network.
+- Burn tokens (the opposite of minting). Burning tokens deducts the balance of a certain address by the specified amount. A zkApp cannot burn more tokens than the specified account has.
+- Send tokens between two accounts. This must be approved by a zkApp (see [Approval mechanism](#approval-mechanism)).
+
+### Token Account
+
+Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account and is specified by a public key _and_ a token id. 
+
+Token accounts are specific for each type of custom token, so a single public key can have many different token accounts.
+
+A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token. 
+
+:::note
+
+When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
+
+:::
+
+### Token ID
+
+Token ids are unique identifiers that distinguish between different types of custom tokens. Custom token identifiers are globally unique across the entire network.
+
+Token ids are derived from a zkApp. To check the token id of a zkApp, use the `this.deriveTokenId()` function.
+
+### Approval mechanism
+
+Sending tokens between two accounts must be approved by a Token Manager zkApp. This can be done with `approveBase()` method of the custom token standard reference implementation. 
+
+If you customize the `transfer()` function, don't forget to call `approveBase()`.
+
+### Upgradeability
+
+As opposet to most blockchains, where you deploy a bytecode, on Mina, when you deploy a smart contract you generate a verification key from the contract source code. The verification key is stored on-chain and used to verify proofs that belong to that smart contract.
+
+That means, that upgradeability is achieved by changing the verification key. In the Customn Token Standard implementation this can be done with `setVerificationKey()` method.
+
+## FungibleTokenBase implementation overview
+
+The token standard implementation is a Token Manager zkApp that is splitted in 2 parts: low-level and high-level logic.
+
+The low-level implementation is included in `o1js` library `TokenContract` abstract class. See the overview in the o1js [Custom Tokens tutorial](../o1js/custom-tokens)
+
+The high-level part inherts from the `TokenContract` class and has following user-facing features:
+
+### On-chain State, `decimals` and deploy arguments
+
+The on-chain state is defined as follows:
+
+```ts
+@state(PublicKey) public adminAccount = State<PublicKey>();
+@state(UInt64) public totalSupply = State<UInt64>();
+@state(UInt64) public circulatingSupply = State<UInt64>();
+```
+
+- The `adminAccount` is set on deployment, and some of token functionality requires an admin signature.
+
+    If you want to implement admin-only method, just call `this.requireAdminSignature()` helper in the method you want to protect.
+
+- The `totalSupply` defines a maximum amount of tokens to exist. It is set on deployment and can be modified with `setTotalSupply()` function (can be called by admin only)
+
+- The `circulatingSupply` tracks the total amount in circulation. When new tokens are minted, the `circulatingSupply` changes by an amount minted.
+
+- The `decimals` is a constant, that defines where to place the decimal comma in the token amounts. It is exposed in `getDecimals()` method.
+
+- The `.deploy()` function requires `adminAccount` and `totalSupply` to be passed as parameters.
+
+### Methods
+
+Transfer and burn functionality is available by following methods:
+
+```ts
+transfer(from: PublicKey | AccountUpdate, to: PublicKey | AccountUpdate, amount: UInt64 | number | bigint)
+burn(from: PublicKey, amount: UInt64)
+```
+
+Methods that can be called only by admin are:
+
+```ts
+mint(address: PublicKey, amount: UInt64)
+setVerificationKey(verificationKey: VerificationKey)
+setTotalSupply(amount: UInt64)
+```
+
+Helper methods for reading state and fetching account balance
+
+```ts
+getBalanceOf(address: PublicKey)
+getTotalSupply()
+getCirculatingSupply()
+getDecimals()
+```
+
+That completes a review of a basic token. 
+
+## Create and deploy a custom token
+
+To create a token manager smart contract, inherit your smart contract from base custom token implementation
+
+```ts
+import {
+  FungibleToken
+} from 'mina-fungible-token';
+
+class MyToken extends FungibleToken {}
+```
+
+A full copy of the [MyToken.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/BasicTokenContract.ts) is provided.
+
+
+## Token Operations
+
+### Mint tokens
+
+### Burn tokens
+
+### Transfer tokens between user accounts
+
+### Build zkApp that interact with tokens
+
+#### Implement a smart contract that use tokens
+
+With zkApps, you can also build smart contracts that interact with tokens. For example, a simple escrow contract, where tokens can be deposited to and withdrawn from.
+
+#### Transfer from user to smart contract
+
+#### Transfer from contract to user
+
+#### Transfer from contract to contract
+
+### Implement custom mechanics
+
+Overriding default burn functionality
+
+
+
+To see an example of interacting with this contract, see [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/main.ts).
+
+To see an example of putting rules around a token, see this [example](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/WhitelistedTokenContract.ts) of a token with whitelist gating so that public keys can interact with it.
+
+
+## Conclusion
+
+You have finished reviewing the steps to build a smart contract to manage a token. You learned how to build a smart contract that places custom rules over tokens.
+
+To learn more, see [Fungible token standard](/zkapps/o1js/custom-tokens).
+
+Check out [Tutorial 9: Recursion](/zkapps/tutorials/recursion) to learn how to use recursive ZKPs with o1js, to implement zkRollups, large computations, and more.
