@@ -25,3 +25,20 @@ Read more about archive data migration:
 
 - [How to prepare for archive migration](/berkeley-upgrade/planning-archive-migration)
 - [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)
+
+## What will happen with orignal mainnet data
+
+After migration you will have two databases:
+
+- orginal mainnet database with small data adjustments (all pending blocks from last canoncial block till fork block will be converted to canoncial)
+- new berkeley database based on mainnet data but:
+  - without mainnet orphaned blocks
+  - without pending blocks which are not in canoncial chain
+  - with all pending blocks on canoncial chain converted to canoncial block
+
+There is no need to preserve orginal mainnet database after migration. However, if for some reason you would like to keep mainnet orphaned or non-canonical pending blocks, it is recommended to download maintenance package for mainnet database.
+During development process for, we make couple of issues which influences mainnet database. Migration to berkeley fixes all those issues. However, migration is leaving mainnet database intact (except mentioned canoncial prending blocks conversion). As a result mainnet database could still contain issues 
+
+Read more about mainnet archive maintenance:
+
+[How to maintain archive data](/berkeley-upgrade/mainnet-database-maintenance)
