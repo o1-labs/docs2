@@ -144,8 +144,8 @@ async function updateTree() {
 
   // update the smart contract
 
-  const doUpdate = () => {
-    zkapp.update(
+  const doUpdate = async () => {
+    await zkapp.update(
       Bool(priorLeafIsEmpty),
       priorLeafNumber,
       newLeafNumber,
@@ -158,8 +158,8 @@ async function updateTree() {
   if (useLocal) {
     const updateTransaction = await Mina.transaction(
       { sender: feePayerKey.toPublicKey(), fee: transactionFee },
-      () => {
-        doUpdate();
+      async () => {
+        await doUpdate();
       }
     );
     updateTransaction.sign([zkappPrivateKey, feePayerKey]);
