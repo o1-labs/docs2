@@ -108,9 +108,9 @@ let zkAppInstance = new Add(zkAppAddress);
 Then, use the test account and zkApp keys to construct a transaction to pay account creation fees and deploy your smart contract. This transaction is sent to the local blockchain.
 
 ```ts
-let txn = await Mina.transaction(feePayer, () => {
+let txn = await Mina.transaction(feePayer, async () => {
   AccountUpdate.fundNewAccount(feePayer);
-  zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+  async zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
 });
 
 const txPromise = await  txn.send();
@@ -153,9 +153,9 @@ describe('Add smart contract integration test', () => {
     zkAppInstance = new Add(zkAppAddress);
 
     // deploy zkapp
-    txn = await Mina.transaction(feePayer, () => {
+    txn = await Mina.transaction(feePayer, async () => {
       AccountUpdate.fundNewAccount(feePayer);
-      zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+      await zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
     });
     await txn.send();
   });
@@ -166,8 +166,8 @@ describe('Add smart contract integration test', () => {
   });
 
   it('correctly updates num from intial state to 3', async () => {
-    txn = await Mina.transaction(feePayer, () => {
-      zkAppInstance.update();
+    txn = await Mina.transaction(feePayer, async () => {
+      await zkAppInstance.update();
       zkAppInstance.sign(zkAppPrivateKey);
     });
     txn.send();
