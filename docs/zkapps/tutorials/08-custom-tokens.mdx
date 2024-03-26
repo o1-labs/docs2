@@ -133,12 +133,6 @@ Sending tokens between two accounts must be approved by a Token Manager zkApp. T
 
 If you customize the `transfer()` function, don't forget to call `approveBase()`.
 
-### Upgradeability
-
-As opposed to most blockchains, where you deploy a bytecode, on Mina, when you deploy a smart contract you generate a verification key from the contract source code. The verification key is stored on-chain and used to verify proofs that belong to that smart contract.
-
-That means, the upgradeability is achieved by changing the verification key. In the Customn Token Standard implementation this can be done with `setVerificationKey()` method.
-
 ## FungibleTokenBase implementation overview
 
 The token standard implementation is a Token Manager zkApp that is splitted in 2 parts: low-level and high-level one.
@@ -182,7 +176,6 @@ Methods that can be called only by admin are:
 
 ```ts
 mint(address: PublicKey, amount: UInt64)
-setVerificationKey(verificationKey: VerificationKey)
 setTotalSupply(amount: UInt64)
 ```
 
