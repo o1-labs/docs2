@@ -160,9 +160,9 @@ But first, notice that the permissions specified in the `init()` method have set
 Take a look at the following malicious transaction that abuses this permission:
 
 ```ts
-tx = await Mina.transaction(account1Address, () => {
+tx = await Mina.transaction(account1Address, async () => {
   let withdrawal = AccountUpdate.create(zkappAddress);
-  withdrawal.send({ to: account1Address, amount: 1e9 });
+  await withdrawal.send({ to: account1Address, amount: 1e9 });
 });
 await tx.sign([account1Key]).send();
 ```
