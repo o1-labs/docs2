@@ -272,10 +272,10 @@ Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree
 1. Create and send a deploy transaction, then visualize it:
 
   ```typescript
-  const deployTxn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, async () => {
     AccountUpdate.fundNewAccount(deployerAccount, 2);
-    proofsOnlyInstance.deploy();
-    secondaryInstance.deploy();
+    await proofsOnlyInstance.deploy();
+    await secondaryInstance.deploy();
   });
 
   await deploy_txn.prove();
@@ -311,8 +311,8 @@ When the transaction is run on chain, these account updates are checked by the M
 1. Call `add()` on your instance of `proofsOnlyZkApp`:
 
   ```typescript
-  const txn1 = await Mina.transaction(deployerAccount, () => {
-    proofsOnlyInstance.add(Field(4));
+  const txn1 = await Mina.transaction(deployerAccount, async () => {
+    await proofsOnlyInstance.add(Field(4));
   });
 
   await txn1.prove();
@@ -371,8 +371,8 @@ View the [account updates visualization](/img/tutorial-10-deploy_txn.png) again.
 Finally, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
 ```typescript
-const txn2 = await Mina.transaction(deployerAccount, () => {
-  proofsOnlyInstance.callSecondary(secondaryAddr);
+const txn2 = await Mina.transaction(deployerAccount, async () => {
+  await proofsOnlyInstance.callSecondary(secondaryAddr);
 });
 
 await txn2.prove();

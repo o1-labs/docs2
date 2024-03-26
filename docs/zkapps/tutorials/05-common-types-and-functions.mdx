@@ -364,11 +364,11 @@ const tree = new MerkleTree(height);
 class MerkleWitness20 extends MerkleWitness(height) {}
 
 // deploy the smart contract
-const deployTxn = await Mina.transaction(deployerAccount, () => {
+const deployTxn = await Mina.transaction(deployerAccount, async () => {
   AccountUpdate.fundNewAccount(deployerAccount);
-  zkApp.deploy();
+  await zkApp.deploy();
   // get the root of the new tree to use as the initial tree root
-  zkApp.initState(tree.getRoot());
+  await zkApp.initState(tree.getRoot());
 });
 await deployTxn.prove();
 deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
@@ -391,8 +391,8 @@ const witness = new MerkleWitness20(tree.getWitness(incrementIndex));
 tree.setLeaf(incrementIndex, incrementAmount);
 
 // update the smart contract
-const txn1 = await Mina.transaction(senderPublicKey, () => {
-  zkApp.update(
+const txn1 = await Mina.transaction(senderPublicKey, async () => {
+  await zkApp.update(
     witness,
     Field(0), // leafs in new trees start at a state of 0
     incrementAmount
@@ -486,8 +486,8 @@ const key = Field(100);
 const witness = map.getWitness(key);
 ...
 // update the smart contract
-const txn1 = await Mina.transaction(deployerAccount, () => {
-  zkapp.update(
+const txn1 = await Mina.transaction(deployerAccount, async () => {
+  await zkapp.update(
     contract.update(
       witness,
       key,
