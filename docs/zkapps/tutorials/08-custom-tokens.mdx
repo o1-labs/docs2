@@ -292,7 +292,6 @@ await tx.prove();
 await tx.send();
 ```
 
-
 ### Transfer tokens between user accounts
 
 To transfer tokens between two user accounts:
@@ -311,6 +310,16 @@ const tx = await Mina.transaction(sendFrom, () => {
 tx.sign([sendFromKey]);
 await tx.prove();
 await tx.send();
+```
+
+### Fetch token balance of the account
+
+To get token balance of some account:
+
+```ts
+// paste the address of the account you want to read balance of
+const anyAccount = PublicKey.fromBase58('...');
+const balance = token.getBalanceOf(anyAccount);
 ```
 
 ### Build zkApp that interact with tokens
