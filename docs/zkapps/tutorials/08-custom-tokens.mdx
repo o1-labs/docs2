@@ -105,7 +105,7 @@ The token manager account is a zkApp that can:
 - Set a token symbol (also called token name) for its token. Uniqueness is not enforced for token names because the public key of the manager account is used to derive a unique identifier for each token.
 - Mint new tokens. The zkApp updates an account's balance by adding the newly created tokens to it. You can send minted tokens to any existing account in the network.
 - Burn tokens (the opposite of minting). Burning tokens deducts the balance of a certain address by the specified amount. A zkApp cannot burn more tokens than the specified account has.
-- Send tokens between two accounts. This must be approved by a zkApp (see [Approval mechanism](#approval-mechanism)).
+- Send tokens between two accounts. Any account can initiate a transfer, and the transfer must be approved by a Token Manager zkApp (see [Approval mechanism](#approval-mechanism)).
 
 ### Token Account
 
@@ -135,13 +135,13 @@ If you customize the `transfer()` function, don't forget to call `approveBase()`
 
 ### Upgradeability
 
-As opposet to most blockchains, where you deploy a bytecode, on Mina, when you deploy a smart contract you generate a verification key from the contract source code. The verification key is stored on-chain and used to verify proofs that belong to that smart contract.
+As opposed to most blockchains, where you deploy a bytecode, on Mina, when you deploy a smart contract you generate a verification key from the contract source code. The verification key is stored on-chain and used to verify proofs that belong to that smart contract.
 
-That means, that upgradeability is achieved by changing the verification key. In the Customn Token Standard implementation this can be done with `setVerificationKey()` method.
+That means, the upgradeability is achieved by changing the verification key. In the Customn Token Standard implementation this can be done with `setVerificationKey()` method.
 
 ## FungibleTokenBase implementation overview
 
-The token standard implementation is a Token Manager zkApp that is splitted in 2 parts: low-level and high-level logic.
+The token standard implementation is a Token Manager zkApp that is splitted in 2 parts: low-level and high-level one.
 
 The low-level implementation is included in `o1js` library `TokenContract` abstract class. See the overview in the o1js [Custom Tokens tutorial](../o1js/custom-tokens)
 
@@ -209,18 +209,112 @@ import {
 class MyToken extends FungibleToken {}
 ```
 
+To deploy a token manager contract, create and compile the token contract instance, then create, prove and sign the deploy transaction:
+
+```ts
+const {
+    privateKey: tokenKey, 
+    publicKey: tokenAccount
+} = PrivateKey.randomKeypair();
+const token = new MyToken(tokenAccount);
+
+// paste the private key of the admin account here
+const tokenAdminKey = PrivateKey.fromBase58('...');
+const tokenAdminAccount = PublicKey.fromPrivateKey(tokenAdminKey); 
+
+const totalSupply = UInt64.from(21000000);
+const tokenSymbol = 'MYTKN';
+
+const tx = await Mina.transaction(deployerAccount, () => {
+    token.deploy(tokenAdminAccount, totalSupply, tokenSymbol);
+});
+
+tx.sign([deployerKey, tokenKey]);
+await tx.prove();
+await tx.send();
+```
+
+For this and following samples to work, make sure you have enough funds on deployer and admin accounts.
+
 A full copy of the [MyToken.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/BasicTokenContract.ts) is provided.
 
 
 ## Token Operations
 
+In this section, we will explore the various token operations represented by the standard, which include:
+
+- Minting
+- Burning
+- Transferring between users
+- Building zkApps that interact with tokens
+
 ### Mint tokens
+
+To mint tokens to some address:
+
+```ts
+// paste the address where you want to mint tokens to
+const mintTo = PublicKey.fromBase58('');
+
+const mintAmount = UInt64.from(1000);
+
+const tx = await Mina.transaction(tokenAdminAccount, () => {
+    token.mint(mintTo, mintAmount);
+});
+
+tx.sign([tokenAdminKey]);
+await tx.prove();
+await tx.send();
+```
+
+:::note
+
+When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
+
+:::
 
 ### Burn tokens
 
+To burn tokens owned by some address:
+
+```ts
+// paste the address where you want to burn tokens from
+const burnFrom = PublicKey.fromBase58('');
+
+const burnAmount = UInt64.from(1000);
+
+const tx = await Mina.transaction(burnFrom, () => {
+    token.burn(burnFrom, burnAmount);
+});
+
+tx.sign([burnFromKey]);
+await tx.prove();
+await tx.send();
+```
+
+
 ### Transfer tokens between user accounts
 
+To transfer tokens between two user accounts:
+
+```ts
+/// paste the private key of the sender and the address of the receiver
+const sendFrom = PublicKey.fromBase58('...');
+const sendFromKey = Private.fromPublicKey(sendFrom);
+const sendTo = PublicKey.fromBase58('...');
+
+const sendAmount = UInt64.from(1);
+
+const tx = await Mina.transaction(sendFrom, () => {
+    token.transfer(sendFrom, sendTo, sendAmount);
+});
+tx.sign([sendFromKey]);
+await tx.prove();
+await tx.send();
+```
+
 ### Build zkApp that interact with tokens
+
 
 #### Implement a smart contract that use tokens
 
@@ -233,14 +327,6 @@ With zkApps, you can also build smart contracts that interact with tokens. For e
 #### Transfer from contract to contract
 
 ### Implement custom mechanics
-
-Overriding default burn functionality
-
-
-
-To see an example of interacting with this contract, see [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/main.ts).
-
-To see an example of putting rules around a token, see this [example](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/08-custom-tokens/src/WhitelistedTokenContract.ts) of a token with whitelist gating so that public keys can interact with it.
 
 
 ## Conclusion
