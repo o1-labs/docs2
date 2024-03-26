@@ -223,8 +223,8 @@ Finally, here is code that sends an update to the transaction. If the zkApp was 
 
 let transaction = await Mina.transaction(
   { sender: deployerPublicKey, fee: transactionFee },
-  () => {
-    zkapp.update(num.mul(num));
+  async () => {
+    await zkapp.update(num.mul(num));
   }
 );
 

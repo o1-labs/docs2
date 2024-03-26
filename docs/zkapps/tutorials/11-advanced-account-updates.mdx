@@ -66,15 +66,15 @@ const tokenHolderInstance = new TokenHolder(
 And deployed as follows:
 
 ```typescript
-const deploy_txn = await Mina.transaction(deployerAddr, () => {
+const deploy_txn = await Mina.transaction(deployerAddr, async () => {
   let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 4);
-  feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
+  await feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
 
-  myTokenInstance.deploy();
-  tokenUserInstance.deploy();
-  tokenHolderInstance.deploy();
+  await myTokenInstance.deploy();
+  await tokenUserInstance.deploy();
+  await tokenHolderInstance.deploy();
 
-  myTokenInstance.approveDeploy(tokenHolderInstance.self);
+  await myTokenInstance.approveDeploy(tokenHolderInstance.self);
 });
 ```
 
@@ -121,9 +121,9 @@ deployUpdate.body.update.appState.every((x) => x.isSome.assertFalse());
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
 ```typescript
-const txn2 = await Mina.transaction(deployerAddr, () => {
+const txn2 = await Mina.transaction(deployerAddr, await () => {
   let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 1);
-  tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
+  await tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
 });
 ```
 
