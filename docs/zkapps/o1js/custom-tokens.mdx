@@ -50,8 +50,19 @@ Use the `TokenContract` class to perform common token operations, such as mintin
 As shown in this [example code](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/token/token-contract.unit-test.ts#L13), you inherit from the `TokenContract` class:
 
 ```ts
+<<<<<<< HEAD
 class ExampleTokenContract extends TokenContract { 
   // your custom token implementation
+=======
+class MintExample extends SmartContract {
+...
+@method async mintNewTokens(receiverAddress: PublicKey) {
+    this.token.mint({
+      address: receiverAddress,
+      amount: 100_000,
+    });
+  }
+>>>>>>> feature/async-circuits-code-compatibility
 }
 ```
 
@@ -65,6 +76,7 @@ The `TokenContract` comes with a set of prebuilt methods and helpers to get you 
 Additionally, the token smart contract also comes with an `internal` namespace which contains helper methods that can be used from within a token contract only.
 
 ```ts
+<<<<<<< HEAD
 TokenContract.internal: {
     /**
      * Mints token balance to `address`. Returns the mint account update.
@@ -88,6 +100,16 @@ TokenContract.internal: {
       to: PublicKey | AccountUpdate | SmartContract;
       amount: number | bigint | UInt64;
     ): AccountUpdate;
+=======
+class BurnExample extends SmartContract {
+...
+@method async burnTokens(addressToDecrease: PublicKey) {
+    this.token.burn({
+      address: addressToDecrease,
+      amount: 100_000,
+    });
+  }
+>>>>>>> feature/async-circuits-code-compatibility
 }
 ```
 
@@ -96,6 +118,7 @@ TokenContract.internal: {
 Each subclass token contract that inherits the default `TokenContract` must implement the core `approveBase()` method. It has the following signature:
 
 ```ts
+<<<<<<< HEAD
 approveBase(forest: AccountUpdateForest): void;
 ```
 
@@ -106,6 +129,21 @@ The usual implementation is as easy as this:
 ```ts
 @method approveBase(forest: AccountUpdateForest) {
   this.checkZeroBalanceChange(forest);
+=======
+class SendExample extends SmartContract {
+...
+@method async sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    amount: UInt64
+  ) {
+    this.token.send({
+      to: receiverAddress,
+      from: senderAddress,
+      amount,
+    });
+  }
+>>>>>>> feature/async-circuits-code-compatibility
 }
 ```
 
@@ -134,6 +172,7 @@ The `Approvable` API also provides easy to use wrappers around `approveBase()`, 
 ```ts
 abstract class TokenContract extends SmartContract {
   /**
+<<<<<<< HEAD
     * Approve a single account update (with arbitrarily many children).
     */
   approveAccountUpdate(accountUpdate: AccountUpdate): Promise<void>;;
@@ -146,6 +185,66 @@ abstract class TokenContract extends SmartContract {
     */
   transfer(from: PublicKey | AccountUpdate, to: PublicKey | AccountUpdate, amount: UInt64): Promise<void>;;
 }
+=======
+   * 'sendTokens()' sends tokens from `senderAddress` to `receiverAddress`.
+   *
+   * It does so by deducting the amount of tokens from `senderAddress` by
+   * authorizing the deduction with a proof. It then creates the receiver
+   * from `receiverAddress` and sends the amount.
+   */
+  @method async sendTokens(
+    senderAddress: PublicKey,
+    receiverAddress: PublicKey,
+    amount: UInt64,
+    callback: Experimental.Callback<any>
+  ) {
+    // approves the callback which deductes the amount of tokens from the sender
+    let senderAccountUpdate = this.approve(callback);
+
+    // Create constraints for the sender account update and amount
+    let negativeAmount = Int64.fromObject(
+      senderAccountUpdate.body.balanceChange
+    );
+    negativeAmount.assertEquals(Int64.from(amount).neg());
+    let tokenId = this.token.id;
+
+    // Create receiver accountUpdate
+    let receiverAccountUpdate = Experimental.createChildAccountUpdate(
+      this.self,
+      receiverAddress,
+      tokenId
+    );
+    receiverAccountUpdate.balance.addInPlace(amount);
+  }
+}
+
+class ZkAppB extends SmartContract {
+  /*
+  * This method is used to get authorization from the token owner. Remember,
+  * the token owner is the one who created the custom token. To debit their
+  * balance, we must get authorization from the token owner
+  */
+  @method async approveSend(amount: UInt64) {
+    this.balance.subInPlace(amount);
+  }
+}
+
+let tx = await Local.transaction(feePayer, () => {
+  let amount = UInt64.from(1_000)
+  // Create a callback inside the transaction that calls the approveSend method.
+  // This will be executed by the token owner to get authorization.
+  let approveSendingCallback = Experimental.Callback.create(
+    zkAppB,
+    'approveSend',
+    [amount]
+  );
+  // Here, we call the token contract with the callback
+  tokenZkApp.sendTokens(zkAppBAddress, account1Address, amount, approveSendingCallback);
+});
+await tx.prove();
+tx.sign([zkAppBKey]);
+await tx.send();
+>>>>>>> feature/async-circuits-code-compatibility
 ```
 
 ### The Transferable API

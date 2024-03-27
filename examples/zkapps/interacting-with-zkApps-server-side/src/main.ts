@@ -74,8 +74,8 @@ console.log(`current value of num is ${num}`);
 
 let transaction = await Mina.transaction(
   { sender: deployerPublicKey, fee: transactionFee },
-  () => {
-    zkapp.update(num.mul(num));
+  async () => {
+    await zkapp.update(num.mul(num));
   }
 );
 

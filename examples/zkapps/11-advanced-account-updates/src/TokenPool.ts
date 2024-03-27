@@ -24,7 +24,7 @@ export class TokenPool extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method moveMinaToWrappedMina(amount: UInt64) {
+  @method async moveMinaToWrappedMina(amount: UInt64) {
     this.send({ to: TokenPool.wrappedMinaPublicKey, amount });
 
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
@@ -33,7 +33,7 @@ export class TokenPool extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method moveWrappedMinaToMina(amount: UInt64) {
+  @method async moveWrappedMinaToMina(amount: UInt64) {
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
     const wminaContract = new TokenPoolWMinaHolder(
       this.address,
@@ -49,7 +49,7 @@ export class TokenPool extends SmartContract {
 }
 
 export class TokenPoolWMinaHolder extends SmartContract {
-  @method burnWMINA(amount: UInt64) {
+  @method async burnWMINA(amount: UInt64) {
     // burn WMINA
     this.balance.subInPlace(amount);
 

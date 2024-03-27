@@ -46,7 +46,7 @@ export const makeAndSendTransaction = async <State extends ToString>({
 }: {
   feePayerPrivateKey: PrivateKey;
   zkAppPublicKey: PublicKey;
-  mutateZkApp: () => void;
+  mutateZkApp: () => Promise<void>;
   transactionFee: number;
   getState: () => State;
   statesEqual: (state1: State, state2: State) => boolean;
@@ -59,8 +59,8 @@ export const makeAndSendTransaction = async <State extends ToString>({
 
   let transaction = await Mina.transaction(
     { feePayerKey: feePayerPrivateKey, fee: transactionFee },
-    () => {
-      mutateZkApp();
+    async () => {
+      await mutateZkApp();
     }
   );
 

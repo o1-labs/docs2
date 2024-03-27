@@ -64,10 +64,10 @@ async function deploy(
     console.log('Deploying zkapp for public key', zkAppPublicKey.toBase58());
     let transaction = await Mina.transaction(
       { sender, fee: deployTransactionFee },
-      () => {
+      async () => {
         AccountUpdate.fundNewAccount(sender);
         // NOTE: this calls `init()` if this is the first deploy
-        zkapp.deploy({ verificationKey });
+        await zkapp.deploy({ verificationKey });
       }
     );
     await transaction.prove();

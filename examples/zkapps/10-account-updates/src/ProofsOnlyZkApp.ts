@@ -30,7 +30,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     });
   }
 
-  @method init() {
+  @method async init() {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertFalse();
 
@@ -39,7 +39,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.calls.set(Field(0));
   }
 
-  @method add(incrementBy: Field) {
+  @method async add(incrementBy: Field) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -50,7 +50,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.incrementCalls();
   }
 
-  @method incrementCalls() {
+  @method async incrementCalls() {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -59,7 +59,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.calls.set(calls.add(Field(1)));
   }
 
-  @method callSecondary(secondaryAddr: PublicKey) {
+  @method async callSecondary(secondaryAddr: PublicKey) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -76,4 +76,3 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.incrementCalls();
   }
 }
-

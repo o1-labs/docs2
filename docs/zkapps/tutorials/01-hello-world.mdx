@@ -251,7 +251,7 @@ Finally, this code adds the `update()` function:
 14     this.num.set(Field(3));
 15   }
 16
-17   @method update(square: Field) {
+17   @method async update(square: Field) {
 18     const currentState = this.num.get();
 19     this.num.requireEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));
@@ -391,9 +391,9 @@ Comments break down each stage:
 21
 22 // create an instance of Square - and deploy it to zkAppAddress
 23 const zkAppInstance = new Square(zkAppAddress);
-24 const deployTxn = await Mina.transaction(deployerAccount, () => {
+24 const deployTxn = await Mina.transaction(deployerAccount, async () => {
 25   AccountUpdate.fundNewAccount(deployerAccount);
-26   zkAppInstance.deploy();
+26   await zkAppInstance.deploy();
 27 });
 28 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 29
@@ -426,8 +426,8 @@ To update your local zkApp account with a transaction, add the following code to
 33
 34 // ----------------------------------------------------
 35
-36 const txn1 = await Mina.transaction(senderAccount, () => {
-37   zkAppInstance.update(Field(9));
+36 const txn1 = await Mina.transaction(senderAccount, async () => {
+37   await zkAppInstance.update(Field(9));
 38 });
 39 await txn1.prove();
 40 await txn1.sign([senderKey]).send();
@@ -464,8 +464,8 @@ To test a failure, add these next lines of code from the `src/main.ts` file and 
 45 // ----------------------------------------------------
 46
 47 try {
-48   const txn2 = await Mina.transaction(senderAccount, () => {
-49     zkAppInstance.update(Field(75));
+48   const txn2 = await Mina.transaction(senderAccount, async () => {
+49     await zkAppInstance.update(Field(75));
 50   });
 51   await txn2.prove();
 52   await txn2.sign([senderKey]).send();

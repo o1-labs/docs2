@@ -25,16 +25,11 @@ export class OracleExample extends SmartContract {
     this.requireSignature();
   }
 
-  @method verify(id: Field, creditScore: Field, signature: Signature) {
+  @method async verify(id: Field, creditScore: Field, signature: Signature) {
     // Get the oracle public key from the contract state
-
     // Evaluate whether the signature is valid for the provided data
-
     // Check that the signature is valid
-
     // Check that the provided credit score is greater than 700
-
     // Emit an event containing the verified users id
-    
   }
 }

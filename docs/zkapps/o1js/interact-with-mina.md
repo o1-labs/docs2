@@ -62,8 +62,8 @@ You create transactions in o1js by calling `Mina.transaction(...)`, which takes 
 const sender = PublicKey.fromBase58('B62..'); // the user address
 const zkapp = new MyContract(address); // MyContract is a SmartContract
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.myMethod(someArgument);
 });
 ```
 
@@ -135,8 +135,8 @@ await MyContract.compile(); // this might take a while
 
 // ...
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.myMethod(someArgument);
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.myMethod(someArgument);
 });
 await tx.prove(); // this might take a while
 ```
@@ -192,7 +192,7 @@ To send MINA, use `this.send()` from a smart contract method:
 
 ```ts
 class MyContract extends SmartContract {
-  @method payout(amount: UInt64) {
+  @method async payout(amount: UInt64) {
     // TODO: logic that determines whether the user is allowed to claim this amount
 
     this.send({ to: this.sender, amount });
@@ -200,7 +200,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-The `@method payout()` pays out a given amount of nanoMINA to the sender of the transaction, which you get with `this.sender`.
+The `@method async payout()` pays out a given amount of nanoMINA to the sender of the transaction, which you get with `this.sender`.
 
 In a real zkApp, you would add conditions to this method to determine who can call it with which amounts.
 
@@ -209,8 +209,8 @@ To call this method in a transaction and print the result:
 ```ts
 const MINA = 1e9;
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.payout(UInt64.from(5 * MINA));
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.payout(UInt64.from(5 * MINA));
 });
 await tx.prove();
 console.log(tx.toPretty());
@@ -295,7 +295,7 @@ Here's the smart contract code:
 
 ```ts
 class MyContract extends SmartContract {
-  @method deposit(amount: UInt64) {
+  @method async deposit(amount: UInt64) {
     let senderUpdate = AccountUpdate.create(this.sender);
     senderUpdate.requireSignature();
     senderUpdate.send({ to: this, amount });
@@ -376,8 +376,8 @@ For example:
 ```ts
 const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
 
-const tx = await Mina.transaction(sender, () => {
-  zkapp.deposit(UInt64.from(5 * MINA));
+const tx = await Mina.transaction(sender, async () => {
+  await zkapp.deposit(UInt64.from(5 * MINA));
 });
 await tx.prove();
 
@@ -439,7 +439,7 @@ const Network = Mina.Network('https://example.com/graphql');
 Mina.setActiveInstance(Network);
 
 // create the transaction, add proofs and signatures
-const tx = await Mina.transaction(sender, () => {
+const tx = await Mina.transaction(sender, async () => {
   // ...
 });
 await tx.prove();

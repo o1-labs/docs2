@@ -26,7 +26,7 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method init() {
+  @method async init() {
     super.init();
 
     let receiver = this.token.mint({
@@ -42,7 +42,7 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method mintWrappedMina(amount: UInt64, destination: PublicKey) {
+  @method async mintWrappedMina(amount: UInt64, destination: PublicKey) {
     const priorMina = this.priorMina.get();
     this.priorMina.requireEquals(this.priorMina.get());
 
@@ -58,7 +58,10 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method redeemWrappedMinaApprove(burnWMINA: AccountUpdate, amount: UInt64) {
+  @method async redeemWrappedMinaApprove(
+    burnWMINA: AccountUpdate,
+    amount: UInt64
+  ) {
     let { StaticChildren, NoDelegation } = AccountUpdate.Layout;
 
     // check that the burn account update has our token id
@@ -83,7 +86,7 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method redeemWrappedMinaWithoutApprove(
+  @method async redeemWrappedMinaWithoutApprove(
     source: PublicKey,
     destination: PublicKey,
     amount: UInt64
@@ -103,7 +106,7 @@ export class WrappedMina extends SmartContract {
   // ----------------------------------------------------------------------
 
   // let a zkapp send tokens to someone, provided the token supply stays constant
-  @method approveUpdateAndSend(
+  @method async approveUpdateAndSend(
     zkappUpdate: AccountUpdate,
     to: PublicKey,
     amount: UInt64
@@ -120,7 +123,7 @@ export class WrappedMina extends SmartContract {
   // ----------------------------------------------------------------------
 
   // let a zkapp do anything, provided the token supply stays constant
-  @method approveUpdate(zkappUpdate: AccountUpdate) {
+  @method async approveUpdate(zkappUpdate: AccountUpdate) {
     this.approve(zkappUpdate); // TODO is this secretly approving other changes?
 
     // see if balance change is zero
@@ -130,13 +133,13 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method transfer(from: PublicKey, to: PublicKey, value: UInt64) {
+  @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
     this.token.send({ from, to, amount: value });
   }
 
   // ----------------------------------------------------------------------
 
-  @method getBalance(publicKey: PublicKey): UInt64 {
+  @method async getBalance(publicKey: PublicKey): UInt64 {
     let accountUpdate = AccountUpdate.create(publicKey, this.token.id);
     let balance = accountUpdate.account.balance.get();
     accountUpdate.account.balance.requireEquals(

@@ -35,17 +35,17 @@ export class WhitelistedTokenContract extends SmartContract {
     });
   }
 
-  @method init() {
+  @method async init() {
     super.init();
     this.account.tokenSymbol.set(tokenSymbol);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
-  @method initState(whitelistTreeRoot: Field) {
+  @method async initState(whitelistTreeRoot: Field) {
     this.whitelistTreeRoot.set(whitelistTreeRoot);
   }
 
-  @method mint(
+  @method async mint(
     receiverAddress: PublicKey,
     amount: UInt64,
     adminSignature: Signature
@@ -70,7 +70,7 @@ export class WhitelistedTokenContract extends SmartContract {
     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
   }
 
-  @method addToWhitelist(
+  @method async addToWhitelist(
     receiverAddress: PublicKey,
     whitelistWitness: MerkleWitness20,
     newWhitelistRoot: Field,
@@ -92,7 +92,7 @@ export class WhitelistedTokenContract extends SmartContract {
     this.whitelistTreeRoot.set(newWhitelistRoot);
   }
 
-  @method sendTokens(
+  @method async sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
     amount: UInt64,

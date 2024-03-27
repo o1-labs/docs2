@@ -259,9 +259,9 @@ To interact with your zkApp, users of your zkApp must have the Auro Wallet insta
     // This is the public key of the deployed zkapp you want to interact with.
     const zkAppAddress = 'B62qq8sm7JdsED6VuDKNWKLAi1Tvz1jrnffuud5gXMq3mgtd';
 
-    const tx = await Mina.transaction(() => {
+    const tx = await Mina.transaction(async () => {
       const YourSmartContractInstance = new YourSmartContract(zkAppAddress);
-      YourSmartContractInstance.foo();
+      await YourSmartContractInstance.foo();
     });
 
     await tx.prove();

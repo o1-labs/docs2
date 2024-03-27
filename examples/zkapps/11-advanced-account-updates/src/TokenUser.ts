@@ -47,7 +47,7 @@ export class TokenUser extends SmartContract {
     return new MyToken(TokenUser.tokenSmartContractAddress);
   }
 
-  @method sendMyTokens(amount: UInt64, destination: PublicKey) {
+  @method async sendMyTokens(amount: UInt64, destination: PublicKey) {
     const tokenHolder = this.tokenHolder;
     tokenHolder.transferAway(amount);
     this.tokenContract.approveTransfer(tokenHolder.self, destination);
@@ -84,7 +84,7 @@ export class TokenHolder extends SmartContract {
     return new MyToken(TokenHolder.tokenSmartContractAddress);
   }
 
-  @method transferAway(amount: UInt64) {
+  @method async transferAway(amount: UInt64) {
     // TODO: in a real zkApp, here would be application-specific checks for whether we want to allow sending tokens
 
     this.balance.subInPlace(amount);

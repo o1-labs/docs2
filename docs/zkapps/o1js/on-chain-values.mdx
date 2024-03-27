@@ -58,7 +58,7 @@ const endDate = UInt64.from(Date.UTC(2022, 10, 1));
 class VotingApp extends SmartContract {
   // ...
 
-  @method vote(...) {
+  @method async vote(...) {
     this.network.timestamp.requireBetween(startDate, endDate);
     // ...
   }
