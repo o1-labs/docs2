@@ -142,7 +142,7 @@ where:
 
 `-n | --network`: *network name when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
 
-`-fc | --fork-config`: *Fork-state config file is dump file in form of json containing fork block and ledger file. It should be provied by MF or O(1)Labs team after fork block is announced*
+`-fc | --fork-config`: *fork genesis config file is the new genesis config. It would be distributed with the new daemon and would also be published after fork block is announced*
   
 
 ### Advanced approach
@@ -168,7 +168,7 @@ This stage is the very first one, which requires the initial `berkeley` schema o
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file genesis_ledgers/mainnet.json \
+   --config-file genesis_ledgers/devnet.json \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
@@ -176,7 +176,7 @@ mina-berkeley-migration \
 ```
 where: 
 `--network` - network name when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
-
+`genesis_ledgers/devnet.json` - is devnet genesis ledger. It is available in docker / debian or in [github sources](https://raw.githubusercontent.com/MinaProtocol/mina/e38c367994dba3d3293b48c7219486c32e9e3ca9/genesis_ledgers/devnet.json)
 
 
 ##### Phase 2: Replayer in migration mode run
@@ -332,13 +332,11 @@ mina-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
-   --checkpoint-interval 10000 \
-   --output-file replayer_output.json 
+   --checkpoint-interval 10000 
 ```
 
 where:
 `replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
-`replayer-output.json` - will contain a very last checkpoint which can be used for berkeley replayer validation
 
 It is important to save checkpoint which was dumped from replayer run, as it will be use in next migrations
 
@@ -351,8 +349,8 @@ berkeley_migration_verifier app is capable of performing checks for both fully m
    post-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string}  
-   --fork-config-file String 
-   --migrated-replayer-output Path
+   --fork-config-file genesis_config_fork.json
+   --migrated-replayer-output replayer-checkpoint-XXXX.json
 ```
 
 where:
@@ -360,7 +358,7 @@ where:
 `--fork-config-file` - Path to fork config file (alias: -fork-config-file)
 `--mainnet-archive-uri` - Connection string to the mainnet archive database
 `--migrated-archive-uri` - Connection string to the migrated archive database
-`--migrated-replayer-output`  - Path to migrated replayer output
+`--migrated-replayer-output` - Path to migrated replayer output
 
 
 ### Example steps using Mina Foundation data
@@ -368,11 +366,11 @@ where:
 1. Download and import archive dump:
 
    ```sh
-   wget -c https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-2023-11-02_0000.sql.tar.gz
+   wget -c https://storage.googleapis.com/mina-archive-dumps/devnet-archive-dump-2024-03-27_0000.sql.tar.gz
 
-   tar -xf mainnet-archive-dump-2023-11-02_0000.sql.tar.gz 
+   tar -xf devnet-archive-dump-2024-03-27_0000.sql.tar.gz 
 
-   psql -U postgres -a -f mainnet-archive-dump-2023-11-02_0000.sql
+   psql -U postgres -a -f devnet-archive-dump-2024-03-27_0000.sql
    ```
 
 2. Download migration software:
@@ -380,7 +378,6 @@ where:
    ```sh
    CODENAME=bullseye
    CHANNEL=unstable
-   # Berkeley nightly version
    VERSION=2.0.0berkeley-rc1-berkeley-c308efc-bullseye
 
    echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
@@ -400,21 +397,24 @@ where:
    psql -U postgres -d berkeley_migrated -a -f create_schema.sql"
    ```
 
-4. Stage 1: Initial migration
+4. Download devnet genesis ledger 
 
-   4.a) Phase 1:
+
+5. Stage 1: Initial migration
+
+   5.a) Phase 1:
 
    ```sh
    mina-berkeley-migration.exe \
       --batch-size 2000 \
-      --config-file /etc/mina/genesis_ledgers/mainnet.json \
+      --config-file /etc/mina/genesis_ledgers/devnet.json \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
       --blocks-bucket mina_network_block_data \
       --network mainnet
    ```
 
-   4.b) Phase 2:
+   5.b) Phase 2:
 
    ```sh
 
@@ -423,15 +423,24 @@ where:
 
    mina-replayer \
       --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost/ \
+      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file replayer_config_input.json \
       --checkpoint-interval 100 \
       --checkpoint-file-prefix migration
    ```
 
-5. Stage 2: Initial migration
+   5.c) Phase 3:
 
-   5.a) Phase 1:
+   ```sh
+   mina-berkeley-migration-verifier 
+      pre-fork  \
+      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
+      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
+   ```
+
+6. Stage 2: Initial migration
+
+   6.a) Phase 1:
 
    ```sh
    mina-berkeley-migration \
@@ -443,20 +452,29 @@ where:
       --network mainnet
    ```
 
-   5.b) Phase 2:
+   6.b) Phase 2:
 
    ```sh
    mina-replayer \
       --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost/ \
+      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
       --checkpoint-interval 100 \
       --checkpoint-file-prefix migration
    ```
 
-5. Stage 2: Remainder migration
+   6.c) Phase 3:
 
-   5.a) Phase 1:
+   ```sh
+   mina-berkeley-migration-verifier 
+      pre-fork  \
+      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
+      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
+   ```
+
+7. Stage 3: Remainder migration
+
+   7.a) Phase 1:
 
    ```sh
    mina-berkeley-migration \
@@ -471,42 +489,43 @@ where:
 
    :warning: 3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM - is an example random hash, please **do not user this hash** on the actual migration. Use the official hash as provided by Mina Foundation for the fork point.
 
-   5.b) Phase 2:
+   7.b) Phase 2:
 
    ```sh
    mina-replayer \
       --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost/ \
+      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
       --checkpoint-interval 100 \
-      --checkpoint-file-prefix migration \
-      --output-file migrated-checkpoint-at-fork-block.json
+      --checkpoint-file-prefix migration
    ```
 
+   7.c) Phase 3:
+
+   ```sh
+   mina-berkeley-migration-verifier 
+      pre-fork  \
+      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
+      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
+      --fork-config-file genesis_config_fork.json \
+      --migrated-replayer-output migrated-checkpoint-XXX.json
+   ```
 
 ## How to verify a successful migration
 
-o1Labs and the Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archives variations. 
+O1Labs and the Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archives variations. 
+All imporant checks are implemented in `mina-berkeley-migration-verifier` application.
+However, if you want ot perform them manually please follow below checklist:
 
-Follow this checklist to perform major versification's after migration to ensure data correctness. 
-
-1. #### The Replayer from the Mainnet version generates the same ledger hash as the migrated
-
-Ensure that replayer from Mainnet and berkeley generate the same ledger for the migrated and the Mainnet database. 
-
-- To verify, start the Mainnet replayer with the same input config as Berkeley. 
-
-- When you run replayer from Mainnet version on Mainnet, archive it with the `--output-file` option to generate a reference replayer output that can be compared with the migrated replayer output.
-
-2. #### All transaction (user command and internal command) hashes are left intact
+1. #### All transaction (user command and internal command) hashes are left intact
 
 Verify that the `user_command` and `internal_command` tables have the Mainnet format of hashes. For example, `CkpZirFuoLVV...`.
 
-3. #### Parent-child block relationship is preserved
+2. #### Parent-child block relationship is preserved
 
 Verify that a given block in the migrated archive has the same parent in the Mainnet archive (`state_hash` and `parent_hash` columns).
 
-4. #### Account balances remain the same
+3. #### Account balances remain the same
 
 Verify the same balance exists for a given block in Mainnet and migrated databases.
 
