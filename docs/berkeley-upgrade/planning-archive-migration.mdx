@@ -39,7 +39,7 @@ Briefly it contains 3 apps and 1 usability script:
 
 4. **berkeley-migration-verifier**
 
-  The berkeley-migration-verifier is a verification software which helps to determine if migration (even incomplete) was successful by utilizing validations on migrated database
+  The berkeley-migration-verifier is verification software which helps to determine if migration (even incomplete) was successful by utilizing SQL validations on migrated database
 
 5. ** end-to-end migration script**
 
@@ -76,7 +76,7 @@ To successfully migrate the archive database into the Berkeley version of the Mi
 
 One of the most obvious prerequisite is a mainnt database.
 If you don't have an existing database with Devnet/Mainnet archive data, you can always download it from our Google Cloud bucket. However, we strongly encourage to perform migration on your own data in order to preserve idea of decentralization
-As mentioned
+As mentioned, any gsutil-compatible alternative to Google Cloud may be used, or gsutil wrapper program.
 
 #### (Optional) Google Cloud bucket with Devnet/Mainnet precomputed blocks
 
@@ -90,7 +90,11 @@ For Devnet blocks:
 For Mainnet blocks:
 `gsutil cp gs://mina_network_block_data/mainnet-*.json .`
 
-:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time 
+:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them will take some time. You may prefer to instead download a 100Gb bundle of just the canonical mainnet blocks, which unpacks into ~220Gb: `gsutil cp gs://mina_network_block_data/mainnet-bundle-2024-03-20.tar.zst . ; tar -xf mainnet-bundle-2024-03-20.tar.zst`.
+
+:warning: Precomputed blocks for 'devnet' network takes 100s of Gb. Downloading them will take some time. You may prefer to instead download a ~50Gb bundle of just the canonical devnet blocks, which unpacks into ~90Gb: `gsutil cp gs://mina_network_block_data/devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz . ; tar -xf devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz`
+
+These bundles are partial, but this documentation will be updated with the new links and final data after the network is forked.
 
 The best practice is to collect precomputed blocks by yourself or by other third parties to preserve idea of decentralization. 
 
