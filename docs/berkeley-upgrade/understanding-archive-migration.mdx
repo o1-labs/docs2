@@ -52,5 +52,3 @@ The berkeley-migration and replayer applications are able to work incrementally 
 To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It can continue migrating starting at the next block in the Devnet/Mainnet data. The replayer app in migration mode can use the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
 
 To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, only a small amount of data will need to be migrated.
-
-Now that you understand the archive migration process, [continue to prerequisites](/berkeley-migration/archive-migration-prerequisites).
