@@ -35,7 +35,7 @@ Briefly it contains 3 apps and 1 usability script:
 
 2. **replayer in migration mode**
 
-  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new archive database.
+  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database (resulting from running berkeley-migration app) and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new archive database.
 
 4. **berkeley-migration-verifier**
 
@@ -51,6 +51,6 @@ The berkeley-migration and replayer applications are able to work incrementally 
 
 To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It can continue migrating starting at the next block in the Devnet/Mainnet data. The replayer app in migration mode can use the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
 
-To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley, only a small amount of data will need to be migrated.
+To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, only a small amount of data will need to be migrated.
 
 Now that you understand the archive migration process, [continue to prerequisites](/berkeley-migration/archive-migration-prerequisites).

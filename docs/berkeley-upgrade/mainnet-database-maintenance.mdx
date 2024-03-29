@@ -26,7 +26,7 @@ After the successful migration you will have two databases:
 - Original Devnet/Mainnet database - with small data adjustments (all pending blocks from last canonical block till fork block will be converted to canonical)
 - new Berkeley database based on Devnet/Mainnet data but:
   - without Devnet/Mainnet orphaned blocks
-  - without Devnet/Mainnet pending blocks which are not a part of canonical chain
+  - without Devnet/Mainnet pending blocks which are not part of canonical chain
   - with all pending blocks on canonical chain converted to canonical block
 
 O1 Labs and the Mina Foundation teams have consistently prioritized rigorous testing and the delivery of high-quality software products. Nonetheless, being human entails the possibility of making mistakes. Recently, while working on a version of Mina utilized on mainnet, a few mistakes were identified. These issues were promptly addressed; however, within the decentralized environment, archive nodes may retain historical issues, despite our best efforts. We are specifically addressing two such issues.:
@@ -75,7 +75,7 @@ docker pull gcr.io/o1labs-192920/mina-archive-maintenance:1.4.1
 
 ## Usage
 
-## Missing / Invalid Nonces 
+#### Missing / Invalid Nonces
 
 To verify Devnet/Mainnet archive data, the replayer application was developed. You must run the replayer application against your existing Devnet/Mainnet database to verify the blockchain state.
 
@@ -110,7 +110,7 @@ Running a replayer from scratch on a Devnet/Mainnet database can take up to a co
 Additionally, running the replayer can exert significant demands on system resources, potentially affecting the performance of the archive node. Hence, it is recommended to execute the replayer in isolation from network connections, preferably within an isolated environment where the Devnet/Mainnet dumps can be imported.
 
 
-##### Bad ledger hashes
+#### Bad ledger hashes
 
 There is no ultimate fix for this issue as we don't want to meddle with historical ledger hashes.
 We only make sure archive integrity can be validated even with mentioned problems.
@@ -139,7 +139,7 @@ where:
 :warning: You must run replayer using the Mainnet version. You can run it from the Docker image at minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
 
 
-##### Missing blocks 
+#### Missing blocks
 
 The daemon node unavailability can cause the archive node to miss some of the blocks. 
 

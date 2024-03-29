@@ -314,6 +314,7 @@ Here you need to use `--fork-state-hash` as additional parameter to berkeley-mig
    - Migrated devnet/mainnet database to berkeley up to fork point
    - Replayer checkpoint which can be used for replayer run on berkeley database
 
+**The migrated database resulting from this stage of final migration is the one required to initialize your archive nodes on the upgraded network.**
 
 ##### Phase 1: Berkeley migration app run
 
@@ -534,7 +535,7 @@ where:
 
 O1Labs and the Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archives variations. 
 All imporant checks are implemented in `mina-berkeley-migration-verifier` application.
-However, if you want ot perform them manually please follow below checklist:
+However, if you want to perform them manually please follow below checklist:
 
 1. #### All transaction (user command and internal command) hashes are left intact
 
@@ -584,7 +585,7 @@ The cron job performs the same steps in an automated fashion:
 
 Be sure to monitor the cron job in case there are errors.
 
-Just before the Berkeley, migrate the last few blocks by running locally:
+Just before the Berkeley upgrade, migrate the last few blocks by running locally:
 
 1. Download the Devnet/Mainnet archive data directly from the k8s PostgreSQL node, not from the archive dump, and load it into PostgreSQL.
 2. Download the most recent migrated database and load it into PostgresQL.
