@@ -23,21 +23,23 @@ The Berkeley upgrade requires upgrading all nodes, including archive nodes. One 
 
 Read more about archive data migration:
 
-- [How to prepare for archive migration](/berkeley-upgrade/planning-archive-migration)
+- [Understanding the migration process](/berkeley-upgrade/understanding-archive-migration)
+- [Prerequisites before migration](/berkeley-upgrade/archive-migration-prerequisites)
+- [Suggested installation procedure](/berkeley-upgrade/archive-migration-installation)
 - [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)
 
 ## What will happen with orignal devnet/mainnet data
 
 After migration you will have two databases:
 
-- orginal devnet/mainnet database with small data adjustments (all pending blocks from last canoncial block till fork block will be converted to canoncial)
-- new berkeley database based on devnet/mainnet data but:
-  - without devnet/mainnet orphaned blocks
+- Orginal Devnet/Mainnet database with small data adjustments (all pending blocks from last canoncial block till fork block will be converted to canoncial)
+- New Berkeley database based on Devnet/Mainnet data but:
+  - without Devnet/Mainnet orphaned blocks
   - without pending blocks which are not in canoncial chain
   - with all pending blocks on canoncial chain converted to canoncial block
 
-There is no need to preserve orginal devnet/mainnet database after migration. However, if for some reason you would like to keep mainnet orphaned or non-canonical pending blocks, it is recommended to download the maintenance package for devnet/mainnet database.
+There is no need to preserve orginal Devnet/Mainnet database after migration. However, if for some reason you would like to keep Mainnet orphaned or non-canonical pending blocks, it is recommended to download the maintenance package for Devnet/Mainnet database.
 
-Read more about devnet/mainnet archive maintenance:
+Read more about Devnet/Mainnet archive maintenance:
 
 [How to maintain archive data](/berkeley-upgrade/mainnet-database-maintenance)

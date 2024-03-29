@@ -1,0 +1,148 @@
+---
+title: Installing archive migration
+sidebar_label: Installing archive migration
+hide_title: false
+description: Satisfying the archive migration prerequisites
+keywords:
+  - Berkeley
+  - upgrade
+  - archive migration
+  - installing 
+  - prerequisites
+  - mina archive node
+  - archive node
+---
+
+Archive Node Berkeley migration package is sufficient for satisfying migration from devnet/mainnet to Berkeley.
+However, it has some limitations. For example it won't migrate non-canonical chain. It will skip orphaned (blocks which are not part of canonical-chain). 
+For this purpose we are also releasing archive maintenance package for those Archive Node operators who wants to still maintain copy of devnet/mainnet database for historical reasons.
+
+## Installation
+
+#### Installing Google Cloud SDK
+
+The Google Cloud SDK installer does not always register a `google-cloud-sdk` apt package. The best way to install gsutil is using the apt repostory:
+
+```sh
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-sdk
+```
+
+#### Download o1labs mainnet archive database
+
+We strongly encourage to perform migration on your own data in order to preserve idea of decentralization. However, if you'd like to use archive data o1labs runs, for example bootstrapping a new archive from SQL without waiting all day for the chain to download and replay, follow the steps below.
+
+1. Download the Devnet/Mainnet archive data using cURL or gsutil:
+
+- cUrl:
+
+   For Devnet:
+   ```sh
+   curl https://storage.googleapis.com/mina-archive-dumps/devnet-archive-dump-{date}_0000.sql.tar.gz
+   ```
+
+   For Mainnet:   
+   ```sh
+   curl https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-{date}_0000.sql.tar.gz
+   ```
+
+   You can filter the dumps by date. Replace `{date}` using the required `yyyy-dd-mm` format. For example, for January 15, 2024 you can provide `2024-01-15`
+
+   :warning: Majority of backups are suffixed with 0000, in case download with that name is not available, try incrementing it once or twice(0001, 0002)..
+
+- gsutil:
+   
+   ```sh
+   gsutil cp gs://mina-archive-dumps/mainnet-archive-dump-2024-01-15* .
+   ```
+
+2. Extract the tar package.
+
+   ```sh
+   tar -xvzf {network}-archive-dump-{date}_0000.sql.tar.gz {network}-archive-dump-{date}_0000.sql
+   ```
+
+3. Import the Devnet/Mainnet archive dump into the Berkeley database.
+
+   Run this command at the database server:
+
+   ```sh
+   psql -U {user} -f {network}-archive-dump-{date}_0000.sql
+   ```
+
+   An **archive_balances_migrated** schema is created with the Devnet/Mainnet archive.
+   Note: This is not with berkeley changes.
+
+### Ensure location of Google Cloud bucket with Devnet/Mainnet precomputed blocks
+
+We strongly encourage to perform migration on your own data in order to preserve idea of decentralization
+
+`gsutil cp gs://mina_network_block_data/{network}-*.json .`
+
+:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them make take some time. Berkeley migration app will download them incrementally only when needed 
+
+### Validate the Devnet/Mainnet database
+
+The correct Devnet/Mainnet database state is crucial for a successful migration. 
+
+Missing blocks is one the most frequent issues when dealing with the Devnet/Mainnet archive. Although this step is optional, it is strongly recommended to verify the archive condition before you start the migration process.
+
+Please refer to our guide for more information: [How to maintain archive data](/berkeley-upgrade/mainnet-database-maintenance)
+
+## Download migration applications
+
+Migration applications are distributed as part of the archive migration Docker and Debian packages.
+
+Choose packages appropriate for your environment. 
+
+The following commands help you install Debian packages or Docker images.
+
+### Debian packages
+
+```
+CODENAME=bullseye
+CHANNEL=prerelease
+VERSION=1.0.0umt-tooling
+
+echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
+apt-get update
+apt-get install --allow-downgrades -y "mina-archive-migration=$VERSION"
+```
+
+### Docker Image
+
+To get the Docker image:
+
+
+```
+docker pull gcr.io/o1labs-192920/mina-archive-migration:3.0.0-rc0
+```
+
+## Devnet/Mainnet Genesis Ledger
+
+The Mina Devnet/Mainnet genesis ledger is stored in GitHub in the `mina` repository under the `genesis_ledgers` subfolder. However, if you are already running a daemon that is connected to the Mina Mainnet or the Devnet network, you already have the genesis ledger locally.
+
+## Berkeley database schema files
+
+You can get the Berkeley schema files from different locations:
+
+- GitHub repository under `berkeley` branch. 
+
+    Note: The `berkeley` branch can contain new updates regarding schema files, so always get the latest schema files instead of using an already downloaded schema. 
+- Archive/Rosetta Docker from `berkeley` version
+
+### Example: Downloading schema sources from GitHub
+
+   ```sh
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
+
+   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
+
+   ```
+
+## Next steps
+
+You are now ready to perform migration. See:
+
+- [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley)

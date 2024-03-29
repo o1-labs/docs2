@@ -1,6 +1,6 @@
 ---
 title: Migrating Devnet/Mainnet Archive to Berkeley Archive 
-sidebar_label: Archive migration
+sidebar_label: Performing Archive migration
 hide_title: true
 description: Steps to properly migrate archives from Devnet/Mainnet to Berkeley.
 keywords:
@@ -15,7 +15,7 @@ keywords:
 
 ### Migration process
 
-As mentioned in [Planning the Archive Migration](/berkeley-upgrade/planning-archive-migration), the devent/mainnet migration can take up to a couple of days. 
+As mentioned in [Planning the Archive Migration](/berkeley-upgrade/understanding-archive-migration), the devent/mainnet migration can take up to a couple of days. 
 Therefore, it is recommended to split migration into 3 stages:
 
 - **Stage1:** Initial migration
@@ -144,7 +144,6 @@ where:
 
 `-fc | --fork-config`: *fork genesis config file is the new genesis config. It would be distributed with the new daemon and would also be published after fork block is announced*
   
-
 ### Advanced approach
 
 If simplified berkeley migraion script is for some reasons not suitable for you, there is always a possibility to run migration using berkeley_migration and replayer apps without
