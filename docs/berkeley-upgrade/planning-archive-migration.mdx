@@ -66,7 +66,7 @@ To successfully migrate the archive database into the Berkeley version of the Mi
 
 #### Migration host
 
-- PostgreSQL database for datbase server
+- PostgreSQL database for database server
 - If Docker is used, then any of the supported OS by Mina (Bullseye, Focal, or Buster) with at least 32 GB of RAM
 - gsutil application from Google Cloud Suite in version 5 or later
 - (Optional) Docker in version 23.0 or later
@@ -218,3 +218,63 @@ You can get the Berkeley schema files from different locations:
 You are now ready to perform migration. See:
 
 - [How to perform archive migration](/berkeley-upgrade/planning-archive-migration)
+
+## Worked Example for March 22 data
+
+```sh
+	sudo rm /etc/apt/sources.list.d/mina*.list
+	sudo echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) unstable" | sudo tee /etc/apt/sources.list.d/mina.list
+	sudo apt-get update
+
+	sudo apt-get install --allow-downgrades -y mina-archive-migration=3.0.0-rc0
+	
+	mkdir mina-migration-workdir
+	cd mina-migration-workdir
+	
+	gsutil cp gs://mina_network_block_data/devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz .
+	tar -xf devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz
+	
+	wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
+	wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
+	
+	# this next step is only needed if you don't have an archive yet
+	createdb devnet_balances_migrated
+	createdb devnet_really_migrated
+	
+	psql -d devnet_really_migrated -f create_schema.sql
+	
+	gsutil cp gs://mina-archive-dumps/devnet-archive-dump-2024-03-22_0000.sql.tar.gz .
+	tar -xf devnet-archive-dump-2024-03-22_0000.sql.tar.gz
+	# the next step ensures you don't accidentally merge mainnet and devnet data
+	sed -i -e s/archive_balances_migrated/devnet_balances_migrated/g devnet-archive-dump-2024-03-22_0000.sql
+	psql -d devnet_balances_migrated -f devnet-archive-dump-2024-03-22_0000.sql
+	
+	mina-berkeley-migration-script initial \
+	    --genesis-ledger /var/lib/coda/devnet.json \
+	    --source-db postgres:///devnet_balances_migrated \
+	    --target-db postgres:///devnet_really_migrated \
+	    --blocks-batch-size 100 --blocks-bucket mina_network_block_data \
+	    --network devnet
+
+
+	# now, do a final migration
+	
+	gsutil cp gs://mina-archive-dumps/devnet-archive-dump-2024-03-22_2050.sql.tar.gz .
+	tar -xf devnet-archive-dump-2024-03-22_2050.sql.tar.gz
+	# the next step ensures you don't accidentally merge mainnet and devnet data
+	sed -i -e s/archive_balances_migrated/devnet_balances_migrated/g devnet-archive-dump-2024-03-22_2050.sql
+	psql -d devnet_balances_migrated -f devnet-archive-dump-2024-03-22_2050.sql
+	
+	curl -O  http://fs.hbox.lunar.town/fork-devnet-march-22-2024.json
+	
+	mina-berkeley-migration-script final \
+	    --genesis-ledger /var/lib/coda/devnet.json \
+	    --source-db postgres:///devnet_balances_migrated \
+	    --target-db postgres:///devnet_really_migrated \
+	    --blocks-batch-size 100 --blocks-bucket mina_network_block_data \
+	    --network devnet \
+	    --replayer-checkpoint migration-checkpoint-437195.json \
+	    --fork-state-hash 3NKoUJX87VrfmNAoUdqoWUykVvt66ztm5rzruDQR7ihwYaWsdJKq \
+	    --fork-config fork-devnet-march-22-2024.json \
+	    --prefetch-blocks
+
