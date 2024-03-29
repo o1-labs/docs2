@@ -1,8 +1,8 @@
 ---
-title: Migrating Mainnet Archive to Berkeley Archive 
+title: Migrating Devnet/Mainnet Archive to Berkeley Archive 
 sidebar_label: Archive migration
 hide_title: true
-description: Steps to properly migrate archives from Mainnet to Berkeley.
+description: Steps to properly migrate archives from Devnet/Mainnet to Berkeley.
 keywords:
   - Berkeley
   - upgrade
@@ -15,7 +15,7 @@ keywords:
 
 ### Migration process
 
-As mentioned in [Planning the Archive Migration](/berkeley-upgrade/planning-archive-migration), the mainnet migration can take up to a couple of days. 
+As mentioned in [Planning the Archive Migration](/berkeley-upgrade/planning-archive-migration), the devent/mainnet migration can take up to a couple of days. 
 Therefore, it is recommended to split migration into 3 stages:
 
 - **Stage1:** Initial migration
@@ -26,7 +26,7 @@ Therefore, it is recommended to split migration into 3 stages:
 
 Each stage has three migration phases:
 
-- **Phase 1:** Copying data from mainnet database and precomputed blocks using the **berkeley_migration** app.
+- **Phase 1:** Copying data from devnet/mainnet database and precomputed blocks using the **berkeley_migration** app.
 
 - **Phase 2:** Populating new berkeley tables using the **replayer app in migration mode**
 
@@ -34,8 +34,8 @@ Each stage has three migration phases:
 
 At the end of entire cycle of migration you will recieve two databases:
 
-- source database with original mainnet data
-- migrated datbase with orginal mainnet data converted to berkeley schea
+- source database with original devnet/mainnet data
+- migrated datbase with orginal devnet/mainnet data converted to berkeley schea
 
 Review these phases and stages before you start the migration:
 
@@ -54,7 +54,7 @@ The script was created for users who either do not need to delve into the detail
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
-   --network mainnet
+   --network NETWORK
 ```
 
 where: 
@@ -69,7 +69,7 @@ where:
 
 `-bs | --blocks-batch-size`: *number of precomputed blocks to be fetch at once from Gcloud. Bigger number like 1000 can help speed up migration process*
 
-`-n | --network`: *network name when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-n | --network`: *network name (devnet/mainnet) when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
 
 
 This command should output migration-replayer-XXX.json which should be used in next run
@@ -84,7 +84,7 @@ This command should output migration-replayer-XXX.json which should be used in n
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
-   --network mainnet \
+   --network NETWORK \
    --replayer-checkpoint migration-checkpoint.json
 ```
 
@@ -102,7 +102,7 @@ where:
 
 `-bs | --blocks-batch-size`: *number of precomputed blocks to be fetch at once from Gcloud. Bigger number like 1000 can help speed up migration process*
 
-`-n | --network`: *network name when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-n | --network`: *network name (devnet/mainnet)) when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
   
 :info:
 
@@ -118,7 +118,7 @@ migration-checkpoint.json - is a last replayer checkpoint from initial run
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
-   --network mainnet \
+   --network NETWORK \
    --replayer-checkpoint migration-checkpoint.json \
    -fc fork-dump.json \
    -f fork-state-hash 
@@ -140,7 +140,7 @@ where:
 
 `-bs | --blocks-batch-size`: *number of precomputed blocks to be fetch at once from Gcloud. Bigger number like 1000 can help speed up migration process*
 
-`-n | --network`: *network name when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-n | --network`: *network name (devnet/mainnet) when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
 
 `-fc | --fork-config`: *fork genesis config file is the new genesis config. It would be distributed with the new daemon and would also be published after fork block is announced*
   
@@ -155,12 +155,12 @@ an interface which script provides. Please refer to below steps:
 This stage is the very first one, which requires the initial `berkeley` schema only. It is a foundation for the next migration stage because it populates the migrated database and creates an initial checkpoint for further incremental migration.
 
 - Inputs
-   - Unmigrated mainnet database
-   - Mainnet genesis ledger 
+   - Unmigrated devnet/mainnet database
+   - Devnet/Mainnet genesis ledger 
    - Empty target `berkeley` database (empty means with schema created but without any content)
 
 - Outputs
-   - Migrated `mainnet` database to `berkeley` format from genesis up to the last canonical block in orginal database
+   - Migrated `devnet`/`mainnet` database to `berkeley` format from genesis up to the last canonical block in orginal database
    - Replayer checkpoint, which can be used for incremental migration
 
 ##### Phase 1: Berkeley migration app run
@@ -172,16 +172,18 @@ mina-berkeley-migration \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
-   --network "mainnet"
+   --network NETWORK
 ```
 where: 
-`--network` - network name when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
+`--network` - network name (devnet/mainnet) when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
 `genesis_ledgers/devnet.json` - is devnet genesis ledger. It is available in docker / debian or in [github sources](https://raw.githubusercontent.com/MinaProtocol/mina/e38c367994dba3d3293b48c7219486c32e9e3ca9/genesis_ledgers/devnet.json)
+
+Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`. 
 
 
 ##### Phase 2: Replayer in migration mode run
 
-Replayer config must contain the Mainnet ledger as the starting point. So first, you must prepare the replayer config file:
+Replayer config must contain the Devnet/Mainnet ledger as the starting point. So first, you must prepare the replayer config file:
 
 ```
  jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
@@ -221,24 +223,26 @@ berkeley_migration_verifier app is capable of performing checks for both fully m
 ```
 
 where:
- - `mainnet-archive-uri` - connection string to original archive database 
- - `migrated-archive-uri` - connection string to migrated archive database 
+ - `mainnet-archive-uri` - connection string to original devnet/mainnet archive database 
+ - `migrated-archive-uri` - connection string to migrated archive database
+
+ Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`. 
  
 #### Stage 2: Incremental migration
 
-After the initial migration, the data is migrated data up to the last canonical block. However, `mainnet` data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
+After the initial migration, the data is migrated data up to the last canonical block. However, devnet/mainnet data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
 
-:info: incremental migration can and probably must be repeated couple of time until fork block is announced by O1 labs team.
-You can ran incremental migration several times with new mainnet database and new replayer checkpoint file.
+:info: incremental migration can and probably must be repeated couple of times until fork block is announced by Mina Foundation.
+You can run incremental migration several times with the latest devnet/mainnet database and the latest replayer checkpoint file.
 
 - Inputs
-   - Newest mainnet database
-   - Mainnet genesis ledger
+   - Latest devnet/mainnet database
+   - Devnet/Mainnet genesis ledger
    - Replayer checkpoint from last run 
    - Migrated berkeley database from initial migration 
 
 - Outputs
-   - Migrated mainnet database to berkeley up to last canonical block
+   - Migrated devnet/mainnet database to berkeley up to last canonical block
    - Replayer checkpoint which can be used for next incremental migration
 
 ##### Phase 1: Berkeley migration app run
@@ -246,7 +250,7 @@ You can ran incremental migration several times with new mainnet database and ne
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file genesis_ledgers/mainnet.json \
+   --config-file FILE \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
@@ -254,6 +258,9 @@ mina-berkeley-migration \
 ```
 where: 
 `--network` - network name when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
+`--config-file` - Use genesis_ledgers/devnet.json for devnet migration and genesis_ledgers/mainnet.json for mainnet migration 
+
+Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`.
 
 ##### Phase 2: Replayer in migration mode run
 
@@ -283,6 +290,8 @@ berkeley_migration_verifier app is capable of performing checks for both fully m
 where:
  - `mainnet-archive-uri` - connection string to original archive database 
 
+Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`.
+
 Incremental migration can be run continuously on top of initial migration or last incremental until fork block is announced. 
 
 #### Stage 3: Remainder migration
@@ -293,14 +302,14 @@ current last canonical block and fork block (which can be pending, so we don't n
 Here you need to use `--fork-state-hash` as additional parameter to berkeley-migration app
 
 - Inputs
-   - Newest mainnet database
-   - Mainnet genesis ledger
+   - Latest devnet/mainnet database
+   - Devnet/Mainnet genesis ledger
    - Replayer checkpoint from last run 
    - Migrated berkeley database from last run
    - Fork block state hash
 
 - Outputs
-   - Migrated mainnet database to berkeley up to fork point
+   - Migrated devnet/mainnet database to berkeley up to fork point
    - Replayer checkpoint which can be used for replayer run on berkeley database
 
 
@@ -311,16 +320,20 @@ You might notice a decrease in `batch-size` for precomputed blocks as the tool m
 ```
 mina-berkeley-migration \
    --batch-size 2 \
-   --config-file genesis_ledgers/mainnet.json \
+   --config-file FILE \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
-   --network "mainnet" \
+   --network NETWORK \
    --fork-state-hash {fork-state-hash}
 ```
-where: 
-`--network` - network name when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
+where:
+`--config-file` - Use genesis_ledgers/devnet.json for devnet migration and genesis_ledgers/mainnet.json for mainnet migration; 
+`--network` - network name (devnet/mainnet) when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
 `--fork-state-hash` last migrated block which will be used as a fork point 
+
+Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`.
+
 
 **Info** When running the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
 The tool automatically converts all pending blocks in the subchain, including the fork block, to canonical blocks.
@@ -356,12 +369,12 @@ berkeley_migration_verifier app is capable of performing checks for both fully m
 where:
 
 `--fork-config-file` - Path to fork config file (alias: -fork-config-file)
-`--mainnet-archive-uri` - Connection string to the mainnet archive database
+`--mainnet-archive-uri` - Connection string to the devnet/mainnet archive database
 `--migrated-archive-uri` - Connection string to the migrated archive database
 `--migrated-replayer-output` - Path to migrated replayer output
 
 
-### Example steps using Mina Foundation data
+### Example steps using Mina Foundation data for devnet
 
 1. Download and import archive dump:
 
@@ -411,15 +424,15 @@ where:
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
       --blocks-bucket mina_network_block_data \
-      --network mainnet
+      --network devnet
    ```
 
    5.b) Phase 2:
 
    ```sh
 
-   # mainnet.json is genesis file from which deamon bootstrap on particular network
-   jq '.ledger.accounts' mainnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
+   # devnet.json is genesis file from which deamon bootstrap on devnet
+   jq '.ledger.accounts' devnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
 
    mina-replayer \
       --migration-mode \
@@ -445,11 +458,11 @@ where:
    ```sh
    mina-berkeley-migration \
       --batch-size 2000 \
-      --config-file /etc/mina/genesis_ledgers/mainnet.json \
+      --config-file /etc/mina/genesis_ledgers/devnet.json \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
       --blocks-bucket mina_network_block_data \
-      --network mainnet
+      --network devnet
    ```
 
    6.b) Phase 2:
@@ -479,11 +492,11 @@ where:
    ```sh
    mina-berkeley-migration \
       --batch-size 2000 
-      --config-file /etc/mina/genesis_ledgers/mainnet.json \
+      --config-file /etc/mina/genesis_ledgers/devnet.json \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
       --blocks-bucket mina_network_block_data \
-      --network mainnet \
+      --network devnet \
       --fork-state-hash "3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM" 
    ```
 
@@ -519,11 +532,11 @@ However, if you want ot perform them manually please follow below checklist:
 
 1. #### All transaction (user command and internal command) hashes are left intact
 
-Verify that the `user_command` and `internal_command` tables have the Mainnet format of hashes. For example, `CkpZirFuoLVV...`.
+Verify that the `user_command` and `internal_command` tables have the Devnet/Mainnet format of hashes. For example, `CkpZirFuoLVV...`.
 
 2. #### Parent-child block relationship is preserved
 
-Verify that a given block in the migrated archive has the same parent in the Mainnet archive (`state_hash` and `parent_hash` columns).
+Verify that a given block in the migrated archive has the same parent in the Devnet/Mainnet archive (`state_hash` and `parent_hash` columns) that was used as input.
 
 3. #### Account balances remain the same
 
@@ -546,16 +559,16 @@ Before running the cron job, upload an initial database dump and an initial chec
 
 To create the files, run these steps locally:
 
-1. Download a Mainnet archive dump and load it into PostgreSQL.
+1. Download a Devnet/Mainnet archive dump and load it into PostgreSQL.
 2. Create a new, empty database using the new archive schema.
-3. Run the berkeley-migration app against the Mainnet and new databases.
-4. Run the replayer app in migration mode with the --checkpoint-interval set to some suitable value (perhaps 100) and start with the original Mainnet ledger in the input file.
+3. Run the berkeley-migration app against the Devnet/Mainnet and new databases.
+4. Run the replayer app in migration mode with the --checkpoint-interval set to some suitable value (perhaps 100) and start with the original Devnet/Mainnet ledger in the input file.
 5. Use pg_dump to dump the migrated database and upload it.
 6. Upload the most recent checkpoint file.
 
 The cron job performs the same steps in an automated fashion:
 
-1. Pulls the latest Mainnet archive dump and loads it into PostgresQL.
+1. Pulls the latest Devnet/Mainnet archive dump and loads it into PostgresQL.
 2. Pulls the latest migrated database and loads it into PostgreSQL.
 3. Pulls the latest checkpoint file.
 4. Runs the berkeley-migration app against the two databases.
@@ -567,7 +580,7 @@ Be sure to monitor the cron job in case there are errors.
 
 Just before the Berkeley, migrate the last few blocks by running locally:
 
-1. Download the Mainnet archive data directly from the k8s PostgreSQL node, not from the archive dump, and load it into PostgreSQL.
+1. Download the Devnet/Mainnet archive data directly from the k8s PostgreSQL node, not from the archive dump, and load it into PostgreSQL.
 2. Download the most recent migrated database and load it into PostgresQL.
 3. Download the most recent checkpoint file.
 4. Run the berkeley-migration app against the two databases.
@@ -601,15 +614,15 @@ Replayer by default dumps the checkpoint to the current folder. All checkpoint f
 
 To modify the output folder and prefix, you can use the `--checkpoint-output-folder` and `--checkpoint-file-prefix` parameters to prevent override of old checkpoints.
 
-#### Receipt chain hashes mismatch between Mainnet and Berkeley schemas
+#### Receipt chain hashes mismatch between Devnet/Mainnet and Berkeley schemas
 
 Receipt chain hashes are expressed in a new format in the Berkeley version. They contain the same value, though.
 
 #### Replayer in migration mode exits the process in the middle of the run
 
-Most likely, there are some missing blocks in the Mainnet database. Ensure that you patched the Mainnet archive before the migration process. Alternatively, you can provide `--continue-on-error` parameter.
+Most likely, there are some missing blocks in the Devnet/Mainnet database. Ensure that you patched the Devnet/Mainnet archive before the migration process.
 
-#### How to migrate Mainnet pending blocks
+#### How to migrate Devnet/Mainnet pending blocks
 
 In the first phase of migration use the `--end-global-slot` parameter. 
 
@@ -624,7 +637,7 @@ In the second phase of migration, add property `target_epoch_ledgers_state_hash`
 
 #### I am receiving errors from gsutil regarding missing precomputed blocks
 
-When migrating last chunk of blocks from mainnet, there can be an issue for runs with
+When migrating last chunk of blocks from devnet/mainnet, there can be an issue for runs with
 large `batch-size` argument inputs. As an optimization gsutil is trying to fetch as `block-size` amount of precomputed blocks.
 However, when precomputed blocks bucket has not contain enough (= `block-size` amount) precomputed blocks gsutil may panic stopping migration process.
 Our recommendation is to restart process with smaller number of `batch-size`. If you are running migration just after fork block is announced it is best
