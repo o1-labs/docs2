@@ -47,7 +47,7 @@ The script was created for users who either do not need to delve into the detail
 #### Stage 1: Initial migration
 
 ```
-./scripts/archive/migration/berkeley_migration.sh  \ 
+mina-berkeley-migration-script  \ 
    initial \
    --genesis-ledger ledger.json \
    --source-db postgres://postgres:postgres@localhost:5432/source \
@@ -77,7 +77,7 @@ This command should output migration-replayer-XXX.json which should be used in n
 #### Incremental migration
 
 ```
-./scripts/archive/migration/berkeley_migration.sh \
+mina-berkeley-migration-script \
    incremental \
    --genesis-ledger ledger.json \
    --source-db postgres://postgres:postgres@localhost:5432/source \
@@ -111,7 +111,7 @@ migration-checkpoint.json - is a last replayer checkpoint from initial run
 #### Stage 3: Remainder migration
 
 ```
-./scripts/archive/migration/berkeley_migration.sh \
+mina-berkeley-migration-script \
    final \
    --genesis-ledger ledger.json \
    --source-db postgres://postgres:postgres@localhost:5432/source \
@@ -172,6 +172,8 @@ mina-berkeley-migration \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
+   --keep-precomputed-blocks \
+   --stream-precomputed-blocks \
    --network NETWORK
 ```
 where: 
@@ -194,7 +196,7 @@ where:
 
 Then:
 ```
- mina-replayer \
+ mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer_input_config.json \
@@ -203,7 +205,6 @@ Then:
 
 where:
  - `archive-uri` - connection string to archive datbase 
- - `output-file` - file which will hold ledger with auxiliary information like global slot and blockchain height which will be dumped on last block
  - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
  - `reference_replayer_input.json` is a file constructed out of network genesis ledger:
  
@@ -254,6 +255,8 @@ mina-berkeley-migration \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
+   --keep-precomputed-blocks \
+   --stream-precomputed-blocks \
    --network "mainnet"
 ```
 where: 
@@ -324,6 +327,8 @@ mina-berkeley-migration \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
+   --keep-precomputed-blocks \
+   --stream-precomputed-blocks \
    --network NETWORK \
    --fork-state-hash {fork-state-hash}
 ```
@@ -418,12 +423,14 @@ where:
    5.a) Phase 1:
 
    ```sh
-   mina-berkeley-migration.exe \
+   mina-berkeley-migration \
       --batch-size 2000 \
       --config-file /etc/mina/genesis_ledgers/devnet.json \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
       --blocks-bucket mina_network_block_data \
+      --keep-precomputed-blocks \
+      --stream-precomputed-blocks \
       --network devnet
    ```
 
@@ -434,7 +441,7 @@ where:
    # devnet.json is genesis file from which deamon bootstrap on devnet
    jq '.ledger.accounts' devnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
 
-   mina-replayer \
+   mina-migration-replayer \
       --migration-mode \
       --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file replayer_config_input.json \
@@ -468,7 +475,7 @@ where:
    6.b) Phase 2:
 
    ```sh
-   mina-replayer \
+   mina-migration-replayer \
       --migration-mode \
       --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
@@ -553,7 +560,7 @@ The cron job requires access to Google Cloud buckets (or other storage):
 
 :info: We are tightly coupled with Gcloud infrastructure at this moment due to precomputed block upload mechanism.
 This is the reason why we are using also buckets for storing dumpa and checkpoint. However, it is not required to use Gcloud for other things than 
-precomputed blocks.  
+precomputed blocks.  Any gsutil compatible storage backend (eg S3) can be used instead, with configuration.
 
 Before running the cron job, upload an initial database dump and an initial checkpoint file. 
 
