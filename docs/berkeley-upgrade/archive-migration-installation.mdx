@@ -71,8 +71,9 @@ We strongly encourage to perform migration on your own data in order to preserve
    psql -U {user} -f {network}-archive-dump-{date}_0000.sql
    ```
 
-   An **archive_balances_migrated** schema is created with the Devnet/Mainnet archive.
-   Note: This is not with berkeley changes.
+   The database in the dump **archive_balances_migrated** is created with the Devnet/Mainnet archive schema.
+
+   Note: This does not have any berkeley changes.
 
 ### Ensure location of Google Cloud bucket with Devnet/Mainnet precomputed blocks
 
