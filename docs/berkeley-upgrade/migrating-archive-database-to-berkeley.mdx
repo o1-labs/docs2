@@ -621,10 +621,6 @@ Replayer by default dumps the checkpoint to the current folder. All checkpoint f
 
 To modify the output folder and prefix, you can use the `--checkpoint-output-folder` and `--checkpoint-file-prefix` parameters to prevent override of old checkpoints.
 
-#### Receipt chain hashes mismatch between Devnet/Mainnet and Berkeley schemas
-
-Receipt chain hashes are expressed in a new format in the Berkeley version. They contain the same value, though.
-
 #### Replayer in migration mode exits the process in the middle of the run
 
 Most likely, there are some missing blocks in the Devnet/Mainnet database. Ensure that you patched the Devnet/Mainnet archive before the migration process.
