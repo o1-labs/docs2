@@ -638,10 +638,3 @@ In the second phase of migration, add property `target_epoch_ledgers_state_hash`
 }
 ```
 
-#### I am receiving errors from gsutil regarding missing precomputed blocks
-
-When migrating last chunk of blocks from devnet/mainnet, there can be an issue for runs with
-large `batch-size` argument inputs. As an optimization gsutil is trying to fetch as `block-size` amount of precomputed blocks.
-However, when precomputed blocks bucket has not contain enough (= `block-size` amount) precomputed blocks gsutil may panic stopping migration process.
-Our recommendation is to restart process with smaller number of `batch-size`. If you are running migration just after fork block is announced it is best
-to have `--block-size` argument set up to 5.
