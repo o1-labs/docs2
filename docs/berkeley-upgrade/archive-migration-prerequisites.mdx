@@ -2,7 +2,7 @@
 title: Archive migration prerequisites
 sidebar_label: Archive migration prerequisites
 hide_title: false
-description: Overview of the migration tools and requirements to successfully migrate Devnet/Mainnet archive database.
+description: Overview of the migration tools and requirements to successfully migrate the Devnet/Mainnet archive database.
 keywords:
   - Berkeley
   - upgrade
@@ -25,25 +25,39 @@ To successfully migrate the archive database into the Berkeley version of the Mi
 #### (Optional) Devnet/Mainnet database 
 
 One of the most obvious prerequisites is a mainnet database.
-If you don't have an existing database with Devnet/Mainnet archive data, you can always download it from our Google Cloud bucket. However, we strongly encourage to perform migration on your own data in order to preserve idea of decentralization
-As mentioned, any gsutil-compatible alternative to Google Cloud may be used, or gsutil wrapper program.
+If you don't have an existing database with Devnet/Mainnet archive data, you can always download it from the Google Cloud bucket. However, we strongly encourage you to perform migration on your own data to preserve the idea of decentralization.
+You can use any gsutil-compatible alternative to Google Cloud or a gsutil wrapper program.
 
 #### (Optional) Google Cloud bucket with Devnet/Mainnet precomputed blocks
 
-Precomputed blocks are the jsons files which correctly configured node will updload to gcloud bucket.
-The Devnet/Mainnet to Berkeley archive data migration requires access to precomputed blocks that are uploaded by daemons connected to the Devnet/Mainnet network respectively. The Berkeley migration app uses the gsutil app to download blocks. If you didn't store precomputed blocks during first phase of migration, you can use the precomputed blocks provided by Mina Foundation.
-However, we strongly encourage to perform migration on your own data in order to preserve idea of decentralization:
+Precomputed blocks are the JSON files that a correctly configured node will updload to the Google Cloud bucket.
+The Devnet/Mainnet to Berkeley archive data migration requires access to precomputed blocks that are uploaded by daemons that are connected to the Devnet or Mainnet networks. The Berkeley migration app uses the gsutil app to download blocks. If you didn't store precomputed blocks during the first phase of migration, you can use the precomputed blocks provided by Mina Foundation.
+However, it is strongly recommended that you perform migration on your own data to preserve the idea of decentralization:
 
 For Devnet blocks:
-`gsutil cp gs://mina_network_block_data/devnet-*.json .`
+
+```sh
+gsutil cp gs://mina_network_block_data/devnet-*.json .
+```
 
 For Mainnet blocks:
-`gsutil cp gs://mina_network_block_data/mainnet-*.json .`
 
-:warning: Precomputed blocks for 'mainnet' network takes ~800Gb. Downloading them will take some time. You may prefer to instead download a 100Gb bundle of just the canonical mainnet blocks, which unpacks into ~220Gb: `gsutil cp gs://mina_network_block_data/mainnet-bundle-2024-03-20.tar.zst . ; tar -xf mainnet-bundle-2024-03-20.tar.zst`.
+```sh
+gsutil cp gs://mina_network_block_data/mainnet-*.json .
+```
 
-:warning: Precomputed blocks for 'devnet' network takes 100s of Gb. Downloading them will take some time. You may prefer to instead download a ~50Gb bundle of just the canonical devnet blocks, which unpacks into ~90Gb: `gsutil cp gs://mina_network_block_data/devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz . ; tar -xf devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz`
+:warning: Precomputed blocks for the 'mainnet' network take ~800 GB of disk space. Plan for adequate time to download these blocks. The Berkeley migration app downloads them incrementally only when needed. You can instead download a 100 GB bundle of only the canonical `mainnet` blocks that unpacks into ~220 GB: 
 
-These bundles are partial, but this documentation will be updated with the new links and final data after the network is forked.
+```sh
+gsutil cp gs://mina_network_block_data/mainnet-bundle-2024-03-20.tar.zst . ; tar -xf mainnet-bundle-2024-03-20.tar.zst
+```
 
-The best practice is to collect precomputed blocks by yourself or by other third parties to preserve idea of decentralization. 
+:warning: Precomputed blocks for the 'devnet' network take several hundred GBs. Plan for adequate time to download these blocks. You can instead download a ~50 GB bundle of only the canonical `devnet` blocks that unpacks into ~90 GB: 
+
+```sh
+gsutil cp gs://mina_network_block_data/devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz . ; tar -xf devnet-bundle-3NKRsRWBzmPR8Z8ZmJb4u8FLpnSkjRitUpKZzVkHp11QuwP5i839.tar.gz
+```
+
+These bundles are partial. Look for updated documentation with the new links and final data _after_ the Berkeley major upgrade is completed.
+
+The best practice is to collect precomputed blocks by yourself or by other third parties to preserve the idea of decentralization. 
