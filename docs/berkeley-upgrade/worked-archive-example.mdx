@@ -16,15 +16,14 @@ Here are some steps that can be copy-pasted directly into a fresh Debian 11. Thi
 
 ```sh
 apt install lsb-release sudo postgresql curl wget gpg # debian:11 is surprisingly light
-sudo rm /etc/apt/sources.list.d/mina*.list
-sudo echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) unstable" | sudo tee /etc/apt/sources.list.d/mina.list
-sudo apt-get update
-
-sudo apt-get install --allow-downgrades -y mina-archive-migration=3.0.0-rc1-4277e73
 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 sudo apt-get update && sudo apt-get install google-cloud-sdk
+
+sudo rm /etc/apt/sources.list.d/mina*.list
+sudo echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) unstable" | sudo tee /etc/apt/sources.list.d/mina.list
+sudo apt-get update && sudo apt-get install --allow-downgrades -y mina-archive-migration=3.0.0-rc1-4277e73
 
 mkdir -p mina-migration-workdir
 cd mina-migration-workdir
