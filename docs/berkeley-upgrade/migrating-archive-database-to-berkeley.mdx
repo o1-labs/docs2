@@ -89,12 +89,10 @@ mina-berkeley-migration-script \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
    --network NETWORK \
-   --replayer-checkpoint migration-checkpoint.json
+   --replayer-checkpoint migration-checkpoint-XXX.json
 ```
 
 where:
-
-`-r | --replayer-checkpoint`: path to the genesis ledger file
 
 `-g | --genesis-ledger`: path to the genesis ledger file
 
@@ -108,7 +106,7 @@ where:
 
 `-n | --network`: network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`.
 
-`-r | --replayer-checkpoint`: path to the genesis ledger file `migration-checkpoint.json` the last replayer checkpoint from initial run
+`-r | --replayer-checkpoint`: path to the latest checkpoint file `migration-checkpoint-XXX.json`
 
 ### Stage 3: Remainder migration
 
@@ -121,18 +119,14 @@ mina-berkeley-migration-script \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
    --network NETWORK \
-   --replayer-checkpoint migration-checkpoint.json \
-   -fc fork-dump.json \
+   --replayer-checkpoint migration-checkpoint-XXX.json \
+   -fc fork-genesis-config.json \
    -f fork-state-hash 
 ```
 
 where: 
 
-`-r | --replayer-checkpoint`: path to the genesis ledger file
-
 `-g | --genesis-ledger`: path to the genesis ledger file
-
-`-f | --fork-state-hash`: fork state hash
 
 `-s | --source-db`: connection string to the database to be migrated
 
@@ -144,8 +138,12 @@ where:
 
 `-n | --network`: network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`.
 
+`-r | --replayer-checkpoint`: path to the latest checkpoint file `migration-checkpoint-XXX.json`
+
 `-fc | --fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
   
+`-f | --fork-state-hash`: fork state hash
+
 ## Advanced approach
 
 If the simplified berkeley migration script is, for some reason, not suitable for you, it is possible to run the migration using the **berkeley_migration** and **replayer** apps without an interface the script provides.
@@ -168,24 +166,29 @@ This first stage requires only the initial Berkeley schema, which is the foundat
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file genesis_ledgers/devnet.json \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string} \
-   --blocks-bucket {bucket name} \
+   --config-file ledger.json \
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --blocks-bucket mina_network_block_data \
    --keep-precomputed-blocks \
-   --stream-precomputed-blocks \
    --network NETWORK
 ```
 
 where: 
 
-`--batch-size` - number of precomputed blocks to be fetched at one time from Google Cloud. A larger number, like 1000, can help speed up migration process.
+`--batch-size`: number of precomputed blocks to be fetched at one time from Google Cloud. A larger number, like 1000, can help speed up migration process.
 
-`--network` - the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+`--config-file`: path to the genesis ledger file
 
-`genesis_ledgers/devnet.json` - the `devnet` genesis ledger available in Docker, Debian, or [GitHub](https://raw.githubusercontent.com/MinaProtocol/mina/e38c367994dba3d3293b48c7219486c32e9e3ca9/genesis_ledgers/devnet.json)
+`--mainnet-archive-uri`: connection string to the database to be migrated
 
-Note: When migrating the `devnet` archive database, pass the Devnet database connection string to the flag `--mainnet-archive-uri`. 
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
+
+`--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+
+`--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
+
+`--network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
 
 #### Phase 2: Replayer in migration mode run
 
@@ -203,20 +206,25 @@ Then:
 ```
  mina-migration-replayer \
    --migration-mode \
-   --archive-uri {migrated_connection_string} \
+   --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --input-file replayer_input_config.json \
    --checkpoint-interval 10000
 ```
 
 where:
 
- - `archive-uri` - connection string to archive datbase 
- - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
- - `replayer_input_config.json` is a file constructed out of network genesis ledger:
- 
+`--migration-mode`: flag for migration
+
+`--archive-uri`: connection string to the database that will hold the migrated data
+
+`--input-file`: path to the replayer input file, see below on how's created
+
+`replayer_input_config.json`: is a file constructed out of network genesis ledger: 
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
    ```
+
+`--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
 
 #### Phase 3: Validations
 
@@ -225,17 +233,16 @@ Use the **berkeley_migration_verifier** app to perform checks for both the fully
 ```
  mina-berkeley-migration-verifier \
    pre-fork  \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string}  
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated  
 ```
 
 where:
 
- - `mainnet-archive-uri` - connection string to the original Devnet/Mainnet archive database 
- - `migrated-archive-uri` - connection string tothe migrated archive database
+`--mainnet-archive-uri`: connection string to the database to be migrated
 
- Note: When migrating devnet archive database, pass the connection string of the Devnet database to the flag `--mainnet-archive-uri`. 
- 
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
+
 ### Stage 2: Incremental migration
 
 After the initial migration, the data is migrated data up to the last canonical block. However, Devnet/Mainnet data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
@@ -258,36 +265,51 @@ Run the incremental migration multiple times with the latest Devnet/Mainnet data
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file genesis_ledgers/devnet.json \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string} \
-   --blocks-bucket {bucket name} \
+   --config-file ledger.json \
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --blocks-bucket mina_network_block_data \
    --keep-precomputed-blocks \
-   --stream-precomputed-blocks \
    --network NETWORK
 ```
 
 where:
 
-`--network` - the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+`--batch-size`: number of precomputed blocks to be fetched at one time from Google Cloud. A larger number, like 1000, can help speed up migration process.
 
-`--config-file` - Use genesis_ledgers/devnet.json for Devnet migration and genesis_ledgers/mainnet.json for Mainnet migration 
+`--config-file`: path to the genesis ledger file
 
-Note: When migrating the Devnet archive database, pass the connection string of the devnet database to the flag `--mainnet-archive-uri`.
+`--mainnet-archive-uri`: connection string to the database to be migrated
+
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
+
+`--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+
+`--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
+
+`--network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
 
 #### Phase 2: Replayer in migration mode run
 
 ```
  mina-migration-replayer \
    --migration-mode \
-   --archive-uri {migrated_connection_string} \
-   --input-file replayer-checkpoint-XXXXX.json \
+   --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --input-file replayer-checkpoint-XXX.json \
    --checkpoint-interval 10000
 ```
 
 where:
 
-`replayer-checkpoint-XXXXX.json` is last checkpoint generated from the previous migration
+`--migration-mode`: flag for migration
+
+`--archive-uri`: connection string to the database that will hold the migrated data
+
+`--input-file`: path to the latest checkpoint file `replayer-checkpoint-XXX.json`
+
+`replayer-checkpoint-XXX.json`: the latest checkpoint generated from the previous migration
+
+`--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
 
 Incremental migration can be run continuously on top of the initial migration or last incremental until the fork block is announced.
 
@@ -298,16 +320,17 @@ Use the **berkeley_migration_verifier** app to perform checks for both the fully
 ```
  mina-berkeley-migration-verifier \
    pre-fork  \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string}  
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated
 ```
 
 where:
- - `mainnet-archive-uri` - connection string to the original archive database 
 
-Note: When migrating devnet archive database, pass the connection string of the Devnet database to the flag `--mainnet-archive-uri`.
+`--mainnet-archive-uri`: connection string to the database to be migrated
 
-You can run incremental migration continuously on top of the initial migration or the last incremental until the fork block is announced. 
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
+
+Note that: you can run incremental migration continuously on top of the initial migration or the last incremental until the fork block is announced. 
 
 ### Stage 3: Remainder migration
 
@@ -335,26 +358,32 @@ The migrated database output from this stage of the final migration is required 
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file genesis_ledgers/devnet.json \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string} \
-   --blocks-bucket {bucket name} \
+   --config-file ledger.json \
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --blocks-bucket mina_network_block_data \
    --keep-precomputed-blocks \
-   --stream-precomputed-blocks \
    --network NETWORK \
    --fork-state-hash {fork-state-hash}
 ```
 
 where:
 
-`--config-file` - Use genesis_ledgers/devnet.json for Devnet migration and genesis_ledgers/mainnet.json for Mainnet migration
+`--batch-size`: number of precomputed blocks to be fetched at one time from Google Cloud. A larger number, like 1000, can help speed up migration process.
 
-`--network` - the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+`--config-file`: path to the genesis ledger file
 
-`--fork-state-hash` - the last migrated block which is used as a fork point 
+`--mainnet-archive-uri`: connection string to the database to be migrated
 
-Note: When migrating a Devnet archive database, pass the connection string of the Devnet database to the flag `--mainnet-archive-uri`.
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
 
+`--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+
+`--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
+
+`--network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+
+`--fork-state-hash`: fork state hash
 
 **Info** When you run the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
 The tool automatically converts all pending blocks in the subchain, including the fork block, to canonical blocks.
@@ -364,14 +393,22 @@ The tool automatically converts all pending blocks in the subchain, including th
 ```
 mina-migration-replayer \
    --migration-mode \
-   --archive-uri {migrated_connection_string} \
-   --input-file replayer-checkpoint-XXXXX.json \
+   --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --input-file replayer-checkpoint-XXX.json \
    --checkpoint-interval 10000 
 ```
 
 where:
 
-`replayer-checkpoint-XXXXX.json` - the last checkpoint generated from previous migration
+`--migration-mode`: flag for migration
+
+`--archive-uri`: connection string to the database that will hold the migrated data
+
+`--input-file`: path to the latest checkpoint file `replayer-checkpoint-XXX.json` from stage 1
+
+`replayer-checkpoint-XXX.json`: the latest checkpoint generated from the previous migration
+
+`--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
 
 #### Phase 3: Validations
 
@@ -380,22 +417,21 @@ Use the **berkeley_migration_verifier** app to perform checks for both the fully
 ```
  mina-berkeley-migration-verifier \
    post-fork  \
-   --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string} \
-   --fork-config-file genesis_config_fork.json \
+   --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
+   --fork-config-file fork_genesis_config.json \
    --migrated-replayer-output replayer-checkpoint-XXXX.json
 ```
 
 where:
 
-`-fc | --fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
+`--mainnet-archive-uri`: connection string to the database to be migrated
 
-`--mainnet-archive-uri` - connection string to the Devnet/Mainnet archive database
+`--migrated-archive-uri`: connection string to the database that will hold the migrated data
 
-`--migrated-archive-uri` - connection string to the migrated archive database
+`--migrated-replayer-output`: path to the latest checkpoint file `replayer-checkpoint-XXX.json`
 
-`--migrated-replayer-output` - path to the migrated replayer output
-
+`--fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
 
 ### Example migration steps using Mina Foundation data for Devnet
 
