@@ -30,7 +30,7 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk
 
 ## Download the o1labs Mainnet archive database
 
-We strongly encourage you to perform the migration on your own data to preserve the idea of decentralization. However, if you want to use the archive data that o1labs runs (for example, to bootstrap a new archive from SQL without waiting all day for the chain to download and replay), you can use the following steps:
+We strongly encourage you to perform the migration on your own data to preserve the benefits of decentralization. However, if you want to use the archive data that o1labs runs (for example, to bootstrap a new archive from SQL without waiting all day for the chain to download and replay), you can use the following steps:
 
 1. Download the Devnet/Mainnet archive data using cURL or gsutil:
 
@@ -76,7 +76,7 @@ We strongly encourage you to perform the migration on your own data to preserve 
 
 ## Ensure the location of Google Cloud bucket with the Devnet/Mainnet precomputed blocks
 
-The recommended method is to perform migration on your own data to preserve the idea of decentralization.
+The recommended method is to perform migration on your own data to preserve the benefits of decentralization.
 
 `gsutil cp gs://mina_network_block_data/{network}-*.json .`
 
@@ -97,6 +97,8 @@ Migration applications are distributed as part of the archive migration Docker a
 Choose the packages that are appropriate for your environment. 
 
 ### Debian packages
+
+To get the Debian packages:
 
 ```
 CODENAME=bullseye

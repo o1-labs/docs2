@@ -29,28 +29,28 @@ This package contains the required applications to migrate existing Devnet and M
 
 1. **berkeley-migration**
 
-  The berkeley-migration application migrates as much data as possible from the Devnet/Mainnet database and downloads precomputed blocks to get the window density data. 
+  Use the **berkeley-migration** app to migrate as much data as possible from the Devnet/Mainnet database and download precomputed blocks to get the window density data. 
   
-  This application runs against the Devnet/Mainnet database and the new Berkeley database.
+  This app runs against the Devnet/Mainnet database and the new Berkeley database.
 
-2. **replayer in migration mode**
+2. **replayer app in migration mode**
 
-  The existing replayer application is enhanced with a new migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database (resulting from running berkeley-migration app) and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth that results in different hashes. 
+  The existing replayer application is enhanced with a new migration mode. Use the **replayer app in migration mode** to analyze the transactions in the partially migrated database (resulting from running berkeley-migration app) and populate the `accounts_accessed` and `accounts_created` tables. This app also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth that results in different hashes. 
   
-  This application runs only against the new archive database.
+  This app runs only against the new archive database.
 
 3. **berkeley-migration-verifier**
 
-  The berkeley-migration-verifier is verification software that helps to determine if migration (even incomplete) was successful by using SQL validations on the migrated database.
+  Use the **berkeley-migration-verifier** verification software to determine if the migration (even incomplete) was successful. The app uses SQL validations on the migrated database.
 
 4. **end-to-end migration script**
 
-  This shell script wraps all phases and stages of migration into a single script. It is provided purely for node operators usability and is equivalent of running the berkely-migration app, the replayer in migration mode, and the berkeley-migration-verifier apps in the correct order.
+  This shell script wraps all phases and stages of migration into a single script. It is provided purely for node operators usability and is equivalent of running the **berkely-migration** app, the **replayer app in migration mode**, and the **berkeley-migration-verifier** apps in the correct order.
 
 ### Incrementality
 
-The berkeley-migration and replayer applications are able to work incrementally so that part of the Devnet/Mainnet database can be migrated and, as new blocks are added to the Devnet/Mainnet databases, the new data can be migrated.
+Use the **berkeley-migration** and **replayer** apps incrementally so that you can migrate part of the Devnet/Mainnet database, and, as new blocks are added to the Devnet/Mainnet databases, the new data can be migrated.
 
-To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It continues migration starting at the next block in the Devnet/Mainnet data. The replayer app in migration mode uses the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
+To obtain that incrementality, the **berkeley-migration** app looks at the migrated database and determines the most recent migrated block. It continues migration starting at the next block in the Devnet/Mainnet data. The **replayer app in migration mode** uses the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. New checkpoint files are written as it proceeds.
 
-To take advantage of the incrementality, run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, only a small amount of data will need to be migrated.
+To take advantage of the incrementality, run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, you will need to migrate only a small amount of data.
