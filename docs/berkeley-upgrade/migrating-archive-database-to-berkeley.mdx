@@ -267,7 +267,7 @@ Note: When migrating devnet archive database, pass connection string of the devn
 ##### Phase 2: Replayer in migration mode run
 
 ```
- mina-replayer \
+ mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -346,7 +346,7 @@ The tool automatically converts all pending blocks in the subchain, including th
 ##### Phase 2: Replayer in migration mode run
 
 ```
-mina-replayer \
+mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -512,7 +512,7 @@ where:
    7.b) Phase 2:
 
    ```sh
-   mina-replayer \
+   mina-migration-replayer \
       --migration-mode \
       --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
