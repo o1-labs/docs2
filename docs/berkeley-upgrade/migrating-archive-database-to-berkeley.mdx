@@ -205,7 +205,7 @@ Then:
 where:
  - `archive-uri` - connection string to archive datbase 
  - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
- - `reference_replayer_input.json` is a file constructed out of network genesis ledger:
+ - `replayer_input_config.json` is a file constructed out of network genesis ledger:
  
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
