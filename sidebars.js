@@ -510,7 +510,6 @@ module.exports = {
         id: 'berkeley-upgrade/index'
       },
       items: [
-        'berkeley-upgrade/mainnet-database-maintenance',
         'berkeley-upgrade/understanding-archive-migration',
         'berkeley-upgrade/archive-migration-prerequisites',
         'berkeley-upgrade/archive-migration-installation',

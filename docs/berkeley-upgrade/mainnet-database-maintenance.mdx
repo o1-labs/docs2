@@ -98,11 +98,11 @@ mina-replayer \
 
 where:
 
-- `archive-uri` - the connection string to the archive database 
-- `input-file` - the JSON file that holds the archive database
-- `output-file` - the JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
-- `checkpoint-interval` - the frequency of checkpoints expressed in blocks count
-- `replayer_input_file.json` - the JSON file constructed from the Devnet/Mainnet genesis ledger:
+- `archive-uri` - connection string to the archive database 
+- `input-file` - JSON file that holds the archive database
+- `output-file` - JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
+- `checkpoint-interval` - frequency of checkpoints expressed in blocks count
+- `replayer_input_file.json` - JSON file constructed from the Devnet/Mainnet genesis ledger:
 
  ```sh
     jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
@@ -110,7 +110,7 @@ where:
 
 - `--fix-nonces` - adjust nonces values while replaying transactions
 - `--set-nonces` - set missing nonces while replaying transactions
-- `--dump-repair-script` - the path to the output sql script that will contain all updates to nonces made during the replayer run that can be directly applied to other database instances that contain the same data with invalid nonces
+- `--dump-repair-script` - path to the output SQL script that will contain all updates to nonces made during the replayer run that can be directly applied to other database instances that contain the same data with invalid nonces
 
 Running a replayer from scratch on a Devnet/Mainnet database can take up to a couple of days. The recommended best practice is to break the replayer into smaller parts by using the checkpoint capabilities of the replayer.
 Additionally, running the replayer can exert significant demands on system resources that potentially affect the performance of the archive node. Because of the large resource requirements, we recommend that you execute the replayer in isolation from network connections, preferably within an isolated environment where the Devnet/Mainnet dumps can be imported.
@@ -131,11 +131,11 @@ mina-replayer --archive-uri {db_connection_string} --input-file reference_replay
 
 where:
 
-- `archive-uri` - the connection string to the archive database 
-- `input-file` - the JSON file that holds the archive database
-- `output-file` - the JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
-- `checkpoint-interval` - the frequency of checkpoints expressed in blocks count
-- `replayer_input_file.json` - the JSON file constructed from the Devnet/Mainnet genesis ledger:
+- `archive-uri` - connection string to the archive database 
+- `input-file` - JSON file that holds the archive database
+- `output-file` - JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
+- `checkpoint-interval` - frequency of checkpoints expressed in blocks count
+- `replayer_input_file.json` - JSON file constructed from the Devnet/Mainnet genesis ledger:
   
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
@@ -151,17 +151,19 @@ The daemon node unavailability can cause the archive node to miss some of the bl
 
 If you uploaded the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks to preserve chain continuity. 
 
-To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. The `download-missing-blocks` script uses `localhost` as the database host so the script assumes that psql is running on localhost on port 5432. Modify `PG_CONN` in `download_missing_block.sh` for your environment.
+1. To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. 
+
+   The `download-missing-blocks` script uses `localhost` as the database host so the script assumes that psql is running on localhost on port 5432. Modify `PG_CONN` in `download_missing_block.sh` for your environment.
 
 1. Install the required `mina-archive-blocks` and `mina-missing-blocks-auditor` scripts that are packed in the `minaprotocol/mina-archive:1.4.0-c980ba8-bullseye` Docker image.
 
-2. Export the `BLOCKS_BUCKET`:
+1. Export the `BLOCKS_BUCKET`:
 
     ```sh
     export BLOCKS_BUCKET="https://storage.googleapis.com/my_bucket_with_precomputed_blocks"
     ```
 
-3. Run the `mina-missing-blocks-auditor` script from the database host:
+1. Run the `mina-missing-blocks-auditor` script from the database host:
     
     For Devnet:
     
