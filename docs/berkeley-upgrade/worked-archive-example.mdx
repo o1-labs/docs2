@@ -63,7 +63,7 @@ tar -xf devnet-archive-dump-2024-03-22_2050.sql.tar.gz
 sed -i -e s/archive_balances_migrated/devnet_balances_migrated/g devnet-archive-dump-2024-03-22_2050.sql
 psql -d devnet_balances_migrated -f devnet-archive-dump-2024-03-22_2050.sql
 
-curl -O  http://fs.hbox.lunar.town/fork-devnet-march-22-2024.json
+curl -O  https://gist.githubusercontent.com/ghost-not-in-the-shell/cfe629a15702e7bae7b0c1415fe0d85e/raw/8d8bff2814c1d0c15deb70b388dea8a28a485184/genesis.json
 
 mina-berkeley-migration-script final \
     --genesis-ledger /var/lib/coda/devnet.json \
@@ -73,6 +73,6 @@ mina-berkeley-migration-script final \
     --network devnet \
     --replayer-checkpoint migration-checkpoint-437195.json \
     --fork-state-hash 3NKoUJX87VrfmNAoUdqoWUykVvt66ztm5rzruDQR7ihwYaWsdJKq \
-    --fork-config fork-devnet-march-22-2024.json \
+    --fork-config genesis.json \
     --prefetch-blocks
 ```
