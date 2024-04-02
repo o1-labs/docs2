@@ -258,7 +258,7 @@ Run the incremental migration multiple times with the latest Devnet/Mainnet data
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file FILE \
+   --config-file genesis_ledgers/devnet.json \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
@@ -335,7 +335,7 @@ The migrated database output from this stage of the final migration is required 
 ```
 mina-berkeley-migration \
    --batch-size 1000 \
-   --config-file FILE \
+   --config-file genesis_ledgers/devnet.json \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
    --blocks-bucket {bucket name} \
