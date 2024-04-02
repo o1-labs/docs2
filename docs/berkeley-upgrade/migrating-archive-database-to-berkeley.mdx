@@ -212,7 +212,7 @@ where:
 
  - `archive-uri` - connection string to archive datbase 
  - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
- - `reference_replayer_input.json` is a file constructed out of network genesis ledger:
+ - `replayer_input_config.json` is a file constructed out of network genesis ledger:
  
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
@@ -264,7 +264,7 @@ mina-berkeley-migration \
    --blocks-bucket {bucket name} \
    --keep-precomputed-blocks \
    --stream-precomputed-blocks \
-   --network "mainnet"
+   --network NETWORK
 ```
 
 where:
@@ -278,7 +278,7 @@ Note: When migrating the Devnet archive database, pass the connection string of 
 #### Phase 2: Replayer in migration mode run
 
 ```
- mina-replayer \
+ mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -364,7 +364,7 @@ The tool automatically converts all pending blocks in the subchain, including th
 #### Phase 2: Replayer in migration mode run
 
 ```
-mina-replayer \
+mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -535,7 +535,7 @@ where:
    7.b) Phase 2:
 
    ```sh
-   mina-replayer \
+   mina-migration-replayer \
       --migration-mode \
       --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
