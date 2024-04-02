@@ -43,7 +43,7 @@ Fixes are available for the following known issues:
 
 - **Missing or invalid nonces** - a historical issue skewed nonces in the `balances` table. Although the issue was resolved, you might still have nonces that are missing or invalid.
 - **Incorrect ledger hashes** - a historical issue with the same root cause as 'Missing or invalid nonces'. However, the outcome is that a 'replayer run' operation of validating archive node against daemon ledger shows ledger mismatches and cannot pass problematic blocks.
-- **Missing blocks** - This recurring missing blocks issue consistently poses challenges and is a source of concern for all archive node operators. A persistent challenge from disruptions in daemon node operations that potentially leads to incomplete block reception by archive nodes. This situation can compromise chain continuity within the archive database.
+- **Missing blocks** - This recurring missing blocks issue consistently poses challenges and is a source of concern for all archive node operators. This persistent challenge from disruptions in daemon node operations can potentially lead to incomplete block reception by archive nodes. This situation can compromise chain continuity within the archive database.
 
 To address these issues, install and use the special archive node maintenance package that includes fixes.
 
