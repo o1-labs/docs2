@@ -318,11 +318,9 @@ Here you need to use `--fork-state-hash` as additional parameter to berkeley-mig
 
 ##### Phase 1: Berkeley migration app run
 
-You might notice a decrease in `batch-size` for precomputed blocks as the tool might hit missing precomputed blocks problem if you fetch too many of them in a single batch while trying to migrate the newest blocks in the chain:
-
 ```
 mina-berkeley-migration \
-   --batch-size 2 \
+   --batch-size 1000 \
    --config-file FILE \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
@@ -356,11 +354,9 @@ mina-migration-replayer \
 where:
 `replayer-checkpoint-XXXXX.json` - is last checkpoint generated from previous migration
 
-It is important to save checkpoint which was dumped from replayer run, as it will be use in next migrations
-
 ##### Phase 3: Validations
 
-berkeley_migration_verifier app is capable of performing checks for both fully migrated and partially migrated database. 
+**berkeley_migration_verifier** app is capable of performing checks for both fully migrated and partially migrated database.
 
 ```
  mina-berkeley-migration-verifier 
@@ -524,7 +520,7 @@ where:
 
    ```sh
    mina-berkeley-migration-verifier 
-      pre-fork  \
+      post-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --fork-config-file genesis_config_fork.json \
@@ -559,7 +555,7 @@ The cron job requires access to Google Cloud buckets (or other storage):
 
 
 :info: We are tightly coupled with Gcloud infrastructure at this moment due to precomputed block upload mechanism.
-This is the reason why we are using also buckets for storing dumpa and checkpoint. However, it is not required to use Gcloud for other things than 
+This is the reason why we are using also buckets for storing dumps and checkpoints. However, it is not required to use Gcloud for other things than
 precomputed blocks.  Any gsutil compatible storage backend (eg S3) can be used instead, with configuration.
 
 Before running the cron job, upload an initial database dump and an initial checkpoint file. 
