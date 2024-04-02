@@ -212,7 +212,7 @@ where:
 
  - `archive-uri` - connection string to archive datbase 
  - `checkpoint-interval` - frequency of checkpoints file expressed in blocks count
- - `reference_replayer_input.json` is a file constructed out of network genesis ledger:
+ - `replayer_input_config.json` is a file constructed out of network genesis ledger:
  
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
@@ -223,7 +223,7 @@ where:
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    pre-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string}  
@@ -264,7 +264,7 @@ mina-berkeley-migration \
    --blocks-bucket {bucket name} \
    --keep-precomputed-blocks \
    --stream-precomputed-blocks \
-   --network "mainnet"
+   --network NETWORK
 ```
 
 where:
@@ -278,7 +278,7 @@ Note: When migrating the Devnet archive database, pass the connection string of 
 #### Phase 2: Replayer in migration mode run
 
 ```
- mina-replayer \
+ mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -296,7 +296,7 @@ Incremental migration can be run continuously on top of the initial migration or
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated database. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    pre-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string}  
@@ -332,11 +332,9 @@ The migrated database output from this stage of the final migration is required 
 
 #### Phase 1: Berkeley migration app run
 
-You might notice a decrease in `batch-size` for precomputed blocks as the tool can hit missing precomputed blocks problem if you fetch too many blocks in a single batch while trying to migrate the newest blocks in the chain:
-
 ```
 mina-berkeley-migration \
-   --batch-size 2 \
+   --batch-size 1000 \
    --config-file FILE \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string} \
@@ -364,7 +362,7 @@ The tool automatically converts all pending blocks in the subchain, including th
 #### Phase 2: Replayer in migration mode run
 
 ```
-mina-replayer \
+mina-migration-replayer \
    --migration-mode \
    --archive-uri {migrated_connection_string} \
    --input-file replayer-checkpoint-XXXXX.json \
@@ -375,18 +373,16 @@ where:
 
 `replayer-checkpoint-XXXXX.json` - the last checkpoint generated from previous migration
 
-It is important that you save the checkpoint that was dumped from the replayer run. The replayer checked is required for use in the next migrations.
-
 #### Phase 3: Validations
 
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    post-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string}  
-   --fork-config-file genesis_config_fork.json
+   --migrated-archive-uri {migrated_connection_string} \
+   --fork-config-file genesis_config_fork.json \
    --migrated-replayer-output replayer-checkpoint-XXXX.json
 ```
 
@@ -473,7 +469,7 @@ where:
    5.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
+   mina-berkeley-migration-verifier \
       pre-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
@@ -507,7 +503,7 @@ where:
    6.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
+   mina-berkeley-migration-verifier \
       pre-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
@@ -535,7 +531,7 @@ where:
    7.b) Phase 2:
 
    ```sh
-   mina-replayer \
+   mina-migration-replayer \
       --migration-mode \
       --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --input-file checkpoint-XXXX.json \
@@ -546,8 +542,8 @@ where:
    7.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
-      pre-fork  \
+   mina-berkeley-migration-verifier \
+      post-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
       --fork-config-file genesis_config_fork.json \
