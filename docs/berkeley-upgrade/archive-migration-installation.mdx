@@ -1,8 +1,8 @@
 ---
-title: Installing archive migration
-sidebar_label: Installing archive migration
+title: Install the archive migration package
+sidebar_label: Install archive migration package
 hide_title: false
-description: Satisfying the archive migration prerequisites
+description: Satisfying the archive migration prerequisites.
 keywords:
   - Berkeley
   - upgrade
@@ -13,13 +13,12 @@ keywords:
   - archive node
 ---
 
-The Archive Node Berkeley migration package is sufficient for satisfying the migration from Devnet/Mainnet to Berkeley.
+The archive node Berkeley migration package is sufficient for satisfying the migration from Devnet/Mainnet to Berkeley.
 However, it has some limitations. For example, the migration package does not migrate a non-canonical chain and it skips orphaned blocks that are not part of a canonical chain. 
-To mitigate these limitations, the archive maintenance package is available for use by archive node operators who want to maintain a copy of their Devnet and Mainnet databases for historical reasons.
 
-## Installation
+To mitigate these limitations, the archive node maintenance package is available for use by archive node operators who want to maintain a copy of their Devnet and Mainnet databases for historical reasons.
 
-#### Installing Google Cloud SDK
+## Install with Google Cloud SDK
 
 The Google Cloud SDK installer does not always register a `google-cloud-sdk` apt package. The best way to install gsutil is using the apt repostory:
 
@@ -29,9 +28,9 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 ```
 
-#### Download the o1labs Mainnet archive database
+## Download the o1labs Mainnet archive database
 
-We strongly encourage you to perform the migration on your own data to preserve the idea of decentralization. However, if you want to use archive data o1labs runs (for example, bootstrapping a new archive from SQL without waiting all day for the chain to download and replay), use the following steps.
+We strongly encourage you to perform the migration on your own data to preserve the idea of decentralization. However, if you want to use the archive data that o1labs runs (for example, to bootstrap a new archive from SQL without waiting all day for the chain to download and replay), you can use the following steps:
 
 1. Download the Devnet/Mainnet archive data using cURL or gsutil:
 
@@ -47,9 +46,9 @@ We strongly encourage you to perform the migration on your own data to preserve 
      curl https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-{date}_0000.sql.tar.gz
        ```
   
-     To filter the dumps by date, replace `{date}` using the required `yyyy-dd-mm` format. For example, for January 15, 2024, use `2024-01-15`.
+     To filter the dumps by date, replace `{date}` using the required `yyyy-dd-mm` format. For example, for March 15, 2024, use `2024-03-15`.
   
-     :warning: The majority of backups have the `0000` suffix. In case a download with that name is not available, try incrementing it once or twice. For example, `0001`, `0002`.
+     :warning: The majority of backups have the `0000` suffix. If a download with that name suffix is not available, try incrementing it. For example, `0001`, `0002`, and so on.
 
     - gsutil:
        
@@ -75,29 +74,27 @@ We strongly encourage you to perform the migration on your own data to preserve 
     
     Note: This database does not have any Berkeley changes.
 
-### Ensure the location of Google Cloud bucket with the Devnet/Mainnet precomputed blocks
+## Ensure the location of Google Cloud bucket with the Devnet/Mainnet precomputed blocks
 
 The recommended method is to perform migration on your own data to preserve the idea of decentralization.
 
 `gsutil cp gs://mina_network_block_data/{network}-*.json .`
 
-:warning: Precomputed blocks for the 'mainnet' network take ~800 GB of disk space. Plan for adequate time to download these blocks. The Berkeley migration app downloads them incrementally only when needed.
+:warning: Precomputed blocks for the Mainnet network take ~800 GB of disk space. Plan for adequate time to download these blocks. The Berkeley migration app downloads them incrementally only when needed.
 
-### Validate the Devnet/Mainnet database
+## Validate the Devnet/Mainnet database
 
 The correct Devnet/Mainnet database state is crucial for a successful migration. 
 
-Missing blocks is one the most frequent issues when dealing with the Devnet/Mainnet archive. Although this step is optional, it is strongly recommended that you verify the archive condition before you start the migration process.
+[Missing blocks](/berkeley-upgrade/mainnet-database-maintenance#missing-blocks) is one the most frequent issues when dealing with the Devnet/Mainnet archive. Although this step is optional, it is strongly recommended that you verify the archive condition before you start the migration process.
 
-For more information, see [How to maintain archive data](/berkeley-upgrade/mainnet-database-maintenance).
+To learn how to maintain archive data, see [Devnet/Mainnet database maintenance](/berkeley-upgrade/mainnet-database-maintenance).
 
 ## Download the migration applications
 
 Migration applications are distributed as part of the archive migration Docker and Debian packages.
 
-Choose the appropriate packages for your environment. 
-
-The following commands help you install Debian packages or Docker images.
+Choose the packages that are appropriate for your environment. 
 
 ### Debian packages
 
@@ -139,9 +136,8 @@ You can get the Berkeley schema files from different locations:
    wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
 
    wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
-
    ```
 
 ## Next steps
 
-Congratulations on completing the essential preparation and verification steps. You are now ready to perform the migration steps in [How to perform archive migration](/berkeley-upgrade/migrating-archive-database-to-berkeley).
+Congratulations on completing the essential preparation and verification steps. You are now ready to perform the migration steps in [Migrating Devnet/Mainnet Archive to Berkeley Archive](/berkeley-upgrade/migrating-archive-database-to-berkeley).

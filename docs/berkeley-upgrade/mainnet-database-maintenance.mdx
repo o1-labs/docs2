@@ -16,15 +16,17 @@ keywords:
   - database
 ---
 
-# Devnet/Mainnet database in context of Berkeley Upgrade
+# Devnet/Mainnet database maintenance
 
 After the Berkeley migration, the original Devnet/Mainnet database is not required unless you are interested in 
-preserving some aspect of the database that will be lost during the migration process.
+preserving some aspect of the database that is lost during the migration process.
 
-After the successful migration you will have two databases:
+Two databases exist after the successful migration:
 
-- The original Devnet/Mainnet database with small data adjustments (all pending blocks from last canoncial block until the fork block are converted to canoncial blocks)
-- A new Berkeley database based on Devnet/Mainnet data, but:
+- The original Devnet/Mainnet database with small data adjustments:
+  - All pending blocks from last canoncial block until the fork block are converted to canonical blocks
+
+- A new Berkeley database based on Devnet/Mainnet data with these differences:
   - Without Devnet/Mainnet orphaned blocks
   - Without pending blocks that are not in the canonical chain
   - With all pending blocks on the canonical chain converted to canonical blocks
@@ -35,28 +37,29 @@ However, being human entails the possibility of making mistakes.
 
 ## Known issues
 
-Recently, a few mistakes were identified while working on a version of Mina used on Mainnet. These issues were promptly addressed; however, within the decentralized environment, archive nodes can retain historical issues despite our best efforts. We are specifically addressing the following issues:
+Recently, a few mistakes were identified while working on a version of Mina used on Mainnet. These issues were promptly addressed; however, within the decentralized environment, archive nodes can retain historical issues despite our best efforts. 
+
+Fixes are available for the following known issues:
 
 - **Missing or invalid nonces** - a historical issue skewed nonces in the `balances` table. Although the issue was resolved, you might still have nonces that are missing or invalid.
-- **Incorrect ledger hashes** - a historical issue with the same root cause as 'Missing or invalid nonces'. However, the outcome is that a 'replayer run' operation of validating archive node against deamon ledger shows ledger mismatches and cannot pass problematic blocks.
-
-The following recurring missing blocks issue consistently poses challenges and is a source of concern for all archive node operators:
-
-- **Missing blocks** - A persistent challenge from disruptions in daemon node operations that potentially leads to incomplete block reception by archive nodes. This situation can compromise chain continuity within the archive database.
+- **Incorrect ledger hashes** - a historical issue with the same root cause as 'Missing or invalid nonces'. However, the outcome is that a 'replayer run' operation of validating archive node against daemon ledger shows ledger mismatches and cannot pass problematic blocks.
+- **Missing blocks** - This recurring missing blocks issue consistently poses challenges and is a source of concern for all archive node operators. A persistent challenge from disruptions in daemon node operations that potentially leads to incomplete block reception by archive nodes. This situation can compromise chain continuity within the archive database.
 
 To address these issues, install and use the special archive node maintenance package that includes fixes.
 
 ## Installing the archive node maintenance package
 
-Support for codenames:
+The package provides support for codenames:
 
 - bullseye
 - buster
 - focal
 
-The following steps describe only the bullseye package installation.
+The following steps describe only the bullseye package installation. Modify the steps as appropriate for your environment.
 
-### Debian packages 
+### Debian packages
+
+To get the Debian package:
 
 ```sh
 CODENAME=bullseye
@@ -107,18 +110,18 @@ where:
 
 - `--fix-nonces` - adjust nonces values while replaying transactions
 - `--set-nonces` - set missing nonces while replaying transactions
-- `--dump-repair-script` - the path to that output sql script that will contain all updates to nonces made during the replayer run that can be directly applied to other database instances that contain the same data with invalid nonces
+- `--dump-repair-script` - the path to the output sql script that will contain all updates to nonces made during the replayer run that can be directly applied to other database instances that contain the same data with invalid nonces
 
 Running a replayer from scratch on a Devnet/Mainnet database can take up to a couple of days. The recommended best practice is to break the replayer into smaller parts by using the checkpoint capabilities of the replayer.
-Additionally, running the replayer can exert significant demands on system resources that potentially affect the performance of the archive node. Because of the large resource requirements, it is recommended to execute the replayer in isolation from network connections, preferably within an isolated environment where the Devnet/Mainnet dumps can be imported.
+Additionally, running the replayer can exert significant demands on system resources that potentially affect the performance of the archive node. Because of the large resource requirements, we recommend that you execute the replayer in isolation from network connections, preferably within an isolated environment where the Devnet/Mainnet dumps can be imported.
 
-#### Bad ledger hashes
+## Bad ledger hashes
 
 There is no ultimate fix for this issue because preserving historical ledger hashes is essential to the overall security of the Mina network. Even with this issue, you can validate archive data integrity.
 
 The replayer application has a built-in mechanism to skip errors when the `--continue-on-error` flag is enabled.
 However, instead of skipping only blocks with bad ledger hashes, this mode skipped all of the problems with integrity.
-With the new archive node maintenance package, you can run the replayer application without a special flag and it correctly handles the bad ledger hashes issue.
+With the new archive node maintenance package, you can run the replayer application without a special flag and to correctly handle the bad ledger hashes issue.
 
 To run replayer:
 
@@ -142,12 +145,11 @@ where:
 
 :warning: You must run the replayer using the Mainnet version. You can run it from the Docker image at `minaprotocol/mina-archive:1.4.0-c980ba8-bullseye`.
 
+## Missing blocks
 
-#### Missing blocks
+The daemon node unavailability can cause the archive node to miss some of the blocks. This recurring missing blocks issue consistently poses challenges. To address this issue, you can reapply missing blocks.
 
-The daemon node unavailability can cause the archive node to miss some of the blocks. 
-
-If you uploaded the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks and preserve chain continuity. 
+If you uploaded the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks to preserve chain continuity. 
 
 To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. The `download-missing-blocks` script uses `localhost` as the database host so the script assumes that psql is running on localhost on port 5432. Modify `PG_CONN` in `download_missing_block.sh` for your environment.
 
@@ -179,4 +181,4 @@ The Berkeley migration software detects any issues on Devnet and Mainnet. Theref
 
 ## Next steps
 
-Now that you have completed the steps to properly maintain the correctness of the archive database, you are ready to plan the Berkeley migration process. See how to perform the archive migration in [Migration process](/berkeley-upgrade/migrating-archive-database-to-berkeley).
+Now that you have completed the steps to properly maintain the correctness of the archive database, you are ready to perform the archive [migration process](/berkeley-upgrade/migrating-archive-database-to-berkeley).

@@ -1,6 +1,6 @@
 ---
 title: Migrating Devnet/Mainnet Archive to Berkeley Archive 
-sidebar_label: Performing Archive migration
+sidebar_label: Performing archive migration
 hide_title: true
 description: Steps to properly migrate archives from Devnet/Mainnet to Berkeley.
 keywords:
@@ -13,38 +13,43 @@ keywords:
   - archive node
 ---
 
-### Migration process
+# Migrating Devnet/Mainnet Archive to Berkeley Archive
 
-As mentioned in [Planning the Archive Migration](/berkeley-upgrade/understanding-archive-migration), the devent/mainnet migration can take up to a couple of days. 
-Therefore, it is recommended to split migration into 3 stages:
+Before you start the process to migrate your archive database from the current Mainnet or Devnet format to Berkeley, be sure that you: 
 
-- **Stage1:** Initial migration
+- [Understand the Archive Migration](/berkeley-upgrade/understanding-archive-migration)
+- Meet the foundational requirements in [Archive migration prerequisites](/berkeley-upgrade/archive-migration-prerequisites)
+- Have successfully installed the [archive migration package](/berkeley-upgrade/archive-migration-installation)
 
-- **Stage2:** Incremental migration
+## Migration process
 
-- **Stage3:** Remainder migration
+The devent/mainnet migration can take up to a couple of days. 
+Therefore, it is recommended to split the migration into three stages:
+
+- **Stage 1:** Initial migration
+
+- **Stage 2:** Incremental migration
+
+- **Stage 3:** Remainder migration
 
 Each stage has three migration phases:
 
-- **Phase 1:** Copying data from devnet/mainnet database and precomputed blocks using the **berkeley_migration** app.
+- **Phase 1:** Copying data from Devnet/Mainnet database and precomputed blocks using the **berkeley_migration** app.
 
-- **Phase 2:** Populating new berkeley tables using the **replayer app in migration mode**
+- **Phase 2:** Populating new Berkeley tables using the **replayer app in migration mode**
 
 - **Phase 3:** Additional validation for migrated database
 
-At the end of entire cycle of migration you will recieve two databases:
-
-- source database with original devnet/mainnet data
-- migrated datbase with orginal devnet/mainnet data converted to berkeley schea
+- The source database with original Devnet/Mainnet data
+- The migrated database with original Devnet/Mainnet data converted to the Berkeley schema
 
 Review these phases and stages before you start the migration:
 
-### Simplified approach
+## Simplified approach
 
-For user convenience we offer berkeley_migration.sh script. 
-The script was created for users who either do not need to delve into the details of migration or whose environment does not require a special approach to migration
+For convenience, the `berkeley_migration.sh` script was created if you do not need to delve into the details of migration or if your environment does not require a special approach to migration.
 
-#### Stage 1: Initial migration
+### Stage 1: Initial migration
 
 ```
 mina-berkeley-migration-script  \ 
@@ -59,22 +64,21 @@ mina-berkeley-migration-script  \
 
 where: 
 
-`-g | --genesis-ledger`:  *path to genesis ledger file*
+`-g | --genesis-ledger`:  the path to the genesis ledger file
 
-`-s | --source-db`: *connection string to database to be migrated*
+`-s | --source-db`: the connection string to the database to be migrated
 
-`-t | --target-db`: *connection string to database which will hold migrated data*
+`-t | --target-db`: the connection string to database which will hold the migrated data
 
-`-b | --blocks-bucket`: *name of precomputed blocks bucket. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-b | --blocks-bucket`: the name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`*
 
-`-bs | --blocks-batch-size`: *number of precomputed blocks to be fetch at once from Gcloud. Bigger number like 1000 can help speed up migration process*
+`-bs | --blocks-batch-size`: the number of precomputed blocks to be fetched at one time from Google Cloud. A larger number like 1000 can help speed up migration process.
 
-`-n | --network`: *network name (devnet/mainnet) when determining precomputed blocks. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-n | --network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`*
 
+The command output is the `migration-replayer-XXX.json` file required for the next run.
 
-This command should output migration-replayer-XXX.json which should be used in next run
-
-#### Incremental migration
+### Stage 2: Incremental migration
 
 ```
 mina-berkeley-migration-script \
@@ -90,15 +94,15 @@ mina-berkeley-migration-script \
 
 where:
 
-`-r | --replayer-checkpoint`: *path to genesis ledger file*
+`-r | --replayer-checkpoint`: the path to genesis ledger file
 
-`-g | --genesis-ledger`: *path to genesis ledger file*
+`-g | --genesis-ledger`: the path to genesis ledger file
 
-`-s | --source-db`: *connection string to database to be migrated*
+`-s | --source-db`: the connection string to the database to be migrated
 
-`-t | --target-db`: *connection string to database which will hold migrated data*
+`-t | --target-db`: the connection string to that database that will hold migrated data
 
-`-b | --blocks-bucket`: *name of precomputed blocks bucket. NOTICE: there is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`*
+`-b | --blocks-bucket`: the name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`*
 
 `-bs | --blocks-batch-size`: *number of precomputed blocks to be fetch at once from Gcloud. Bigger number like 1000 can help speed up migration process*
 
@@ -175,11 +179,13 @@ mina-berkeley-migration \
    --stream-precomputed-blocks \
    --network NETWORK
 ```
-where: 
-`--network` - network name (devnet/mainnet) when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
-`genesis_ledgers/devnet.json` - is devnet genesis ledger. It is available in docker / debian or in [github sources](https://raw.githubusercontent.com/MinaProtocol/mina/e38c367994dba3d3293b48c7219486c32e9e3ca9/genesis_ledgers/devnet.json)
 
-Note: When migrating devnet archive database, pass connection string of the devnet database to the flag `--mainnet-archive-uri`. 
+where: 
+
+`--network` - the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`;
+`genesis_ledgers/devnet.json` - the `devnet` genesis ledger available in Docker, Debian, or [GitHub](https://raw.githubusercontent.com/MinaProtocol/mina/e38c367994dba3d3293b48c7219486c32e9e3ca9/genesis_ledgers/devnet.json)
+
+Note: When migrating the `devnet` archive database, pass the Devnet database connection string to the flag `--mainnet-archive-uri`. 
 
 
 ##### Phase 2: Replayer in migration mode run
@@ -191,7 +197,7 @@ Replayer config must contain the Devnet/Mainnet ledger as the starting point. So
 ```
 
 where:
-   genesis_ledger.json is genesis file from which deamon bootstrap on particular network
+   genesis_ledger.json is the genesis file from a daemon bootstrap on a particular network
 
 Then:
 ```
@@ -379,7 +385,7 @@ where:
 `--migrated-replayer-output` - Path to migrated replayer output
 
 
-### Example steps using Mina Foundation data for devnet
+### Example steps using Mina Foundation data for Devnet
 
 1. Download and import archive dump:
 
@@ -438,7 +444,7 @@ where:
 
    ```sh
 
-   # devnet.json is genesis file from which deamon bootstrap on devnet
+   # devnet.json is the genesis file from which daemon bootstrap on devnet
    jq '.ledger.accounts' devnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
 
    mina-migration-replayer \

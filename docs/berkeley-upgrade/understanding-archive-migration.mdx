@@ -13,42 +13,46 @@ keywords:
   - archive node
 ---
 
-# Planning the Archive Migration
+# Understanding the Archive Migration
 
-Before you start the migration of your archive node database into the Berkeley version of the Mina network, read this document in entirety.
+You can reduce risks and effort by reading all of the archive documentation in entirety.
 
-## Overview
+## Archive node migration overview
 
-Archive node migration is a crucial part of Berkeley upgrade. We need to convert devnet/mainnet database to berkeley one in order to preserves historical data and assure archive node chain continuity.
-For this purpose o1Labs and mina-foundation teams prepared two packages:
+Archive node migration is a crucial part of the Berkeley upgrade. The current Devnet and Mainnet database format must be converted to the Berkeley format to preserve historical data and assure archive node chain continuity.
 
-### Archive Node Berkeley migration package
+For this purpose, the o1Labs and Mina Foundation teams prepared two packages:
 
-This package contains applications needed to migrated existing devnet/mainnet database into new bekeley schema.
-Briefly it contains 3 apps and 1 usability script:
+### Archive node Berkeley migration package
+
+This package contains the required applications to migrate existing Devnet and Mainnet databases into the new Berkeley schema.
+
+The package contains three apps and one usability script:
 
 1. **berkeley-migration**
 
   The berkeley-migration application migrates as much data as possible from the Devnet/Mainnet database and downloads precomputed blocks to get the window density data. 
   
-  This application runs against the Devnet/Mainnet and the new database.
+  This application runs against the Devnet/Mainnet database and the new Berkeley database.
 
 2. **replayer in migration mode**
 
-  The existing replayer application is enhanced with a new mode: migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database (resulting from running berkeley-migration app) and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth, which results in different hashes. This application runs only against the new archive database.
+  The existing replayer application is enhanced with a new migration mode. Replayer in migration mode analyzes the transactions in the partially migrated database (resulting from running berkeley-migration app) and populates the `accounts_accessed` and `accounts_created` tables. This application also does the checks performed by the standard replayer, but does not check ledger hashes because the Berkeley ledger has greater depth that results in different hashes. 
+  
+  This application runs only against the new archive database.
 
-4. **berkeley-migration-verifier**
+3. **berkeley-migration-verifier**
 
-  The berkeley-migration-verifier is verification software which helps to determine if migration (even incomplete) was successful by utilizing SQL validations on migrated database
+  The berkeley-migration-verifier is verification software that helps to determine if migration (even incomplete) was successful by using SQL validations on the migrated database.
 
-5. ** end-to-end migration script**
+4. **end-to-end migration script**
 
-  Migration script is a shell script which wraps all phases and stages of migration into single script. It is provided purely for node operators usability and is equivalent of running berkely-migration, replayer in migration mode and berkeley-migration-verifier apps in correct order
+  This shell script wraps all phases and stages of migration into a single script. It is provided purely for node operators usability and is equivalent of running the berkely-migration app, the replayer in migration mode, and the berkeley-migration-verifier apps in the correct order.
 
-#### Incrementality
+### Incrementality
 
-The berkeley-migration and replayer applications are able to work incrementally so that part of the Devnet/Mainnet database can be migrated and, as new blocks are added to the Devnet/Mainnet, the new data in the database can be migrated.
+The berkeley-migration and replayer applications are able to work incrementally so that part of the Devnet/Mainnet database can be migrated and, as new blocks are added to the Devnet/Mainnet databases, the new data can be migrated.
 
-To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It can continue migrating starting at the next block in the Devnet/Mainnet data. The replayer app in migration mode can use the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
+To obtain that incrementality, the berkeley-migration application can look at the migrated database and determine the most recent migrated block. It continues migration starting at the next block in the Devnet/Mainnet data. The replayer app in migration mode uses the checkpoint mechanism already in place for the replayer. A checkpoint file indicates the global slot since genesis for starting the replay and the ledger to use for that replay. The application writes new checkpoint files as it proceeds.
 
-To take advantage of the incrementality, you can run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, only a small amount of data will need to be migrated.
+To take advantage of the incrementality, run a cron job that migrates a day's worth of data at a time (or some other interval). With the cron job in place, at the time of the actual Berkeley upgrade, only a small amount of data will need to be migrated.
