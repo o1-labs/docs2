@@ -256,7 +256,7 @@ mina-berkeley-migration \
    --blocks-bucket {bucket name} \
    --keep-precomputed-blocks \
    --stream-precomputed-blocks \
-   --network "mainnet"
+   --network NETWORK
 ```
 where: 
 `--network` - network name when determining precomputed blocks. There is an assumption that precomputed blocks are named with format: `{network}-{height}-{state_hash}.json`;
