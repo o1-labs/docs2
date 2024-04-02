@@ -223,7 +223,7 @@ where:
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    pre-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string}  
@@ -296,7 +296,7 @@ Incremental migration can be run continuously on top of the initial migration or
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated database. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    pre-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
    --migrated-archive-uri {migrated_connection_string}  
@@ -378,11 +378,11 @@ where:
 Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
 
 ```
- mina-berkeley-migration-verifier 
+ mina-berkeley-migration-verifier \
    post-fork  \
    --mainnet-archive-uri {mainnet_connection_string} \
-   --migrated-archive-uri {migrated_connection_string}  
-   --fork-config-file genesis_config_fork.json
+   --migrated-archive-uri {migrated_connection_string} \
+   --fork-config-file genesis_config_fork.json \
    --migrated-replayer-output replayer-checkpoint-XXXX.json
 ```
 
@@ -469,7 +469,7 @@ where:
    5.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
+   mina-berkeley-migration-verifier \
       pre-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
@@ -503,7 +503,7 @@ where:
    6.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
+   mina-berkeley-migration-verifier \
       pre-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
@@ -542,7 +542,7 @@ where:
    7.c) Phase 3:
 
    ```sh
-   mina-berkeley-migration-verifier 
+   mina-berkeley-migration-verifier \
       post-fork  \
       --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
       --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
