@@ -43,7 +43,7 @@ This tutorial has been tested with:
 1. Create the project:
 
   ```sh
-  $ zk project zk file message
+  $ zk project
   ```
 
   The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
@@ -80,7 +80,7 @@ Example smart contract files come with the new project, you can delete them if y
   $ rm src/Add.test.ts
   ```
 
-1. To create the `src/message.ts` file and generate the corresponding `src/message.test.ts` test file:
+1. To create the `src/message.ts` file:
 
   ```sh
   $ zk file message
@@ -139,7 +139,7 @@ Example smart contract files come with the new project, you can delete them if y
       this.messageHistoryHash.set(Field(0));
     }
 
-    @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
+    @method async publishMessage(message: Field, signerPrivateKey: PrivateKey) {
       // Compute signerPublicKey from signerPrivateKey argument
       const signerPublicKey = signerPrivateKey.toPublicKey();
 
@@ -230,7 +230,7 @@ The `publishMessage` method allows an approved user to publish a message. The `@
 For this example, pass in `message` and `signerPrivateKey` arguments to check that the user holds a private key associated with one of the three on-chain public keys before allowing them to update the message:
 
 ```ts
-@method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
+@method async publishMessage(message: Field, signerPrivateKey: PrivateKey) {
 ```
 
 Note that all inputs are private by default and exist only on the user's local machine when the smart contract runs. The Mina network never sees private inputs. 
