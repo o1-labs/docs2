@@ -70,7 +70,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
       { sender: deployerAccount.publicKey, fee: TRANSACTION_FEE },
       async () => {
         AccountUpdate.fundNewAccount(deployerAccount.publicKey);
-        await zkAppInstance.deploy({ zkappKey: zkAppAccount.privateKey });
+        await zkAppInstance.deploy();
       }
     );
     deploy_txn.sign([deployerAccount.privateKey, zkAppAccount.privateKey]);
