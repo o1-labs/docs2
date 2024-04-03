@@ -47,13 +47,13 @@ export class NumberTreeContract extends SmartContract {
     storedNewRootSignature: Signature
   ) {
     const storedRoot = this.storageTreeRoot.get();
-    this.storageTreeRoot.assertEquals(storedRoot);
+    this.storageTreeRoot.requireEquals(storedRoot);
 
     let storedNumber = this.storageNumber.get();
-    this.storageNumber.assertEquals(storedNumber);
+    this.storageNumber.requireEquals(storedNumber);
 
     let storageServerPublicKey = this.storageServerPublicKey.get();
-    this.storageServerPublicKey.assertEquals(storageServerPublicKey);
+    this.storageServerPublicKey.requireEquals(storageServerPublicKey);
 
     let leaf = [oldNum];
     let newLeaf = [num];
