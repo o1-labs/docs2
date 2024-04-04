@@ -104,7 +104,7 @@ The usual implementation is as easy as this:
 
 
 ```ts
-@method approveBase(forest: AccountUpdateForest) {
+@method async approveBase(forest: AccountUpdateForest) {
   this.checkZeroBalanceChange(forest);
 }
 ```
@@ -112,7 +112,7 @@ The usual implementation is as easy as this:
 However, if you want to do a custom implementation for every child account update, you can utilize the `forEachUpdate()` method.
 
 ```ts
-@method
+@method async 
 approveBase(updates: AccountUpdateForest) {
   let totalBalanceChange = Int64.zero;
 
