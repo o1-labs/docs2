@@ -121,7 +121,7 @@ deployUpdate.body.update.appState.every((x) => x.isSome.assertFalse());
 Next, here is an example of sending tokens from the `tokenUser`/`tokenHolder` to another account:
 
 ```typescript
-const txn2 = await Mina.transaction(deployerAddr, await () => {
+const txn2 = await Mina.transaction(deployerAddr, async () => {
   let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 1);
   await tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
 });
