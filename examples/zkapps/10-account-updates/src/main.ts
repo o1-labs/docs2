@@ -44,7 +44,6 @@ import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
     }
   );
 
-  console.log('txn', deploy_proofsOnly_txn);
   await deploy_proofsOnly_txn.prove();
   deploy_proofsOnly_txn.sign([deployerAccount, proofsOnlySk]);
 
@@ -74,10 +73,10 @@ import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
 
   await txn1.prove();
 
-  // await showTxn(txn1, 'txn1', legend);
-  // await saveTxn(txn1, 'txn1', legend, './txn1.png');
+  // // await showTxn(txn1, 'txn1', legend);
+  // // await saveTxn(txn1, 'txn1', legend, './txn1.png');
 
-  await txn1.sign([deployerAccount]).send();
+  await txn1.sign([deployerAccount]);
 
   // ----------------------------------------------------
 
