@@ -13,8 +13,8 @@ import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
   const deployerPubkey = deployerAccount.toPublicKey();
 
   if (proofsEnabled) {
-    ProofsOnlyZkApp.compile();
-    SecondaryZkApp.compile();
+    await ProofsOnlyZkApp.compile();
+    await SecondaryZkApp.compile();
   }
 
   // ----------------------------------------------------
@@ -36,19 +36,35 @@ import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
 
   // ----------------------------------------------------
 
-  const deploy_txn = await Mina.transaction(deployerPubkey, async () => {
-    AccountUpdate.fundNewAccount(deployerPubkey, 2);
-    await proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
-    await secondaryInstance.deploy({ zkappKey: secondarySk });
-  });
+  const deploy_proofsOnly_txn = await Mina.transaction(
+    deployerPubkey,
+    async () => {
+      AccountUpdate.fundNewAccount(deployerPubkey);
+      await proofsOnlyInstance.deploy();
+    }
+  );
 
-  await deploy_txn.prove();
-  deploy_txn.sign([deployerAccount, proofsOnlySk, secondarySk]);
+  console.log('txn', deploy_proofsOnly_txn);
+  await deploy_proofsOnly_txn.prove();
+  deploy_proofsOnly_txn.sign([deployerAccount, proofsOnlySk]);
 
   // await showTxn(deploy_txn, 'deploy_txn', legend);
   // await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
 
-  await deploy_txn.send();
+  await deploy_proofsOnly_txn.send();
+
+  const deploy_secondaryInstance_txn = await Mina.transaction(
+    deployerPubkey,
+    async () => {
+      AccountUpdate.fundNewAccount(deployerPubkey);
+      await secondaryInstance.deploy();
+    }
+  );
+
+  await deploy_secondaryInstance_txn.prove();
+  deploy_secondaryInstance_txn.sign([deployerAccount, secondarySk]);
+
+  await deploy_secondaryInstance_txn.send();
 
   // ----------------------------------------------------
 
