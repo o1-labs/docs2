@@ -9,6 +9,7 @@ import {
   DeployArgs,
   PublicKey,
   Permissions,
+  TransactionVersion,
 } from 'o1js';
 
 export class ProofsOnlyZkApp extends SmartContract {
@@ -21,7 +22,10 @@ export class ProofsOnlyZkApp extends SmartContract {
       ...Permissions.default(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
