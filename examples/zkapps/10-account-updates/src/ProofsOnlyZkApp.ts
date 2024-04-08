@@ -50,7 +50,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     const num = this.num.getAndRequireEquals();
     this.num.set(num.add(incrementBy));
 
-    this.incrementCalls();
+    await this.incrementCalls();
   }
 
   @method async incrementCalls() {
