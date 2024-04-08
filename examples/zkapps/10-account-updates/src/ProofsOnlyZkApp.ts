@@ -68,11 +68,11 @@ export class ProofsOnlyZkApp extends SmartContract {
     const secondaryContract = new SecondaryZkApp(secondaryAddr);
     const num = this.num.getAndRequireEquals();
 
-    secondaryContract.add(num);
+    await secondaryContract.add(num);
 
     // NOTE this gets the state at the start of the transaction
     this.num.set(secondaryContract.num.get());
 
-    this.incrementCalls();
+    await this.incrementCalls();
   }
 }
