@@ -16,8 +16,8 @@ export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();
   @state(Field) calls = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  async deploy(args: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
       setDelegate: Permissions.proof(),
