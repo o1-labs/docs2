@@ -58,7 +58,7 @@ export const makeAndSendTransaction = async <State extends ToString>({
   await fetchAccount({ publicKey: feePayerPrivateKey.toPublicKey() });
 
   let transaction = await Mina.transaction(
-    { feePayerKey: feePayerPrivateKey, fee: transactionFee },
+    { sender: feePayerPrivateKey.toPublicKey(), fee: transactionFee },
     async () => {
       await mutateZkApp();
     }
