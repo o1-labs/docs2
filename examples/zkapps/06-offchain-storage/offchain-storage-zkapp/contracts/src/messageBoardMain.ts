@@ -48,7 +48,7 @@ async function main() {
 
   const transaction = await Mina.transaction(feePayerPublicKey, async () => {
     AccountUpdate.fundNewAccount(feePayerPublicKey);
-    await zkapp.deploy({ zkappKey: zkappPrivateKey });
+    await zkapp.deploy();
     await zkapp.initState(serverPublicKey);
   });
   transaction.sign([feePayerKey, zkappPrivateKey]);
