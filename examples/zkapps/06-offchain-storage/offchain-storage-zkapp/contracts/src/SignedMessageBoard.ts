@@ -24,14 +24,6 @@ export class SignedMessageBoard extends SmartContract {
   @state(Field) storageNumber = State<Field>();
   @state(Field) storageTreeRoot = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.account.permissions.set({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
-  }
-
   @method async initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
     this.storageNumber.set(Field(0));
@@ -51,14 +43,12 @@ export class SignedMessageBoard extends SmartContract {
     storedNewStorageNumber: Field,
     storedNewStorageSignature: Signature
   ) {
-    const storedRoot = this.storageTreeRoot.get();
-    this.storageTreeRoot.assertEquals(storedRoot);
+    const storedRoot = this.storageTreeRoot.getAndRequireEquals();
 
-    let storedNumber = this.storageNumber.get();
-    this.storageNumber.assertEquals(storedNumber);
+    let storedNumber = this.storageNumber.getAndRequireEquals();
 
-    let storageServerPublicKey = this.storageServerPublicKey.get();
-    this.storageServerPublicKey.assertEquals(storageServerPublicKey);
+    let storageServerPublicKey =
+      this.storageServerPublicKey.getAndRequireEquals();
 
     const leaf = priorLeafSigner
       .toGroup()
