@@ -11,8 +11,8 @@ import {
 } from 'o1js';
 
 export class MyToken extends SmartContract {
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
+  async deploy() {
+    await super.deploy();
     this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
