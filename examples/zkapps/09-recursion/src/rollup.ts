@@ -43,7 +43,7 @@ async function main() {
     const initialRoot = map.getRoot();
 
     const currentValue = map.get(key);
-    const updatedValue = map.get(key).add(increment);
+    const updatedValue = currentValue.add(increment);
 
     map.set(key, updatedValue);
     const latestRoot = map.getRoot();
@@ -68,7 +68,7 @@ async function main() {
   //   return proof;
   // });
   const rollupProofs: Proof<RollupState, void>[] = [];
-  for (var {
+  for (let {
     initialRoot,
     latestRoot,
     key,
@@ -138,10 +138,13 @@ class RollupState extends Struct({
     const [witnessRootBefore, witnessKey] =
       merkleMapWitness.computeRootAndKey(currentValue);
     initialRoot.assertEquals(witnessRootBefore);
+
     witnessKey.assertEquals(key);
-    const [witnessRootAfter, _] = merkleMapWitness.computeRootAndKey(
+
+    const [witnessRootAfter] = merkleMapWitness.computeRootAndKey(
       currentValue.add(incrementAmount)
     );
+
     latestRoot.assertEquals(witnessRootAfter);
 
     return new RollupState({
@@ -173,7 +176,7 @@ const Rollup = ZkProgram({
     oneStep: {
       privateInputs: [Field, Field, Field, Field, Field, MerkleMapWitness],
 
-      method(
+      async method(
         state: RollupState,
         initialRoot: Field,
         latestRoot: Field,
@@ -197,7 +200,7 @@ const Rollup = ZkProgram({
     merge: {
       privateInputs: [SelfProof, SelfProof],
 
-      method(
+      async method(
         newState: RollupState,
         rollup1proof: SelfProof<RollupState, void>,
         rollup2proof: SelfProof<RollupState, void>
@@ -223,8 +226,8 @@ export class RollupProof extends RollupProof_ {}
 class RollupContract extends SmartContract {
   @state(Field) state = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  async deploy(args: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
       editState: Permissions.proofOrSignature(),

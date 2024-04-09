@@ -27,7 +27,7 @@ async function main() {
   const votersTree = new MerkleTree(20);
   const nullifierMap = new MerkleMap();
 
-  const voters = new Array(10).fill(null).map((_) => PrivateKey.random());
+  const voters = new Array(10).fill(null).map(PrivateKey.random);
   voters.forEach((v, i) =>
     votersTree.setLeaf(BigInt(i), Poseidon.hash(v.toPublicKey().toFields()))
   );
@@ -138,9 +138,7 @@ class VoteState extends Struct({
     key.assertEquals(nullifier);
     nullifierRootBefore.assertEquals(state.nullifierMapRoot);
 
-    const [nullifierRootAfter, _] = nullifierWitness.computeRootAndKey(
-      Field(1)
-    );
+    const [nullifierRootAfter] = nullifierWitness.computeRootAndKey(Field(1));
 
     return new VoteState({
       voteFor: state.voteFor.add(Provable.if(voteFor, Field(1), Field(0))),
