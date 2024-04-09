@@ -6,7 +6,6 @@ import {
   state,
   State,
   method,
-  DeployArgs,
   PublicKey,
   Permissions,
   TransactionVersion,
