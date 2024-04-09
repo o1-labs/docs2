@@ -70,7 +70,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L487)
+[lib/provable/types/struct.ts:248](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L248)
 
 ## Properties
 
@@ -88,7 +88,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1410](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1410)
+[lib/mina/account-update.ts:1333](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1333)
 
 ___
 
@@ -106,7 +106,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1411](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1411)
+[lib/mina/account-update.ts:1334](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1334)
 
 ___
 
@@ -124,7 +124,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1409](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1409)
+[lib/mina/account-update.ts:1332](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1332)
 
 ___
 
@@ -142,7 +142,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:487](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L487)
+[lib/provable/types/struct.ts:248](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L248)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 Add assertions to the proof to check if `value` is a valid member of type `T`.
 This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
 
-For instance, calling check function on the type [Bool](Bool.md) asserts that the value of the element is either 1 or 0.
+For instance, calling check function on the type [Bool](../modules.md#bool) asserts that the value of the element is either 1 or 0.
 
 ##### Parameters
 
@@ -182,7 +182,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L98)
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L66)
 
 ___
 
@@ -194,7 +194,8 @@ ___
 
 ▸ (`value?`): `any`[]
 
-A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
 
 ##### Parameters
 
@@ -221,34 +222,35 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L67)
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L37)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: \{ `accountUpdate`: [`Hashed`](Hashed.md)\<[`AccountUpdate`](AccountUpdate.md)\> = HashedAccountUpdate.provable; `children`: [`MerkleList`](MerkleList.md)\<\{ id: number; accountUpdate: Hashed\<AccountUpdate\>; children: MerkleListBase\<AccountUpdateTreeBase\>; }\> = AccountUpdateForest.provable; `id`: `number` = RandomId }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `accountUpdate`: [`Hashed`](Hashed.md)\<[`AccountUpdate`](AccountUpdate.md)\> = HashedAccountUpdate.provable; `children`: [`MerkleList`](MerkleList.md)\<\{ id: number; accountUpdate: Hashed\<AccountUpdate\>; children: MerkleListBase\<AccountUpdateTreeBase\>; }\> = AccountUpdateForest.provable; `id`: `number` = RandomId }) => `Field`[]
 
 #### Type declaration
 
-▸ (`value`): [`Field`](Field.md)[]
+▸ (`value`): `Field`[]
 
-A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](Field.md) elements that make up the provable data of `value`.
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](../modules.md#field) elements that make up the provable data of `value`.
 
 ##### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](Field.md) array from. |
+| `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](../modules.md#field) array from. |
 | `value.accountUpdate` | [`Hashed`](Hashed.md)\<[`AccountUpdate`](AccountUpdate.md)\> | `HashedAccountUpdate.provable` | - |
 | `value.children` | [`MerkleList`](MerkleList.md)\<\{ id: number; accountUpdate: Hashed\<AccountUpdate\>; children: MerkleListBase\<AccountUpdateTreeBase\>; }\> | `AccountUpdateForest.provable` | - |
 | `value.id` | `number` | `RandomId` | - |
 
 ##### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
-A [Field](Field.md) array describing how this `T` element is made up of [Field](Field.md) elements.
+A [Field](../modules.md#field) array describing how this `T` element is made up of [Field](../modules.md#field) elements.
 
 #### Inherited from
 
@@ -260,13 +262,13 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L58)
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L26)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: \{ `accountUpdate`: [`Hashed`](Hashed.md)\<[`AccountUpdate`](AccountUpdate.md)\> = HashedAccountUpdate.provable; `children`: [`MerkleList`](MerkleList.md)\<\{ id: number; accountUpdate: Hashed\<AccountUpdate\>; children: MerkleListBase\<AccountUpdateTreeBase\>; }\> = AccountUpdateForest.provable; `id`: `number` = RandomId }) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: \{ `accountUpdate`: [`Hashed`](Hashed.md)\<[`AccountUpdate`](AccountUpdate.md)\> = HashedAccountUpdate.provable; `children`: [`MerkleList`](MerkleList.md)\<\{ id: number; accountUpdate: Hashed\<AccountUpdate\>; children: MerkleListBase\<AccountUpdateTreeBase\>; }\> = AccountUpdateForest.provable; `id`: `number` = RandomId }) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  }
 
 #### Type declaration
 
@@ -287,8 +289,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `fields?` | [`Field`](Field.md)[] |
-| `packed?` | [[`Field`](Field.md), `number`][] |
+| `fields?` | `Field`[] |
+| `packed?` | [`Field`, `number`][] |
 
 #### Inherited from
 
@@ -300,7 +302,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:490](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L490)
+[lib/provable/types/struct.ts:251](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L251)
 
 ## Methods
 
@@ -317,7 +319,7 @@ See [approve](AccountUpdate.md#approve).
 | Name | Type |
 | :------ | :------ |
 | `update` | [`AccountUpdate`](AccountUpdate.md) \| [`AccountUpdateTree`](AccountUpdateTree.md) |
-| `hash?` | [`Field`](Field.md) |
+| `hash?` | `Field` |
 
 #### Returns
 
@@ -325,7 +327,7 @@ See [approve](AccountUpdate.md#approve).
 
 #### Defined in
 
-[lib/account-update.ts:1430](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1430)
+[lib/mina/account-update.ts:1353](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1353)
 
 ___
 
@@ -347,7 +349,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1446](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1446)
+[lib/mina/account-update.ts:1369](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1369)
 
 ___
 
@@ -362,7 +364,7 @@ Create a tree of account updates which only consists of a root.
 | Name | Type |
 | :------ | :------ |
 | `update` | [`AccountUpdate`](AccountUpdate.md) \| [`AccountUpdateTree`](AccountUpdateTree.md) |
-| `hash?` | [`Field`](Field.md) |
+| `hash?` | `Field` |
 
 #### Returns
 
@@ -370,7 +372,7 @@ Create a tree of account updates which only consists of a root.
 
 #### Defined in
 
-[lib/account-update.ts:1416](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1416)
+[lib/mina/account-update.ts:1339](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1339)
 
 ___
 
@@ -382,7 +384,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
+| `fields` | `Field`[] |
 | `aux` | `any` |
 
 #### Returns
@@ -399,7 +401,7 @@ StructNoJson(\{
 
 #### Defined in
 
-[lib/account-update.ts:1443](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/account-update.ts#L1443)
+[lib/mina/account-update.ts:1366](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/account-update.ts#L1366)
 
 ___
 
@@ -407,15 +409,13 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Return the size of the `T` type in terms of [Field](Field.md) type, as [Field](Field.md) is the primitive type.
-
-**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+Return the size of the `T` type in terms of [Field](../modules.md#field) type, as [Field](../modules.md#field) is the primitive type.
 
 #### Returns
 
 `number`
 
-A `number` representing the size of the `T` type in terms of [Field](Field.md) type.
+A `number` representing the size of the `T` type in terms of [Field](../modules.md#field) type.
 
 #### Inherited from
 
@@ -427,4 +427,4 @@ StructNoJson(\{
 
 #### Defined in
 
-[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L88)
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L56)

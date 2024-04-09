@@ -55,13 +55,13 @@ We still can't avoid processing some account updates that don't use the token, t
 | :------ | :------ |
 | `forest` | [`MerkleListIterator`](MerkleListIterator.md)\<`AccountUpdateTreeBase`\> |
 | `mayUseToken` | `Object` |
-| `mayUseToken.inheritFromParent` | [`Bool`](Bool.md) |
-| `mayUseToken.parentsOwnToken` | [`Bool`](Bool.md) |
-| `selfToken` | [`Field`](Field.md) |
+| `mayUseToken.inheritFromParent` | `Bool` |
+| `mayUseToken.parentsOwnToken` | `Bool` |
+| `selfToken` | `Field` |
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:59](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L59)
+[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L56)
 
 ## Properties
 
@@ -71,17 +71,17 @@ We still can't avoid processing some account updates that don't use the token, t
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:55](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L55)
+[lib/mina/token/forest-iterator.ts:52](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L52)
 
 ___
 
 ### selfToken
 
-• **selfToken**: [`Field`](Field.md)
+• **selfToken**: `Field`
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:57](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L57)
+[lib/mina/token/forest-iterator.ts:54](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L54)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L56)
+[lib/mina/token/forest-iterator.ts:53](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L53)
 
 ## Methods
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:140](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L140)
+[lib/mina/token/forest-iterator.ts:137](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L137)
 
 ___
 
@@ -136,11 +136,11 @@ caller handle the irrelevant case where `usesThisToken` is false.
 | Name | Type |
 | :------ | :------ |
 | `accountUpdate` | [`AccountUpdate`](AccountUpdate.md) |
-| `usesThisToken` | [`Bool`](Bool.md) |
+| `usesThisToken` | `Bool` |
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L88)
+[lib/mina/token/forest-iterator.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L85)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `forest` | [`AccountUpdateForest`](AccountUpdateForest.md) |
-| `selfToken` | [`Field`](Field.md) |
+| `selfToken` | `Field` |
 
 #### Returns
 
@@ -161,4 +161,4 @@ ___
 
 #### Defined in
 
-[lib/mina/token/forest-iterator.ts:69](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/mina/token/forest-iterator.ts#L69)
+[lib/mina/token/forest-iterator.ts:66](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/token/forest-iterator.ts#L66)

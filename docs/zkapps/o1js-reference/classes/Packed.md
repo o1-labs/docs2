@@ -81,22 +81,22 @@ and after packing. On the other hand, it does makes sense to pack a type that ho
 
 | Name | Type |
 | :------ | :------ |
-| `packed` | [`Field`](Field.md)[] |
+| `packed` | `Field`[] |
 | `value` | [`Unconstrained`](Unconstrained.md)\<`T`\> |
 
 #### Defined in
 
-[lib/provable-types/packed.ts:80](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L80)
+[lib/provable/packed.ts:77](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L77)
 
 ## Properties
 
 ### packed
 
-• **packed**: [`Field`](Field.md)[]
+• **packed**: `Field`[]
 
 #### Defined in
 
-[lib/provable-types/packed.ts:49](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L49)
+[lib/provable/packed.ts:46](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L46)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:50](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L50)
+[lib/provable/packed.ts:47](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L47)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:122](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L122)
+[lib/provable/packed.ts:119](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L119)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:121](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L121)
+[lib/provable/packed.ts:118](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L118)
 
 ## Accessors
 
@@ -140,7 +140,7 @@ typeof [`Packed`](Packed.md)
 
 #### Defined in
 
-[lib/provable-types/packed.ts:124](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L124)
+[lib/provable/packed.ts:121](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L121)
 
 ___
 
@@ -154,21 +154,21 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:128](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L128)
+[lib/provable/packed.ts:125](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L125)
 
 ## Methods
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/provable-types/packed.ts:116](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L116)
+[lib/provable/packed.ts:113](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L113)
 
 ___
 
@@ -184,7 +184,7 @@ Unpack a value.
 
 #### Defined in
 
-[lib/provable-types/packed.ts:101](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L101)
+[lib/provable/packed.ts:98](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L98)
 
 ___
 
@@ -212,7 +212,7 @@ typeof [`Packed`](Packed.md) & \{ `provable`: [`ProvableHashable`](../modules.md
 
 #### Defined in
 
-[lib/provable-types/packed.ts:55](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L55)
+[lib/provable/packed.ts:52](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L52)
 
 ___
 
@@ -240,4 +240,4 @@ Pack a value.
 
 #### Defined in
 
-[lib/provable-types/packed.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L88)
+[lib/provable/packed.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L85)

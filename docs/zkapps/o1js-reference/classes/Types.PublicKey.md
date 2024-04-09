@@ -9,7 +9,7 @@ You can derive a [PublicKey](Types.PublicKey.md) directly from a [PrivateKey](Pr
 
 ## Hierarchy
 
-- [`CircuitValue`](CircuitValue.md)
+- `CircuitValue`
 
   ↳ **`PublicKey`**
 
@@ -66,31 +66,31 @@ You can derive a [PublicKey](Types.PublicKey.md) directly from a [PrivateKey](Pr
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
+CircuitValue.constructor
 
 #### Defined in
 
-[lib/circuit-value.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L79)
+[lib/provable/types/circuit-value.ts:13](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L13)
 
 ## Properties
 
 ### isOdd
 
-• **isOdd**: [`Bool`](Bool.md)
+• **isOdd**: `Bool`
 
 #### Defined in
 
-[lib/signature.ts:135](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L135)
+[lib/provable/crypto/signature.ts:134](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L134)
 
 ___
 
 ### x
 
-• **x**: [`Field`](Field.md)
+• **x**: `Field`
 
 #### Defined in
 
-[lib/signature.ts:134](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L134)
+[lib/provable/crypto/signature.ts:133](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L133)
 
 ## Methods
 
@@ -110,17 +110,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[assertEquals](CircuitValue.md#assertequals)
+CircuitValue.assertEquals
 
 #### Defined in
 
-[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L167)
+[lib/provable/types/circuit-value.ts:101](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L101)
 
 ___
 
 ### equals
 
-▸ **equals**(`x`): [`Bool`](Bool.md)
+▸ **equals**(`x`): `Bool`
 
 #### Parameters
 
@@ -130,15 +130,15 @@ ___
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[equals](CircuitValue.md#equals)
+CircuitValue.equals
 
 #### Defined in
 
-[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L163)
+[lib/provable/types/circuit-value.ts:97](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L97)
 
 ___
 
@@ -152,29 +152,29 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[isConstant](CircuitValue.md#isconstant)
+CircuitValue.isConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L171)
+[lib/provable/types/circuit-value.ts:105](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L105)
 
 ___
 
 ### isEmpty
 
-▸ **isEmpty**(): [`Bool`](Bool.md)
+▸ **isEmpty**(): `Bool`
 
 Checks if a [PublicKey](Types.PublicKey.md) is empty.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 a [Bool](../modules.md#bool-1)
 
 #### Defined in
 
-[lib/signature.ts:192](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L192)
+[lib/provable/crypto/signature.ts:189](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L189)
 
 ___
 
@@ -192,7 +192,7 @@ a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:210](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L210)
+[lib/provable/crypto/signature.ts:207](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L207)
 
 ___
 
@@ -206,47 +206,47 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L159)
+[lib/provable/types/circuit-value.ts:93](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L93)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L151)
+[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L85)
 
 ___
 
 ### toGroup
 
-▸ **toGroup**(): [`Group`](Group.md)
+▸ **toGroup**(): `Group`
 
 Returns the [Group](../modules.md#group-1) representation of this [PublicKey](Types.PublicKey.md).
 
 #### Returns
 
-[`Group`](Group.md)
+`Group`
 
 A [Group](../modules.md#group-1)
 
 #### Defined in
 
-[lib/signature.ts:141](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L141)
+[lib/provable/crypto/signature.ts:140](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L140)
 
 ___
 
@@ -260,11 +260,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L155)
+[lib/provable/types/circuit-value.ts:89](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L89)
 
 ___
 
@@ -291,11 +291,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[check](CircuitValue.md#check)
+CircuitValue.check
 
 #### Defined in
 
-[lib/circuit-value.ts:200](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L200)
+[lib/provable/types/circuit-value.ts:134](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L134)
 
 ___
 
@@ -319,11 +319,11 @@ an empty [PublicKey](Types.PublicKey.md)
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+CircuitValue.empty
 
 #### Defined in
 
-[lib/signature.ts:184](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L184)
+[lib/provable/crypto/signature.ts:181](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L181)
 
 ___
 
@@ -338,8 +338,8 @@ Creates a [PublicKey](Types.PublicKey.md) from a JSON structure element.
 | Name | Type |
 | :------ | :------ |
 | `g` | `Object` |
-| `g.isOdd` | [`Bool`](Bool.md) |
-| `g.x` | [`Field`](Field.md) |
+| `g.isOdd` | `Bool` |
+| `g.x` | `Field` |
 
 #### Returns
 
@@ -349,7 +349,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:176](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L176)
+[lib/provable/crypto/signature.ts:173](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L173)
 
 ___
 
@@ -373,7 +373,7 @@ a [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:201](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L201)
+[lib/provable/crypto/signature.ts:198](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L198)
 
 ___
 
@@ -392,7 +392,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -400,11 +400,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromFields](CircuitValue.md#fromfields)
+CircuitValue.fromFields
 
 #### Defined in
 
-[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L175)
+[lib/provable/types/circuit-value.ts:109](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L109)
 
 ___
 
@@ -418,7 +418,7 @@ Creates a [PublicKey](Types.PublicKey.md) from a [Group](../modules.md#group-1) 
 
 | Name | Type |
 | :------ | :------ |
-| `«destructured»` | [`Group`](Group.md) |
+| `«destructured»` | `Group` |
 
 #### Returns
 
@@ -428,7 +428,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L159)
+[lib/provable/crypto/signature.ts:157](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L157)
 
 ___
 
@@ -459,11 +459,11 @@ a JSON string
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
+CircuitValue.fromJSON
 
 #### Defined in
 
-[lib/signature.ts:238](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L238)
+[lib/provable/crypto/signature.ts:235](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L235)
 
 ___
 
@@ -490,11 +490,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromObject](CircuitValue.md#fromobject)
+CircuitValue.fromObject
 
 #### Defined in
 
-[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L96)
+[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L30)
 
 ___
 
@@ -518,7 +518,7 @@ a [PublicKey](Types.PublicKey.md).
 
 #### Defined in
 
-[lib/signature.ts:168](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L168)
+[lib/provable/crypto/signature.ts:165](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L165)
 
 ___
 
@@ -532,11 +532,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[sizeInFields](CircuitValue.md#sizeinfields)
+CircuitValue.sizeInFields
 
 #### Defined in
 
-[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L103)
+[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L37)
 
 ___
 
@@ -550,11 +550,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toAuxiliary](CircuitValue.md#toauxiliary)
+CircuitValue.toAuxiliary
 
 #### Defined in
 
-[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L125)
+[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L59)
 
 ___
 
@@ -578,7 +578,7 @@ a base58 encoded [PublicKey](Types.PublicKey.md)
 
 #### Defined in
 
-[lib/signature.ts:218](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L218)
+[lib/provable/crypto/signature.ts:215](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L215)
 
 ___
 
@@ -605,17 +605,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant-1)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L214)
+[lib/provable/types/circuit-value.ts:148](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L148)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -632,15 +632,15 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields-1)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L108)
+[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L42)
 
 ___
 
@@ -667,11 +667,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toInput](CircuitValue.md#toinput)
+CircuitValue.toInput
 
 #### Defined in
 
-[lib/circuit-value.ts:129](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L129)
+[lib/provable/types/circuit-value.ts:63](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L63)
 
 ___
 
@@ -695,8 +695,8 @@ a JSON string
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/signature.ts:230](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L230)
+[lib/provable/crypto/signature.ts:227](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L227)

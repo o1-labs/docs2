@@ -13,7 +13,7 @@
 
 ### decrypt
 
-▸ **decrypt**(`«destructured»`, `privateKey`): [`Field`](../classes/Field.md)[]
+▸ **decrypt**(`«destructured»`, `privateKey`): `Field`[]
 
 Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
@@ -26,11 +26,11 @@ Decrypts a CipherText using a [PrivateKey](../classes/PrivateKey.md).^
 
 #### Returns
 
-[`Field`](../classes/Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/encryption.ts:45](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/encryption.ts#L45)
+[lib/provable/crypto/encryption.ts:45](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/encryption.ts#L45)
 
 ___
 
@@ -44,7 +44,7 @@ Public Key Encryption, using a given array of [Field](../modules.md#field-1) ele
 
 | Name | Type |
 | :------ | :------ |
-| `message` | [`Field`](../classes/Field.md)[] |
+| `message` | `Field`[] |
 | `otherPublicKey` | [`PublicKey`](../classes/Types.PublicKey.md) |
 
 #### Returns
@@ -53,9 +53,9 @@ Public Key Encryption, using a given array of [Field](../modules.md#field-1) ele
 
 | Name | Type |
 | :------ | :------ |
-| `cipherText` | [`Field`](../classes/Field.md)[] |
-| `publicKey` | [`Group`](../classes/Group.md) |
+| `cipherText` | `Field`[] |
+| `publicKey` | `Group` |
 
 #### Defined in
 
-[lib/encryption.ts:16](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/encryption.ts#L16)
+[lib/provable/crypto/encryption.ts:16](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/encryption.ts#L16)

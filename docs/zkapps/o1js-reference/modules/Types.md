@@ -584,11 +584,11 @@ bindings/mina-transaction/transaction-leaves.ts:39
 | :------ | :------ |
 | `check` | (`value`: [`Account`](Types.md#account-1)) => `void` |
 | `empty` | () => [`Account`](Types.md#account-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`Account`](Types.md#account-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`Account`](Types.md#account-1) |
 | `fromJSON` | (`json`: [`Account`](Types.Json.md#account)) => [`Account`](Types.md#account-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`Account`](Types.md#account-1)) => `any`[] |
-| `toFields` | (`value`: [`Account`](Types.md#account-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`Account`](Types.md#account-1)) => `Field`[] |
 | `toInput` | (`value`: [`Account`](Types.md#account-1)) => `HashInput` |
 | `toJSON` | (`value`: [`Account`](Types.md#account-1)) => [`Account`](Types.Json.md#account) |
 
@@ -610,11 +610,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `void` |
 | `empty` | () => [`AccountUpdate`](Types.md#accountupdate-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`AccountUpdate`](Types.md#accountupdate-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`AccountUpdate`](Types.md#accountupdate-1) |
 | `fromJSON` | (`json`: [`AccountUpdate`](Types.Json.md#accountupdate)) => [`AccountUpdate`](Types.md#accountupdate-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`AccountUpdate`](Types.md#accountupdate-1)) => `any`[] |
-| `toFields` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `Field`[] |
 | `toInput` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => `HashInput` |
 | `toJSON` | (`value`: [`AccountUpdate`](Types.md#accountupdate-1)) => [`AccountUpdate`](Types.Json.md#accountupdate) |
 
@@ -634,14 +634,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `empty` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `check` | (`x`: `Field`) => `void` |
+| `empty` | () => `Field` |
+| `fromFields` | (`x`: `Field`[]) => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: `Field`) => `string` |
 | `sizeInFields` | () => `number` |
 
 #### Defined in
@@ -660,20 +660,20 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
-| `empty` | () => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromJSON` | (`x`: `string`[][]) => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `toAuxiliary` | (`x?`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
-| `toFields` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
-| `emptyActionState` | () => [`Field`](../classes/Field.md) |
+| `check` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `void` |
+| `empty` | () => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromJSON` | (`x`: `string`[][]) => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `toAuxiliary` | (`x?`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `any`[] |
+| `toFields` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `Field`[] |
+| `toInput` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `string`[][] |
+| `emptyActionState` | () => `Field` |
 | `fromList` | (`events`: `Event`[]) => `Events` |
-| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
+| `hash` | (`events`: `Event`[]) => `Field` |
 | `pushEvent` | (`actions`: `Events`, `event`: `Event`) => `Events` |
 | `sizeInFields` | () => `number` |
-| `updateSequenceState` | (`state`: [`Field`](../classes/Field.md), `sequenceEventsHash`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md) |
+| `updateSequenceState` | (`state`: `Field`, `sequenceEventsHash`: `Field`) => `Field` |
 
 #### Defined in
 
@@ -685,7 +685,7 @@ ___
 
 ### AuthRequired
 
-• **AuthRequired**: `Omit`\<`GenericProvableExtended`\<\{ `constant`: [`Bool`](../classes/Bool.md) = Bool; `signatureNecessary`: [`Bool`](../classes/Bool.md) = Bool; `signatureSufficient`: [`Bool`](../classes/Bool.md) = Bool }, \{ `constant`: `boolean` = Bool; `signatureNecessary`: `boolean` = Bool; `signatureSufficient`: `boolean` = Bool }, [`Field`](../classes/Field.md)\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => `AuthRequired`\<[`Bool`](../classes/Bool.md)\> ; `fromJSON`: (`json`: [`AuthRequired`](Types.Json.md#authrequired)) => `AuthRequired`\<[`Bool`](../classes/Bool.md)\> ; `toJSON`: (`x`: `AuthRequired`\<[`Bool`](../classes/Bool.md)\>) => [`AuthRequired`](Types.Json.md#authrequired)  }
+• **AuthRequired**: `Omit`\<`GenericProvableExtended`\<\{ `constant`: `Bool` = Bool; `signatureNecessary`: `Bool` = Bool; `signatureSufficient`: `Bool` = Bool }, \{ `constant`: `boolean` = Bool; `signatureNecessary`: `boolean` = Bool; `signatureSufficient`: `boolean` = Bool }, `Field`\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => `AuthRequired`\<`Bool`\> ; `fromJSON`: (`json`: [`AuthRequired`](Types.Json.md#authrequired)) => `AuthRequired`\<`Bool`\> ; `toJSON`: (`x`: `AuthRequired`\<`Bool`\>) => [`AuthRequired`](Types.Json.md#authrequired)  }
 
 #### Defined in
 
@@ -703,16 +703,16 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `void` |
-| `empty` | () => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `fromJSON` | (`x`: `string`[][]) => \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  } |
-| `toAuxiliary` | (`x?`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `any`[] |
-| `toFields` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: \{ `data`: [`Field`](../classes/Field.md)[][] ; `hash`: [`Field`](../classes/Field.md)  }) => `string`[][] |
+| `check` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `void` |
+| `empty` | () => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromFields` | (`x`: `Field`[], `aux`: `any`[]) => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `fromJSON` | (`x`: `string`[][]) => \{ `data`: `Field`[][] ; `hash`: `Field`  } |
+| `toAuxiliary` | (`x?`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `any`[] |
+| `toFields` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `Field`[] |
+| `toInput` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: \{ `data`: `Field`[][] ; `hash`: `Field`  }) => `string`[][] |
 | `fromList` | (`events`: `Event`[]) => `Events` |
-| `hash` | (`events`: `Event`[]) => [`Field`](../classes/Field.md) |
+| `hash` | (`events`: `Event`[]) => `Field` |
 | `pushEvent` | (`events`: `Events`, `event`: `Event`) => `Events` |
 | `sizeInFields` | () => `number` |
 
@@ -732,14 +732,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `empty` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `check` | (`x`: `Field`) => `void` |
+| `empty` | () => `Field` |
+| `fromFields` | (`x`: `Field`[]) => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: `Field`) => `string` |
 | `sizeInFields` | () => `number` |
 
 #### Defined in
@@ -752,7 +752,7 @@ ___
 
 ### StateHash
 
-• **StateHash**: `Omit`\<`GenericProvableExtended`\<[`Field`](../classes/Field.md), `string`, [`Field`](../classes/Field.md)\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => [`Field`](../classes/Field.md) ; `fromJSON`: (`x`: `string`) => [`Field`](../classes/Field.md) ; `toJSON`: (`x`: [`Field`](../classes/Field.md)) => `string`  }
+• **StateHash**: `Omit`\<`GenericProvableExtended`\<`Field`, `string`, `Field`\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => `Field` ; `fromJSON`: (`x`: `string`) => `Field` ; `toJSON`: (`x`: `Field`) => `string`  }
 
 #### Defined in
 
@@ -764,7 +764,7 @@ ___
 
 ### TokenId
 
-• **TokenId**: `Omit`\<`GenericProvableExtended`\<[`Field`](../classes/Field.md), `string`, [`Field`](../classes/Field.md)\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => [`Field`](../classes/Field.md) ; `fromJSON`: (`x`: `string`) => [`Field`](../classes/Field.md) ; `toJSON`: (`x`: [`Field`](../classes/Field.md)) => `string`  }
+• **TokenId**: `Omit`\<`GenericProvableExtended`\<`Field`, `string`, `Field`\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `empty`: () => `Field` ; `fromJSON`: (`x`: `string`) => `Field` ; `toJSON`: (`x`: `Field`) => `string`  }
 
 #### Defined in
 
@@ -776,7 +776,7 @@ ___
 
 ### TokenSymbol
 
-• **TokenSymbol**: `Omit`\<`GenericProvableExtended`\<\{ `field`: [`Field`](../classes/Field.md) = Field; `symbol`: `string` = String }, \{ `field`: `string` = Field; `symbol`: `string` = String }, [`Field`](../classes/Field.md)\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `fromJSON`: (`symbol`: `string`) => `TokenSymbol`\<[`Field`](../classes/Field.md)\> ; `toInput`: (`__namedParameters`: `TokenSymbol`\<[`Field`](../classes/Field.md)\>) => `GenericHashInput`\<[`Field`](../classes/Field.md)\> ; `toJSON`: (`__namedParameters`: `TokenSymbol`\<[`Field`](../classes/Field.md)\>) => `string`  }
+• **TokenSymbol**: `Omit`\<`GenericProvableExtended`\<\{ `field`: `Field` = Field; `symbol`: `string` = String }, \{ `field`: `string` = Field; `symbol`: `string` = String }, `Field`\>, ``"toJSON"`` \| ``"fromJSON"``\> & \{ `fromJSON`: (`symbol`: `string`) => `TokenSymbol`\<`Field`\> ; `toInput`: (`__namedParameters`: `TokenSymbol`\<`Field`\>) => `GenericHashInput`\<`Field`\> ; `toJSON`: (`__namedParameters`: `TokenSymbol`\<`Field`\>) => `string`  }
 
 #### Defined in
 
@@ -796,11 +796,11 @@ ___
 | :------ | :------ |
 | `check` | (`x`: [`UInt32`](../classes/UInt32.md)) => `void` |
 | `empty` | () => [`UInt32`](../classes/UInt32.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[]) => [`UInt32`](../classes/UInt32.md) |
+| `fromFields` | (`x`: `Field`[]) => [`UInt32`](../classes/UInt32.md) |
 | `fromJSON` | (`x`: `string`) => [`UInt32`](../classes/UInt32.md) |
 | `toAuxiliary` | (`x?`: [`UInt32`](../classes/UInt32.md)) => `any`[] |
-| `toFields` | (`x`: [`UInt32`](../classes/UInt32.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`UInt32`](../classes/UInt32.md)) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
+| `toFields` | (`x`: [`UInt32`](../classes/UInt32.md)) => `Field`[] |
+| `toInput` | (`x`: [`UInt32`](../classes/UInt32.md)) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
 | `toJSON` | (`x`: [`UInt32`](../classes/UInt32.md)) => `string` |
 | `sizeInFields` | () => `number` |
 
@@ -821,11 +821,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `AuthRequired` | `ProvableExtended`\<[`AuthRequired`](Types.md#authrequired-1), [`AuthRequired`](Types.Json.md#authrequired)\> |
-| `Bool` | `ProvableExtended`\<[`Bool`](../classes/Bool.md), `boolean`\> |
-| `Field` | `ProvableExtended`\<[`Field`](../classes/Field.md), `string`\> |
+| `Bool` | `ProvableExtended`\<`Bool`, `boolean`\> |
+| `Field` | `ProvableExtended`\<`Field`, `string`\> |
 | `PublicKey` | `ProvableExtended`\<[`PublicKey`](../classes/Types.PublicKey.md), `string`\> |
 | `Sign` | `ProvableExtended`\<[`Sign`](../classes/Sign.md), [`Sign`](Types.Json.md#sign)\> |
-| `TokenId` | `ProvableExtended`\<[`Field`](../classes/Field.md), `string`\> |
+| `TokenId` | `ProvableExtended`\<`Field`, `string`\> |
 | `UInt32` | `ProvableExtended`\<[`UInt32`](../classes/UInt32.md), `string`\> |
 | `UInt64` | `ProvableExtended`\<[`UInt64`](../classes/UInt64.md), `string`\> |
 
@@ -845,14 +845,14 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `check` | (`x`: [`Field`](../classes/Field.md)) => `void` |
-| `empty` | () => [`Field`](../classes/Field.md) |
-| `fromFields` | (`x`: [`Field`](../classes/Field.md)[]) => [`Field`](../classes/Field.md) |
-| `fromJSON` | (`x`: `string`) => [`Field`](../classes/Field.md) |
-| `toAuxiliary` | (`x?`: [`Field`](../classes/Field.md)) => `any`[] |
-| `toFields` | (`x`: [`Field`](../classes/Field.md)) => [`Field`](../classes/Field.md)[] |
-| `toInput` | (`x`: [`Field`](../classes/Field.md)) => \{ `fields?`: [`Field`](../classes/Field.md)[] ; `packed?`: [[`Field`](../classes/Field.md), `number`][]  } |
-| `toJSON` | (`x`: [`Field`](../classes/Field.md)) => `string` |
+| `check` | (`x`: `Field`) => `void` |
+| `empty` | () => `Field` |
+| `fromFields` | (`x`: `Field`[]) => `Field` |
+| `fromJSON` | (`x`: `string`) => `Field` |
+| `toAuxiliary` | (`x?`: `Field`) => `any`[] |
+| `toFields` | (`x`: `Field`) => `Field`[] |
+| `toInput` | (`x`: `Field`) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  } |
+| `toJSON` | (`x`: `Field`) => `string` |
 | `sizeInFields` | () => `number` |
 
 #### Defined in
@@ -873,11 +873,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `void` |
 | `empty` | () => [`ZkappCommand`](Types.md#zkappcommand-1) |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => [`ZkappCommand`](Types.md#zkappcommand-1) |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => [`ZkappCommand`](Types.md#zkappcommand-1) |
 | `fromJSON` | (`json`: [`ZkappCommand`](Types.Json.md#zkappcommand)) => [`ZkappCommand`](Types.md#zkappcommand-1) |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `any`[] |
-| `toFields` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `Field`[] |
 | `toInput` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => `HashInput` |
 | `toJSON` | (`value`: [`ZkappCommand`](Types.md#zkappcommand-1)) => [`ZkappCommand`](Types.Json.md#zkappcommand) |
 
@@ -891,7 +891,7 @@ ___
 
 ### ZkappUri
 
-• **ZkappUri**: `GenericProvableExtended`\<\{ `data`: `string` ; `hash`: [`Field`](../classes/Field.md)  }, `string`, [`Field`](../classes/Field.md)\>
+• **ZkappUri**: `GenericProvableExtended`\<\{ `data`: `string` ; `hash`: `Field`  }, `string`, `Field`\>
 
 #### Defined in
 
@@ -956,11 +956,11 @@ ___
 | :------ | :------ |
 | `check` | (`value`: `T`) => `void` |
 | `empty` | () => `T` |
-| `fromFields` | (`fields`: [`Field`](../classes/Field.md)[], `aux`: `any`[]) => `T` |
+| `fromFields` | (`fields`: `Field`[], `aux`: `any`[]) => `T` |
 | `fromJSON` | (`json`: `TJson`) => `T` |
 | `sizeInFields` | () => `number` |
 | `toAuxiliary` | (`value?`: `T`) => `any`[] |
-| `toFields` | (`value`: `T`) => [`Field`](../classes/Field.md)[] |
+| `toFields` | (`value`: `T`) => `Field`[] |
 | `toInput` | (`value`: `T`) => `HashInput` |
 | `toJSON` | (`value`: `T`) => `TJson` |
 

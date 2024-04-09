@@ -6,7 +6,7 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 
 ## Hierarchy
 
-- [`CircuitValue`](CircuitValue.md)
+- `CircuitValue`
 
   ↳ **`Int64`**
 
@@ -79,11 +79,11 @@ A 64 bit signed integer with values ranging from -18,446,744,073,709,551,615 to 
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
+CircuitValue.constructor
 
 #### Defined in
 
-[lib/int.ts:1122](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1122)
+[lib/provable/int.ts:1015](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1015)
 
 ## Properties
 
@@ -97,7 +97,7 @@ BalanceChange.magnitude
 
 #### Defined in
 
-[lib/int.ts:1099](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1099)
+[lib/provable/int.ts:992](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L992)
 
 ___
 
@@ -111,7 +111,7 @@ BalanceChange.sgn
 
 #### Defined in
 
-[lib/int.ts:1100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1100)
+[lib/provable/int.ts:993](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L993)
 
 ## Accessors
 
@@ -127,7 +127,7 @@ Static method to create a [Int64](Int64.md) with value `-1`.
 
 #### Defined in
 
-[lib/int.ts:1197](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1197)
+[lib/provable/int.ts:1090](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1090)
 
 ___
 
@@ -143,7 +143,7 @@ Static method to create a [Int64](Int64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:1191](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1191)
+[lib/provable/int.ts:1084](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1084)
 
 ___
 
@@ -159,7 +159,7 @@ Static method to create a [Int64](Int64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:1185](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1185)
+[lib/provable/int.ts:1078](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1078)
 
 ## Methods
 
@@ -181,7 +181,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:1231](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1231)
+[lib/provable/int.ts:1124](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1124)
 
 ___
 
@@ -204,11 +204,11 @@ Asserts that two values are equal.
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[assertEquals](CircuitValue.md#assertequals)
+CircuitValue.assertEquals
 
 #### Defined in
 
-[lib/int.ts:1285](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1285)
+[lib/provable/int.ts:1178](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1178)
 
 ___
 
@@ -233,13 +233,13 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:1256](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1256)
+[lib/provable/int.ts:1149](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1149)
 
 ___
 
 ### equals
 
-▸ **equals**(`y`): [`Bool`](Bool.md)
+▸ **equals**(`y`): `Bool`
 
 Checks if two values are equal.
 
@@ -251,15 +251,15 @@ Checks if two values are equal.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[equals](CircuitValue.md#equals)
+CircuitValue.equals
 
 #### Defined in
 
-[lib/int.ts:1278](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1278)
+[lib/provable/int.ts:1171](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1171)
 
 ___
 
@@ -273,27 +273,27 @@ ___
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[isConstant](CircuitValue.md#isconstant)
+CircuitValue.isConstant
 
 #### Defined in
 
-[lib/int.ts:1174](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1174)
+[lib/provable/int.ts:1067](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1067)
 
 ___
 
 ### isPositive
 
-▸ **isPositive**(): [`Bool`](Bool.md)
+▸ **isPositive**(): `Bool`
 
 Checks if the value is positive.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/int.ts:1295](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1295)
+[lib/provable/int.ts:1188](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1188)
 
 ___
 
@@ -318,7 +318,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:1268](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1268)
+[lib/provable/int.ts:1161](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1161)
 
 ___
 
@@ -340,7 +340,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:1245](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1245)
+[lib/provable/int.ts:1138](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1138)
 
 ___
 
@@ -358,7 +358,7 @@ Negates the value.
 
 #### Defined in
 
-[lib/int.ts:1224](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1224)
+[lib/provable/int.ts:1117](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1117)
 
 ___
 
@@ -380,7 +380,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:1238](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1238)
+[lib/provable/int.ts:1131](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1131)
 
 ___
 
@@ -394,45 +394,45 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L159)
+[lib/provable/types/circuit-value.ts:93](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L93)
 
 ___
 
 ### toField
 
-▸ **toField**(): [`Field`](Field.md)
+▸ **toField**(): `Field`
 
 Returns the [Field](../modules.md#field-1) value.
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[lib/int.ts:1204](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1204)
+[lib/provable/int.ts:1097](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1097)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L151)
+[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L85)
 
 ___
 
@@ -446,11 +446,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L155)
+[lib/provable/types/circuit-value.ts:89](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L89)
 
 ___
 
@@ -466,7 +466,7 @@ Turns the [Int64](Int64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:1169](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1169)
+[lib/provable/int.ts:1062](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1062)
 
 ___
 
@@ -493,11 +493,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[check](CircuitValue.md#check)
+CircuitValue.check
 
 #### Defined in
 
-[lib/circuit-value.ts:200](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L200)
+[lib/provable/types/circuit-value.ts:134](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L134)
 
 ___
 
@@ -517,11 +517,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+CircuitValue.empty
 
 #### Defined in
 
-[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L255)
+[lib/provable/types/circuit-value.ts:189](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L189)
 
 ___
 
@@ -537,7 +537,7 @@ Check the range if the argument is a constant.
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`Int64`](Int64.md) |
+| `x` | `string` \| `number` \| `bigint` \| `Field` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`Int64`](Int64.md) |
 
 #### Returns
 
@@ -545,7 +545,7 @@ Check the range if the argument is a constant.
 
 #### Defined in
 
-[lib/int.ts:1159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1159)
+[lib/provable/int.ts:1052](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1052)
 
 ___
 
@@ -559,7 +559,7 @@ Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-1
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md) |
+| `x` | `Field` |
 
 #### Returns
 
@@ -567,7 +567,7 @@ Static method to create a [Int64](Int64.md) from a [Field](../modules.md#field-1
 
 #### Defined in
 
-[lib/int.ts:1210](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1210)
+[lib/provable/int.ts:1103](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1103)
 
 ___
 
@@ -583,7 +583,7 @@ Does check if the [Field](../modules.md#field-1) is within range.
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md) |
+| `x` | `Field` |
 
 #### Returns
 
@@ -591,7 +591,7 @@ Does check if the [Field](../modules.md#field-1) is within range.
 
 #### Defined in
 
-[lib/int.ts:1131](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1131)
+[lib/provable/int.ts:1024](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1024)
 
 ___
 
@@ -610,7 +610,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -618,11 +618,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromFields](CircuitValue.md#fromfields)
+CircuitValue.fromFields
 
 #### Defined in
 
-[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L175)
+[lib/provable/types/circuit-value.ts:109](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L109)
 
 ___
 
@@ -649,11 +649,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
+CircuitValue.fromJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:233](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L233)
+[lib/provable/types/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L167)
 
 ___
 
@@ -680,11 +680,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromObject](CircuitValue.md#fromobject)
+CircuitValue.fromObject
 
 #### Defined in
 
-[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L96)
+[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L30)
 
 ___
 
@@ -708,7 +708,7 @@ Creates a new [Int64](Int64.md) from a [Field](../modules.md#field-1).
 
 #### Defined in
 
-[lib/int.ts:1149](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1149)
+[lib/provable/int.ts:1042](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1042)
 
 ___
 
@@ -722,11 +722,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[sizeInFields](CircuitValue.md#sizeinfields)
+CircuitValue.sizeInFields
 
 #### Defined in
 
-[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L103)
+[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L37)
 
 ___
 
@@ -740,11 +740,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toAuxiliary](CircuitValue.md#toauxiliary)
+CircuitValue.toAuxiliary
 
 #### Defined in
 
-[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L125)
+[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L59)
 
 ___
 
@@ -771,17 +771,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant-1)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L214)
+[lib/provable/types/circuit-value.ts:148](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L148)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -798,15 +798,15 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields-1)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L108)
+[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L42)
 
 ___
 
@@ -833,11 +833,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toInput](CircuitValue.md#toinput)
+CircuitValue.toInput
 
 #### Defined in
 
-[lib/circuit-value.ts:129](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L129)
+[lib/provable/types/circuit-value.ts:63](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L63)
 
 ___
 
@@ -864,8 +864,8 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:222](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L222)
+[lib/provable/types/circuit-value.ts:156](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L156)

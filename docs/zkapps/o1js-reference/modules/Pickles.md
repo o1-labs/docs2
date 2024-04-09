@@ -22,7 +22,7 @@ Type to configure how Pickles should cache prover keys
 
 #### Defined in
 
-[snarky.d.ts:756](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L756)
+[snarky.d.ts:640](https://github.com/o1-labs/o1js/blob/6731ad3/src/snarky.d.ts#L640)
 
 ___
 
@@ -32,13 +32,13 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:727](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L727)
+[snarky.d.ts:611](https://github.com/o1-labs/o1js/blob/6731ad3/src/snarky.d.ts#L611)
 
 ___
 
 ### Prover
 
-Ƭ **Prover**: (`publicInput`: `MlArray`\<[`FieldConst`](../modules.md#fieldconst-1)\>, `previousProofs`: `MlArray`\<[`Proof`](Pickles.md#proof)\>) => `Promise`\<[\_: 0, publicOutput: MlArray\<FieldConst\>, proof: Proof]\>
+Ƭ **Prover**: (`publicInput`: `MlArray`\<`FieldConst`\>, `previousProofs`: `MlArray`\<[`Proof`](Pickles.md#proof)\>) => `Promise`\<[\_: 0, publicOutput: MlArray\<FieldConst\>, proof: Proof]\>
 
 #### Type declaration
 
@@ -48,7 +48,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `publicInput` | `MlArray`\<[`FieldConst`](../modules.md#fieldconst-1)\> |
+| `publicInput` | `MlArray`\<`FieldConst`\> |
 | `previousProofs` | `MlArray`\<[`Proof`](Pickles.md#proof)\> |
 
 ##### Returns
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:767](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L767)
+[snarky.d.ts:651](https://github.com/o1-labs/o1js/blob/6731ad3/src/snarky.d.ts#L651)
 
 ___
 
@@ -73,12 +73,12 @@ A "rule" is a circuit plus some metadata for `Pickles.compile`
 | :------ | :------ | :------ |
 | `featureFlags` | [`MlFeatureFlags`](../modules.md#mlfeatureflags) | Feature flags which enable certain custom gates |
 | `identifier` | `string` | - |
-| `main` | (`publicInput`: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\>) => \{ `previousStatements`: `MlArray`\<[`Statement`](Pickles.md#statement)\<[`FieldVar`](../modules.md#fieldvar-1)\>\> ; `publicOutput`: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\> ; `shouldVerify`: `MlArray`\<[`BoolVar`](../modules.md#boolvar)\>  } | The main circuit functions |
+| `main` | (`publicInput`: `MlArray`\<`FieldVar`\>) => `Promise`\<\{ `previousStatements`: `MlArray`\<[`Statement`](Pickles.md#statement)\<`FieldVar`\>\> ; `publicOutput`: `MlArray`\<`FieldVar`\> ; `shouldVerify`: `MlArray`\<`BoolVar`\>  }\> | The main circuit functions |
 | `proofsToVerify` | `MlArray`\<\{ `isSelf`: ``true``  } \| \{ `isSelf`: ``false`` ; `tag`: `unknown`  }\> | Description of previous proofs to verify in this rule |
 
 #### Defined in
 
-[snarky.d.ts:733](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L733)
+[snarky.d.ts:617](https://github.com/o1-labs/o1js/blob/6731ad3/src/snarky.d.ts#L617)
 
 ___
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:728](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L728)
+[snarky.d.ts:612](https://github.com/o1-labs/o1js/blob/6731ad3/src/snarky.d.ts#L612)

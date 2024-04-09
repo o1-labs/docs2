@@ -33,7 +33,6 @@ Represents a [Scalar](Scalar.md).
 - [unshift](Scalar.md#unshift)
 - [check](Scalar.md#check)
 - [from](Scalar.md#from)
-- [fromBigInt](Scalar.md#frombigint)
 - [fromBits](Scalar.md#frombits)
 - [fromFields](Scalar.md#fromfields)
 - [fromJSON](Scalar.md#fromjson)
@@ -54,12 +53,12 @@ Represents a [Scalar](Scalar.md).
 
 | Name | Type |
 | :------ | :------ |
-| `bits` | `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `bits` | `MlArray`\<`FieldVar`\> |
 | `constantValue?` | `bigint` |
 
 #### Defined in
 
-[lib/scalar.ts:37](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L37)
+[lib/provable/scalar.ts:39](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L39)
 
 ## Properties
 
@@ -69,17 +68,17 @@ Represents a [Scalar](Scalar.md).
 
 #### Defined in
 
-[lib/scalar.ts:33](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L33)
+[lib/provable/scalar.ts:35](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L35)
 
 ___
 
 ### value
 
-• **value**: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\>
+• **value**: `MlArray`\<`FieldVar`\>
 
 #### Defined in
 
-[lib/scalar.ts:32](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L32)
+[lib/provable/scalar.ts:34](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L34)
 
 ___
 
@@ -89,7 +88,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:35](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L35)
+[lib/provable/scalar.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L37)
 
 ## Methods
 
@@ -113,7 +112,7 @@ Add scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:131](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L131)
+[lib/provable/scalar.ts:129](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L129)
 
 ___
 
@@ -138,7 +137,7 @@ Throws if the denominator is zero.
 
 #### Defined in
 
-[lib/scalar.ts:168](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L168)
+[lib/provable/scalar.ts:166](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L166)
 
 ___
 
@@ -155,7 +154,7 @@ this is Scalar & Object
 
 #### Defined in
 
-[lib/scalar.ts:62](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L62)
+[lib/provable/scalar.ts:64](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L64)
 
 ___
 
@@ -179,7 +178,7 @@ Multiply scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L155)
+[lib/provable/scalar.ts:153](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L153)
 
 ___
 
@@ -197,7 +196,7 @@ Negate a scalar field element.
 
 #### Defined in
 
-[lib/scalar.ts:120](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L120)
+[lib/provable/scalar.ts:118](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L118)
 
 ___
 
@@ -211,7 +210,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:177](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L177)
+[lib/provable/scalar.ts:175](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L175)
 
 ___
 
@@ -235,7 +234,7 @@ Subtract scalar field elements.
 
 #### Defined in
 
-[lib/scalar.ts:143](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L143)
+[lib/provable/scalar.ts:141](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L141)
 
 ___
 
@@ -251,7 +250,7 @@ Convert this [Scalar](Scalar.md) into a bigint
 
 #### Defined in
 
-[lib/scalar.ts:90](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L90)
+[lib/provable/scalar.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L85)
 
 ___
 
@@ -263,7 +262,7 @@ Convert this [Scalar](Scalar.md) into a constant if it isn't already.
 
 If the scalar is a variable, this only works inside `asProver` or `witness` blocks.
 
-See [FieldVar](../modules.md#fieldvar-1) for an explanation of constants vs. variables.
+See FieldVar for an explanation of constants vs. variables.
 
 #### Returns
 
@@ -271,13 +270,13 @@ See [FieldVar](../modules.md#fieldvar-1) for an explanation of constants vs. var
 
 #### Defined in
 
-[lib/scalar.ts:73](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L73)
+[lib/provable/scalar.ts:75](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L75)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 Serialize this Scalar to Field elements.
 
@@ -290,11 +289,11 @@ that can be used outside proofs.
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/scalar.ts:232](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L232)
+[lib/provable/scalar.ts:230](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L230)
 
 ___
 
@@ -315,12 +314,12 @@ is needed to represent all Scalars. However, for a random Scalar, the high bit w
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
-| `highBit` | [`Bool`](Bool.md) |
+| `field` | `Field` |
+| `highBit` | `Bool` |
 
 #### Defined in
 
-[lib/scalar.ts:194](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L194)
+[lib/provable/scalar.ts:192](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L192)
 
 ___
 
@@ -336,7 +335,7 @@ Serializes this Scalar to a string
 
 #### Defined in
 
-[lib/scalar.ts:312](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L312)
+[lib/provable/scalar.ts:310](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L310)
 
 ___
 
@@ -350,7 +349,7 @@ ___
 
 #### Defined in
 
-[lib/scalar.ts:181](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L181)
+[lib/provable/scalar.ts:179](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L179)
 
 ___
 
@@ -358,7 +357,7 @@ ___
 
 ▸ `Static` **check**(): `void`
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable) interface.
 
 Does nothing.
 
@@ -368,7 +367,7 @@ Does nothing.
 
 #### Defined in
 
-[lib/scalar.ts:282](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L282)
+[lib/provable/scalar.ts:280](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L280)
 
 ___
 
@@ -392,31 +391,7 @@ If the input is too large, it is reduced modulo the scalar field size.
 
 #### Defined in
 
-[lib/scalar.ts:50](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L50)
-
-___
-
-### fromBigInt
-
-▸ `Static` **fromBigInt**(`x`): [`Scalar`](Scalar.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `bigint` |
-
-#### Returns
-
-[`Scalar`](Scalar.md)
-
-**`Deprecated`**
-
-use [from](Scalar.md#from)
-
-#### Defined in
-
-[lib/scalar.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L83)
+[lib/provable/scalar.ts:52](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L52)
 
 ___
 
@@ -424,7 +399,7 @@ ___
 
 ▸ `Static` **fromBits**(`bits`): [`Scalar`](Scalar.md)
 
-Creates a data structure from an array of serialized [Bool](Bool.md).
+Creates a data structure from an array of serialized [Bool](../modules.md#bool).
 
 **Warning**: The bits are interpreted as the bits of 2s + 1 + 2^255, where s is the Scalar.
 
@@ -432,7 +407,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 | Name | Type |
 | :------ | :------ |
-| `bits` | [`Bool`](Bool.md)[] |
+| `bits` | `Bool`[] |
 
 #### Returns
 
@@ -440,7 +415,7 @@ Creates a data structure from an array of serialized [Bool](Bool.md).
 
 #### Defined in
 
-[lib/scalar.ts:101](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L101)
+[lib/provable/scalar.ts:96](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L96)
 
 ___
 
@@ -448,15 +423,15 @@ ___
 
 ▸ `Static` **fromFields**(`fields`): [`Scalar`](Scalar.md)
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable) interface.
 
-Creates a data structure from an array of serialized [Field](Field.md) elements.
+Creates a data structure from an array of serialized [Field](../modules.md#field) elements.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `fields` | [`Field`](Field.md)[] |
+| `fields` | `Field`[] |
 
 #### Returns
 
@@ -464,7 +439,7 @@ Creates a data structure from an array of serialized [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:264](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L264)
+[lib/provable/scalar.ts:262](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L262)
 
 ___
 
@@ -487,7 +462,7 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:320](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L320)
+[lib/provable/scalar.ts:318](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L318)
 
 ___
 
@@ -504,7 +479,7 @@ Randomness can not be proven inside a circuit!
 
 #### Defined in
 
-[lib/scalar.ts:109](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L109)
+[lib/provable/scalar.ts:107](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L107)
 
 ___
 
@@ -512,9 +487,9 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable) interface.
 
-Returns the size of this type in [Field](Field.md) elements.
+Returns the size of this type in [Field](../modules.md#field) elements.
 
 #### Returns
 
@@ -522,7 +497,7 @@ Returns the size of this type in [Field](Field.md) elements.
 
 #### Defined in
 
-[lib/scalar.ts:273](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L273)
+[lib/provable/scalar.ts:271](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L271)
 
 ___
 
@@ -530,7 +505,7 @@ ___
 
 ▸ `Static` **toAuxiliary**(): `never`[]
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable) interface.
 
 Serialize a [Scalar](Scalar.md) into its auxiliary data, which are empty.
 
@@ -540,17 +515,17 @@ Serialize a [Scalar](Scalar.md) into its auxiliary data, which are empty.
 
 #### Defined in
 
-[lib/scalar.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L255)
+[lib/provable/scalar.ts:253](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L253)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**(`x`): [`Field`](Field.md)[]
+▸ `Static` **toFields**(`x`): `Field`[]
 
-Part of the [Provable](../interfaces/Provable.md) interface.
+Part of the [Provable](../modules.md#provable) interface.
 
-Serialize a [Scalar](Scalar.md) into an array of [Field](Field.md) elements.
+Serialize a [Scalar](Scalar.md) into an array of [Field](../modules.md#field) elements.
 
 **Warning**: This function is for internal usage. It returns 255 field elements
 which represent the Scalar in a shifted, bitwise format.
@@ -564,11 +539,11 @@ The fields are not constrained to be boolean.
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/scalar.ts:217](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L217)
+[lib/provable/scalar.ts:215](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L215)
 
 ___
 
@@ -590,15 +565,15 @@ This function is the implementation of `ProvableExtended.toInput()` for the [Sca
 
 `Object`
 
-An object where the `fields` key is a [Field](Field.md) array of length 1 created from this [Field](Field.md).
+An object where the `fields` key is a [Field](../modules.md#field) array of length 1 created from this [Field](../modules.md#field).
 
 | Name | Type |
 | :------ | :------ |
-| `packed` | [[`Field`](Field.md), `number`][] |
+| `packed` | [`Field`, `number`][] |
 
 #### Defined in
 
-[lib/scalar.ts:246](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L246)
+[lib/provable/scalar.ts:244](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L244)
 
 ___
 
@@ -621,4 +596,4 @@ This operation does _not_ affect the circuit and can't be used to prove anything
 
 #### Defined in
 
-[lib/scalar.ts:304](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/scalar.ts#L304)
+[lib/provable/scalar.ts:302](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/scalar.ts#L302)

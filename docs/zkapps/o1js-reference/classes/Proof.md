@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[lib/proof-system.ts:136](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L136)
+[lib/proof-system/zkprogram.ts:137](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L137)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[lib/proof-system.ts:94](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L94)
+[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L95)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:93](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L93)
+[lib/proof-system/zkprogram.ts:94](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L94)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:91](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L91)
+[lib/proof-system/zkprogram.ts:92](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L92)
 
 ___
 
@@ -105,17 +105,17 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:92](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L92)
+[lib/proof-system/zkprogram.ts:93](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L93)
 
 ___
 
 ### shouldVerify
 
-• **shouldVerify**: [`Bool`](Bool.md)
+• **shouldVerify**: `Bool`
 
 #### Defined in
 
-[lib/proof-system.ts:95](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L95)
+[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L96)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L83)
+[lib/proof-system/zkprogram.ts:84](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L84)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:84](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L84)
+[lib/proof-system/zkprogram.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L85)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:85](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L85)
+[lib/proof-system/zkprogram.ts:86](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L86)
 
 ## Methods
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L103)
+[lib/proof-system/zkprogram.ts:104](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L104)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L97)
+[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L98)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`Bool`](Bool.md) |
+| `condition` | `Bool` |
 
 #### Returns
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L100)
+[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L101)
 
 ___
 
@@ -255,7 +255,7 @@ must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs t
 
 #### Defined in
 
-[lib/proof-system.ts:174](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L174)
+[lib/proof-system/zkprogram.ts:175](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L175)
 
 ___
 
@@ -282,4 +282,4 @@ ___
 
 #### Defined in
 
-[lib/proof-system.ts:112](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L112)
+[lib/proof-system/zkprogram.ts:113](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L113)

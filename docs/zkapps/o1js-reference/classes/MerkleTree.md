@@ -53,7 +53,7 @@ Creates a new, empty [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree).
 
 #### Defined in
 
-[lib/merkle-tree.ts:37](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L37)
+[lib/provable/merkle-tree.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L37)
 
 ## Properties
 
@@ -65,27 +65,27 @@ The height of Merkle Tree.
 
 #### Defined in
 
-[lib/merkle-tree.ts:37](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L37)
+[lib/provable/merkle-tree.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L37)
 
 ___
 
 ### nodes
 
-• `Private` **nodes**: `Record`\<`number`, `Record`\<`string`, [`Field`](Field.md)\>\> = `{}`
+• `Private` **nodes**: `Record`\<`number`, `Record`\<`string`, `Field`\>\> = `{}`
 
 #### Defined in
 
-[lib/merkle-tree.ts:29](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L29)
+[lib/provable/merkle-tree.ts:29](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L29)
 
 ___
 
 ### zeroes
 
-• `Private` **zeroes**: [`Field`](Field.md)[]
+• `Private` **zeroes**: `Field`[]
 
 #### Defined in
 
-[lib/merkle-tree.ts:30](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L30)
+[lib/provable/merkle-tree.ts:30](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L30)
 
 ## Accessors
 
@@ -103,7 +103,7 @@ Amount of leaf nodes.
 
 #### Defined in
 
-[lib/merkle-tree.ts:146](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L146)
+[lib/provable/merkle-tree.ts:146](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L146)
 
 ## Methods
 
@@ -117,7 +117,7 @@ Fills all leaves of the tree.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `leaves` | [`Field`](Field.md)[] | Values to fill the leaves with. |
+| `leaves` | `Field`[] | Values to fill the leaves with. |
 
 #### Returns
 
@@ -125,13 +125,13 @@ Fills all leaves of the tree.
 
 #### Defined in
 
-[lib/merkle-tree.ts:136](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L136)
+[lib/provable/merkle-tree.ts:136](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L136)
 
 ___
 
 ### getNode
 
-▸ **getNode**(`level`, `index`): [`Field`](Field.md)
+▸ **getNode**(`level`, `index`): `Field`
 
 Returns a node which lives at a given index and level.
 
@@ -144,31 +144,31 @@ Returns a node which lives at a given index and level.
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 The data of the node.
 
 #### Defined in
 
-[lib/merkle-tree.ts:51](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L51)
+[lib/provable/merkle-tree.ts:51](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L51)
 
 ___
 
 ### getRoot
 
-▸ **getRoot**(): [`Field`](Field.md)
+▸ **getRoot**(): `Field`
 
 Returns the root of the [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree).
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 The root of the Merkle Tree.
 
 #### Defined in
 
-[lib/merkle-tree.ts:59](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L59)
+[lib/provable/merkle-tree.ts:59](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L59)
 
 ___
 
@@ -192,7 +192,7 @@ The witness that belongs to the leaf.
 
 #### Defined in
 
-[lib/merkle-tree.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L97)
+[lib/provable/merkle-tree.ts:97](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L97)
 
 ___
 
@@ -207,7 +207,7 @@ Sets the value of a leaf node at a given index to a given value.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `index` | `bigint` | Position of the leaf node. |
-| `leaf` | [`Field`](Field.md) | New value. |
+| `leaf` | `Field` | New value. |
 
 #### Returns
 
@@ -215,7 +215,7 @@ Sets the value of a leaf node at a given index to a given value.
 
 #### Defined in
 
-[lib/merkle-tree.ts:74](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L74)
+[lib/provable/merkle-tree.ts:74](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L74)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 | :------ | :------ |
 | `level` | `number` |
 | `index` | `bigint` |
-| `value` | [`Field`](Field.md) |
+| `value` | `Field` |
 
 #### Returns
 
@@ -237,7 +237,7 @@ ___
 
 #### Defined in
 
-[lib/merkle-tree.ts:64](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L64)
+[lib/provable/merkle-tree.ts:64](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L64)
 
 ___
 
@@ -261,4 +261,4 @@ True if the witness for the leaf node is valid.
 
 #### Defined in
 
-[lib/merkle-tree.ts:119](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/merkle-tree.ts#L119)
+[lib/provable/merkle-tree.ts:119](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-tree.ts#L119)

@@ -6,7 +6,7 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 ## Hierarchy
 
-- [`CircuitValue`](CircuitValue.md)
+- `CircuitValue`
 
   ↳ **`Signature`**
 
@@ -59,21 +59,21 @@ A Schnorr [Signature](Signature.md) over the Pasta Curves.
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
+CircuitValue.constructor
 
 #### Defined in
 
-[lib/circuit-value.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L79)
+[lib/provable/types/circuit-value.ts:13](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L13)
 
 ## Properties
 
 ### r
 
-• **r**: [`Field`](Field.md)
+• **r**: `Field`
 
 #### Defined in
 
-[lib/signature.ts:247](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L247)
+[lib/provable/crypto/signature.ts:244](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L244)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[lib/signature.ts:248](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L248)
+[lib/provable/crypto/signature.ts:245](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L245)
 
 ## Methods
 
@@ -103,17 +103,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[assertEquals](CircuitValue.md#assertequals)
+CircuitValue.assertEquals
 
 #### Defined in
 
-[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L167)
+[lib/provable/types/circuit-value.ts:101](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L101)
 
 ___
 
 ### equals
 
-▸ **equals**(`x`): [`Bool`](Bool.md)
+▸ **equals**(`x`): `Bool`
 
 #### Parameters
 
@@ -123,15 +123,15 @@ ___
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[equals](CircuitValue.md#equals)
+CircuitValue.equals
 
 #### Defined in
 
-[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L163)
+[lib/provable/types/circuit-value.ts:97](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L97)
 
 ___
 
@@ -145,11 +145,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[isConstant](CircuitValue.md#isconstant)
+CircuitValue.isConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L171)
+[lib/provable/types/circuit-value.ts:105](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L105)
 
 ___
 
@@ -165,7 +165,7 @@ Encodes a [Signature](Signature.md) in base58 format.
 
 #### Defined in
 
-[lib/signature.ts:314](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L314)
+[lib/provable/crypto/signature.ts:308](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L308)
 
 ___
 
@@ -179,29 +179,29 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L159)
+[lib/provable/types/circuit-value.ts:93](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L93)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L151)
+[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L85)
 
 ___
 
@@ -215,17 +215,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L155)
+[lib/provable/types/circuit-value.ts:89](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L89)
 
 ___
 
 ### verify
 
-▸ **verify**(`publicKey`, `msg`): [`Bool`](Bool.md)
+▸ **verify**(`publicKey`, `msg`): `Bool`
 
 Verifies the [Signature](Signature.md) using a message and the corresponding [PublicKey](Types.PublicKey.md).
 
@@ -234,17 +234,17 @@ Verifies the [Signature](Signature.md) using a message and the corresponding [Pu
 | Name | Type |
 | :------ | :------ |
 | `publicKey` | [`PublicKey`](Types.PublicKey.md) |
-| `msg` | [`Field`](Field.md)[] |
+| `msg` | `Field`[] |
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 a [Bool](../modules.md#bool-1)
 
 #### Defined in
 
-[lib/signature.ts:285](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L285)
+[lib/provable/crypto/signature.ts:282](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L282)
 
 ___
 
@@ -271,11 +271,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[check](CircuitValue.md#check)
+CircuitValue.check
 
 #### Defined in
 
-[lib/circuit-value.ts:200](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L200)
+[lib/provable/types/circuit-value.ts:134](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L134)
 
 ___
 
@@ -290,7 +290,7 @@ Signs a message using a [PrivateKey](PrivateKey.md).
 | Name | Type |
 | :------ | :------ |
 | `privKey` | [`PrivateKey`](PrivateKey.md) |
-| `msg` | [`Field`](Field.md)[] |
+| `msg` | `Field`[] |
 
 #### Returns
 
@@ -300,7 +300,7 @@ a [Signature](Signature.md)
 
 #### Defined in
 
-[lib/signature.ts:254](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L254)
+[lib/provable/crypto/signature.ts:251](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L251)
 
 ___
 
@@ -320,11 +320,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+CircuitValue.empty
 
 #### Defined in
 
-[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L255)
+[lib/provable/types/circuit-value.ts:189](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L189)
 
 ___
 
@@ -346,7 +346,7 @@ Decodes a base58 encoded signature into a [Signature](Signature.md).
 
 #### Defined in
 
-[lib/signature.ts:304](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/signature.ts#L304)
+[lib/provable/crypto/signature.ts:301](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/signature.ts#L301)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -373,11 +373,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromFields](CircuitValue.md#fromfields)
+CircuitValue.fromFields
 
 #### Defined in
 
-[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L175)
+[lib/provable/types/circuit-value.ts:109](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L109)
 
 ___
 
@@ -404,11 +404,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
+CircuitValue.fromJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:233](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L233)
+[lib/provable/types/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L167)
 
 ___
 
@@ -435,11 +435,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromObject](CircuitValue.md#fromobject)
+CircuitValue.fromObject
 
 #### Defined in
 
-[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L96)
+[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L30)
 
 ___
 
@@ -453,11 +453,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[sizeInFields](CircuitValue.md#sizeinfields)
+CircuitValue.sizeInFields
 
 #### Defined in
 
-[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L103)
+[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L37)
 
 ___
 
@@ -471,11 +471,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toAuxiliary](CircuitValue.md#toauxiliary)
+CircuitValue.toAuxiliary
 
 #### Defined in
 
-[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L125)
+[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L59)
 
 ___
 
@@ -502,17 +502,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant-1)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L214)
+[lib/provable/types/circuit-value.ts:148](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L148)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -529,15 +529,15 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields-1)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L108)
+[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L42)
 
 ___
 
@@ -564,11 +564,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toInput](CircuitValue.md#toinput)
+CircuitValue.toInput
 
 #### Defined in
 
-[lib/circuit-value.ts:129](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L129)
+[lib/provable/types/circuit-value.ts:63](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L63)
 
 ___
 
@@ -595,8 +595,8 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:222](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L222)
+[lib/provable/types/circuit-value.ts:156](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L156)

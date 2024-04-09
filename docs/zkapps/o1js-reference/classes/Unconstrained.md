@@ -78,7 +78,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit-value.ts:533](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L533)
+[lib/provable/types/unconstrained.ts:44](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L44)
 
 ## Properties
 
@@ -88,17 +88,17 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/circuit-value.ts:529](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L529)
+[lib/provable/types/unconstrained.ts:40](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L40)
 
 ___
 
 ### provable
 
-▪ `Static` **provable**: [`Provable`](../modules.md#provable-1)\<[`Unconstrained`](Unconstrained.md)\<`any`\>\> & \{ `toInput`: (`x`: [`Unconstrained`](Unconstrained.md)\<`any`\>) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }  }
+▪ `Static` **provable**: [`Provable`](../modules.md#provable-1)\<[`Unconstrained`](Unconstrained.md)\<`any`\>\> & \{ `toInput`: (`x`: [`Unconstrained`](Unconstrained.md)\<`any`\>) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  }  }
 
 #### Defined in
 
-[lib/circuit-value.ts:602](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L602)
+[lib/provable/types/unconstrained.ts:113](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L113)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Note: Can only be called outside provable code.
 
 #### Defined in
 
-[lib/circuit-value.ts:542](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L542)
+[lib/provable/types/unconstrained.ts:53](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L53)
 
 ___
 
@@ -138,7 +138,7 @@ Modify the unconstrained value.
 
 #### Defined in
 
-[lib/circuit-value.ts:556](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L556)
+[lib/provable/types/unconstrained.ts:67](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L67)
 
 ___
 
@@ -160,7 +160,7 @@ Set the unconstrained value to the same as another `Unconstrained`.
 
 #### Defined in
 
-[lib/circuit-value.ts:563](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L563)
+[lib/provable/types/unconstrained.ts:74](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L74)
 
 ___
 
@@ -182,7 +182,7 @@ Update an `Unconstrained` by a witness computation.
 
 #### Defined in
 
-[lib/circuit-value.ts:595](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L595)
+[lib/provable/types/unconstrained.ts:106](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L106)
 
 ___
 
@@ -218,7 +218,7 @@ let xWrapped = Unconstrained.witness(() => Provable.toConstant(type, x));
 
 #### Defined in
 
-[lib/circuit-value.ts:578](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L578)
+[lib/provable/types/unconstrained.ts:89](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L89)
 
 ___
 
@@ -246,4 +246,4 @@ Create an `Unconstrained` from a witness computation.
 
 #### Defined in
 
-[lib/circuit-value.ts:585](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L585)
+[lib/provable/types/unconstrained.ts:96](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/unconstrained.ts#L96)
