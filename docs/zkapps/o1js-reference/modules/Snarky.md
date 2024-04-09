@@ -23,13 +23,13 @@ Note for devs: This module is intended to closely mirror snarky-ml's core, low-l
 
 #### Defined in
 
-[snarky.d.ts:141](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L141)
+[snarky.d.ts:164](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L164)
 
 ___
 
 ### Main
 
-Ƭ **Main**: (`publicInput`: `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\>) => `void`
+Ƭ **Main**: (`publicInput`: `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\>) => `void`
 
 #### Type declaration
 
@@ -39,7 +39,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `publicInput` | `MlArray`<[`FieldVar`](../modules.md#fieldvar-1)\> |
+| `publicInput` | `MlArray`\<[`FieldVar`](../modules.md#fieldvar-1)\> |
 
 ##### Returns
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:140](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L140)
+[snarky.d.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L163)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:143](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L143)
+[snarky.d.ts:166](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L166)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[snarky.d.ts:142](https://github.com/o1-labs/o1js/blob/fec4d35f/src/snarky.d.ts#L142)
+[snarky.d.ts:165](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L165)

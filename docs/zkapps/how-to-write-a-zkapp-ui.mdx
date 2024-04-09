@@ -15,7 +15,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -36,6 +36,8 @@ You can use one of the provided scaffolding options and add your smart contract 
 ### Specify the smart contracts to import 
 
 The `index.ts` file is the entry point of your project that imports all smart contract classes you want access to and exports them to your smart contract. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
+
+In `index.ts`:
 
 ```ts
 import { YourSmartContract } from './YourSmartContract.js';
@@ -59,7 +61,15 @@ To test iteratively and use your smart contract within your UI project during lo
   npm link <your-package-name>
   ```
 
-  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`.
+  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`. 
+
+  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/how-to-write-a-zkapp) is `sudoku`. 
+  
+  To create the symlinks for `sudoku`:
+
+  ```sh
+  npm link sudoku
+  ```
 
 1. To import the smart contracts into your UI project, add the import statement to the `index.ts` file:
 
@@ -67,7 +77,15 @@ To test iteratively and use your smart contract within your UI project during lo
   import { YourSmartContract } from 'your-package-name';`
   ```
 
-1. After making changes, build your project so that the changes are reflected in the smart contract consumed by your UI project:
+  For example, to import the `sudoku` example project, your `index.ts` file is:
+
+  ```ts
+  import { SudokuZkApp } from './sudoku.js';
+
+  export { SudokuZkApp };
+  ```
+
+1. After you make changes to your project files, be sure to build your project so that the changes are reflected in the smart contract consumed by your UI project:
 
   ```sh
   npm run build
@@ -98,7 +116,6 @@ Package names must be unique. An error occurs if the package name already exists
 To check existing package names on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command. 
 
 To avoid naming collisions, npm allows you to publish scoped packages: `@your-username/your-package-name`. See [Introduction to packages and modules](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules) in the npm reference docs.
-
 
 ### Consuming your smart contract in your UI
 
@@ -264,7 +281,7 @@ To interact with your zkApp, users of your zkApp must have the Auro Wallet insta
   }
   ```
 
-  A best practice is to show the error message in your UI.
+  The convention is to show the error message in your UI.
 
 :::info
 
@@ -274,10 +291,10 @@ For details about the Mina Provider API, see the [Mina Provider](https://docs.au
 
 ### Display assertion exceptions in your UI
 
-If an assertion exception occurs while a user interacts with any of your smart contract methods, you want to capture this and display a helpful message for the user in your UI.
+If an assertion exception occurs while a user interacts with any of your smart contract methods, you want to capture this error and display a helpful message for the user in your UI.
 
 1. Use a try-catch statement to catch exceptions when a user invokes a method on your smart contract.
-2. Use a switch-case statement to identify which exception was thrown. Add a matching case for each unique assertion within your method. To assist with this, consider setting custom error messages for your assertions while writing the smart contract. For example: `INSUFFICIENT_BALANCE`.
+2. Use a switch-case statement to identify which exception was thrown. Add a matching case for each unique assertion within your method. To assist with this error handling, consider setting custom error messages for your assertions while writing the smart contract. For example: `INSUFFICIENT_BALANCE`.
 3. Display a helpful error message for the user within your UI, like:
 
   ```ts

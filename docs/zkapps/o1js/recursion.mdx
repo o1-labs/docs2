@@ -5,7 +5,7 @@ description: An in-depth look at using recursion and recursive proofs in o1js to
 keywords:
   - recursion
   - o1js
-  - zero-knowledge proofs
+  - Zero knowledge proofs
   - mina blockchain
   - smart contract
   - zkapp
@@ -16,45 +16,45 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
-:::experimental
-
-The use of the ZkProgram API with recursion is experimental. This API may change. To learn more, see [Experimental Features](/zkapps/experimental).
-
-:::
-
-Specifically, ZkProgram methods could be refactored to explicitly return values rather than requiring them to be passed as further inputs.
 
 # Recursion
 
-Kimchi, the proof system that backs o1js, supports arbitrary infinite recursive proof construction of circuits through integration with the Pickles recursive system. Recursion is an incredibly powerful primitive that has a wide-array of uses, including:
+Kimchi, the custom proof system that backs o1js, supports arbitrary infinite recursive proof construction of circuits through integration with the Pickles recursive system. Mina Protocol is the only blockchain that offers infinite recursion.
+
+Recursion is an incredibly powerful primitive that has a wide-array of uses. For example:
 
 1. Mina uses linear recursive proofs to compress the blockchain, an infinitely growing structure, down to a constant size.
-2. Mina also uses "rollup-like" tree-based recursive proofs to _in parallel_ compress transactions within blocks down to a constant size.
-3. A Mastermind game that uses linear recursive proofs, an example of an application-specific rollup, to progress the state-machine of the application without needing to sync back to the game.
-4. App-specific rollups can use recursion to communicate to each other, sort like app chains using IBC or parachains using XCVM to send messages.
+2. Mina also uses "rollup-like" tree-based recursive proofs to, _in parallel_, compress transactions within blocks down to a constant size.
+3. An app-specific rollup like a Mastermind game that uses linear recursive proofs to progress the state machine of the application without needing to sync back to the game.
+4. App-specific rollups can use recursion to communicate to each other, like app chains using Inter-Blockchain Communication protocol [(IBC)](https://cosmos.network/ibc/) (Cosmos) or parachains using Cross-Chain Virtual Machine [(XVM)](https://wiki.polkadot.network/docs/learn-xcm) to send messages.
 
-More generally, you can use recursion to verify any zero-knowledge program as part of your zkApp.
+More generally, you can use recursion to verify any zero knowledge program as part of your zkApp.
 
-## Overview
+## ZkProgram Overview
 
-In o1js, you can use `ZkProgram()` to define the steps of our recursive program. Just like `SmartContract()` methods, `ZkProgram()` methods have any number of methods and execute off-chain.
+:::note
+zkProgram is available as a top-level import. `Experimental.ZkProgram` is deprecated. If you are experiencing issues with zkProgram, be sure to update [o1js](https://github.com/o1-labs/o1js) to the latest version.
+:::
 
-After performing your desired recursive steps, you can settle the interaction on Mina's blockchain and by embedding the  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
+In o1js, you can use `ZkProgram()` to define the steps of a recursive program. Like `SmartContract()` methods, `ZkProgram()` methods execute off-chain.
 
-Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _private by default_ and never seen by the Mina network.  Unlike `SmartContract` methods, as the zkApp developer you choose the shape of the public input to all the methods within a `ZkProgram`.
+After performing the desired recursive steps, you can settle the interaction on Mina's blockchain by embedding  `ZkProgram` within a `SmartContract` method that verifies the underlying proof of execution and extracts the output that can be used elsewhere in the method (like storing the output in app-state, for example).
 
-## Recursively verifying a simple program in a zkApp
+Similar to methods within the `SmartContract` class, inputs to `ZkProgram` are _private by default_ and are never seen by the Mina network.  Unlike `SmartContract` methods, as the zkApp developer you choose the shape of the public input to all methods within a `ZkProgram`.
+
+## Example: Recursively verify a simple program in a zkApp
 
 This simple example has only one method that proves the public input it received is zero.
 
 ```typescript
-import { Field, Experimental } from 'o1js';
+import { Field, ZkProgram } from 'o1js';
 
-const SimpleProgram = Experimental.ZkProgram({
+const SimpleProgram = ZkProgram({
+  name: "simple-program-example",
   publicInput: Field,
 
   methods: {
@@ -69,19 +69,19 @@ const SimpleProgram = Experimental.ZkProgram({
 });
 ```
 
-Next, compile this program:
+To compile this program:
 
 ```typescript
 const { verificationKey } = await SimpleProgram.compile();
 ```
 
-Now you can use it to create a proof:
+Now, you can use it to create a proof:
 
 ```typescript
 const proof = await SimpleProgram.run(Field(0));
 ```
 
-And verify this proof from within any method of your `SmartContract` class:
+To verify this proof from within any method of your `SmartContract` class:
 
 ```typescript
 @method foo(proof: SimpleProgram.Proof) {
@@ -93,18 +93,19 @@ And verify this proof from within any method of your `SmartContract` class:
 }
 ```
 
-In this excample, `foo` is taking the `SimpleProgram` proof as a private argument to the method, verifying that the execution was valid, and then using the output.
+In this example, `foo` is taking the `SimpleProgram` proof as a private argument to the method, verifying that the execution was valid, and then using the output.
 
-## Recursively verifying a linear recursive program in a zkApp
+## Example: Recursively verify a linear recursive program in a zkApp
 
-This example shows a recursive `ZkProgram` that you can use to create recursive zero-knowledge proofs. In other proof systems, this is extremely difficult to construct if it is even possible. However, in o1js you can describe a recursive ZkProgram with a simple recursive function.
+This example shows a recursive `ZkProgram` that you can use to create recursive zero knowledge proofs. In other proof systems, this is extremely difficult to construct (if it is even possible). In o1js, you can describe a recursive ZkProgram with a simple recursive function.
 
-This program describes a recursive operation of adding one repeatedly to a number. Note that you recursively depend on the older proof as a private argument to your method.
+This program describes a recursive operation of adding one repeatedly to a number:
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'o1js';
+import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
-const AddOne = Experimental.ZkProgram({
+const AddOne = ZkProgram({
+  name: "add-one-example",
   publicInput: Field,
 
   methods: {
@@ -128,6 +129,8 @@ const AddOne = Experimental.ZkProgram({
 });
 ```
 
+Note that this example recursively depends on the older proof as a private argument to your method.
+
 First, compile this program and make the base proof as before:
 
 ```typescript
@@ -136,13 +139,13 @@ const { verificationKey } = await AddOne.compile();
 const proof = await AddOne.baseCase(Field(0));
 ```
 
-This time use this proof as input to recursively add one again:
+This time, use this proof as input to recursively add one again:
 
 ```typescript
 const proof1 = await AddOne.step(Field(1), proof);
 ```
 
-And repeat this as many times as you want:
+Repeat this as many times as you want:
 
 ```typescript
 const proof2 = await AddOne.step(Field(2), proof1);
@@ -158,16 +161,17 @@ Finally, verify the proof from within a SmartContract like the earlier example:
 }
 ```
 
-## Recursively verifying a tree-based recursive program in a zkApp
+## Example: Recursively verify a tree-based recursive program in a zkApp
 
-Tree recursion is even more rarely seen in other proof systems and zk toolkits. This is used internally within Mina as part of its decentralized prover and sequencing mechanism for rollups, so it's supported very robustly by Kimchi.
+Tree recursion is rarely seen in other proof systems and zk toolkits. Tree recursion is used internally within Mina as part of its decentralized prover and sequencing mechanism for rollups, so it's supported very robustly by Kimchi.
 
 This example program describes a very simple rollup for adding numbers:
 
 ```typescript
-import { SelfProof, Field, Experimental, verify } from 'o1js';
+import { SelfProof, Field, ZkProgram, verify } from 'o1js';
 
-let RollupAdd = Experimental.ZkProgram({
+let RollupAdd = ZkProgram({
+  name: "rollup-add-example",
   publicInput: Field,
 
   methods: {
@@ -197,7 +201,7 @@ let RollupAdd = Experimental.ZkProgram({
 
 ## Bonus: Using ZkPrograms outside of zkApps
 
-You can also use ZkProgram directly to prove and verify arbitrary zero-knowledge programs (also known as circuits).
+You can also use ZkProgram directly to prove and verify arbitrary zero knowledge programs (also known as circuits):
 
 ```typescript
 const { verificationKey } = await MyProgram.compile();

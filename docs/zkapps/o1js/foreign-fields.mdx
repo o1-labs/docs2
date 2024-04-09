@@ -1,0 +1,319 @@
+---
+title: Foreign Field Arithmetic
+hide_title: true
+description: Foreign field arithmetic in o1js.
+keywords:
+  - foreign field
+  - non-native arithmetic
+  - wrong-field
+  - bigint
+  - o1js
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+
+:::
+
+# Foreign Field Arithmetic
+
+A foreign field is a [finite field](https://en.wikipedia.org/wiki/Modular_arithmetic) different from the native field of the proof system. o1js exposes operations like modular addition and multiplication that work in any finite field of size less than `2^259`.
+
+Foreign fields are useful for implementing cryptographic algorithms in provable code. For example, you use them for verification of Ethereum-compatible ECDSA signatures.
+
+## Why foreign fields?
+
+The core data type in o1js is `Field` that represents the field that is _native to the proof system_. In other words, addition and multiplication of Fields are the fundamental operations upon which all provable code is built. Because a lot of cryptography uses finite fields, o1js natively supports several cryptographic algorithms with high efficiency. See classes and modules like [Poseidon](../o1js-reference/modules#poseidon), [PublicKey](../o1js-reference/classes/Types.PublicKey), [PrivateKey](../o1js-reference/classes/PrivateKey), [Signature](../o1js-reference/classes/Signature), and [Encryption](../o1js-reference/modules/Encryption).
+
+However, these classes and modules are not compatible with the cryptography used in the wider world: `Signature.verify()` doesn't let you verify a signed JWT or email, and `Encryption.decrypt()` won't help you with your WhatsApp messages. That's because these methods use different finite fields than the native Field that was chosen primarily to enable efficient zk proofs.
+
+Here is where foreign fields come in: They let you perform algorithms that connect your zkApp with the outside world of cryptography. Foreign fields come with an efficiency hit compared to the native Field, but the heavily engineered foreign fields are efficient enough to unlock many interesting use cases.
+
+## Basic usage
+
+This section provides a brief overview of how to use foreign fields. For more details, refer to the [API reference](../o1js-reference/classes/ForeignField) or the doc comments on each method.
+
+The entry point for using foreign fields is the `createForeignField()` function:
+
+```ts
+import { createForeignField } from 'o1js';
+
+class Field17 extends createForeignField(17n) {}
+```
+
+The only parameter that `createForeignField()` takes is the modulus or size of the field. This code example passes in `17n` so that `Field17` allows you to perform arithmetic modulo 17:
+
+```ts
+let x = Field17.from(16);
+x.assertEquals(-1); // 16 = -1 (mod 17)
+x.mul(x).assertEquals(1); // 16 * 16 = 15 * 17 + 1 = 1 (mod 17)
+```
+
+As modulus, any number of up to 259 bits is supported. This means that `ForeignField` can be used for many elliptic curve algorithms (where bit sizes are often just below 256) but not for RSA with its typical bit size of 2048.
+
+Notably, the modulus does not have to be a prime number. For example, you can create a `UInt256` class where the modulus is `2^256`:
+
+```ts
+class UInt256 extends createForeignField(1n << 256n) {}
+
+// and now you can do arithmetic modulo 2^256!
+let a = UInt256.from(1n << 255n);
+let b = UInt256.from((1n << 255n) + 7n);
+a.add(b).assertEquals(7);
+```
+
+The base type that is common to classes created by `createForeignField()` is `ForeignField`:
+
+```ts
+import { ForeignField } from 'o1js';
+
+// ...
+
+let zero: ForeignField = Field17.from(0);
+let alsoZero: ForeignField = UInt256.from(0);
+```
+
+`ForeignField` supports the basic arithmetic operations:
+
+```ts
+x.add(x); // addition
+x.sub(2); // subtraction
+x.neg(); // negation
+x.mul(3); // multiplication
+x.div(x); // division
+x.inv(); // inverse
+```
+
+Note that these operations are performed modulo the field size. So, `Field17.from(1).div(2)` gives 9 because `2 * 9 = 18 = 1 (mod 17)`.
+
+`ForeignField` also comes with a few other provable methods:
+
+```ts
+x.assertEquals(y); // assert x == y
+x.assertLessThan(2); // assert x < 2
+
+let bits = x.toBits(); // convert to a `Bool` array of size log2(modulus);
+Field17.fromBits(bits); // convert back
+```
+
+And there are non-provable methods for converting to and from JS values:
+
+```ts
+let y = SmallField.from(5n); // convert from bigint or number
+y.toBigInt() === 5n; // convert to bigint
+```
+
+As usual, you can find more information about each method in the [API reference](../o1js-reference/classes/ForeignField).
+
+## Three kinds of foreign fields
+
+If the basic usage examples look straightforward, here is where it gets a bit complicated.
+
+For each `ForeignField` class created with `createForeignField()`, there are actually three different variants: _unreduced_, _almost reduced_, and _canonical_.
+
+You find the variants as static properties on the class; they are themselves classes:
+
+```ts
+let x = new Field17.Unreduced(0);
+let y = new Field17.AlmostReduced(0);
+let z = new Field17.Canonical(0);
+```
+
+Unreduced field elements just have the `ForeignField` type. For the other two variants, there are narrower base types that are common to each variant:
+
+```ts
+import { AlmostReducedField, CanonicalField } from 'o1js';
+
+y satisfies AlmostReducedField;
+z satisfies CanonicalField;
+```
+
+In the following section, you learn when to use the different variants, and how to convert between them. You don't need to remember all of it, though: The type system guides you to use the right variant in each situation.
+
+### Unreduced fields
+
+Most arithmetic operations return unreduced fields:
+
+```ts
+import assert from 'assert';
+
+let z = x.add(x);
+assert(z instanceof Field17.Unreduced);
+```
+
+In short, **unreduced** means that a value can be larger than the modulus.
+
+For example, if `x` has the value 16, it is valid for `x.add(x)` to contain the value 32. The addition is correct modulo 17, but doesn't guarantee a result smaller than 17.
+
+:::note
+
+Unreduced doesn't usually mean that the underlying witness is larger than the modulus. It just means that it is not _proved_ to be smaller.
+A malicious prover _could_ make it larger by slightly modifying their local version of o1js and creating a proof with that version.
+
+:::
+
+Unreduced fields can be added and subtracted, but not multiplied or divided:
+
+```ts
+z.add(1).sub(x); // works
+
+assert((z as any).mul === undefined); // z.mul() is not defined
+assert((z as any).inv === undefined);
+assert((z as any).div === undefined);
+```
+
+### Almost reduced fields
+
+To do multiplication, you need almost reduced fields. You can convert to them by using `.assertAlmostReduced()`:
+
+```ts
+let zAlmost = z.assertAlmostReduced();
+assert(zAlmost instanceof SmallField.AlmostReduced);
+```
+
+Now you can do multiplication and division:
+
+```ts
+let zz = zAlmost.mul(zAlmost); // zAlmost.mul() is defined
+
+// but .mul() returns an unreduced field again:
+assert(zz instanceof SmallField.Unreduced);
+
+// zAlmost.inv() is defined, and returns an almost reduced field:
+assert(zAlmost.inv() instanceof SmallField.AlmostReduced);
+```
+
+It can be convenient to require almost reduced fields as inputs to your smart contract. To do that, create a class that can also serve as a type and use its `.provable` property when passing to the state decorator:
+
+```ts
+class AlmostField17 extends Field17.AlmostReduced {}
+
+class MyContract extends SmartContract {
+  @state(AlmostField17.provable) x = State<AlmostField17>();
+
+  @method myMethod(y: AlmostField17) {
+    let x = y.mul(2);
+    this.x.set(x.assertAlmostReduced());
+  }
+}
+```
+
+#### What does almost reduced mean?
+
+The definition of almost reduced is somewhat technical. The main motivation is to guarantee that the way you prove modular multiplication is sound. That is definitely true for field elements `< 2^259`. (Recall that the modulus is required to be `< 2^259`.)
+
+However, you actually prove a stronger condition, which saves a few constraints in some places:
+
+`z` is **almost reduced** modulo `f`, if `z >> 176` is smaller or equal than `f >> 176`. (`>>` means a [right shift](https://en.wikipedia.org/wiki/Arithmetic_shift).)
+
+:::note
+
+Example: Assume `x` is a `UInt256` holding the value `2^130`. After computing `z = x.mul(x)`, it is valid for `z` to be `2^260`.
+
+However, by calling `z.assertAlmostReduced()`, you prove that `z` is smaller than `2^259` and safe to use in another multiplication. According to the stronger definition, you even have `z < 2^256`.
+
+:::
+
+Why is `AlmostReducedField` exposed as a separate type, instead of _always_ proving conditions necessary for multiplication? Because that would take up additional constraints!
+
+`ForeignField` is built to allow you to use the minimum amount of constraints in a way that is safely guided by the type system. See [minimizing constraints](#minimizing-constraints) for more details.
+
+### Canonical fields
+
+Canonical fields are the strictest variant. They are guaranteed to be smaller than the modulus.
+
+When you create fields from constants, they always get fully reduced. The type signature of `ForeignField.from()` reflects this and returns a canonical field:
+
+```ts
+let constant = Field17.from(16);
+assert(constant instanceof Field17.Canonical);
+
+// these also work, because `from()` takes the input mod 17:
+Field17.from(100000000n) satisfies CanonicalForeignField;
+Field17.from(-1) satisfies CanonicalForeignField;
+```
+
+You can convert any field to canonical by calling `.assertCanonical()`:
+
+```ts
+let zCanonical = z.assertCanonical();
+assert(zCanonical instanceof Field17.Canonical);
+```
+
+Canonical fields are a special case of almost reduced fields at the type level:
+
+```ts
+constant satisfies AlmostForeignField;
+constant.mul(constant); // works
+```
+
+The cheapest way to prove that an existing field element is canonical is to show that it is equal to a constant:
+
+```ts
+let zCanonical = z.assertEquals(3);
+assert(zCanonical instanceof Field17.Canonical);
+```
+
+An operation that is only possible on canonical fields is the boolean equality check:
+
+```ts
+let xCanonical = x.assertCanonical();
+let yCanonical = y.assertCanonical();
+let isEqual = xCanonical.equals(yCanonical);
+```
+
+Inputs must be canonical for `equals()` because the operation checks for strict equality, not equality modulo the field size. Note that being strictly unequal does not imply being unequal as field elements, so `equals()` on non-canonical fields would be error-prone.
+
+## Minimizing constraints
+
+Follow these strategies to minimize constraints.
+
+#### `assertAlmostReduced()`
+
+Here is a trick to save constraints when you need to "almost reduce" many field elements: Always reduce them in _batches of 3_.
+
+For example, do this when doing many multiplications in a row:
+
+```ts
+let z1 = x.mul(7);
+let z2 = x.add(11);
+let z3 = x.sub(13);
+
+let [z1r, z2r, z3r] = Field17.assertAlmostReduced(z1, z2, z3);
+
+z1r.mul(z2r);
+z2r.div(z3r);
+```
+
+`assertAlmostReduced()` takes any number of inputs, but is the most efficient with multiples of 3. For example:
+
+- 1 input takes 4.5 constraints
+- 2 inputs take 5 constraints
+- 3 inputs take 5.5 constraints
+
+#### `sum()`
+
+Another opportunity to save constraints is when many additions or subtractions are performed in a row. Instead of doing something like `x.add(y).sub(z)`, use `ForeignField.sum()`:
+
+```ts
+// u = x + y - z
+let u = Field17.sum([x, y, z], [1, -1]);
+```
+
+The second argument is a list of signs: either 1 or -1, depending on whether you want to add or subtract the corresponding value. So, the 1 in this example means "add x and y", and the -1 means "subtract z".
+
+To give a few more examples:
+
+```ts
+// u = x - y - z
+let u = Field17.sum([x, y, z], [-1, -1]);
+
+// u = 2*x + y
+let u = Field17.sum([x, x, y], [1, 1]);
+
+// u = -3*z
+let u = Field17.sum([0, z, z, z], [-1, -1, -1]);
+```
+
+Doing small multiplications like `-3*z` like this is more efficient than using `mul()` for the task. `sum()` uses 6 constraints for the first two summands but only 1 constraint per additional summand.

@@ -9,6 +9,7 @@ module.exports = {
         'about-mina/what-are-zero-knowledge-proofs',
         'about-mina/protocol-architecture',
         'about-mina/consensus',
+        'about-mina/security',
         'about-mina/faq',
         {
           type: 'link',
@@ -33,17 +34,18 @@ module.exports = {
       label: 'zkApp Developers',
       items: [
         'zkapps/index',
+        'zkapps/how-zkapps-work',
         'zkapps/getting-started-zkapps',
         'zkapps/install-zkapp-cli',
-        'zkapps/how-zkapps-work',
         {
           type: 'category',
           label: 'Creating zkApps',
           items: [
             'zkapps/how-to-write-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
-            'zkapps/how-to-test-a-zkapp',
+            'zkapps/testing-zkapps-locally',
+            'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
+            'zkapps/how-to-write-a-zkapp-ui',
           ],
         },
         {
@@ -60,9 +62,15 @@ module.exports = {
             'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
+            'zkapps/o1js/gadgets',
+            'zkapps/o1js/bitwise-operations',
+            'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
             'zkapps/o1js/permissions',
             'zkapps/o1js/time-locked-accounts',
+            'zkapps/o1js/keccak',
+            'zkapps/o1js/ecdsa',
+            'zkapps/o1js/sha256',
           ],
         },
         {
@@ -77,7 +85,6 @@ module.exports = {
             'zkapps/tutorials/common-types-and-functions',
             'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
-            'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',
@@ -110,8 +117,28 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AccountUpdateForest',
+                  label: 'AccountUpdateForest',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AccountUpdateTree',
+                  label: 'AccountUpdateTree',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/AlmostForeignField',
+                  label: 'AlmostForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
+                  label: 'CanonicalForeignField',
                 },
                 {
                   type: 'doc',
@@ -135,13 +162,33 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/EcdsaSignature',
+                  label: 'EcdsaSignature',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignCurve',
+                  label: 'ForeignCurve',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ForeignField',
+                  label: 'ForeignField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Group',
                   label: 'Group',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Hashed',
+                  label: 'Hashed',
                 },
                 {
                   type: 'doc',
@@ -157,6 +204,16 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Ledger',
                   label: 'Ledger',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/MerkleList',
+                  label: 'MerkleList',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/MerkleListIterator',
+                  label: 'MerkleListIterator',
                 },
                 {
                   type: 'doc',
@@ -177,6 +234,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Nullifier',
                   label: 'Nullifier',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Packed',
+                  label: 'Packed',
                 },
                 {
                   type: 'doc',
@@ -220,6 +282,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/TokenAccountUpdateIterator',
+                  label: 'TokenAccountUpdateIterator',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/TokenContract',
+                  label: 'TokenContract',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/TokenSymbol',
                   label: 'TokenSymbol',
                 },
@@ -240,6 +312,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/UInt8',
+                  label: 'UInt8',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Unconstrained',
+                  label: 'Unconstrained',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/VerificationKey',
                   label: 'VerificationKey',
                 },
@@ -249,11 +331,6 @@ module.exports = {
               type: 'category',
               label: 'Interfaces',
               items: [
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/Mina.TransactionId',
-                  label: 'Mina.TransactionId',
-                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/interfaces/Permissions',
@@ -277,6 +354,16 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Bytes',
+                  label: 'Bytes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Crypto',
+                  label: 'Crypto',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Encoding',
                   label: 'Encoding',
                 },
@@ -289,6 +376,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Experimental',
                   label: 'Experimental',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/Lightnet',
+                  label: 'Lightnet',
                 },
                 {
                   type: 'doc',
@@ -314,6 +406,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/modules/Types',
                   label: 'Types',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/ZkProgram',
+                  label: 'ZkProgram',
                 },
               ],
             },
@@ -347,7 +444,7 @@ module.exports = {
         'mina-protocol/hardforks',
         'mina-protocol/time-locked-accounts',
         'mina-protocol/sending-a-payment',
-        'mina-protocol/lifecycle-of-a-payment'
+        'mina-protocol/lifecycle-of-a-payment',
       ],
     },
     {
@@ -362,7 +459,7 @@ module.exports = {
             'node-operators/foundation-delegation-program',
             'node-operators/delegation-tiebreak',
             'node-operators/bp-sidecar',
-            'node-operators/uptime-tracking-system'
+            'node-operators/uptime-tracking-system',
           ],
         },
         'node-operators/getting-started',
@@ -371,7 +468,7 @@ module.exports = {
         'node-operators/connecting-to-devnet',
         'node-operators/staking-and-snarking',
         'node-operators/hot-cold-block-production',
-        'node-operators/seed-peers',        
+        'node-operators/seed-peers',
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         {
@@ -381,12 +478,12 @@ module.exports = {
             'node-operators/querying-data',
             'node-operators/archive-node',
             'node-operators/archive-redundancy',
-            'node-operators/rosetta'
+            'node-operators/rosetta',
           ],
         },
         'node-operators/mina-cli-reference',
         'node-operators/troubleshooting',
-        'node-operators/faq'
+        'node-operators/faq',
       ],
     },
     {
@@ -401,7 +498,6 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/client-sdk',
         'node-developers/contributing',
         'node-developers/logging',
       ],
@@ -410,9 +506,36 @@ module.exports = {
       type: 'category',
       label: 'Exchange Operators',
       items: [
-        'exchange-operators/rosetta2',
-        'exchange-operators/faq'
-    ],
+        {
+          type: 'category',
+          label: 'Rosetta API',
+          link: {
+            type: 'doc',
+            id: 'exchange-operators/rosetta/index',
+          },
+          items: [
+            'exchange-operators/rosetta/run-with-docker',
+            'exchange-operators/rosetta/build-from-sources',
+            'exchange-operators/rosetta/send-requests',
+            {
+              type: 'category',
+              label: 'Code Samples',
+              link: {
+                type: 'doc',
+                id: 'exchange-operators/rosetta/samples/index',
+              },
+              items: [
+                'exchange-operators/rosetta/samples/requests',
+                'exchange-operators/rosetta/samples/using-signer',
+                'exchange-operators/rosetta/samples/scan-blocks',
+                'exchange-operators/rosetta/samples/track-deposits',
+                'exchange-operators/rosetta/samples/send-transactions',
+              ],
+            },
+          ],
+        },
+        'exchange-operators/faq',
+      ],
     },
     {
       type: 'category',
@@ -425,9 +548,9 @@ module.exports = {
         'test-world-2/incentives',
         'test-world-2/bug-reporting',
         'test-world-2/launching-a-node',
-        'test-world-2/questions'
+        'test-world-2/questions',
       ],
-    },    
+    },
     {
       type: 'category',
       label: 'Participate',
