@@ -8,7 +8,7 @@ const Add = ZkProgram({
     init: {
       privateInputs: [],
 
-      method(state: Field) {
+      async method(state: Field) {
         state.assertEquals(Field(0));
       },
     },
@@ -16,7 +16,7 @@ const Add = ZkProgram({
     addNumber: {
       privateInputs: [SelfProof, Field],
 
-      method(
+      async method(
         newState: Field,
         earlierProof: SelfProof<Field, void>,
         numberToAdd: Field
@@ -29,7 +29,7 @@ const Add = ZkProgram({
     add: {
       privateInputs: [SelfProof, SelfProof],
 
-      method(
+      async method(
         newState: Field,
         earlierProof1: SelfProof<Field, void>,
         earlierProof2: SelfProof<Field, void>

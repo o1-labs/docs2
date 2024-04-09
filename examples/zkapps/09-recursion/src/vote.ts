@@ -179,7 +179,7 @@ const Vote = ZkProgram({
     create: {
       privateInputs: [],
 
-      method(state: VoteState) {
+      async method(state: VoteState) {
         VoteState.assertInitialState(state);
       },
     },
@@ -193,7 +193,7 @@ const Vote = ZkProgram({
         MerkleMapWitness,
       ],
 
-      method(
+      async method(
         newState: VoteState,
         earlierProof: SelfProof<VoteState, void>,
         voteFor: Bool,
