@@ -24,7 +24,7 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -41,7 +41,7 @@ The [example project](https://github.com/o1-labs/docs2/tree/main/examples/zkapps
 
 ## Prerequisites
 
-This tutorial has been verified with [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.11.0` and [SnarkyJS](https://www.npmjs.com/package/snarkyjs) `0.12.1`.
+This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.15.2`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -301,7 +301,7 @@ import {
   ...
   MerkleTree,
   ...
-} from 'snarkyjs'
+} from 'o1js'
 ```
 
 To create Merkle trees in your application:
@@ -333,7 +333,7 @@ For example, to put a condition on a leaf update, the `update` function checks t
     incrementAmount: Field
   ) {
     const initialRoot = this.treeRoot.get();
-    this.treeRoot.assertEquals(initialRoot);
+    this.treeRoot.requireEquals(initialRoot);
 
     incrementAmount.assertLt(Field(10));
 
@@ -375,8 +375,8 @@ deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
 
 const pendingDeployTx = await deployTxn.send();
 /**
- * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash()`
- * `.hash()` returns the transaction hash
+ * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash`
+ * `.hash` returns the transaction hash
  * `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
  */
 await pendingDeployTx.wait();
@@ -456,7 +456,7 @@ It can be used inside smart contracts with a witness, similar to merkle trees
     incrementAmount: Field,
   ) {
     const initialRoot = this.mapRoot.get();
-    this.mapRoot.assertEquals(initialRoot);
+    this.mapRoot.requireEquals(initialRoot);
 
     incrementAmount.assertLt(Field(10));
 
@@ -509,7 +509,3 @@ You use [MerkleMaps](/zkapps/o1js-reference/classes/MerkleMap) to implement many
 Congratulations! You have finished reviewing more common types and functions in o1js. With this, you should now be capable of writing many advanced smart contracts and zkApps.
 
 To use more data from your zkApp, check out [Tutorial 6](offchain-storage) to learn how to use off-chain storage.
-
-## Other Resources
-
-<ResponsiveVideo src="https://www.youtube.com/embed/nxM7VmJqoU4" />

@@ -1,6 +1,6 @@
 [o1js](../README.md) / [Modules](../modules.md) / Proof
 
-# Class: Proof<Input, Output\>
+# Class: Proof\<Input, Output\>
 
 ## Type parameters
 
@@ -37,13 +37,14 @@
 - [toJSON](Proof.md#tojson)
 - [verify](Proof.md#verify)
 - [verifyIf](Proof.md#verifyif)
+- [dummy](Proof.md#dummy)
 - [fromJSON](Proof.md#fromjson)
 
 ## Constructors
 
 ### constructor
 
-• **new Proof**<`Input`, `Output`\>(`«destructured»`)
+• **new Proof**\<`Input`, `Output`\>(`«destructured»`)
 
 #### Type parameters
 
@@ -64,7 +65,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:119](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L119)
+[lib/proof-system.ts:136](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L136)
 
 ## Properties
 
@@ -74,7 +75,7 @@
 
 #### Defined in
 
-[lib/proof_system.ts:77](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L77)
+[lib/proof-system.ts:94](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L94)
 
 ___
 
@@ -84,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:76](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L76)
+[lib/proof-system.ts:93](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L93)
 
 ___
 
@@ -94,7 +95,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:74](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L74)
+[lib/proof-system.ts:91](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L91)
 
 ___
 
@@ -104,7 +105,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:75](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L75)
+[lib/proof-system.ts:92](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L92)
 
 ___
 
@@ -114,33 +115,33 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:78](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L78)
+[lib/proof-system.ts:95](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L95)
 
 ___
 
 ### publicInputType
 
-▪ `Static` **publicInputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
+▪ `Static` **publicInputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)\<`any`\>
 
 #### Defined in
 
-[lib/proof_system.ts:66](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L66)
+[lib/proof-system.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L83)
 
 ___
 
 ### publicOutputType
 
-▪ `Static` **publicOutputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)<`any`\>
+▪ `Static` **publicOutputType**: [`FlexibleProvablePure`](../modules.md#flexibleprovablepure)\<`any`\>
 
 #### Defined in
 
-[lib/proof_system.ts:67](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L67)
+[lib/proof-system.ts:84](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L84)
 
 ___
 
 ### tag
 
-▪ `Static` **tag**: () => { `name`: `string`  }
+▪ `Static` **tag**: () => \{ `name`: `string`  }
 
 #### Type declaration
 
@@ -156,7 +157,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:68](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L68)
+[lib/proof-system.ts:85](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L85)
 
 ## Methods
 
@@ -170,7 +171,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:86](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L86)
+[lib/proof-system.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L103)
 
 ___
 
@@ -184,7 +185,7 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:80](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L80)
+[lib/proof-system.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L97)
 
 ___
 
@@ -204,19 +205,69 @@ ___
 
 #### Defined in
 
-[lib/proof_system.ts:83](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L83)
+[lib/proof-system.ts:100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L100)
+
+___
+
+### dummy
+
+▸ `Static` **dummy**\<`Input`, `OutPut`\>(`publicInput`, `publicOutput`, `maxProofsVerified`, `domainLog2?`): `Promise`\<[`Proof`](Proof.md)\<`Input`, `OutPut`\>\>
+
+Dummy proof. This can be useful for ZkPrograms that handle the base case in the same
+method as the inductive case, using a pattern like this:
+
+```ts
+method(proof: SelfProof<I, O>, isRecursive: Bool) {
+  proof.verifyIf(isRecursive);
+  // ...
+}
+```
+
+To use such a method in the base case, you need a dummy proof:
+
+```ts
+let dummy = await MyProof.dummy(publicInput, publicOutput, 1);
+await myProgram.myMethod(dummy, Bool(false));
+```
+
+**Note**: The types of `publicInput` and `publicOutput`, as well as the `maxProofsVerified` parameter,
+must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs that any of your methods take as arguments.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `Input` |
+| `OutPut` |
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `publicInput` | `Input` | `undefined` |
+| `publicOutput` | `OutPut` | `undefined` |
+| `maxProofsVerified` | ``0`` \| ``2`` \| ``1`` | `undefined` |
+| `domainLog2` | `number` | `14` |
+
+#### Returns
+
+`Promise`\<[`Proof`](Proof.md)\<`Input`, `OutPut`\>\>
+
+#### Defined in
+
+[lib/proof-system.ts:174](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L174)
 
 ___
 
 ### fromJSON
 
-▸ `Static` **fromJSON**<`S`\>(`this`, `«destructured»`): [`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
+▸ `Static` **fromJSON**\<`S`\>(`this`, `«destructured»`): [`Proof`](Proof.md)\<[`InferProvable`](../modules.md#inferprovable)\<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)\<`S`[``"publicOutputType"``]\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `S` | extends `Subclass`<typeof [`Proof`](Proof.md)\> |
+| `S` | extends `Subclass`\<typeof [`Proof`](Proof.md)\> |
 
 #### Parameters
 
@@ -227,8 +278,8 @@ ___
 
 #### Returns
 
-[`Proof`](Proof.md)<[`InferProvable`](../modules.md#inferprovable)<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)<`S`[``"publicOutputType"``]\>\>
+[`Proof`](Proof.md)\<[`InferProvable`](../modules.md#inferprovable)\<`S`[``"publicInputType"``]\>, [`InferProvable`](../modules.md#inferprovable)\<`S`[``"publicOutputType"``]\>\>
 
 #### Defined in
 
-[lib/proof_system.ts:95](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/proof_system.ts#L95)
+[lib/proof-system.ts:112](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L112)

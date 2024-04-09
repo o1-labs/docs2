@@ -1,14 +1,8 @@
 import { Square } from './Square.js';
-import { isReady, shutdown, Mina, PrivateKey } from 'o1js';
+import { Mina, PrivateKey } from 'o1js';
 
 import fs from 'fs';
 import { loopUntilAccountExists, deploy } from './utils.js';
-
-await isReady;
-
-console.log('o1js loaded');
-
-// ----------------------------------------------------
 
 const Berkeley = Mina.Network(
   'https://proxy.berkeley.minaexplorer.com/graphql'
@@ -100,21 +94,15 @@ let pendingTransaction = await transaction.send();
 
 // ----------------------------------------------------
 
-if (!pendingTransaction.isSuccess) {
+if (pendingTransaction.status === 'rejected') {
   console.log('error sending transaction (see above)');
   process.exit(0);
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash()}
+  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();
 
 console.log(`updated state! ${await zkapp.num.fetch()}`);
-
-// ----------------------------------------------------
-
-console.log('Shutting down');
-
-await shutdown();

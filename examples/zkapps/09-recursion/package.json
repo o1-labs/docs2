@@ -1,5 +1,5 @@
 {
-  "name": "01-hello-world",
+  "name": "recursion",
   "version": "0.1.5",
   "description": "",
   "author": "",
@@ -43,6 +43,6 @@
     "typescript": "^4.7.2"
   },
   "peerDependencies": {
-    "o1js": "^0.12.1"
+    "o1js": "^0.15.4"
   }
 }

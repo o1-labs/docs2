@@ -51,7 +51,7 @@ export class WhitelistedTokenContract extends SmartContract {
     adminSignature: Signature
   ) {
     let totalAmountInCirculation = this.totalAmountInCirculation.get();
-    this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
+    this.totalAmountInCirculation.requireEquals(totalAmountInCirculation);
 
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
 
@@ -77,7 +77,7 @@ export class WhitelistedTokenContract extends SmartContract {
     adminSignature: Signature
   ) {
     const whitelistTreeRoot = this.whitelistTreeRoot.get();
-    this.whitelistTreeRoot.assertEquals(whitelistTreeRoot);
+    this.whitelistTreeRoot.requireEquals(whitelistTreeRoot);
 
     adminSignature.verify(this.address, [newWhitelistRoot]).assertTrue();
 
@@ -99,7 +99,7 @@ export class WhitelistedTokenContract extends SmartContract {
     whitelistWitness: MerkleWitness20
   ) {
     const whitelistTreeRoot = this.whitelistTreeRoot.get();
-    this.whitelistTreeRoot.assertEquals(whitelistTreeRoot);
+    this.whitelistTreeRoot.requireEquals(whitelistTreeRoot);
 
     whitelistWitness
       .calculateRoot(Poseidon.hash(receiverAddress.toFields()))

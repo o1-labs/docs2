@@ -17,7 +17,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -30,9 +30,9 @@ While this design solves a real problem, it also imposes some severe limitations
 on privacy and scalability.
 
 The Mina Protocol works differently. It verifies transactions (and previous
-blocks) cryptographically using recursive zero-knowledge proofs. Smart contract
-code is written in TypeScript and executes off chain. Mina nodes only need to
-verify a small proof in order to validate the associated execution. Better
+blocks) cryptographically using recursive zero knowledge proofs. Smart contract
+code is written in TypeScript and executes off chain. Mina nodes need to
+verify only a small proof in order to validate the associated execution. Better
 still, the proof does not reveal any information about the underlying
 computation, meaning developers can choose whether their inputs and outputs
 should be public or private, depending on the requirements of their application.
@@ -71,17 +71,17 @@ should be public or private, depending on the requirements of their application.
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Developer Tooling</td>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>New developer tools with unusual patterns like <span style={{color: '#7d4bbd'}}>Hardhat</span>, and <span style={{color: '#7d4bbd'}}>Truffle</span> are needed in order to manage the deployment of Ethereum smart contracts.</td>
-    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}><span style={{color: '#7d4bbd'}}>The Mina zkApp CLI</span> manages scaffolding, linting, testing, and deployment using common JavaScript/TypeScript tools you are already familiar with.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}><span style={{color: '#7d4bbd'}}>The zkApp CLI</span> manages scaffolding, linting, testing, and deployment using common JavaScript/TypeScript tools you are already familiar with.</td>
   </tr>
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Scaling</td>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Ethereum nodes must execute every transaction directly making <span style={{color: '#7d4bbd'}}>horizontal scaling hard</span>.</td>
-    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina’s recursive zero-knowledge proofs allow snark-workers to compress the blockchain, and developers to compress transactions using <span style={{color: '#7d4bbd'}}>native rollups</span> for <span style={{color: '#7d4bbd'}}>exponential scaling</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina’s recursive zero knowledge proofs allow snark-workers to compress the blockchain, and developers to compress transactions using <span style={{color: '#7d4bbd'}}>native rollups</span> for <span style={{color: '#7d4bbd'}}>exponential scaling</span>.</td>
   </tr>
   <tr>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Consensus</td>
     <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Ethereum nodes must download the entire block history (<span style={{color: '#7d4bbd'}}>~700GB</span>) in order to verify the current finalized chain state.</td>
-    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina clients can verify the current finalized state using a single <span style={{color: '#7d4bbd'}}>22KB</span> recursive zero-knowledge proof.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina clients can verify the current finalized state using a single <span style={{color: '#7d4bbd'}}>22KB</span> recursive zero knowledge proof.</td>
   </tr>
 </tbody>
 </table>
@@ -121,9 +121,7 @@ export class Add extends SmartContract {
 }
 ```
 
-## FAQ
-
-### How does Mina bridge to Ethereum?
+## How does Mina bridge to Ethereum?
 
 Mina proofs are small and easy to verify; this means that any Turing complete
 blockchain (like Ethereum) can validate the entire Mina state in a single

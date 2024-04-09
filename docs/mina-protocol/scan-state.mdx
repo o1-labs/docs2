@@ -14,7 +14,7 @@ keywords:
 
 The scan state is a data structure that allows decoupling the production of transaction SNARKs from block producers to SNARK workers.
 
-[Block producers](/mina-protocol/block-producers) do not have to produce transaction SNARKs, so the block production time can remain constant regardless of the transaction throughput. The scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [SNARK workers](/node-operators/snark-workers).
+[Block producers](/mina-protocol/block-producers) do not have to produce transaction SNARKs, so the block production time can remain constant regardless of the transaction throughput. The scan state data structure allows the transaction SNARK proof generation to be parallelized and completed by multiple competing [SNARK workers](/mina-protocol/snark-workers).
 
 The scan state is comprised of a forest of full [binary trees](https://en.wikipedia.org/wiki/Binary_tree), where each node in the tree is a job to be completed by a SNARK worker. The scan state periodically returns a single proof from the top of a tree that attests to the correctness of all transactions at the base of the tree.
 

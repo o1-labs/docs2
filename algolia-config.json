@@ -8,21 +8,17 @@
   "sitemap_urls": ["https://docs.minaprotocol.com/sitemap.xml"],
   "sitemap_alternate_links": true,
   "js_render": true,
-  "js_wait": 1,
-  "stop_urls": ["https://docs.minaprotocol.com/node-developers"],
+  "js_wait": 3,
   "selectors_exclude": ["footer"],
   "selectors": {
-    "lvl0": {
-      "selector": "",
-      "defaultValue": "Documentation"
-    },
-    "lvl1": "header h1, article h1, main h1, h1, head > title",
-    "lvl2": "article h2, main h2, h2",
-    "lvl3": "article h3, main h3, h3",
-    "lvl4": "article h4, main h4, h4",
-    "lvl5": "article h5, main h5, h5",
-    "lvl6": "article h6, main h6, h6",
-    "text": "article p, article li, main p, main li, p, li"
+    "lvl0": "",
+    "lvl1": ".markdown h1",
+    "lvl2": ".markdown h2",
+    "lvl3": ".markdown h3",
+    "lvl4": ".markdown h4",
+    "lvl5": ".markdown h5",
+    "lvl6": ".markdown h6",
+    "text": ".markdown p, .markdown li"
   },
   "strip_chars": " .,;:#",
   "custom_settings": {

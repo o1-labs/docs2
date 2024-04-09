@@ -12,7 +12,7 @@ You can create a new Field from everything "field-like" (`bigint`, integer `numb
 **`Example`**
 
 ```
-Field(10n); // Field contruction from a big integer
+Field(10n); // Field construction from a big integer
 Field(100); // Field construction from a number
 Field("1"); // Field construction from a decimal string
 ```
@@ -48,11 +48,11 @@ the value to convert to a [Field](Field.md)
 
 - [value](Field.md#value)
 - [ORDER](Field.md#order)
+- [sizeInBits](Field.md#sizeinbits)
+- [sizeInBytes](Field.md#sizeinbytes)
 
 ### Methods
 
-- [#compare](Field.md##compare)
-- [#toConstant](Field.md##toconstant)
 - [add](Field.md#add)
 - [assertBool](Field.md#assertbool)
 - [assertEquals](Field.md#assertequals)
@@ -85,11 +85,8 @@ the value to convert to a [Field](Field.md)
 - [toFields](Field.md#tofields)
 - [toJSON](Field.md#tojson)
 - [toString](Field.md#tostring)
-- [#checkBitLength](Field.md##checkbitlength)
-- [#isField](Field.md##isfield)
-- [#toConst](Field.md##toconst)
-- [#toVar](Field.md##tovar)
 - [check](Field.md#check)
+- [empty](Field.md#empty)
 - [from](Field.md#from)
 - [fromBits](Field.md#frombits)
 - [fromBytes](Field.md#frombytes)
@@ -97,7 +94,6 @@ the value to convert to a [Field](Field.md)
 - [fromJSON](Field.md#fromjson)
 - [random](Field.md#random)
 - [readBytes](Field.md#readbytes)
-- [sizeInBytes](Field.md#sizeinbytes)
 - [sizeInFields](Field.md#sizeinfields)
 - [toAuxiliary](Field.md#toauxiliary-1)
 - [toBytes](Field.md#tobytes)
@@ -117,11 +113,11 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
+| `x` | `string` \| `number` \| `bigint` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`FieldConst`](../modules.md#fieldconst-1) \| [`Field`](Field.md) |
 
 #### Defined in
 
-[lib/field.ts:143](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L143)
+[lib/field.ts:157](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L157)
 
 ## Properties
 
@@ -131,7 +127,7 @@ Coerce anything "field-like" (bigint, number, string, and [Field](Field.md)) to 
 
 #### Defined in
 
-[lib/field.ts:132](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L132)
+[lib/field.ts:146](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L146)
 
 ___
 
@@ -144,60 +140,51 @@ Order of the [Field](Field.md) is 2894802230932904885589274625217197696336305648
 
 #### Defined in
 
-[lib/field.ts:138](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L138)
+[lib/field.ts:152](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L152)
+
+___
+
+### sizeInBits
+
+▪ `Static` **sizeInBits**: `number` = `Fp.sizeInBits`
+
+The size of a [Field](Field.md) element in bits - 255.
+
+#### Defined in
+
+[lib/field.ts:1231](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1231)
+
+___
+
+### sizeInBytes
+
+▪ `Static` **sizeInBytes**: `number` = `Fp.sizeInBytes`
+
+The size of a [Field](Field.md) element in bytes - 32.
+
+#### Defined in
+
+[lib/field.ts:1226](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1226)
 
 ## Methods
-
-### #compare
-
-▸ `Private` **#compare**(`y`): `Object`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`FieldVar`](../modules.md#fieldvar-1) |
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `less` | [`Bool`](Bool.md) |
-| `lessOrEqual` | [`Bool`](Bool.md) |
-
-#### Defined in
-
-[lib/field.ts:656](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L656)
-
-___
-
-### #toConstant
-
-▸ `Private` **#toConstant**(`name`): [`ConstantField`](../modules.md#constantfield)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-
-#### Returns
-
-[`ConstantField`](../modules.md#constantfield)
-
-#### Defined in
-
-[lib/field.ts:203](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L203)
-
-___
 
 ### add
 
 ▸ **add**(`y`): [`Field`](Field.md)
 
 Add a "field-like" value to this [Field](Field.md) element.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element equivalent to the modular addition of the two value.
 
 **`Example`**
 
@@ -217,27 +204,15 @@ const x = Field(1);
 const sum = x.add(Field(-7));
 
 // If you try to print sum - `console.log(sum.toBigInt())` - you will realize that it prints a very big integer because this is modular arithmetic, and 1 + (-7) circles around the field to become p - 6.
-// You can use the reverse operation of addition (substraction) to prove the sum is calculated correctly.
+// You can use the reverse operation of addition (subtraction) to prove the sum is calculated correctly.
 
 sum.sub(x).assertEquals(Field(-7));
 sum.sub(Field(-7)).assertEquals(x);
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element equivalent to the modular addition of the two value.
-
 #### Defined in
 
-[lib/field.ts:311](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L311)
+[lib/field.ts:310](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L310)
 
 ___
 
@@ -262,7 +237,7 @@ Calling this function is equivalent to `Bool.or(Field(...).equals(1), Field(...)
 
 #### Defined in
 
-[lib/field.ts:920](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L920)
+[lib/field.ts:892](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L892)
 
 ___
 
@@ -289,7 +264,7 @@ See [equals](Field.md#equals) for more details.
 
 #### Defined in
 
-[lib/field.ts:269](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L269)
+[lib/field.ts:268](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L268)
 
 ___
 
@@ -319,7 +294,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:861](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L861)
+[lib/field.ts:833](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L833)
 
 ___
 
@@ -349,7 +324,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:878](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L878)
+[lib/field.ts:850](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L850)
 
 ___
 
@@ -379,7 +354,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:805](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L805)
+[lib/field.ts:777](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L777)
 
 ___
 
@@ -409,7 +384,7 @@ The method will throw if one of the inputs exceeds 253 bits.
 
 #### Defined in
 
-[lib/field.ts:833](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L833)
+[lib/field.ts:805](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L805)
 
 ___
 
@@ -420,12 +395,6 @@ ___
 Assert that this [Field](Field.md) does not equal another field-like value.
 
 Note: This uses fewer constraints than `x.equals(y).assertFalse()`.
-
-**`Example`**
-
-```ts
-x.assertNotEquals(0, "expect x to be non-zero");
-```
 
 #### Parameters
 
@@ -438,9 +407,15 @@ x.assertNotEquals(0, "expect x to be non-zero");
 
 `void`
 
+**`Example`**
+
+```ts
+x.assertNotEquals(0, "expect x to be non-zero");
+```
+
 #### Defined in
 
-[lib/field.ts:895](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L895)
+[lib/field.ts:867](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L867)
 
 ___
 
@@ -451,6 +426,18 @@ ___
 Divide another "field-like" value through this [Field](Field.md).
 
 Proves that the denominator is non-zero, or throws a "Division by zero" error.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element equivalent to the modular division of the two value.
 
 **`Example`**
 
@@ -477,21 +464,9 @@ const quotient = x.div(y);
 quotient.mul(y).assertEquals(x);
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element equivalent to the modular division of the two value.
-
 #### Defined in
 
-[lib/field.ts:524](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L524)
+[lib/field.ts:523](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L523)
 
 ___
 
@@ -501,12 +476,6 @@ ___
 
 Check if this [Field](Field.md) is equal another "field-like" value.
 Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
-
-**`Example`**
-
-```ts
-Field(5).equals(5).assertEquals(Bool(true));
-```
 
 #### Parameters
 
@@ -520,9 +489,15 @@ Field(5).equals(5).assertEquals(Bool(true));
 
 A [Bool](Bool.md) representing if this [Field](Field.md) is equal another "field-like" value.
 
+**`Example`**
+
+```ts
+Field(5).equals(5).assertEquals(Bool(true));
+```
+
 #### Defined in
 
-[lib/field.ts:636](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L636)
+[lib/field.ts:636](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L636)
 
 ___
 
@@ -532,6 +507,18 @@ ___
 
 Check if this [Field](Field.md) is greater than another "field-like" value.
 Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`Bool`](Bool.md)
+
+A [Bool](Bool.md) representing if this [Field](Field.md) is greater than another "field-like" value.
 
 **`Example`**
 
@@ -550,6 +537,19 @@ The method will throw if one of the inputs exceeds 253 bits.
 Field(1).div(Field(2)).greaterThan(Field(1).div(Field(3))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
+#### Defined in
+
+[lib/field.ts:733](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L733)
+
+___
+
+### greaterThanOrEqual
+
+▸ **greaterThanOrEqual**(`y`): [`Bool`](Bool.md)
+
+Check if this [Field](Field.md) is greater than or equal another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
 #### Parameters
 
 | Name | Type |
@@ -560,20 +560,7 @@ Field(1).div(Field(2)).greaterThan(Field(1).div(Field(3))).assertEquals(Bool(tru
 
 [`Bool`](Bool.md)
 
-A [Bool](Bool.md) representing if this [Field](Field.md) is greater than another "field-like" value.
-
-#### Defined in
-
-[lib/field.ts:759](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L759)
-
-___
-
-### greaterThanOrEqual
-
-▸ **greaterThanOrEqual**(`y`): [`Bool`](Bool.md)
-
-Check if this [Field](Field.md) is greater than or equal another "field-like" value.
-Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+A [Bool](Bool.md) representing if this [Field](Field.md) is greater than or equal another "field-like" value.
 
 **`Example`**
 
@@ -592,21 +579,9 @@ The method will throw if one of the inputs exceeds 253 bits.
 Field(1).div(Field(2)).greaterThanOrEqual(Field(1).div(Field(3))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-A [Bool](Bool.md) representing if this [Field](Field.md) is greater than or equal another "field-like" value.
-
 #### Defined in
 
-[lib/field.ts:787](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L787)
+[lib/field.ts:760](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L760)
 
 ___
 
@@ -619,6 +594,12 @@ Equivalent to 1 divided by this [Field](Field.md), in the sense of modular arith
 
 Proves that this Field is non-zero, or throws a "Division by zero" error.
 
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element that is equivalent to one divided by this element.
+
 **`Example`**
 
 ```ts
@@ -629,15 +610,9 @@ inverse.assertEquals(Field(1).div(example)); // This statement is always true re
 
 **Warning**: This is a modular inverse. See [div](Field.md#div) method for more details.
 
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element that is equivalent to one divided by this element.
-
 #### Defined in
 
-[lib/field.ts:476](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L476)
+[lib/field.ts:475](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L475)
 
 ___
 
@@ -647,6 +622,12 @@ ___
 
 Check whether this [Field](Field.md) element is a hard-coded constant in the constraint system.
 If a [Field](Field.md) is constructed outside a zkApp method, it is a constant.
+
+#### Returns
+
+this is Object
+
+A `boolean` showing if this [Field](Field.md) is a constant or not.
 
 **`Example`**
 
@@ -662,15 +643,9 @@ console.log(Field(42).isConstant()); // true
 }
 ```
 
-#### Returns
-
-this is Object
-
-A `boolean` showing if this [Field](Field.md) is a constant or not.
-
 #### Defined in
 
-[lib/field.ts:199](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L199)
+[lib/field.ts:202](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L202)
 
 ___
 
@@ -679,6 +654,10 @@ ___
 ▸ **isEven**(): [`Bool`](Bool.md)
 
 Checks if this [Field](Field.md) is even. Returns `true` for even elements and `false` for odd elements.
+
+#### Returns
+
+[`Bool`](Bool.md)
 
 **`Example`**
 
@@ -692,13 +671,9 @@ b.isEven(); // true
 b.isEven().assertTrue(); // does not throw, as expected!
 ```
 
-#### Returns
-
-[`Bool`](Bool.md)
-
 #### Defined in
 
-[lib/field.ts:393](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L393)
+[lib/field.ts:392](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L392)
 
 ___
 
@@ -706,17 +681,17 @@ ___
 
 ▸ **isZero**(): [`Bool`](Bool.md)
 
-**`Deprecated`**
-
-use `x.equals(0)` which is equivalent
-
 #### Returns
 
 [`Bool`](Bool.md)
 
+**`Deprecated`**
+
+use `x.equals(0)` which is equivalent
+
 #### Defined in
 
-[lib/field.ts:596](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L596)
+[lib/field.ts:596](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L596)
 
 ___
 
@@ -726,6 +701,18 @@ ___
 
 Check if this [Field](Field.md) is less than another "field-like" value.
 Returns a [Bool](Bool.md), which is a provable type and can be used prove to the validity of this statement.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
+
+#### Returns
+
+[`Bool`](Bool.md)
+
+A [Bool](Bool.md) representing if this [Field](Field.md) is less than another "field-like" value.
 
 **`Example`**
 
@@ -744,6 +731,19 @@ The method will throw if one of the inputs exceeds 253 bits.
 Field(1).div(Field(3)).lessThan(Field(1).div(Field(2))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
+#### Defined in
+
+[lib/field.ts:673](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L673)
+
+___
+
+### lessThanOrEqual
+
+▸ **lessThanOrEqual**(`y`): [`Bool`](Bool.md)
+
+Check if this [Field](Field.md) is less than or equal to another "field-like" value.
+Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+
 #### Parameters
 
 | Name | Type |
@@ -754,20 +754,7 @@ Field(1).div(Field(3)).lessThan(Field(1).div(Field(2))).assertEquals(Bool(true))
 
 [`Bool`](Bool.md)
 
-A [Bool](Bool.md) representing if this [Field](Field.md) is less than another "field-like" value.
-
-#### Defined in
-
-[lib/field.ts:699](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L699)
-
-___
-
-### lessThanOrEqual
-
-▸ **lessThanOrEqual**(`y`): [`Bool`](Bool.md)
-
-Check if this [Field](Field.md) is less than or equal to another "field-like" value.
-Returns a [Bool](Bool.md), which is a provable type and can be used to prove the validity of this statement.
+A [Bool](Bool.md) representing if this [Field](Field.md) is less than or equal another "field-like" value.
 
 **`Example`**
 
@@ -786,21 +773,9 @@ The method will throw if one of the inputs exceeds 253 bits.
 Field(1).div(Field(3)).lessThanOrEqual(Field(1).div(Field(2))).assertEquals(Bool(true)); // This code will throw an error
 ```
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-A [Bool](Bool.md) representing if this [Field](Field.md) is less than or equal another "field-like" value.
-
 #### Defined in
 
-[lib/field.ts:729](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L729)
+[lib/field.ts:703](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L703)
 
 ___
 
@@ -809,15 +784,6 @@ ___
 ▸ **mul**(`y`): [`Field`](Field.md)
 
 Multiply another "field-like" value with this [Field](Field.md) element.
-
-**`Example`**
-
-```ts
-const x = Field(3);
-const product = x.mul(Field(5));
-
-product.assertEquals(Field(15));
-```
 
 #### Parameters
 
@@ -831,9 +797,18 @@ product.assertEquals(Field(15));
 
 A [Field](Field.md) element equivalent to the modular difference of the two value.
 
+**`Example`**
+
+```ts
+const x = Field(3);
+const product = x.mul(Field(5));
+
+product.assertEquals(Field(15));
+```
+
 #### Defined in
 
-[lib/field.ts:437](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L437)
+[lib/field.ts:436](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L436)
 
 ___
 
@@ -842,6 +817,12 @@ ___
 ▸ **neg**(): [`Field`](Field.md)
 
 Negate a [Field](Field.md). This is equivalent to multiplying the [Field](Field.md) by -1.
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element that is equivalent to the element multiplied by -1.
 
 **`Example`**
 
@@ -859,15 +840,9 @@ someField.neg().assertEquals(someField.mul(Field(-1))); // This statement is alw
 
 **Warning**: This is a modular negation. For details, see the [sub](Field.md#sub) method.
 
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element that is equivalent to the element multiplied by -1.
-
 #### Defined in
 
-[lib/field.ts:339](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L339)
+[lib/field.ts:338](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L338)
 
 ___
 
@@ -896,13 +871,13 @@ A [Field](Field.md) element that is equal to the `length` of this [Field](Field.
 
 #### Defined in
 
-[lib/field.ts:1012](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1012)
+[lib/field.ts:975](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L975)
 
 ___
 
 ### seal
 
-▸ **seal**(): [`Field`](Field.md)
+▸ **seal**(): [`VarField`](../modules.md#varfield) \| [`Field`](Field.md) & \{ `value`: `ConstantFieldVar`  }
 
 **Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
 
@@ -914,13 +889,13 @@ The `seal()` function tells o1js to stop building an AST and create a new variab
 
 #### Returns
 
-[`Field`](Field.md)
+[`VarField`](../modules.md#varfield) \| [`Field`](Field.md) & \{ `value`: `ConstantFieldVar`  }
 
 A [Field](Field.md) element that is equal to the result of AST that was previously on this [Field](Field.md) element.
 
 #### Defined in
 
-[lib/field.ts:1040](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1040)
+[lib/field.ts:1003](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1003)
 
 ___
 
@@ -931,6 +906,12 @@ ___
 Take the square root of this [Field](Field.md) element.
 
 Proves that the Field element has a square root in the finite field, or throws if it doesn't.
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element equivalent to the square root of the [Field](Field.md) element.
 
 **`Example`**
 
@@ -943,15 +924,9 @@ z.mul(z).assertEquals(x); // true for every `x`
 Note that, if a square root z exists, there also exists a second one, -z (which is different if z != 0).
 Therefore, this method leaves an adversarial prover the choice between two different values to return.
 
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element equivalent to the square root of the [Field](Field.md) element.
-
 #### Defined in
 
-[lib/field.ts:574](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L574)
+[lib/field.ts:574](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L574)
 
 ___
 
@@ -960,6 +935,12 @@ ___
 ▸ **square**(): [`Field`](Field.md)
 
 Square this [Field](Field.md) element.
+
+#### Returns
+
+[`Field`](Field.md)
+
+A [Field](Field.md) element equivalent to the multiplication of the [Field](Field.md) element with itself.
 
 **`Example`**
 
@@ -972,15 +953,9 @@ square.assertEquals(someField.mul(someField)); // This statement is always true 
 
 ** Warning: This is a modular multiplication. See `mul()` method for more details.
 
-#### Returns
-
-[`Field`](Field.md)
-
-A [Field](Field.md) element equivalent to the multiplication of the [Field](Field.md) element with itself.
-
 #### Defined in
 
-[lib/field.ts:544](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L544)
+[lib/field.ts:544](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L544)
 
 ___
 
@@ -988,29 +963,7 @@ ___
 
 ▸ **sub**(`y`): [`Field`](Field.md)
 
-Substract another "field-like" value from this [Field](Field.md) element.
-
-**`Example`**
-
-```ts
-const x = Field(3);
-const difference = x.sub(5);
-
-difference.assertEquals(Field(-2));
-```
-
-**Warning**: This is a modular substraction in the pasta field.
-
-**`Example`**
-
-```ts
-const x = Field(1);
-const difference = x.sub(Field(2));
-
-// If you try to print difference - `console.log(difference.toBigInt())` - you will realize that it prints a very big integer because this is modular arithmetic, and 1 - 2 circles around the field to become p - 1.
-// You can use the reverse operation of substraction (addition) to prove the difference is calculated correctly.
-difference.add(Field(2)).assertEquals(x);
-```
+Subtract another "field-like" value from this [Field](Field.md) element.
 
 #### Parameters
 
@@ -1024,9 +977,31 @@ difference.add(Field(2)).assertEquals(x);
 
 A [Field](Field.md) element equivalent to the modular difference of the two value.
 
+**`Example`**
+
+```ts
+const x = Field(3);
+const difference = x.sub(5);
+
+difference.assertEquals(Field(-2));
+```
+
+**Warning**: This is a modular subtraction in the pasta field.
+
+**`Example`**
+
+```ts
+const x = Field(1);
+const difference = x.sub(Field(2));
+
+// If you try to print difference - `console.log(difference.toBigInt())` - you will realize that it prints a very big integer because this is modular arithmetic, and 1 - 2 circles around the field to become p - 1.
+// You can use the reverse operation of subtraction (addition) to prove the difference is calculated correctly.
+difference.add(Field(2)).assertEquals(x);
+```
+
 #### Defined in
 
-[lib/field.ts:375](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L375)
+[lib/field.ts:374](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L374)
 
 ___
 
@@ -1044,7 +1019,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1148](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1148)
+[lib/field.ts:1109](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1109)
 
 ___
 
@@ -1056,6 +1031,12 @@ Serialize the [Field](Field.md) to a bigint, e.g. for printing. Trying to print 
 
 **Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the bigint representation of the [Field](Field.md). Use the operation only during debugging.
 
+#### Returns
+
+`bigint`
+
+A bigint equivalent to the bigint representation of the Field.
+
 **`Example`**
 
 ```ts
@@ -1063,15 +1044,9 @@ const someField = Field(42);
 console.log(someField.toBigInt());
 ```
 
-#### Returns
-
-`bigint`
-
-A bigint equivalent to the bigint representation of the Field.
-
 #### Defined in
 
-[lib/field.ts:237](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L237)
+[lib/field.ts:236](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L236)
 
 ___
 
@@ -1101,7 +1076,7 @@ An array of [Bool](Bool.md) element representing little endian binary representa
 
 #### Defined in
 
-[lib/field.ts:957](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L957)
+[lib/field.ts:920](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L920)
 
 ___
 
@@ -1113,6 +1088,12 @@ Create a [Field](Field.md) element equivalent to this [Field](Field.md) element'
 but is a constant.
 See [isConstant](Field.md#isconstant) for more information about what is a constant [Field](Field.md).
 
+#### Returns
+
+[`ConstantField`](../modules.md#constantfield)
+
+A constant [Field](Field.md) element equivalent to this [Field](Field.md) element.
+
 **`Example`**
 
 ```ts
@@ -1120,15 +1101,9 @@ const someField = Field(42);
 someField.toConstant().assertEquals(someField); // Always true
 ```
 
-#### Returns
-
-[`ConstantField`](../modules.md#constantfield)
-
-A constant [Field](Field.md) element equivalent to this [Field](Field.md) element.
-
 #### Defined in
 
-[lib/field.ts:220](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L220)
+[lib/field.ts:219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L219)
 
 ___
 
@@ -1148,7 +1123,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1139](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1139)
+[lib/field.ts:1100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1100)
 
 ___
 
@@ -1160,6 +1135,12 @@ Serialize the [Field](Field.md) to a JSON string, e.g. for printing. Trying to p
 
 **Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the JSON string representation of the [Field](Field.md). Use the operation only during debugging.
 
+#### Returns
+
+`string`
+
+A string equivalent to the JSON representation of the [Field](Field.md).
+
 **`Example`**
 
 ```ts
@@ -1167,15 +1148,9 @@ const someField = Field(42);
 console.log(someField.toJSON());
 ```
 
-#### Returns
-
-`string`
-
-A string equivalent to the JSON representation of the [Field](Field.md).
-
 #### Defined in
 
-[lib/field.ts:1167](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1167)
+[lib/field.ts:1132](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1132)
 
 ___
 
@@ -1187,6 +1162,12 @@ Serialize the [Field](Field.md) to a string, e.g. for printing. Trying to print 
 
 **Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the string representation of the [Field](Field.md). Use the operation only during debugging.
 
+#### Returns
+
+`string`
+
+A string equivalent to the string representation of the Field.
+
 **`Example`**
 
 ```ts
@@ -1194,96 +1175,9 @@ const someField = Field(42);
 console.log(someField.toString());
 ```
 
-#### Returns
-
-`string`
-
-A string equivalent to the string representation of the Field.
-
 #### Defined in
 
-[lib/field.ts:255](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L255)
-
-___
-
-### #checkBitLength
-
-▸ `Static` `Private` **#checkBitLength**(`name`, `length`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `length` | `number` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[lib/field.ts:935](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L935)
-
-___
-
-### #isField
-
-▸ `Static` `Private` **#isField**(`x`): x is Field
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| `Uint8Array` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`Field`](Field.md) |
-
-#### Returns
-
-x is Field
-
-#### Defined in
-
-[lib/field.ts:163](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L163)
-
-___
-
-### #toConst
-
-▸ `Static` `Private` **#toConst**(`x`): `Uint8Array`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`ConstantField`](../modules.md#constantfield) |
-
-#### Returns
-
-`Uint8Array`
-
-#### Defined in
-
-[lib/field.ts:168](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L168)
-
-___
-
-### #toVar
-
-▸ `Static` `Private` **#toVar**(`x`): [`FieldVar`](../modules.md#fieldvar-1)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) |
-
-#### Returns
-
-[`FieldVar`](../modules.md#fieldvar-1)
-
-#### Defined in
-
-[lib/field.ts:172](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L172)
+[lib/field.ts:254](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L254)
 
 ___
 
@@ -1301,7 +1195,21 @@ As any field element can be a [Field](Field.md), this function does not create a
 
 #### Defined in
 
-[lib/field.ts:1130](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1130)
+[lib/field.ts:1091](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1091)
+
+___
+
+### empty
+
+▸ `Static` **empty**(): [`Field`](Field.md)
+
+#### Returns
+
+[`Field`](Field.md)
+
+#### Defined in
+
+[lib/field.ts:1115](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1115)
 
 ___
 
@@ -1321,7 +1229,7 @@ ___
 
 #### Defined in
 
-[lib/field.ts:176](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L176)
+[lib/field.ts:179](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L179)
 
 ___
 
@@ -1349,7 +1257,7 @@ A [Field](Field.md) element matching the [little endian binary representation](h
 
 #### Defined in
 
-[lib/field.ts:983](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L983)
+[lib/field.ts:946](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L946)
 
 ___
 
@@ -1376,7 +1284,7 @@ A new [Field](Field.md) element created using the [little-endian](https://en.wik
 
 #### Defined in
 
-[lib/field.ts:1254](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1254)
+[lib/field.ts:1219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1219)
 
 ___
 
@@ -1404,7 +1312,7 @@ The first [Field](Field.md) element of the given array.
 
 #### Defined in
 
-[lib/field.ts:1119](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1119)
+[lib/field.ts:1080](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1080)
 
 ___
 
@@ -1430,7 +1338,7 @@ A [Field](Field.md) coerced from the given JSON string.
 
 #### Defined in
 
-[lib/field.ts:1199](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1199)
+[lib/field.ts:1164](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1164)
 
 ___
 
@@ -1440,27 +1348,27 @@ ___
 
 A random [Field](Field.md) element.
 
-**`Example`**
-
-```ts
-console.log(Field.random().toBigInt()); // Run this code twice!
-```
-
 #### Returns
 
 [`Field`](Field.md)
 
 A random [Field](Field.md) element.
 
+**`Example`**
+
+```ts
+console.log(Field.random().toBigInt()); // Run this code twice!
+```
+
 #### Defined in
 
-[lib/field.ts:1058](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1058)
+[lib/field.ts:1019](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1019)
 
 ___
 
 ### readBytes
 
-▸ `Static` **readBytes**<`N`\>(`bytes`, `offset`): [value: Field, offset: number]
+▸ `Static` **readBytes**\<`N`\>(`bytes`, `offset`): [value: Field, offset: number]
 
 Part of the `Binable` interface.
 
@@ -1477,7 +1385,7 @@ Part of the `Binable` interface.
 | Name | Type |
 | :------ | :------ |
 | `bytes` | `number`[] |
-| `offset` | `NonNegativeInteger`<`N`\> |
+| `offset` | `NonNegativeInteger`\<`N`\> |
 
 #### Returns
 
@@ -1485,27 +1393,7 @@ Part of the `Binable` interface.
 
 #### Defined in
 
-[lib/field.ts:1237](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1237)
-
-___
-
-### sizeInBytes
-
-▸ `Static` **sizeInBytes**(): `number`
-
-**Warning**: This function is mainly for internal use. Normally it is not intended to be used by a zkApp developer.
-
-As all [Field](Field.md) elements have 31 bits, this function returns 31.
-
-#### Returns
-
-`number`
-
-The size of a [Field](Field.md) element - 31.
-
-#### Defined in
-
-[lib/field.ts:1265](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1265)
+[lib/field.ts:1202](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1202)
 
 ___
 
@@ -1518,21 +1406,21 @@ This function is the implementation of [sizeInFields](../interfaces/Provable.md#
 Size of the [Field](Field.md) type is 1, as it is the primitive type.
 This function returns a regular number, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
 
-**`Example`**
-
-```ts
-console.log(Field.sizeInFields()); // Prints 1
-```
-
 #### Returns
 
 `number`
 
 A number representing the size of the [Field](Field.md) type in terms of [Field](Field.md) type itself.
 
+**`Example`**
+
+```ts
+console.log(Field.sizeInFields()); // Prints 1
+```
+
 #### Defined in
 
-[lib/field.ts:1104](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1104)
+[lib/field.ts:1065](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1065)
 
 ___
 
@@ -1550,7 +1438,7 @@ As the primitive [Field](Field.md) type has no auxiliary data associated with it
 
 #### Defined in
 
-[lib/field.ts:1087](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1087)
+[lib/field.ts:1048](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1048)
 
 ___
 
@@ -1575,7 +1463,7 @@ An array of digits equal to the [little-endian](https://en.wikipedia.org/wiki/En
 
 #### Defined in
 
-[lib/field.ts:1228](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1228)
+[lib/field.ts:1193](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1193)
 
 ___
 
@@ -1602,7 +1490,7 @@ A [Field](Field.md) array of length 1 created from this [Field](Field.md).
 
 #### Defined in
 
-[lib/field.ts:1076](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1076)
+[lib/field.ts:1037](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1037)
 
 ___
 
@@ -1632,7 +1520,7 @@ An object where the `fields` key is a [Field](Field.md) array of length 1 create
 
 #### Defined in
 
-[lib/field.ts:1213](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1213)
+[lib/field.ts:1178](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1178)
 
 ___
 
@@ -1643,13 +1531,6 @@ ___
 Serialize the given [Field](Field.md) element to a JSON string, e.g. for printing. Trying to print a [Field](Field.md) without this function will directly stringify the Field object, resulting in unreadable output.
 
 **Warning**: This operation does _not_ affect the circuit and can't be used to prove anything about the JSON string representation of the [Field](Field.md). Use the operation only during debugging.
-
-**`Example`**
-
-```ts
-const someField = Field(42);
-console.log(Field.toJSON(someField));
-```
 
 #### Parameters
 
@@ -1663,6 +1544,13 @@ console.log(Field.toJSON(someField));
 
 A string equivalent to the JSON representation of the given [Field](Field.md).
 
+**`Example`**
+
+```ts
+const someField = Field(42);
+console.log(Field.toJSON(someField));
+```
+
 #### Defined in
 
-[lib/field.ts:1186](https://github.com/o1-labs/o1js/blob/fec4d35f/src/lib/field.ts#L1186)
+[lib/field.ts:1151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/field.ts#L1151)

@@ -18,7 +18,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
@@ -84,10 +84,10 @@ Suggested improvements:
 
 ## Implement a Project Using Off-Chain Storage
 
-The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts) with a focus on:
+The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts) with a focus on:
 
-- [src/main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/main.ts)
-- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/contracts/src/NumberTreeContract.ts) 
+- [src/main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts)
+- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) 
 
 This project implements a Merkle tree where:
 
@@ -183,7 +183,7 @@ When you start this experimental local storage server, a `database.json` file is
 In a new terminal window, run this command from the root directory of your project:
 
 ```sh
-$ node node_modules/experimental-offchain-zkapp-storage/build/src/storageServer.js
+$ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.js
 ```
 
 ## Implement the smart contract
@@ -212,7 +212,7 @@ import {
 import {
   OffChainStorage,
   MerkleWitness8,
-} from 'experimental-offchain-zkapp-storage';
+} from 'experimental-zkapp-offchain-storage';
 ...
 ```
 

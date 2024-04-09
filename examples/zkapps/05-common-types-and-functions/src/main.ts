@@ -1,7 +1,5 @@
 import {
   Mina,
-  isReady,
-  shutdown,
   UInt32,
   UInt64,
   Int64,
@@ -22,8 +20,6 @@ import {
 
 import { LedgerContract } from './LedgerContract.js';
 import { BasicMerkleTreeContract } from './BasicMerkleTreeContract.js';
-
-await isReady;
 
 // --------------------------------------
 console.log('--------------------------------------');
@@ -191,8 +187,8 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
 
   const pendingDeployTx = await deployTxn.send();
   /**
-   * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash()`
-   * `.hash()` returns the transaction hash
+   * `txn.send()` returns a pending transaction with two methods - `.wait()` and `.hash`
+   * `.hash` returns the transaction hash
    * `.wait()` automatically resolves once the transaction has been included in a block. this is redundant for the LocalBlockchain, but very helpful for live testnets
    */
   await pendingDeployTx.wait();
@@ -389,7 +385,3 @@ const value = Field(50);
 map.set(key, value);
 
 console.log(`value for key ${key}: ${map.get(key)}`);
-
-// --------------------------------------
-
-await shutdown();

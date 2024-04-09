@@ -1,0 +1,34 @@
+---
+title: Scanning Blocks
+description: Learn how to scan blocks and inspect transactions
+---
+
+To implement a simple function to wait for a given block:
+
+```python
+def wait_for_block(block_index):
+    """
+    Checks if block with given index exist
+    Once the /block response is succesful - returns the response
+    Otherwise, retries fetching it with 10 seconds delay
+    """
+
+    latest_block = network_status()["current_block_identifier"]["index"]
+    while True:
+        if block_index <= latest_block:
+            return block(block_index)
+        sleep(10)
+        latest_block = network_status()["current_block_identifier"]["index"]
+```
+
+It can be used to scan blocks like this:
+
+```python
+latest_block = network_status()["current_block_identifier"]["index"]
+while True:
+    last_block = wait_for_block(latest_block)
+    
+    # some processing according to business logic
+    
+    latest_block += 1
+```

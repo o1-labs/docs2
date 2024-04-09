@@ -1,7 +1,7 @@
 ---
 title: Interacting With Mina
 hide_title: true
-description: How to create zero knowledge proofs and how users call zkApp methods. An account update can have proof, signature or none authorizations.
+description: How to create zero knowledge proofs and how users can call zkApp methods. An account update can have proof, signature, or none authorizations.
 keywords:
   - smart contracts
   - zkapps
@@ -21,21 +21,42 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet. You can get started now by deploying zkApps to the Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
 
 :::
 
 # Interacting With Mina
 
-## Transactions and account updates
+Now that you know about writing zkApp methods, it's time to learn how users can call these methods. 
 
-Now that you have an idea about writing zkApp methods, it's time to learn how users can call these methods. Recall that smart contracts execute off-chain. The result of such an off-chain execution is a _transaction_, which can be sent to the Mina network to apply the changes made by the smart contract. In this section, you learn what a transaction looks like, and how you can create one.
+## Transactions
 
-The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. Account updates are a flexible and powerful data structure that can express all kinds of updates, events and preconditions that you use for developing smart contracts.
+Recall that smart contracts execute off-chain. The result of an off-chain execution is a _transaction_ that can be sent to the Mina network to apply the changes made by the smart contract.
 
-A _transaction_ is a JSON object of the form `{ feePayer, accountUpdates: [...], memo }`. Here, the `feePayer` is a special account update of slightly simpler structure. In particular, it contains a `fee` field which has to be used to specify the transaction fee. The `accountUpdates` array, on the other hand, is a list of normal account updates, which make up the bulk of the transaction. Finally, `memo` is an encoded string which can be used to attach an arbitrary short message. Ignore it for now.
+In this section, you learn what a transaction looks like and how to create one.
 
-You create transactions in o1js by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction's logic.
+## Account updates
+
+The fundamental data structure that Mina transactions are built from is called an _account update_. An account update always contains updates to one specific on-chain account. 
+
+For example, if you transfer MINA from one account to another, the balance on two accounts is updated – the sender and the receiver. Therefore, sending MINA requires two account updates. 
+
+Account updates are a flexible and powerful data structure that can express all kinds of updates, events, and preconditions you use to develop smart contracts.
+
+## Transaction structure
+
+A _transaction_ is a JSON object of the form: 
+
+```ts
+{ feePayer, accountUpdates: [...], memo }
+```
+
+- `feePayer` is a special account update with a slightly simpler structure. 
+  - In particular, it contains a `fee` field, which must be used to specify the transaction fee. 
+- `accountUpdates` is a list of normal account updates that make up the bulk of the transaction. 
+- `memo` is an encoded string that can be used to attach an arbitrary short message.
+
+You create transactions in o1js by calling `Mina.transaction(...)`, which takes the sender (a public key) and a callback that contains your transaction logic:
 
 ```ts
 const sender = PublicKey.fromBase58('B62..'); // the user address
@@ -46,19 +67,21 @@ const tx = await Mina.transaction(sender, () => {
 });
 ```
 
-In this example, the transaction consists of calling a single `SmartContract` method, called `myMethod`. You can inspect the transaction yourself by printing it out as JSON:
+In this example, the transaction calls a single `SmartContract` method called `myMethod`. You can inspect the transaction by printing it to the console, in JSON format:
 
 ```ts
 console.log(tx.toJSON());
 ```
 
-If you try this, you see a massive JSON object with lots of fields, most of which are set to their default value. There's also a way to pretty-print transactions in a more human-readable, condensed format:
+This command outputs a massive JSON object with many fields, most of which are set to their default value. 
+
+Inspecting transactions becomes easier if you print them in a condensed format, as follows:
 
 ```ts
 console.log(tx.toPretty());
 ```
 
-Depending on the logic of `myMethod()`, this could print something like the following:
+Depending on the logic of `myMethod()`, the output is something like:
 
 ```ts
 [
@@ -81,25 +104,31 @@ Depending on the logic of `myMethod()`, this could print something like the foll
 ];
 ```
 
-From this output, there are several important things we can learn about transactions.
+This output includes several essential things to learn about transactions.
 
-First of all, this is an array with two entries: the account updates that make up this transaction. The first one is always the fee payer, whose public key we passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this, in the browser, and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+First of all, this is an array with two entries -- the two account updates that make up this transaction.
 
-The second account update in our list has a label: `'MyContract.myMethod()'` that tells you that it corresponds to the method call you performed. A `@method` call always results in the creation of an account update – namely, an update to the zkApp account itself. Other fields in this account update are:
+The first entry is always the fee payer, whose public key was passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this in the browser and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
-- `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
-- `update: { appState: [...] }` – shows how your method wants to update on-chain state, using `this.<state>.set()`. The names and pretty types you defined using `@state` are removed in this representation; instead, you see a raw list of 8 field elements, or `null` for state fields that aren't updated.
-- `preconditions: { account: { state: [...] } }` – similar to the `update`, this has one entry per field of on-chain state. These are the preconditions that you created with `this.<state>.assertEquals()`. In this example, your transaction are accepted only if the first of the 8 state fields equals 0. The `null` values mean that there's no condition on the other 7 state fields.
-- `authorizationKind: 'Proof'` – this means that this account update needs to be authorized with a proof. This is the default when you call a zkApp method, but not necessarily for other account updates.
-- `authorization: undefined` – the proof that's needed on this update isn't there yet! You learn how to add it in a minute.
+The second account update has the `'MyContract.myMethod()'` label. The update corresponds to the method call. An `@method` call always results in the creation of an account update – an update to the zkApp account itself. 
 
-Note that there a many more fields that account updates can have, but `tx.toPretty()` only prints the ones that have actual content. Also, the ones above may be missing: For example, if our zkApp doesn't set any state, the `update` field might be missing. In that case, strictly speaking it wouldn't always be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
+Other fields in this account update are:
 
-As you might have noticed, these account updates weren't created in a very explicit manner. Instead, o1js gives you an imperative API, with "commands" like `state.set()`. Under the hood, these commands create and modify account updates in a transaction, like you saw above. In the end, the entire transaction is sent to the network, as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
+  - `publicKey` – the zkApp address (like other non-human-readable strings, this is truncated by `tx.toPretty()`)
+  - `update: { appState: [...] }` – shows how the method updates the on-chain state, using `this.<state>.set()`. The names and pretty types defined using `@state` are removed in this representation, showing a raw list of 8 field elements or `null` for state fields that aren't updated.
+  - `preconditions: { account: { state: [...] } }` – similar to the `update`, one entry per field of on-chain state for the preconditions created with `this.<state>.requireEquals()`. This example accepts transactions only if the first of the 8 state fields equals 0. The `null` values mean that no condition is set on the other 7 state fields.
+  - `authorizationKind: 'Proof'` – indicates this account update must be authorized with a proof. Proof authorization is the default when calling a zkApp method, but not necessarily for other account updates.
+  - `authorization: undefined` – the proof needed on this update isn't there yet. You learn how to add it in a minute.
 
-## Creating proofs and what they mean
+Note that there are many more fields that account updates can have, but `tx.toPretty()` prints only the fields with actual content. Also, not all of the fields must be present. For example, if a zkApp doesn't set a state, the `update` field might be missing. In that case, strictly speaking, it wouldn't be an "update" in the sense that the account is modified. The term "account update" is used for simplicity.
 
-Let's finally see how to create zero-knowledge proofs!
+As you might have noticed, account updates aren't created in a very explicit manner. Instead, o1js gives you an imperative API, with "commands" like `state.set()`, to create and modify account updates in a transaction. 
+
+In the end, the entire transaction is sent to the network as one atomic update. If something fails – for example, one of the account updates has insufficient authorization – the _entire_ transaction is rejected and doesn't get applied. This is in contrast to an EVM contract, where the initial steps of a method call could succeed even if the method fails at a later step.
+
+## Creating proofs
+
+Finally, here's how to create zero knowledge proofs!
 
 ```ts
 await MyContract.compile(); // this might take a while
@@ -112,14 +141,15 @@ const tx = await Mina.transaction(sender, () => {
 await tx.prove(); // this might take a while
 ```
 
-There are two new operations here:
+This example code includes two new operations:
 
-- `MyContract.compile()` creates prover and verification keys from your smart contract.[^1] You need to do this before you can create any proofs!
-- `tx.prove()` goes through your transaction, and creates proofs for all the account updates that came from method calls.
+- `MyContract.compile()` creates prover and verification keys from your smart contract.[^1] You must create the keys before you can create any proofs.
 
-[^1]: The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
+- `tx.prove()` goes through your transaction and creates proofs for all the account updates that came from method calls.
 
-Both of these are heavy cryptographic operations and can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a base64 string inside the `authorization` field:
+[^1]:The name `compile()` is a metaphor for what this function does: creating prover and verifier functions from your code. It doesn't refer to literal "compilation" of JS into a circuit representation. The circuit representation of your code is created by _executing_ it, not by compiling it. Also, the prover function still includes the execution of your JS code as one step.
+
+Both of these heavy cryptographic operations can take between a few seconds and a few minutes, depending on the amount of logic you're proving and on how fast your machine is. If you print the transaction again with `tx.toPretty()`, it now has the proof as a Base64 string inside the `authorization` field:
 
 ```ts
 [
@@ -132,20 +162,33 @@ Both of these are heavy cryptographic operations and can take between a few seco
 ];
 ```
 
-You might wonder: what, exactly, is proved here? How is the proof linked to the account update it is part of?
+## How proofs link to account updates
+
+You might wonder: what, exactly, is proved? How is the proof linked to the account update it is part of?
 
 The proof attests to two different things:
 
 - The execution of `myMethod()`
 - The public input of that execution
 
-Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. In the case of zkApps, **the public input is the account update**. It is passed in implicitly when you do `tx.prove()`. The prover function (i.e., your smart contract logic) creates its own account update and constrains it to equal the public input.
+Recall that all method arguments are _private inputs_. So, the verifier doesn't get to see them, and the proof doesn't say anything about them (it only says that there were _some_ private inputs that satisfied all constraints). However, a zk proof can also have a public input. 
 
-You can think of the public input as data that is shared between the prover and verifier. The verifier passes in the public input when verifying it, and the proof is valid only if it was created with _the same public input_. This means that this proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof is no longer not be valid. In other words: The only valid account updates for a zkApp account are the ones created according to the logic of your `SmartContract`. This is the core of why we can have smart contracts that execute on the client side.
+In the case of zkApps, **the public input is the account update** that is passed in implicitly with `tx.prove()`. The prover function (smart contract logic) creates its own account update and constrains it to equal the public input.
 
-## Payments and more on public inputs
+The public input is data that is shared between the prover and verifier:
 
-To continue the discussion of account updatess, this example is important on its own: Paying out MINA from a zkApp. To send MINA, you can use `this.send()` from your smart contract method:
+- The verifier passes in the public input when verifying it.
+- The proof is valid only if it was created with _the same public input_. 
+
+The proof attests to the validity of exactly this account update. If you change the account update before sending it to the Mina network, the proof is no longer valid. 
+
+The only valid account updates for a zkApp account are the ones created according to the logic of your smart contract. This core concept is why zkApp smart contracts execute on the client side.
+
+## Example: Payment from a zkApp
+
+To learn more about account updates, see the example for paying out MINA from a zkApp.
+
+To send MINA, use `this.send()` from a smart contract method:
 
 ```ts
 class MyContract extends SmartContract {
@@ -157,7 +200,11 @@ class MyContract extends SmartContract {
 }
 ```
 
-This simple example `@method payout()` can be called by anyone to send a given amount of nanoMINA to themselves. Note that you get the sender of the transaction with `this.sender`. In a real zkApp, you add conditions that are checked in this method to determining who can call it with which amounts. To call this method in a transaction and print out the result:
+The `@method payout()` pays out a given amount of nanoMINA to the sender of the transaction, which you get with `this.sender`.
+
+In a real zkApp, you would add conditions to this method to determine who can call it with which amounts.
+
+To call this method in a transaction and print the result:
 
 ```ts
 const MINA = 1e9;
@@ -171,11 +218,11 @@ console.log(tx.toPretty());
 
 :::info
 
-MINA amounts, in all o1js APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA. This is why we set `const MINA = 1e9`.
+MINA amounts, in all o1js APIs and elsewhere in the protocol, are always denominated in nanoMINA = `10^(-9)` MINA, which is why you set `const MINA = 1e9`.
 
 :::
 
-What's interesting is that the transaction now has 3 account updates:
+The transaction now has three account updates:
 
 ```ts
 [
@@ -199,75 +246,52 @@ What's interesting is that the transaction now has 3 account updates:
 ];
 ```
 
-The zkApp update with label `'MyContract.payout()'` has a negative `balanceChange` of 5 billion (= 5 MINA). This makes sense, because you are sending MINA away from the zkApp account.
-Then, there's an additional account update, with a corresponding positive balance change – the user account that receives MINA.
+- The zkApp update with label `'MyContract.payout()'` has a negative `balanceChange` of 5 billion (= 5 MINA). This makes sense, because you are sending MINA away from the zkApp account.
+- An additional account update has a corresponding positive balance change – the user account that receives MINA.
 
 Two quick observations:
 
-- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. o1js tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
-- The user update has `authorizationKind: 'None_given'`. That means it's not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA, and you're able to send someone MINA without their permission.
+- You didn't explicitly create the receiver account update. It was created, and attached to the transaction, by calling `this.send()`. 
 
-In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. We'll learn about signatures in the next section.
+  o1js tries to abstract away the low-level language of account updates where possible and give you intuitive commands to create the right ones. However, you might sometimes have to create account updates explicitly.
 
-<!-- TODO: link to permission section when it exists -->
+- The user update has `authorizationKind: 'None_given'`. That means the update is not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA. You can send someone MINA without their permission.
 
-Next, we observe that the user account update has a `callDepth: 1` and a non-default `caller` field. We won't explain this in detail, but it has to do with the fact that it was created from within a zkApp call. Account updates, even though displayed as a flat list here, are implicitly structured as a _list of trees_. Updates with a call depth of 1 or higher are child nodes of another update in that list of trees. In our case, the zkApp (sender) account update is at the top level (`callDepth: 0`) and the user (receiver) account update is a child of it.
+In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn more about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
 
-So, what is the meaning of this tree structure? Recall that in the last section, we explained how the zkApp account update is public input to its proof. Now, the fully general version of that statement is:
+## Account update tree structures
+
+Next, observe that the user account update has a `callDepth: 1`. This is because the update was created from within a zkApp call. Account updates, displayed as a flat list here, are implicitly structured as a _list of trees_. Updates with a call depth of 1 or higher are child nodes of another update in that list of trees. In this case, the zkApp (sender) account update is at the top level (`callDepth: 0`) and the user (receiver) account update is a child of it.
+
+So, what does this tree structure mean? Recall that the zkApp account update is public input to its proof. Now, the fully general version of that statement is:
+
 **In a tree of account updates, all nodes are public inputs to the proof of the root node.** (If there is such a proof. This also holds for sub-trees of each tree.)
 
 <!-- TODO: _ideal_ here would be a little picture of a tree, with a parent and a child node -->
 
-Concretely, in our example, both the zkApp account update and the user account update are public input to the zkApp method call. Intuitively, being public input means that the zkApp can "see" and constrain the update as part of its proof. Here, it means that nobody could change the public key of the receiver, or amount they receive, without making the proof invalid. The update can only contain what the method specified.
+Concretely, in this example, both the zkApp account update and the user account update are public input to the zkApp method call. 
 
-All of this is true because `this.send()`, under the hood, placed the receiver update at call depth 1, under the zkApp update. As a counter-example: The fee payer is never part of the public input. It can be anything without affecting the validity of the proof.
+Intuitively, the public input means that the zkApp can "see" and constrain the update as part of its proof. Here, it means that no one can change the public key of the receiver, or amount they receive, without making the proof invalid. 
 
-A key takeaway is: If you want something to become part of your proof, you have to put it inside your `@method`.
+The update can contain only what the method specified.
 
-<!-- TODO: This section got a bit long, so I commented out the content below. It educates about a frequent gotcha, but it's too much at this point and could live in some tutorial / deep-dive later -->
+All of this is true because `this.send()` placed the receiver update at call depth 1, under the zkApp update. 
 
-<!--
-Let's try to mess around a bit, and see what happens if we move `.send()` _outside_ the `payout()` method, into the `Mina.transaction` callback:
+As a counter example: The fee payer is never part of the public input. It can be anything without affecting the validity of the proof.
 
-```ts
-class MyContract extends SmartContract {
-  @method payout(amount: UInt64) {
-    // this.send({ to: this.sender, amount }); // commented this out, placed it below
-  }
-}
-
-// ...
-
-const tx = await Mina.transaction(sender, () => {
-  let amount = UInt64.from(5n * MINA);
-  zkapp.payout(amount);
-  zkapp.send({ to: sender, amount }); // here
-});
-await tx.prove();
-```
-
-If you run this, you'll see an error:
-
-```
-Error when proving MyContract.payout()
-...
-```
-
-This error comes about as follows:
-
-- The logic that's proven is what's contained in your method -- `payout()`
-- The method doesn't contain the `this.send()` command, which is therefore not reflected in the account updates the method creates
-- The actual account updates in your transaction do reflect the `send()` command
-- The actual account updates are passed into your method prover as public input
-- The method prover compares that public input to the account updates it itself creates (which makes them sort of a "public output")
-- That comparison check fails, because the two sets of account updates are different
--->
+A key takeaway is: If you want something to become part of your proof, you must put it inside your `@method`.
 
 ## Signing transactions and explicit account updates
 
-Let's recap: We have explained how to write a SmartContract. We've seen how to create a transaction which calls that contract, and how the transaction consists of account updates which were created by o1js under the hood. Now, we'll see an example of creating an account update explicitly. We'll also learn how to use signatures, for authorizing updates to user accounts.
+To recap the workflow covered so far: You write a smart contract, and then create a transaction to call the smart contract. You've seen how this transaction consists of account updates that are created by o1js. 
 
-We continue the payment topic of last section, where we paid out MINA from a zkApp. This time, we go the other direction: make a deposit from the user into the zkApp. Payments made from a user account will require a signature by the user. Here's the smart contract code:
+The next example shows how an account update is created explicitly. You'll also learn how to use signatures for authorizing updates to user accounts.
+
+To continue the [Payment from a zkApp example](#example-payment-from-a-zkapp) in the other direction: make a deposit from the user into the zkApp. 
+
+Payments made from a user account require a signature by the user. 
+
+Here's the smart contract code:
 
 ```ts
 class MyContract extends SmartContract {
@@ -281,35 +305,38 @@ class MyContract extends SmartContract {
 }
 ```
 
-Let's unpack what happens here. The first line of our method creates a new, empty account update for the sender account:
+To unpack what happens here, the first line of the method creates a new, empty account update for the sender account:
 
 ```ts
 let senderUpdate = AccountUpdate.create(this.sender);
 ```
 
-`AccountUpdate` is the class in o1js that represents account udpates. `AccountUpdate.create()` not only instantiates this class, but also attaches the update to the current transaction, at the same level where `create` is called. If it is called inside a `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
+- `AccountUpdate` is the class in o1js that represents account udpates. 
+- `AccountUpdate.create()` instantiates this class and attaches the update to the current transaction at the same level where `create` is called. 
 
-The next line tells o1js that this update will be authorized with a signature:
+    If it is called inside an `@method`, the `AccountUpdate` is created as a child (public input) of the zkApp update.
+
+The next line specifies that the update must be authorized with a signature:
 
 ```ts
 senderUpdate.requireSignature();
 ```
 
-We'll get into this later. We also could've used a shortcut which does both `AccountUpdate.create()` and `requireSignature()` in one command:
+You can also use a shortcut for `AccountUpdate.create()` and `requireSignature()` in a single command:
 
 ```ts
 let senderUpdate = AccountUpdate.createSigned(this.sender); // create + requireSignature
 ```
 
-Finally, we use `.send()` on the sender `AccountUpdate` to deposit into the zkApp, which has the same API as `this.send()`:
+Finally, use `.send()` on the sender `AccountUpdate` to deposit into the zkApp with the same API as `this.send()`:
 
 ```ts
 senderUpdate.send({ to: this, amount });
 ```
 
-Note that instead of an address as the `to` field, we pass in `this`, which is a `SmartContract`. This is done so that `.send()` doesn't create an additional update, but uses the one that's already created for our zkApp.
+Note that instead of an address as the `to` field, pass in `this`, which is a `SmartContract`, so that `.send()` doesn't create an additional update, but uses the one already created for our zkApp.
 
-If we create a transaction for calling this method like before, it looks like this:
+A transaction for calling this method looks like:
 
 ```ts
 [
@@ -333,14 +360,18 @@ If we create a transaction for calling this method like before, it looks like th
 ];
 ```
 
-The third account update is the one we created with `AccountUpdate.create()`. Two changes to it were caused by calling `requireSignature()`:
+The third account update is the one created with `AccountUpdate.create()`. 
 
-- `useFullCommitment: true`, which we won't explain here but has to do with replay protection if you're using signatures.
+Two changes to the update were caused by calling `requireSignature()`:
+
+- `useFullCommitment: true`, not explained here but has to do with replay protection when using signatures.
 - `authorizationKind: 'Signature'`
 
-Finally, `authorization: undefined` indicates that we didn't provide the signature yet.
+Finally, `authorization: undefined` indicates that the signature is not provided yet.
 
-In a user-facing zkApp, user signatures will typically be added by a wallet, not within o1js. In that case, the missing signature is fine. However, for testing and calling zkApps via node, you need to add the signatures yourself. The command to do that is `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. Here's an example:
+In a user-facing zkApp, user signatures are typically added by a wallet, not within o1js. In that case, the missing signature is expected. However, in tests or when calling zkApps from a Node.js script, you must add the signatures with `tx.sign([...privateKeys])`, called after `Mina.transaction` on the finished transaction. 
+
+For example:
 
 ```ts
 const sender = senderPrivateKey.toPublicKey(); // public key from sender's private key
@@ -353,13 +384,20 @@ await tx.prove();
 tx.sign([senderPrivateKey]); // senderKey is a PrivateKey
 ```
 
-The example first shows us how we can derive the sender's public key `sender` from its private key `senderPrivateKey`.
+- The example shows how to derive the sender's public key, `sender`, from its private key, `senderPrivateKey`.
+- `.sign()` goes through the transaction and adds signatures on all account updates that:
+  
+    - Need a signature
+    - Whose public key matches one of the private keys that were provided 
+  
+  `.sign()` takes an array, so you could provide multiple private keys for signing. 
 
-Note that `.sign()` takes an array, so you could provide multiple private keys for signing. `.sign()` will go through the transaction and add signatures on all account updates which 1) need a signature and 2) whose public key matches one of the private keys that were provided. In the example above, two account updates are signed with `tx.sign()`: The fee payer and the depositor account update. Both have the `sender` public key on them, which matches `senderPrivateKey.toPublicKey()`.
+In this example, two account updates are signed with `tx.sign()`: The fee payer and the depositor account update. Both have the `sender` public key on them that matches `senderPrivateKey.toPublicKey()`.
 
-:::note
+:::tip
+o1js allows you to load and store private and public keys in Base58 format. 
 
-o1js allows you to load and store private and public keys in base58 format. Here's how the sender private key might be created in a script:
+To create the sender private key in a script:
 
 ```ts
 const senderPrivateKey = PrivateKey.fromBase58('EKEQc95...');
@@ -368,28 +406,32 @@ const senderPrivateKey = PrivateKey.fromBase58('EKEQc95...');
 In a real server-side deployment, you probably want to load keys from a file or environment variable, instead of hard-coding them in your source code.
 :::
 
-To summarize, there are three types of authorization that account updates can have, which are typically used in different circumstances:
+Recall that account updates can have three types of authorization:
 
-- Proof authorization – used for zkApp accounts when you do a `@method` call. Proofs are verified against the on-chain verification key.
+- Proof authorization – used for zkApp accounts when you do an `@method` call. Proofs are verified against the on-chain verification key.
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
-- No authorization – used on updates which don't require authorization, for example positive balance changes.
+- No authorization – used on updates which don't require authorization. For example, positive balance changes.
 
-The list above just reflects common defaults. The full source of truth is given by the _account permissions_, see [Permissions](./permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates.
+These are common defaults. The full source of truth is set by the _account permissions_, see [Permissions](/zkapps/o1js/permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates. Permissions are checked every time an account update tries to interact with an account.
 
 ## Sending transactions
 
-The final step of creating a transaction is sending it to the network. Like signing, in a user-facing zkApp this is usually handled by a wallet. But you need to know how to do it yourself for testing and scripting.
+The final step of creating a transaction is sending it to the network. Like signing, in a user-facing zkApp this transaction is usually handled by a wallet. 
 
-To send a transaction, we need to specify what network we're interacting with. This is done by specifying a "Mina instance" at the beginning of your script:
+You can use this workflow for testing and scripting.
+
+To send a transaction, you must specify what network to interact with by specifying a "Mina instance" at the beginning of your script:
 
 ```ts
 const Network = Mina.Network('https://example.com/graphql');
 Mina.setActiveInstance(Network);
 ```
 
-The network URL has to be a GraphQL endpoint which exposes a compatible GraphQL API. This URL will not only determine where transactions are sent, but also where o1js gets account information from, when _creating_ transactions. For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn will cause the account to be fetched from the GraphQL endpoint.
+The network URL must be a GraphQL endpoint that exposes a compatible GraphQL API. This URL determines where transactions are sent and where o1js gets account information from when _creating_ transactions. 
 
-To send a transaction, create it as before and then use `tx.send()`:
+For example, when you do something like `this.<state>.get()` in your smart contract, the Mina instance is asked for the account using `Mina.getAccount`, which in turn causes the account to be fetched from the GraphQL endpoint.
+
+To send a transaction, use `tx.send()`:
 
 ```ts
 // set Mina instance
@@ -407,12 +449,15 @@ tx.sign([senderPrivateKey]);
 await tx.send();
 ```
 
-The output of `tx.send()` can be used to wait for inclusion of this transaction in a block, and to get the transaction hash (which lets you look up the pending transaction on a block explorer):
+The output of `tx.send()` can be used to:
+
+- Wait for inclusion of this transaction in a block
+- Get the transaction hash, which lets you look up the pending transaction on a block explorer
 
 ```ts
 // send transaction, log transaction hash
 let pendingTx = await tx.send();
-console.log(`Got pending transaction with hash ${pendingTx.hash()}`);
+console.log(`Got pending transaction with hash ${pendingTx.hash}`);
 
 // wait until transaction is included in a block
 await pendingTx.wait();
@@ -420,43 +465,15 @@ await pendingTx.wait();
 // our account updates are applied on chain!
 ```
 
-Apart from `Mina.Metwork`, you can also use a mocked "Mina instance" for local testing:
+In addition to `Mina.Network`, you can also use a simulated local blockchain for local testing:
 
 ```ts
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
-Doing this means setting up a fresh, local ledger, which is pre-filled with a couple of accounts with funds on them that you have access to. "Sending" a transaction here just means applying your account updates to that local Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.[^2]
+Doing this means setting up a fresh, local ledger that is pre-filled with a couple of accounts with funds that you have access to. "Sending" a transaction here just means applying your account updates to that local simulated Mina instance. This is helpful for testing, especially because account updates go through the same validation logic locally that they would on-chain.
 
-[^2]: Fun fact: `LocalBlockchain` literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JS with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
+Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JavaScript with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
-<!-- TODO commenting this out as it overlaps with the testing section
-
-Everything else works the same locally as it would when interaction with a real network. You still need to properly sign your transactions and attach proofs, and then send them with `tx.send()` to apply them locally.
-
-To help you iterate quicker when testing, there's an option to disable proof creation: `Mina.LocalBlockchain({ proofsEnabled: false })`. You can use it like this:
-
-```ts
-// local mock Mina instance
-const proofsEnabled = false;
-const Local = Mina.LocalBlockchain({ proofsEnabled });
-Mina.setActiveInstance(Local);
-
-// only need to compile smart contract when proofs are enabled
-if (proofsEnabled) await MyContract.compile();
-
-const tx = await Mina.transaction(sender, () => {
-  // ...
-});
-await tx.prove();
-tx.sign([senderKey]);
-
-await tx.send();
-
-// our accounts updates are applied locally!
-```
-
-Note that with `proofsEnabled: false`, you still need to call `await tx.prove()`. The only change is that `.prove()` creates a dummy proof instead of a real one, and runs in 0 seconds. Also, `tx.send()` will skip the usual step of verifying your proof. -->
-
-You can learn more about testing in [How to test your zkApp](../how-to-test-a-zkapp).
+You can learn more about testing in [Test zkApps Locally](/zkapps/testing-zkapps-locally).
