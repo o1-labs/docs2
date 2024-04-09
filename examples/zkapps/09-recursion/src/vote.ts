@@ -5,7 +5,7 @@ import {
   ZkProgram,
   Struct,
   Bool,
-  Circuit,
+  Provable,
   Poseidon,
   MerkleMap,
   MerkleTree,
@@ -143,9 +143,9 @@ class VoteState extends Struct({
     );
 
     return new VoteState({
-      voteFor: state.voteFor.add(Circuit.if(voteFor, Field(1), Field(0))),
+      voteFor: state.voteFor.add(Provable.if(voteFor, Field(1), Field(0))),
       voteAgainst: state.voteAgainst.add(
-        Circuit.if(voteFor, Field(0), Field(1))
+        Provable.if(voteFor, Field(0), Field(1))
       ),
       votersTreeRoot: state.votersTreeRoot,
       nullifierMapRoot: nullifierRootAfter,
