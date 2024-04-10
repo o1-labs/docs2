@@ -50,7 +50,7 @@ export class MyToken extends TokenContract {
   }
 
   @method async approveDeploy(deployUpdate: AccountUpdate) {
-    this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
+    this.approve(deployUpdate);
 
     // check that balance change is zero
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
@@ -63,7 +63,7 @@ export class MyToken extends TokenContract {
     transferUpdate: AccountUpdate,
     receiver: PublicKey
   ) {
-    this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
+    this.approve(transferUpdate);
 
     let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
 
