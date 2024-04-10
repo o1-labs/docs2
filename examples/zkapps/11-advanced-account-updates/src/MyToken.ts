@@ -9,9 +9,10 @@ import {
   SmartContract,
   UInt64,
   TransactionVersion,
+  TokenContract,
 } from 'o1js';
 
-export class MyToken extends SmartContract {
+export class MyToken extends TokenContract {
   async deploy() {
     await super.deploy();
     this.account.permissions.set({
