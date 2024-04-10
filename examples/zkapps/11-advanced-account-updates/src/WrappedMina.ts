@@ -11,6 +11,7 @@ import {
   State,
   state,
   TokenContract,
+  AccountUpdateForest,
 } from 'o1js';
 
 export class WrappedMina extends TokenContract {
@@ -40,6 +41,12 @@ export class WrappedMina extends TokenContract {
     this.priorMina.set(UInt64.from(0));
   }
 
+  // ----------------------------------------------------------------------
+  async approveBase(forest: AccountUpdateForest) {
+    this.checkZeroBalanceChange(forest);
+  }
+
+  // ----------------------------------------------------------------------
   @method async mintWrappedMina(amount: UInt64, destination: PublicKey) {
     const priorMina = this.priorMina.get();
     this.priorMina.requireEquals(this.priorMina.get());
