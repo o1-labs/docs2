@@ -33,15 +33,15 @@ Follow the steps for your operating system.
 
 ### Ubuntu 18.04 and Debian 9
 
-Install the latest **Stable** [Mina Release 1.3.1.2](https://github.com/MinaProtocol/mina/releases/tag/1.3.1.2) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Alpha/Beta) builds.
+Install the latest **Stable** [Mina Release 3.0.0](https://github.com/MinaProtocol/mina/releases/tag/3.0.0devnet) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Alpha/Beta) builds.
 
-To set up the new debian `stable` repository and install the latest version:
+To set up the new debian `devnet` repository and install the latest version:
 
 ```sh
-echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) devnet" | sudo tee /etc/apt/sources.list.d/mina-devnet.list
 sudo apt-get install --yes apt-transport-https
 sudo apt-get update
-sudo apt-get install --yes curl unzip mina-devnet=1.3.0-9b0369c
+sudo apt-get install --yes curl unzip mina-devnet=3.0.0
 ```
 
 To check that daemon installed correctly:
@@ -53,15 +53,22 @@ mina version
 The expected output is:
 
 ```text
-Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master
+Commit dc6bf78b8ddbbca3a1a248971b76af1514bf05aa on branch berkeley
 ```
 
 ## Start and connect a node to Devnet
 
 To start a Mina node instance and connect to the Devnet network:
 
+If you don't already have one, you must create a libp2p key pair and persist it.
 ```
-mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
+mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
+```
+Set the environment variable `MINA_LIBP2P_PASS` with the password set for the libp2p key pair in the previous step.   
+
+Run mina daemon with:
+```
+mina daemon -libp2p-keypair <path-to-the-key-file> and --peer-list-url https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
 ```
 
 The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
@@ -82,7 +89,7 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEER_LIST_URL=https://storage.googleapis.com/seed-lists/devnet_seeds.txt
+PEER_LIST_URL=https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
 ```
 
 Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
@@ -97,7 +104,7 @@ docker run --name mina -d \
 --restart=always \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:1.3.1.2-25388a0-bullseye-devnet \
+minaprotocol/mina-daemon:3.0.0-dc6bf78-focal-devnet \
 daemon \
 ```
 
