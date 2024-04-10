@@ -14,7 +14,7 @@ export class TokenPool extends SmartContract {
   static wrappedMinaPublicKey: PublicKey;
 
   // TODO: this deploy() does nothing, can be removed
-  deploy(args?: DeployArgs) {
+  async deploy(args?: DeployArgs) {
     super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
