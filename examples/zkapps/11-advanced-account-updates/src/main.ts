@@ -12,7 +12,7 @@ await (async function main() {
   const { privateKey: deployerKey, publicKey: deployerAddr } =
     Local.testAccounts[0];
 
-  let accountFee = Mina.accountCreationFee();
+  let accountFee = Mina.getNetworkConstants().accountCreationFee;
 
   // ----------------------------------------------------
 
