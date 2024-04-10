@@ -29,7 +29,7 @@ export class WrappedMina extends TokenContract {
   @method async init() {
     super.init();
 
-    let receiver = this.token.mint({
+    let receiver = this.internal.mint({
       address: this.address,
       amount: UInt64.from(0),
     });
@@ -51,7 +51,7 @@ export class WrappedMina extends TokenContract {
     // TODO is there a way to directly get the balance change for this transaction?
     this.account.balance.requireBetween(newMina, UInt64.MAXINT());
 
-    this.token.mint({ address: destination, amount });
+    this.internal.mint({ address: destination, amount });
 
     this.priorMina.set(newMina);
   }
@@ -91,7 +91,7 @@ export class WrappedMina extends TokenContract {
     destination: PublicKey,
     amount: UInt64
   ) {
-    this.token.burn({ address: source, amount });
+    this.internal.burn({ address: source, amount });
 
     const priorMina = this.priorMina.get();
     this.priorMina.requireEquals(this.priorMina.get());
@@ -117,7 +117,7 @@ export class WrappedMina extends TokenContract {
     let balanceChange = Int64.fromObject(zkappUpdate.body.balanceChange);
     balanceChange.assertEquals(Int64.from(amount).neg());
     // add same amount of tokens to the receiving address
-    this.token.mint({ address: to, amount });
+    this.internal.mint({ address: to, amount });
   }
 
   // ----------------------------------------------------------------------
@@ -134,7 +134,7 @@ export class WrappedMina extends TokenContract {
   // ----------------------------------------------------------------------
 
   @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
-    this.token.send({ from, to, amount: value });
+    this.internal.send({ from, to, amount: value });
   }
 
   // ----------------------------------------------------------------------
