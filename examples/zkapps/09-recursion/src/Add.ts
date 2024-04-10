@@ -1,10 +1,4 @@
-import {
-  Field,
-  SelfProof,
-  ZkProgram,
-  verify,
-} from 'o1js';
-
+import { Field, SelfProof, ZkProgram, verify } from 'o1js';
 
 const Add = ZkProgram({
   name: 'add-example',
@@ -14,36 +8,41 @@ const Add = ZkProgram({
     init: {
       privateInputs: [],
 
-      method(state: Field) {
+      async method(state: Field) {
         state.assertEquals(Field(0));
       },
     },
 
     addNumber: {
-      privateInputs: [SelfProof, Field ],
+      privateInputs: [SelfProof, Field],
 
-      method(newState: Field, earlierProof: SelfProof<Field, void>, numberToAdd: Field) {
+      async method(
+        newState: Field,
+        earlierProof: SelfProof<Field, void>,
+        numberToAdd: Field
+      ) {
         earlierProof.verify();
         newState.assertEquals(earlierProof.publicInput.add(numberToAdd));
       },
     },
 
     add: {
-      privateInputs: [ SelfProof, SelfProof ],
+      privateInputs: [SelfProof, SelfProof],
 
-      method(
-        newState: Field, 
+      async method(
+        newState: Field,
         earlierProof1: SelfProof<Field, void>,
         earlierProof2: SelfProof<Field, void>
       ) {
         earlierProof1.verify();
         earlierProof2.verify();
-        newState.assertEquals(earlierProof1.publicInput.add(earlierProof2.publicInput));
+        newState.assertEquals(
+          earlierProof1.publicInput.add(earlierProof2.publicInput)
+        );
       },
     },
   },
 });
-
 
 async function main() {
   console.log('compiling...');
