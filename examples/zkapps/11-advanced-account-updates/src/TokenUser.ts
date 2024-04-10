@@ -8,6 +8,7 @@ import {
   Permissions,
   UInt64,
   AccountUpdate,
+  TransactionVersion,
 } from 'o1js';
 
 export class TokenUser extends SmartContract {
@@ -22,7 +23,10 @@ export class TokenUser extends SmartContract {
       editActionState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
@@ -67,7 +71,10 @@ export class TokenHolder extends SmartContract {
       editActionState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
