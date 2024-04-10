@@ -37,7 +37,7 @@ export class TokenPool extends SmartContract {
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
     const wminaContract = new TokenPoolWMinaHolder(
       this.address,
-      wrappedMinaContract.token.id
+      wrappedMinaContract.tokenId
     );
     wminaContract.burnWMINA(amount);
     const burnWMINA = wminaContract.self;
