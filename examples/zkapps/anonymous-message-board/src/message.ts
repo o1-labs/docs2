@@ -67,7 +67,7 @@ export class Message extends SmartContract {
     // Update on-chain message state
     this.message.set(message);
 
-    // Computer new messageHistoryHash
+    // Compute new messageHistoryHash
     const oldHash = this.messageHistoryHash.get();
     const newHash = Poseidon.hash([message, oldHash]);
 

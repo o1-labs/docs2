@@ -15,7 +15,7 @@
     "coi-serviceworker": "^0.1.7",
     "experimental-offchain-zkapp-storage": "^0.1.0",
     "next": "13.0.0",
-    "o1js": "1.0.*",
+    "o1js": "0.18.*",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
