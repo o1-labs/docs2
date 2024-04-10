@@ -7,13 +7,13 @@ import {
   AccountUpdate,
   Permissions,
   PublicKey,
-  SmartContract,
   UInt64,
   State,
   state,
+  TokenContract,
 } from 'o1js';
 
-export class WrappedMina extends SmartContract {
+export class WrappedMina extends TokenContract {
   async deploy(args?: DeployArgs) {
     await super.deploy(args);
     this.account.permissions.set({
