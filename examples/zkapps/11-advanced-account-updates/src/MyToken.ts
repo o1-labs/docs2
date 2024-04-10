@@ -10,6 +10,7 @@ import {
   UInt64,
   TransactionVersion,
   TokenContract,
+  AccountUpdateForest,
 } from 'o1js';
 
 export class MyToken extends TokenContract {
@@ -40,6 +41,9 @@ export class MyToken extends TokenContract {
   }
 
   // ----------------------------------------------------------------------
+  async approveBase(forest: AccountUpdateForest) {
+    this.checkZeroBalanceChange(forest);
+  }
 
   @method async mintTokens(receiverAddress: PublicKey, amount: UInt64) {
     this.internal.mint({ address: receiverAddress, amount });
@@ -67,13 +71,13 @@ export class MyToken extends TokenContract {
     balanceChange.isPositive().not().assertTrue();
 
     // move the same amount to the receiver
-    this.token.mint({ address: receiver, amount: balanceChange.magnitude });
+    this.internal.mint({ address: receiver, amount: balanceChange.magnitude });
   }
 
   // ----------------------------------------------------------------------
 
   @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
-    this.token.send({ from, to, amount: value });
+    this.internal.send({ from, to, amount: value });
   }
 
   // ----------------------------------------------------------------------
