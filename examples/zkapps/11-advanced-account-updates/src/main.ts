@@ -36,7 +36,7 @@ await (async function main() {
   const tokenUserInstance = new TokenUser(tokenUserAddr);
   const tokenHolderInstance = new TokenHolder(
     tokenUserAddr,
-    myTokenInstance.token.id
+    myTokenInstance.tokenId
   );
 
   if (proofsEnabled) {
