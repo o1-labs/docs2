@@ -15,8 +15,8 @@ import {
 } from 'o1js';
 
 export class MyToken extends TokenContract {
-  async deploy() {
-    await super.deploy();
+  async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),

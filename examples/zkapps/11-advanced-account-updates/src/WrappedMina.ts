@@ -14,8 +14,8 @@ import {
 } from 'o1js';
 
 export class WrappedMina extends SmartContract {
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
+  async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
       send: Permissions.proof(),
