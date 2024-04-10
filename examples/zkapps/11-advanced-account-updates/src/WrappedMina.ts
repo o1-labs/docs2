@@ -36,11 +36,9 @@ export class WrappedMina extends TokenContract {
     // require that the receiving account is new, so this can be only done once
     receiver.account.isNew.requireEquals(Bool(true));
     // pay fees for opened account
-    this.balance.subInPlace(Mina.accountCreationFee());
+    this.balance.subInPlace(Mina.getNetworkConstants().accountCreationFee);
     this.priorMina.set(UInt64.from(0));
   }
-
-  // ----------------------------------------------------------------------
 
   @method async mintWrappedMina(amount: UInt64, destination: PublicKey) {
     const priorMina = this.priorMina.get();
@@ -62,13 +60,11 @@ export class WrappedMina extends TokenContract {
     burnWMINA: AccountUpdate,
     amount: UInt64
   ) {
-    let { StaticChildren, NoDelegation } = AccountUpdate.Layout;
-
     // check that the burn account update has our token id
     burnWMINA.body.tokenId.assertEquals(this.tokenId);
 
     // approve burn with at most 2 child account updates, which don't get token permissions
-    this.approve(burnWMINA, StaticChildren(NoDelegation, NoDelegation));
+    this.approve(burnWMINA);
 
     // check that the account update burns the specified amount
     let balanceChange = Int64.fromObject(burnWMINA.body.balanceChange);
