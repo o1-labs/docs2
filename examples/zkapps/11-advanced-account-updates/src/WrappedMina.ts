@@ -65,7 +65,7 @@ export class WrappedMina extends TokenContract {
     let { StaticChildren, NoDelegation } = AccountUpdate.Layout;
 
     // check that the burn account update has our token id
-    burnWMINA.body.tokenId.assertEquals(this.token.id);
+    burnWMINA.body.tokenId.assertEquals(this.tokenId);
 
     // approve burn with at most 2 child account updates, which don't get token permissions
     this.approve(burnWMINA, StaticChildren(NoDelegation, NoDelegation));
@@ -140,7 +140,7 @@ export class WrappedMina extends TokenContract {
   // ----------------------------------------------------------------------
 
   @method async getBalance(publicKey: PublicKey): UInt64 {
-    let accountUpdate = AccountUpdate.create(publicKey, this.token.id);
+    let accountUpdate = AccountUpdate.create(publicKey, this.tokenId);
     let balance = accountUpdate.account.balance.get();
     accountUpdate.account.balance.requireEquals(
       accountUpdate.account.balance.get()
