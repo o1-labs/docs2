@@ -36,13 +36,13 @@ export class MyToken extends TokenContract {
 
     this.account.tokenSymbol.set('MYTKN');
 
-    this.token.mint({ address: this.address, amount: UInt64.from(1000) });
+    this.internal.mint({ address: this.address, amount: UInt64.from(1000) });
   }
 
   // ----------------------------------------------------------------------
 
   @method async mintTokens(receiverAddress: PublicKey, amount: UInt64) {
-    this.token.mint({ address: receiverAddress, amount });
+    this.internal.mint({ address: receiverAddress, amount });
   }
 
   @method async approveDeploy(deployUpdate: AccountUpdate) {
