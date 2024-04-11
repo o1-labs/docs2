@@ -56,10 +56,11 @@ await (async function main() {
     await tokenUserInstance.deploy();
     await tokenHolderInstance.deploy();
 
-    myTokenInstance.approveDeploy(tokenHolderInstance.self);
+    await myTokenInstance.approveDeploy(tokenHolderInstance.self);
   });
 
   await deployTxn.prove();
+
   deployTxn.sign([deployerKey, myTokenSk, tokenUserSk]);
 
   //await showTxn(deploy_txn, 'deploy_txn', legend);
