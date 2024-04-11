@@ -36,11 +36,11 @@ export class MyToken extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method mintTokens(receiverAddress: PublicKey, amount: UInt64) {
+  @method async mintTokens(receiverAddress: PublicKey, amount: UInt64) {
     this.token.mint({ address: receiverAddress, amount });
   }
 
-  @method approveDeploy(deployUpdate: AccountUpdate) {
+  @method async approveDeploy(deployUpdate: AccountUpdate) {
     this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
 
     // check that balance change is zero
@@ -50,7 +50,10 @@ export class MyToken extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
+  @method async approveTransfer(
+    transferUpdate: AccountUpdate,
+    receiver: PublicKey
+  ) {
     this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
 
     let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
@@ -64,7 +67,7 @@ export class MyToken extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method transfer(from: PublicKey, to: PublicKey, value: UInt64) {
+  @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
     this.token.send({ from, to, amount: value });
   }
 

@@ -176,11 +176,11 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
   class MerkleWitness20 extends MerkleWitness(height) {}
 
   // deploy the smart contract
-  const deployTxn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, async () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkApp.deploy();
+    await zkApp.deploy();
     // get the root of the new tree to use as the initial tree root
-    zkApp.initState(tree.getRoot());
+    await zkApp.initState(tree.getRoot());
   });
   await deployTxn.prove();
   deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
@@ -203,8 +203,8 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
   tree.setLeaf(incrementIndex, incrementAmount);
 
   // update the smart contract
-  const txn1 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.update(
+  const txn1 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.update(
       witness,
       Field(0), // leafs in new trees start at a state of 0
       incrementAmount
@@ -262,10 +262,10 @@ console.log('--------------------------------------');
   const zkApp = new LedgerContract(ledgerZkAppAddress);
   await LedgerContract.compile();
 
-  const deployTxn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, async () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkApp.deploy();
-    zkApp.initState(tree.getRoot());
+    await zkApp.deploy();
+    await zkApp.initState(tree.getRoot());
   });
   await deployTxn.prove();
   await deployTxn.sign([deployerKey, ledgerZkAppPrivateKey]).send();
@@ -299,8 +299,8 @@ console.log('--------------------------------------');
     [zkApp.ledgerRoot.get(), amount].concat(recipientPublicKey.toFields())
   );
 
-  const txn1 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.sendBalance(
+  const txn1 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.sendBalance(
       sendWitness1,
       recipientWitness1,
       senderInitialBalance,
@@ -351,8 +351,8 @@ console.log('--------------------------------------');
     [zkApp.ledgerRoot.get(), amount].concat(newRecipientPublicKey.toFields())
   );
 
-  const txn2 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.sendBalance(
+  const txn2 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.sendBalance(
       sendWitness2,
       recipientWitness2,
       newSenderBalance,

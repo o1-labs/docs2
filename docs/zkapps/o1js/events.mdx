@@ -49,7 +49,7 @@ class MyContract extends SmartContract {
     "update-merkle-leaf": Field,
   }
 
-  @method updateMerkleTree(leaf: Field, ...) {
+  @method async updateMerkleTree(leaf: Field, ...) {
     this.emitEvent("update-merkle-leaf", leaf);
     // ...
   }

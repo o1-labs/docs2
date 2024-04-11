@@ -42,7 +42,7 @@ export class OffChainStorageTestContract extends SmartContract {
     this.serverPublicKey.set(this._serverPublicKey);
   }
 
-  @method update(
+  @method async update(
     leafIsEmpty: Bool,
     oldNum: Field,
     num: Field,

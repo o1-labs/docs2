@@ -198,7 +198,7 @@ The `initState()` method is intended to run once to set up the initial state on 
 ```ts ignore
 ...
   5
-  6   @method initState(salt: Field, firstSecret: Field) {
+  6   @method async initState(salt: Field, firstSecret: Field) {
   7     this.x.set(Poseidon.hash([ salt, firstSecret ]));
   8   }
 ```
@@ -214,7 +214,7 @@ This method updates the state:
 ```ts ignore
 ...
   9
- 10   @method incrementSecret(salt: Field, secret: Field) {
+ 10   @method async incrementSecret(salt: Field, secret: Field) {
  11     const x = this.x.get();
  12     this.x.requireEquals(x);
  13
@@ -256,10 +256,10 @@ The smart contract initialization this time is:
 ...
  24 const salt = Field.random();
 ...
- 28 const deployTxn = await Mina.transaction(deployerAccount, () => {
+ 28 const deployTxn = await Mina.transaction(deployerAccount, async () => {
  29   AccountUpdate.fundNewAccount(deployerAccount);
- 30   zkAppInstance.deploy();
- 31   zkAppInstance.initState(salt, Field(750));
+ 30   await zkAppInstance.deploy();
+ 31   await zkAppInstance.initState(salt, Field(750));
  32 });
  33 await deployTxn.prove();
 ...
@@ -271,8 +271,8 @@ This code creates a user transaction to update the on-chain state:
 
 ```ts
 ...
- 42 const txn1 = await Mina.transaction(senderAccount, () => {
- 43   zkAppInstance.incrementSecret(salt, Field(750));
+ 42 const txn1 = await Mina.transaction(senderAccount, async () => {
+ 43   await zkAppInstance.incrementSecret(salt, Field(750));
  44 });
 ...
 ```

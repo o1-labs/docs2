@@ -1,17 +1,11 @@
 import { TokenUser, TokenHolder } from './TokenUser.js';
 import { MyToken } from './MyToken.js';
 
-import {
-  Mina,
-  PrivateKey,
-  AccountUpdate,
-  UInt64,
-} from 'o1js';
+import { Mina, PrivateKey, AccountUpdate, UInt64 } from 'o1js';
 
 import { showTxn, saveTxn } from 'mina-transaction-visualizer';
 
 await (async function main() {
-
   const proofsEnabled = true;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
@@ -54,13 +48,13 @@ await (async function main() {
 
   // ----------------------------------------------------
 
-  const deployTxn = await Mina.transaction(deployerAddr, () => {
+  const deployTxn = await Mina.transaction(deployerAddr, async () => {
     let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 4);
     feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
 
-    myTokenInstance.deploy();
-    tokenUserInstance.deploy();
-    tokenHolderInstance.deploy();
+    await myTokenInstance.deploy();
+    await tokenUserInstance.deploy();
+    await tokenHolderInstance.deploy();
 
     myTokenInstance.approveDeploy(tokenHolderInstance.self);
   });
@@ -77,8 +71,8 @@ await (async function main() {
 
   // ----------------------------------------------------
 
-  const txn1 = await Mina.transaction(deployerAddr, () => {
-    myTokenInstance.mintTokens(tokenUserAddr, UInt64.from(500));
+  const txn1 = await Mina.transaction(deployerAddr, async () => {
+    await myTokenInstance.mintTokens(tokenUserAddr, UInt64.from(500));
   });
 
   txn1.sign([deployerKey, myTokenSk, tokenUserSk]);
@@ -93,9 +87,9 @@ await (async function main() {
 
   // ----------------------------------------------------
 
-  const txn2 = await Mina.transaction(deployerAddr, () => {
+  const txn2 = await Mina.transaction(deployerAddr, async () => {
     AccountUpdate.fundNewAccount(deployerAddr, 1);
-    tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
+    await tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
   });
 
   await txn2.prove();
@@ -109,5 +103,4 @@ await (async function main() {
   await txn2.send();
 
   console.log('sent txn2');
-
 })();

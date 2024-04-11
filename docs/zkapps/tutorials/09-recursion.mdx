@@ -304,11 +304,11 @@ class RollupContract extends SmartContract {
     });
   }
 
-  @method initStateRoot(stateRoot: Field) {
+  @method async initStateRoot(stateRoot: Field) {
     this.state.set(stateRoot);
   }
 
-  @method update(rollupStateProof: RollupProof) {
+  @method async update(rollupStateProof: RollupProof) {
     const currentState = this.state.get();
     this.state.requireEquals(currentState);
 

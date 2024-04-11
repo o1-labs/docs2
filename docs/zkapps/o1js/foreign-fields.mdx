@@ -192,7 +192,7 @@ class AlmostField17 extends Field17.AlmostReduced {}
 class MyContract extends SmartContract {
   @state(AlmostField17.provable) x = State<AlmostField17>();
 
-  @method myMethod(y: AlmostField17) {
+  @method async myMethod(y: AlmostField17) {
     let x = y.mul(2);
     this.x.set(x.assertAlmostReduced());
   }

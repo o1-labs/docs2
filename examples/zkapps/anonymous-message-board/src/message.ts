@@ -48,7 +48,7 @@ export class Message extends SmartContract {
     this.messageHistoryHash.set(Field(0));
   }
 
-  @method publishMessage(message: Field, signerPrivateKey: PrivateKey) {
+  @method async publishMessage(message: Field, signerPrivateKey: PrivateKey) {
     // Compute signerPublicKey from signerPrivateKey argument
     const signerPublicKey = signerPrivateKey.toPublicKey();
 

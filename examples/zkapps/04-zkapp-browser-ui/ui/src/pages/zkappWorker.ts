@@ -9,7 +9,7 @@ import type { Add } from '../../../contracts/src/Add';
 const state = {
   Add: null as null | typeof Add,
   zkapp: null as null | Add,
-  transaction: null as null | Transaction
+  transaction: null as null | Transaction,
 };
 
 // ---------------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ const functions = {
     return JSON.stringify(currentNum.toJSON());
   },
   createUpdateTransaction: async (args: {}) => {
-    const transaction = await Mina.transaction(() => {
-      state.zkapp!.update();
+    const transaction = await Mina.transaction(async () => {
+      await state.zkapp!.update();
     });
     state.transaction = transaction;
   },
@@ -52,7 +52,7 @@ const functions = {
   },
   getTransactionJSON: async (args: {}) => {
     return state.transaction!.toJSON();
-  }
+  },
 };
 
 // ---------------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ if (typeof window !== 'undefined') {
 
       const message: ZkappWorkerReponse = {
         id: event.data.id,
-        data: returnData
+        data: returnData,
       };
       postMessage(message);
     }

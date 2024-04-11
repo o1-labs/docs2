@@ -1,17 +1,11 @@
 import { ProofsOnlyZkApp } from './ProofsOnlyZkApp.js';
 import { SecondaryZkApp } from './SecondaryZkApp.js';
 
-import {
-  Field,
-  Mina,
-  PrivateKey,
-  AccountUpdate,
-} from 'o1js';
+import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
 
 // import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
 (async function main() {
-
   const proofsEnabled = false;
   const Local = Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
@@ -30,7 +24,7 @@ import {
 
   const secondarySk = PrivateKey.random();
   const secondaryAddr = secondarySk.toPublicKey();
-  
+
   const legend = {
     [proofsOnlyAddr.toBase58()]: 'proofsOnlyZkApp',
     [secondaryAddr.toBase58()]: 'secondaryZkApp',
@@ -42,14 +36,14 @@ import {
 
   // ----------------------------------------------------
 
-  const deploy_txn = await Mina.transaction(deployerPubkey, () => {
+  const deploy_txn = await Mina.transaction(deployerPubkey, async () => {
     AccountUpdate.fundNewAccount(deployerPubkey, 2);
-    proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
-    secondaryInstance.deploy({ zkappKey: secondarySk });
+    await proofsOnlyInstance.deploy({ zkappKey: proofsOnlySk });
+    await secondaryInstance.deploy({ zkappKey: secondarySk });
   });
 
   await deploy_txn.prove();
-  deploy_txn.sign([ deployerAccount, proofsOnlySk, secondarySk ]);
+  deploy_txn.sign([deployerAccount, proofsOnlySk, secondarySk]);
 
   // await showTxn(deploy_txn, 'deploy_txn', legend);
   // await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
@@ -58,8 +52,8 @@ import {
 
   // ----------------------------------------------------
 
-  const txn1 = await Mina.transaction(deployerPubkey, () => {
-    proofsOnlyInstance.add(Field(4));
+  const txn1 = await Mina.transaction(deployerPubkey, async () => {
+    await proofsOnlyInstance.add(Field(4));
   });
 
   await txn1.prove();
@@ -71,8 +65,8 @@ import {
 
   // ----------------------------------------------------
 
-  const txn2 = await Mina.transaction(deployerPubkey, () => {
-    proofsOnlyInstance.callSecondary(secondaryAddr);
+  const txn2 = await Mina.transaction(deployerPubkey, async () => {
+    await proofsOnlyInstance.callSecondary(secondaryAddr);
   });
 
   await txn2.prove();
@@ -81,5 +75,4 @@ import {
   // await saveTxn(txn2, 'txn2', legend, './txn2.png');
 
   await txn2.sign([deployerAccount]).send();
-
 })();

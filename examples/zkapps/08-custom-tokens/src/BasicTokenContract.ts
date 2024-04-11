@@ -29,13 +29,13 @@ export class BasicTokenContract extends SmartContract {
     });
   }
 
-  @method init() {
+  @method async init() {
     super.init();
     this.account.tokenSymbol.set(tokenSymbol);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
-  @method mint(
+  @method async mint(
     receiverAddress: PublicKey,
     amount: UInt64,
     adminSignature: Signature
@@ -60,7 +60,7 @@ export class BasicTokenContract extends SmartContract {
     this.totalAmountInCirculation.set(newTotalAmountInCirculation);
   }
 
-  @method sendTokens(
+  @method async sendTokens(
     senderAddress: PublicKey,
     receiverAddress: PublicKey,
     amount: UInt64

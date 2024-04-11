@@ -1,12 +1,5 @@
 import { BasicTokenContract } from './BasicTokenContract.js';
-import {
-  Mina,
-  PrivateKey,
-  AccountUpdate,
-  UInt64,
-  Signature,
-} from 'o1js';
-
+import { Mina, PrivateKey, AccountUpdate, UInt64, Signature } from 'o1js';
 
 const proofsEnabled = false;
 const Local = Mina.LocalBlockchain({ proofsEnabled });
@@ -30,10 +23,13 @@ console.log('compiled');
 
 console.log('deploying...');
 const contract = new BasicTokenContract(zkAppAddress);
-const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
-  AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
-  contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
-});
+const deploy_txn = await Mina.transaction(
+  deployerAccount.toPublicKey(),
+  async () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    await contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
+  }
+);
 await deploy_txn.prove();
 await deploy_txn.sign([deployerAccount]).send();
 
@@ -50,10 +46,13 @@ const mintSignature = Signature.create(
   mintAmount.toFields().concat(zkAppAddress.toFields())
 );
 
-const mint_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
-  AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
-  contract.mint(zkAppAddress, mintAmount, mintSignature);
-});
+const mint_txn = await Mina.transaction(
+  deployerAccount.toPublicKey(),
+  async () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    await contract.mint(zkAppAddress, mintAmount, mintSignature);
+  }
+);
 
 await mint_txn.prove();
 await mint_txn.sign([deployerAccount]).send();
@@ -72,10 +71,17 @@ console.log('sending...');
 
 const sendAmount = UInt64.from(3);
 
-const send_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
-  AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
-  contract.sendTokens(zkAppAddress, deployerAccount.toPublicKey(), sendAmount);
-});
+const send_txn = await Mina.transaction(
+  deployerAccount.toPublicKey(),
+  async () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    await contract.sendTokens(
+      zkAppAddress,
+      deployerAccount.toPublicKey(),
+      sendAmount
+    );
+  }
+);
 await send_txn.prove();
 await send_txn.sign([deployerAccount, zkAppPrivateKey]).send();
 

@@ -56,7 +56,7 @@ Use the appropriate module to work with the live network or with historical arch
 
 ### Does o1js compile my JavaScript code to an arithmetic circuit?
 
-No, o1js **does NOT compile into anything else**. In contrast to other zk ecosystems, o1js is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method myMethod()`, for example, o1js simply calls `myMethod();` during proof generation.
+No, o1js **does NOT compile into anything else**. In contrast to other zk ecosystems, o1js is just a JS library. It creates zk circuits from user code by _executing_ that code. If you have a smart contract with a `@method async myMethod()`, for example, o1js simply calls `myMethod();` during proof generation.
 
 This works because o1js sets up some global state - a "circuit" - where it collects variables and constraints. The use of functions like `Field.mul` or `Bool.assertEquals` inside your smart contract methods add corresponding variables and constraints to the global circuit.
 
@@ -83,7 +83,7 @@ The previous for-loop example just stitches together a fixed number of o1js comm
 
 ```ts
 // bad
-@method myMethod(x: Field, n: Field) {
+@method async myMethod(x: Field, n: Field) {
   let n0 = Number(n.toString()); // nope
   for (let y = 0; y < n0; y += 5) {
     x.equals(y).assertFalse();
