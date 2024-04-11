@@ -58,16 +58,21 @@ Commit dc6bf78b8ddbbca3a1a248971b76af1514bf05aa on branch berkeley
 
 ## Start and connect a node to Devnet
 
-To start a Mina node instance and connect to the Devnet network:
+Steps to start a Mina node instance and connect to the Devnet network.
 
-If you don't already have one, you must create a libp2p key pair and persist it.
-```
+### Create a libp2p key
+
+If you don't already have one, you must create a libp2p key pair and persist it:
+
+```sh
 mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 ```
+
 Set the environment variable `MINA_LIBP2P_PASS` with the password set for the libp2p key pair in the previous step.   
 
 Run mina daemon with:
-```
+
+```sh
 mina daemon -libp2p-keypair <path-to-the-key-file> and --peer-list-url https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
 ```
 
