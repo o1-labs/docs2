@@ -11,15 +11,15 @@ import {
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
+  async deploy() {
+    await super.deploy();
     this.account.permissions.set({
       ...Permissions.default(),
     });
   }
 
   @method async init() {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertFalse();
 
     super.init();
@@ -27,11 +27,10 @@ export class SecondaryZkApp extends SmartContract {
   }
 
   @method async add(incrementBy: Field) {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
 
-    const num = this.num.get();
-    this.num.requireEquals(num);
+    const num = this.num.getAndRequireEquals();
     this.num.set(num.add(incrementBy));
   }
 }

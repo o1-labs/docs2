@@ -12,7 +12,7 @@ await (async function main() {
   const { privateKey: deployerKey, publicKey: deployerAddr } =
     Local.testAccounts[0];
 
-  let accountFee = Mina.accountCreationFee();
+  let accountFee = Mina.getNetworkConstants().accountCreationFee;
 
   // ----------------------------------------------------
 
@@ -36,7 +36,7 @@ await (async function main() {
   const tokenUserInstance = new TokenUser(tokenUserAddr);
   const tokenHolderInstance = new TokenHolder(
     tokenUserAddr,
-    myTokenInstance.token.id
+    myTokenInstance.tokenId
   );
 
   if (proofsEnabled) {
@@ -56,10 +56,11 @@ await (async function main() {
     await tokenUserInstance.deploy();
     await tokenHolderInstance.deploy();
 
-    myTokenInstance.approveDeploy(tokenHolderInstance.self);
+    await myTokenInstance.approveDeploy(tokenHolderInstance.self);
   });
 
   await deployTxn.prove();
+
   deployTxn.sign([deployerKey, myTokenSk, tokenUserSk]);
 
   //await showTxn(deploy_txn, 'deploy_txn', legend);

@@ -21,7 +21,7 @@ import {
   });
 
   Mina.setActiveInstance(Local);
-  let accountFee = Mina.accountCreationFee();
+  let accountFee = Mina.getNetworkConstants().accountCreationFee;
   let [{ privateKey: feePayerKey, publicKey: feePayerAddress }] =
     Local.testAccounts;
 
@@ -37,7 +37,7 @@ import {
   let tokenPoolContract = new TokenPool(tokenPoolPublicKey);
   let wrappedMinaTokenHolder = new TokenPoolWMinaHolder(
     tokenPoolPublicKey,
-    wrappedMinaContract.token.id
+    wrappedMinaContract.tokenId
   );
 
   const legend: any = {};
@@ -155,7 +155,7 @@ import {
 
   // ------------------------------------------------------------------------
 
-  const fundTokenPoolTx = await Mina.transaction(feePayerAddress, () => {
+  const fundTokenPoolTx = await Mina.transaction(feePayerAddress, async () => {
     const amount = UInt64.from(10);
     let minaDeposit = AccountUpdate.createSigned(feePayerAddress);
     minaDeposit.send({ to: wrappedMinaPublicKey, amount });

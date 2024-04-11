@@ -14,7 +14,7 @@ export class TokenPool extends SmartContract {
   static wrappedMinaPublicKey: PublicKey;
 
   // TODO: this deploy() does nothing, can be removed
-  deploy(args?: DeployArgs) {
+  async deploy(args?: DeployArgs) {
     super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
@@ -37,7 +37,7 @@ export class TokenPool extends SmartContract {
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
     const wminaContract = new TokenPoolWMinaHolder(
       this.address,
-      wrappedMinaContract.token.id
+      wrappedMinaContract.tokenId
     );
     wminaContract.burnWMINA(amount);
     const burnWMINA = wminaContract.self;

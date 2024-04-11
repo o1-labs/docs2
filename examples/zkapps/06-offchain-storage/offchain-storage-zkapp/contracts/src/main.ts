@@ -72,7 +72,7 @@ if (useLocal) {
     feePayerKey.toPublicKey(),
     async () => {
       AccountUpdate.fundNewAccount(feePayerKey.toPublicKey());
-      await zkapp.deploy({ zkappKey: zkappPrivateKey });
+      await zkapp.deploy();
       await zkapp.initState(serverPublicKey);
     }
   );

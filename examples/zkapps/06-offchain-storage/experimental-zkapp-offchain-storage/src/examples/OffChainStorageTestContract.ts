@@ -52,13 +52,13 @@ export class OffChainStorageTestContract extends SmartContract {
     storedNewRootSignature: Signature
   ) {
     let root = this.root.get();
-    this.root.assertEquals(root);
+    this.root.requireEquals(root);
 
     let rootNumber = this.rootNumber.get();
-    this.rootNumber.assertEquals(rootNumber);
+    this.rootNumber.requireEquals(rootNumber);
 
     let serverPublicKey = this.serverPublicKey.get();
-    this.serverPublicKey.assertEquals(serverPublicKey);
+    this.serverPublicKey.requireEquals(serverPublicKey);
 
     let leaf = [oldNum];
     let newLeaf = [num];

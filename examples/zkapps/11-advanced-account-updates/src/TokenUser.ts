@@ -8,13 +8,14 @@ import {
   Permissions,
   UInt64,
   AccountUpdate,
+  TransactionVersion,
 } from 'o1js';
 
 export class TokenUser extends SmartContract {
   static tokenSmartContractAddress: PublicKey;
 
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
+  async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
@@ -22,7 +23,10 @@ export class TokenUser extends SmartContract {
       editActionState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
@@ -35,7 +39,7 @@ export class TokenUser extends SmartContract {
   public get tokenHolder() {
     const tokenHolder = new TokenHolder(
       this.address,
-      this.tokenContract.token.id
+      this.tokenContract.tokenId
     );
     return tokenHolder;
   }
@@ -58,8 +62,8 @@ export class TokenUser extends SmartContract {
 
 export class TokenHolder extends SmartContract {
   static tokenSmartContractAddress: PublicKey;
-  public deploy(args?: DeployArgs) {
-    super.deploy(args);
+  public async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
@@ -67,7 +71,10 @@ export class TokenHolder extends SmartContract {
       editActionState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),

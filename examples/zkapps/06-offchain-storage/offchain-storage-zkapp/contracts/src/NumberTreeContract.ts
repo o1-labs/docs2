@@ -22,14 +22,6 @@ export class NumberTreeContract extends SmartContract {
   @state(Field) storageNumber = State<Field>();
   @state(Field) storageTreeRoot = State<Field>();
 
-  deploy(args: DeployArgs) {
-    super.deploy(args);
-    this.account.permissions.set({
-      ...Permissions.default(),
-      editState: Permissions.proofOrSignature(),
-    });
-  }
-
   @method async initState(storageServerPublicKey: PublicKey) {
     this.storageServerPublicKey.set(storageServerPublicKey);
     this.storageNumber.set(Field(0));
@@ -46,14 +38,10 @@ export class NumberTreeContract extends SmartContract {
     storedNewRootNumber: Field,
     storedNewRootSignature: Signature
   ) {
-    const storedRoot = this.storageTreeRoot.get();
-    this.storageTreeRoot.assertEquals(storedRoot);
-
-    let storedNumber = this.storageNumber.get();
-    this.storageNumber.assertEquals(storedNumber);
-
-    let storageServerPublicKey = this.storageServerPublicKey.get();
-    this.storageServerPublicKey.assertEquals(storageServerPublicKey);
+    const storedRoot = this.storageTreeRoot.getAndRequireEquals();
+    let storedNumber = this.storageNumber.getAndRequireEquals();
+    let storageServerPublicKey =
+      this.storageServerPublicKey.getAndRequireEquals();
 
     let leaf = [oldNum];
     let newLeaf = [num];
