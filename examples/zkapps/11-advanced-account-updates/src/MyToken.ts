@@ -83,26 +83,6 @@ export class MyToken extends TokenContract {
 
   // ----------------------------------------------------------------------
 
-  // public hasNoBalanceChange(accountUpdate: AccountUpdate): Bool {
-  //   // all balance changes of children
-  //   const balanceChanges = accountUpdate.children.accountUpdates.map(
-  //     ({ body: { balanceChange } }) => balanceChange
-  //   );
-
-  //   // add the self balance change
-  //   balanceChanges.push(accountUpdate.body.balanceChange);
-
-  //   const balanceChange = balanceChanges.reduce(
-  //     (accumulatedBalanceChange, currentBalanceChange) =>
-  //       Int64.fromObject(accumulatedBalanceChange).add(
-  //         Int64.fromObject(currentBalanceChange)
-  //       ),
-  //     Int64.zero
-  //   );
-
-  //   return Int64.fromObject(balanceChange).equals(UInt64.zero);
-  // }
-
   public assertHasNoBalanceChange(accountUpdate: AccountUpdate) {
     let forest = AccountUpdateForest.from([accountUpdate.extractTree()]);
     this.checkZeroBalanceChange(forest);
