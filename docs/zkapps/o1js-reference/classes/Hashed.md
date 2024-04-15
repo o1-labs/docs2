@@ -76,22 +76,22 @@ let value = hashed.unhash();
 
 | Name | Type |
 | :------ | :------ |
-| `hash` | [`Field`](Field.md) |
+| `hash` | `Field` |
 | `value` | [`Unconstrained`](Unconstrained.md)\<`T`\> |
 
 #### Defined in
 
-[lib/provable-types/packed.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L214)
+[lib/provable/packed.ts:211](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L211)
 
 ## Properties
 
 ### hash
 
-• **hash**: [`Field`](Field.md)
+• **hash**: `Field`
 
 #### Defined in
 
-[lib/provable-types/packed.ts:178](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L178)
+[lib/provable/packed.ts:175](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L175)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:179](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L179)
+[lib/provable/packed.ts:176](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L176)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:261](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L261)
+[lib/provable/packed.ts:258](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L258)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:260](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L260)
+[lib/provable/packed.ts:257](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L257)
 
 ## Accessors
 
@@ -135,7 +135,7 @@ typeof [`Hashed`](Hashed.md)
 
 #### Defined in
 
-[lib/provable-types/packed.ts:263](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L263)
+[lib/provable/packed.ts:260](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L260)
 
 ___
 
@@ -149,21 +149,21 @@ ___
 
 #### Defined in
 
-[lib/provable-types/packed.ts:267](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L267)
+[lib/provable/packed.ts:264](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L264)
 
 ## Methods
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Defined in
 
-[lib/provable-types/packed.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L255)
+[lib/provable/packed.ts:252](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L252)
 
 ___
 
@@ -179,13 +179,13 @@ Unwrap a value from its hashed variant.
 
 #### Defined in
 
-[lib/provable-types/packed.ts:243](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L243)
+[lib/provable/packed.ts:240](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L240)
 
 ___
 
 ### \_hash
 
-▸ `Static` **_hash**(`_`): [`Field`](Field.md)
+▸ `Static` **_hash**(`_`): `Field`
 
 #### Parameters
 
@@ -195,11 +195,11 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[lib/provable-types/packed.ts:219](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L219)
+[lib/provable/packed.ts:216](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L216)
 
 ___
 
@@ -220,7 +220,7 @@ Create a hashed representation of `type`. You can then use `HashedType.hash(x)` 
 | Name | Type |
 | :------ | :------ |
 | `type` | [`ProvableHashable`](../modules.md#provablehashable)\<`T`\> |
-| `hash?` | (`t`: `T`) => [`Field`](Field.md) |
+| `hash?` | (`t`: `T`) => `Field` |
 
 #### Returns
 
@@ -228,7 +228,7 @@ typeof [`Hashed`](Hashed.md) & \{ `provable`: [`ProvableHashable`](../modules.md
 
 #### Defined in
 
-[lib/provable-types/packed.ts:184](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L184)
+[lib/provable/packed.ts:181](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L181)
 
 ___
 
@@ -255,7 +255,7 @@ Optionally, if you already have the hash, you can pass it in and avoid recomputi
 | Name | Type |
 | :------ | :------ |
 | `value` | `T` |
-| `hash?` | [`Field`](Field.md) |
+| `hash?` | `Field` |
 
 #### Returns
 
@@ -263,4 +263,4 @@ Optionally, if you already have the hash, you can pass it in and avoid recomputi
 
 #### Defined in
 
-[lib/provable-types/packed.ts:232](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/packed.ts#L232)
+[lib/provable/packed.ts:229](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/packed.ts#L229)

@@ -36,4 +36,4 @@ typeof `ZkProgramProof`
 
 #### Defined in
 
-[lib/proof-system.ts:929](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/proof-system.ts#L929)
+[lib/proof-system/zkprogram.ts:947](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/proof-system/zkprogram.ts#L947)

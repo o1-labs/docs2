@@ -25,14 +25,14 @@
 
 | Name | Type |
 | :------ | :------ |
-| `Fp` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
-| `Fp.fromBytes` | (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] |
-| `Fp.toBytes` | (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` |
+| `Fp` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => `Field`[] ; `toBytes`: (`fields`: `Field`[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => `Field`[] ; `toString`: (`fields`: `Field`[]) => `string`  } |
+| `Fp.fromBytes` | (`bytes`: `Uint8Array`) => `Field`[] |
+| `Fp.toBytes` | (`fields`: `Field`[]) => `Uint8Array` |
 | `Fp.fromString` | [object Object] |
 | `Fp.toString` | [object Object] |
-| `Fq` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] ; `toBytes`: (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => [`Field`](../classes/Field.md)[] ; `toString`: (`fields`: [`Field`](../classes/Field.md)[]) => `string`  } |
-| `Fq.fromBytes` | (`bytes`: `Uint8Array`) => [`Field`](../classes/Field.md)[] |
-| `Fq.toBytes` | (`fields`: [`Field`](../classes/Field.md)[]) => `Uint8Array` |
+| `Fq` | \{ `fromBytes`: (`bytes`: `Uint8Array`) => `Field`[] ; `toBytes`: (`fields`: `Field`[]) => `Uint8Array` ; `fromString`: (`message`: `string`) => `Field`[] ; `toString`: (`fields`: `Field`[]) => `string`  } |
+| `Fq.fromBytes` | (`bytes`: `Uint8Array`) => `Field`[] |
+| `Fq.toBytes` | (`fields`: `Field`[]) => `Uint8Array` |
 | `Fq.fromString` | [object Object] |
 | `Fq.toString` | [object Object] |
 
@@ -52,7 +52,7 @@ Decodes a list of [Field](../modules.md#field-1) elements into a Uint8Array.
 
 | Name | Type |
 | :------ | :------ |
-| `fields` | [`Field`](../classes/Field.md)[] |
+| `fields` | `Field`[] |
 
 #### Returns
 
@@ -66,7 +66,7 @@ ___
 
 ### bytesToFields
 
-▸ **bytesToFields**(`bytes`): [`Field`](../classes/Field.md)[]
+▸ **bytesToFields**(`bytes`): `Field`[]
 
 Encodes a Uint8Array into [Field](../modules.md#field-1) elements.
 
@@ -78,7 +78,7 @@ Encodes a Uint8Array into [Field](../modules.md#field-1) elements.
 
 #### Returns
 
-[`Field`](../classes/Field.md)[]
+`Field`[]
 
 #### Defined in
 
@@ -98,7 +98,7 @@ This function is not a valid in-snark computation.
 
 | Name | Type |
 | :------ | :------ |
-| `fields` | [`Field`](../classes/Field.md)[] |
+| `fields` | `Field`[] |
 
 #### Returns
 
@@ -112,7 +112,7 @@ ___
 
 ### stringToFields
 
-▸ **stringToFields**(`message`): [`Field`](../classes/Field.md)[]
+▸ **stringToFields**(`message`): `Field`[]
 
 Encodes a JavaScript string into a list of [Field](../modules.md#field-1) elements.
 
@@ -126,7 +126,7 @@ This function is not a valid in-snark computation.
 
 #### Returns
 
-[`Field`](../classes/Field.md)[]
+`Field`[]
 
 #### Defined in
 

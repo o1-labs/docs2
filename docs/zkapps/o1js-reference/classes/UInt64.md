@@ -6,7 +6,7 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 
 ## Hierarchy
 
-- [`CircuitValue`](CircuitValue.md)
+- `CircuitValue`
 
   ↳ **`UInt64`**
 
@@ -20,6 +20,7 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 
 - [value](UInt64.md#value)
 - [NUM\_BITS](UInt64.md#num_bits)
+- [Unsafe](UInt64.md#unsafe)
 
 ### Accessors
 
@@ -33,25 +34,17 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 - [assertEquals](UInt64.md#assertequals)
 - [assertGreaterThan](UInt64.md#assertgreaterthan)
 - [assertGreaterThanOrEqual](UInt64.md#assertgreaterthanorequal)
-- [assertGt](UInt64.md#assertgt)
-- [assertGte](UInt64.md#assertgte)
 - [assertLessThan](UInt64.md#assertlessthan)
 - [assertLessThanOrEqual](UInt64.md#assertlessthanorequal)
-- [assertLt](UInt64.md#assertlt)
-- [assertLte](UInt64.md#assertlte)
 - [div](UInt64.md#div)
 - [divMod](UInt64.md#divmod)
 - [equals](UInt64.md#equals)
 - [greaterThan](UInt64.md#greaterthan)
 - [greaterThanOrEqual](UInt64.md#greaterthanorequal)
-- [gt](UInt64.md#gt)
-- [gte](UInt64.md#gte)
 - [isConstant](UInt64.md#isconstant)
 - [leftShift](UInt64.md#leftshift)
 - [lessThan](UInt64.md#lessthan)
 - [lessThanOrEqual](UInt64.md#lessthanorequal)
-- [lt](UInt64.md#lt)
-- [lte](UInt64.md#lte)
 - [mod](UInt64.md#mod)
 - [mul](UInt64.md#mul)
 - [not](UInt64.md#not)
@@ -87,29 +80,34 @@ A 64 bit unsigned integer with values ranging from 0 to 18,446,744,073,709,551,6
 
 • **new UInt64**(`x`)
 
+Create a [UInt64](UInt64.md).
+The max value of a [UInt64](UInt64.md) is `2^64 - 1 = UInt64.MAXINT()`.
+
+**Warning**: Cannot overflow, an error is thrown if the result is greater than UInt64.MAXINT()
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) |
+| `x` | `string` \| `number` \| `bigint` \| `FieldVar` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) |
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[constructor](CircuitValue.md#constructor)
+CircuitValue.constructor
 
 #### Defined in
 
-[lib/int.ts:22](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L22)
+[lib/provable/int.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L37)
 
 ## Properties
 
 ### value
 
-• **value**: [`Field`](Field.md)
+• **value**: `Field`
 
 #### Defined in
 
-[lib/int.ts:19](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L19)
+[lib/provable/int.ts:28](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L28)
 
 ___
 
@@ -119,7 +117,23 @@ ___
 
 #### Defined in
 
-[lib/int.ts:20](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L20)
+[lib/provable/int.ts:29](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L29)
+
+___
+
+### Unsafe
+
+▪ `Static` **Unsafe**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `fromField` | (`x`: `Field`) => [`UInt64`](UInt64.md) |
+
+#### Defined in
+
+[lib/provable/int.ts:45](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L45)
 
 ## Accessors
 
@@ -135,7 +149,7 @@ Static method to create a [UInt64](UInt64.md) with value `1`.
 
 #### Defined in
 
-[lib/int.ts:37](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L37)
+[lib/provable/int.ts:66](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L66)
 
 ___
 
@@ -151,7 +165,7 @@ Static method to create a [UInt64](UInt64.md) with value `0`.
 
 #### Defined in
 
-[lib/int.ts:31](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L31)
+[lib/provable/int.ts:60](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L60)
 
 ## Methods
 
@@ -173,7 +187,7 @@ Addition with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:202](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L202)
+[lib/provable/int.ts:231](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L231)
 
 ___
 
@@ -217,7 +231,7 @@ c.assertEquals(1);
 
 #### Defined in
 
-[lib/int.ts:372](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L372)
+[lib/provable/int.ts:401](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L401)
 
 ___
 
@@ -237,11 +251,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[assertEquals](CircuitValue.md#assertequals)
+CircuitValue.assertEquals
 
 #### Defined in
 
-[lib/circuit-value.ts:167](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L167)
+[lib/provable/types/circuit-value.ts:101](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L101)
 
 ___
 
@@ -264,7 +278,7 @@ Asserts that a [UInt64](UInt64.md) is greater than another one.
 
 #### Defined in
 
-[lib/int.ts:506](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L506)
+[lib/provable/int.ts:472](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L472)
 
 ___
 
@@ -287,61 +301,7 @@ Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:538](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L538)
-
-___
-
-### assertGt
-
-▸ **assertGt**(`y`, `message?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-| `message?` | `string` |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-Use [assertGreaterThan](UInt64.md#assertgreaterthan) instead.
-
-Asserts that a [UInt64](UInt64.md) is greater than another one.
-
-#### Defined in
-
-[lib/int.ts:499](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L499)
-
-___
-
-### assertGte
-
-▸ **assertGte**(`y`, `message?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-| `message?` | `string` |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-Use [assertGreaterThanOrEqual](UInt64.md#assertgreaterthanorequal) instead.
-
-Asserts that a [UInt64](UInt64.md) is greater than or equal to another one.
-
-#### Defined in
-
-[lib/int.ts:531](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L531)
+[lib/provable/int.ts:486](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L486)
 
 ___
 
@@ -364,7 +324,7 @@ Asserts that a [UInt64](UInt64.md) is less than another one.
 
 #### Defined in
 
-[lib/int.ts:474](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L474)
+[lib/provable/int.ts:449](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L449)
 
 ___
 
@@ -387,61 +347,7 @@ Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
 
 #### Defined in
 
-[lib/int.ts:430](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L430)
-
-___
-
-### assertLt
-
-▸ **assertLt**(`y`, `message?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-| `message?` | `string` |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-Use [assertLessThan](UInt64.md#assertlessthan) instead.
-
-Asserts that a [UInt64](UInt64.md) is less than another one.
-
-#### Defined in
-
-[lib/int.ts:467](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L467)
-
-___
-
-### assertLte
-
-▸ **assertLte**(`y`, `message?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-| `message?` | `string` |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-Use [assertLessThanOrEqual](UInt64.md#assertlessthanorequal) instead.
-
-Asserts that a [UInt64](UInt64.md) is less than or equal to another one.
-
-#### Defined in
-
-[lib/int.ts:423](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L423)
+[lib/provable/int.ts:420](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L420)
 
 ___
 
@@ -466,7 +372,7 @@ Integer division.
 
 #### Defined in
 
-[lib/int.ts:176](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L176)
+[lib/provable/int.ts:205](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L205)
 
 ___
 
@@ -495,13 +401,13 @@ Integer division with remainder.
 
 #### Defined in
 
-[lib/int.ts:133](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L133)
+[lib/provable/int.ts:162](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L162)
 
 ___
 
 ### equals
 
-▸ **equals**(`x`): [`Bool`](Bool.md)
+▸ **equals**(`x`): `Bool`
 
 #### Parameters
 
@@ -511,21 +417,21 @@ ___
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[equals](CircuitValue.md#equals)
+CircuitValue.equals
 
 #### Defined in
 
-[lib/circuit-value.ts:163](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L163)
+[lib/provable/types/circuit-value.ts:97](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L97)
 
 ___
 
 ### greaterThan
 
-▸ **greaterThan**(`y`): [`Bool`](Bool.md)
+▸ **greaterThan**(`y`): `Bool`
 
 Checks if a [UInt64](UInt64.md) is greater than another one.
 
@@ -537,17 +443,17 @@ Checks if a [UInt64](UInt64.md) is greater than another one.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/int.ts:490](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L490)
+[lib/provable/int.ts:465](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L465)
 
 ___
 
 ### greaterThanOrEqual
 
-▸ **greaterThanOrEqual**(`y`): [`Bool`](Bool.md)
+▸ **greaterThanOrEqual**(`y`): `Bool`
 
 Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
 
@@ -559,63 +465,11 @@ Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/int.ts:522](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L522)
-
-___
-
-### gt
-
-▸ **gt**(`y`): [`Bool`](Bool.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-**`Deprecated`**
-
-Use [greaterThan](UInt64.md#greaterthan) instead.
-
-Checks if a [UInt64](UInt64.md) is greater than another one.
-
-#### Defined in
-
-[lib/int.ts:483](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L483)
-
-___
-
-### gte
-
-▸ **gte**(`y`): [`Bool`](Bool.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-**`Deprecated`**
-
-Use [greaterThanOrEqual](UInt64.md#greaterthanorequal) instead.
-
-Checks if a [UInt64](UInt64.md) is greater than or equal to another one.
-
-#### Defined in
-
-[lib/int.ts:515](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L515)
+[lib/provable/int.ts:479](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L479)
 
 ___
 
@@ -629,11 +483,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[isConstant](CircuitValue.md#isconstant)
+CircuitValue.isConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L171)
+[lib/provable/types/circuit-value.ts:105](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L105)
 
 ___
 
@@ -668,13 +522,13 @@ y.assertEquals(0b110000); // 48 in binary
 
 #### Defined in
 
-[lib/int.ts:322](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L322)
+[lib/provable/int.ts:351](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L351)
 
 ___
 
 ### lessThan
 
-▸ **lessThan**(`y`): [`Bool`](Bool.md)
+▸ **lessThan**(`y`): `Bool`
 
 Checks if a [UInt64](UInt64.md) is less than another one.
 
@@ -686,17 +540,17 @@ Checks if a [UInt64](UInt64.md) is less than another one.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/int.ts:457](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L457)
+[lib/provable/int.ts:437](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L437)
 
 ___
 
 ### lessThanOrEqual
 
-▸ **lessThanOrEqual**(`y`): [`Bool`](Bool.md)
+▸ **lessThanOrEqual**(`y`): `Bool`
 
 Checks if a [UInt64](UInt64.md) is less than or equal to another one.
 
@@ -708,63 +562,11 @@ Checks if a [UInt64](UInt64.md) is less than or equal to another one.
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/int.ts:401](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L401)
-
-___
-
-### lt
-
-▸ **lt**(`y`): [`Bool`](Bool.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-**`Deprecated`**
-
-Use [lessThan](UInt64.md#lessthan) instead.
-
-Checks if a [UInt64](UInt64.md) is less than another one.
-
-#### Defined in
-
-[lib/int.ts:449](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L449)
-
-___
-
-### lte
-
-▸ **lte**(`y`): [`Bool`](Bool.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `y` | [`UInt64`](UInt64.md) |
-
-#### Returns
-
-[`Bool`](Bool.md)
-
-**`Deprecated`**
-
-Use [lessThanOrEqual](UInt64.md#lessthanorequal) instead.
-
-Checks if a [UInt64](UInt64.md) is less than or equal to another one.
-
-#### Defined in
-
-[lib/int.ts:381](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L381)
+[lib/provable/int.ts:408](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L408)
 
 ___
 
@@ -789,7 +591,7 @@ Integer remainder.
 
 #### Defined in
 
-[lib/int.ts:186](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L186)
+[lib/provable/int.ts:215](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L215)
 
 ___
 
@@ -811,7 +613,7 @@ Multiplication with overflow checking.
 
 #### Defined in
 
-[lib/int.ts:193](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L193)
+[lib/provable/int.ts:222](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L222)
 
 ___
 
@@ -851,7 +653,7 @@ console.log(b.toBigInt().toString(2));
 
 #### Defined in
 
-[lib/int.ts:269](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L269)
+[lib/provable/int.ts:298](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L298)
 
 ___
 
@@ -886,7 +688,7 @@ y.assertEquals(0b000011); // 48 in binary
 
 #### Defined in
 
-[lib/int.ts:343](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L343)
+[lib/provable/int.ts:372](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L372)
 
 ___
 
@@ -931,7 +733,7 @@ z.assertEquals(0b000011);
 
 #### Defined in
 
-[lib/int.ts:301](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L301)
+[lib/provable/int.ts:330](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L330)
 
 ___
 
@@ -953,7 +755,7 @@ Subtraction with underflow checking.
 
 #### Defined in
 
-[lib/int.ts:211](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L211)
+[lib/provable/int.ts:240](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L240)
 
 ___
 
@@ -969,7 +771,7 @@ Turns the [UInt64](UInt64.md) into a BigInt.
 
 #### Defined in
 
-[lib/int.ts:51](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L51)
+[lib/provable/int.ts:80](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L80)
 
 ___
 
@@ -983,29 +785,29 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:159](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L159)
+[lib/provable/types/circuit-value.ts:93](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L93)
 
 ___
 
 ### toFields
 
-▸ **toFields**(): [`Field`](Field.md)[]
+▸ **toFields**(): `Field`[]
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:151](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L151)
+[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L85)
 
 ___
 
@@ -1019,11 +821,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:155](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L155)
+[lib/provable/types/circuit-value.ts:89](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L89)
 
 ___
 
@@ -1039,7 +841,7 @@ Turns the [UInt64](UInt64.md) into a string.
 
 #### Defined in
 
-[lib/int.ts:44](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L44)
+[lib/provable/int.ts:73](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L73)
 
 ___
 
@@ -1055,7 +857,7 @@ Turns the [UInt64](UInt64.md) into a [UInt32](UInt32.md), asserting that it fits
 
 #### Defined in
 
-[lib/int.ts:58](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L58)
+[lib/provable/int.ts:87](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L87)
 
 ___
 
@@ -1074,7 +876,7 @@ UInt64.from(4294967296).toUInt32Clamped().toString(); // "4294967295"
 
 #### Defined in
 
-[lib/int.ts:70](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L70)
+[lib/provable/int.ts:99](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L99)
 
 ___
 
@@ -1111,7 +913,7 @@ c.assertEquals(0b0110);
 
 #### Defined in
 
-[lib/int.ts:236](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L236)
+[lib/provable/int.ts:265](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L265)
 
 ___
 
@@ -1127,7 +929,7 @@ Creates a [UInt64](UInt64.md) with a value of 18,446,744,073,709,551,615.
 
 #### Defined in
 
-[lib/int.ts:124](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L124)
+[lib/provable/int.ts:153](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L153)
 
 ___
 
@@ -1147,31 +949,31 @@ ___
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[check](CircuitValue.md#check)
+CircuitValue.check
 
 #### Defined in
 
-[lib/int.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L79)
+[lib/provable/int.ts:109](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L109)
 
 ___
 
 ### checkConstant
 
-▸ `Static` `Private` **checkConstant**(`x`): [`Field`](Field.md)
+▸ `Static` `Private` **checkConstant**(`x`): `Field`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md) |
+| `x` | `Field` |
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[lib/int.ts:101](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L101)
+[lib/provable/int.ts:131](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L131)
 
 ___
 
@@ -1191,11 +993,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[empty](CircuitValue.md#empty)
+CircuitValue.empty
 
 #### Defined in
 
-[lib/circuit-value.ts:255](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L255)
+[lib/provable/types/circuit-value.ts:189](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L189)
 
 ___
 
@@ -1209,7 +1011,7 @@ Creates a new [UInt64](UInt64.md).
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `string` \| `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) |
+| `x` | `string` \| `number` \| `bigint` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) |
 
 #### Returns
 
@@ -1217,7 +1019,7 @@ Creates a new [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:116](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L116)
+[lib/provable/int.ts:145](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L145)
 
 ___
 
@@ -1236,7 +1038,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `this` | `T` |
-| `xs` | [`Field`](Field.md)[] |
+| `xs` | `Field`[] |
 
 #### Returns
 
@@ -1244,11 +1046,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromFields](CircuitValue.md#fromfields)
+CircuitValue.fromFields
 
 #### Defined in
 
-[lib/circuit-value.ts:175](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L175)
+[lib/provable/types/circuit-value.ts:109](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L109)
 
 ___
 
@@ -1276,11 +1078,11 @@ Decodes a JSON-like object into this structure.
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[fromJSON](CircuitValue.md#fromjson)
+CircuitValue.fromJSON
 
 #### Defined in
 
-[lib/int.ts:97](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L97)
+[lib/provable/int.ts:127](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L127)
 
 ___
 
@@ -1307,11 +1109,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[fromObject](CircuitValue.md#fromobject)
+CircuitValue.fromObject
 
 #### Defined in
 
-[lib/circuit-value.ts:96](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L96)
+[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L30)
 
 ___
 
@@ -1325,11 +1127,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[sizeInFields](CircuitValue.md#sizeinfields)
+CircuitValue.sizeInFields
 
 #### Defined in
 
-[lib/circuit-value.ts:103](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L103)
+[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L37)
 
 ___
 
@@ -1343,11 +1145,11 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toAuxiliary](CircuitValue.md#toauxiliary)
+CircuitValue.toAuxiliary
 
 #### Defined in
 
-[lib/circuit-value.ts:125](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L125)
+[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L59)
 
 ___
 
@@ -1374,17 +1176,17 @@ ___
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toConstant](CircuitValue.md#toconstant-1)
+CircuitValue.toConstant
 
 #### Defined in
 
-[lib/circuit-value.ts:214](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L214)
+[lib/provable/types/circuit-value.ts:148](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L148)
 
 ___
 
 ### toFields
 
-▸ `Static` **toFields**\<`T`\>(`this`, `v`): [`Field`](Field.md)[]
+▸ `Static` **toFields**\<`T`\>(`this`, `v`): `Field`[]
 
 #### Type parameters
 
@@ -1401,15 +1203,15 @@ ___
 
 #### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
 #### Inherited from
 
-[CircuitValue](CircuitValue.md).[toFields](CircuitValue.md#tofields-1)
+CircuitValue.toFields
 
 #### Defined in
 
-[lib/circuit-value.ts:108](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L108)
+[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/circuit-value.ts#L42)
 
 ___
 
@@ -1429,11 +1231,11 @@ ___
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[toInput](CircuitValue.md#toinput)
+CircuitValue.toInput
 
 #### Defined in
 
-[lib/int.ts:83](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L83)
+[lib/provable/int.ts:113](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L113)
 
 ___
 
@@ -1455,8 +1257,8 @@ Encodes this structure into a JSON-like object.
 
 #### Overrides
 
-[CircuitValue](CircuitValue.md).[toJSON](CircuitValue.md#tojson-1)
+CircuitValue.toJSON
 
 #### Defined in
 
-[lib/int.ts:90](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L90)
+[lib/provable/int.ts:120](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L120)

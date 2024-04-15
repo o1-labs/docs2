@@ -95,7 +95,7 @@ and so a `MerkleList` can be used as input to `MerkleListIterator.startIterating
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:82](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L82)
+[lib/provable/merkle-list.ts:83](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L83)
 
 ## Properties
 
@@ -109,13 +109,13 @@ MerkleListBase.data
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:80](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L80)
+[lib/provable/merkle-list.ts:81](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L81)
 
 ___
 
 ### hash
 
-• **hash**: [`Field`](Field.md)
+• **hash**: `Field`
 
 #### Implementation of
 
@@ -123,17 +123,17 @@ MerkleListBase.hash
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L79)
+[lib/provable/merkle-list.ts:80](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L80)
 
 ___
 
 ### \_emptyHash
 
-▪ `Static` **\_emptyHash**: `undefined` \| [`Field`](Field.md)
+▪ `Static` **\_emptyHash**: `undefined` \| `Field`
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:257](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L257)
+[lib/provable/merkle-list.ts:258](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L258)
 
 ___
 
@@ -143,17 +143,17 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:260](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L260)
+[lib/provable/merkle-list.ts:261](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L261)
 
 ___
 
 ### \_nextHash
 
-▪ `Static` **\_nextHash**: `undefined` \| (`hash`: [`Field`](Field.md), `t`: `any`) => [`Field`](Field.md)
+▪ `Static` **\_nextHash**: `undefined` \| (`hash`: `Field`, `t`: `any`) => `Field`
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:256](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L256)
+[lib/provable/merkle-list.ts:257](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L257)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:259](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L259)
+[lib/provable/merkle-list.ts:260](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L260)
 
 ## Accessors
 
@@ -177,7 +177,7 @@ typeof [`MerkleList`](MerkleList.md)
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:262](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L262)
+[lib/provable/merkle-list.ts:263](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L263)
 
 ___
 
@@ -191,21 +191,21 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:279](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L279)
+[lib/provable/merkle-list.ts:280](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L280)
 
 ___
 
 ### emptyHash
 
-• `Static` `get` **emptyHash**(): [`Field`](Field.md)
+• `Static` `get` **emptyHash**(): `Field`
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:274](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L274)
+[lib/provable/merkle-list.ts:275](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L275)
 
 ## Methods
 
@@ -219,42 +219,42 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:187](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L187)
+[lib/provable/merkle-list.ts:188](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L188)
 
 ___
 
 ### isEmpty
 
-▸ **isEmpty**(): [`Bool`](Bool.md)
+▸ **isEmpty**(): `Bool`
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:87](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L87)
+[lib/provable/merkle-list.ts:88](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L88)
 
 ___
 
 ### nextHash
 
-▸ **nextHash**(`hash`, `value`): [`Field`](Field.md)
+▸ **nextHash**(`hash`, `value`): `Field`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `hash` | [`Field`](Field.md) |
+| `hash` | `Field` |
 | `value` | `T` |
 
 #### Returns
 
-[`Field`](Field.md)
+`Field`
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:266](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L266)
+[lib/provable/merkle-list.ts:267](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L267)
 
 ___
 
@@ -272,7 +272,7 @@ If the list is empty, returns a dummy element.
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:152](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L152)
+[lib/provable/merkle-list.ts:153](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L153)
 
 ___
 
@@ -290,7 +290,7 @@ This proves that the list is non-empty, and fails otherwise.
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:137](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L137)
+[lib/provable/merkle-list.ts:138](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L138)
 
 ___
 
@@ -306,7 +306,7 @@ If the list is empty, returns a dummy element.
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`Bool`](Bool.md) |
+| `condition` | `Bool` |
 
 #### Returns
 
@@ -314,7 +314,7 @@ If the list is empty, returns a dummy element.
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:171](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L171)
+[lib/provable/merkle-list.ts:172](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L172)
 
 ___
 
@@ -328,7 +328,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:120](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L120)
+[lib/provable/merkle-list.ts:121](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L121)
 
 ___
 
@@ -350,7 +350,7 @@ Push a new element to the list.
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:94](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L94)
+[lib/provable/merkle-list.ts:95](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L95)
 
 ___
 
@@ -364,7 +364,7 @@ Push a new element to the list, if the `condition` is true.
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`Bool`](Bool.md) |
+| `condition` | `Bool` |
 | `element` | `T` |
 
 #### Returns
@@ -373,7 +373,7 @@ Push a new element to the list, if the `condition` is true.
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:106](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L106)
+[lib/provable/merkle-list.ts:107](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L107)
 
 ___
 
@@ -387,7 +387,7 @@ ___
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:192](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L192)
+[lib/provable/merkle-list.ts:193](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L193)
 
 ___
 
@@ -410,8 +410,8 @@ Optionally, you can tell `create()` how to do the hash that pushes a new list el
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `type` | [`ProvableHashable`](../modules.md#provablehashable)\<`T`\> | `undefined` |
-| `nextHash` | (`hash`: [`Field`](Field.md), `value`: `T`) => [`Field`](Field.md) | `undefined` |
-| `emptyHash_` | [`Field`](Field.md) | `emptyHash` |
+| `nextHash` | (`hash`: `Field`, `value`: `T`) => `Field` | `undefined` |
+| `emptyHash_` | `Field` | `emptyHash` |
 
 #### Returns
 
@@ -427,4 +427,4 @@ class MyList extends MerkleList.create(Field, (hash, x) =>
 
 #### Defined in
 
-[lib/provable-types/merkle-list.ts:209](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/provable-types/merkle-list.ts#L209)
+[lib/provable/merkle-list.ts:210](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/merkle-list.ts#L210)

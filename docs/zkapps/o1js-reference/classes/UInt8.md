@@ -6,7 +6,7 @@ A 8 bit unsigned integer with values ranging from 0 to 255.
 
 ## Hierarchy
 
-- \{ `value`: [`Field`](Field.md) = Field }
+- \{ `value`: `Field` = Field }
 
   ↳ **`UInt8`**
 
@@ -73,7 +73,7 @@ The max value of a [UInt8](UInt8.md) is `2^8 - 1 = 255`.
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `number` \| `bigint` \| [`FieldVar`](../modules.md#fieldvar-1) \| [`UInt8`](UInt8.md) |
+| `x` | `number` \| `bigint` \| `FieldVar` \| [`UInt8`](UInt8.md) |
 
 #### Overrides
 
@@ -83,13 +83,13 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1314](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1314)
+[lib/provable/int.ts:1207](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1207)
 
 ## Properties
 
 ### value
 
-• **value**: [`Field`](Field.md) = `Field`
+• **value**: `Field` = `Field`
 
 #### Inherited from
 
@@ -99,7 +99,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1304](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1304)
+[lib/provable/int.ts:1197](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1197)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:1306](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1306)
+[lib/provable/int.ts:1199](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1199)
 
 ___
 
@@ -121,11 +121,11 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `fromField` | (`x`: [`Field`](Field.md)) => [`UInt8`](UInt8.md) |
+| `fromField` | (`x`: `Field`) => [`UInt8`](UInt8.md) |
 
 #### Defined in
 
-[lib/int.ts:1320](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1320)
+[lib/provable/int.ts:1213](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1213)
 
 ___
 
@@ -141,13 +141,13 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L382)
+[lib/provable/types/struct.ts:143](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L143)
 
 ___
 
 ### empty
 
-▪ `Static` **empty**: () => \{ `value`: [`Field`](Field.md) = Field }
+▪ `Static` **empty**: () => \{ `value`: `Field` = Field }
 
 #### Type declaration
 
@@ -159,7 +159,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | [`Field`](Field.md) |
+| `value` | `Field` |
 
 #### Inherited from
 
@@ -169,37 +169,31 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:391](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L391)
+[lib/provable/types/struct.ts:152](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L152)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[]) => \{ `value`: [`Field`](Field.md) = Field }
+▪ `Static` **fromFields**: (`fields`: `Field`[]) => \{ `value`: `Field` = Field }
 
 #### Type declaration
 
 ▸ (`fields`): `Object`
 
-A function that returns an element of type `T` from the given provable data.
-
-**Important**: For any element of type `T`, this function is the reverse operation of calling [toFields](../interfaces/ProvablePure.md#tofields) method on an element of type `T`.
-
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `fields` | [`Field`](Field.md)[] | an array of [Field](Field.md) elements describing the provable data of the new `T` element. |
+| Name | Type |
+| :------ | :------ |
+| `fields` | `Field`[] |
 
 ##### Returns
 
 `Object`
 
-An element of type `T` generated from the given provable data.
-
 | Name | Type |
 | :------ | :------ |
-| `value` | [`Field`](Field.md) |
+| `value` | `Field` |
 
 #### Inherited from
 
@@ -209,13 +203,13 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:138](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L138)
+[lib/provable/types/provable-intf.ts:77](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L77)
 
 ___
 
 ### fromJSON
 
-▪ `Static` **fromJSON**: (`x`: \{ `value`: `string` = Field }) => \{ `value`: [`Field`](Field.md) = Field }
+▪ `Static` **fromJSON**: (`x`: \{ `value`: `string` = Field }) => \{ `value`: `Field` = Field }
 
 #### Type declaration
 
@@ -234,7 +228,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | [`Field`](Field.md) |
+| `value` | `Field` |
 
 #### Inherited from
 
@@ -244,33 +238,33 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:390](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L390)
+[lib/provable/types/struct.ts:151](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L151)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`value?`: \{ `value`: [`Field`](Field.md) = Field }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: \{ `value`: `Field` = Field }) => `any`[]
 
 #### Type declaration
 
 ▸ (`value?`): `any`[]
 
-A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
-As any element of the interface `ProvablePure<T>` includes no "auxiliary" data by definition, this function always returns a default value.
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
 
 ##### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `value?` | `Object` | `undefined` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
-| `value.value` | [`Field`](Field.md) | `Field` | - |
+| `value.value` | `Field` | `Field` | - |
 
 ##### Returns
 
 `any`[]
 
-An empty array, as any element of the interface `ProvablePure<T>` includes no "auxiliary" data by definition.
+An array of any type describing how this `T` element is made up of "auxiliary" (non-provable) data.
 
 #### Inherited from
 
@@ -280,32 +274,33 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:127](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L127)
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L37)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: \{ `value`: [`Field`](Field.md) = Field }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `value`: `Field` = Field }) => `Field`[]
 
 #### Type declaration
 
-▸ (`value`): [`Field`](Field.md)[]
+▸ (`value`): `Field`[]
 
-A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](Field.md) elements that make up the provable data of `value`.
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](../modules.md#field) elements that make up the provable data of `value`.
 
 ##### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](Field.md) array from. |
-| `value.value` | [`Field`](Field.md) | `Field` | - |
+| `value` | `Object` | `undefined` | the element of type `T` to generate the [Field](../modules.md#field) array from. |
+| `value.value` | `Field` | `Field` | - |
 
 ##### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
-A [Field](Field.md) array describing how this `T` element is made up of [Field](Field.md) elements.
+A [Field](../modules.md#field) array describing how this `T` element is made up of [Field](../modules.md#field) elements.
 
 #### Inherited from
 
@@ -315,13 +310,13 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:117](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L117)
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L26)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: \{ `value`: [`Field`](Field.md) = Field }) => \{ `value`: `string` = Field }
+▪ `Static` **toJSON**: (`x`: \{ `value`: `Field` = Field }) => \{ `value`: `string` = Field }
 
 #### Type declaration
 
@@ -332,7 +327,7 @@ ___
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `x` | `Object` | `undefined` |
-| `x.value` | [`Field`](Field.md) | `Field` |
+| `x.value` | `Field` | `Field` |
 
 ##### Returns
 
@@ -350,7 +345,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/circuit-value.ts:389](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L389)
+[lib/provable/types/struct.ts:150](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L150)
 
 ## Methods
 
@@ -384,7 +379,7 @@ if the result is greater than 255.
 
 #### Defined in
 
-[lib/int.ts:1344](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1344)
+[lib/provable/int.ts:1237](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1237)
 
 ___
 
@@ -409,7 +404,7 @@ Assert that this [UInt8](UInt8.md) is equal another [UInt8](UInt8.md) value.
 
 #### Defined in
 
-[lib/int.ts:1598](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1598)
+[lib/provable/int.ts:1503](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1503)
 
 ___
 
@@ -434,7 +429,7 @@ Assert that this [UInt8](UInt8.md) is greater than another [UInt8](UInt8.md) val
 
 #### Defined in
 
-[lib/int.ts:1574](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1574)
+[lib/provable/int.ts:1479](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1479)
 
 ___
 
@@ -459,7 +454,7 @@ Assert that this [UInt8](UInt8.md) is greater than or equal to another [UInt8](U
 
 #### Defined in
 
-[lib/int.ts:1586](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1586)
+[lib/provable/int.ts:1491](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1491)
 
 ___
 
@@ -484,7 +479,7 @@ Assert that this [UInt8](UInt8.md) is less than another [UInt8](UInt8.md) value.
 
 #### Defined in
 
-[lib/int.ts:1494](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1494)
+[lib/provable/int.ts:1397](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1397)
 
 ___
 
@@ -509,7 +504,7 @@ Assert that this [UInt8](UInt8.md) is less than or equal to another [UInt8](UInt
 
 #### Defined in
 
-[lib/int.ts:1518](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1518)
+[lib/provable/int.ts:1422](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1422)
 
 ___
 
@@ -540,7 +535,7 @@ quotient.assertEquals(3);
 
 #### Defined in
 
-[lib/int.ts:1397](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1397)
+[lib/provable/int.ts:1290](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1290)
 
 ___
 
@@ -571,13 +566,13 @@ The quotient `q` and remainder `r`.
 
 #### Defined in
 
-[lib/int.ts:1424](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1424)
+[lib/provable/int.ts:1317](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1317)
 
 ___
 
 ### greaterThan
 
-▸ **greaterThan**(`y`): [`Bool`](Bool.md)
+▸ **greaterThan**(`y`): `Bool`
 
 Check if this [UInt8](UInt8.md) is greater than another [UInt8](UInt8.md).
 Returns a [Bool](../modules.md#bool-1).
@@ -590,7 +585,7 @@ Returns a [Bool](../modules.md#bool-1).
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 **`Example`**
 
@@ -601,13 +596,13 @@ UInt8.from(5).greaterThan(3);
 
 #### Defined in
 
-[lib/int.ts:1548](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1548)
+[lib/provable/int.ts:1453](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1453)
 
 ___
 
 ### greaterThanOrEqual
 
-▸ **greaterThanOrEqual**(`y`): [`Bool`](Bool.md)
+▸ **greaterThanOrEqual**(`y`): `Bool`
 
 Check if this [UInt8](UInt8.md) is greater than or equal another [UInt8](UInt8.md) value.
 Returns a [Bool](../modules.md#bool-1).
@@ -620,7 +615,7 @@ Returns a [Bool](../modules.md#bool-1).
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 **`Example`**
 
@@ -631,13 +626,13 @@ UInt8.from(3).greaterThanOrEqual(3);
 
 #### Defined in
 
-[lib/int.ts:1562](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1562)
+[lib/provable/int.ts:1467](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1467)
 
 ___
 
 ### lessThan
 
-▸ **lessThan**(`y`): [`Bool`](Bool.md)
+▸ **lessThan**(`y`): `Bool`
 
 Check if this [UInt8](UInt8.md) is less than another [UInt8](UInt8.md) value.
 Returns a [Bool](../modules.md#bool-1).
@@ -650,7 +645,7 @@ Returns a [Bool](../modules.md#bool-1).
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 **`Example`**
 
@@ -660,13 +655,13 @@ UInt8.from(2).lessThan(UInt8.from(3));
 
 #### Defined in
 
-[lib/int.ts:1478](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1478)
+[lib/provable/int.ts:1376](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1376)
 
 ___
 
 ### lessThanOrEqual
 
-▸ **lessThanOrEqual**(`y`): [`Bool`](Bool.md)
+▸ **lessThanOrEqual**(`y`): `Bool`
 
 Check if this [UInt8](UInt8.md) is less than or equal to another [UInt8](UInt8.md) value.
 Returns a [Bool](../modules.md#bool-1).
@@ -679,7 +674,7 @@ Returns a [Bool](../modules.md#bool-1).
 
 #### Returns
 
-[`Bool`](Bool.md)
+`Bool`
 
 **`Example`**
 
@@ -689,7 +684,7 @@ UInt8.from(3).lessThanOrEqual(UInt8.from(5));
 
 #### Defined in
 
-[lib/int.ts:1461](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1461)
+[lib/provable/int.ts:1354](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1354)
 
 ___
 
@@ -719,7 +714,7 @@ mod.assertEquals(20);
 
 #### Defined in
 
-[lib/int.ts:1411](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1411)
+[lib/provable/int.ts:1304](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1304)
 
 ___
 
@@ -753,7 +748,7 @@ if the result is greater than 255.
 
 #### Defined in
 
-[lib/int.ts:1380](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1380)
+[lib/provable/int.ts:1273](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1273)
 
 ___
 
@@ -787,7 +782,7 @@ if the result is less than 0.
 
 #### Defined in
 
-[lib/int.ts:1362](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1362)
+[lib/provable/int.ts:1255](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1255)
 
 ___
 
@@ -805,7 +800,7 @@ Serialize the [UInt8](UInt8.md) to a bigint.
 
 #### Defined in
 
-[lib/int.ts:1626](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1626)
+[lib/provable/int.ts:1531](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1531)
 
 ___
 
@@ -823,7 +818,7 @@ Serialize the [UInt8](UInt8.md) to a number.
 
 #### Defined in
 
-[lib/int.ts:1617](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1617)
+[lib/provable/int.ts:1522](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1522)
 
 ___
 
@@ -841,7 +836,7 @@ Serialize the [UInt8](UInt8.md) to a string, e.g. for printing.
 
 #### Defined in
 
-[lib/int.ts:1608](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1608)
+[lib/provable/int.ts:1513](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1513)
 
 ___
 
@@ -857,7 +852,7 @@ Turns a [UInt8](UInt8.md) into a [UInt32](UInt32.md).
 
 #### Defined in
 
-[lib/int.ts:1646](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1646)
+[lib/provable/int.ts:1551](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1551)
 
 ___
 
@@ -873,7 +868,7 @@ Turns a [UInt8](UInt8.md) into a [UInt64](UInt64.md).
 
 #### Defined in
 
-[lib/int.ts:1653](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1653)
+[lib/provable/int.ts:1558](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1558)
 
 ___
 
@@ -889,7 +884,7 @@ Creates a [UInt8](UInt8.md) with a value of 255.
 
 #### Defined in
 
-[lib/int.ts:1660](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1660)
+[lib/provable/int.ts:1565](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1565)
 
 ___
 
@@ -897,14 +892,14 @@ ___
 
 ▸ `Static` **check**(`x`): `void`
 
-[check](../interfaces/Provable.md#check) for [UInt8](UInt8.md).
+[check](TokenSymbol.md#check) for [UInt8](UInt8.md).
 Proves that the input is in the [0, 255] range.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md) \| \{ `value`: [`Field`](Field.md)  } |
+| `x` | `Field` \| \{ `value`: `Field`  } |
 
 #### Returns
 
@@ -918,7 +913,7 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1634](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1634)
+[lib/provable/int.ts:1539](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1539)
 
 ___
 
@@ -930,7 +925,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `x` | [`Field`](Field.md) |
+| `x` | `Field` |
 
 #### Returns
 
@@ -938,7 +933,7 @@ ___
 
 #### Defined in
 
-[lib/int.ts:1678](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1678)
+[lib/provable/int.ts:1583](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1583)
 
 ___
 
@@ -952,7 +947,7 @@ Creates a new [UInt8](UInt8.md).
 
 | Name | Type |
 | :------ | :------ |
-| `x` | `number` \| `bigint` \| [`Field`](Field.md) \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`UInt8`](UInt8.md) |
+| `x` | `number` \| `bigint` \| `Field` \| [`UInt64`](UInt64.md) \| [`UInt32`](UInt32.md) \| [`UInt8`](UInt8.md) |
 
 #### Returns
 
@@ -960,7 +955,7 @@ Creates a new [UInt8](UInt8.md).
 
 #### Defined in
 
-[lib/int.ts:1667](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1667)
+[lib/provable/int.ts:1572](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1572)
 
 ___
 
@@ -968,15 +963,13 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Return the size of the `T` type in terms of [Field](Field.md) type, as [Field](Field.md) is the primitive type.
-
-**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+Return the size of the `T` type in terms of [Field](../modules.md#field) type, as [Field](../modules.md#field) is the primitive type.
 
 #### Returns
 
 `number`
 
-A `number` representing the size of the `T` type in terms of [Field](Field.md) type.
+A `number` representing the size of the `T` type in terms of [Field](../modules.md#field) type.
 
 #### Inherited from
 
@@ -986,7 +979,7 @@ Struct(\{
 
 #### Defined in
 
-[snarky.d.ts:147](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L147)
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L56)
 
 ___
 
@@ -999,7 +992,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.value` | [`Field`](Field.md) |
+| `x.value` | `Field` |
 
 #### Returns
 
@@ -1013,4 +1006,4 @@ Struct(\{
 
 #### Defined in
 
-[lib/int.ts:1639](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/int.ts#L1639)
+[lib/provable/int.ts:1544](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/int.ts#L1544)

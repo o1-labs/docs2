@@ -30,6 +30,7 @@ class YourSmartContract extends SmartContract {
 - [#executionState](SmartContract.md##executionstate)
 - [address](SmartContract.md#address)
 - [events](SmartContract.md#events)
+- [sender](SmartContract.md#sender)
 - [tokenId](SmartContract.md#tokenid)
 - [\_maxProofsVerified](SmartContract.md#_maxproofsverified)
 - [\_methodMetadata](SmartContract.md#_methodmetadata)
@@ -44,9 +45,6 @@ class YourSmartContract extends SmartContract {
 - [currentSlot](SmartContract.md#currentslot)
 - [network](SmartContract.md#network)
 - [self](SmartContract.md#self)
-- [sender](SmartContract.md#sender)
-- [token](SmartContract.md#token)
-- [tokenSymbol](SmartContract.md#tokensymbol)
 
 ### Methods
 
@@ -58,9 +56,6 @@ class YourSmartContract extends SmartContract {
 - [newSelf](SmartContract.md#newself)
 - [requireSignature](SmartContract.md#requiresignature)
 - [send](SmartContract.md#send)
-- [setPermissions](SmartContract.md#setpermissions)
-- [setValue](SmartContract.md#setvalue)
-- [sign](SmartContract.md#sign)
 - [skipAuthorization](SmartContract.md#skipauthorization)
 - [Proof](SmartContract.md#proof)
 - [analyzeMethods](SmartContract.md#analyzemethods)
@@ -79,7 +74,7 @@ class YourSmartContract extends SmartContract {
 | Name | Type |
 | :------ | :------ |
 | `address` | [`PublicKey`](Types.PublicKey.md) |
-| `tokenId?` | [`Field`](Field.md) |
+| `tokenId?` | `Field` |
 
 #### Overrides
 
@@ -87,7 +82,7 @@ SmartContractBase.constructor
 
 #### Defined in
 
-[lib/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L574)
+[lib/mina/zkapp.ts:608](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L608)
 
 ## Properties
 
@@ -104,7 +99,7 @@ SmartContractBase.constructor
 
 #### Defined in
 
-[lib/zkapp.ts:822](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L822)
+[lib/mina/zkapp.ts:849](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L849)
 
 ___
 
@@ -114,7 +109,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:541](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L541)
+[lib/mina/zkapp.ts:576](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L576)
 
 ___
 
@@ -124,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:538](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L538)
+[lib/mina/zkapp.ts:573](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L573)
 
 ___
 
@@ -140,17 +135,35 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 #### Defined in
 
-[lib/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L928)
+[lib/mina/zkapp.ts:948](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L948)
+
+___
+
+### sender
+
+• **sender**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `self` | [`SmartContract`](SmartContract.md) |
+| `getAndRequireSignature` | () => [`PublicKey`](Types.PublicKey.md) |
+| `getUnconstrained` | () => [`PublicKey`](Types.PublicKey.md) |
+
+#### Defined in
+
+[lib/mina/zkapp.ts:851](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L851)
 
 ___
 
 ### tokenId
 
-• **tokenId**: [`Field`](Field.md)
+• **tokenId**: `Field`
 
 #### Defined in
 
-[lib/zkapp.ts:539](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L539)
+[lib/mina/zkapp.ts:574](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L574)
 
 ___
 
@@ -160,17 +173,17 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:559](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L559)
+[lib/mina/zkapp.ts:593](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L593)
 
 ___
 
 ### \_methodMetadata
 
-▪ `Static` `Optional` **\_methodMetadata**: `Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+▪ `Static` `Optional` **\_methodMetadata**: `Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `rows`: `number`  }\>
 
 #### Defined in
 
-[lib/zkapp.ts:548](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L548)
+[lib/mina/zkapp.ts:583](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L583)
 
 ___
 
@@ -180,7 +193,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:547](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L547)
+[lib/mina/zkapp.ts:582](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L582)
 
 ___
 
@@ -190,7 +203,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:558](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L558)
+[lib/mina/zkapp.ts:592](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L592)
 
 ___
 
@@ -203,11 +216,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | `string` |
-| `hash` | [`Field`](Field.md) |
+| `hash` | `Field` |
 
 #### Defined in
 
-[lib/zkapp.ts:560](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L560)
+[lib/mina/zkapp.ts:594](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L594)
 
 ## Accessors
 
@@ -223,7 +236,7 @@ Current account of the [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:853](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L853)
+[lib/mina/zkapp.ts:889](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L889)
 
 ___
 
@@ -244,7 +257,7 @@ Balance of this [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:922](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L922)
+[lib/mina/zkapp.ts:942](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L942)
 
 ___
 
@@ -262,7 +275,7 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 #### Defined in
 
-[lib/zkapp.ts:867](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L867)
+[lib/mina/zkapp.ts:903](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L903)
 
 ___
 
@@ -278,7 +291,7 @@ Current network state of the [SmartContract](SmartContract.md).
 
 #### Defined in
 
-[lib/zkapp.ts:859](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L859)
+[lib/mina/zkapp.ts:895](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L895)
 
 ___
 
@@ -294,80 +307,7 @@ Returns the current [AccountUpdate](AccountUpdate.md) associated to this [SmartC
 
 #### Defined in
 
-[lib/zkapp.ts:779](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L779)
-
-___
-
-### sender
-
-• `get` **sender**(): [`PublicKey`](Types.PublicKey.md)
-
-The public key of the current transaction's sender account.
-
-Throws an error if not inside a transaction, or the sender wasn't passed in.
-
-**Warning**: The fact that this public key equals the current sender is not part of the proof.
-A malicious prover could use any other public key without affecting the validity of the proof.
-
-#### Returns
-
-[`PublicKey`](Types.PublicKey.md)
-
-#### Defined in
-
-[lib/zkapp.ts:832](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L832)
-
-___
-
-### token
-
-• `get` **token**(): `Object`
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `id` | [`Field`](Field.md) |
-| `parentTokenId` | [`Field`](Field.md) |
-| `tokenOwner` | [`PublicKey`](Types.PublicKey.md) |
-| `burn` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `mint` | (`__namedParameters`: \{ `address`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-| `send` | (`__namedParameters`: \{ `amount`: `number` \| `bigint` \| [`UInt64`](UInt64.md) ; `from`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md) ; `to`: [`PublicKey`](Types.PublicKey.md) \| [`AccountUpdate`](AccountUpdate.md) \| [`SmartContract`](SmartContract.md)  }) => [`AccountUpdate`](AccountUpdate.md) |
-
-**`Deprecated`**
-
-`SmartContract.token` will be removed, and token methods will only be available on `TokenContract.internal`.
-Instead of `SmartContract.token.id`, use `TokenContract.deriveTokenId()`.
-
-For security reasons, it is recommended to use [TokenContract](TokenContract.md) as the base contract for all tokens.
-
-#### Defined in
-
-[lib/zkapp.ts:877](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L877)
-
-___
-
-### tokenSymbol
-
-• `get` **tokenSymbol**(): `Object`
-
-#### Returns
-
-`Object`
-
-| Name | Type |
-| :------ | :------ |
-| `set` | (`tokenSymbol`: `string`) => `void` |
-
-**`Deprecated`**
-
-use `this.account.tokenSymbol`
-
-#### Defined in
-
-[lib/zkapp.ts:916](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L916)
+[lib/mina/zkapp.ts:806](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L806)
 
 ## Methods
 
@@ -407,20 +347,20 @@ excluding important information from the public input.
 
 #### Defined in
 
-[lib/zkapp.ts:902](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L902)
+[lib/mina/zkapp.ts:928](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L928)
 
 ___
 
 ### deploy
 
-▸ **deploy**(`«destructured»?`): `void`
+▸ **deploy**(`«destructured»?`): `Promise`\<`void`\>
 
 Deploys a [SmartContract](SmartContract.md).
 
 ```ts
-let tx = await Mina.transaction(sender, () => {
+let tx = await Mina.transaction(sender, async () => {
   AccountUpdate.fundNewAccount(sender);
-  zkapp.deploy();
+  await zkapp.deploy();
 });
 tx.sign([senderKey, zkAppKey]);
 ```
@@ -432,16 +372,15 @@ tx.sign([senderKey, zkAppKey]);
 | `«destructured»` | `Object` |
 | › `verificationKey?` | `Object` |
 | › `verificationKey.data` | `string` |
-| › `verificationKey.hash` | `string` \| [`Field`](Field.md) |
-| › `zkappKey?` | [`PrivateKey`](PrivateKey.md) |
+| › `verificationKey.hash` | `string` \| `Field` |
 
 #### Returns
 
-`void`
+`Promise`\<`void`\>
 
 #### Defined in
 
-[lib/zkapp.ts:663](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L663)
+[lib/mina/zkapp.ts:697](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L697)
 
 ___
 
@@ -470,13 +409,13 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Defined in
 
-[lib/zkapp.ts:934](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L934)
+[lib/mina/zkapp.ts:954](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L954)
 
 ___
 
 ### fetchEvents
 
-▸ **fetchEvents**(`start?`, `end?`): `Promise`\<\{ `blockHash`: `string` ; `blockHeight`: [`UInt32`](UInt32.md) ; `chainStatus`: `string` ; `event`: \{ `data`: [`ProvablePure`](../interfaces/ProvablePure.md)\<`any`\> ; `transactionInfo`: \{ `transactionHash`: `string` ; `transactionMemo`: `string` ; `transactionStatus`: `string`  }  } ; `globalSlot`: [`UInt32`](UInt32.md) ; `parentBlockHash`: `string` ; `type`: `string`  }[]\>
+▸ **fetchEvents**(`start?`, `end?`): `Promise`\<\{ `blockHash`: `string` ; `blockHeight`: [`UInt32`](UInt32.md) ; `chainStatus`: `string` ; `event`: \{ `data`: [`ProvablePure`](../modules.md#provablepure)\<`any`\> ; `transactionInfo`: \{ `transactionHash`: `string` ; `transactionMemo`: `string` ; `transactionStatus`: `string`  }  } ; `globalSlot`: [`UInt32`](UInt32.md) ; `parentBlockHash`: `string` ; `type`: `string`  }[]\>
 
 Asynchronously fetches events emitted by this [SmartContract](SmartContract.md) and returns an array of events with their corresponding types.
 
@@ -489,7 +428,7 @@ Asynchronously fetches events emitted by this [SmartContract](SmartContract.md) 
 
 #### Returns
 
-`Promise`\<\{ `blockHash`: `string` ; `blockHeight`: [`UInt32`](UInt32.md) ; `chainStatus`: `string` ; `event`: \{ `data`: [`ProvablePure`](../interfaces/ProvablePure.md)\<`any`\> ; `transactionInfo`: \{ `transactionHash`: `string` ; `transactionMemo`: `string` ; `transactionStatus`: `string`  }  } ; `globalSlot`: [`UInt32`](UInt32.md) ; `parentBlockHash`: `string` ; `type`: `string`  }[]\>
+`Promise`\<\{ `blockHash`: `string` ; `blockHeight`: [`UInt32`](UInt32.md) ; `chainStatus`: `string` ; `event`: \{ `data`: [`ProvablePure`](../modules.md#provablepure)\<`any`\> ; `transactionInfo`: \{ `transactionHash`: `string` ; `transactionMemo`: `string` ; `transactionStatus`: `string`  }  } ; `globalSlot`: [`UInt32`](UInt32.md) ; `parentBlockHash`: `string` ; `type`: `string`  }[]\>
 
 A promise that resolves to an array of objects, each containing the event type and event data for the specified range.
 
@@ -510,7 +449,7 @@ console.log(events);
 
 #### Defined in
 
-[lib/zkapp.ts:980](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L980)
+[lib/mina/zkapp.ts:1000](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L1000)
 
 ___
 
@@ -536,7 +475,7 @@ class MyContract extends SmartContract {
 
 #### Defined in
 
-[lib/zkapp.ts:734](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L734)
+[lib/mina/zkapp.ts:766](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L766)
 
 ___
 
@@ -558,7 +497,7 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 
 #### Defined in
 
-[lib/zkapp.ts:814](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L814)
+[lib/mina/zkapp.ts:841](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L841)
 
 ___
 
@@ -582,7 +521,7 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 #### Defined in
 
-[lib/zkapp.ts:755](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L755)
+[lib/mina/zkapp.ts:787](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L787)
 
 ___
 
@@ -604,86 +543,7 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L906)
-
-___
-
-### setPermissions
-
-▸ **setPermissions**(`permissions`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `permissions` | [`Permissions`](../modules.md#permissions) |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-use `this.account.permissions.set()`
-
-#### Defined in
-
-[lib/zkapp.ts:1161](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1161)
-
-___
-
-### setValue
-
-▸ **setValue**\<`T`\>(`maybeValue`, `value`): `void`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `maybeValue` | `SetOrKeep`\<`T`\> |
-| `value` | `T` |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-use `this.account.<field>.set()`
-
-#### Defined in
-
-[lib/zkapp.ts:1154](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1154)
-
-___
-
-### sign
-
-▸ **sign**(`zkappKey?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `zkappKey?` | [`PrivateKey`](PrivateKey.md) |
-
-#### Returns
-
-`void`
-
-**`Deprecated`**
-
-`this.sign()` is deprecated in favor of `this.requireSignature()`
-
-#### Defined in
-
-[lib/zkapp.ts:761](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L761)
+[lib/mina/zkapp.ts:932](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L932)
 
 ___
 
@@ -704,7 +564,7 @@ authorization flow.
 
 #### Defined in
 
-[lib/zkapp.ts:772](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L772)
+[lib/mina/zkapp.ts:799](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L799)
 
 ___
 
@@ -720,13 +580,13 @@ typeof `__class`
 
 #### Defined in
 
-[lib/zkapp.ts:565](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L565)
+[lib/mina/zkapp.ts:599](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L599)
 
 ___
 
 ### analyzeMethods
 
-▸ `Static` **analyzeMethods**(`«destructured»?`): `Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+▸ `Static` **analyzeMethods**(`«destructured»?`): `Promise`\<`Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `rows`: `number`  }\>\>
 
 This function is run internally before compiling a smart contract, to collect metadata about what each of your
 smart contract methods does.
@@ -749,24 +609,23 @@ Note: If this function was already called before, it will short-circuit and just
 
 #### Returns
 
-`Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `hasReturn`: `boolean` ; `rows`: `number`  }\>
+`Promise`\<`Record`\<`string`, \{ `actions`: `number` ; `digest`: `string` ; `gates`: [`Gate`](../modules.md#gate)[] ; `rows`: `number`  }\>\>
 
 an object, keyed by method name, each entry containing:
  - `rows` the size of the constraint system created by this method
  - `digest` a digest of the method circuit
- - `hasReturn` a boolean indicating whether the method returns a value
  - `actions` the number of actions the method dispatches
  - `gates` the constraint system, represented as an array of gates
 
 #### Defined in
 
-[lib/zkapp.ts:1100](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1100)
+[lib/mina/zkapp.ts:1119](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L1119)
 
 ___
 
 ### compile
 
-▸ `Static` **compile**(`«destructured»?`): `Promise`\<\{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: \{ `data`: `string` ; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: [`Statement`](../modules/Pickles.md#statement)\<[`FieldConst`](../modules.md#fieldconst-1)\>, `proof`: `unknown`) => `Promise`\<`boolean`\>  }\>
+▸ `Static` **compile**(`«destructured»?`): `Promise`\<\{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: \{ `data`: `string` ; `hash`: `Field`  } ; `verify`: (`statement`: [`Statement`](../modules/Pickles.md#statement)\<`FieldConst`\>, `proof`: `unknown`) => `Promise`\<`boolean`\>  }\>
 
 Compile your smart contract.
 
@@ -791,17 +650,17 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 #### Returns
 
-`Promise`\<\{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: \{ `data`: `string` ; `hash`: [`Field`](Field.md)  } ; `verify`: (`statement`: [`Statement`](../modules/Pickles.md#statement)\<[`FieldConst`](../modules.md#fieldconst-1)\>, `proof`: `unknown`) => `Promise`\<`boolean`\>  }\>
+`Promise`\<\{ `provers`: [`Prover`](../modules/Pickles.md#prover)[] ; `verificationKey`: \{ `data`: `string` ; `hash`: `Field`  } ; `verify`: (`statement`: [`Statement`](../modules/Pickles.md#statement)\<`FieldConst`\>, `proof`: `unknown`) => `Promise`\<`boolean`\>  }\>
 
 #### Defined in
 
-[lib/zkapp.ts:602](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L602)
+[lib/mina/zkapp.ts:636](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L636)
 
 ___
 
 ### digest
 
-▸ `Static` **digest**(): `string`
+▸ `Static` **digest**(): `Promise`\<`string`\>
 
 Computes a hash of your smart contract, which will reliably change _whenever one of your method circuits changes_.
 This digest is quick to compute. it is designed to help with deciding whether a contract should be re-compiled or
@@ -809,13 +668,13 @@ a cached verification key can be used.
 
 #### Returns
 
-`string`
+`Promise`\<`string`\>
 
 the digest, as a hex string
 
 #### Defined in
 
-[lib/zkapp.ts:643](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L643)
+[lib/mina/zkapp.ts:677](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L677)
 
 ___
 
@@ -835,4 +694,4 @@ ___
 
 #### Defined in
 
-[lib/zkapp.ts:1074](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/zkapp.ts#L1074)
+[lib/mina/zkapp.ts:1094](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/mina/zkapp.ts#L1094)

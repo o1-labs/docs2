@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+- \{ `field`: `Field` ; `symbol`: `string`  }
 
   ↳ **`TokenSymbol`**
 
@@ -44,7 +44,7 @@
 | Name | Type |
 | :------ | :------ |
 | `value` | `Object` |
-| `value.field` | [`Field`](Field.md) |
+| `value.field` | `Field` |
 | `value.symbol` | `string` |
 
 #### Inherited from
@@ -53,13 +53,13 @@ Struct(TokenSymbolPure).constructor
 
 #### Defined in
 
-[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L382)
+[lib/provable/types/struct.ts:143](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L143)
 
 ## Properties
 
 ### field
 
-• **field**: [`Field`](Field.md)
+• **field**: `Field`
 
 #### Inherited from
 
@@ -67,7 +67,7 @@ Struct(TokenSymbolPure).field
 
 #### Defined in
 
-[lib/hash.ts:194](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hash.ts#L194)
+[lib/provable/crypto/poseidon.ts:194](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/poseidon.ts#L194)
 
 ___
 
@@ -81,7 +81,7 @@ Struct(TokenSymbolPure).symbol
 
 #### Defined in
 
-[lib/hash.ts:194](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hash.ts#L194)
+[lib/provable/crypto/poseidon.ts:194](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/poseidon.ts#L194)
 
 ___
 
@@ -95,13 +95,13 @@ Struct(TokenSymbolPure).\_isStruct
 
 #### Defined in
 
-[lib/circuit-value.ts:382](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L382)
+[lib/provable/types/struct.ts:143](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L143)
 
 ___
 
 ### check
 
-▪ `Static` **check**: (`value`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `void`
+▪ `Static` **check**: (`value`: \{ `field`: `Field` ; `symbol`: `string`  }) => `void`
 
 #### Type declaration
 
@@ -110,14 +110,14 @@ ___
 Add assertions to the proof to check if `value` is a valid member of type `T`.
 This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
 
-For instance, calling check function on the type [Bool](Bool.md) asserts that the value of the element is either 1 or 0.
+For instance, calling check function on the type [Bool](../modules.md#bool) asserts that the value of the element is either 1 or 0.
 
 ##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `Object` | the element of type `T` to put assertions on. |
-| `value.field` | [`Field`](Field.md) | - |
+| `value.field` | `Field` | - |
 | `value.symbol` | `string` | - |
 
 ##### Returns
@@ -130,13 +130,13 @@ Struct(TokenSymbolPure).check
 
 #### Defined in
 
-[snarky.d.ts:98](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L98)
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L66)
 
 ___
 
 ### empty
 
-▪ `Static` **empty**: () => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **empty**: () => \{ `field`: `Field` ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -148,7 +148,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Inherited from
@@ -157,13 +157,13 @@ Struct(TokenSymbolPure).empty
 
 #### Defined in
 
-[lib/circuit-value.ts:391](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L391)
+[lib/provable/types/struct.ts:152](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L152)
 
 ___
 
 ### fromFields
 
-▪ `Static` **fromFields**: (`fields`: [`Field`](Field.md)[], `aux`: `any`[]) => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromFields**: (`fields`: `Field`[], `aux`: `any`[]) => \{ `field`: `Field` ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -171,13 +171,13 @@ ___
 
 A function that returns an element of type `T` from the given provable and "auxiliary" data.
 
-**Important**: For any element of type `T`, this function is the reverse operation of calling [toFields](../interfaces/Provable.md#tofields) and toAuxilary methods on an element of type `T`.
+This function is the reverse operation of calling [toFields](TokenSymbol.md#tofields) and toAuxilary methods on an element of type `T`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `fields` | [`Field`](Field.md)[] | an array of [Field](Field.md) elements describing the provable data of the new `T` element. |
+| `fields` | `Field`[] | an array of [Field](../modules.md#field) elements describing the provable data of the new `T` element. |
 | `aux` | `any`[] | an array of any type describing the "auxiliary" data of the new `T` element, optional. |
 
 ##### Returns
@@ -188,7 +188,7 @@ An element of type `T` generated from the given provable and "auxiliary" data.
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Inherited from
@@ -197,13 +197,13 @@ Struct(TokenSymbolPure).fromFields
 
 #### Defined in
 
-[snarky.d.ts:79](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L79)
+[lib/provable/types/provable-intf.ts:49](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L49)
 
 ___
 
 ### fromJSON
 
-▪ `Static` **fromJSON**: (`x`: `string`) => \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }
+▪ `Static` **fromJSON**: (`x`: `string`) => \{ `field`: `Field` ; `symbol`: `string`  }
 
 #### Type declaration
 
@@ -221,7 +221,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `field` | [`Field`](Field.md) |
+| `field` | `Field` |
 | `symbol` | `string` |
 
 #### Inherited from
@@ -230,26 +230,27 @@ Struct(TokenSymbolPure).fromJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:390](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L390)
+[lib/provable/types/struct.ts:151](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L151)
 
 ___
 
 ### toAuxiliary
 
-▪ `Static` **toAuxiliary**: (`value?`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `any`[]
+▪ `Static` **toAuxiliary**: (`value?`: \{ `field`: `Field` ; `symbol`: `string`  }) => `any`[]
 
 #### Type declaration
 
 ▸ (`value?`): `any`[]
 
-A function that takes `value` (optional), an element of type `T`, as argument and returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value?` | `Object` | the element of type `T` to generate the auxiliary data array from, optional. If not provided, a default value for auxiliary data is returned. |
-| `value.field` | [`Field`](Field.md) | - |
+| `value.field` | `Field` | - |
 | `value.symbol` | `string` | - |
 
 ##### Returns
@@ -264,33 +265,34 @@ Struct(TokenSymbolPure).toAuxiliary
 
 #### Defined in
 
-[snarky.d.ts:67](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L67)
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L37)
 
 ___
 
 ### toFields
 
-▪ `Static` **toFields**: (`value`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => [`Field`](Field.md)[]
+▪ `Static` **toFields**: (`value`: \{ `field`: `Field` ; `symbol`: `string`  }) => `Field`[]
 
 #### Type declaration
 
-▸ (`value`): [`Field`](Field.md)[]
+▸ (`value`): `Field`[]
 
-A function that takes `value`, an element of type `T`, as argument and returns an array of [Field](Field.md) elements that make up the provable data of `value`.
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](../modules.md#field) elements that make up the provable data of `value`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `Object` | the element of type `T` to generate the [Field](Field.md) array from. |
-| `value.field` | [`Field`](Field.md) | - |
+| `value` | `Object` | the element of type `T` to generate the [Field](../modules.md#field) array from. |
+| `value.field` | `Field` | - |
 | `value.symbol` | `string` | - |
 
 ##### Returns
 
-[`Field`](Field.md)[]
+`Field`[]
 
-A [Field](Field.md) array describing how this `T` element is made up of [Field](Field.md) elements.
+A [Field](../modules.md#field) array describing how this `T` element is made up of [Field](../modules.md#field) elements.
 
 #### Inherited from
 
@@ -298,13 +300,13 @@ Struct(TokenSymbolPure).toFields
 
 #### Defined in
 
-[snarky.d.ts:58](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L58)
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L26)
 
 ___
 
 ### toInput
 
-▪ `Static` **toInput**: (`x`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => \{ `fields?`: [`Field`](Field.md)[] ; `packed?`: [[`Field`](Field.md), `number`][]  }
+▪ `Static` **toInput**: (`x`: \{ `field`: `Field` ; `symbol`: `string`  }) => \{ `fields?`: `Field`[] ; `packed?`: [`Field`, `number`][]  }
 
 #### Type declaration
 
@@ -315,7 +317,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -324,8 +326,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `fields?` | [`Field`](Field.md)[] |
-| `packed?` | [[`Field`](Field.md), `number`][] |
+| `fields?` | `Field`[] |
+| `packed?` | [`Field`, `number`][] |
 
 #### Inherited from
 
@@ -333,13 +335,13 @@ Struct(TokenSymbolPure).toInput
 
 #### Defined in
 
-[lib/circuit-value.ts:385](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L385)
+[lib/provable/types/struct.ts:146](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L146)
 
 ___
 
 ### toJSON
 
-▪ `Static` **toJSON**: (`x`: \{ `field`: [`Field`](Field.md) ; `symbol`: `string`  }) => `string`
+▪ `Static` **toJSON**: (`x`: \{ `field`: `Field` ; `symbol`: `string`  }) => `string`
 
 #### Type declaration
 
@@ -350,7 +352,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `x` | `Object` |
-| `x.field` | [`Field`](Field.md) |
+| `x.field` | `Field` |
 | `x.symbol` | `string` |
 
 ##### Returns
@@ -363,7 +365,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/circuit-value.ts:389](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/circuit-value.ts#L389)
+[lib/provable/types/struct.ts:150](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/struct.ts#L150)
 
 ## Methods
 
@@ -383,7 +385,7 @@ Struct(TokenSymbolPure).toJSON
 
 #### Defined in
 
-[lib/hash.ts:227](https://github.com/o1-labs/o1js/blob/659a59e/src/lib/hash.ts#L227)
+[lib/provable/crypto/poseidon.ts:227](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/crypto/poseidon.ts#L227)
 
 ___
 
@@ -391,15 +393,13 @@ ___
 
 ▸ `Static` **sizeInFields**(): `number`
 
-Return the size of the `T` type in terms of [Field](Field.md) type, as [Field](Field.md) is the primitive type.
-
-**Warning**: This function returns a `number`, so you cannot use it to prove something on chain. You can use it during debugging or to understand the memory complexity of some type.
+Return the size of the `T` type in terms of [Field](../modules.md#field) type, as [Field](../modules.md#field) is the primitive type.
 
 #### Returns
 
 `number`
 
-A `number` representing the size of the `T` type in terms of [Field](Field.md) type.
+A `number` representing the size of the `T` type in terms of [Field](../modules.md#field) type.
 
 #### Inherited from
 
@@ -407,4 +407,4 @@ Struct(TokenSymbolPure).sizeInFields
 
 #### Defined in
 
-[snarky.d.ts:88](https://github.com/o1-labs/o1js/blob/659a59e/src/snarky.d.ts#L88)
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/6731ad3/src/lib/provable/types/provable-intf.ts#L56)

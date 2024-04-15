@@ -132,11 +132,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Bool',
-                  label: 'Bool',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
                   label: 'CanonicalForeignField',
                 },
@@ -157,18 +152,8 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/CircuitValue',
-                  label: 'CircuitValue',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/EcdsaSignature',
                   label: 'EcdsaSignature',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Field',
-                  label: 'Field',
                 },
                 {
                   type: 'doc',
@@ -179,11 +164,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/ForeignField',
                   label: 'ForeignField',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Group',
-                  label: 'Group',
                 },
                 {
                   type: 'doc',
@@ -277,11 +257,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Token',
-                  label: 'Token',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/TokenAccountUpdateIterator',
                   label: 'TokenAccountUpdateIterator',
                 },
@@ -325,6 +300,276 @@ module.exports = {
                   id: 'zkapps/o1js-reference/classes/VerificationKey',
                   label: 'VerificationKey',
                 },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.LookupFeatures',
+                  label: 'wasm.LookupFeatures',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.LookupInfo',
+                  label: 'wasm.LookupInfo',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.LookupPatterns',
+                  label: 'wasm.LookupPatterns',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.PoolBuilder',
+                  label: 'wasm.PoolBuilder',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpDomain',
+                  label: 'wasm.WasmFpDomain',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpGate',
+                  label: 'wasm.WasmFpGate',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpGateVector',
+                  label: 'wasm.WasmFpGateVector',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpLookupCommitments',
+                  label: 'wasm.WasmFpLookupCommitments',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpLookupSelectors',
+                  label: 'wasm.WasmFpLookupSelectors',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpLookupVerifierIndex',
+                  label: 'wasm.WasmFpLookupVerifierIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpOpeningProof',
+                  label: 'wasm.WasmFpOpeningProof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpOracles',
+                  label: 'wasm.WasmFpOracles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpPlonkVerificationEvals',
+                  label: 'wasm.WasmFpPlonkVerificationEvals',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpPlonkVerifierIndex',
+                  label: 'wasm.WasmFpPlonkVerifierIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpPolyComm',
+                  label: 'wasm.WasmFpPolyComm',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpProverCommitments',
+                  label: 'wasm.WasmFpProverCommitments',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpProverProof',
+                  label: 'wasm.WasmFpProverProof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpRandomOracles',
+                  label: 'wasm.WasmFpRandomOracles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpRuntimeTable',
+                  label: 'wasm.WasmFpRuntimeTable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpShifts',
+                  label: 'wasm.WasmFpShifts',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFpSrs',
+                  label: 'wasm.WasmFpSrs',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqDomain',
+                  label: 'wasm.WasmFqDomain',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqGate',
+                  label: 'wasm.WasmFqGate',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqGateVector',
+                  label: 'wasm.WasmFqGateVector',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqLookupCommitments',
+                  label: 'wasm.WasmFqLookupCommitments',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqLookupSelectors',
+                  label: 'wasm.WasmFqLookupSelectors',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqLookupVerifierIndex',
+                  label: 'wasm.WasmFqLookupVerifierIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqOpeningProof',
+                  label: 'wasm.WasmFqOpeningProof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqOracles',
+                  label: 'wasm.WasmFqOracles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqPlonkVerificationEvals',
+                  label: 'wasm.WasmFqPlonkVerificationEvals',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqPlonkVerifierIndex',
+                  label: 'wasm.WasmFqPlonkVerifierIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqPolyComm',
+                  label: 'wasm.WasmFqPolyComm',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqProverCommitments',
+                  label: 'wasm.WasmFqProverCommitments',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqProverProof',
+                  label: 'wasm.WasmFqProverProof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqRandomOracles',
+                  label: 'wasm.WasmFqRandomOracles',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqRuntimeTable',
+                  label: 'wasm.WasmFqRuntimeTable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqShifts',
+                  label: 'wasm.WasmFqShifts',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmFqSrs',
+                  label: 'wasm.WasmFqSrs',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmGPallas',
+                  label: 'wasm.WasmGPallas',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmGVesta',
+                  label: 'wasm.WasmGVesta',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmGateWires',
+                  label: 'wasm.WasmGateWires',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPallasGProjective',
+                  label: 'wasm.WasmPallasGProjective',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFpLookupTable',
+                  label: 'wasm.WasmPastaFpLookupTable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFpPlonkIndex',
+                  label: 'wasm.WasmPastaFpPlonkIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFpRuntimeTableCfg',
+                  label: 'wasm.WasmPastaFpRuntimeTableCfg',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFqLookupTable',
+                  label: 'wasm.WasmPastaFqLookupTable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFqPlonkIndex',
+                  label: 'wasm.WasmPastaFqPlonkIndex',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmPastaFqRuntimeTableCfg',
+                  label: 'wasm.WasmPastaFqRuntimeTableCfg',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmVecVecFp',
+                  label: 'wasm.WasmVecVecFp',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmVecVecFpPolyComm',
+                  label: 'wasm.WasmVecVecFpPolyComm',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmVecVecFq',
+                  label: 'wasm.WasmVecVecFq',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmVecVecFqPolyComm',
+                  label: 'wasm.WasmVecVecFqPolyComm',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.WasmVestaGProjective',
+                  label: 'wasm.WasmVestaGProjective',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/wasm.Wire',
+                  label: 'wasm.Wire',
+                },
               ],
             },
             {
@@ -335,16 +580,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/interfaces/Permissions',
                   label: 'Permissions',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/Provable',
-                  label: 'Provable',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/ProvablePure',
-                  label: 'ProvablePure',
                 },
               ],
             },
@@ -412,6 +647,16 @@ module.exports = {
                   id: 'zkapps/o1js-reference/modules/ZkProgram',
                   label: 'ZkProgram',
                 },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/method',
+                  label: 'method',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/modules/wasm',
+                  label: 'wasm',
+                },
               ],
             },
             {
@@ -420,8 +665,13 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/enums/FieldType',
-                  label: 'FieldType',
+                  id: 'zkapps/o1js-reference/enums/wasm.CurrOrNext',
+                  label: 'wasm.CurrOrNext',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/enums/wasm.GateType',
+                  label: 'wasm.GateType',
                 },
               ],
             },
