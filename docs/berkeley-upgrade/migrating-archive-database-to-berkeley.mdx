@@ -59,6 +59,8 @@ mina-berkeley-migration-script  \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
+   --checkpoint-output-path .\
+   --precomputed-blocks-local-path .\
    --network NETWORK
 ```
 
@@ -76,6 +78,10 @@ where:
 
 `-n | --network`: network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`.
 
+`-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
+
+`-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
+
 The command output is the `migration-replayer-XXX.json` file required for the next run.
 
 ### Stage 2: Incremental migration
@@ -89,6 +95,8 @@ mina-berkeley-migration-script \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
    --network NETWORK \
+   --checkpoint-output-path . \
+   --precomputed-blocks-local-path . \
    --replayer-checkpoint migration-checkpoint-XXX.json
 ```
 
@@ -108,6 +116,10 @@ where:
 
 `-r | --replayer-checkpoint`: path to the latest checkpoint file `migration-checkpoint-XXX.json`
 
+`-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
+
+`-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
+
 ### Stage 3: Remainder migration
 
 ```
@@ -119,6 +131,8 @@ mina-berkeley-migration-script \
    --blocks-bucket mina_network_block_data \
    --blocks-batch-size 50 \
    --network NETWORK \
+   --checkpoint-output-path . \
+   --precomputed-blocks-local-path . \
    --replayer-checkpoint migration-checkpoint-XXX.json \
    -fc fork-genesis-config.json \
    -f fork-state-hash 
@@ -139,6 +153,10 @@ where:
 `-n | --network`: network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`.
 
 `-r | --replayer-checkpoint`: path to the latest checkpoint file `migration-checkpoint-XXX.json`
+
+`-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
+
+`-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
 `-fc | --fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
   
@@ -170,6 +188,7 @@ mina-berkeley-migration \
    --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
    --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
+   --precomputed-blocks-local-path . \
    --keep-precomputed-blocks \
    --network NETWORK
 ```
@@ -185,6 +204,8 @@ where:
 `--migrated-archive-uri`: connection string to the database that will hold the migrated data
 
 `--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
+
+`--precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
 `--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
 
@@ -208,7 +229,8 @@ Then:
    --migration-mode \
    --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --input-file replayer_input_config.json \
-   --checkpoint-interval 10000
+   --checkpoint-interval 10000 \
+   --checkpoint-output-folder .
 ```
 
 where:
@@ -225,6 +247,8 @@ where:
    ```
 
 `--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
+
+`--checkpoint-output-folder`: path to folder for replayer checkpoint files
 
 #### Phase 3: Validations
 
@@ -269,6 +293,7 @@ mina-berkeley-migration \
    --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
    --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
+   --precomputed-blocks-local-path . \
    --keep-precomputed-blocks \
    --network NETWORK
 ```
@@ -285,6 +310,8 @@ where:
 
 `--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
 
+`--precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
+
 `--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
 
 `--network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
@@ -296,7 +323,8 @@ where:
    --migration-mode \
    --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --input-file replayer-checkpoint-XXX.json \
-   --checkpoint-interval 10000
+   --checkpoint-interval 10000 \
+   --checkpoint-output-folder .
 ```
 
 where:
@@ -310,6 +338,8 @@ where:
 `replayer-checkpoint-XXX.json`: the latest checkpoint generated from the previous migration
 
 `--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
+
+`--checkpoint-output-folder`: path to folder for replayer checkpoint files
 
 Incremental migration can be run continuously on top of the initial migration or last incremental until the fork block is announced.
 
@@ -362,6 +392,7 @@ mina-berkeley-migration \
    --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
    --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
+   --precomputed-blocks-local-path \
    --keep-precomputed-blocks \
    --network NETWORK \
    --fork-state-hash {fork-state-hash}
@@ -379,6 +410,8 @@ where:
 
 `--blocks-bucket`: name of the precomputed blocks bucket. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
 
+`--precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
+
 `--keep-precomputed-blocks`: keep the precomputed blocks on-disk after the migration is complete
 
 `--network`: the network name (`devnet` or `mainnet`) when determining precomputed blocks. Precomputed blocks are assumed to be named with format: `{network}-{height}-{state_hash}.json`
@@ -395,7 +428,8 @@ mina-migration-replayer \
    --migration-mode \
    --archive-uri postgres://postgres:postgres@localhost:5432/migrated \
    --input-file replayer-checkpoint-XXX.json \
-   --checkpoint-interval 10000 
+   --checkpoint-interval 10000 \
+   --checkpoint-output-folder .
 ```
 
 where:
@@ -409,6 +443,8 @@ where:
 `replayer-checkpoint-XXX.json`: the latest checkpoint generated from the previous migration
 
 `--checkpoint-interval`: frequency of checkpoints file expressed in blocks count
+
+`--checkpoint-output-folder`: path to folder for replayer checkpoint files
 
 #### Phase 3: Validations
 
