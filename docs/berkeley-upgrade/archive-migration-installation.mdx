@@ -86,7 +86,7 @@ The recommended method is to perform migration on your own data to preserve the 
 
 The correct Devnet/Mainnet database state is crucial for a successful migration. 
 
-[Missing blocks](/berkeley-upgrade/mainnet-database-maintenance#missing-blocks) is one the most frequent issues when dealing with the Devnet/Mainnet archive. Although this step is optional, it is strongly recommended that you verify the archive condition before you start the migration process.
+[Missing blocks](/berkeley-upgrade/mainnet-database-maintenance#missing-blocks) is one the most frequent issue when dealing with the Devnet/Mainnet archive. Although this step is optional, it is strongly recommended that you verify the archive condition before you start the migration process.
 
 To learn how to maintain archive data, see [Devnet/Mainnet database maintenance](/berkeley-upgrade/mainnet-database-maintenance).
 
@@ -115,8 +115,14 @@ apt-get install --allow-downgrades -y "mina-archive-migration=$VERSION"
 To get the Docker image:
 
 ```
-docker pull gcr.io/o1labs-192920/mina-archive-migration:3.0.0-rc0
+docker pull gcr.io/o1labs-192920/mina-archive-migration:3.0.0-rc0-{CODENAME}
 ```
+
+Where supported codenames are: 
+- bullseye
+- focal
+- buster
+
 
 ## Devnet/Mainnet genesis ledger
 
