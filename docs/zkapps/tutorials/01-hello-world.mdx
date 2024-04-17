@@ -330,7 +330,7 @@ To initialize your simulated local blockchain, add the following code from the [
 ```ts src/main.ts
  9 const useProof = false;
 10
-11 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
+11 const Local = await Mina.LocalBlockchain({ proofsEnabled: useProof });
 12 Mina.setActiveInstance(Local);
 13 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
