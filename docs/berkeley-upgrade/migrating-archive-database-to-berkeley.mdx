@@ -134,8 +134,7 @@ mina-berkeley-migration-script \
    --checkpoint-output-path . \
    --precomputed-blocks-local-path . \
    --replayer-checkpoint migration-checkpoint-XXX.json \
-   -fc fork-genesis-config.json \
-   -f fork-state-hash 
+   -fc fork-genesis-config.json
 ```
 
 where: 
@@ -159,8 +158,6 @@ where:
 `-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
 `-fc | --fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
-  
-`-f | --fork-state-hash`: fork state hash
 
 ## Advanced approach
 
