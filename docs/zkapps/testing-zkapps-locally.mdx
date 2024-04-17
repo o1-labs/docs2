@@ -71,7 +71,7 @@ You can quickly test your smart contract by running it on a simulated local bloc
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
-const Local = Mina.LocalBlockchain();
+const Local = await Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
@@ -141,7 +141,7 @@ describe('Add smart contract integration test', () => {
 
   beforeAll(async () => {
     // setup local blockchain
-    let Local = Mina.LocalBlockchain();
+    let Local = await Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
 
     // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
