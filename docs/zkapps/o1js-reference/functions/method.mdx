@@ -1,0 +1,48 @@
+```ts
+method<K, T>(
+   target, 
+   methodName, 
+   descriptor, 
+   returnType?): void
+```
+
+A decorator to use in a zkApp to mark a method as provable.
+You can use inside your zkApp class as:
+
+```
+\@method async myMethod(someArg: Field) {
+  // your code here
+}
+```
+
+To return a value from the method, you have to explicitly declare the return type using the [method.returns](method.mdx#returns) decorator:
+```
+\@method.returns(Field)
+async myMethod(someArg: Field): Promise<Field> {
+  // your code here
+}
+```
+
+## Type parameters
+
+• **K** extends `string`
+
+• **T** extends [`SmartContract`](../classes/SmartContract.mdx)
+
+## Parameters
+
+• **target**: `T` & `{ [k in string]: Function }`
+
+• **methodName**: `K` & `string` & keyof `T`
+
+• **descriptor**: `PropertyDescriptor`
+
+• **returnType?**: [`Provable`](../type-aliases/Provable.mdx)\<`any`\>
+
+## Returns
+
+`void`
+
+## Source
+
+[lib/mina/zkapp.ts:101](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/zkapp.ts#L101)

@@ -1,0 +1,44 @@
+```ts
+acquireKeyPair(options): Promise<object>
+```
+
+Gets random key pair (public and private keys) from account manager
+that operates with accounts configured in target network Genesis Ledger.
+
+If an error is returned by the specified endpoint, an error is thrown. Otherwise,
+the data is returned.
+
+## Parameters
+
+• **options**= `{}`
+
+• **options\.isRegularAccount?**: `boolean`
+
+Whether to acquire key pair of regular or zkApp account (one with already configured verification key)
+
+• **options\.lightnetAccountManagerEndpoint?**: `string`
+
+Account manager endpoint to fetch from
+
+## Returns
+
+`Promise`\<`object`\>
+
+Key pair
+
+> ### privateKey
+>
+> ```ts
+> privateKey: PrivateKey;
+> ```
+>
+> ### publicKey
+>
+> ```ts
+> publicKey: PublicKey;
+> ```
+>
+
+## Source
+
+[lib/mina/fetch.ts:816](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/fetch.ts#L816)

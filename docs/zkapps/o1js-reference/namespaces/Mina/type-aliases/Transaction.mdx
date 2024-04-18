@@ -1,0 +1,139 @@
+```ts
+type Transaction: object;
+```
+
+Defines the structure and operations associated with a transaction.
+This type encompasses methods for serializing the transaction, signing it, generating proofs,
+and submitting it to the network.
+
+## Type declaration
+
+### transaction
+
+```ts
+transaction: ZkappCommand;
+```
+
+Transaction structure used to describe a state transition on the Mina blockchain.
+
+### prove()
+
+Initiates the proof generation process for the [Transaction](Transaction.mdx). This asynchronous operation is
+crucial for zero-knowledge-based transactions, where proofs are required to validate state transitions.
+This can take some time.
+
+#### Returns
+
+`Promise`\<(`undefined` \| [`Proof`](../../../classes/Proof.mdx)\<[`ZkappPublicInput`](../../../type-aliases/ZkappPublicInput.mdx), `undefined`\>)[]\>
+
+#### Example
+
+```ts
+await transaction.prove();
+```
+
+### safeSend()
+
+Sends the [Transaction](Transaction.mdx) to the network. Unlike the standard Transaction.send, this function does not throw an error if internal errors are detected. Instead, it returns a [PendingTransaction](PendingTransaction.mdx) if the transaction is successfully sent for processing or a [RejectedTransaction](RejectedTransaction.mdx) if it encounters errors during processing or is outright rejected by the Mina daemon.
+
+#### Returns
+
+`Promise`\<[`PendingTransaction`](PendingTransaction.mdx) \| [`RejectedTransaction`](RejectedTransaction.mdx)\>
+
+A promise that resolves to a [PendingTransaction](PendingTransaction.mdx) if the transaction is accepted for processing, or a [RejectedTransaction](RejectedTransaction.mdx) if the transaction fails or is rejected.
+
+#### Example
+
+```ts
+const result = await transaction.safeSend();
+if (result.status === 'pending') {
+  console.log('Transaction sent successfully to the Mina daemon.');
+} else if (result.status === 'rejected') {
+  console.error('Transaction failed with errors:', result.errors);
+}
+```
+
+### send()
+
+Submits the [Transaction](Transaction.mdx) to the network. This method asynchronously sends the transaction
+for processing. If successful, it returns a [PendingTransaction](PendingTransaction.mdx) instance, which can be used to monitor the transaction's progress.
+If the transaction submission fails, this method throws an error that should be caught and handled appropriately.
+
+#### Returns
+
+`Promise`\<[`PendingTransaction`](PendingTransaction.mdx)\>
+
+A promise that resolves to a [PendingTransaction](PendingTransaction.mdx) instance representing the submitted transaction if the submission is successful.
+
+#### Throws
+
+An error if the transaction cannot be sent or processed by the network, containing details about the failure.
+
+#### Example
+
+```ts
+try {
+  const pendingTransaction = await transaction.send();
+  console.log('Transaction sent successfully to the Mina daemon.');
+} catch (error) {
+  console.error('Failed to send transaction to the Mina daemon:', error);
+}
+```
+
+### sign()
+
+Signs all [AccountUpdate](../../../classes/AccountUpdate.mdx)s included in the [Transaction](Transaction.mdx) that require a signature.
+[AccountUpdate](../../../classes/AccountUpdate.mdx)s that require a signature can be specified with `{AccountUpdate|SmartContract}.requireSignature()`.
+
+#### Parameters
+
+• **privateKeys**: [`PrivateKey`](../../../classes/PrivateKey.mdx)[]
+
+The list of keys that should be used to sign the [Transaction](Transaction.mdx)
+
+#### Returns
+
+[`Transaction`](Transaction.mdx)
+
+The [Transaction](Transaction.mdx) instance with all required signatures applied.
+
+#### Example
+
+```ts
+const signedTx = transaction.sign([userPrivateKey]);
+console.log('Transaction signed successfully.');
+```
+
+### toGraphqlQuery()
+
+Constructs the GraphQL query string used for submitting the transaction to a Mina daemon.
+
+#### Returns
+
+`string`
+
+The GraphQL query string for the [Transaction](Transaction.mdx).
+
+### toJSON()
+
+Serializes the transaction to a JSON string.
+
+#### Returns
+
+`string`
+
+A string representation of the [Transaction](Transaction.mdx).
+
+### toPretty()
+
+Produces a pretty-printed JSON representation of the [Transaction](Transaction.mdx).
+
+#### Returns
+
+`any`
+
+A formatted string representing the transaction in JSON.
+
+## Source
+
+[lib/mina/transaction.ts:49](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/transaction.ts#L49)

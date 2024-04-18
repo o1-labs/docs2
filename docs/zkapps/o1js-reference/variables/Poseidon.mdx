@@ -1,0 +1,119 @@
+```ts
+const Poseidon: object;
+```
+
+## Type declaration
+
+### Sponge
+
+```ts
+Sponge: typeof Sponge;
+```
+
+### Unsafe
+
+```ts
+Unsafe: object;
+```
+
+### Unsafe.hashToGroup()
+
+Low-level version of `Poseidon.hashToGroup()`.
+
+**Warning**: This function is marked unsafe because its output is not deterministic.
+It returns the square root of a value without constraining which of the two possible
+square roots is chosen. This allows the prover to choose between two different hashes,
+which can be a vulnerability if consuming code treats the output as unique.
+
+#### Parameters
+
+• **input**: `Field`[]
+
+#### Returns
+
+`Group`
+
+### hash()
+
+#### Parameters
+
+• **input**: `Field`[]
+
+#### Returns
+
+`Field`
+
+### hashPacked()
+
+Hashes a provable type efficiently.
+
+```ts
+let skHash = Poseidon.hashPacked(PrivateKey, secretKey);
+```
+
+Note: Instead of just doing `Poseidon.hash(value.toFields())`, this
+uses the `toInput()` method on the provable type to pack the input into as few
+field elements as possible. This saves constraints because packing has a much
+lower per-field element cost than hashing.
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: `Hashable`\<`T`\>
+
+• **value**: `T`
+
+#### Returns
+
+`Field`
+
+### hashToGroup()
+
+Hashes a list of field elements to a point on the Pallas curve.
+
+The output point is deterministic and its discrete log is not efficiently computable.
+
+#### Parameters
+
+• **input**: `Field`[]
+
+#### Returns
+
+`Group`
+
+### hashWithPrefix()
+
+#### Parameters
+
+• **prefix**: `string`
+
+• **input**: `Field`[]
+
+#### Returns
+
+`Field`
+
+### initialState()
+
+#### Returns
+
+[`Field`, `Field`, `Field`]
+
+### update()
+
+#### Parameters
+
+• **state**: [`Field`, `Field`, `Field`]
+
+• **input**: `Field`[]
+
+#### Returns
+
+[`Field`, `Field`, `Field`]
+
+## Source
+
+[lib/provable/crypto/poseidon.ts:50](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/provable/crypto/poseidon.ts#L50)

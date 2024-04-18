@@ -1,0 +1,243 @@
+```ts
+LocalBlockchain(__namedParameters): object
+```
+
+A mock Mina blockchain running locally and useful for testing.
+
+## Parameters
+
+• **\_\_namedParameters**= `{}`
+
+• **\_\_namedParameters\.enforceTransactionLimits**: `undefined` \| `boolean`= `true`
+
+• **\_\_namedParameters\.proofsEnabled**: `undefined` \| `boolean`= `true`
+
+## Returns
+
+`object`
+
+### addAccount()
+
+```ts
+addAccount: (publicKey, balance) => void;
+```
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **balance**: `string`
+
+#### Returns
+
+`void`
+
+### getNetworkId()
+
+```ts
+getNetworkId: () => NetworkId;
+```
+
+#### Returns
+
+`NetworkId`
+
+### proofsEnabled
+
+```ts
+proofsEnabled: boolean;
+```
+
+### testAccounts
+
+```ts
+testAccounts: [TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey, TestPublicKey];
+```
+
+### applyJsonTransaction()
+
+#### Parameters
+
+• **json**: `string`
+
+#### Returns
+
+`void`
+
+### currentSlot()
+
+#### Returns
+
+[`UInt32`](../../../classes/UInt32.mdx)
+
+### fetchActions()
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **actionStates?**: [`ActionStates`](../type-aliases/ActionStates.mdx)
+
+• **tokenId?**: `Field`= `TokenId.default`
+
+#### Returns
+
+`Promise`\<`object`[]\>
+
+### fetchEvents()
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **tokenId**: `Field`= `TokenId.default`
+
+#### Returns
+
+`Promise`\<`any`\>
+
+### getAccount()
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **tokenId**: `Field`= `TokenId.default`
+
+#### Returns
+
+`Account`
+
+### getActions()
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **actionStates?**: [`ActionStates`](../type-aliases/ActionStates.mdx)
+
+• **tokenId?**: `Field`= `TokenId.default`
+
+#### Returns
+
+`object`[]
+
+### getNetworkConstants()
+
+#### Returns
+
+`object`
+
+##### accountCreationFee
+
+```ts
+accountCreationFee: UInt64;
+```
+
+##### genesisTimestamp
+
+```ts
+genesisTimestamp: UInt64;
+```
+
+##### slotTime
+
+```ts
+slotTime: UInt64;
+```
+
+Duration of 1 slot in millisecondw
+
+### getNetworkState()
+
+#### Returns
+
+`PreconditionBaseTypes`\<`object`\>
+
+### hasAccount()
+
+#### Parameters
+
+• **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+• **tokenId**: `Field`= `TokenId.default`
+
+#### Returns
+
+`boolean`
+
+### incrementGlobalSlot()
+
+#### Parameters
+
+• **increment**: `number` \| [`UInt32`](../../../classes/UInt32.mdx)
+
+#### Returns
+
+`void`
+
+### sendTransaction()
+
+#### Parameters
+
+• **txn**: [`Transaction`](../type-aliases/Transaction.mdx)
+
+#### Returns
+
+`Promise`\<[`PendingTransaction`](../type-aliases/PendingTransaction.mdx)\>
+
+### setBlockchainLength()
+
+#### Parameters
+
+• **height**: [`UInt32`](../../../classes/UInt32.mdx)
+
+#### Returns
+
+`void`
+
+### setGlobalSlot()
+
+#### Parameters
+
+• **slot**: `number` \| [`UInt32`](../../../classes/UInt32.mdx)
+
+#### Returns
+
+`void`
+
+### setProofsEnabled()
+
+#### Parameters
+
+• **newProofsEnabled**: `boolean`
+
+#### Returns
+
+`void`
+
+### setTotalCurrency()
+
+#### Parameters
+
+• **currency**: [`UInt64`](../../../classes/UInt64.mdx)
+
+#### Returns
+
+`void`
+
+### transaction()
+
+#### Parameters
+
+• **sender**: [`FeePayerSpec`](../type-aliases/FeePayerSpec.mdx)
+
+• **f**
+
+#### Returns
+
+[`TransactionPromise`](../../../type-aliases/TransactionPromise.mdx)
+
+## Source
+
+[lib/mina/local-blockchain.ts:66](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/local-blockchain.ts#L66)

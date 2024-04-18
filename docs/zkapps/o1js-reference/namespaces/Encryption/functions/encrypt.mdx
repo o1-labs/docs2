@@ -1,0 +1,31 @@
+```ts
+encrypt(message, otherPublicKey): object
+```
+
+Public Key Encryption, using a given array of [Field](../../../variables/Field.mdx) elements and encrypts it using a [PublicKey](../../../classes/PublicKey.mdx).
+
+## Parameters
+
+• **message**: `Field`[]
+
+• **otherPublicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
+
+## Returns
+
+`object`
+
+### cipherText
+
+```ts
+cipherText: Field[];
+```
+
+### publicKey
+
+```ts
+publicKey: Group;
+```
+
+## Source
+
+[lib/provable/crypto/encryption.ts:16](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/provable/crypto/encryption.ts#L16)
