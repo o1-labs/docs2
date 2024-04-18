@@ -98,8 +98,8 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              id: 'zkapps/o1js-reference/Overview',
-              label: 'Overview',
+              id: 'zkapps/o1js-reference/README',
+              label: 'Introduction',
             },
             {
               type: 'category',
@@ -484,8 +484,8 @@ module.exports = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'zkapps/o1js-reference/namespaces/Crypto/Overview',
-                      label: 'Overview',
+                      id: 'zkapps/o1js-reference/namespaces/Crypto/README',
+                      label: 'Introduction',
                     },
                     {
                       type: 'category',
@@ -511,8 +511,8 @@ module.exports = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'zkapps/o1js-reference/namespaces/Encryption/Overview',
-                      label: 'Overview',
+                      id: 'zkapps/o1js-reference/namespaces/Encryption/README',
+                      label: 'Introduction',
                     },
                     {
                       type: 'category',
@@ -538,8 +538,8 @@ module.exports = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'zkapps/o1js-reference/namespaces/Experimental/Overview',
-                      label: 'Overview',
+                      id: 'zkapps/o1js-reference/namespaces/Experimental/README',
+                      label: 'Introduction',
                     },
                     {
                       type: 'category',
@@ -560,8 +560,8 @@ module.exports = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'zkapps/o1js-reference/namespaces/Lightnet/Overview',
-                      label: 'Overview',
+                      id: 'zkapps/o1js-reference/namespaces/Lightnet/README',
+                      label: 'Introduction',
                     },
                     {
                       type: 'category',
@@ -592,8 +592,8 @@ module.exports = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'zkapps/o1js-reference/namespaces/Mina/Overview',
-                      label: 'Overview',
+                      id: 'zkapps/o1js-reference/namespaces/Mina/README',
+                      label: 'Introduction',
                     },
                     {
                       type: 'category',
@@ -716,8 +716,8 @@ module.exports = {
                           items: [
                             {
                               type: 'doc',
-                              id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/Overview',
-                              label: 'Overview',
+                              id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/README',
+                              label: 'Introduction',
                             },
                             {
                               type: 'category',
