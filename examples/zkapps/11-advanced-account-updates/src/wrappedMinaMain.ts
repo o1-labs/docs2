@@ -15,7 +15,7 @@ import {
 (async () => {
   let doProofs = false;
 
-  let Local = Mina.LocalBlockchain({
+  let Local = await Mina.LocalBlockchain({
     proofsEnabled: doProofs,
     enforceTransactionLimits: false,
   });
