@@ -7,7 +7,7 @@ import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
 
 (async function main() {
   const proofsEnabled = false;
-  const Local = Mina.LocalBlockchain({ proofsEnabled });
+  const Local = await Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
   const deployerAccount = Local.testAccounts[0].privateKey;
   const deployerPubkey = deployerAccount.toPublicKey();
