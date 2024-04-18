@@ -5,7 +5,7 @@ type SetupOptions = {
 };
 export async function initializeMina({ useLocalBlockchain }: SetupOptions) {
   if (useLocalBlockchain) {
-    const Local = Mina.LocalBlockchain();
+    const Local = await Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
     return Local;
   } else {
