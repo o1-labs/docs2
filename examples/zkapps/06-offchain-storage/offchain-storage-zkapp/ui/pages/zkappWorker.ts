@@ -46,7 +46,7 @@ const functions = {
   },
 
   setActiveInstanceToLocal: async (args: {}) => {
-    const Local = Mina.LocalBlockchain();
+    const Local = await Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
     state.testAccounts = Local.testAccounts;
     state.isLocal = true;
