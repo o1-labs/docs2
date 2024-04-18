@@ -60,6 +60,10 @@ function renameCategories(items) {
       renameCategories(item.items);
     }
   });
+  const overviewIndex = items.findIndex((item) => item.label === 'README');
+  if (overviewIndex !== -1) {
+    items[overviewIndex].label = 'Introduction';
+  }
 }
 
 const { zkAppCategory, o1jsAPICategory } = findo1jsSidebar(sidebars);
