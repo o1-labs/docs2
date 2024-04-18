@@ -27,8 +27,8 @@ describe('OracleExample', () => {
     if (proofsEnabled) await OracleExample.compile();
   });
 
-  beforeEach(() => {
-    const Local = Mina.LocalBlockchain({ proofsEnabled });
+  beforeEach(async () => {
+    const Local = await Mina.LocalBlockchain({ proofsEnabled });
     Mina.setActiveInstance(Local);
     ({ privateKey: deployerKey, publicKey: deployerAccount } =
       Local.testAccounts[0]);
