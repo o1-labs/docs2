@@ -1,0 +1,54 @@
+```ts
+fetchEvents(
+   accountInfo, 
+   graphqlEndpoint?, 
+filterOptions?): Promise<object[]>
+```
+
+Asynchronously fetches event data for an account from the Mina Archive Node GraphQL API.
+
+## Parameters
+
+• **accountInfo**
+
+The account information object.
+
+• **accountInfo\.publicKey**: `string`
+
+The account public key.
+
+• **accountInfo\.tokenId?**: `string`
+
+The optional token ID for the account.
+
+• **graphqlEndpoint?**: `string`= `networkConfig.archiveEndpoint`
+
+The GraphQL endpoint to query. Defaults to the Archive Node GraphQL API.
+
+• **filterOptions?**: `EventActionFilterOptions`= `{}`
+
+The optional filter options object.
+
+## Returns
+
+`Promise`\<`object`[]\>
+
+A promise that resolves to an array of objects containing event data, block information and transaction information for the account.
+
+## Async
+
+## Throws
+
+If the GraphQL request fails or the response is invalid.
+
+## Example
+
+```ts
+const accountInfo = { publicKey: 'B62qiwmXrWn7Cok5VhhB3KvCwyZ7NHHstFGbiU5n7m8s2RqqNW1p1wF' };
+const events = await fetchEvents(accountInfo);
+console.log(events);
+```
+
+## Source
+
+[lib/mina/fetch.ts:637](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/fetch.ts#L637)

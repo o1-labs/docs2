@@ -1,0 +1,49 @@
+## transaction(sender, f)
+
+```ts
+transaction(sender, f): TransactionPromise
+```
+
+Construct a smart contract transaction. Within the callback passed to this function,
+you can call into the methods of smart contracts.
+
+```
+let tx = await Mina.transaction(sender, async () => {
+  await myZkapp.update();
+  await someOtherZkapp.someOtherMethod();
+});
+```
+
+### Parameters
+
+• **sender**: [`FeePayerSpec`](../type-aliases/FeePayerSpec.mdx)
+
+• **f**
+
+### Returns
+
+[`TransactionPromise`](../../../type-aliases/TransactionPromise.mdx)
+
+A transaction that can subsequently be submitted to the chain.
+
+### Source
+
+[lib/mina/transaction.ts:480](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/transaction.ts#L480)
+
+## transaction(f)
+
+```ts
+transaction(f): TransactionPromise
+```
+
+### Parameters
+
+• **f**
+
+### Returns
+
+[`TransactionPromise`](../../../type-aliases/TransactionPromise.mdx)
+
+### Source
+
+[lib/mina/transaction.ts:484](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/transaction.ts#L484)

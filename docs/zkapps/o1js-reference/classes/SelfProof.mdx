@@ -1,0 +1,333 @@
+## Extends
+
+- [`Proof`](Proof.mdx)\<`PublicInput`, `PublicOutput`\>
+
+## Type parameters
+
+• **PublicInput**
+
+• **PublicOutput**
+
+## Constructors
+
+### new SelfProof(__namedParameters)
+
+```ts
+new SelfProof<PublicInput, PublicOutput>(__namedParameters): SelfProof<PublicInput, PublicOutput>
+```
+
+#### Parameters
+
+• **\_\_namedParameters**
+
+• **\_\_namedParameters\.maxProofsVerified**: `0` \| `1` \| `2`
+
+• **\_\_namedParameters\.proof**: `unknown`
+
+• **\_\_namedParameters\.publicInput**: `PublicInput`
+
+• **\_\_namedParameters\.publicOutput**: `PublicOutput`
+
+#### Returns
+
+[`SelfProof`](SelfProof.mdx)\<`PublicInput`, `PublicOutput`\>
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`constructor`](Proof.mdx#constructors)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:137](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L137)
+
+## Properties
+
+### maxProofsVerified
+
+```ts
+maxProofsVerified: 0 | 1 | 2;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`maxProofsVerified`](Proof.mdx#maxproofsverified)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L95)
+
+***
+
+### proof
+
+```ts
+proof: unknown;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`proof`](Proof.mdx#proof)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:94](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L94)
+
+***
+
+### publicInput
+
+```ts
+publicInput: PublicInput;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`publicInput`](Proof.mdx#publicinput)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:92](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L92)
+
+***
+
+### publicOutput
+
+```ts
+publicOutput: PublicOutput;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`publicOutput`](Proof.mdx#publicoutput)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:93](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L93)
+
+***
+
+### shouldVerify
+
+```ts
+shouldVerify: Bool;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`shouldVerify`](Proof.mdx#shouldverify)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L96)
+
+***
+
+### publicInputType
+
+```ts
+static publicInputType: FlexibleProvablePure<any>;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`publicInputType`](Proof.mdx#publicinputtype)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:84](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L84)
+
+***
+
+### publicOutputType
+
+```ts
+static publicOutputType: FlexibleProvablePure<any>;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`publicOutputType`](Proof.mdx#publicoutputtype)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:85](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L85)
+
+***
+
+### tag()
+
+```ts
+static tag: () => object;
+```
+
+#### Returns
+
+`object`
+
+##### name
+
+```ts
+name: string;
+```
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`tag`](Proof.mdx#tag)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:86](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L86)
+
+## Methods
+
+### toJSON()
+
+```ts
+toJSON(): JsonProof
+```
+
+#### Returns
+
+[`JsonProof`](../type-aliases/JsonProof.mdx)
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`toJSON`](Proof.mdx#tojson)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:104](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L104)
+
+***
+
+### verify()
+
+```ts
+verify(): void
+```
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`verify`](Proof.mdx#verify)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L98)
+
+***
+
+### verifyIf()
+
+```ts
+verifyIf(condition): void
+```
+
+#### Parameters
+
+• **condition**: `Bool`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`verifyIf`](Proof.mdx#verifyif)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L101)
+
+***
+
+### dummy()
+
+```ts
+static dummy<Input, OutPut>(
+   publicInput, 
+   publicOutput, 
+   maxProofsVerified, 
+domainLog2): Promise<Proof<Input, OutPut>>
+```
+
+Dummy proof. This can be useful for ZkPrograms that handle the base case in the same
+method as the inductive case, using a pattern like this:
+
+```ts
+method(proof: SelfProof<I, O>, isRecursive: Bool) {
+  proof.verifyIf(isRecursive);
+  // ...
+}
+```
+
+To use such a method in the base case, you need a dummy proof:
+
+```ts
+let dummy = await MyProof.dummy(publicInput, publicOutput, 1);
+await myProgram.myMethod(dummy, Bool(false));
+```
+
+**Note**: The types of `publicInput` and `publicOutput`, as well as the `maxProofsVerified` parameter,
+must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs that any of your methods take as arguments.
+
+#### Type parameters
+
+• **Input**
+
+• **OutPut**
+
+#### Parameters
+
+• **publicInput**: `Input`
+
+• **publicOutput**: `OutPut`
+
+• **maxProofsVerified**: `0` \| `1` \| `2`
+
+• **domainLog2**: `number`= `14`
+
+#### Returns
+
+`Promise`\<[`Proof`](Proof.mdx)\<`Input`, `OutPut`\>\>
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`dummy`](Proof.mdx#dummy)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:175](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L175)
+
+***
+
+### fromJSON()
+
+```ts
+static fromJSON<S>(this, __namedParameters): Proof<InferProvable<S["publicInputType"]>, InferProvable<S["publicOutputType"]>>
+```
+
+#### Type parameters
+
+• **S** extends `Subclass`\<*typeof* [`Proof`](Proof.mdx)\>
+
+#### Parameters
+
+• **this**: `S`
+
+• **\_\_namedParameters**: [`JsonProof`](../type-aliases/JsonProof.mdx)
+
+#### Returns
+
+[`Proof`](Proof.mdx)\<[`InferProvable`](../type-aliases/InferProvable.mdx)\<`S`\[`"publicInputType"`\]\>, [`InferProvable`](../type-aliases/InferProvable.mdx)\<`S`\[`"publicOutputType"`\]\>\>
+
+#### Inherited from
+
+[`Proof`](Proof.mdx).[`fromJSON`](Proof.mdx#fromjson)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:113](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/proof-system/zkprogram.ts#L113)

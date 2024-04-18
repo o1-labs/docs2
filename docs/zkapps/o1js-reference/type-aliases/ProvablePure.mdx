@@ -1,0 +1,33 @@
+```ts
+type ProvablePure<T>: Omit<Provable<T>, "fromFields"> & object;
+```
+
+`ProvablePure<T>` is a special kind of [Provable](Provable.mdx) interface, where the "auxiliary" (non-provable) data is empty.
+This means the type consists only of field elements, in that sense it is "pure".
+Any instance of `ProvablePure<T>` is also an instance of `Provable<T>` where the "auxiliary" data is empty.
+
+Examples where `ProvablePure<T>` is required are types of on-chain state, events and actions.
+
+## Type declaration
+
+### fromFields()
+
+```ts
+fromFields: (fields) => T;
+```
+
+#### Parameters
+
+• **fields**: `Field`[]
+
+#### Returns
+
+`T`
+
+## Type parameters
+
+• **T**
+
+## Source
+
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/provable/types/provable-intf.ts#L76)

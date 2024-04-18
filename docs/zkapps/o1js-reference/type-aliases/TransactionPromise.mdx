@@ -1,0 +1,25 @@
+```ts
+type TransactionPromise: Promise<Transaction> & object;
+```
+
+## Type declaration
+
+### send()
+
+#### Returns
+
+[`PendingTransactionPromise`](../namespaces/Mina/type-aliases/PendingTransactionPromise.mdx)
+
+### sign()
+
+#### Parameters
+
+• ...**args**: [[`PrivateKey`](../classes/PrivateKey.mdx)[]]
+
+#### Returns
+
+[`TransactionPromise`](TransactionPromise.mdx)
+
+## Source
+
+[lib/mina/transaction.ts:283](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/transaction.ts#L283)

@@ -1,0 +1,157 @@
+```ts
+Permissions: object;
+```
+
+## Type declaration
+
+### allImpossible()
+
+```ts
+allImpossible: () => Permissions;
+```
+
+#### Returns
+
+[`Permissions`](../interfaces/Permissions.mdx)
+
+### default()
+
+```ts
+default: () => Permissions;
+```
+
+Default permissions are:
+
+  [Permissions.editState](../interfaces/Permissions.mdx#editstate) = Permission.proof
+
+  [Permissions.send](../interfaces/Permissions.mdx#send) = Permission.signature
+
+  [Permissions.receive](../interfaces/Permissions.mdx#receive) = Permission.none
+
+  [Permissions.setDelegate](../interfaces/Permissions.mdx#setdelegate) = Permission.signature
+
+  [Permissions.setPermissions](../interfaces/Permissions.mdx#setpermissions) = Permission.signature
+
+  [Permissions.setVerificationKey](../interfaces/Permissions.mdx#setverificationkey) = Permission.signature
+
+  [Permissions.setZkappUri](../interfaces/Permissions.mdx#setzkappuri) = Permission.signature
+
+  [Permissions.editActionState](../interfaces/Permissions.mdx#editactionstate) = Permission.proof
+
+  [Permissions.setTokenSymbol](../interfaces/Permissions.mdx#settokensymbol) = Permission.signature
+
+#### Returns
+
+[`Permissions`](../interfaces/Permissions.mdx)
+
+### dummy()
+
+```ts
+dummy: () => Permissions;
+```
+
+#### Returns
+
+[`Permissions`](../interfaces/Permissions.mdx)
+
+### fromJSON()
+
+```ts
+fromJSON: (permissions) => Permissions;
+```
+
+#### Parameters
+
+• **permissions**
+
+#### Returns
+
+[`Permissions`](../interfaces/Permissions.mdx)
+
+### fromString()
+
+```ts
+fromString: (permission) => AuthRequired;
+```
+
+#### Parameters
+
+• **permission**: `AuthRequired`
+
+#### Returns
+
+`AuthRequired`
+
+### impossible()
+
+```ts
+impossible: () => AuthRequired;
+```
+
+Modification is impossible.
+
+#### Returns
+
+`AuthRequired`
+
+### initial()
+
+```ts
+initial: () => Permissions;
+```
+
+#### Returns
+
+[`Permissions`](../interfaces/Permissions.mdx)
+
+### none()
+
+```ts
+none: () => AuthRequired;
+```
+
+Modification is always permitted
+
+#### Returns
+
+`AuthRequired`
+
+### proof()
+
+```ts
+proof: () => AuthRequired;
+```
+
+Modification is permitted by zkapp proofs only
+
+#### Returns
+
+`AuthRequired`
+
+### proofOrSignature()
+
+```ts
+proofOrSignature: () => AuthRequired;
+```
+
+Modification is permitted by zkapp proofs or signatures
+
+#### Returns
+
+`AuthRequired`
+
+### signature()
+
+```ts
+signature: () => AuthRequired;
+```
+
+Modification is permitted by signatures only, using the private key of the zkapp account
+
+#### Returns
+
+`AuthRequired`
+
+## Source
+
+[lib/mina/account-update.ts:210](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/mina/account-update.ts#L210)

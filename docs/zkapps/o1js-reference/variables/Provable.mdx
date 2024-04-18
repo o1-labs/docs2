@@ -1,0 +1,386 @@
+```ts
+Provable: object;
+```
+
+## Type declaration
+
+### Array()
+
+```ts
+Array: <A>(elementType, length) => InferredProvable<A[]> = provableArray;
+```
+
+Creates a [Provable](Provable.mdx) for a generic array.
+
+#### Example
+
+```ts
+const ProvableArray = Provable.Array(Field, 5);
+```
+
+#### Type parameters
+
+• **A** extends [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`any`\>
+
+#### Parameters
+
+• **elementType**: `A`
+
+• **length**: `number`
+
+#### Returns
+
+`InferredProvable`\<`A`[]\>
+
+### asProver()
+
+```ts
+asProver: (f) => void;
+```
+
+#### Parameters
+
+• **f**
+
+#### Returns
+
+`void`
+
+### assertEqual()
+
+```ts
+assertEqual: <T>(type, x, y) => void<T>(x, y) => void;
+```
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`void`
+
+#### Type parameters
+
+• **T** extends `ToFieldable`
+
+#### Parameters
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`void`
+
+### constraintSystem()
+
+```ts
+constraintSystem: (f) => Promise<object>;
+```
+
+#### Parameters
+
+• **f**: () => `Promise`\<`void`\> \| () => `void`
+
+#### Returns
+
+`Promise`\<`object`\>
+
+### equal()
+
+```ts
+equal: <T>(type, x, y) => Bool<T>(x, y) => Bool;
+```
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`Bool`
+
+#### Type parameters
+
+• **T** extends `ToFieldable`
+
+#### Parameters
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`Bool`
+
+### if()
+
+```ts
+if: <T>(condition, type, x, y) => T<T>(condition, x, y) => T = if_;
+```
+
+Proof-compatible if-statement.
+This behaves like a ternary conditional statement in JS.
+
+**Warning**: Since `Provable.if()` is a normal JS function call, both the if and the else branch
+are evaluated before calling it. Therefore, you can't use this function
+to guard against execution of one of the branches. It only allows you to pick one of two values.
+
+#### Example
+
+```ts
+const condition = Bool(true);
+const result = Provable.if(condition, Field(1), Field(2)); // returns Field(1)
+```
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **condition**: `Bool`
+
+• **type**: [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`T`
+
+#### Type parameters
+
+• **T** extends `ToFieldable`
+
+#### Parameters
+
+• **condition**: `Bool`
+
+• **x**: `T`
+
+• **y**: `T`
+
+#### Returns
+
+`T`
+
+### inCheckedComputation()
+
+```ts
+inCheckedComputation: () => boolean;
+```
+
+#### Returns
+
+`boolean`
+
+### inProver()
+
+```ts
+inProver: () => boolean;
+```
+
+#### Returns
+
+`boolean`
+
+### isConstant()
+
+```ts
+isConstant: <T>(type, x) => boolean;
+```
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: [`Provable`](../type-aliases/Provable.mdx)\<`T`\>
+
+• **x**: `T`
+
+#### Returns
+
+`boolean`
+
+### log()
+
+```ts
+log: (...args) => void;
+```
+
+#### Parameters
+
+• ...**args**: `any`
+
+#### Returns
+
+`void`
+
+### switch()
+
+```ts
+switch: <T, A>(mask, type, values, __namedParameters) => T = switch_;
+```
+
+Generalization of Provable.if for choosing between more than two different cases.
+It takes a "mask", which is an array of `Bool`s that contains only one `true` element, a type/constructor, and an array of values of that type.
+The result is that value which corresponds to the true element of the mask.
+
+#### Example
+
+```ts
+let x = Provable.switch([Bool(false), Bool(true)], Field, [Field(1), Field(2)]);
+x.assertEquals(2);
+```
+
+#### Type parameters
+
+• **T**
+
+• **A** extends [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+#### Parameters
+
+• **mask**: `Bool`[]
+
+• **type**: `A`
+
+• **values**: `T`[]
+
+• **\_\_namedParameters**= `{}`
+
+• **\_\_namedParameters\.allowNonExclusive**: `undefined` \| `boolean`= `false`
+
+#### Returns
+
+`T`
+
+### witness()
+
+```ts
+witness: <T, S>(type, compute) => T;
+```
+
+#### Type parameters
+
+• **T**
+
+• **S** extends [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\> = [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+#### Parameters
+
+• **type**: `S`
+
+• **compute**
+
+#### Returns
+
+`T`
+
+### witnessAsync()
+
+```ts
+witnessAsync: <T, S>(type, compute) => Promise<T>;
+```
+
+#### Type parameters
+
+• **T**
+
+• **S** extends [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\> = [`FlexibleProvable`](../type-aliases/FlexibleProvable.mdx)\<`T`\>
+
+#### Parameters
+
+• **type**: `S`
+
+• **compute**
+
+#### Returns
+
+`Promise`\<`T`\>
+
+### runAndCheck()
+
+Runs provable code quickly, without creating a proof, but still checking whether constraints are satisfied.
+
+#### Parameters
+
+• **f**: () => `Promise`\<`void`\> \| () => `void`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Example
+
+```ts
+await Provable.runAndCheck(() => {
+  // Your code to check here
+});
+```
+
+### runUnchecked()
+
+Runs provable code quickly, without creating a proof, and not checking whether constraints are satisfied.
+
+#### Parameters
+
+• **f**: () => `Promise`\<`void`\> \| () => `void`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Example
+
+```ts
+await Provable.runUnchecked(() => {
+  // Your code to run here
+});
+```
+
+### toConstant()
+
+Returns a constant version of a provable type.
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: [`Provable`](../type-aliases/Provable.mdx)\<`T`\>
+
+• **value**: `T`
+
+#### Returns
+
+`T`
+
+## Source
+
+[lib/provable/provable.ts:49](https://github.com/o1-labs/o1js/blob/ccbd5fd4525adaf6c1f07bef7847d7bac67c71b5/src/lib/provable/provable.ts#L49)
