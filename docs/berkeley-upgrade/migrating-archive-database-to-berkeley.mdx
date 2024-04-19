@@ -55,7 +55,7 @@ mina-berkeley-migration-script  \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
    --checkpoint-interval 10000 \
    --checkpoint-output-path . \
    --precomputed-blocks-local-path . \
@@ -93,7 +93,7 @@ mina-berkeley-migration-script \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
    --network NETWORK \
    --checkpoint-output-path . \
    --checkpoint-interval 10000 \
@@ -132,7 +132,7 @@ mina-berkeley-migration-script \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
    --network NETWORK \
    --checkpoint-output-path . \
    --checkpoint-interval 10000 \
@@ -542,6 +542,21 @@ It is worthwhile to perform these last steps as a dry run to make sure all goes 
 ## Known migration problems
 
 Tips to overcome known challenges.
+
+#### Berkeley migration app is unstable
+
+ Example of such instability are crashes with information like below:
+ 
+ ```
+ ("Async was unable to add a file descriptor to its table of open file descriptors"
+  (file_descr 18)
+  (error
+   "Attempt to register a file descriptor with Async that Async believes it is already managing.")
+  (backtrace
+        ......
+ ```
+
+ A remedy is to lower `--block-batch-size` parameter to values up to 500.
 
 #### Berkeley migration app is consuming all of my resources
 
