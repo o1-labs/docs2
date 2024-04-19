@@ -40,14 +40,11 @@ Each stage has three migration phases:
 
 - **Phase 3:** Additional validation for migrated database
 
-- The source database with original Devnet/Mainnet data
-- The migrated database with original Devnet/Mainnet data converted to the Berkeley schema
-
 Review these phases and stages before you start the migration.
 
 ## Simplified approach
 
-For convenience, use the `berkeley_migration.sh` script if you do not need to delve into the details of migration or if your environment does not require a special approach to migration.
+For convenience, use the `mina-berkeley-migration-script` app if you do not need to delve into the details of migration or if your environment does not require a special approach to migration.
 
 ### Stage 1: Initial migration
 
@@ -58,7 +55,8 @@ mina-berkeley-migration-script  \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
+   --checkpoint-interval 10000 \
    --checkpoint-output-path . \
    --precomputed-blocks-local-path . \
    --network NETWORK
@@ -80,6 +78,8 @@ where:
 
 `-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
 
+`-i | --checkpoint-interval`: frequency of dumping checkpoint expressed in blocks count
+
 `-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
 The command output is the `migration-replayer-XXX.json` file required for the next run.
@@ -93,9 +93,10 @@ mina-berkeley-migration-script \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
    --network NETWORK \
    --checkpoint-output-path . \
+   --checkpoint-interval 10000 \
    --precomputed-blocks-local-path . \
    --replayer-checkpoint migration-checkpoint-XXX.json
 ```
@@ -118,6 +119,8 @@ where:
 
 `-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
 
+`-i | --checkpoint-interval`: frequency of dumping checkpoint expressed in blocks count
+
 `-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
 ### Stage 3: Remainder migration
@@ -129,9 +132,10 @@ mina-berkeley-migration-script \
    --source-db postgres://postgres:postgres@localhost:5432/source \
    --target-db postgres://postgres:postgres@localhost:5432/migrated \
    --blocks-bucket mina_network_block_data \
-   --blocks-batch-size 50 \
+   --blocks-batch-size 500 \
    --network NETWORK \
    --checkpoint-output-path . \
+   --checkpoint-interval 10000 \
    --precomputed-blocks-local-path . \
    --replayer-checkpoint migration-checkpoint-XXX.json \
    -fc fork-genesis-config.json
@@ -154,6 +158,8 @@ where:
 `-r | --replayer-checkpoint`: path to the latest checkpoint file `migration-checkpoint-XXX.json`
 
 `-c | --checkpoint-output-path`: path to folder for replayer checkpoint files
+
+`-i | --checkpoint-interval`: frequency of dumping checkpoint expressed in blocks count
 
 `-l | --precomputed-blocks-local-path`: path to folder for on-disk precomputed blocks location
 
@@ -468,156 +474,7 @@ where:
 
 ### Example migration steps using Mina Foundation data for Devnet
 
-1. Download and import the archive dump:
-
-   ```sh
-   wget -c https://storage.googleapis.com/mina-archive-dumps/devnet-archive-dump-2024-03-27_0000.sql.tar.gz
-
-   tar -xf devnet-archive-dump-2024-03-27_0000.sql.tar.gz 
-
-   psql -U postgres -a -f devnet-archive-dump-2024-03-27_0000.sql
-   ```
-
-2. Download migration software:
-
-   ```sh
-   CODENAME=bullseye
-   CHANNEL=unstable
-   VERSION=2.0.0berkeley-rc1-berkeley-c308efc-bullseye
-
-   echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
-   apt-get update
-   apt-get install --allow-downgrades -y "mina-archive-berkeley-archive-migration=$VERSION"
-   ```
-
-3. Create an empty database with schema only:
-
-   ```sh
-   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/zkapp_tables.sql
-
-   wget https://raw.githubusercontent.com/MinaProtocol/mina/berkeley/src/app/archive/create_schema.sql
-
-   psql  -U postgres -c "CREATE DATABASE berkeley_migrated;"
-
-   psql -U postgres -d berkeley_migrated -a -f create_schema.sql
-   ```
-
-4. Download the Devnet genesis ledger 
-
-
-5. Stage 1: Initial migration
-
-   5.a) Phase 1:
-
-   ```sh
-   mina-berkeley-migration \
-      --batch-size 2000 \
-      --config-file /etc/mina/genesis_ledgers/devnet.json \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
-      --blocks-bucket mina_network_block_data \
-      --keep-precomputed-blocks \
-      --stream-precomputed-blocks \
-      --network devnet
-   ```
-
-   5.b) Phase 2:
-
-   ```sh
-   # devnet.json is the genesis file from which daemon bootstrap on devnet
-   jq '.ledger.accounts' devnet.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
-
-   mina-migration-replayer \
-      --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
-      --input-file replayer_config_input.json \
-      --checkpoint-interval 100 \
-      --checkpoint-file-prefix migration
-   ```
-
-   5.c) Phase 3:
-
-   ```sh
-   mina-berkeley-migration-verifier \
-      pre-fork  \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
-   ```
-
-6. Stage 2: Initial migration
-
-   6.a) Phase 1:
-
-   ```sh
-   mina-berkeley-migration \
-      --batch-size 2000 \
-      --config-file /etc/mina/genesis_ledgers/devnet.json \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
-      --blocks-bucket mina_network_block_data \
-      --network devnet
-   ```
-
-   6.b) Phase 2:
-
-   ```sh
-   mina-migration-replayer \
-      --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
-      --input-file checkpoint-XXXX.json \
-      --checkpoint-interval 100 \
-      --checkpoint-file-prefix migration
-   ```
-
-   6.c) Phase 3:
-
-   ```sh
-   mina-berkeley-migration-verifier \
-      pre-fork  \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated 
-   ```
-
-7. Stage 3: Remainder migration
-
-   7.a) Phase 1:
-
-   ```sh
-   mina-berkeley-migration \
-      --batch-size 2000 
-      --config-file /etc/mina/genesis_ledgers/devnet.json \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost/berkeley_migrated \
-      --blocks-bucket mina_network_block_data \
-      --network devnet \
-      --fork-state-hash "3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM" 
-   ```
-
-   :warning: 3NLdCBNrDseiDKvVj8rZ15k2oAUvx4XuCc8mzf6fL2CmqTJVVceM is only an example random hash. **Do not use this example hash** on the actual migration. 
-   
-   **Use the official hash** as provided by Mina Foundation for the fork point.
-
-   7.b) Phase 2:
-
-   ```sh
-   mina-migration-replayer \
-      --migration-mode \
-      --archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
-      --input-file checkpoint-XXXX.json \
-      --checkpoint-interval 100 \
-      --checkpoint-file-prefix migration
-   ```
-
-   7.c) Phase 3:
-
-   ```sh
-   mina-berkeley-migration-verifier \
-      post-fork  \
-      --mainnet-archive-uri postgres://postgres:postgres@localhost/archive_balances_migrated \
-      --migrated-archive-uri postgres://postgres:postgres@localhost:5432/berkeley_migrated \
-      --fork-config-file genesis_config_fork.json \
-      --migrated-replayer-output migrated-checkpoint-XXX.json
-   ```
+See: [Worked example using March 22 data](/berkeley-upgrade/worked-archive-example)
 
 ## How to verify a successful migration
 
@@ -685,6 +542,21 @@ It is worthwhile to perform these last steps as a dry run to make sure all goes 
 ## Known migration problems
 
 Tips to overcome known challenges.
+
+#### Berkeley migration app is unstable
+
+ Example of such instability are crashes with information like below:
+ 
+ ```
+ ("Async was unable to add a file descriptor to its table of open file descriptors"
+  (file_descr 18)
+  (error
+   "Attempt to register a file descriptor with Async that Async believes it is already managing.")
+  (backtrace
+        ......
+ ```
+
+ A remedy is to lower `--block-batch-size` parameter to values up to 500.
 
 #### Berkeley migration app is consuming all of my resources
 
