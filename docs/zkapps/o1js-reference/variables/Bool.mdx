@@ -1,5 +1,5 @@
 ```ts
-const Bool: typeof Bool & (...args) => Bool;
+const Bool: typeof Bool & (...args: [boolean | FieldVar | Bool]) => Bool;
 ```
 
 A boolean value. You can create it like this:
@@ -30,4 +30,4 @@ const b: Bool = Field(5).equals(6);
 
 ## Source
 
-[lib/provable/wrapped.ts:70](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/wrapped.ts#L70)
+[lib/provable/wrapped.ts:70](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/wrapped.ts#L70)

@@ -1,5 +1,12 @@
 ```ts
-type PendingTransaction: Pick<Transaction, "transaction" | "toJSON" | "toPretty"> & object;
+type PendingTransaction: Pick<TransactionCommon, "transaction" | "toJSON" | "toPretty"> & {
+  data: SendZkAppResponse;
+  errors: string[];
+  hash: string;
+  status: PendingTransactionStatus;
+  safeWait: Promise<RejectedTransaction | IncludedTransaction>;
+  wait: Promise<IncludedTransaction>;
+};
 ```
 
 Represents a transaction that has been submitted to the blockchain but has not yet reached a final state.
@@ -141,4 +148,4 @@ try {
 
 ## Source
 
-[lib/mina/transaction.ts:130](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/transaction.ts#L130)
+[lib/mina/transaction.ts:156](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/transaction.ts#L156)

@@ -1,5 +1,53 @@
 ```ts
-const Gadgets: object;
+const Gadgets: {
+  Field3: {
+     provable: {
+        fromValue: Field3;
+        toValue: bigint;
+     };
+     from: Field3;
+     isConstant: boolean;
+     toBigint: bigint;
+     toBigints: [...{ [i in string | number | symbol]: bigint }[]];
+  };
+  ForeignField: {
+     Sum: Sum;
+     add: Field3;
+     assertAlmostReduced: void;
+     assertLessThan: void;
+     assertLessThanOrEqual: void;
+     assertMul: void;
+     div: Field3;
+     inv: Field3;
+     mul: Field3;
+     neg: Field3;
+     sub: Field3;
+     sum: Field3;
+  };
+  SHA256: SHA256;
+  addMod32: (x: Field, y: Field) => Field;
+  divMod32: (n: Field, quotientBits: number) => {
+     quotient: Field;
+     remainder: Field;
+  };
+  and: Field;
+  compactMultiRangeCheck: [Field, Field, Field];
+  isDefinitelyInRangeN: Bool;
+  leftShift32: Field;
+  leftShift64: Field;
+  multiRangeCheck: void;
+  not: Field;
+  rangeCheck16: void;
+  rangeCheck32: void;
+  rangeCheck3x12: void;
+  rangeCheck64: void;
+  rangeCheck8: void;
+  rangeCheckN: void;
+  rightShift64: Field;
+  rotate32: Field;
+  rotate64: Field;
+  xor: Field;
+};
 ```
 
 ## Type declaration
@@ -7,19 +55,51 @@ const Gadgets: object;
 ### Field3
 
 ```ts
-Field3: object;
+Field3: {
+  provable: {
+     fromValue: Field3;
+     toValue: bigint;
+  };
+  from: Field3;
+  isConstant: boolean;
+  toBigint: bigint;
+  toBigints: [...{ [i in string | number | symbol]: bigint }[]];
+};
 ```
 
 ### Field3.provable
 
 ```ts
-provable: GenericProvableExtendedPure<[Field, Field, Field], [string, string, string], Field>;
+provable: {
+  fromValue: Field3;
+  toValue: bigint;
+};
 ```
 
 `Provable<T>` interface for `Field3 = [Field, Field, Field]`.
 
 Note: Witnessing this creates a plain tuple of field elements without any implicit
 range checks.
+
+### Field3.provable.fromValue()
+
+#### Parameters
+
+• **x**: `bigint` \| `Field3`
+
+#### Returns
+
+`Field3`
+
+### Field3.provable.toValue()
+
+#### Parameters
+
+• **x**: `Field3`
+
+#### Returns
+
+`bigint`
 
 ### Field3.from()
 
@@ -76,7 +156,20 @@ Turn several 3-tuples of Fields into bigints
 ### ForeignField
 
 ```ts
-ForeignField: object;
+ForeignField: {
+  Sum: Sum;
+  add: Field3;
+  assertAlmostReduced: void;
+  assertLessThan: void;
+  assertLessThanOrEqual: void;
+  assertMul: void;
+  div: Field3;
+  inv: Field3;
+  mul: Field3;
+  neg: Field3;
+  sub: Field3;
+  sum: Field3;
+};
 ```
 
 Gadgets for foreign field operations.
@@ -482,7 +575,9 @@ Provable.log(sum); // ['16', '0', '0'] = limb representation of 16 = 4 + 5 - 10 
 ### SHA256
 
 ```ts
-SHA256: object;
+SHA256: {
+  hash: Bytes;
+};
 ```
 
 Implementation of the [SHA256 hash function.](https://en.wikipedia.org/wiki/SHA-2) Hash function with 256bit output.
@@ -516,34 +611,42 @@ let digest = Gadgets.SHA256.hash(preimage);
 ### addMod32()
 
 ```ts
-addMod32: (x, y) => Field;
+addMod32: (x: Field, y: Field) => Field;
 ```
 
 #### Parameters
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
-• **y**: `Field`
+• **y**: [`Field`](../classes/Field.mdx)
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### divMod32()
 
 ```ts
-divMod32: (n, quotientBits) => object;
+divMod32: (n: Field, quotientBits: number) => {
+  quotient: Field;
+  remainder: Field;
+};
 ```
 
 #### Parameters
 
-• **n**: `Field`
+• **n**: [`Field`](../classes/Field.mdx)
 
 • **quotientBits**: `number`= `32`
 
 #### Returns
 
-`object`
+```ts
+{
+  quotient: Field;
+  remainder: Field;
+}
+```
 
 ##### quotient
 
@@ -582,15 +685,15 @@ For example, with `length = 2` (`paddedLength = 16`), `and()` will fail for any 
 
 #### Parameters
 
-• **a**: `Field`
+• **a**: [`Field`](../classes/Field.mdx)
 
-• **b**: `Field`
+• **b**: [`Field`](../classes/Field.mdx)
 
 • **length**: `number`
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Example
 
@@ -618,13 +721,13 @@ The split form [x, y, z] is returned.
 
 #### Parameters
 
-• **xy**: `Field`
+• **xy**: [`Field`](../classes/Field.mdx)
 
-• **z**: `Field`
+• **z**: [`Field`](../classes/Field.mdx)
 
 #### Returns
 
-[`Field`, `Field`, `Field`]
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 #### Example
 
@@ -650,13 +753,13 @@ for gadgets which need a weakened form of range check.
 
 The number of bits to be considered for the range check.
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 The value to be weakly range-checked.
 
 #### Returns
 
-`Bool`
+[`Bool`](../classes/Bool.mdx)
 
 a Bool that is definitely only true if the input is in the range [0, 2^n),
 but could also be false _even if_ the input is in the range [0, 2^n).
@@ -683,7 +786,7 @@ The output is range checked to 32 bits.
 
 #### Parameters
 
-• **field**: `Field`
+• **field**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to shift.
 
@@ -693,7 +796,7 @@ Amount of bits to shift the [Field](Field.mdx) element to the left. The amount s
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Example
 
@@ -720,7 +823,7 @@ For example, this can be done with Gadgets.rangeCheck64.
 
 #### Parameters
 
-• **field**: `Field`
+• **field**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to shift.
 
@@ -730,7 +833,7 @@ Amount of bits to shift the [Field](Field.mdx) element to the left. The amount s
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Throws
 
@@ -805,7 +908,7 @@ You can find more details about the implementation in the [Mina book](https://o1
 
 #### Parameters
 
-• **a**: `Field`
+• **a**: [`Field`](../classes/Field.mdx)
 
 The value to apply NOT to. The operation will fail if the value is larger than 254.
 
@@ -821,7 +924,7 @@ is set to `true` the Gadgets.xor gadget is reused. If it is set to `false`, NOT 
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Example
 
@@ -847,7 +950,7 @@ Throws an error if the input value exceeds 254 bits.
 
 #### Parameters
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 #### Returns
 
@@ -862,7 +965,7 @@ If the field element exceeds 32 bits, an error is thrown.
 
 #### Parameters
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 The value to be range-checked.
 
@@ -905,15 +1008,15 @@ You can find more details about lookups in the [Mina book](https://o1-labs.githu
 
 #### Parameters
 
-• **v0**: `Field`
+• **v0**: [`Field`](../classes/Field.mdx)
 
 The first [Field](Field.mdx) element to be checked.
 
-• **v1**: `Field`
+• **v1**: [`Field`](../classes/Field.mdx)
 
 The second [Field](Field.mdx) element to be checked.
 
-• **v2**: `Field`
+• **v2**: [`Field`](../classes/Field.mdx)
 
 The third [Field](Field.mdx) element to be checked.
 
@@ -944,7 +1047,7 @@ If the field element exceeds 64 bits, an error is thrown.
 
 #### Parameters
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 The value to be range-checked.
 
@@ -978,7 +1081,7 @@ See Gadgets.rangeCheck64 for analogous details and usage examples.
 
 #### Parameters
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 #### Returns
 
@@ -997,7 +1100,7 @@ If the field element exceeds `n` bits, an error is thrown.
 
 The number of bits to be considered for the range check.
 
-• **x**: `Field`
+• **x**: [`Field`](../classes/Field.mdx)
 
 The value to be range-checked.
 
@@ -1040,7 +1143,7 @@ for example, using Gadgets.rangeCheck64.
 
 #### Parameters
 
-• **field**: `Field`
+• **field**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to shift.
 
@@ -1050,7 +1153,7 @@ Amount of bits to shift the [Field](Field.mdx) element to the right. The amount 
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Throws
 
@@ -1086,7 +1189,7 @@ for example, using Gadgets.rangeCheck32.
 
 #### Parameters
 
-• **field**: `Field`
+• **field**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to rotate.
 
@@ -1100,7 +1203,7 @@ left or right rotation direction.
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Throws
 
@@ -1140,7 +1243,7 @@ You can find more details about the implementation in the [Mina book](https://o1
 
 #### Parameters
 
-• **field**: `Field`
+• **field**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to rotate.
 
@@ -1154,7 +1257,7 @@ left or right rotation direction.
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Throws
 
@@ -1195,11 +1298,11 @@ You can find more details about the implementation in the [Mina book](https://o1
 
 #### Parameters
 
-• **a**: `Field`
+• **a**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to compare.
 
-• **b**: `Field`
+• **b**: [`Field`](../classes/Field.mdx)
 
 [Field](Field.mdx) element to compare.
 
@@ -1209,7 +1312,7 @@ amount of bits to compare.
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 #### Throws
 
@@ -1227,4 +1330,4 @@ c.assertEquals(0b0110);
 
 ## Source
 
-[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/gadgets/gadgets.ts#L36)
+[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/gadgets/gadgets.ts#L36)

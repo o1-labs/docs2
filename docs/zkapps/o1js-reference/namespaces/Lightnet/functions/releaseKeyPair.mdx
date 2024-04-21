@@ -1,5 +1,8 @@
 ```ts
-releaseKeyPair(options): Promise<string | null>
+releaseKeyPair(options: {
+  lightnetAccountManagerEndpoint: string;
+  publicKey: string;
+}): Promise<string | null>
 ```
 
 Releases previously acquired key pair by public key.
@@ -24,4 +27,4 @@ Response message from the account manager as string or null if the request faile
 
 ## Source
 
-[lib/mina/fetch.ts:859](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/fetch.ts#L859)
+[lib/mina/fetch.ts:859](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/fetch.ts#L859)

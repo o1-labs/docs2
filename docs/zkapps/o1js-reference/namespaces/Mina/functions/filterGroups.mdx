@@ -1,5 +1,9 @@
 ```ts
-filterGroups(xs): object
+filterGroups(xs: AuthorizationKind[]): {
+  proof: proofCount;
+  signedPair: pairs.pairs;
+  signedSingle: singleCount;
+}
 ```
 
 ## Parameters
@@ -8,7 +12,13 @@ filterGroups(xs): object
 
 ## Returns
 
-`object`
+```ts
+{
+  proof: proofCount;
+  signedPair: pairs.pairs;
+  signedSingle: singleCount;
+}
+```
 
 ### proof
 
@@ -30,4 +40,4 @@ signedSingle: number = singleCount;
 
 ## Source
 
-[lib/mina/transaction-validation.ts:130](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/transaction-validation.ts#L130)
+[lib/mina/transaction-validation.ts:130](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/transaction-validation.ts#L130)

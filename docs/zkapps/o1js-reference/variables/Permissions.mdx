@@ -1,5 +1,17 @@
 ```ts
-Permissions: object;
+Permissions: {
+  allImpossible: () => Permissions;
+  default: () => Permissions;
+  dummy: () => Permissions;
+  fromJSON: (permissions: {}) => Permissions;
+  fromString: (permission: AuthRequired) => AuthRequired;
+  impossible: () => AuthRequired;
+  initial: () => Permissions;
+  none: () => AuthRequired;
+  proof: () => AuthRequired;
+  proofOrSignature: () => AuthRequired;
+  signature: () => AuthRequired;
+};
 ```
 
 ## Type declaration
@@ -57,7 +69,7 @@ dummy: () => Permissions;
 ### fromJSON()
 
 ```ts
-fromJSON: (permissions) => Permissions;
+fromJSON: (permissions: {}) => Permissions;
 ```
 
 #### Parameters
@@ -71,7 +83,7 @@ fromJSON: (permissions) => Permissions;
 ### fromString()
 
 ```ts
-fromString: (permission) => AuthRequired;
+fromString: (permission: AuthRequired) => AuthRequired;
 ```
 
 #### Parameters
@@ -154,4 +166,4 @@ Modification is permitted by signatures only, using the private key of the zkapp
 
 ## Source
 
-[lib/mina/account-update.ts:210](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/account-update.ts#L210)
+[lib/mina/account-update.ts:209](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/account-update.ts#L209)

@@ -1,5 +1,11 @@
 ```ts
-acquireKeyPair(options): Promise<object>
+acquireKeyPair(options: {
+  isRegularAccount: boolean;
+  lightnetAccountManagerEndpoint: string;
+  }): Promise<{
+  privateKey: PrivateKey;
+  publicKey: PublicKey;
+}>
 ```
 
 Gets random key pair (public and private keys) from account manager
@@ -22,7 +28,10 @@ Account manager endpoint to fetch from
 
 ## Returns
 
-`Promise`\<`object`\>
+`Promise`\<\{
+  `privateKey`: [`PrivateKey`](../../../classes/PrivateKey.mdx);
+  `publicKey`: [`PublicKey`](../../../classes/PublicKey.mdx);
+  }\>
 
 Key pair
 
@@ -41,4 +50,4 @@ Key pair
 
 ## Source
 
-[lib/mina/fetch.ts:816](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/fetch.ts#L816)
+[lib/mina/fetch.ts:816](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/fetch.ts#L816)

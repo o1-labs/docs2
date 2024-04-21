@@ -7,7 +7,7 @@
 ### new Sign(props)
 
 ```ts
-new Sign(...props): Sign
+new Sign(...props: any[]): Sign
 ```
 
 #### Parameters
@@ -24,7 +24,7 @@ new Sign(...props): Sign
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:13](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L13)
+[lib/provable/types/circuit-value.ts:13](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L13)
 
 ## Properties
 
@@ -36,7 +36,7 @@ value: Field;
 
 #### Source
 
-[lib/provable/int.ts:941](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L941)
+[lib/provable/int.ts:962](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L962)
 
 ## Accessors
 
@@ -52,7 +52,7 @@ get static minusOne(): Sign
 
 #### Source
 
-[lib/provable/int.ts:946](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L946)
+[lib/provable/int.ts:967](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L967)
 
 ***
 
@@ -68,14 +68,14 @@ get static one(): Sign
 
 #### Source
 
-[lib/provable/int.ts:943](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L943)
+[lib/provable/int.ts:964](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L964)
 
 ## Methods
 
 ### assertEquals()
 
 ```ts
-assertEquals(x): void
+assertEquals(x: this): void
 ```
 
 #### Parameters
@@ -92,14 +92,14 @@ assertEquals(x): void
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:101](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L101)
+[lib/provable/types/circuit-value.ts:130](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L130)
 
 ***
 
 ### equals()
 
 ```ts
-equals(x): Bool
+equals(x: this): Bool
 ```
 
 #### Parameters
@@ -108,7 +108,7 @@ equals(x): Bool
 
 #### Returns
 
-`Bool`
+[`Bool`](Bool.mdx)
 
 #### Inherited from
 
@@ -116,7 +116,7 @@ equals(x): Bool
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:97](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L97)
+[lib/provable/types/circuit-value.ts:126](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L126)
 
 ***
 
@@ -136,7 +136,7 @@ isConstant(): boolean
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:105](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L105)
+[lib/provable/types/circuit-value.ts:134](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L134)
 
 ***
 
@@ -148,18 +148,18 @@ isPositive(): Bool
 
 #### Returns
 
-`Bool`
+[`Bool`](Bool.mdx)
 
 #### Source
 
-[lib/provable/int.ts:975](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L975)
+[lib/provable/int.ts:996](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L996)
 
 ***
 
 ### mul()
 
 ```ts
-mul(y): Sign
+mul(y: Sign): Sign
 ```
 
 #### Parameters
@@ -172,7 +172,7 @@ mul(y): Sign
 
 #### Source
 
-[lib/provable/int.ts:972](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L972)
+[lib/provable/int.ts:993](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L993)
 
 ***
 
@@ -188,7 +188,7 @@ neg(): Sign
 
 #### Source
 
-[lib/provable/int.ts:969](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L969)
+[lib/provable/int.ts:990](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L990)
 
 ***
 
@@ -208,7 +208,7 @@ toConstant(): this
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:93](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L93)
+[lib/provable/types/circuit-value.ts:122](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L122)
 
 ***
 
@@ -220,7 +220,7 @@ toFields(): Field[]
 
 #### Returns
 
-`Field`[]
+[`Field`](Field.mdx)[]
 
 #### Inherited from
 
@@ -228,7 +228,7 @@ toFields(): Field[]
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L85)
+[lib/provable/types/circuit-value.ts:85](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L85)
 
 ***
 
@@ -248,7 +248,7 @@ toJSON(): any
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:89](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L89)
+[lib/provable/types/circuit-value.ts:118](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L118)
 
 ***
 
@@ -264,14 +264,14 @@ toString(): string
 
 #### Source
 
-[lib/provable/int.ts:978](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L978)
+[lib/provable/int.ts:999](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L999)
 
 ***
 
 ### check()
 
 ```ts
-static check(x): void
+static check(x: Sign): void
 ```
 
 #### Parameters
@@ -288,7 +288,7 @@ static check(x): void
 
 #### Source
 
-[lib/provable/int.ts:949](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L949)
+[lib/provable/int.ts:970](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L970)
 
 ***
 
@@ -312,14 +312,14 @@ static empty<T>(): InstanceType<T>
 
 #### Source
 
-[lib/provable/int.ts:953](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L953)
+[lib/provable/int.ts:974](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L974)
 
 ***
 
 ### fromFields()
 
 ```ts
-static fromFields<T>(this, xs): InstanceType<T>
+static fromFields<T>(this: T, xs: Field[]): InstanceType<T>
 ```
 
 #### Type parameters
@@ -330,7 +330,7 @@ static fromFields<T>(this, xs): InstanceType<T>
 
 • **this**: `T`
 
-• **xs**: `Field`[]
+• **xs**: [`Field`](Field.mdx)[]
 
 #### Returns
 
@@ -342,14 +342,14 @@ static fromFields<T>(this, xs): InstanceType<T>
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:109](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L109)
+[lib/provable/types/circuit-value.ts:138](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L138)
 
 ***
 
 ### fromJSON()
 
 ```ts
-static fromJSON<T>(x): InstanceType<T>
+static fromJSON<T>(x: "Positive" | "Negative"): InstanceType<T>
 ```
 
 #### Type parameters
@@ -370,14 +370,14 @@ static fromJSON<T>(x): InstanceType<T>
 
 #### Source
 
-[lib/provable/int.ts:964](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L964)
+[lib/provable/int.ts:985](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L985)
 
 ***
 
 ### fromObject()
 
 ```ts
-static fromObject<T>(this, value): InstanceType<T>
+static fromObject<T>(this: T, value: NonMethods<InstanceType<T>>): InstanceType<T>
 ```
 
 #### Type parameters
@@ -400,7 +400,35 @@ static fromObject<T>(this, value): InstanceType<T>
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L30)
+[lib/provable/types/circuit-value.ts:30](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L30)
+
+***
+
+### fromValue()
+
+```ts
+static fromValue<T>(x: bigint | Sign): InstanceType<T>
+```
+
+#### Type parameters
+
+• **T** extends `AnyConstructor`
+
+#### Parameters
+
+• **x**: `bigint` \| [`Sign`](Sign.mdx)
+
+#### Returns
+
+`InstanceType`\<`T`\>
+
+#### Overrides
+
+`CircuitValue.fromValue`
+
+#### Source
+
+[lib/provable/int.ts:1007](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L1007)
 
 ***
 
@@ -420,7 +448,7 @@ static sizeInFields(): number
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L37)
+[lib/provable/types/circuit-value.ts:37](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L37)
 
 ***
 
@@ -440,14 +468,14 @@ static toAuxiliary(): []
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L59)
+[lib/provable/types/circuit-value.ts:59](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L59)
 
 ***
 
 ### toConstant()
 
 ```ts
-static toConstant<T>(this, t): InstanceType<T>
+static toConstant<T>(this: T, t: InstanceType<T>): InstanceType<T>
 ```
 
 #### Type parameters
@@ -470,14 +498,14 @@ static toConstant<T>(this, t): InstanceType<T>
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:148](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L148)
+[lib/provable/types/circuit-value.ts:177](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L177)
 
 ***
 
 ### toFields()
 
 ```ts
-static toFields<T>(this, v): Field[]
+static toFields<T>(this: T, v: InstanceType<T>): Field[]
 ```
 
 #### Type parameters
@@ -492,7 +520,7 @@ static toFields<T>(this, v): Field[]
 
 #### Returns
 
-`Field`[]
+[`Field`](Field.mdx)[]
 
 #### Inherited from
 
@@ -500,14 +528,14 @@ static toFields<T>(this, v): Field[]
 
 #### Source
 
-[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/circuit-value.ts#L42)
+[lib/provable/types/circuit-value.ts:42](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/circuit-value.ts#L42)
 
 ***
 
 ### toInput()
 
 ```ts
-static toInput(x): HashInput
+static toInput(x: Sign): HashInput
 ```
 
 #### Parameters
@@ -524,14 +552,14 @@ static toInput(x): HashInput
 
 #### Source
 
-[lib/provable/int.ts:956](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L956)
+[lib/provable/int.ts:977](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L977)
 
 ***
 
 ### toJSON()
 
 ```ts
-static toJSON(x): "Positive" | "Negative"
+static toJSON(x: Sign): "Positive" | "Negative"
 ```
 
 #### Parameters
@@ -548,4 +576,28 @@ static toJSON(x): "Positive" | "Negative"
 
 #### Source
 
-[lib/provable/int.ts:959](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/int.ts#L959)
+[lib/provable/int.ts:980](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L980)
+
+***
+
+### toValue()
+
+```ts
+static toValue(x: Sign): Sign
+```
+
+#### Parameters
+
+• **x**: [`Sign`](Sign.mdx)
+
+#### Returns
+
+`Sign`
+
+#### Overrides
+
+`CircuitValue.toValue`
+
+#### Source
+
+[lib/provable/int.ts:1003](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/int.ts#L1003)

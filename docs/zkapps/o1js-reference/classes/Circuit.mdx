@@ -20,7 +20,7 @@ static _main: CircuitData<any, any>;
 
 #### Source
 
-[lib/proof-system/circuit.ts:22](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/circuit.ts#L22)
+[lib/proof-system/circuit.ts:22](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/circuit.ts#L22)
 
 ## Methods
 
@@ -44,7 +44,7 @@ const keypair = await MyCircuit.generateKeypair();
 
 #### Source
 
-[lib/proof-system/circuit.ts:31](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/circuit.ts#L31)
+[lib/proof-system/circuit.ts:31](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/circuit.ts#L31)
 
 ***
 
@@ -52,9 +52,9 @@ const keypair = await MyCircuit.generateKeypair();
 
 ```ts
 static prove(
-   privateInput, 
-   publicInput, 
-keypair): Promise<Proof>
+   privateInput: any[], 
+   publicInput: any[], 
+keypair: Keypair): Promise<Proof>
 ```
 
 Proves a statement using the private input, public input, and the [Keypair](Keypair.mdx) of the circuit.
@@ -80,7 +80,7 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 #### Source
 
-[lib/proof-system/circuit.ts:50](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/circuit.ts#L50)
+[lib/proof-system/circuit.ts:51](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/circuit.ts#L51)
 
 ***
 
@@ -88,9 +88,9 @@ const proof = await MyCircuit.prove(privateInput, publicInput, keypair);
 
 ```ts
 static verify(
-   publicInput, 
-   verificationKey, 
-proof): Promise<boolean>
+   publicInput: any[], 
+   verificationKey: VerificationKey, 
+proof: Proof): Promise<boolean>
 ```
 
 Verifies a proof using the public input, the proof, and the initial [Keypair](Keypair.mdx) of the circuit.
@@ -117,4 +117,4 @@ const isValid = await MyCircuit.verify(publicInput, keypair.vk, proof);
 
 #### Source
 
-[lib/proof-system/circuit.ts:76](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/circuit.ts#L76)
+[lib/proof-system/circuit.ts:82](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/circuit.ts#L82)

@@ -127,6 +127,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/BaseMerkleWitness',
+                  label: 'BaseMerkleWitness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Bool',
+                  label: 'Bool',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/CanonicalForeignField',
                   label: 'CanonicalForeignField',
                 },
@@ -152,6 +162,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Field',
+                  label: 'Field',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/ForeignCurve',
                   label: 'ForeignCurve',
                 },
@@ -159,6 +174,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/ForeignField',
                   label: 'ForeignField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/Group',
+                  label: 'Group',
                 },
                 {
                   type: 'doc',
@@ -303,13 +323,18 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/functions/Account',
-                  label: 'Account',
+                  id: 'zkapps/o1js-reference/functions/Bytes',
+                  label: 'Bytes',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/functions/Bytes',
-                  label: 'Bytes',
+                  id: 'zkapps/o1js-reference/functions/ConstantField',
+                  label: 'ConstantField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/MerkleListBase',
+                  label: 'MerkleListBase',
                 },
                 {
                   type: 'doc',
@@ -333,6 +358,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/VarField',
+                  label: 'VarField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/WithHash',
+                  label: 'WithHash',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/functions/ZkProgram',
                   label: 'ZkProgram',
                 },
@@ -345,6 +380,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/functions/assert',
                   label: 'assert',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/checkBitLength',
+                  label: 'checkBitLength',
                 },
                 {
                   type: 'doc',
@@ -403,6 +443,26 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/genericHash',
+                  label: 'genericHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/initializeBindings',
+                  label: 'initializeBindings',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/maybeSwap',
+                  label: 'maybeSwap',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/merkleListHash',
+                  label: 'merkleListHash',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/functions/method',
                   label: 'method',
                 },
@@ -420,6 +480,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/functions/public_',
                   label: 'public_',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/readVarMessage',
+                  label: 'readVarMessage',
                 },
                 {
                   type: 'doc',
@@ -453,15 +518,30 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/toConstantField',
+                  label: 'toConstantField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/toFp',
+                  label: 'toFp',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/functions/verify',
                   label: 'verify',
                 },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/withHashes',
+                  label: 'withHashes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/withMessage',
+                  label: 'withMessage',
+                },
               ],
-            },
-            {
-              type: 'doc',
-              id: 'zkapps/o1js-reference/globals',
-              label: 'globals',
             },
             {
               type: 'category',
@@ -485,7 +565,7 @@ module.exports = {
                     {
                       type: 'doc',
                       id: 'zkapps/o1js-reference/namespaces/Crypto/README',
-                      label: 'Introduction',
+                      label: 'README',
                     },
                     {
                       type: 'category',
@@ -512,7 +592,7 @@ module.exports = {
                     {
                       type: 'doc',
                       id: 'zkapps/o1js-reference/namespaces/Encryption/README',
-                      label: 'Introduction',
+                      label: 'README',
                     },
                     {
                       type: 'category',
@@ -539,7 +619,7 @@ module.exports = {
                     {
                       type: 'doc',
                       id: 'zkapps/o1js-reference/namespaces/Experimental/README',
-                      label: 'Introduction',
+                      label: 'README',
                     },
                     {
                       type: 'category',
@@ -561,7 +641,7 @@ module.exports = {
                     {
                       type: 'doc',
                       id: 'zkapps/o1js-reference/namespaces/Lightnet/README',
-                      label: 'Introduction',
+                      label: 'README',
                     },
                     {
                       type: 'category',
@@ -593,7 +673,7 @@ module.exports = {
                     {
                       type: 'doc',
                       id: 'zkapps/o1js-reference/namespaces/Mina/README',
-                      label: 'Introduction',
+                      label: 'README',
                     },
                     {
                       type: 'category',
@@ -717,7 +797,7 @@ module.exports = {
                             {
                               type: 'doc',
                               id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/README',
-                              label: 'Introduction',
+                              label: 'README',
                             },
                             {
                               type: 'category',
@@ -727,6 +807,28 @@ module.exports = {
                                   type: 'doc',
                                   id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/functions/random',
                                   label: 'random',
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          type: 'category',
+                          label: 'Transaction',
+                          items: [
+                            {
+                              type: 'doc',
+                              id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/README',
+                              label: 'README',
+                            },
+                            {
+                              type: 'category',
+                              label: 'Functions',
+                              items: [
+                                {
+                                  type: 'doc',
+                                  id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/functions/fromJSON',
+                                  label: 'fromJSON',
                                 },
                               ],
                             },
@@ -811,8 +913,18 @@ module.exports = {
               items: [
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Account',
+                  label: 'Account',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Bool',
                   label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/BoolVar',
+                  label: 'BoolVar',
                 },
                 {
                   type: 'doc',
@@ -828,6 +940,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/CacheHeader',
                   label: 'CacheHeader',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ConstantField',
+                  label: 'ConstantField',
                 },
                 {
                   type: 'doc',
@@ -871,6 +988,16 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/MerkleListBase',
+                  label: 'MerkleListBase',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/MerkleListIteratorBase',
+                  label: 'MerkleListIteratorBase',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Provable',
                   label: 'Provable',
                 },
@@ -893,6 +1020,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Reducer',
                   label: 'Reducer',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ScalarConst',
+                  label: 'ScalarConst',
                 },
                 {
                   type: 'doc',
@@ -921,8 +1053,23 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/VarField',
+                  label: 'VarField',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Void',
                   label: 'Void',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/WithHash',
+                  label: 'WithHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Witness',
+                  label: 'Witness',
                 },
                 {
                   type: 'doc',
@@ -940,6 +1087,11 @@ module.exports = {
               type: 'category',
               label: 'Variables',
               items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Account',
+                  label: 'Account',
+                },
                 {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/variables/Bool',
@@ -997,11 +1149,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/variables/Provable',
-                  label: 'Provable',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/variables/TokenId',
                   label: 'TokenId',
                 },
@@ -1024,6 +1171,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/variables/ZkappPublicInput',
                   label: 'ZkappPublicInput',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/emptyHash',
+                  label: 'emptyHash',
                 },
               ],
             },

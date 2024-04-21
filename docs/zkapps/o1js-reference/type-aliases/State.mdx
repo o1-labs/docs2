@@ -1,5 +1,13 @@
 ```ts
-type State<A>: object;
+type State<A>: {
+  fetch: Promise<undefined | A>;
+  fromAppState: A;
+  get: A;
+  getAndRequireEquals: A;
+  requireEquals: void;
+  requireNothing: void;
+  set: void;
+};
 ```
 
 Gettable and settable state that can be checked for equality.
@@ -31,7 +39,7 @@ let x = myContract.x.fromAppState(account.zkapp!.appState);
 
 #### Parameters
 
-• **appState**: `Field`[]
+• **appState**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
@@ -103,4 +111,4 @@ Set the on-chain state to a new value.
 
 ## Source
 
-[lib/mina/state.ts:73](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/state.ts#L73)
+[lib/mina/state.ts:73](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/state.ts#L73)

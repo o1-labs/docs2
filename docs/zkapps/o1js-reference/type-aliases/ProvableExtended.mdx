@@ -1,13 +1,15 @@
 ```ts
-type ProvableExtended<T, TJson>: Provable<T> & ProvableExtension<T, TJson>;
+type ProvableExtended<T, TValue, TJson>: Provable<T, TValue> & ProvableExtension<T, TJson>;
 ```
 
 ## Type parameters
 
 • **T**
 
+• **TValue** = `any`
+
 • **TJson** = `any`
 
 ## Source
 
-[lib/provable/types/struct.ts:50](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/types/struct.ts#L50)
+[lib/provable/types/struct.ts:51](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/types/struct.ts#L51)

@@ -1,5 +1,10 @@
 ```ts
-type JsonProof: object;
+type JsonProof: {
+  maxProofsVerified: 0 | 1 | 2;
+  proof: string;
+  publicInput: string[];
+  publicOutput: string[];
+};
 ```
 
 ## Type declaration
@@ -30,4 +35,4 @@ publicOutput: string[];
 
 ## Source
 
-[lib/proof-system/zkprogram.ts:227](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/zkprogram.ts#L227)
+[lib/proof-system/zkprogram.ts:231](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/zkprogram.ts#L231)

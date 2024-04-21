@@ -1,21 +1,68 @@
 ```ts
-ZkProgram<StatementType, Types>(config): object & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }
+ZkProgram<StatementType, Types>(config: StatementType & {
+  methods: { [I in string | number | symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> };
+  name: string;
+  overrideWrapDomain: 0 | 2 | 1;
+  }): {
+  analyzeMethods: () => Promise<{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }>;
+  compile: (options?: {
+     cache: Cache;
+     forceRecompile: boolean;
+     }) => Promise<{
+     verificationKey: {
+        data: string;
+        hash: Field;
+     };
+  }>;
+  digest: () => Promise<string>;
+  name: string;
+  privateInputTypes: { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] };
+  publicInputType: ProvableOrUndefined<Get<StatementType, "publicInput">>;
+  publicOutputType: ProvableOrVoid<Get<StatementType, "publicOutput">>;
+  rawMethods: { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] };
+  verify: (proof: Proof<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>>) => Promise<boolean>;
+  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }
 ```
 
 ## Type parameters
 
-• **StatementType** extends `object`
+• **StatementType** extends \{
+  `publicInput`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
+  `publicOutput`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
+  }
 
-• **Types** extends `object`
+• **Types** extends \{}
 
 ## Parameters
 
-• **config**: `StatementType` & `object`
+• **config**: `StatementType` & \{
+  `methods`: `{ [I in string | number | symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`;
+  `name`: `string`;
+  `overrideWrapDomain`: `0` \| `2` \| `1`;
+  }
 
 ## Returns
 
-`object` & `{ [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`
+\{
+  `analyzeMethods`: () => `Promise`\<`{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }`\>;
+  `compile`: (`options`?: \{
+     `cache`: [`Cache`](../type-aliases/Cache.mdx);
+     `forceRecompile`: `boolean`;
+     }) => `Promise`\<\{
+     `verificationKey`: \{
+        `data`: `string`;
+        `hash`: [`Field`](../type-aliases/Field.mdx);
+     };
+  }\>;
+  `digest`: () => `Promise`\<`string`\>;
+  `name`: `string`;
+  `privateInputTypes`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] }`;
+  `publicInputType`: `ProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>;
+  `publicOutputType`: `ProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>;
+  `rawMethods`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] }`;
+  `verify`: (`proof`: [`Proof`](../classes/Proof.mdx)\<`InferProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>, `InferProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>\>) => `Promise`\<`boolean`\>;
+  } & `{ [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`
 
 ## Source
 
-[lib/proof-system/zkprogram.ts:245](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/zkprogram.ts#L245)
+[lib/proof-system/zkprogram.ts:249](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/zkprogram.ts#L249)

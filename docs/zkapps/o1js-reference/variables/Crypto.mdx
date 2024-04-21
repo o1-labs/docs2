@@ -1,5 +1,8 @@
 ```ts
-const Crypto: object;
+const Crypto: {
+  CurveParams: CurveParams_;
+  createCurve: {};
+};
 ```
 
 ## Type declaration
@@ -7,7 +10,7 @@ const Crypto: object;
 ### CurveParams
 
 ```ts
-CurveParams: object = CurveParams_;
+CurveParams: {} = CurveParams_;
 ```
 
 Parameters defining an elliptic curve in short Weierstraß form
@@ -23,8 +26,10 @@ Create elliptic curve arithmetic methods.
 
 #### Returns
 
-`object`
+```ts
+{}
+```
 
 ## Source
 
-[lib/provable/crypto/crypto.ts:8](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/crypto/crypto.ts#L8)
+[lib/provable/crypto/crypto.ts:8](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/crypto/crypto.ts#L8)

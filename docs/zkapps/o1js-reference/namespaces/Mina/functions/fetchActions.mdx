@@ -1,8 +1,16 @@
 ```ts
 fetchActions(
-   publicKey, 
-   actionStates?, 
-tokenId?): Promise<object[] | object>
+   publicKey: PublicKey, 
+   actionStates?: ActionStates, 
+   tokenId?: Field): Promise<{
+  actions: string[][];
+  hash: string;
+  }[] | {
+  error: {
+     statusCode: 404;
+     statusText: string;
+  };
+}>
 ```
 
 ## Parameters
@@ -11,14 +19,22 @@ tokenId?): Promise<object[] | object>
 
 • **actionStates?**: [`ActionStates`](../type-aliases/ActionStates.mdx)
 
-• **tokenId?**: `Field`
+• **tokenId?**: [`Field`](../../../classes/Field.mdx)
 
 ## Returns
 
-`Promise`\<`object`[] \| `object`\>
+`Promise`\<\{
+  `actions`: `string`[][];
+  `hash`: `string`;
+  }[] \| \{
+  `error`: \{
+     `statusCode`: `404`;
+     `statusText`: `string`;
+  };
+  }\>
 
 A list of emitted sequencing actions associated to the given public key.
 
 ## Source
 
-[lib/mina/mina-instance.ts:189](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/mina-instance.ts#L189)
+[lib/mina/mina-instance.ts:197](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/mina-instance.ts#L197)

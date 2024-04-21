@@ -4,7 +4,9 @@ type IncludedTransaction: Pick<PendingTransaction,
   | "toJSON"
   | "toPretty"
   | "hash"
-  | "data"> & object;
+  | "data"> & {
+  status: "included";
+};
 ```
 
 Represents a transaction that has been successfully included in a block.
@@ -32,4 +34,4 @@ try {
 
 ## Source
 
-[lib/mina/transaction.ts:231](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/transaction.ts#L231)
+[lib/mina/transaction.ts:257](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/transaction.ts#L257)

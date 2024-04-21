@@ -4,7 +4,10 @@ type RejectedTransaction: Pick<PendingTransaction,
   | "toJSON"
   | "toPretty"
   | "hash"
-  | "data"> & object;
+  | "data"> & {
+  errors: string[];
+  status: "rejected";
+};
 ```
 
 Represents a transaction that has been rejected and not included in a blockchain block.
@@ -40,4 +43,4 @@ try {
 
 ## Source
 
-[lib/mina/transaction.ts:255](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/transaction.ts#L255)
+[lib/mina/transaction.ts:281](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/transaction.ts#L281)

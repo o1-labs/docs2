@@ -1,5 +1,5 @@
 ```ts
-declareMethods<T>(SmartContract, methodArguments): void
+declareMethods<T>(SmartContract: T, methodArguments: Record<string, Provable<unknown>[]>): void
 ```
 
 `declareMethods` can be used in place of the `@method` decorator
@@ -25,7 +25,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 • **SmartContract**: `T`
 
-• **methodArguments**: `Record`\<`string`, [`Provable`](../type-aliases/Provable.mdx)\<`unknown`\>[]\>
+• **methodArguments**: `Record`\<`string`, `Provable`\<`unknown`\>[]\>
 
 ## Returns
 
@@ -33,4 +33,4 @@ Note that a method of the same name must still be defined on the class, just wit
 
 ## Source
 
-[lib/mina/zkapp.ts:1470](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/zkapp.ts#L1470)
+[lib/mina/zkapp.ts:1499](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/zkapp.ts#L1499)
