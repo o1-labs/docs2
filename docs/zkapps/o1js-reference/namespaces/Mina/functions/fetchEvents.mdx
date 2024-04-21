@@ -1,24 +1,52 @@
 ```ts
 fetchEvents(
-   publicKey, 
-   tokenId, 
-filterOptions): Promise<object[]>
+   publicKey: PublicKey, 
+   tokenId: Field, 
+   filterOptions: EventActionFilterOptions): Promise<{
+  blockHash: event.blockInfo.stateHash;
+  blockHeight: UInt32;
+  chainStatus: event.blockInfo.chainStatus;
+  events: {
+     data: string[];
+     transactionInfo: {
+        hash: string;
+        memo: string;
+        status: string;
+     };
+  }[];
+  globalSlot: UInt32;
+  parentBlockHash: event.blockInfo.parentHash;
+}[]>
 ```
 
 ## Parameters
 
 • **publicKey**: [`PublicKey`](../../../classes/PublicKey.mdx)
 
-• **tokenId**: `Field`
+• **tokenId**: [`Field`](../../../classes/Field.mdx)
 
 • **filterOptions**: `EventActionFilterOptions`= `{}`
 
 ## Returns
 
-`Promise`\<`object`[]\>
+`Promise`\<\{
+  `blockHash`: `event.blockInfo.stateHash`;
+  `blockHeight`: [`UInt32`](../../../classes/UInt32.mdx);
+  `chainStatus`: `event.blockInfo.chainStatus`;
+  `events`: \{
+     `data`: `string`[];
+     `transactionInfo`: \{
+        `hash`: `string`;
+        `memo`: `string`;
+        `status`: `string`;
+     };
+  }[];
+  `globalSlot`: [`UInt32`](../../../classes/UInt32.mdx);
+  `parentBlockHash`: `event.blockInfo.parentHash`;
+  }[]\>
 
 A list of emitted events associated to the given public key.
 
 ## Source
 
-[lib/mina/mina-instance.ts:178](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/mina-instance.ts#L178)
+[lib/mina/mina-instance.ts:186](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/mina-instance.ts#L186)

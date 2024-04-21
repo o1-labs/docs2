@@ -1,8 +1,8 @@
 ```ts
-createForeignCurve(params): typeof ForeignCurve
+createForeignCurve(params: CurveParams): typeof ForeignCurve
 ```
 
-Create a class representing an elliptic curve group, which is different from the native [Group](../type-aliases/Group.mdx).
+Create a class representing an elliptic curve group, which is different from the native [Group](../classes/Group.mdx).
 
 ```ts
 const Curve = createForeignCurve(Crypto.CurveParams.Secp256k1);
@@ -26,4 +26,4 @@ elliptic curve operations like point addition and scalar multiplication.
 
 ## Source
 
-[lib/provable/crypto/foreign-curve.ts:293](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/crypto/foreign-curve.ts#L293)
+[lib/provable/crypto/foreign-curve.ts:293](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/crypto/foreign-curve.ts#L293)

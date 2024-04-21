@@ -1,8 +1,11 @@
 ```ts
 getActions(
-   publicKey, 
-   actionStates?, 
-   tokenId?): object[]
+   publicKey: PublicKey, 
+   actionStates?: ActionStates, 
+   tokenId?: Field): {
+  actions: string[][];
+  hash: string;
+  }[]
 ```
 
 ## Parameters
@@ -11,14 +14,17 @@ getActions(
 
 • **actionStates?**: [`ActionStates`](../type-aliases/ActionStates.mdx)
 
-• **tokenId?**: `Field`
+• **tokenId?**: [`Field`](../../../classes/Field.mdx)
 
 ## Returns
 
-`object`[]
+\{
+  `actions`: `string`[][];
+  `hash`: `string`;
+  }[]
 
 A list of emitted sequencing actions associated to the given public key.
 
 ## Source
 
-[lib/mina/mina-instance.ts:200](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/mina-instance.ts#L200)
+[lib/mina/mina-instance.ts:208](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/mina-instance.ts#L208)

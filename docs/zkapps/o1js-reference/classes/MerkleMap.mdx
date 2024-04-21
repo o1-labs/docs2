@@ -16,7 +16,7 @@ A new MerkleMap
 
 #### Source
 
-[lib/provable/merkle-map.ts:17](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L17)
+[lib/provable/merkle-map.ts:17](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L17)
 
 ## Properties
 
@@ -28,19 +28,19 @@ tree: MerkleTree;
 
 #### Source
 
-[lib/provable/merkle-map.ts:11](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L11)
+[lib/provable/merkle-map.ts:11](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L11)
 
 ## Methods
 
 ### \_keyToIndex()
 
 ```ts
-_keyToIndex(key): bigint
+_keyToIndex(key: Field): bigint
 ```
 
 #### Parameters
 
-• **key**: `Field`
+• **key**: [`Field`](Field.mdx)
 
 #### Returns
 
@@ -48,33 +48,33 @@ _keyToIndex(key): bigint
 
 #### Source
 
-[lib/provable/merkle-map.ts:21](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L21)
+[lib/provable/merkle-map.ts:21](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L21)
 
 ***
 
 ### get()
 
 ```ts
-get(key): Field
+get(key: Field): Field
 ```
 
 Returns a value given a key. Values are by default Field(0).
 
 #### Parameters
 
-• **key**: `Field`
+• **key**: [`Field`](Field.mdx)
 
 The key to get the value from.
 
 #### Returns
 
-`Field`
+[`Field`](Field.mdx)
 
 The value stored at the key.
 
 #### Source
 
-[lib/provable/merkle-map.ts:48](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L48)
+[lib/provable/merkle-map.ts:48](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L48)
 
 ***
 
@@ -88,27 +88,27 @@ Returns the root of the Merkle Map.
 
 #### Returns
 
-`Field`
+[`Field`](Field.mdx)
 
 The root of the Merkle Map.
 
 #### Source
 
-[lib/provable/merkle-map.ts:57](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L57)
+[lib/provable/merkle-map.ts:57](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L57)
 
 ***
 
 ### getWitness()
 
 ```ts
-getWitness(key): MerkleMapWitness
+getWitness(key: Field): MerkleMapWitness
 ```
 
 Returns a circuit-compatible witness (also known as [Merkle Proof or Merkle Witness](https://computersciencewiki.org/index.php/Merkle_proof)) for the given key.
 
 #### Parameters
 
-• **key**: `Field`
+• **key**: [`Field`](Field.mdx)
 
 The key to make a witness for.
 
@@ -120,25 +120,25 @@ A MerkleMapWitness, which can be used to assert changes to the MerkleMap, and th
 
 #### Source
 
-[lib/provable/merkle-map.ts:66](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L66)
+[lib/provable/merkle-map.ts:66](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L66)
 
 ***
 
 ### set()
 
 ```ts
-set(key, value): void
+set(key: Field, value: Field): void
 ```
 
 Sets a key of the merkle map to a given value.
 
 #### Parameters
 
-• **key**: `Field`
+• **key**: [`Field`](Field.mdx)
 
 The key to set in the map.
 
-• **value**: `Field`
+• **value**: [`Field`](Field.mdx)
 
 The value to set.
 
@@ -148,4 +148,4 @@ The value to set.
 
 #### Source
 
-[lib/provable/merkle-map.ts:38](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/merkle-map.ts#L38)
+[lib/provable/merkle-map.ts:38](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/merkle-map.ts#L38)

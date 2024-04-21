@@ -1,5 +1,8 @@
 ```ts
-type ZkappPublicInput: object;
+type ZkappPublicInput: {
+  accountUpdate: Field;
+  calls: Field;
+};
 ```
 
 The public input for zkApps consists of certain hashes of the proving
@@ -30,4 +33,4 @@ calls: Field;
 
 ## Source
 
-[lib/mina/account-update.ts:1915](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/mina/account-update.ts#L1915)
+[lib/mina/account-update.ts:1909](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/account-update.ts#L1909)

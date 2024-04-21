@@ -1,5 +1,10 @@
 ```ts
-type Cache: object;
+type Cache: {
+  canWrite: boolean;
+  debug: boolean;
+  read: undefined | Uint8Array;
+  write: void;
+};
 ```
 
 Interface for storing and retrieving values, for caching.
@@ -71,4 +76,4 @@ The value to write to the cache, as a byte array.
 
 ## Source
 
-[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/cache.ts#L31)
+[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/cache.ts#L31)

@@ -1,5 +1,40 @@
 ```ts
-const Hash: object;
+const Hash: {
+  Keccak256: {
+     hash: Bytes;
+  };
+  Keccak384: {
+     hash: Bytes;
+  };
+  Keccak512: {
+     hash: Bytes;
+  };
+  Poseidon: {
+     Sponge: typeof Sponge;
+     Unsafe: {
+        hashToGroup: Group;
+     };
+     hash: Field;
+     hashPacked: Field;
+     hashToGroup: Group;
+     hashWithPrefix: Field;
+     initialState: [Field, Field, Field];
+     update: [Field, Field, Field];
+  };
+  SHA2_256: {
+     hash: Gadgets.SHA256.hash;
+  };
+  SHA3_256: {
+     hash: Bytes;
+  };
+  SHA3_384: {
+     hash: Bytes;
+  };
+  SHA3_512: {
+     hash: Bytes;
+  };
+  hash: Poseidon.hash;
+};
 ```
 
 A collection of hash functions which can be used in provable code.
@@ -9,7 +44,9 @@ A collection of hash functions which can be used in provable code.
 ### Keccak256
 
 ```ts
-Keccak256: object;
+Keccak256: {
+  hash: Bytes;
+};
 ```
 
 The pre-NIST Keccak hash function with an output length of 256 bits.
@@ -32,7 +69,9 @@ See Keccak.preNist for details and usage examples.
 ### Keccak384
 
 ```ts
-Keccak384: object;
+Keccak384: {
+  hash: Bytes;
+};
 ```
 
 The pre-NIST Keccak hash function with an output length of 384 bits.
@@ -55,7 +94,9 @@ See Keccak.preNist for details and usage examples.
 ### Keccak512
 
 ```ts
-Keccak512: object;
+Keccak512: {
+  hash: Bytes;
+};
 ```
 
 The pre-NIST Keccak hash function with an output length of 512 bits.
@@ -78,7 +119,18 @@ See Keccak.preNist for details and usage examples.
 ### Poseidon
 
 ```ts
-Poseidon: object;
+Poseidon: {
+  Sponge: typeof Sponge;
+  Unsafe: {
+     hashToGroup: Group;
+  };
+  hash: Field;
+  hashPacked: Field;
+  hashToGroup: Group;
+  hashWithPrefix: Field;
+  initialState: [Field, Field, Field];
+  update: [Field, Field, Field];
+};
 ```
 
 ### Poseidon.Sponge
@@ -90,7 +142,9 @@ Sponge: typeof Sponge;
 ### Poseidon.Unsafe
 
 ```ts
-Unsafe: object;
+Unsafe: {
+  hashToGroup: Group;
+};
 ```
 
 ### Poseidon.Unsafe.hashToGroup()
@@ -104,21 +158,21 @@ which can be a vulnerability if consuming code treats the output as unique.
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Group`
+[`Group`](../classes/Group.mdx)
 
 ### Poseidon.hash()
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### Poseidon.hashPacked()
 
@@ -145,7 +199,7 @@ lower per-field element cost than hashing.
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### Poseidon.hashToGroup()
 
@@ -155,11 +209,11 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Group`
+[`Group`](../classes/Group.mdx)
 
 ### Poseidon.hashWithPrefix()
 
@@ -167,34 +221,36 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 • **prefix**: `string`
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### Poseidon.initialState()
 
 #### Returns
 
-[`Field`, `Field`, `Field`]
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 ### Poseidon.update()
 
 #### Parameters
 
-• **state**: [`Field`, `Field`, `Field`]
+• **state**: [[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-[`Field`, `Field`, `Field`]
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 ### SHA2\_256
 
 ```ts
-SHA2_256: object;
+SHA2_256: {
+  hash: Gadgets.SHA256.hash;
+};
 ```
 
 The SHA2 hash function with an output length of 256 bits.
@@ -202,7 +258,7 @@ The SHA2 hash function with an output length of 256 bits.
 ### SHA2\_256.hash()
 
 ```ts
-hash: (data) => Bytes = Gadgets.SHA256.hash;
+hash: (data: FlexibleBytes) => Bytes = Gadgets.SHA256.hash;
 ```
 
 Hashes the given bytes using SHA2-256.
@@ -221,7 +277,9 @@ See Gadgets.SHA256.hash for details and usage examples.
 ### SHA3\_256
 
 ```ts
-SHA3_256: object;
+SHA3_256: {
+  hash: Bytes;
+};
 ```
 
 The SHA3 hash function with an output length of 256 bits.
@@ -244,7 +302,9 @@ See Keccak.nistSha3 for details and usage examples.
 ### SHA3\_384
 
 ```ts
-SHA3_384: object;
+SHA3_384: {
+  hash: Bytes;
+};
 ```
 
 The SHA3 hash function with an output length of 384 bits.
@@ -267,7 +327,9 @@ See Keccak.nistSha3 for details and usage examples.
 ### SHA3\_512
 
 ```ts
-SHA3_512: object;
+SHA3_512: {
+  hash: Bytes;
+};
 ```
 
 The SHA3 hash function with an output length of 512 bits.
@@ -290,7 +352,7 @@ See Keccak.nistSha3 for details and usage examples.
 ### hash()
 
 ```ts
-hash: (input) => Field = Poseidon.hash;
+hash: (input: Field[]) => Field = Poseidon.hash;
 ```
 
 Hashes the given field elements using [Poseidon](https://eprint.iacr.org/2019/458.pdf). Alias for `Poseidon.hash()`.
@@ -312,12 +374,12 @@ You can find the full set of Poseidon parameters [here](https://github.com/o1-la
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ## Source
 
-[lib/provable/crypto/hash.ts:11](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/crypto/hash.ts#L11)
+[lib/provable/crypto/hash.ts:11](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/crypto/hash.ts#L11)

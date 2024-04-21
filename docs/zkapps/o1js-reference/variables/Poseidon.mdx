@@ -1,5 +1,16 @@
 ```ts
-const Poseidon: object;
+const Poseidon: {
+  Sponge: typeof Sponge;
+  Unsafe: {
+     hashToGroup: Group;
+  };
+  hash: Field;
+  hashPacked: Field;
+  hashToGroup: Group;
+  hashWithPrefix: Field;
+  initialState: [Field, Field, Field];
+  update: [Field, Field, Field];
+};
 ```
 
 ## Type declaration
@@ -13,7 +24,9 @@ Sponge: typeof Sponge;
 ### Unsafe
 
 ```ts
-Unsafe: object;
+Unsafe: {
+  hashToGroup: Group;
+};
 ```
 
 ### Unsafe.hashToGroup()
@@ -27,21 +40,21 @@ which can be a vulnerability if consuming code treats the output as unique.
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Group`
+[`Group`](../classes/Group.mdx)
 
 ### hash()
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### hashPacked()
 
@@ -68,7 +81,7 @@ lower per-field element cost than hashing.
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### hashToGroup()
 
@@ -78,11 +91,11 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 #### Parameters
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Group`
+[`Group`](../classes/Group.mdx)
 
 ### hashWithPrefix()
 
@@ -90,30 +103,30 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 • **prefix**: `string`
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-`Field`
+[`Field`](../classes/Field.mdx)
 
 ### initialState()
 
 #### Returns
 
-[`Field`, `Field`, `Field`]
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 ### update()
 
 #### Parameters
 
-• **state**: [`Field`, `Field`, `Field`]
+• **state**: [[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
-• **input**: `Field`[]
+• **input**: [`Field`](../classes/Field.mdx)[]
 
 #### Returns
 
-[`Field`, `Field`, `Field`]
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 ## Source
 
-[lib/provable/crypto/poseidon.ts:50](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/provable/crypto/poseidon.ts#L50)
+[lib/provable/crypto/poseidon.ts:55](https://github.com/o1-labs/o1js/blob/main/src/lib/provable/crypto/poseidon.ts#L55)

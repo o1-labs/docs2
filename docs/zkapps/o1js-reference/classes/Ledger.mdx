@@ -17,7 +17,7 @@ new Ledger(): Ledger
 ### addAccount()
 
 ```ts
-addAccount(publicKey, balance): void
+addAccount(publicKey: MlPublicKey, balance: string): void
 ```
 
 Adds an account and its balance to the ledger.
@@ -34,7 +34,7 @@ Adds an account and its balance to the ledger.
 
 #### Source
 
-[snarky.d.ts:492](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/snarky.d.ts#L492)
+[snarky.d.ts:492](https://github.com/o1-labs/o1js/blob/main/src/snarky.d.ts#L492)
 
 ***
 
@@ -42,9 +42,9 @@ Adds an account and its balance to the ledger.
 
 ```ts
 applyJsonTransaction(
-   txJson, 
-   accountCreationFee, 
-   networkState): void
+   txJson: string, 
+   accountCreationFee: string, 
+   networkState: string): void
 ```
 
 Applies a JSON transaction to the ledger.
@@ -63,14 +63,14 @@ Applies a JSON transaction to the ledger.
 
 #### Source
 
-[snarky.d.ts:497](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/snarky.d.ts#L497)
+[snarky.d.ts:497](https://github.com/o1-labs/o1js/blob/main/src/snarky.d.ts#L497)
 
 ***
 
 ### getAccount()
 
 ```ts
-getAccount(publicKey, tokenId): undefined | Account
+getAccount(publicKey: MlPublicKey, tokenId: FieldConst): undefined | Account
 ```
 
 Returns an account.
@@ -87,7 +87,7 @@ Returns an account.
 
 #### Source
 
-[snarky.d.ts:506](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/snarky.d.ts#L506)
+[snarky.d.ts:506](https://github.com/o1-labs/o1js/blob/main/src/snarky.d.ts#L506)
 
 ***
 
@@ -105,4 +105,4 @@ Creates a fresh ledger.
 
 #### Source
 
-[snarky.d.ts:487](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/snarky.d.ts#L487)
+[snarky.d.ts:487](https://github.com/o1-labs/o1js/blob/main/src/snarky.d.ts#L487)

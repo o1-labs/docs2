@@ -1,5 +1,9 @@
 ```ts
-Cache: object;
+Cache: {
+  FileSystem: (cacheDirectory: string, debug?: boolean) => Cache;
+  FileSystemDefault: Cache;
+  None: Cache;
+};
 ```
 
 ## Type declaration
@@ -7,7 +11,7 @@ Cache: object;
 ### FileSystem()
 
 ```ts
-FileSystem: (cacheDirectory, debug?) => Cache;
+FileSystem: (cacheDirectory: string, debug?: boolean) => Cache;
 ```
 
 #### Parameters
@@ -34,4 +38,4 @@ None: Cache;
 
 ## Source
 
-[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/000b9835d52eede806be269b958c57000ff32f72/src/lib/proof-system/cache.ts#L31)
+[lib/proof-system/cache.ts:31](https://github.com/o1-labs/o1js/blob/main/src/lib/proof-system/cache.ts#L31)
