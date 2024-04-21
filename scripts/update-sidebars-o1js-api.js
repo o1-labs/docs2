@@ -49,21 +49,32 @@ function findo1jsSidebar(sidebars) {
   };
 }
 
-function capitalizeWords(str) {
-  return str.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
 function renameCategories(items) {
   items.forEach((item) => {
     if (item.type === 'category') {
-      item.label = capitalizeWords(item.label);
+      item.label = item.label.replace(/\b\w/g, (char) => char.toUpperCase());
       renameCategories(item.items);
     }
   });
+}
+
+function renameReadme(items) {
   const overviewIndex = items.findIndex((item) => item.label === 'README');
   if (overviewIndex !== -1) {
     items[overviewIndex].label = 'Introduction';
   }
+}
+
+function addSEODataToReadme(readmePath) {
+  const fileContents = fs.readFileSync(readmePath, 'utf8');
+  const seoData = `---
+title: o1js API Reference
+keywords:
+  - o1js
+  - API
+  - Reference
+---\n\n`;
+  fs.writeFileSync(readmePath, seoData + fileContents);
 }
 
 const { zkAppCategory, o1jsAPICategory } = findo1jsSidebar(sidebars);
@@ -73,6 +84,8 @@ const newAPISidebar = {
   items: buildDirectoryStructure('./docs/zkapps/o1js-reference'),
 };
 renameCategories(newAPISidebar.items);
+renameReadme(newAPISidebar.items);
+addSEODataToReadme('./docs/zkapps/o1js-reference/README.mdx');
 sidebars.docs[zkAppCategory].items[o1jsAPICategory] = newAPISidebar;
 
 fs.writeFileSync(
