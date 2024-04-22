@@ -103,8 +103,8 @@ reducer = Reducer({ actionType: AsFieldElements<A> });
 this.reducer.dispatch(action: A): void;
 
 this.reducer.reduce<S>(
-  actions: A[][],
-  stateType: AsFieldElements<S>,
+  actions: MerkleList<MerkleList<A>>,
+  stateType: Provable<S>,
   reduce: (state: S, action: A) => S,
   initial: S
 ): S
