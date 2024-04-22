@@ -106,8 +106,8 @@ this.reducer.reduce<S>(
   actions: A[][],
   stateType: AsFieldElements<S>,
   reduce: (state: S, action: A) => S,
-  initial: { state: S, actionState: Field }
-): { state: S, actionState: Field };
+  initial: S
+): S
 
 Reducer.initialActionState: Field;
 ```
