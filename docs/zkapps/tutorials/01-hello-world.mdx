@@ -328,13 +328,15 @@ Using a simulated local blockchain speeds up development and tests the behavior 
 To initialize your simulated local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
- 9 const useProof = false;
-10
-11 const Local = await Mina.LocalBlockchain({ proofsEnabled: useProof });
-12 Mina.setActiveInstance(Local);
-13 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
-15
+ 4 const useProof = false;
+ 5
+ 6  const Local = await Mina.LocalBlockchain({ proofsEnabled: useProof });
+ 7  Mina.setActiveInstance(Local);
+ 8
+ 9  const deployerAccount = Local.testAccounts[0];
+10  const deployerKey = deployerAccount.key;
+11  const senderAccount = Local.testAccounts[1];
+12  const senderKey = senderAccount.key;
 ```
 
 Tip: To preserve line numbers in your local `main.ts` file, add blank lines as needed after you copy the code snippets.
