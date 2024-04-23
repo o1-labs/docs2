@@ -22,8 +22,8 @@ import {
 
   Mina.setActiveInstance(Local);
   let accountFee = Mina.getNetworkConstants().accountCreationFee;
-  let [{ privateKey: feePayerKey, publicKey: feePayerAddress }] =
-    Local.testAccounts;
+  const feePayerAddress = Local.testAccounts[0];
+  const feePayerKey = feePayerAddress.key;
 
   let wrappedMinaPrivateKey = PrivateKey.random();
   let wrappedMinaPublicKey = wrappedMinaPrivateKey.toPublicKey();
