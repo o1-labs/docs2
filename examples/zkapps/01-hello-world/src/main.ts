@@ -5,11 +5,11 @@ const useProof = false;
 
 const Local = await Mina.LocalBlockchain({ proofsEnabled: useProof });
 Mina.setActiveInstance(Local);
-const { privateKey: deployerKey, publicKey: deployerAccount } =
-  Local.testAccounts[0];
-const { privateKey: senderKey, publicKey: senderAccount } =
-  Local.testAccounts[1];
 
+const deployerAccount = Local.testAccounts[0];
+const deployerKey = deployerAccount.key;
+const senderAccount = Local.testAccounts[1];
+const senderKey = senderAccount.key;
 // ----------------------------------------------------
 
 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
