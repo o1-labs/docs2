@@ -5,7 +5,7 @@ type SetupOptions = {
 };
 export async function initializeMina({ useLocalBlockchain }: SetupOptions) {
   if (useLocalBlockchain) {
-    const Local = Mina.LocalBlockchain();
+    const Local = await Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
     return Local;
   } else {
@@ -28,7 +28,7 @@ export async function initializeKeys(
   let deployerPrivateKey, zkAppPrivateKey;
 
   if (useLocalBlockchain) {
-    deployerPrivateKey = Local.testAccounts[0].privateKey;
+    deployerPrivateKey = Local.testAccounts[0].key;
     zkAppPrivateKey = PrivateKey.random();
   } else {
     if (process.argv.length != 4) {

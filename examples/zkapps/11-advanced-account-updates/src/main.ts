@@ -7,11 +7,10 @@ import { showTxn, saveTxn } from 'mina-transaction-visualizer';
 
 await (async function main() {
   const proofsEnabled = true;
-  const Local = Mina.LocalBlockchain({ proofsEnabled });
+  const Local = await Mina.LocalBlockchain({ proofsEnabled });
   Mina.setActiveInstance(Local);
-  const { privateKey: deployerKey, publicKey: deployerAddr } =
-    Local.testAccounts[0];
-
+  const deployerAddr = Local.testAccounts[0];
+  const deployerKey = deployerAddr.key;
   let accountFee = Mina.getNetworkConstants().accountCreationFee;
 
   // ----------------------------------------------------

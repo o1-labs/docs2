@@ -15,9 +15,9 @@ const ORACLE_PUBLIC_KEY =
   'B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy';
 
 describe('OracleExample', () => {
-  let deployerAccount: PublicKey,
+  let deployerAccount: Mina.TestPublicKey,
     deployerKey: PrivateKey,
-    senderAccount: PublicKey,
+    senderAccount: Mina.TestPublicKey,
     senderKey: PrivateKey,
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey,
@@ -27,13 +27,13 @@ describe('OracleExample', () => {
     if (proofsEnabled) await OracleExample.compile();
   });
 
-  beforeEach(() => {
-    const Local = Mina.LocalBlockchain({ proofsEnabled });
+  beforeEach(async () => {
+    const Local = await Mina.LocalBlockchain({ proofsEnabled });
     Mina.setActiveInstance(Local);
-    ({ privateKey: deployerKey, publicKey: deployerAccount } =
-      Local.testAccounts[0]);
-    ({ privateKey: senderKey, publicKey: senderAccount } =
-      Local.testAccounts[1]);
+    deployerAccount = Local.testAccounts[0];
+    deployerKey = deployerAccount.key;
+    senderAccount = Local.testAccounts[1];
+    senderKey = senderAccount.key;
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
     zkApp = new OracleExample(zkAppAddress);
