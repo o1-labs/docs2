@@ -1,0 +1,20 @@
+```ts
+const Group: typeof Group & (...args: [{
+  x:   | string
+     | number
+     | bigint
+     | FieldVar
+     | Field;
+  y:   | string
+     | number
+     | bigint
+     | FieldVar
+     | Field;
+  }]) => Group;
+```
+
+An element of a Group.
+
+## Source
+
+[lib/provable/wrapped.ts:76](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/wrapped.ts#L76)

@@ -102,11 +102,6 @@ module.exports = {
               label: 'Introduction',
             },
             {
-              type: 'doc',
-              id: 'zkapps/o1js-reference/modules',
-              label: 'Overview',
-            },
-            {
               type: 'category',
               label: 'Classes',
               items: [
@@ -132,6 +127,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/BaseMerkleWitness',
+                  label: 'BaseMerkleWitness',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Bool',
                   label: 'Bool',
                 },
@@ -154,11 +154,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/CircuitString',
                   label: 'CircuitString',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/CircuitValue',
-                  label: 'CircuitValue',
                 },
                 {
                   type: 'doc',
@@ -252,6 +247,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/PublicKey',
+                  label: 'PublicKey',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Scalar',
                   label: 'Scalar',
                 },
@@ -277,11 +277,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Token',
-                  label: 'Token',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/TokenAccountUpdateIterator',
                   label: 'TokenAccountUpdateIterator',
                 },
@@ -294,11 +289,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/TokenSymbol',
                   label: 'TokenSymbol',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/Types.PublicKey',
-                  label: 'Types.PublicKey',
                 },
                 {
                   type: 'doc',
@@ -329,6 +319,232 @@ module.exports = {
             },
             {
               type: 'category',
+              label: 'Functions',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Bytes',
+                  label: 'Bytes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/ConstantField',
+                  label: 'ConstantField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/MerkleListBase',
+                  label: 'MerkleListBase',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/MerkleWitness',
+                  label: 'MerkleWitness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Reducer',
+                  label: 'Reducer',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/State',
+                  label: 'State',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Struct',
+                  label: 'Struct',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/VarField',
+                  label: 'VarField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/WithHash',
+                  label: 'WithHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/ZkProgram',
+                  label: 'ZkProgram',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/addCachedAccount',
+                  label: 'addCachedAccount',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/assert',
+                  label: 'assert',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/checkBitLength',
+                  label: 'checkBitLength',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/checkZkappTransaction',
+                  label: 'checkZkappTransaction',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/circuitMain',
+                  label: 'circuitMain',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/createEcdsa',
+                  label: 'createEcdsa',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/createForeignCurve',
+                  label: 'createForeignCurve',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/createForeignField',
+                  label: 'createForeignField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/declareMethods',
+                  label: 'declareMethods',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/declareState',
+                  label: 'declareState',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/fetchAccount',
+                  label: 'fetchAccount',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/fetchEvents',
+                  label: 'fetchEvents',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/fetchLastBlock',
+                  label: 'fetchLastBlock',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/fetchTransactionStatus',
+                  label: 'fetchTransactionStatus',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/genericHash',
+                  label: 'genericHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/initializeBindings',
+                  label: 'initializeBindings',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/maybeSwap',
+                  label: 'maybeSwap',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/merkleListHash',
+                  label: 'merkleListHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/method',
+                  label: 'method',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/provable',
+                  label: 'provable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/provablePure',
+                  label: 'provablePure',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/public_',
+                  label: 'public_',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/readVarMessage',
+                  label: 'readVarMessage',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/sendZkapp',
+                  label: 'sendZkapp',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/setArchiveGraphqlEndpoint',
+                  label: 'setArchiveGraphqlEndpoint',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/setGraphqlEndpoint',
+                  label: 'setGraphqlEndpoint',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/setGraphqlEndpoints',
+                  label: 'setGraphqlEndpoints',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/setNumberOfWorkers',
+                  label: 'setNumberOfWorkers',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/state-1',
+                  label: 'state-1',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/toConstantField',
+                  label: 'toConstantField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/toFp',
+                  label: 'toFp',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/verify',
+                  label: 'verify',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/withHashes',
+                  label: 'withHashes',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/withMessage',
+                  label: 'withMessage',
+                },
+              ],
+            },
+            {
+              type: 'category',
               label: 'Interfaces',
               items: [
                 {
@@ -336,92 +552,630 @@ module.exports = {
                   id: 'zkapps/o1js-reference/interfaces/Permissions',
                   label: 'Permissions',
                 },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Namespaces',
+              items: [
                 {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/Provable',
-                  label: 'Provable',
+                  type: 'category',
+                  label: 'Crypto',
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'zkapps/o1js-reference/namespaces/Crypto/README',
+                      label: 'README',
+                    },
+                    {
+                      type: 'category',
+                      label: 'Type-Aliases',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Crypto/type-aliases/Curve',
+                          label: 'Curve',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Crypto/type-aliases/CurveParams',
+                          label: 'CurveParams',
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/interfaces/ProvablePure',
-                  label: 'ProvablePure',
+                  type: 'category',
+                  label: 'Encryption',
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'zkapps/o1js-reference/namespaces/Encryption/README',
+                      label: 'README',
+                    },
+                    {
+                      type: 'category',
+                      label: 'Functions',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/functions/decrypt',
+                          label: 'decrypt',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/functions/encrypt',
+                          label: 'encrypt',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'Experimental',
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'zkapps/o1js-reference/namespaces/Experimental/README',
+                      label: 'README',
+                    },
+                    {
+                      type: 'category',
+                      label: 'Functions',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/functions/memoizeWitness',
+                          label: 'memoizeWitness',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'Lightnet',
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'zkapps/o1js-reference/namespaces/Lightnet/README',
+                      label: 'README',
+                    },
+                    {
+                      type: 'category',
+                      label: 'Functions',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Lightnet/functions/acquireKeyPair',
+                          label: 'acquireKeyPair',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Lightnet/functions/listAcquiredKeyPairs',
+                          label: 'listAcquiredKeyPairs',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Lightnet/functions/releaseKeyPair',
+                          label: 'releaseKeyPair',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'Mina',
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'zkapps/o1js-reference/namespaces/Mina/README',
+                      label: 'README',
+                    },
+                    {
+                      type: 'category',
+                      label: 'Functions',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/LocalBlockchain',
+                          label: 'LocalBlockchain',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/Network',
+                          label: 'Network',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/TestPublicKey',
+                          label: 'TestPublicKey',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/currentSlot',
+                          label: 'currentSlot',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/currentTransaction',
+                          label: 'currentTransaction',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/faucet',
+                          label: 'faucet',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/fetchActions',
+                          label: 'fetchActions',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/fetchEvents',
+                          label: 'fetchEvents',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/filterGroups',
+                          label: 'filterGroups',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getAccount',
+                          label: 'getAccount',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getActions',
+                          label: 'getActions',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getBalance',
+                          label: 'getBalance',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getNetworkConstants',
+                          label: 'getNetworkConstants',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getNetworkId',
+                          label: 'getNetworkId',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getNetworkState',
+                          label: 'getNetworkState',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/getProofsEnabled',
+                          label: 'getProofsEnabled',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/hasAccount',
+                          label: 'hasAccount',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/sender',
+                          label: 'sender',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/setActiveInstance',
+                          label: 'setActiveInstance',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/transaction',
+                          label: 'transaction',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/functions/waitForFunding',
+                          label: 'waitForFunding',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
+                      label: 'Namespaces',
+                      items: [
+                        {
+                          type: 'category',
+                          label: 'TestPublicKey',
+                          items: [
+                            {
+                              type: 'doc',
+                              id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/README',
+                              label: 'README',
+                            },
+                            {
+                              type: 'category',
+                              label: 'Functions',
+                              items: [
+                                {
+                                  type: 'doc',
+                                  id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/functions/random',
+                                  label: 'random',
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          type: 'category',
+                          label: 'Transaction',
+                          items: [
+                            {
+                              type: 'doc',
+                              id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/README',
+                              label: 'README',
+                            },
+                            {
+                              type: 'category',
+                              label: 'Functions',
+                              items: [
+                                {
+                                  type: 'doc',
+                                  id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/functions/fromJSON',
+                                  label: 'fromJSON',
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
+                      label: 'Type-Aliases',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/ActionStates',
+                          label: 'ActionStates',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/FeePayerSpec',
+                          label: 'FeePayerSpec',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/IncludedTransaction',
+                          label: 'IncludedTransaction',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/NetworkConstants',
+                          label: 'NetworkConstants',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/PendingTransaction',
+                          label: 'PendingTransaction',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/PendingTransactionPromise',
+                          label: 'PendingTransactionPromise',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/PendingTransactionStatus',
+                          label: 'PendingTransactionStatus',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/RejectedTransaction',
+                          label: 'RejectedTransaction',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/TestPublicKey',
+                          label: 'TestPublicKey',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/Transaction',
+                          label: 'Transaction',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
+                      label: 'Variables',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Mina/variables/activeInstance',
+                          label: 'activeInstance',
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
             {
               type: 'category',
-              label: 'Modules',
+              label: 'Type-Aliases',
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Bytes',
+                  id: 'zkapps/o1js-reference/type-aliases/Account',
+                  label: 'Account',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Bool',
+                  label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/BoolVar',
+                  label: 'BoolVar',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Bytes',
                   label: 'Bytes',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Crypto',
-                  label: 'Crypto',
+                  id: 'zkapps/o1js-reference/type-aliases/Cache',
+                  label: 'Cache',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Encoding',
-                  label: 'Encoding',
+                  id: 'zkapps/o1js-reference/type-aliases/CacheHeader',
+                  label: 'CacheHeader',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Encryption',
-                  label: 'Encryption',
+                  id: 'zkapps/o1js-reference/type-aliases/ConstantField',
+                  label: 'ConstantField',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Experimental',
-                  label: 'Experimental',
+                  id: 'zkapps/o1js-reference/type-aliases/DeployArgs',
+                  label: 'DeployArgs',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Lightnet',
-                  label: 'Lightnet',
+                  id: 'zkapps/o1js-reference/type-aliases/Empty',
+                  label: 'Empty',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Mina',
-                  label: 'Mina',
+                  id: 'zkapps/o1js-reference/type-aliases/Field',
+                  label: 'Field',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Pickles',
-                  label: 'Pickles',
+                  id: 'zkapps/o1js-reference/type-aliases/FlexibleProvable',
+                  label: 'FlexibleProvable',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Snarky',
-                  label: 'Snarky',
+                  id: 'zkapps/o1js-reference/type-aliases/FlexibleProvablePure',
+                  label: 'FlexibleProvablePure',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Types.Json',
-                  label: 'Types.Json',
+                  id: 'zkapps/o1js-reference/type-aliases/Group',
+                  label: 'Group',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/Types',
-                  label: 'Types',
+                  id: 'zkapps/o1js-reference/type-aliases/InferProvable',
+                  label: 'InferProvable',
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/modules/ZkProgram',
+                  id: 'zkapps/o1js-reference/type-aliases/JsonProof',
+                  label: 'JsonProof',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/MerkleListBase',
+                  label: 'MerkleListBase',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/MerkleListIteratorBase',
+                  label: 'MerkleListIteratorBase',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Provable',
+                  label: 'Provable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableExtended',
+                  label: 'ProvableExtended',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableHashable',
+                  label: 'ProvableHashable',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvablePure',
+                  label: 'ProvablePure',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Reducer',
+                  label: 'Reducer',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ScalarConst',
+                  label: 'ScalarConst',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/State',
+                  label: 'State',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Struct',
+                  label: 'Struct',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/TransactionPromise',
+                  label: 'TransactionPromise',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/TransactionStatus',
+                  label: 'TransactionStatus',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Undefined',
+                  label: 'Undefined',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/VarField',
+                  label: 'VarField',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Void',
+                  label: 'Void',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/WithHash',
+                  label: 'WithHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Witness',
+                  label: 'Witness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ZkProgram',
                   label: 'ZkProgram',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ZkappPublicInput',
+                  label: 'ZkappPublicInput',
                 },
               ],
             },
             {
               type: 'category',
-              label: 'Enums',
+              label: 'Variables',
               items: [
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/enums/FieldType',
-                  label: 'FieldType',
+                  id: 'zkapps/o1js-reference/variables/Account',
+                  label: 'Account',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Bool',
+                  label: 'Bool',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Cache',
+                  label: 'Cache',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Crypto',
+                  label: 'Crypto',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Empty',
+                  label: 'Empty',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Field',
+                  label: 'Field',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Gadgets',
+                  label: 'Gadgets',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Group',
+                  label: 'Group',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Hash',
+                  label: 'Hash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Keccak',
+                  label: 'Keccak',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Permissions',
+                  label: 'Permissions',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Poseidon',
+                  label: 'Poseidon',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/TokenId',
+                  label: 'TokenId',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/TransactionVersion',
+                  label: 'TransactionVersion',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Undefined',
+                  label: 'Undefined',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/Void',
+                  label: 'Void',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/ZkappPublicInput',
+                  label: 'ZkappPublicInput',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/emptyHash',
+                  label: 'emptyHash',
                 },
               ],
             },
