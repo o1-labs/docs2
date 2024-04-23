@@ -1,0 +1,46 @@
+```ts
+withHashes<T>(
+   data: T[], 
+   nextHash: (hash: Field, value: T) => Field, 
+   emptyHash: Field): {
+  data: WithHash<T>[];
+  hash: Field;
+}
+```
+
+## Type parameters
+
+• **T**
+
+## Parameters
+
+• **data**: `T`[]
+
+• **nextHash**
+
+• **emptyHash**: [`Field`](../classes/Field.mdx)
+
+## Returns
+
+```ts
+{
+  data: WithHash<T>[];
+  hash: Field;
+}
+```
+
+### data
+
+```ts
+data: WithHash<T>[];
+```
+
+### hash
+
+```ts
+hash: Field;
+```
+
+## Source
+
+[lib/provable/merkle-list.ts:691](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/merkle-list.ts#L691)

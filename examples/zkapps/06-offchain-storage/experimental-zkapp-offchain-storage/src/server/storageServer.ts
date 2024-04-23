@@ -30,7 +30,7 @@ const maxHeight = 256;
 
 const useLocalBlockchain = true;
 
-const Local = Mina.LocalBlockchain();
+const Local = await Mina.LocalBlockchain();
 if (useLocalBlockchain) {
   Mina.setActiveInstance(Local);
 } else {

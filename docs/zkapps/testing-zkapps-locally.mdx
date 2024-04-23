@@ -71,7 +71,7 @@ You can quickly test your smart contract by running it on a simulated local bloc
 The `Mina.LocalBlockchain()` method specifies a mock Mina ledger of accounts and contains logic for updating the ledger that can be used to test your smart contract.
 
 ```ts
-const Local = Mina.LocalBlockchain();
+const Local = await Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 
@@ -93,7 +93,7 @@ First, access a test account provided by the simulated local blockchain.
 
 ```ts
 // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
-let feePayer = Local.testAccounts[0].privateKey;
+let feePayer = Local.testAccounts[0].key;
 ```
 
 Next, generate a zkApp account and a new instance of the smart contract to deploy locally for testing.
@@ -141,11 +141,11 @@ describe('Add smart contract integration test', () => {
 
   beforeAll(async () => {
     // setup local blockchain
-    let Local = Mina.LocalBlockchain();
+    let Local = await Mina.LocalBlockchain();
     Mina.setActiveInstance(Local);
 
     // Local.testAccounts is an array of 10 test accounts that have been pre-filled with Mina
-    feePayer = Local.testAccounts[0].privateKey;
+    feePayer = Local.testAccounts[0].key;
 
     // zkapp account
     zkAppPrivateKey = PrivateKey.random();
@@ -155,9 +155,13 @@ describe('Add smart contract integration test', () => {
     // deploy zkapp
     txn = await Mina.transaction(feePayer, async () => {
       AccountUpdate.fundNewAccount(feePayer);
-      await zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+      await zkAppInstance.deploy();
     });
-    await txn.send();
+
+    await txn.prove();
+
+    // this tx needs .sign(), because `deploy()` adds an account update that requires signature authorization
+    await txn.sign([feePayerKey, zkAppPrivateKey]).send();
   });
 
   it('sets intitial state of num to 1', async () => {
@@ -167,10 +171,10 @@ describe('Add smart contract integration test', () => {
 
   it('correctly updates num from intial state to 3', async () => {
     txn = await Mina.transaction(feePayer, async () => {
-      await zkAppInstance.update();
-      zkAppInstance.sign(zkAppPrivateKey);
+      await zkApp.update();
     });
-    txn.send();
+    await txn.prove();
+    await txn.sign([feePayerKeyKey]).send();
 
     currentState = zkAppInstance.num.get();
     expect(currentState).toEqual(Field(3));

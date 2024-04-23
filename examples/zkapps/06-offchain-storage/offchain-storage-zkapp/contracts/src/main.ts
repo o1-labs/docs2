@@ -24,10 +24,10 @@ const treeHeight = 8;
 let feePayerKey: PrivateKey;
 let zkappPrivateKey: PrivateKey;
 if (useLocal) {
-  const Local = Mina.LocalBlockchain();
+  const Local = await Mina.LocalBlockchain();
   Mina.setActiveInstance(Local);
 
-  feePayerKey = Local.testAccounts[0].privateKey;
+  feePayerKey = Local.testAccounts[0].key;
   zkappPrivateKey = PrivateKey.random();
 } else {
   const Berkeley = Mina.Network(

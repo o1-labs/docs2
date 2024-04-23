@@ -152,7 +152,7 @@ console.log('--------------------------------------');
 
 // --------------------------------------
 
-const Local = Mina.LocalBlockchain();
+const Local = await Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 const { privateKey: deployerKey, publicKey: deployerAccount } =
   Local.testAccounts[0];

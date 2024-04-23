@@ -1,0 +1,30 @@
+```ts
+releaseKeyPair(options: {
+  lightnetAccountManagerEndpoint: string;
+  publicKey: string;
+}): Promise<string | null>
+```
+
+Releases previously acquired key pair by public key.
+
+## Parameters
+
+• **options**
+
+• **options\.lightnetAccountManagerEndpoint?**: `string`
+
+Account manager endpoint to fetch from
+
+• **options\.publicKey**: `string`
+
+Public key of previously acquired key pair to release
+
+## Returns
+
+`Promise`\<`string` \| `null`\>
+
+Response message from the account manager as string or null if the request failed
+
+## Source
+
+[lib/mina/fetch.ts:859](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/fetch.ts#L859)

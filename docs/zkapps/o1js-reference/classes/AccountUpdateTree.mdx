@@ -1,0 +1,629 @@
+Class which represents a tree of account updates,
+in a compressed way which allows iterating and selectively witnessing the account updates.
+
+The (recursive) type signature is:
+```
+type AccountUpdateTree = {
+  accountUpdate: Hashed<AccountUpdate>;
+  children: AccountUpdateForest;
+};
+type AccountUpdateForest = MerkleList<AccountUpdateTree>;
+```
+
+## Extends
+
+- \{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: `AccountUpdateForest.provable`;
+  `id`: `RandomId`;
+  }
+
+## Constructors
+
+### new AccountUpdateTree(value)
+
+```ts
+new AccountUpdateTree(value: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }): AccountUpdateTree
+```
+
+#### Parameters
+
+• **value**
+
+• **value\.accountUpdate**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **value\.children**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **value\.id**: `number`= `RandomId`
+
+#### Returns
+
+[`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).constructor`
+
+#### Source
+
+[lib/provable/types/struct.ts:270](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L270)
+
+## Properties
+
+### accountUpdate
+
+```ts
+accountUpdate: Hashed<AccountUpdate> = HashedAccountUpdate.provable;
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).accountUpdate`
+
+#### Source
+
+[lib/mina/account-update.ts:1324](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1324)
+
+***
+
+### children
+
+```ts
+children: MerkleList<{
+  accountUpdate: HashedAccountUpdate.provable;
+  children: MerkleListBase<AccountUpdateTreeBase>;
+  id: RandomId;
+  }> = AccountUpdateForest.provable;
+```
+
+#### Type declaration
+
+##### accountUpdate
+
+```ts
+accountUpdate: Hashed<AccountUpdate> = HashedAccountUpdate.provable;
+```
+
+##### children
+
+```ts
+children: MerkleListBase<AccountUpdateTreeBase>;
+```
+
+##### id
+
+```ts
+id: number = RandomId;
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).children`
+
+#### Source
+
+[lib/mina/account-update.ts:1325](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1325)
+
+***
+
+### id
+
+```ts
+id: number = RandomId;
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).id`
+
+#### Source
+
+[lib/mina/account-update.ts:1323](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1323)
+
+***
+
+### \_isStruct
+
+```ts
+static _isStruct: true;
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+})._isStruct`
+
+#### Source
+
+[lib/provable/types/struct.ts:270](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L270)
+
+***
+
+### check()
+
+```ts
+static check: (value: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }) => void;
+```
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](Bool.mdx) asserts that the value of the element is either 1 or 0.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to put assertions on.
+
+• **value\.accountUpdate**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **value\.children**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **value\.id**: `number`= `RandomId`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).check`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L66)
+
+***
+
+### fromValue()
+
+```ts
+static fromValue: (x: any) => {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+};
+```
+
+Convert provable type from a normal JS type.
+
+#### Parameters
+
+• **x**: `any`
+
+#### Returns
+
+```ts
+{
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+}
+```
+
+##### accountUpdate
+
+```ts
+accountUpdate: Hashed<AccountUpdate> = HashedAccountUpdate.provable;
+```
+
+##### children
+
+```ts
+children: MerkleList<{
+  accountUpdate: HashedAccountUpdate.provable;
+  children: MerkleListBase<AccountUpdateTreeBase>;
+  id: RandomId;
+  }> = AccountUpdateForest.provable;
+```
+
+###### Type declaration
+
+###### accountUpdate
+
+```ts
+accountUpdate: Hashed<AccountUpdate> = HashedAccountUpdate.provable;
+```
+
+###### children
+
+```ts
+children: MerkleListBase<AccountUpdateTreeBase>;
+```
+
+###### id
+
+```ts
+id: number = RandomId;
+```
+
+##### id
+
+```ts
+id: number = RandomId;
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).fromValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L76)
+
+***
+
+### toAuxiliary()
+
+```ts
+static toAuxiliary: (value?: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }) => any[];
+```
+
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+
+#### Parameters
+
+• **value?**
+
+the element of type `T` to generate the auxiliary data array from, optional.
+If not provided, a default value for auxiliary data is returned.
+
+• **value\.accountUpdate?**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **value\.children?**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **value\.id?**: `number`= `RandomId`
+
+#### Returns
+
+`any`[]
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).toAuxiliary`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L37)
+
+***
+
+### toFields()
+
+```ts
+static toFields: (value: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }) => Field[];
+```
+
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](Field.mdx) elements that make up the provable data of `value`.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to generate the [Field](Field.mdx) array from.
+
+• **value\.accountUpdate**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **value\.children**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **value\.id**: `number`= `RandomId`
+
+#### Returns
+
+[`Field`](Field.mdx)[]
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).toFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L26)
+
+***
+
+### toInput()
+
+```ts
+static toInput: (x: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }) => {
+  fields: Field[];
+  packed: [Field, number][];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x\.accountUpdate**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **x\.children**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **x\.id**: `number`= `RandomId`
+
+#### Returns
+
+```ts
+{
+  fields: Field[];
+  packed: [Field, number][];
+}
+```
+
+##### fields?
+
+```ts
+optional fields: Field[];
+```
+
+##### packed?
+
+```ts
+optional packed: [Field, number][];
+```
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).toInput`
+
+#### Source
+
+[lib/provable/types/struct.ts:273](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L273)
+
+***
+
+### toValue()
+
+```ts
+static toValue: (x: {
+  accountUpdate: HashedAccountUpdate.provable;
+  children: AccountUpdateForest.provable;
+  id: RandomId;
+  }) => any;
+```
+
+Convert provable type to a normal JS type.
+
+#### Parameters
+
+• **x**
+
+• **x\.accountUpdate**: [`Hashed`](Hashed.mdx)\<[`AccountUpdate`](AccountUpdate.mdx)\>= `HashedAccountUpdate.provable`
+
+• **x\.children**: [`MerkleList`](MerkleList.mdx)\<\{
+  `accountUpdate`: `HashedAccountUpdate.provable`;
+  `children`: [`MerkleListBase`](../type-aliases/MerkleListBase.mdx)\<`AccountUpdateTreeBase`\>;
+  `id`: `RandomId`;
+  }\>= `AccountUpdateForest.provable`
+
+• **x\.id**: `number`= `RandomId`
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).toValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L71)
+
+## Methods
+
+### approve()
+
+```ts
+approve(update: AccountUpdate | AccountUpdateTree, hash?: Field): void
+```
+
+Add an [AccountUpdate](AccountUpdate.mdx) or [AccountUpdateTree](AccountUpdateTree.mdx) to the children of this tree's root.
+
+See [AccountUpdate.approve](AccountUpdate.mdx#approve).
+
+#### Parameters
+
+• **update**: [`AccountUpdate`](AccountUpdate.mdx) \| [`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+• **hash?**: [`Field`](Field.mdx)
+
+#### Returns
+
+`void`
+
+#### Source
+
+[lib/mina/account-update.ts:1344](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1344)
+
+***
+
+### empty()
+
+```ts
+static empty(): AccountUpdateTree
+```
+
+#### Returns
+
+[`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+#### Overrides
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).empty`
+
+#### Source
+
+[lib/mina/account-update.ts:1360](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1360)
+
+***
+
+### from()
+
+```ts
+static from(update: AccountUpdate | AccountUpdateTree, hash?: Field): AccountUpdateTree
+```
+
+Create a tree of account updates which only consists of a root.
+
+#### Parameters
+
+• **update**: [`AccountUpdate`](AccountUpdate.mdx) \| [`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+• **hash?**: [`Field`](Field.mdx)
+
+#### Returns
+
+[`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+#### Source
+
+[lib/mina/account-update.ts:1330](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1330)
+
+***
+
+### fromFields()
+
+```ts
+static fromFields(fields: Field[], aux: any): AccountUpdateTree
+```
+
+#### Parameters
+
+• **fields**: [`Field`](Field.mdx)[]
+
+• **aux**: `any`
+
+#### Returns
+
+[`AccountUpdateTree`](AccountUpdateTree.mdx)
+
+#### Overrides
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).fromFields`
+
+#### Source
+
+[lib/mina/account-update.ts:1357](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L1357)
+
+***
+
+### sizeInFields()
+
+```ts
+static sizeInFields(): number
+```
+
+Return the size of the `T` type in terms of [Field](Field.mdx) type, as [Field](Field.mdx) is the primitive type.
+
+#### Returns
+
+`number`
+
+A `number` representing the size of the `T` type in terms of [Field](Field.mdx) type.
+
+#### Inherited from
+
+`StructNoJson({
+  id: RandomId,
+  accountUpdate: HashedAccountUpdate.provable,
+  children: AccountUpdateForest.provable,
+}).sizeInFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L56)

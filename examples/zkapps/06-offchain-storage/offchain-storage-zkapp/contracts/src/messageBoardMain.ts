@@ -26,7 +26,7 @@ async function main() {
 
   const treeHeight = 8;
 
-  const Local = Mina.LocalBlockchain();
+  const Local = await Mina.LocalBlockchain();
   Mina.setActiveInstance(Local);
 
   const feePayerKey = Local.testAccounts[0].privateKey;

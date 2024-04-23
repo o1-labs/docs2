@@ -1,0 +1,28 @@
+```ts
+sendZkapp(
+   json: string, 
+   graphqlEndpoint: string, 
+   __namedParameters: {
+  timeout: defaultTimeout;
+}): Promise<[undefined, FetchError] | [FetchResponse<SendZkAppResponse>, undefined]>
+```
+
+Sends a zkApp command (transaction) to the specified GraphQL endpoint.
+
+## Parameters
+
+• **json**: `string`
+
+• **graphqlEndpoint**: `string`= `networkConfig.minaEndpoint`
+
+• **\_\_namedParameters**= `{}`
+
+• **\_\_namedParameters\.timeout**: `undefined` \| `number`= `defaultTimeout`
+
+## Returns
+
+`Promise`\<[`undefined`, `FetchError`] \| [`FetchResponse`\<`SendZkAppResponse`\>, `undefined`]\>
+
+## Source
+
+[lib/mina/fetch.ts:607](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/fetch.ts#L607)

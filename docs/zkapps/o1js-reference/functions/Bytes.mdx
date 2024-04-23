@@ -1,0 +1,23 @@
+```ts
+Bytes(size: number): typeof Bytes
+```
+
+A provable type representing an array of bytes.
+
+```ts
+class Bytes32 extends Bytes(32) {}
+
+let bytes = Bytes32.fromHex('deadbeef');
+```
+
+## Parameters
+
+• **size**: `number`
+
+## Returns
+
+*typeof* `Bytes`
+
+## Source
+
+[lib/provable/wrapped-classes.ts:16](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/wrapped-classes.ts#L16)
