@@ -154,11 +154,11 @@ console.log('--------------------------------------');
 
 const Local = await Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
-const { privateKey: deployerKey, publicKey: deployerAccount } =
-  Local.testAccounts[0];
-const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
-  Local.testAccounts[1];
 
+const deployerAccount = Local.testAccounts[0];
+const deployerKey = deployerAccount.key;
+const senderPublicKey = Local.testAccounts[1];
+const senderPrivateKey = deployerAccount.key;
 // --------------------------------------
 // create a new merkle tree and BasicMerkleTreeContract zkapp account
 
