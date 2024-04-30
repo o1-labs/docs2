@@ -1,5 +1,5 @@
 ```ts
-method<K, T>(
+function method<K, T>(
    target: T & { [k in string]: Function }, 
    methodName: K & string & keyof T, 
    descriptor: PropertyDescriptor, 
@@ -25,9 +25,9 @@ async myMethod(someArg: Field): Promise<Field> {
 
 ## Type parameters
 
-• **K** extends `string`
+• **K** *extends* `string`
 
-• **T** extends [`SmartContract`](../classes/SmartContract.mdx)
+• **T** *extends* [`SmartContract`](../classes/SmartContract.mdx)
 
 ## Parameters
 
@@ -45,4 +45,4 @@ async myMethod(someArg: Field): Promise<Field> {
 
 ## Source
 
-[lib/mina/zkapp.ts:103](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L103)
+[lib/mina/zkapp.ts:103](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L103)

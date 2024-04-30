@@ -10,14 +10,14 @@
 
 ## Constructors
 
-### new SelfProof(__namedParameters)
+### new SelfProof()
 
 ```ts
 new SelfProof<PublicInput, PublicOutput>(__namedParameters: {
-  maxProofsVerified: 0 | 1 | 2;
-  proof: unknown;
-  publicInput: PublicInput;
-  publicOutput: PublicOutput;
+  "maxProofsVerified": 0 | 1 | 2;
+  "proof": unknown;
+  "publicInput": PublicInput;
+  "publicOutput": PublicOutput;
 }): SelfProof<PublicInput, PublicOutput>
 ```
 
@@ -25,13 +25,13 @@ new SelfProof<PublicInput, PublicOutput>(__namedParameters: {
 
 • **\_\_namedParameters**
 
-• **\_\_namedParameters\.maxProofsVerified**: `0` \| `1` \| `2`
+• **\_\_namedParameters.maxProofsVerified**: `0` \| `1` \| `2`
 
-• **\_\_namedParameters\.proof**: `unknown`
+• **\_\_namedParameters.proof**: `unknown`
 
-• **\_\_namedParameters\.publicInput**: `PublicInput`
+• **\_\_namedParameters.publicInput**: `PublicInput`
 
-• **\_\_namedParameters\.publicOutput**: `PublicOutput`
+• **\_\_namedParameters.publicOutput**: `PublicOutput`
 
 #### Returns
 
@@ -43,7 +43,7 @@ new SelfProof<PublicInput, PublicOutput>(__namedParameters: {
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:140](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L140)
+[lib/proof-system/zkprogram.ts:111](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L111)
 
 ## Properties
 
@@ -59,7 +59,7 @@ maxProofsVerified: 0 | 1 | 2;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L95)
+[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L98)
 
 ***
 
@@ -75,7 +75,7 @@ proof: unknown;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:94](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L94)
+[lib/proof-system/zkprogram.ts:97](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L97)
 
 ***
 
@@ -91,7 +91,7 @@ publicInput: PublicInput;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:92](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L92)
+[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L95)
 
 ***
 
@@ -107,7 +107,7 @@ publicOutput: PublicOutput;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:93](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L93)
+[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L96)
 
 ***
 
@@ -123,7 +123,7 @@ shouldVerify: Bool;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L96)
+[lib/proof-system/zkprogram.ts:99](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L99)
 
 ***
 
@@ -139,7 +139,7 @@ static publicInputType: FlexibleProvablePure<any>;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:84](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L84)
+[lib/proof-system/zkprogram.ts:87](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L87)
 
 ***
 
@@ -155,7 +155,7 @@ static publicOutputType: FlexibleProvablePure<any>;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:85](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L85)
+[lib/proof-system/zkprogram.ts:88](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L88)
 
 ***
 
@@ -163,7 +163,7 @@ static publicOutputType: FlexibleProvablePure<any>;
 
 ```ts
 static tag: () => {
-  name: string;
+  "name": string;
 };
 ```
 
@@ -171,7 +171,7 @@ static tag: () => {
 
 ```ts
 {
-  name: string;
+  "name": string;
 }
 ```
 
@@ -187,7 +187,7 @@ name: string;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:86](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L86)
+[lib/proof-system/zkprogram.ts:89](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L89)
 
 ## Methods
 
@@ -207,7 +207,7 @@ toJSON(): JsonProof
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:104](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L104)
+[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L101)
 
 ***
 
@@ -227,7 +227,7 @@ verify(): void
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L98)
+[lib/proof-system/zkprogram.ts:130](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L130)
 
 ***
 
@@ -251,7 +251,7 @@ verifyIf(condition: Bool): void
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L101)
+[lib/proof-system/zkprogram.ts:133](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L133)
 
 ***
 
@@ -311,7 +311,7 @@ must match your ZkProgram. `maxProofsVerified` is the maximum number of proofs t
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:178](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L178)
+[lib/proof-system/zkprogram.ts:185](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L185)
 
 ***
 
@@ -323,7 +323,7 @@ static fromJSON<S>(this: S, __namedParameters: JsonProof): Promise<Proof<InferPr
 
 #### Type parameters
 
-• **S** extends `Subclass`\<*typeof* [`Proof`](Proof.mdx)\>
+• **S** *extends* `Subclass`\<*typeof* [`Proof`](Proof.mdx)\>
 
 #### Parameters
 
@@ -341,4 +341,4 @@ static fromJSON<S>(this: S, __namedParameters: JsonProof): Promise<Proof<InferPr
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:113](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L113)
+[lib/proof-system/zkprogram.ts:137](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L137)
