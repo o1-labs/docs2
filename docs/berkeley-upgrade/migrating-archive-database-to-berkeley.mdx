@@ -541,22 +541,67 @@ It is worthwhile to perform these last steps as a dry run to make sure all goes 
 
 ## Known migration problems
 
-Tips to overcome known challenges.
+Please remember that rerunning after crash is always possible.
+After solving any of below issues you can rerun process and migration
+will continue form last position
 
-#### Berkeley migration app is unstable
-
- Example of such instability are crashes with information like below:
- 
- ```
+#### Async was unable to add a file descriptor to its table of open file descriptors
+For example: 
+  
+```
  ("Async was unable to add a file descriptor to its table of open file descriptors"
   (file_descr 18)
   (error
    "Attempt to register a file descriptor with Async that Async believes it is already managing.")
   (backtrace
         ......
- ```
+```
+A remedy is to lower `--block-batch-size` parameter to values up to 500.
 
- A remedy is to lower `--block-batch-size` parameter to values up to 500.
+#### Map.find_exn: not found
+For example:
+```
+(monitor.ml.Error
+ (Not_found_s
+  ("Map.find_exn: not found"
+....
+```
+
+Usually this error means that there is a gap in canonical chain. In order to fix it please
+ensure that missing-block-auditor run is successful
+
+#### Yojson.Json_error .. Unexpected end of input
+
+For example:
+
+```
+(monitor.ml.Error
+ ("Yojson.Json_error(\"Line 1, bytes 1003519-1003520:\\nUnexpected end of input\")")
+ ("Raised at Yojson.json_error in file \"common.ml\", line 5, characters 19-39"
+  "Called from Yojson.Safe.__ocaml_lex_read_json_rec in file \"lib/read.mll\", line 215, characters 28-52"
+...
+```
+
+This issue is caused by invalid precomputed block. Deleting the downloaded precomputed blocks should resolve this issue.
+
+#### Error querying db, error: Request to ... failed: ERROR:  column \"type\" does not exist
+
+You provided the migrated schema as source one when invoking script or berkeley-migration app
+
+#### Poor performance of migration when accessing remote database
+
+We conducted migration tests with both a local database and a distant database (RDS). 
+The migration using the local database appears to process significantly faster. We strongly suggest to use offline database installed locally
+
+#### ERROR: out of shared memory
+
+```
+(monitor.ml.Error (Failure "Error querying for user commands with id 1686617, error Request to postgresql://user:pwd@host:port/db failed: ERROR: out of shared memory
+\nHINT: You might need to increase max_pred_locks_per_transaction
+```
+
+Solution is either to increase `max_pred_locks_per_transaction` setting in postgres database. 
+Alternative is to isolate database from mainnet traffic (for example by exporting dump from live database and import it on isolated environment)
 
 #### Berkeley migration app is consuming all of my resources
 
@@ -564,13 +609,7 @@ When running a full migration, you can stumble on memory leaks that prevent you 
 
 A potential workaround is to split the migration into smaller parts using cron jobs or automation scripts. 
 
-Related GitHub issues:
-- [#13714](https://github.com/MinaProtocol/mina/issues/13714)
-- [#14924](https://github.com/MinaProtocol/mina/issues/14924)
-
 ## FAQ
-
-Answers to frequently asked questions about migration.
 
 ### Migrated database is missing orphaned blocks
 
@@ -583,21 +622,3 @@ By default, the replayer dumps the checkpoint to the current folder. All checkpo
 `replayer-checkpoint-{number}.json.`
 
 To prevent override of old checkpoints, use the `--checkpoint-output-folder` and `--checkpoint-file-prefix` parameters to modify the output folder and prefix.
-
-### Replayer in migration mode exits the process in the middle of the run
-
-Most likely, there are some missing blocks in the Devnet/Mainnet database. Ensure that you patched the Devnet/Mainnet archive before the migration process. See [Devnet/Mainnet database maintenance](/berkeley-upgrade/mainnet-database-maintenance).
-
-### How to migrate Devnet/Mainnet pending blocks
-
-In the first phase of migration, use the `--end-global-slot` parameter. 
-
-In the second phase of migration, add the property `target_epoch_ledgers_state_hash` with the expected `state_hash` value:
-
-```json
-{
-   "target_epoch_ledgers_state_hash":"{target_state_hash}",
-   "genesis_ledger": "..."
-}
-```
-
