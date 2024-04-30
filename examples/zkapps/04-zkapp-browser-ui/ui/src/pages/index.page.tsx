@@ -153,8 +153,8 @@ export default function Home() {
       transaction: transactionJSON,
       feePayer: {
         fee: transactionFee,
-        memo: '',
-      },
+        memo: ''
+      }
     });
 
     const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
