@@ -1,10 +1,10 @@
 ```ts
-random<N>(count: N): N extends 1 ? TestPublicKey : TupleN<TestPublicKey, N>
+function random<N>(count: N): N extends 1 ? TestPublicKey : TupleN<TestPublicKey, N>
 ```
 
 ## Type parameters
 
-• **N** extends `number` = `1`
+• **N** *extends* `number` = `1`
 
 ## Parameters
 
@@ -12,8 +12,8 @@ random<N>(count: N): N extends 1 ? TestPublicKey : TupleN<TestPublicKey, N>
 
 ## Returns
 
-`N` extends `1` ? [`TestPublicKey`](../../../type-aliases/TestPublicKey.mdx) : `TupleN`\<[`TestPublicKey`](../../../type-aliases/TestPublicKey.mdx), `N`\>
+`N` *extends* `1` ? [`TestPublicKey`](../../../type-aliases/TestPublicKey.mdx) : `TupleN`\<[`TestPublicKey`](../../../type-aliases/TestPublicKey.mdx), `N`\>
 
 ## Source
 
-[lib/mina/local-blockchain.ts:55](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/local-blockchain.ts#L55)
+[lib/mina/local-blockchain.ts:55](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/local-blockchain.ts#L55)

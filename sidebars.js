@@ -157,6 +157,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/DynamicProof',
+                  label: 'DynamicProof',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/EcdsaSignature',
                   label: 'EcdsaSignature',
                 },
@@ -478,8 +483,8 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/functions/public_',
-                  label: 'public_',
+                  id: 'zkapps/o1js-reference/functions/public',
+                  label: 'public',
                 },
                 {
                   type: 'doc',

@@ -1,52 +1,52 @@
 ```ts
 const Gadgets: {
-  Field3: {
-     provable: {
-        fromValue: Field3;
-        toValue: bigint;
-     };
-     from: Field3;
-     isConstant: boolean;
-     toBigint: bigint;
-     toBigints: [...{ [i in string | number | symbol]: bigint }[]];
-  };
-  ForeignField: {
-     Sum: Sum;
-     add: Field3;
-     assertAlmostReduced: void;
-     assertLessThan: void;
-     assertLessThanOrEqual: void;
-     assertMul: void;
-     div: Field3;
-     inv: Field3;
-     mul: Field3;
-     neg: Field3;
-     sub: Field3;
-     sum: Field3;
-  };
-  SHA256: SHA256;
-  addMod32: (x: Field, y: Field) => Field;
-  divMod32: (n: Field, quotientBits: number) => {
-     quotient: Field;
-     remainder: Field;
-  };
-  and: Field;
-  compactMultiRangeCheck: [Field, Field, Field];
-  isDefinitelyInRangeN: Bool;
-  leftShift32: Field;
-  leftShift64: Field;
-  multiRangeCheck: void;
-  not: Field;
-  rangeCheck16: void;
-  rangeCheck32: void;
-  rangeCheck3x12: void;
-  rangeCheck64: void;
-  rangeCheck8: void;
-  rangeCheckN: void;
-  rightShift64: Field;
-  rotate32: Field;
-  rotate64: Field;
-  xor: Field;
+  "Field3": {
+     "provable": {
+        "fromValue": Field3;
+        "toValue": bigint;
+       };
+     "from": Field3;
+     "isConstant": boolean;
+     "toBigint": bigint;
+     "toBigints": [...{ [i in string | number | symbol]: bigint }[]];
+    };
+  "ForeignField": {
+     "Sum": Sum;
+     "add": Field3;
+     "assertAlmostReduced": void;
+     "assertLessThan": void;
+     "assertLessThanOrEqual": void;
+     "assertMul": void;
+     "div": Field3;
+     "inv": Field3;
+     "mul": Field3;
+     "neg": Field3;
+     "sub": Field3;
+     "sum": Field3;
+    };
+  "SHA256": SHA256;
+  "addMod32": (x: Field, y: Field) => Field;
+  "divMod32": (n: Field, quotientBits: number) => {
+     "quotient": Field;
+     "remainder": Field;
+    };
+  "and": Field;
+  "compactMultiRangeCheck": [Field, Field, Field];
+  "isDefinitelyInRangeN": Bool;
+  "leftShift32": Field;
+  "leftShift64": Field;
+  "multiRangeCheck": void;
+  "not": Field;
+  "rangeCheck16": void;
+  "rangeCheck32": void;
+  "rangeCheck3x12": void;
+  "rangeCheck64": [Field, Field, Field, Field];
+  "rangeCheck8": void;
+  "rangeCheckN": void;
+  "rightShift64": Field;
+  "rotate32": Field;
+  "rotate64": Field;
+  "xor": Field;
 };
 ```
 
@@ -56,14 +56,14 @@ const Gadgets: {
 
 ```ts
 Field3: {
-  provable: {
-     fromValue: Field3;
-     toValue: bigint;
-  };
-  from: Field3;
-  isConstant: boolean;
-  toBigint: bigint;
-  toBigints: [...{ [i in string | number | symbol]: bigint }[]];
+  "provable": {
+     "fromValue": Field3;
+     "toValue": bigint;
+    };
+  "from": Field3;
+  "isConstant": boolean;
+  "toBigint": bigint;
+  "toBigints": [...{ [i in string | number | symbol]: bigint }[]];
 };
 ```
 
@@ -71,8 +71,8 @@ Field3: {
 
 ```ts
 provable: {
-  fromValue: Field3;
-  toValue: bigint;
+  "fromValue": Field3;
+  "toValue": bigint;
 };
 ```
 
@@ -143,7 +143,7 @@ Turn several 3-tuples of Fields into bigints
 
 #### Type parameters
 
-• **T** extends `Tuple`\<`Field3`\>
+• **T** *extends* `Tuple`\<`Field3`\>
 
 #### Parameters
 
@@ -151,24 +151,24 @@ Turn several 3-tuples of Fields into bigints
 
 #### Returns
 
-[`...{ [i in string | number | symbol]: bigint }[]`]
+[...\{ [i in string \| number \| symbol]: bigint \}[]]
 
 ### ForeignField
 
 ```ts
 ForeignField: {
-  Sum: Sum;
-  add: Field3;
-  assertAlmostReduced: void;
-  assertLessThan: void;
-  assertLessThanOrEqual: void;
-  assertMul: void;
-  div: Field3;
-  inv: Field3;
-  mul: Field3;
-  neg: Field3;
-  sub: Field3;
-  sum: Field3;
+  "Sum": Sum;
+  "add": Field3;
+  "assertAlmostReduced": void;
+  "assertLessThan": void;
+  "assertLessThanOrEqual": void;
+  "assertMul": void;
+  "div": Field3;
+  "inv": Field3;
+  "mul": Field3;
+  "neg": Field3;
+  "sub": Field3;
+  "sum": Field3;
 };
 ```
 
@@ -264,7 +264,7 @@ i.e., satisfies the assumptions required by Gadgets.ForeignField.mul and other g
 
 • **\_\_namedParameters**= `{}`
 
-• **\_\_namedParameters\.skipMrc**: `undefined` \| `boolean`= `false`
+• **\_\_namedParameters.skipMrc**: `undefined` \| `boolean`= `false`
 
 #### Returns
 
@@ -576,7 +576,7 @@ Provable.log(sum); // ['16', '0', '0'] = limb representation of 16 = 4 + 5 - 10 
 
 ```ts
 SHA256: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -628,8 +628,8 @@ addMod32: (x: Field, y: Field) => Field;
 
 ```ts
 divMod32: (n: Field, quotientBits: number) => {
-  quotient: Field;
-  remainder: Field;
+  "quotient": Field;
+  "remainder": Field;
 };
 ```
 
@@ -643,8 +643,8 @@ divMod32: (n: Field, quotientBits: number) => {
 
 ```ts
 {
-  quotient: Field;
-  remainder: Field;
+  "quotient": Field;
+  "remainder": Field;
 }
 ```
 
@@ -1053,7 +1053,7 @@ The value to be range-checked.
 
 #### Returns
 
-`void`
+[[`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx), [`Field`](../classes/Field.mdx)]
 
 #### Throws
 
@@ -1072,6 +1072,10 @@ Gadgets.rangeCheck64(xLarge); // throws an error since input exceeds 64 bits
 **Note**: Small "negative" field element inputs are interpreted as large integers close to the field size,
 and don't pass the 64-bit check. If you want to prove that a value lies in the int64 range [-2^63, 2^63),
 you could use `rangeCheck64(x.add(1n << 63n))`.
+
+_Advanced usage_: This returns the 4 highest limbs of x, in reverse order, i.e. [x52, x40, x28, x16].
+This is useful if you want to do a range check for 52, 40, 28, or 16 bits instead of 64,
+by constraining some of the returned limbs to be 0.
 
 ### rangeCheck8()
 
@@ -1330,4 +1334,4 @@ c.assertEquals(0b0110);
 
 ## Source
 
-[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/gadgets/gadgets.ts#L36)
+[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/provable/gadgets/gadgets.ts#L36)
