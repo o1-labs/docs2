@@ -46,6 +46,7 @@ module.exports = {
             'zkapps/testing-zkapps-lightnet',
             'zkapps/how-to-deploy-a-zkapp',
             'zkapps/how-to-write-a-zkapp-ui',
+            'zkapps/secure-zkapps',
           ],
         },
         {
