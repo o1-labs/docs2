@@ -46,27 +46,27 @@ console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
 const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
-const char1EqualsChar2: Bool = char1.equals(char2);
+const char1EqualsChar2: Bool = char1.toField().equals(char2.toField());
 
 console.log(`char1: ${char1}`);
 console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
-console.log(`Fields in char1: ${char1.toFields().length}`);
+console.log(`Fields in char1: ${Character.toFields(char1).length}`);
+
 console.log('--------------------------------------');
 
 // --------------------------------------
 
 const str1 = CircuitString.fromString('abc..xyz');
 console.log(`str1: ${str1}`);
-console.log(`Fields in str1: ${str1.toFields().length}`);
+console.log(`Fields in str1: ${CircuitString.toFields(str1).length}`);
 
 // --------------------------------------
 
 const zkAppPrivateKey = PrivateKey.random();
 const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
 
-const data1 = char2.toFields().concat(signedNumSum.toFields());
-const data2 = char1.toFields().concat(str1.toFields());
-
+const data1 = Character.toFields(char2).concat(signedNumSum.toFields());
+const data2 = Character.toFields(char1).concat(CircuitString.toFields(str1));
 const signature = Signature.create(zkAppPrivateKey, data2);
 
 const verifiedData1 = signature.verify(zkAppPublicKey, data1).toString();
