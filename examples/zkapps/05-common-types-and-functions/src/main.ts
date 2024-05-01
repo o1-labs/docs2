@@ -67,6 +67,7 @@ const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
 
 const data1 = Character.toFields(char2).concat(signedNumSum.toFields());
 const data2 = Character.toFields(char1).concat(CircuitString.toFields(str1));
+
 const signature = Signature.create(zkAppPrivateKey, data2);
 
 const verifiedData1 = signature.verify(zkAppPublicKey, data1).toString();
