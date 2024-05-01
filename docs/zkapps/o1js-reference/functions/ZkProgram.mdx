@@ -1,68 +1,68 @@
 ```ts
-ZkProgram<StatementType, Types>(config: StatementType & {
-  methods: { [I in string | number | symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> };
-  name: string;
-  overrideWrapDomain: 0 | 2 | 1;
-  }): {
-  analyzeMethods: () => Promise<{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }>;
-  compile: (options?: {
-     cache: Cache;
-     forceRecompile: boolean;
-     }) => Promise<{
-     verificationKey: {
-        data: string;
-        hash: Field;
-     };
-  }>;
-  digest: () => Promise<string>;
-  name: string;
-  privateInputTypes: { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] };
-  publicInputType: ProvableOrUndefined<Get<StatementType, "publicInput">>;
-  publicOutputType: ProvableOrVoid<Get<StatementType, "publicOutput">>;
-  rawMethods: { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] };
-  verify: (proof: Proof<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>>) => Promise<boolean>;
-  } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }
+function ZkProgram<StatementType, Types>(config: StatementType & {
+  "methods": { [I in string | number | symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> };
+  "name": string;
+  "overrideWrapDomain": 0 | 2 | 1;
+ }): {
+  "analyzeMethods": () => Promise<{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }>;
+  "compile": (options?: {
+     "cache": Cache;
+     "forceRecompile": boolean;
+    }) => Promise<{
+     "verificationKey": {
+        "data": string;
+        "hash": Field;
+       };
+    }>;
+  "digest": () => Promise<string>;
+  "name": string;
+  "privateInputTypes": { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] };
+  "publicInputType": ProvableOrUndefined<Get<StatementType, "publicInput">>;
+  "publicOutputType": ProvableOrVoid<Get<StatementType, "publicOutput">>;
+  "rawMethods": { [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] };
+  "verify": (proof: Proof<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>>) => Promise<boolean>;
+ } & { [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }
 ```
 
 ## Type parameters
 
-• **StatementType** extends \{
-  `publicInput`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
-  `publicOutput`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
-  }
+• **StatementType** *extends* \{
+  `"publicInput"`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
+  `"publicOutput"`: [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>;
+ \}
 
-• **Types** extends \{}
+• **Types** *extends* \{\}
 
 ## Parameters
 
 • **config**: `StatementType` & \{
-  `methods`: `{ [I in string | number | symbol]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`;
-  `name`: `string`;
-  `overrideWrapDomain`: `0` \| `2` \| `1`;
-  }
+  `"methods"`: \{ [I in string \| number \| symbol]: Method\<InferProvableOrUndefined\<Get\<StatementType, "publicInput"\>\>, InferProvableOrVoid\<Get\<StatementType, "publicOutput"\>\>, Types[I]\> \};
+  `"name"`: `string`;
+  `"overrideWrapDomain"`: `0` \| `2` \| `1`;
+ \}
 
 ## Returns
 
 \{
-  `analyzeMethods`: () => `Promise`\<`{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }`\>;
-  `compile`: (`options`?: \{
-     `cache`: [`Cache`](../type-aliases/Cache.mdx);
-     `forceRecompile`: `boolean`;
-     }) => `Promise`\<\{
-     `verificationKey`: \{
-        `data`: `string`;
-        `hash`: [`Field`](../type-aliases/Field.mdx);
-     };
-  }\>;
-  `digest`: () => `Promise`\<`string`\>;
-  `name`: `string`;
-  `privateInputTypes`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] }`;
-  `publicInputType`: `ProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>;
-  `publicOutputType`: `ProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>;
-  `rawMethods`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] }`;
-  `verify`: (`proof`: [`Proof`](../classes/Proof.mdx)\<`InferProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>, `InferProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>\>) => `Promise`\<`boolean`\>;
-  } & `{ [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`
+  `"analyzeMethods"`: () => `Promise`\<`{ [I in keyof Types]: UnwrapPromise<ReturnType<typeof analyzeMethod>> }`\>;
+  `"compile"`: (`options`?: \{
+     `"cache"`: [`Cache`](../type-aliases/Cache.mdx);
+     `"forceRecompile"`: `boolean`;
+    \}) => `Promise`\<\{
+     `"verificationKey"`: \{
+        `"data"`: `string`;
+        `"hash"`: [`Field`](../type-aliases/Field.mdx);
+       \};
+    \}\>;
+  `"digest"`: () => `Promise`\<`string`\>;
+  `"name"`: `string`;
+  `"privateInputTypes"`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["privateInputs"] }`;
+  `"publicInputType"`: `ProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>;
+  `"publicOutputType"`: `ProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>;
+  `"rawMethods"`: `{ [I in keyof Types]: Method<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]>["method"] }`;
+  `"verify"`: (`proof`: [`Proof`](../classes/Proof.mdx)\<`InferProvableOrUndefined`\<`Get`\<`StatementType`, `"publicInput"`\>\>, `InferProvableOrVoid`\<`Get`\<`StatementType`, `"publicOutput"`\>\>\>) => `Promise`\<`boolean`\>;
+ \} & `{ [I in keyof Types]: Prover<InferProvableOrUndefined<Get<StatementType, "publicInput">>, InferProvableOrVoid<Get<StatementType, "publicOutput">>, Types[I]> }`
 
 ## Source
 
-[lib/proof-system/zkprogram.ts:249](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L249)
+[lib/proof-system/zkprogram.ts:393](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L393)

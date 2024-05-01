@@ -1,10 +1,10 @@
 ```ts
-acquireKeyPair(options: {
-  isRegularAccount: boolean;
-  lightnetAccountManagerEndpoint: string;
-  }): Promise<{
-  privateKey: PrivateKey;
-  publicKey: PublicKey;
+function acquireKeyPair(options: {
+  "isRegularAccount": boolean;
+  "lightnetAccountManagerEndpoint": string;
+ }): Promise<{
+  "privateKey": PrivateKey;
+  "publicKey": PublicKey;
 }>
 ```
 
@@ -18,20 +18,20 @@ the data is returned.
 
 • **options**= `{}`
 
-• **options\.isRegularAccount?**: `boolean`
+• **options.isRegularAccount?**: `boolean`
 
 Whether to acquire key pair of regular or zkApp account (one with already configured verification key)
 
-• **options\.lightnetAccountManagerEndpoint?**: `string`
+• **options.lightnetAccountManagerEndpoint?**: `string`
 
 Account manager endpoint to fetch from
 
 ## Returns
 
 `Promise`\<\{
-  `privateKey`: [`PrivateKey`](../../../classes/PrivateKey.mdx);
-  `publicKey`: [`PublicKey`](../../../classes/PublicKey.mdx);
-  }\>
+  `"privateKey"`: [`PrivateKey`](../../../classes/PrivateKey.mdx);
+  `"publicKey"`: [`PublicKey`](../../../classes/PublicKey.mdx);
+ \}\>
 
 Key pair
 
@@ -50,4 +50,4 @@ Key pair
 
 ## Source
 
-[lib/mina/fetch.ts:816](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/fetch.ts#L816)
+[lib/mina/fetch.ts:816](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/fetch.ts#L816)
