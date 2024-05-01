@@ -17,27 +17,29 @@ zkApp programmability is not yet available on the Mina Mainnet, but zkApps can n
 
 # How to Deploy a zkApp
 
-Before deploying, you must first define a few settings, such as which network you are deploying to. 
+Before deploying, you must first define a few settings, such as which network you are deploying your zkApp to. 
 
 ## Add a deploy alias to config.json
 
-Create a [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in the `config.json` file in your smart contract project.
-
-First, change into the directory that contains your smart contract and then run the
-following command:
+First, change into the directory that contains your smart contract and then run the following command:
 
 ```sh
 zk config
 ```
 
-When prompted, specify a name (can be anything), the target network (`testnet` or `mainnet`), the URL to deploy to, fee (in
-MINA) to be used when sending your deploy transaction, and the fee payer account. 
+When prompted, specify:
 
-For more details, see [Deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) in Tutorial 3: Deploy to a Live Network. 
+- The name (can be anything)
+- The target network kind (`Testnet`, `Mainnet` or enter the custom network kind id) to deploy your zkApp to
+- The URL to send the deploy transaction to
+- Transaction fee (in MINA) to use when deploying
+- The fee payer account to pay transaction fees from
+
+For more details, see [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) section in corresponding tutorial. 
 
 :::tip
 If your project contains multiple smart contracts (for example, `Foo` and `Bar`) that
-you intend to deploy to the same network, a best practice is to follow a naming convention such as `berkeley-foo` and `berkeley-bar` when naming your deploy aliases. You can change these alias names at any time in `config.json`.
+you intend to deploy to the same network, the best practice is to follow the naming convention such as `berkeley-foo` and `berkeley-bar` when naming your deploy aliases. You can change these alias names at any time by manually editing the `config.json` file.
 :::
 
 You see the following output:
@@ -46,28 +48,34 @@ You see the following output:
 $ zk config
 
 Add a new network:
-✔ Choose a name (can be anything): · berkeley
-✔ Set URL to deploy to: · https://proxy.berkeley.minaexplorer.com/graphql
+✔ Create a name (can be anything): · berkeley
+✔ Choose the target network: · Testnet
+✔ Set the Mina GraphQL API URL to deploy to: · https://proxy.berkeley.minaexplorer.com/graphql
 ✔ Set transaction fee to use when deploying (in MINA): · 0.1
-✔ Create key pair at keys/berkeley.json
-✔ Add network to config.json
+✔ Choose an account to pay transaction fees: · Use stored account MyFeePayer (public key: B62...)
+✔ Use stored fee payer MyFeePayer (public key: B62...)
+✔ Create zkApp key pair at keys/berkeley.json
+✔ Add deploy alias to config.json
 
 Success!
 
 Next steps:
 
-- If this is a testnet, request tMINA at:
-  https://faucet.minaprotocol.com/?address=<YOUR-ADDRESS>
-- To deploy, run: `zk deploy berkeley`
+- If this is the testnet, request tMINA at:
+  https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>
+- To deploy zkApp, run: `zk deploy berkeley`
 ```
 
-## Request funds from the faucet
+## Request funds from the Faucet
 
-To deploy your zkApp, you must have funds to pay for transaction fees.
+To deploy your zkApp, your fee payer account must have funds to pay for transaction fees.
 
-To get funds on the Berkeley Testnet, use the URL that was shown from the zkApp CLI output. Visit `https://faucet.minaprotocol.com/?address=<YOUR-ADDRESS>` and click **Request**.
+To get funds on the Berkeley Testnet, use the URL that was shown in the zkApp CLI output:
+- Visit `https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>`
+- Choose the corresponding network you're going to deploy your zkApp to
+- And click the **Request** button
 
-Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so tMINA is available.
+Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so that tMINA becomes available for the fee payer account.
 
 ## Deploy your smart contract
 
@@ -77,9 +85,9 @@ To deploy your smart contract to the network, run the following command:
 zk deploy berkeley
 ```
 
-When running the deploy command, the zkApp CLI computes a verification key for your zkApp CLI. Computing the verification key can take 1-2 minutes, so please be patient. The zkApp CLI shows the details of the transaction, such as the network name, the URL, and the smart contract to deploy.
+Among other activities, when running the deploy command, zkApp CLI computes the verification key for your zkApp. Computing verification key can take 10-30 seconds, so please be patient. The zkApp CLI shows the details of the process, such as the network name, the URL, and the smart contract to deploy.
 
-Finally, enter `yes` or `y` when prompted to confirm and send the transaction.
+Finally, enter `yes` or `y` when prompted to confirm and send the deploy transaction.
 
 You see the following output:
 
@@ -91,9 +99,26 @@ $ zk deploy berkeley
   Only one smart contract exists in the project: Add
   Your config.json was updated to always use this
   smart contract when deploying to this network.
-✔ Generate verification key (takes 1-2 min)
+✔ Generate verification key (takes 10-30 sec)
 ✔ Build transaction
 ✔ Confirm to send transaction
+
+  |-----------------|-------------------------------------------------|
+  | Deploy alias    | berkeley                                        |
+  |-----------------|-------------------------------------------------|
+  | Network kind    | testnet                                         |
+  |-----------------|-------------------------------------------------|
+  | URL             | https://proxy.berkeley.minaexplorer.com/graphql |
+  |-----------------|-------------------------------------------------|
+  | Fee payer       | Alias         : MyFeePayer                      |
+  |                 | Account       : B62...                          |
+  |-----------------|-------------------------------------------------|
+  | zkApp           | Smart contract: Add                             |
+  |                 | Account       : B62...                          |
+  |-----------------|-------------------------------------------------|
+  | Transaction fee | 0.1 Mina                                        |
+  |-----------------|-------------------------------------------------|
+
   Are you sure you want to send (yes/no)? · y
 ✔ Send to network
 
@@ -101,14 +126,15 @@ Success! Deploy transaction sent.
 
 Next step:
   Your smart contract will be live (or updated)
+  at B62...
   as soon as the transaction is included in a block:
-  https://berkeley.minaexplorer.com/transaction/<txn-hash>
+  https://minascan.io/berkeley/tx/<txn-hash>?type=zk-tx
 ```
 
-After a few minutes, the transaction is included in the next block. To see your changes, go to on [berkeley.minaexplorer.com](https://berkeley.minaexplorer.com) and search for the address that you used.
+After a few minutes, the transaction is included in the next block.  
+To see the zkApp transaction and navigate to accounts involved you can follow the transaction link provided to you in zkApp CLI output.  
+Or use the [Minascan](https://minascan.io) explorer to search for the account with deployed zkApp.
 
 ## Next Steps
 
-More local development and testing! Use Lightnet to test your zkApp locally on an accurate representation of the Mina blockchain. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet).
-
-Now that you've learned how to deploy a smart contract, you can now learn [how to write a UI for your zkApp](how-to-write-a-zkapp-ui).
+Now that you've learned how to deploy a smart contract, you can learn [how to write the UI for your zkApp](how-to-write-a-zkapp-ui).
