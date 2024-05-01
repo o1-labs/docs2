@@ -1,24 +1,24 @@
 ```ts
-fetchEvents(
+function fetchEvents(
    accountInfo: {
-  publicKey: string;
-  tokenId: string;
-  }, 
+  "publicKey": string;
+  "tokenId": string;
+ }, 
    graphqlEndpoint?: string, 
    filterOptions?: EventActionFilterOptions): Promise<{
-  blockHash: event.blockInfo.stateHash;
-  blockHeight: UInt32;
-  chainStatus: event.blockInfo.chainStatus;
-  events: {
-     data: string[];
-     transactionInfo: {
-        hash: string;
-        memo: string;
-        status: string;
-     };
-  }[];
-  globalSlot: UInt32;
-  parentBlockHash: event.blockInfo.parentHash;
+  "blockHash": event.blockInfo.stateHash;
+  "blockHeight": UInt32;
+  "chainStatus": event.blockInfo.chainStatus;
+  "events": {
+     "data": string[];
+     "transactionInfo": {
+        "hash": string;
+        "memo": string;
+        "status": string;
+       };
+    }[];
+  "globalSlot": UInt32;
+  "parentBlockHash": event.blockInfo.parentHash;
 }[]>
 ```
 
@@ -30,11 +30,11 @@ Asynchronously fetches event data for an account from the Mina Archive Node Grap
 
 The account information object.
 
-• **accountInfo\.publicKey**: `string`
+• **accountInfo.publicKey**: `string`
 
 The account public key.
 
-• **accountInfo\.tokenId?**: `string`
+• **accountInfo.tokenId?**: `string`
 
 The optional token ID for the account.
 
@@ -49,20 +49,20 @@ The optional filter options object.
 ## Returns
 
 `Promise`\<\{
-  `blockHash`: `event.blockInfo.stateHash`;
-  `blockHeight`: [`UInt32`](../classes/UInt32.mdx);
-  `chainStatus`: `event.blockInfo.chainStatus`;
-  `events`: \{
-     `data`: `string`[];
-     `transactionInfo`: \{
-        `hash`: `string`;
-        `memo`: `string`;
-        `status`: `string`;
-     };
-  }[];
-  `globalSlot`: [`UInt32`](../classes/UInt32.mdx);
-  `parentBlockHash`: `event.blockInfo.parentHash`;
-  }[]\>
+  `"blockHash"`: `event.blockInfo.stateHash`;
+  `"blockHeight"`: [`UInt32`](../classes/UInt32.mdx);
+  `"chainStatus"`: `event.blockInfo.chainStatus`;
+  `"events"`: \{
+     `"data"`: `string`[];
+     `"transactionInfo"`: \{
+        `"hash"`: `string`;
+        `"memo"`: `string`;
+        `"status"`: `string`;
+       \};
+    \}[];
+  `"globalSlot"`: [`UInt32`](../classes/UInt32.mdx);
+  `"parentBlockHash"`: `event.blockInfo.parentHash`;
+ \}[]\>
 
 A promise that resolves to an array of objects containing event data, block information and transaction information for the account.
 
@@ -82,4 +82,4 @@ console.log(events);
 
 ## Source
 
-[lib/mina/fetch.ts:637](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/fetch.ts#L637)
+[lib/mina/fetch.ts:637](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/fetch.ts#L637)

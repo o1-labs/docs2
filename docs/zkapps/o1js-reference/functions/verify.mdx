@@ -1,10 +1,10 @@
 ```ts
-verify(proof: JsonProof | Proof<any, any>, verificationKey: string | VerificationKey): Promise<boolean>
+function verify(proof: JsonProof | ProofBase<any, any>, verificationKey: string | VerificationKey): Promise<boolean>
 ```
 
 ## Parameters
 
-• **proof**: [`JsonProof`](../type-aliases/JsonProof.mdx) \| [`Proof`](../classes/Proof.mdx)\<`any`, `any`\>
+• **proof**: [`JsonProof`](../type-aliases/JsonProof.mdx) \| `ProofBase`\<`any`, `any`\>
 
 • **verificationKey**: `string` \| [`VerificationKey`](../classes/VerificationKey.mdx)
 
@@ -14,4 +14,4 @@ verify(proof: JsonProof | Proof<any, any>, verificationKey: string | Verificatio
 
 ## Source
 
-[lib/proof-system/zkprogram.ts:194](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/proof-system/zkprogram.ts#L194)
+[lib/proof-system/zkprogram.ts:328](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/proof-system/zkprogram.ts#L328)
