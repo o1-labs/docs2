@@ -158,8 +158,9 @@ Mina.setActiveInstance(Local);
 const deployerAccount = Local.testAccounts[0];
 const deployerKey = deployerAccount.key;
 const senderPublicKey = Local.testAccounts[1];
-const senderPrivateKey = deployerAccount.key;
-// --------------------------------------
+const senderPrivateKey = senderPublicKey.key;
+
+//  --------------------------------------
 // create a new merkle tree and BasicMerkleTreeContract zkapp account
 
 {
@@ -211,7 +212,9 @@ const senderPrivateKey = deployerAccount.key;
     );
   });
   await txn1.prove();
-  const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
+  const pendingTx = await txn1
+    .sign([senderPrivateKey, basicTreeZkAppPrivateKey])
+    .send();
   await pendingTx.wait();
 
   // compare the root of the smart contract tree to our local tree
