@@ -57,10 +57,10 @@ The genesis state hash is the protocol state hash for the genesis protocol state
 The blockchain state is comprised of:
 
 * Staged ledger hash
-* Snarked ledger hash
-* Snarked next available token
 * Genesis ledger hash
+* Ledger proof statement
 * Timestamp
+* Body reference
 
 #### Consensus State
 
@@ -80,6 +80,7 @@ The consensus state is comprised of:
 * Block stake winner
 * Block creator
 * Coinbase receiver
+* Superchage coinbase
 
 #### Consensus Constants
 
@@ -91,11 +92,11 @@ Constants define the consensus parameters:
 * slots_per_window
 * sub_windows_per_window
 * slots_per_epoch
-* epoch duration
+* grace period slots
+* grace period end
 * checkpoint_window_slots_per_year
 * checkpoint_window_size_in_slots
 * block_window_duration_ms
-* acceptable network delay
 * slot_duration_ms
 * epoch_duration
 * delta_duration
@@ -137,6 +138,108 @@ There is an allowed network delay when broadcasting or gossiping newly produced 
             },
             "pending_coinbase_hash": "2mze7iXKwA9JAqVDC1MVvgWfJDgvbgSexKtuShdkgqMfv1tjATQQ"
           },
+          "ledger_proof_statement": {
+            "connecting_ledger_right": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S",
+            "sok_digest": null,
+            "target": {
+              "local_state": {
+                "full_transaction_commitment": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "call_stack": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "token_id": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+                "excess": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                },
+                "success": true,
+                "stack_frame": "0x0641662E94D68EC970D0AFC059D02729BBF4A2CD88C548CCD9FB1E26E570C66C",
+                "will_succeed": true,
+                "account_update_index": "0",
+                "supply_increase": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                },
+                "ledger": "jw6bz2wud1N6itRUHZ5ypo3267stk4UgzkiuWtAMPRZo9g4Udyd",
+                "failure_status_tbl": [],
+                "transaction_commitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pending_coinbase_stack": {
+                "state": {
+                  "init": "4Yx5U3t3EYQycZ91yj4478bHkLwGkhDHnPbCY9TxgUk69SQityej",
+                  "curr": "4Yx5U3t3EYQycZ91yj4478bHkLwGkhDHnPbCY9TxgUk69SQityej"
+                },
+                "data": "4QNrZFBTDQCPfEZqBZsaPYx8qdaNFv1nebUyCUsQW9QUJqyuD3un"
+              },
+              "first_pass_ledger": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S",
+              "second_pass_ledger": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S"
+            },
+            "fee_excess": [
+              {
+                "token": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+                "amount": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                }
+              },
+              {
+                "amount": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                },
+                "token": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf"
+              }
+            ],
+            "source": {
+              "second_pass_ledger": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S",
+              "local_state": {
+                "account_update_index": "0",
+                "supply_increase": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                },
+                "stack_frame": "0x0641662E94D68EC970D0AFC059D02729BBF4A2CD88C548CCD9FB1E26E570C66C",
+                "ledger": "jw6bz2wud1N6itRUHZ5ypo3267stk4UgzkiuWtAMPRZo9g4Udyd",
+                "transaction_commitment": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "token_id": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+                "excess": {
+                  "sgn": [
+                    "Pos"
+                  ],
+                  "magnitude": "0"
+                },
+                "call_stack": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "will_succeed": true,
+                "full_transaction_commitment": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "failure_status_tbl": [],
+                "success": true
+              },
+              "first_pass_ledger": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S",
+              "pending_coinbase_stack": {
+                "data": "4QNrZFBTDQCPfEZqBZsaPYx8qdaNFv1nebUyCUsQW9QUJqyuD3un",
+                "state": {
+                  "curr": "4Yx5U3t3EYQycZ91yj4478bHkLwGkhDHnPbCY9TxgUk69SQityej",
+                  "init": "4Yx5U3t3EYQycZ91yj4478bHkLwGkhDHnPbCY9TxgUk69SQityej"
+                }
+              }
+            },
+            "supply_increase": {
+              "sgn": [
+                "Pos"
+              ],
+              "magnitude": "0"
+            },
+            "connecting_ledger_left": "jwbhUympjiAFLPi7w3Cg9GEeNCfACEpPxrTp45XZt3BDA5UNV8S"
+          },
+          "body_reference": "b94b2580ca80f27c9655289579a0d71df0b7604dfa7c404e6c309cccf7730d2f",
           "snarked_ledger_hash": "jx9171AbMApHNG1guAcKct1E6nyUFweA7M4ZPCjBZpgNNrE21Nj",
           "genesis_ledger_hash": "jxX6VJ84HaafrKozFRA4qjnni4aPXqXC2H5vQLKSryNpKTXuz1R",
           "snarked_next_available_token": "2",
