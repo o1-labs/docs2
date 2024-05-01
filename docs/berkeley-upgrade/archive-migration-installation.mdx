@@ -102,8 +102,8 @@ To get the Debian packages:
 
 ```
 CODENAME=bullseye
-CHANNEL=devnet
-VERSION=3.0.0devnet-tooling-6e92017
+CHANNEL=stable
+VERSION=3.0.1-e848ecb
 
 echo "deb [trusted=yes] http://packages.o1test.net $CODENAME $CHANNEL" | tee /etc/apt/sources.list.d/mina.list
 apt-get update
@@ -115,8 +115,14 @@ apt-get install --allow-downgrades -y "mina-archive-migration=$VERSION"
 To get the Docker image:
 
 ```
-docker pull gcr.io/o1labs-192920/mina-archive-migration:3.0.0-rc0
+docker pull gcr.io/o1labs-192920/mina-archive-migration:3.0.1-e848ecb-{codename}
 ```
+
+Where supported codenames are: 
+- bullseye
+- focal
+- buster
+
 
 ## Devnet/Mainnet genesis ledger
 
