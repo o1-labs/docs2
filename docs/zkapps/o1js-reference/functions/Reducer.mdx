@@ -1,20 +1,20 @@
 ```ts
-Reducer<T, A>(reducer: {
-  actionType: T;
+function Reducer<T, A>(reducer: {
+  "actionType": T;
 }): ReducerReturn<A>
 ```
 
 ## Type parameters
 
-• **T** extends [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>
+• **T** *extends* [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>
 
-• **A** extends `any` = [`InferProvable`](../type-aliases/InferProvable.mdx)\<`T`\>
+• **A** *extends* `any` = [`InferProvable`](../type-aliases/InferProvable.mdx)\<`T`\>
 
 ## Parameters
 
 • **reducer**
 
-• **reducer\.actionType**: `T`
+• **reducer.actionType**: `T`
 
 ## Returns
 
@@ -22,4 +22,4 @@ Reducer<T, A>(reducer: {
 
 ## Source
 
-[lib/mina/zkapp.ts:1513](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L1513)
+[lib/mina/zkapp.ts:1513](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L1513)

@@ -1,21 +1,21 @@
 ```ts
-fetchEvents(
+function fetchEvents(
    publicKey: PublicKey, 
    tokenId: Field, 
    filterOptions: EventActionFilterOptions): Promise<{
-  blockHash: event.blockInfo.stateHash;
-  blockHeight: UInt32;
-  chainStatus: event.blockInfo.chainStatus;
-  events: {
-     data: string[];
-     transactionInfo: {
-        hash: string;
-        memo: string;
-        status: string;
-     };
-  }[];
-  globalSlot: UInt32;
-  parentBlockHash: event.blockInfo.parentHash;
+  "blockHash": event.blockInfo.stateHash;
+  "blockHeight": UInt32;
+  "chainStatus": event.blockInfo.chainStatus;
+  "events": {
+     "data": string[];
+     "transactionInfo": {
+        "hash": string;
+        "memo": string;
+        "status": string;
+       };
+    }[];
+  "globalSlot": UInt32;
+  "parentBlockHash": event.blockInfo.parentHash;
 }[]>
 ```
 
@@ -30,23 +30,23 @@ fetchEvents(
 ## Returns
 
 `Promise`\<\{
-  `blockHash`: `event.blockInfo.stateHash`;
-  `blockHeight`: [`UInt32`](../../../classes/UInt32.mdx);
-  `chainStatus`: `event.blockInfo.chainStatus`;
-  `events`: \{
-     `data`: `string`[];
-     `transactionInfo`: \{
-        `hash`: `string`;
-        `memo`: `string`;
-        `status`: `string`;
-     };
-  }[];
-  `globalSlot`: [`UInt32`](../../../classes/UInt32.mdx);
-  `parentBlockHash`: `event.blockInfo.parentHash`;
-  }[]\>
+  `"blockHash"`: `event.blockInfo.stateHash`;
+  `"blockHeight"`: [`UInt32`](../../../classes/UInt32.mdx);
+  `"chainStatus"`: `event.blockInfo.chainStatus`;
+  `"events"`: \{
+     `"data"`: `string`[];
+     `"transactionInfo"`: \{
+        `"hash"`: `string`;
+        `"memo"`: `string`;
+        `"status"`: `string`;
+       \};
+    \}[];
+  `"globalSlot"`: [`UInt32`](../../../classes/UInt32.mdx);
+  `"parentBlockHash"`: `event.blockInfo.parentHash`;
+ \}[]\>
 
 A list of emitted events associated to the given public key.
 
 ## Source
 
-[lib/mina/mina-instance.ts:186](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/mina-instance.ts#L186)
+[lib/mina/mina-instance.ts:186](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/mina-instance.ts#L186)
