@@ -274,15 +274,16 @@ Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree
     await secondaryInstance.deploy();
   });
 
-  await deploy_txn.prove();
-  deploy_txn.sign([deployerKey, proofsOnlySk, secondarySk]);
+  await deployTxn.prove();
+  deployTxn.sign([deployerKey, proofsOnlySk, secondarySk]);
 
-  await showTxn(deploy_txn, 'deploy_txn', legend);
+  await showTxn(deployTxn, 'deploy_txn', legend);
 
-  await deploy_txn.send();
+  await deployTxn.send();
+
   ```
 
-This yields the following visualization of `deploy_txn`.
+This yields the following visualization of `deployTxn`.
 
 <img src="/img/tutorial-10-deploy_txn.png" width="100%" />
 
