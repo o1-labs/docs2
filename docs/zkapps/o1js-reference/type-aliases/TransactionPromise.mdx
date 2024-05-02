@@ -1,12 +1,12 @@
 ```ts
 type TransactionPromise<Proven, Signed>: Promise<Transaction<Proven, Signed>> & {
-  send: PendingTransactionPromise;
-  } & Proven extends false ? {
-  prove: TransactionPromise<true, Signed>;
-  } : {
-  proofs: Promise<Transaction<true, Signed>["proofs"]>;
-  } & Signed extends false ? {
-  sign: TransactionPromise<Proven, true>;
+  "send": PendingTransactionPromise;
+ } & Proven extends false ? {
+  "prove": TransactionPromise<true, Signed>;
+ } : {
+  "proofs": Promise<Transaction<true, Signed>["proofs"]>;
+ } & Signed extends false ? {
+  "sign": TransactionPromise<Proven, true>;
 } : {};
 ```
 
@@ -25,10 +25,10 @@ Equivalent to calling the resolved `Transaction`'s `send` method.
 
 ## Type parameters
 
-• **Proven** extends `boolean`
+• **Proven** *extends* `boolean`
 
-• **Signed** extends `boolean`
+• **Signed** *extends* `boolean`
 
 ## Source
 
-[lib/mina/transaction.ts:313](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/transaction.ts#L313)
+[lib/mina/transaction.ts:313](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/transaction.ts#L313)

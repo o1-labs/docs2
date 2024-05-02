@@ -1,7 +1,7 @@
 ```ts
-encrypt(message: Field[], otherPublicKey: PublicKey): {
-  cipherText: Field[];
-  publicKey: Group;
+function encrypt(message: Field[], otherPublicKey: PublicKey): {
+  "cipherText": Field[];
+  "publicKey": Group;
 }
 ```
 
@@ -17,8 +17,8 @@ Public Key Encryption, using a given array of [Field](../../../variables/Field.m
 
 ```ts
 {
-  cipherText: Field[];
-  publicKey: Group;
+  "cipherText": Field[];
+  "publicKey": Group;
 }
 ```
 
@@ -36,4 +36,4 @@ publicKey: Group;
 
 ## Source
 
-[lib/provable/crypto/encryption.ts:16](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/crypto/encryption.ts#L16)
+[lib/provable/crypto/encryption.ts:16](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/provable/crypto/encryption.ts#L16)

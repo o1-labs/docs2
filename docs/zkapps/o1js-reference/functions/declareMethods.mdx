@@ -1,5 +1,5 @@
 ```ts
-declareMethods<T>(SmartContract: T, methodArguments: Record<string, Provable<unknown>[]>): void
+function declareMethods<T>(SmartContract: T, methodArguments: Record<string, Provable<unknown>[]>): void
 ```
 
 `declareMethods` can be used in place of the `@method` decorator
@@ -19,7 +19,7 @@ Note that a method of the same name must still be defined on the class, just wit
 
 ## Type parameters
 
-• **T** extends *typeof* [`SmartContract`](../classes/SmartContract.mdx)
+• **T** *extends* *typeof* [`SmartContract`](../classes/SmartContract.mdx)
 
 ## Parameters
 
@@ -33,4 +33,4 @@ Note that a method of the same name must still be defined on the class, just wit
 
 ## Source
 
-[lib/mina/zkapp.ts:1499](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L1499)
+[lib/mina/zkapp.ts:1499](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L1499)

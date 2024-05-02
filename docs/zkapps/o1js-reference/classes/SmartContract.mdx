@@ -12,7 +12,7 @@ class YourSmartContract extends SmartContract {
 
 ## Constructors
 
-### new SmartContract(address, tokenId)
+### new SmartContract()
 
 ```ts
 new SmartContract(address: PublicKey, tokenId?: Field): SmartContract
@@ -34,7 +34,7 @@ new SmartContract(address: PublicKey, tokenId?: Field): SmartContract
 
 #### Source
 
-[lib/mina/zkapp.ts:610](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L610)
+[lib/mina/zkapp.ts:610](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L610)
 
 ## Properties
 
@@ -46,7 +46,7 @@ address: PublicKey;
 
 #### Source
 
-[lib/mina/zkapp.ts:575](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L575)
+[lib/mina/zkapp.ts:575](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L575)
 
 ***
 
@@ -64,7 +64,7 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 #### Source
 
-[lib/mina/zkapp.ts:951](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L951)
+[lib/mina/zkapp.ts:951](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L951)
 
 ***
 
@@ -72,9 +72,9 @@ A list of event types that can be emitted using this.emitEvent()`.
 
 ```ts
 sender: {
-  self: SmartContract;
-  getAndRequireSignature: PublicKey;
-  getUnconstrained: PublicKey;
+  "self": SmartContract;
+  "getAndRequireSignature": PublicKey;
+  "getUnconstrained": PublicKey;
 };
 ```
 
@@ -105,7 +105,7 @@ A malicious prover could use any other public key without affecting the validity
 
 #### Source
 
-[lib/mina/zkapp.ts:854](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L854)
+[lib/mina/zkapp.ts:854](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L854)
 
 ***
 
@@ -117,7 +117,7 @@ tokenId: Field;
 
 #### Source
 
-[lib/mina/zkapp.ts:576](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L576)
+[lib/mina/zkapp.ts:576](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L576)
 
 ***
 
@@ -129,7 +129,7 @@ static optional _maxProofsVerified: 0 | 2 | 1;
 
 #### Source
 
-[lib/mina/zkapp.ts:595](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L595)
+[lib/mina/zkapp.ts:595](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L595)
 
 ***
 
@@ -137,16 +137,16 @@ static optional _maxProofsVerified: 0 | 2 | 1;
 
 ```ts
 static optional _methodMetadata: Record<string, {
-  actions: number;
-  digest: string;
-  gates: Gate[];
-  rows: number;
+  "actions": number;
+  "digest": string;
+  "gates": Gate[];
+  "rows": number;
 }>;
 ```
 
 #### Source
 
-[lib/mina/zkapp.ts:585](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L585)
+[lib/mina/zkapp.ts:585](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L585)
 
 ***
 
@@ -158,7 +158,7 @@ static optional _methods: MethodInterface[];
 
 #### Source
 
-[lib/mina/zkapp.ts:584](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L584)
+[lib/mina/zkapp.ts:584](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L584)
 
 ***
 
@@ -170,7 +170,7 @@ static optional _provers: Prover[];
 
 #### Source
 
-[lib/mina/zkapp.ts:594](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L594)
+[lib/mina/zkapp.ts:594](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L594)
 
 ***
 
@@ -178,8 +178,8 @@ static optional _provers: Prover[];
 
 ```ts
 static optional _verificationKey: {
-  data: string;
-  hash: Field;
+  "data": string;
+  "hash": Field;
 };
 ```
 
@@ -197,7 +197,7 @@ hash: Field;
 
 #### Source
 
-[lib/mina/zkapp.ts:596](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L596)
+[lib/mina/zkapp.ts:596](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L596)
 
 ## Accessors
 
@@ -215,7 +215,7 @@ Current account of the [SmartContract](SmartContract.mdx).
 
 #### Source
 
-[lib/mina/zkapp.ts:892](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L892)
+[lib/mina/zkapp.ts:892](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L892)
 
 ***
 
@@ -223,8 +223,8 @@ Current account of the [SmartContract](SmartContract.mdx).
 
 ```ts
 get balance(): {
-  addInPlace: void;
-  subInPlace: void;
+  "addInPlace": void;
+  "subInPlace": void;
 }
 ```
 
@@ -234,8 +234,8 @@ Balance of this [SmartContract](SmartContract.mdx).
 
 ```ts
 {
-  addInPlace: void;
-  subInPlace: void;
+  "addInPlace": void;
+  "subInPlace": void;
 }
 ```
 
@@ -273,7 +273,7 @@ Balance of this [SmartContract](SmartContract.mdx).
 
 #### Source
 
-[lib/mina/zkapp.ts:945](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L945)
+[lib/mina/zkapp.ts:945](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L945)
 
 ***
 
@@ -293,7 +293,7 @@ or `assertEquals()` (confusing, because the developer can't know the exact slot 
 
 #### Source
 
-[lib/mina/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L906)
+[lib/mina/zkapp.ts:906](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L906)
 
 ***
 
@@ -311,7 +311,7 @@ Current network state of the [SmartContract](SmartContract.mdx).
 
 #### Source
 
-[lib/mina/zkapp.ts:898](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L898)
+[lib/mina/zkapp.ts:898](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L898)
 
 ***
 
@@ -329,7 +329,7 @@ Returns the current [AccountUpdate](AccountUpdate.mdx) associated to this [Smart
 
 #### Source
 
-[lib/mina/zkapp.ts:809](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L809)
+[lib/mina/zkapp.ts:809](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L809)
 
 ## Methods
 
@@ -369,7 +369,7 @@ excluding important information from the public input.
 
 #### Source
 
-[lib/mina/zkapp.ts:931](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L931)
+[lib/mina/zkapp.ts:931](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L931)
 
 ***
 
@@ -377,10 +377,10 @@ excluding important information from the public input.
 
 ```ts
 deploy(__namedParameters: {
-  verificationKey: {
-     data: string;
-     hash: string | Field;
-  };
+  "verificationKey": {
+     "data": string;
+     "hash": string | Field;
+    };
 }): Promise<void>
 ```
 
@@ -398,11 +398,11 @@ tx.sign([senderKey, zkAppKey]);
 
 • **\_\_namedParameters**= `{}`
 
-• **\_\_namedParameters\.verificationKey?**
+• **\_\_namedParameters.verificationKey?**
 
-• **\_\_namedParameters\.verificationKey\.data**: `string`
+• **\_\_namedParameters.verificationKey.data**: `string`
 
-• **\_\_namedParameters\.verificationKey\.hash**: `string` \| [`Field`](Field.mdx)
+• **\_\_namedParameters.verificationKey.hash**: `string` \| [`Field`](Field.mdx)
 
 #### Returns
 
@@ -410,7 +410,7 @@ tx.sign([senderKey, zkAppKey]);
 
 #### Source
 
-[lib/mina/zkapp.ts:699](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L699)
+[lib/mina/zkapp.ts:699](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L699)
 
 ***
 
@@ -424,7 +424,7 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Type parameters
 
-• **K** extends `string` \| `number`
+• **K** *extends* `string` \| `number`
 
 #### Parameters
 
@@ -438,7 +438,7 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 #### Source
 
-[lib/mina/zkapp.ts:957](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L957)
+[lib/mina/zkapp.ts:957](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L957)
 
 ***
 
@@ -446,20 +446,20 @@ Emits an event. Events will be emitted as a part of the transaction and can be c
 
 ```ts
 fetchEvents(start?: UInt32, end?: UInt32): Promise<{
-  blockHash: string;
-  blockHeight: UInt32;
-  chainStatus: string;
-  event: {
-     data: ProvablePure<any>;
-     transactionInfo: {
-        transactionHash: string;
-        transactionMemo: string;
-        transactionStatus: string;
-     };
-  };
-  globalSlot: UInt32;
-  parentBlockHash: string;
-  type: string;
+  "blockHash": string;
+  "blockHeight": UInt32;
+  "chainStatus": string;
+  "event": {
+     "data": ProvablePure<any>;
+     "transactionInfo": {
+        "transactionHash": string;
+        "transactionMemo": string;
+        "transactionStatus": string;
+       };
+    };
+  "globalSlot": UInt32;
+  "parentBlockHash": string;
+  "type": string;
 }[]>
 ```
 
@@ -478,21 +478,21 @@ The end height of the events to fetch. If not provided, fetches events up to the
 #### Returns
 
 `Promise`\<\{
-  `blockHash`: `string`;
-  `blockHeight`: [`UInt32`](UInt32.mdx);
-  `chainStatus`: `string`;
-  `event`: \{
-     `data`: [`ProvablePure`](../type-aliases/ProvablePure.mdx)\<`any`\>;
-     `transactionInfo`: \{
-        `transactionHash`: `string`;
-        `transactionMemo`: `string`;
-        `transactionStatus`: `string`;
-     };
-  };
-  `globalSlot`: [`UInt32`](UInt32.mdx);
-  `parentBlockHash`: `string`;
-  `type`: `string`;
-  }[]\>
+  `"blockHash"`: `string`;
+  `"blockHeight"`: [`UInt32`](UInt32.mdx);
+  `"chainStatus"`: `string`;
+  `"event"`: \{
+     `"data"`: [`ProvablePure`](../type-aliases/ProvablePure.mdx)\<`any`\>;
+     `"transactionInfo"`: \{
+        `"transactionHash"`: `string`;
+        `"transactionMemo"`: `string`;
+        `"transactionStatus"`: `string`;
+       \};
+    \};
+  `"globalSlot"`: [`UInt32`](UInt32.mdx);
+  `"parentBlockHash"`: `string`;
+  `"type"`: `string`;
+ \}[]\>
 
 A promise that resolves to an array of objects, each containing the event type and event data for the specified range.
 
@@ -513,7 +513,7 @@ console.log(events);
 
 #### Source
 
-[lib/mina/zkapp.ts:1003](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L1003)
+[lib/mina/zkapp.ts:1003](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L1003)
 
 ***
 
@@ -541,7 +541,7 @@ class MyContract extends SmartContract {
 
 #### Source
 
-[lib/mina/zkapp.ts:769](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L769)
+[lib/mina/zkapp.ts:769](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L769)
 
 ***
 
@@ -563,7 +563,7 @@ Same as `SmartContract.self` but explicitly creates a new [AccountUpdate](Accoun
 
 #### Source
 
-[lib/mina/zkapp.ts:844](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L844)
+[lib/mina/zkapp.ts:844](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L844)
 
 ***
 
@@ -589,7 +589,7 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 #### Source
 
-[lib/mina/zkapp.ts:790](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L790)
+[lib/mina/zkapp.ts:790](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L790)
 
 ***
 
@@ -597,18 +597,18 @@ with the only difference being that quick mock proofs are filled in instead of r
 
 ```ts
 send(args: {
-  amount: number | bigint | UInt64;
-  to: PublicKey | AccountUpdate | SmartContract;
-  }): AccountUpdate
+  "amount": number | bigint | UInt64;
+  "to": PublicKey | AccountUpdate | SmartContract;
+ }): AccountUpdate
 ```
 
 #### Parameters
 
 • **args**
 
-• **args\.amount**: `number` \| `bigint` \| [`UInt64`](UInt64.mdx)
+• **args.amount**: `number` \| `bigint` \| [`UInt64`](UInt64.mdx)
 
-• **args\.to**: [`PublicKey`](PublicKey.mdx) \| [`AccountUpdate`](AccountUpdate.mdx) \| [`SmartContract`](SmartContract.mdx)
+• **args.to**: [`PublicKey`](PublicKey.mdx) \| [`AccountUpdate`](AccountUpdate.mdx) \| [`SmartContract`](SmartContract.mdx)
 
 #### Returns
 
@@ -616,7 +616,7 @@ send(args: {
 
 #### Source
 
-[lib/mina/zkapp.ts:935](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L935)
+[lib/mina/zkapp.ts:935](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L935)
 
 ***
 
@@ -639,7 +639,7 @@ authorization flow.
 
 #### Source
 
-[lib/mina/zkapp.ts:802](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L802)
+[lib/mina/zkapp.ts:802](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L802)
 
 ***
 
@@ -657,7 +657,7 @@ Returns a Proof type that belongs to this [SmartContract](SmartContract.mdx).
 
 #### Source
 
-[lib/mina/zkapp.ts:601](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L601)
+[lib/mina/zkapp.ts:601](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L601)
 
 ***
 
@@ -665,12 +665,12 @@ Returns a Proof type that belongs to this [SmartContract](SmartContract.mdx).
 
 ```ts
 static analyzeMethods(__namedParameters: {
-  printSummary: false;
-  }): Promise<Record<string, {
-  actions: number;
-  digest: string;
-  gates: Gate[];
-  rows: number;
+  "printSummary": false;
+ }): Promise<Record<string, {
+  "actions": number;
+  "digest": string;
+  "gates": Gate[];
+  "rows": number;
 }>>
 ```
 
@@ -690,16 +690,16 @@ Note: If this function was already called before, it will short-circuit and just
 
 • **\_\_namedParameters**= `{}`
 
-• **\_\_namedParameters\.printSummary**: `undefined` \| `boolean`= `false`
+• **\_\_namedParameters.printSummary**: `undefined` \| `boolean`= `false`
 
 #### Returns
 
 `Promise`\<`Record`\<`string`, \{
-  `actions`: `number`;
-  `digest`: `string`;
-  `gates`: `Gate`[];
-  `rows`: `number`;
-  }\>\>
+  `"actions"`: `number`;
+  `"digest"`: `string`;
+  `"gates"`: `Gate`[];
+  `"rows"`: `number`;
+ \}\>\>
 
 an object, keyed by method name, each entry containing:
  - `rows` the size of the constraint system created by this method
@@ -709,7 +709,7 @@ an object, keyed by method name, each entry containing:
 
 #### Source
 
-[lib/mina/zkapp.ts:1122](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L1122)
+[lib/mina/zkapp.ts:1122](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L1122)
 
 ***
 
@@ -717,15 +717,15 @@ an object, keyed by method name, each entry containing:
 
 ```ts
 static compile(__namedParameters: {
-  cache: Cache.FileSystemDefault;
-  forceRecompile: false;
-  }): Promise<{
-  provers: Prover[];
-  verificationKey: {
-     data: string;
-     hash: Field;
-  };
-  verify: (statement: Statement<FieldConst>, proof: unknown) => Promise<boolean>;
+  "cache": Cache.FileSystemDefault;
+  "forceRecompile": false;
+ }): Promise<{
+  "provers": Prover[];
+  "verificationKey": {
+     "data": string;
+     "hash": Field;
+    };
+  "verify": (statement: Statement<FieldConst>, proof: unknown) => Promise<boolean>;
 }>
 ```
 
@@ -746,20 +746,20 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 • **\_\_namedParameters**= `{}`
 
-• **\_\_namedParameters\.cache**: `undefined` \| [`Cache`](../type-aliases/Cache.mdx)= `Cache.FileSystemDefault`
+• **\_\_namedParameters.cache**: `undefined` \| [`Cache`](../type-aliases/Cache.mdx)= `Cache.FileSystemDefault`
 
-• **\_\_namedParameters\.forceRecompile**: `undefined` \| `boolean`= `false`
+• **\_\_namedParameters.forceRecompile**: `undefined` \| `boolean`= `false`
 
 #### Returns
 
 `Promise`\<\{
-  `provers`: `Prover`[];
-  `verificationKey`: \{
-     `data`: `string`;
-     `hash`: [`Field`](Field.mdx);
-  };
-  `verify`: (`statement`: `Statement`\<`FieldConst`\>, `proof`: `unknown`) => `Promise`\<`boolean`\>;
-  }\>
+  `"provers"`: `Prover`[];
+  `"verificationKey"`: \{
+     `"data"`: `string`;
+     `"hash"`: [`Field`](Field.mdx);
+    \};
+  `"verify"`: (`statement`: `Statement`\<`FieldConst`\>, `proof`: `unknown`) => `Promise`\<`boolean`\>;
+ \}\>
 
 > ##### provers
 >
@@ -771,8 +771,8 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 >
 > ```ts
 > verificationKey: {
-> data: string;
-> hash: Field;
+> "data": string;
+> "hash": Field;
 > };
 > ```
 >
@@ -807,7 +807,7 @@ up to several minutes if your circuit is large or your hardware is not optimal f
 
 #### Source
 
-[lib/mina/zkapp.ts:638](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L638)
+[lib/mina/zkapp.ts:638](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L638)
 
 ***
 
@@ -829,7 +829,7 @@ the digest, as a hex string
 
 #### Source
 
-[lib/mina/zkapp.ts:679](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L679)
+[lib/mina/zkapp.ts:679](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L679)
 
 ***
 
@@ -849,4 +849,4 @@ static runOutsideCircuit(run: () => void): void
 
 #### Source
 
-[lib/mina/zkapp.ts:1097](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/zkapp.ts#L1097)
+[lib/mina/zkapp.ts:1097](https://github.com/o1-labs/o1js/blob/1ed4125b454628ef1e3e4d32dd416718a59702b8/src/lib/mina/zkapp.ts#L1097)
