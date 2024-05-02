@@ -145,7 +145,7 @@ To create a ZkProgram, start with the `init()` method.
     init: {
       privateInputs: [],
 
-      method(state: Field) {
+      async method(state: Field) {
         state.assertEquals(Field(0));
       },
     },
@@ -161,7 +161,7 @@ Add another method that takes an existing proof, adds a new number to it, and pr
    addNumber: {
      privateInputs: [SelfProof, Field],
 
-     method(
+     async method(
        newState: Field,
        earlierProof: SelfProof<Field, void>,
        numberToAdd: Field
