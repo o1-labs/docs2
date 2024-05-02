@@ -39,7 +39,7 @@ The [example project](https://github.com/o1-labs/docs2/tree/main/examples/zkapps
 
 ## Prerequisites
 
-This tutorial has been tested with [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.16.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.15.2`.
+This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.20.1` and [o1js](https://www.npmjs.com/package/o1js) version `1.1.0`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -80,11 +80,11 @@ console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
 const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
-const char1EqualsChar2: Bool = char1.equals(char2);
+const char1EqualsChar2: Bool = char1.toField().equals(char2.toField());
 
 console.log(`char1: ${char1}`);
 console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
-console.log(`Fields in char1: ${char1.toFields().length}`);
+console.log(`Fields in char1: ${Character.toFields(char1).length}`);
 ```
 
 This result prints to the console when the code is run:
@@ -119,15 +119,15 @@ A brief example of custom types:
 ```ts
 const str1 = CircuitString.fromString('abc..xyz');
 console.log(`str1: ${str1}`);
-console.log(`Fields in str1: ${str1.toFields().length}`);
+console.log(`Fields in str1: ${CircuitString.toFields(str1).length}`);
 
 // --------------------------------------
 
 const zkAppPrivateKey = PrivateKey.random();
 const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
 
-const data1 = char2.toFields().concat(signedNumSum.toFields());
-const data2 = char1.toFields().concat(str1.toFields());
+const data1 = Character.toFields(char2).concat(signedNumSum.toFields());
+const data2 = Character.toFields(char1).concat(CircuitString.toFields(str1));
 
 const signature = Signature.create(zkAppPrivateKey, data2);
 
@@ -150,13 +150,13 @@ And the console output:
 ```
 str1: abc..xyz
 Fields in str1: 128
-private key: EKEdDGiN9Zd9TaSPcNjs3nB6vs9JS3WCgdsrfyEeLcQpnXNR7j6E
-public key: B62qoGDUnJGdiD8MPEs4Lo76kWXSNbJD6Dn8HzkaBSfhZQWShJC8gEe
-Fields in private key: 255
+private key: EKF714j3wgH3tuuQncL93ruQFbJGnhDzfWossAHUp15PdATKE7Ka
+public key: B62qrhsTdExJDAxQx76V1mc13ibzikpmNaNRShTG3MWedCXESBhQ2Ch
+Fields in private key: 2
 Fields in public key: 2
 signature verified for data1: false
 signature verified for data2: true
-Fields in signature: 256
+Fields in signature: 3
 ```
 
 Observe and follow best practices for your key security. Make sure that you never use the private key in this example output, or any private key that's publicly accessible, in a real application.
@@ -397,7 +397,7 @@ const txn1 = await Mina.transaction(senderPublicKey, async () => {
   );
 });
 await txn1.prove();
-const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
+const pendingTx = await txn1.sign([senderPrivateKey, basicTreeZkAppPrivateKey]).send();
 await pendingTx.wait();
 
 // compare the root of the smart contract tree to our local tree
