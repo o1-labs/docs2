@@ -1,6 +1,5 @@
 import { Client } from 'mina-signer'
 import axios from 'axios'
-// import { publicKeyToHex } from 'mina-signer/dist/node/mina-signer/src/rosetta'
 
 const TESTNET_NETWORK_IDENTIFIER = {
     "network_identifier": {
@@ -14,6 +13,7 @@ const MINA_SYMBOL = "MINA"
 const MINA_CURVE_TYPE = "pallas"
 
 const mina = new Client({network: 'testnet'})
+
 const request = axios.create({
     baseURL: "https://rosetta-devnet.minaprotocol.network/"
 })
@@ -83,7 +83,7 @@ function makeTransferPayload(from: string, to: string, feeNano: number, valueNan
     }
 
     return {
-        "operations": [
+        operations: [
             makeOperation(
                 0, [], "fee_payment", from, feeNano, false),
             makeOperation(
@@ -242,6 +242,3 @@ async function send(privateKey: string, to: string, valueNano: number, feeNano: 
     }
     return hash
 }
-
-const hash = await send("EKE5nJtRFYVWqrCfdpqJqKKdt2Sskf5Co2q8CWJKEGSg71ZXzES7", "B62qmYYrf6RRHcGzJQXqY2Wz96LhaJrLuzvLNGwLBDKNvGA6jFCwZNa", 1000000000, 0)
-console.log(hash)
