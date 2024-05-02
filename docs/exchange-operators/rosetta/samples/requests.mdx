@@ -3,6 +3,9 @@ title: Requests and Responses
 description: Learn about Mina-specific Rosetta request and response objects
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # About Mina-specific requests and responses
 
 The Rosetta API specification defines high-level description of how requests and response objects should look like.
@@ -15,6 +18,25 @@ In this article, you learn about Mina-specific Rosetta JSON objects and how to i
 There is the `network_identifier` object, that should be passed as a parameter to all endpoints (except `/network/list` which returns possible identifiers).
 
 First, implement the generic `request` function to perform Rosetta API calls injecting that object under the hood:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+async function makeRequest(endpoint: string, data?: any) {
+  if (data === undefined)
+    data = {}
+  if (endpoint !== '/network/list')
+    data = {...TESTNET_NETWORK_IDENTIFIER, ...data}
+
+  const r = await request.post(endpoint, data)
+  return r.data
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 def _request(path, data=None):
@@ -34,12 +56,48 @@ def _request(path, data=None):
     return r.json()
 ```
 
+</TabItem>
+</Tabs>
+
 ### Block, Transaction, Account Identifiers and the Pubkey object
 
 According to Rosetta request and response models, each block, transaction and account are identified by an identifier object.
 A pubkey is also represented by special object.
 
 To implement helpers to construct the objects:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+function makeBlockIdentifier(idOrHash: number | string) {
+    const identifierKey = (typeof idOrHash === "number") ? "index" : "hash"
+    return {
+        block_identifier: {[identifierKey]: idOrHash}
+    }
+}
+
+function makeTxIdentifier(hash: string) {
+    return {"transaction_identifier": {'hash': hash}}
+}
+
+function makeAccountIdentifier(address: string) {
+    return {
+        account_identifier: {address, token_id: MINA_TOKEN_ID}
+    }
+}
+
+function makePublicKey(publicKey: string) {
+    return {
+        hex_bytes: publicKey,
+        curve_type: MINA_CURVE_TYPE
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 def _make_block_identifier(index_or_hash):
@@ -64,6 +122,9 @@ def _make_pubkey(pubkey):
         "curve_type": MINA_CURVE_TYPE
     }
 ```
+
+</TabItem>
+</Tabs>
 
 ### Operation object
 
@@ -197,6 +258,56 @@ According to the Rosetta specification, the array of `operation` objects must be
 
 To implement a helper function to construct the operations array for a MINA token transfer:
 
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+function makeTransferPayload(from: string, to: string, feeNano: number, valueNano: number) {
+    
+    function makeOperation(idx: number, relatedIdxs: number[], op_type: string, addr: string, value: number, isPositive: boolean) {
+        const relatedOps = (relatedIdxs.length == 0) ? {} : {
+            related_operations: relatedIdxs.map((i) => {
+                return {index: i}
+            })
+        }
+    
+        return {
+            operation_identifier: {index: idx},
+            ...relatedOps,
+            type: op_type,
+            account: {
+                address: addr,
+                metadata: {
+                    token_id: MINA_TOKEN_ID
+                }
+            },
+            amount: {
+                value: (isPositive ? "" : "-") + value.toString(),
+                currency: {
+                    symbol: MINA_SYMBOL,
+                    decimals: MINA_DECIMALS
+                }
+            }
+        }
+    }
+
+    return {
+        operations: [
+            makeOperation(
+                0, [], "fee_payment", from, feeNano, false),
+            makeOperation(
+                1, [], "payment_source_dec", from, valueNano, false),
+            makeOperation(
+                2, [1], "payment_receiver_inc", to, valueNano, true)
+        ]
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+
 ```python
 def _make_transfer_payload(address_from, address_to, fee_nano, value_nano):
     """
@@ -241,9 +352,101 @@ def _make_transfer_payload(address_from, address_to, fee_nano, value_nano):
     }
 ```
 
+</TabItem>
+</Tabs>
+
 ### Implementing client methods
 
 Now that you have all helpers in place, you can implement all of the Rosetta client methods according to the specification:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+async function networkList() {
+    return await makeRequest('/network/list')
+}
+
+async function networkStatus() {
+    return await makeRequest('/network/status')
+}
+
+async function networkOptions() {
+    return await makeRequest('/network/options')
+}
+
+async function block(idOrHash: number | string) {
+    return await makeRequest('/block', makeBlockIdentifier(idOrHash))
+}
+
+async function mempool() {
+    return await makeRequest('/mempool')
+}
+
+async function mempoolTx(hash: string) {
+    return await makeRequest('/mempool/transaction', makeTxIdentifier(hash))
+}
+
+async function accountBalance(address: string) {
+    return await makeRequest('/account/balance', makeAccountIdentifier(address))
+}
+
+async function deriveAccountIdentifier(publicKey: string) {
+    return await makeRequest('/construction/derive', {
+        public_key: makePublicKey(publicKey)
+    })
+}
+
+async function txPreprocess(from: string, to: string, feeNano: number, valueNano: number) {
+    const payload = makeTransferPayload(from, to, feeNano, valueNano)
+    return await makeRequest('/construction/preprocess', payload)
+}
+
+async function txMetadata(srcPublicKey: string, srcAddress: string, destAddress: string, feeNano: number, valueNano: number) {
+    const options = await txPreprocess(srcAddress, destAddress, feeNano, valueNano)
+    return await makeRequest('/construction/metadata', {
+        ...options, public_keys: [makePublicKey(srcPublicKey)]
+    })
+}
+
+async function txPayloads(srcPublicKey: string, srcAddress: string, destAddress: string, feeNano: number, valueNano: number) {
+    // If fee_nano is undefined, it will get suggested fee from /construction/metadata response
+    const meta = await txMetadata(
+        srcPublicKey, srcAddress, destAddress, feeNano, valueNano)
+
+    if (feeNano === 0)
+        feeNano = meta.suggested_fee[0].value
+    console.log(feeNano)
+    const operations = makeTransferPayload(srcAddress, destAddress, feeNano, valueNano)
+    return makeRequest('/construction/payloads', {...operations, ...meta})
+}
+
+async function txCombine(payloadsResponse: any, privateKey: string) {
+    // console.dir(payloadsResponse, {depth: null})
+    const combinePayload = mina.rosettaCombinePayload(payloadsResponse, privateKey)
+    const r = await makeRequest('/construction/combine', combinePayload)
+    return r
+}
+
+async function txParse(isSigned: boolean, blob: string) {
+    return makeRequest('/construction/parse', {
+        signed: isSigned,
+        transaction: blob
+    })
+}
+
+async function txHash(blob: string) {
+    return await makeRequest('construction/hash', {signed_transaction: blob})
+}
+
+async function txSubmit(blob: string) {
+    return await makeRequest('construction/submit', {signed_transaction: blob})
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 def network_list():
@@ -328,3 +531,6 @@ def tx_submit(signed_transaction_blob):
         "signed_transaction": signed_transaction_blob
     })
 ```
+
+</TabItem>
+</Tabs>
