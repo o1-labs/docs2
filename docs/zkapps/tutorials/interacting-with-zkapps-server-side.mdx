@@ -82,7 +82,7 @@ To make this more script convenient to write, use the provided helper functions.
   ```ts
   ...
   const Berkeley = Mina.Network(
-    'https://proxy.berkeley.minaexplorer.com/graphql'
+    'https://api.minascan.io/node/devnet/v1/graphql'
   );
   Mina.setActiveInstance(Berkeley);
   ...
@@ -98,7 +98,7 @@ To make this more script convenient to write, use the provided helper functions.
   ...
   ```
 
-This example connects to a remote RPC run by `minaexplorer.com`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
+This example connects to a remote RPC served by `minascan.io`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
 
 ### Public/private key pair
 
@@ -260,7 +260,7 @@ if (pendingTransaction.status === "rejected") {
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
+  `See transaction at https://minascan.io/devnet/tx/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();

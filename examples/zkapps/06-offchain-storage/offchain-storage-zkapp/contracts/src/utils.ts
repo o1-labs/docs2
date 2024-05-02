@@ -78,7 +78,7 @@ export const makeAndSendTransaction = async <State extends ToString>({
   } else {
     console.log(
       'See transaction at',
-      'https://berkeley.minaexplorer.com/transaction/' + res.hash
+      `https://minascan.io/devnet/tx/${res.hash}`
     );
   }
 

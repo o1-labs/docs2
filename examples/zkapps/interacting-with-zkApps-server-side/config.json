@@ -2,7 +2,7 @@
   "version": 1,
   "networks": {
     "berkeley": {
-      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "url": "https://api.minascan.io/node/devnet/v1/graphql",
       "keyPath": "keys/berkeley.json",
       "fee": "0.1",
       "smartContract": "Square"

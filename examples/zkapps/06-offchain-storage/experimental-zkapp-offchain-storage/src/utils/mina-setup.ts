@@ -10,11 +10,8 @@ export async function initializeMina({ useLocalBlockchain }: SetupOptions) {
     return Local;
   } else {
     const Berkeley = Mina.Network({
-      mina: [
-        'https://proxy.berkeley.minaexplorer.com/graphql',
-        'https://api.minascan.io/node/berkeley/v1/graphql',
-      ],
-      archive: 'https://proxy.berkeley.minaexplorer.com/graphql',
+      mina: 'https://api.minascan.io/node/devnet/v1/graphql',
+      archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
     });
     Mina.setActiveInstance(Berkeley);
     return null;

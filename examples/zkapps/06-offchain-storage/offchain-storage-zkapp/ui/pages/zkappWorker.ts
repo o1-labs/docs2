@@ -1,26 +1,26 @@
 import {
-  Mina,
-  PublicKey,
-  PrivateKey,
-  Field,
-  fetchAccount,
   AccountUpdate,
-  Poseidon,
-  Group,
+  Bool,
   Character,
   CircuitString,
-  Signature,
-  Bool,
+  Field,
+  Group,
   MerkleTree,
   MerkleWitness,
+  Mina,
+  Poseidon,
+  PrivateKey,
+  PublicKey,
+  Signature,
+  fetchAccount,
 } from 'o1js';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 // ---------------------------------------------------------------------------------------
 
-import type { SignedMessageBoard } from '../../contracts/src/SignedMessageBoard';
 import { OffChainStorage } from 'experimental-offchain-zkapp-storage';
+import type { SignedMessageBoard } from '../../contracts/src/SignedMessageBoard';
 
 const state = {
   SignedMessageBoard: null as null | typeof SignedMessageBoard,
@@ -39,7 +39,7 @@ const state = {
 const functions = {
   setActiveInstanceToBerkeley: async (args: {}) => {
     const Berkeley = Mina.Network(
-      'https://proxy.berkeley.minaexplorer.com/graphql'
+      'https://api.minascan.io/node/devnet/v1/graphql'
     );
     console.log('Berkeley Instance created');
     Mina.setActiveInstance(Berkeley);

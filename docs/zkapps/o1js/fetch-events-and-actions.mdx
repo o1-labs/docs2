@@ -51,24 +51,14 @@ The Archive-Node-API enables o1js to fetch events and actions. To use the archiv
 
 ## Fetching Actions from an Archive Node
 
-If your smart contract needs to fetch actions from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
-
-Set the `archive` property to one of the following endpoints:
-
-```sh
-https://api.minascan.io/archive/berkeley/v1/graphql
-```
-
-```sh
-https://archive.berkeley.minaexplorer.com
-```
+If your smart contract needs to fetch actions from an archive node, provide an `archive` property in the configuration object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the `Archive-Node-API` service that you want to use. If this property does not exist, an error occurs.
 
 For example:
 
 ```ts
 const Network = Mina.Network({
-  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
-  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+  mina: 'https://api.minascan.io/node/devnet/v1/graphql',
+  archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
 });
 Mina.setActiveInstance(Network);
 ```
@@ -101,24 +91,14 @@ For an end-to-end example of zkApp fetching actions from a running network and i
 
 ### Fetching Events from an Archive Node
 
-If your smart contract needs to fetch events from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` value is the URL for the GraphQL API service that you want to use. If this property does not exist, an error occurs.
-
-You can set the `archive` property to one of the following endpoints:
-
-```sh
-https://api.minascan.io/archive/berkeley/v1/graphql
-```
-
-```sh
-https://archive.berkeley.minaexplorer.com
-```
+If your smart contract needs to fetch events from an archive node, provide an `archive` property in the object passed into `Mina.Network({mina: '...', archive: '...'})` where the `archive` value is the URL for the `Archive-Node-API` service that you want to use. If this property does not exist, an error occurs.
 
 For example:
 
 ```ts
 const Network = Mina.Network({
-  mina: '', // Use https://proxy.berkeley.minaexplorer.com/graphql or https://api.minascan.io/node/berkeley/v1/graphql
-  archive: '', // Use https://api.minascan.io/archive/berkeley/v1/graphql/ or https://archive.berkeley.minaexplorer.com/
+  mina: 'https://api.minascan.io/node/devnet/v1/graphql',
+  archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
 });
 Mina.setActiveInstance(Network);
 ```
