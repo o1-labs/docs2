@@ -27,6 +27,8 @@ Available endpoints for Mina Rosetta implementation are:
 /construction/parse
 /construction/hash
 /construction/submit
+
+/search/transactions
 """
 
 
