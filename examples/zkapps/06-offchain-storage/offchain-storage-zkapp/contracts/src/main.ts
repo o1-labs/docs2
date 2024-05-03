@@ -30,10 +30,10 @@ if (useLocal) {
   feePayerKey = Local.testAccounts[0].key;
   zkappPrivateKey = PrivateKey.random();
 } else {
-  const Berkeley = Mina.Network(
+  const Network = Mina.Network(
     'https://api.minascan.io/node/devnet/v1/graphql'
   );
-  Mina.setActiveInstance(Berkeley);
+  Mina.setActiveInstance(Network);
 
   const deployAlias = process.argv[2];
 

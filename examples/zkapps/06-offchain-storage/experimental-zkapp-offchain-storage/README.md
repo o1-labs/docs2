@@ -21,7 +21,7 @@ In the `main.ts` file, you can toggle the `useLocalBlockchain` variable to switc
 #### Account Configuration
 
 For local testing, you use predefined accounts.
-For `Berkeley` mode, you must provide a `deployerPrivateKey` and `zkAppPrivateKey` as command line arguments.
+For `Devnet` mode, you must provide a `deployerPrivateKey` and `zkAppPrivateKey` as command line arguments.
 
 To generate these keys:
 
@@ -60,7 +60,7 @@ This server is designed to interact with the zkApp and help store and manage zkA
 1. Fetches stored data for a zkApp address based on its root.
 1. Provides the public key of the server.
 1. Background job running cleanup operations to manage outdated or irrelevant data.
-1. Supports both local simulated blockchains and Berkeley blockchains for the Mina network.
+1. Supports both local simulated and Devnet Mina blockchain networks.
 
 ### Endpoints
 

@@ -102,10 +102,8 @@ function getTxnUrl(graphQlUrl: string, txnHash: string | undefined) {
     .split('.')
     .filter((item) => item === 'minascan')?.[0];
   const networkName = new URL(graphQlUrl).hostname
-    .split('.')
-    .filter(
-      (item) => item === 'berkeley' || item === 'testworld' || item === 'devnet'
-    )?.[0];
+    .split('/')
+    .filter((item) => item === 'mainnet' || item === 'devnet')?.[0];
   if (txnBroadcastServiceName && networkName) {
     return `https://minascan.io/${networkName}/tx/${txnHash}?type=zk-tx`;
   }

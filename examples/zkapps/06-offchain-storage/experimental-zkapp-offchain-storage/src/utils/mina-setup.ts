@@ -9,11 +9,11 @@ export async function initializeMina({ useLocalBlockchain }: SetupOptions) {
     Mina.setActiveInstance(Local);
     return Local;
   } else {
-    const Berkeley = Mina.Network({
+    const Network = Mina.Network({
       mina: 'https://api.minascan.io/node/devnet/v1/graphql',
       archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
     });
-    Mina.setActiveInstance(Berkeley);
+    Mina.setActiveInstance(Network);
     return null;
   }
 }

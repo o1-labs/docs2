@@ -138,9 +138,10 @@ subscription {
 
 The new block subscription can also be limited to return only new blocks created by a defined public key with the `publicKey` argument.
 
-### GraphQL Public Proxy
+### GraphQL API and public Internet
 
-While exposing the GraphQL API to the internet is not recommended, an implementation of a [GraphQL proxy](https://github.com/MinaProtocol/mina/tree/master/automation/services/graphql-public-proxy) is available that removes the queries that pose a threat, but still allows querying of the node's data from a public endpoint.
+Exposing the GraphQL endpoint with full API support to the public Internet **is not** recommended.  
+However, you can start the Mina Daemon node with the `--open-limited-graphql-port` and `--limited-graphql-port <port-number>` CLI arguments to expose the GraphQL endpoint with limited API support.
 
 ### Resources
 

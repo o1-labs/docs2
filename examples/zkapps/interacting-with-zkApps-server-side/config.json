@@ -1,9 +1,9 @@
 {
   "version": 1,
   "networks": {
-    "berkeley": {
+    "devnet": {
       "url": "https://api.minascan.io/node/devnet/v1/graphql",
-      "keyPath": "keys/berkeley.json",
+      "keyPath": "keys/devnet.json",
       "fee": "0.1",
       "smartContract": "Square"
     }

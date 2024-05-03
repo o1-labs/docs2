@@ -45,7 +45,7 @@ export default function Home() {
         setDisplayText('Done loading web worker');
         console.log('Done loading web worker');
 
-        await zkappWorkerClient.setActiveInstanceToBerkeley();
+        await zkappWorkerClient.setActiveInstanceToDevnet();
 
         const mina = (window as any).mina;
 

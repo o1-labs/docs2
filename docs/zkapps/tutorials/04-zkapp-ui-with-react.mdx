@@ -2,7 +2,7 @@
 title: 'Tutorial 4: Build a zkApp UI in the Browser with React'
 hide_title: true
 sidebar_label: 'Tutorial 4: Build a zkApp UI in the Browser with React'
-description: Guided steps to implement a browser UI that interacts with a smart contract running on the Berkeley Testnet.
+description: Guided steps to implement a browser UI that interacts with a smart contract running on the Devnet.
 keywords:
   - smart contracts
   - zkapps
@@ -17,12 +17,6 @@ keywords:
 ---
 
 # Tutorial 4: Build a zkApp UI in the Browser with React
-
-:::info
-
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
-
-:::
 
 You're making excellent progress in your zkApp journey:
 
@@ -45,8 +39,8 @@ In this tutorial, you are going to implement a browser UI using `Next.js` that i
 
 This tutorial has been tested with:
 
-- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.20.0`
-- [o1js](https://www.npmjs.com/package/o1js) version `1.0.1`
+- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.20.1`
+- [o1js](https://www.npmjs.com/package/o1js) version `1.1.0`
 - [Auro Wallet](https://www.aurowallet.com/) version `2.2.15`
 
 ## High-Level Overview
@@ -57,7 +51,7 @@ You use example code and the zkApp CLI to build an application that:
 
 1. Loads a public key from an extension-based wallet.
 1. Checks if the public key has funds and if not, directs the user to the Faucet.
-1. Connects to the example zkApp `Add` smart contract that is already deployed on Berkeley Testnet at a fixed address.
+1. Connects to the example zkApp `Add` smart contract that is already deployed on Devnet (or other network) at a fixed address.
 1. Implements a button that sends a transaction.
 1. Implements a button that requests the latest state of the smart contract.
 1. Deploys the zkApp to GitHub Pages.
@@ -179,24 +173,24 @@ The example project has a completed app. The `index.page.tsx` file is the entry 
 
   ```ts ignore
   let transactionFee = 0.1;
-  const ZKAPP_ADDRESS = 'B62qknCphH8ikE9Bu46dFgamUeYRcE9FtKr5ahh5tcJDf7ibRXJdzWV';
+  const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
   ```
 
-  The smart contract that the UI interacts with in this tutorial has been deployed to the Berkeley Testnet and the public key is stored in the `ZKAPP_ADDRESS` variable. If you experience problems with the deployed contract, you can [deploy](deploying-to-a-network) the `Add` contract included in the `contracts` folder yourself to any other network. When deployed, replace `ZKAPP_ADDRESS` variable with the public key of your own deployed zkApp.
+  The smart contract that the UI interacts with in this tutorial has been deployed to the Devnet and the public key is stored in the `ZKAPP_ADDRESS` variable. If you experience problems with the deployed contract, you can [deploy](deploying-to-a-network) the `Add` contract included in the `contracts` folder yourself to any other network. When deployed, replace `ZKAPP_ADDRESS` variable with the public key of your own deployed zkApp.
 
 - In `04-zkapp-browser-ui/ui/src/pages/zkappWorker.ts`
 
   ```ts ignore
-  setActiveInstanceToBerkeley: async (args: {}) => {
-    const Berkeley = Mina.Network(
-      'https://api.minascan.io/node/berkeley/v1/graphql'
+  setActiveInstanceToDevnet: async (args: {}) => {
+    const Network = Mina.Network(
+      'https://api.minascan.io/node/devnet/v1/graphql'
     );
-    console.log('Berkeley Instance Created');
-    Mina.setActiveInstance(Berkeley);
+    console.log('Devnet network instance configured');
+    Mina.setActiveInstance(Network);
   },
   ```
 
-  Depending on the network you are going to work with you might want to consider changing the GraphQL endpoint in the `setActiveInstanceToBerkeley` function.  
+  Depending on the network you are going to work with you might want to consider changing the GraphQL endpoint in the `setActiveInstanceToDevnet` function.  
   Mind the supported networks by `Auro Wallet` though.
 
 ### Add state
@@ -240,7 +234,7 @@ To learn more about `useEffect` hooks, see [useEffect](https://react.dev/referen
   setDisplayText('Done loading web worker');
   console.log('Done loading web worker');
 
-  await zkappWorkerClient.setActiveInstanceToBerkeley();
+  await zkappWorkerClient.setActiveInstanceToDevnet();
 ...
 ```
 

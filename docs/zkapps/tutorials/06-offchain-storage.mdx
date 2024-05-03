@@ -16,12 +16,6 @@ keywords:
   - mina
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
-
-:::
-
 # Tutorial 6: Off-Chain Storage
 
 In [Tutorial 5: Common Types and Functions](common-types-and-functions), you learned how to use Merkle trees to refer to large amounts of data stored off-chain.
@@ -128,7 +122,7 @@ This tutorial has been tested with:
     svelte
     nuxt
     empty
-  ❯ none
+  > none
   ```
 
 ## Project structure
@@ -339,13 +333,13 @@ Since much of the logic in the `main.ts` file is repeated from earlier tutorials
 
 1. Open it in your editor.
 
-The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Berkeley. 
+The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Devnet. 
 
 This is a useful pattern when developing a new contract. 
 
 ### Connect to the off-chain storage server
 
-To try your contract on Berkeley, deploy the contract as usual with `zk deploy`.
+To try your contract on Devnet, deploy the contract as usual with `zk deploy`.
 
 In `main.ts`, set `useLocal` to false.
 

@@ -4,8 +4,8 @@ import { Square } from './Square.js';
 import fs from 'fs';
 import { deploy, loopUntilAccountExists } from './utils.js';
 
-const Berkeley = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
-Mina.setActiveInstance(Berkeley);
+const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
+Mina.setActiveInstance(Network);
 
 const transactionFee = 100_000_000;
 

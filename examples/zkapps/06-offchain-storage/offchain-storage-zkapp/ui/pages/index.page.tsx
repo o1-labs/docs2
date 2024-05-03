@@ -54,7 +54,7 @@ export default function Home() {
         if (useLocalTestInstance) {
           await zkappWorkerClient.setActiveInstanceToLocal();
         } else {
-          await zkappWorkerClient.setActiveInstanceToBerkeley();
+          await zkappWorkerClient.setActiveInstanceToDevnet();
         }
 
         if (localStorage.privateKey == null) {

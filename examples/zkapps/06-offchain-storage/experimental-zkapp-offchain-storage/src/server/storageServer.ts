@@ -34,10 +34,10 @@ const Local = await Mina.LocalBlockchain();
 if (useLocalBlockchain) {
   Mina.setActiveInstance(Local);
 } else {
-  const Berkeley = Mina.Network(
+  const Network = Mina.Network(
     'https://api.minascan.io/node/devnet/v1/graphql'
   );
-  Mina.setActiveInstance(Berkeley);
+  Mina.setActiveInstance(Network);
 }
 
 const saveFile = 'database.json';

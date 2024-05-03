@@ -37,12 +37,12 @@ const state = {
 // ---------------------------------------------------------------------------------------
 
 const functions = {
-  setActiveInstanceToBerkeley: async (args: {}) => {
-    const Berkeley = Mina.Network(
+  setActiveInstanceToDevnet: async (args: {}) => {
+    const Network = Mina.Network(
       'https://api.minascan.io/node/devnet/v1/graphql'
     );
-    console.log('Berkeley Instance created');
-    Mina.setActiveInstance(Berkeley);
+    console.log('Devnet network instance configured.');
+    Mina.setActiveInstance(Network);
   },
 
   setActiveInstanceToLocal: async (args: {}) => {
