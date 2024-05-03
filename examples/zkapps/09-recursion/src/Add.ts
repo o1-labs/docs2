@@ -67,4 +67,5 @@ async function main() {
   const ok = await verify(proof2.toJSON(), verificationKey);
   console.log('ok', ok);
 }
+
 main();

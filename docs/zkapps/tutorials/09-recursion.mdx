@@ -145,7 +145,7 @@ To create a ZkProgram, start with the `init()` method.
     init: {
       privateInputs: [],
 
-      method(state: Field) {
+      async method(state: Field) {
         state.assertEquals(Field(0));
       },
     },
@@ -161,7 +161,7 @@ Add another method that takes an existing proof, adds a new number to it, and pr
    addNumber: {
      privateInputs: [SelfProof, Field],
 
-     method(
+     async method(
        newState: Field,
        earlierProof: SelfProof<Field, void>,
        numberToAdd: Field
@@ -179,7 +179,7 @@ Use recursion to combine two proofs:
    add: {
      privateInputs: [SelfProof, SelfProof],
 
-     method(
+     async method(
        newState: Field,
        earlierProof1: SelfProof<Field, void>,
        earlierProof2: SelfProof<Field, void>
@@ -201,15 +201,15 @@ async function main() {
 
   const { verificationKey } = await Add.compile();
 
-  console.log('making proof 0')
+  console.log('making proof 0');
 
   const proof0 = await Add.init(Field(0));
 
-  console.log('making proof 1')
+  console.log('making proof 1');
 
   const proof1 = await Add.addNumber(Field(4), proof0, Field(4));
 
-  console.log('making proof 2')
+  console.log('making proof 2');
 
   const proof2 = await Add.add(Field(4), proof1, proof0);
 
@@ -254,25 +254,30 @@ A community-contributed implementation distributes compute over AWS instances in
 class RollupState extends Struct({
   initialRoot: Field,
   latestRoot: Field,
-}) { 
-
+}) {
   static createOneStep(
-    initialRoot: Field, 
-    latestRoot: Field, 
-    key: Field, 
+    initialRoot: Field,
+    latestRoot: Field,
+    key: Field,
     currentValue: Field,
-    incrementAmount: Field, 
-    merkleMapWitness: MerkleMapWitness,
+    incrementAmount: Field,
+    merkleMapWitness: MerkleMapWitness
   ) {
-    const [ witnessRootBefore, witnessKey ] = merkleMapWitness.computeRootAndKey(currentValue);
+    const [witnessRootBefore, witnessKey] =
+      merkleMapWitness.computeRootAndKey(currentValue);
     initialRoot.assertEquals(witnessRootBefore);
+
     witnessKey.assertEquals(key);
-    const [ witnessRootAfter, _ ] = merkleMapWitness.computeRootAndKey(currentValue.add(incrementAmount));
+
+    const [witnessRootAfter] = merkleMapWitness.computeRootAndKey(
+      currentValue.add(incrementAmount)
+    );
+
     latestRoot.assertEquals(witnessRootAfter);
 
     return new RollupState({
       initialRoot,
-      latestRoot
+      latestRoot,
     });
   }
 ```
