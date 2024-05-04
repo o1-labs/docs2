@@ -6,7 +6,7 @@ import './reactCOIServiceWorker';
 import ZkappWorkerClient from './zkappWorkerClient';
 
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qknCphH8ikE9Bu46dFgamUeYRcE9FtKr5ahh5tcJDf7ibRXJdzWV';
+const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
   const [state, setState] = useState({
