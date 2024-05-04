@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 // @ts-ignore
 import Client from 'mina-signer';
-const client = new Client({ network: 'testnet' });
+const client = new Client({ network: process.env.NETWORK_KIND ?? 'testnet' });
 
 // Implement toJSON for BigInt so we can include values in response
 (BigInt.prototype as any).toJSON = function () {
