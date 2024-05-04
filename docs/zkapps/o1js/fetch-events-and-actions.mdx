@@ -87,7 +87,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionState`, where the value is one of the `5` zkApp account `action states` to indicate the starting point of the actions to be retrieved and processed by your smart contract.
+By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionState`, where the value is an `actionsState` to indicate the starting point of the actions to be retrieved and processed by your smart contract.
 
 For an end-to-end example of zkApp fetching actions from a running network and storing the action state within your zkApp account, see the voting app [example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/voting.ts) file that is provided in the o1js repo.
 
