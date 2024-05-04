@@ -19,10 +19,9 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on the Mina Devnet.
 
 :::
-
 
 # Tutorial 10: Account Updates
 
@@ -105,13 +104,16 @@ This zkApp has methods that call other methods to let you explore the impacts to
     @state(Field) num = State<Field>();
     @state(Field) calls = State<Field>();
 
-    deploy(args: DeployArgs) {
-      super.deploy(args);
+    async deploy() {
+      await super.deploy();
       this.account.permissions.set({
         ...Permissions.default(),
         setDelegate: Permissions.proof(),
         setPermissions: Permissions.proof(),
-        setVerificationKey: Permissions.proof(),
+        setVerificationKey: {
+          auth: Permissions.proof(),
+          txnVersion: TransactionVersion.current(),
+        },
         setZkappUri: Permissions.proof(),
         setTokenSymbol: Permissions.proof(),
         incrementNonce: Permissions.proof(),
@@ -121,7 +123,7 @@ This zkApp has methods that call other methods to let you explore the impacts to
     }
 
     @method async init() {
-      this.account.provedState.requireEquals(this.account.provedState.get());
+      this.account.provedState.getAndRequireEquals();
       this.account.provedState.get().assertFalse();
 
       super.init();
@@ -144,27 +146,23 @@ This zkApp has methods that call other methods to let you explore the impacts to
 
   ```typescript
     ...
-
     @method async add(incrementBy: Field) {
-      this.account.provedState.requireEquals(this.account.provedState.get());
+      this.account.provedState.getAndRequireEquals();
       this.account.provedState.get().assertTrue();
 
-      const num = this.num.get();
-      this.num.requireEquals(num);
+      const num = this.num.getAndRequireEquals();
       this.num.set(num.add(incrementBy));
 
-      this.incrementCalls();
+      await this.incrementCalls();
     }
 
     @method async incrementCalls() {
-      this.account.provedState.requireEquals(this.account.provedState.get());
+      this.account.provedState.getAndRequireEquals();
       this.account.provedState.get().assertTrue();
 
-      const calls = this.calls.get();
-      this.calls.requireEquals(calls);
+      const calls = this.calls.getAndRequireEquals();
       this.calls.set(calls.add(Field(1)));
     }
-
     ...
   ```
 
@@ -182,22 +180,20 @@ This zkApp has methods that call other methods to let you explore the impacts to
     ...
 
     @method async callSecondary(secondaryAddr: PublicKey) {
-      this.account.provedState.requireEquals(this.account.provedState.get());
+      this.account.provedState.getAndRequireEquals();
       this.account.provedState.get().assertTrue();
 
       const secondaryContract = new SecondaryZkApp(secondaryAddr);
+      const num = this.num.getAndRequireEquals();
 
-      const num = this.num.get();
-      this.num.requireEquals(num);
-
-      secondaryContract.add(num);
+      await secondaryContract.add(num);
 
       // NOTE this gets the state at the start of the transaction
       this.num.set(secondaryContract.num.get());
 
-      this.incrementCalls();
+      await this.incrementCalls();
     }
-  }
+}
   ```
 
   The `callSecondary()` method takes the address of the other zkApp, `SecondaryZkApp`, and calls a method on it. Note that the impact of calling that method occurs after this set of AccountUpdates—so when you call `secondaryContract.num.get()`, it gets the value before this transaction is applied.
@@ -209,21 +205,26 @@ Finally, look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tr
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
-  @method async init() {
-    super.init();
+  async deploy() {
+    await super.deploy();
+    this.account.permissions.set({
+      ...Permissions.default(),
+    });
+  }
 
-    this.account.provedState.requireEquals(this.account.provedState.get());
+  @method async init() {
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertFalse();
 
+    super.init();
     this.num.set(Field(12));
   }
 
   @method async add(incrementBy: Field) {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
 
-    const num = this.num.get();
-    this.num.requireEquals(num);
+    const num = this.num.getAndRequireEquals();
     this.num.set(num.add(incrementBy));
   }
 }
@@ -265,7 +266,7 @@ Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree
   const legend = {
     [proofsOnlyAddr.toBase58()]: 'proofsOnlyZkApp',
     [secondaryAddr.toBase58()]: 'secondaryZkApp',
-    [deployerPubkey.toBase58()]: 'deployer',
+    [deployerAccount.toBase58()]: 'deployer',
   };
   ```
 
@@ -278,15 +279,16 @@ Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree
     await secondaryInstance.deploy();
   });
 
-  await deploy_txn.prove();
-  deploy_txn.sign([deployerKey, proofsOnlySk, secondarySk]);
+  await deployTxn.prove();
+  deployTxn.sign([deployerKey, proofsOnlySk, secondarySk]);
 
-  await showTxn(deploy_txn, 'deploy_txn', legend);
+  await showTxn(deployTxn, 'deploy_txn', legend);
 
-  await deploy_txn.send();
+  await deployTxn.send();
+
   ```
 
-This yields the following visualization of `deploy_txn`.
+This yields the following visualization of `deployTxn`.
 
 <img src="/img/tutorial-10-deploy_txn.png" width="100%" />
 
@@ -342,22 +344,20 @@ As a reminder, this update corresponds to code:
 ```typescript
   ...
   @method async add(incrementBy: Field) {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
 
-    const num = this.num.get();
-    this.num.requireEquals(num);
+    const num = this.num.getAndRequireEquals();
     this.num.set(num.add(incrementBy));
 
-    this.incrementCalls();
+    await this.incrementCalls();
   }
 
   @method async incrementCalls() {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
 
-    const calls = this.calls.get();
-    this.calls.requireEquals(calls);
+    const calls = this.calls.getAndRequireEquals();
     this.calls.set(calls.add(Field(1)));
   }
   ...
@@ -393,20 +393,18 @@ And a quick reminder of the code for `callSecondary()`:
 
 ```typescript
   @method async callSecondary(secondaryAddr: PublicKey) {
-    this.account.provedState.requireEquals(this.account.provedState.get());
+    this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
 
     const secondaryContract = new SecondaryZkApp(secondaryAddr);
+    const num = this.num.getAndRequireEquals();
 
-    const num = this.num.get();
-    this.num.requireEquals(num);
-
-    secondaryContract.add(num);
+    await secondaryContract.add(num);
 
     // NOTE this gets the state at the start of the transaction
     this.num.set(secondaryContract.num.get());
 
-    this.incrementCalls();
+    await this.incrementCalls();
   }
 ```
 
