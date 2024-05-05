@@ -98,9 +98,9 @@ For this example, the zkApp is not upgradable after it is deployed. This means t
 
 This zkApp has methods that call other methods to let you explore the impacts to a transaction's account updates.
 
-1. Start by adding the main contents of the zkApp:
+- Start by adding the main contents of the zkApp:
 
-```typescript
+```ts
 export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();
   @state(Field) calls = State<Field>();
@@ -143,9 +143,9 @@ By asserting that `provedState` is `false` in `init()`, you ensure that `init()`
 This assertion is a recommended best practice for most zkApps.
 :::
 
-1. Next, add two functions:
+- Next, add two functions:
 
-```typescript
+```ts
   ...
   @method async add(incrementBy: Field) {
     this.account.provedState.getAndRequireEquals();
@@ -175,9 +175,9 @@ This assertion is a recommended best practice for most zkApps.
 
 The `add()` method calls the `incrementCalls()` method. You can see how this is reflected in the `add()` transaction's `AccountUpdate` structure.
 
-1. Finally, add one more function, `callSecondary()`, that calls a different zkApp:
+- Finally, add one more function, `callSecondary()`, that calls a different zkApp:
 
-```typescript
+```ts
   ...
 
   @method async callSecondary(secondaryAddr: PublicKey) {
@@ -201,7 +201,7 @@ The `callSecondary()` method takes the address of the other zkApp, `SecondaryZkA
 
 Finally, look briefly at [SecondaryZkApp.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/SecondaryZkApp.ts) that contains:
 
-```typescript
+```ts
 export class SecondaryZkApp extends SmartContract {
   @state(Field) num = State<Field>();
 
@@ -236,9 +236,9 @@ You declare functions for initializing the account and the `add()` method that i
 
 Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/main.ts) file that creates transactions with the earlier smart contracts and the account update visualizations it creates.
 
-1. Import the transaction visualizer:
+- Import the transaction visualizer:
 
-```typescript
+```ts
 ...
 import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 ...
@@ -246,7 +246,7 @@ import { showTxn, saveTxn, printTxn } from 'mina-transaction-visualizer';
 
 This provides three functions:
 
-```typescript
+```ts
 // creates a png file of a transaction, and opens it in a local image viewer
 async showTxn(txn: Mina.Transaction, name: string, legend: Legend)
 
@@ -260,9 +260,9 @@ printTxn(txn: Mina.Transaction, name: string, legend: Legend)
 type Legend = { [pk: string]: string };
 ```
 
-1. Next, define the legend as follows:
+- Next, define the legend as follows:
 
-```typescript
+```ts
 const legend = {
   [proofsOnlyAddr.toBase58()]: 'proofsOnlyZkApp',
   [secondaryAddr.toBase58()]: 'secondaryZkApp',
@@ -270,9 +270,9 @@ const legend = {
 };
 ```
 
-1. Create and send a deploy transaction, then visualize it:
+- Create and send a deploy transaction, then visualize it:
 
-```typescript
+```ts
 const deployTxn = await Mina.transaction(deployerAccount, async () => {
   AccountUpdate.fundNewAccount(deployerAccount, 2);
   await proofsOnlyInstance.deploy();
@@ -309,9 +309,9 @@ When the transaction is run on chain, these account updates are checked by the M
 
 ### Call `add()` on `proofsOnlyZkApp`
 
-1. Call `add()` on your instance of `proofsOnlyZkApp`:
+- Call `add()` on your instance of `proofsOnlyZkApp`:
 
-```typescript
+```ts
 const txn1 = await Mina.transaction(deployerAccount, async () => {
   await proofsOnlyInstance.add(Field(4));
 });
@@ -340,7 +340,7 @@ One update is the child because it was called from the parent, which also implie
 
 As a reminder, this update corresponds to code:
 
-```typescript
+```ts
   ...
   @method async add(incrementBy: Field) {
     this.account.provedState.getAndRequireEquals();
@@ -369,7 +369,7 @@ View the [account updates visualization](/img/tutorial-10-deploy_txn.png) again.
 
 Finally, call `callSecondary` on your instance of `proofsOnlyZkApp`:
 
-```typescript
+```ts
 const txn2 = await Mina.transaction(deployerAccount, async () => {
   await proofsOnlyInstance.callSecondary(secondaryAddr);
 });
@@ -390,7 +390,7 @@ This [txn2 visualization](/img/tutorial-10-txn2.png) is best viewed in a new tab
 
 And a quick reminder of the code for `callSecondary()`:
 
-```typescript
+```ts
   @method async callSecondary(secondaryAddr: PublicKey) {
     this.account.provedState.getAndRequireEquals();
     this.account.provedState.get().assertTrue();
