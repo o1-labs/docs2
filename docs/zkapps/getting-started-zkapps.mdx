@@ -15,7 +15,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -47,7 +47,7 @@ See [zkApp CLI Installation](/zkapps/install-zkapp-cli).
 ### 2. Create a project
 
 ```sh
-zk project <project-name>
+$ zk project <project-name>
 ```
 
 [o1js](/zkapps/o1js) is automatically installed when you generate a project using the zkApp CLI. 
@@ -157,11 +157,11 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
 
     Follow the prompts to specify a deploy alias name (can be anything), URL to deploy to, fee (in MINA) to be used when sending your deploy transaction, and the fee payer account. 
 
-    For the Berkeley Testnet, use:
+    For the Devnet, use:
  
-    - Deploy alias name: `berkeley` 
+    - Deploy alias name: `devnet` 
   
-    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+    - Mina GraphQL API URL: `https://api.minascan.io/node/devnet/v1/graphql`
   
     - Transaction fee to use when deploying: `0.1`
   
@@ -182,7 +182,7 @@ To deploy the smart contract to the Testnet, run the `zk` commands from the dire
         If this is the first time you are running the `zk config` command, you see these options:
 
         ```text
-        ❯ Recover fee payer account from an existing base58 private key
+        > Recover fee payer account from an existing base58 private key
         Create a new fee payer key pair
         ```
 

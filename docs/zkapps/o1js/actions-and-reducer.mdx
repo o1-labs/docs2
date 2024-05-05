@@ -16,7 +16,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -42,9 +42,9 @@ On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce
 
 - "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
 
-```ts
-this.reducer.dispatch(Field(1000));
-```
+  ```ts
+  this.reducer.dispatch(Field(1000));
+  ```
 
 - "Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example where you have a list of actions and want to find out if one of actions is equal to `1000`. 
 

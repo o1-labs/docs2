@@ -14,7 +14,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -95,23 +95,23 @@ If you want all tokens to unlock after a certain time, then the only properties 
 - Set `cliffAmount` equal to the `initialMinimumBalance` to ensure all tokens are unlocked when the cliff elapses. 
 - Both `vestingPeriod` and `vestingIncrement` are unused, so set them to their default values, `1` and `0`:
 
-```ts
-// example: 10 MINA to lock
-const tokensToLock = UInt64.from(10e9);
+  ```ts
+  // example: 10 MINA to lock
+  const tokensToLock = UInt64.from(10e9);
 
-// calculate 1 week in slots
-const cliffTime = UInt32.from((60 / 3) * 24 * 7);
+  // calculate 1 week in slots
+  const cliffTime = UInt32.from((60 / 3) * 24 * 7);
 
-accountUpdate.account.timing.set({
-  initialMinimumBalance: tokensToLock,
-  cliffTime,
-  cliffAmount: tokensToLock,
-  vestingPeriod: UInt32.from(1), // 0 is not allowed; default value is 1
-  vestingIncrement: UInt64.from(0),
-});
+  accountUpdate.account.timing.set({
+    initialMinimumBalance: tokensToLock,
+    cliffTime,
+    cliffAmount: tokensToLock,
+    vestingPeriod: UInt32.from(1), // 0 is not allowed; default value is 1
+    vestingIncrement: UInt64.from(0),
+  });
 
-this.send({ to: accountUpdate, amount: tokensToLock });
-```
+  this.send({ to: accountUpdate, amount: tokensToLock });
+  ```
 
 #### Example 2: Linear vesting over 1 year
 
@@ -121,23 +121,23 @@ This example does not use a cliff, but vests a certain number of tokens linearly
 - Set the `vestingIncrement` to the total amount divided by 12, so that the total amount is unlocked after 12 months. 
 - Set both `cliffTime` and `cliffAmount` to 0.
 
-```ts
-// example: 100000 MINA to lock
-const tokensToLock = UInt64.from(100000e9);
+  ```ts
+  // example: 100000 MINA to lock
+  const tokensToLock = UInt64.from(100000e9);
 
-// calculate 1 month in slots
-const vestingPeriod = UInt32.from(Math.round(((60 / 3) * 24 * 365) / 12));
+  // calculate 1 month in slots
+  const vestingPeriod = UInt32.from(Math.round(((60 / 3) * 24 * 365) / 12));
 
-// 1/12th of tokens unlocked every month
-const vestingIncrement = UInt64.from(Math.round(tokensToLock / 12));
+  // 1/12th of tokens unlocked every month
+  const vestingIncrement = UInt64.from(Math.round(tokensToLock / 12));
 
-accountUpdate.account.timing.set({
-  initialMinimumBalance: tokensToLock,
-  cliffTime: UInt32.from(0),
-  cliffAmount: UInt64.from(0),
-  vestingPeriod,
-  vestingIncrement,
-});
+  accountUpdate.account.timing.set({
+    initialMinimumBalance: tokensToLock,
+    cliffTime: UInt32.from(0),
+    cliffAmount: UInt64.from(0),
+    vestingPeriod,
+    vestingIncrement,
+  });
 
-this.send({ to: accountUpdate, amount: tokensToLock });
-```
+  this.send({ to: accountUpdate, amount: tokensToLock });
+  ```

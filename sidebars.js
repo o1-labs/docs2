@@ -85,6 +85,7 @@ module.exports = {
             'zkapps/tutorials/common-types-and-functions',
             'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
+            'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',

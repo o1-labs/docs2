@@ -10,6 +10,12 @@ keywords:
   - using zk lightnet
 ---
 
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
 # Testing zkApps with Lightnet
 
 The most efficient way to deploy and run a lightweight Mina blockchain network for testing purposes is to spin up a lightweight Mina network (Lightnet) in a single Docker container. Lightnet is a resource-efficient solution with fast startup and syncing times.
@@ -73,7 +79,7 @@ Most of your zkApp testing can be done on a single node network. Docker Engine m
 To start a single node network with default behavior:
 
 ```sh
-zk lightnet start
+$ zk lightnet start
 ```
 
 This command performs the following operations that successfully serve the majority of testing requirements:
@@ -93,7 +99,7 @@ This command performs the following operations that successfully serve the major
 To see the options for a sub-command, use the `--help` (or `-h`) parameter. For example:
 
 ```sh
-zk lightnet start --help
+$ zk lightnet start --help
 ```
 
 Some of the `zk lightnet` sub-commands have boolean values that default to `true`.
@@ -105,7 +111,7 @@ For sub-commands that show the option as (`[boolean] [default: true]`), negation
 For example, to start Lightnet without waiting for the network to reach a synchronized state, use:
 
 ```sh
-zk lightnet start --no-sync
+$ zk lightnet start --no-sync
 ```
 
 ### Start a local network with other settings
@@ -113,7 +119,7 @@ zk lightnet start --no-sync
 To see the options to start a local blockchain network with other-than-default settings:
 
 ```sh
-zk lightnet start --help
+$ zk lightnet start --help
 ```
 
 You can configure different network properties as appropriate to your testing requirements. 
@@ -127,7 +133,7 @@ To use fewer resources when your testing does not require an `Archive-Node-API` 
 To disable the archive data-related services:
 
 ```sh
-zk lightnet start --no-archive
+$ zk lightnet start --no-archive
 ```
 
 ### Keep current product versions
@@ -137,7 +143,7 @@ New Docker images are built and published to the Docker Hub every night. You mig
 To keep your current working versions of o1js and Mina:
 
 ```sh
-zk lightnet start --no-pull
+$ zk lightnet start --no-pull
 ```
 
 ### Start a multi-node local network
@@ -147,7 +153,7 @@ You can start a local network with multiple network participants. This network u
 To start a multi-node local network with closer-to-real-world properties:
 
 ```sh
-zk lightnet start --mode multi-node --type real --proof-level full
+$ zk lightnet start --mode multi-node --type real --proof-level full
 ```
 
 ### Restart for a clean slate
@@ -155,8 +161,8 @@ zk lightnet start --mode multi-node --type real --proof-level full
 To reinstantiate Lightnet so you can redeploy and retest:
 
 ```sh
-zk lightnet stop
-zk lightnet start
+$ zk lightnet stop
+$ zk lightnet start
 ```
 
 ## Stop the local network
@@ -164,7 +170,7 @@ zk lightnet start
 To stop the local network, remove the Docker container, and clean up the environment:
 
 ```sh
-zk lightnet stop
+$ zk lightnet stop
 ```
 
 When Lightnet is stopped, the log files for Docker container services are saved to the host file system at `${HOME}/.cache/zkapp-cli/lightnet/logs/`.
@@ -172,7 +178,7 @@ When Lightnet is stopped, the log files for Docker container services are saved 
 To disable saving of log files:
 
 ```sh
-zk lightnet stop --no-save-logs
+$ zk lightnet stop --no-save-logs
 ```
 
 ## Configure your zkApp
@@ -182,7 +188,7 @@ When you first build your zkApp, you test it locally and create a deploy alias a
 Now that you have Lightnet running, you can run a single command to configure your zkApp deploy alias:
 
 ```sh
-zk config --lightnet
+$ zk config --lightnet
 ```
 
 ## Troubleshoot transactions
@@ -194,7 +200,7 @@ Tools are provided for troubleshooting.
 To monitor transactions and visualize the network progress, launch the lightweight Mina Explorer:
 
 ```sh
-zk lightnet explorer
+$ zk lightnet explorer
 ```
 
 By default, this command downloads (if needed) and launches the latest version of [lightweight Mina explorer](https://github.com/o1-labs/mina-lightweight-explorer). 
@@ -202,13 +208,13 @@ By default, this command downloads (if needed) and launches the latest version o
 To list versions, their published dates, and show the version in use:
 
 ```sh
-zk lightnet explorer --list
+$ zk lightnet explorer --list
 ```
 
 To use a specific version of the lightweight Mina Explorer:
 
 ```sh
-zk lightnet explorer use <version>
+$ zk lightnet explorer use <version>
 ```
 
 ### Log files
@@ -221,7 +227,7 @@ Log files for various processes are saved inside the Docker container as:
 To save the log files that are produced by Docker container processes to the host machine file system:
 
 ```sh
-zk lightnet logs save
+$ zk lightnet logs save
 ```
 
 To debug your zkApp, you can monitor the Docker container process logs in real time. 
@@ -229,7 +235,7 @@ To debug your zkApp, you can monitor the Docker container process logs in real t
 In a different terminal window, to stream the process logs:
 
 ```sh
-zk lightnet logs follow
+$ zk lightnet logs follow
 ```
 
 Select the Docker container process to follow. Press Ctrl+C to stop streaming.
@@ -240,7 +246,7 @@ Select the Docker container process to follow. Press Ctrl+C to stop streaming.
 To get the network status:
 
 ```sh
-zk lightnet status
+$ zk lightnet status
 ```
 
 The network status is returned, including HTTP endpoints. For example, the default single node network status returns these endpoints:

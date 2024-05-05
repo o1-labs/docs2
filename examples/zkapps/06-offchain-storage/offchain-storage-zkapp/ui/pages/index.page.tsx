@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './reactCOIServiceWorker';
 import styles from '../styles/Home.module.css';
 import GradientBG from './components/GradientBG';
+import './reactCOIServiceWorker';
 import ZkappWorkerClient from './zkappWorkerClient';
 
 import {
-  PublicKey,
-  PrivateKey,
-  Field,
-  CircuitString,
   Character,
+  CircuitString,
+  Field,
   Group,
+  PrivateKey,
+  PublicKey,
 } from 'o1js';
 
 const transactionFee = 100_000_000;
@@ -54,7 +54,7 @@ export default function Home() {
         if (useLocalTestInstance) {
           await zkappWorkerClient.setActiveInstanceToLocal();
         } else {
-          await zkappWorkerClient.setActiveInstanceToBerkeley();
+          await zkappWorkerClient.setActiveInstanceToDevnet();
         }
 
         if (localStorage.privateKey == null) {
@@ -111,8 +111,7 @@ export default function Home() {
           await zkappWorkerClient.proveUpdateTransaction();
           let transactionHash = await zkappWorkerClient.sendUpdateTransaction();
           console.log(
-            'See transaction at https://berkeley.minaexplorer.com/transaction/' +
-              transactionHash
+            `See transaction at https://minascan.io/devnet/tx/${transactionHash}`
           );
 
           console.log('Sending init transaction...');
@@ -123,8 +122,7 @@ export default function Home() {
           await zkappWorkerClient.proveUpdateTransaction();
           transactionHash = await zkappWorkerClient.sendUpdateTransaction();
           console.log(
-            'See transaction at https://berkeley.minaexplorer.com/transaction/' +
-              transactionHash
+            `See transaction at https://minascan.io/devnet/tx/${transactionHash}`
           );
         }
         console.log('zkApp state fetched');
@@ -193,8 +191,7 @@ export default function Home() {
         await state.zkappWorkerClient!.sendUpdateTransaction();
 
       console.log(
-        'See transaction at https://berkeley.minaexplorer.com/transaction/' +
-          transactionHash
+        `See transaction at https://minascan.io/devnet/tx/${transactionHash}`
       );
 
       setState({ ...state, creatingTransaction: false });
@@ -266,8 +263,7 @@ export default function Home() {
             <p>{`Offchain Value: ${message}`}</p>
           </>
         );
-        const signerLink =
-          'https://berkeley.minaexplorer.com/wallet/' + publicKey.toBase58();
+        const signerLink = `https://minascan.io/devnet/account/${publicKey.toBase58()}`;
         signer = (
           <a href={signerLink} target="_blank" rel="noreferrer">
             <p>See signer</p>

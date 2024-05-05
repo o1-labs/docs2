@@ -20,7 +20,7 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -109,7 +109,7 @@ Start by deleting the default files that come with the new project.
 
 1. Copy the `src/Square.ts` and `src/index.ts` files from the files of the first tutorial [01-hello-world/src](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world/src) to your local `03-deploying-to-a-live-network/src` directory. If prompted, replace existing files.
 
-Now that your smart contract is in place, you are ready to deploy your smart contract to Berkeley Testnet.
+Now that your smart contract is in place, you are ready to deploy your zkApp to Devnet.
 
 ## zkApp CLI
 
@@ -147,15 +147,15 @@ A deploy alias consists of:
   $ zk config
   ```
 
-  For this tutorial on Berkeley Testnet, use:
+  For this tutorial on Devnet, use:
   
-    - Deploy alias name: `berkeley` 
+    - Deploy alias name: `devnet` 
     
-      This tutorial uses `berkeley`, but the deploy alias name can be anything and does not have to match the network name.
+      This tutorial uses `devnet`, but the deploy alias name can be anything and does not have to match the network name.
   
     - Target network kind: `Testnet`
     
-    - Mina GraphQL API URL: `https://proxy.berkeley.minaexplorer.com/graphql`
+    - Mina GraphQL API URL: `https://api.minascan.io/node/devnet/v1/graphql`
   
     - Transaction fee to use when deploying (in MINA): `0.1`
 
@@ -193,7 +193,7 @@ A deploy alias consists of:
 
   ```sh
   ✔ Create fee payer key pair at ${HOME}/.cache/zkapp-cli/keys/03-deploy.json
-  ✔ Create zkApp key pair at keys/berkeley.json
+  ✔ Create zkApp key pair at keys/devnet.json
   ✔ Add deploy alias to config.json
 
   Success!
@@ -201,15 +201,15 @@ A deploy alias consists of:
   Next steps:
     - If this is the testnet, request tMINA at:
       https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>
-    - To deploy zkApp, run: `zk deploy berkeley`
+    - To deploy zkApp, run: `zk deploy devnet`
   ```
 
 1. Request funds from the Testnet Faucet to fund your fee payer account.
 
   Follow the prompts to request tMINA.  
-  To get funds on the Berkeley Testnet, use the URL that was shown in the zkApp CLI output:
+  To get funds on the Devnet, use the URL that was shown in the zkApp CLI output:
     - Visit `https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>`
-    - Choose the corresponding network you're going to deploy your zkApp to (`Berkeley` in this case)
+    - Choose the corresponding network you're going to deploy your zkApp to (`Devnet` in this case)
     - And click the **Request** button
 
   Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so that tMINA becomes available for the fee payer account.
@@ -220,11 +220,11 @@ A deploy alias consists of:
   $ zk deploy
   ```
 
-1. At the interactive prompt, select the `berkeley` deploy alias:
+1. At the interactive prompt, select the `devnet` deploy alias:
 
   ```text
   ? Which deploy alias would you like to deploy to? …
-  > berkeley
+  > devnet
   ```
 
   A verification key for your smart contract is generated (takes 10-30 seconds). 
@@ -248,11 +248,11 @@ A deploy alias consists of:
   ✔ Confirm to send transaction
 
     |-----------------|-------------------------------------------------|
-    | Deploy alias    | berkeley                                        |
+    | Deploy alias    | devnet                                          |
     |-----------------|-------------------------------------------------|
     | Network kind    | testnet                                         |
     |-----------------|-------------------------------------------------|
-    | URL             | https://proxy.berkeley.minaexplorer.com/graphql |
+    | URL             | https://api.minascan.io/node/devnet/v1/graphql  |
     |-----------------|-------------------------------------------------|
     | Fee payer       | Alias         : 03-deploy                       |
     |                 | Account       : B62...                          |
@@ -276,7 +276,7 @@ A deploy alias consists of:
     Your smart contract will be live (or updated)
     at B62...
     as soon as the transaction is included in a block:
-    https://minascan.io/berkeley/tx/<txn-hash>?type=zk-tx
+    https://minascan.io/devnet/tx/<txn-hash>?type=zk-tx
   ```
 
 1. To see the zkApp transaction and navigate to accounts involved you can follow the transaction link provided to you in zkApp CLI output.  
@@ -292,7 +292,7 @@ You ran the `zk config` command to:
 
 - Create a deploy alias
 - Create a fee payer key pair at `${HOME}/.cache/zkapp-cli/keys/03-deploy.json`
-- Create a zkApp key pair at `keys/berkeley.json`
+- Create a zkApp key pair at `keys/devnet.json`
 
 You requested tMINA to fund your fee payer account and pay your deploy transaction fees. Use the remaining tMINA to keep building and testing.
 

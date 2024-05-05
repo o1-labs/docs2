@@ -1,13 +1,13 @@
-import { NumberTreeContract } from './NumberTreeContract.js';
 import {
-  OffChainStorage,
   MerkleWitness8,
+  OffChainStorage,
 } from 'experimental-offchain-zkapp-storage';
 import fs from 'fs';
+import { NumberTreeContract } from './NumberTreeContract.js';
 
-import { Mina, PrivateKey, AccountUpdate, Field, Bool } from 'o1js';
+import { AccountUpdate, Bool, Field, Mina, PrivateKey } from 'o1js';
 
-import { makeAndSendTransaction, loopUntilAccountExists } from './utils.js';
+import { loopUntilAccountExists, makeAndSendTransaction } from './utils.js';
 
 import XMLHttpRequestTs from 'xmlhttprequest-ts';
 const NodeXMLHttpRequest =
@@ -30,10 +30,10 @@ if (useLocal) {
   feePayerKey = Local.testAccounts[0].key;
   zkappPrivateKey = PrivateKey.random();
 } else {
-  const Berkeley = Mina.Network(
-    'https://proxy.berkeley.minaexplorer.com/graphql'
+  const Network = Mina.Network(
+    'https://api.minascan.io/node/devnet/v1/graphql'
   );
-  Mina.setActiveInstance(Berkeley);
+  Mina.setActiveInstance(Network);
 
   const deployAlias = process.argv[2];
 

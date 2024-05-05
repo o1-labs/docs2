@@ -18,7 +18,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on the Mina Devnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -52,12 +52,11 @@ Recursive ZKPs also make it easy to allow multiple parties to construct transact
 
 ## ZkProgram Example
 
-You build recursive zkApps with [ZkProgram](/zkapps/o1js-reference/functions/ZkProgram), the o1js general purpose API for creating zero knowledge proofs. A ZkProgram is similar to zkApp smart contracts but isn't tied to an on-chain account. 
+You build recursive zkApps with [ZkProgram](/zkapps/o1js-reference/functions/ZkProgram), the o1js general purpose API for creating zero knowledge proofs. A ZkProgram is similar to zkApp smart contracts but isn't tied to an on-chain account.
 
 Proofs generated using a ZkProgram can be passed into zkApp smart contracts for them to verify recursively. They can even be passed recursively into their own functions for off-chain recursive composition.
 
 The following example code for the ZkProgram tutorial is provided in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/main.ts) file on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp!
-
 
 ## Prerequisites
 
@@ -76,15 +75,15 @@ Now that you have the tooling installed, you can start building your application
 1. Create or change to a directory where you have write privileges.
 1. Now, create a project using the `zk project` command:
 
-    ```sh
-    $ zk project 09-recursion
-    ```
-    
-    As you learned in earlier tutorials, the `zk project` command creates the `09-recursion` directory that contains the scaffolding for your project.
+   ```sh
+   $ zk project 09-recursion
+   ```
 
-1. Change into the `09-recursion` directory. 
+   As you learned in earlier tutorials, the `zk project` command creates the `09-recursion` directory that contains the scaffolding for your project.
 
-Like all projects, you run `zk` commands from the root of the `09-recursion` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. 
+1. Change into the `09-recursion` directory.
+
+Like all projects, you run `zk` commands from the root of the `09-recursion` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract.
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -93,11 +92,11 @@ Each time you make updates, then build or deploy, the TypeScript code is compile
 Like earlier tutorials, you can prepare your project by deleting the default files that come with the new project and creating a smart contract called `Add`.
 
 Open `src/index.ts` in a text editor and import the `Add` smart contract, like:
-	
-	```ts src/index.ts
-	import { Add } from './Add.js';
-	
-	export { Add };
+
+```ts src/index.ts
+import { Add } from './Add.js';
+export { Add };
+```
 
 ## Write the ZkProgram
 
@@ -110,9 +109,7 @@ A final version of the smart contract is provided in the [Add.ts](https://github
 Use the existing code in the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
 
 1. First, open the [Add.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/Add.ts) example file.
-	
 1. Copy the file's entire contents into your project `src/Add.ts` file.
-
 
 ### Imports
 
@@ -142,8 +139,8 @@ To create a ZkProgram, start with the `init()` method.
 - For each method, declare the inputs it will receive.
 - The first argument of a ZkProgram method is always the state of the ZkProgram, named `publicInput` since it is public.
 
-```typescript
- export const Add = ZkProgram({
+```ts
+export const Add = ZkProgram({
   name: 'add-example',
   publicInput: Field,
 
@@ -156,13 +153,12 @@ To create a ZkProgram, start with the `init()` method.
       },
     },
   },
- });
-
+});
 ```
 
 Add another method that takes an existing proof, adds a new number to it, and produces a new proof:
 
-```typescript
+```ts
 
    addNumber: {
      privateInputs: [SelfProof, Field],
@@ -180,7 +176,7 @@ Add another method that takes an existing proof, adds a new number to it, and pr
 
 Use recursion to combine two proofs:
 
-```typescript
+```ts
 
    add: {
      privateInputs: [SelfProof, SelfProof],
@@ -201,7 +197,7 @@ Use recursion to combine two proofs:
 
 To use ZkProgram, compile it and then call methods on it:
 
-```typescript
+```ts
 async function main() {
   console.log('compiling...');
 
@@ -224,7 +220,6 @@ async function main() {
 
   const ok = await verify(proof2.toJSON(), verificationKey);
   console.log('ok', ok);
-
 }
 
 main();
@@ -238,7 +233,7 @@ Another example of off-chain multi-party proof construction with recursive ZKPs 
 
 ## Using ZkProgram in Smart Contracts
 
-After you build a recursive ZKP, use a method on a smart contract to settle the proof to the Mina blockchain. 
+After you build a recursive ZKP, use a method on a smart contract to settle the proof to the Mina blockchain.
 
 Build a zkRollup to use ZkProgram from a smart contract.
 
@@ -248,7 +243,7 @@ The zkApp will store the Merkle root of this MerkleMap of accounts on chain. Upd
 
 This zkRollup design is flexible to how much compute is being demanded of it (for latency) and allows it to scale to arbitrary numbers of proofs (for throughput).
 
-On a single machine, the example code does not offer a high throughput. However, you can achieve very high throughputs by switching the mapreduce here for a mapreduce that runs over tens or hundreds of machines. In fact, you can achieve any level of throughput as long as you're willing to incur `log(N)` latency when constructing the proof of N transactions. 
+On a single machine, the example code does not offer a high throughput. However, you can achieve very high throughputs by switching the mapreduce here for a mapreduce that runs over tens or hundreds of machines. In fact, you can achieve any level of throughput as long as you're willing to incur `log(N)` latency when constructing the proof of N transactions.
 
 The following code for the ZkProgram part of a rollup is provided in the [rollup.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/09-recursion/src/rollup.ts) example file.
 
@@ -256,7 +251,7 @@ A community-contributed implementation distributes compute over AWS instances in
 
 ### Set up ZkProgram
 
-```typescript
+```ts
 class RollupState extends Struct({
   initialRoot: Field,
   latestRoot: Field,
@@ -297,7 +292,7 @@ A proof generated by the `merge()` method indicates there is a valid sequence of
 
 To consume these proofs in a smart contract (`SmartContract`) that uses the recursive proof to update its internal state:
 
-```typescript
+```ts
 class RollupContract extends SmartContract {
   @state(Field) state = State<Field>();
 
@@ -328,15 +323,15 @@ class RollupContract extends SmartContract {
 
 ### Verify the value at account is incremented
 
-Fill in the previous methods, particularly `oneStep()` and `createOneStep()`. 
+Fill in the previous methods, particularly `oneStep()` and `createOneStep()`.
 
 This step of the rollup checks that the value at an account was incremented by a particular amount.
 
-- The code computes an updated state inside the recursive SNARK by calling `RollupState.createOneStep()`. 
-- Then, asserting that the new state of the recursive SNARK is equivalent to the computed state. 
+- The code computes an updated state inside the recursive SNARK by calling `RollupState.createOneStep()`.
+- Then, asserting that the new state of the recursive SNARK is equivalent to the computed state.
 - Inside `createOneStep()`, a single step of the rollup is created.
 
-```typescript
+```ts
 class RollupState extends Struct({
 ...
 }) {
@@ -348,11 +343,11 @@ class RollupState extends Struct({
     incrementAmount: Field,
     merkleMapWitness: MerkleMapWitness,
   ) {
-    const [ witnessRootBefore, witnessKey ] = 
+    const [ witnessRootBefore, witnessKey ] =
       merkleMapWitness.computeRootAndKey(currentValue);
     initialRoot.assertEquals(witnessRootBefore);
     witnessKey.assertEquals(key);
-    const [ witnessRootAfter, _ ] = 
+    const [ witnessRootAfter, _ ] =
       merkleMapWitness.computeRootAndKey(currentValue.add(incrementAmount));
     latestRoot.assertEquals(witnessRootAfter);
 
@@ -395,16 +390,16 @@ const Rollup = ZkProgram({
 
 ```
 
-The `createOneStep()` method returns a proof that acts as the leaf in a tree of recursive proofs. 
+The `createOneStep()` method returns a proof that acts as the leaf in a tree of recursive proofs.
 
 To use this rollup, first you construct all of the leafs in parallel then recursively merge these leafs until you get a proof for the entire sequence. This parallel merging gives the high throughput properties for the rollup.
 
 You can reimplement the example code for more substantial functionality, just by changing `createOneStep()`. For example, to implement a DEX zkRollup that uses an orderbook change the code to:
 
-* Update buy/sell orders on an order book
-* Execute those buy/sell orders
-* Add a queue of tokens to move to the app chain in the smart contract
-* Add a queue of tokens to move out of the app chain in the ZkProgram
+- Update buy/sell orders on an order book
+- Execute those buy/sell orders
+- Add a queue of tokens to move to the app chain in the smart contract
+- Add a queue of tokens to move out of the app chain in the ZkProgram
 
 ## Conclusion
 
@@ -413,7 +408,7 @@ You learned about:
 - Recursion with zkApps, both on-chain and off-chain
 - Potential use cases to create high-throughput applications
 - Larger proof sizes
-- Create multi-party proof constructions 
+- Create multi-party proof constructions
 
 Recursive zero knowledge proofs can help you build powerful zkApps.
 

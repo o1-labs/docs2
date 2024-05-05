@@ -1,12 +1,12 @@
+import { Field, PublicKey } from 'o1js';
 import { useEffect, useState } from 'react';
-import './reactCOIServiceWorker';
-import ZkappWorkerClient from './zkappWorkerClient';
-import { PublicKey, Field } from 'o1js';
 import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
+import './reactCOIServiceWorker';
+import ZkappWorkerClient from './zkappWorkerClient';
 
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qknCphH8ikE9Bu46dFgamUeYRcE9FtKr5ahh5tcJDf7ibRXJdzWV';
+const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
   const [state, setState] = useState({
@@ -17,7 +17,7 @@ export default function Home() {
     currentNum: null as null | Field,
     publicKey: null as null | PublicKey,
     zkappPublicKey: null as null | PublicKey,
-    creatingTransaction: false
+    creatingTransaction: false,
   });
 
   const [displayText, setDisplayText] = useState('');
@@ -45,7 +45,7 @@ export default function Home() {
         setDisplayText('Done loading web worker');
         console.log('Done loading web worker');
 
-        await zkappWorkerClient.setActiveInstanceToBerkeley();
+        await zkappWorkerClient.setActiveInstanceToDevnet();
 
         const mina = (window as any).mina;
 
@@ -64,7 +64,7 @@ export default function Home() {
         console.log('Checking if fee payer account exists...');
 
         const res = await zkappWorkerClient.fetchAccount({
-          publicKey: publicKey!
+          publicKey: publicKey!,
         });
         const accountExists = res.error == null;
 
@@ -95,7 +95,7 @@ export default function Home() {
           publicKey,
           zkappPublicKey,
           accountExists,
-          currentNum
+          currentNum,
         });
       }
     })();
@@ -111,7 +111,7 @@ export default function Home() {
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
           const res = await state.zkappWorkerClient!.fetchAccount({
-            publicKey: state.publicKey!
+            publicKey: state.publicKey!,
           });
           const accountExists = res.error == null;
           if (accountExists) {
@@ -134,7 +134,7 @@ export default function Home() {
     console.log('Creating a transaction...');
 
     await state.zkappWorkerClient!.fetchAccount({
-      publicKey: state.publicKey!
+      publicKey: state.publicKey!,
     });
 
     await state.zkappWorkerClient!.createUpdateTransaction();
@@ -153,11 +153,11 @@ export default function Home() {
       transaction: transactionJSON,
       feePayer: {
         fee: transactionFee,
-        memo: ''
-      }
+        memo: '',
+      },
     });
 
-    const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
+    const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
     console.log(`View transaction at ${transactionLink}`);
 
     setTransactionLink(transactionLink);
@@ -174,7 +174,7 @@ export default function Home() {
     setDisplayText('Getting zkApp state...');
 
     await state.zkappWorkerClient!.fetchAccount({
-      publicKey: state.zkappPublicKey!
+      publicKey: state.zkappPublicKey!,
     });
     const currentNum = await state.zkappWorkerClient!.getNum();
     setState({ ...state, currentNum });

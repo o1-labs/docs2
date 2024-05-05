@@ -3,24 +3,24 @@
 */
 
 import {
+  AccountUpdate,
+  Bool,
+  Field,
+  MerkleTree,
+  MerkleWitness,
+  Mina,
+  Poseidon,
+  fetchAccount,
+} from 'o1js';
+import random from 'random-bigint';
+import XMLHttpRequestTs from 'xmlhttprequest-ts';
+import { OffChainStorage } from '../index.js';
+import { initializeKeys, initializeMina } from '../utils/mina-setup.js';
+import { retryOperation } from '../utils/network.js';
+import {
   OffChainStorageTestContract,
   height,
 } from './OffChainStorageTestContract.js';
-import {
-  Field,
-  Mina,
-  AccountUpdate,
-  MerkleTree,
-  MerkleWitness,
-  fetchAccount,
-  Poseidon,
-  Bool,
-} from 'o1js';
-import { OffChainStorage } from '../index.js';
-import { retryOperation } from '../utils/network.js';
-import { initializeMina, initializeKeys } from '../utils/mina-setup.js';
-import random from 'random-bigint';
-import XMLHttpRequestTs from 'xmlhttprequest-ts';
 
 const NodeXMLHttpRequest =
   XMLHttpRequestTs.XMLHttpRequest as any as typeof XMLHttpRequest;
@@ -82,7 +82,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
       } else {
         console.log(
           'See deploy transaction at',
-          'https://berkeley.minaexplorer.com/transaction/' + res.hash
+          `https://minascan.io/devnet/tx/${res.hash}`
         );
         console.log('Waiting for zkApp to be deployed...');
         await retryOperation(async () => {
@@ -201,7 +201,7 @@ const SERVER_ADDRESS = 'http://localhost:3001';
       } else {
         console.log(
           'See transaction at',
-          'https://berkeley.minaexplorer.com/transaction/' + res.hash
+          `https://minascan.io/devnet/tx/${res.hash}`
         );
         console.log('Waiting for transaction...');
         await retryOperation(async () => {

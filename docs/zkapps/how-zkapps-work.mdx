@@ -16,7 +16,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -116,11 +116,13 @@ After a zkApp is deployed to a host (for example, mycoolzkapp.com), end users ca
     - Private, the data is never seen by the blockchain.
     - Public, the data is stored on-chain or off-chain, depending on what the zkApp specified as required for a given use case.
 
- A list of state updates (called account updates) to be created by the transaction is generated. The account updates are associated with this proof. 
+  A list of state updates (called account updates) to be created by the transaction is generated. The account updates are associated with this proof. 
 1. The user selects **Submit to chain** in the zkApp UI.
-  - The user confirms the transaction on their wallet. 
-  - The wallet signs the transaction containing the proof and the associated description of state to update.
-  - The wallet sends the transaction to the Mina network.
+
+    - The user confirms the transaction on their wallet. 
+    - The wallet signs the transaction containing the proof and the associated description of state to update.
+    - The wallet sends the transaction to the Mina network.
+
 1. The Mina network receives this transaction and verifies that the proof successfully passes the verifier method listed on the zkApp account. If the network accepts this transaction, this proof and the requested state changes are valid and are allowed to update the zkApp state.
 
 The end user's privacy is maintained because their interaction occurs locally in a web browser using JavaScript on the client.

@@ -1,17 +1,17 @@
 //const cors = require('cors');
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import fs from 'fs';
 
 import {
-  PrivateKey,
   Field,
   MerkleTree,
-  Poseidon,
-  Signature,
-  PublicKey,
-  fetchAccount,
   Mina,
+  Poseidon,
+  PrivateKey,
+  PublicKey,
+  Signature,
+  fetchAccount,
 } from 'o1js';
 
 console.log(
@@ -34,10 +34,10 @@ const Local = await Mina.LocalBlockchain();
 if (useLocalBlockchain) {
   Mina.setActiveInstance(Local);
 } else {
-  const Berkeley = Mina.Network(
-    'https://proxy.berkeley.minaexplorer.com/graphql'
+  const Network = Mina.Network(
+    'https://api.minascan.io/node/devnet/v1/graphql'
   );
-  Mina.setActiveInstance(Berkeley);
+  Mina.setActiveInstance(Network);
 }
 
 const saveFile = 'database.json';

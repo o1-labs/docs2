@@ -18,7 +18,7 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -137,9 +137,9 @@ Now that you have an oracle that returns signed data, you can write a smart cont
 
 1. Create a project by using the `zk project` command:
 
-```sh
-$ zk project --ui none 07-oracles
-```
+  ```sh
+  $ zk project --ui none 07-oracles
+  ```
 
 This command will scaffold the zkApp project skipping the UI part since we don't need it.
 
@@ -154,26 +154,25 @@ Each time you make changes, then build or deploy, the TypeScript code is compile
 The files in the `src` directory contain the TypeScript code for the smart contract.
 
 1. Delete the default generated files by running:
-
-```sh
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-```
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
 
 1. Create the `OracleExample.ts` file and generate the corresponding test file:
 
-```sh
-$ zk file OracleExample
-```
+  ```sh
+  $ zk file OracleExample
+  ```
 
 1. Change `src/index.ts` to:
 
-```ts
-import { OracleExample } from './OracleExample.js';
+  ```ts
+  import { OracleExample } from './OracleExample.js';
 
-export { OracleExample };
-```
+  export { OracleExample };
+  ```
 
 ### Write the smart contract
 

@@ -12,7 +12,7 @@ keywords:
 
 :::info
 
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
 
 :::
 
@@ -57,7 +57,7 @@ To make this more script convenient to write, use the provided helper functions.
 
   The `utils.ts` file contains two functions:
 
-  - `loopUntilAccountExists()` waits until an account exists on Berkeley
+  - `loopUntilAccountExists()` waits until an account exists on Devnet
   - `deploy()` programmatically deploys your zkApp
 
 ### Connect to a remote network
@@ -73,18 +73,18 @@ To make this more script convenient to write, use the provided helper functions.
   import { Mina, PrivateKey } from 'o1js';
   ```
 
-1. Now, set the active instance to the remote Berkeley network. Earlier tutorials set the active instance to a simulated local blockchain, which is fast for development but only available on your local machine and is not decentralized.
+1. Now, set the active instance to the remote Devnet network. Earlier tutorials set the active instance to a simulated local blockchain, which is fast for development but only available on your local machine and is not decentralized.
 
-  The connection is through a GraphQL proxy that runs a Mina node connected to the Berkeley network. By connecting to the remote Berkeley network, you can provide smart contracts that are globally accessible and provide strong guarantees around state due to both Mina's decentralization and its succinct state proof.
+  The connection is made through the GraphQL endpoint exposed by the Mina node connected to the Devnet network. By connecting to the remote Devnet network, you can provide smart contracts that are globally accessible and provide strong guarantees around state due to both Mina's decentralization and its succinct state proof.
 
-  Review the code that connects to Berkeley:
+  Review the code that connects to Devnet:
 
   ```ts
   ...
-  const Berkeley = Mina.Network(
-    'https://proxy.berkeley.minaexplorer.com/graphql'
+  const Network = Mina.Network(
+    'https://api.minascan.io/node/devnet/v1/graphql'
   );
-  Mina.setActiveInstance(Berkeley);
+  Mina.setActiveInstance(Network);
   ...
   ```
 
@@ -98,13 +98,13 @@ To make this more script convenient to write, use the provided helper functions.
   ...
   ```
 
-This example connects to a remote RPC run by `minaexplorer.com`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
+This example connects to a remote RPC served by `minascan.io`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
 
 ### Public/private key pair
 
 You already generated a public/private key pair when you ran the `zk config` command to configure the deployment in [Tutorial 3: Deploy to a Live Network](/zkapps/tutorials/deploying-to-a-network#deploy-alias) the `zk config` command.
 
-The public/private key pair was created in `keys/berkeley.json`. Public and private keys in Mina are commonly stored in Base58 for easily readability. In Mina, public keys start with `B62` and private keys start with `EKE` for easy differentiability.
+The public/private key pair was created in `keys/devnet.json`. Public and private keys in Mina are commonly stored in Base58 for easily readability. In Mina, public keys start with `B62` and private keys start with `EKE` for easy differentiability.
 
 1. Still in the `main.ts` file, review the code that specifies that the name of the key file must be provided through an argument on the command line: (`process.argv[2]`):
 
@@ -132,7 +132,7 @@ The public/private key pair was created in `keys/berkeley.json`. Public and priv
 You can run this code now with:
 
 ```sh
-$ npm run build && node build/src/main.js berkeley
+$ npm run build && node build/src/main.js devnet
 ```
 
 The expected output is:
@@ -151,7 +151,7 @@ state after txn3: 81
 - The `npm run build` command creates JavaScript code in the `build` directory. 
 - The `&&` operator links two commands together.
 - The `node build/src/main.js` command runs the code in `src/main.ts`.
-- The keys are read from `keys/berkeley.json`. 
+- The keys are read from `keys/devnet.json`. 
 
 The SmartContract is also deployed to the same account you deployed from, set with `zkAppPrivateKey = deployerPrivateKey`. Depending on the application, it can also be useful to have separate keys for the zkApp and deployer accounts.
 
@@ -260,7 +260,7 @@ if (pendingTransaction.status === "rejected") {
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
+  `See transaction at https://minascan.io/devnet/tx/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();
