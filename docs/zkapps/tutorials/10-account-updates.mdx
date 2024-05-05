@@ -98,7 +98,7 @@ For this example, the zkApp is not upgradable after it is deployed. This means t
 
 This zkApp has methods that call other methods to let you explore the impacts to a transaction's account updates.
 
-- Start by adding the main contents of the zkApp:
+1. Start by adding the main contents of the zkApp:
 
 ```ts
 export class ProofsOnlyZkApp extends SmartContract {
@@ -143,7 +143,7 @@ By asserting that `provedState` is `false` in `init()`, you ensure that `init()`
 This assertion is a recommended best practice for most zkApps.
 :::
 
-- Next, add two functions:
+1. Next, add two functions:
 
 ```ts
   ...
@@ -175,7 +175,7 @@ This assertion is a recommended best practice for most zkApps.
 
 The `add()` method calls the `incrementCalls()` method. You can see how this is reflected in the `add()` transaction's `AccountUpdate` structure.
 
-- Finally, add one more function, `callSecondary()`, that calls a different zkApp:
+1. Finally, add one more function, `callSecondary()`, that calls a different zkApp:
 
 ```ts
   ...
@@ -236,7 +236,7 @@ You declare functions for initializing the account and the `add()` method that i
 
 Now it's time to learn about the [main.ts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/10-account-updates/src/main.ts) file that creates transactions with the earlier smart contracts and the account update visualizations it creates.
 
-- Import the transaction visualizer:
+1. Import the transaction visualizer:
 
 ```ts
 ...
@@ -260,7 +260,7 @@ printTxn(txn: Mina.Transaction, name: string, legend: Legend)
 type Legend = { [pk: string]: string };
 ```
 
-- Next, define the legend as follows:
+1. Next, define the legend as follows:
 
 ```ts
 const legend = {
@@ -270,7 +270,7 @@ const legend = {
 };
 ```
 
-- Create and send a deploy transaction, then visualize it:
+1. Create and send a deploy transaction, then visualize it:
 
 ```ts
 const deployTxn = await Mina.transaction(deployerAccount, async () => {
@@ -309,7 +309,7 @@ When the transaction is run on chain, these account updates are checked by the M
 
 ### Call `add()` on `proofsOnlyZkApp`
 
-- Call `add()` on your instance of `proofsOnlyZkApp`:
+1. Call `add()` on your instance of `proofsOnlyZkApp`:
 
 ```ts
 const txn1 = await Mina.transaction(deployerAccount, async () => {
