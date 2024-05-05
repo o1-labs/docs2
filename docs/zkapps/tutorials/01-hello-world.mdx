@@ -65,67 +65,67 @@ Now that you have the tooling installed, you can start building your application
 1. Create or change to a directory where you have write privileges.
 1. Now, create a project using the `zk project` command:
 
-```sh
-$ zk project 01-hello-world
-```
+  ```sh
+  $ zk project 01-hello-world
+  ```
 
-The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-```sh
-? Create an accompanying UI project too? …
-  next
-  svelte
-  nuxt
-  empty
-> none
-```
+  ```sh
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  > none
+  ```
 
-The expected output is:
+  The expected output is:
 
-```sh
-✔ Create an accompanying UI project too? · none
-✔ UI: Set up project
-✔ Initialize Git repo
-✔ Set up project
-✔ NPM install
-✔ NPM build contract
-✔ Set project name
-✔ Git init commit
+  ```sh
+  ✔ Create an accompanying UI project too? · none
+  ✔ UI: Set up project
+  ✔ Initialize Git repo
+  ✔ Set up project
+  ✔ NPM install
+  ✔ NPM build contract
+  ✔ Set project name
+  ✔ Git init commit
 
-Success!
+  Success!
 
-Next steps:
-  cd 01-hello-world
-  git remote add origin <your-repo-url>
-  git push -u origin main
-```
+  Next steps:
+    cd 01-hello-world
+    git remote add origin <your-repo-url>
+    git push -u origin main
+  ```
 
-The `zk project` command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
+  The `zk project` command creates the `01-hello-world` directory that contains the scaffolding for your project, including tools such as the Prettier code formatting tool, the ESLint static code analysis tool, and the Jest JavaScript testing framework.
 
 1. Change into the `01-hello-world` directory and list the contents:
 
-```sh
-$ cd 01-hello-world
-$ ls
-```
+  ```sh
+  $ cd 01-hello-world
+  $ ls
+  ```
 
-The output shows these results:
+  The output shows these results:
 
-```sh
-LICENSE
-README.md
-babel.config.cjs
-build
-config.json
-jest-resolver.cjs
-jest.config.js
-keys
-node_modules
-package-lock.json
-package.json
-src
-tsconfig.json
-```
+  ```sh
+  LICENSE
+  README.md
+  babel.config.cjs
+  build
+  config.json
+  jest-resolver.cjs
+  jest.config.js
+  keys
+  node_modules
+  package-lock.json
+  package.json
+  src
+  tsconfig.json
+  ```
 
 For this tutorial, you run commands from the root of the `01-hello-world` directory as you work in the `src` directory on files that contain the TypeScript code for the smart contract. Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -135,31 +135,31 @@ Start by deleting the default files that come with the new project.
 
 1. To delete the old files:
 
-```sh
-$ rm src/Add.ts
-$ rm src/Add.test.ts
-$ rm src/interact.ts
-```
+  ```sh
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  ```
 
 1. Now, create the new files for your project:
 
-```sh
-$ zk file src/Square
-$ touch src/main.ts
-```
+  ```sh
+  $ zk file src/Square
+  $ touch src/main.ts
+  ```
 
-- The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files.
-- This tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works.
+    - The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files.
+    - This tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works.
 
-In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user.
+    In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user.
 
 1. Now, open `src/index.ts` in a text editor and change it to look like:
 
-```ts src/index.ts
-1 import { Square } from './Square.js';
-2
-3 export { Square };
-```
+  ```ts src/index.ts
+  1 import { Square } from './Square.js';
+  2
+  3 export { Square };
+  ```
 
 The `src/index.ts` file contains all of the exports you want to make available for consumption from outside your smart contract project, such as from a UI.
 
@@ -298,17 +298,17 @@ For this tutorial, the `import` statement brings in items from `o1js` that you u
 
 1. Copy the following lines from [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file into the `src/main.ts` file:
 
-```ts src/main.ts
-1 import { Square } from './Square.js';
-2 import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
-```
+  ```ts src/main.ts
+  1 import { Square } from './Square.js';
+  2 import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
+  ```
 
-These import items are:
+  These import items are:
 
-- `Field`: The same o1js unsigned integer type that you learned earlier.
-- `Mina`: A simulated local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
-- `PrivateKey`: A class with functions for manipulating private keys.
-- `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
+    - `Field`: The same o1js unsigned integer type that you learned earlier.
+    - `Mina`: A simulated local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
+    - `PrivateKey`: A class with functions for manipulating private keys.
+    - `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
 
 ### Simulated Local Blockchain
 
