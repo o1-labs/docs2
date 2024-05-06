@@ -111,7 +111,7 @@ const AddOne = ZkProgram({
     baseCase: {
       privateInputs: [],
 
-      method(publicInput: Field) {
+      async method(publicInput: Field) {
         publicInput.assertEquals(Field(0));
       },
     },
@@ -119,7 +119,7 @@ const AddOne = ZkProgram({
     step: {
       privateInputs: [SelfProof],
 
-      method(publicInput: Field, earlierProof: SelfProof<Field, void>) {
+      async method(publicInput: Field, earlierProof: SelfProof<Field, void>) {
         earlierProof.verify();
         earlierProof.publicInput.add(1).assertEquals(publicInput);
       },
