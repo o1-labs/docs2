@@ -177,13 +177,13 @@ let RollupAdd = ZkProgram({
     baseCase: {
       privateInputs: [],
 
-      method(publicInput: Field) { },
+      async method(publicInput: Field) { },
     },
 
     step: {
       privateInputs: [SelfProof, SelfProof],
 
-      method(
+      async method(
         publicInput: Field,
         left: SelfProof<Field, void>,
         right: SelfProof<Field, void>
