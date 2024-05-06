@@ -197,7 +197,12 @@ export default function Home() {
   }
 
   const stepDisplay = transactionlink ? (
-    <a href={displayText} target="_blank" rel="noreferrer">
+    <a
+      href={transactionlink}
+      target="_blank"
+      rel="noreferrer"
+      style={{ textDecoration: 'underline' }}
+    >
       View transaction
     </a>
   ) : (
