@@ -7,7 +7,7 @@ const TESTNET_NETWORK_IDENTIFIER = {
         "network": "testnet"
     }
 }
-const MINA_TOKEN_ID = "1"
+const MINA_TOKEN_ID = "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf"
 const MINA_DECIMALS = 9
 const MINA_SYMBOL = "MINA"
 const MINA_CURVE_TYPE = "pallas"
@@ -15,7 +15,8 @@ const MINA_CURVE_TYPE = "pallas"
 const mina = new Client({network: 'testnet'})
 
 const request = axios.create({
-    baseURL: "https://rosetta-devnet.minaprotocol.network/"
+    // baseURL: "https://rosetta-devnet.minaprotocol.network/"
+    baseURL: "https://metric-contractor-inherited-meeting.trycloudflare.com/"
 })
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -120,6 +121,14 @@ async function mempoolTx(hash: string) {
 
 async function accountBalance(address: string) {
     return await makeRequest('/account/balance', makeAccountIdentifier(address))
+}
+
+async function accountTransactions(address: string) {
+    return await makeRequest('/search/transactions', {address: address})
+}
+
+async function getTransaction(hash: string) {
+    return await makeRequest('/search/transactions', makeTxIdentifier(hash))
 }
 
 async function deriveAccountIdentifier(publicKey: string) {
@@ -242,3 +251,11 @@ async function send(privateKey: string, to: string, valueNano: number, feeNano: 
     }
     return hash
 }
+
+// console.dir(await accountTransactions("B62qmVz7pPiLXPvz2nPkuK3K5akjrePAVtdBVMfeyixrccgqKTQte8K"), {depth: null})
+
+// console.dir(await getTransaction("5JuYxWMjjygqiEz7oYCZicrXMcVcnptEAe2vXu6WqeN2qeNakJWe"), {depth: null})
+
+// const hash = await send("EKE5nJtRFYVWqrCfdpqJqKKdt2Sskf5Co2q8CWJKEGSg71ZXzES7", "B62qmYYrf6RRHcGzJQXqY2Wz96LhaJrLuzvLNGwLBDKNvGA6jFCwZNa", 1000000000, 0)
+// console.log(hash)
+
