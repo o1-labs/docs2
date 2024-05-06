@@ -391,6 +391,14 @@ async function accountBalance(address: string) {
     return await makeRequest('/account/balance', makeAccountIdentifier(address))
 }
 
+async function accountTransactions(address: string) {
+    return await makeRequest('/search/transactions', {address: address})
+}
+
+async function getTransaction(hash: string) {
+    return await makeRequest('/search/transactions', makeTxIdentifier(hash))
+}
+
 async function deriveAccountIdentifier(publicKey: string) {
     return await makeRequest('/construction/derive', {
         public_key: makePublicKey(publicKey)
@@ -422,7 +430,6 @@ async function txPayloads(srcPublicKey: string, srcAddress: string, destAddress:
 }
 
 async function txCombine(payloadsResponse: any, privateKey: string) {
-    // console.dir(payloadsResponse, {depth: null})
     const combinePayload = mina.rosettaCombinePayload(payloadsResponse, privateKey)
     const r = await makeRequest('/construction/combine', combinePayload)
     return r
@@ -531,6 +538,7 @@ def tx_submit(signed_transaction_blob):
         "signed_transaction": signed_transaction_blob
     })
 ```
+
 
 </TabItem>
 </Tabs>
