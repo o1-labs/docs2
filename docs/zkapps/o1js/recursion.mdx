@@ -57,10 +57,10 @@ const SimpleProgram = ZkProgram({
   publicInput: Field,
 
   methods: {
-    run: {
+   run: {
       privateInputs: [],
 
-      method(publicInput: Field) {
+      async method(publicInput: Field) {
         publicInput.assertEquals(Field(0));
       },
     }
