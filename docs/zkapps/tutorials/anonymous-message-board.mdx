@@ -40,27 +40,16 @@ $ npm install -g zkapp-cli
 
 This tutorial has been tested with:
 
-- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.17.2`
-- [o1js](https://www.npmjs.com/package/o1js) version `0.16.2`
+- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.20.1`
+- [o1js](https://www.npmjs.com/package/o1js) version `1.1.0`
 
 ## Create the message-board project
 
 1. Create or change to a directory where you have write privileges.
-1. Create the project:
+1. Create a project using the `zk project` command:
 
   ```sh
-  $ zk project
-  ```
-
-  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
-
-  ```
-  ? Create an accompanying UI project too? …
-    next
-    svelte
-    nuxt
-    empty
-  > none
+  $ zk project --ui none message-board
   ```
   
   The `zk project` command creates a directory with a new project template that is fully set up and ready for local development. Like all zk projects, a git repository is initialized in the project directory. By convention, the `main` branch is the default branch. 
