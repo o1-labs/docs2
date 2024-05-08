@@ -27,7 +27,11 @@ Apart from acquiring a solid understanding of security aspects of zkApps, we rec
 
 There has been an internal audit of the o1js code base already, [the results of which you can find here](#TODO). An audit by a third-party security firm is ongoing.
 
-**Until the third-party audit of o1js is completed, audits of zkApps should also include the relevant parts of o1js in their scope.**
+:::danger
+
+Until the third-party audit of o1js is completed, audits of zkApps should also include the relevant parts of o1js in their scope.
+
+:::
 
 ## Attack model
 
@@ -49,7 +53,7 @@ In the next section, we demonstrate the attack model of zkApps with a concrete e
 
 ## Example: An insecure token contract
 
-As an example, take a look at the following snippet of a token contract. The contract has a method called `mintOrBurn()` which is supposed to approve an account update that mints or burns tokens.
+Take a look at the following snippet of a token contract. The contract has a method called `mintOrBurn()` which is supposed to approve an account update that mints or burns tokens.
 
 The skeleton of `mintAndBurn()` exists: We read address and balance change (positive or negative) from the update, and we also call `this.approve()` so the update can use our token. However, as the TODO comment says, we still need to call `assertCanMint()` or `assertCanBurn()` to check if the minting or burning is allowed for this account.
 
@@ -96,7 +100,7 @@ zkApps need to put their own proof on the account update to authorize a spend.
 
 ### Creating an insecure contract
 
-We need to use either `assertCanMint()` or `assertCanBurn()`, but how do we find out which one? Well, let's just add a parameter to the method that tells us whether this is a mint or a burn. Then let's call the appropriate method based on that parameter. Github Copilot fills this out nicely for us:
+We need to use either `assertCanMint()` or `assertCanBurn()`, but how do we know which one? Well, let's just add a parameter to the method that tells us whether this is a mint or a burn. Then let's call the appropriate method based on that parameter. Github Copilot fills this out nicely for us:
 
 ```ts
   @method
@@ -132,24 +136,19 @@ LGTM! However, in tests this doesn't seem to work, and after some debugging we f
     }
 ```
 
-However, when compiling this contract, there's the next unpleasant surprise: A complicated error about not being able to call `.toBoolean()`.
+When compiling this contract, there's the next unpleasant surprise: A complicated error about not being able to call `.toBoolean()`.
 
 ```
 Error: b.toBoolean() was called on a variable Bool `b` in provable code.
-This is not supported, because variables represent an abstract computation,
-which only carries actual values during proving, but not during compiling.
 
-Also, reading out JS values means that whatever you're doing with those values will no longer be
-linked to the original variable in the proof, which makes this pattern prone to security holes.
-
-You can check whether your Bool is a variable or a constant by using b.isConstant().
+...
 
 To inspect values for debugging, use Provable.log(b). For more advanced use cases,
 there is `Provable.asProver(() => { ... })` which allows you to use b.toBoolean() inside the callback.
 Warning: whatever happens inside asProver() will not be part of the zk proof.
 ```
 
-At least there is a hint at the end that this might work when wrapping it inside `Provable.asProver()`:
+At least there is a hint at the end that this might work when wrapped inside `Provable.asProver()`:
 
 ```diff
 +   Provable.asProver(() => {
@@ -168,7 +167,7 @@ However, the statement about `asProver()` not being part of the zk proof is conc
 After creating a test that tries to mint or burn tokens for an account that is not allowed to, we confirm that it fails. So we're good to go. Right?
 
 Unfortunately, not at all. The security of our contract is thoroughly broken.
-We ignored both attack vectors described above: "Adversarial environment" and "underconstrained proofs".
+We ignored both [attack vectors described above](#attack-model): _Adversarial environment_ and _underconstrained proofs_.
 
 ### First problem: we didn't prove everything
 
