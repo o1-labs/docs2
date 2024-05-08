@@ -47,9 +47,192 @@ If there is just one take away from this post, it should be to always keep an ad
 
 In the next section, we demonstrate the attack model of zkApps with a concrete example.
 
-## Example: TODO
+## Example: An insecure token contract
 
-plan: example where throwing an error is used to prevent a certain bad case
+As an example, take a look at the following snippet of a token contract. The contract has a method called `mintOrBurn()` which is supposed to approve an account update that mints or burns tokens.
+
+The skeleton of `mintAndBurn()` exists: We read address and balance change (positive or negative) from the update, and we also call `this.approve()` so the update can use our token. However, as the TODO comment says, we still need to call `assertCanMint()` or `assertCanBurn()` to check if the minting or burning is allowed for this account.
+
+```ts
+class FlawedTokenContract extends TokenContract {
+  // ...
+
+  @method
+  async mintOrBurn(update: AccountUpdate) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
+    let address = update.publicKey;
+
+    // TODO: only allow minting and burning under certain conditions
+
+    // approve the account update
+    this.approve(update);
+
+    // ... other actions related to minting or burning
+    // like updating the total supply based on `amount` ...
+    this.updateTokenSupply(amount);
+  }
+
+  assertCanMint(amount: Int64, address: PublicKey) {
+    // ... logic asserting that minting is allowed for this account ...
+  }
+  assertCanBurn(amount: Int64, address: PublicKey) {
+    // ... logic asserting that burning is allowed for this account ...
+  }
+
+  updateTokenSupply(amount: Int64) {
+    // ... logic updating the total supply ...
+  }
+}
+```
+
+:::note
+
+The pattern of passing in the full `AccountUpdate` here, and not just amount and address, is good practice and more flexible than creating the account updates inline:
+It allows the method to be used by zkApps, not just typical end-user accounts.
+zkApps need to put their own proof on the account update to authorize a spend.
+
+:::
+
+### Creating an insecure contract
+
+We need to use either `assertCanMint()` or `assertCanBurn()`, but how do we find out which one? Well, let's just add a parameter to the method that tells us whether this is a mint or a burn. Then let's call the appropriate method based on that parameter. Github Copilot fills this out nicely for us:
+
+```ts
+  @method
+  async mintOrBurn(update: AccountUpdate, isMint: Bool) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
+    let address = update.publicKey;
+
+    // only allow minting and burning under certain conditions
+    if (isMint) {
+      this.assertCanMint(amount, address);
+    } else {
+      this.assertCanBurn(amount, address);
+    }
+
+    // approve the account update
+    this.approve(update);
+
+    // ... other actions related to minting or burning
+    // like updating the total supply based on `amount` ...
+    this.updateTokenSupply(amount);
+  }
+```
+
+LGTM! However, in tests this doesn't seem to work, and after some debugging we find the problem: `isMint`, being a `Bool` and not a JS boolean, is always truthy, so this always checks the mint condition and never the burn condition. Seems like we have to coerce it to a boolean first:
+
+```diff
+-    if (isMint) {
++    if (isMint.toBoolean()) {
+      this.assertCanMint(amount, address);
+    } else {
+      this.assertCanBurn(amount, address);
+    }
+```
+
+However, when compiling this contract, there's the next unpleasant surprise: A complicated error about not being able to call `.toBoolean()`.
+
+```
+Error: b.toBoolean() was called on a variable Bool `b` in provable code.
+This is not supported, because variables represent an abstract computation,
+which only carries actual values during proving, but not during compiling.
+
+Also, reading out JS values means that whatever you're doing with those values will no longer be
+linked to the original variable in the proof, which makes this pattern prone to security holes.
+
+You can check whether your Bool is a variable or a constant by using b.isConstant().
+
+To inspect values for debugging, use Provable.log(b). For more advanced use cases,
+there is `Provable.asProver(() => { ... })` which allows you to use b.toBoolean() inside the callback.
+Warning: whatever happens inside asProver() will not be part of the zk proof.
+```
+
+At least there is a hint at the end that this might work when wrapping it inside `Provable.asProver()`:
+
+```diff
++   Provable.asProver(() => {
+      if (isMint.toBoolean()) {
+        this.assertCanMint(amount, address);
+      } else {
+        this.assertCanBurn(amount, address);
+      }
++   });
+```
+
+With that change, compiling finally works and our tests do as well. Progress! 🚀
+
+However, the statement about `asProver()` not being part of the zk proof is concerning. So maybe we should check that this actually prevents invalid minting and burning.
+
+After creating a test that tries to mint or burn tokens for an account that is not allowed to, we confirm that it fails. So we're good to go. Right?
+
+Unfortunately, not at all. The security of our contract is thoroughly broken.
+We ignored both attack vectors described above: "Adversarial environment" and "underconstrained proofs".
+
+### First problem: we didn't prove everything
+
+The first problem was moving essential logic inside `Provable.asProver()`. It can be generalized as:
+
+- **Security advice #1: Don't move your logic outside the proof.**
+
+Checks that are not part of the proof can be bypassed. In our case, a bad actor could simply get our source code and delete the entire `Provable.asProver()` block. From that, they can call our contract without the `assertCanMint()` and `assertCanBurn()` checks, and mint any amount of tokens they like.
+
+In particular, negative tests that fail on invalid actions are not enough to show that these actions are impossible, under the attack model that our code can be changed.
+
+A second thing to note is that we had to fight o1js quite hard to make our insecure code work. This should be a red flag in general.
+
+- **Security advice #2: Don't try to trick o1js.**
+
+The fact that o1js doesn't allow you to call `.toBoolean()` on a `Bool` inside provable code is a security feature. It's hard to circumvent for a reason. There are tons of vulnerable patterns that would be introduced if we allowed going back and forth between provable variables (the `Bool`) and JS values (the `boolean`), and doing so is a frequent source of issues in lower-level frameworks like arkworks.
+
+If o1js makes something really hard to do and puts warnings in front of it, it's best to assume this is for a reason and not try to hack around it. And of course, reach out on [our discord](#TODO) when in doubt about your code's security.
+
+### Fix: Adding the missing constraints
+
+Let's see how to solve the `asProver()` issue. In provable code, we can't do assertions conditionally, so we have to do all of them at the same time. In our case, we could refactor the mint and burn checks so that they can be applied conditionally. The result could look like this:
+
+```ts
+  async mintOrBurn(update: AccountUpdate, isMint: Bool) {
+    // ...
+
+    // only allow minting and burning under certain conditions
+    this.assertCanMint(isMint, amount, address);
+    this.assertCanBurn(isMint.not(), amount, address);
+
+    // ...
+  }
+
+  assertCanMint(enabledIf: Bool, amount: Int64, address: PublicKey) {
+    // ... logic asserting that minting is allowed for this account ...
+  }
+  assertCanBurn(enabledIf: Bool, amount: Int64, address: PublicKey) {
+    // ... logic asserting that burning is allowed for this account ...
+  }
+```
+
+### Second problem: we trusted the caller
+
+However, our contract is still insecure, because we forgot that it's called in an adversarial environment.
+
+Our contract just takes the `isMint` parameter for granted, even though the `update` could be either minting or burning tokens. A bad actor could easily call `mintOrBurn()` with a positive balance change on the `update` and `isMint = false`. This would bypass the `assertCanMint()` check and only do `assertCanBurn()` instead, which might mean they can mint tokens without much restrictions.
+
+- **Security advice #3: Don't trust the caller of a zkApp method.**
+
+In a sense, this is the same issue as moving logic outside the proof: Method inputs originate from an unconstrained source. If our logic relies on correlations between variables, those correlations must be put into constraints.
+
+### Fix: Removing assumptions on method inputs
+
+The issue with `isMint` is, of course, simple to fix. We can just compute it as `amount.isPositive()`, so it will be correlated to the `update` correctly:
+
+```diff
+- async mintOrBurn(update: AccountUpdate, isMint: Bool) {
++ async mintOrBurn(update: AccountUpdate) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
++   let isMint = amount.isPositive();
+    let address = update.publicKey;
+```
 
 ## TODO Best practices for zkApp security
 
