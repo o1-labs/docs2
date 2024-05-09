@@ -27,7 +27,7 @@ Apart from acquiring a solid understanding of security aspects of zkApps, we rec
 
 There has been an internal audit of the o1js code base already, [the results of which you can find here](#TODO). An audit by a third-party security firm is ongoing.
 
-:::danger
+:::caution
 
 Until the third-party audit of o1js is completed, audits of zkApps should also include the relevant parts of o1js in their scope.
 
@@ -45,7 +45,7 @@ Note how the first point (adversarial environment) is relevant in all kinds of p
 
 While having your code modified due to underconstrained proofs sounds scary, we emphasize that most of the attack surface here is covered by o1js itself. It's o1js' job that when you call `a.assertLessThan(b)`, you prove that `a < b` under all circumstances; and the o1js team dedicates a lot of resources to the security of its standard library. The explicit goal is that when using o1js in an idiomatic way, you shouldn't have to worry about underconstrained logic.
 
-That story changes when you start writing your own low-level provable methods. When doing so, you enter expert territory, and there are many new pitfalls to be aware of. We have dedicated [a section to writing your own provable methods](#rolling-your-own-provable-methods) below.
+That story changes when you start writing your own low-level provable methods. When doing so, you enter expert territory, and there are many new pitfalls to be aware of. We plan to dedicate [a section to writing your own provable methods](#rolling-your-own-provable-methods) below.
 
 If there is just one take away from this post, it should be to always keep an adversarial mindset. Be paranoid about your zkApp's security!
 
@@ -356,6 +356,32 @@ The fix above was possible because user accounts were using a token that we cont
 
 There will be cases where a similar fix is not applicable; but more complicated mitigations are possible. In any case, you should be careful whenever you create account updates for unknown accounts from a reducer, or in any other scenario where a single invalid child update deadlocks your zkApp.
 
-### When developing a token, extend `TokenContract`
+### When developing a token, extend a standard token contract
+
+When developing a token contract, a number of security considerations come into play.
+
+First and foremost, it is important to implement token approvals correctly. The [`access` permission](/zkapps/o1js/permissions#types-of-permissions) exists so that token contracts are able to have every token interaction approved by one of the contract's methods.
+
+When a token is built off of the default `SmartContract` and doesn't change the `access` permission from its `none` default, users can get any token interaction approved. Simply by including a dummy account update of the token contract in their transaction, they can mint an arbitrary number of tokens to themselves.
+
+Even creating the token owner account before deploying the contract there, and thus leaving it in a temporary state where the `access` permission is not set, could allow this attack.
+
+The base `TokenContract` exported from o1js avoids all these pitfalls and gives you tools that abstract away considerable complexity to implement general-purpose token approval logic. We highly recommend extending `TokenContract` or a token standard that is based on it.
 
 ## Rolling your own provable methods
+
+:::caution
+
+This section is not written yet. When developing your own provable methods, make sure to [prove everything](#first-problem-we-didnt-prove-everything) you need, and [not to trick o1js](#first-problem-we-didnt-prove-everything).
+
+:::
+
+<!--
+Ideas for this section:
+- underconstrained examples
+  - divide, sqrt
+- missing input range check examples
+- missing quotient check example
+- overflowing sum example
+- that funny bug we once had with an early return error thrown (?)
+ -->
