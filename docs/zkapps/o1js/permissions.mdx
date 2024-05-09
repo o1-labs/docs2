@@ -342,7 +342,7 @@ For more information on how this mechanism works, see the [Verification Key Perm
 
 ### Example: Impossible to upgrade
 
-This simple example ensures that the smart contract is not upgradeable during the current transaction version of the protocol. After a verification key is deployed, it cannot be changed until.
+This simple example ensures that the smart contract is not upgradeable during the current transaction version of the protocol. After a verification key is deployed, it cannot be changed until the next backwards incompatible hardfork.
 
 ```ts
 class UpgradeabilityImpossible extends SmartContract {
