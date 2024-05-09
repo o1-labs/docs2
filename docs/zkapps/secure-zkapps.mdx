@@ -245,18 +245,81 @@ In the last section, we already gave three pieces of advice concerning zkApp sec
 - **Don't try to trick o1js.**
 - **Don't trust the caller of a zkApp method.**
 
-The remaining section collects more recommendations like this.
+This section collects more recommendations and describes more complex attacks on a zkApp that you might not be aware of.
+
+- [**Lock down permissions as much as possible**](#lock-down-permissions-as-much-as-possible)
+- [**Only call external contracts with locked down permissions**](#only-call-external-contracts-with-locked-down-permissions)
 
 :::info
 
-The following list is intended to grow over time. If you have a security tip that you think should be included, [please let us know](https://github.com/o1-labs/docs2/edit/main/docs/zkapps/secure-zkapps.mdx)!
+The list above is intended to grow over time. If you have a security tip that you think should be included, [please let us know](https://github.com/o1-labs/docs2/edit/main/docs/zkapps/secure-zkapps.mdx)!
 
 :::
 
-- **Lock down account permissions as much as possible**
-- **Only call external contracts with locked down permissions**
-- **Don't let your zkApp be deadlocked when interacting with other accounts**
-- **Use the `provedState` account field to show that your zkApp is not tampered with**
-- **When developing a token, extend `TokenContract`**
+### Lock down permissions as much as possible
+
+Like every account on Mina, zkApps have permissions that restrict what account updates are possible and what authorization they need. The default permissions on deployment include the following (leaving out some permissions that are not relevant for most zkApps):
+
+```ts
+{
+  editState: Permission.proof(),
+  send: Permission.proof(),
+  receive: Permission.none(),
+  setDelegate: Permission.signature(),
+  setPermissions: Permission.signature(),
+  setVerificationKey: Permission.VerificationKey.signature(),
+  setZkappUri: Permission.signature(),
+  editActionState: Permission.proof(),
+  setTokenSymbol: Permission.signature(),
+  incrementNonce: Permission.signature(),
+  setVotingFor: Permission.signature(),
+  setTiming: Permission.signature(),
+  access: Permission.none(),
+}
+```
+
+If you don't know what these permissions mean, we recommend to read the [permissions docs](/zkapps/o1js/permissions) first.
+
+Two of these defaults stand out as highly problematic:
+
+- `setVerificationKey: signature`. This means that the account owner (zkApp developer) can change the code and redeploy the zkApp. In a sense, the zkApp is upgradable in arbitrary ways. This makes it hard to trust the zkApp from a user perspective.
+- `setPermissions: signature`. In a sense, this overrides all other permissions, since the zkApp developer can arbitrarily change the permissions themselves. For example, if they change the `editState` permission back to `signature`, they can reset zkApp state to any value they want. They can even do this, change the state to their favor and reset the permission back to `proof` atomically in a single transaction, hoping that no one notices.
+
+You should view these permissions as training wheels. They are useful for iterating on the zkApp during development. We thought it was a better default to let developers redeploy their zkApp in the early stages, as they find bugs or have to redesign some aspect of the zkApp. However, it means that these zkApps essentially have to be viewed as a trusted service, not a permissionless protocol.
+
+If you are confident that your zkApp code is final, you should lock down permissions: Set both `setVerificationKey` and `setPermissions` to `impossible`. Alternatively, set `setVerificationKey` to `proof` and add a method that can upgrade the zkApp according to a permissionless, open protocol.
+
+More generally, we recommend to follow the _principle of least authority_: Remove any way to update the account that is not necessary for your application. For example:
+
+- `setTiming`: The timing field allows you to [lock the funds](/zkapps/o1js/time-locked-accounts) in an account for a certain amount of time. If you don't plan on using this feature, then it poses an unnecessary risk. Change it to `setTiming: impossible`.
+- `setTokenSymbol`: Similarly, if your zkApp is a token, and its token symbol is not supposed to ever change, you could use `setTokenSymbol: impossible`.
+
+For some permissions, `signature` might be a good choice:
+
+- `setDelegate`: for most zkApps, setting the delegate (the block producer that zkApp balance is staked with) can be seen as an administrative decision that is independent of the zkApp's main function. It's fine to keep this as `signature`, unless your zkApp logic specifically deals with setting and updating the delegate.
+- `incrementNonce`: typically, incrementing the account nonce is itself only done when signing a transaction. Similar to `setDelegate`, if the nonce doesn't play a special role in your zkApp logic, it should be fine to keep this as `signature`. However, incrementing the nonce can be useful to make any action non-repeatable. If you want to leverage this for both zkApp methods and administrative actions, you can set it to `proofOrSignature`.
+
+### Only call external contracts with locked down permissions
+
+This is the flipside of the previous advice. The permissions of third-party zkApps you call into are an important factor for the security of your own zkApp.
+
+The most obvious reason is simply to guarantee that you will always be _able_ to call the external contract. Imagine one of the following scenarios:
+
+- The called contract has `setPermissions: signature`. One day, the contract's maintainer decides to shut down their contract. Maybe not even in their own will, but because they are pressured to do so. They can simply change their `access` permission to `impossible`, which means no one will ever be able to call their contract again.
+- The called contract has `setPermissions: impossible`, but still allows verification key upgrades with `setVerificationKey: signature`. Similarly, this gives them a trivial way to make their contract unusable: Just replace the verification key with one where all methods prove a contradictory statement, like `x === 0 && x === 1`.
+
+In either of these scenarios, the unusable third-party contract makes your own zkApp unusable as well.
+
+For this reason alone, you should only call external contracts that have locked down verification key changes as well as made changes to the permissions themselves impossible.
+
+Apart from the deadlock risk described above, there can be other attacks enabled by an upgradable external contract. You should be mindful of those whenever your own zkApp relies on particular behaviour of the external contract.
+
+For example, calling a DEX might involve spending your own token A and _trusting the DEX_ to give you a fair amount of token B in return. If the DEX is upgradable, its maintainer might modify the code you trusted and rob you or your users of tokens.
+
+### Don't let your zkApp be deadlocked when interacting with other accounts
+
+### Use the `provedState` account field to show that your zkApp is not tampered with
+
+### When developing a token, extend `TokenContract`
 
 ## Rolling your own provable methods
