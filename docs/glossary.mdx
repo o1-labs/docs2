@@ -44,7 +44,7 @@ The blockchain's latest block with the highest [chain strength](#chain-strength)
 
 ### bitwise operations
 
-Generally available in most programming languages, including TypeScript, [bitwise operations](/zkapps/o1js/bitwise-operations) manipulate individual bits within a binary representation of a number. o1js provides versions of bitwise operations that operate on Field elements and result in the necessary circuit constraints to generate a zero knowledge proof of the computation.
+Generally available in most programming languages, including TypeScript, [bitwise operations](/zkapps/writing-a-circuit/bitwise-operations) manipulate individual bits within a binary representation of a number. o1js provides versions of bitwise operations that operate on Field elements and result in the necessary circuit constraints to generate a zero knowledge proof of the computation.
 
 ### block
 
@@ -153,7 +153,7 @@ A digital system for recording the transaction of assets in which the transactio
 
 ## ECDSA
 
-Elliptic Curve Digital Signature Algorithm ([ECDSA](/zkapps/o1js/ecdsa)) a cryptographic algorithm used to sign and verify messages. It is used in many blockchains, including Ethereum, to sign transactions.
+Elliptic Curve Digital Signature Algorithm ([ECDSA](/zkapps/writing-a-circuit/ecdsa)) a cryptographic algorithm used to sign and verify messages. It is used in many blockchains, including Ethereum, to sign transactions.
 
 ## elliptic curves
 
@@ -195,7 +195,7 @@ A consensus constant `k` is the point at which chain [reorganizations](#reorgani
 
 ## foreign field
 
-A finite field different from the native field of the proof system. [Foreign Field Arithmetic](/zkapps/o1js/foreign-fields) lets you perform algorithms that connect your zkApp with the outside world of cryptography.
+A finite field different from the native field of the proof system. [Foreign Field Arithmetic](/zkapps/writing-a-circuit/ecdsa) lets you perform algorithms that connect your zkApp with the outside world of cryptography.
 
 ### full node
 
@@ -205,7 +205,7 @@ A Mina node that is able to verify the state of the network trustlessly. In Mina
 
 ## gadgets
 
-Small, reusable, low-level building blocks that simplify the process of creating new cryptographic primitives. Most [gadgets](/zkapps/o1js/gadgets) build upon custom gates and act as low-level accelerators in the proof system.
+Small, reusable, low-level building blocks that simplify the process of creating new cryptographic primitives. Most [gadgets](/zkapps/writing-a-circuit/gadgets) build upon custom gates and act as low-level accelerators in the proof system.
 
 ## H
 
@@ -231,7 +231,7 @@ A [transition](#transition) that is produced locally, for example, by a block pr
 
 ## Keccak
 
-[Keccak (SHA-3)](/zkapps/o1js/keccak) is a flexible cryptographic hash function that provides more security than traditional SHA hash algorithms.
+[Keccak (SHA-3)](/zkapps/writing-a-circuit/keccak) is a flexible cryptographic hash function that provides more security than traditional SHA hash algorithms.
 
 ### key pair
 
@@ -261,11 +261,11 @@ Mina uses this peer-to-peer networking library to provide things like message br
 
 ### Lightnet
 
-A lightweight Mina network in a single Docker container. [Lightnet](/zkapps/testing-zkapps-lightnet) is a resource-efficient solution with fast startup and syncing times that lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
+A lightweight Mina network in a single Docker container. [Lightnet](/zkapps/writing-a-zkapp/testing-zkapps-lightnet) is a resource-efficient solution with fast startup and syncing times that lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
 
 ### lightweight Mina Explorer
 
-Provided in Lightnet, a lightweight Mina Explorer lets you monitor transactions on your local network. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet#lightweight-mina-explorer).
+Provided in Lightnet, a lightweight Mina Explorer lets you monitor transactions on your local network. See [Testing zkApps with Lightnet](/zkapps/writing-a-zkapp/testing-zkapps-lightnet#lightweight-mina-explorer).
 
 ## M
 
@@ -311,7 +311,7 @@ A [full node](#full-node) in the Mina protocol that does not participate in cons
 
 ### non-upgradeable
 
-If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable. You can make a smart contract upgradeable or not upgradeable using [permissions](/zkapps/o1js/permissions#upgradeability-of-smart-contracts).
+If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable. You can make a smart contract upgradeable or not upgradeable using [permissions](/zkapps/writing-a-zkapp/permissions#upgradeability-of-smart-contracts).
 
 ### nonce
 
@@ -471,7 +471,7 @@ Short for digital signature, a way to establish authenticity or ownership of dig
 
 ### simulated local blockchain
 
-The local testing blockchain you use in the first phase of testing. Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. See [Testing zkApps Locally](/zkapps/testing-zkapps-locally) and get step-by-steps guidance in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world#simulated-local-blockchain).
+The local testing blockchain you use in the first phase of testing. Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. See [Testing zkApps Locally](/zkapps/writing-a-zkapp/testing-zkapps-locally) and get step-by-steps guidance in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world#simulated-local-blockchain).
 
 ### slot
 
@@ -543,7 +543,7 @@ An instance of a blockchain used for testing and experimenting where MINA tokens
 
 ### time-locked accounts
 
-An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/o1js/time-locked-accounts).
+An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/writing-a-zkapp/time-locked-accounts).
 
 ### tMINA
 

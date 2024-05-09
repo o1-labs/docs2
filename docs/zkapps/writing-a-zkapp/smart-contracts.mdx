@@ -52,7 +52,7 @@ On Mina, there is no strong distinction between normal "user accounts" and
 
 - Has a verification key associated with it. 
 
-The verification key stored on the zkApp account can verify zero knowledge proofs generated with the smart contract. The verification key lives on-chain for a given zkApp account and is used by the Mina network to verify that a zero knowledge proof has met all constraints defined in the prover. See [Prover Function and Verification Key](/zkapps/how-zkapps-work#prover-function-and-verification-key).
+The verification key stored on the zkApp account can verify zero knowledge proofs generated with the smart contract. The verification key lives on-chain for a given zkApp account and is used by the Mina network to verify that a zero knowledge proof has met all constraints defined in the prover. See [Prover Function and Verification Key](/zkapps/writing-a-zkapp/how-zkapps-work#prover-function-and-verification-key).
 
 ## Methods
 
@@ -178,7 +178,7 @@ Why not use `this.x.get()` to add the precondition automatically, instead of wri
 To keep things explicit. The assertion reminds you to add logic which makes the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. 
 
 So, you must use care to read on-chain values if many users are expected to read and update state concurrently. It is applicable in some situations, but might cause race conditions or call for workarounds, in some situations. 
-One workaround is to use actions. See [Actions and Reducer](/zkapps/o1js/actions-and-reducer).
+One workaround is to use actions. See [Actions and Reducer](/zkapps/writing-a-zkapp/actions-and-reducer).
 
 ## Assertions
 
@@ -335,7 +335,7 @@ Here's an example of returning a `Bool` called `isSuccess`:
 
 ## Custom data types
 
-Smart contract method arguments can be any of the built-in [o1js types](/zkapps/o1js/basic-concepts#built-in-data-types).
+Smart contract method arguments can be any of the built-in [o1js types](/zkapps/writing-a-circuit/basic-concepts#built-in-data-types).
 
 However, what if you want to define your own data type?
 

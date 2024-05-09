@@ -108,7 +108,7 @@ This output includes several essential things to learn about transactions.
 
 First of all, this is an array with two entries -- the two account updates that make up this transaction.
 
-The first entry is always the fee payer, whose public key was passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this in the browser and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](../how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
+The first entry is always the fee payer, whose public key was passed in as `sender`. For the `fee`, which you didn't specify, o1js filled in 0; the `authorization` was filled with a dummy signature. In a user-facing zkApp, you typically don't care about setting those values – instead, you create a transaction like this in the browser and pass it on to the user's wallet. The wallet replaces your fee payer with one that represents the user account, with the user's settings for the fee. It would also fill the `authorization` field with a signature created from the user's private key. See [connecting your zkApp with a user's wallet](/zkapps/writing-a-zkapp/how-to-write-a-zkapp-ui#connecting-your-zkapp-with-a-users-wallet).
 
 The second account update has the `'MyContract.myMethod()'` label. The update corresponds to the method call. An `@method` call always results in the creation of an account update – an update to the zkApp account itself.
 
@@ -257,7 +257,7 @@ Two quick observations:
 
 - The user update has `authorizationKind: 'None_given'`. That means the update is not authorized. This is possible because it doesn't include any changes that require authorization: It just receives MINA. You can send someone MINA without their permission.
 
-In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn more about signatures in the next section. You can find more details in [Permissions](/zkapps/o1js/permissions).
+In general, there are three kinds of authorizations that an account update can have: a proof, a signature, or none. You learn more about signatures in the next section. You can find more details in [Permissions](/zkapps/writing-a-zkapp/permissions).
 
 ## Account update tree structures
 
@@ -412,7 +412,7 @@ Recall that account updates can have three types of authorization:
 - Signature authorization – used to update user accounts. Signatures are verified against the account's public key.
 - No authorization – used on updates which don't require authorization. For example, positive balance changes.
 
-These are common defaults. The full source of truth is set by the _account permissions_, see [Permissions](/zkapps/o1js/permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates. Permissions are checked every time an account update tries to interact with an account.
+These are common defaults. The full source of truth is set by the _account permissions_, see [Permissions](/zkapps/writing-a-zkapp/permissions). Using permissions, account owners can decide on a fine-grained level which type of authorization is required on which kinds of updates. Permissions are checked every time an account update tries to interact with an account.
 
 ## Sending transactions
 
@@ -476,4 +476,4 @@ Doing this means setting up a fresh, local ledger that is pre-filled with a coup
 
 Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JavaScript with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
-You can learn more about testing in [Test zkApps Locally](/zkapps/testing-zkapps-locally).
+You can learn more about testing in [Test zkApps Locally](/zkapps/writing-a-zkapp/testing-zkapps-locally).
