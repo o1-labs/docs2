@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from "react";
-import styles from "./HomepageFeatures.module.scss";
+import React from 'react';
+import styles from './HomepageFeatures.module.scss';
 
-import Button from "@site/src/components/common/Button";
-import Subhead from "@site/src/components/common/Subhead";
-import ArrowRightSmall from "@site/static/svg/common/arrow_right_small.svg";
-import Link from "@docusaurus/Link";
+import Button from '@site/src/components/common/Button';
+import Subhead from '@site/src/components/common/Subhead';
+import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -22,69 +22,80 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Deploy your first zkApp",
-    image: "/img/homepage/zkapp_developers.png",
-    buttonText: "zkApp Developers",
-    buttonLink: "/zkapps",
+    title: 'Deploy your first zkApp',
+    image: '/img/homepage/zkapp_developers.png',
+    buttonText: 'zkApp Developers',
+    buttonLink: '/zkapps',
     description: (
       <>
-        {"Learn "}
-        <Link to="/zkapps/how-zkapps-work" className={styles.minaLink}>
+        {'Learn '}
+        <Link
+          to="/zkapps/writing-a-zkapp/how-zkapps-work"
+          className={styles.minaLink}
+        >
           how zero knowledge smart contracts work
         </Link>
-        {" and "}
-        <Link to="/zkapps/how-to-write-a-zkapp" className={styles.minaLink}>
+        {' and '}
+        <Link
+          to="/zkapps/writing-a-zkapp/how-to-write-a-zkapp"
+          className={styles.minaLink}
+        >
           how to write your own using TypeScript.
         </Link>
       </>
     ),
   },
   {
-    title: "About Mina",
-    image: "/svg/homepage/about_mina.svg",
-    buttonText: "About Mina",
-    buttonLink: "/about-mina",
+    title: 'About Mina',
+    image: '/svg/homepage/about_mina.svg',
+    buttonText: 'About Mina',
+    buttonLink: '/about-mina',
     description: (
       <>
-        {"Learn "}
+        {'Learn '}
         <Link to="/about-mina" className={styles.minaLink}>
           about Mina
         </Link>
         ,
-        <Link to="/about-mina/what-are-zero-knowledge-proofs" className={styles.minaLink}>
-          {" "}
-          zero knowledge proofs{" "}
+        <Link
+          to="/about-mina/what-are-zero-knowledge-proofs"
+          className={styles.minaLink}
+        >
+          {' '}
+          zero knowledge proofs{' '}
         </Link>
-        , & read the{" "}
+        , & read the{' '}
         <Link
           href="https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf"
           className={styles.minaLink}
         >
-          {" "}
-          Mina whitepaper{" "}
+          {' '}
+          Mina whitepaper{' '}
         </Link>
         .
       </>
     ),
   },
   {
-    title: "Using Mina",
-    image: "/svg/homepage/using_mina.svg",
-    buttonText: "Using Mina",
-    buttonLink: "/using-mina/install-a-wallet",
+    title: 'Using Mina',
+    image: '/svg/homepage/using_mina.svg',
+    buttonText: 'Using Mina',
+    buttonLink: '/using-mina/install-a-wallet',
     description: (
       <>
-        Where to get MINA,{" "}
-        <Link to="/using-mina/install-a-wallet" className={styles.minaLink}>install a wallet,{" "}
-        </Link> & more.
+        Where to get MINA,{' '}
+        <Link to="/using-mina/install-a-wallet" className={styles.minaLink}>
+          install a wallet,{' '}
+        </Link>{' '}
+        & more.
       </>
     ),
   },
   {
-    title: "Run a Node",
-    image: "/svg/homepage/node_operators.svg",
-    buttonText: "Node Operators",
-    buttonLink: "/node-operators/getting-started",
+    title: 'Run a Node',
+    image: '/svg/homepage/node_operators.svg',
+    buttonText: 'Node Operators',
+    buttonLink: '/node-operators/getting-started',
 
     description: (
       <>
@@ -94,20 +105,20 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Participate",
-    image: "/svg/homepage/participate.svg",
-    buttonText: "Online Communities",
-    buttonLink: "/participate/online-communities",
+    title: 'Participate',
+    image: '/svg/homepage/participate.svg',
+    buttonText: 'Online Communities',
+    buttonLink: '/participate/online-communities',
     description: (
       <>
         <Link to="/participate/online-communities" className={styles.minaLink}>
           Join the community
         </Link>
-        ,{" "}
+        ,{' '}
         <Link to="/participate/grants-and-programs" className={styles.minaLink}>
           apply for grants & the zkApps Builders Program
         </Link>
-        ,{" "}
+        ,{' '}
         <Link to="/participate/github" className={styles.minaLink}>
           become a code contributor
         </Link>

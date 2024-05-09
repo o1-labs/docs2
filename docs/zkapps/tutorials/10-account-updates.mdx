@@ -39,8 +39,8 @@ Permissions, preconditions, composability, and tokens are the core features of z
 
 To learn more, see these o1js docs:
 
-- [Permissions](/zkapps/o1js/permissions)
-- [On-Chain Values](/zkapps/o1js/on-chain-values)
+- [Permissions](/zkapps/writing-a-zkapp/permissions)
+- [On-Chain Values](/zkapps/writing-a-zkapp/on-chain-values)
 
 In this tutorial, you learn the essential account update features.
 
@@ -58,7 +58,7 @@ Each [AccountUpdate](/zkapps/o1js-reference/classes/AccountUpdate) class has the
 - `Preconditions`: Conditions that must be true for the account update to be applied. Corresponds to assertions in an o1js method.
 - `Updates`: Things changed by the account update, such as including the zkApp state, permissions, and verification key.
 - `BalanceChange`: Any changes to the balance
-- `Authorization`: How the zkApp is authorized; must be a proof (corresponding to the verification key on the account), a signature, or none. See [Authorizations](/zkapps/o1js/interact-with-mina#authorizations).
+- `Authorization`: How the zkApp is authorized; must be a proof (corresponding to the verification key on the account), a signature, or none. See [Authorizations](/zkapps/writing-a-zkapp/interact-with-mina#authorizations).
 
 Other `AccountUpdate` components are available to use, but are not covered in this tutorial:
 
@@ -336,7 +336,7 @@ Now there are two AccountUpdates:
 - The parent corresponds to the `add()` method call
 - The child corresponds to the `this.incrementCalls()` call that the parent makes.
 
-One update is the child because it was called from the parent, which also implies that the parent has the child included as part of its proof. To learn more about parent/child account updates, see [Signing transactions and explicit account updates](/zkapps/o1js/interact-with-mina#signing-transactions-and-explicit-account-updates) in the Payment to zkApp example.
+One update is the child because it was called from the parent, which also implies that the parent has the child included as part of its proof. To learn more about parent/child account updates, see [Signing transactions and explicit account updates](/zkapps/writing-a-zkapp/interact-with-mina#signing-transactions-and-explicit-account-updates) in the Payment to zkApp example.
 
 As a reminder, this update corresponds to code:
 

@@ -82,7 +82,7 @@ module.exports = {
           },
           {
             from: '/zkapps/how-to-test-a-zkapp',
-            to: '/zkapps/testing-zkapps-locally',
+            to: '/zkapps/writing-a-zkapp/testing-zkapps-locally',
           },
           {
             from: '/zkapps/simple-anonymous-message-board-tutorial',
