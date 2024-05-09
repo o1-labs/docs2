@@ -249,6 +249,12 @@ This section collects more recommendations and describes more complex attacks on
 
 - [**Lock down permissions as much as possible**](#lock-down-permissions-as-much-as-possible)
 - [**Only call external contracts with locked down permissions**](#only-call-external-contracts-with-locked-down-permissions)
+- [**Don't deadlock your zkApp by interacting with unknown accounts**](#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts)
+
+<!-- More ideas:
+- Use `this.sender` correctly
+- Use the `provedState` account field to show that your zkApp is not tampered with
+ -->
 
 :::info
 
@@ -316,9 +322,39 @@ Apart from the deadlock risk described above, there can be other attacks enabled
 
 For example, calling a DEX might involve spending your own token A and _trusting the DEX_ to give you a fair amount of token B in return. If the DEX is upgradable, its maintainer might modify the code you trusted and rob you or your users of tokens.
 
-### Don't let your zkApp be deadlocked when interacting with other accounts
+### Don't deadlock your zkApp by interacting with unknown accounts
 
-### Use the `provedState` account field to show that your zkApp is not tampered with
+In the [previous section](#only-call-external-contracts-with-locked-down-permissions), we described how calling a contract which sets its `access` permission to `impossible` can deadlock your zkApp. It was fairly easy to defend against because we assumed that you know the contract account up front, and can manually check its permissions.
+
+There is a more complicated version of this problem when interacting with accounts that you _can't_ check a priori, or can't expect to have locked-down permissions. It typically arises in the scenario where you create account updates from a [reducer](/zkapps/o1js/actions-and-reducer) call.
+
+#### A problematic token airdrop
+
+To have a concrete example, consider a token airdrop. As the token contract developer, you precompute a [Merkle map](/zkapps/o1js/merkle-tree) containing eligible accounts and their airdrop amounts, and store the Merkle root onchain. _Claiming_ an airdrop has to involve updating the tree and onchain root, because otherwise the same account could claim the airdrop multiple times.
+
+To scale payouts to multiple concurrent users per block, you approach the problem with [actions and reducer](/zkapps/o1js/actions-and-reducer). To claim, a user dipatches a "claim" action that contains their address and airdrop amount.
+
+On top of that, every block, you run a reducer method which contains the following logic:
+
+1. For every pending "claim" action, you check whether it's really contained in the Merkle map (i.e., you either prove inclusion or non-inclusion).
+2. If the claim is valid, you create an account update that mints the airdrop amount to the user.
+3. You remove the claiming account from your Merkle map.
+
+This should work well unless a single eligible user doesn't like your token and decides to dispatch a valid "claim" action while also setting either their `access` or `receive` permission to `impossible` (or `signature`, or `proof`). This makes the reducer fail at step 2: The account update it is creating does not have the necessary authorization, and the entire reducer transaction fails.
+
+At this point, the reducer is stuck because actions can only be processed in order. No reducer call will ever succeed again, your contract is deadlocked.
+
+#### Fixed airdrop: lock down all token account permissions
+
+A solution for this particular application scenario is to not even allow users to create token accounts with problematic `access` and `receive` permissions. This is possible since a token contract already has logic that approves on every single account update on every single token account.
+
+In its `approveBase()` method, the token contract asserts that `access` and `receive` permissions on every account update are not updated to anything else than the default (`none`). This prevents the attack.
+
+#### Be careful with creating account updates from a reducer
+
+The fix above was possible because user accounts were using a token that we controlled ourselves. The behavior of preventing bad permissions is also part of Mina's upcoming [fungible token standard](https://github.com/MinaFoundation/mina-fungible-token), so the issue won't exist at all for tokens following that standard.
+
+There will be cases where a similar fix is not applicable; but more complicated mitigations are possible. In any case, you should be careful whenever you create account updates for unknown accounts from a reducer, or in any other scenario where a single invalid child update deadlocks your zkApp.
 
 ### When developing a token, extend `TokenContract`
 
