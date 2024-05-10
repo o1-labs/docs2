@@ -121,7 +121,7 @@ function Footer(): JSX.Element | null {
                     Run a Node
                   </Link>
                 </li>
-                
+
               </ul>
             </li>
             <li>
@@ -213,7 +213,7 @@ function Footer(): JSX.Element | null {
         <div className={styles.minaFooter_legals__menu}>
           <ul>
             <li>
-              <Link href="https://o1labs.org">O(1) Labs</Link>
+              <Link href="https://o1labs.org">o1Labs</Link>
             </li>
             <li>
               <Link href="https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md">
