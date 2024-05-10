@@ -160,7 +160,7 @@ export class Add extends SmartContract {
 }
 ```
 
-This will serve as the scaffolding for the rest of the tutorial and contains a smart contract called `Message` with two methods: `init()` and `publishMessage()`. The `init()` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. `publishMessage()` is the method that users will invoke when they want to create a new message. The `@method` decorator tells o1js that users should be allowed to call this method and that it should generate a zero-knowledge proof of its execution.
+This will serve as the scaffolding for the rest of the tutorial and contains a smart contract called `Message` with two methods: `init()` and `publishMessage()`. The `init()` method is similar to the `constructor` in Solidity. It’s a place for you to define any setup that needs to happen before users begin interacting with the contract. `publishMessage()` is the method that users will invoke when they want to create a new message. The `@method` decorator tells o1js that users should be allowed to call this method and that it should generate a zero knowledge proof of its execution.
 
 ## Writing the Smart Contract
 
@@ -254,9 +254,9 @@ signerPublicKey
   .assertEquals(true);
 ```
 
-Notice that we call the o1js `equals()` and `or()` methods instead of using the JavaScript operators (`===`, and `||`). The built-in o1js methods have the same effect, but they work with o1js types, and their execution can be verified using a zero-knowledge proof.
+Notice that we call the o1js `equals()` and `or()` methods instead of using the JavaScript operators (`===`, and `||`). The built-in o1js methods have the same effect, but they work with o1js types, and their execution can be verified using a zero knowledge proof.
 
-`assertEquals(true)` at the end means that it will be impossible to generate a valid proof unless `signerPublicKey` is equal to one of the pre-approved users. The Mina network will reject any transaction sent to a zkApp account that doesn’t include a valid zero-knowledge proof for that account. So it will be impossible for users to post new messages unless they have a private key associated with one of the three pre-approved public keys.
+`assertEquals(true)` at the end means that it will be impossible to generate a valid proof unless `signerPublicKey` is equal to one of the pre-approved users. The Mina network will reject any transaction sent to a zkApp account that doesn’t include a valid zero knowledge proof for that account. So it will be impossible for users to post new messages unless they have a private key associated with one of the three pre-approved public keys.
 
 ### Updating `message`
 
@@ -332,11 +332,11 @@ What would you like to say? (should only work if you are one of the Bobs): Hello
 
 Hopefully you enjoyed this tutorial, and it gave you a sense of what's possible with o1js. The messaging protocol we built is quite simple but also very powerful. This basic pattern could be used to create a whistleblower system, an anonymous NFT project, or even anonymous DAO voting. o1js makes it easy for developers to build things that don’t intuitively seem possible, and this is really the point.
 
-Zero-knowledge proofs open the door to an entirely different way of thinking about the internet, and we are so excited to see what people like you will build. 
+Zero knowledge proofs open the door to an entirely different way of thinking about the internet, and we are so excited to see what people like you will build.
 
-- Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord.  
-- If you are interested in building something more complex with the guidance of our team at O(1) Labs, you can watch for future zkApp Builders Programs. 
-- To suggest tutorials, submit your ideas in the [o1js/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link). 
+- Make sure to join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord.
+- If you are interested in building something more complex with the guidance of our team at o1Labs, you can watch for future zkApp Builders Programs.
+- To suggest tutorials, submit your ideas in the [o1js/zkApp Tutorial Request Form](https://docs.google.com/forms/d/e/1FAIpQLSctM8rq5B7teYhGl8hi2mk8NoSs6YiCDqjOnUfzpAAymU6Uug/viewform?usp=sf_link).
 
 Here are the logical next steps to extend this project.
 

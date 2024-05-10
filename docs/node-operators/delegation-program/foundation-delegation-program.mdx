@@ -47,7 +47,7 @@ If you are a block producer looking to participate in the Mina Foundation Delega
 
 :::note
 
-There are two delegation programs in Mina's ecosystem — one from the Mina Foundation and [one from O(1) Labs](https://blog.o1labs.org/o-1-labs-delegation-policy-786bf96f9fdd), Mina's ecosystem partner. This page details the program only for the Mina Foundation.
+There are two delegation programs in Mina's ecosystem — one from the Mina Foundation and [one from o1Labs](https://blog.o1labs.org/o-1-labs-delegation-policy-786bf96f9fdd), Mina's ecosystem partner. This page details the program only for the Mina Foundation.
 
 :::
 
@@ -156,7 +156,7 @@ All the rewards for epoch N must be delivered (ie. accepted in a block, not just
 
 ### How do I calculate the reward payout?
 
-For reference, this explanation describes how reward returns are calculated. 
+For reference, this explanation describes how reward returns are calculated.
 
 For details, see the [implementation](https://github.com/jrwashburn/mina-pool-payout/blob/main/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts) code.
 
@@ -171,11 +171,11 @@ At the end of each epoch, do <u>all</u> of the following:
 
 2. Compute the share of stake from the token provider (from both accounts) by dividing the token provider delegation by the total stake. (i.e. `provider_share = provider_delegation / total_stake`). The resulting share should be between 0 and 1.
 
-3. For each block produced that has a non-zero block-reward on the canonical chain rewards must be calculated based on 720 MINA. 
+3. For each block produced that has a non-zero block-reward on the canonical chain rewards must be calculated based on 720 MINA.
 
 4. Calculate the Mina Foundation payout by multiplying the coinbase reward (equal to `720 MINA` ) by the provider share calculated in the previous step minus an 8% percent fee. (i.e. `payout = (provider_share * 0.92) * 720)`.
 
-5.  Send a transaction to the token provider accounts with the appropriate payout and memo - please follow the rules in the "Payout Attribution" section with your transaction. 
+5.  Send a transaction to the token provider accounts with the appropriate payout and memo - please follow the rules in the "Payout Attribution" section with your transaction.
   More details in the following source code parts: [PayoutCalculatorIsolateSuperCharge.ts](https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/core/payoutCalculator/PayoutCalculatorIsolateSuperCharge.ts#L126) and [ConfigurationManager.ts](https://github.com/jrwashburn/mina-pool-payout/blob/7f00dbd9e693f76ea6a950c29862120a170625a9/src/configuration/ConfigurationManager.ts#L21C15-L21C15).
 
 
@@ -194,16 +194,16 @@ Consider the following:
 - Account B is controlled by the Mina Foundation and has 6 million MINA which are delegated to Account A via the Delegation Program.
 - Account C is controlled by a third party and has 2 million MINA. This account also delegates to Account A and has also agreed to Account A retaining 8% of the staking rewards.
 
-In this example, the total amount of stake for Account A is 10 million calculated by adding up the balances from all the accounts. 
+In this example, the total amount of stake for Account A is 10 million calculated by adding up the balances from all the accounts.
 
 Now let's consider Epoch 5. The share of the stake from the Foundation is `6 million MINA / 10 million MINA = 0.6` or 60%. The share of the stake from Account B is `2 million MINA / 10 million MINA = 0.2` or 20%.
 
 3 blocks are produced in this epoch that end up on the canonical chain. The blocks were won by Account A.
 
 1. Account A retains, 0.2 x 720 MINA x 3 blocks = 432 MINA.
-2. Mina Foundation, Account B, payout would be: (0.6 x 0.92) x 720 MINA x 3 blocks = 1,192.32 MINA. 
-3. Account A retains 8%, (0.6 x 0.08) x 720 MINA x 3 blocks = 103.68 MINA. 
-3. Account C payout would be: (0.2 x 0.92) x 720 MINA x 3 blocks = 397.44 MINA. 
+2. Mina Foundation, Account B, payout would be: (0.6 x 0.92) x 720 MINA x 3 blocks = 1,192.32 MINA.
+3. Account A retains 8%, (0.6 x 0.08) x 720 MINA x 3 blocks = 103.68 MINA.
+3. Account C payout would be: (0.2 x 0.92) x 720 MINA x 3 blocks = 397.44 MINA.
 4. Account A retains 8%, (0.2 x 0.08) x 720 MINA x 3 blocks = 34.56 MINA
 
 
@@ -218,6 +218,6 @@ Now let's consider Epoch 5. The share of the stake from the Foundation is `6 mil
 - [SNARK-based Uptime System](/node-operators/delegation-program/uptime-tracking-system)
 >>>>>>> a49b1968 (finished changes to node doc structure):docs/node-operators/delegation-program/foundation-delegation-program.mdx
 
-#### Need any help? 
+#### Need any help?
 
 Post your questions in the [#delegation-program](https://discord.com/channels/484437221055922177/808895957978447882) channel on the Mina Protocol Discord.
