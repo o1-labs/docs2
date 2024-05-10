@@ -40,7 +40,7 @@ o1js is automatically included when you create a project using the [Mina zkApp C
 
 - For a list of changes between versions, see the [CHANGELOG](https://github.com/o1-labs/o1js/blob/main/CHANGELOG.md).
 
-- To stay up to date with o1js, see the [O(1) Labs Blog](https://blog.o1labs.org/tagged/o1js).
+- To stay up to date with o1js, see the [o1Labs Blog](https://blog.o1labs.org/tagged/o1js).
 
 ## Contributing
 

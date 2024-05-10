@@ -25,19 +25,19 @@ keywords:
 
 # Block Producer Getting Started
 
-Welcome to Mina! 
+Welcome to Mina!
 
 Get started setting up a Mina node, learn how to [generate a key pair](/node-operators/generating-a-keypair) for use with the network, and install the `mina daemon`.
 
-This documentation is for the **Mainnet** release. You can find the releases and version-specific flags on the [Mina Protocol releases](https://github.com/MinaProtocol/mina/releases) page. 
+This documentation is for the **Mainnet** release. You can find the releases and version-specific flags on the [Mina Protocol releases](https://github.com/MinaProtocol/mina/releases) page.
 
 ## Block Producer Requirements
 
-**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker.
 
 **Processor**: Only x86-64 CPU architecture is supported.
 
-**Hardware**: Sending and receiving MINA does not require any special hardware. 
+**Hardware**: Sending and receiving MINA does not require any special hardware.
 
 Running a block producer on the Mina network requires at least:
 
@@ -49,7 +49,7 @@ Running a block producer on the Mina network requires at least:
 
 **VM Instances**:
 
-O(1) Labs has tested running nodes on several cloud providers. We recommend the following instances for basic node operator needs. Custom requirements and different cost constraints might require a different instance type.
+o1Labs has tested running nodes on several cloud providers. We recommend the following instances for basic node operator needs. Custom requirements and different cost constraints might require a different instance type.
 
 - AWS [c5.2xlarge](https://www.ec2instances.info/?filter=c5.2xl&region=us-west-2&cost_duration=daily&selected=c5.2xlarge)
 - GCP [c2-standard-8](https://cloud.google.com/compute/docs/machine-types)
@@ -68,7 +68,7 @@ To discover and install pre-release (Beta) builds, see the [Mina Releases](https
 
 Set up the new Debian `stable` repository and install the latest binary version.
 
-Set up and update the rampup Debian Repository for your platform.  
+Set up and update the rampup Debian Repository for your platform.
 
 ```
 sudo rm /etc/apt/sources.list.d/mina*.list
@@ -99,7 +99,7 @@ sudo ufw allow 3089
 ```
 
 ### Windows
-Windows is not natively supported. Instead, use the [Docker instructions](getting-started#docker). 
+Windows is not natively supported. Instead, use the [Docker instructions](getting-started#docker).
 
 If you are interested in receiving a grant to develop Mina for Windows, email grants@o1labs.org or reach out in the [Mina Protocol Discord server](https://discord.gg/minaprotocol).
 
@@ -111,7 +111,7 @@ Instead, use the Docker instructions or build from source.
 
 ### Docker
 
-Docker is a cross-platform tool. You can download and install Docker on multiple platforms. 
+Docker is a cross-platform tool. You can download and install Docker on multiple platforms.
 
 Use the Docker installation instructions for your platform on [Get Docker](https://docs.docker.com/get-docker/). After Docker is installed, follow the [Connect to the Mina Network](/node-operators/block-producer-node/connecting-to-the-network#docker) instructions.
 
@@ -131,4 +131,3 @@ Enable port forwarding on your router to allow inbound traffic to the following 
 
 - TCP port `8302`
 - To use the GraphQL service, expose TCP port `3085`
-

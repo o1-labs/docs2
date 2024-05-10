@@ -1,10 +1,10 @@
 ---
 title: Troubleshooting
 hide_title: true
-description: Answers to comon problems when setting  up a Mina daemon 
+description: Answers to comon problems when setting  up a Mina daemon
 keywords:
   - syncing a node
-  - networking  
+  - networking
   - accounts
   - transactions
   - block producer
@@ -150,7 +150,7 @@ We only need the last `k` (290) blocks of the blockchain to produce blocks. So o
 
 This status indicates that you have not received any messages from peers for the last ~24 minutes. Ensure that you use the `--peer-list` argument that points to `https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`
 
-See [Connect to Mainnet](./block-producer-node/connecting-to-the-network). 
+See [Connect to Mainnet](./block-producer-node/connecting-to-the-network).
 
 
 ## Networking
@@ -193,7 +193,7 @@ The client port `8301` should **never** be exposed to the internet. There may be
 
 Ensure that you use the `--peer-list` argument that points to `https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`
 
-See [Connect to Mainnet](./block-producer-node/connecting-to-the-network). 
+See [Connect to Mainnet](./block-producer-node/connecting-to-the-network).
 
 ### I get an error couldn't determine our IP from the internet?
 
@@ -253,7 +253,7 @@ If transactions are not being included, the transaction fees likely do not cover
 
 ### Does the order of sending transactions matter?
 
-Yes, transactions are processed in order according to the nonce associated with the transaction. So, if you send a transaction that is stuck, with, for example, a low fee, all following transactions will also be stuck regardless of the fees used in the later transactions. Try to cancel the stuck transaction. 
+Yes, transactions are processed in order according to the nonce associated with the transaction. So, if you send a transaction that is stuck, with, for example, a low fee, all following transactions will also be stuck regardless of the fees used in the later transactions. Try to cancel the stuck transaction.
 
 ### Why does my account say "locked"?
 
@@ -318,9 +318,9 @@ It is not recommended to run a SNARK worker on the same machine at the same time
 
 A slot on the current network is every 3 mins, though not all slots should have a block produced, so on average, we would expect a block every 4 mins. However, not all the stake is online and active in producing blocks, and so not all slots will have a block, and sometimes there can be long delays between blocks. As more of the stake is online and staking, this situation improves.
 
-### Why does O(1) Labs win most of the blocks?
+### Why does o1Labs win most of the blocks?
 
-To keep the network stable, O(1) Labs has 30% of the stake, so has a much greater probability of winning a slot and producing a block. Users who were given a balance of 66,000 mina have about a 0.1% chance of winning any particular slot, so should expect a block every couple of days, but luck plays a major factor in how often you will win a block.
+To keep the network stable, o1Labs has 30% of the stake, so has a much greater probability of winning a slot and producing a block. Users who were given a balance of 66,000 mina have about a 0.1% chance of winning any particular slot, so should expect a block every couple of days, but luck plays a major factor in how often you will win a block.
 
 ### How do I know if I won a block or a transaction went through?
 
