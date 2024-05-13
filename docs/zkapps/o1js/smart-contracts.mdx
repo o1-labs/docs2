@@ -322,12 +322,12 @@ The `myMethod()` proof:
 
 Therefore, when you call another zkApp method, you effectively prove: "I called a method with this name, on this zkApp account, with this particular arguments and return value."
 
-To ensure other methods can use a return value of your `@method`, you must annotate the return value in your TypeScript function signature.
+To return a value from the method, you have to explicitly declare the return type using the `method.returns` decorator:
 
 Here's an example of returning a `Bool` called `isSuccess`:
 
 ```ts
-@method async otherMethod(): Bool { // annotated return type
+@method.returns(Bool) async otherMethod(): Promise<Bool> { // annotated return type
   // ...
   return isSuccess;
 }
