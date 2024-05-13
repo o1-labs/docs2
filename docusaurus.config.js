@@ -62,11 +62,11 @@ module.exports = {
           },
           {
             from: '/architecture/snapps',
-            to: '/zkapps',
+            to: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
           },
           {
             from: '/snapps',
-            to: '/zkapps',
+            to: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
           },
           {
             from: '/node-developers/code-reviews',
@@ -82,7 +82,7 @@ module.exports = {
           },
           {
             from: '/zkapps/how-to-test-a-zkapp',
-            to: '/zkapps/writing-a-zkapp/testing-zkapps-locally',
+            to: '/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally',
           },
           {
             from: '/zkapps/simple-anonymous-message-board-tutorial',

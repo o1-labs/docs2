@@ -25,19 +25,19 @@ const FeatureList: FeatureItem[] = [
     title: 'Deploy your first zkApp',
     image: '/img/homepage/zkapp_developers.png',
     buttonText: 'zkApp Developers',
-    buttonLink: '/zkapps',
+    buttonLink: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
     description: (
       <>
         {'Learn '}
         <Link
-          to="/zkapps/writing-a-zkapp/how-zkapps-work"
+          to="/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work"
           className={styles.minaLink}
         >
           how zero knowledge smart contracts work
         </Link>
         {' and '}
         <Link
-          to="/zkapps/writing-a-zkapp/how-to-write-a-zkapp"
+          to="/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp"
           className={styles.minaLink}
         >
           how to write your own using TypeScript.

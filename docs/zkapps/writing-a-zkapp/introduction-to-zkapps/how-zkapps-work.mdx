@@ -87,7 +87,7 @@ When a Mina address contains a verification key, it acts as a zkApp account.
 
 A regular Mina account can receive any transactions. 
 
-You can specify [permissions](/zkapps/writing-a-zkapp/permissions) so a zkApp account can successfully receive only the transactions that satisfy the verifier function. 
+You can specify [permissions](/zkapps/writing-a-zkapp/feature-overview/permissions) so a zkApp account can successfully receive only the transactions that satisfy the verifier function. 
 
 The Mina network rejects any transactions that do not pass the verifier function.
 
@@ -101,7 +101,7 @@ To enable users to interact with your smart contract in a web browser, you build
 
 <img src="/img/7_zkApps_DeploySmartContract.jpg" width="95%" alt="Diagram of a zkApp that includes JavaScript and the UI" />
 
-Your website must contain the JavaScript `smart_contract.js` file that you generated with the `npm run build` command. To learn more, see [How to Write a zkApp](zkapps/writing-a-zkapp/how-to-write-a-zkapp).
+Your website must contain the JavaScript `smart_contract.js` file that you generated with the `npm run build` command. To learn more, see [How to Write a zkApp](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp).
 
 ## How users interact with a zkApp
 
@@ -129,7 +129,7 @@ The end user's privacy is maintained because their interaction occurs locally in
 
 ### How state is updated on-chain
 
-The zkApp account gets updated on-chain. See [How state is updated on-chain](/zkapps/writing-a-zkapp/how-zkapps-work#how-state-is-updated-on-chain)
+The zkApp account gets updated on-chain. See [How state is updated on-chain](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work#how-state-is-updated-on-chain)
 
 When the prover function runs in a web browser, the smart contract outputs a proof and some associated data called "account updates" that are sent to a zkApp address as part of the transaction. The account updates are a JSON plain text description that describes how to update the state on a zkApp account.
 
@@ -157,4 +157,4 @@ When the zkApp runs in a user's web browser, it can insert state to an external 
 
 ### Keep going
 
-See [zkApps Getting Started](/zkapps/writing-a-zkapp/getting-started-zkapps).
+See [zkApps Getting Started](/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps).

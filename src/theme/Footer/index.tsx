@@ -114,7 +114,7 @@ function Footer(): JSX.Element | null {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/zkapps/writing-a-zkapp/how-to-write-a-zkapp">
+                  <Link to="/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp">
                     Write a zkApp
                   </Link>
                 </li>
