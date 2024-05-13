@@ -1,17 +1,14 @@
 import {
-  Bool,
   DeployArgs,
   Int64,
   method,
   AccountUpdate,
   Permissions,
   PublicKey,
-  SmartContract,
   UInt64,
   TransactionVersion,
   TokenContract,
   AccountUpdateForest,
-  AccountUpdateTree,
 } from 'o1js';
 
 export class MyToken extends TokenContract {
