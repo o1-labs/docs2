@@ -149,7 +149,7 @@ If you anticipate your state to be larger, or if the state accumulates per user 
 
 ### Off-chain state
 
-For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/writing-a-circuit/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere. Mina doesn't offer an out-of-the-box solution for off-chain storage.
+For larger data, you might want to consider storing the root of a [Merkle tree](/zkapps/o1js/merkle-tree) or a similar data structure within your zkApp's on-chain storage that references self-hosted off-chain state stored elsewhere. Mina doesn't offer an out-of-the-box solution for off-chain storage.
 
 When the zkApp runs in a user's web browser, it can insert state to an external storage, such as IPFS. When the transaction is sent to the Mina network, if it accepts this zkApp transaction then proof and state are known to be valid so the updates are allowed, then the zkApp transaction can update the root of the Merkle tree that is stored on chain.
 
