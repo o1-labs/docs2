@@ -5,11 +5,11 @@
     { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
     {
       "source": "/zkapps/snarkyjs",
-      "destination": "/zkapps/writing-a-circuit"
+      "destination": "/zkapps/o1js"
     },
     {
       "source": "/zkapps/snarkyjs/:path(.*)",
-      "destination": "/zkapps/writing-a-circuit/:path(.*)"
+      "destination": "/zkapps/o1js/:path(.*)"
     },
     {
       "source": "/zkapps/snarkyjs-reference/:path(.*)",
