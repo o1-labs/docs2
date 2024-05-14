@@ -1,0 +1,82 @@
+---
+title: Appendix
+sidebar_label: Appendix
+hide_title: true
+description: Berkeley Upgrade Appendix
+keywords:
+  - Berkeley
+  - upgrade
+  - appendix
+---
+
+# Appendix
+
+## Migration from o1labs/client-sdk to mina-signer
+
+The signing library o1labs/client-sdk was deprecated some time ago and will stop working after the upgrade. All users should upgrade with the library mina-signer https://www.npmjs.com/package/mina-signer.
+
+Below you will find an example of how to use the mina-signer library. Please keep in mind the following:
+
+1. Make sure to adjust the nonce to the correct nonce on the account you want to use
+2. Use fee 1 MINA to get the TX submitted quickly
+3. Update the “url” variable with an existing Mina Node GraphQL
+
+```javascript
+import { Client } from 'mina-signer';
+
+// create testnet client and define hard-coded keypair
+
+const client = new Client({ network: 'testnet' });
+
+let privateKey = Your private key;
+let publicKey = the public key - perhaps derived from the private key using -> client.derivePublicKey(privateKey);
+
+// define and sign payment
+
+let payment = {
+  from: publicKey,
+  to: 'to public key',
+  amount: 100,
+  nonce: 1,
+  fee: 1000000,
+};
+
+const signedPayment = client.signPayment(payment, privateKey);
+
+// send payment to graphql endpoint
+
+let url = 'https://qanet.minaprotocol.network/graphql';
+
+let query = `mutation {
+  sendPayment(
+    input: ${objectToGraphqlQuery(signedPayment.data)},
+    signature: ${objectToGraphqlQuery(signedPayment.signature)}
+    ) {
+      payment { id }
+    }
+  }`;
+
+console.log('=======================');
+console.log(query);
+console.log('=======================');
+
+let response = await fetch(url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ operationName: null, query, variables: {} }),
+});
+if (response.status == 200) {
+  let json = await response.json();
+  console.dir(json, { depth: null });
+} else {
+  let text = await response.text();
+  console.log('Error:\n', text);
+}
+
+function objectToGraphqlQuery(obj: any) {
+  let json = JSON.stringify(obj, null, 2);
+  // removes the quotes on JSON keys
+  return json.replace(/\"(\S+)\"\s*:/gm, '$1:');
+}
+
+```

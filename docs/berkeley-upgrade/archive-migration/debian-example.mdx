@@ -1,6 +1,6 @@
 ---
-title: Worked example of Devnet Archive Migration
-sidebar_label: Worked example (devnet 2024-03-22)
+title: Example of Devnet Archive Migration (Debian)
+sidebar_label: Debian example (Devnet)
 hide_title: true
 description: A copy-paste example of how to do a Devnet migration.
 keywords:
@@ -11,9 +11,11 @@ keywords:
   - archive node
 ---
 
-You can follow these steps that can be copy-pasted directly into a fresh Debian 11. 
+# Debian example
 
-This example uses an altered two-step version of the [full simplified workflow](/berkeley-upgrade/migrating-archive-database-to-berkeley#simplified-approach). 
+You can follow these steps that can be copy-pasted directly into a fresh Debian 11.
+
+This example uses an altered two-step version of the [full simplified workflow](/berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley#simplified-approach).
 
 ```sh
 apt update && apt install lsb-release sudo postgresql curl wget gpg # debian:11 is surprisingly light
@@ -53,7 +55,6 @@ mina-berkeley-migration-script initial \
     --target-db postgres:///devnet_really_migrated \
     --blocks-batch-size 100 --blocks-bucket mina_network_block_data \
     --network devnet
-
 
 # now, do a final migration
 

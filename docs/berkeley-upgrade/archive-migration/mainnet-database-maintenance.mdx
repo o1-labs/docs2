@@ -7,7 +7,7 @@ keywords:
   - Berkeley
   - upgrade
   - archive migration
-  - planning 
+  - planning
   - prerequisites
   - mina archive node
   - archive node
@@ -18,7 +18,7 @@ keywords:
 
 # Devnet/Mainnet database maintenance
 
-After the Berkeley migration, the original Devnet/Mainnet database is not required unless you are interested in 
+After the Berkeley migration, the original Devnet/Mainnet database is not required unless you are interested in
 preserving some aspect of the database that is lost during the migration process.
 
 Two databases exist after the successful migration:
@@ -31,13 +31,13 @@ Two databases exist after the successful migration:
   - Without pending blocks that are not in the canonical chain
   - With all pending blocks on the canonical chain converted to canonical blocks
 
-The o1Labs and Mina Foundation teams have consistently prioritized rigorous testing and the delivery of high-quality software products. 
+The o1Labs and Mina Foundation teams have consistently prioritized rigorous testing and the delivery of high-quality software products.
 
-However, being human entails the possibility of making mistakes. 
+However, being human entails the possibility of making mistakes.
 
 ## Known issues
 
-Recently, a few mistakes were identified while working on a version of Mina used on Mainnet. These issues were promptly addressed; however, within the decentralized environment, archive nodes can retain historical issues despite our best efforts. 
+Recently, a few mistakes were identified while working on a version of Mina used on Mainnet. These issues were promptly addressed; however, within the decentralized environment, archive nodes can retain historical issues despite our best efforts.
 
 Fixes are available for the following known issues:
 
@@ -98,7 +98,7 @@ mina-replayer \
 
 where:
 
-- `archive-uri` - connection string to the archive database 
+- `archive-uri` - connection string to the archive database
 - `input-file` - JSON file that holds the archive database
 - `output-file` - JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
 - `checkpoint-interval` - frequency of checkpoints expressed in blocks count
@@ -131,12 +131,12 @@ mina-replayer --archive-uri {db_connection_string} --input-file reference_replay
 
 where:
 
-- `archive-uri` - connection string to the archive database 
+- `archive-uri` - connection string to the archive database
 - `input-file` - JSON file that holds the archive database
 - `output-file` - JSON file that will hold the ledger with auxiliary information, like global slot and blockchain height, which will be dumped on the last block
 - `checkpoint-interval` - frequency of checkpoints expressed in blocks count
 - `replayer_input_file.json` - JSON file constructed from the Devnet/Mainnet genesis ledger:
-  
+
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
    ```
@@ -149,9 +149,9 @@ where:
 
 The daemon node unavailability can cause the archive node to miss some of the blocks. This recurring missing blocks issue consistently poses challenges. To address this issue, you can reapply missing blocks.
 
-If you uploaded the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks to preserve chain continuity. 
+If you uploaded the missing blocks to Google Cloud, the missing blocks can be reapplied from precomputed blocks to preserve chain continuity.
 
-1. To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script. 
+1. To automatically verify and patch missing blocks, use the [download_missing_blocks.sh](https://raw.githubusercontent.com/MinaProtocol/mina/2.0.0berkeley_rc1/src/app/rosetta/download-missing-blocks.sh) script.
 
    The `download-missing-blocks` script uses `localhost` as the database host so the script assumes that psql is running on localhost on port 5432. Modify `PG_CONN` in `download_missing_block.sh` for your environment.
 
@@ -164,15 +164,15 @@ If you uploaded the missing blocks to Google Cloud, the missing blocks can be re
     ```
 
 1. Run the `mina-missing-blocks-auditor` script from the database host:
-    
+
     For Devnet:
-    
+
     ```sh
     download-missing-blocks.sh devnet {db_user} {db_password}
     ```
 
     For Mainnet:
-    
+
     ```sh
     download-missing-blocks.sh mainnet {db_user} {db_password}
     ```
@@ -193,4 +193,4 @@ Note: It's important to highlight that precomputed blocks for **Devnet** between
 
 ## Next steps
 
-Now that you have completed the steps to properly maintain the correctness of the archive database, you are ready to perform the archive [migration process](/berkeley-upgrade/migrating-archive-database-to-berkeley).
+Now that you have completed the steps to properly maintain the correctness of the archive database, you are ready to perform the archive [migration process](/berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley).

@@ -1,5 +1,5 @@
 ---
-title: Migrating Devnet/Mainnet Archive to Berkeley Archive 
+title: Migrating Devnet/Mainnet Archive to Berkeley Archive
 sidebar_label: Performing archive migration
 hide_title: true
 description: Steps to properly migrate archives from Devnet/Mainnet to Berkeley.
@@ -7,7 +7,7 @@ keywords:
   - Berkeley
   - upgrade
   - archive migration
-  - planning 
+  - planning
   - prerequisites
   - mina archive node
   - archive node
@@ -15,15 +15,15 @@ keywords:
 
 # Migrating Devnet/Mainnet Archive to Berkeley Archive
 
-Before you start the process to migrate your archive database from the current Mainnet or Devnet format to Berkeley, be sure that you: 
+Before you start the process to migrate your archive database from the current Mainnet or Devnet format to Berkeley, be sure that you:
 
-- [Understand the Archive Migration](/berkeley-upgrade/understanding-archive-migration)
-- Meet the foundational requirements in [Archive migration prerequisites](/berkeley-upgrade/archive-migration-prerequisites)
-- Have successfully installed the [archive migration package](/berkeley-upgrade/archive-migration-installation)
+- [Understand the Archive Migration](/berkeley-upgrade/archive-migration/understanding-archive-migration)
+- Meet the foundational requirements in [Archive migration prerequisites](/berkeley-upgrade/archive-migration/archive-migration-prerequisites)
+- Have successfully installed the [archive migration package](/berkeley-upgrade/archive-migration/archive-migration-installation)
 
 ## Migration process
 
-The Devnet/Mainnet migration can take up to a couple of days. 
+The Devnet/Mainnet migration can take up to a couple of days.
 Therefore, you can achieve a successful migration by using three stages:
 
 - **Stage 1:** Initial migration
@@ -49,7 +49,7 @@ For convenience, use the `mina-berkeley-migration-script` app if you do not need
 ### Stage 1: Initial migration
 
 ```
-mina-berkeley-migration-script  \ 
+mina-berkeley-migration-script  \
    initial \
    --genesis-ledger ledger.json \
    --source-db postgres://postgres:postgres@localhost:5432/source \
@@ -62,7 +62,7 @@ mina-berkeley-migration-script  \
    --network NETWORK
 ```
 
-where: 
+where:
 
 `-g | --genesis-ledger`: path to the genesis ledger file
 
@@ -141,7 +141,7 @@ mina-berkeley-migration-script \
    -fc fork-genesis-config.json
 ```
 
-where: 
+where:
 
 `-g | --genesis-ledger`: path to the genesis ledger file
 
@@ -175,7 +175,7 @@ This first stage requires only the initial Berkeley schema, which is the foundat
 
 - Inputs
    - Unmigrated Devnet/Mainnet database
-   - Devnet/Mainnet genesis ledger 
+   - Devnet/Mainnet genesis ledger
    - Empty target Berkeley database with the schema created, but without any content
 
 - Outputs
@@ -196,7 +196,7 @@ mina-berkeley-migration \
    --network NETWORK
 ```
 
-where: 
+where:
 
 `--batch-size`: number of precomputed blocks to be fetched at one time from Google Cloud. A larger number, like 1000, can help speed up migration process.
 
@@ -244,7 +244,7 @@ where:
 
 `--input-file`: path to the replayer input file, see below on how's created
 
-`replayer_input_config.json`: is a file constructed out of network genesis ledger: 
+`replayer_input_config.json`: is a file constructed out of network genesis ledger:
    ```
       jq '.ledger.accounts' genesis_ledger.json | jq  '{genesis_ledger: {accounts: .}}' > replayer_input_config.json
    ```
@@ -255,13 +255,13 @@ where:
 
 #### Phase 3: Validations
 
-Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
+Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases.
 
 ```
  mina-berkeley-migration-verifier \
    pre-fork  \
    --mainnet-archive-uri postgres://postgres:postgres@localhost:5432/source \
-   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated  
+   --migrated-archive-uri postgres://postgres:postgres@localhost:5432/migrated
 ```
 
 where:
@@ -272,16 +272,18 @@ where:
 
 ### Stage 2: Incremental migration
 
-After the initial migration, the data is migrated data up to the last canonical block. However, Devnet/Mainnet data is progressing with new blocks that must also be migrated again and again until the fork block is announced. 
+After the initial migration, the data is migrated data up to the last canonical block. However, Devnet/Mainnet data is progressing with new blocks that must also be migrated again and again until the fork block is announced.
 
-:info: Incremental migration can, and probably must, be repeated a couple of times until the fork block is announced by Mina Foundation.
+:::info
+Incremental migration can, and probably must, be repeated a couple of times until the fork block is announced by Mina Foundation.
 Run the incremental migration multiple times with the latest Devnet/Mainnet database and the latest replayer checkpoint file.
+:::
 
 - Inputs
    - Latest Devnet/Mainnet database
    - Devnet/Mainnet genesis ledger
-   - Replayer checkpoint from last run 
-   - Migrated berkeley database from initial migration 
+   - Replayer checkpoint from last run
+   - Migrated berkeley database from initial migration
 
 - Outputs
    - Migrated Devnet/Mainnet database to the Berkeley format up to the last canonical block
@@ -348,7 +350,7 @@ Incremental migration can be run continuously on top of the initial migration or
 
 #### Phase 3: Validations
 
-Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated database. 
+Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated database.
 
 ```
  mina-berkeley-migration-verifier \
@@ -363,18 +365,18 @@ where:
 
 `--migrated-archive-uri`: connection string to the database that will hold the migrated data
 
-Note that: you can run incremental migration continuously on top of the initial migration or the last incremental until the fork block is announced. 
+Note that: you can run incremental migration continuously on top of the initial migration or the last incremental until the fork block is announced.
 
 ### Stage 3: Remainder migration
 
-When the fork block is announced, you must tackle the remainder migration. This is the last migration run 
-you need to perform. In this stage, you close the migration cycle with the last migration of the remainder blocks between the current last canonical block and the fork block (which can be pending, so you don't need to wait 290 blocks until it would become canonical). 
+When the fork block is announced, you must tackle the remainder migration. This is the last migration run
+you need to perform. In this stage, you close the migration cycle with the last migration of the remainder blocks between the current last canonical block and the fork block (which can be pending, so you don't need to wait 290 blocks until it would become canonical).
 You must use `--fork-state-hash` as an additional parameter to the **berkeley-migration** app.
 
 - Inputs
    - Latest Devnet/Mainnet database
    - Devnet/Mainnet genesis ledger
-   - Replayer checkpoint from last run 
+   - Replayer checkpoint from last run
    - Migrated Berkeley database from last run
    - Fork block state hash
 
@@ -451,7 +453,7 @@ where:
 
 #### Phase 3: Validations
 
-Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases. 
+Use the **berkeley_migration_verifier** app to perform checks for both the fully migrated and partially migrated databases.
 
 ```
  mina-berkeley-migration-verifier \
@@ -472,13 +474,17 @@ where:
 
 `--fork-config`: fork genesis config file is the new genesis config that is distributed with the new daemon and is published after the fork block is announced
 
-### Example migration steps using Mina Foundation data for Devnet
+### Example migration steps using Mina Foundation data for Devnet using Debian
 
-See: [Worked example using March 22 data](/berkeley-upgrade/worked-archive-example)
+See: [Worked example using March 22 data](/berkeley-upgrade/archive-migration/debian-example)
+
+### Example migration steps using Mina Foundation data for Mainnet using Docker
+
+See: [Worked example using March 22 data](/berkeley-upgrade/archive-migration/docker-example)
 
 ## How to verify a successful migration
 
-o1Labs and Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archive variations. 
+o1Labs and Mina Foundation make every effort to provide reliable tools of high quality. However, it is not possible to eliminate all errors and test all possible Mainnet archive variations.
 All important checks are implemented in the `mina-berkeley-migration-verifier` application.
 However, you can use the following checklist if you want to perform the checks manually:
 
@@ -496,17 +502,17 @@ However, you can use the following checklist if you want to perform the checks m
 
 ## Tips and tricks
 
-We are aware that the migration process can be very long (a couple of days). Therefore, we encourage you to use cron jobs that migrate data incrementally. 
+We are aware that the migration process can be very long (a couple of days). Therefore, we encourage you to use cron jobs that migrate data incrementally.
 The cron job requires access to Google Cloud buckets (or other storage):
 
 - A bucket to store migrated-so-far database dumps
 - A bucket to store checkpoint files
 
 We are tightly coupled with Google Cloud infrastructure due to the precomputed block upload mechanism.
-This is why we are using also buckets for storing dumps and checkpoint. However, you do not have to use Google Cloud for other things than 
+This is why we are using also buckets for storing dumps and checkpoint. However, you do not have to use Google Cloud for other things than
 precomputed blocks. With configuration, you can use any gsutil-compatible storage backend (for example, S3).
 
-Before running the cron job, upload an initial database dump and an initial checkpoint file. 
+Before running the cron job, upload an initial database dump and an initial checkpoint file.
 
 To create the files, run these steps locally:
 
@@ -546,8 +552,8 @@ After solving any of below issues you can rerun process and migration
 will continue form last position
 
 #### Async was unable to add a file descriptor to its table of open file descriptors
-For example: 
-  
+For example:
+
 ```
  ("Async was unable to add a file descriptor to its table of open file descriptors"
   (file_descr 18)
@@ -590,7 +596,7 @@ You provided the migrated schema as source one when invoking script or berkeley-
 
 #### Poor performance of migration when accessing remote database
 
-We conducted migration tests with both a local database and a distant database (RDS). 
+We conducted migration tests with both a local database and a distant database (RDS).
 The migration using the local database appears to process significantly faster. We strongly suggest to use offline database installed locally
 
 #### ERROR: out of shared memory
@@ -600,14 +606,14 @@ The migration using the local database appears to process significantly faster. 
 \nHINT: You might need to increase max_pred_locks_per_transaction
 ```
 
-Solution is either to increase `max_pred_locks_per_transaction` setting in postgres database. 
+Solution is either to increase `max_pred_locks_per_transaction` setting in postgres database.
 Alternative is to isolate database from mainnet traffic (for example by exporting dump from live database and import it on isolated environment)
 
 #### Berkeley migration app is consuming all of my resources
 
 When running a full migration, you can stumble on memory leaks that prevent you from cleanly performing the migration in one pass. A machine with 64 GB of RAM can be frozen after ~40k migrated blocks. Each 200 blocks inserted into the database increases the memory leak by 4-10 MB.
 
-A potential workaround is to split the migration into smaller parts using cron jobs or automation scripts. 
+A potential workaround is to split the migration into smaller parts using cron jobs or automation scripts.
 
 ## FAQ
 
