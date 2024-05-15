@@ -134,16 +134,28 @@ class MyContract extends SmartContract {
   // ...
   @method
   async useOffchainStorage(playerA: PublicKey) {
-    let totalScore = await offchainState.fields.totalScore.get(); // retrieve totalScore
-    offchainState.fields.totalScore.set(totalScore.add(1)); // increment totalScore
+    let totalScoreOption = await offchainState.fields.totalScore.get(); // retrieve totalScore
+    let totalScore = totalScoreOption.orElse(0n); // unwrap the Option and return a default value if the entry if empty
+    offchainState.fields.totalScore.update({
+      from: totalScoreOption,
+      to: totalScore.add(1),
+    }); // increment totalScore, set a precondition on the state, if `from` is undefined apply the update unconditionally
 
     let playerOption = await offchainState.fields.players.get(playerA); // retrieve an entry from the map, returning an Option
     let score = playerOption.orElse(0n); // unwrap the player's score Option and return a default value if the entry is empty
+    offchainState.fields.players.update(playerA, {
+      from: fromOption,
+      to: score.add(1),
+    });
   }
 }
 ```
 
-Currently, Offchain storage types of Field support `field.get()` and `field.set(newValue)`, while maps support `map.get(key)` and `map.set(key, newValue)`.
+Currently, Offchain storage types of Field support `field.get()` and `field.overwrite(newValue)`, while maps support `map.get(key)` and `map.overwrite(key, newValue)`.
+`.overwrite()` sets the value without taking into account the previous value. If the value is modified by multiple zkkApps concurrently, interactions that are applied later will simply be overwritten!
+
+All Offchain storage types also provide an `.update()` method which is a safe version of `.overwrite()`.
+The `.update()` method lets you define preconditions on the state that you want to update. If the precondition of the previous value does not match, the update will not be applied.
 
 ## Building a Smart Contract with Offchain Storage
 
