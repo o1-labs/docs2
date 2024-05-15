@@ -42,7 +42,7 @@ All offchain state resides within a single Merkle Map, which is essentially a wr
 
 Under this framework, [Actions and Reducer](zkapps/o1js/actions-and-reducer.mdx) are utilized to manage state changes, with actions dispatching state updates and reducers settling them. Additionally, a Merkle Tree is employed to maintain a provably secure commitment to the data, with the root stored on-chain.
 
-Before users can access published state, it must first undergo settlement.
+Prior to users accessing published state, it must first undergo settlement. Thanks to the design of Offchain storage, all state is recoverable from actions alone, eliminating the need for additional events or external data storage.
 
 ## Utilizing Offchain Storage
 
@@ -113,6 +113,8 @@ class MyContract extends SmartContract {
 }
 ```
 
+**It is important to mention that state is only available after it was settled via `settle()`!**
+
 ### Utilizing Offchain Storage
 
 Now developers can utilize Offchain storage in any of their smart contract methods, as demonstrated below:
@@ -130,3 +132,5 @@ class MyContract extends SmartContract {
   }
 }
 ```
+
+Currently, Offchain storage types of Field support `field.get()` and `field.set(newValue)`, while maps support `map.get(key)` and `map.set(key, newValue)`.
