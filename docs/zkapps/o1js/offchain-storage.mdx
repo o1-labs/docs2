@@ -46,6 +46,16 @@ Prior to users accessing published state, it must first undergo settlement. Than
 
 ## Utilizing Offchain Storage
 
+### Prerequisites
+
+The `OffchainState` API is accessible within the `Experimental` namespace. To use `OffchainState`, import `Experimental` from o1js version 1.2.0 or higher.
+
+```ts
+import { Experimental } from 'o1js';
+
+const { OffchainState, OffchainStateCommitments } = Experimental;
+```
+
 ### Setting up Offchain Storage
 
 To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The `OffchainState` configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
