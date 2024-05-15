@@ -75,6 +75,7 @@ module.exports = {
               items: [
                 'zkapps/writing-a-zkapp/feature-overview/smart-contracts',
                 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
+                'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
                 'zkapps/writing-a-zkapp/feature-overview/permissions',
                 'zkapps/writing-a-zkapp/feature-overview/events',
                 'zkapps/writing-a-zkapp/feature-overview/actions-and-reducer',
