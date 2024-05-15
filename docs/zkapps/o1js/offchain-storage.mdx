@@ -46,7 +46,7 @@ Before users can access published state, it must first undergo settlement.
 
 ## Utilizing Offchain Storage
 
-### Configuring Your Smart Contract
+### Setting up Offchain Storage
 
 To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The `OffchainState` configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
 
@@ -61,31 +61,7 @@ const offchainState = OffchainState({
 class StateProof extends offchainState.Proof {}
 ```
 
-Furthermore, the smart contract requires a field indicating the commitment to the offchain state. This field allows accessing offchain state similar to any other on-chain value.
-
-```ts
-class MyContract extends SmartContract {
-  @state(OffchainStateCommitments) offchainState = State(
-    OffchainStateCommitments.empty()
-  );
-}
-```
-
-The contract also need a `settle()` method to resolve all pending state updates. This method verifies a recursive proof to finalize all pending state changes, with the proof being generated before invoking the `settle()` method.
-
-```ts
-class MyContract extends SmartContract {
-  // ...
-  @method
-  async settle(proof: StateProof) {
-    await offchainState.settle(proof);
-  }
-}
-```
-
-### Preparing for Offchain State Settlement
-
-Additionally, developers need to set the smart contract instance and assign it to the offchain storage.
+Developers also need to set the smart contract instance and assign it to the offchain storage.
 This also compiles the recursive Offchain zkProgram in the background and assigns the Offchain state to a smart contract instance.
 
 ```ts
@@ -111,6 +87,30 @@ await Mina.transaction(sender, () => {
   .sign([sender.key])
   .prove()
   .send();
+```
+
+### Configuring Your Smart Contract
+
+The smart contract requires a field indicating the previously defined commitment to the offchain state. This field allows accessing offchain state similar to any other on-chain value.
+
+```ts
+class MyContract extends SmartContract {
+  @state(OffchainStateCommitments) offchainState = State(
+    OffchainStateCommitments.empty()
+  );
+}
+```
+
+The contract also need a `settle()` method to resolve all pending state updates. This method verifies a recursive proof to finalize all pending state changes, with the proof being generated before invoking the `settle()` method.
+
+```ts
+class MyContract extends SmartContract {
+  // ...
+  @method
+  async settle(proof: StateProof) {
+    await offchainState.settle(proof);
+  }
+}
 ```
 
 ### Utilizing Offchain Storage
