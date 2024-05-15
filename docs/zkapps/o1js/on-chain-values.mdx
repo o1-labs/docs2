@@ -44,7 +44,7 @@ this.network.timestamp.requireEquals(timestamp);
 this.network.timestamp.requireBetween(lower, upper);
 ```
 
-- The familiar on-chain state has the same `get()` and `requireEquals()` methods. 
+- The familiar on-chain state has the same `get()` and `requireEquals()` methods.
 - The `requireBetween()` method has even more power: it allows you to make assertions that the timestamp is between `lower` and `upper` (inclusive).
 
 ### Example: Restricting timestamps
@@ -160,7 +160,7 @@ To set the delegate (the account that your smart contract delegates its stake to
 this.account.delegate.set(delegatePublicKey);
 ```
 
-The fields that you can set are not the same as the fields that you can make assertions about. 
+The fields that you can set are not the same as the fields that you can make assertions about.
 
 Here is the full list of fields that have a `.set()`:
 
@@ -199,7 +199,7 @@ accountUpdate.account.isNew.assertEquals(Bool(true));
 accountUpdate.account.permissions.set(permissions);
 ```
 
-When setting fields on an account update, you must ensure that this _same_ account update has the correct authorization to perform those actions. 
+When setting fields on an account update, you must ensure that this _same_ account update has the correct authorization to perform those actions.
 
 For example, to initially set the verification key, the update requires a signature from the account owner:
 

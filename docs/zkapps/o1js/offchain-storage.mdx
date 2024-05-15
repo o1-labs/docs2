@@ -21,4 +21,96 @@ zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps c
 
 :::
 
+:::experimental
+
+Offchain storage is currently an experimental feature and is subject to change in the future.
+
+:::
+
 # Offchain Storage
+
+One of Mina's unique features is its succinctness, both in computation and storage. To prevent state bloat and maintain Mina's efficiency and verifiability, we use offchain storage solutions for handling large volumes of data.
+
+In a previous section, we introduced the concept of On-chain Values. Since Mina currently supports only a total of 8 on-chain Field elements, we can leverage offchain storage to extend that capacity.
+This approach maintains a provably secure connection between the on-chain smart contract and the off-chain data, such as that stored in an archive node.
+
+## Design
+
+Presently, Offchain storage offers support for two types of state: OffchainState.Field, representing a single field element, and OffchainState.Map, akin to the key-value maps found in JavaScript, like let myMap = new Map<string, number>();.
+
+All offchain state resides within a single Merkle Map, which is essentially a wrapper around a [Merkle Tree](zkapps/o1js/merkle-tree.mdx). Practically speaking, there are no constraints on the number of state fields and maps that a developer can store in a smart contract using Offchain storage.
+
+Under this framework, [Actions and Reducer](zkapps/o1js/actions-and-reducer.mdx) are utilized to manage state changes, with actions dispatching state updates and reducers settling them. Additionally, a Merkle Tree is employed to maintain a provably secure commitment to the data, with the root stored on-chain.
+
+Before users can access published state, it must first undergo settlement.
+
+## Utilizing Offchain Storage
+
+### Configuring Your Smart Contract
+
+To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The OffchainState configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
+
+The StateProof type will subsequently be employed to finalize published state changes using a recursive reducer mechanism.
+
+```ts
+const offchainState = OffchainState({
+  players: OffchainState.Map(PublicKey, UInt64),
+  totalScore: OffchainState.Field(UInt64),
+});
+
+class StateProof extends offchainState.Proof {}
+```
+
+Furthermore, the smart contract requires a field indicating the commitment to the offchain state. This field facilitates accessing offchain state similar to any other on-chain value.
+
+```ts
+class MyContract extends SmartContract {
+  @state(OffchainStateCommitments) offchainState = State(
+    OffchainStateCommitments.empty()
+  );
+}
+```
+
+The contract also necessitates a settle() method to resolve all pending state updates. This method employs a recursive proof to finalize all pending state changes, with the proof generated before invoking the settle() method.
+
+```ts
+class MyContract extends SmartContract {
+  // ...
+  @method
+  async settle(proof: StateProof) {
+    await offchainState.settle(proof);
+  }
+}
+```
+
+### Preparing for Offchain State Settlement
+
+Additionally, developers need to set the smart contract instance and assign it to the offchain storage as follows:
+
+When the offchain state requires settlement, an Offchain storage proof must be generated and provided to the smart contract's settle() method. This method automatically retrieves all pending actions (state changes) and resolves them using a recursive reducer. Finally, the proof is passed to the settle() method.
+
+```ts
+let proof = await offchainState.createSettlementProof();
+
+await Mina.transaction(sender, () => contract.settle(proof))
+  .sign([sender.key])
+  .prove()
+  .send();
+```
+
+### Utilizing Offchain Storage
+
+Now developers can utilize Offchain storage in any of their smart contract methods, as demonstrated below:
+
+```ts
+@method
+async useOffchainStorage(playerA: PublicKey) {
+  let totalScore = await offchainState.fields.totalScore.get(); // Retrieve totalScore
+  offchainState.fields.totalScore.set(totalScore.add(1)); // Increment totalScore
+
+  let playerOption = await offchainState.fields.players.get(playerA); // Retrieve an entry from the map, returning an Option
+  let score = playerOption.orElse(0n); // Unwrap the player's score Option and return a default value if the entry is empty
+}
+```
+
+Additionally, the Offchain storage automatically compiles the recursive Offchain zkProgram in the background and assigns the Offchain state to a smart contract instance.
