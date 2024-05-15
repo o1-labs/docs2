@@ -110,10 +110,11 @@ Then, use the test account and zkApp keys to construct a transaction to pay acco
 ```ts
 let txn = await Mina.transaction(feePayer, async () => {
   AccountUpdate.fundNewAccount(feePayer);
-  async zkAppInstance.deploy({ zkappKey: zkAppPrivateKey });
+  await zkAppInstance.deploy();
 });
 
-const txPromise = await  txn.send();
+const txPromise = await txn.send();
+
 /*
 `txn.send()` returns a promise with two closures - `.wait()` and `.hash`
 `.hash` returns the transaction hash, as the name might indicate
