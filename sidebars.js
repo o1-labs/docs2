@@ -60,6 +60,7 @@ module.exports = {
             'zkapps/o1js/actions-and-reducer',
             'zkapps/o1js/fetch-events-and-actions',
             'zkapps/o1js/on-chain-values',
+            'zkapps/o1js/offchain-storage',
             'zkapps/o1js/recursion',
             'zkapps/o1js/custom-tokens',
             'zkapps/o1js/gadgets',
