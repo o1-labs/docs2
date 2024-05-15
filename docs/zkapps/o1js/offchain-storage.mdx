@@ -31,12 +31,12 @@ Offchain storage is currently an experimental feature and is subject to change i
 
 One of Mina's unique features is its succinctness, both in computation and storage. To prevent state bloat and maintain Mina's efficiency and verifiability, we use offchain storage solutions for handling large volumes of data.
 
-In a previous section, we introduced the concept of On-chain Values. Since Mina currently supports only a total of 8 on-chain Field elements, we can leverage offchain storage to extend that capacity.
+In a previous section, we introduced the concept of on-chain Values. Since Mina currently only supports a total of 8 on-chain Field elements, we need to leverage offchain storage to extend that capacity.
 This approach maintains a provably secure connection between the on-chain smart contract and the off-chain data, such as that stored in an archive node.
 
 ## Design
 
-Presently, Offchain storage offers support for two types of state: OffchainState.Field, representing a single field element, and OffchainState.Map, akin to the key-value maps found in JavaScript, like let myMap = new Map<string, number>();.
+Presently, Offchain storage offers support for two types of state: `OffchainState.Field`, representing a single field element, and `OffchainState.Map`, akin to the key-value maps found in JavaScript, like `let myMap = new Map<string, number>();`.
 
 All offchain state resides within a single Merkle Map, which is essentially a wrapper around a [Merkle Tree](zkapps/o1js/merkle-tree.mdx). Practically speaking, there are no constraints on the number of state fields and maps that a developer can store in a smart contract using Offchain storage.
 
@@ -123,7 +123,11 @@ class MyContract extends SmartContract {
 }
 ```
 
-**It is important to mention that state is only available after it was settled via `settle()`!**
+:::note
+
+State is only available after it was settled via `settle()`!
+
+:::
 
 ### Utilizing Offchain Storage
 
@@ -151,8 +155,8 @@ class MyContract extends SmartContract {
 }
 ```
 
-Currently, Offchain storage types of Field support `field.get()` and `field.overwrite(newValue)`, while maps support `map.get(key)` and `map.overwrite(key, newValue)`.
-`.overwrite()` sets the value without taking into account the previous value. If the value is modified by multiple zkkApps concurrently, interactions that are applied later will simply be overwritten!
+Currently, Offchain storage of type Field support `field.get()` and `field.overwrite(newValue)`, while maps support `map.get(key)` and `map.overwrite(key, newValue)`.
+The `.overwrite()` method sets the value without taking into account the previous value. If the value is modified by multiple zkkApps concurrently, interactions that are applied later will simply be overwritten!
 
 All Offchain storage types also provide an `.update()` method which is a safe version of `.overwrite()`.
 The `.update()` method lets you define preconditions on the state that you want to update. If the precondition of the previous value does not match, the update will not be applied.
