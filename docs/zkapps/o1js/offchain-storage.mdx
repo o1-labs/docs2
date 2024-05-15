@@ -48,9 +48,9 @@ Before users can access published state, it must first undergo settlement.
 
 ### Configuring Your Smart Contract
 
-To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The OffchainState configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
+To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The `OffchainState` configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
 
-The StateProof type will subsequently be employed to finalize published state changes using a recursive reducer mechanism.
+The `StateProof` type will subsequently be used to finalize published state changes using a recursive reducer.
 
 ```ts
 const offchainState = OffchainState({
@@ -61,7 +61,7 @@ const offchainState = OffchainState({
 class StateProof extends offchainState.Proof {}
 ```
 
-Furthermore, the smart contract requires a field indicating the commitment to the offchain state. This field facilitates accessing offchain state similar to any other on-chain value.
+Furthermore, the smart contract requires a field indicating the commitment to the offchain state. This field allows accessing offchain state similar to any other on-chain value.
 
 ```ts
 class MyContract extends SmartContract {
@@ -71,7 +71,7 @@ class MyContract extends SmartContract {
 }
 ```
 
-The contract also necessitates a settle() method to resolve all pending state updates. This method employs a recursive proof to finalize all pending state changes, with the proof generated before invoking the settle() method.
+The contract also need a `settle()` method to resolve all pending state updates. This method verifies a recursive proof to finalize all pending state changes, with the proof being generated before invoking the `settle()` method.
 
 ```ts
 class MyContract extends SmartContract {
@@ -85,14 +85,29 @@ class MyContract extends SmartContract {
 
 ### Preparing for Offchain State Settlement
 
-Additionally, developers need to set the smart contract instance and assign it to the offchain storage as follows:
+Additionally, developers need to set the smart contract instance and assign it to the offchain storage.
+This also compiles the recursive Offchain zkProgram in the background and assigns the Offchain state to a smart contract instance.
 
-When the offchain state requires settlement, an Offchain storage proof must be generated and provided to the smart contract's settle() method. This method automatically retrieves all pending actions (state changes) and resolves them using a recursive reducer. Finally, the proof is passed to the settle() method.
+```ts
+let contract = new MyContract(contractAddress);
+offchainState.setContractInstance(contract);
+
+// compile Offchain state program
+await offchainState.compile();
+// compile smart contract
+await ExampleContract.compile();
+```
+
+When the offchain state requires settlement, an Offchain storage proof must be generated and provided to the smart contract's `settle()` method. This method automatically retrieves all pending actions (state changes) and resolves them using a recursive reducer.
+Finally, the proof is passed to the `settle()` method.
 
 ```ts
 let proof = await offchainState.createSettlementProof();
 
-await Mina.transaction(sender, () => contract.settle(proof))
+await Mina.transaction(sender, () => {
+  // settle all outstanding state changes
+  contract.settle(proof);
+})
   .sign([sender.key])
   .prove()
   .send();
@@ -103,14 +118,15 @@ await Mina.transaction(sender, () => contract.settle(proof))
 Now developers can utilize Offchain storage in any of their smart contract methods, as demonstrated below:
 
 ```ts
-@method
-async useOffchainStorage(playerA: PublicKey) {
-  let totalScore = await offchainState.fields.totalScore.get(); // Retrieve totalScore
-  offchainState.fields.totalScore.set(totalScore.add(1)); // Increment totalScore
+class MyContract extends SmartContract {
+  // ...
+  @method
+  async useOffchainStorage(playerA: PublicKey) {
+    let totalScore = await offchainState.fields.totalScore.get(); // retrieve totalScore
+    offchainState.fields.totalScore.set(totalScore.add(1)); // increment totalScore
 
-  let playerOption = await offchainState.fields.players.get(playerA); // Retrieve an entry from the map, returning an Option
-  let score = playerOption.orElse(0n); // Unwrap the player's score Option and return a default value if the entry is empty
+    let playerOption = await offchainState.fields.players.get(playerA); // retrieve an entry from the map, returning an Option
+    let score = playerOption.orElse(0n); // unwrap the player's score Option and return a default value if the entry is empty
+  }
 }
 ```
-
-Additionally, the Offchain storage automatically compiles the recursive Offchain zkProgram in the background and assigns the Offchain state to a smart contract instance.
