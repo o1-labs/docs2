@@ -4,13 +4,18 @@
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
     {
-      "source": "/zkapps",
-      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/"
-    },
-    {
       "source": "/zkapps/snarkyjs",
       "destination": "/zkapps/o1js"
     },
+    {
+      "source": "/zkapps/snarkyjs/:path(.*)",
+      "destination": "/zkapps/o1js/:path(.*)"
+    },
+    {
+      "source": "/zkapps/snarkyjs-reference/:path(.*)",
+      "destination": "/zkapps/o1js-reference/:path(.*)"
+    },
+
     {
       "source": "/zkapps/o1js/smart-contracts",
       "destination": "/zkapps/writing-a-zkapp/feature-overview/smart-contracts"
@@ -48,12 +53,8 @@
       "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/:path(.*)"
     },
     {
-      "source": "/zkapps/snarkyjs/:path(.*)",
-      "destination": "/zkapps/o1js/:path(.*)"
-    },
-    {
-      "source": "/zkapps/snarkyjs-reference/:path(.*)",
-      "destination": "/zkapps/o1js-reference/:path(.*)"
+      "source": "/zkapps",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/"
     }
   ]
 }
