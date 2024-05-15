@@ -34,7 +34,7 @@ The easiest way to write zk programs is using o1js.
 
 o1js is a TypeScript library for [zk-SNARKs](https://minaprotocol.com/blog/what-are-zk-snarks) and zkApps. You can use o1js to write zk smart contracts based on zero-knowledge proofs for the Mina Protocol.
 
-o1js is automatically included when you create a project using the [zkApp CLI](https://www.npmjs.com/package/zkapp-cli).
+o1js is automatically included when you create a project using the [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli).
 
 ## Learn More
 
@@ -78,7 +78,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [AccountUpdateForest](classes/AccountUpdateForest.mdx) | Class which represents a forest (list of trees) of account updates, |
 | [AccountUpdateTree](classes/AccountUpdateTree.mdx) | Class which represents a tree of account updates, |
 | [AlmostForeignField](classes/AlmostForeignField.mdx) | - |
-| [BaseMerkleWitness](classes/BaseMerkleWitness.mdx) | The [BaseMerkleWitness](classes/BaseMerkleWitness.mdx) class defines a circuit-compatible base class for [Merkle Witness'](https://computersciencewiki.org/index.php/Merkle_proof). |
+| [BaseMerkleWitness](classes/BaseMerkleWitness.mdx) | The [BaseMerkleWitness](classes/BaseMerkleWitness.mdx) class defines a circuit-compatible base class for [Merkle Witness](https://computersciencewiki.org/index.php/Merkle_proof). |
 | [Bool](classes/Bool.mdx) | A boolean value. You can use it like this: |
 | [CanonicalForeignField](classes/CanonicalForeignField.mdx) | - |
 | [Character](classes/Character.mdx) | - |
@@ -103,6 +103,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [Packed](classes/Packed.mdx) | `Packed<T>` is a "packed" representation of any type `T`. |
 | [PrivateKey](classes/PrivateKey.mdx) | A signing key. You can generate one via [PrivateKey.random](classes/PrivateKey.mdx#random). |
 | [Proof](classes/Proof.mdx) | - |
+| [ProofBase](classes/ProofBase.mdx) | - |
 | [PublicKey](classes/PublicKey.mdx) | A public key, which is also an address on the Mina network. |
 | [Scalar](classes/Scalar.mdx) | Represents a [Scalar](classes/Scalar.mdx). |
 | [SelfProof](classes/SelfProof.mdx) | - |
@@ -135,6 +136,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [JsonProof](type-aliases/JsonProof.mdx) | - |
 | [MerkleListBase](type-aliases/MerkleListBase.mdx) | Common base type for [MerkleList](classes/MerkleList.mdx) and [MerkleListIterator](classes/MerkleListIterator.mdx) |
 | [MerkleListIteratorBase](type-aliases/MerkleListIteratorBase.mdx) | - |
+| [Option](type-aliases/Option.mdx) | - |
 | [Provable](type-aliases/Provable.mdx) | `Provable<T>` is the general interface for provable types in o1js. |
 | [ProvableExtended](type-aliases/ProvableExtended.mdx) | - |
 | [ProvableHashable](type-aliases/ProvableHashable.mdx) | - |
@@ -174,6 +176,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [ConstantField](functions/ConstantField.mdx) | - |
 | [MerkleListBase](functions/MerkleListBase.mdx) | - |
 | [MerkleWitness](functions/MerkleWitness.mdx) | Returns a circuit-compatible Witness for a specific Tree height. |
+| [Option](functions/Option.mdx) | Define an optional version of a provable type. |
 | [Reducer](functions/Reducer.mdx) | - |
 | [State](functions/State.mdx) | - |
 | [Struct](functions/Struct.mdx) | `Struct` lets you declare composite types for use in o1js circuits. |

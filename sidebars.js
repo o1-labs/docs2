@@ -86,8 +86,6 @@ module.exports = {
             'zkapps/tutorials/common-types-and-functions',
             'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
-            // TODO: https://github.com/o1-labs/docs2/issues/931
-            // 'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',
@@ -255,6 +253,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ProofBase',
+                  label: 'ProofBase',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/PublicKey',
                   label: 'PublicKey',
                 },
@@ -348,6 +351,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/functions/MerkleWitness',
                   label: 'MerkleWitness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Option',
+                  label: 'Option',
                 },
                 {
                   type: 'doc',
@@ -631,8 +639,24 @@ module.exports = {
                     },
                     {
                       type: 'category',
+                      label: 'Classes',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/classes/OffchainStateCommitments',
+                          label: 'OffchainStateCommitments',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
                       label: 'Functions',
                       items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/functions/OffchainState',
+                          label: 'OffchainState',
+                        },
                         {
                           type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/functions/memoizeWitness',
@@ -1003,6 +1027,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/MerkleListIteratorBase',
                   label: 'MerkleListIteratorBase',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Option',
+                  label: 'Option',
                 },
                 {
                   type: 'doc',
