@@ -4,8 +4,48 @@
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
     {
+      "source": "/zkapps",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/"
+    },
+    {
       "source": "/zkapps/snarkyjs",
       "destination": "/zkapps/o1js"
+    },
+    {
+      "source": "/zkapps/o1js/smart-contracts",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/smart-contracts"
+    },
+    {
+      "source": "/zkapps/o1js/on-chain-values",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/on-chain-values"
+    },
+    {
+      "source": "/zkapps/o1js/permissions",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/permissions"
+    },
+    {
+      "source": "/zkapps/o1js/events",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/events"
+    },
+    {
+      "source": "/zkapps/o1js/actions-and-reducer",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer"
+    },
+    {
+      "source": "/zkapps/o1js/fetch-events-and-actions",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions"
+    },
+    {
+      "source": "/zkapps/o1js/time-locked-accounts",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts"
+    },
+    {
+      "source": "/zkapps/o1js/custom-tokens",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/custom-tokens"
+    },
+    {
+      "source": "/zkapps/:path(.*)",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/:path(.*)"
     },
     {
       "source": "/zkapps/snarkyjs/:path(.*)",
