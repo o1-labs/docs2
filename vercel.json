@@ -78,6 +78,10 @@
     {
       "source": "/zkapps/how-to-write-a-zkapp-ui",
       "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui"
+    },
+    {
+      "source": "/zkapps/o1js/offchain-storage",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/offchain-storage"
     }
   ]
 }
