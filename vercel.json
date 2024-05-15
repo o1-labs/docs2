@@ -15,7 +15,6 @@
       "source": "/zkapps/snarkyjs-reference/:path(.*)",
       "destination": "/zkapps/o1js-reference/:path(.*)"
     },
-
     {
       "source": "/zkapps/o1js/smart-contracts",
       "destination": "/zkapps/writing-a-zkapp/feature-overview/smart-contracts"
@@ -47,10 +46,6 @@
     {
       "source": "/zkapps/o1js/custom-tokens",
       "destination": "/zkapps/writing-a-zkapp/feature-overview/custom-tokens"
-    },
-    {
-      "source": "/zkapps/:path(.*)",
-      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/:path(.*)"
     },
     {
       "source": "/zkapps",
