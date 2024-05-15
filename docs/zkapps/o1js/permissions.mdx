@@ -246,7 +246,7 @@ In a real contract, you would add some conditions to the `withdraw()` code to re
 <!-- TODO: commented until we add the signature page -->
 <!-- To learn about signatures in zkApps, see [Signatures in a smart contract](./signatures-in-zkapps) for a continuation of this example that adds user authorization to the smart contract code. -->
 
-### Upgradeability of smart contracts
+## Upgradeability of smart contracts
 
 Another important part of smart contract development is upgradeability.
 
@@ -255,9 +255,94 @@ On Mina, when you deploy a smart contract you generate a verification key from t
 
 Remember the permission called `setVerificationKey`? Modify the authorization for this permission to set the upgradability of the smart contract.
 
-## Example: Impossible to upgrade
+### Upgrading after an update to the Mina Protocol
 
-This simple example ensures that the smart contract is not upgradeable. After a verification key is deployed, it cannot be changed.
+At some point, Mina Protocol will undergo an update that is not backwards compatible. When this happens,
+existing zkApps will need to upgrade their verification key to be compatible with the new protocol. If the zkApp does not upgrade,
+the existing verification key will not be able to verify proofs and the zkApp will be unable to interact with the network, effectively rendering it useless.
+To ensure that zkApps can upgrade their verification key after a protocol update, there are special rules in place for the `Impossible` and `Proof` permissions on a verification key.
+Recall that the `Impossible` permission prevents the verification key from being changed, while the `Proof` permission requires a valid proof to do so.
+
+Internally, verification key permissions are represented as a tuple of two fields: the mechanism that controls verification key changes (e.g. `Impossible`, `Signature`, `Proof`),
+and a transaction version field (denoted by an integer). The transaction version field specifies the version of a transaction that was supported by the protocol when the zkApp's verification key was
+deployed. This allows the protocol to appropriately enforce permissions when a zkApps was deployed on an earlier version that may no longer be supported. 
+
+To allow zkApps to upgrade their verification key after a protocol upgrade, the `Impossible` and `Proof` verification key permissions are automatically treated as `Signature` permissions when the zkApp's transaction version is lower than the current one on Mina Protocol.
+This allows zkApps to upgrade their verification key after a protocol upgrade, even if the permission was originally set to `Impossible` or `Proof`.
+
+Thus, `setVerificationKey` field behaves slightly different and requires two properties. 
+
+```ts
+setVerificationKey: {
+  auth: Permission,
+  txnVersion: TransactionVersion
+},
+```
+
+The first property, `auth`, is one of the previously introduced authentication types - `none`, `impossible`, `proof`, `signature` or `signatureOrProof`.
+The `txnVersion` property on the other hand is the newly introduce transction version, which specifies the version of a transaction that was supported by the protocol when the zkApp verification key was last changed.
+
+o1js exposes a function `TransactionVersion.current()` which returns the current transaction version of the protocol.
+
+For example, consider a zkApp that was deployed with the following permissions:
+
+```ts
+this.account.permissions.set({
+  ...Permissions.default(),
+  setVerificationKey: {
+    auth: Permissions.impossible(),
+    txnVersion: TransactionVersion.current()
+  },
+});
+```
+
+After a protocol upgrade, the zkApp will still be able to upgrade its verification key by providing a valid signature. This allows the zkApp to upgrade its verification key to be compatible with the new protocol.
+Once the verification key is upgraded, the permission will revert back to `Impossible`. When it comes to upgrading your zkApp after a protocol upgrade, you can simply provide a valid signature to upgrade the verification key.
+
+Most of the time, you will not have to manually specify the transaction version because o1js exposes a set of predefined authentication types for `setVerificationKey` under the `Permission.VerificationKey` namespace.
+Mainly, this special set of permissions replaces normal permissions such as `Permission.proof` or `Permission.impossible` by less restrictive permissions - `impossibleDuringCurrentVersion` and `proofDuringCurrentVersion`.
+
+Here's a detailed overview of the new permissions:
+
+
+```ts
+VerificationKey: {
+  /*
+  * Modification is impossible, as long as the network accepts the current {@link TransactionVersion}.
+  *
+  * After a hardfork that increments the transaction version, the permission is treated as `signature`.
+  */
+  impossibleDuringCurrentVersion: () => VerificationKeyPermission,
+
+  /*
+  * Modification is always permitted
+  */
+  none: () => VerificationKeyPermission,
+
+  /*
+  * Modification is permitted by zkapp proofs only; as long as the network accepts the current {@link TransactionVersion}.
+  *
+  * After a hardfork that increments the transaction version, the permission is treated as `signature`.
+  */
+  proofDuringCurrentVersion: () => VerificationKeyPermission,
+
+  /*
+  * Modification is permitted by signatures only, using the private key of the zkapp account
+  */
+  signature: () => VerificationKeyPermission,
+
+  /*
+  * Modification is permitted by zkapp proofs or signatures
+  */
+  proofOrSignature: () => VerificationKeyPermission,
+},
+```
+
+For more information on how this mechanism works, see the [Verification Key Permissions RFC](https://github.com/MinaProtocol/mina/blob/9577ad689a8e4d4f97e1d0fc3d26e20219f4abd1/rfcs/0051-verification-key-permissions.md).
+
+### Example: Impossible to upgrade
+
+This simple example ensures that the smart contract is not upgradeable during the current transaction version of the protocol. After a verification key is deployed, it cannot be changed until the next backwards incompatible hardfork.
 
 ```ts
 class UpgradeabilityImpossible extends SmartContract {
@@ -265,7 +350,7 @@ class UpgradeabilityImpossible extends SmartContract {
     super.init();
     this.account.permissions.set({
       ...Permissions.default(),
-      setVerificationKey: Permissions.impossible(),
+      setVerificationKey: Permissions.VerificationKey.impossibleDuringCurrentVersion(),
     });
   }
 
@@ -276,7 +361,7 @@ class UpgradeabilityImpossible extends SmartContract {
 ```
 
 The `UpgradeabilityImpossible` smart contract has only one method: `updateVerificationKey`. By invoking this method and providing a new verification key, the verification key on-chain is expected to change.
-But since `setVerificationKey` permission is specified to be `impossible`, invoking that method fails - essentially making the smart contract not upgradeable.
+But since `setVerificationKey` permission is specified to be `impossibleDuringCurrentVersion`, invoking that method fails - essentially making the smart contract not upgradeable.
 
 ```ts
 console.log('try upgrading vk');
@@ -295,7 +380,7 @@ Using the `LocalBlockchain`, you get the following (expected) error:
 
 For the sake of security, it is important to note that you must also set the `setPermissions` permission to `impossible` to make the smart contract truly impossible to upgrade. This permission prevents a zkApp developer from changing the permission `setVerificationKey` to, for example, `signature` - which allows them to manipulate the verification key again.
 
-## Example: Upgradeable with a proof
+### Example: Upgradeable with a proof
 
 There are situations where you might want the smart contract to be upgradeable.
 Modify the method `updateVerificationKey` to do some checks before you can update the verification key. For example, as the result of a vote or other conditions.
@@ -311,12 +396,12 @@ For now, just check that you can provide an `x` that is greater than or equal to
 }
 ```
 
-You must update the permissions from `setVerificationKey`: `impossible` to `proof` because you want to change the verification key only if a valid proof is provided.
+You must update the permissions from `setVerificationKey`: `impossibleDuringCurrentVersion` to `proofDuringCurrentVersion` because you want to change the verification key only if a valid proof is provided.
 
 ```ts
 this.account.permissions.set({
   ...Permissions.default(),
-  setVerificationKey: Permissions.proof(),
+  setVerificationKey: Permissions.VerificationKey.proofDuringCurrentVersion(),
 });
 ```
 
@@ -330,27 +415,6 @@ tx = await Mina.transaction(feePayer, async () => {
 await tx.prove();
 await tx.sign([feePayerKey, zkappKey]).send();
 ```
-
-## Upgrading after an update to the Mina Protocol
-
-At some point, Mina Protocol will undergo an update that is not backwards compatible. When this happens, existing zkApps will need to upgrade their verification key to be compatible with the new protocol. If the zkApp does not upgrade, the existing verification key will not be able to verify proofs and the zkApp will be unable to interact with the network, effectively rendering it useless. To ensure that zkApps can upgrade their verification key after a protocol update, there are special rules in place for the `Impossible` and `Proof` permissions on a verification key. Recall that the `Impossible` permission prevents the verification key from being changed, while the `Proof` permission requires a valid proof to do so.
-
-Internally, verification key permissions are represented as a tuple of two fields: the mechanism that controls verification key changes (e.g. `Impossible`, `Signature`, `Proof`), and a transaction version field (denoted by an integer). The transaction version field specifies the version of a transaction that was supported by the protocol when the zkApp's verification key was deployed. This allows the protocol to appropriately enforce permissions when a zkApps was deployed on an earlier version that may no longer be supported. The transaction version field is internal and is automatically set when using o1js, so developers normally do not have to think about it.
-
-To allow zkApps to upgrade their verification key after a protocol upgrade, the `Impossible` and `Proof` verification key permissions are automatically treated as `Signature` permissions when the zkApp's transaction version is lower than the current one on Mina Protocol. This allows zkApps to upgrade their verification key after a protocol upgrade, even if the permission was originally set to `Impossible` or `Proof`. Once the verification key is upgraded, the transaction version field will automatically be set to the latest value and permission behaviour will revert to its original setting.
-
-For example, consider a zkApp that was deployed with the following permissions:
-
-```ts
-this.account.permissions.set({
-  ...Permissions.default(),
-  setVerificationKey: Permissions.impossible(),
-});
-```
-
-After a protocol upgrade, the zkApp will still be able to upgrade its verification key by providing a valid signature. This allows the zkApp to upgrade its verification key to be compatible with the new protocol. Once the verification key is upgraded, the permission will revert back to `Impossible`. It's important to note that the transaction version field is automatically set by o1js and developers do not need to worry about it. When it comes to upgrading your zkApp after a protocol upgrade, you can simply provide a valid signature to upgrade the verification key.
-
-For more information on how this mechanism works, see the [Verification Key Permissions RFC](https://github.com/MinaProtocol/mina/blob/9577ad689a8e4d4f97e1d0fc3d26e20219f4abd1/rfcs/0051-verification-key-permissions.md).
 
 ## Where to learn more
 
