@@ -49,7 +49,35 @@
     },
     {
       "source": "/zkapps",
-      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/"
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps"
+    },
+    {
+      "source": "/zkapps/how-zkapps-work",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work"
+    },
+    {
+      "source": "/zkapps/install-zkapp-cli",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli"
+    },
+    {
+      "source": "/zkapps/how-to-write-a-zkapp",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp"
+    },
+    {
+      "source": "/zkapps/testing-zkapps-locally",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally"
+    },
+    {
+      "source": "/zkapps/testing-zkapps-lightnet",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet"
+    },
+    {
+      "source": "/zkapps/how-to-deploy-a-zkapp",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp"
+    },
+    {
+      "source": "/zkapps/how-to-write-a-zkapp-ui",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui"
     }
   ]
 }
