@@ -104,7 +104,9 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
-            'zkapps/tutorials/offchain-storage',
+            // TODO: enable when there is an updated offchain storage tutorial
+            // 'zkapps/tutorials/offchain-storage',
+
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
