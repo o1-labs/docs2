@@ -14,6 +14,74 @@
     {
       "source": "/zkapps/snarkyjs-reference/:path(.*)",
       "destination": "/zkapps/o1js-reference/:path(.*)"
+    },
+    {
+      "source": "/zkapps/o1js/smart-contracts",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/smart-contracts"
+    },
+    {
+      "source": "/zkapps/o1js/on-chain-values",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/on-chain-values"
+    },
+    {
+      "source": "/zkapps/o1js/permissions",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/permissions"
+    },
+    {
+      "source": "/zkapps/o1js/events",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/events"
+    },
+    {
+      "source": "/zkapps/o1js/actions-and-reducer",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer"
+    },
+    {
+      "source": "/zkapps/o1js/fetch-events-and-actions",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions"
+    },
+    {
+      "source": "/zkapps/o1js/time-locked-accounts",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts"
+    },
+    {
+      "source": "/zkapps/o1js/custom-tokens",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/custom-tokens"
+    },
+    {
+      "source": "/zkapps",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps"
+    },
+    {
+      "source": "/zkapps/how-zkapps-work",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work"
+    },
+    {
+      "source": "/zkapps/install-zkapp-cli",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli"
+    },
+    {
+      "source": "/zkapps/how-to-write-a-zkapp",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp"
+    },
+    {
+      "source": "/zkapps/testing-zkapps-locally",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally"
+    },
+    {
+      "source": "/zkapps/testing-zkapps-lightnet",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet"
+    },
+    {
+      "source": "/zkapps/how-to-deploy-a-zkapp",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp"
+    },
+    {
+      "source": "/zkapps/how-to-write-a-zkapp-ui",
+      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui"
+    },
+    {
+      "source": "/zkapps/o1js/offchain-storage",
+      "destination": "/zkapps/writing-a-zkapp/feature-overview/offchain-storage"
     }
   ]
 }

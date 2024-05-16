@@ -33,44 +33,65 @@ module.exports = {
       type: 'category',
       label: 'zkApp Developers',
       items: [
-        'zkapps/index',
-        'zkapps/how-zkapps-work',
-        'zkapps/getting-started-zkapps',
-        'zkapps/install-zkapp-cli',
-        {
-          type: 'category',
-          label: 'Creating zkApps',
-          items: [
-            'zkapps/how-to-write-a-zkapp',
-            'zkapps/testing-zkapps-locally',
-            'zkapps/testing-zkapps-lightnet',
-            'zkapps/how-to-deploy-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
-          ],
-        },
         {
           type: 'category',
           label: 'o1js',
           items: [
             'zkapps/o1js/index',
             'zkapps/o1js/basic-concepts',
-            'zkapps/o1js/smart-contracts',
-            'zkapps/o1js/interact-with-mina',
-            'zkapps/o1js/events',
-            'zkapps/o1js/actions-and-reducer',
-            'zkapps/o1js/fetch-events-and-actions',
-            'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
-            'zkapps/o1js/custom-tokens',
             'zkapps/o1js/gadgets',
             'zkapps/o1js/bitwise-operations',
             'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
-            'zkapps/o1js/permissions',
-            'zkapps/o1js/time-locked-accounts',
             'zkapps/o1js/keccak',
             'zkapps/o1js/ecdsa',
             'zkapps/o1js/sha256',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Writing zkApps',
+          items: [
+            {
+              type: 'category',
+              label: 'Introduction to zkApps',
+              items: [
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/index',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Feature Overview',
+              items: [
+                'zkapps/writing-a-zkapp/feature-overview/smart-contracts',
+                'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
+                'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
+                'zkapps/writing-a-zkapp/feature-overview/permissions',
+                'zkapps/writing-a-zkapp/feature-overview/events',
+                'zkapps/writing-a-zkapp/feature-overview/actions-and-reducer',
+                'zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions',
+                'zkapps/writing-a-zkapp/feature-overview/time-locked-accounts',
+                'zkapps/writing-a-zkapp/feature-overview/custom-tokens',
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Advanced',
+          items: [
+            'zkapps/advanced/experimental',
+            'zkapps/advanced/zkapps-for-ethereum-developers',
           ],
         },
         {
@@ -83,10 +104,10 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
-            'zkapps/tutorials/offchain-storage',
+            // TODO: enable when there is an updated offchain storage tutorial
+            // 'zkapps/tutorials/offchain-storage',
+
             'zkapps/tutorials/oracle',
-            // TODO: https://github.com/o1-labs/docs2/issues/931
-            // 'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',
@@ -254,6 +275,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ProofBase',
+                  label: 'ProofBase',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/PublicKey',
                   label: 'PublicKey',
                 },
@@ -347,6 +373,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/functions/MerkleWitness',
                   label: 'MerkleWitness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Option',
+                  label: 'Option',
                 },
                 {
                   type: 'doc',
@@ -630,8 +661,24 @@ module.exports = {
                     },
                     {
                       type: 'category',
+                      label: 'Classes',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/classes/OffchainStateCommitments',
+                          label: 'OffchainStateCommitments',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
                       label: 'Functions',
                       items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/functions/OffchainState',
+                          label: 'OffchainState',
+                        },
                         {
                           type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/functions/memoizeWitness',
@@ -1005,6 +1052,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Option',
+                  label: 'Option',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Provable',
                   label: 'Provable',
                 },
@@ -1190,7 +1242,6 @@ module.exports = {
         },
         'zkapps/roadmap',
         'zkapps/faq',
-        'zkapps/zkapps-for-ethereum-developers',
       ],
     },
     {
