@@ -9,8 +9,8 @@ import type {
 export default class ZkappWorkerClient {
   // ---------------------------------------------------------------------------------------
 
-  setActiveInstanceToBerkeley() {
-    return this._call('setActiveInstanceToBerkeley', {});
+  setActiveInstanceToDevnet() {
+    return this._call('setActiveInstanceToDevnet', {});
   }
 
   loadContract() {

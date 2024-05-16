@@ -1,13 +1,13 @@
 ```ts
 type Transaction<Proven, Signed>: TransactionCommon & {
-  safeSend: Promise<PendingTransaction | RejectedTransaction>;
-  send: PendingTransactionPromise;
-  } & Proven extends false ? {
-  prove: Promise<Transaction<true, Signed>>;
-  } : {
-  proofs: (Proof<ZkappPublicInput, Empty> | undefined)[];
-  } & Signed extends false ? {
-  sign: Transaction<Proven, true>;
+  "safeSend": Promise<PendingTransaction | RejectedTransaction>;
+  "send": PendingTransactionPromise;
+ } & Proven extends false ? {
+  "prove": Promise<Transaction<true, Signed>>;
+ } : {
+  "proofs": (Proof<ZkappPublicInput, Empty> | undefined)[];
+ } & Signed extends false ? {
+  "sign": Transaction<Proven, true>;
 } : {};
 ```
 
@@ -46,10 +46,10 @@ if (result.status === 'pending') {
 
 ## Type parameters
 
-• **Proven** extends `boolean`
+• **Proven** *extends* `boolean`
 
-• **Signed** extends `boolean`
+• **Signed** *extends* `boolean`
 
 ## Source
 
-[lib/mina/transaction.ts:83](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/transaction.ts#L83)
+[lib/mina/transaction.ts:83](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/transaction.ts#L83)

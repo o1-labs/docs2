@@ -142,7 +142,7 @@ export class WrappedMina extends TokenContract {
 
   // ----------------------------------------------------------------------
 
-  @method async getBalance(publicKey: PublicKey): UInt64 {
+  @method.returns(UInt64) async getBalance(publicKey: PublicKey) {
     let accountUpdate = AccountUpdate.create(publicKey, this.tokenId);
     let balance = accountUpdate.account.balance.get();
     accountUpdate.account.balance.requireEquals(

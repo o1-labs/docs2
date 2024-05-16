@@ -26,7 +26,7 @@ unauthorized token interactions -- for example, it could be
 
 #### Source
 
-[lib/mina/account-update.ts:282](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L282)
+[lib/mina/account-update.ts:348](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L348)
 
 ***
 
@@ -44,7 +44,7 @@ The Permission corresponding to the ability to emit actions to the account.
 
 #### Source
 
-[lib/mina/account-update.ts:261](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L261)
+[lib/mina/account-update.ts:327](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L327)
 
 ***
 
@@ -63,7 +63,7 @@ an account.
 
 #### Source
 
-[lib/mina/account-update.ts:214](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L214)
+[lib/mina/account-update.ts:283](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L283)
 
 ***
 
@@ -79,7 +79,7 @@ incrementNonce: AuthRequired;
 
 #### Source
 
-[lib/mina/account-update.ts:270](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L270)
+[lib/mina/account-update.ts:336](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L336)
 
 ***
 
@@ -98,7 +98,7 @@ to this account.
 
 #### Source
 
-[lib/mina/account-update.ts:226](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L226)
+[lib/mina/account-update.ts:295](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L295)
 
 ***
 
@@ -117,7 +117,7 @@ from this account.
 
 #### Source
 
-[lib/mina/account-update.ts:220](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L220)
+[lib/mina/account-update.ts:289](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L289)
 
 ***
 
@@ -136,7 +136,7 @@ field of the account.
 
 #### Source
 
-[lib/mina/account-update.ts:232](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L232)
+[lib/mina/account-update.ts:301](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L301)
 
 ***
 
@@ -155,7 +155,7 @@ field of the account.
 
 #### Source
 
-[lib/mina/account-update.ts:238](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L238)
+[lib/mina/account-update.ts:307](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L307)
 
 ***
 
@@ -171,7 +171,7 @@ setTiming: AuthRequired;
 
 #### Source
 
-[lib/mina/account-update.ts:272](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L272)
+[lib/mina/account-update.ts:338](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L338)
 
 ***
 
@@ -190,34 +190,19 @@ for this account.
 
 #### Source
 
-[lib/mina/account-update.ts:267](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L267)
+[lib/mina/account-update.ts:333](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L333)
 
 ***
 
 ### setVerificationKey
 
 ```ts
-setVerificationKey: {
-  auth: AuthRequired;
-  txnVersion: UInt32;
-};
+setVerificationKey: VerificationKeyPermission;
 ```
 
 The Permission corresponding to the ability to set the verification
 key associated with the circuit tied to this account. Effectively
 "upgradeability" of the smart contract.
-
-#### auth
-
-```ts
-auth: AuthRequired;
-```
-
-#### txnVersion
-
-```ts
-txnVersion: UInt32;
-```
 
 #### Overrides
 
@@ -225,7 +210,7 @@ txnVersion: UInt32;
 
 #### Source
 
-[lib/mina/account-update.ts:245](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L245)
+[lib/mina/account-update.ts:314](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L314)
 
 ***
 
@@ -241,7 +226,7 @@ setVotingFor: AuthRequired;
 
 #### Source
 
-[lib/mina/account-update.ts:271](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L271)
+[lib/mina/account-update.ts:337](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L337)
 
 ***
 
@@ -262,4 +247,4 @@ changed. Effectively "upgradeability" of the smart contract.
 
 #### Source
 
-[lib/mina/account-update.ts:256](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/account-update.ts#L256)
+[lib/mina/account-update.ts:322](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/account-update.ts#L322)

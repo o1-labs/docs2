@@ -1,39 +1,39 @@
 ```ts
 const Hash: {
-  Keccak256: {
-     hash: Bytes;
-  };
-  Keccak384: {
-     hash: Bytes;
-  };
-  Keccak512: {
-     hash: Bytes;
-  };
-  Poseidon: {
-     Sponge: typeof Sponge;
-     Unsafe: {
-        hashToGroup: Group;
-     };
-     hash: Field;
-     hashPacked: Field;
-     hashToGroup: Group;
-     hashWithPrefix: Field;
-     initialState: [Field, Field, Field];
-     update: [Field, Field, Field];
-  };
-  SHA2_256: {
-     hash: Gadgets.SHA256.hash;
-  };
-  SHA3_256: {
-     hash: Bytes;
-  };
-  SHA3_384: {
-     hash: Bytes;
-  };
-  SHA3_512: {
-     hash: Bytes;
-  };
-  hash: Poseidon.hash;
+  "Keccak256": {
+     "hash": Bytes;
+    };
+  "Keccak384": {
+     "hash": Bytes;
+    };
+  "Keccak512": {
+     "hash": Bytes;
+    };
+  "Poseidon": {
+     "Sponge": typeof Sponge;
+     "Unsafe": {
+        "hashToGroup": Group;
+       };
+     "hash": Field;
+     "hashPacked": Field;
+     "hashToGroup": Group;
+     "hashWithPrefix": Field;
+     "initialState": [Field, Field, Field];
+     "update": [Field, Field, Field];
+    };
+  "SHA2_256": {
+     "hash": Gadgets.SHA256.hash;
+    };
+  "SHA3_256": {
+     "hash": Bytes;
+    };
+  "SHA3_384": {
+     "hash": Bytes;
+    };
+  "SHA3_512": {
+     "hash": Bytes;
+    };
+  "hash": Poseidon.hash;
 };
 ```
 
@@ -45,7 +45,7 @@ A collection of hash functions which can be used in provable code.
 
 ```ts
 Keccak256: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -70,7 +70,7 @@ See Keccak.preNist for details and usage examples.
 
 ```ts
 Keccak384: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -95,7 +95,7 @@ See Keccak.preNist for details and usage examples.
 
 ```ts
 Keccak512: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -120,16 +120,16 @@ See Keccak.preNist for details and usage examples.
 
 ```ts
 Poseidon: {
-  Sponge: typeof Sponge;
-  Unsafe: {
-     hashToGroup: Group;
-  };
-  hash: Field;
-  hashPacked: Field;
-  hashToGroup: Group;
-  hashWithPrefix: Field;
-  initialState: [Field, Field, Field];
-  update: [Field, Field, Field];
+  "Sponge": typeof Sponge;
+  "Unsafe": {
+     "hashToGroup": Group;
+    };
+  "hash": Field;
+  "hashPacked": Field;
+  "hashToGroup": Group;
+  "hashWithPrefix": Field;
+  "initialState": [Field, Field, Field];
+  "update": [Field, Field, Field];
 };
 ```
 
@@ -143,7 +143,7 @@ Sponge: typeof Sponge;
 
 ```ts
 Unsafe: {
-  hashToGroup: Group;
+  "hashToGroup": Group;
 };
 ```
 
@@ -249,7 +249,7 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 ```ts
 SHA2_256: {
-  hash: Gadgets.SHA256.hash;
+  "hash": Gadgets.SHA256.hash;
 };
 ```
 
@@ -278,7 +278,7 @@ See Gadgets.SHA256.hash for details and usage examples.
 
 ```ts
 SHA3_256: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -303,7 +303,7 @@ See Keccak.nistSha3 for details and usage examples.
 
 ```ts
 SHA3_384: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -328,7 +328,7 @@ See Keccak.nistSha3 for details and usage examples.
 
 ```ts
 SHA3_512: {
-  hash: Bytes;
+  "hash": Bytes;
 };
 ```
 
@@ -382,4 +382,4 @@ You can find the full set of Poseidon parameters [here](https://github.com/o1-la
 
 ## Source
 
-[lib/provable/crypto/hash.ts:11](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/crypto/hash.ts#L11)
+[lib/provable/crypto/hash.ts:11](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/crypto/hash.ts#L11)

@@ -1,18 +1,18 @@
 ```ts
-fetchAccount(
+function fetchAccount(
    accountInfo: {
-  publicKey: string | PublicKey;
-  tokenId: string | Field;
-  }, 
+  "publicKey": string | PublicKey;
+  "tokenId": string | Field;
+ }, 
    graphqlEndpoint: string, 
    __namedParameters: {
-  timeout: defaultTimeout;
-  }): Promise<{
-  account: Types.Account;
-  error: undefined;
-  } | {
-  account: undefined;
-  error: FetchError;
+  "timeout": defaultTimeout;
+ }): Promise<{
+  "account": Types.Account;
+  "error": undefined;
+ } | {
+  "account": undefined;
+  "error": FetchError;
 }>
 ```
 
@@ -27,9 +27,9 @@ the data is returned.
 
 • **accountInfo**
 
-• **accountInfo\.publicKey**: `string` \| [`PublicKey`](../classes/PublicKey.mdx)
+• **accountInfo.publicKey**: `string` \| [`PublicKey`](../classes/PublicKey.mdx)
 
-• **accountInfo\.tokenId?**: `string` \| [`Field`](../classes/Field.mdx)
+• **accountInfo.tokenId?**: `string` \| [`Field`](../classes/Field.mdx)
 
 • **graphqlEndpoint**: `string`= `networkConfig.minaEndpoint`
 
@@ -37,20 +37,20 @@ The graphql endpoint to fetch from
 
 • **\_\_namedParameters**= `{}`
 
-• **\_\_namedParameters\.timeout**: `undefined` \| `number`= `defaultTimeout`
+• **\_\_namedParameters.timeout**: `undefined` \| `number`= `defaultTimeout`
 
 ## Returns
 
 `Promise`\<\{
-  `account`: `Types.Account`;
-  `error`: `undefined`;
-  } \| \{
-  `account`: `undefined`;
-  `error`: `FetchError`;
-  }\>
+  `"account"`: `Types.Account`;
+  `"error"`: `undefined`;
+ \} \| \{
+  `"account"`: `undefined`;
+  `"error"`: `FetchError`;
+ \}\>
 
 zkapp information on the specified account or an error is thrown
 
 ## Source
 
-[lib/mina/fetch.ts:171](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/fetch.ts#L171)
+[lib/mina/fetch.ts:171](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/fetch.ts#L171)

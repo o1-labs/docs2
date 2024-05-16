@@ -1,12 +1,12 @@
 ```ts
 type Provable<T, TValue>: {
-  check: (value: T) => void;
-  fromFields: (fields: Field[], aux: any[]) => T;
-  fromValue: (x: TValue | T) => T;
-  toAuxiliary: (value?: T) => any[];
-  toFields: (value: T) => Field[];
-  toValue: (x: T) => TValue;
-  sizeInFields: number;
+  "check": (value: T) => void;
+  "fromFields": (fields: Field[], aux: any[]) => T;
+  "fromValue": (x: TValue | T) => T;
+  "toAuxiliary": (value?: T) => any[];
+  "toFields": (value: T) => Field[];
+  "toValue": (x: T) => TValue;
+  "sizeInFields": number;
 };
 ```
 
@@ -157,4 +157,4 @@ A `number` representing the size of the `T` type in terms of [Field](../classes/
 
 ## Source
 
-[lib/provable/types/provable-intf.ts:17](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L17)
+[lib/provable/types/provable-intf.ts:17](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L17)

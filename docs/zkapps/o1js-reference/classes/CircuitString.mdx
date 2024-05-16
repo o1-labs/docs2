@@ -1,24 +1,24 @@
 ## Extends
 
 - \{
-  `values`: [`Character`](Character.mdx)[];
-  }
+  `"values"`: [`Character`](Character.mdx)[];
+ \}
 
 ## Constructors
 
-### new CircuitString(value)
+### new CircuitString()
 
 ```ts
 new CircuitString(value: {
-  values: Character[];
-  }): CircuitString
+  "values": Character[];
+ }): CircuitString
 ```
 
 #### Parameters
 
 • **value**
 
-• **value\.values**: [`Character`](Character.mdx)[]
+• **value.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
@@ -30,7 +30,7 @@ new CircuitString(value: {
 
 #### Source
 
-[lib/provable/types/struct.ts:147](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L147)
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
 
 ## Properties
 
@@ -46,7 +46,7 @@ values: Character[];
 
 #### Source
 
-[lib/provable/string.ts:60](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L60)
+[lib/provable/string.ts:61](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L61)
 
 ***
 
@@ -62,7 +62,7 @@ static _isStruct: true;
 
 #### Source
 
-[lib/provable/types/struct.ts:147](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L147)
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
 
 ***
 
@@ -70,8 +70,8 @@ static _isStruct: true;
 
 ```ts
 static check: (value: {
-  values: Character[];
-  }) => void;
+  "values": Character[];
+ }) => void;
 ```
 
 Add assertions to the proof to check if `value` is a valid member of type `T`.
@@ -85,7 +85,7 @@ For instance, calling check function on the type [Bool](Bool.mdx) asserts that t
 
 the element of type `T` to put assertions on.
 
-• **value\.values**: [`Character`](Character.mdx)[]
+• **value.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
@@ -97,7 +97,7 @@ the element of type `T` to put assertions on.
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L66)
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L66)
 
 ***
 
@@ -105,7 +105,7 @@ the element of type `T` to put assertions on.
 
 ```ts
 static empty: () => {
-  values: Character[];
+  "values": Character[];
 };
 ```
 
@@ -113,7 +113,7 @@ static empty: () => {
 
 ```ts
 {
-  values: Character[];
+  "values": Character[];
 }
 ```
 
@@ -129,7 +129,7 @@ values: Character[];
 
 #### Source
 
-[lib/provable/types/struct.ts:157](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L157)
+[lib/provable/types/struct.ts:155](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L155)
 
 ***
 
@@ -137,7 +137,7 @@ values: Character[];
 
 ```ts
 static fromFields: (fields: Field[]) => {
-  values: Character[];
+  "values": Character[];
 };
 ```
 
@@ -149,7 +149,7 @@ static fromFields: (fields: Field[]) => {
 
 ```ts
 {
-  values: Character[];
+  "values": Character[];
 }
 ```
 
@@ -165,7 +165,7 @@ values: Character[];
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:87](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L87)
+[lib/provable/types/provable-intf.ts:87](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L87)
 
 ***
 
@@ -173,11 +173,11 @@ values: Character[];
 
 ```ts
 static fromJSON: (x: {
-  values: {
-     value: Field;
-  }[];
-  }) => {
-  values: Character[];
+  "values": {
+     "value": Field;
+    }[];
+ }) => {
+  "values": Character[];
 };
 ```
 
@@ -185,15 +185,15 @@ static fromJSON: (x: {
 
 • **x**
 
-• **x\.values**: \{
-  `value`: `Field`;
-  }[]= `undefined`
+• **x.values**: \{
+  `"value"`: `Field`;
+ \}[]= `undefined`
 
 #### Returns
 
 ```ts
 {
-  values: Character[];
+  "values": Character[];
 }
 ```
 
@@ -209,7 +209,7 @@ values: Character[];
 
 #### Source
 
-[lib/provable/types/struct.ts:156](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L156)
+[lib/provable/types/struct.ts:154](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L154)
 
 ***
 
@@ -217,13 +217,13 @@ values: Character[];
 
 ```ts
 static fromValue: (x: string | {
-  values: Character[];
-  }) => {
-  values: Character[];
-  } & (value: string | {
-  values: Character[];
-  }) => {
-  values: Character[];
+  "values": Character[];
+ }) => {
+  "values": Character[];
+ } & (value: string | {
+  "values": Character[];
+ }) => {
+  "values": Character[];
 };
 ```
 
@@ -235,7 +235,7 @@ Convert provable type from a normal JS type.
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L76)
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L76)
 
 ***
 
@@ -247,7 +247,7 @@ static maxLength: number = DEFAULT_STRING_LENGTH;
 
 #### Source
 
-[lib/provable/string.ts:67](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L67)
+[lib/provable/string.ts:68](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L68)
 
 ***
 
@@ -255,8 +255,8 @@ static maxLength: number = DEFAULT_STRING_LENGTH;
 
 ```ts
 static toAuxiliary: (value?: {
-  values: Character[];
-  }) => any[];
+  "values": Character[];
+ }) => any[];
 ```
 
 A function that takes `value` (optional), an element of type `T`, as argument and
@@ -269,7 +269,7 @@ returns an array of any type that make up the "auxiliary" (non-provable) data of
 the element of type `T` to generate the auxiliary data array from, optional.
 If not provided, a default value for auxiliary data is returned.
 
-• **value\.values?**: [`Character`](Character.mdx)[]
+• **value.values?**: [`Character`](Character.mdx)[]
 
 #### Returns
 
@@ -281,7 +281,7 @@ If not provided, a default value for auxiliary data is returned.
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L37)
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L37)
 
 ***
 
@@ -289,8 +289,8 @@ If not provided, a default value for auxiliary data is returned.
 
 ```ts
 static toFields: (value: {
-  values: Character[];
-  }) => Field[];
+  "values": Character[];
+ }) => Field[];
 ```
 
 A function that takes `value`, an element of type `T`, as argument and returns
@@ -302,7 +302,7 @@ an array of [Field](Field.mdx) elements that make up the provable data of `value
 
 the element of type `T` to generate the [Field](Field.mdx) array from.
 
-• **value\.values**: [`Character`](Character.mdx)[]
+• **value.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
@@ -314,7 +314,7 @@ the element of type `T` to generate the [Field](Field.mdx) array from.
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L26)
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L26)
 
 ***
 
@@ -322,10 +322,10 @@ the element of type `T` to generate the [Field](Field.mdx) array from.
 
 ```ts
 static toInput: (x: {
-  values: Character[];
-  }) => {
-  fields: Field[];
-  packed: [Field, number][];
+  "values": Character[];
+ }) => {
+  "fields": Field[];
+  "packed": [Field, number][];
 };
 ```
 
@@ -333,14 +333,14 @@ static toInput: (x: {
 
 • **x**
 
-• **x\.values**: [`Character`](Character.mdx)[]
+• **x.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
 ```ts
 {
-  fields: Field[];
-  packed: [Field, number][];
+  "fields": Field[];
+  "packed": [Field, number][];
 }
 ```
 
@@ -362,7 +362,7 @@ optional packed: [Field, number][];
 
 #### Source
 
-[lib/provable/types/struct.ts:151](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L151)
+[lib/provable/types/struct.ts:149](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L149)
 
 ***
 
@@ -370,11 +370,11 @@ optional packed: [Field, number][];
 
 ```ts
 static toJSON: (x: {
-  values: Character[];
-  }) => {
-  values: {
-     value: Field;
-  }[];
+  "values": Character[];
+ }) => {
+  "values": {
+     "value": Field;
+    }[];
 };
 ```
 
@@ -382,15 +382,15 @@ static toJSON: (x: {
 
 • **x**
 
-• **x\.values**: [`Character`](Character.mdx)[]
+• **x.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
 ```ts
 {
-  values: {
-     value: Field;
-  }[];
+  "values": {
+     "value": Field;
+    }[];
 }
 ```
 
@@ -398,8 +398,8 @@ static toJSON: (x: {
 
 ```ts
 values: {
-  value: Field;
-  }[];
+  "value": Field;
+ }[];
 ```
 
 #### Inherited from
@@ -408,7 +408,7 @@ values: {
 
 #### Source
 
-[lib/provable/types/struct.ts:155](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/struct.ts#L155)
+[lib/provable/types/struct.ts:153](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L153)
 
 ***
 
@@ -416,8 +416,8 @@ values: {
 
 ```ts
 static toValue: (x: {
-  values: Character[];
-  }) => string;
+  "values": Character[];
+ }) => string;
 ```
 
 Convert provable type to a normal JS type.
@@ -426,7 +426,7 @@ Convert provable type to a normal JS type.
 
 • **x**
 
-• **x\.values**: [`Character`](Character.mdx)[]
+• **x.values**: [`Character`](Character.mdx)[]
 
 #### Returns
 
@@ -438,7 +438,7 @@ Convert provable type to a normal JS type.
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L71)
+[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L71)
 
 ## Methods
 
@@ -461,7 +461,7 @@ within the `maxLength` of this string (the other string can have a different max
 
 #### Source
 
-[lib/provable/string.ts:116](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L116)
+[lib/provable/string.ts:117](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L117)
 
 ***
 
@@ -469,8 +469,8 @@ within the `maxLength` of this string (the other string can have a different max
 
 ```ts
 computeLengthAndMask(): {
-  length: Field;
-  mask: Bool[];
+  "length": Field;
+  "mask": Bool[];
 }
 ```
 
@@ -478,8 +478,8 @@ computeLengthAndMask(): {
 
 ```ts
 {
-  length: Field;
-  mask: Bool[];
+  "length": Field;
+  "mask": Bool[];
 }
 ```
 
@@ -497,7 +497,7 @@ mask: Bool[];
 
 #### Source
 
-[lib/provable/string.ts:79](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L79)
+[lib/provable/string.ts:80](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L80)
 
 ***
 
@@ -519,7 +519,7 @@ returns true if `this` has the same value as `other`
 
 #### Source
 
-[lib/provable/string.ts:108](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L108)
+[lib/provable/string.ts:109](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L109)
 
 ***
 
@@ -535,7 +535,7 @@ hash(): Field
 
 #### Source
 
-[lib/provable/string.ts:142](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L142)
+[lib/provable/string.ts:143](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L143)
 
 ***
 
@@ -551,7 +551,7 @@ length(): Field
 
 #### Source
 
-[lib/provable/string.ts:101](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L101)
+[lib/provable/string.ts:102](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L102)
 
 ***
 
@@ -567,7 +567,7 @@ lengthMask(): Bool[]
 
 #### Source
 
-[lib/provable/string.ts:98](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L98)
+[lib/provable/string.ts:99](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L99)
 
 ***
 
@@ -583,7 +583,7 @@ maxLength(): number
 
 #### Source
 
-[lib/provable/string.ts:74](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L74)
+[lib/provable/string.ts:75](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L75)
 
 ***
 
@@ -605,7 +605,7 @@ substring(start: number, end: number): CircuitString
 
 #### Source
 
-[lib/provable/string.ts:146](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L146)
+[lib/provable/string.ts:147](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L147)
 
 ***
 
@@ -621,7 +621,7 @@ toString(): string
 
 #### Source
 
-[lib/provable/string.ts:150](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L150)
+[lib/provable/string.ts:151](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L151)
 
 ***
 
@@ -641,7 +641,7 @@ static fromCharacters(chars: Character[]): CircuitString
 
 #### Source
 
-[lib/provable/string.ts:70](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L70)
+[lib/provable/string.ts:71](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L71)
 
 ***
 
@@ -661,7 +661,7 @@ static fromString(str: string): CircuitString
 
 #### Source
 
-[lib/provable/string.ts:154](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/string.ts#L154)
+[lib/provable/string.ts:155](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L155)
 
 ***
 
@@ -685,4 +685,4 @@ A `number` representing the size of the `T` type in terms of [Field](Field.mdx) 
 
 #### Source
 
-[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/types/provable-intf.ts#L56)
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L56)

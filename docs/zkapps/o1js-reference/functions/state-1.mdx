@@ -1,7 +1,7 @@
 ```ts
-state<A>(stateType: FlexibleProvablePure<A>): (target: SmartContract & {
-  constructor: any;
-  }, key: string, _descriptor?: PropertyDescriptor) => void
+function state<A>(stateType: FlexibleProvablePure<A>): (target: SmartContract & {
+  "constructor": any;
+ }, key: string, _descriptor?: PropertyDescriptor) => void
 ```
 
 A decorator to use within a zkapp to indicate what will be stored on-chain.
@@ -27,8 +27,8 @@ you can use the following in the declaration of your zkapp:
 > ### Parameters
 >
 > • **target**: [`SmartContract`](../classes/SmartContract.mdx) & \{
-> `constructor`: `any`;
-> }
+> `"constructor"`: `any`;
+> \}
 >
 > • **key**: `string`
 >
@@ -41,4 +41,4 @@ you can use the following in the declaration of your zkapp:
 
 ## Source
 
-[lib/mina/state.ts:87](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/state.ts#L87)
+[lib/mina/state.ts:92](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/state.ts#L92)

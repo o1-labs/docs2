@@ -1,15 +1,15 @@
 ```ts
 const Poseidon: {
-  Sponge: typeof Sponge;
-  Unsafe: {
-     hashToGroup: Group;
-  };
-  hash: Field;
-  hashPacked: Field;
-  hashToGroup: Group;
-  hashWithPrefix: Field;
-  initialState: [Field, Field, Field];
-  update: [Field, Field, Field];
+  "Sponge": typeof Sponge;
+  "Unsafe": {
+     "hashToGroup": Group;
+    };
+  "hash": Field;
+  "hashPacked": Field;
+  "hashToGroup": Group;
+  "hashWithPrefix": Field;
+  "initialState": [Field, Field, Field];
+  "update": [Field, Field, Field];
 };
 ```
 
@@ -25,7 +25,7 @@ Sponge: typeof Sponge;
 
 ```ts
 Unsafe: {
-  hashToGroup: Group;
+  "hashToGroup": Group;
 };
 ```
 
@@ -129,4 +129,4 @@ The output point is deterministic and its discrete log is not efficiently comput
 
 ## Source
 
-[lib/provable/crypto/poseidon.ts:55](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/provable/crypto/poseidon.ts#L55)
+[lib/provable/crypto/poseidon.ts:55](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/crypto/poseidon.ts#L55)

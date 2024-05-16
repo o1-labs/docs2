@@ -23,7 +23,7 @@ We still can't avoid processing some account updates that don't use the token, t
 
 ## Constructors
 
-### new TokenAccountUpdateIterator(forest, mayUseToken, selfToken)
+### new TokenAccountUpdateIterator()
 
 ```ts
 new TokenAccountUpdateIterator(
@@ -46,7 +46,7 @@ new TokenAccountUpdateIterator(
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L56)
+[lib/mina/token/forest-iterator.ts:56](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L56)
 
 ## Properties
 
@@ -58,7 +58,7 @@ currentLayer: Layer;
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:52](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L52)
+[lib/mina/token/forest-iterator.ts:52](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L52)
 
 ***
 
@@ -70,7 +70,7 @@ selfToken: Field;
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:54](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L54)
+[lib/mina/token/forest-iterator.ts:54](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L54)
 
 ***
 
@@ -82,7 +82,7 @@ unfinishedParentLayers: MerkleList<Layer>;
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:53](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L53)
+[lib/mina/token/forest-iterator.ts:53](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L53)
 
 ## Methods
 
@@ -102,7 +102,7 @@ assertFinished(message?: string): void
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:137](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L137)
+[lib/mina/token/forest-iterator.ts:137](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L137)
 
 ***
 
@@ -110,8 +110,8 @@ assertFinished(message?: string): void
 
 ```ts
 next(): {
-  accountUpdate: update;
-  usesThisToken: Bool;
+  "accountUpdate": update;
+  "usesThisToken": Bool;
 }
 ```
 
@@ -122,15 +122,15 @@ exactly once, when called repeatedly.
 
 The method makes a best effort to avoid visiting account updates that are not using the token,
 and in particular, to avoid returning dummy updates.
-However, neither can be ruled out. We're returning \{ update, usesThisToken: Bool \} and let the
+However, neither can be ruled out. We're returning { update, usesThisToken: Bool } and let the
 caller handle the irrelevant case where `usesThisToken` is false.
 
 #### Returns
 
 ```ts
 {
-  accountUpdate: update;
-  usesThisToken: Bool;
+  "accountUpdate": update;
+  "usesThisToken": Bool;
 }
 ```
 
@@ -148,7 +148,7 @@ usesThisToken: Bool;
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:85](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L85)
+[lib/mina/token/forest-iterator.ts:85](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L85)
 
 ***
 
@@ -170,4 +170,4 @@ static create(forest: AccountUpdateForest, selfToken: Field): TokenAccountUpdate
 
 #### Source
 
-[lib/mina/token/forest-iterator.ts:66](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/token/forest-iterator.ts#L66)
+[lib/mina/token/forest-iterator.ts:66](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/token/forest-iterator.ts#L66)

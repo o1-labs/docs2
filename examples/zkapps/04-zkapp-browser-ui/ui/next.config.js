@@ -13,7 +13,7 @@ const nextConfig = {
     return config;
   },
   // To enable o1js for the web, we must set the COOP and COEP headers.
-  // See here for more information: https://docs.minaprotocol.com/zkapps/how-to-write-a-zkapp-ui#enabling-coop-and-coep-headers
+  // See here for more information: https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui#enabling-coop-and-coep-headers
   async headers() {
     return [
       {
@@ -21,18 +21,18 @@ const nextConfig = {
         headers: [
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin'
+            value: 'same-origin',
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp'
-          }
-        ]
-      }
+            value: 'require-corp',
+          },
+        ],
+      },
     ];
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
 
   /* Used to serve the Next.js app from a subdirectory (the GitHub repo name) and
@@ -43,7 +43,8 @@ const nextConfig = {
    * after running 'npm run deploy'.
    */
   basePath: process.env.NODE_ENV === 'production' ? '/04-zkapp-browser-ui' : '', // update basePath if you change your repo name
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/04-zkapp-browser-ui' : '' // update assetPrefix if you change your repo name. 
+  assetPrefix:
+    process.env.NODE_ENV === 'production' ? '/04-zkapp-browser-ui' : '', // update assetPrefix if you change your repo name.
 };
 
 module.exports = nextConfig;

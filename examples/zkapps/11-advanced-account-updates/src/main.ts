@@ -88,7 +88,7 @@ await (async function main() {
   // ----------------------------------------------------
 
   const txn2 = await Mina.transaction(deployerAddr, async () => {
-    AccountUpdate.fundNewAccount(deployerAddr, 1);
+    AccountUpdate.fundNewAccount(deployerAddr);
     await tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
   });
 

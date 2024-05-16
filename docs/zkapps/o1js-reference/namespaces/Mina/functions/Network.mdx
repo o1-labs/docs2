@@ -1,7 +1,7 @@
 ## Network(graphqlEndpoint)
 
 ```ts
-Network(graphqlEndpoint: string): Mina
+function Network(graphqlEndpoint: string): Mina
 ```
 
 Represents the Mina blockchain running on a real network
@@ -16,30 +16,30 @@ Represents the Mina blockchain running on a real network
 
 ### Source
 
-[lib/mina/mina.ts:101](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/mina.ts#L101)
+[lib/mina/mina.ts:101](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/mina.ts#L101)
 
 ## Network(options)
 
 ```ts
-Network(options: {
-  archive: string | string[];
-  lightnetAccountManager: string;
-  mina: string | string[];
-  networkId: NetworkId;
-  }): Mina
+function Network(options: {
+  "archive": string | string[];
+  "lightnetAccountManager": string;
+  "mina": string | string[];
+  "networkId": NetworkId;
+ }): Mina
 ```
 
 ### Parameters
 
 • **options**
 
-• **options\.archive?**: `string` \| `string`[]
+• **options.archive?**: `string` \| `string`[]
 
-• **options\.lightnetAccountManager?**: `string`
+• **options.lightnetAccountManager?**: `string`
 
-• **options\.mina**: `string` \| `string`[]
+• **options.mina**: `string` \| `string`[]
 
-• **options\.networkId?**: `NetworkId`
+• **options.networkId?**: `NetworkId`
 
 ### Returns
 
@@ -47,4 +47,4 @@ Network(options: {
 
 ### Source
 
-[lib/mina/mina.ts:102](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/mina.ts#L102)
+[lib/mina/mina.ts:102](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/mina.ts#L102)

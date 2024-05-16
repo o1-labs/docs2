@@ -1,0 +1,137 @@
+---
+title: zkApps for Ethereum Developers
+hide_title: true
+description: How zkApps and Ethereum smart contracts compare, differences in language, execution environment, transaction costs, application storage, developer tooling, scaling, and consensus.
+keywords:
+  - ethereum
+  - mina protocol
+  - zkapps
+  - smart contracts
+  - o1js
+  - typescript
+  - blockchain
+  - scalability
+  - privacy
+  - decentralization
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+# zkApps for Ethereum Developers
+
+Mina and Ethereum are both decentralized, programmable, layer-one blockchains,
+but they are designed in fundamentally different ways. The Ethereum network
+verifies transaction execution by having every node execute every transaction.
+While this design solves a real problem, it also imposes some severe limitations
+on privacy and scalability.
+
+The Mina Protocol works differently. It verifies transactions (and previous
+blocks) cryptographically using recursive zero knowledge proofs. Smart contract
+code is written in TypeScript and executes off chain. Mina nodes need to
+verify only a small proof in order to validate the associated execution. Better
+still, the proof does not reveal any information about the underlying
+computation, meaning developers can choose whether their inputs and outputs
+should be public or private, depending on the requirements of their application.
+
+## At a Glance
+
+<table style={{borderSpacing: '0px'}}>
+<thead>
+  <tr>
+    <th style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}></th>
+    <th style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Ethereum Smart Contracts</th>
+    <th style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Mina zkApps</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Language</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Smart contracts are written in <span style={{color: '#7d4bbd'}}>Solidity</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>zkApp smart contracts are written using <span style={{color: '#7d4bbd'}}>o1js</span> (a <span style={{color: '#7d4bbd'}}>TypeScript</span> library).</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Execution Environment</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Smart contracts run on <span style={{color: '#7d4bbd'}}>every Ethereum node</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>zkApps run <span style={{color: '#7d4bbd'}}>client side</span> in a user’s web browser, and publish only a small validity proof which is verified by the Mina nodes.</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Transaction Cost</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Execution costs are variable, and determined using a <span style={{color: '#7d4bbd'}}>gas model</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Execution costs are <span style={{color: '#7d4bbd'}}>small</span>, and <span style={{color: '#7d4bbd'}}>constant</span> because the Mina nodes are verifying the same size proof regardless of the amount of client-side computation.</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Application Storage</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Ethereum is designed around the idea that storage, and computation are inherently coupled; <span style={{color: '#7d4bbd'}}>all state must live on every Ethereum node</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina’s design allows state, and computation to be decoupled so that <span style={{color: '#7d4bbd'}}>application state can live anywhere</span>; developers can choose a solution that fits their cost/security requirements best.</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Developer Tooling</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>New developer tools with unusual patterns like <span style={{color: '#7d4bbd'}}>Hardhat</span>, and <span style={{color: '#7d4bbd'}}>Truffle</span> are needed in order to manage the deployment of Ethereum smart contracts.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}><span style={{color: '#7d4bbd'}}>The zkApp CLI</span> manages scaffolding, linting, testing, and deployment using common JavaScript/TypeScript tools you are already familiar with.</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Scaling</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Ethereum nodes must execute every transaction directly making <span style={{color: '#7d4bbd'}}>horizontal scaling hard</span>.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina’s recursive zero knowledge proofs allow snark-workers to compress the blockchain, and developers to compress transactions using <span style={{color: '#7d4bbd'}}>native rollups</span> for <span style={{color: '#7d4bbd'}}>exponential scaling</span>.</td>
+  </tr>
+  <tr>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px', fontSize: 'larger'}}>Consensus</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Ethereum nodes must download the entire block history (<span style={{color: '#7d4bbd'}}>~700GB</span>) in order to verify the current finalized chain state.</td>
+    <td style={{borderColor: 'black', borderWidth: '1px', borderStyle: 'solid', padding: '10px'}}>Mina clients can verify the current finalized state using a single <span style={{color: '#7d4bbd'}}>22KB</span> recursive zero knowledge proof.</td>
+  </tr>
+</tbody>
+</table>
+
+## Example Code
+
+```ts
+import { Field, SmartContract, state, State, method } from 'o1js';
+
+export class Add extends SmartContract {
+  /* The state decorator tells o1js to store/retrieve num from the Mina
+  blockchain */
+  /* The Field type represents elements of a finite field (similar to uint256
+  for practical purposes, but loops back to 1 after overflowing) */
+  @state(Field) num = State<Field>();
+
+  // Initialize the contract (similar to a constructor in Solidity)
+  init() {
+    super.init();
+    // Set num equal to a Field element of value 1 on contract deployment
+    this.num.set(Field(1));
+  }
+
+  /* The method decorator tells o1js to be ready to generate a proof of
+  execution any time this method is called */
+  @method async update() {
+    // Get the state of num from the Mina blockchain and set it to currentState
+    const currentState = this.num.get();
+    /* Calling add instead of using the JS infix addition operator enables
+    o1js to prove that the addition is done correctly */
+    const newState = currentState.add(2);
+    /* Set the state of num on the Mina blockchain equal to newState (this
+    state update will not happen unless the transaction is accompanied by
+    a valid proof of execution) */
+    this.num.set(newState);
+  }
+}
+```
+
+## How does Mina bridge to Ethereum?
+
+Mina proofs are small and easy to verify; this means that any Turing complete
+blockchain (like Ethereum) can validate the entire Mina state in a single
+transaction using a bridge contract. These are a bit different from existing
+bridging solutions because they don't require additional security
+assumptions. Think of them as full Mina nodes that are implemented in smart
+contracts on other chains. They validate the Mina state in exactly the same way
+a Mina block producer would and expose Mina directly to any other contract.
+The Nil Foundation is working on the [first of these bridges](https://verify.mina.nil.foundation/walkthrough/index.html) for Ethereum and other EVM-compatible networks.
+
+### Have another question?
+
+Reach out in the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord. It's better when we learn together. 

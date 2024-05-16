@@ -1,0 +1,238 @@
+---
+title: zkApps Getting Started
+sidebar_label: Getting Started
+hide_title: true
+description: How to get started writing zkApps (zero knowledge apps).
+keywords:
+  - zkapps
+  - mina protocol
+  - smart contracts
+  - zero knowledge proofs
+  - off-chain execution
+  - typescript
+  - quickstart zkapps
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+# zkApps Getting Started
+
+You can start writing zkApps with just a few steps. The focus of this Getting Started Guide is a high-level workflow to build and deploy quickly.
+
+## High-Level Workflow
+
+1. [Install or update the zkApp CLI](#1-install-or-update-the-zkapp-cli)
+1. [Create a project](#2-create-a-project)
+1. [Add testing code](#3-add-testing-code)
+1. [Add functionality](#4-add-functionality)
+1. [Create an integration test](#5-create-an-integration-test)
+1. [Test locally](#6-test-with-local-simulated-blockchain)
+1. [Test with Lightnet](#7-test-with-lightnet)
+1. [Test with a live network](#8-test-with-a-live-network)
+
+### 1. Install or update the zkApp CLI
+
+```sh
+npm install -g zkapp-cli
+```
+
+The zkApp CLI provides project scaffolding, including dependencies such as [o1js](/zkapps/o1js), a test framework, code auto-formatting, linting, and more.
+
+See [zkApp CLI Installation](/zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli).
+
+### 2. Create a project
+
+```sh
+$ zk project <project-name>
+```
+
+[o1js](/zkapps/o1js) is automatically installed when you generate a project using the zkApp CLI. 
+
+A zkApp consists of a smart contract and a UI to interact with it. 
+
+- To proceed without an accompanying UI project, select `none` when prompted.
+
+    See [Option B: Start your own project](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp#option-b-start-your-own-project).
+
+- To create a UI, select a framework and follow the prompts. 
+
+    See [How to Write a zkApp UI](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui).
+
+### 3. Add testing code
+
+When you use the zkApp CLI to create a project, tests and examples are included. 
+
+1. See the `import` statements in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L1-L2) example file.
+
+1. A simulated `LocalBlockchain` instance you can interact with is included in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L27-L28) example file.
+
+1. In o1js, an array of 10 test accounts to pay fees and sign transactions are provided for the simulated `LocalBlockchain` instance. These can be accessed with `Local.testAccounts` as shown in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L29-L31) example file. The example uses the public/private key pairs of two of these accounts. The example uses these names, but the names can be anything:
+
+    - `deployerAccount` deploys the smart contract
+    - `senderAccount` pays transaction fees
+
+1. Deploy the smart contract to the simulated `LocalBlockchain` instance that simulates a network for testing purposes.
+
+    See the `localDeploy` function in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L38-L46) example file.
+
+### 4. Add functionality
+
+Add the logic for your smart contract.
+
+1. Start experimenting with iterative development to build and test one method at a time. Add functionality to the smart contract by implementing a `@method`.
+
+    See `@method async update()` in the [Add.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.ts#L20-L24) example file.
+
+1. Build the smart contract:
+
+    ```sh
+    npm run build
+    ```
+
+1. Invoke the `@method` you added or use new functionality in the test file.
+
+    See the transaction code that invokes the `update()` method in the [Add.test.ts](https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/Add.test.ts#L57-L66) file.
+
+    - If it works as expected with no errors, add more functionality.
+    - If there are errors, look through the stack traces to find the source of the errors and update the contract to resolve them.
+
+### 5. Create integration test
+
+- Create a Node.js script to run the smart contract and test it's functionality, similar to step [3. Add testing code](#3-add-testing-code).
+
+    For an example, see the Node.js script that runs the Tic Tac Toe smart contract in the [run.ts](https://github.com/o1-labs/zkapp-cli/blob/main/examples/tictactoe/ts/src/run.ts) file.
+
+### 6. Test locally
+
+- [Test zkApps locally](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally) with a simulated local blockchain.
+
+### 7. Test with Lightnet
+
+- Use [Lightnet](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet) to test your zkApp with an accurate representation of Mina blockchain. 
+
+1. Start Lightnet:
+
+    ```sh
+    zk lightnet start
+    ```
+
+    The default settings start a single node that successfully serves the majority of testing requirements.
+
+1. Verify the status of the local blockchain:
+
+    ```sh
+    zk lightnet status
+    ```
+
+1. Communicate with the Mina Accounts-Manager service to fetch account details.
+
+    - Mina Accounts-Manager is deployed to http://localhost:8181/ 
+    - Use HTTP endpoints to acquire, release, list, lock, and unlock accounts
+
+1. Configure your zkApp for Lightnet blockchain. Use the endpoints provided by the `zk lightnet status` command.
+
+    - Deploy name
+    - Set the Mina GraphQL API URL to deploy to: http://localhost:8080/graphql
+    - Set transaction fee to use when deploying (in MINA): 0.1
+
+1. Deploy your zkApp to Lightnet:
+
+    ```sh
+    zk deploy
+    ```
+
+### 8. Test with a live network
+
+To deploy the smart contract to the Testnet, run the `zk` commands from the directory that contains your smart contract. 
+
+1. Configure your zkApp.
+
+    ```sh
+    zk config
+    ```
+
+    Follow the prompts to specify a deploy alias name (can be anything), URL to deploy to, fee (in MINA) to be used when sending your deploy transaction, and the fee payer account. 
+
+    For the Devnet, use:
+ 
+    - Deploy alias name: `devnet` 
+  
+    - Mina GraphQL API URL: `https://api.minascan.io/node/devnet/v1/graphql`
+  
+    - Transaction fee to use when deploying: `0.1`
+  
+    - Account to pay transaction fees: Create a new fee payer pair
+    
+    See [Add a deploy alias to config.json](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp#add-a-deploy-alias-to-configjson).
+
+    For other Testnets, use the details provided.
+
+1. Choose a fee payer alias. A fee payer account is a developer account that is funded and can always pay fees immediately. When you configure a zkApp, you can choose to use a stored account or create a new fee payer account.
+
+    - When prompted to choose an account to pay transaction fees, select to use a different account:
+
+        ```sh
+        Use a different account (select to see options)
+        ```
+
+        If this is the first time you are running the `zk config` command, you see these options:
+
+        ```text
+        > Recover fee payer account from an existing base58 private key
+        Create a new fee payer key pair
+        ```
+
+        The option to choose another account is shown only if you have a cached fee payer account.
+
+    - Next, select **Create a new fee payer key pair**:  
+
+        ```sh
+        Create a new fee payer key pair
+        NOTE: the private key will be stored in plain text on this computer.
+        ```
+
+    - When prompted, give an alias to your new fee payer key pair. 
+
+1. Fund your fee payer account.
+
+    Follow the prompts to request tMina. 
+
+1. Deploy to the Testnet. 
+
+    ```sh
+    zk deploy
+    ```
+
+    Follow the prompts. 
+    
+    See [How to deploy a zkApp](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp).
+
+1. Create a script to interact with a live network.
+
+    See the example files:
+    - https://github.com/o1-labs/zkapp-cli/blob/main/templates/project-ts/src/interact.ts
+    - https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/hello-world/run-live.ts
+
+1. Run your script.
+
+    For example:
+
+    ```sh
+    node build/src/interact.js
+    ```
+
+1. Keep building and experimenting! After you add features to your contract, repeat [7. Test with a live network](#7-test-with-a-live-network) to test with a live network.
+
+## Learn more
+
+To learn more about developing zkApps, see [how zkApps work](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work), [how to write a zkApp](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp), and [zkApps for Ethereum Developers](/zkapps/advanced/zkapps-for-ethereum-developers).
+
+Try the [zkApp Developer Tutorials](/zkapps/tutorials) for use cases that guide you to achieve a defined goal.
+
+## Get help and join the community
+
+Join the [#zkapps-developers](https://discord.com/channels/484437221055922177/915745847692636181) channel on Mina Protocol Discord. 

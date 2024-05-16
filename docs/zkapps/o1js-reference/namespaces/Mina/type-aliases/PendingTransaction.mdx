@@ -1,11 +1,11 @@
 ```ts
 type PendingTransaction: Pick<TransactionCommon, "transaction" | "toJSON" | "toPretty"> & {
-  data: SendZkAppResponse;
-  errors: string[];
-  hash: string;
-  status: PendingTransactionStatus;
-  safeWait: Promise<RejectedTransaction | IncludedTransaction>;
-  wait: Promise<IncludedTransaction>;
+  "data": SendZkAppResponse;
+  "errors": string[];
+  "hash": string;
+  "status": PendingTransactionStatus;
+  "safeWait": Promise<RejectedTransaction | IncludedTransaction>;
+  "wait": Promise<IncludedTransaction>;
 };
 ```
 
@@ -86,11 +86,11 @@ Waits for the transaction to be included in a block. This method polls the Mina 
 
 Configuration options for polling behavior.
 
-• **options\.interval?**: `number`
+• **options.interval?**: `number`
 
 The time interval, in milliseconds, between each polling attempt.
 
-• **options\.maxAttempts?**: `number`
+• **options.maxAttempts?**: `number`
 
 The maximum number of polling attempts.
 
@@ -117,11 +117,11 @@ Waits for the transaction to be included in a block. This method polls the Mina 
 
 Configuration options for polling behavior.
 
-• **options\.interval?**: `number`
+• **options.interval?**: `number`
 
 The interval, in milliseconds, between status checks.
 
-• **options\.maxAttempts?**: `number`
+• **options.maxAttempts?**: `number`
 
 The maximum number of attempts to check the transaction status.
 
@@ -148,4 +148,4 @@ try {
 
 ## Source
 
-[lib/mina/transaction.ts:156](https://github.com/o1-labs/o1js/blob/fd7bd4b02f4f7cc1057cd423261d70c22275763a/src/lib/mina/transaction.ts#L156)
+[lib/mina/transaction.ts:156](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/transaction.ts#L156)
