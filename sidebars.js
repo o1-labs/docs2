@@ -66,6 +66,7 @@ module.exports = {
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps',
               ],
@@ -74,7 +75,6 @@ module.exports = {
               type: 'category',
               label: 'Feature Overview',
               items: [
-                'zkapps/writing-a-zkapp/feature-overview/smart-contracts',
                 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
                 'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
                 'zkapps/writing-a-zkapp/feature-overview/permissions',
