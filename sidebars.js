@@ -51,7 +51,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Writing zkApps',
+          label: 'zkApps',
           items: [
             {
               type: 'category',
