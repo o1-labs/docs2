@@ -67,6 +67,7 @@ module.exports = {
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps',
               ],
             },
             {
