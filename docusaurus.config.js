@@ -62,11 +62,11 @@ module.exports = {
           },
           {
             from: '/architecture/snapps',
-            to: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
+            to: '/zkapps/writing-a-zkapp',
           },
           {
             from: '/snapps',
-            to: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
+            to: '/zkapps/writing-a-zkapp',
           },
           {
             from: '/node-developers/code-reviews',
