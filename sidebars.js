@@ -53,11 +53,11 @@ module.exports = {
           type: 'category',
           label: 'zkApps',
           items: [
+            'zkapps/writing-a-zkapp/index',
             {
               type: 'category',
               label: 'Introduction to zkApps',
               items: [
-                'zkapps/writing-a-zkapp/introduction-to-zkapps/index',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps',

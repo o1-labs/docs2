@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     title: 'Deploy your first zkApp',
     image: '/img/homepage/zkapp_developers.png',
     buttonText: 'zkApp Developers',
-    buttonLink: '/zkapps/writing-a-zkapp/introduction-to-zkapps',
+    buttonLink: '/zkapps/writing-a-zkapp',
     description: (
       <>
         {'Learn '}
