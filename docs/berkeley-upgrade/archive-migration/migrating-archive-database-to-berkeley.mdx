@@ -386,7 +386,7 @@ You must use `--fork-state-hash` as an additional parameter to the **berkeley-mi
 
 :::info
 The migrated database output from this stage of the final migration is required to initialize your archive nodes on the upgraded network.
-:::info
+:::
 
 #### Phase 1: Berkeley migration app run
 
@@ -423,8 +423,10 @@ where:
 
 `--fork-state-hash`: fork state hash
 
-**Info** When you run the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
+:::info
+When you run the **berkeley-migration** app with fork-state-hash, there is no requirement for the fork state block to be canonical.
 The tool automatically converts all pending blocks in the subchain, including the fork block, to canonical blocks.
+:::
 
 #### Phase 2: Replayer in migration mode run
 
