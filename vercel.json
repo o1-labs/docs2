@@ -49,7 +49,7 @@
     },
     {
       "source": "/zkapps",
-      "destination": "/zkapps/writing-a-zkapp/introduction-to-zkapps"
+      "destination": "/zkapps/writing-a-zkapp"
     },
     {
       "source": "/zkapps/how-zkapps-work",

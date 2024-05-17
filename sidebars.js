@@ -51,13 +51,13 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Writing zkApps',
+          label: 'zkApps',
           items: [
+            'zkapps/writing-a-zkapp/index',
             {
               type: 'category',
               label: 'Introduction to zkApps',
               items: [
-                'zkapps/writing-a-zkapp/introduction-to-zkapps/index',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps',
@@ -66,14 +66,15 @@ module.exports = {
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps',
               ],
             },
             {
               type: 'category',
               label: 'Feature Overview',
               items: [
-                'zkapps/writing-a-zkapp/feature-overview/smart-contracts',
                 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
                 'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
                 'zkapps/writing-a-zkapp/feature-overview/permissions',
