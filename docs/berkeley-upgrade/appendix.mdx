@@ -40,7 +40,7 @@ let payment = {
   fee: 1000000,
 };
 
-const signedPayment = client.signPayment(payment, privateKey);
+const signedPayment = client.signPayment(payment, senderPrivateKey);
 
 // send payment to graphql endpoint
 
