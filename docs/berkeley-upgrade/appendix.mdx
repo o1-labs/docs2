@@ -28,7 +28,7 @@ import { Client } from 'mina-signer';
 const client = new Client({ network: 'testnet' });
 
 const senderPrivateKey = 'EKFd1Gx...'; // Sender's private key
-let publicKey = the public key - perhaps derived from the private key using -> client.derivePublicKey(privateKey);
+const senderPublicKey = 'B62qrDM...'; // Sender's public key, perhaps derived from the private key using `client.derivePublicKey(senderPrivateKey)`;
 
 // define and sign payment
 
