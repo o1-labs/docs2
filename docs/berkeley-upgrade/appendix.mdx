@@ -46,36 +46,37 @@ const signedPayment = client.signPayment(payment, senderPrivateKey);
 
 const url = 'https://qanet.minaprotocol.network/graphql';
 
-let query = `mutation {
-  sendPayment(
-    input: ${objectToGraphqlQuery(signedPayment.data)},
-    signature: ${objectToGraphqlQuery(signedPayment.signature)}
-    ) {
-      payment { id }
+const sendPaymentMutationQuery = `
+mutation SendPayment($input: SendPaymentInput!, $signature: SignatureInput!) {
+  sendPayment(input: $input, signature: $signature) {
+    payment {
+      hash
     }
-  }`;
+  }
+}
+`;
+const graphQlVariables = {
+  input: signedPayment.data,
+  signature: signedPayment.signature,
+};
+const body = JSON.stringify({
+  query: sendPaymentMutationQuery,
+  variables: graphQlVariables,
+  operationName: 'SendPayment',
+});
 
-console.log('=======================');
-console.log(query);
-console.log('=======================');
-
-let response = await fetch(url, {
+const paymentResponse = await fetch(url, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ operationName: null, query, variables: {} }),
+  body
 });
-if (response.status == 200) {
-  let json = await response.json();
-  console.dir(json, { depth: null });
+
+const paymentResponseJson = await paymentResponse.json();
+if (paymentResponse.ok) {
+  console.log(`Transaction hash: ${paymentResponseJson.data.sendPayment.payment.hash}`);
 } else {
-  let text = await response.text();
-  console.log('Error:\n', text);
+  console.error(JSON.stringify(paymentResponseJson));
 }
 
-function objectToGraphqlQuery(obj: any) {
-  let json = JSON.stringify(obj, null, 2);
-  // removes the quotes on JSON keys
-  return json.replace(/\"(\S+)\"\s*:/gm, '$1:');
-}
 
 ```
