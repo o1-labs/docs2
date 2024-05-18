@@ -1,0 +1,91 @@
+---
+title: Docker Compose Snark Workers
+sidebar_label: Docker Compose example
+description: Example of how to run a Mina Snark Coordinator and a Snark Worker using Docker Compose.
+keywords:
+  - mina snark coordinator node
+  - mina snark worker node
+  - docker compose
+---
+
+# Docker Compose Snark Workers (Devnet)
+
+This example demonstrates how to run a Mina Snark Coordinator and a Snark Worker using Docker Compose for the Devnet network. The Docker Compose setup includes a Mina Snark Coordinator node, a Snark Worker node, a script to generate a libp2p key, and another script to generate a wallet key.
+
+Copy and paste the provided configuration into a `docker-compose.yml` file. Then run `docker compose up -d` to start the services, and use `docker compose logs -f` to monitor the logs.
+
+```yaml
+services:
+  generate_libp2p_key:
+    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    environment:
+      MINA_LIBP2P_PASS: PssW0rD
+    entrypoint: []
+    command: >
+      bash -c '
+        mina libp2p generate-keypair -privkey-path /data/.mina-config/keys/libp2p-key
+        chmod -R 0700 /data/.mina-config/keys
+        chmod -R 0600 /data/.mina-config/keys/libp2p-key
+      '
+    volumes:
+      - './node/mina-config:/data/.mina-config'
+  generate_wallet_key:
+    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    environment:
+      MINA_PRIVKEY_PASS: PssW0rD
+    entrypoint: []
+    command: >
+      bash -c '
+        mina advanced generate-keypair --privkey-path /data/.mina-config/keys/wallet-key
+        chmod -R 0700 /data/.mina-config/keys
+        chmod -R 0600 /data/.mina-config/keys/wallet-key
+      '
+    volumes:
+      - './node/mina-config:/data/.mina-config'
+  mina_snark_coordinator:
+    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    restart: always
+    environment:
+      MINA_LIBP2P_PASS: PssW0rD
+      MINA_PRIVKEY_PASS: PssW0rD
+      MINA_CLIENT_TRUSTLIST: "0.0.0.0/0"
+    healthcheck:
+      test: ["CMD-SHELL", "mina client status"]
+      interval: 60s
+      timeout: 10s
+      retries: 100
+    entrypoint: []
+    command: >
+      bash -c '
+        mina daemon \
+             --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt \
+             --libp2p-keypair /data/.mina-config/keys/libp2p-key \
+             --snark-worker-fee 0.001 \
+             --run-snark-coordinator $(cat /data/.mina-config/keys/wallet-key.pub) \
+             --work-selection rand
+      '
+    volumes:
+      - './node/mina-config:/data/.mina-config'
+    depends_on:
+      generate_libp2p_key:
+        condition: service_completed_successfully
+      generate_wallet_key:
+        condition: service_completed_successfully
+  mina_snark_worker:
+    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    restart: always
+    entrypoint: []
+    command: >
+      bash -c '
+        mina internal \
+             snark-worker \
+             --daemon-address \
+             mina_snark_coordinator:8301 \
+             --proof-level full
+      '
+    volumes:
+      - './node/mina-config:/data/.mina-config'
+    depends_on:
+      mina_snark_coordinator:
+        condition: service_healthy
+```

@@ -28,23 +28,23 @@ The daemon regularly sends blockchain data to the archive process that stores it
 
 ## Archive Node Requirements
 
-**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker.
 
 **Processor**: Only x86-64 CPU architecture is supported.
 
-**Hardware**: Running an archive node does not require any special hardware. 
+**Hardware**: Running an archive node does not require any special hardware.
 
 In addition to the [PostgreSQL](https://www.postgresql.org/) database requirements, running an archive node on the Mina network requires at least:
 
 - 8-core processor
 - 32 GB of RAM
-- 64 GB of free storage  
+- 64 GB of free storage
 
 Running an archive node requires some knowledge of managing a PostgreSQL database instance. You must set up a database, run the archive node, connect it to a daemon, and run queries on the data.
 
 ## Install Mina, PostgreSQL, and the archive node package
 
-1. Install the latest version of Mina. 
+1. Install the latest version of Mina.
 
   You must upgrade to the latest version of the daemon. Follow the steps in [Getting Started](../block-producer-node/getting-started).
 
@@ -66,7 +66,7 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
 
 ## Set up the archive node
 
-These steps might be different for your operating system, if you're connecting to a cloud instance of PostgreSQL, if your deployment uses Docker, or if you want to run these processes on different machines. 
+These steps might be different for your operating system, if you're connecting to a cloud instance of PostgreSQL, if your deployment uses Docker, or if you want to run these processes on different machines.
 
 For production, run the archive database in the background, use your operating system service manager (like systemd) to run it for you, or use a postgres service hosted by a cloud provider.
 
@@ -79,7 +79,7 @@ To run a local archive node to run it in the foreground for testing:
   ```
 
   For macOS:
-  
+
   ```sh
   brew services start postgres
   ```
@@ -94,9 +94,9 @@ To run a local archive node to run it in the foreground for testing:
 
   ```sh
   psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql)
-  
+
   psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql)
-  
+
   ```
 
 1. Start the archive process on port 3086 and connect to the postgres database that runs on port 5432:
@@ -115,7 +115,7 @@ To run a local archive node to run it in the foreground for testing:
     --archive-address 3086
 
   ```
-  
+
   To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
 
 ## Set up the archive node using Docker
@@ -220,7 +220,6 @@ To run the archive node using Docker Compose:
 6. Create a `docker-compose.yml` file with the following contents:
 
    ```yml
-   version: '3.8'
    services:
      postgres:
        image: postgres
@@ -246,10 +245,6 @@ To run the archive node using Docker Compose:
 7. Start the archive node.
 
    ```sh
-   # If you are running Docker Compose V1:
-   docker-compose up
-
-   # If you are running Docker Compose V2:
    docker compose up
    ```
 
@@ -273,7 +268,7 @@ To list the tables, run the `\dt` command in psql. The output will look like thi
 
 ```
                   List of relations
- Schema |             Name              | Type  | Owner 
+ Schema |             Name              | Type  | Owner
 --------+-------------------------------+-------+-------
  public | account_identifiers           | table | mina
  public | accounts_accessed             | table | mina
@@ -330,19 +325,19 @@ For example to see the structure of the user_commands table, run the `\d user_co
 
 ```
                                     Table "public.user_commands"
-    Column    |       Type        | Collation | Nullable |                  Default                  
+    Column    |       Type        | Collation | Nullable |                  Default
 --------------+-------------------+-----------+----------+-------------------------------------------
  id           | integer           |           | not null | nextval('user_commands_id_seq'::regclass)
- command_type | user_command_type |           | not null | 
- fee_payer_id | integer           |           | not null | 
- source_id    | integer           |           | not null | 
- receiver_id  | integer           |           | not null | 
- nonce        | bigint            |           | not null | 
- amount       | text              |           |          | 
- fee          | text              |           | not null | 
- valid_until  | bigint            |           |          | 
- memo         | text              |           | not null | 
- hash         | text              |           | not null | 
+ command_type | user_command_type |           | not null |
+ fee_payer_id | integer           |           | not null |
+ source_id    | integer           |           | not null |
+ receiver_id  | integer           |           | not null |
+ nonce        | bigint            |           | not null |
+ amount       | text              |           |          |
+ fee          | text              |           | not null |
+ valid_until  | bigint            |           |          |
+ memo         | text              |           | not null |
+ hash         | text              |           | not null |
 Indexes:
     "user_commands_pkey" PRIMARY KEY, btree (id)
     "user_commands_hash_key" UNIQUE CONSTRAINT, btree (hash)
@@ -352,7 +347,7 @@ Foreign-key constraints:
     "user_commands_source_id_fkey" FOREIGN KEY (source_id) REFERENCES public_keys(id)
 Referenced by:
     TABLE "blocks_user_commands" CONSTRAINT "blocks_user_commands_user_command_id_fkey" FOREIGN KEY (user_command_id) REFERENCES user_commands(id) ON DELETE CASCADE
-    
+
 ```
 
 Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql) and [/archive/zkapp_tables.sql](https://github.com/MinaProtocol/mina/blob/berkeley/src/app/archive/zkapp_tables.sql)
@@ -421,14 +416,14 @@ GROUP BY p.value ORDER BY count DESC;
 **Example 5** Get the latest block:
 
 ```
-SELECT 
-height as blockheight, 
+SELECT
+height as blockheight,
 global_slot_since_genesis as globalslotsincegenesis,
 global_slot_since_hard_fork as globalslot,
 state_hash as statehash,
 parent_hash as parenthash,
 ledger_hash as ledgerhash,
-to_char(to_timestamp(cast ("timestamp" as bigint) / 1000) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS') || '.' || 
+to_char(to_timestamp(cast ("timestamp" as bigint) / 1000) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS') || '.' ||
     LPAD(((cast("timestamp" as bigint) % 1000)::text), 3, '0') || 'Z' as datetime
 FROM blocks
 WHERE id in (SELECT MAX(id) FROM blocks);
@@ -437,8 +432,8 @@ WHERE id in (SELECT MAX(id) FROM blocks);
 
 **Example 6** Identify blocks with missing parents, between blockheight 500 and blockheight 5000
 ```
-SELECT height 
-FROM blocks 
+SELECT height
+FROM blocks
 WHERE parent_id is null AND height >= 500 AND height <= 5000 and height > 1;
 
 ```

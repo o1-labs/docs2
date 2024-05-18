@@ -3,6 +3,34 @@ module.exports = {
     'welcome',
     {
       type: 'category',
+      label: 'Berkeley Upgrade',
+      items: [
+        'berkeley-upgrade/requirements',
+        {
+          type: 'category',
+          label: 'Archive Migration',
+          link: {
+            type: 'doc',
+            id: 'berkeley-upgrade/archive-migration/index'
+          },
+          items: [
+            'berkeley-upgrade/archive-migration/understanding-archive-migration',
+            'berkeley-upgrade/archive-migration/archive-migration-prerequisites',
+            'berkeley-upgrade/archive-migration/archive-migration-installation',
+            'berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley',
+            `berkeley-upgrade/archive-migration/mainnet-database-maintenance`,
+            'berkeley-upgrade/archive-migration/debian-example',
+            'berkeley-upgrade/archive-migration/docker-example',
+            'berkeley-upgrade/archive-migration/appendix',
+          ],
+        },
+        'berkeley-upgrade/upgrade-steps',
+        'berkeley-upgrade/flags-configs',
+        'berkeley-upgrade/appendix',
+      ],
+    },
+    {
+      type: 'category',
       label: 'About Mina',
       items: [
         'about-mina/index',
@@ -473,6 +501,7 @@ module.exports = {
             'node-operators/block-producer-node/connecting-to-the-network',
             'node-operators/block-producer-node/connecting-to-devnet',
             'node-operators/block-producer-node/hot-cold-block-production',
+            'node-operators/block-producer-node/docker-compose',
               ],
         },
         {
@@ -483,7 +512,8 @@ module.exports = {
             id: 'node-operators/snark-workers/index'
           },
           items: [
-            'node-operators/snark-workers/getting-started',            
+            'node-operators/snark-workers/getting-started',
+            'node-operators/snark-workers/docker-compose',
               ],
         },
         {
@@ -496,7 +526,8 @@ module.exports = {
           items: [
             'node-operators/archive-node/getting-started',
             'node-operators/archive-node/archive-redundancy',
-            
+            'node-operators/archive-node/docker-compose',
+
               ],
         },
         {
@@ -507,7 +538,8 @@ module.exports = {
             id: 'node-operators/seed-peers/index'
           },
           items: [
-            'node-operators/seed-peers/getting-started',            
+            'node-operators/seed-peers/getting-started',
+            'node-operators/seed-peers/docker-compose',
               ],
         },
         {
@@ -561,22 +593,6 @@ module.exports = {
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
         'node-developers/contributing'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Berkeley Upgrade',
-      link: {
-        type: 'doc',
-        id: 'berkeley-upgrade/index'
-      },
-      items: [
-        'berkeley-upgrade/understanding-archive-migration',
-        'berkeley-upgrade/archive-migration-prerequisites',
-        'berkeley-upgrade/archive-migration-installation',
-        'berkeley-upgrade/migrating-archive-database-to-berkeley',
-        `berkeley-upgrade/mainnet-database-maintenance`,
-        'berkeley-upgrade/worked-archive-example',
       ],
     },
     {
