@@ -25,7 +25,7 @@ import { Client } from 'mina-signer';
 
 // create the client and define the keypair
 
-const client = new Client({ network: 'testnet' });
+const client = new Client({ network: 'testnet' }); // Mind the `network` client configuration option
 
 const senderPrivateKey = 'EKFd1Gx...'; // Sender's private key
 const senderPublicKey = 'B62qrDM...'; // Sender's public key, perhaps derived from the private key using `client.derivePublicKey(senderPrivateKey)`;
