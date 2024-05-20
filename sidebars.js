@@ -1418,7 +1418,6 @@ module.exports = {
         {
           type: 'category',
           label: 'Rosetta API',
-          collapsible: false,
           items: [
             'exchange-operators/rosetta/run-with-docker',
             'exchange-operators/rosetta/build-from-sources',
