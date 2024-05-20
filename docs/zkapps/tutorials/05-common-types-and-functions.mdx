@@ -22,19 +22,29 @@ keywords:
 
 import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
+<<<<<<< HEAD
+=======
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+>>>>>>> main
 # Tutorial 5: Common Types and Functions
 
 In previous tutorials, you learned how to deploy smart contracts to the network interact with them from a React UI and NodeJS.
 
 In this tutorial, you learn about types you can use when building with o1js. Earlier tutorials mostly use the `Field` type. o1js provides other higher-order types built from Fields that are useful for zkApp development and expand the possibilities for more applications.
 
-All types are defined in the [o1js / Modules / Types](/zkapps/o1js-reference/modules/Types) API reference documentation.
-
 The [example project](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/05-common-types-and-functions/src) includes a [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/05-common-types-and-functions/src/main.ts) file that shows all of the concepts presented in this tutorial, along with smart contracts showing more advanced usage of some of the concepts, particularly Merkle Trees.
 
 ## Prerequisites
 
-This tutorial has been tested with [zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0` and [o1js](https://www.npmjs.com/package/o1js) version `0.15.2`.
+This tutorial has been tested with:
+
+- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.20.1`
+- [o1js](https://www.npmjs.com/package/o1js) version `1.1.0`.
 
 Ensure your environment meets the [Prerequisites](/zkapps/tutorials#prerequisites) for zkApp Developer Tutorials.
 
@@ -75,11 +85,11 @@ console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
 const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
-const char1EqualsChar2: Bool = char1.equals(char2);
+const char1EqualsChar2: Bool = char1.toField().equals(char2.toField());
 
 console.log(`char1: ${char1}`);
 console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
-console.log(`Fields in char1: ${char1.toFields().length}`);
+console.log(`Fields in char1: ${Character.toFields(char1).length}`);
 ```
 
 This result prints to the console when the code is run:
@@ -100,7 +110,7 @@ Four advanced types are:
 
 - [CircuitString](../o1js-reference/classes/CircuitString)
 - [PrivateKey](../o1js-reference/classes/PrivateKey)
-- [PublicKey](../o1js-reference/classes/Types.PublicKey)
+- [PublicKey](../o1js-reference/classes/PublicKey)
 - [Signature](../o1js-reference/classes/Signature)
 
 All arguments passed into smart contracts must be arguments o1js can consume. You cannot pass normal strings. Instead, you must pass in strings that are wrapped to be compatible with circuits. This is accomplished with `Struct`.
@@ -114,15 +124,15 @@ A brief example of custom types:
 ```ts
 const str1 = CircuitString.fromString('abc..xyz');
 console.log(`str1: ${str1}`);
-console.log(`Fields in str1: ${str1.toFields().length}`);
+console.log(`Fields in str1: ${CircuitString.toFields(str1).length}`);
 
 // --------------------------------------
 
 const zkAppPrivateKey = PrivateKey.random();
 const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
 
-const data1 = char2.toFields().concat(signedNumSum.toFields());
-const data2 = char1.toFields().concat(str1.toFields());
+const data1 = Character.toFields(char2).concat(signedNumSum.toFields());
+const data2 = Character.toFields(char1).concat(CircuitString.toFields(str1));
 
 const signature = Signature.create(zkAppPrivateKey, data2);
 
@@ -145,13 +155,13 @@ And the console output:
 ```
 str1: abc..xyz
 Fields in str1: 128
-private key: EKEdDGiN9Zd9TaSPcNjs3nB6vs9JS3WCgdsrfyEeLcQpnXNR7j6E
-public key: B62qoGDUnJGdiD8MPEs4Lo76kWXSNbJD6Dn8HzkaBSfhZQWShJC8gEe
-Fields in private key: 255
+private key: EKF714j3wgH3tuuQncL93ruQFbJGnhDzfWossAHUp15PdATKE7Ka
+public key: B62qrhsTdExJDAxQx76V1mc13ibzikpmNaNRShTG3MWedCXESBhQ2Ch
+Fields in private key: 2
 Fields in public key: 2
 signature verified for data1: false
 signature verified for data2: true
-Fields in signature: 256
+Fields in signature: 3
 ```
 
 Observe and follow best practices for your key security. Make sure that you never use the private key in this example output, or any private key that's publicly accessible, in a real application.
@@ -316,11 +326,11 @@ For example, to put a condition on a leaf update, the `update` function checks t
 ...
   @state(Field) treeRoot = State<Field>();
 ...
-  @method initState(initialRoot: Field) {
+  @method async initState(initialRoot: Field) {
     this.treeRoot.set(initialRoot);
   }
 
-  @method update(
+  @method async update(
     leafWitness: MerkleWitness20,
     numberBefore: Field,
     incrementAmount: Field
@@ -357,11 +367,11 @@ const tree = new MerkleTree(height);
 class MerkleWitness20 extends MerkleWitness(height) {}
 
 // deploy the smart contract
-const deployTxn = await Mina.transaction(deployerAccount, () => {
+const deployTxn = await Mina.transaction(deployerAccount, async () => {
   AccountUpdate.fundNewAccount(deployerAccount);
-  zkApp.deploy();
+  await zkApp.deploy();
   // get the root of the new tree to use as the initial tree root
-  zkApp.initState(tree.getRoot());
+  await zkApp.initState(tree.getRoot());
 });
 await deployTxn.prove();
 deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
@@ -384,15 +394,15 @@ const witness = new MerkleWitness20(tree.getWitness(incrementIndex));
 tree.setLeaf(incrementIndex, incrementAmount);
 
 // update the smart contract
-const txn1 = await Mina.transaction(senderPublicKey, () => {
-  zkApp.update(
+const txn1 = await Mina.transaction(senderPublicKey, async () => {
+  await zkApp.update(
     witness,
     Field(0), // leafs in new trees start at a state of 0
     incrementAmount
   );
 });
 await txn1.prove();
-const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
+const pendingTx = await txn1.sign([senderPrivateKey, basicTreeZkAppPrivateKey]).send();
 await pendingTx.wait();
 
 // compare the root of the smart contract tree to our local tree
@@ -439,10 +449,10 @@ It can be used inside smart contracts with a witness, similar to merkle trees
 ...
   @state(Field) mapRoot = State<Field>();
 ...
-  @method init(initialRoot: Field) {
+  @method async init(initialRoot: Field) {
     this.mapRoot.set(initialRoot);
   }
-  @method update(
+  @method async update(
     keyWitness: MerkleMapWitness,
     keyToChange: Field,
     valueBefore: Field,
@@ -479,8 +489,8 @@ const key = Field(100);
 const witness = map.getWitness(key);
 ...
 // update the smart contract
-const txn1 = await Mina.transaction(deployerAccount, () => {
-  zkapp.update(
+const txn1 = await Mina.transaction(deployerAccount, async () => {
+  await zkapp.update(
     contract.update(
       witness,
       key,

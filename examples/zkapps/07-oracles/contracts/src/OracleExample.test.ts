@@ -15,9 +15,9 @@ const ORACLE_PUBLIC_KEY =
   'B62qoAE4rBRuTgC42vqvEyUqCGhaZsW58SKVW4Ht8aYqP9UTvxFWBgy';
 
 describe('OracleExample', () => {
-  let deployerAccount: PublicKey,
+  let deployerAccount: Mina.TestPublicKey,
     deployerKey: PrivateKey,
-    senderAccount: PublicKey,
+    senderAccount: Mina.TestPublicKey,
     senderKey: PrivateKey,
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey,
@@ -27,22 +27,22 @@ describe('OracleExample', () => {
     if (proofsEnabled) await OracleExample.compile();
   });
 
-  beforeEach(() => {
-    const Local = Mina.LocalBlockchain({ proofsEnabled });
+  beforeEach(async () => {
+    const Local = await Mina.LocalBlockchain({ proofsEnabled });
     Mina.setActiveInstance(Local);
-    ({ privateKey: deployerKey, publicKey: deployerAccount } =
-      Local.testAccounts[0]);
-    ({ privateKey: senderKey, publicKey: senderAccount } =
-      Local.testAccounts[1]);
+    deployerAccount = Local.testAccounts[0];
+    deployerKey = deployerAccount.key;
+    senderAccount = Local.testAccounts[1];
+    senderKey = senderAccount.key;
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
     zkApp = new OracleExample(zkAppAddress);
   });
 
   async function localDeploy() {
-    const txn = await Mina.transaction(deployerAccount, () => {
+    const txn = await Mina.transaction(deployerAccount, async () => {
       AccountUpdate.fundNewAccount(deployerAccount);
-      zkApp.deploy();
+      await zkApp.deploy();
     });
     await txn.prove();
     // this tx needs .sign(), because `deploy()` adds an account update that requires signature authorization
@@ -65,8 +65,8 @@ describe('OracleExample', () => {
         '7mXGPCbSJUiYgZnGioezZm7GCy46CEUbgcCH9nrJYXQQiwwVrA5wemBX4T1XFHUw62oR2324QNnkUVXW6yYQLsPsqxZ3nsYR'
       );
 
-      const txn = await Mina.transaction(senderAccount, () => {
-        zkApp.verify(id, creditScore, signature);
+      const txn = await Mina.transaction(senderAccount, async () => {
+        await zkApp.verify(id, creditScore, signature);
       });
       await txn.prove();
       await txn.sign([senderKey]).send();
@@ -86,8 +86,8 @@ describe('OracleExample', () => {
       );
 
       expect(async () => {
-        const txn = await Mina.transaction(senderAccount, () => {
-          zkApp.verify(id, creditScore, signature);
+        const txn = await Mina.transaction(senderAccount, async () => {
+          await zkApp.verify(id, creditScore, signature);
         });
       }).rejects;
     });
@@ -102,8 +102,8 @@ describe('OracleExample', () => {
       );
 
       expect(async () => {
-        const txn = await Mina.transaction(senderAccount, () => {
-          zkApp.verify(id, creditScore, signature);
+        const txn = await Mina.transaction(senderAccount, async () => {
+          await zkApp.verify(id, creditScore, signature);
         });
       }).rejects;
     });
@@ -122,8 +122,8 @@ describe('OracleExample', () => {
       const creditScore = Field(data.data.creditScore);
       const signature = Signature.fromBase58(data.signature);
 
-      const txn = await Mina.transaction(senderAccount, () => {
-        zkApp.verify(id, creditScore, signature);
+      const txn = await Mina.transaction(senderAccount, async () => {
+        await zkApp.verify(id, creditScore, signature);
       });
       await txn.prove();
       await txn.sign([senderKey]).send();
@@ -146,8 +146,8 @@ describe('OracleExample', () => {
       const signature = Signature.fromBase58(data.signature);
 
       expect(async () => {
-        const txn = await Mina.transaction(senderAccount, () => {
-          zkApp.verify(id, creditScore, signature);
+        const txn = await Mina.transaction(senderAccount, async () => {
+          await zkApp.verify(id, creditScore, signature);
         });
       }).rejects;
     });

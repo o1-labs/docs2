@@ -5,15 +5,15 @@ import { Field, Mina, PrivateKey, PublicKey, AccountUpdate } from 'o1js';
  * This file specifies how to test the `Add` example smart contract. It is safe to delete this file and replace
  * with your own tests.
  *
- * See https://docs.minaprotocol.com/zkapps for more info.
+ * See https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps for more info.
  */
 
 let proofsEnabled = false;
 
 describe('Add', () => {
-  let deployerAccount: PublicKey,
+  let deployerAccount: Mina.TestPublicKey,
     deployerKey: PrivateKey,
-    senderAccount: PublicKey,
+    senderAccount: Mina.TestPublicKey,
     senderKey: PrivateKey,
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey,
@@ -23,22 +23,22 @@ describe('Add', () => {
     if (proofsEnabled) await Add.compile();
   });
 
-  beforeEach(() => {
-    const Local = Mina.LocalBlockchain({ proofsEnabled });
+  beforeEach(async () => {
+    const Local = await Mina.LocalBlockchain({ proofsEnabled });
     Mina.setActiveInstance(Local);
-    ({ privateKey: deployerKey, publicKey: deployerAccount } =
-      Local.testAccounts[0]);
-    ({ privateKey: senderKey, publicKey: senderAccount } =
-      Local.testAccounts[1]);
+    [deployerAccount, senderAccount] = Local.testAccounts;
+    deployerKey = deployerAccount.key;
+    senderKey = senderAccount.key;
+
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
     zkApp = new Add(zkAppAddress);
   });
 
   async function localDeploy() {
-    const txn = await Mina.transaction(deployerAccount, () => {
+    const txn = await Mina.transaction(deployerAccount, async () => {
       AccountUpdate.fundNewAccount(deployerAccount);
-      zkApp.deploy();
+      await zkApp.deploy();
     });
     await txn.prove();
     // this tx needs .sign(), because `deploy()` adds an account update that requires signature authorization
@@ -55,8 +55,8 @@ describe('Add', () => {
     await localDeploy();
 
     // update transaction
-    const txn = await Mina.transaction(senderAccount, () => {
-      zkApp.update();
+    const txn = await Mina.transaction(senderAccount, async () => {
+      await zkApp.update();
     });
     await txn.prove();
     await txn.sign([senderKey]).send();

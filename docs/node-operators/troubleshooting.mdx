@@ -229,7 +229,7 @@ mina advanced pooled-user-commands | jq . | grep fee | sort | uniq -c | sort -n
       5     "fee": "0.1",
 ```
 
-If there are many transactions in the pool, you may need to increase your fee. For a visual overview of transaction fees, see [here](https://minaexplorer.com/mempool).
+If there are many transactions in the pool, you may need to increase your fee. For a visual overview of transaction fees, see [here](https://minascan.io/mainnet/home).
 
 If you have a stuck transaction due to a low fee, you will have to wait for it to be included in a block or to be evicted from the transaction pool as there is currently no way to cancel a transaction due to this [known issue](https://github.com/MinaProtocol/mina/issues/6605).
 
@@ -324,7 +324,7 @@ To keep the network stable, o1Labs has 30% of the stake, so has a much greater p
 
 ### How do I know if I won a block or a transaction went through?
 
-The easiest way is to check a [block explorer](https://minaexplorer.com/). You can also get this information for recent blocks via the [GraphQL API](https://minaprotocol.com/docs/node-developers/graphql-api).
+The easiest way is to check a [block explorer](https://minascan.io/mainnet/home). You can also get this information for recent blocks via the [GraphQL API](https://minaprotocol.com/docs/node-developers/graphql-api).
 
 ### Why do I have a message of "No blocks won this this epoch"?
 
@@ -340,7 +340,7 @@ Sometimes high fees will be included in blocks, and this is a function of how SN
 
 By default, the work selection for a SNARK worker is random. You can change this by adding the `-work-selection seq` flag to the `mina daemon` command, which will work on jobs in the order required to be included from the scan state and will likely result in your snarks being included without a potentially lengthy delay.
 
-For choosing fees, you can look at historical blocks to determine prices that have been bought, or look at the table listed [here](https://minaexplorer.com/snark-challenge).
+For choosing fees, you can look at historical blocks to determine prices that have been bought.
 
 ### How can I disable the SNARK worker?
 

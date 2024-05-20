@@ -5,7 +5,7 @@ import {
   ZkProgram,
   Struct,
   Bool,
-  Circuit,
+  Provable,
   Poseidon,
   MerkleMap,
   MerkleTree,
@@ -27,8 +27,10 @@ async function main() {
   const votersTree = new MerkleTree(20);
   const nullifierMap = new MerkleMap();
 
-  const voters = new Array(10).fill(null).map((_) => PrivateKey.random());
-  voters.forEach((v, i) => votersTree.setLeaf(BigInt(i), Poseidon.hash(v.toPublicKey().toFields())));
+  const voters = new Array(10).fill(null).map(PrivateKey.random);
+  voters.forEach((v, i) =>
+    votersTree.setLeaf(BigInt(i), Poseidon.hash(v.toPublicKey().toFields()))
+  );
 
   const vote0 = VoteState.newVote(votersTree.getRoot());
   const proof0 = await Vote.create(vote0);
@@ -37,11 +39,26 @@ async function main() {
 
   const voterIndex1 = 3;
   const nullifierKey1 = Poseidon.hash(voters[voterIndex1].toFields());
-  const nullifierWitness1 = nullifierMap.getWitness(nullifierKey1)
-  const voterTreeWitness1 = new MerkleWitness20(votersTree.getWitness(BigInt(voterIndex1)));
+  const nullifierWitness1 = nullifierMap.getWitness(nullifierKey1);
+  const voterTreeWitness1 = new MerkleWitness20(
+    votersTree.getWitness(BigInt(voterIndex1))
+  );
 
-  const vote1 = VoteState.applyVote(vote0, Bool(true), voters[voterIndex1], voterTreeWitness1, nullifierWitness1);
-  const proof1 = await Vote.applyVote(vote1, proof0, Bool(true), voters[voterIndex1], voterTreeWitness1, nullifierWitness1);
+  const vote1 = VoteState.applyVote(
+    vote0,
+    Bool(true),
+    voters[voterIndex1],
+    voterTreeWitness1,
+    nullifierWitness1
+  );
+  const proof1 = await Vote.applyVote(
+    vote1,
+    proof0,
+    Bool(true),
+    voters[voterIndex1],
+    voterTreeWitness1,
+    nullifierWitness1
+  );
   nullifierMap.set(nullifierKey1, Field(1));
 
   console.log('making proof 2');
@@ -49,19 +66,36 @@ async function main() {
   const voterIndex2 = 5;
   const nullifierKey2 = Poseidon.hash(voters[voterIndex2].toFields());
   const nullifierWitness2 = nullifierMap.getWitness(nullifierKey2);
-  const voterTreeWitness2 = new MerkleWitness20(votersTree.getWitness(BigInt(voterIndex2)));
+  const voterTreeWitness2 = new MerkleWitness20(
+    votersTree.getWitness(BigInt(voterIndex2))
+  );
 
-  const vote2 = VoteState.applyVote(vote1, Bool(false), voters[voterIndex2], voterTreeWitness2, nullifierWitness2);
-  const proof2 = await Vote.applyVote(vote2, proof1, Bool(false), voters[voterIndex2], voterTreeWitness2, nullifierWitness2);
+  const vote2 = VoteState.applyVote(
+    vote1,
+    Bool(false),
+    voters[voterIndex2],
+    voterTreeWitness2,
+    nullifierWitness2
+  );
+  const proof2 = await Vote.applyVote(
+    vote2,
+    proof1,
+    Bool(false),
+    voters[voterIndex2],
+    voterTreeWitness2,
+    nullifierWitness2
+  );
   nullifierMap.set(nullifierKey2, Field(1));
 
   console.log('verifying proof 2');
-  console.log(proof2.publicInput.voteFor.toString(), proof2.publicInput.voteAgainst.toString());
+  console.log(
+    proof2.publicInput.voteFor.toString(),
+    proof2.publicInput.voteAgainst.toString()
+  );
 
   const ok = await Vote.verify(proof2);
   console.log('ok', ok);
-
-};
+}
 
 // ===============================================================
 
@@ -70,8 +104,7 @@ class VoteState extends Struct({
   voteAgainst: Field,
   votersTreeRoot: Field,
   nullifierMapRoot: Field,
-}) { 
-
+}) {
   static newVote(votersTreeRoot: Field) {
     const emptyMap = new MerkleMap();
 
@@ -79,33 +112,39 @@ class VoteState extends Struct({
       voteFor: Field(0),
       voteAgainst: Field(0),
       votersTreeRoot,
-      nullifierMapRoot: emptyMap.getRoot()
+      nullifierMapRoot: emptyMap.getRoot(),
     });
   }
 
   static applyVote(
-    state: VoteState, 
+    state: VoteState,
     voteFor: Bool,
-    privateKey: PrivateKey, 
+    privateKey: PrivateKey,
     voterWitness: MerkleWitness20,
-    nullifierWitness: MerkleMapWitness,
+    nullifierWitness: MerkleMapWitness
   ) {
     const publicKey = privateKey.toPublicKey();
 
-    const voterRoot = voterWitness.calculateRoot(Poseidon.hash(publicKey.toFields()));
+    const voterRoot = voterWitness.calculateRoot(
+      Poseidon.hash(publicKey.toFields())
+    );
     voterRoot.assertEquals(state.votersTreeRoot);
 
     let nullifier = Poseidon.hash(privateKey.toFields());
 
-    const [ nullifierRootBefore, key ] = nullifierWitness.computeRootAndKey(Field(0));
+    const [nullifierRootBefore, key] = nullifierWitness.computeRootAndKey(
+      Field(0)
+    );
     key.assertEquals(nullifier);
     nullifierRootBefore.assertEquals(state.nullifierMapRoot);
 
-    const [ nullifierRootAfter, _ ] = nullifierWitness.computeRootAndKey(Field(1));
+    const [nullifierRootAfter] = nullifierWitness.computeRootAndKey(Field(1));
 
-    return new VoteState({ 
-      voteFor: state.voteFor.add(Circuit.if(voteFor, Field(1), Field(0))),
-      voteAgainst: state.voteAgainst.add(Circuit.if(voteFor, Field(0), Field(1))),
+    return new VoteState({
+      voteFor: state.voteFor.add(Provable.if(voteFor, Field(1), Field(0))),
+      voteAgainst: state.voteAgainst.add(
+        Provable.if(voteFor, Field(0), Field(1))
+      ),
       votersTreeRoot: state.votersTreeRoot,
       nullifierMapRoot: nullifierRootAfter,
     });
@@ -125,7 +164,6 @@ class VoteState extends Struct({
     state1.voteAgainst.assertEquals(state2.voteAgainst);
     state1.votersTreeRoot.assertEquals(state2.votersTreeRoot);
     state1.nullifierMapRoot.assertEquals(state2.nullifierMapRoot);
-
   }
 }
 
@@ -139,27 +177,36 @@ const Vote = ZkProgram({
     create: {
       privateInputs: [],
 
-      method(state: VoteState) {
+      async method(state: VoteState) {
         VoteState.assertInitialState(state);
       },
     },
 
     applyVote: {
-      privateInputs: [SelfProof, Bool, PrivateKey, MerkleWitness20, MerkleMapWitness],
+      privateInputs: [
+        SelfProof,
+        Bool,
+        PrivateKey,
+        MerkleWitness20,
+        MerkleMapWitness,
+      ],
 
-      method(newState: VoteState, 
-             earlierProof: SelfProof<VoteState, void>, 
-             voteFor: Bool, 
-             voter: PrivateKey, 
-             voterWitness: MerkleWitness20, 
-             nullifierWitness: MerkleMapWitness
-            ) {
+      async method(
+        newState: VoteState,
+        earlierProof: SelfProof<VoteState, void>,
+        voteFor: Bool,
+        voter: PrivateKey,
+        voterWitness: MerkleWitness20,
+        nullifierWitness: MerkleMapWitness
+      ) {
         earlierProof.verify();
-        const computedState = VoteState.applyVote(earlierProof.publicInput, 
-                                                  voteFor, 
-                                                  voter, 
-                                                  voterWitness, 
-                                                  nullifierWitness);
+        const computedState = VoteState.applyVote(
+          earlierProof.publicInput,
+          voteFor,
+          voter,
+          voterWitness,
+          nullifierWitness
+        );
         VoteState.assertEquals(computedState, newState);
       },
     },
@@ -169,4 +216,3 @@ const Vote = ZkProgram({
 // ===============================================================
 
 main();
-

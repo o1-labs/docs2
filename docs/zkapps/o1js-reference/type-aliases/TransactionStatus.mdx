@@ -1,0 +1,13 @@
+```ts
+type TransactionStatus: "INCLUDED" | "PENDING" | "UNKNOWN";
+```
+
+INCLUDED: A transaction that is on the longest chain
+
+PENDING: A transaction either in the transition frontier or in transaction pool but is not on the longest chain
+
+UNKNOWN: The transaction has either been snarked, reached finality through consensus or has been dropped
+
+## Source
+
+[lib/mina/graphql.ts:213](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/graphql.ts#L213)

@@ -15,6 +15,15 @@ keywords:
   - tokens
 ---
 
+<<<<<<< HEAD
+=======
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+>>>>>>> main
 # Tutorial 8: Custom Tokens
 
 In this tutorial, you learn to create custom tokens.
@@ -43,7 +52,7 @@ For reference, a more extensive example, including all the ways to interact with
 
 This tutorial has been tested with:
 
-- [Mina zkApp CLI](https://github.com/o1-labs/zkapp-cli) version `0.16.0`
+- [zkApp CLI](https://www.npmjs.com/package/zkapp-cli) version `0.16.0`
 - [o1js](https://www.npmjs.com/package/o1js) version `0.15.3`
 
 ## Create the project
@@ -63,7 +72,7 @@ This tutorial has been tested with:
     svelte
     nuxt
     empty
-  ❯ none
+  > none
   ```
 ## Prepare the project
 
@@ -184,38 +193,38 @@ Next, add an init method and a method that mints tokens.
 
 - In the `mint()` method, track how many tokens are in existence.
 
-```ts
-  @method init() {
-    super.init();
-    this.account.tokenSymbol.set(tokenSymbol);
-    this.totalAmountInCirculation.set(UInt64.zero);
-  }
+  ```ts
+    @method async init() {
+      super.init();
+      this.account.tokenSymbol.set(tokenSymbol);
+      this.totalAmountInCirculation.set(UInt64.zero);
+    }
 
-  @method mint(
-    receiverAddress: PublicKey,
-    amount: UInt64,
-    adminSignature: Signature
-  ) {
-    let totalAmountInCirculation = this.totalAmountInCirculation.get();
-    this.totalAmountInCirculation.requireEquals(totalAmountInCirculation);
+    @method async mint(
+      receiverAddress: PublicKey,
+      amount: UInt64,
+      adminSignature: Signature
+    ) {
+      let totalAmountInCirculation = this.totalAmountInCirculation.get();
+      this.totalAmountInCirculation.requireEquals(totalAmountInCirculation);
 
-    let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+      let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
 
-    adminSignature
-      .verify(
-        this.address,
-        amount.toFields().concat(receiverAddress.toFields())
-      )
-      .assertTrue();
+      adminSignature
+        .verify(
+          this.address,
+          amount.toFields().concat(receiverAddress.toFields())
+        )
+        .assertTrue();
 
-    this.token.mint({
-      address: receiverAddress,
-      amount,
-    });
+      this.token.mint({
+        address: receiverAddress,
+        amount,
+      });
 
-    this.totalAmountInCirculation.set(newTotalAmountInCirculation);
-  }
-```
+      this.totalAmountInCirculation.set(newTotalAmountInCirculation);
+    }
+  ```
 
 ### Send function
 
@@ -223,21 +232,20 @@ Finally, write a send function.
 
 - Holders of the MYTKN token call the `sendTokens()` method to send tokens to other Mina accounts.
 
-
-```ts
-  @method sendTokens(
-    senderAddress: PublicKey,
-    receiverAddress: PublicKey,
-    amount: UInt64
-  ) {
-    this.token.send({
-      from: senderAddress,
-      to: receiverAddress,
-      amount,
-    });
+  ```ts
+    @method async sendTokens(
+      senderAddress: PublicKey,
+      receiverAddress: PublicKey,
+      amount: UInt64
+    ) {
+      this.token.send({
+        from: senderAddress,
+        to: receiverAddress,
+        amount,
+      });
+    }
   }
-}
-```
+  ```
 
 That completes a review of a basic token. 
 
@@ -257,6 +265,6 @@ For now, see this [example](https://github.com/o1-labs/o1js/blob/main/src/exampl
 
 You have finished reviewing the steps to build a smart contract to manage a token. You learned how to build a smart contract that places custom rules over tokens.
 
-To learn more, see [Custom Token API](/zkapps/o1js/custom-tokens).
+To learn more, see [Custom Token API](/zkapps/writing-a-zkapp/feature-overview/custom-tokens).
 
 Check out [Tutorial 9: Recursion](/zkapps/tutorials/recursion) to learn how to use recursive ZKPs with o1js, to implement zkRollups, large computations, and more.

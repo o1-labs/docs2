@@ -7,15 +7,16 @@ import {
   AccountUpdate,
   Permissions,
   PublicKey,
-  SmartContract,
   UInt64,
   State,
   state,
+  TokenContract,
+  AccountUpdateForest,
 } from 'o1js';
 
-export class WrappedMina extends SmartContract {
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
+export class WrappedMina extends TokenContract {
+  async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
       send: Permissions.proof(),
@@ -26,23 +27,27 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method init() {
+  @method async init() {
     super.init();
 
-    let receiver = this.token.mint({
+    let receiver = this.internal.mint({
       address: this.address,
       amount: UInt64.from(0),
     });
     // require that the receiving account is new, so this can be only done once
     receiver.account.isNew.requireEquals(Bool(true));
     // pay fees for opened account
-    this.balance.subInPlace(Mina.accountCreationFee());
+    this.balance.subInPlace(Mina.getNetworkConstants().accountCreationFee);
     this.priorMina.set(UInt64.from(0));
   }
 
   // ----------------------------------------------------------------------
+  async approveBase(forest: AccountUpdateForest) {
+    this.checkZeroBalanceChange(forest);
+  }
 
-  @method mintWrappedMina(amount: UInt64, destination: PublicKey) {
+  // ----------------------------------------------------------------------
+  @method async mintWrappedMina(amount: UInt64, destination: PublicKey) {
     const priorMina = this.priorMina.get();
     this.priorMina.requireEquals(this.priorMina.get());
 
@@ -51,21 +56,22 @@ export class WrappedMina extends SmartContract {
     // TODO is there a way to directly get the balance change for this transaction?
     this.account.balance.requireBetween(newMina, UInt64.MAXINT());
 
-    this.token.mint({ address: destination, amount });
+    this.internal.mint({ address: destination, amount });
 
     this.priorMina.set(newMina);
   }
 
   // ----------------------------------------------------------------------
 
-  @method redeemWrappedMinaApprove(burnWMINA: AccountUpdate, amount: UInt64) {
-    let { StaticChildren, NoDelegation } = AccountUpdate.Layout;
-
+  @method async redeemWrappedMinaApprove(
+    burnWMINA: AccountUpdate,
+    amount: UInt64
+  ) {
     // check that the burn account update has our token id
-    burnWMINA.body.tokenId.assertEquals(this.token.id);
+    burnWMINA.body.tokenId.assertEquals(this.tokenId);
 
     // approve burn with at most 2 child account updates, which don't get token permissions
-    this.approve(burnWMINA, StaticChildren(NoDelegation, NoDelegation));
+    this.approve(burnWMINA);
 
     // check that the account update burns the specified amount
     let balanceChange = Int64.fromObject(burnWMINA.body.balanceChange);
@@ -83,12 +89,12 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method redeemWrappedMinaWithoutApprove(
+  @method async redeemWrappedMinaWithoutApprove(
     source: PublicKey,
     destination: PublicKey,
     amount: UInt64
   ) {
-    this.token.burn({ address: source, amount });
+    this.internal.burn({ address: source, amount });
 
     const priorMina = this.priorMina.get();
     this.priorMina.requireEquals(this.priorMina.get());
@@ -103,7 +109,7 @@ export class WrappedMina extends SmartContract {
   // ----------------------------------------------------------------------
 
   // let a zkapp send tokens to someone, provided the token supply stays constant
-  @method approveUpdateAndSend(
+  @method async approveUpdateAndSend(
     zkappUpdate: AccountUpdate,
     to: PublicKey,
     amount: UInt64
@@ -114,13 +120,13 @@ export class WrappedMina extends SmartContract {
     let balanceChange = Int64.fromObject(zkappUpdate.body.balanceChange);
     balanceChange.assertEquals(Int64.from(amount).neg());
     // add same amount of tokens to the receiving address
-    this.token.mint({ address: to, amount });
+    this.internal.mint({ address: to, amount });
   }
 
   // ----------------------------------------------------------------------
 
   // let a zkapp do anything, provided the token supply stays constant
-  @method approveUpdate(zkappUpdate: AccountUpdate) {
+  @method async approveUpdate(zkappUpdate: AccountUpdate) {
     this.approve(zkappUpdate); // TODO is this secretly approving other changes?
 
     // see if balance change is zero
@@ -130,14 +136,14 @@ export class WrappedMina extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method transfer(from: PublicKey, to: PublicKey, value: UInt64) {
-    this.token.send({ from, to, amount: value });
+  @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
+    this.internal.send({ from, to, amount: value });
   }
 
   // ----------------------------------------------------------------------
 
-  @method getBalance(publicKey: PublicKey): UInt64 {
-    let accountUpdate = AccountUpdate.create(publicKey, this.token.id);
+  @method.returns(UInt64) async getBalance(publicKey: PublicKey) {
+    let accountUpdate = AccountUpdate.create(publicKey, this.tokenId);
     let balance = accountUpdate.account.balance.get();
     accountUpdate.account.balance.requireEquals(
       accountUpdate.account.balance.get()
