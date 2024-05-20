@@ -12,16 +12,6 @@ keywords:
 
 # Interacting with zkApps server-side
 
-<<<<<<< HEAD
-While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side, or from a developer's machine.
-=======
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
->>>>>>> main
-
-# Interacting with zkApps server-side
-
 While user-facing zkApps can be written for the browser, sometimes it is useful to interact with a zkApp server-side or on your own machine. For example, when initializing a zkApp using programmatically generated information, deploying a zkApp in custom ways, or writing scripts that create transactions depending on real-world (periodically updating an on-chain value with signed data, like a keeper for an oracle) or on-chain events. 
 
 Interacting with zkApps server-side is useful for some use cases. For example, if you need to create a custom account for your zkApp to deploy a zkApp to a different key than the fee payer key. You can programmatically parameterize a zkApp before you initialize it. You can even create a smart contract programmatically for users as part of an application.
@@ -102,11 +92,7 @@ To make this more script convenient to write, use the provided helper functions.
   ...
   ```
 
-<<<<<<< HEAD
-This example connects to a remote RPC run by `minaexplorer.com`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators) docs.
-=======
-This example connects to a remote RPC served by `minascan.io`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/getting-started) docs.
->>>>>>> main
+This example connects to a remote RPC served by `minascan.io`. You could also run a Mina node locally and instead use its GraphQL endpoint. In other blockchains a local Mina node would be very heavyweight, but because Mina is succinct this is actually a reasonable option. See the Node Operator [Getting Started](/node-operators/block-producer-node/getting-started) docs.
 
 ### Public/private key pair
 

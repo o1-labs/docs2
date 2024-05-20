@@ -19,16 +19,6 @@ keywords:
   - authorization types
 ---
 
-:::info
-
-<<<<<<< HEAD:docs/zkapps/o1js/interact-with-mina.md
-The maximum number of zkApp transactions per block is currently capped at 24. This restriction will be gradually lifted after the Mainnet upgrade.
-=======
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
->>>>>>> main:docs/zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina.md
-
-:::
-
 # Interacting With Mina
 
 Now that you know about writing zkApp methods, it's time to learn how users can call these methods.
