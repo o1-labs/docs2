@@ -9,7 +9,7 @@ keywords:
   - install mina
   - start a mina node
   - .mina-env
-  - connectivity 
+  - connectivity
   - how to monitor a mina node
   - standalone mina node
 ---
@@ -30,7 +30,7 @@ Steps to install mina, connect to the Mina Mainnet network, and test connectivit
 
 ## Update your mina daemon
 
-The first step to connecting to Mainnet is to install the latest daemon version. 
+The first step to connecting to Mainnet is to install the latest daemon version.
 
 ### Ubuntu 20.04 and Debian 10, 11, 12
 
@@ -40,7 +40,7 @@ To install the latest [Mainnet **Stable** Release 1.4.0](https://github.com/Mina
 
 **Note:** A known issue exists with the Hetzner hosting provider. If you are using Hetzner, follow the [Networking troubleshooting](/node-operators/troubleshooting#my-hosting-provider-is-warning-me-abuse-message-netscan-detected) guidance before you start a node.
 
-Auto-restart flows are in place to ensure your nodes perform optimally.  
+Auto-restart flows are in place to ensure your nodes perform optimally.
 
 1. Start a standalone mina node to make sure everything works.
 
@@ -179,7 +179,7 @@ docker run --name mina -d \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:1.4.0-c980ba8-bullseye-mainnet \
+gcr.io/o1labs-192920/mina-daemon:2.0.0-039296a-mainnet \
 daemon
 ```
 
@@ -242,6 +242,6 @@ The expected response includes these fields:
 
 ## Step up your game
 
-Now that you have a fully synced node, learn about some of the more advanced features of the daemon, such as [Sending a payment](/mina-protocol/sending-a-payment) and [Staking & Delegating](/node-operators/staking-and-snarking). 
+Now that you have a fully synced node, learn about some of the more advanced features of the daemon, such as [Sending a payment](/mina-protocol/sending-a-payment) and [Staking & Delegating](/node-operators/staking-and-snarking).
 
 To earn MINA tokens, check out the [Mina Foundation Delegation Program](/node-operators/delegation-program/foundation-delegation-program).

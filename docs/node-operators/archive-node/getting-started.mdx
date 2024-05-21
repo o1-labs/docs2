@@ -55,13 +55,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=1.4.0-c980ba8
+     sudo apt-get install mina-archive=2.0.0-039296a
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
+     gcr.io/o1labs-192920/mina-archive:2.0.0-039296a-bullseye
      ```
 
 ## Set up the archive node
@@ -93,9 +93,7 @@ To run a local archive node to run it in the foreground for testing:
 1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
 
   ```sh
-  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql)
-
-  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql)
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/release/2.0.0/src/app/archive/create_schema.sql)
 
   ```
 
@@ -127,7 +125,7 @@ To get started with installing and running the archive node using Docker, follow
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
+   docker pull gcr.io/o1labs-192920/mina-archive:2.0.0-bullseye
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -170,7 +168,7 @@ To get started with installing and running the archive node using Docker, follow
    --name archive \
    -p 3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:1.4.0-c980ba8-bullseye \
+   gcr.io/o1labs-192920/mina-archive:2.0.0-bullseye \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -202,7 +200,7 @@ To run the archive node using Docker Compose:
 3. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:1.4.0-c980ba8-bullseye
+   docker pull gcr.io/o1labs-192920/mina-archive:2.0.0-bullseye
    ```
 
 4. Pull and install the postgres image from Docker Hub.
@@ -230,7 +228,7 @@ To run the archive node using Docker Compose:
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:1.4.0-c980ba8-bullseye'
+       image: 'gcr.io/o1labs-192920/mina-archive:2.0.0-bullseye'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086
