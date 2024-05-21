@@ -1,9 +1,19 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
 
   webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      o1js: path.resolve(__dirname, 'node_modules/o1js/dist/web/index.js'),
+    };
     config.experiments = { ...config.experiments, topLevelAwait: true };
     config.optimization.minimizer = [];
     return config;
@@ -36,7 +46,7 @@ const nextConfig = {
    * when deployed to GitHub Pages. The assetPrefix needs to be added manually to any assets
    * if they're not loaded by Next.js' automatic handling (for example, in CSS files or in a <img> element).
    * The 'ghp-postbuild.js' script in this project prepends the repo name to asset urls in the built css files
-   * after runing 'npm run deploy'.
+   * after running 'npm run deploy'.
    */
   basePath: process.env.NODE_ENV === 'production' ? '/04-zkapp-browser-ui' : '', // update if your repo name changes for 'npm run deploy' to work correctly
   assetPrefix: process.env.NODE_ENV === 'production' ? '/04-zkapp-browser-ui/' : '', // update if your repo name changes for 'npm run deploy' to work correctly
