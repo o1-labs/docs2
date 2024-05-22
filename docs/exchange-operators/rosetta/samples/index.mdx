@@ -16,25 +16,26 @@ Start with the required imports and define constants:
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import { Client } from 'mina-signer'
-import axios from 'axios'
+import axios from "axios"
+import { Client } from "mina-signer"
 
 const TESTNET_NETWORK_IDENTIFIER = {
-    "network_identifier": {
-        "blockchain": "mina",
-        "network": "testnet"
-    }
+  network_identifier: {
+    blockchain: "mina",
+    network: "testnet",
+  },
 }
-const MINA_TOKEN_ID = "1"
+const MINA_TOKEN_ID = "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf"
 const MINA_DECIMALS = 9
 const MINA_SYMBOL = "MINA"
 const MINA_CURVE_TYPE = "pallas"
 
-const mina = new Client({network: 'testnet'})
+const mina = new Client({ network: "testnet" })
+
 const request = axios.create({
-    baseURL: "https://rosetta-devnet.minaprotocol.network/"
+  baseURL: "https://rosetta-devnet.minaprotocol.network/",
 })
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 ```
 
 </TabItem>

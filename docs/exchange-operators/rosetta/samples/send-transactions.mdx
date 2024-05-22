@@ -34,35 +34,41 @@ The implementation is as follows:
 
 ```ts
 async function send(privateKey: string, to: string, valueNano: number, feeNano: number) {
-    const publicKey = mina.derivePublicKey(privateKey)
-    const publicKeyRaw = mina.publicKeyToRaw(publicKey)
-    // get transfer payload to sign
-    const payloadsResponse = await txPayloads(
-        publicKeyRaw, publicKey, to, feeNano, valueNano)
-    
-    // sign and combine transfer payload
-    const combineResponse = await txCombine(payloadsResponse, privateKey)
-    const blob = combineResponse.signed_transaction
+  const publicKey = mina.derivePublicKey(privateKey)
+  const publicKeyRaw = mina.publicKeyToRaw(publicKey)
+  // get transfer payload to sign
+  const payloadsResponse = await txPayloads(
+    publicKeyRaw,
+    publicKey,
+    to,
+    feeNano,
+    valueNano,
+  )
 
-    // // get future transaction hash
-    const txHashResponse = await txHash(blob)
-    const hash = txHashResponse.transaction_identifier.hash
+  // sign and combine transfer payload
+  const combineResponse = await txCombine(payloadsResponse, privateKey)
+  const blob = combineResponse.signed_transaction
 
-    // submit transaction. this call will fail if tx is not in mempool
-    await txSubmit(blob)
-    // wait for transaction confirmation:
-    // for that, track blocks until we meet our transaction in the last one
-    let latestBlock = (await networkStatus()).current_block_identifier.index
-    while (true) {
-        // check if our transaction exists in the latest block
-        const txs = (await waitForBlock(latestBlock)).block.transactions
-        const hashes = txs.map((tx: any) => tx.transaction_identifier.hash)
-        if (hashes.includes(hash))
-            break
+  // // get future transaction hash
+  const txHashResponse = await txHash(blob)
+  const hash = txHashResponse.transaction_identifier.hash
 
-        latestBlock += 1
+  // submit transaction. this call will fail if tx is not in mempool
+  await txSubmit(blob)
+  // wait for transaction confirmation:
+  // for that, track blocks until we meet our transaction in the last one
+  let latestBlock = (await networkStatus()).current_block_identifier.index
+  while (true) {
+    // check if our transaction exists in the latest block
+    const txs = (await waitForBlock(latestBlock)).block.transactions
+    const hashes = txs.map((tx: any) => tx.transaction_identifier.hash)
+    if (hashes.includes(hash)) {
+      break
     }
-    return hash
+
+    latestBlock += 1
+  }
+  return hash
 }
 ```
 
