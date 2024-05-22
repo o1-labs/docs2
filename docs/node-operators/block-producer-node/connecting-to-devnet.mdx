@@ -13,7 +13,7 @@ keywords:
 
 # Connect to Devnet
 
-The Devnet network is designed for testing and experimentation. Devnet is a dedicated network for developers who are building on top of the Mina protocol. 
+The Devnet network is designed for testing and experimentation. Devnet is a dedicated network for developers who are building on top of the Mina protocol.
 
 On the Devnet network, MINA holds no real value. To request a prefunded account, reach out on [Mina Protocol Discord](https://discord.gg/minaprotocol).
 
@@ -27,21 +27,22 @@ If you are interested in running a node, connect to [Mainnet network](connecting
 
 ## Update your software
 
-Connecting to Devnet requires a specific build of the Mina client and a specific version of a peers list. 
+Connecting to Devnet requires a specific build of the Mina client and a specific version of a peers list.
 
 Follow the steps for your operating system.
 
 ### Ubuntu 18.04 and Debian 9
 
-Install the latest **Stable** [Mina Release 3.0.0](https://github.com/MinaProtocol/mina/releases/tag/3.0.0devnet) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/releases) to install pre-release (Alpha/Beta) builds.
+Install the latest **Stable** [Mina Release 3.0.0](https://github.com/MinaProtocol/mina/releases/tag/3.0.0devnet) or visit the [GitHub Releases Page](https://github.com/MinaProtocol/mina/discussions/15491).
 
-To set up the new debian `devnet` repository and install the latest version:
+To set up the new debian `stable` repository and install the latest version:
 
 ```sh
-echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) devnet" | sudo tee /etc/apt/sources.list.d/mina-devnet.list
+sudo rm /etc/apt/sources.list.d/mina*.list
+sudo echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) devnet" | sudo tee /etc/apt/sources.list.d/mina-devnet.list
 sudo apt-get install --yes apt-transport-https
 sudo apt-get update
-sudo apt-get install --yes curl unzip mina-devnet=3.0.0
+sudo apt-get install --yes curl unzip mina-devnet-hardfork=3.0.0
 ```
 
 To check that daemon installed correctly:
@@ -53,27 +54,15 @@ mina version
 The expected output is:
 
 ```text
-Commit dc6bf78b8ddbbca3a1a248971b76af1514bf05aa on branch berkeley
+Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master
 ```
 
 ## Start and connect a node to Devnet
 
-Steps to start a Mina node instance and connect to the Devnet network.
+To start a Mina node instance and connect to the Devnet network:
 
-### Create a libp2p key
-
-If you don't already have one, you must create a libp2p key pair and persist it:
-
-```sh
-mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
 ```
-
-Set the environment variable `MINA_LIBP2P_PASS` with the password set for the libp2p key pair in the previous step.   
-
-Run mina daemon with:
-
-```sh
-mina daemon -libp2p-keypair <path-to-the-key-file> and --peer-list-url https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
+mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
 The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
@@ -94,7 +83,7 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEER_LIST_URL=https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
+PEER_LIST_URL=https://storage.googleapis.com/seed-lists/devnet_seeds.txt
 ```
 
 Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
@@ -109,7 +98,7 @@ docker run --name mina -d \
 --restart=always \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:3.0.0-dc6bf78-focal-devnet \
+gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet \
 daemon \
 ```
 
