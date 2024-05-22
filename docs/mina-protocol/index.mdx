@@ -1,0 +1,60 @@
+---
+title: Mina Protocol
+sidebar_label: Overview
+hide_title: true
+description: This section describes how the Mina Protocol works
+keywords:
+  - mina protocol
+  - block producers
+  - block
+  - snark workers
+  - scan state
+  - time locked accounts
+  - sending a payment
+  - lifecycle of a payment
+---
+
+# Introduction
+
+The Mina Protocol is a layer one protocol designed to deliver on the original promise of blockchain, true decentralization, scale and security. 
+
+Mina offers an elegant solution: replacing the blockchain with an easily verifiable, consistent-sized cryptographic proof. Mina dramatically reduces the amount of data each user needs to download. Instead of verifying the entire chain from the beginning of time, participants fully verify the network and transactions using recursive zero knowledge proofs (or zk-SNARKs). Nodes can then store the small proof, as opposed to the entire chain. Because it’s a consistent size, Mina stays accessible even as it scales to many users and accumulates years of transaction data.
+
+## The Mina Protocol 
+
+There are three public Mina Protocol networks:
+
+1. `mainnet`  - the production network
+2. `devnet`   - the test network based on the same software versions as the Mainnet
+3. `berkeley` - a development network where new features are trialed
+
+You check the identity of the network with this graphQL query:
+
+```
+query MyQuery {
+  networkID
+}
+```
+
+This section describes how the Mina Protocol works.
+
+- [Proof Of Stake](/mina-protocol/proof-of-stake)
+- [What's in a Block](/mina-protocol/whats-in-a-block)
+- [Block Producers](/mina-protocol/block-producers)
+- [SNARK Workers](/mina-protocol/snark-workers)
+- [Scan State](/mina-protocol/scan-state)
+- [Time-Locked Accounts](/mina-protocol/time-locked-accounts)
+- [Sending a Payment](/mina-protocol/sending-a-payment)
+- [Lifecycle of a Payment](/mina-protocol/lifecycle-of-a-payment)
+
+## Node Operators
+
+[Node Operators](../node-operators) describes how to run Mina nodes on a Mina network. Mina nodes fulfill different roles within the network.
+
+## Node Developers
+
+[Node Developers](../node-developers) describes how developers can add to and improve Mina nodes.
+
+## Exchange Operators
+
+[Exchange Operators](../exchange-operators/faq) describes how to connect to Mina networks and provide access to the MINA token.

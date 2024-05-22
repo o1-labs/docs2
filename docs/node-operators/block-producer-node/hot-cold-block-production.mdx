@@ -1,0 +1,82 @@
+---
+title: Hot and Cold Block Production
+hide_title: true
+description: Using hot and cold wallets for Mina protocol.
+keywords:
+  - node operators
+  - hot wallet
+  - cold wallet
+  - delegate stake
+  - block production
+---
+
+# Hot and Cold Block Production
+
+Block production is a complex process and requires a node to connect to the internet. 
+
+- A wallet is "hot" if the private key is available on a machine that is connected to the internet. To mitigate risk in the case of hackers breaking into their systems, careful block producers avoid having hot wallets with substantial stake on them.
+- A wallet is "cold" if the private key is not, and never has been, available on the internet. Cold storage is preferred for wallets associated with meaningful stake as it is harder to hack into cold wallet systems if they never have been on the internet. This could be as easy as generating a key pair on a laptop with the internet turned off or using a hardware wallet, like a [Ledger](https://shop.ledger.com/) device.
+
+Mina protocol requires block producers to stake using a hot wallet. However, mechanisms are in place so that block producers can keep the vast majority of their stake in a cold wallet. Produced blocks, and all the earnings associated with the produced blocks, occur by using delegation from this cold wallet to a hot one.
+
+You can produce blocks effectively with the majority of your stake starting on and remaining on a cold wallet.
+
+## Prerequisites
+
+Before running your block producer, you'll need at least two accounts: one cold wallet and one hot wallet. See [Generating a Key Pair](../generating-a-keypair). 
+
+### Create a hot wallet account
+
+To create a hot wallet key pair, you cannot use the Ledger or any other hardware security module (HSM) hardware unit for this key pair.
+
+Take note of your hot wallet public key.
+
+### Fill your hot wallet with some dust
+
+Your hot wallet must be present in the consensus ledger before it can be used for staking. 
+
+- If your hot wallet address is present in the genesis ledger, then no further action is needed. 
+- If not, you must acquire at least enough MINA tokens to cover the account creation fee and send those tokens to your hot wallet address.
+
+### Create a cold wallet account
+
+To generate a cold wallet key pair, use the most secure mechanism for generating keys, preferably on a machine that is disconnected from the internet.
+
+### Configure your cold wallet
+
+Your cold wallet must be present in the consensus ledger before its stake can be counted when delegated to your hot wallet. 
+
+- If your cold wallet address is present in the genesis ledger, then no further action is needed. 
+- If not, you must acquire enough MINA tokens to meaningfully participate in consensus and send those tokens to this cold wallet address.
+
+### Delegate your cold wallet to your hot wallet
+
+Next, ensure that you have delegated your cold wallet account to your hot wallet account. 
+
+- If you've set up your account to delegate to the correct spot in the genesis ledger, then no further action is needed. 
+- If not, you can delegate by using the `mina client delegate-stake` command if your key was generated on a computer. Otherwise, follow the delegate instructions on the [Mina ledger README](https://github.com/jspada/ledger-app-mina/tree/v1.0.0-beta.2).
+
+## Block Production
+
+Follow the start up a node instructions in [Connecting to the Network](connecting-to-the-network) using your hot wallet key.
+
+## Protocol Details
+
+You may be thinking: Why can't I create blocks directly from a secure enclave or other hardware security module (HSM) device in Mina's protocol?
+
+Two components of block production require using a private key in interesting ways: 
+
+- Finding eligible slots to produce blocks in
+- Creating the blockchain SNARK
+
+Creating the SNARK within the secure hardware is extremely difficult and likely impossible to do quickly enough for the protocol with today's technology.
+
+### Finding eligible slots to produce blocks in (out of the SNARK)
+
+A block producer can determine if they've won a slot by evaluating a VRF (verifiable random function) using their private key. The VRF needs to be evaluated for your account and every account that delegates to you for all slots within an epoch. 
+
+### Creating the blockchain SNARK
+
+When a block producer wins a slot, in addition to just creating and broadcasting a block, a block producer must create a new SNARK proof that proves that the new block is a valid extension of the existing chain. 
+
+The SNARK proof uses the private key when it embeds the VRF information into the proof. This proof is in place of a simple signature that other protocols ask their validators to perform. Creating this SNARK proof is computationally expensive and relies on a lot of advanced cryptography. 
