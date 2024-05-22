@@ -46,26 +46,27 @@ console.log(`Fields in signedNum1: ${signedNum1.toFields().length}`);
 
 const char1 = Character.fromString('c');
 const char2 = Character.fromString('d');
-const char1EqualsChar2: Bool = char1.equals(char2);
+const char1EqualsChar2: Bool = char1.toField().equals(char2.toField());
 
 console.log(`char1: ${char1}`);
 console.log(`char1 === char2: ${char1EqualsChar2.toString()}`);
-console.log(`Fields in char1: ${char1.toFields().length}`);
+console.log(`Fields in char1: ${Character.toFields(char1).length}`);
+
 console.log('--------------------------------------');
 
 // --------------------------------------
 
 const str1 = CircuitString.fromString('abc..xyz');
 console.log(`str1: ${str1}`);
-console.log(`Fields in str1: ${str1.toFields().length}`);
+console.log(`Fields in str1: ${CircuitString.toFields(str1).length}`);
 
 // --------------------------------------
 
 const zkAppPrivateKey = PrivateKey.random();
 const zkAppPublicKey = zkAppPrivateKey.toPublicKey();
 
-const data1 = char2.toFields().concat(signedNumSum.toFields());
-const data2 = char1.toFields().concat(str1.toFields());
+const data1 = Character.toFields(char2).concat(signedNumSum.toFields());
+const data2 = Character.toFields(char1).concat(CircuitString.toFields(str1));
 
 const signature = Signature.create(zkAppPrivateKey, data2);
 
@@ -152,14 +153,15 @@ console.log('--------------------------------------');
 
 // --------------------------------------
 
-const Local = Mina.LocalBlockchain();
+const Local = await Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
-const { privateKey: deployerKey, publicKey: deployerAccount } =
-  Local.testAccounts[0];
-const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
-  Local.testAccounts[1];
 
-// --------------------------------------
+const deployerAccount = Local.testAccounts[0];
+const deployerKey = deployerAccount.key;
+const senderPublicKey = Local.testAccounts[1];
+const senderPrivateKey = senderPublicKey.key;
+
+//  --------------------------------------
 // create a new merkle tree and BasicMerkleTreeContract zkapp account
 
 {
@@ -176,11 +178,11 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
   class MerkleWitness20 extends MerkleWitness(height) {}
 
   // deploy the smart contract
-  const deployTxn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, async () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkApp.deploy();
+    await zkApp.deploy();
     // get the root of the new tree to use as the initial tree root
-    zkApp.initState(tree.getRoot());
+    await zkApp.initState(tree.getRoot());
   });
   await deployTxn.prove();
   deployTxn.sign([deployerKey, basicTreeZkAppPrivateKey]);
@@ -203,15 +205,17 @@ const { privateKey: senderPrivateKey, publicKey: senderPublicKey } =
   tree.setLeaf(incrementIndex, incrementAmount);
 
   // update the smart contract
-  const txn1 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.update(
+  const txn1 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.update(
       witness,
       Field(0), // leafs in new trees start at a state of 0
       incrementAmount
     );
   });
   await txn1.prove();
-  const pendingTx = await txn1.sign([senderPrivateKey, zkAppPrivateKey]).send();
+  const pendingTx = await txn1
+    .sign([senderPrivateKey, basicTreeZkAppPrivateKey])
+    .send();
   await pendingTx.wait();
 
   // compare the root of the smart contract tree to our local tree
@@ -262,10 +266,10 @@ console.log('--------------------------------------');
   const zkApp = new LedgerContract(ledgerZkAppAddress);
   await LedgerContract.compile();
 
-  const deployTxn = await Mina.transaction(deployerAccount, () => {
+  const deployTxn = await Mina.transaction(deployerAccount, async () => {
     AccountUpdate.fundNewAccount(deployerAccount);
-    zkApp.deploy();
-    zkApp.initState(tree.getRoot());
+    await zkApp.deploy();
+    await zkApp.initState(tree.getRoot());
   });
   await deployTxn.prove();
   await deployTxn.sign([deployerKey, ledgerZkAppPrivateKey]).send();
@@ -299,8 +303,8 @@ console.log('--------------------------------------');
     [zkApp.ledgerRoot.get(), amount].concat(recipientPublicKey.toFields())
   );
 
-  const txn1 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.sendBalance(
+  const txn1 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.sendBalance(
       sendWitness1,
       recipientWitness1,
       senderInitialBalance,
@@ -351,8 +355,8 @@ console.log('--------------------------------------');
     [zkApp.ledgerRoot.get(), amount].concat(newRecipientPublicKey.toFields())
   );
 
-  const txn2 = await Mina.transaction(senderPublicKey, () => {
-    zkApp.sendBalance(
+  const txn2 = await Mina.transaction(senderPublicKey, async () => {
+    await zkApp.sendBalance(
       sendWitness2,
       recipientWitness2,
       newSenderBalance,

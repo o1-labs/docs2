@@ -1,13 +1,11 @@
-import { Square } from './Square.js';
 import { Mina, PrivateKey } from 'o1js';
+import { Square } from './Square.js';
 
 import fs from 'fs';
-import { loopUntilAccountExists, deploy } from './utils.js';
+import { deploy, loopUntilAccountExists } from './utils.js';
 
-const Berkeley = Mina.Network(
-  'https://proxy.berkeley.minaexplorer.com/graphql'
-);
-Mina.setActiveInstance(Berkeley);
+const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
+Mina.setActiveInstance(Network);
 
 const transactionFee = 100_000_000;
 
@@ -74,8 +72,8 @@ console.log(`current value of num is ${num}`);
 
 let transaction = await Mina.transaction(
   { sender: deployerPublicKey, fee: transactionFee },
-  () => {
-    zkapp.update(num.mul(num));
+  async () => {
+    await zkapp.update(num.mul(num));
   }
 );
 
@@ -100,7 +98,7 @@ if (pendingTransaction.status === 'rejected') {
 }
 
 console.log(
-  `See transaction at https://berkeley.minaexplorer.com/transaction/${pendingTransaction.hash}
+  `See transaction at https://minascan.io/devnet/tx/${pendingTransaction.hash}
 Waiting for transaction to be included...`
 );
 await pendingTransaction.wait();

@@ -9,24 +9,21 @@ import {
   PublicKey,
 } from 'o1js';
 
-import util from 'util';
-
 // DEX reference code
 // https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/dex/dex.ts
 
 (async () => {
-
   let doProofs = false;
 
-  let Local = Mina.LocalBlockchain({
+  let Local = await Mina.LocalBlockchain({
     proofsEnabled: doProofs,
     enforceTransactionLimits: false,
   });
 
   Mina.setActiveInstance(Local);
-  let accountFee = Mina.accountCreationFee();
-  let [{ privateKey: feePayerKey, publicKey: feePayerAddress }] =
-    Local.testAccounts;
+  let accountFee = Mina.getNetworkConstants().accountCreationFee;
+  const feePayerAddress = Local.testAccounts[0];
+  const feePayerKey = feePayerAddress.key;
 
   let wrappedMinaPrivateKey = PrivateKey.random();
   let wrappedMinaPublicKey = wrappedMinaPrivateKey.toPublicKey();
@@ -40,10 +37,10 @@ import util from 'util';
   let tokenPoolContract = new TokenPool(tokenPoolPublicKey);
   let wrappedMinaTokenHolder = new TokenPoolWMinaHolder(
     tokenPoolPublicKey,
-    wrappedMinaContract.token.id
+    wrappedMinaContract.tokenId
   );
 
-  const legend: any = {};
+  const legend: Record<string, string> = {};
   legend[feePayerAddress.toBase58()] = 'feePayer';
   legend[wrappedMinaPublicKey.toBase58()] = 'wrappedMinaZkApp';
   legend[tokenPoolPublicKey.toBase58()] = 'tokenPoolZkApp';
@@ -61,16 +58,26 @@ import util from 'util';
       }
     };
     console.log('\tuser MINA:', tryGetTokenBalance(feePayerAddress));
-    console.log('\tuser WMINA:', tryGetTokenBalance(feePayerAddress, wrappedMinaPublicKey));
+    console.log(
+      '\tuser WMINA:',
+      tryGetTokenBalance(feePayerAddress, wrappedMinaPublicKey)
+    );
 
-    console.log('\tWMINA Manager MINA:', tryGetTokenBalance(wrappedMinaPublicKey));
-    console.log('\tWMINA Manager WMINA:', tryGetTokenBalance(wrappedMinaPublicKey, wrappedMinaPublicKey));
+    console.log(
+      '\tWMINA Manager MINA:',
+      tryGetTokenBalance(wrappedMinaPublicKey)
+    );
+    console.log(
+      '\tWMINA Manager WMINA:',
+      tryGetTokenBalance(wrappedMinaPublicKey, wrappedMinaPublicKey)
+    );
 
     console.log('\tTokenPool MINA:', tryGetTokenBalance(tokenPoolPublicKey));
-    console.log('\tTokenPool WMINA:', tryGetTokenBalance(tokenPoolPublicKey, wrappedMinaPublicKey));
+    console.log(
+      '\tTokenPool WMINA:',
+      tryGetTokenBalance(tokenPoolPublicKey, wrappedMinaPublicKey)
+    );
   };
-
-  let txnI = 0;
 
   console.log('initial state');
 
@@ -78,16 +85,16 @@ import util from 'util';
 
   // ------------------------------------------------------------------------
 
-  const deployTx = await Mina.transaction(feePayerAddress, () => {
+  const deployTx = await Mina.transaction(feePayerAddress, async () => {
     let feePayerUpdate = AccountUpdate.fundNewAccount(feePayerAddress, 3);
     feePayerUpdate.send({ to: wrappedMinaPublicKey, amount: accountFee });
     feePayerUpdate.send({ to: tokenPoolPublicKey, amount: accountFee });
 
-    wrappedMinaContract.deploy();
-    tokenPoolContract.deploy();
+    await wrappedMinaContract.deploy();
+    await tokenPoolContract.deploy();
 
-    wrappedMinaTokenHolder.deploy();
-    wrappedMinaContract.approveUpdate(wrappedMinaTokenHolder.self);
+    await wrappedMinaTokenHolder.deploy();
+    await wrappedMinaContract.approveUpdate(wrappedMinaTokenHolder.self);
   });
   await deployTx.prove();
   deployTx.sign([feePayerKey, tokenPoolPrivateKey, wrappedMinaPrivateKey]);
@@ -100,7 +107,7 @@ import util from 'util';
 
   // ------------------------------------------------------------------------
 
-  const getWMinaTx = await Mina.transaction(feePayerAddress, () => {
+  const getWMinaTx = await Mina.transaction(feePayerAddress, async () => {
     // this is because the user doesn't have a WMINA address yet
     let feePayerUpdate = AccountUpdate.fundNewAccount(feePayerAddress, 1);
     feePayerUpdate.send({ to: wrappedMinaPublicKey, amount: accountFee });
@@ -111,7 +118,7 @@ import util from 'util';
     minaDeposit.send({ to: wrappedMinaPublicKey, amount });
 
     // getting the WMINA back
-    wrappedMinaContract.mintWrappedMina(amount, feePayerAddress);
+    await wrappedMinaContract.mintWrappedMina(amount, feePayerAddress);
   });
   await getWMinaTx.prove();
   getWMinaTx.sign([feePayerKey]);
@@ -124,12 +131,12 @@ import util from 'util';
 
   // ------------------------------------------------------------------------
 
-  const redeemWMinaTx = await Mina.transaction(feePayerAddress, () => {
+  const redeemWMinaTx = await Mina.transaction(feePayerAddress, async () => {
     // getting some WMINA back
     const amount = UInt64.from(5);
 
     // TODO why does this work here, but not when called from a zkApp
-    wrappedMinaContract.redeemWrappedMinaWithoutApprove(
+    await wrappedMinaContract.redeemWrappedMinaWithoutApprove(
       feePayerAddress,
       feePayerAddress,
       amount
@@ -146,7 +153,7 @@ import util from 'util';
 
   // ------------------------------------------------------------------------
 
-  const fundTokenPoolTx = await Mina.transaction(feePayerAddress, () => {
+  const fundTokenPoolTx = await Mina.transaction(feePayerAddress, async () => {
     const amount = UInt64.from(10);
     let minaDeposit = AccountUpdate.createSigned(feePayerAddress);
     minaDeposit.send({ to: wrappedMinaPublicKey, amount });
@@ -164,8 +171,8 @@ import util from 'util';
 
   const tokenPoolExchangeWMinaTx = await Mina.transaction(
     feePayerAddress,
-    () => {
-      tokenPoolContract.moveMinaToWrappedMina(UInt64.from(50));
+    async () => {
+      await tokenPoolContract.moveMinaToWrappedMina(UInt64.from(50));
     }
   );
   await tokenPoolExchangeWMinaTx.prove();
@@ -181,8 +188,8 @@ import util from 'util';
 
   const tokenPoolExchangeMinaTx = await Mina.transaction(
     feePayerAddress,
-    () => {
-      tokenPoolContract.moveWrappedMinaToMina(UInt64.from(35));
+    async () => {
+      await tokenPoolContract.moveWrappedMinaToMina(UInt64.from(35));
     }
   );
   await tokenPoolExchangeMinaTx.prove();
@@ -200,5 +207,4 @@ import util from 'util';
 
   // TODO
   //    * Add a call to the TokenPool contract that does things that should be outside of scope with WrappedMina in the "approve" call (eg Minting inappropriately)
-
 })();

@@ -1,0 +1,56 @@
+```ts
+function fetchAccount(
+   accountInfo: {
+  "publicKey": string | PublicKey;
+  "tokenId": string | Field;
+ }, 
+   graphqlEndpoint: string, 
+   __namedParameters: {
+  "timeout": defaultTimeout;
+ }): Promise<{
+  "account": Types.Account;
+  "error": undefined;
+ } | {
+  "account": undefined;
+  "error": FetchError;
+}>
+```
+
+Gets account information on the specified publicKey by performing a GraphQL query
+to the specified endpoint. This will call the 'GetAccountInfo' query which fetches
+zkapp related account information.
+
+If an error is returned by the specified endpoint, an error is thrown. Otherwise,
+the data is returned.
+
+## Parameters
+
+• **accountInfo**
+
+• **accountInfo.publicKey**: `string` \| [`PublicKey`](../classes/PublicKey.mdx)
+
+• **accountInfo.tokenId?**: `string` \| [`Field`](../classes/Field.mdx)
+
+• **graphqlEndpoint**: `string`= `networkConfig.minaEndpoint`
+
+The graphql endpoint to fetch from
+
+• **\_\_namedParameters**= `{}`
+
+• **\_\_namedParameters.timeout**: `undefined` \| `number`= `defaultTimeout`
+
+## Returns
+
+`Promise`\<\{
+  `"account"`: `Types.Account`;
+  `"error"`: `undefined`;
+ \} \| \{
+  `"account"`: `undefined`;
+  `"error"`: `FetchError`;
+ \}\>
+
+zkapp information on the specified account or an error is thrown
+
+## Source
+
+[lib/mina/fetch.ts:171](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/fetch.ts#L171)

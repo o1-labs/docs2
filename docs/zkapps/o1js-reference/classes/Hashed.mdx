@@ -1,0 +1,251 @@
+`Hashed<T>` represents a type `T` by its hash.
+
+Since a hash is only a single field element, this can be more efficient in provable code
+where the number of constraints depends on the number of field elements per value.
+
+For example, `Provable.if(bool, x, y)` takes O(n) constraints, where n is the number of field
+elements in x and y. With Hashed, this is reduced to O(1).
+
+The downside is that you will pay the overhead of hashing your values, so it helps to experiment
+in which parts of your code a hashed representation is beneficial.
+
+Usage:
+
+```ts
+// define a hashed type from a type
+let HashedType = Hashed.create(MyType);
+
+// hash a value
+let hashed = HashedType.hash(value);
+
+// ... operations on hashes, more efficient than on plain values ...
+
+// unhash to get the original value
+let value = hashed.unhash();
+```
+
+## Type parameters
+
+• **T**
+
+## Constructors
+
+### new Hashed()
+
+```ts
+new Hashed<T>(hash: Field, value: Unconstrained<T>): Hashed<T>
+```
+
+#### Parameters
+
+• **hash**: [`Field`](Field.mdx)
+
+• **value**: [`Unconstrained`](Unconstrained.mdx)\<`T`\>
+
+#### Returns
+
+[`Hashed`](Hashed.mdx)\<`T`\>
+
+#### Source
+
+[lib/provable/packed.ts:210](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L210)
+
+## Properties
+
+### hash
+
+```ts
+hash: Field;
+```
+
+#### Source
+
+[lib/provable/packed.ts:175](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L175)
+
+***
+
+### value
+
+```ts
+value: Unconstrained<T>;
+```
+
+#### Source
+
+[lib/provable/packed.ts:176](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L176)
+
+***
+
+### \_innerProvable
+
+```ts
+static _innerProvable: undefined | ProvableHashable<any>;
+```
+
+#### Source
+
+[lib/provable/packed.ts:257](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L257)
+
+***
+
+### \_provable
+
+```ts
+static _provable: undefined | ProvableHashable<Hashed<any>>;
+```
+
+#### Source
+
+[lib/provable/packed.ts:256](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L256)
+
+## Accessors
+
+### Constructor
+
+```ts
+get Constructor(): typeof Hashed
+```
+
+#### Returns
+
+*typeof* [`Hashed`](Hashed.mdx)
+
+#### Source
+
+[lib/provable/packed.ts:259](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L259)
+
+***
+
+### innerProvable
+
+```ts
+get static innerProvable(): ProvableHashable<any>
+```
+
+#### Returns
+
+[`ProvableHashable`](../type-aliases/ProvableHashable.mdx)\<`any`\>
+
+#### Source
+
+[lib/provable/packed.ts:263](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L263)
+
+## Methods
+
+### toFields()
+
+```ts
+toFields(): Field[]
+```
+
+#### Returns
+
+[`Field`](Field.mdx)[]
+
+#### Source
+
+[lib/provable/packed.ts:251](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L251)
+
+***
+
+### unhash()
+
+```ts
+unhash(): T
+```
+
+Unwrap a value from its hashed variant.
+
+#### Returns
+
+`T`
+
+#### Source
+
+[lib/provable/packed.ts:239](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L239)
+
+***
+
+### \_hash()
+
+```ts
+static _hash(_: any): Field
+```
+
+#### Parameters
+
+• **\_**: `any`
+
+#### Returns
+
+[`Field`](Field.mdx)
+
+#### Source
+
+[lib/provable/packed.ts:215](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L215)
+
+***
+
+### create()
+
+```ts
+static create<T>(type: ProvableHashable<T>, hash?: (t: T) => Field): typeof Hashed & {
+  "provable": ProvableHashable<Hashed<T>>;
+}
+```
+
+Create a hashed representation of `type`. You can then use `HashedType.hash(x)` to wrap a value in a `Hashed`.
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **type**: [`ProvableHashable`](../type-aliases/ProvableHashable.mdx)\<`T`\>
+
+• **hash?**
+
+#### Returns
+
+*typeof* [`Hashed`](Hashed.mdx) & \{
+  `"provable"`: [`ProvableHashable`](../type-aliases/ProvableHashable.mdx)\<[`Hashed`](Hashed.mdx)\<`T`\>\>;
+ \}
+
+#### Source
+
+[lib/provable/packed.ts:181](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L181)
+
+***
+
+### hash()
+
+```ts
+static hash<T>(value: T, hash?: Field): Hashed<T>
+```
+
+Wrap a value, and represent it by its hash in provable code.
+
+```ts
+let hashed = HashedType.hash(value);
+```
+
+Optionally, if you already have the hash, you can pass it in and avoid recomputing it.
+
+#### Type parameters
+
+• **T**
+
+#### Parameters
+
+• **value**: `T`
+
+• **hash?**: [`Field`](Field.mdx)
+
+#### Returns
+
+[`Hashed`](Hashed.mdx)\<`T`\>
+
+#### Source
+
+[lib/provable/packed.ts:228](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/packed.ts#L228)

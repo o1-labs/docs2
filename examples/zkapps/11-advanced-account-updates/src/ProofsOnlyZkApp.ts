@@ -1,4 +1,3 @@
-
 import {
   Field,
   SmartContract,
@@ -6,6 +5,7 @@ import {
   State,
   method,
   DeployArgs,
+  TransactionVersion,
   Permissions,
 } from 'o1js';
 
@@ -13,13 +13,16 @@ export class ProofsOnlyZkApp extends SmartContract {
   @state(Field) num = State<Field>();
   @state(Field) calls = State<Field>();
 
-  deploy(args: DeployArgs) {
+  async deploy(args: DeployArgs) {
     super.deploy(args);
     this.account.permissions.set({
       ...Permissions.default(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
@@ -28,7 +31,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     });
   }
 
-  @method init() {
+  @method async init() {
     super.init();
 
     this.account.provedState.requireEquals(this.account.provedState.get());
@@ -38,7 +41,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.calls.set(Field(0));
   }
 
-  @method add(incrementBy: Field) {
+  @method async add(incrementBy: Field) {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -49,7 +52,7 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.incrementCalls();
   }
 
-  @method incrementCalls() {
+  @method async incrementCalls() {
     this.account.provedState.requireEquals(this.account.provedState.get());
     this.account.provedState.get().assertTrue();
 
@@ -57,6 +60,4 @@ export class ProofsOnlyZkApp extends SmartContract {
     this.calls.requireEquals(calls);
     this.calls.set(calls.add(Field(1)));
   }
-
 }
-

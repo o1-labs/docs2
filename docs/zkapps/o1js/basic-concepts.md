@@ -2,7 +2,7 @@
 title: o1js Basic Concepts
 hide_title: true
 sidebar_label: Basic Concepts
-description: Field elements are the basic unit of data in zero knowledge proof programming. Learn about built-in data types, functions, and common methods. 
+description: Field elements are the basic unit of data in zero knowledge proof programming. Learn about built-in data types, functions, and common methods.
 keywords:
   - smart contracts
   - zkapps

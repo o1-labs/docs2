@@ -63,9 +63,8 @@ The number of blocks added after the reference block. As the number of confirmat
 
 A web-based tool to extract, visualize, and review blockchain network metrics, including transaction histories, wallet balances, and details about individual blocks and transactions. Block explorers for Mina include:
 
-- https://minaexplorer.com/
 - https://minascan.io
-- https://minataur.net/
+- https://minataur.net
 
 ### block fill rate
 
@@ -197,7 +196,7 @@ A consensus constant `k` is the point at which chain [reorganizations](#reorgani
 
 ## foreign field
 
-A finite field different from the native field of the proof system. [Foreign Field Arithmetic](/zkapps/o1js/foreign-fields) lets you perform algorithms that connect your zkApp with the outside world of cryptography.
+A finite field different from the native field of the proof system. [Foreign Field Arithmetic](/zkapps/o1js/ecdsa) lets you perform algorithms that connect your zkApp with the outside world of cryptography.
 
 ### full node
 
@@ -259,11 +258,11 @@ Mina uses this peer-to-peer networking library to provide things like message br
 
 ### Lightnet
 
-A lightweight Mina network in a single Docker container. [Lightnet](/zkapps/testing-zkapps-lightnet) is a resource-efficient solution with fast startup and syncing times that lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
+A lightweight Mina network in a single Docker container. [Lightnet](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet) is a resource-efficient solution with fast startup and syncing times that lets you test your zkApp locally on an accurate representation of Mina blockchain before you test with a live network.
 
 ### lightweight Mina Explorer
 
-Provided in Lightnet, a lightweight Mina Explorer lets you monitor transactions on your local network. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet#lightweight-mina-explorer).
+Provided in Lightnet, a lightweight Mina Explorer lets you monitor transactions on your local network. See [Testing zkApps with Lightnet](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet#lightweight-mina-explorer).
 
 ## M
 
@@ -309,7 +308,7 @@ A [full node](#full-node) in the Mina protocol that does not participate in cons
 
 ### non-upgradeable
 
-If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable. You can make a smart contract upgradeable or not upgradeable using [permissions](/zkapps/o1js/permissions#upgradeability-of-smart-contracts).
+If the verification key cannot be changed, a zkApp smart contract is considered non-upgradeable. You can make a smart contract upgradeable or not upgradeable using [permissions](/zkapps/writing-a-zkapp/feature-overview/permissions#upgradeability-of-smart-contracts).
 
 ### nonce
 
@@ -469,7 +468,7 @@ Short for digital signature, a way to establish authenticity or ownership of dig
 
 ### simulated local blockchain
 
-The local testing blockchain you use in the first phase of testing. Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. See [Testing zkApps Locally](/zkapps/testing-zkapps-locally) and get step-by-steps guidance in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world#simulated-local-blockchain).
+The local testing blockchain you use in the first phase of testing. Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. See [Testing zkApps Locally](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally) and get step-by-steps guidance in [Tutorial 1: Hello World](/zkapps/tutorials/hello-world#simulated-local-blockchain).
 
 ### slot
 
@@ -537,11 +536,11 @@ The syncing process builds the node's [transition frontier](#transition-frontier
 
 ### Testnet
 
-An instance of a blockchain used for testing and experimentation where MINA tokens have no real value. For example, for [zkApp Developer Tutorials](/zkapps/tutorials) and other development, you can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account). Mina's public Testnet is feature-complete Berkeley. 
+An instance of a blockchain used for testing and experimenting where MINA tokens have no real value. For example, for [zkApp Developer Tutorials](/zkapps/tutorials) and other development, you can request tMINA funds from the Testnet Faucet to fund your [fee payer account](#fee-payer-account). Mina's public Testnet is feature-complete and is called the `Devnet`. 
 
 ### time-locked accounts
 
-An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/o1js/time-locked-accounts).
+An account with a non-vested amount of tokens that cannot be moved until a specific condition has been met, like a number of blocks that has been produced. See [Time-Locked Accounts](/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts).
 
 ### tMINA
 
@@ -595,7 +594,7 @@ A proof by which one party (a prover) can prove to another party (a verifier) th
 
 ### zkApps
 
-Zero knowledge apps ([zkApps](/zkapps)) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
+Zero knowledge apps ([zkApps](/zkapps/writing-a-zkapp)) are Mina Protocol's smart contracts powered by zero-knowledge proofs, specifically using zk-SNARKs. zkApps provide powerful and unique characteristics such as unlimited off-chain execution, privacy for private data inputs that are never seen by the blockchain, the ability to write smart contracts in TypeScript, and more. The easiest way to write zk programs is using [o1js](https://www.npmjs.com/package/o1js).
 
 ### zkApp CLI
 

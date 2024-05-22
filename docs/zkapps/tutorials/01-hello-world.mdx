@@ -20,21 +20,21 @@ import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
 # Tutorial 1: Hello World
 
-This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs. 
+This Hello World tutorial helps you get started with o1js, zkApps, and programming with zero knowledge proofs.
 
 In this step-by-step tutorial, you learn to code a zkApp from start to finish.
 
-You will: 
+You will:
 
 - Write a basic smart contract that stores a number as on-chain state.
-- The contract logic allows this number to be replaced only by its square; for example, 3 -> 9 -> 81, and so on. 
+- The contract logic allows this number to be replaced only by its square; for example, 3 -> 9 -> 81, and so on.
 - Create a project using the [zkApp CLI](https://www.npmjs.com/package/zkapp-cli)
 - Write your smart contract code
 - Use a simulated local Mina blockchain to interact with your smart contract.
 
-Later tutorials introduce more concepts and patterns.  
+Later tutorials introduce more concepts and patterns.
 
-The full source code for this tutorial is provided in the [examples/zkapps/01-hello-world](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world) directory on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp! 
+The full source code for this tutorial is provided in the [examples/zkapps/01-hello-world](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/01-hello-world) directory on GitHub. While you're there, give the `/docs2` repository a star so that other zk developers can learn to build a zkApp!
 
 :::info
 
@@ -65,15 +65,15 @@ Now that you have the tooling installed, you can start building your application
 
   The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
 
-  ```
+  ```sh
   ? Create an accompanying UI project too? …
     next
     svelte
     nuxt
     empty
-  ❯ none
+  > none
   ```
-  
+
   The expected output is:
 
   ```sh
@@ -142,12 +142,12 @@ Start by deleting the default files that come with the new project.
   $ touch src/main.ts
   ```
 
-  - The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files.
-  - This tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works. 
+    - The `zk file` command created the `src/Square.ts` and `src/Square.test.ts` test files.
+    - This tutorial does not include writing tests, so you just use the `main.ts` file as a script to interact with the smart contract and observe how it works.
 
-In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user. 
+    In later tutorials, you learn how to interact with a smart contract from the browser, like a typical end user.
 
-3. Now, open `src/index.ts` in a text editor and change it to look like:
+1. Now, open `src/index.ts` in a text editor and change it to look like:
 
   ```ts src/index.ts
   1 import { Square } from './Square.js';
@@ -155,34 +155,33 @@ In later tutorials, you learn how to interact with a smart contract from the bro
   3 export { Square };
   ```
 
-  The `src/index.ts` file contains all of the exports you want to make available for consumption from outside your smart contract project, such as from a UI.
-
+The `src/index.ts` file contains all of the exports you want to make available for consumption from outside your smart contract project, such as from a UI.
 
 ## Write the zkApp Smart Contract
 
-Now, the fun part! Write your smart contract in the `src/Square.ts` file. 
+Now, the fun part! Write your smart contract in the `src/Square.ts` file.
 
 Line numbers are provided for convenience. A final version of the smart contract is provided in the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file.
 
-This part of the tutorial walks you through the `Square` smart contract code already completed in the `src/Square.ts` example file.  
+This part of the tutorial walks you through the `Square` smart contract code already completed in the `src/Square.ts` example file.
 
-### Copy the example 
+### Copy the example
 
-This tutorial describes each part of the completed code in the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file. 
+This tutorial describes each part of the completed code in the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file.
 
 1. First, open the [Square.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/Square.ts) example file.
 
 1. Copy the entire contents of the file into your smart contract in the `src/Square.ts` file.
 
-Now you are ready to review the imports in the smart contract.  
+Now you are ready to review the imports in the smart contract.
 
 ### Imports
 
-The `import` statement brings in other packages and dependencies to use in your smart contract. 
+The `import` statement brings in other packages and dependencies to use in your smart contract.
 
 :::info
 
-All functions used inside a smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. 
+All functions used inside a smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types.
 
 :::info
 
@@ -206,7 +205,7 @@ These items are:
 
 ### Smart contract class
 
-Now, review the smart contract in the `src/Square.ts` file. 
+Now, review the smart contract in the `src/Square.ts` file.
 
 The smart contract called `Square` has one element of on-chain state named `num` of type `Field` as defined by following code:
 
@@ -237,7 +236,7 @@ Since this code extends `SmartContract` that has its own initialization to perfo
 
 Then, `this.num.set(Field(3))` initializes the on-chain state `num` to a value of `3`.
 
-You can optionally specify permissions. See  [setPermissions](/zkapps/o1js-reference/classes/SmartContract#setpermissions) in the o1js Reference documentation.
+You can optionally specify permissions. See [setPermissions](/zkapps/o1js-reference/classes/SmartContract#setpermissions) in the o1js Reference documentation.
 
 Finally, this code adds the `update()` function:
 
@@ -245,7 +244,7 @@ Finally, this code adds the `update()` function:
 14     this.num.set(Field(3));
 15   }
 16
-17   @method update(square: Field) {
+17   @method async update(square: Field) {
 18     const currentState = this.num.get();
 19     this.num.requireEquals(currentState);
 20     square.assertEquals(currentState.mul(currentState));
@@ -256,79 +255,78 @@ Finally, this code adds the `update()` function:
 
 The function name `update` is arbitrary, but it makes sense for this example. Notice how the `@method` decorator is used because it is intended to be invoked by end users by using a zkApp UI, or as in this case, the `main.ts` script.
 
-This method contains the logic by which end users are allowed to update the zkApp's account state on chain. 
+This method contains the logic by which end users are allowed to update the zkApp's account state on chain.
 
-A zkApp account is an account on the Mina blockchain where a zkApp smart contract is deployed. A zkApp account has a verification key associated with it. 
+A zkApp account is an account on the Mina blockchain where a zkApp smart contract is deployed. A zkApp account has a verification key associated with it.
 
 In this example, the code specifies:
 
-- If the user provides a number (for example, 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (for example, 3), then update the `num` value that is stored on-chain to the provided value (in this case, 9). 
+- If the user provides a number (for example, 9) to the `update()` method that is the square of the existing on-chain state referred to as `num` (for example, 3), then update the `num` value that is stored on-chain to the provided value (in this case, 9).
 - If the user provides a number that does not meet these conditions, they are unable to generate a proof or update the on-chain state.
 
 These update conditions are accomplished by using assertions within the method. When a user invokes a method on a smart contract, all assertions must be true to generate the zero knowledge proof from that smart contract. The Mina network accepts the transaction and updates the on-chain state only if the attached proof is valid. This assertion is how you can achieve predictable behavior in an off-chain execution model.
 
-Notice that `get()` and `set()` methods are used for retrieving and setting on-chain state. 
+Notice that `get()` and `set()` methods are used for retrieving and setting on-chain state.
 
-- A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it. 
+- A smart contract retrieves the on-chain account state when it is first invoked if at least one `get()` exists within it.
 
 - Similarly, using `set()` changes the transaction to indicate that changes to this particular on-chain state are updated only when the transaction is received by the Mina network if it contains a valid authorization (usually, a valid authorization is a proof).
 
-The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available [methods](/zkapps/o1js-reference/classes/Field#methods) in the o1js Reference documentation. 
+The logic also uses the `.mul()` method for multiplication of the values stored in `Field` types. You can view all available [methods](/zkapps/o1js-reference/classes/Field#methods) in the o1js Reference documentation.
 
 You remember that functions in your smart contract must operate on o1js compatible data types: `Field` types and other types built on top of `Field` types. Because a smart contract is really a zero knowledge circuit, functions from random npm packages work inside a smart contract only if the functions the contract provides operate on o1js-compatible data types.
 
 Importantly, data passed as an input to a smart contract method in o1js is private and never seen by the network.
 
-You can also store data publicly on-chain when needed, like  `num` in this example. A later tutorial covers an example that leverages privacy.
+You can also store data publicly on-chain when needed, like `num` in this example. A later tutorial covers an example that leverages privacy.
 
-Congratulations, you have reviewed the complete smart contract code. 
+Congratulations, you have reviewed the complete smart contract code.
 
 ## Interact with a smart contract
 
-Next, write a script that interacts with your smart contract. As before, the complete [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file is provided. Follow these steps to build the `main.ts` file so you can interact with the smart contract.  
+Next, write a script that interacts with your smart contract. As before, the complete [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file is provided. Follow these steps to build the `main.ts` file so you can interact with the smart contract.
 
 ### Imports
 
-For this tutorial, the `import` statement brings in items from `o1js` that you use to interact with your smart contract. 
+For this tutorial, the `import` statement brings in items from `o1js` that you use to interact with your smart contract.
 
 1. Copy the following lines from [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file into the `src/main.ts` file:
 
-```ts src/main.ts
-1 import { Square } from './Square.js';
-2 import {
-3   Field,
-4   Mina,
-5   PrivateKey,
-6   AccountUpdate,
-7 } from 'o1js';
-```
+  ```ts src/main.ts
+  1 import { Square } from './Square.js';
+  2 import { Field, Mina, PrivateKey, AccountUpdate } from 'o1js';
+  ```
 
-These import items are:
+  These import items are:
 
-- `Field`: The same o1js unsigned integer type that you learned earlier.
-- `Mina`: A simulated local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
-- `PrivateKey`: A class with functions for manipulating private keys.
-- `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
+    - `Field`: The same o1js unsigned integer type that you learned earlier.
+    - `Mina`: A simulated local Mina blockchain to deploy the smart contract to so you can interact with it as a user would.
+    - `PrivateKey`: A class with functions for manipulating private keys.
+    - `AccountUpdate`: A class that generates a data structure that can update zkApp accounts.
 
 ### Simulated Local Blockchain
 
 Using a simulated local blockchain speeds up development and tests the behavior of your smart contract locally. Later tutorials cover how to use a lightweight Mina network (Lightnet) to test your zkApp before you deploy to live networks.
 
 :::info
-- The term _simulated local blockchain_ refers to the local testing blockchain you use in the first phase of testing as described here. 
-- The term _Lightnet_ is used to describe the lightweight Mina network (Lightnet) that is a more accurate representation of the Mina blockchain. See [Testing zkApps with Lightnet](/zkapps/testing-zkapps-lightnet).
+
+- The term _simulated local blockchain_ refers to the local testing blockchain you use in the first phase of testing as described here.
+- The term _Lightnet_ is used to describe the lightweight Mina network (Lightnet) that is a more accurate representation of the Mina blockchain. See [Testing zkApps with Lightnet](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet).
+
 :::
 
 To initialize your simulated local blockchain, add the following code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to `src/main.ts`:
 
 ```ts src/main.ts
- 9 const useProof = false;
-10
-11 const Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
-12 Mina.setActiveInstance(Local);
-13 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
-14 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
-15
+ 4 const useProof = false;
+ 5
+ 6  const Local = await Mina.LocalBlockchain({ proofsEnabled: useProof });
+ 7  Mina.setActiveInstance(Local);
+ 8
+ 9  const deployerAccount = Local.testAccounts[0];
+10  const deployerKey = deployerAccount.key;
+11  const senderAccount = Local.testAccounts[1];
+12  const senderKey = senderAccount.key;
 ```
 
 Tip: To preserve line numbers in your local `main.ts` file, add blank lines as needed after you copy the code snippets.
@@ -337,7 +335,7 @@ This simulated local blockchain provides pre-funded accounts. Add these lines to
 
 ```ts src/main.ts
 16 // ----------------------------------------------------
-17 
+17
 18 // Create a public/private key pair. The public key is your address and where you deploy the zkApp to
 19 const zkAppPrivateKey = PrivateKey.random();
 20 const zkAppAddress = zkAppPrivateKey.toPublicKey();
@@ -365,13 +363,13 @@ You have the option to combine these commands into one line:
 npm run build && node build/src/main.js
 ```
 
-- The `npm run build` command creates JavaScript code in the `build` directory. 
-- The `&&` operator links two commands together. The second command runs only if the first command is successful. 
+- The `npm run build` command creates JavaScript code in the `build` directory.
+- The `&&` operator links two commands together. The second command runs only if the first command is successful.
 - The `node build/src/main.js` command runs the code in `src/main.ts`.
 
 ### Initialize your smart contract
 
-To initialize your smart contract, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file. 
+To initialize your smart contract, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file.
 
 All smart contracts that you create with the zkApp CLI use similar code:
 
@@ -385,9 +383,9 @@ Comments break down each stage:
 21
 22 // create an instance of Square - and deploy it to zkAppAddress
 23 const zkAppInstance = new Square(zkAppAddress);
-24 const deployTxn = await Mina.transaction(deployerAccount, () => {
+24 const deployTxn = await Mina.transaction(deployerAccount, async () => {
 25   AccountUpdate.fundNewAccount(deployerAccount);
-26   zkAppInstance.deploy();
+26   await zkAppInstance.deploy();
 27 });
 28 await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 29
@@ -420,8 +418,8 @@ To update your local zkApp account with a transaction, add the following code to
 33
 34 // ----------------------------------------------------
 35
-36 const txn1 = await Mina.transaction(senderAccount, () => {
-37   zkAppInstance.update(Field(9));
+36 const txn1 = await Mina.transaction(senderAccount, async () => {
+37   await zkAppInstance.update(Field(9));
 38 });
 39 await txn1.prove();
 40 await txn1.sign([senderKey]).send();
@@ -445,11 +443,12 @@ The expected output is:
 state after init: 3
 state after txn1: 9
 ```
+
 ### Add a transaction that fails
 
-It's time to do some testing. To add a transaction that fails, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file. 
+It's time to do some testing. To add a transaction that fails, add more code from the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/01-hello-world/src/main.ts) example file to the `src/main.ts` file.
 
-The contract logic allows the number that is stored as on-chain state to be replaced only by its square. Now that `num` is in state `9`, updating is possible only with `81`. 
+The contract logic allows the number that is stored as on-chain state to be replaced only by its square. Now that `num` is in state `9`, updating is possible only with `81`.
 
 To test a failure, add these next lines of code from the `src/main.ts` file and change the state to `75` in `zkAppInstance.update(Field(75))`:
 
@@ -458,8 +457,8 @@ To test a failure, add these next lines of code from the `src/main.ts` file and 
 45 // ----------------------------------------------------
 46
 47 try {
-48   const txn2 = await Mina.transaction(senderAccount, () => {
-49     zkAppInstance.update(Field(75));
+48   const txn2 = await Mina.transaction(senderAccount, async () => {
+49     await zkAppInstance.update(Field(75));
 50   });
 51   await txn2.prove();
 52   await txn2.sign([senderKey]).send();
@@ -488,7 +487,7 @@ Field.assertEquals(): 75 != 81
 state after txn2: 9
 ```
 
-And finally, be sure to change your `main.ts` file to include the correct update to change the state to `81` in `zkAppInstance.update(Field(81))`. 
+And finally, be sure to change your `main.ts` file to include the correct update to change the state to `81` in `zkAppInstance.update(Field(81))`.
 
 Run this command again:
 
@@ -509,10 +508,11 @@ state after txn2: 81
 
 ## Follow along
 
-You can follow along in this video as cryptographer, David Wong, learns how to code a Hello World project. 
+You can follow along in this video as cryptographer, David Wong, learns how to code a Hello World project.
+
 <ResponsiveVideo src="https://www.youtube.com/embed/prx2oNpy0vo" />
 
-The video is provided for educational purposes and uses earlier versions of the zkApp CLI and o1js, so there are some differences. The Hello World tutorial always uses the most recent version of the zkApp CLI and o1js. 
+The video is provided for educational purposes and uses earlier versions of the zkApp CLI and o1js, so there are some differences. The Hello World tutorial always uses the most recent version of the zkApp CLI and o1js.
 
 ## Conclusion
 
@@ -520,4 +520,4 @@ Congratulations! You have successfully completed all of the steps to build your 
 
 Check out [Tutorial 2: Private Inputs and Hash Functions](private-inputs-hash-functions) to learn how to use private inputs and hash functions with o1js.
 
-Find more tutorials and resources in the [zkApps docs](/zkapps).
+Find more tutorials and resources in the [zkApps docs](/zkapps/writing-a-zkapp).

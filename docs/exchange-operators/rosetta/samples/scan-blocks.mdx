@@ -3,7 +3,29 @@ title: Scanning Blocks
 description: Learn how to scan blocks and inspect transactions
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 To implement a simple function to wait for a given block:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+async function waitForBlock(blockHeight: number) {
+    let latestBlock = (await networkStatus()).current_block_identifier.index
+    while (true) {
+        if (blockHeight <= latestBlock)
+            return await block(blockHeight)
+        await sleep(10000)
+        latestBlock = (await networkStatus()).current_block_identifier.index
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 def wait_for_block(block_index):
@@ -21,7 +43,28 @@ def wait_for_block(block_index):
         latest_block = network_status()["current_block_identifier"]["index"]
 ```
 
+</TabItem>
+</Tabs>
+
 It can be used to scan blocks like this:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+let latestBlockHeight = (await network_status()).current_block_identifier.index
+while (true) {
+    const lastBlock = waitForBlock(latestBlockHeight)
+    
+    # some processing according to business logic
+    
+    latestBlockHeight += 1
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 latest_block = network_status()["current_block_identifier"]["index"]
@@ -32,3 +75,6 @@ while True:
     
     latest_block += 1
 ```
+
+</TabItem>
+</Tabs>

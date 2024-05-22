@@ -54,7 +54,7 @@ The max mempool size is 3,000. After it hits that size, transactions with the lo
 
 Set your fee to an amount higher than 0.001 MINA, the current average fee for transactions in the pool.
 
-You can view the fees for pending transactions and adjust your fees accordingly: [https://minaexplorer.com/pending-transactions](https://minaexplorer.com/pending-transactions).
+You can view the fees for pending transactions and adjust your fees accordingly: [https://minascan.io/mainnet/txs/pending-txs](https://minascan.io/mainnet/txs/pending-txs).
 
 ### Why do some users appear to have lost their funds when sending to exchanges?
 
@@ -152,23 +152,11 @@ Use a recursive query. See [Query the database](/node-operators/archive-node/get
 
 This error message usually occurs due to a chain ID mismatch from running a Devnet build on Mainnet, or vice versa.
 
-To check whether you are running a Devenet or Mainnet build, run `Mina client status`. Next, compare the output's chain ID of your node to the expected chain ID below for the network you are trying to connect to:
-
-Mainnet:
-
-```
-5f704cc0c82e0ed70e873f0893d7e06f148524e3f0bdae2afb02e7819a0c24d1
-```
-
-Devnet:
-
-```
-8af43cf261ea10c761ec540f92aafb76aec56d8d74f77c836f3ab1de5ce4eac5
-```
+To check whether you are running a devnet or mainnet build, run `Mina client status`. Next, compare the output's chain ID of your node to the expected chain ID of the network you are trying to connect to. You can find required information for comparison within the [GitHub announcements](https://github.com/MinaProtocol/mina/discussions/categories/announcements) or [Discord](https://discord.com/channels/484437221055922177/601171209287368715) server.
 
 ### Are there any official broadcast nodes that can be used?
 
-No, there are no official broadcast nodes at this time. However, you can  broadcast transactions using [https://docs.minaexplorer.com/rest-api/ref](https://docs.minaexplorer.com/rest-api/ref). Use this method as a backup, the recommended method is to broadcast  transactions yourself. The Minaexplorer service rarely goes down because it runs on many nodes.
+No, there are no official broadcast nodes at this time. However, you can  broadcast transactions using [https://minascan.io/mainnet/broadcast/payment](https://minascan.io/mainnet/broadcast/payment). Use this method as a backup, the recommended method is to broadcast transactions yourself.
 
 ## Staking
 

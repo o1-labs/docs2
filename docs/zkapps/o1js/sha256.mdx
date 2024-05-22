@@ -13,12 +13,6 @@ keywords:
   - data structures
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina Mainnet, but zkApps can now be deployed on Berkeley Testnet.
-
-:::
-
 # SHA-256
 
 SHA-2 is a set of cryptographic hash functions designed by the National Security Agency (NSA) as an improved version of SHA-1, offering enhanced security and comprising multiple variants based on hash size, such as SHA-256 and SHA-512.
@@ -46,7 +40,6 @@ Because SHA-256 operates over binary data instead of native Field elements like 
 Under the hood, `Bytes` is represented as an array of `UInt8` elements.
 
 In order to use `Bytes`, you must extend the `Bytes` class and specify the length of bytes. For a detailed explanation, take a look at [How Keccak utilizes Bytes](keccak#bytes---api-reference)
-
 
 ```ts
 // define a preimage

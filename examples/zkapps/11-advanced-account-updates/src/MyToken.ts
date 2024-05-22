@@ -1,18 +1,19 @@
 import {
-  Bool,
   DeployArgs,
   Int64,
   method,
   AccountUpdate,
   Permissions,
   PublicKey,
-  SmartContract,
   UInt64,
+  TransactionVersion,
+  TokenContract,
+  AccountUpdateForest,
 } from 'o1js';
 
-export class MyToken extends SmartContract {
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
+export class MyToken extends TokenContract {
+  async deploy(args?: DeployArgs) {
+    await super.deploy(args);
     this.account.permissions.set({
       receive: Permissions.none(),
       send: Permissions.proof(),
@@ -20,7 +21,10 @@ export class MyToken extends SmartContract {
       editActionState: Permissions.proof(),
       setDelegate: Permissions.proof(),
       setPermissions: Permissions.proof(),
-      setVerificationKey: Permissions.proof(),
+      setVerificationKey: {
+        auth: Permissions.proof(),
+        txnVersion: TransactionVersion.current(),
+      },
       setZkappUri: Permissions.proof(),
       setTokenSymbol: Permissions.proof(),
       incrementNonce: Permissions.proof(),
@@ -31,17 +35,20 @@ export class MyToken extends SmartContract {
 
     this.account.tokenSymbol.set('MYTKN');
 
-    this.token.mint({ address: this.address, amount: UInt64.from(1000) });
+    this.internal.mint({ address: this.address, amount: UInt64.from(1000) });
   }
 
   // ----------------------------------------------------------------------
-
-  @method mintTokens(receiverAddress: PublicKey, amount: UInt64) {
-    this.token.mint({ address: receiverAddress, amount });
+  async approveBase(forest: AccountUpdateForest) {
+    this.checkZeroBalanceChange(forest);
   }
 
-  @method approveDeploy(deployUpdate: AccountUpdate) {
-    this.approve(deployUpdate, AccountUpdate.Layout.NoChildren);
+  @method async mintTokens(receiverAddress: PublicKey, amount: UInt64) {
+    this.internal.mint({ address: receiverAddress, amount });
+  }
+
+  @method async approveDeploy(deployUpdate: AccountUpdate) {
+    this.approve(deployUpdate);
 
     // check that balance change is zero
     let balanceChange = Int64.fromObject(deployUpdate.body.balanceChange);
@@ -50,8 +57,11 @@ export class MyToken extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method approveTransfer(transferUpdate: AccountUpdate, receiver: PublicKey) {
-    this.approve(transferUpdate, AccountUpdate.Layout.NoChildren);
+  @method async approveTransfer(
+    transferUpdate: AccountUpdate,
+    receiver: PublicKey
+  ) {
+    this.approve(transferUpdate);
 
     let balanceChange = Int64.fromObject(transferUpdate.body.balanceChange);
 
@@ -59,41 +69,20 @@ export class MyToken extends SmartContract {
     balanceChange.isPositive().not().assertTrue();
 
     // move the same amount to the receiver
-    this.token.mint({ address: receiver, amount: balanceChange.magnitude });
+    this.internal.mint({ address: receiver, amount: balanceChange.magnitude });
   }
 
   // ----------------------------------------------------------------------
 
-  @method transfer(from: PublicKey, to: PublicKey, value: UInt64) {
-    this.token.send({ from, to, amount: value });
+  @method async transfer(from: PublicKey, to: PublicKey, value: UInt64) {
+    this.internal.send({ from, to, amount: value });
   }
 
   // ----------------------------------------------------------------------
-
-  public hasNoBalanceChange(accountUpdate: AccountUpdate): Bool {
-    // all balance changes of children
-    const balanceChanges = accountUpdate.children.accountUpdates.map(
-      ({ body: { balanceChange } }) => balanceChange
-    );
-
-    // add the self balance change
-    balanceChanges.push(accountUpdate.body.balanceChange);
-
-    const balanceChange = balanceChanges.reduce(
-      (accumulatedBalanceChange, currentBalanceChange) =>
-        Int64.fromObject(accumulatedBalanceChange).add(
-          Int64.fromObject(currentBalanceChange)
-        ),
-      Int64.zero
-    );
-
-    return Int64.fromObject(balanceChange).equals(UInt64.zero);
-  }
 
   public assertHasNoBalanceChange(accountUpdate: AccountUpdate) {
-    this.hasNoBalanceChange(accountUpdate).assertTrue(
-      'Account update has a non-zero balance change'
-    );
+    let forest = AccountUpdateForest.from([accountUpdate.extractTree()]);
+    this.checkZeroBalanceChange(forest);
   }
 
   // ----------------------------------------------------------------------

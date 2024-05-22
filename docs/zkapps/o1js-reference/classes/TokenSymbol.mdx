@@ -1,0 +1,523 @@
+## Extends
+
+- \{
+  `"field"`: [`Field`](Field.mdx);
+  `"symbol"`: `string`;
+ \}
+
+## Constructors
+
+### new TokenSymbol()
+
+```ts
+new TokenSymbol(value: {
+  "field": Field;
+  "symbol": string;
+ }): TokenSymbol
+```
+
+#### Parameters
+
+• **value**
+
+• **value.field**: [`Field`](Field.mdx)
+
+• **value.symbol**: `string`
+
+#### Returns
+
+[`TokenSymbol`](TokenSymbol.mdx)
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).constructor`
+
+#### Source
+
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
+
+## Properties
+
+### field
+
+```ts
+field: Field;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).field`
+
+#### Source
+
+[lib/provable/crypto/poseidon.ts:206](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/crypto/poseidon.ts#L206)
+
+***
+
+### symbol
+
+```ts
+symbol: string;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).symbol`
+
+#### Source
+
+[lib/provable/crypto/poseidon.ts:206](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/crypto/poseidon.ts#L206)
+
+***
+
+### \_isStruct
+
+```ts
+static _isStruct: true;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure)._isStruct`
+
+#### Source
+
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
+
+***
+
+### check()
+
+```ts
+static check: (value: {
+  "field": Field;
+  "symbol": string;
+ }) => void;
+```
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](Bool.mdx) asserts that the value of the element is either 1 or 0.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to put assertions on.
+
+• **value.field**: [`Field`](Field.mdx)
+
+• **value.symbol**: `string`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).check`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L66)
+
+***
+
+### empty()
+
+```ts
+static empty: () => {
+  "field": Field;
+  "symbol": string;
+};
+```
+
+#### Returns
+
+```ts
+{
+  "field": Field;
+  "symbol": string;
+}
+```
+
+##### field
+
+```ts
+field: Field;
+```
+
+##### symbol
+
+```ts
+symbol: string;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).empty`
+
+#### Source
+
+[lib/provable/types/struct.ts:155](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L155)
+
+***
+
+### fromFields()
+
+```ts
+static fromFields: (fields: Field[], aux: any[]) => {
+  "field": Field;
+  "symbol": string;
+};
+```
+
+A function that returns an element of type `T` from the given provable and "auxiliary" data.
+
+This function is the reverse operation of calling [toFields](TokenSymbol.mdx#tofields) and toAuxilary methods on an element of type `T`.
+
+#### Parameters
+
+• **fields**: [`Field`](Field.mdx)[]
+
+an array of [Field](Field.mdx) elements describing the provable data of the new `T` element.
+
+• **aux**: `any`[]
+
+an array of any type describing the "auxiliary" data of the new `T` element, optional.
+
+#### Returns
+
+```ts
+{
+  "field": Field;
+  "symbol": string;
+}
+```
+
+##### field
+
+```ts
+field: Field;
+```
+
+##### symbol
+
+```ts
+symbol: string;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).fromFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:49](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L49)
+
+***
+
+### fromJSON()
+
+```ts
+static fromJSON: (x: string) => {
+  "field": Field;
+  "symbol": string;
+};
+```
+
+#### Parameters
+
+• **x**: `string`
+
+#### Returns
+
+```ts
+{
+  "field": Field;
+  "symbol": string;
+}
+```
+
+##### field
+
+```ts
+field: Field;
+```
+
+##### symbol
+
+```ts
+symbol: string;
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).fromJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:154](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L154)
+
+***
+
+### fromValue
+
+```ts
+static fromValue: (x: string | {
+  "field": Field;
+  "symbol": string;
+ }) => {
+  "field": Field;
+  "symbol": string;
+ } & (value: string | {
+  "field": Field;
+  "symbol": string;
+ }) => {
+  "field": Field;
+  "symbol": string;
+};
+```
+
+Convert provable type from a normal JS type.
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).fromValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L76)
+
+***
+
+### toAuxiliary()
+
+```ts
+static toAuxiliary: (value?: {
+  "field": Field;
+  "symbol": string;
+ }) => any[];
+```
+
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+
+#### Parameters
+
+• **value?**
+
+the element of type `T` to generate the auxiliary data array from, optional.
+If not provided, a default value for auxiliary data is returned.
+
+• **value.field?**: [`Field`](Field.mdx)
+
+• **value.symbol?**: `string`
+
+#### Returns
+
+`any`[]
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).toAuxiliary`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L37)
+
+***
+
+### toFields()
+
+```ts
+static toFields: (value: {
+  "field": Field;
+  "symbol": string;
+ }) => Field[];
+```
+
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](Field.mdx) elements that make up the provable data of `value`.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to generate the [Field](Field.mdx) array from.
+
+• **value.field**: [`Field`](Field.mdx)
+
+• **value.symbol**: `string`
+
+#### Returns
+
+[`Field`](Field.mdx)[]
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).toFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L26)
+
+***
+
+### toInput()
+
+```ts
+static toInput: (x: {
+  "field": Field;
+  "symbol": string;
+ }) => {
+  "fields": Field[];
+  "packed": [Field, number][];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.field**: [`Field`](Field.mdx)
+
+• **x.symbol**: `string`
+
+#### Returns
+
+```ts
+{
+  "fields": Field[];
+  "packed": [Field, number][];
+}
+```
+
+##### fields?
+
+```ts
+optional fields: Field[];
+```
+
+##### packed?
+
+```ts
+optional packed: [Field, number][];
+```
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).toInput`
+
+#### Source
+
+[lib/provable/types/struct.ts:149](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L149)
+
+***
+
+### toJSON()
+
+```ts
+static toJSON: (x: {
+  "field": Field;
+  "symbol": string;
+ }) => string;
+```
+
+#### Parameters
+
+• **x**
+
+• **x.field**: [`Field`](Field.mdx)
+
+• **x.symbol**: `string`
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).toJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:153](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L153)
+
+***
+
+### toValue()
+
+```ts
+static toValue: (x: {
+  "field": Field;
+  "symbol": string;
+ }) => string;
+```
+
+Convert provable type to a normal JS type.
+
+#### Parameters
+
+• **x**
+
+• **x.field**: [`Field`](Field.mdx)
+
+• **x.symbol**: `string`
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).toValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L71)
+
+## Methods
+
+### from()
+
+```ts
+static from(value: string | TokenSymbol): TokenSymbol
+```
+
+#### Parameters
+
+• **value**: `string` \| [`TokenSymbol`](TokenSymbol.mdx)
+
+#### Returns
+
+[`TokenSymbol`](TokenSymbol.mdx)
+
+#### Source
+
+[lib/provable/crypto/poseidon.ts:253](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/crypto/poseidon.ts#L253)
+
+***
+
+### sizeInFields()
+
+```ts
+static sizeInFields(): number
+```
+
+Return the size of the `T` type in terms of [Field](Field.mdx) type, as [Field](Field.mdx) is the primitive type.
+
+#### Returns
+
+`number`
+
+A `number` representing the size of the `T` type in terms of [Field](Field.mdx) type.
+
+#### Inherited from
+
+`Struct(TokenSymbolPure).sizeInFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L56)

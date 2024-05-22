@@ -1,0 +1,688 @@
+## Extends
+
+- \{
+  `"values"`: [`Character`](Character.mdx)[];
+ \}
+
+## Constructors
+
+### new CircuitString()
+
+```ts
+new CircuitString(value: {
+  "values": Character[];
+ }): CircuitString
+```
+
+#### Parameters
+
+• **value**
+
+• **value.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+[`CircuitString`](CircuitString.mdx)
+
+#### Inherited from
+
+`Struct(RawCircuitString).constructor`
+
+#### Source
+
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
+
+## Properties
+
+### values
+
+```ts
+values: Character[];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).values`
+
+#### Source
+
+[lib/provable/string.ts:61](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L61)
+
+***
+
+### \_isStruct
+
+```ts
+static _isStruct: true;
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString)._isStruct`
+
+#### Source
+
+[lib/provable/types/struct.ts:145](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L145)
+
+***
+
+### check()
+
+```ts
+static check: (value: {
+  "values": Character[];
+ }) => void;
+```
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](Bool.mdx) asserts that the value of the element is either 1 or 0.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to put assertions on.
+
+• **value.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`Struct(RawCircuitString).check`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L66)
+
+***
+
+### empty()
+
+```ts
+static empty: () => {
+  "values": Character[];
+};
+```
+
+#### Returns
+
+```ts
+{
+  "values": Character[];
+}
+```
+
+##### values
+
+```ts
+values: Character[];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).empty`
+
+#### Source
+
+[lib/provable/types/struct.ts:155](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L155)
+
+***
+
+### fromFields()
+
+```ts
+static fromFields: (fields: Field[]) => {
+  "values": Character[];
+};
+```
+
+#### Parameters
+
+• **fields**: [`Field`](Field.mdx)[]
+
+#### Returns
+
+```ts
+{
+  "values": Character[];
+}
+```
+
+##### values
+
+```ts
+values: Character[];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).fromFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:87](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L87)
+
+***
+
+### fromJSON()
+
+```ts
+static fromJSON: (x: {
+  "values": {
+     "value": Field;
+    }[];
+ }) => {
+  "values": Character[];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.values**: \{
+  `"value"`: `Field`;
+ \}[]= `undefined`
+
+#### Returns
+
+```ts
+{
+  "values": Character[];
+}
+```
+
+##### values
+
+```ts
+values: Character[];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).fromJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:154](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L154)
+
+***
+
+### fromValue
+
+```ts
+static fromValue: (x: string | {
+  "values": Character[];
+ }) => {
+  "values": Character[];
+ } & (value: string | {
+  "values": Character[];
+ }) => {
+  "values": Character[];
+};
+```
+
+Convert provable type from a normal JS type.
+
+#### Inherited from
+
+`Struct(RawCircuitString).fromValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L76)
+
+***
+
+### maxLength
+
+```ts
+static maxLength: number = DEFAULT_STRING_LENGTH;
+```
+
+#### Source
+
+[lib/provable/string.ts:68](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L68)
+
+***
+
+### toAuxiliary()
+
+```ts
+static toAuxiliary: (value?: {
+  "values": Character[];
+ }) => any[];
+```
+
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+
+#### Parameters
+
+• **value?**
+
+the element of type `T` to generate the auxiliary data array from, optional.
+If not provided, a default value for auxiliary data is returned.
+
+• **value.values?**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+`any`[]
+
+#### Inherited from
+
+`Struct(RawCircuitString).toAuxiliary`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L37)
+
+***
+
+### toFields()
+
+```ts
+static toFields: (value: {
+  "values": Character[];
+ }) => Field[];
+```
+
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](Field.mdx) elements that make up the provable data of `value`.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to generate the [Field](Field.mdx) array from.
+
+• **value.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+[`Field`](Field.mdx)[]
+
+#### Inherited from
+
+`Struct(RawCircuitString).toFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L26)
+
+***
+
+### toInput()
+
+```ts
+static toInput: (x: {
+  "values": Character[];
+ }) => {
+  "fields": Field[];
+  "packed": [Field, number][];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+```ts
+{
+  "fields": Field[];
+  "packed": [Field, number][];
+}
+```
+
+##### fields?
+
+```ts
+optional fields: Field[];
+```
+
+##### packed?
+
+```ts
+optional packed: [Field, number][];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).toInput`
+
+#### Source
+
+[lib/provable/types/struct.ts:149](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L149)
+
+***
+
+### toJSON()
+
+```ts
+static toJSON: (x: {
+  "values": Character[];
+ }) => {
+  "values": {
+     "value": Field;
+    }[];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+```ts
+{
+  "values": {
+     "value": Field;
+    }[];
+}
+```
+
+##### values
+
+```ts
+values: {
+  "value": Field;
+ }[];
+```
+
+#### Inherited from
+
+`Struct(RawCircuitString).toJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:153](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/struct.ts#L153)
+
+***
+
+### toValue()
+
+```ts
+static toValue: (x: {
+  "values": Character[];
+ }) => string;
+```
+
+Convert provable type to a normal JS type.
+
+#### Parameters
+
+• **x**
+
+• **x.values**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+`Struct(RawCircuitString).toValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L71)
+
+## Methods
+
+### append()
+
+```ts
+append(str: CircuitString): CircuitString
+```
+
+appends another string to this one, returns the result and proves that it fits
+within the `maxLength` of this string (the other string can have a different maxLength)
+
+#### Parameters
+
+• **str**: [`CircuitString`](CircuitString.mdx)
+
+#### Returns
+
+[`CircuitString`](CircuitString.mdx)
+
+#### Source
+
+[lib/provable/string.ts:117](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L117)
+
+***
+
+### computeLengthAndMask()
+
+```ts
+computeLengthAndMask(): {
+  "length": Field;
+  "mask": Bool[];
+}
+```
+
+#### Returns
+
+```ts
+{
+  "length": Field;
+  "mask": Bool[];
+}
+```
+
+##### length
+
+```ts
+length: Field;
+```
+
+##### mask
+
+```ts
+mask: Bool[];
+```
+
+#### Source
+
+[lib/provable/string.ts:80](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L80)
+
+***
+
+### equals()
+
+```ts
+equals(other: CircuitString): Bool
+```
+
+returns true if `this` has the same value as `other`
+
+#### Parameters
+
+• **other**: [`CircuitString`](CircuitString.mdx)
+
+#### Returns
+
+[`Bool`](Bool.mdx)
+
+#### Source
+
+[lib/provable/string.ts:109](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L109)
+
+***
+
+### hash()
+
+```ts
+hash(): Field
+```
+
+#### Returns
+
+[`Field`](Field.mdx)
+
+#### Source
+
+[lib/provable/string.ts:143](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L143)
+
+***
+
+### length()
+
+```ts
+length(): Field
+```
+
+#### Returns
+
+[`Field`](Field.mdx)
+
+#### Source
+
+[lib/provable/string.ts:102](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L102)
+
+***
+
+### lengthMask()
+
+```ts
+lengthMask(): Bool[]
+```
+
+#### Returns
+
+[`Bool`](Bool.mdx)[]
+
+#### Source
+
+[lib/provable/string.ts:99](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L99)
+
+***
+
+### maxLength()
+
+```ts
+maxLength(): number
+```
+
+#### Returns
+
+`number`
+
+#### Source
+
+[lib/provable/string.ts:75](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L75)
+
+***
+
+### substring()
+
+```ts
+substring(start: number, end: number): CircuitString
+```
+
+#### Parameters
+
+• **start**: `number`
+
+• **end**: `number`
+
+#### Returns
+
+[`CircuitString`](CircuitString.mdx)
+
+#### Source
+
+[lib/provable/string.ts:147](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L147)
+
+***
+
+### toString()
+
+```ts
+toString(): string
+```
+
+#### Returns
+
+`string`
+
+#### Source
+
+[lib/provable/string.ts:151](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L151)
+
+***
+
+### fromCharacters()
+
+```ts
+static fromCharacters(chars: Character[]): CircuitString
+```
+
+#### Parameters
+
+• **chars**: [`Character`](Character.mdx)[]
+
+#### Returns
+
+[`CircuitString`](CircuitString.mdx)
+
+#### Source
+
+[lib/provable/string.ts:71](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L71)
+
+***
+
+### fromString()
+
+```ts
+static fromString(str: string): CircuitString
+```
+
+#### Parameters
+
+• **str**: `string`
+
+#### Returns
+
+[`CircuitString`](CircuitString.mdx)
+
+#### Source
+
+[lib/provable/string.ts:155](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/string.ts#L155)
+
+***
+
+### sizeInFields()
+
+```ts
+static sizeInFields(): number
+```
+
+Return the size of the `T` type in terms of [Field](Field.mdx) type, as [Field](Field.mdx) is the primitive type.
+
+#### Returns
+
+`number`
+
+A `number` representing the size of the `T` type in terms of [Field](Field.mdx) type.
+
+#### Inherited from
+
+`Struct(RawCircuitString).sizeInFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/provable/types/provable-intf.ts#L56)

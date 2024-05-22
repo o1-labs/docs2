@@ -1,0 +1,25 @@
+```ts
+function Reducer<T, A>(reducer: {
+  "actionType": T;
+}): ReducerReturn<A>
+```
+
+## Type parameters
+
+• **T** *extends* [`FlexibleProvablePure`](../type-aliases/FlexibleProvablePure.mdx)\<`any`\>
+
+• **A** *extends* `any` = [`InferProvable`](../type-aliases/InferProvable.mdx)\<`T`\>
+
+## Parameters
+
+• **reducer**
+
+• **reducer.actionType**: `T`
+
+## Returns
+
+`ReducerReturn`\<`A`\>
+
+## Source
+
+[lib/mina/actions/reducer.ts:17](https://github.com/o1-labs/o1js/blob/3b1b22555bd0099419efc0703dfdb8b2eb7c3e6f/src/lib/mina/actions/reducer.ts#L17)

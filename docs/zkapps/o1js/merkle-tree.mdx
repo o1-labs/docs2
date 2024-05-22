@@ -43,15 +43,13 @@ A possible solution to that problem is to use the power of Merkle trees, store t
 
 Look at the data structure first. For example, to map a player's id to score points:
 
-```
-
+```sh
 0: 5 points
 1: 3 points
 2: 0 points
 3: 8 points
 ... : ...
 7: 2 points
-
 ```
 
 #### Implementing the smart contract
@@ -105,7 +103,7 @@ class Leaderboard extends SmartContract {
     );
   }
 
-  @method guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
+  @method async guessPreimage(guess: Field, account: Account, path: MerkleWitness) {
     // we fetch z from the chain
     const z = this.z.get();
     this.z.requireEquals(z);
@@ -129,7 +127,7 @@ class Leaderboard extends SmartContract {
     this.root.set(newRoot);
   }
 
-  @method claimReward(account: Account, path: MerkleWitness) {
+  @method async claimReward(account: Account, path: MerkleWitness) {
     // we fetch the on-chain commitment
     const root = this.root.get();
     this.root.requireEquals(root);

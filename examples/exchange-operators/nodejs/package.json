@@ -1,0 +1,16 @@
+{
+  "name": "mina-rosetta-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "sample": "node --enable-source-maps --no-warnings= --loader ts-node/esm index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "mina-signer": "^3.0.7"
+  }
+}

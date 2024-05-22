@@ -13,18 +13,9 @@ import { WrappedMina } from './WrappedMina.js';
 export class TokenPool extends SmartContract {
   static wrappedMinaPublicKey: PublicKey;
 
-  // TODO: this deploy() does nothing, can be removed
-  deploy(args?: DeployArgs) {
-    super.deploy(args);
-    this.account.permissions.set({
-      ...Permissions.default(),
-      // send: Permissions.proof(),
-    });
-  }
-
   // ----------------------------------------------------------------------
 
-  @method moveMinaToWrappedMina(amount: UInt64) {
+  @method async moveMinaToWrappedMina(amount: UInt64) {
     this.send({ to: TokenPool.wrappedMinaPublicKey, amount });
 
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
@@ -33,11 +24,11 @@ export class TokenPool extends SmartContract {
 
   // ----------------------------------------------------------------------
 
-  @method moveWrappedMinaToMina(amount: UInt64) {
+  @method async moveWrappedMinaToMina(amount: UInt64) {
     const wrappedMinaContract = new WrappedMina(TokenPool.wrappedMinaPublicKey);
     const wminaContract = new TokenPoolWMinaHolder(
       this.address,
-      wrappedMinaContract.token.id
+      wrappedMinaContract.tokenId
     );
     wminaContract.burnWMINA(amount);
     const burnWMINA = wminaContract.self;
@@ -49,7 +40,7 @@ export class TokenPool extends SmartContract {
 }
 
 export class TokenPoolWMinaHolder extends SmartContract {
-  @method burnWMINA(amount: UInt64) {
+  @method async burnWMINA(amount: UInt64) {
     // burn WMINA
     this.balance.subInPlace(amount);
 
