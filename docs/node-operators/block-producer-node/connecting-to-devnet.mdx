@@ -62,7 +62,7 @@ Commit 9b0369c27bb85c8ab2f8725c6e977eb27b53b826 on branch master
 To start a Mina node instance and connect to the Devnet network:
 
 ```
-mina daemon --peer-list-url https://storage.googleapis.com/seed-lists/devnet_seeds.txt
+mina daemon --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt
 ```
 
 The `--peer-list` argument specifies the the source file of seed peer addresses for the initial peer to connect to on the network. Mina is a [peer-to-peer](/glossary#peer-to-peer) protocol, so there is no dependence on a single centralized server.
@@ -83,12 +83,12 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEER_LIST_URL=https://storage.googleapis.com/seed-lists/devnet_seeds.txt
+PEERS_LIST_URL=https://bootnodes.minaprotocol.com/networks/devnet.txt
 ```
 
 Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
 
-If you do not want to produce blocks, then provide only the `PEER_LIST_URL`.
+If you do not want to produce blocks, then provide only the `PEERS_LIST_URL`.
 
 Now, run the image with your `~/.mina-config` and `~/.mina-env` files mounted into the container:
 
