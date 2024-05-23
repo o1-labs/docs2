@@ -11,14 +11,14 @@ module.exports = {
           label: 'Archive Migration',
           link: {
             type: 'doc',
-            id: 'berkeley-upgrade/archive-migration/index'
+            id: 'berkeley-upgrade/archive-migration/index',
           },
           items: [
             'berkeley-upgrade/archive-migration/understanding-archive-migration',
             'berkeley-upgrade/archive-migration/archive-migration-prerequisites',
             'berkeley-upgrade/archive-migration/archive-migration-installation',
             'berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley',
-            `berkeley-upgrade/archive-migration/mainnet-database-maintenance`,
+            'berkeley-upgrade/archive-migration/mainnet-database-maintenance',
             'berkeley-upgrade/archive-migration/debian-example',
             'berkeley-upgrade/archive-migration/docker-example',
             'berkeley-upgrade/archive-migration/appendix',
@@ -133,9 +133,6 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
-            // TODO: enable when there is an updated offchain storage tutorial
-            // 'zkapps/tutorials/offchain-storage',
-
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
@@ -1278,7 +1275,7 @@ module.exports = {
       label: 'Mina Protocol',
       link: {
         type: 'doc',
-        id: 'mina-protocol/index'
+        id: 'mina-protocol/index',
       },
       items: [
         'mina-protocol/proof-of-stake',
@@ -1296,7 +1293,7 @@ module.exports = {
       label: 'Node Operators',
       link: {
         type: 'doc',
-        id: 'node-operators/index'
+        id: 'node-operators/index',
       },
       items: [
         'node-operators/staking-and-snarking',
@@ -1306,7 +1303,7 @@ module.exports = {
           label: 'Block Producing Node',
           link: {
             type: 'doc',
-            id: 'node-operators/block-producer-node/index'
+            id: 'node-operators/block-producer-node/index',
           },
           items: [
             'node-operators/block-producer-node/getting-started',
@@ -1314,52 +1311,51 @@ module.exports = {
             'node-operators/block-producer-node/connecting-to-devnet',
             'node-operators/block-producer-node/hot-cold-block-production',
             'node-operators/block-producer-node/docker-compose',
-              ],
+          ],
         },
         {
           type: 'category',
           label: 'SNARK Workers',
           link: {
             type: 'doc',
-            id: 'node-operators/snark-workers/index'
+            id: 'node-operators/snark-workers/index',
           },
           items: [
             'node-operators/snark-workers/getting-started',
             'node-operators/snark-workers/docker-compose',
-              ],
+          ],
         },
         {
           type: 'category',
           label: 'Archive Nodes',
           link: {
             type: 'doc',
-            id: 'node-operators/archive-node/index'
+            id: 'node-operators/archive-node/index',
           },
           items: [
             'node-operators/archive-node/getting-started',
             'node-operators/archive-node/archive-redundancy',
             'node-operators/archive-node/docker-compose',
-
-              ],
+          ],
         },
         {
           type: 'category',
           label: 'Seed Peers',
           link: {
             type: 'doc',
-            id: 'node-operators/seed-peers/index'
+            id: 'node-operators/seed-peers/index',
           },
           items: [
             'node-operators/seed-peers/getting-started',
             'node-operators/seed-peers/docker-compose',
-              ],
+          ],
         },
         {
           type: 'category',
           label: 'Data and History',
           link: {
             type: 'doc',
-            id: 'node-operators/data-and-history/index'
+            id: 'node-operators/data-and-history/index',
           },
           items: [
             'node-operators/data-and-history/querying-data',
@@ -1371,9 +1367,8 @@ module.exports = {
           label: 'Delegation Program',
           link: {
             type: 'doc',
-            id: 'node-operators/delegation-program/index'
+            id: 'node-operators/delegation-program/index',
           },
-
           items: [
             'node-operators/delegation-program/foundation-delegation-program',
             'node-operators/delegation-program/delegation-tiebreak',
@@ -1394,7 +1389,7 @@ module.exports = {
       label: 'Node Developers',
       link: {
         type: 'doc',
-        id: 'node-developers/index'
+        id: 'node-developers/index',
       },
       items: [
         'node-developers/codebase-overview',
@@ -1404,7 +1399,7 @@ module.exports = {
         'node-developers/style-guide',
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
-        'node-developers/contributing'
+        'node-developers/contributing',
       ],
     },
     {
@@ -1412,7 +1407,7 @@ module.exports = {
       label: 'Exchange Operators',
       link: {
         type: 'doc',
-        id: 'exchange-operators/index'
+        id: 'exchange-operators/index',
       },
       items: [
         {
