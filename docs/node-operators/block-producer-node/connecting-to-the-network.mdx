@@ -179,7 +179,7 @@ docker run --name mina -d \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0-039296a-mainnet \
+minaprotocol/mina-daemon:2.0.0-039296a-mainnet \
 daemon
 ```
 

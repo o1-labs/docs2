@@ -58,6 +58,8 @@ services:
       '
     volumes:
       - './node/mina-config:/data/.mina-config'
+    ports:
+      - '8302:8302'
     depends_on:
       generate_libp2p_key:
         condition: service_completed_successfully
