@@ -1,0 +1,437 @@
+---
+title: Archive Nodes Getting Started
+sidebar_label: Getting Started
+description: Mina archive nodes maintain historical information about the network, block, and transactions. A zkApp can retrieve events and actions from one or more Mina archive nodes.
+keywords:
+  - mina archive node
+  - mina historical information
+  - events and actions
+  - archive process
+  - postgres
+---
+
+# Archive Nodes Getting Started
+
+Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions.
+
+For some use cases, it is useful to maintain this historical data on an archive node.
+
+:::tip
+
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions).
+
+:::
+
+An archive node is a regular mina daemon that is connected to a running `mina-archive` process using the `--archive-address` flag.
+
+The daemon regularly sends blockchain data to the archive process that stores it in a [PostgreSQL](https://www.postgresql.org/) database.
+
+## Archive Node Requirements
+
+**Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker.
+
+**Processor**: Only x86-64 CPU architecture is supported.
+
+**Hardware**: Running an archive node does not require any special hardware.
+
+In addition to the [PostgreSQL](https://www.postgresql.org/) database requirements, running an archive node on the Mina network requires at least:
+
+- 8-core processor
+- 32 GB of RAM
+- 64 GB of free storage
+
+Running an archive node requires some knowledge of managing a PostgreSQL database instance. You must set up a database, run the archive node, connect it to a daemon, and run queries on the data.
+
+## Install Mina, PostgreSQL, and the archive node package
+
+1. Install the latest version of Mina.
+
+  You must upgrade to the latest version of the daemon. Follow the steps in [Getting Started](../block-producer-node/getting-started).
+
+1. Download and install [PostgreSQL](https://www.postgresql.org/download/).
+
+1. Install the archive node package.
+
+   - Ubuntu/Debian:
+
+     ```
+     sudo apt-get install mina-archive=2.0.0-039296a
+     ```
+
+   - Docker:
+
+     ```
+     minaprotocol/mina-archive:2.0.0-039296a-bullseye
+     ```
+
+## Set up the archive node
+
+These steps might be different for your operating system, if you're connecting to a cloud instance of PostgreSQL, if your deployment uses Docker, or if you want to run these processes on different machines.
+
+For production, run the archive database in the background, use your operating system service manager (like systemd) to run it for you, or use a postgres service hosted by a cloud provider.
+
+To run a local archive node to run it in the foreground for testing:
+
+1. Start a local postgres server and connect to port 5432:
+
+  ```sh
+  postgres -p 5432 -D /usr/local/var/postgres
+  ```
+
+  For macOS:
+
+  ```sh
+  brew services start postgres
+  ```
+
+1. Create a local postgres database called `archive`:
+
+  ```sh
+  createdb -h localhost -p 5432 -e archive
+  ```
+
+1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
+
+  ```sh
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/release/2.0.0/src/app/archive/create_schema.sql)
+
+  ```
+
+1. Start the archive process on port 3086 and connect to the postgres database that runs on port 5432:
+
+  ```sh
+  mina-archive run \
+    --postgres-uri postgres://localhost:5432/archive \
+    --server-port 3086
+  ```
+
+4. Start the mina daemon and connect it to the archive process that you started on port 3086:
+
+  ```
+  mina daemon \
+      .....
+    --archive-address 3086
+
+  ```
+
+  To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
+
+## Set up the archive node using Docker
+
+To get started with installing and running the archive node using Docker, follow the steps below.
+
+1. Install Docker on your machine. For more information, see [Docker](https://docs.docker.com/get-docker/).
+
+2. Pull the archive node image from Docker Hub.
+
+   ```sh
+   docker pull minaprotocol/mina-archive:2.0.0-039296a-bullseye
+   ```
+
+3. Pull and install the postgres image from Docker Hub.
+
+   ```sh
+   docker pull postgres
+   ```
+
+4. Start the postgres container and expose it's networking to other containers.
+
+   ```sh
+   docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+   ```
+
+5. Create a local postgres database called `archive`.
+
+   ```sh
+   docker exec -it postgres createdb -U postgres archive
+   ```
+
+6. Load the mina archive schemas into the archive database, (create_schema.sql and zkapp_tables.sql.)
+
+   ```sh
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
+
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql | docker exec -i postgres psql -U postgres -d archive
+
+   ```
+
+7. Create a local directory to store the archive node data.
+
+   ```sh
+   mkdir -p /tmp/archive
+   ```
+
+8. Start the archive node.
+
+   ```sh
+   docker run \
+   --name archive \
+   -p 3086:3086 \
+   -v /tmp/archive:/data \
+   minaprotocol/mina-archive:2.0.0-039296a-bullseye \
+   mina-archive run \
+   --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
+   --server-port 3086
+
+   ```
+
+9. Start the mina daemon and connect it to the archive process that you started on port 3086:
+
+   ```
+   mina daemon \
+       .....
+     --archive-address 3086
+
+   ```
+  To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
+
+
+## Set up the archive node using Docker Compose
+
+Docker Compose is a tool for defining and running multi-container Docker applications.
+With Compose, you use a YAML file to configure your application's services. Then, with a single command, you create and start all the services from your configuration.
+
+To run the archive node using Docker Compose:
+
+1. Install Docker on your machine. For more information, see [Docker](https://docs.docker.com/get-docker/).
+
+2. Install Docker Compose on your machine. For more information, see [Docker Compose](https://docs.docker.com/compose/install/).
+
+3. Pull the archive node image from Docker Hub.
+
+   ```sh
+   docker pull minaprotocol/mina-archive:2.0.0-039296a-bullseye
+   ```
+
+4. Pull and install the postgres image from Docker Hub.
+
+   ```sh
+    docker pull postgres
+   ```
+
+5. Create a local directory to store the archive node data.
+
+   ```sh
+   mkdir -p /tmp/archive
+   ```
+
+6. Create a `docker-compose.yml` file with the following contents:
+
+   ```yml
+   services:
+     postgres:
+       image: postgres
+       environment:
+         POSTGRES_PASSWORD: postgres
+       volumes:
+         - './postgres-data:/var/lib/postgresql/data'
+       ports:
+         - '5432:5432'
+     archive:
+       image: 'minaprotocol/mina-archive:2.0.0-039296a-bullseye'
+       command: >-
+         mina-archive run --postgres-uri
+         postgres://postgres:postgres@postgres:5432/archive --server-port 3086
+       volumes:
+         - '/tmp/archive:/data'
+       ports:
+         - '3086:3086'
+       depends_on:
+         - postgres
+   ```
+
+7. Start the archive node.
+
+   ```sh
+   docker compose up
+   ```
+
+8. Start the mina daemon and connect it to the archive process that you started on port 3086:
+
+   ```
+   mina daemon \
+       .....
+     --archive-address 3086
+
+   ```
+
+     To connect to an archive process on another machine, specify a hostname with <ipaddress:portnumber> i.e. `154.97.53.97:3086`.
+
+
+## Using the Archive Node
+
+Take a look at the tables in the database.
+
+To list the tables, run the `\dt` command in psql. The output will look like this:
+
+```
+                  List of relations
+ Schema |             Name              | Type  | Owner
+--------+-------------------------------+-------+-------
+ public | account_identifiers           | table | mina
+ public | accounts_accessed             | table | mina
+ public | accounts_created              | table | mina
+ public | blocks                        | table | mina
+ public | blocks_internal_commands      | table | mina
+ public | blocks_user_commands          | table | mina
+ public | blocks_zkapp_commands         | table | mina
+ public | epoch_data                    | table | mina
+ public | internal_commands             | table | mina
+ public | protocol_versions             | table | mina
+ public | public_keys                   | table | mina
+ public | snarked_ledger_hashes         | table | mina
+ public | timing_info                   | table | mina
+ public | token_symbols                 | table | mina
+ public | tokens                        | table | mina
+ public | user_commands                 | table | mina
+ public | voting_for                    | table | mina
+ public | zkapp_account_precondition    | table | mina
+ public | zkapp_account_update          | table | mina
+ public | zkapp_account_update_body     | table | mina
+ public | zkapp_account_update_failures | table | mina
+ public | zkapp_accounts                | table | mina
+ public | zkapp_action_states           | table | mina
+ public | zkapp_amount_bounds           | table | mina
+ public | zkapp_balance_bounds          | table | mina
+ public | zkapp_commands                | table | mina
+ public | zkapp_epoch_data              | table | mina
+ public | zkapp_epoch_ledger            | table | mina
+ public | zkapp_events                  | table | mina
+ public | zkapp_fee_payer_body          | table | mina
+ public | zkapp_field                   | table | mina
+ public | zkapp_field_array             | table | mina
+ public | zkapp_global_slot_bounds      | table | mina
+ public | zkapp_length_bounds           | table | mina
+ public | zkapp_network_precondition    | table | mina
+ public | zkapp_nonce_bounds            | table | mina
+ public | zkapp_permissions             | table | mina
+ public | zkapp_states                  | table | mina
+ public | zkapp_states_nullable         | table | mina
+ public | zkapp_timing_info             | table | mina
+ public | zkapp_token_id_bounds         | table | mina
+ public | zkapp_updates                 | table | mina
+ public | zkapp_uris                    | table | mina
+ public | zkapp_verification_key_hashes | table | mina
+ public | zkapp_verification_keys       | table | mina
+(45 rows)
+
+```
+
+Use the `\d table_name` to look at the structure of a table in the database.
+
+For example to see the structure of the user_commands table, run the `\d user_commands` command in psql. The output will look like this:
+
+```
+                                    Table "public.user_commands"
+    Column    |       Type        | Collation | Nullable |                  Default
+--------------+-------------------+-----------+----------+-------------------------------------------
+ id           | integer           |           | not null | nextval('user_commands_id_seq'::regclass)
+ command_type | user_command_type |           | not null |
+ fee_payer_id | integer           |           | not null |
+ source_id    | integer           |           | not null |
+ receiver_id  | integer           |           | not null |
+ nonce        | bigint            |           | not null |
+ amount       | text              |           |          |
+ fee          | text              |           | not null |
+ valid_until  | bigint            |           |          |
+ memo         | text              |           | not null |
+ hash         | text              |           | not null |
+Indexes:
+    "user_commands_pkey" PRIMARY KEY, btree (id)
+    "user_commands_hash_key" UNIQUE CONSTRAINT, btree (hash)
+Foreign-key constraints:
+    "user_commands_fee_payer_id_fkey" FOREIGN KEY (fee_payer_id) REFERENCES public_keys(id)
+    "user_commands_receiver_id_fkey" FOREIGN KEY (receiver_id) REFERENCES public_keys(id)
+    "user_commands_source_id_fkey" FOREIGN KEY (source_id) REFERENCES public_keys(id)
+Referenced by:
+    TABLE "blocks_user_commands" CONSTRAINT "blocks_user_commands_user_command_id_fkey" FOREIGN KEY (user_command_id) REFERENCES user_commands(id) ON DELETE CASCADE
+
+```
+
+Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql) and [/archive/zkapp_tables.sql](https://github.com/MinaProtocol/mina/blob/berkeley/src/app/archive/zkapp_tables.sql)
+
+## Query the database
+
+Now that you know the structure of the data, try some queries.
+
+**Example 1:** Find all blocks that were created by your public key:
+
+```
+SELECT *
+FROM blocks AS b
+INNER JOIN public_keys AS pk1 ON b.creator_id = pk1.id
+WHERE value = 'MY_PK'
+```
+
+**Example 2:** Find all payments received by your public key:
+
+```
+SELECT *
+FROM user_commands AS uc
+JOIN blocks_user_commands AS buc ON uc.id = buc.user_command_id
+JOIN public_keys AS pk ON uc.receiver_id = pk.id
+WHERE value = 'MY_PK'
+AND type = 'payment'
+```
+
+**Example 3:** Find the block at height 12 on the canonical chain:
+
+```
+WITH RECURSIVE chain AS (
+  (SELECT ... FROM blocks b WHERE height = (select MAX(height) from blocks)
+  ORDER BY timestamp ASC
+  LIMIT 1)
+
+  UNION ALL
+
+  SELECT ... FROM blocks b
+  INNER JOIN chain
+  ON b.id = chain.parent_id AND chain.id <> chain.parent_id
+) SELECT ..., pk.value as creator FROM chain c
+  INNER JOIN public_keys pk
+  ON pk.id = c.creator_id
+  WHERE c.height = 12
+```
+
+**Example 3:** List the counts of blocks created by each public key and sort them in descending order"
+
+```
+SELECT p.value, COUNT(*) FROM blocks
+INNER JOIN public_keys AS p ON creator_id = ip.id
+GROUP BY p.value
+ORDER BY count DESC;
+```
+
+**Example 4:** List the counts of applied payments created by each public key and sort them in descending order:
+
+```
+SELECT p.value, COUNT(*) FROM user_commands
+INNER JOIN public_keys AS p ON source_id = p.id
+WHERE status = 'applied'
+AND type = 'payment'
+GROUP BY p.value ORDER BY count DESC;
+```
+**Example 5** Get the latest block:
+
+```
+SELECT
+height as blockheight,
+global_slot_since_genesis as globalslotsincegenesis,
+global_slot_since_hard_fork as globalslot,
+state_hash as statehash,
+parent_hash as parenthash,
+ledger_hash as ledgerhash,
+to_char(to_timestamp(cast ("timestamp" as bigint) / 1000) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS') || '.' ||
+    LPAD(((cast("timestamp" as bigint) % 1000)::text), 3, '0') || 'Z' as datetime
+FROM blocks
+WHERE id in (SELECT MAX(id) FROM blocks);
+
+```
+
+**Example 6** Identify blocks with missing parents, between blockheight 500 and blockheight 5000
+```
+SELECT height
+FROM blocks
+WHERE parent_id is null AND height >= 500 AND height <= 5000 and height > 1;
+
+```

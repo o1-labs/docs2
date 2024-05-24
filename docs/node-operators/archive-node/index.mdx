@@ -1,0 +1,31 @@
+---
+title: Archive Node
+description: What are Archive nodes.
+keywords:
+  - mina archive node
+  - archive node
+---
+
+# About Archive Nodes
+
+Mina nodes are succinct by default, so they don't need to maintain historical information about the network, block, or transactions. An archive node is a Mina node that stores the historical chain data to a persistent data source, PostgreSQL, so it can later be retrieved. For some use cases, it is useful to maintain this historical data on an archive node.
+
+:::tip
+
+A zkApp can retrieve events and actions from one or more Mina archive nodes. If your smart contract needs to fetch events and actions from an archive node, see [How to Fetch Events and Actions](../../zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions).
+
+:::
+
+An archive node is a regular mina daemon that is connected to a running `mina-archive` process.
+
+The mina daemon regularly sends blockchain data to the `mina-archive` process that then stores it in a [PostgreSQL](https://www.postgresql.org/) database.
+
+Running an archive node requires some knowledge of managing a PostgreSQL database instance. You must set up a database, run the archive node, connect it to a daemon, and run queries on the data.
+
+# Archive Node
+
+This section describes how to set up and run an Archive node within the Mina protocol.
+
+- [Getting Started with Archive Nodes](archive-node/getting-started) - A beginner's guide to launching an Archive Node.
+- [Ensuring Archive Redundancy](archive-node/archive-redundancy) - Strategies to mitigate the risk of losing archived data.
+
