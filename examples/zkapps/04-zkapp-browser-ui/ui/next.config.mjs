@@ -9,11 +9,13 @@ const nextConfig = {
   reactStrictMode: false,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
 
-  webpack(config) {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      o1js: path.resolve(__dirname, 'node_modules/o1js/dist/web/index.js'),
-    };
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        o1js: path.resolve(__dirname, 'node_modules/o1js/dist/web/index.js'),
+      };
+    }
     config.experiments = { ...config.experiments, topLevelAwait: true };
     config.optimization.minimizer = [];
     return config;
