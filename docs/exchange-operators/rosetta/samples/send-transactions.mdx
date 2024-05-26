@@ -3,6 +3,9 @@ title: Sending transactions
 description: Learn how to send transactions using a key pair
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info
 This flow is also described in the [Construction API Overview](https://docs.cloud.coinbase.com/rosetta/docs/construction-api-overview) article in the official Rosetta documentation.
 :::
@@ -25,6 +28,53 @@ Before running this sample:
 - Send some test funds on the account you've generated.
 
 The implementation is as follows:
+
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+async function send(privateKey: string, to: string, valueNano: number, feeNano: number) {
+  const publicKey = mina.derivePublicKey(privateKey)
+  const publicKeyRaw = mina.publicKeyToRaw(publicKey)
+  // get transfer payload to sign
+  const payloadsResponse = await txPayloads(
+    publicKeyRaw,
+    publicKey,
+    to,
+    feeNano,
+    valueNano,
+  )
+
+  // sign and combine transfer payload
+  const combineResponse = await txCombine(payloadsResponse, privateKey)
+  const blob = combineResponse.signed_transaction
+
+  // // get future transaction hash
+  const txHashResponse = await txHash(blob)
+  const hash = txHashResponse.transaction_identifier.hash
+
+  // submit transaction. this call will fail if tx is not in mempool
+  await txSubmit(blob)
+  // wait for transaction confirmation:
+  // for that, track blocks until we meet our transaction in the last one
+  let latestBlock = (await networkStatus()).current_block_identifier.index
+  while (true) {
+    // check if our transaction exists in the latest block
+    const txs = (await waitForBlock(latestBlock)).block.transactions
+    const hashes = txs.map((tx: any) => tx.transaction_identifier.hash)
+    if (hashes.includes(hash)) {
+      break
+    }
+
+    latestBlock += 1
+  }
+  return hash
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
 
 ```python
 def withdrawal_flow(vault_keypair, dest_address, value_nano, fee_nano=None):
@@ -79,3 +129,6 @@ def withdrawal_flow(vault_keypair, dest_address, value_nano, fee_nano=None):
     
     return future_tx_hash
 ```
+
+</TabItem>
+</Tabs>

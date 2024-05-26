@@ -15,15 +15,15 @@ import {
 (async () => {
   let doProofs = false;
 
-  let Local = Mina.LocalBlockchain({
+  let Local = await Mina.LocalBlockchain({
     proofsEnabled: doProofs,
     enforceTransactionLimits: false,
   });
 
   Mina.setActiveInstance(Local);
   let accountFee = Mina.getNetworkConstants().accountCreationFee;
-  let [{ privateKey: feePayerKey, publicKey: feePayerAddress }] =
-    Local.testAccounts;
+  const feePayerAddress = Local.testAccounts[0];
+  const feePayerKey = feePayerAddress.key;
 
   let wrappedMinaPrivateKey = PrivateKey.random();
   let wrappedMinaPublicKey = wrappedMinaPrivateKey.toPublicKey();
@@ -40,7 +40,7 @@ import {
     wrappedMinaContract.tokenId
   );
 
-  const legend: any = {};
+  const legend: Record<string, string> = {};
   legend[feePayerAddress.toBase58()] = 'feePayer';
   legend[wrappedMinaPublicKey.toBase58()] = 'wrappedMinaZkApp';
   legend[tokenPoolPublicKey.toBase58()] = 'tokenPoolZkApp';
@@ -78,8 +78,6 @@ import {
       tryGetTokenBalance(tokenPoolPublicKey, wrappedMinaPublicKey)
     );
   };
-
-  let txnI = 0;
 
   console.log('initial state');
 

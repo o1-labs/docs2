@@ -1,0 +1,387 @@
+---
+title: Security and zkApps
+hide_title: true
+description: An introduction to security considerations for zkApps, including common pitfalls and best practices.
+keywords:
+  - zkApp
+  - smart contract
+  - typescript
+  - o1js
+  - mina protocol
+  - zero knowledge proofs
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+# Security and zkApps
+
+On this page, you will find guidance for how to think about security when building zkApps. We also provide a list of best practices and common pitfalls to help you avoid vulnerabilities.
+
+## Auditing your zkApp
+
+Apart from acquiring a solid understanding of security aspects of zkApps, we recommend that critical applications also get audited by independent security experts.
+
+There has been an internal audit of the o1js code base already, [the results of which you can find here](/zkapps/o1js#audits-of-o1js). An audit by a third-party security firm is ongoing.
+
+:::caution
+
+Until the third-party audit of o1js is completed, audits of zkApps should also include the relevant parts of o1js in their scope.
+
+:::
+
+## Attack model
+
+The first and most important step for zkApp developers is to understand the attack model of zkApps, which differs from traditional web apps in important ways. In essence, there are two new kinds of attack:
+
+1. **Adversarial environment**: Like smart contracts in general, zkApps are called in an environment that you don't control. For example, you have to make sure that your zkApps is not misbehaving when passed particular method inputs, or when used as part of transactions different than you intended. The caller chooses how and with what inputs to call your zkApp, not you; and they might use this opportunity to exploit your application.
+
+2. **Underconstrained proofs**: Successfully "calling" a zkApp really just means getting a proof accepted onchain which is valid against your zkApp's verification key. Such a proof could, for example, be created using a _modified_ version of your zkApp code. This will work only if the modification doesn't change any of your constraints -- the logic that forms the proof. Hence, you have to take care that your zkApp code _correctly proves_ everything it needs to prove; unproved logic can be changed at will by a malicious prover.
+
+Note how the first point (adversarial environment) is relevant in all kinds of permissionless systems, like smart contracts. The second point, which can be seen as a special case of the first, is specific to the zkApp model. In classical smart contracts, you can rely on the fact that the code you deploy is exactly the code that is executed; in offchain-executed zkApps, you can't.
+
+While having your code modified due to underconstrained proofs sounds scary, we emphasize that most of the attack surface here is covered by o1js itself. It's o1js' job that when you call `a.assertLessThan(b)`, you prove that `a < b` under all circumstances; and the o1js team dedicates a lot of resources to the security of its standard library. The explicit goal is that when using o1js in an idiomatic way, you shouldn't have to worry about underconstrained logic.
+
+That story changes when you start writing your own low-level provable methods. When doing so, you enter expert territory, and there are many new pitfalls to be aware of. We plan to dedicate [a section to writing your own provable methods](#rolling-your-own-provable-methods) below.
+
+If there is just one take away from this post, it should be to always keep an adversarial mindset. Be paranoid about your zkApp's security!
+
+In the next section, we demonstrate the attack model of zkApps with a concrete example.
+
+## Example: An insecure token contract
+
+Take a look at the following snippet of a token contract. The contract has a method called `mintOrBurn()` which is supposed to approve an account update that mints or burns tokens.
+
+The skeleton of `mintAndBurn()` exists: We read address and balance change (positive or negative) from the update, and we also call `this.approve()` so the update can use our token. However, as the TODO comment says, we still need to call `assertCanMint()` or `assertCanBurn()` to check if the minting or burning is allowed for this account.
+
+```ts
+class FlawedTokenContract extends TokenContract {
+  // ...
+
+  @method
+  async mintOrBurn(update: AccountUpdate) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
+    let address = update.publicKey;
+
+    // TODO: only allow minting and burning under certain conditions
+
+    // approve the account update
+    this.approve(update);
+
+    // ... other actions related to minting or burning
+    // like updating the total supply based on `amount` ...
+    this.updateTokenSupply(amount);
+  }
+
+  assertCanMint(amount: Int64, address: PublicKey) {
+    // ... logic asserting that minting is allowed for this account ...
+  }
+  assertCanBurn(amount: Int64, address: PublicKey) {
+    // ... logic asserting that burning is allowed for this account ...
+  }
+
+  updateTokenSupply(amount: Int64) {
+    // ... logic updating the total supply ...
+  }
+}
+```
+
+:::note
+
+The pattern of passing in the full `AccountUpdate` here, and not just amount and address, is good practice and more flexible than creating the account updates inline:
+It allows the method to be used by zkApps, not just typical end-user accounts.
+zkApps need to put their own proof on the account update to authorize a spend.
+
+:::
+
+### Creating an insecure contract
+
+We need to use either `assertCanMint()` or `assertCanBurn()`, but how do we know which one? Well, let's just add a parameter to the method that tells us whether this is a mint or a burn. Then let's call the appropriate method based on that parameter. Github Copilot fills this out nicely for us:
+
+```ts
+  @method
+  async mintOrBurn(update: AccountUpdate, isMint: Bool) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
+    let address = update.publicKey;
+
+    // only allow minting and burning under certain conditions
+    if (isMint) {
+      this.assertCanMint(amount, address);
+    } else {
+      this.assertCanBurn(amount, address);
+    }
+
+    // approve the account update
+    this.approve(update);
+
+    // ... other actions related to minting or burning
+    // like updating the total supply based on `amount` ...
+    this.updateTokenSupply(amount);
+  }
+```
+
+LGTM! However, in tests this doesn't seem to work, and after some debugging we find the problem: `isMint`, being a `Bool` and not a JS boolean, is always truthy, so this always checks the mint condition and never the burn condition. Seems like we have to coerce it to a boolean first:
+
+```diff
+-    if (isMint) {
++    if (isMint.toBoolean()) {
+      this.assertCanMint(amount, address);
+    } else {
+      this.assertCanBurn(amount, address);
+    }
+```
+
+When compiling this contract, there's the next unpleasant surprise: A complicated error about not being able to call `.toBoolean()`.
+
+```
+Error: b.toBoolean() was called on a variable Bool `b` in provable code.
+
+...
+
+To inspect values for debugging, use Provable.log(b). For more advanced use cases,
+there is `Provable.asProver(() => { ... })` which allows you to use b.toBoolean() inside the callback.
+Warning: whatever happens inside asProver() will not be part of the zk proof.
+```
+
+At least there is a hint at the end that this might work when wrapped inside `Provable.asProver()`:
+
+```diff
++   Provable.asProver(() => {
+      if (isMint.toBoolean()) {
+        this.assertCanMint(amount, address);
+      } else {
+        this.assertCanBurn(amount, address);
+      }
++   });
+```
+
+With that change, compiling finally works and our tests do as well. Progress! 🚀
+
+However, the statement about `asProver()` not being part of the zk proof is concerning. So maybe we should check that this actually prevents invalid minting and burning.
+
+After creating a test that tries to mint or burn tokens for an account that is not allowed to, we confirm that it fails. So we're good to go. Right?
+
+Unfortunately, not at all. The security of our contract is thoroughly broken.
+We ignored both [attack surfaces described above](#attack-model): _Adversarial environment_ and _underconstrained proofs_.
+
+### First problem: we didn't prove everything
+
+The first problem was moving essential logic inside `Provable.asProver()`. It can be generalized as:
+
+- **Security advice #1: Don't move your logic outside the proof.**
+
+Other APIs that let you do this are `Provable.witness()` and `Provable.witnessFields()`. They are essential in advanced provable code, but you have to use them carefully!
+
+Checks that are not part of the proof can be bypassed. In our case, a bad actor could simply get our source code and delete the entire `Provable.asProver()` block. From that, they can call our contract without the `assertCanMint()` and `assertCanBurn()` checks, and mint any amount of tokens they like.
+
+In particular, negative tests that fail on invalid actions are not enough to show that these actions are impossible, under the attack model that our code can be changed.
+
+A second thing to note is that we had to fight o1js quite hard to make our insecure code work. This should be a red flag in general.
+
+- **Security advice #2: Don't try to trick o1js.**
+
+The fact that o1js doesn't allow you to call `.toBoolean()` on a `Bool` inside provable code is a security feature. It's hard to circumvent for a reason. There are tons of vulnerable patterns that would be introduced if we allowed going back and forth between provable variables (the `Bool`) and JS values (the `boolean`), and doing so is a frequent source of issues in lower-level frameworks like arkworks.
+
+If o1js makes something really hard to do and puts warnings in front of it, it's best to assume this is for a reason and not try to hack around it. And of course, reach out on [our discord](https://bit.ly/MinaDiscord) when in doubt about your code's security.
+
+### Fix: Adding the missing constraints
+
+Let's see how to solve the `asProver()` issue. In provable code, we can't do assertions conditionally, so we have to do all of them at the same time. In our case, we could refactor the mint and burn checks so that they can be applied conditionally. The result could look like this:
+
+```ts
+  async mintOrBurn(update: AccountUpdate, isMint: Bool) {
+    // ...
+
+    // only allow minting and burning under certain conditions
+    this.assertCanMint(isMint, amount, address);
+    this.assertCanBurn(isMint.not(), amount, address);
+
+    // ...
+  }
+
+  assertCanMint(enabledIf: Bool, amount: Int64, address: PublicKey) {
+    // ... logic asserting that minting is allowed for this account ...
+  }
+  assertCanBurn(enabledIf: Bool, amount: Int64, address: PublicKey) {
+    // ... logic asserting that burning is allowed for this account ...
+  }
+```
+
+### Second problem: we trusted the caller
+
+However, our contract is still insecure, because we forgot that it's called in an adversarial environment.
+
+Our contract just takes the `isMint` parameter for granted, even though the `update` could be either minting or burning tokens. A bad actor could easily call `mintOrBurn()` with a positive balance change on the `update` and `isMint = false`. This would bypass the `assertCanMint()` check and only do `assertCanBurn()` instead, which might mean they can mint tokens without much restrictions.
+
+- **Security advice #3: Don't trust the caller of a zkApp method.**
+
+In a sense, this is the same issue as moving logic outside the proof: Method inputs originate from an unconstrained source. If our logic relies on correlations between variables, those correlations must be put into constraints.
+
+### Fix: Removing assumptions on method inputs
+
+The issue with `isMint` is, of course, simple to fix. Instead of letting the caller pass it in, we can compute it inside our method, as `amount.isPositive()`:
+
+```diff
+- async mintOrBurn(update: AccountUpdate, isMint: Bool) {
++ async mintOrBurn(update: AccountUpdate) {
+    // read mint/burn properties from the update
+    let amount = update.balanceChange;
++   let isMint = amount.isPositive();
+    let address = update.publicKey;
+```
+
+This concludes our example of fixing an insecure token contract.
+
+## Best practices for zkApp security
+
+In the last section, we already gave three pieces of advice concerning zkApp security.
+
+- **Don't move your logic outside the proof.**
+- **Don't try to trick o1js.**
+- **Don't trust the caller of a zkApp method.**
+
+This section collects more recommendations and describes more complex attacks on a zkApp that you might not be aware of.
+
+- [**Lock down permissions as much as possible**](#lock-down-permissions-as-much-as-possible)
+- [**Only call external contracts with locked down permissions**](#only-call-external-contracts-with-locked-down-permissions)
+- [**Don't deadlock your zkApp by interacting with unknown accounts**](#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts)
+
+<!-- More ideas:
+- Use `this.sender` correctly
+- Use the `provedState` account field to show that your zkApp is not tampered with
+ -->
+
+:::info
+
+The list above is intended to grow over time. If you have a security tip that you think should be included, [please let us know](https://github.com/o1-labs/docs2/edit/main/docs/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps.mdx)!
+
+:::
+
+### Lock down permissions as much as possible
+
+Like every account on Mina, zkApps have permissions that restrict what account updates are possible and what authorization they need. The default permissions on deployment include the following (leaving out some permissions that are not relevant for most zkApps):
+
+```ts
+{
+  editState: Permission.proof(),
+  send: Permission.proof(),
+  receive: Permission.none(),
+  setDelegate: Permission.signature(),
+  setPermissions: Permission.signature(),
+  setVerificationKey: Permission.VerificationKey.signature(),
+  setZkappUri: Permission.signature(),
+  editActionState: Permission.proof(),
+  setTokenSymbol: Permission.signature(),
+  incrementNonce: Permission.signature(),
+  setVotingFor: Permission.signature(),
+  setTiming: Permission.signature(),
+  access: Permission.none(),
+}
+```
+
+If you don't know what these permissions mean, we recommend to read the [permissions docs](/zkapps/writing-a-zkapp/feature-overview/permissions) first.
+
+Two of these defaults stand out as highly problematic:
+
+- `setVerificationKey: signature`. This means that the account owner (zkApp developer) can change the code and redeploy the zkApp. In a sense, the zkApp is upgradable in arbitrary ways. This makes it hard to trust the zkApp from a user perspective.
+- `setPermissions: signature`. In a sense, this overrides all other permissions, since the zkApp developer can arbitrarily change the permissions themselves. For example, if they change the `editState` permission back to `signature`, they can reset zkApp state to any value they want. They can even do this, change the state to their favor and reset the permission back to `proof` atomically in a single transaction, hoping that no one notices.
+
+You should view these permissions as training wheels. They are useful for iterating on the zkApp during development. We thought it was a better default to let developers redeploy their zkApp in the early stages, as they find bugs or have to redesign some aspect of the zkApp. However, it means that these zkApps essentially have to be viewed as a trusted service, not a permissionless protocol.
+
+If you are confident that your zkApp code is final, you should lock down permissions: Set both `setVerificationKey` and `setPermissions` to `impossible`. Alternatively, set `setVerificationKey` to `proof` and add a method that can upgrade the zkApp according to a permissionless, open protocol.
+
+More generally, we recommend to follow the _principle of least authority_: Remove any way to update the account that is not necessary for your application. For example:
+
+- `setTiming`: The timing field allows you to [lock the funds](/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts) in an account for a certain amount of time. If you don't plan on using this feature, then it poses an unnecessary risk. Change it to `setTiming: impossible`.
+- `setTokenSymbol`: Similarly, if your zkApp is a token, and its token symbol is not supposed to ever change, you could use `setTokenSymbol: impossible`.
+
+For some permissions, `signature` might be a good choice:
+
+- `setDelegate`: for most zkApps, setting the delegate (the block producer that zkApp balance is staked with) can be seen as an administrative decision that is independent of the zkApp's main function. It's fine to keep this as `signature`, unless your zkApp logic specifically deals with setting and updating the delegate.
+- `incrementNonce`: typically, incrementing the account nonce is itself only done when signing a transaction. Similar to `setDelegate`, if the nonce doesn't play a special role in your zkApp logic, it should be fine to keep this as `signature`. However, incrementing the nonce can be useful to make any action non-repeatable. If you want to leverage this for both zkApp methods and administrative actions, you can set it to `proofOrSignature`.
+
+### Only call external contracts with locked down permissions
+
+This is the flipside of the previous advice. The permissions of third-party zkApps you call into are an important factor for the security of your own zkApp.
+
+The most obvious reason is simply to guarantee that you will always be _able_ to call the external contract. Imagine one of the following scenarios:
+
+- The called contract has `setPermissions: signature`. One day, the contract's maintainer decides to shut down their contract. Maybe not even in their own will, but because they are pressured to do so. They can simply change their `access` permission to `impossible`, which means no one will ever be able to call their contract again.
+- The called contract has `setPermissions: impossible`, but still allows verification key upgrades with `setVerificationKey: signature`. Similarly, this gives them a trivial way to make their contract unusable: Just replace the verification key with one where all methods prove a contradictory statement, like `x === 0 && x === 1`.
+
+In either of these scenarios, the unusable third-party contract makes your own zkApp unusable as well.
+
+For this reason alone, you should only call external contracts that have locked down verification key changes as well as made changes to the permissions themselves impossible.
+
+Apart from the deadlock risk described above, there can be other attacks enabled by an upgradable external contract. You should be mindful of those whenever your own zkApp relies on particular behaviour of the external contract.
+
+For example, calling a DEX might involve spending your own token A and _trusting the DEX_ to give you a fair amount of token B in return. If the DEX is upgradable, its maintainer might modify the code you trusted and rob you or your users of tokens.
+
+### Don't deadlock your zkApp by interacting with unknown accounts
+
+In the [previous section](#only-call-external-contracts-with-locked-down-permissions), we described how calling a contract which sets its `access` permission to `impossible` can deadlock your zkApp. It was fairly easy to defend against because we assumed that you know the contract account up front, and can manually check its permissions.
+
+There is a more complicated version of this problem when interacting with accounts that you _can't_ check a priori, or can't expect to have locked-down permissions. It typically arises in the scenario where you create account updates from a [reducer](/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer) call.
+
+#### A problematic token airdrop
+
+To have a concrete example, consider a token airdrop. As the token contract developer, you precompute a [Merkle map](/zkapps/o1js/merkle-tree) containing eligible accounts and their airdrop amounts, and store the Merkle root onchain. _Claiming_ an airdrop has to involve updating the tree and onchain root, because otherwise the same account could claim the airdrop multiple times.
+
+To scale payouts to multiple concurrent users per block, you approach the problem with [actions and reducer](/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer). To claim, a user dipatches a "claim" action that contains their address and airdrop amount.
+
+On top of that, every block, you run a reducer method which contains the following logic:
+
+1. For every pending "claim" action, you check whether it's really contained in the Merkle map (i.e., you either prove inclusion or non-inclusion).
+2. If the claim is valid, you create an account update that mints the airdrop amount to the user.
+3. You remove the claiming account from your Merkle map.
+
+This should work well unless a single eligible user doesn't like your token and decides to dispatch a valid "claim" action while also setting either their `access` or `receive` permission to `impossible` (or `signature`, or `proof`). This makes the reducer fail at step 2: The account update it is creating does not have the necessary authorization, and the entire reducer transaction fails.
+
+At this point, the reducer is stuck because actions can only be processed in order. No reducer call will ever succeed again, your contract is deadlocked.
+
+#### Fixed airdrop: lock down all token account permissions
+
+A solution for this particular application scenario is to not even allow users to create token accounts with problematic `access` and `receive` permissions. This is possible since a token contract already has logic that approves on every single account update on every single token account.
+
+In its `approveBase()` method, the token contract asserts that `access` and `receive` permissions on every account update are not updated to anything else than the default (`none`). This prevents the attack.
+
+#### Be careful with creating account updates from a reducer
+
+The fix above was possible because user accounts were using a token that we controlled ourselves. The behavior of preventing bad permissions is also part of Mina's upcoming [fungible token standard](https://github.com/MinaFoundation/mina-fungible-token), so the issue won't exist at all for tokens following that standard.
+
+There will be cases where a similar fix is not applicable; but more complicated mitigations are possible. In any case, you should be careful whenever you create account updates for unknown accounts from a reducer, or in any other scenario where a single invalid child update deadlocks your zkApp.
+
+### When developing a token, extend a standard token contract
+
+When developing a token contract, a number of security considerations come into play.
+
+First and foremost, it is important to implement token approvals correctly. The [`access` permission](/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions) exists so that token contracts are able to have every token interaction approved by one of the contract's methods.
+
+When a token is built off of the default `SmartContract` and doesn't change the `access` permission from its `none` default, users can get any token interaction approved. Simply by including a dummy account update of the token contract in their transaction, they can mint an arbitrary number of tokens to themselves.
+
+Even creating the token owner account before deploying the contract there, and thus leaving it in a temporary state where the `access` permission is not set, could allow this attack.
+
+The base `TokenContract` exported from o1js avoids all these pitfalls and gives you tools that abstract away considerable complexity to implement general-purpose token approval logic. We highly recommend extending `TokenContract` or a token standard that is based on it.
+
+## Rolling your own provable methods
+
+:::caution
+
+This section is not written yet. When developing your own provable methods, make sure to [prove everything](#first-problem-we-didnt-prove-everything) you need, and [not to trick o1js](#first-problem-we-didnt-prove-everything).
+
+:::
+
+<!--
+Ideas for this section:
+- underconstrained examples
+  - divide, sqrt
+- missing input range check examples
+- missing quotient check example
+- overflowing sum example
+- that funny bug we once had with an early return error thrown (?)
+ -->

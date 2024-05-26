@@ -1,0 +1,171 @@
+## Extended by
+
+- [`Proof`](Proof.mdx)
+- [`DynamicProof`](DynamicProof.mdx)
+
+## Type parameters
+
+• **Input**
+
+• **Output**
+
+## Constructors
+
+### new ProofBase()
+
+```ts
+new ProofBase<Input, Output>(__namedParameters: {
+  "maxProofsVerified": 0 | 1 | 2;
+  "proof": unknown;
+  "publicInput": Input;
+  "publicOutput": Output;
+}): ProofBase<Input, Output>
+```
+
+#### Parameters
+
+• **\_\_namedParameters**
+
+• **\_\_namedParameters.maxProofsVerified**: `0` \| `1` \| `2`
+
+• **\_\_namedParameters.proof**: `unknown`
+
+• **\_\_namedParameters.publicInput**: `Input`
+
+• **\_\_namedParameters.publicOutput**: `Output`
+
+#### Returns
+
+[`ProofBase`](ProofBase.mdx)\<`Input`, `Output`\>
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:111](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L111)
+
+## Properties
+
+### maxProofsVerified
+
+```ts
+maxProofsVerified: 0 | 1 | 2;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L98)
+
+***
+
+### proof
+
+```ts
+proof: unknown;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:97](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L97)
+
+***
+
+### publicInput
+
+```ts
+publicInput: Input;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L95)
+
+***
+
+### publicOutput
+
+```ts
+publicOutput: Output;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L96)
+
+***
+
+### shouldVerify
+
+```ts
+shouldVerify: Bool;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:99](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L99)
+
+***
+
+### publicInputType
+
+```ts
+static publicInputType: FlexibleProvablePure<any>;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:87](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L87)
+
+***
+
+### publicOutputType
+
+```ts
+static publicOutputType: FlexibleProvablePure<any>;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:88](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L88)
+
+***
+
+### tag()
+
+```ts
+static tag: () => {
+  "name": string;
+};
+```
+
+#### Returns
+
+```ts
+{
+  "name": string;
+}
+```
+
+##### name
+
+```ts
+name: string;
+```
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:89](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L89)
+
+## Methods
+
+### toJSON()
+
+```ts
+toJSON(): JsonProof
+```
+
+#### Returns
+
+[`JsonProof`](../type-aliases/JsonProof.mdx)
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L101)

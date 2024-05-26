@@ -1,0 +1,527 @@
+Commitments that keep track of the current state of an offchain Merkle tree constructed from actions.
+Intended to be stored on-chain.
+
+Fields:
+- `root`: The root of the current Merkle tree
+- `actionState`: The hash pointing to the list of actions that have been applied to form the current Merkle tree
+
+## Extends
+
+- `OffchainStateCommitments`
+
+## Constructors
+
+### new OffchainStateCommitments()
+
+```ts
+new OffchainStateCommitments(value: {
+  "actionState": Field;
+  "root": Field;
+ }): OffchainStateCommitments
+```
+
+#### Parameters
+
+• **value**
+
+• **value.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **value.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+[`OffchainStateCommitments`](OffchainStateCommitments.mdx)
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.constructor`
+
+#### Source
+
+[lib/provable/types/struct.ts:144](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/struct.ts#L144)
+
+## Properties
+
+### actionState
+
+```ts
+actionState: Field = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.actionState`
+
+#### Source
+
+[lib/mina/actions/offchain-state-rollup.ts:44](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/mina/actions/offchain-state-rollup.ts#L44)
+
+***
+
+### root
+
+```ts
+root: Field = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.root`
+
+#### Source
+
+[lib/mina/actions/offchain-state-rollup.ts:41](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/mina/actions/offchain-state-rollup.ts#L41)
+
+***
+
+### \_isStruct
+
+```ts
+static _isStruct: true;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments._isStruct`
+
+#### Source
+
+[lib/provable/types/struct.ts:144](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/struct.ts#L144)
+
+***
+
+### check()
+
+```ts
+static check: (value: {
+  "actionState": Field;
+  "root": Field;
+ }) => void;
+```
+
+Add assertions to the proof to check if `value` is a valid member of type `T`.
+This function does not return anything, instead it creates any number of assertions to prove that `value` is a valid member of the type `T`.
+
+For instance, calling check function on the type [Bool](../../../classes/Bool.mdx) asserts that the value of the element is either 1 or 0.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to put assertions on.
+
+• **value.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **value.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.check`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:66](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L66)
+
+***
+
+### fromFields()
+
+```ts
+static fromFields: (fields: Field[]) => {
+  "actionState": Field;
+  "root": Field;
+};
+```
+
+#### Parameters
+
+• **fields**: [`Field`](../../../classes/Field.mdx)[]
+
+#### Returns
+
+```ts
+{
+  "actionState": Field;
+  "root": Field;
+}
+```
+
+##### actionState
+
+```ts
+actionState: Field = Field;
+```
+
+##### root
+
+```ts
+root: Field = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.fromFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:87](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L87)
+
+***
+
+### fromJSON()
+
+```ts
+static fromJSON: (x: {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "actionState": Field;
+  "root": Field;
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.actionState**: `string`= `Field`
+
+• **x.root**: `string`= `Field`
+
+#### Returns
+
+```ts
+{
+  "actionState": Field;
+  "root": Field;
+}
+```
+
+##### actionState
+
+```ts
+actionState: Field = Field;
+```
+
+##### root
+
+```ts
+root: Field = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.fromJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:153](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/struct.ts#L153)
+
+***
+
+### fromValue
+
+```ts
+static fromValue: (x: {
+  "actionState": Field;
+  "root": Field;
+ } | {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "actionState": Field;
+  "root": Field;
+ } & (value: {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "actionState": Field;
+  "root": Field;
+};
+```
+
+Convert provable type from a normal JS type.
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.fromValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:76](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L76)
+
+***
+
+### toAuxiliary()
+
+```ts
+static toAuxiliary: (value?: {
+  "actionState": Field;
+  "root": Field;
+ }) => any[];
+```
+
+A function that takes `value` (optional), an element of type `T`, as argument and
+returns an array of any type that make up the "auxiliary" (non-provable) data of `value`.
+
+#### Parameters
+
+• **value?**
+
+the element of type `T` to generate the auxiliary data array from, optional.
+If not provided, a default value for auxiliary data is returned.
+
+• **value.actionState?**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **value.root?**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+`any`[]
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.toAuxiliary`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:37](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L37)
+
+***
+
+### toFields()
+
+```ts
+static toFields: (value: {
+  "actionState": Field;
+  "root": Field;
+ }) => Field[];
+```
+
+A function that takes `value`, an element of type `T`, as argument and returns
+an array of [Field](../../../classes/Field.mdx) elements that make up the provable data of `value`.
+
+#### Parameters
+
+• **value**
+
+the element of type `T` to generate the [Field](../../../classes/Field.mdx) array from.
+
+• **value.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **value.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+[`Field`](../../../classes/Field.mdx)[]
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.toFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:26](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L26)
+
+***
+
+### toInput()
+
+```ts
+static toInput: (x: {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "fields": Field[];
+  "packed": [Field, number][];
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **x.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+```ts
+{
+  "fields": Field[];
+  "packed": [Field, number][];
+}
+```
+
+##### fields?
+
+```ts
+optional fields: Field[];
+```
+
+##### packed?
+
+```ts
+optional packed: [Field, number][];
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.toInput`
+
+#### Source
+
+[lib/provable/types/struct.ts:148](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/struct.ts#L148)
+
+***
+
+### toJSON()
+
+```ts
+static toJSON: (x: {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "actionState": Field;
+  "root": Field;
+};
+```
+
+#### Parameters
+
+• **x**
+
+• **x.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **x.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+```ts
+{
+  "actionState": Field;
+  "root": Field;
+}
+```
+
+##### actionState
+
+```ts
+actionState: string = Field;
+```
+
+##### root
+
+```ts
+root: string = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.toJSON`
+
+#### Source
+
+[lib/provable/types/struct.ts:152](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/struct.ts#L152)
+
+***
+
+### toValue()
+
+```ts
+static toValue: (x: {
+  "actionState": Field;
+  "root": Field;
+ }) => {
+  "actionState": Field;
+  "root": Field;
+};
+```
+
+Convert provable type to a normal JS type.
+
+#### Parameters
+
+• **x**
+
+• **x.actionState**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+• **x.root**: [`Field`](../../../classes/Field.mdx)= `Field`
+
+#### Returns
+
+```ts
+{
+  "actionState": Field;
+  "root": Field;
+}
+```
+
+##### actionState
+
+```ts
+actionState: bigint = Field;
+```
+
+##### root
+
+```ts
+root: bigint = Field;
+```
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.toValue`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:71](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L71)
+
+## Methods
+
+### empty()
+
+```ts
+static empty(): OffchainStateCommitments
+```
+
+#### Returns
+
+`OffchainStateCommitments`
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.empty`
+
+#### Source
+
+[lib/mina/actions/offchain-state-rollup.ts:46](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/mina/actions/offchain-state-rollup.ts#L46)
+
+***
+
+### sizeInFields()
+
+```ts
+static sizeInFields(): number
+```
+
+Return the size of the `T` type in terms of [Field](../../../classes/Field.mdx) type, as [Field](../../../classes/Field.mdx) is the primitive type.
+
+#### Returns
+
+`number`
+
+A `number` representing the size of the `T` type in terms of [Field](../../../classes/Field.mdx) type.
+
+#### Inherited from
+
+`OffchainState_.OffchainStateCommitments.sizeInFields`
+
+#### Source
+
+[lib/provable/types/provable-intf.ts:56](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/types/provable-intf.ts#L56)

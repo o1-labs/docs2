@@ -1,0 +1,17 @@
+```ts
+type CacheHeader: 
+  | StepKeyHeader<"step-pk">
+  | StepKeyHeader<"step-vk">
+  | WrapKeyHeader<"wrap-pk">
+  | WrapKeyHeader<"wrap-vk">
+  | PlainHeader<"srs">
+  | PlainHeader<"lagrange-basis"> & CommonHeader;
+```
+
+A header that is passed to the caching layer, to support rich caching strategies.
+
+Both `uniqueId` and `programId` can safely be used as a file path.
+
+## Source
+
+[lib/proof-system/cache.ts:98](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/cache.ts#L98)

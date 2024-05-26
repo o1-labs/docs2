@@ -15,12 +15,12 @@ const state = {
 // ---------------------------------------------------------------------------------------
 
 const functions = {
-  setActiveInstanceToBerkeley: async (args: {}) => {
-    const Berkeley = Mina.Network(
-      'https://api.minascan.io/node/berkeley/v1/graphql'
+  setActiveInstanceToDevnet: async (args: {}) => {
+    const Network = Mina.Network(
+      'https://api.minascan.io/node/devnet/v1/graphql'
     );
-    console.log('Berkeley Instance Created');
-    Mina.setActiveInstance(Berkeley);
+    console.log('Devnet network instance configured.');
+    Mina.setActiveInstance(Network);
   },
   loadContract: async (args: {}) => {
     const { Add } = await import('../../../contracts/build/src/Add.js');

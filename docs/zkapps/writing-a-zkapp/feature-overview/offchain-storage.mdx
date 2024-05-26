@@ -1,0 +1,194 @@
+---
+title: Off-Chain Storage
+hide_title: true
+description: An in-depth look at using offchain storage in o1js to extend your zkApp's storage.
+keywords:
+  - offchain storage
+  - data layer
+  - storage
+  - o1js
+  - Zero knowledge proofs
+  - mina blockchain
+  - smart contract
+  - zkapp
+  - proof systems
+  - succinctness
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+:::experimental
+
+Offchain storage is currently an experimental feature and is subject to change in the future.
+
+:::
+
+# Offchain Storage
+
+One of Mina's unique features is its succinctness, both in computation and storage. To prevent state bloat and maintain Mina's efficiency and verifiability, we use offchain storage solutions for handling large volumes of data.
+
+In a previous section, we introduced the concept of on-chain Values. Since Mina currently only supports a total of 8 on-chain Field elements, we need to leverage offchain storage to extend that capacity.
+This approach maintains a provably secure connection between the on-chain smart contract and the off-chain data, such as that stored in an archive node.
+
+## Design
+
+Presently, Offchain storage offers support for two types of state: `OffchainState.Field`, representing a single field of state, and `OffchainState.Map`, akin to the key-value maps found in JavaScript, like `let myMap = new Map<string, number>();`.
+
+All offchain state resides within a single Merkle Map, which is essentially a wrapper around a [Merkle Tree](/zkapps/o1js/merkle-tree.mdx). Practically speaking, there are no constraints on the number of state fields and maps that a developer can store in a smart contract using Offchain storage.
+
+Under this framework, [Actions and Reducer](/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer.mdx) are utilized to manage state changes, with actions dispatching state updates and reducers settling them. Additionally, a Merkle Tree is employed to maintain a provably secure commitment to the data, with the root stored on-chain.
+
+Prior to users accessing published state, it must first undergo settlement. Thanks to the design of Offchain storage, all state is recoverable from actions alone, eliminating the need for additional events or external data storage.
+
+## Utilizing Offchain Storage
+
+### Prerequisites
+
+The `OffchainState` API is accessible within the `Experimental` namespace. To use `OffchainState`, import `Experimental` from o1js version 1.2.0 or higher.
+
+```ts
+import { Experimental } from 'o1js';
+
+const { OffchainState, OffchainStateCommitments } = Experimental;
+```
+
+### Setting up Offchain Storage
+
+To integrate Offchain storage, developers must initially define an Offchain state configuration and a state proof type, then prepare the smart contract. The `OffchainState` configuration allows specification of the desired Offchain state type, including key-value pairs in a map and any additional required state.
+
+The `StateProof` type will subsequently be used to finalize published state changes using a recursive reducer.
+
+```ts
+const offchainState = OffchainState({
+  players: OffchainState.Map(PublicKey, UInt64),
+  totalScore: OffchainState.Field(UInt64),
+});
+
+class StateProof extends offchainState.Proof {}
+```
+
+Developers also need to set the smart contract instance and assign it to the offchain storage.
+This also compiles the recursive Offchain zkProgram in the background and assigns the Offchain state to a smart contract instance.
+
+```ts
+let contract = new MyContract(contractAddress);
+offchainState.setContractInstance(contract);
+
+// compile Offchain state program
+await offchainState.compile();
+// compile smart contract
+await ExampleContract.compile();
+```
+
+To settle the offchain state, an Offchain storage proof must be generated and provided to the smart contract's `settle()` method. This method automatically retrieves all pending actions (state changes) and resolves them using a recursive reducer.
+Finally, the proof is passed to the `settle()` method.
+
+```ts
+let proof = await offchainState.createSettlementProof();
+
+await Mina.transaction(sender, () => {
+  // settle all outstanding state changes
+  contract.settle(proof);
+})
+  .sign([sender.key])
+  .prove()
+  .send();
+```
+
+### Configuring Your Smart Contract
+
+The smart contract requires a field containing a commitment to the offchain state. This field is used internally by the `OffchainState` methods and should not be written to by your smart contract logic.
+
+```ts
+class MyContract extends SmartContract {
+  @state(OffchainStateCommitments) offchainState = State(
+    OffchainStateCommitments.empty()
+  );
+}
+```
+
+The contract also need a `settle()` method to resolve all pending state updates. This method verifies a recursive proof to finalize all pending state changes, with the proof being generated before invoking the `settle()` method.
+
+```ts
+class MyContract extends SmartContract {
+  // ...
+  @method
+  async settle(proof: StateProof) {
+    await offchainState.settle(proof);
+  }
+}
+```
+
+:::note
+
+State is only available after it was settled via `settle()`!
+
+:::
+
+### Utilizing Offchain Storage
+
+Now developers can utilize Offchain storage in any of their smart contract methods, as demonstrated below:
+
+```ts
+class MyContract extends SmartContract {
+  // ...
+  @method
+  async useOffchainStorage(playerA: PublicKey) {
+    // retrieve totalScore, returning an Option
+    let totalScoreOption = await offchainState.fields.totalScore.get();
+
+    // unwrap the Option and return a default value if the entry if empty
+    let totalScore = totalScoreOption.orElse(0n);
+
+    // increment totalScore, set a precondition on the state
+    // (if `from` is undefined, the precondition is that the field is empty)
+    offchainState.fields.totalScore.update({
+      from: totalScoreOption,
+      to: totalScore.add(1),
+    });
+
+    // retrieve an entry from the map, returning an Option
+    let playerOption = await offchainState.fields.players.get(playerA); 
+
+    // unwrap the player's score Option and return a default value if the entry is empty
+    let score = playerOption.orElse(0n); 
+
+    // increment the player's score, set a precondition on the previous score
+    offchainState.fields.players.update(playerA, {
+      from: fromOption,
+      to: score.add(1),
+    });
+  }
+}
+```
+
+Currently, Offchain states of type Field support `field.get()` and `field.overwrite(newValue)`, while maps support `map.get(key)` and `map.overwrite(key, newValue)`.
+The `.overwrite()` method sets the value without taking into account the previous value. If the value is modified by multiple zkkApps concurrently, interactions that were applied earlier will simply be overwritten!
+
+All Offchain storage types also provide an `.update()` method which is a safe version of `.overwrite()`.
+The `.update()` method lets you define a precondition on the state that you want to update. If the precondition of the previous value does not match, the update will not be applied:
+
+```ts
+field.update(config: {
+  // `from` is the precondition on the previous state
+  from: Option<T>,
+  // `to` is the new state to set
+  to: T,
+});
+```
+
+Note that the precondition is an `Option` type: setting it to `None` means that you require the field to not exist, while `Some(value)` requires that it exists and contains the `value`. The return value of `get()` is an `Option` with the same semantics, and can be passed to `update()` directly.
+
+Important: When `update()` fails due a mismatching precondition, _none_ of the state updates made in the same method call will be applied. This lets you safely write logic where multiple fields are linked and have to be updated in a consistent way, like in the example above where the total score has to be the sum of all player's scores.
+
+## Additional Resources
+
+This feature remains experimental, indicating that it is currently under active development. For further insight into its implementation, please refer to the following pull requests and examples on GitHub:
+
+- [Experimental Offchain Storage part 1](https://github.com/o1-labs/o1js/pull/1630)
+- [Experimental Offchain Storage part 2](https://github.com/o1-labs/o1js/pull/1652)
+- [An end-to-end example utilizing Offchain storage](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/actions/offchain-contract.unit-test.ts)

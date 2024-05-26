@@ -1,0 +1,140 @@
+---
+title: How to Deploy a zkApp
+hide_title: true
+description: Guided steps to configure your zkApp project, request funds from the Faucet and deploy zkApp to the Devnet.
+keywords:
+  - zkApp
+  - deploy a smart contact
+  - smart contract
+  - configure a zkapp
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+# How to Deploy a zkApp
+
+Before deploying, you must first define a few settings, such as which network you are deploying your zkApp to. 
+
+## Add a deploy alias to config.json
+
+First, change into the directory that contains your smart contract and then run the following command:
+
+```sh
+$ zk config
+```
+
+When prompted, specify:
+
+- The name (can be anything)
+- The target network kind (`Testnet`, `Mainnet` or enter the custom network kind id) to deploy your zkApp to
+- The URL to send the deploy transaction to
+- Transaction fee (in MINA) to use when deploying
+- The fee payer account to pay transaction fees from
+
+For more details, see [deploy alias](/zkapps/tutorials/deploying-to-a-network#deploy-alias) section in corresponding tutorial. 
+
+:::tip
+If your project contains multiple smart contracts (for example, `Foo` and `Bar`) that
+you intend to deploy to the same network, the best practice is to follow the naming convention such as `devnet-foo` and `devnet-bar` when naming your deploy aliases. You can change these alias names at any time by manually editing the `config.json` file.
+:::
+
+You see the following output:
+
+```sh
+$ zk config
+
+Add a new network:
+✔ Create a name (can be anything): · devnet
+✔ Choose the target network: · Testnet
+✔ Set the Mina GraphQL API URL to deploy to: · https://api.minascan.io/node/devnet/v1/graphql
+✔ Set transaction fee to use when deploying (in MINA): · 0.1
+✔ Choose an account to pay transaction fees: · Use stored account MyFeePayer (public key: B62...)
+✔ Use stored fee payer MyFeePayer (public key: B62...)
+✔ Create zkApp key pair at keys/devnet.json
+✔ Add deploy alias to config.json
+
+Success!
+
+Next steps:
+
+- If this is the testnet, request tMINA at:
+  https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>
+- To deploy zkApp, run: `zk deploy devnet`
+```
+
+## Request funds from the Faucet
+
+To deploy your zkApp, your fee payer account must have funds to pay for transaction fees.
+
+To get funds on the Devnet, use the URL that was shown in the zkApp CLI output:
+- Visit `https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>`
+- Choose the corresponding network you're going to deploy your zkApp to (`Devnet` in this case)
+- And click the **Request** button
+
+Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so that tMINA becomes available for the fee payer account.
+
+## Deploy your smart contract
+
+To deploy your smart contract to the network, run the following command:
+
+```sh
+$ zk deploy devnet
+```
+
+Among other activities, when running the deploy command, zkApp CLI computes the verification key for your zkApp. Computing verification key can take 10-30 seconds, so please be patient. The zkApp CLI shows the details of the process, such as the network name, the URL, and the smart contract to deploy.
+
+Finally, enter `yes` or `y` when prompted to confirm and send the deploy transaction.
+
+You see the following output:
+
+```sh
+$ zk deploy devnet
+✔ Build project
+✔ Generate build.json
+✔ Choose smart contract
+  Only one smart contract exists in the project: Add
+  Your config.json was updated to always use this
+  smart contract when deploying to this network.
+✔ Generate verification key (takes 10-30 sec)
+✔ Build transaction
+✔ Confirm to send transaction
+
+  |-----------------|-------------------------------------------------|
+  | Deploy alias    | devnet                                          |
+  |-----------------|-------------------------------------------------|
+  | Network kind    | testnet                                         |
+  |-----------------|-------------------------------------------------|
+  | URL             | https://api.minascan.io/node/devnet/v1/graphql  |
+  |-----------------|-------------------------------------------------|
+  | Fee payer       | Alias         : MyFeePayer                      |
+  |                 | Account       : B62...                          |
+  |-----------------|-------------------------------------------------|
+  | zkApp           | Smart contract: Add                             |
+  |                 | Account       : B62...                          |
+  |-----------------|-------------------------------------------------|
+  | Transaction fee | 0.1 Mina                                        |
+  |-----------------|-------------------------------------------------|
+
+  Are you sure you want to send (yes/no)? · y
+✔ Send to network
+
+Success! Deploy transaction sent.
+
+Next step:
+  Your smart contract will be live (or updated)
+  at B62...
+  as soon as the transaction is included in a block:
+  https://minascan.io/devnet/tx/<txn-hash>?type=zk-tx
+```
+
+After a few minutes, the transaction is included in the next block.  
+To see the zkApp transaction and navigate to accounts involved you can follow the transaction link provided to you in zkApp CLI output.  
+Or use the [Minascan](https://minascan.io) explorer to search for the account with deployed zkApp.
+
+## Next Steps
+
+Now that you've learned how to deploy a smart contract, you can learn [how to write the UI for your zkApp](how-to-write-a-zkapp-ui).

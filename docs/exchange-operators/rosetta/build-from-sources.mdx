@@ -1,5 +1,5 @@
 ---
-title: Building from sources
+title: Building from source
 description: Build Mina’s implementation of Rosetta API from sources.
 keywords:
   - historical data
@@ -21,7 +21,7 @@ If you already have mina-archive up and running, you can also build and run the 
 
 :::tip
 
-To run mina daemon and mina-archive natively, follow the [Archive Node page](node-operators/archive-node) instructions.
+To run mina daemon and mina-archive natively, follow the [Archive Node page](node-operators/archive-node/getting-started) instructions.
 
 :::
 
@@ -59,7 +59,7 @@ The easiest way to build Rosetta natively is to use the Nix development environm
 
     You can run it with following command:
     ```shell
-    MINA_ROSETTA_MAX_DB_POOL_SIZE=64 MINA_ROSETTA_NETWORK=mainnet \
+    MINA_ROSETTA_MAX_DB_POOL_SIZE=64 \
         _build/default/src/app/rosetta/rosetta.exe --port 3087 \
         --graphql-uri <URL to Mina GraphQL instance> 
         --archive-uri postgres://<username>:<password>@<host>:<port>/<db_name>

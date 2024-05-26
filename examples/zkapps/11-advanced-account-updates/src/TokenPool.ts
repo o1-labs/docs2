@@ -13,15 +13,6 @@ import { WrappedMina } from './WrappedMina.js';
 export class TokenPool extends SmartContract {
   static wrappedMinaPublicKey: PublicKey;
 
-  // TODO: this deploy() does nothing, can be removed
-  async deploy(args?: DeployArgs) {
-    super.deploy(args);
-    this.account.permissions.set({
-      ...Permissions.default(),
-      // send: Permissions.proof(),
-    });
-  }
-
   // ----------------------------------------------------------------------
 
   @method async moveMinaToWrappedMina(amount: UInt64) {

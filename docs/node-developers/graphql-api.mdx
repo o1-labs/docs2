@@ -20,13 +20,13 @@ To use the GraphQL API, connect your GraphQL client to `http://localhost:3085/gr
 
 - The default security permits only connections from `localhost`. To listen on all interfaces, add the `-insecure-rest-server` flag to the daemon startup command.
 
-In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier are returned, i.e., the last `k` blocks. For other historical data, use the [Archive Node](/node-operators/archive-node) that is designed to retain and retrieve historical data.
+In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier are returned, i.e., the last `k` blocks. For other historical data, use the [Archive Node](/node-operators/archive-node/getting-started) that is designed to retain and retrieve historical data.
 
 The full Mina GraphQL schema is available [https://github.com/MinaProtocol/mina/blob/develop/graphql_schema.json](https://github.com/MinaProtocol/mina/blob/develop/graphql_schema.json).
 
 ### Queries
 
-The Mina GraphQL API has a number of [queries](/node-operators/querying-data) to extract data from a running node. [GraphQL queries](https://graphql.org/learn/queries/) allow specifying the data to be returned in the response. For example, to get the latest block and creator information known to the daemon:
+The Mina GraphQL API has a number of [queries](/node-operators/data-and-history/querying-data) to extract data from a running node. [GraphQL queries](https://graphql.org/learn/queries/) allow specifying the data to be returned in the response. For example, to get the latest block and creator information known to the daemon:
 
 ```
 query {
@@ -138,9 +138,10 @@ subscription {
 
 The new block subscription can also be limited to return only new blocks created by a defined public key with the `publicKey` argument.
 
-### GraphQL Public Proxy
+### GraphQL API and public Internet
 
-While exposing the GraphQL API to the internet is not recommended, an implementation of a [GraphQL proxy](https://github.com/MinaProtocol/mina/tree/master/automation/services/graphql-public-proxy) is available that removes the queries that pose a threat, but still allows querying of the node's data from a public endpoint.
+Exposing the GraphQL endpoint with full API support to the public Internet **is not** recommended.  
+However, you can start the Mina Daemon node with the `--open-limited-graphql-port` and `--limited-graphql-port <port-number>` CLI arguments to expose the GraphQL endpoint with limited API support.
 
 ### Resources
 

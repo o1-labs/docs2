@@ -17,23 +17,31 @@ keywords:
 
 # Node Operators FAQ
 
-### What are node operators?
+#### What are node operators?
 
-Node operators participate in consensus and help compress data by generating zk-SNARKs.
+Node operators are people who run mina nodes. Mina node operators participate in consensus to create new blocks and help compress data by generating zk-SNARKs.
 
 See [Node Operators](/node-operators).
 
-### Where can I try out Devnet?
+#### Where can I try out the Mainnet?
 
-See [Connect to Devnet](/node-operators/connecting-to-devnet) to learn more and get started. 
+See [Connect to Mainnet](./block-producer-node/connecting-to-the-network) to learn more and get started. 
 
-### What is Mina Signer?
+#### Where can I try out Devnet?
+
+See [Connect to Devnet](./block-producer-node/connecting-to-devnet) to learn more and get started. 
+
+#### What is Mina Signer?
 
 The [Mina Signer](https://github.com/o1-labs/o1js/blob/main/src/mina-signer/README.md) NodeJS SDK allows you to sign strings, payments, and delegations using Mina's key pairs for various specified networks.
 
 The Mina Signer supersedes the deprecated Client SDK.
 
-### Troubleshooting
+## Troubleshooting
+
+#### Where can I find my log files?
+
+See [Logging](./logging) to learn where the log files are located and how to export log files.  
 
 #### My daemon crashed. Where can I share the error log?
 
@@ -51,17 +59,17 @@ It's better when we learn together.
 
 By using the Mina CLI:
 
-Run the `mina client status` command.
+Run the `mina client status` command to output the Mina daemon status. 
 
-If your block producer is running, the expected output is a block of text with a line similar to this:
+If your block producer is running, a block of text is returned which contains a line similar to this:
 ```text
-Block producers running: 1 (B62qrPN5Y5yq8kGE3FbVK...)
+Block producers running:            1 (B62qrPN5Y5yq8kGE3FbVK...)
 ```
 
 If your block producer has won a slot, the expected output is something like this:
 
 ```text
-Next block will be produced in: in 17.52m
+Next block will be produced in:     in 1.273d for slot: ....
 ```
 
 Using the logs:
@@ -73,9 +81,6 @@ The following text appears each time the daemon produces a block:
 #### I produced a block, why wasn't it selected for the _canonical chain_?
 
 Due to a property of the Ouroboros Samisika consensus protocol, it's entirely possible that more than one block is produced in a particular slot. The network resolves the short-lived forks and consolidates onto one block per slot by random selection.
-
-<!-- Below is a visualization of the Mina Blockchain:
-![Visualization of the Mina Blockchain and its Singleton Forks](/img/mina-singleton-forks.png) -->
 
 ## SNARKs and SNARK Workers
 
@@ -135,6 +140,6 @@ There is also a threshold at which time becomes a factor, but this scenario appl
 
 No, when a new block is generated, Mina computes the proof recursively over the prior proof and the new block. This is the advantage of recursive composition -- at any given time, nodes need to store only the most recent proof. Intermediate proofs are not needed. For historical clarity on how this architecture emerged, see the [Using zkSNARKs to create a blockless blockchain](https://www.youtube.com/watch?v=eWVGATxEB6M) talk.
 
-#### How do you control or limit the number of cores that SNARK workers use?
+#### How do you control or limit the number of threads that SNARK workers use?
 
-When starting up `mina daemon`, use the `-snark-worker-parallelism` flag.
+When you start the mina daemon, use the `-snark-worker-parallelism` flag. This flag is equivalent to setting `OMP_NUM_THREADS`, but doesn't affect block production.

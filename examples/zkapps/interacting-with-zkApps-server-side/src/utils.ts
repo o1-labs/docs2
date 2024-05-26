@@ -1,14 +1,14 @@
 import {
-  PublicKey,
-  fetchAccount,
-  PrivateKey,
+  AccountUpdate,
   Field,
   Mina,
-  AccountUpdate,
+  PrivateKey,
+  PublicKey,
+  fetchAccount,
 } from 'o1js';
 import { Square } from './Square';
 
-export { loopUntilAccountExists, deploy };
+export { deploy, loopUntilAccountExists };
 
 async function loopUntilAccountExists({
   account,
@@ -80,7 +80,7 @@ async function deploy(
     } else {
       console.log(
         'See deploy transaction at',
-        'https://berkeley.minaexplorer.com/transaction/' + res.hash
+        `https://minascan.io/devnet/tx/${res.hash}`
       );
       console.log('waiting for zkApp account to be deployed...');
       await res.wait();

@@ -1,0 +1,30 @@
+```ts
+type MerkleListBase<T>: {
+  "data": Unconstrained<WithHash<T>[]>;
+  "hash": Field;
+};
+```
+
+Common base type for [MerkleList](../classes/MerkleList.mdx) and [MerkleListIterator](../classes/MerkleListIterator.mdx)
+
+## Type parameters
+
+• **T**
+
+## Type declaration
+
+### data
+
+```ts
+data: Unconstrained<WithHash<T>[]>;
+```
+
+### hash
+
+```ts
+hash: Field;
+```
+
+## Source
+
+[lib/provable/merkle-list.ts:45](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/merkle-list.ts#L45)

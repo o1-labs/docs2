@@ -1,0 +1,117 @@
+---
+title: How to Fetch Events and Actions
+hide_title: true
+description: Use o1js to retrieve previously emitted events and actions from Mina archive node. Connect your zkApp smart contract to an archive node API endpoint and fetch and use events and actions.
+keywords:
+  - mina archive node
+  - o1js
+  - fetch events
+  - fetch actions
+  - smart contracts
+  - zkapp
+  - archive node api
+  - graphql api
+  - minascan
+  - blockchain
+---
+
+:::info
+
+zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+
+:::
+
+# How to Fetch Events and Actions
+
+[Events](#events) and [Actions](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction:
+
+- Events are not meant for use within proofs directly, as they can't be predicated on inside proofs. Events are used to signal to UIs. You can also use events for reconstructing Merkle trees.
+
+- Actions can be accessed within provable code by using reducers.
+
+:::info
+
+Events and actions are not stored in the ledger and exist only on the transaction.
+
+:::info
+
+Since Mina nodes do not store historical network information and events and actions are not kept on-chain, emitted events and actions are preserved only in the archive node. Consequently, a zkApp can retrieve previously emitted events and actions from one or more Mina archive nodes.
+
+The Mina archive node offers the ability for node operators to store historical blockchain data using `PostgreSQL`. However, archive nodes do not expose a built-in API to query this data publicly.
+
+## Using the Archive Node API with o1js
+
+There are two parts to using the archive node with o1js:
+
+- Archive node operators run the [Archive-Node-API](https://github.com/o1-labs/archive-node-api) to provide a GraphQL API from which zkApp smart contracts can retrieve events and actions.
+
+- o1js developers specify the archive node API endpoint during the network configuration to allow access to historical events and actions.
+
+The `Archive-Node-API` enables o1js to fetch events and actions.
+
+## o1js network configuration
+
+If your smart contract needs to fetch events and/or actions from an archive node, provide an `archive` property in the configuration object passed to the `Mina.Network({mina: '...', archive: '...'})` where the `archive` property value is the URL for the `Archive-Node-API` service that you want to use. If this property does not exist, an error will occurs at the time of the events/actions fetching.
+
+For example:
+
+```ts
+const Network = Mina.Network({
+  mina: 'https://api.minascan.io/node/devnet/v1/graphql',
+  archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
+});
+Mina.setActiveInstance(Network);
+```
+
+## Fetching Actions from an Archive Node
+
+Within your smart contract, you can use `getActions()` to retrieve actions emitted by your smart contract as part of previous transactions.
+
+```ts
+class MyContract extends SmartContract {
+  ...
+  @method async getActionsExample() {
+    // Get all actions for this zkApp
+    let pendingActions = this.reducer.getActions({
+      fromActionState: actionsState,
+    });
+    this.reducer.reduce(
+      pendingActions,
+      Field,
+      (state: Field, action: Field) => {
+        ...
+      },
+      { state: counter, actionsState }
+    );
+  }
+}
+```
+
+By default, `getActions()` retrieves all actions from the very first action emitted for that zkApp account. However, you can provide an object that contains an optional property named `fromActionState`, where the value is an `actionsState` to indicate the starting point of the actions to be retrieved and processed by your smart contract.
+
+For an end-to-end example of zkApp fetching actions from a running network and storing the action state within your zkApp account, see the voting app [example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/voting.ts) file that is provided in the o1js repo.
+
+### Fetching Events from an Archive Node
+
+Within your smart contract, you can use `fetchEvents()` to retrieve events emitted by your smart contract as part of previous transactions.
+
+```ts
+const zkapp = new MyContract(address);
+// Fetch all events from zkapp starting at block 0
+const events = await zkapp.fetchEvents(UInt32.from(0));
+
+// Fetch all events starting at block 560 and ending at block 600
+const events = await zkapp.fetchEvents(UInt32.from(560), UInt32.from(600));
+
+// Fetch all events for a given address
+const fetchedEvents = await fetchEvents({
+  publicKey: 'B62qrfn5xxChtPGJne9HuDJZ4ziWVgWxeL3hntGBqMmf45p4hudo3tw',
+});
+```
+
+By default, `fetchEvents()` retrieves all events from the very first event ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. 
+
+- If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block. 
+- If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
+
+To see an end-to-end example of zkApp fetching events from a running network, see the [example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/run-berkeley.ts) file that is provided in the codebase repo.

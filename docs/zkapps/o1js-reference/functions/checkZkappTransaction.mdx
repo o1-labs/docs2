@@ -1,0 +1,29 @@
+```ts
+function checkZkappTransaction(transactionHash: string, blockLength: number): Promise<{
+  "failureReason": string[][][];
+  "success": false;
+ } | {
+  "failureReason": null;
+  "success": true;
+}>
+```
+
+## Parameters
+
+• **transactionHash**: `string`
+
+• **blockLength**: `number`= `20`
+
+## Returns
+
+`Promise`\<\{
+  `"failureReason"`: `string`[][][];
+  `"success"`: `false`;
+ \} \| \{
+  `"failureReason"`: `null`;
+  `"success"`: `true`;
+ \}\>
+
+## Source
+
+[lib/mina/fetch.ts:506](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/mina/fetch.ts#L506)

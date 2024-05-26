@@ -1,0 +1,16 @@
+```ts
+type ZkProgram<S, T>: ReturnType<typeof ZkProgram>;
+```
+
+## Type parameters
+
+• **S** *extends* \{
+  `"publicInput"`: [`FlexibleProvablePure`](FlexibleProvablePure.mdx)\<`any`\>;
+  `"publicOutput"`: [`FlexibleProvablePure`](FlexibleProvablePure.mdx)\<`any`\>;
+ \}
+
+• **T** *extends* `{ [I in string]: Tuple<PrivateInput> }`
+
+## Source
+
+[lib/proof-system/zkprogram.ts:393](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L393)
