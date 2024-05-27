@@ -163,7 +163,7 @@ export MINA_PRIVKEY_PASS="My_V3ry_S3cure_Password"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key <BLOCK_PRODUCER_KEY_PATH>"
-PEERS_LIST_URL=https://bootnodes.minaprotocol.com/networks/mainnet.txt
+PEER_LIST_URL=https://bootnodes.minaprotocol.com/networks/mainnet.txt
 ```
 
 Replace `<BLOCK_PRODUCER_KEY_PATH>` with the full path to your block producer private key. For example, `/home/ubuntu/keys/my-wallet`.
@@ -179,7 +179,7 @@ docker run --name mina -d \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:2.0.0-039296a-mainnet \
+minaprotocol/mina-daemon:2.0.0-039296a-bullseye-mainnet \
 daemon
 ```
 
