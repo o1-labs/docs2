@@ -74,26 +74,26 @@ Generate a new public, private keypair
     ```sh
     echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
     sudo apt-get update
-    sudo apt-get install mina-generate-keypair=2.0.0-039296a
+    sudo apt-get install -y mina-mainnet=2.0.0-039296a
     ```
 
 1. Verify that the key generation tool installed correctly:
 
     ```sh
-    mina-generate-keypair -version
+    mina -version
     ```
 
     The expected output is:
 
     ```
-    Commit 039296a260080ed02d0d0750d185921f030b6c9c on branch master
+    Commit 039296a260080ed02d0d0750d185921f030b6c9c on branch compatible
     ```
 
 ### macOS, Windows, and platforms other than Ubuntu and Debian
 
 Install Docker. Follow the Docker-based instructions to generate key pairs.
 
-## Using mina-generate-keypair
+## Using mina advanced generate-keypair
 
 1. Create a folder on your system where you can store the key files. By convention, the `~/keys` folder:
 
@@ -113,10 +113,10 @@ Install Docker. Follow the Docker-based instructions to generate key pairs.
 Make sure to set a new and secure password for the following commands. Mina will never ask you for this password. Do not share this password with anyone.
 :::
 
-1. Run the `mina-generate-keypair` command:
+1. Run the `mina advanced generate-keypair` command:
 
     ```
-    mina-generate-keypair --privkey-path ~/keys/my-wallet
+    mina advanced generate-keypair --privkey-path ~/keys/my-wallet
     ```
 
 1. When prompted, type in the password you intend to use to secure this key. <em>Do NOT forget this password.</em> If already set, the tool uses the password from the `MINA_PRIVKEY_PASS` environment variable instead of prompting you.
@@ -150,12 +150,12 @@ Be sure to store the private key file and password you used in a secure place, s
 
 ## Validate your private key
 
-Now that you've created your key, validate that it works. It's sufficient to use the `mina-validate-keypair` tool to verify that you can sign a transaction.
+Now that you've created your key, validate that it works. It's sufficient to use the `mina advanced validate-keypair` command to verify that you can sign a transaction.
 
 On Linux:
 
 ```
-mina-validate-keypair --privkey-path <path-to-the-private-key-file>
+mina advanced validate-keypair --privkey-path <path-to-the-private-key-file>
 ```
 
 On Docker:
