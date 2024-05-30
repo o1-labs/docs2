@@ -26,7 +26,7 @@ docker run \
   --name mina \
   -e RUN_DEMO=true \
   -e MINA_PRIVKEY_PASS='' \
-  minaprotocol/mina-daemon:1.3.0-9b0369c-bullseye-devnet
+  minaprotocol/mina-daemon:2.0.0-039296a-bullseye-mainnet
 
 ```
 
@@ -64,7 +64,7 @@ The password for this account is the empty string (there's no password -- you ca
 
 There are a few things you can do with your sandbox now that you have it running:
 
-- [Install Mina](/node-operators/getting-started#installation) as usual and use many of the client commands. Since the daemon is already running in the container, you don't need to run `mina daemon`!
+- [Install Mina](/node-operators/block-producer-node/getting-started#installation) as usual and use many of the client commands. Since the daemon is already running in the container, you don't need to run `mina daemon`!
 
 - Install the GUI Wallet app to use a graphical interface to your node. Enter '127.0.0.1' as the host of your node during setup.
 

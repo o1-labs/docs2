@@ -1,0 +1,128 @@
+---
+title: Archive Redundancy
+hide_title: true
+description: Steps to install mina and connect to the Devnet network.
+keywords:
+  - mina historical archive data
+  - what is an archive node
+  - archive node redundancy
+  - mina historical lookup
+  - archive process
+  - how do I back up block data
+---
+
+# Archive Redundancy
+
+The [archive node](/node-operators/archive-node/getting-started) stores its data in a PostgreSQL database that node operators host on a provider of their choice, including self-hosting. For redundancy, archive node data can also be stored to an object storage like [Google Cloud Storage](#upload-block-data-to-google-cloud-storage); soon S3 and others) or to a [`mina.log`](#save-block-data-from-logs) file that reside on your computer or be streamed to any typical logging service, for example, LogDNA.
+
+Archive data is critical for applications that require historical lookup. 
+
+On the protocol side, archive data is important for disaster recovery to reconstruct a certain state. A single [archive node](/node-operators/archive-node/getting-started)  set up might not be sufficient. 
+
+If the daemon that sends blocks to the archive process or if the archive process itself fails for some reason, there can be missing blocks in the database. To minimize the risk of archive data loss, employ redundancy techniques.
+
+A single archive node setup has a daemon sending blocks to an archive process that writes them to the database.
+
+To connect multiple daemons to the archive process, specify the address of an archive process in multiple daemons to reduce the dependency on a single daemon to provide blocks to the archive process.
+
+For example, the server port of an archive process is 3086. The daemons can connect to that port using the flag `archive-address`
+
+```
+mina daemon \
+    .....
+  --archive-address <Ip-address>:3086\
+```
+
+Similarly, it is possible to have multiple archive processes write to the same database. In this case, the `postgres-uri` passed to the archive process is the same across multiple archive processes.
+
+However, multiple archive processes concurrently writing to a database could cause data inconsistencies (explained in https://github.com/MinaProtocol/mina/issues/7567). To avoid this, set the transaction isolation level of the archive database to `Serializable` with the following query:
+
+    ALTER DATABASE <DATABASE NAME> SET DEFAULT_TRANSACTION_ISOLATION TO SERIALIZABLE ;
+
+Set the transaction level after you create the [database](/node-operators/archive-node/getting-started) and before you connect an archive process to it.
+
+## Back up block data
+
+To ensure that archive data can be restored, use the following features to back up and restore block data.
+
+A mechanism for logging a high-fidelity machine-readable representation of blocks using JSON includes some opaque information deep within. 
+
+These logs are used internally to quickly replay blocks to get to certain chain states for debugging. This information suffices to recreate exact states of the network.
+
+Some of the internal data look like this:
+
+```json
+{"data":["Signed_command",{"payload":{"common":{"fee":"100","fee_token":"1","fee_payer_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","nonce":"340","valid_until":"4294967295","memo":"E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH"},"body":["Payment",{"source_pk":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","receiver_pk":"B62qm2GCuGCEK79mEjeyaeiFoukThuZLJCHGe9HAzuAnfbtS5FHtPnP","token_id":"1","amount":"100000000"}]},"signer":"B62qixbmBBmCmv1xH5SeF1hw6EqwSNVPi9B28epa3phqVMSyuZk9EoH","signature":"7mXGz8Df1gu92HVWGue24wcrGxDWkgQrDK59xQGXc627PKFQvVAPSzZn7JMkHtfdBUXavDHcgLBZy4iR4UmA5seRCPMkFDci"}],"status":["Applied",{"fee_payer_account_creation_fee_paid":null,"receiver_account_creation_fee_paid":null,"created_token":null},{"fee_payer_balance":"31866000100000","source_balance":"31866000100000","receiver_balance":"34099000000"}]}],"coinbase":["One",null],"internal_command_balances":[["Coinbase",{"coinbase_receiver_balance":"75477804514901","fee_transfer_receiver_balance":null}],["Fee_transfer",{"receiver1_balance":"65266376010003","receiver2_balance":"78601129170700"}],["Fee_transfer",{"receiver1_balance":"66001820000000","receiver2_balance":"76870784414900"}],["Fee_transfer",{"receiver1_balance":"71158365898775","receiver2_balance":"59264207944722"}],["Fee_transfer",{"receiver1_balance":"68546088449962","receiver2_balance":"66721919100000"}],["Fee_transfer",{"receiver1_balance":"67700798001000","receiver2_balance":"66372760000000"}],["Fee_transfer",{"receiver1_balance":"85383891400000","receiver2_balance":"107174952265469"}],["Fee_transfer",{"receiver1_balance":"65879310000000","receiver2_balance":"66282230000000"}]]}]},"delta_transition_chain_proof":["jxLZWooV57gKCmanzCHHt1CDbHfUpMu6MkynUdqN9ZkBUJi7B1W",[]]}
+```
+
+This JSON evolves as the format of the block and transaction payloads evolve in the network.
+
+### Upload block data to Google Cloud Storage
+
+The daemon generates a file for each block with the name `<network-name>-<protocol-state-hash>.json` . These files are called precomputed blocks and have all the fields of a block.
+
+To specify a daemon to upload block data to Google Cloud Storage, pass the flag `--upload-blocks-to-gcloud`. 
+
+Set the following environment variables:
+
+- `GCLOUD_KEYFILE`: Key file for authentication
+
+- `NETWORK_NAME`: Network name to use in the filename to easily distinguish between blocks in different networks (Mainnet and Testnets)
+
+- `GCLOUD_BLOCK_UPLOAD_BUCKET`: Google Cloud Storage bucket where the files are uploaded
+
+### Save block data from logs
+
+The daemon logs the block data if the flag `-log-precomputed-blocks` is passed. 
+
+The log to look for is `Saw block with state hash $state_hash` that contains `precomputed_block` in the metadata and has the block information. These precomputed blocks contain the same information that gets uploaded to Google Cloud Storage.
+
+### Generate block data from another archive database
+
+From a fully synced archive database, you can generate block data for each block using the `mina-extract-blocks` tool.
+
+The `mina-extract-blocks` tool generates a file for each block with name `<protocol-state-hash>.json`. 
+
+The tool takes an `--archive-uri`, an `--end-state-hash`, and an optional `--start-state-hash`, and writes all the blocks in the chain starting from start-state-hash and ending at end-state-hash (including start and end).
+
+If only the end hash is provided, then the tool generates blocks starting with the unparented block closest to the end block. This would be the genesis block if there are no missing blocks in between. The block data in these files are called extensional blocks. Since these blocks are generated from the database, they have only the data stored in the archive database and do not contain any other information pertaining to a block (for example, blockchain SNARK) like the precomputed blocks and can only be used to restore blocks in the archive database.
+
+Provide the flag `--all-blocks` to write out all blocks contained in the database.
+
+## Identify missing blocks
+
+To determine any missing blocks in an archive database, use the `mina-missing-block-auditor` tool.
+
+The tool outputs a list of state hashes of all the blocks in the database that are missing a parent. You can use this list to monitor the archive database for any missing blocks. To specify the URI of the PostgreSQL database, use the `--archive-uri` flag.
+
+## Restore blocks
+
+When you have block data (precomputed or extensional) available from [Back up block data](/node-operators/archive-node/archive-redundancy#back-up-block-data), you can restore missing blocks in an archive database using the tool `mina-archive-blocks`. 
+
+1. Restore precomputed blocks from: 
+
+  - [Upload block data to Google Cloud Storage](/node-operators/archive-node/archive-redundancy#upload-block-data-to-google-cloud-storage)
+
+  - [Save block data from logs](/node-operators/archive-node/archive-redundancy#save-block-data-from-logs)
+
+```
+  mina-archive-blocks --precomputed --archive-uri <postgres uri> FILES
+```
+
+2. For extensional blocks: (Generated from option [3](#generate-block-data-from-another-archive-database))
+
+```
+  mina-archive-blocks --extensional --archive-uri <postgres uri> FILES
+```
+
+## Staking ledgers
+
+Staking ledgers are used to determine slot winners for each epoch. Mina daemon stores staking ledger for the current and the next epoch after it is finalized. When transitioning to a new epoch, the "next" staking ledger from the previous epoch is used to determine slot winners of the new epoch and a new "next" staking ledger is chosen. Since staking ledgers for older epochs are no longer accessible, you can still keep them around for reporting or other purposes.
+
+Export these ledgers using the mina cli command:
+
+    mina ledger export [current-staged-ledger|staking-epoch-ledger|next-epoch-ledger]
+
+Epoch ledger transition happens once every 14 days (given slot-time = 3mins and slots-per-epoch = 7140). 
+
+The window to backup a staking ledger is ~27 days considering "next" staking ledger is finalized after k (currently 290) blocks in the current epoch and therefore is available for the rest of the current epoch and the entire next epoch.

@@ -40,7 +40,7 @@ import {
     wrappedMinaContract.tokenId
   );
 
-  const legend: any = {};
+  const legend: Record<string, string> = {};
   legend[feePayerAddress.toBase58()] = 'feePayer';
   legend[wrappedMinaPublicKey.toBase58()] = 'wrappedMinaZkApp';
   legend[tokenPoolPublicKey.toBase58()] = 'tokenPoolZkApp';
@@ -78,8 +78,6 @@ import {
       tryGetTokenBalance(tokenPoolPublicKey, wrappedMinaPublicKey)
     );
   };
-
-  let txnI = 0;
 
   console.log('initial state');
 

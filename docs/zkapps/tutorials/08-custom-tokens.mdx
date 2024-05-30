@@ -92,6 +92,46 @@ This tutorial has been tested with:
   export { BasicTokenContract };
   ```
 
+## Create the project
+
+1. Create or change to a directory where you have write privileges.
+1. Create a project by using the `zk project` command:
+
+  ```sh
+  $ zk project 08-custom-tokens
+  ```
+
+  The `zk project` command has the ability to scaffold the UI for your project. For this tutorial, select `none`:
+
+  ```
+  ? Create an accompanying UI project too? …
+    next
+    svelte
+    nuxt
+    empty
+  ❯ none
+  ```
+## Prepare the project
+
+1. Change to the project directory, delete the existing files, and create a new `src/BasicTokenContract` smart contract, and a `index.ts` file:
+
+  ```sh
+  $ cd 08-custom-tokens
+  $ rm src/Add.ts
+  $ rm src/Add.test.ts
+  $ rm src/interact.ts
+  $ zk file src/BasicTokenContract
+  $ touch src/index.ts
+  ```
+
+1. Edit `index.ts` to import and export your new smart contract:
+
+  ```ts
+  import { BasicTokenContract } from './BasicTokenContract.js';
+
+  export { BasicTokenContract };
+  ```
+
 ## Basic Token Example
 
 To create a token manager smart contract, create a normal smart contract whose methods call special functions that manipulate tokens.
@@ -222,6 +262,6 @@ For now, see this [example](https://github.com/o1-labs/o1js/blob/main/src/exampl
 
 You have finished reviewing the steps to build a smart contract to manage a token. You learned how to build a smart contract that places custom rules over tokens.
 
-To learn more, see [Custom Token API](/zkapps/o1js/custom-tokens).
+To learn more, see [Custom Token API](/zkapps/writing-a-zkapp/feature-overview/custom-tokens).
 
 Check out [Tutorial 9: Recursion](/zkapps/tutorials/recursion) to learn how to use recursive ZKPs with o1js, to implement zkRollups, large computations, and more.

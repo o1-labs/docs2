@@ -3,6 +3,34 @@ module.exports = {
     'welcome',
     {
       type: 'category',
+      label: 'Berkeley Upgrade',
+      items: [
+        'berkeley-upgrade/requirements',
+        {
+          type: 'category',
+          label: 'Archive Migration',
+          link: {
+            type: 'doc',
+            id: 'berkeley-upgrade/archive-migration/index',
+          },
+          items: [
+            'berkeley-upgrade/archive-migration/understanding-archive-migration',
+            'berkeley-upgrade/archive-migration/archive-migration-prerequisites',
+            'berkeley-upgrade/archive-migration/archive-migration-installation',
+            'berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley',
+            'berkeley-upgrade/archive-migration/mainnet-database-maintenance',
+            'berkeley-upgrade/archive-migration/debian-example',
+            'berkeley-upgrade/archive-migration/docker-example',
+            'berkeley-upgrade/archive-migration/appendix',
+          ],
+        },
+        'berkeley-upgrade/upgrade-steps',
+        'berkeley-upgrade/flags-configs',
+        'berkeley-upgrade/appendix',
+      ],
+    },
+    {
+      type: 'category',
       label: 'About Mina',
       items: [
         'about-mina/index',
@@ -33,44 +61,66 @@ module.exports = {
       type: 'category',
       label: 'zkApp Developers',
       items: [
-        'zkapps/index',
-        'zkapps/how-zkapps-work',
-        'zkapps/getting-started-zkapps',
-        'zkapps/install-zkapp-cli',
-        {
-          type: 'category',
-          label: 'Creating zkApps',
-          items: [
-            'zkapps/how-to-write-a-zkapp',
-            'zkapps/testing-zkapps-locally',
-            'zkapps/testing-zkapps-lightnet',
-            'zkapps/how-to-deploy-a-zkapp',
-            'zkapps/how-to-write-a-zkapp-ui',
-          ],
-        },
         {
           type: 'category',
           label: 'o1js',
           items: [
             'zkapps/o1js/index',
             'zkapps/o1js/basic-concepts',
-            'zkapps/o1js/smart-contracts',
-            'zkapps/o1js/interact-with-mina',
-            'zkapps/o1js/events',
-            'zkapps/o1js/actions-and-reducer',
-            'zkapps/o1js/fetch-events-and-actions',
-            'zkapps/o1js/on-chain-values',
             'zkapps/o1js/recursion',
-            'zkapps/o1js/custom-tokens',
             'zkapps/o1js/gadgets',
             'zkapps/o1js/bitwise-operations',
             'zkapps/o1js/foreign-fields',
             'zkapps/o1js/merkle-tree',
-            'zkapps/o1js/permissions',
-            'zkapps/o1js/time-locked-accounts',
             'zkapps/o1js/keccak',
             'zkapps/o1js/ecdsa',
             'zkapps/o1js/sha256',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'zkApps',
+          items: [
+            'zkapps/writing-a-zkapp/index',
+            {
+              type: 'category',
+              label: 'Introduction to zkApps',
+              items: [
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-deploy-a-zkapp',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp-ui',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/interact-with-mina',
+                'zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Feature Overview',
+              items: [
+                'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
+                'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
+                'zkapps/writing-a-zkapp/feature-overview/permissions',
+                'zkapps/writing-a-zkapp/feature-overview/events',
+                'zkapps/writing-a-zkapp/feature-overview/actions-and-reducer',
+                'zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions',
+                'zkapps/writing-a-zkapp/feature-overview/time-locked-accounts',
+                'zkapps/writing-a-zkapp/feature-overview/custom-tokens',
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Advanced',
+          items: [
+            'zkapps/advanced/experimental',
+            'zkapps/advanced/zkapps-for-ethereum-developers',
           ],
         },
         {
@@ -83,10 +133,7 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
-            'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
-            // TODO: https://github.com/o1-labs/docs2/issues/931
-            // 'zkapps/tutorials/custom-tokens',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
             'zkapps/tutorials/advanced-account-updates',
@@ -254,6 +301,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ProofBase',
+                  label: 'ProofBase',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/PublicKey',
                   label: 'PublicKey',
                 },
@@ -347,6 +399,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/functions/MerkleWitness',
                   label: 'MerkleWitness',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/functions/Option',
+                  label: 'Option',
                 },
                 {
                   type: 'doc',
@@ -630,8 +687,24 @@ module.exports = {
                     },
                     {
                       type: 'category',
+                      label: 'Classes',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/classes/OffchainStateCommitments',
+                          label: 'OffchainStateCommitments',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
                       label: 'Functions',
                       items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/functions/OffchainState',
+                          label: 'OffchainState',
+                        },
                         {
                           type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/functions/memoizeWitness',
@@ -1005,6 +1078,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/Option',
+                  label: 'Option',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/Provable',
                   label: 'Provable',
                 },
@@ -1190,19 +1268,21 @@ module.exports = {
         },
         'zkapps/roadmap',
         'zkapps/faq',
-        'zkapps/zkapps-for-ethereum-developers',
       ],
     },
     {
       type: 'category',
       label: 'Mina Protocol',
+      link: {
+        type: 'doc',
+        id: 'mina-protocol/index',
+      },
       items: [
         'mina-protocol/proof-of-stake',
         'mina-protocol/whats-in-a-block',
         'mina-protocol/block-producers',
         'mina-protocol/snark-workers',
         'mina-protocol/scan-state',
-        'mina-protocol/hardforks',
         'mina-protocol/time-locked-accounts',
         'mina-protocol/sending-a-payment',
         'mina-protocol/lifecycle-of-a-payment',
@@ -1211,38 +1291,95 @@ module.exports = {
     {
       type: 'category',
       label: 'Node Operators',
+      link: {
+        type: 'doc',
+        id: 'node-operators/index',
+      },
       items: [
-        'node-operators/index',
+        'node-operators/staking-and-snarking',
+        'node-operators/generating-a-keypair',
         {
           type: 'category',
-          label: 'Delegation Program',
+          label: 'Block Producing Node',
+          link: {
+            type: 'doc',
+            id: 'node-operators/block-producer-node/index',
+          },
           items: [
-            'node-operators/foundation-delegation-program',
-            'node-operators/delegation-tiebreak',
-            'node-operators/bp-sidecar',
-            'node-operators/uptime-tracking-system',
+            'node-operators/block-producer-node/getting-started',
+            'node-operators/block-producer-node/connecting-to-the-network',
+            'node-operators/block-producer-node/connecting-to-devnet',
+            'node-operators/block-producer-node/hot-cold-block-production',
+            'node-operators/block-producer-node/docker-compose',
           ],
         },
-        'node-operators/getting-started',
-        'node-operators/generating-a-keypair',
-        'node-operators/connecting-to-the-network',
-        'node-operators/connecting-to-devnet',
-        'node-operators/staking-and-snarking',
-        'node-operators/hot-cold-block-production',
-        'node-operators/seed-peers',
-        'node-operators/staking-service-guidelines',
-        'node-operators/mina-signer',
+        {
+          type: 'category',
+          label: 'SNARK Workers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/snark-workers/index',
+          },
+          items: [
+            'node-operators/snark-workers/getting-started',
+            'node-operators/snark-workers/docker-compose',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Archive Nodes',
+          link: {
+            type: 'doc',
+            id: 'node-operators/archive-node/index',
+          },
+          items: [
+            'node-operators/archive-node/getting-started',
+            'node-operators/archive-node/archive-redundancy',
+            'node-operators/archive-node/docker-compose',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Seed Peers',
+          link: {
+            type: 'doc',
+            id: 'node-operators/seed-peers/index',
+          },
+          items: [
+            'node-operators/seed-peers/getting-started',
+            'node-operators/seed-peers/docker-compose',
+          ],
+        },
         {
           type: 'category',
           label: 'Data and History',
+          link: {
+            type: 'doc',
+            id: 'node-operators/data-and-history/index',
+          },
           items: [
-            'node-operators/querying-data',
-            'node-operators/archive-node',
-            'node-operators/archive-redundancy',
-            'node-operators/rosetta',
+            'node-operators/data-and-history/querying-data',
+            'node-operators/data-and-history/rosetta',
           ],
         },
+        {
+          type: 'category',
+          label: 'Delegation Program',
+          link: {
+            type: 'doc',
+            id: 'node-operators/delegation-program/index',
+          },
+          items: [
+            'node-operators/delegation-program/foundation-delegation-program',
+            'node-operators/delegation-program/delegation-tiebreak',
+            'node-operators/delegation-program/bp-sidecar',
+            'node-operators/delegation-program/uptime-tracking-system',
+          ],
+        },
+        'node-operators/staking-service-guidelines',
+        'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
+        'node-operators/logging',
         'node-operators/troubleshooting',
         'node-operators/faq',
       ],
@@ -1250,8 +1387,11 @@ module.exports = {
     {
       type: 'category',
       label: 'Node Developers',
+      link: {
+        type: 'doc',
+        id: 'node-developers/index',
+      },
       items: [
-        'node-developers/index',
         'node-developers/codebase-overview',
         'node-developers/repository-structure',
         'node-developers/bip44',
@@ -1260,20 +1400,19 @@ module.exports = {
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
         'node-developers/contributing',
-        'node-developers/logging',
       ],
     },
     {
       type: 'category',
       label: 'Exchange Operators',
+      link: {
+        type: 'doc',
+        id: 'exchange-operators/index',
+      },
       items: [
         {
           type: 'category',
           label: 'Rosetta API',
-          link: {
-            type: 'doc',
-            id: 'exchange-operators/rosetta/index',
-          },
           items: [
             'exchange-operators/rosetta/run-with-docker',
             'exchange-operators/rosetta/build-from-sources',
@@ -1296,20 +1435,6 @@ module.exports = {
           ],
         },
         'exchange-operators/faq',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Testworld Mission 2.0',
-      items: [
-        'test-world-2/node-operator-responsibilities',
-        'test-world-2/technical-requirements',
-        'test-world-2/test-plan',
-        'test-world-2/timelines',
-        'test-world-2/incentives',
-        'test-world-2/bug-reporting',
-        'test-world-2/launching-a-node',
-        'test-world-2/questions',
       ],
     },
     {

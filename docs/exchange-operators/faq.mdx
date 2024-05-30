@@ -54,7 +54,7 @@ The max mempool size is 3,000. After it hits that size, transactions with the lo
 
 Set your fee to an amount higher than 0.001 MINA, the current average fee for transactions in the pool.
 
-You can view the fees for pending transactions and adjust your fees accordingly: [https://minascan.io/devnet/txs](https://minascan.io/devnet/txs).
+You can view the fees for pending transactions and adjust your fees accordingly: [https://minascan.io/mainnet/txs/pending-txs](https://minascan.io/mainnet/txs/pending-txs).
 
 ### Why do some users appear to have lost their funds when sending to exchanges?
 
@@ -114,7 +114,7 @@ Archive node operators often choose to run redundant archive nodes to store bloc
 
 For convenience, [mina_network_block_data](https://console.cloud.google.com/storage/browser/mina_network_block_data) from the archive node is available to help others in the community backfill any missing information.
 
-This bucket contains blocks from various Mina networks — for example, Mainnet and the most recent Devnet `devnet2`. Filter by filename for the network you want. Note that this bucket contains blocks for various other networks too, such as QAnet, which is not recommended for your testing. QAnet is used by O(1) Labs during targeted iterative development.
+This bucket contains blocks from various Mina networks — for example, Mainnet and the most recent Devnet `devnet2`. Filter by filename for the network you want. Note that this bucket contains blocks for various other networks too, such as QAnet, which is not recommended for your testing. QAnet is used by o1Labs during targeted iterative development.
 
 Filenames contain the network name, block height, and state hash of the block. Blocks older than height 25,705 include only the network name and state hash in the filename.
 
@@ -146,13 +146,13 @@ mina-archive-blocks --precomputed --archive-uri <postgres uri> FILE.
 
 ### How do I query for the canonical block at a certain height from the archive node
 
-Use a recursive query. See [Query the database](/node-operators/archive-node#query-the-database) examples in the Archive Node docs.
+Use a recursive query. See [Query the database](/node-operators/archive-node/getting-started#query-the-database) examples in the Archive Node docs.
 
 ### Why am I getting this error message: "Not able to connect to the network"?
 
 This error message usually occurs due to a chain ID mismatch from running a Devnet build on Mainnet, or vice versa.
 
-To check whether you are running a Devenet or Mainnet build, run `Mina client status`. Next, compare the output's chain ID of your node to the expected chain ID of the network you are trying to connect to. You can find required information for comparison within the [GitHub announcements](https://github.com/MinaProtocol/mina/discussions/categories/announcements) or [Discord](https://discord.com/channels/484437221055922177/601171209287368715) server.
+To check whether you are running a devnet or mainnet build, run `Mina client status`. Next, compare the output's chain ID of your node to the expected chain ID of the network you are trying to connect to. You can find required information for comparison within the [GitHub announcements](https://github.com/MinaProtocol/mina/discussions/categories/announcements) or [Discord](https://discord.com/channels/484437221055922177/601171209287368715) server.
 
 ### Are there any official broadcast nodes that can be used?
 
@@ -193,4 +193,4 @@ You can use this Delegation Calculator tool built by Carbonara to see the next s
 
 Test tooling and integrations on Devnet before going live on Mainnet. The Devnet network is dedicated for developers building on top of the Mina protocol and is designed for testing and experimentation. Be sure to simulate expected Mainnet conditions, such as transaction volume and frequency, to help identify and solve potential issues ahead of time.
 
-See [Connect to Devnet](/node-operators/connecting-to-devnet).
+See [Connect to Devnet](/node-operators/block-producer-node/connecting-to-devnet).

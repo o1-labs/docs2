@@ -1,0 +1,84 @@
+---
+title: Uptime Tracking System
+hide_title: true
+description: Learn how to set up the uptime tracking system for the Mina Foundation Delegation Program. 
+keywords:
+  - delegation program
+  - uptime tracking
+  - performance score
+  - uptime 
+---
+
+# Uptime Tracking System
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+Instructions for the SNARK-based uptime tracking system.
+</Subhead>
+
+Learn how to set up the uptime tracking system for the Mina Foundation Delegation Program
+
+:::info
+
+**PLEASE READ:** This affects the submission of uptime data and the Performance Score results for receiving a delegation.
+
+
+The current sidecar tracking system is being phased out to be replaced by the SNARK-work-based uptime tracking system. Until further notice, <u>please continue running the sidecar AND SNARK-based tracking system on the SAME node.</u>
+
+- [Instructions for the sidecar tracking system](./bp-sidecar)
+- [Instructions for the SNARK-work-based uptime system](./uptime-tracking-system)
+
+Please follow the latest updates and post questions in the [#delegation-program](https://discord.com/channels/484437221055922177/808895957978447882) channel on Mina Protocol Discord.
+
+:::
+
+In order to maintain eligibility for various grants and the Mina Foundation Delegation Program, you must connect to our uptime tracking endpoint to run the SNARK-work-based uptime tracking system with your daemon to report node uptime.
+
+If you are required to keep your node online for a grant or specific program, you must run a small uptime tracking program that will report your daemon's uptime. This tutorial will walk you through the process of installing, configuring and running the uptime tracking system.
+
+:::note
+
+<p>We recommend that you save some of your SNARK work data logs. You can also share the logs with us if you’re interested in helping out with data checks.</p>
+
+:::
+
+### Pre-requisites
+
+Make sure you updated your node to at least release (1.3.1+):
+
+## How to set up the uptime system
+
+The SNARK-work-based uptime system is built into the mina daemon. The new uptime tracking system no longer requires importing your keypair and supports a new flag `--uptime-submitter-key`, which takes the path to your private key, just like `--block-producer-key`.
+
+To get started, pass in the following information to the daemon:
+
+- The path to the private key with the flag:
+`--uptime-submitter-key </path/to/private/key>`
+
+- The URL of our testing backend server with the flag:
+`--uptime-url https://uptime-backend.minaprotocol.com/v1/submit`
+
+- The password for the keypair associated with the given public key has the environment variable `UPTIME_PRIVKEY_PASS=<CHANGE_ME_TO_MY_VERY_SECURE_PASSWORD>`. If you are using a .mina-env file on Debian then this value should be on its own line, not included in `EXTRA_FLAGS=`.
+
+Here’s an example of what your .mina-env file should look like for Debian:
+
+~~~
+EXTRA_FLAGS="--block-producer-key /home/mina/my-wallet --uptime-submitter-key /home/mina/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit"
+UPTIME_PRIVKEY_PASS=<CHANGE_ME_TO_MY_VERY_SECURE_PASSWORD>
+MINA_PRIVKEY_PASS=<CHANGE_ME_TO_MY_VERY_SECURE_PASSWORD>
+CODA_PRIVKEY_PASS=<CHANGE_ME_TO_MY_VERY_SECURE_PASSWORD>
+LOG_LEVEL=Info
+FILE_LOG_LEVEL=Debug
+~~~
+
+
+### Relevant Links
+
+- [Latest Release Notes for Mina Protocol](https://github.com/MinaProtocol/mina/releases)
+- [Mina Foundation Delegation Policy](https://minaprotocol.com/blog/mina-foundation-delegation-policy)
+- [Mina Docs: Mina Foundation Delegation Program](/node-operators/delegation-program)
+- [Delegation Program Tiebreak System](/node-operators/delegation-program/delegation-tiebreak)
+
+
+#### Need any help? Post your questions in the [#Delegation-Program](https://discord.gg/ywDzwmGABT) channel on Discord.

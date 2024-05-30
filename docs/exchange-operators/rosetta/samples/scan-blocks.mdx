@@ -13,13 +13,14 @@ To implement a simple function to wait for a given block:
 
 ```ts
 async function waitForBlock(blockHeight: number) {
-    let latestBlock = (await networkStatus()).current_block_identifier.index
-    while (true) {
-        if (blockHeight <= latestBlock)
-            return await block(blockHeight)
-        await sleep(10000)
-        latestBlock = (await networkStatus()).current_block_identifier.index
+  let latestBlock = (await networkStatus()).current_block_identifier.index
+  while (true) {
+    if (blockHeight <= latestBlock) {
+      return await block(blockHeight)
     }
+    await sleep(10000)
+    latestBlock = (await networkStatus()).current_block_identifier.index
+  }
 }
 ```
 
@@ -54,11 +55,10 @@ It can be used to scan blocks like this:
 ```ts
 let latestBlockHeight = (await network_status()).current_block_identifier.index
 while (true) {
-    const lastBlock = waitForBlock(latestBlockHeight)
+  const lastBlock = waitForBlock(latestBlockHeight)
+  // some processing according to business logic
     
-    # some processing according to business logic
-    
-    latestBlockHeight += 1
+  latestBlockHeight += 1
 }
 ```
 

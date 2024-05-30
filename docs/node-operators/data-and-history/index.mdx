@@ -1,0 +1,27 @@
+---
+title: Blockchain Data and History
+hide_title: true
+description: How to find blockchain data and history
+keywords:
+  - query
+  - graphQL
+  - block data
+  - data queries
+  - blockchain history
+  - blockchain data
+---
+
+# About Data and History
+
+Mina is a succinct blockchain, and as a result, consensus nodes store only the recent history of the chain before discarding it (the last k blocks, currently 290). You can access recent history by using graphQL from a running mina daemon.
+
+While prior transaction history is not required to prove the current state is valid (this is handled by using a recursive zero-knowledge proof), many applications need to access prior transaction history. Examples include block explorers and wallets.
+
+You can optionally run an [archive node](/node-operators/archive-node/getting-started) to access historic data. The archive node process stores a summary of each block in a Postgres database. The archive node requires a running mina-archive daemon that connects to a running mina daemon and a [PostgreSQL](https://www.postgresql.org/) database.
+
+## Data and History
+
+This section describes how to query data in the Mina protocol.
+
+- [Querying Data](data-and-history/querying-data) - Examples for querying data.
+- [Rosetta](data-and-history/rosetta) - An open-source specification and set of tools used for deploying and interacting with the Mina Protocol.

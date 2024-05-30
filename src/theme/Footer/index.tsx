@@ -114,14 +114,15 @@ function Footer(): JSX.Element | null {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/zkapps/how-to-write-a-zkapp">Write a zkApp</Link>
+                  <Link to="/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp">
+                    Write a zkApp
+                  </Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/node-operators">
                     Run a Node
                   </Link>
                 </li>
-                
               </ul>
             </li>
             <li>
@@ -167,12 +168,12 @@ function Footer(): JSX.Element | null {
               <span>Ecosystem</span>
               <ul>
                 <li>
-                  <Link href="https://minaprotocol.com/community">Community</Link>
+                  <Link href="https://minaprotocol.com/community">
+                    Community
+                  </Link>
                 </li>
                 <li>
-                  <Link href="https://minaprotocol.com/grants">
-                    Grants
-                  </Link>
+                  <Link href="https://minaprotocol.com/grants">Grants</Link>
                 </li>
                 <li>
                   <Link href="https://minaprotocol.com/work-with-mina">
@@ -213,7 +214,7 @@ function Footer(): JSX.Element | null {
         <div className={styles.minaFooter_legals__menu}>
           <ul>
             <li>
-              <Link href="https://o1labs.org">O(1) Labs</Link>
+              <Link href="https://o1labs.org">o1Labs</Link>
             </li>
             <li>
               <Link href="https://github.com/MinaProtocol/mina/blob/develop/CODE_OF_CONDUCT.md">
