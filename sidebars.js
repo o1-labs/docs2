@@ -30,21 +30,9 @@ module.exports = {
       ],
     },
     {
-      type: 'category',
+      type: 'link',
       label: 'About Mina',
-      items: [
-        'about-mina/index',
-        'about-mina/what-are-zero-knowledge-proofs',
-        'about-mina/protocol-architecture',
-        'about-mina/consensus',
-        'about-mina/security',
-        'about-mina/faq',
-        {
-          type: 'link',
-          label: 'Whitepaper',
-          href: 'https://minaprotocol.com/wp-content/uploads/economicsWhitepaper.pdf',
-        },
-      ],
+      href: 'https://minaprotocol.com/about'
     },
     {
       type: 'category',
