@@ -1429,9 +1429,17 @@ module.exports = {
       type: 'category',
       label: 'Participate',
       items: [
-        'participate/online-communities',
+        {
+          type: 'link',
+          label: 'Online Communities',
+          href: 'https://minaprotocol.com/community'
+        },
+        {
+          type: 'link',
+          label: 'Apply for Grants',
+          href: 'https://minaprotocol.com/blog/mina-developers-grants'
+        },
         'participate/office-hours',
-        'participate/grants-and-programs',
         'participate/careers',
         'participate/github',
         'participate/bugs-and-feature-requests',
