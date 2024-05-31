@@ -3,34 +3,6 @@ module.exports = {
     'welcome',
     {
       type: 'category',
-      label: 'Berkeley Upgrade',
-      items: [
-        'berkeley-upgrade/requirements',
-        {
-          type: 'category',
-          label: 'Archive Migration',
-          link: {
-            type: 'doc',
-            id: 'berkeley-upgrade/archive-migration/index',
-          },
-          items: [
-            'berkeley-upgrade/archive-migration/understanding-archive-migration',
-            'berkeley-upgrade/archive-migration/archive-migration-prerequisites',
-            'berkeley-upgrade/archive-migration/archive-migration-installation',
-            'berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley',
-            'berkeley-upgrade/archive-migration/mainnet-database-maintenance',
-            'berkeley-upgrade/archive-migration/debian-example',
-            'berkeley-upgrade/archive-migration/docker-example',
-            'berkeley-upgrade/archive-migration/appendix',
-          ],
-        },
-        'berkeley-upgrade/upgrade-steps',
-        'berkeley-upgrade/flags-configs',
-        'berkeley-upgrade/appendix',
-      ],
-    },
-    {
-      type: 'category',
       label: 'About Mina',
       items: [
         'about-mina/index',
@@ -1296,7 +1268,7 @@ module.exports = {
         id: 'node-operators/index',
       },
       items: [
-        'node-operators/staking-and-snarking',
+        'node-operators/requirements',
         'node-operators/generating-a-keypair',
         {
           type: 'category',
@@ -1376,6 +1348,7 @@ module.exports = {
             'node-operators/delegation-program/uptime-tracking-system',
           ],
         },
+        'node-operators/staking-and-snarking',
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
