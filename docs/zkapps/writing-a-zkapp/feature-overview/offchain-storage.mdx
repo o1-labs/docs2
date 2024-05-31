@@ -15,12 +15,6 @@ keywords:
   - succinctness
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 :::experimental
 
 Offchain storage is currently an experimental feature and is subject to change in the future.
@@ -152,10 +146,10 @@ class MyContract extends SmartContract {
     });
 
     // retrieve an entry from the map, returning an Option
-    let playerOption = await offchainState.fields.players.get(playerA); 
+    let playerOption = await offchainState.fields.players.get(playerA);
 
     // unwrap the player's score Option and return a default value if the entry is empty
-    let score = playerOption.orElse(0n); 
+    let score = playerOption.orElse(0n);
 
     // increment the player's score, set a precondition on the previous score
     offchainState.fields.players.update(playerA, {

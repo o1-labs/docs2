@@ -16,20 +16,14 @@ keywords:
   - mina
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Tutorial 4: Build a zkApp UI in the Browser with React
 
 You're making excellent progress in your zkApp journey:
 
-- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js. 
+- In the [Hello World](hello-world) tutorial, you built a basic zkApp smart contract with o1js.
 - In [Tutorial 3: Deploy to a Live Network](deploying-to-a-network), you used the `zk` commands to deploy your zkApp.
 
-In this tutorial, you are going to implement a browser UI using `Next.js` that interacts with a smart contract. 
+In this tutorial, you are going to implement a browser UI using `Next.js` that interacts with a smart contract.
 
 ## Prerequisites
 
@@ -84,21 +78,21 @@ You can have the `zk project` command scaffold the UI for your project.
     nuxt
     empty
     none
-  ``` 
+  ```
 
-1. If you are prompted to install the required Next packages, press **y** to proceed. 
+1. If you are prompted to install the required Next packages, press **y** to proceed.
 1. Select **yes** at the `? Do you want to set up your project for deployment to Github Pages? …` prompt.
-1. If you are prompted to install the required Next packages, press **y** to proceed. 
+1. If you are prompted to install the required Next packages, press **y** to proceed.
 1. Select **Yes** at the `? Would you like to use TypeScript with this project?` prompt.
 1. Select **No** at the `? Would you like to use ESLint with this project?` prompt.
 1. Select **No** at the `? Would you like to use Tailwind CSS with this project?` prompt.
 
   Your UI is created in the project directory: `04-zkapp-browser-ui/ui` with two directories:
 
-    - `contracts`: The smart contract code 
+    - `contracts`: The smart contract code
     - `ui`: Where you write the UI code
 
-For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory. You work in the `ui/src/pages` directory on TypeScript files that contain the UI code. 
+For this tutorial, you run commands from the root of the `04-zkapp-browser-ui/ui` directory. You work in the `ui/src/pages` directory on TypeScript files that contain the UI code.
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
@@ -169,7 +163,7 @@ Because o1js code is computationally intensive, it's helpful to use web workers.
 
 The example project has a completed app. The `index.page.tsx` file is the entry file for your application and contains the main logic for the browser UI that is ready to deploy to GitHub Pages.
 
-1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file. 
+1. Download the [index.page.tsx](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/04-zkapp-browser-ui/ui/src/pages/index.page.tsx) example file.
 
 1. Move the `index.page.tsx` file to your local `04-zkapp-browser-ui/ui/src/pages` directory.
 
@@ -196,7 +190,7 @@ The example project has a completed app. The `index.page.tsx` file is the entry 
   },
   ```
 
-  Depending on the network you are going to work with you might want to consider changing the GraphQL endpoint in the `setActiveInstanceToDevnet` function.  
+  Depending on the network you are going to work with you might want to consider changing the GraphQL endpoint in the `setActiveInstanceToDevnet` function.
   Mind the supported networks by `Auro Wallet` though.
 
 ### Add state
@@ -224,8 +218,8 @@ To learn more about `useState` hooks, see [built-in React hooks](https://react.d
 
 This `04-zkapp-browser-ui/ui/src/pages/index.page.tsx` code adds a functions to set up zkApp:
 
-- The Boolean `hasBeenSetup` ensures that the react feature `useEffect` is run only once.  
-To learn more about `useEffect` hooks, see [useEffect](https://react.dev/reference/react/useEffect) in the React API reference documentation. 
+- The Boolean `hasBeenSetup` ensures that the react feature `useEffect` is run only once.
+To learn more about `useEffect` hooks, see [useEffect](https://react.dev/reference/react/useEffect) in the React API reference documentation.
 
 - This code also sets up your web worker client that interacts with the web worker running o1js code to ensure the computationally heavy o1js code doesn't block the UI thread.
 
@@ -313,7 +307,7 @@ To learn more about `useEffect` hooks, see [useEffect](https://react.dev/referen
 
 ### Run the React app
 
-Execute the following commands being within the `04-zkapp-browser-ui/ui/` directory. 
+Execute the following commands being within the `04-zkapp-browser-ui/ui/` directory.
 
 1. To start the development server and serve your UI application at the URL `localhost:3000`:
 
@@ -329,7 +323,7 @@ Execute the following commands being within the `04-zkapp-browser-ui/ui/` direct
 
   The zkApp UI in the web browser shows the current state of the zkApp and has buttons to send a transaction and get the latest zkApps on-chain state.
 
-  Your browser refreshes automatically when you update the source code. 
+  Your browser refreshes automatically when you update the source code.
 
 1. If prompted, request the funds from the Testnet Faucet service to fund your fee payer account.
 1. And in the second terminal window:
@@ -342,7 +336,7 @@ Execute the following commands being within the `04-zkapp-browser-ui/ui/` direct
 
 ### Wait for the fee payer account to be funded
 
-Now that the UI setup is finished, a new effect waits for the fee payer account to be funded if it didn't before by checking the account presence in ledger.  
+Now that the UI setup is finished, a new effect waits for the fee payer account to be funded if it didn't before by checking the account presence in ledger.
 
 Don't forget that if the account has been newly created, it must be funded from the Faucet.
 
@@ -515,7 +509,7 @@ The UI has three sections:
 
 - `setup` lets the user know when the zkApp has finished loading.
 - `accountDoesNotExist` gives the user a link to the Faucet if their account hasn't been funded.
-- `mainContent` shows the current zkApp on-chain state and buttons to let users interact with zkApp.  
+- `mainContent` shows the current zkApp on-chain state and buttons to let users interact with zkApp.
   The buttons allow the user to create transaction in order to update on-chain zkApp state and refresh the current on-chain zkApp state.
 
 That's it for the code review!
@@ -524,14 +518,14 @@ If you've been using `npm run dev`, you can now interact with the UI application
 
 ## Deploying the application to GitHub Pages
 
-Before you can deploy your project to GitHub Pages, you must push it to a new GitHub repository that you've created at the beginning of this tutorial. 
+Before you can deploy your project to GitHub Pages, you must push it to a new GitHub repository that you've created at the beginning of this tutorial.
 
-- The GitHub repo must have the same name as the project name. 
+- The GitHub repo must have the same name as the project name.
 - In this tutorial, the project name is `04-zkapp-browser-ui`.
-- The `zk project` command created the correct project name strings in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files. 
+- The `zk project` command created the correct project name strings in the `next.config.js` and `src/pages/reactCOIServiceWorker.ts` files.
 
 To deploy the UI:
- 
+
 1. Change to the `04-zkapp-browser-ui/ui/` directory.
 1. Run the `deploy` script by executing the following command:
 
@@ -539,7 +533,7 @@ To deploy the UI:
   npm run deploy
   ```
 
-Scripts defined in the `04-zkapp-browser-ui/ui/package.json` file do the work to build your application and publish it to the GitHub Pages. 
+Scripts defined in the `04-zkapp-browser-ui/ui/package.json` file do the work to build your application and publish it to the GitHub Pages.
 
 After the command completion your zkApp UI will be available at:
 

@@ -13,12 +13,6 @@ keywords:
   - Auro Wallet
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # How to Write a zkApp UI
 
 A zkApp consists of a smart contract and a UI to interact with it. To allow users to interact with your smart contract in a web browser, you typically want to build a website UI.
@@ -27,13 +21,13 @@ You can write the UI with any framework like React, Vue, or Svelte, or with plai
 
 ## Using one of the provided UI framework scaffolds
 
-When you create a project using the zkApp CLI, you can choose a supported UI framework to be scaffolded as a part of your zkApp project. For example, Next.js, Sveltkit, or Nuxt.js. 
+When you create a project using the zkApp CLI, you can choose a supported UI framework to be scaffolded as a part of your zkApp project. For example, Next.js, Sveltkit, or Nuxt.js.
 
 ## Adding your smart contract as a dependency of the UI
 
 You can use one of the provided scaffolding options and add your smart contract to an existing frontend, a different UI framework, or a plain HTML and JavaScript website.
 
-### Specify the smart contracts to import 
+### Specify the smart contracts to import
 
 The `index.ts` file is the entry point of your project that imports all smart contract classes you want access to and exports them to your smart contract. This pattern allows you to specify which smart contracts are available to import when consuming your project from npm within your UI.
 
@@ -47,7 +41,7 @@ export { YourSmartContract };
 
 ### Local development
 
-To test iteratively and use your smart contract within your UI project during local development, you can use [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link). This local use allows for rapid development without having to publish your project to npm. 
+To test iteratively and use your smart contract within your UI project during local development, you can use [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link). This local use allows for rapid development without having to publish your project to npm.
 
 1. To change into your smart contract project directory:
 
@@ -61,10 +55,10 @@ To test iteratively and use your smart contract within your UI project during lo
   npm link <your-package-name>
   ```
 
-  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`. 
+  where `your-package-name` is the `name` property used in your _smart contract's_ `package.json`.
 
-  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp) is `sudoku`. 
-  
+  For example, the `name` property in `package.json` for the `sudoku` example project that you created in [How to Write a zkApp](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-to-write-a-zkapp) is `sudoku`.
+
   To create the symlinks for `sudoku`:
 
   ```sh
@@ -93,11 +87,11 @@ To test iteratively and use your smart contract within your UI project during lo
 
 ### Publish to npm for production
 
-1. Create an npm account. 
+1. Create an npm account.
 
   If you don't already have an account, go to npm [Sign Up](https://www.npmjs.com/signup).
 
-1. Login to npm: 
+1. Login to npm:
 
   ```sh
   npm login
@@ -113,7 +107,7 @@ To test iteratively and use your smart contract within your UI project during lo
 
 Package names must be unique. An error occurs if the package name already exists. To use a different package name, change the `name` property in the `package.json` file.
 
-To check existing package names on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command. 
+To check existing package names on npm, use the [npm search](https://docs.npmjs.com/cli/v7/commands/npm-search) command.
 
 To avoid naming collisions, npm allows you to publish scoped packages: `@your-username/your-package-name`. See [Introduction to packages and modules](https://docs.npmjs.com/packages-and-modules/introduction-to-packages-and-modules) in the npm reference docs.
 
@@ -125,7 +119,7 @@ After you have published your smart contract to npm, you can add it to any UI fr
 
     ```sh
     npm install your-package-name
-    ``` 
+    ```
 
   If you published a scoped npm package:
 
@@ -138,7 +132,7 @@ After you have published your smart contract to npm, you can add it to any UI fr
   ```ts
   import { YourSmartContract } from ‘your-package-name’;
   ```
-  
+
   where `YourSmartContract` is the named export that you chose in your smart contract.
 
 :::tip
@@ -178,7 +172,7 @@ onMounted(async () => {
 ### Enabling COOP and COEP headers
 
 To load o1js code in your UI, you must set the [COOP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy)
-and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers. 
+and [COEP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy) headers.
 
 These headers enable o1js to use [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) that o1js relies on to enable important WebAssembly (Wasm) features.
 
@@ -217,18 +211,18 @@ To host your app on Cloudflare Pages, set the headers in a [`_headers` file](htt
 
 ### Connecting your zkApp with a user's wallet
 
-The Mina community has created a variety of different wallets. Only the [Auro Wallet for Chrome](https://www.aurowallet.com) supports interactions with zkApps. 
+The Mina community has created a variety of different wallets. Only the [Auro Wallet for Chrome](https://www.aurowallet.com) supports interactions with zkApps.
 
 To interact with your zkApp, users of your zkApp must have the Auro Wallet installed:
 
-- `window.mina` is automatically available in the user's browser environment. 
+- `window.mina` is automatically available in the user's browser environment.
 - Your zkApp uses this object to interact with the wallet.
 
-1. Install the Chrome extension for [Auro Wallet](https://chrome.google.com/webstore/detail/auro-walletmina-protocol/cnmamaachppnkjgnildpdmkaakejnhae). 
+1. Install the Chrome extension for [Auro Wallet](https://chrome.google.com/webstore/detail/auro-walletmina-protocol/cnmamaachppnkjgnildpdmkaakejnhae).
 
-2. Get accounts. 
+2. Get accounts.
 
-  To fetch a user's list of Mina accounts, use the `requestAccounts()` method: 
+  To fetch a user's list of Mina accounts, use the `requestAccounts()` method:
 
   ```ts
   let accounts;
@@ -250,7 +244,7 @@ To interact with your zkApp, users of your zkApp must have the Auro Wallet insta
 
   <img src={require('@site/static/img/Mina_Provider_Header.png').default} />
 
-3. Send a transaction. 
+3. Send a transaction.
 
   After your user interacts with your zkApp, you can sign and send the transaction using `sendTransaction()`. You receive a transaction ID as soon as the Mina network has received the proposed transaction. However, this does not guarantee that the transaction is accepted in the network into an upcoming block.
 

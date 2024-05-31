@@ -19,12 +19,6 @@ keywords:
   - authorization types
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Interacting With Mina
 
 Now that you know about writing zkApp methods, it's time to learn how users can call these methods.

@@ -16,12 +16,6 @@ keywords:
 
 import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Tutorial 7: Oracles
 
 You can use an oracle when your smart contract needs to consume data from the outside world.
@@ -103,7 +97,7 @@ The demo oracle for user with id `1` is available at https://07-oracles.vercel.a
 }
 ```
 
-The user with an `id` of `2` has a credit score that is below the threshold specified in the smart contract.  
+The user with an `id` of `2` has a credit score that is below the threshold specified in the smart contract.
 The demo oracle for user with id `2` with a lower credit score is available at https://07-oracles.vercel.app/api/credit-score?user=2 and shows this response:
 
 ```json
@@ -124,7 +118,7 @@ You can generate the Mina-compatible public/private key pair for your oracle by 
 npm run keygen
 ```
 
-This command runs the code in the [keygen.js](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/07-oracles/oracle/scripts/keygen.js) file.  
+This command runs the code in the [keygen.js](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/07-oracles/oracle/scripts/keygen.js) file.
 This file is the part of the oracle `Next.js` application, source code of which is available [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/07-oracles/oracle).
 
 ## Smart Contract
@@ -323,7 +317,7 @@ With this foundation, you can emit a verified event.
 - The first argument to `emitEvent()` is an arbitrary string name, because a smart contract could emit more than one type of event.
 - The second argument can be any value, as long as it matches the type defined for the event.
 
-In this case, the event has the `Field` type, but it could be a more complicated type built on `Fields`, if the situation called for it.  
+In this case, the event has the `Field` type, but it could be a more complicated type built on `Fields`, if the situation called for it.
 Emitted events can be fetched using the [Archive-Node-API](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions).
 
 ```ts
@@ -505,5 +499,5 @@ To run the tests:
 
 Note that writing a test that calls an API is generally not a best practice, but it's convenient for the sake of this tutorial. You can also mock your HTTP requests.
 
-Congratulations! You have just built a simple oracle using o1js and the Mina blockchain.  
+Congratulations! You have just built a simple oracle using o1js and the Mina blockchain.
 You can find the complete code for this example [here](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/07-oracles).
