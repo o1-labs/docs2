@@ -1,12 +1,4 @@
-import {
-  DeployArgs,
-  method,
-  AccountUpdate,
-  Permissions,
-  PublicKey,
-  SmartContract,
-  UInt64,
-} from 'o1js';
+import { method, AccountUpdate, PublicKey, SmartContract, UInt64 } from 'o1js';
 
 import { WrappedMina } from './WrappedMina.js';
 
