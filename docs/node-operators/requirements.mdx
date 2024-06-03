@@ -39,15 +39,6 @@ Mina uses by default the port `8302` which is the default libp2p port.
 
 You can use a different port by setting the `--external-port` flag.
 
-### Generation of libp2p keypair​
-
-Each node within the network must possess its own distinct libp2p key pair. Although the same libp2p keys can be reused from before the upgrade, if you need to manually generate new libp2p keys, use the following command:
-
-```
-mina libp2p generate-keypair -privkey-path <path-to-the-key-file>
-```
-Further information on [generating key pairs](/node-operators/generating-a-keypair) on Mina Protocol.
-
 ### Node Auto-restart
 
 Ensure your nodes are set to restart automatically after a crash. For guidance, refer to the [auto-restart instructions](/node-operators/block-producer-node/connecting-to-the-network#start-a-mina-node-with-auto-restart-flows-using-systemd)
