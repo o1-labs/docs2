@@ -53,10 +53,6 @@ module.exports = {
             to: '/mina-protocol/sending-a-payment',
           },
           {
-            from: '/about-mina/overview',
-            to: '/about-mina',
-          },
-          {
             from: '/architecture/scan-state',
             to: '/mina-protocol/scan-state',
           },
@@ -71,10 +67,6 @@ module.exports = {
           {
             from: '/node-developers/code-reviews',
             to: '/node-developers/code-review-guidelines',
-          },
-          {
-            from: '/architecture/consensus',
-            to: '/about-mina/consensus',
           },
           {
             from: '/tutorials',
