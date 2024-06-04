@@ -57,7 +57,10 @@ const FeatureList: FeatureItem[] = [
           about Mina
         </Link>
         ,
-        <Link to="https://minaprotocol.com/about" className={styles.minaLink}>
+        <Link
+          to="https://minaprotocol.com/blog/four-zk-technologies-you-should-know"
+          className={styles.minaLink}
+        >
           {' '}
           zero knowledge proofs{' '}
         </Link>
