@@ -48,7 +48,7 @@ Below it's the description in detail of all the upgrade steps and what which nod
 
 ### Exchanges
 1. Make sure to test your system integration with Berkeley's new features. Pay special attention to:
-  - If you use the **o1labs/client-sdk** library to sign transactions, you should switch to **mina-signer** https://www.npmjs.com/package/mina-signer. **o1labs/client-sdk was deprecated some time ago and will be unusable** once the network has been upgraded. Please review the migration instructions in [Appendix](/berkeley-upgrade/appendix)
+  - If you use the **o1labs/client-sdk** library to sign transactions, you should switch to **[mina-signer](https://www.npmjs.com/package/mina-signer)**. o1labs/client-sdk was **deprecated** some time ago and will be **unusable** once the network has been upgraded. Please review the migration instructions in [Appendix](/berkeley-upgrade/appendix).
   - If you rely on the archive node SQL database tables, please review the schema changes in Appendix 1 of this document.
 2. Upgrade all nodes to the latest stable version [3.0.0](https://github.com/MinaProtocol/mina/releases/tag/3.0.0).
 3. Provision servers that meet the minimum hardware requirements, particularly the new 32GB RAM requirement.
