@@ -179,7 +179,7 @@ docker run --name mina -d \
 --mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-minaprotocol/mina-daemon:2.0.0-039296a-bullseye-mainnet \ **<_CHANGE_ME_>**
+minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet \
 daemon
 ```
 

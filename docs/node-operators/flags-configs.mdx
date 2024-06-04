@@ -127,7 +127,7 @@ docker run
 --name rosetta --rm \
 -p 3088:3088 \
 --entrypoint '' \
-gcr.io/o1labs-192920/mina-rosetta:<POST UPGRADE RELEASE> **<_CHANGE_ME_>** \
+gcr.io/o1labs-192920/mina-rosetta:3.0.0-93e0279 \
 /usr/local/bin/mina-rosetta \
 --archive-uri "${PG_CONNECTION_STRING}" \
 --graphql-uri "${GRAPHQL_URL}" \

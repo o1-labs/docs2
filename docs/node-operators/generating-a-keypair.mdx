@@ -74,7 +74,7 @@ Generate a new public, private keypair
     ```sh
     echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
     sudo apt-get update
-    sudo apt-get install -y mina-mainnet=2.0.0-039296a **<_CHANGE_ME_>**
+    sudo apt-get install -y mina-mainnet=3.0.0-93e0279
     ```
 
 1. Verify that the key generation tool installed correctly:
@@ -86,7 +86,7 @@ Generate a new public, private keypair
     The expected output is:
 
     ```
-    Commit 039296a260080ed02d0d0750d185921f030b6c9c on branch compatible
+    Commit 93e02797f72abe2cbf8dfca6f2328e9c8cd76546 on branch berkeley
     ```
 
 ### macOS, Windows, and platforms other than Ubuntu and Debian
@@ -129,7 +129,7 @@ Make sure to set a new and secure password for the following commands. Mina will
     cd ~
     docker run -it --rm --entrypoint "" \
            --volume $(pwd)/keys:/keys \
-           minaprotocol/mina-daemon:2.0.0-039296a-bullseye-mainnet \ **<_CHANGE_ME_>**
+           minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet \
            mina advanced generate-keypair --privkey-path /keys/my-wallet
     ```
 
@@ -163,14 +163,14 @@ On Docker:
 ```
 docker run -it --rm --entrypoint "" \
         --volume $(pwd)/keys:/keys \
-        minaprotocol/mina-daemon:2.0.0-039296a-bullseye-mainnet \ **<_CHANGE_ME_>**
+        minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet \
         mina advanced validate-keypair --privkey-path /keys/my-wallet
 ```
 
 ## Generating and using your libp2p keys
 
-To ensure connectivity across the network, it is essential that all seed nodes start with the **same** `libp2p` keypair.  
-This consistency allows other nodes in the network to reliably connect.  
+To ensure connectivity across the network, it is essential that all seed nodes start with the **same** `libp2p` keypair.
+This consistency allows other nodes in the network to reliably connect.
 Use the `libp2p` subcommand of `mina` CLI utility to create a libp2p key pair.
 
 ```
