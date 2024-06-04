@@ -1533,10 +1533,6 @@ module.exports = {
     {
       type: 'category',
       label: 'Participate',
-      link: {
-        type: 'doc',
-        id: 'participate/online-communities',
-      },
       items: [
         {
           type: 'link',
