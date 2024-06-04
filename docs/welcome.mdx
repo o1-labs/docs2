@@ -11,9 +11,12 @@ import HomepageFeatures from "@site/src/components/features/HomepageFeatures";
 
 :::caution Berkeley Mainnet release has landed
 
-Please make sure to upgrade your mina nodes to **3.0.0** ([Release notes](https://github.com/MinaProtocol/mina/releases/tag/3.0.0))
+Please make sure to upgrade your mina nodes to **3.0.0** ([Release notes](https://github.com/MinaProtocol/mina/releases/tag/3.0.0))  
+[See instructions on how to upgrade your Mina node](/node-operators/requirements)
 
-[See instructions to upgrade your Mina node](/node-operators/requirements)
+**Note**:  
+Non-seed nodes will remain in `Bootstrap` status until such a point as block production begins at **`00:00UTC on June 5th`**. During this period of no block production, nodes will automatically **terminate after 25 minutes**, this is **expected behavior**.  
+Please ensure you have configured your nodes to [auto-restart](/node-operators/requirements#node-auto-restart) on crash to have them automatically try and reconnect.
 
 :::
 
