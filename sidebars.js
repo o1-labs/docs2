@@ -32,7 +32,7 @@ module.exports = {
     {
       type: 'link',
       label: 'About Mina',
-      href: 'https://minaprotocol.com/about'
+      href: 'https://minaprotocol.com/about',
     },
     {
       type: 'category',
@@ -48,6 +48,10 @@ module.exports = {
     {
       type: 'category',
       label: 'zkApp Developers',
+      link: {
+        type: 'doc',
+        id: 'zkapps/zkapp-development-frameworks',
+      },
       items: [
         {
           type: 'category',
@@ -1432,12 +1436,12 @@ module.exports = {
         {
           type: 'link',
           label: 'Online Communities',
-          href: 'https://minaprotocol.com/community'
+          href: 'https://minaprotocol.com/community',
         },
         {
           type: 'link',
           label: 'Apply for Grants',
-          href: 'https://minaprotocol.com/blog/mina-developers-grants'
+          href: 'https://minaprotocol.com/blog/mina-developers-grants',
         },
         'participate/office-hours',
         'participate/careers',
