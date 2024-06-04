@@ -26,7 +26,7 @@ module.exports = {
       label: 'zkApp Developers',
       link: {
         type: 'doc',
-        id: 'zkapps/o1js/index',
+        id: 'zkapps/zkapp-development-frameworks',
       },
       items: [
         {
