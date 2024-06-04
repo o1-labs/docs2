@@ -35,7 +35,7 @@ o1js is also the `zkDSL` used for:
 
 There are some key considerations when choosing to build a zkApp with o1js on Mina L1:
 
-- zkApps will be subject to protocol throughput limitations.
+- zkApps are subject to protocol throughput limitations.
 - At present, zkApps that require support for multiple concurrent users require specific architecture to avoid race conditions:
   - Where more than the eight on-chain field elements are required to manage state, and access to that state is not shared, the experimental `Off-chain Storage API` will suffice.
   - Where `concurrent` access to `shared state` is required, this architecture is available "**out of the box**", when using the `Protokit` framework to build your zkApp as an zkApp-chain (L2).
