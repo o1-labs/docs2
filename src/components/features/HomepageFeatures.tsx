@@ -7,10 +7,10 @@
 import React from 'react';
 import styles from './HomepageFeatures.module.scss';
 
+import Link from '@docusaurus/Link';
 import Button from '@site/src/components/common/Button';
 import Subhead from '@site/src/components/common/Subhead';
 import ArrowRightSmall from '@site/static/svg/common/arrow_right_small.svg';
-import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -49,18 +49,15 @@ const FeatureList: FeatureItem[] = [
     title: 'About Mina',
     image: '/svg/homepage/about_mina.svg',
     buttonText: 'About Mina',
-    buttonLink: '/about-mina',
+    buttonLink: 'https://minaprotocol.com/about',
     description: (
       <>
         {'Learn '}
-        <Link to="/about-mina" className={styles.minaLink}>
+        <Link to="https://minaprotocol.com/about" className={styles.minaLink}>
           about Mina
         </Link>
         ,
-        <Link
-          to="/about-mina/what-are-zero-knowledge-proofs"
-          className={styles.minaLink}
-        >
+        <Link to="https://minaprotocol.com/about" className={styles.minaLink}>
           {' '}
           zero knowledge proofs{' '}
         </Link>
@@ -108,14 +105,20 @@ const FeatureList: FeatureItem[] = [
     title: 'Participate',
     image: '/svg/homepage/participate.svg',
     buttonText: 'Online Communities',
-    buttonLink: '/participate/online-communities',
+    buttonLink: 'https://minaprotocol.com/community',
     description: (
       <>
-        <Link to="/participate/online-communities" className={styles.minaLink}>
+        <Link
+          to="https://minaprotocol.com/community"
+          className={styles.minaLink}
+        >
           Join the community
         </Link>
         ,{' '}
-        <Link to="/participate/grants-and-programs" className={styles.minaLink}>
+        <Link
+          to="https://minaprotocol.com/blog/mina-developers-grants"
+          className={styles.minaLink}
+        >
           apply for grants & the zkApps Builders Program
         </Link>
         ,{' '}
