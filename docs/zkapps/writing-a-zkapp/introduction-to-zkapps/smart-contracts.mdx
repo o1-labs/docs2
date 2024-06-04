@@ -18,12 +18,6 @@ keywords:
   - on-chain state
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Smart Contracts
 
 You write smart contracts by extending the base class `SmartContract`:
@@ -32,7 +26,7 @@ You write smart contracts by extending the base class `SmartContract`:
 class HelloWorld extends SmartContract {}
 ```
 
-The `constructor` of a `SmartContract` is inherited from the base class and cannot be overriden. 
+The `constructor` of a `SmartContract` is inherited from the base class and cannot be overriden.
 
 The zkApp account address (a public key) is its only argument:
 
@@ -48,9 +42,9 @@ let zkApp = new HelloWorld(zkAppAddress);
 On Mina, there is no strong distinction between normal "user accounts" and
 "zkApp accounts". A zkApp account:
 
-- Is an account on the Mina blockchain where a zkApp smart contract is deployed. 
+- Is an account on the Mina blockchain where a zkApp smart contract is deployed.
 
-- Has a verification key associated with it. 
+- Has a verification key associated with it.
 
 The verification key stored on the zkApp account can verify zero knowledge proofs generated with the smart contract. The verification key lives on-chain for a given zkApp account and is used by the Mina network to verify that a zero knowledge proof has met all constraints defined in the prover. See [Prover Function and Verification Key](/zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work#prover-function-and-verification-key).
 
@@ -83,15 +77,15 @@ The method has one input parameter, `x` of type `Field`. In general, arguments c
 
 Internally, every `@method` defines a zk-SNARK circuit. From the cryptography standpoint, a smart contract is a collection of circuits, all of which are compiled into a single prover and a verification key. The proof says something to the effect of "I ran one of these methods, with some private input, and it produced this particular set of account updates". In zero knowledge proof terms, the account updates are the _public input_. The proof is accepted on the network only if it verifies against the verification key stored in the account. This verification requirement ensures that the same zkApp code also ran on the end user's device and that the account updates conform to the smart contract's rules.
 
-### @method 
+### @method
 
-Inside a `@method`, things sometimes behave a little differently. 
+Inside a `@method`, things sometimes behave a little differently.
 
 To construct a circuit which can then be proven, o1js calls into SnarkyML, a language that builds circuits and connects variables and constraints. As a zkApp developer, you must use the methods, functions, and types provided by o1js. Plain JavaScript code does not call into SnarkyML and therefore is not able to construct circuits.
 
 When `SmartContract` is compiled into prover and verification keys, methods are in an environment where the method inputs don't have any concrete values attached to them. Instead, they are like mathematical variables `x`, `y`, `z` that are used to build up abstract computations like `x^2 + y^2` by running the method code.
 
-In contrast, all the variables _have_ actual values attached to them (cryptographers call them "witnesses") during proof generation. 
+In contrast, all the variables _have_ actual values attached to them (cryptographers call them "witnesses") during proof generation.
 To log these values for debugging, use a special function for logging from inside your method:
 
 ```ts
@@ -175,14 +169,14 @@ This code adds the precondition that `this.x` – the on-chain state at verifica
 Using `this.<state>.requireEquals` is more flexible than equating with the current value. For example, `this.x.requireEquals(10)` fixes the on-chain `x` to the number `10`.
 
 Why not use `this.x.get()` to add the precondition automatically, instead of writing `this.x.requireEquals(x)`?
-To keep things explicit. The assertion reminds you to add logic which makes the proof fail: If `x` isn't the same at verification time, the transaction will be rejected. 
+To keep things explicit. The assertion reminds you to add logic which makes the proof fail: If `x` isn't the same at verification time, the transaction will be rejected.
 
-So, you must use care to read on-chain values if many users are expected to read and update state concurrently. It is applicable in some situations, but might cause race conditions or call for workarounds, in some situations. 
+So, you must use care to read on-chain values if many users are expected to read and update state concurrently. It is applicable in some situations, but might cause race conditions or call for workarounds, in some situations.
 One workaround is to use actions. See [Actions and Reducer](/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer).
 
 ## Assertions
 
-Assertions can be incredibly useful to constrain state updates. 
+Assertions can be incredibly useful to constrain state updates.
 
 Common assertions you can use are:
 
@@ -272,7 +266,7 @@ To initialize on-chain state, use the `init()` method.
 
 Like the constructor, `init()` is predefined on the base `SmartContract` class.
 
-- It is called when you deploy your zkApp with the zkApp CLI for the first time. 
+- It is called when you deploy your zkApp with the zkApp CLI for the first time.
 - It is not called if you upgrade your contract and deploy a second time.
 
 You can override this method to add initialization of your on-chain state:
@@ -344,7 +338,7 @@ You can create a custom data type for your smart contract using the `Struct` fun
 1. Create a class that extends `Struct({ })`.
 1. Then, inside the object `{ }`, define the fields that you want to use in your custom data type.
 
-For example, you can create a custom data type called `Point` to represent a 2D point on a grid. The `Point` struct has no instance methods and is used only to hold information about the `x` and `y` points. 
+For example, you can create a custom data type called `Point` to represent a 2D point on a grid. The `Point` struct has no instance methods and is used only to hold information about the `x` and `y` points.
 
 To create the `Point` class, extend the `Struct` class:
 
@@ -379,6 +373,6 @@ export class Grid extends SmartContract {
 }
 ```
 
-Note that your `Struct` classes can contain o1js built-in types like `Field`, `Bool`, `UInt64`, and so on, or even other custom types that you've defined that are based on the `Struct` class. 
+Note that your `Struct` classes can contain o1js built-in types like `Field`, `Bool`, `UInt64`, and so on, or even other custom types that you've defined that are based on the `Struct` class.
 
 This flexibility allows for great composability and reusability of structs.
