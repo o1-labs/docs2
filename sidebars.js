@@ -8,6 +8,37 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Berkeley Upgrade',
+      link: {
+        type: 'doc',
+        id: 'berkeley-upgrade/requirements',
+      },
+      items: [
+        {
+          type: 'category',
+          label: 'Archive Migration',
+          link: {
+            type: 'doc',
+            id: 'berkeley-upgrade/archive-migration/index',
+          },
+          items: [
+            'berkeley-upgrade/archive-migration/understanding-archive-migration',
+            'berkeley-upgrade/archive-migration/archive-migration-prerequisites',
+            'berkeley-upgrade/archive-migration/archive-migration-installation',
+            'berkeley-upgrade/archive-migration/migrating-archive-database-to-berkeley',
+            'berkeley-upgrade/archive-migration/mainnet-database-maintenance',
+            'berkeley-upgrade/archive-migration/debian-example',
+            'berkeley-upgrade/archive-migration/docker-example',
+            'berkeley-upgrade/archive-migration/appendix',
+          ],
+        },
+        'berkeley-upgrade/upgrade-steps',
+        'berkeley-upgrade/flags-configs',
+        'berkeley-upgrade/appendix',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Using Mina',
       link: {
         type: 'doc',
