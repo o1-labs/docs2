@@ -55,13 +55,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=2.0.0-039296a
+     sudo apt-get install mina-archive=3.0.0-93e0279
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:2.0.0-039296a-bullseye
+     minaprotocol/mina-archive:3.0.0-93e0279-bullseye
      ```
 
 ## Set up the archive node
@@ -93,7 +93,7 @@ To run a local archive node to run it in the foreground for testing:
 1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
 
   ```sh
-  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/release/2.0.0/src/app/archive/create_schema.sql)
+  psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/release/3.0.0/src/app/archive/create_schema.sql)
 
   ```
 
@@ -125,7 +125,7 @@ To get started with installing and running the archive node using Docker, follow
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:2.0.0-039296a-bullseye
+   docker pull minaprotocol/mina-archive:3.0.0-93e0279-bullseye
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -168,7 +168,7 @@ To get started with installing and running the archive node using Docker, follow
    --name archive \
    -p 3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:2.0.0-039296a-bullseye \
+   minaprotocol/mina-archive:3.0.0-93e0279-bullseye \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -177,9 +177,9 @@ To get started with installing and running the archive node using Docker, follow
 
 :::warning
 
-Please be careful when using `--config` argument at archive node bootstrap. 
+Please be careful when using `--config` argument at archive node bootstrap.
 
-It should be provided only when archive node is connected to  
+It should be provided only when archive node is connected to
 short lived network created mainly for testing, local development or experimental networks.
 
 *Never* use it on long lived network such as mainnet or devnet
@@ -212,7 +212,7 @@ To run the archive node using Docker Compose:
 3. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:2.0.0-039296a-bullseye
+   docker pull minaprotocol/mina-archive:3.0.0-93e0279-bullseye
    ```
 
 4. Pull and install the postgres image from Docker Hub.
@@ -240,7 +240,7 @@ To run the archive node using Docker Compose:
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:2.0.0-039296a-bullseye'
+       image: 'minaprotocol/mina-archive:3.0.0-93e0279-bullseye'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086

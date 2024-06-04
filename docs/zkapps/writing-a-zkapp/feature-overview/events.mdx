@@ -15,12 +15,6 @@ keywords:
   - transaction
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Events
 
 Events are _public_ arbitrary information that can be passed along with a transaction. If your zkApp allows users to publish a message, for example, those messages could be events.
@@ -58,7 +52,7 @@ class MyContract extends SmartContract {
 
 Some important facts about events:
 
-- Events are not stored on-chain. Only events from the most recent couple of transactions are retained by consensus nodes. After that, the events are discarded, but are still accessible on archive nodes. 
+- Events are not stored on-chain. Only events from the most recent couple of transactions are retained by consensus nodes. After that, the events are discarded, but are still accessible on archive nodes.
 - You can't refer to previously emitted events in a smart contract, because there is no way of proving that the events you refer to are actually the events emitted by that contract.
 
 :::tip
@@ -78,4 +72,3 @@ class SmartContract {
   emitEvent(name: string, event: any): void;
 }
 ```
-

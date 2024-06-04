@@ -17,27 +17,21 @@ keywords:
   - tokencontract
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Custom Tokens
 
 Blockchain applications have various use cases for custom tokens, including a real-world financial asset, stake in an on-chain protocol, or even skill points in a game.
 
 Most blockchains, like Ethereum, do not natively support custom tokens. You implement custom tokens as smart contracts on top of the execution layer of the underlying protocol.
 Token standards ensure the interoperability of applications on Etherum, these standardisations are agree upon in ERCs, Ethereum Request for customElements, such as the fungible token standard [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/).
-The Ethereum community has created and agreed upon other reference implementations and standardisation that are audited and easy to configure, such as [ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) for NFTs. 
+The Ethereum community has created and agreed upon other reference implementations and standardisation that are audited and easy to configure, such as [ERC-721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) for NFTs.
 
 Mina supports custom token functionality at a low level in the tech stack. Mina treats custom tokens almost the same way as the native MINA token. This approach offers the following benefits:
 
 - As a developer, you do not have to manage as many boilerplate contracts.
 - Developers don't need to keep track of accounts and balances themselves.
-- It is more secure because fewer vulnerabilities can result from incorrect configuration and deployment. 
+- It is more secure because fewer vulnerabilities can result from incorrect configuration and deployment.
 
-Each account on Mina can have tokens associated with it. With zkApps, you build smart contracts that interact with tokens, such as swapping one token for another or depositing MINA tokens. A token manager smart contract is a standard smart contract with the `TokenContract` class that manipulates tokens. 
+Each account on Mina can have tokens associated with it. With zkApps, you build smart contracts that interact with tokens, such as swapping one token for another or depositing MINA tokens. A token manager smart contract is a standard smart contract with the `TokenContract` class that manipulates tokens.
 
 ## Token manager account
 
@@ -51,12 +45,12 @@ A token manager smart contract sets the rules around minting, burning, and sendi
 
 ## TokenContract class
 
-Use the `TokenContract` class to perform common token operations, such as minting, burning, and sending tokens. In o1js, the `TokenContract` class is your blueprint for custom token implementations. 
+Use the `TokenContract` class to perform common token operations, such as minting, burning, and sending tokens. In o1js, the `TokenContract` class is your blueprint for custom token implementations.
 
 As shown in this [example code](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/token/token-contract.unit-test.ts#L13), you inherit from the `TokenContract` class:
 
 ```ts
-class ExampleTokenContract extends TokenContract { 
+class ExampleTokenContract extends TokenContract {
   // your custom token implementation
 }
 ```
@@ -118,7 +112,7 @@ The usual implementation is as easy as this:
 However, if you want to do a custom implementation for every child account update, you can utilize the `forEachUpdate()` method.
 
 ```ts
-@method async 
+@method async
 approveBase(updates: AccountUpdateForest) {
   let totalBalanceChange = Int64.zero;
 
@@ -186,11 +180,11 @@ Token ids are derived from a zkApp. To check the token id of a zkApp, use the `t
 
 ### Token Accounts
 
-Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account and is specified by a public key _and_ a token id. 
+Token accounts are like regular accounts, but they hold a balance of a specific custom token instead of MINA. A token account is created from an existing account and is specified by a public key _and_ a token id.
 
 Token accounts are specific for each type of custom token, so a single public key can have many different token accounts.
 
-A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token. 
+A token account is automatically created for a public key whenever an existing account receives a transaction denoted with a custom token.
 
 When a token account is created for the first time, an account creation fee must be paid the same as creating a new standard account.
 
@@ -203,4 +197,3 @@ A token owner is an zkApp account that creates, facilitates, and governs how a c
 - Mint tokens
 - Burn tokens
 - Approve sending tokens between two accounts
-

@@ -11,15 +11,9 @@ keywords:
   - data structures
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Merkle Tree
 
-zkApp accounts can store only a limited amount of data on chain so that Mina's chain remains succinct and does not become bloated. 
+zkApp accounts can store only a limited amount of data on chain so that Mina's chain remains succinct and does not become bloated.
 But some zkApps might require you to access more than what you can store on-chain in a zkApp account.
 
 ## Referencing off-chain data
@@ -30,7 +24,7 @@ But how can you achieve that? The answer is a Merkle tree! Merkle trees (or simi
 
 Merkle trees are special binary trees in which every leaf (the nodes at the very bottom of the tree!) are cryptographic hashes of the underlying pieces of data, and the internal nodes are labeled with the cryptographic hash of the concatenated labels (hashes) of its child nodes.
 
-By following this algorithm to the very top, you end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves, so you can reference large amounts of data by using one small hash. 
+By following this algorithm to the very top, you end up with one single node (the root node) that stores the root hash of the tree. The root hash is a reference to all pieces of data that were included in the tree's leaves, so you can reference large amounts of data by using one small hash.
 
 Another benefit of Merkle trees is the witness, also known as a Merkle proof or Merkle path. The witness is the path from one specific leaf node to the very top of the tree (the root). Merkle witnesses are proofs of inclusion that prove that one specific piece of data (for example, an account in the ledger or the scores on a leaderboard) exists within the entire tree.
 
