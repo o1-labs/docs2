@@ -29,10 +29,6 @@ module.exports = {
       {
         redirects: [
           {
-            from: '/berkeley-upgrade',
-            to: '/berkeley-upgrade/requirements',
-          },
-          {
             from: '/node-operators/scan-state',
             to: '/mina-protocol/scan-state',
           },
@@ -262,6 +258,7 @@ module.exports = {
               'caution',
               'danger',
               'experimental',
+              'successTip',
             ],
           },
         },

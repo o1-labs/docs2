@@ -16,27 +16,21 @@ keywords:
   - mina
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Tutorial 6: Off-Chain Storage
 
 In [Tutorial 5: Common Types and Functions](common-types-and-functions), you learned how to use Merkle trees to refer to large amounts of data stored off-chain.
 
-This tutorial presents a library and pattern to store Merkle trees off-chain and store only the tree's root hash on-chain. 
+This tutorial presents a library and pattern to store Merkle trees off-chain and store only the tree's root hash on-chain.
 
 This approach is a step towards unlocking a larger set of applications that require off-chain storage. Future solutions can provide other decentralized options for zkApps that require more trustless solutions.
 
 :::experimental
-This proposed solution to off-chain storage is experimental and is used only for education purposes. 
+This proposed solution to off-chain storage is experimental and is used only for education purposes.
 :::
 
-This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness. 
+This tutorial provides a single-server solution to data storage for prototyping zkApps and building zkApps where some trust guarantees are reasonable. The solution proposed in this learning tutorial is appropriate for development, but is not recommended for zkApps that require trustlessness.
 
-The single-server solution for prototyping is intended as one of several options for data availability on Mina. Mina doesn't offer an out-of-the-box solution for off-chain storage. 
+The single-server solution for prototyping is intended as one of several options for data availability on Mina. Mina doesn't offer an out-of-the-box solution for off-chain storage.
 
 ## Why Off-Chain Storage?
 
@@ -68,7 +62,7 @@ This implementation requires a trust assumption for zkApps that use it: both dev
 
 This trust assumption makes it useful for prototyping applications that need off-chain storage and for putting applications into production where these trust assumptions are reasonable. This implementation is not appropriate for zkApps where a trustless solution is needed.
 
-To learn more about this implementation and see how it works, see the [experimental-zkapp-offchain-storage](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage) library. 
+To learn more about this implementation and see how it works, see the [experimental-zkapp-offchain-storage](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/experimental-zkapp-offchain-storage) library.
 
 ### Grant Opportunity to Develop Single-Server Off-Chain Storage
 
@@ -87,13 +81,13 @@ Suggested improvements:
 The sample code for this project is provided at [examples/zkapps/06-offchain-storage/contracts](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts) with a focus on:
 
 - [src/main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts)
-- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) 
+- [src/NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts)
 
 This project implements a Merkle tree where:
 
-- Each leaf is either empty or stores a number (an o1js field), which is the data. 
-- Updates to the tree can update a leaf if the new number in the leaf is greater than the old number. 
-- The root of the tree is stored on-chain. 
+- Each leaf is either empty or stores a number (an o1js field), which is the data.
+- Updates to the tree can update a leaf if the new number in the leaf is greater than the old number.
+- The root of the tree is stored on-chain.
 - The tree itself is stored on an off-chain storage server.
 
 ## Prerequisites
@@ -133,13 +127,13 @@ This tutorial has been tested with:
 
 ## Project structure
 
-The `zk project` command creates the `06-off-chain-storage` directory that contains the scaffolding for your project. 
+The `zk project` command creates the `06-off-chain-storage` directory that contains the scaffolding for your project.
 
-The files in the `src` directory files contain the TypeScript code for the smart contract. 
+The files in the `src` directory files contain the TypeScript code for the smart contract.
 
 Each time you make updates, then build or deploy, the TypeScript code is compiled into JavaScript in the `build` directory.
 
-For all projects, you run `zk` commands from the root of your project directory. 
+For all projects, you run `zk` commands from the root of your project directory.
 
 ## Prepare the project
 
@@ -190,7 +184,7 @@ $ node node_modules/experimental-zkapp-offchain-storage/build/src/storageServer.
 
 A full copy of the [NumberTreeContract.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/NumberTreeContract.ts) example file is provided.
 
-1. Open `NumberTreeContract.ts` in your editor. 
+1. Open `NumberTreeContract.ts` in your editor.
 
 1. Start by adding the imports:
 
@@ -226,7 +220,7 @@ The `OffChainStorage` object contains the functions for interacting with off-cha
   - `assertRootUpdateValid`: A function used in smart contracts to prove updates to the smart contract's currently stored tree root result in a tree root that is being stored by the storage server.
   - `mapToTree`: A storage function to convert maps to trees. Internally the storage server is using maps from tree indices to leafs.
 
-The `MerkleWitness8` is a type of Merkle tree witness required for o1js to use the same instances of the witness cross-library. Other types of Merkle trees are available for input, such as `MerkleWitness32` and `MerkleWitness256`. 
+The `MerkleWitness8` is a type of Merkle tree witness required for o1js to use the same instances of the witness cross-library. Other types of Merkle trees are available for input, such as `MerkleWitness32` and `MerkleWitness256`.
 
 3. Now, set up your smart contract:
 
@@ -255,7 +249,7 @@ export class NumberTreeContract extends SmartContract {
 ...
 ```
 
-This code adds three pieces of state to the contract: 
+This code adds three pieces of state to the contract:
 
 - The public key of the storage server
 - The storageNumber used to ensure the storage server is actively storing states
@@ -331,7 +325,7 @@ That completes the smart contract!
 
 ## Implementing `main.ts`
 
-Since much of the logic in the `main.ts` file is repeated from earlier tutorials, this tutorial reviews just the relevant parts. 
+Since much of the logic in the `main.ts` file is repeated from earlier tutorials, this tutorial reviews just the relevant parts.
 
 1. Download the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/06-offchain-storage/offchain-storage-zkapp/contracts/src/main.ts) example file.
 
@@ -339,9 +333,9 @@ Since much of the logic in the `main.ts` file is repeated from earlier tutorials
 
 1. Open it in your editor.
 
-The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Devnet. 
+The `main.ts` file contains logic for running the contract locally and for deploying and interacting with it on Devnet.
 
-This is a useful pattern when developing a new contract. 
+This is a useful pattern when developing a new contract.
 
 ### Connect to the off-chain storage server
 

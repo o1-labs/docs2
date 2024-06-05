@@ -31,7 +31,7 @@ To run Mina Rosetta on Apple silicon, you can use the steps in [Building and run
 
 :::note
 
-If you want to build your own docker image, you can find more details in [Mina’s Rosetta repository](https://github.com/MinaProtocol/mina/blob/develop/src/app/rosetta/README.md). However, for most users, it’s not necessary to build your own image in order to interact with the API.
+If you want to build your own docker image, you can find more details in [Mina's Rosetta repository](https://github.com/MinaProtocol/mina/blob/develop/src/app/rosetta/README.md). However, for most users, it's not necessary to build your own image in order to interact with the API.
 
 :::
 
@@ -43,26 +43,32 @@ The container in `/rosetta` includes three entrypoints, which each run a differe
 
 Run the container with following command (replace the image tag with one from dockerhub that's compatible with the network you are trying to connect to, also replace `--entrypoint` and any environment variable if needed):
 
+```
     docker run -it --rm --name rosetta \
         --entrypoint=./docker-start.sh \
         -p 10101:10101 -p 3085:3085 -p 3086:3086 -p 3087:3087 \
-        minaprotocol/mina-rosetta:2.0.0-039296a-focal
+        minaprotocol/mina-rosetta:3.0.0-93e0279-focal
+```
 
 You can also create a file with the environment variables and pass it to the docker run command with `--env-file` flag. For example, create a file named `mainnet.env` with the following content:
 
+```
     MINA_NETWORK=mainnet
-    PEERS_LIST_URL=https://bootnodes.minaprotocol.com/networks/mainnet.txt
+    PEERS_LIST_URL=https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
     MINA_ARCHIVE_DUMP_URL=https://storage.googleapis.com/mina-archive-dumps
     MINA_GENESIS_LEDGER_URL=http://673156464838-mina-genesis-ledgers.s3-website-us-west-2.amazonaws.com/mainnet/genesis_ledger.json
     BLOCKS_BUCKET=https://storage.googleapis.com/mina_network_block_data
+```
 
 Then run the container with the following command:
 
+```
     docker run -it --rm --name rosetta \
         --entrypoint=./docker-start.sh \
         -p 8302:8302 -p 3085:3085 -p 3086:3086 -p 3087:3087 \
         --env-file mainnet.env \
         minaprotocol/mina-rosetta:<tag>
+```
 
 Example environment files for public networks can be found in [this](https://github.com/MinaProtocol/mina/blob/develop/src/app/rosetta/scripts) directory of Mina's Rosetta repository.
 
