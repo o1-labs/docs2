@@ -24,7 +24,7 @@ Git SHA-1
 93e02797f72abe2cbf8dfca6f2328e9c8cd76546
 
 Seed List
-https://bootnodes.minaprotocol.com/networks/mainnet.txt
+https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
 
 Node build
 https://github.com/MinaProtocol/mina/releases/tag/3.0.0
@@ -42,7 +42,7 @@ mina daemon
 --generate-genesis-proof true
 --libp2p-keypair <keyfile path>
 --log-json
---peer-list-url https://bootnodes.minaprotocol.com/networks/mainnet.txt
+--peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
 
 ENVIRONMENT VARIABLES
 RAYON_NUM_THREADS=6
@@ -60,7 +60,7 @@ mina daemon
 --file-log-rotations 500
 --libp2p-keypair <keyfile path>
 --log-json
---peer-list-url https://bootnodes.minaprotocol.com/networks/mainnet.txt
+--peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
 --run-snark-coordinator <public key>
 --snark-worker-fee 0.001
 --work-selection [seq|rand]
@@ -100,7 +100,7 @@ mina daemon
 --generate-genesis-proof true
 --libp2p-keypair <keyfile path>
 --log-json
---peer-list-url https://bootnodes.minaprotocol.com/networks/mainnet.txt
+--peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
 
 ENVIRONMENT VARIABLES
 MINA_LIBP2P_PASS
@@ -127,7 +127,7 @@ docker run
 --name rosetta --rm \
 -p 3088:3088 \
 --entrypoint '' \
-gcr.io/o1labs-192920/mina-rosetta:3.0.0-93e0279 \
+minaprotocol/mina-rosetta:3.0.0-93e0279-bullseye \
 /usr/local/bin/mina-rosetta \
 --archive-uri "${PG_CONNECTION_STRING}" \
 --graphql-uri "${GRAPHQL_URL}" \

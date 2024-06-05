@@ -32,7 +32,7 @@ services:
     ports:
       - '5432:5432'
   bootstrap_db:
-    image: 'gcr.io/o1labs-192920/mina-archive:3.0.0-dc6bf78-bullseye'
+    image: 'gcr.io/o1labs-192920/mina-archive:3.0.0-dc6bf78-bullseye-devnet'
     command: >
       bash -c '
       curl -O https://raw.githubusercontent.com/MinaProtocol/mina/develop/src/app/archive/create_schema.sql;
@@ -43,7 +43,7 @@ services:
       postgres:
         condition: service_healthy
   archive:
-    image: 'gcr.io/o1labs-192920/mina-archive:3.0.0-dc6bf78-bullseye'
+    image: 'gcr.io/o1labs-192920/mina-archive:3.0.0-dc6bf78-bullseye-devnet'
     restart: always
     command:
       - mina-archive
