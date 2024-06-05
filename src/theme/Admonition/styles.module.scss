@@ -54,6 +54,10 @@
   @include admonition($backgroundColor: variables.$mina-orange);
 }
 
+.admonitionSuccessTip {
+  @include admonition($backgroundColor: variables.$mina-green);
+}
+
 .admonitionHeading code {
   text-transform: none;
 }

@@ -1,6 +1,6 @@
-import React, { type ReactNode } from 'react';
 import Translate from '@docusaurus/Translate';
 import type { Props } from '@theme/Admonition';
+import React, { type ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -90,7 +90,6 @@ const AdmonitionConfigs: Record<Props['type'], AdmonitionConfig> = {
       </Translate>
     ),
   },
-
   note: {
     infimaClassName: 'secondary',
     iconComponent: NoteIcon,
@@ -151,6 +150,18 @@ const AdmonitionConfigs: Record<Props['type'], AdmonitionConfig> = {
       </Translate>
     ),
   },
+  successTip: {
+    infimaClassName: 'green',
+    iconComponent: NoteIcon,
+    label: (
+      <Translate
+        id="theme.admonition.note"
+        description="The default label used for the SuccessTip admonition (:::successTip)"
+      >
+        successTip
+      </Translate>
+    ),
+  },
 };
 
 // Legacy aliases, undocumented but kept for retro-compatibility
@@ -159,6 +170,7 @@ const aliases = {
   important: 'info',
   success: 'tip',
   warning: 'danger',
+  successTip: 'successTip',
 } as const;
 
 function getAdmonitionConfig(unsafeType: string): AdmonitionConfig {
@@ -230,6 +242,8 @@ export default function Admonition(props: Props): JSX.Element {
     admonitionStyles = styles.admonitionDanger;
   } else if (type === 'experimental') {
     admonitionStyles = styles.admonitionExperimental;
+  } else if (type === 'successTip') {
+    admonitionStyles = styles.admonitionSuccessTip;
   }
 
   return (
