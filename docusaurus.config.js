@@ -258,6 +258,7 @@ module.exports = {
               'caution',
               'danger',
               'experimental',
+              'successTip',
             ],
           },
         },
