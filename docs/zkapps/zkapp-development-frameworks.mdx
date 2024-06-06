@@ -15,30 +15,29 @@ keywords:
   - protokit
 ---
 
-# zkApps Development Frameworks
+# zkApp Development Frameworks
 
-Developers building `zkApps` in the `Mina ecosystem` can leverage a variety of specialized frameworks, each tailored to optimize different types of solutions.  
-This documentation selection ensures that you can select the most suitable framework to meet the unique demands of your project.  
-Explore the options below to find the perfect fit for your development needs.
+Developers building zkApps in the Mina ecosystem can leverage two different frameworks, each tailored to optimize different types of solutions.
+Explore the options below to find the perfect fit for your project.
 
 If you are unsure about any of the information presented here and need guidance on choosing the most suitable framework for you, drop by [Discord](https://discord.gg/minaprotocol) and let us help!
 
 ## [o1js](/zkapps/o1js)
 
-`o1js` is the framework used for building `zkApps` on the `Mina L1` and new infrastructure such as `rollups`.  
-o1js is Typescript based for ease of use, comes with a host of built-in features, is extensible to suit various use cases, and takes full advantage of the unique aspects of the Mina protocol.
+o1js is the framework for building **zkApps on the Mina L1** and new infrastructure such as rollups.  
+o1js is TypeScript based for ease of use, comes with a host of built-in features, is extensible to suit various use cases, and takes full advantage of the unique aspects of the Mina protocol.
 
-o1js is also the `zkDSL` used for:
+o1js is also the **zkDSL** used for:
 
-- Writing general-purpose `zk circuits`.
-- Constructing `new primitives` and `data structures`.
+- Writing general-purpose zk circuits.
+- Constructing new primitives and data structures.
 
 There are some key considerations when choosing to build a zkApp with o1js on Mina L1:
 
 - zkApps are subject to protocol throughput limitations.
 - At present, zkApps that require support for multiple concurrent users require specific architecture to avoid race conditions:
-  - Where more than the eight on-chain field elements are required to manage state, and access to that state is not shared, the experimental `Off-chain Storage API` will suffice.
-  - Where `concurrent` access to `shared state` is required, this architecture is available "**out of the box**", when using the `Protokit` framework to build your zkApp as an zkApp-chain (L2).
+  - Where more than the eight on-chain field elements are required to manage state, and access to that state is not shared between users, the experimental [Offchain Storage API](/zkapps/writing-a-zkapp/feature-overview/offchain-storage) offers a solution.
+  - Where concurrent access to _shared global state_ is required, the required architecture is available **out of the box** when using the Protokit framework to build your zkApp as an zkApp-chain (L2). There is currently no easy-to-use equivalent for shared state in o1js L1 contracts.
 
 Start here:
 
@@ -48,15 +47,15 @@ Start here:
 
 ## [Protokit](https://protokit.dev/)
 
-`Protokit` is a powerful framework designed to build `ZK appchains` and smart contracts that are user-facing, privacy-preserving, interoperable.  
-It offers a familiar developer experience similar to `Solidity dApps`, making it easier and intuitive for developers to leverage ZK in their blockchain solutions.
+Protokit is a powerful framework designed to build **ZK appchains and smart contracts** that are user-facing, privacy-preserving, interoperable.  
+It offers a familiar developer experience similar to Solidity dApps, making it easier and intuitive for developers to leverage ZK in their blockchain solutions.
 
 It provides a full set of tools necessary for:
 
-- zkApps that require `high throughput` or multiple `concurrent` users.
-- zkApps that require `shared` or `global` state access.
-- Developers familiar with execution environments such as `EVM`.
-- Developers who wish to leverage the `modular architecture` of Protokit.
+- zkApps that require high throughput or multiple concurrent users.
+- zkApps that require shared or global state access.
+- Developers familiar with execution environments such as EVM.
+- Developers who wish to leverage the modular architecture of Protokit.
 
 Start here:
 
