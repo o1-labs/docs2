@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 const cssDir = join(__dirname, '/out/_next/static/css');
 
 // Update your repository name here if it is different from the project name.
-let repoURL = "04-zkapp-browser-ui";
+let repoURL = '04-zkapp-browser-ui';
 const files = readdirSync(cssDir);
 
 files.forEach((file) => {
