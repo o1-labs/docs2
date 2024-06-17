@@ -1497,7 +1497,7 @@ module.exports = {
           items: [
             'node-operators/delegation-program/foundation-delegation-program',
             'node-operators/delegation-program/delegation-tiebreak',
-            'node-operators/delegation-program/bp-sidecar',
+            // 'node-operators/delegation-program/bp-sidecar',
             'node-operators/delegation-program/uptime-tracking-system',
           ],
         },
