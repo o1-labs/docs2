@@ -2,24 +2,26 @@
   "name": "ui",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "ts-watch": "tsc --noEmit --incremental --watch",
-    "export": "next export",
-    "deploy": "next build && next export && touch out/.nojekyll && git add -f out && node ghp-postbuild && git commit -m \"Deploy gh-pages\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
+    "deploy": "next build --no-lint && touch out/.nojekyll && node ./ghp-postbuild && git add -f out && git commit -m \"Deploy gh-pages\" && cd .. && git subtree push --prefix ui/out origin gh-pages"
   },
   "dependencies": {
-    "@types/node": "20.4.1",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.7",
     "coi-serviceworker": "^0.1.7",
-    "next": "13.4.9",
-    "o1js": "1.0.*",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "o1js": "^1.*"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   }
 }

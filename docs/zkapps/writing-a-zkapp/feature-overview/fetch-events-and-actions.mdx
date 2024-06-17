@@ -15,12 +15,6 @@ keywords:
   - blockchain
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # How to Fetch Events and Actions
 
 [Events](#events) and [Actions](#actions-and-reducer) are two distinct mechanisms for logging information alongside a transaction:
@@ -109,9 +103,9 @@ const fetchedEvents = await fetchEvents({
 });
 ```
 
-By default, `fetchEvents()` retrieves all events from the very first event ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched. 
+By default, `fetchEvents()` retrieves all events from the very first event ever emitted for that zkApp account. Additionally, you can provide a starting block height and an ending block height as optional parameters to limit the range of events fetched.
 
-- If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block. 
+- If the ending block is not provided, `fetchEvents()` fetches all events up to the latest block.
 - If the starting block is not provided, it fetches all events from the beginning of the zkApp's history.
 
 To see an end-to-end example of zkApp fetching events from a running network, see the [example](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/voting/run-berkeley.ts) file that is provided in the codebase repo.

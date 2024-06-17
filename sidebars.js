@@ -2,10 +2,18 @@ module.exports = {
   docs: [
     'welcome',
     {
+      type: 'link',
+      label: 'About Mina',
+      href: 'https://minaprotocol.com/about',
+    },
+    {
       type: 'category',
       label: 'Berkeley Upgrade',
+      link: {
+        type: 'doc',
+        id: 'berkeley-upgrade/requirements',
+      },
       items: [
-        'berkeley-upgrade/requirements',
         {
           type: 'category',
           label: 'Archive Migration',
@@ -30,13 +38,12 @@ module.exports = {
       ],
     },
     {
-      type: 'link',
-      label: 'About Mina',
-      href: 'https://minaprotocol.com/about'
-    },
-    {
       type: 'category',
       label: 'Using Mina',
+      link: {
+        type: 'doc',
+        id: 'using-mina/install-a-wallet',
+      },
       items: [
         'using-mina/install-a-wallet',
         'using-mina/ledger-hardware-wallet',
@@ -48,10 +55,18 @@ module.exports = {
     {
       type: 'category',
       label: 'zkApp Developers',
+      link: {
+        type: 'doc',
+        id: 'zkapps/zkapp-development-frameworks',
+      },
       items: [
         {
           type: 'category',
           label: 'o1js',
+          link: {
+            type: 'doc',
+            id: 'zkapps/o1js/index',
+          },
           items: [
             'zkapps/o1js/index',
             'zkapps/o1js/basic-concepts',
@@ -68,11 +83,19 @@ module.exports = {
         {
           type: 'category',
           label: 'zkApps',
+          link: {
+            type: 'doc',
+            id: 'zkapps/writing-a-zkapp/index',
+          },
           items: [
             'zkapps/writing-a-zkapp/index',
             {
               type: 'category',
               label: 'Introduction to zkApps',
+              link: {
+                type: 'doc',
+                id: 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
+              },
               items: [
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/how-zkapps-work',
                 'zkapps/writing-a-zkapp/introduction-to-zkapps/install-zkapp-cli',
@@ -90,6 +113,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Feature Overview',
+              link: {
+                type: 'doc',
+                id: 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
+              },
               items: [
                 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
                 'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
@@ -106,6 +133,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Advanced',
+          link: {
+            type: 'doc',
+            id: 'zkapps/advanced/experimental',
+          },
           items: [
             'zkapps/advanced/experimental',
             'zkapps/advanced/zkapps-for-ethereum-developers',
@@ -114,6 +145,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Tutorials',
+          link: {
+            type: 'doc',
+            id: 'zkapps/tutorials/index',
+          },
           items: [
             'zkapps/tutorials/index',
             'zkapps/tutorials/hello-world',
@@ -121,6 +156,8 @@ module.exports = {
             'zkapps/tutorials/deploying-to-a-network',
             'zkapps/tutorials/zkapp-ui-with-react',
             'zkapps/tutorials/common-types-and-functions',
+            // TODO: enable when there is an updated offchain storage tutorial
+            // 'zkapps/tutorials/offchain-storage',
             'zkapps/tutorials/oracle',
             'zkapps/tutorials/recursion',
             'zkapps/tutorials/account-updates',
@@ -132,6 +169,10 @@ module.exports = {
         {
           type: 'category',
           label: 'o1js Reference',
+          link: {
+            type: 'doc',
+            id: 'zkapps/o1js-reference/README',
+          },
           items: [
             {
               type: 'doc',
@@ -141,6 +182,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Classes',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/classes/AccountUpdate',
+              },
               items: [
                 {
                   type: 'doc',
@@ -367,6 +412,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Functions',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/functions/Bytes',
+              },
               items: [
                 {
                   type: 'doc',
@@ -598,6 +647,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Interfaces',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/interfaces/Permissions',
+              },
               items: [
                 {
                   type: 'doc',
@@ -609,10 +662,18 @@ module.exports = {
             {
               type: 'category',
               label: 'Namespaces',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/namespaces/Crypto/README',
+              },
               items: [
                 {
                   type: 'category',
                   label: 'Crypto',
+                  link: {
+                    type: 'doc',
+                    id: 'zkapps/o1js-reference/namespaces/Crypto/README',
+                  },
                   items: [
                     {
                       type: 'doc',
@@ -622,6 +683,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Type-Aliases',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Crypto/type-aliases/Curve',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -640,6 +705,10 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Encryption',
+                  link: {
+                    type: 'doc',
+                    id: 'zkapps/o1js-reference/namespaces/Encryption/README',
+                  },
                   items: [
                     {
                       type: 'doc',
@@ -649,6 +718,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Functions',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Encryption/functions/decrypt',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -667,6 +740,10 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Experimental',
+                  link: {
+                    type: 'doc',
+                    id: 'zkapps/o1js-reference/namespaces/Experimental/README',
+                  },
                   items: [
                     {
                       type: 'doc',
@@ -676,6 +753,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Classes',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Experimental/classes/OffchainStateCommitments',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -687,6 +768,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Functions',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Experimental/functions/OffchainState',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -705,6 +790,10 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Lightnet',
+                  link: {
+                    type: 'doc',
+                    id: 'zkapps/o1js-reference/namespaces/Lightnet/README',
+                  },
                   items: [
                     {
                       type: 'doc',
@@ -714,6 +803,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Functions',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Lightnet/functions/acquireKeyPair',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -737,6 +830,10 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Mina',
+                  link: {
+                    type: 'doc',
+                    id: 'zkapps/o1js-reference/namespaces/Mina/README',
+                  },
                   items: [
                     {
                       type: 'doc',
@@ -746,6 +843,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Functions',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Mina/functions/LocalBlockchain',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -857,10 +958,18 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Namespaces',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/README',
+                      },
                       items: [
                         {
                           type: 'category',
                           label: 'TestPublicKey',
+                          link: {
+                            type: 'doc',
+                            id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/README',
+                          },
                           items: [
                             {
                               type: 'doc',
@@ -870,6 +979,10 @@ module.exports = {
                             {
                               type: 'category',
                               label: 'Functions',
+                              link: {
+                                type: 'doc',
+                                id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/functions/random',
+                              },
                               items: [
                                 {
                                   type: 'doc',
@@ -883,6 +996,10 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'Transaction',
+                          link: {
+                            type: 'doc',
+                            id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/README',
+                          },
                           items: [
                             {
                               type: 'doc',
@@ -892,6 +1009,10 @@ module.exports = {
                             {
                               type: 'category',
                               label: 'Functions',
+                              link: {
+                                type: 'doc',
+                                id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/Transaction/functions/fromJSON',
+                              },
                               items: [
                                 {
                                   type: 'doc',
@@ -907,6 +1028,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Type-Aliases',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Mina/type-aliases/ActionStates',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -963,6 +1088,10 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Variables',
+                      link: {
+                        type: 'doc',
+                        id: 'zkapps/o1js-reference/namespaces/Mina/variables/activeInstance',
+                      },
                       items: [
                         {
                           type: 'doc',
@@ -978,6 +1107,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Type-Aliases',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/type-aliases/Account',
+              },
               items: [
                 {
                   type: 'doc',
@@ -1159,6 +1292,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Variables',
+              link: {
+                type: 'doc',
+                id: 'zkapps/o1js-reference/variables/Account',
+              },
               items: [
                 {
                   type: 'doc',
@@ -1284,7 +1421,7 @@ module.exports = {
         id: 'node-operators/index',
       },
       items: [
-        'node-operators/staking-and-snarking',
+        'node-operators/requirements',
         'node-operators/generating-a-keypair',
         {
           type: 'category',
@@ -1364,6 +1501,7 @@ module.exports = {
             'node-operators/delegation-program/uptime-tracking-system',
           ],
         },
+        'node-operators/staking-and-snarking',
         'node-operators/staking-service-guidelines',
         'node-operators/mina-signer',
         'node-operators/mina-cli-reference',
@@ -1432,12 +1570,12 @@ module.exports = {
         {
           type: 'link',
           label: 'Online Communities',
-          href: 'https://minaprotocol.com/community'
+          href: 'https://minaprotocol.com/community',
         },
         {
           type: 'link',
           label: 'Apply for Grants',
-          href: 'https://minaprotocol.com/blog/mina-developers-grants'
+          href: 'https://minaprotocol.com/blog/mina-developers-grants',
         },
         'participate/office-hours',
         'participate/careers',

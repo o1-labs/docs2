@@ -22,12 +22,6 @@ keywords:
 
 import ResponsiveVideo from '@site/src/components/common/ResponsiveVideo';
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Tutorial 5: Common Types and Functions
 
 In previous tutorials, you learned how to deploy smart contracts to the network interact with them from a React UI and NodeJS.
@@ -173,7 +167,7 @@ Define a Struct as one or more data types that o1js understands. For example, Fi
 
 The following example demonstrates how to use `Struct` to implement a `Point` structure and an array of points of length 8 structure.
 
-In o1js, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size. 
+In o1js, programs are compiled into fixed-sized circuits. This means that data structures it consumes must also be a fixed size.
 
 To meet the fixed-size requirement, this code declares the array in `Points8` structure to be a static size of 8.
 
@@ -315,7 +309,7 @@ The height variable determines how many leaves are available to the application.
 
 Merkle trees in smart contracts are stored as the hash of the Merkle tree's root. Smart contract methods that update the Merkle root can take a _witness_ of the change as an argument. The [MerkleMapWitness](/zkapps/o1js-reference/classes/MerkleMapWitness) represents the Merkle path to the data for which inclusion is being proved.
 
-A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf. 
+A contract stores the root of a Merkle tree, where each leaf stores a number, and the smart contract has an `update` function that adds a number to the leaf.
 
 For example, to put a condition on a leaf update, the `update` function checks that the number added was less than 10:
 

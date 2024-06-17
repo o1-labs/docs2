@@ -1,9 +1,9 @@
-import { fetchAccount, PublicKey, Field } from 'o1js';
+import { Field, PublicKey, fetchAccount } from 'o1js';
 
 import type {
-  ZkappWorkerRequest,
-  ZkappWorkerReponse,
   WorkerFunctions,
+  ZkappWorkerReponse,
+  ZkappWorkerRequest,
 } from './zkappWorker';
 
 export default class ZkappWorkerClient {

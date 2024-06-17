@@ -19,12 +19,6 @@ keywords:
   - methods
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # o1js Basic Concepts
 
 o1js is a TypeScript (TS) library for writing general-purpose zero knowledge (zk) programs and writing zk smart contracts for Mina.

@@ -15,12 +15,6 @@ keywords:
   - tokens
 ---
 
-:::info
-
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
-
-:::
-
 # Tutorial 8: Custom Tokens
 
 In this tutorial, you learn to create custom tokens.
@@ -31,7 +25,7 @@ To create a new token, one creates a smart contract, which becomes the manager f
 
 The manager account may also set a token symbol for its token, such as in this example, `MYTKN`. Uniqueness is not enforced for token names. Instead the public key of the manager account is used to identify tokens.
 
-In this tutorial, you review smart contract code that creates and manages new tokens. 
+In this tutorial, you review smart contract code that creates and manages new tokens.
 
 The full example code is provided in the [08-custom-tokens/src/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/08-custom-tokens/src) example files.
 
@@ -141,7 +135,7 @@ A full copy of the [BasicTokenContract.ts](https://github.com/o1-labs/docs2/blob
 
 ### Imports and smart contract structure
 
-First, bring in imports and set up the structure for the smart contract. 
+First, bring in imports and set up the structure for the smart contract.
 
 The single state variable `totalAmountInCirculation` tracks how many tokens exist.
 
@@ -180,11 +174,11 @@ export class BasicTokenContract extends SmartContract {
 
 ### init() and mint() methods
 
-Next, add an init method and a method that mints tokens. 
+Next, add an init method and a method that mints tokens.
 
 - Set the token symbol (MYTKN) in the `init()` method.
 - To start tracking the amount in circulation, set it to zero.
-- Write a function to mint new tokens and send them to a recipient. 
+- Write a function to mint new tokens and send them to a recipient.
 
   This function checks that a signature has been provided by the zkApp account, so that only the zkApp account can call the `mint()` method.
 
@@ -225,7 +219,7 @@ Next, add an init method and a method that mints tokens.
 
 ### Send function
 
-Finally, write a send function. 
+Finally, write a send function.
 
 - Holders of the MYTKN token call the `sendTokens()` method to send tokens to other Mina accounts.
 
@@ -244,7 +238,7 @@ Finally, write a send function.
   }
   ```
 
-That completes a review of a basic token. 
+That completes a review of a basic token.
 
 ## Examples
 

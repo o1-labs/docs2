@@ -14,9 +14,11 @@ keywords:
   - mina archive node
 ---
 
-:::info
+:::caution Warning
 
-zkApp programmability is not yet available on the Mina **Mainnet**, but zkApps can now be deployed on the Mina **Devnet**.
+When creating updates to unknown accounts in a reducer function, care should be taken to avoid introducing security vulnerabilities.
+
+Please follow the guidelines [**here**](/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#best-practices-for-zkapp-security).
 
 :::
 
@@ -38,7 +40,7 @@ class MyContract extends SmartContract {
 
 Contrary to events, actions have only one type per smart contract. This type doesn't have a name. The `actionType` in this example is `Field`.
 
-On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce()`. 
+On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce()`.
 
 - "Dispatch" is simple -- like emitting events, it pushes one additional action to your account's action history:
 
@@ -46,7 +48,7 @@ On a `reducer`, you have two functions: `reducer.dispatch()` and `reducer.reduce
   this.reducer.dispatch(Field(1000));
   ```
 
-- "Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example where you have a list of actions and want to find out if one of actions is equal to `1000`. 
+- "Reduce" is more involved, but it gives you full power to process actions however it suits your application. It might be easiest to grasp from an example where you have a list of actions and want to find out if one of actions is equal to `1000`.
 
 In JavaScript, a built-in function on `Array` does this:
 
@@ -60,7 +62,7 @@ However, you can also implement this with `Array.reduce`:
 let has1000 = array.reduce((acc, x) => acc || x === 1000, false);
 ```
 
-In fact, `Array.reduce` is powerful enough to let you do pretty much all of the array processing you can think of. 
+In fact, `Array.reduce` is powerful enough to let you do pretty much all of the array processing you can think of.
 
 With `Reducer.reduce`, an in-SNARK operation is just as powerful:
 
@@ -85,7 +87,7 @@ let { state, actionState } = this.reducer.reduce(
 );
 ```
 
-The `acc` shown earlier is now `state`; you must pass in the state's type as a parameter and pass in an `actionState` which refers to one particular point in the action's history. 
+The `acc` shown earlier is now `state`; you must pass in the state's type as a parameter and pass in an `actionState` which refers to one particular point in the action's history.
 
 Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionState -- so you can store it to use when you reduce the next batch of actions. One last difference to JavaScript `reduce` is that it takes a _list of lists_ of actions, instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
 
