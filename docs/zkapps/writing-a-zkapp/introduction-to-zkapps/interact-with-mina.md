@@ -470,4 +470,4 @@ Doing this means setting up a fresh, local ledger that is pre-filled with a coup
 
 Fun fact: The `LocalBlockchain` instance literally uses the same OCaml code for transaction validation and application that the Mina node uses; it's compiled to JavaScript with [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml).
 
-You can learn more about testing in [Test zkApps Locally](zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally).
+You can learn more about testing in [Test zkApps Locally](/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally).
