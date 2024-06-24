@@ -100,16 +100,21 @@ A zkApp can retrieve events and actions from one or more Mina archive nodes. If 
 ### Reducer - API reference
 
 ```ts
-reducer = Reducer({ actionType: AsFieldElements<A> });
+reducer = Reducer({ actionType: FlexibleProvablePure<Action> });
 
-this.reducer.dispatch(action: A): void;
+this.reducer.dispatch(action: Action): void;
 
-this.reducer.reduce<S>(
-  actions: A[][],
-  stateType: AsFieldElements<S>,
-  reduce: (state: S, action: A) => S,
-  initial: { state: S, actionState: Field }
-): { state: S, actionState: Field };
+this.reducer.reduce<State>(
+  actions: MerkleList<MerkleList<Action>>,
+  stateType: Provable<State>,
+  reduce: (state: State, action: Action) => State,
+  initial: State,
+  options?: {
+    maxUpdatesWithActions?: number;
+    maxActionsPerUpdate?: number;
+    skipActionStatePrecondition?: boolean;
+}
+):  State;
 
 Reducer.initialActionState: Field;
 ```
