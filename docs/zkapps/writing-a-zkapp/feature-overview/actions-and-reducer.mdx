@@ -116,13 +116,13 @@ this.reducer.reduce<State>(
 }
 ):  State;
 
-Reducer.initialActionState: Field;
+
 ```
 
-In the near future, we want to add a function to retrieve actions from an archive node:
+This function to retrieves a list of previoulsy emmited actions from an archive node:
 
 ```ts
-this.reducer.getActions({ fromActionState?: Field, endActionState?: Field }): A[][];
+this.reducer.getActions({ fromActionState?: Field, endActionState?: Field }): MerkleList<MerkleList<Action>>;
 ```
 
 Use `getActions` for testing with a simulated `LocalBlockchain`. See [Testing zkApps Locally](/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally).
