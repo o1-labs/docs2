@@ -73,17 +73,16 @@ let stateType = Bool;
 // example actions data
 let actions = [[Field(1000)], [Field(2)], [Field(100)]];
 
-// state and actionState before applying actions
+// state before applying actions
 let initial = {
   state: Bool(false),
-  actionState: Reducer.initialActionState,
 };
 
-let { state, actionState } = this.reducer.reduce(
+let newState = this.reducer.reduce(
   actions,
   stateType,
   (state: Bool, action: Field) => state.or(action.equals(1000)),
-  initial
+  initial: 
 );
 ```
 
