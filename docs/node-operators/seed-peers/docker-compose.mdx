@@ -7,16 +7,16 @@ keywords:
   - docker compose
 ---
 
-# Docker Compose Seed Peer (Devnet)
+# Docker Compose Seed Peer
 
-This example demonstrates how to run a Mina Seed node using Docker Compose for the Devnet network. This Docker Compose setup includes a Mina seed node, and a script to generate a libp2p key.
+This example demonstrates how to run a Mina Seed node using Docker Compose for the Mainnet network. This Docker Compose setup includes a Mina seed node, and a script to generate a libp2p key.
 
 Copy and paste the provided configuration into a `docker-compose.yml` file. Then run `docker compose up -d` to start the services, and use `docker compose logs -f` to monitor the logs.
 
 ```yaml
 services:
   generate_libp2p_key:
-    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    image: 'minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet'
     environment:
       MINA_LIBP2P_PASS: PssW0rD
     entrypoint: []
@@ -29,7 +29,8 @@ services:
     volumes:
       - './node/mina-config:/data/.mina-config'
   mina_node:
-    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    image: 'minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet'
+    # image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet' # Use this image for Devnet
     restart: always
     environment:
       MINA_LIBP2P_PASS: PssW0rD
@@ -37,10 +38,11 @@ services:
     command: >
       bash -c '
         mina daemon \
-             --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt \
+             --peer-list-url https://bootnodes.minaprotocol.com/networks/mainnet.txt \
              --libp2p-keypair /data/.mina-config/keys/libp2p-key \
              --seed
       '
+    # use  --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt for Devnet
     volumes:
       - './node/mina-config:/data/.mina-config'
     ports:
