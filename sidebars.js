@@ -1541,6 +1541,7 @@ module.exports = {
           label: 'Rosetta API',
           items: [
             'exchange-operators/rosetta/run-with-docker',
+            'exchange-operators/rosetta/docker-compose',
             'exchange-operators/rosetta/build-from-sources',
             'exchange-operators/rosetta/send-requests',
             {
