@@ -8,29 +8,17 @@ keywords:
   - block producer
 ---
 
-# Docker Compose Block Producer (Devnet)
+# Docker Compose Block Producer
 
-This example demonstrates how to run a Mina Block Producer node using Docker Compose for the Devnet network. The Docker Compose setup includes a Mina Block Producer node,a script to generate a libp2p key, and another script to generate a wallet key.
+This example demonstrates how to run a Mina Block Producer node using Docker Compose for the Mainnet network. The Docker Compose setup includes a Mina Block Producer node, and another script to generate a wallet key.
 
 Copy and paste the provided configuration into a `docker-compose.yml` file. Then run `docker compose up -d` to start the services, and use `docker compose logs -f` to monitor the logs.
 
 ```yaml
 services:
-  generate_libp2p_key:
-    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
-    environment:
-      MINA_LIBP2P_PASS: PssW0rD
-    entrypoint: []
-    command: >
-      bash -c '
-        mina libp2p generate-keypair -privkey-path /data/.mina-config/keys/libp2p-key
-        chmod -R 0700 /data/.mina-config/keys
-        chmod -R 0600 /data/.mina-config/keys/libp2p-key
-      '
-    volumes:
-      - './node/mina-config:/data/.mina-config'
   generate_wallet_key:
-    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    image: 'minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet'
+    # image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet' # Use this image for Devnet
     environment:
       MINA_PRIVKEY_PASS: PssW0rD
     entrypoint: []
@@ -43,26 +31,23 @@ services:
     volumes:
       - './node/mina-config:/data/.mina-config'
   mina_block_producer:
-    image: 'gcr.io/o1labs-192920/mina-daemon:3.0.0-dc6bf78-bullseye-devnet'
+    image: 'minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet'
     restart: always
     environment:
-      MINA_LIBP2P_PASS: PssW0rD
       MINA_PRIVKEY_PASS: PssW0rD
     entrypoint: []
     command: >
       bash -c '
         mina daemon \
-             --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt \
-             --libp2p-keypair /data/.mina-config/keys/libp2p-key \
+             --peer-list-url https://bootnodes.minaprotocol.com/networks/mainnet.txt \
              --block-producer-key /data/.mina-config/keys/wallet-key
       '
+    # use  --peer-list-url https://bootnodes.minaprotocol.com/networks/devnet.txt for Devnet
     volumes:
       - './node/mina-config:/data/.mina-config'
     ports:
       - '8302:8302'
     depends_on:
-      generate_libp2p_key:
-        condition: service_completed_successfully
       generate_wallet_key:
         condition: service_completed_successfully
 ```
