@@ -27,7 +27,7 @@ This pattern differs a lot from the usage of normal `Proof`, where the verificat
 
 src/examples/zkprogram/dynamic-keys-merkletree.ts for an example of how this can be done using merkle trees
 
-Assertions generally only happen using the vk hash that is part of the `VerificationKey` struct along with the raw vk data as auxilary data.
+Assertions generally only happen using the vk hash that is part of the `VerificationKey` struct along with the raw vk data as auxiliary data.
 When using verify() on a `DynamicProof`, Pickles makes sure that the verification key data matches the hash.
 Therefore all manual assertions have to be made on the vk's hash and it can be assumed that the vk's data is checked to match the hash if it is used with verify().
 
@@ -76,7 +76,7 @@ new DynamicProof<Input, Output>(__namedParameters: {
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:111](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L111)
+[lib/proof-system/zkprogram.ts:233](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L233)
 
 ## Properties
 
@@ -92,7 +92,7 @@ maxProofsVerified: 0 | 1 | 2;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:98](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L98)
+[lib/proof-system/zkprogram.ts:220](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L220)
 
 ***
 
@@ -108,7 +108,7 @@ proof: unknown;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:97](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L97)
+[lib/proof-system/zkprogram.ts:219](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L219)
 
 ***
 
@@ -124,7 +124,7 @@ publicInput: Input;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:95](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L95)
+[lib/proof-system/zkprogram.ts:217](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L217)
 
 ***
 
@@ -140,7 +140,7 @@ publicOutput: Output;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:96](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L96)
+[lib/proof-system/zkprogram.ts:218](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L218)
 
 ***
 
@@ -156,7 +156,7 @@ shouldVerify: Bool;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:99](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L99)
+[lib/proof-system/zkprogram.ts:221](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L221)
 
 ***
 
@@ -168,7 +168,32 @@ optional usedVerificationKey: VerificationKey;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:250](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L250)
+[lib/proof-system/zkprogram.ts:388](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L388)
+
+***
+
+### featureFlags
+
+```ts
+static featureFlags: FeatureFlags = FeatureFlags.allNone;
+```
+
+As the name indicates, feature flags are features of the proof system.
+
+If we want to side load proofs and verification keys, we first have to tell Pickles what _shape_ of proofs it should expect.
+
+For example, if we want to side load proofs that use foreign field arithmetic custom gates, we have to make Pickles aware of that by defining
+these custom gates.
+
+_Note:_ Only proofs that use the exact same composition of custom gates which were expected by Pickles can be verified using side loading.
+If you want to verify _any_ proof, no matter what custom gates it uses, you can use FeatureFlags.allMaybe. Please note that this might incur a significant overhead.
+
+You can also toggle specific feature flags manually by specifying them here.
+Alternatively, you can use {@FeatureFlags.fromZkProgram} to compute the set of feature flags that are compatible with a given program.
+
+#### Source
+
+[lib/proof-system/zkprogram.ts:375](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L375)
 
 ***
 
@@ -180,7 +205,7 @@ static maxProofsVerified: 0 | 1 | 2;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:235](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L235)
+[lib/proof-system/zkprogram.ts:357](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L357)
 
 ***
 
@@ -196,7 +221,7 @@ static publicInputType: FlexibleProvablePure<any>;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:87](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L87)
+[lib/proof-system/zkprogram.ts:209](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L209)
 
 ***
 
@@ -212,7 +237,7 @@ static publicOutputType: FlexibleProvablePure<any>;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:88](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L88)
+[lib/proof-system/zkprogram.ts:210](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L210)
 
 ## Methods
 
@@ -232,7 +257,7 @@ toJSON(): JsonProof
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:101](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L101)
+[lib/proof-system/zkprogram.ts:223](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L223)
 
 ***
 
@@ -256,7 +281,7 @@ The verification key this proof will be verified against
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:256](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L256)
+[lib/proof-system/zkprogram.ts:394](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L394)
 
 ***
 
@@ -278,7 +303,7 @@ verifyIf(vk: VerificationKey, condition: Bool): void
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:260](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L260)
+[lib/proof-system/zkprogram.ts:398](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L398)
 
 ***
 
@@ -315,7 +340,7 @@ domainLog2: number): Promise<InstanceType<S>>
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:292](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L292)
+[lib/proof-system/zkprogram.ts:430](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L430)
 
 ***
 
@@ -341,7 +366,7 @@ static fromJSON<S>(this: S, __namedParameters: JsonProof): Promise<DynamicProof<
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:265](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L265)
+[lib/proof-system/zkprogram.ts:403](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L403)
 
 ***
 
@@ -371,7 +396,7 @@ into a DynamicProof that is accepted in a circuit that accepts DynamicProofs
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:312](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L312)
+[lib/proof-system/zkprogram.ts:450](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L450)
 
 ***
 
@@ -403,4 +428,4 @@ name: string;
 
 #### Source
 
-[lib/proof-system/zkprogram.ts:239](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/proof-system/zkprogram.ts#L239)
+[lib/proof-system/zkprogram.ts:377](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/proof-system/zkprogram.ts#L377)
