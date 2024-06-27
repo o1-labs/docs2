@@ -86,8 +86,10 @@ To include your package, see [Creating high-quality community packages](https://
 | [CircuitString](classes/CircuitString.mdx) | - |
 | [DynamicProof](classes/DynamicProof.mdx) | The `DynamicProof` class enables circuits to verify proofs using in-ciruit verfication keys. |
 | [EcdsaSignature](classes/EcdsaSignature.mdx) | - |
+| [EcdsaSignatureV2](classes/EcdsaSignatureV2.mdx) | - |
 | [Field](classes/Field.mdx) | A [Field](classes/Field.mdx) is an element of a prime order [finite field](https://en.wikipedia.org/wiki/Finite_field). |
 | [ForeignCurve](classes/ForeignCurve.mdx) | - |
+| [ForeignCurveV2](classes/ForeignCurveV2.mdx) | - |
 | [ForeignField](classes/ForeignField.mdx) | - |
 | [Group](classes/Group.mdx) | An element of a Group. |
 | [Hashed](classes/Hashed.mdx) | `Hashed<T>` represents a type `T` by its hash. |
@@ -128,6 +130,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [ConstantField](type-aliases/ConstantField.mdx) | - |
 | [DeployArgs](type-aliases/DeployArgs.mdx) | - |
 | [Empty](type-aliases/Empty.mdx) | - |
+| [FeatureFlags](type-aliases/FeatureFlags.mdx) | - |
 | [Field](type-aliases/Field.mdx) | - |
 | [FlexibleProvable](type-aliases/FlexibleProvable.mdx) | - |
 | [FlexibleProvablePure](type-aliases/FlexibleProvablePure.mdx) | - |
@@ -159,6 +162,7 @@ To include your package, see [Creating high-quality community packages](https://
 | [Cache](variables/Cache.mdx) | - |
 | [Crypto](variables/Crypto.mdx) | - |
 | [Empty](variables/Empty.mdx) | - |
+| [FeatureFlags](variables/FeatureFlags.mdx) | Feature flags indicate what custom gates are used in a proof of circuit. |
 | [Field](variables/Field.mdx) | A [Field](variables/Field.mdx) is an element of a prime order [finite field](https://en.wikipedia.org/wiki/Finite_field). |
 | [Gadgets](variables/Gadgets.mdx) | - |
 | [Group](variables/Group.mdx) | An element of a Group. |
@@ -188,8 +192,11 @@ To include your package, see [Creating high-quality community packages](https://
 | [checkBitLength](functions/checkBitLength.mdx) | - |
 | [checkZkappTransaction](functions/checkZkappTransaction.mdx) | - |
 | [circuitMain](functions/circuitMain.mdx) | - |
-| [createEcdsa](functions/createEcdsa.mdx) | Create a class [EcdsaSignature](classes/EcdsaSignature.mdx) for verifying ECDSA signatures on the given curve. |
-| [createForeignCurve](functions/createForeignCurve.mdx) | Create a class representing an elliptic curve group, which is different from the native [Group](classes/Group.mdx). |
+| [conditionalSwap](functions/conditionalSwap.mdx) | - |
+| [createEcdsa](functions/createEcdsa.mdx) | - |
+| [createEcdsaV2](functions/createEcdsaV2.mdx) | Create a class [EcdsaSignatureV2](classes/EcdsaSignatureV2.mdx) for verifying ECDSA signatures on the given curve. |
+| [createForeignCurve](functions/createForeignCurve.mdx) | - |
+| [createForeignCurveV2](functions/createForeignCurveV2.mdx) | Create a class representing an elliptic curve group, which is different from the native [Group](classes/Group.mdx). |
 | [createForeignField](functions/createForeignField.mdx) | Create a class representing a prime order finite field, which is different from the native [Field](classes/Field.mdx). |
 | [declareMethods](functions/declareMethods.mdx) | `declareMethods` can be used in place of the `@method` decorator |
 | [declareState](functions/declareState.mdx) | `declareState` can be used in place of the `@state` decorator to declare on-chain state on a SmartContract. |
@@ -199,7 +206,6 @@ To include your package, see [Creating high-quality community packages](https://
 | [fetchTransactionStatus](functions/fetchTransactionStatus.mdx) | Fetches the status of a transaction. |
 | [genericHash](functions/genericHash.mdx) | - |
 | [initializeBindings](functions/initializeBindings.mdx) | A function that has to finish before any bindings exports can be used. |
-| [maybeSwap](functions/maybeSwap.mdx) | - |
 | [merkleListHash](functions/merkleListHash.mdx) | - |
 | [method](functions/method.mdx) | A decorator to use in a zkApp to mark a method as provable. |
 | [provable](functions/provable.mdx) | - |

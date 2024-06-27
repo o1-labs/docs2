@@ -1,3 +1,11 @@
+## Deprecated
+
+`EcdsaSignature` is now deprecated and will be removed in a future release. Please use [EcdsaSignatureV2](EcdsaSignatureV2.mdx) instead.
+
+## Extended by
+
+- [`EcdsaSignatureV2`](EcdsaSignatureV2.mdx)
+
 ## Constructors
 
 ### new EcdsaSignature()
@@ -25,11 +33,11 @@ Create a new [EcdsaSignature](EcdsaSignature.mdx) from an object containing the 
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:37](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L37)
+[lib/provable/crypto/foreign-ecdsa.ts:43](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L43)
 
 ## Properties
 
-### r
+### ~~r~~
 
 ```ts
 r: AlmostForeignField;
@@ -37,11 +45,11 @@ r: AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:30](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L30)
+[lib/provable/crypto/foreign-ecdsa.ts:36](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L36)
 
 ***
 
-### s
+### ~~s~~
 
 ```ts
 s: AlmostForeignField;
@@ -49,11 +57,11 @@ s: AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:31](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L31)
+[lib/provable/crypto/foreign-ecdsa.ts:37](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L37)
 
 ***
 
-### \_Curve?
+### ~~\_Curve?~~
 
 ```ts
 static optional _Curve: typeof ForeignCurve;
@@ -61,14 +69,17 @@ static optional _Curve: typeof ForeignCurve;
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:164](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L164)
+[lib/provable/crypto/foreign-ecdsa.ts:196](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L196)
 
 ***
 
-### \_provable?
+### ~~\_provable?~~
 
 ```ts
 static optional _provable: ProvablePureExtended<EcdsaSignature, {
+  "r": bigint;
+  "s": bigint;
+ }, {
   "r": string;
   "s": string;
 }>;
@@ -76,11 +87,11 @@ static optional _provable: ProvablePureExtended<EcdsaSignature, {
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:165](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L165)
+[lib/provable/crypto/foreign-ecdsa.ts:197](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L197)
 
 ## Accessors
 
-### Constructor
+### ~~Constructor~~
 
 ```ts
 get Constructor(): typeof EcdsaSignature
@@ -92,11 +103,11 @@ get Constructor(): typeof EcdsaSignature
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:161](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L161)
+[lib/provable/crypto/foreign-ecdsa.ts:193](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L193)
 
 ***
 
-### Curve
+### ~~Curve~~
 
 ```ts
 get static Curve(): typeof ForeignCurve
@@ -110,14 +121,17 @@ The [ForeignCurve](ForeignCurve.mdx) on which the ECDSA signature is defined.
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:173](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L173)
+[lib/provable/crypto/foreign-ecdsa.ts:206](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L206)
 
 ***
 
-### provable
+### ~~provable~~
 
 ```ts
 get static provable(): ProvablePureExtended<EcdsaSignature, {
+  "r": bigint;
+  "s": bigint;
+ }, {
   "r": string;
   "s": string;
 }>
@@ -128,17 +142,20 @@ get static provable(): ProvablePureExtended<EcdsaSignature, {
 #### Returns
 
 `ProvablePureExtended`\<[`EcdsaSignature`](EcdsaSignature.mdx), \{
+  `"r"`: `bigint`;
+  `"s"`: `bigint`;
+ \}, \{
   `"r"`: `string`;
   `"s"`: `string`;
  \}\>
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:180](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L180)
+[lib/provable/crypto/foreign-ecdsa.ts:213](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L213)
 
 ## Methods
 
-### toBigInt()
+### ~~toBigInt()~~
 
 ```ts
 toBigInt(): {
@@ -158,13 +175,13 @@ Convert this signature to an object with bigint fields.
 }
 ```
 
-##### r
+##### ~~r~~
 
 ```ts
 r: bigint;
 ```
 
-##### s
+##### ~~s~~
 
 ```ts
 s: bigint;
@@ -172,14 +189,94 @@ s: bigint;
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:65](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L65)
+[lib/provable/crypto/foreign-ecdsa.ts:71](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L71)
 
 ***
 
-### verify()
+### ~~verify()~~
 
 ```ts
 verify(message: Bytes, publicKey: FlexiblePoint): Bool
+```
+
+#### Parameters
+
+• **message**: `Bytes`
+
+• **publicKey**: `FlexiblePoint`
+
+#### Returns
+
+[`Bool`](Bool.mdx)
+
+#### Deprecated
+
+There is a security vulnerability in this method. Use [verifyV2](EcdsaSignature.mdx#verifyv2) instead.
+
+#### Source
+
+[lib/provable/crypto/foreign-ecdsa.ts:78](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L78)
+
+***
+
+### ~~verifySignedHash()~~
+
+```ts
+verifySignedHash(msgHash: bigint | AlmostForeignField, publicKey: FlexiblePoint): Bool
+```
+
+#### Parameters
+
+• **msgHash**: `bigint` \| [`AlmostForeignField`](AlmostForeignField.mdx)
+
+• **publicKey**: `FlexiblePoint`
+
+#### Returns
+
+[`Bool`](Bool.mdx)
+
+#### Deprecated
+
+There is a security vulnerability in this method. Use [verifySignedHashV2](EcdsaSignature.mdx#verifysignedhashv2) instead.
+
+#### Source
+
+[lib/provable/crypto/foreign-ecdsa.ts:127](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L127)
+
+***
+
+### ~~verifySignedHashV2()~~
+
+```ts
+verifySignedHashV2(msgHash: bigint | AlmostForeignField, publicKey: FlexiblePoint): Bool
+```
+
+Verify the ECDSA signature given the message hash (a [Scalar](Scalar.mdx)) and public key (a [Curve](EcdsaSignature.mdx#curve) point).
+
+This is a building block of [EcdsaSignature.verify](EcdsaSignature.mdx#verify), where the input message is also hashed.
+In contrast, this method just takes the message hash (a curve scalar) as input, giving you flexibility in
+choosing the hashing algorithm.
+
+#### Parameters
+
+• **msgHash**: `bigint` \| [`AlmostForeignField`](AlmostForeignField.mdx)
+
+• **publicKey**: `FlexiblePoint`
+
+#### Returns
+
+[`Bool`](Bool.mdx)
+
+#### Source
+
+[lib/provable/crypto/foreign-ecdsa.ts:148](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L148)
+
+***
+
+### ~~verifyV2()~~
+
+```ts
+verifyV2(message: Bytes, publicKey: FlexiblePoint): Bool
 ```
 
 Verify the ECDSA signature given the message (an array of bytes) and public key (a [Curve](EcdsaSignature.mdx#curve) point).
@@ -230,39 +327,11 @@ isValid.assertTrue('signature verifies');
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:103](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L103)
+[lib/provable/crypto/foreign-ecdsa.ts:118](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L118)
 
 ***
 
-### verifySignedHash()
-
-```ts
-verifySignedHash(msgHash: bigint | AlmostForeignField, publicKey: FlexiblePoint): Bool
-```
-
-Verify the ECDSA signature given the message hash (a [Scalar](Scalar.mdx)) and public key (a [Curve](EcdsaSignature.mdx#curve) point).
-
-This is a building block of [EcdsaSignature.verify](EcdsaSignature.mdx#verify), where the input message is also hashed.
-In contrast, this method just takes the message hash (a curve scalar) as input, giving you flexibility in
-choosing the hashing algorithm.
-
-#### Parameters
-
-• **msgHash**: `bigint` \| [`AlmostForeignField`](AlmostForeignField.mdx)
-
-• **publicKey**: `FlexiblePoint`
-
-#### Returns
-
-[`Bool`](Bool.mdx)
-
-#### Source
-
-[lib/provable/crypto/foreign-ecdsa.ts:116](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L116)
-
-***
-
-### check()
+### ~~check()~~
 
 ```ts
 static check(signature: EcdsaSignature): void
@@ -278,11 +347,11 @@ static check(signature: EcdsaSignature): void
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:155](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L155)
+[lib/provable/crypto/foreign-ecdsa.ts:187](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L187)
 
 ***
 
-### from()
+### ~~from()~~
 
 ```ts
 static from(signature: FlexibleSignature): EcdsaSignature
@@ -300,11 +369,11 @@ Coerce the input to a [EcdsaSignature](EcdsaSignature.mdx).
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:48](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L48)
+[lib/provable/crypto/foreign-ecdsa.ts:54](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L54)
 
 ***
 
-### fromHex()
+### ~~fromHex()~~
 
 ```ts
 static fromHex(rawSignature: string): EcdsaSignature
@@ -323,11 +392,11 @@ Create an [EcdsaSignature](EcdsaSignature.mdx) from a raw 130-char hex string as
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:57](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L57)
+[lib/provable/crypto/foreign-ecdsa.ts:63](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L63)
 
 ***
 
-### sign()
+### ~~sign()~~
 
 ```ts
 static sign(message: Uint8Array | (number | bigint)[], privateKey: bigint): EcdsaSignature
@@ -349,11 +418,11 @@ Note: This method is not provable, and only takes JS bigints as input.
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:135](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L135)
+[lib/provable/crypto/foreign-ecdsa.ts:167](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L167)
 
 ***
 
-### signHash()
+### ~~signHash()~~
 
 ```ts
 static signHash(msgHash: bigint, privateKey: bigint): EcdsaSignature
@@ -379,4 +448,4 @@ Note: This method is not provable, and only takes JS bigints as input.
 
 #### Source
 
-[lib/provable/crypto/foreign-ecdsa.ts:150](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-ecdsa.ts#L150)
+[lib/provable/crypto/foreign-ecdsa.ts:182](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-ecdsa.ts#L182)

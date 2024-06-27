@@ -1,5 +1,9 @@
 ```ts
-function OffchainState<Config>(config: Config): OffchainState<Config>
+function OffchainState<Config>(config: Config, options?: {
+  "logTotalCapacity": number;
+  "maxActionsPerProof": number;
+  "maxActionsPerUpdate": number;
+}): OffchainState<Config>
 ```
 
 Offchain state for a `SmartContract`.
@@ -38,10 +42,38 @@ See the individual methods on `offchainState` for more information on usage.
 
 • **config**: `Config`
 
+• **options?**
+
+• **options.logTotalCapacity?**: `number`
+
+The base-2 logarithm of the total capacity of the offchain state.
+
+Example: if you want to have 1 million individual state fields and map entries available,
+set this to 20, because 2^20 ~= 1M.
+
+The default is 30, which allows for ~1 billion entries.
+
+Passing in lower numbers will reduce the number of constraints required to prove offchain state updates,
+which we will make proof creation slightly faster.
+Instead, you could also use a smaller total capacity to increase the `maxActionsPerProof`, so that fewer proofs are required,
+which will reduce the proof time even more, but only in the case of many actions.
+
+• **options.maxActionsPerProof?**: `number`
+
+• **options.maxActionsPerUpdate?**: `number`
+
+The maximum number of offchain state actions that can be included in a single account update.
+
+In other words, you must not call `.update()` or `.overwrite()` more than this number of times in any of your smart contract methods.
+
+The default is 4.
+
+Note: When increasing this, consider decreasing `maxActionsPerProof` or `logTotalCapacity` in order to not exceed the circuit size limit.
+
 ## Returns
 
 `OffchainState`\<`Config`\>
 
 ## Source
 
-[index.ts:146](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/index.ts#L146)
+[index.ts:160](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/index.ts#L160)
