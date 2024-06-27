@@ -73,13 +73,12 @@ let stateType = Bool;
 // example actions data
 let actions = [[Field(1000)], [Field(2)], [Field(100)]];
 
-// state and actionState before applying actions
+// state before applying actions
 let initial = {
   state: Bool(false),
-  actionState: Reducer.initialActionState,
 };
 
-let { state, actionState } = this.reducer.reduce(
+let newState = this.reducer.reduce(
   actions,
   stateType,
   (state: Bool, action: Field) => state.or(action.equals(1000)),
@@ -89,7 +88,7 @@ let { state, actionState } = this.reducer.reduce(
 
 The `acc` shown earlier is now `state`; you must pass in the state's type as a parameter and pass in an `actionState` which refers to one particular point in the action's history.
 
-Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: S, action: A) => S`, where `S` is the `stateType` and `A` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. Reduce also returns the new actionState -- so you can store it to use when you reduce the next batch of actions. One last difference to JavaScript `reduce` is that it takes a _list of lists_ of actions, instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
+Like `Array.reduce`, `Reducer.reduce` takes a callback that has the signature `(state: State, action: Action) => State`, where `State` is the `stateType` and `Action` is the `actionType`. It returns the result of applying all the actions, in order, to the initial `state`. In this example, the returned `state` is `Bool(true)` because one of the actions in the list is `Field(1000)`. One last difference to JavaScript `reduce` is that it takes a _list of lists_ of actions, instead of a flat list. Each of the sublists are the actions that were dispatched in one account update (for example, while running one smart contract method).
 
 As an astute reader, you might have noticed that this use of `state` is eerily similar to a standard "Elm architecture" that scans over an implicit infinite stream of actions (though here they are aggregated in chunks). This problem is familiar to web developers through its instantiation by using the Redux library or by using the `useReducer` hook in React.
 
@@ -100,25 +99,37 @@ A zkApp can retrieve events and actions from one or more Mina archive nodes. If 
 ### Reducer - API reference
 
 ```ts
-reducer = Reducer({ actionType: AsFieldElements<A> });
+reducer = Reducer({ actionType: FlexibleProvablePure<Action> });
 
-this.reducer.dispatch(action: A): void;
+this.reducer.dispatch(action: Action): void;
 
-this.reducer.reduce<S>(
-  actions: A[][],
-  stateType: AsFieldElements<S>,
-  reduce: (state: S, action: A) => S,
-  initial: { state: S, actionState: Field }
-): { state: S, actionState: Field };
+this.reducer.reduce<State>(
+  actions: MerkleList<MerkleList<Action>>,
+  stateType: Provable<State>,
+  reduce: (state: State, action: Action) => State,
+  initial: State,
+  options?: {
+    maxUpdatesWithActions?: number;
+    maxActionsPerUpdate?: number;
+    skipActionStatePrecondition?: boolean;
+}
+):  State;
 
-Reducer.initialActionState: Field;
+
 ```
 
-In the near future, we want to add a function to retrieve actions from an archive node:
+The `getActions` function retrieves a list of previously emitted actions:
 
 ```ts
-this.reducer.getActions({ fromActionState?: Field, endActionState?: Field }): A[][];
+let pendingActions = this.reducer.getActions({ fromActionState?: Field, endActionState?: Field }): MerkleList<MerkleList<Action>>;
 ```
+The final action state can be accessed on `pendingActions.hash`. 
+
+```ts
+let endActionState = pendingActions.hash;
+```
+If the optional `endActionState` parameter is provided, the list of actions will be fetched up to that state.
+In that case, `pendingActions.hash` is guaranteed to equal `endActionState`.
 
 Use `getActions` for testing with a simulated `LocalBlockchain`. See [Testing zkApps Locally](/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally).
 
