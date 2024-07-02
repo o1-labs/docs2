@@ -1,3 +1,11 @@
+## Deprecated
+
+`ForeignCurve` is now deprecated and will be removed in a future release. Please use [ForeignCurveV2](ForeignCurveV2.mdx) instead.
+
+## Extended by
+
+- [`ForeignCurveV2`](ForeignCurveV2.mdx)
+
 ## Constructors
 
 ### new ForeignCurve()
@@ -35,11 +43,11 @@ let x = new ForeignCurve({ x: 1n, y: 1n });
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:45](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L45)
+[lib/provable/crypto/foreign-curve.ts:54](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L54)
 
 ## Properties
 
-### x
+### ~~x~~
 
 ```ts
 x: AlmostForeignField;
@@ -47,11 +55,11 @@ x: AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:30](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L30)
+[lib/provable/crypto/foreign-curve.ts:39](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L39)
 
 ***
 
-### y
+### ~~y~~
 
 ```ts
 y: AlmostForeignField;
@@ -59,11 +67,11 @@ y: AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:31](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L31)
+[lib/provable/crypto/foreign-curve.ts:40](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L40)
 
 ***
 
-### \_Bigint?
+### ~~\_Bigint?~~
 
 ```ts
 static optional _Bigint: {};
@@ -71,11 +79,11 @@ static optional _Bigint: {};
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:240](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L240)
+[lib/provable/crypto/foreign-curve.ts:249](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L249)
 
 ***
 
-### \_Field?
+### ~~\_Field?~~
 
 ```ts
 static optional _Field: typeof AlmostForeignField;
@@ -83,11 +91,11 @@ static optional _Field: typeof AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:241](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L241)
+[lib/provable/crypto/foreign-curve.ts:250](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L250)
 
 ***
 
-### \_Scalar?
+### ~~\_Scalar?~~
 
 ```ts
 static optional _Scalar: typeof AlmostForeignField;
@@ -95,14 +103,17 @@ static optional _Scalar: typeof AlmostForeignField;
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:242](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L242)
+[lib/provable/crypto/foreign-curve.ts:251](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L251)
 
 ***
 
-### \_provable?
+### ~~\_provable?~~
 
 ```ts
 static optional _provable: ProvablePureExtended<ForeignCurve, {
+  "x": bigint;
+  "y": bigint;
+ }, {
   "x": string;
   "y": string;
 }>;
@@ -110,11 +121,11 @@ static optional _provable: ProvablePureExtended<ForeignCurve, {
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:243](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L243)
+[lib/provable/crypto/foreign-curve.ts:252](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L252)
 
 ## Accessors
 
-### Constructor
+### ~~Constructor~~
 
 ```ts
 get Constructor(): typeof ForeignCurve
@@ -126,11 +137,11 @@ get Constructor(): typeof ForeignCurve
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:237](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L237)
+[lib/provable/crypto/foreign-curve.ts:246](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L246)
 
 ***
 
-### modulus
+### ~~modulus~~
 
 ```ts
 get modulus(): bigint
@@ -144,11 +155,11 @@ The size of the curve's base field.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:81](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L81)
+[lib/provable/crypto/foreign-curve.ts:90](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L90)
 
 ***
 
-### Bigint
+### ~~Bigint~~
 
 ```ts
 get static Bigint(): {}
@@ -164,11 +175,11 @@ Curve arithmetic on JS bigints.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:251](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L251)
+[lib/provable/crypto/foreign-curve.ts:261](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L261)
 
 ***
 
-### Field
+### ~~Field~~
 
 ```ts
 get static Field(): typeof AlmostForeignField
@@ -182,11 +193,11 @@ The base field of this curve as a [ForeignField](ForeignField.mdx).
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:258](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L258)
+[lib/provable/crypto/foreign-curve.ts:268](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L268)
 
 ***
 
-### Scalar
+### ~~Scalar~~
 
 ```ts
 get static Scalar(): typeof AlmostForeignField
@@ -200,11 +211,11 @@ The scalar field of this curve as a [ForeignField](ForeignField.mdx).
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:265](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L265)
+[lib/provable/crypto/foreign-curve.ts:275](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L275)
 
 ***
 
-### generator
+### ~~generator~~
 
 ```ts
 get static generator(): ForeignCurve
@@ -218,11 +229,11 @@ The constant generator point.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:69](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L69)
+[lib/provable/crypto/foreign-curve.ts:78](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L78)
 
 ***
 
-### modulus
+### ~~modulus~~
 
 ```ts
 get static modulus(): bigint
@@ -236,14 +247,17 @@ The size of the curve's base field.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:75](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L75)
+[lib/provable/crypto/foreign-curve.ts:84](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L84)
 
 ***
 
-### provable
+### ~~provable~~
 
 ```ts
 get static provable(): ProvablePureExtended<ForeignCurve, {
+  "x": bigint;
+  "y": bigint;
+ }, {
   "x": string;
   "y": string;
 }>
@@ -254,17 +268,20 @@ get static provable(): ProvablePureExtended<ForeignCurve, {
 #### Returns
 
 `ProvablePureExtended`\<[`ForeignCurve`](ForeignCurve.mdx), \{
+  `"x"`: `bigint`;
+  `"y"`: `bigint`;
+ \}, \{
   `"x"`: `string`;
   `"y"`: `string`;
  \}\>
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:272](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L272)
+[lib/provable/crypto/foreign-curve.ts:282](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L282)
 
 ## Methods
 
-### add()
+### ~~add()~~
 
 ```ts
 add(h: ForeignCurve | FlexiblePoint): ForeignCurve
@@ -298,11 +315,11 @@ if the inputs are inverses of each other.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:121](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L121)
+[lib/provable/crypto/foreign-curve.ts:130](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L130)
 
 ***
 
-### addSafe()
+### ~~addSafe()~~
 
 ```ts
 addSafe(h: ForeignCurve | FlexiblePoint): ForeignCurve
@@ -330,11 +347,11 @@ if the inputs are equal or inverses of each other.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:139](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L139)
+[lib/provable/crypto/foreign-curve.ts:148](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L148)
 
 ***
 
-### assertInSubgroup()
+### ~~assertInSubgroup()~~
 
 ```ts
 assertInSubgroup(): void
@@ -351,11 +368,11 @@ it performs the full scalar multiplication `order*P` and is expensive.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:219](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L219)
+[lib/provable/crypto/foreign-curve.ts:228](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L228)
 
 ***
 
-### assertOnCurve()
+### ~~assertOnCurve()~~
 
 ```ts
 assertOnCurve(): void
@@ -370,11 +387,11 @@ Assert that this point lies on the elliptic curve, which means it satisfies the 
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:203](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L203)
+[lib/provable/crypto/foreign-curve.ts:212](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L212)
 
 ***
 
-### double()
+### ~~double()~~
 
 ```ts
 double(): ForeignCurve
@@ -394,11 +411,11 @@ let r = p.double(); // r = 2 * p
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:158](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L158)
+[lib/provable/crypto/foreign-curve.ts:167](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L167)
 
 ***
 
-### isConstant()
+### ~~isConstant()~~
 
 ```ts
 isConstant(): boolean
@@ -414,11 +431,11 @@ See FieldVar to understand constants vs variables.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:90](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L90)
+[lib/provable/crypto/foreign-curve.ts:99](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L99)
 
 ***
 
-### negate()
+### ~~negate()~~
 
 ```ts
 negate(): ForeignCurve
@@ -438,11 +455,11 @@ let r = p.negate(); // r = -p
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:172](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L172)
+[lib/provable/crypto/foreign-curve.ts:181](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L181)
 
 ***
 
-### scale()
+### ~~scale()~~
 
 ```ts
 scale(scalar: number | bigint | AlmostForeignField): ForeignCurve
@@ -472,11 +489,11 @@ let r = p.scale(s); // r = s * p
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:188](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L188)
+[lib/provable/crypto/foreign-curve.ts:197](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L197)
 
 ***
 
-### toBigint()
+### ~~toBigint()~~
 
 ```ts
 toBigint(): GroupAffine
@@ -490,11 +507,11 @@ Convert this curve point to a point with bigint coordinates.
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:97](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L97)
+[lib/provable/crypto/foreign-curve.ts:106](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L106)
 
 ***
 
-### assertInSubgroup()
+### ~~assertInSubgroup()~~
 
 ```ts
 static assertInSubgroup(g: ForeignCurve): void
@@ -510,11 +527,11 @@ static assertInSubgroup(g: ForeignCurve): void
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:207](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L207)
+[lib/provable/crypto/foreign-curve.ts:216](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L216)
 
 ***
 
-### assertOnCurve()
+### ~~assertOnCurve()~~
 
 ```ts
 static assertOnCurve(g: ForeignCurve): void
@@ -530,11 +547,11 @@ static assertOnCurve(g: ForeignCurve): void
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:195](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L195)
+[lib/provable/crypto/foreign-curve.ts:204](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L204)
 
 ***
 
-### check()
+### ~~check()~~
 
 ```ts
 static check(g: ForeignCurve): void
@@ -555,11 +572,11 @@ Check that this is a valid element of the target subgroup of the curve:
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:229](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L229)
+[lib/provable/crypto/foreign-curve.ts:238](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L238)
 
 ***
 
-### from()
+### ~~from()~~
 
 ```ts
 static from(g: ForeignCurve | FlexiblePoint): ForeignCurve
@@ -577,4 +594,4 @@ Coerce the input to a [ForeignCurve](ForeignCurve.mdx).
 
 #### Source
 
-[lib/provable/crypto/foreign-curve.ts:61](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/crypto/foreign-curve.ts#L61)
+[lib/provable/crypto/foreign-curve.ts:70](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/crypto/foreign-curve.ts#L70)

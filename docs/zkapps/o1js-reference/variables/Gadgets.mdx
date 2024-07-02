@@ -576,6 +576,9 @@ Provable.log(sum); // ['16', '0', '0'] = limb representation of 16 = 4 + 5 - 10 
 
 ```ts
 SHA256: {
+  "compression": sha256Compression;
+  "createMessageSchedule": (M: UInt32[]) => UInt32[];
+  get "initialState": UInt32[];
   "hash": Bytes;
 };
 ```
@@ -597,6 +600,64 @@ Produces an output of [Bytes](../type-aliases/Bytes.mdx) that conforms to the ch
 let preimage = Bytes.fromString("hello world");
 let digest = Gadgets.SHA256.hash(preimage);
 ```
+
+### SHA256.compression()
+
+```ts
+compression: (H: UInt32[], W: UInt32[]) => UInt32[] = sha256Compression;
+```
+
+Performs the SHA-256 compression function on the given hash values and message schedule.
+
+#### Parameters
+
+• **H**: [`UInt32`](../classes/UInt32.mdx)[]
+
+The initial or intermediate hash values (8-element array of UInt32).
+
+• **W**: [`UInt32`](../classes/UInt32.mdx)[]
+
+The message schedule (64-element array of UInt32).
+
+#### Returns
+
+[`UInt32`](../classes/UInt32.mdx)[]
+
+The updated intermediate hash values after compression.
+
+### SHA256.createMessageSchedule()
+
+```ts
+createMessageSchedule: (M: UInt32[]) => UInt32[];
+```
+
+Prepares the message schedule for the SHA-256 compression function from the given message block.
+
+#### Parameters
+
+• **M**: [`UInt32`](../classes/UInt32.mdx)[]
+
+The 512-bit message block (16-element array of UInt32).
+
+#### Returns
+
+[`UInt32`](../classes/UInt32.mdx)[]
+
+The message schedule (64-element array of UInt32).
+
+### SHA256.initialState
+
+```ts
+get initialState(): UInt32[]
+```
+
+#### Returns
+
+[`UInt32`](../classes/UInt32.mdx)[]
+
+#### Source
+
+[lib/provable/gadgets/sha256.ts:105](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/gadgets/sha256.ts#L105)
 
 ### SHA256.hash()
 
@@ -1334,4 +1395,4 @@ c.assertEquals(0b0110);
 
 ## Source
 
-[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/081e48fe103a96db7083cdaea72a409cca3182c3/src/lib/provable/gadgets/gadgets.ts#L36)
+[lib/provable/gadgets/gadgets.ts:36](https://github.com/o1-labs/o1js/blob/72b8e2c2b9aaba4b5c12257bdd63dfe2676a3d99/src/lib/provable/gadgets/gadgets.ts#L36)
