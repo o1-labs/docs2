@@ -45,7 +45,8 @@ A token manager smart contract sets the rules around minting, burning, and sendi
 
 ## TokenContract class
 
-Use the `TokenContract` class to perform common token operations, such as minting, burning, and sending tokens. In o1js, the `TokenContract` class is your blueprint for custom token implementations.
+Use the `TokenContract` class to perform common token operations, such as minting, burning, and sending tokens. In o1js, the `TokenContract` class is your blueprint for custom token implementations. If you want to create a fungible token you can use the [fungible token](https://github.com/MinaFoundation/mina-fungible-token/blob/main/documentation/SUMMARY.md) standard which is built on top of the 
+`TokenContract` class . 
 
 As shown in this [example code](https://github.com/o1-labs/o1js/blob/main/src/lib/mina/token/token-contract.unit-test.ts#L13), you inherit from the `TokenContract` class:
 
