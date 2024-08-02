@@ -1,6 +1,10 @@
+Require Extraction.
+Extraction Language OCaml.
 Require Import Coq.ZArith.ZArith.
 Require Import Coq.Lists.List.
 Require Import Coq.Strings.String.
+Require Import MetaCoq.Template.All.
+Require Import MetaCoq.Template.Checker.
 
 Import ListNotations.
 Open Scope string_scope.
@@ -12,7 +16,7 @@ Record SelfProof := {
 
 (* ZkProgram is represented as a module type *)
 Module Type ZkProgram.
-  Parameter name : string.
+  Parameter name : String.string.
   Parameter publicInput : nat.
   
   Parameter init : nat -> Prop.
@@ -21,8 +25,6 @@ Module Type ZkProgram.
 End ZkProgram.
 
 
-Definition name1 := "add-example".
-(* Defining our Add program *)
 Module Add <: ZkProgram.
 
   Definition name := "add-example".
@@ -65,3 +67,10 @@ Proof.
   exists (makeSelfProof 4).
   repeat split.
 Qed.
+
+Set Extraction Output Directory "../../extraction".
+Extraction "example.ml" main main_holds makeSelfProof Add.Add.Add .
+
+
+(*Redirect "extraction/add.rs" Rust Extract main_holds.*)
+
