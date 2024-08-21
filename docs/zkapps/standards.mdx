@@ -1,0 +1,23 @@
+---
+id: standards
+title: Standards
+description: This page lists established and upcoming standards for the mina ecosystem
+---
+
+# Standards for the Mina Ecosystem
+
+## Standards Process
+
+Standards for Mina are established through an rfc/rfp process: rfcs can be opened in the [Core Grants repository](https://github.com/MinaFoundation/Core-Grants). After discussion on an rfc has concluded, development work can be performed either internally, or by community members after going through an rfp process and receiving a grant.
+
+Below, we list standards that have been established for Mina.
+
+## Established Standards
+
+### Fungible tokens
+
+We have released a standard implementation for fungible tokens on Mina. It allows for defining rules for minting tokens upon deployment. Tokens can be transferred, either by calling a `transfer` method of the token contract, or by manually constructing transactions from individual account updates. This enables interoperability with third party contracts.
+
+The standard implementation can be found on [Github](https://github.com/MinaFoundation/mina-fungible-token). Documentation around how to use the standard can be found [here](https://minafoundation.github.io/mina-fungible-token/introduction.html).
+
+The fungible token implementation separates out the rules for minting tokens into a separate admin contract. This is to allow custom rules without modifications to the token contract itself. Note that if you do modify the token contract, third parties such as wallets that want to integrate your token will need to integrate your modification into their own codebase. It is thus recommended to use the standard token contract when possible, and only modify the admin contract.
