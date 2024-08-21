@@ -1337,6 +1337,7 @@ module.exports = {
         },
         'zkapps/roadmap',
         'zkapps/faq',
+        'zkapps/standards',
       ],
     },
     {
