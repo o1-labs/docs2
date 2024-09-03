@@ -1,9 +1,8 @@
+import { Mina, PrivateKey, AccountUpdate, UInt64 } from 'o1js';
 import { TokenUser, TokenHolder } from './TokenUser.js';
 import { MyToken } from './MyToken.js';
 
-import { Mina, PrivateKey, AccountUpdate, UInt64 } from 'o1js';
 
-import { showTxn, saveTxn } from 'mina-transaction-visualizer';
 
 await (async function main() {
   const proofsEnabled = true;
@@ -11,6 +10,10 @@ await (async function main() {
   Mina.setActiveInstance(Local);
   const deployerAddr = Local.testAccounts[0];
   const deployerKey = deployerAddr.key;
+  const other = Local.testAccounts[1];
+  const otherKey = other.key;
+  const another = Local.testAccounts[1];
+  const anotherKey = other.key;
   let accountFee = Mina.getNetworkConstants().accountCreationFee;
 
   // ----------------------------------------------------
@@ -21,12 +24,7 @@ await (async function main() {
   const tokenUserSk = PrivateKey.random();
   const tokenUserAddr = tokenUserSk.toPublicKey();
 
-  const legend = {
-    [myTokenAddr.toBase58()]: 'myToken',
-    [tokenUserAddr.toBase58()]: 'tokenUser',
-    [deployerAddr.toBase58()]: 'deployer',
-  };
-  console.log(legend);
+
 
   TokenUser.tokenSmartContractAddress = myTokenAddr;
   TokenHolder.tokenSmartContractAddress = myTokenAddr;
@@ -38,18 +36,27 @@ await (async function main() {
     myTokenInstance.tokenId
   );
 
+
+
   if (proofsEnabled) {
-    console.log('compile contracts');
+    console.time('compile 1');
     await MyToken.compile();
+    console.timeEnd('compile 1');
+
+    console.time('compile 2');
     await TokenUser.compile();
+    console.timeEnd('compile 2');
+
+    console.time('compile 3');
     await TokenHolder.compile();
+    console.timeEnd('compile 3');
   }
 
   // ----------------------------------------------------
+  console.time('deploy');
 
   const deployTxn = await Mina.transaction(deployerAddr, async () => {
-    let feePayerUpdate = AccountUpdate.fundNewAccount(deployerAddr, 4);
-    feePayerUpdate.send({ to: myTokenAddr, amount: accountFee });
+    AccountUpdate.fundNewAccount(deployerAddr, 3);
 
     await myTokenInstance.deploy();
     await tokenUserInstance.deploy();
@@ -57,50 +64,46 @@ await (async function main() {
 
     await myTokenInstance.approveDeploy(tokenHolderInstance.self);
   });
+  console.log(deployTxn.toPretty());
 
   await deployTxn.prove();
 
-  deployTxn.sign([deployerKey, myTokenSk, tokenUserSk]);
+  await deployTxn.sign([deployerKey, myTokenSk, tokenUserSk]).send();
 
-  //await showTxn(deploy_txn, 'deploy_txn', legend);
-  //await saveTxn(deploy_txn, 'deploy_txn', legend, './deploy_txn.png');
+  console.timeEnd('deploy');
 
-  await deployTxn.send();
-
-  console.log('sent deploy txn');
 
   // ----------------------------------------------------
+  console.time('tx1');
 
-  const txn1 = await Mina.transaction(deployerAddr, async () => {
-    await myTokenInstance.mintTokens(tokenUserAddr, UInt64.from(500));
+  const txn1 = await Mina.transaction(other, async () => {
+    AccountUpdate.fundNewAccount(other);
+    await myTokenInstance.mintTokens(other, UInt64.from(500));
   });
+  console.log(txn1.toPretty());
 
-  txn1.sign([deployerKey, myTokenSk, tokenUserSk]);
   await txn1.prove();
+  await txn1.sign([deployerKey, myTokenSk, otherKey]).send();
 
-  //await showTxn(txn1, 'txn1', legend);
-  //saveTxn(txn1, 'txn1', legend, './txn1.png');
+  console.timeEnd('tx1');
 
-  await txn1.send();
-
-  console.log('sent txn1');
 
   // ----------------------------------------------------
+  console.time('tx2');
 
   const txn2 = await Mina.transaction(deployerAddr, async () => {
-    AccountUpdate.fundNewAccount(deployerAddr);
-    await tokenUserInstance.sendMyTokens(UInt64.from(100), deployerAddr);
+    await myTokenInstance.transfer(other, another, UInt64.from(100));
   });
-
+  console.log(txn2.toPretty())
   await txn2.prove();
-  txn2.sign([deployerKey]);
+  txn2.sign([deployerKey, otherKey]);
 
-  await showTxn(txn2, 'txn2', legend);
-  saveTxn(txn2, 'txn2', legend, './txn2.png');
+
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   await txn2.send();
 
-  console.log('sent txn2');
+  console.timeEnd('tx2');
+
 })();

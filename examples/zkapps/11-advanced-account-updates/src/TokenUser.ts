@@ -18,20 +18,20 @@ export class TokenUser extends SmartContract {
     await super.deploy(args);
     this.account.permissions.set({
       receive: Permissions.none(),
-      send: Permissions.proof(),
-      editState: Permissions.proof(),
-      editActionState: Permissions.proof(),
-      setDelegate: Permissions.proof(),
-      setPermissions: Permissions.proof(),
+      send: Permissions.none(),
+      editState: Permissions.none(),
+      editActionState: Permissions.none(),
+      setDelegate: Permissions.none(),
+      setPermissions: Permissions.none(),
       setVerificationKey: {
-        auth: Permissions.proof(),
+        auth: Permissions.none(),
         txnVersion: TransactionVersion.current(),
       },
-      setZkappUri: Permissions.proof(),
-      setTokenSymbol: Permissions.proof(),
-      incrementNonce: Permissions.proof(),
-      setVotingFor: Permissions.proof(),
-      setTiming: Permissions.proof(),
+      setZkappUri: Permissions.none(),
+      setTokenSymbol: Permissions.none(),
+      incrementNonce: Permissions.none(),
+      setVotingFor: Permissions.none(),
+      setTiming: Permissions.none(),
       access: Permissions.none(),
     });
   }
@@ -53,8 +53,8 @@ export class TokenUser extends SmartContract {
 
   @method async sendMyTokens(amount: UInt64, destination: PublicKey) {
     const tokenHolder = this.tokenHolder;
-    tokenHolder.transferAway(amount);
-    this.tokenContract.approveTransfer(tokenHolder.self, destination);
+    await tokenHolder.transferAway(amount);
+    await this.tokenContract.approveTransfer(tokenHolder.self, destination);
   }
 }
 
