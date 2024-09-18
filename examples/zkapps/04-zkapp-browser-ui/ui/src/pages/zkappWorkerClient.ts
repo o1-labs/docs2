@@ -1,4 +1,5 @@
 import { Field, PublicKey, fetchAccount } from 'o1js';
+import * as Comlink from "comlink";
 
 import type {
   WorkerFunctions,
