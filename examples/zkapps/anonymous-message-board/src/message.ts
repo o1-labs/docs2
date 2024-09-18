@@ -62,13 +62,13 @@ export class Message extends SmartContract {
       .equals(user1)
       .or(signerPublicKey.equals(user2))
       .or(signerPublicKey.equals(user3))
-      .assertEquals(true);
+      .assertTrue();
 
     // Update on-chain message state
     this.message.set(message);
 
     // Compute new messageHistoryHash
-    const oldHash = this.messageHistoryHash.get();
+    const oldHash = this.messageHistoryHash.getAndRequireEquals();
     const newHash = Poseidon.hash([message, oldHash]);
 
     // Update on-chain messageHistoryHash
