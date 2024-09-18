@@ -42,7 +42,7 @@ export class ProofsOnlyZkApp extends SmartContract {
   }
 
   @method async add(incrementBy: Field) {
-    this.account.provedState.getAndRequireEquals();
+    this.account.provedState.getAndRequireEquals().assertTrue();
 
     const num = this.num.getAndRequireEquals();
     this.num.set(num.add(incrementBy));
@@ -51,14 +51,14 @@ export class ProofsOnlyZkApp extends SmartContract {
   }
 
   @method async incrementCalls() {
-    this.account.provedState.getAndRequireEquals();
+    this.account.provedState.getAndRequireEquals().assertTrue();
 
     const calls = this.calls.getAndRequireEquals();
     this.calls.set(calls.add(Field(1)));
   }
 
   @method async callSecondary(secondaryAddr: PublicKey) {
-    this.account.provedState.getAndRequireEquals();
+    this.account.provedState.getAndRequireEquals().assertTrue();
 
     const secondaryContract = new SecondaryZkApp(secondaryAddr);
     const num = this.num.getAndRequireEquals();
