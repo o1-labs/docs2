@@ -1,4 +1,5 @@
 import { Mina, PublicKey, fetchAccount } from 'o1js';
+import * as Comlink from "comlink";
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
