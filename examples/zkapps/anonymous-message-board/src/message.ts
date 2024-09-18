@@ -53,9 +53,9 @@ export class Message extends SmartContract {
     const signerPublicKey = signerPrivateKey.toPublicKey();
 
     // Get approved public keys
-    const user1 = this.user1.get();
-    const user2 = this.user2.get();
-    const user3 = this.user3.get();
+    const user1 = this.user1.getAndRequireEquals();
+    const user2 = this.user2.getAndRequireEquals();
+    const user3 = this.user3.getAndRequireEquals();
 
     // Assert that signerPublicKey is one of the approved public keys
     signerPublicKey
