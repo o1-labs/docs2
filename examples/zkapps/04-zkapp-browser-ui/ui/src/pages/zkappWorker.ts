@@ -59,32 +59,6 @@ const api = {
 
 // ---------------------------------------------------------------------------------------
 
-export type WorkerFunctions = keyof typeof functions;
 
-export type ZkappWorkerRequest = {
-  id: number;
-  fn: WorkerFunctions;
-  args: any;
-};
-
-export type ZkappWorkerReponse = {
-  id: number;
-  data: any;
-};
-
-if (typeof window !== 'undefined') {
-  addEventListener(
-    'message',
-    async (event: MessageEvent<ZkappWorkerRequest>) => {
-      const returnData = await functions[event.data.fn](event.data.args);
-
-      const message: ZkappWorkerReponse = {
-        id: event.data.id,
-        data: returnData,
-      };
-      postMessage(message);
-    }
-  );
-}
 
 console.log('Web Worker Successfully Initialized.');
