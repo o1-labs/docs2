@@ -35,6 +35,9 @@ export default function Home() {
       });
     }
 
+        const zkappWorkerClient = new ZkappWorkerClient();
+    setState(prev => ({ ...prev, zkappWorkerClient }));
+
     (async () => {
       if (!state.hasBeenSetup) {
         setDisplayText('Loading web worker...');
