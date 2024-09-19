@@ -36,11 +36,15 @@ export default function Home() {
     // }
 
     const zkappWorkerClient = new ZkappWorkerClient();
+
     setState(prev => ({ ...prev, zkappWorkerClient }));
         
     const setup = async () => {
-      
+      setState(prev => ({ ...prev, displayText: 'Loading web worker...' }));
+      await zkappWorkerClient.setActiveInstanceToDevnet();
+
     };
+
     // (async () => {
     //   if (!state.hasBeenSetup) {
     //     setDisplayText('Loading web worker...');
