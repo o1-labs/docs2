@@ -43,10 +43,10 @@ export default class ZkappWorkerClient {
   }
 
   async getNum(): Promise<Field> {
-    const result = await this._call('getNum', {});
+    const result = await this.remoteApi.getNum();
     return Field.fromJSON(JSON.parse(result as string));
   }
-
+  
   createUpdateTransaction() {
     return this._call('createUpdateTransaction', {});
   }
