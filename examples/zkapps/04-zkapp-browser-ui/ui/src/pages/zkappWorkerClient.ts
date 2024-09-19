@@ -25,7 +25,7 @@ export default class ZkappWorkerClient {
   }
 
   loadContract() {
-    return this._call('loadContract', {});
+    return this.remoteApi.loadContract();
   }
 
   compileContract() {
