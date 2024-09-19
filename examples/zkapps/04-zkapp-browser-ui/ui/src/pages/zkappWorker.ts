@@ -59,6 +59,5 @@ const api = {
 
 // ---------------------------------------------------------------------------------------
 
-
-
-console.log('Web Worker Successfully Initialized.');
+// Expose the API to be used by the main thread 
+Comlink.expose(api);
