@@ -37,9 +37,7 @@ export default class ZkappWorkerClient {
   }
 
   initZkappInstance(publicKey: PublicKey) {
-    return this._call('initZkappInstance', {
-      publicKey58: publicKey.toBase58(),
-    });
+    return this.remoteApi.initZkappInstance(publicKey.toBase58());
   }
 
   async getNum(): Promise<Field> {
@@ -54,36 +52,9 @@ export default class ZkappWorkerClient {
   proveUpdateTransaction() {
     return this.remoteApi.proveUpdateTransaction();
   }
-  
+
   getTransactionJSON() {
     return this.remoteApi.getTransactionJSON();
   }
 
-
-  // ---------------------------------------------------------------------------------------
-
-  worker: Worker;
-
-  promises: {
-    [id: number]: { resolve: (res: any) => void; reject: (err: any) => void };
-  };
-
-  nextId: number;
-
-
-  _call(fn: WorkerFunctions, args: any) {
-    return new Promise((resolve, reject) => {
-      this.promises[this.nextId] = { resolve, reject };
-
-      const message: ZkappWorkerRequest = {
-        id: this.nextId,
-        fn,
-        args,
-      };
-
-      this.worker.postMessage(message);
-
-      this.nextId++;
-    });
-  }
 }
