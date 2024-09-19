@@ -31,16 +31,9 @@ export default class ZkappWorkerClient {
   compileContract() {
     return this.remoteApi.compileContract();
   }
-  
-  fetchAccount({
-    publicKey,
-  }: {
-    publicKey: PublicKey;
-  }): ReturnType<typeof fetchAccount> {
-    const result = this._call('fetchAccount', {
-      publicKey58: publicKey.toBase58(),
-    });
-    return result as ReturnType<typeof fetchAccount>;
+
+  fetchAccount(publicKey: PublicKey): Promise<ReturnType<typeof fetchAccount>> {
+    return this.remoteApi.fetchAccount(publicKey.toBase58());
   }
 
   initZkappInstance(publicKey: PublicKey) {
