@@ -1,11 +1,11 @@
 import { Mina, PublicKey, fetchAccount } from 'o1js';
 import * as Comlink from "comlink";
+import type { Add } from '../../../contracts/src/Add';
 
 type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 // ---------------------------------------------------------------------------------------
 
-import type { Add } from '../../../contracts/src/Add';
 
 const state = {
   Add: null as null | typeof Add,
@@ -15,7 +15,8 @@ const state = {
 
 // ---------------------------------------------------------------------------------------
 
-const functions = {
+// Define the worker's methods
+const api = {
   setActiveInstanceToDevnet: async (args: {}) => {
     const Network = Mina.Network(
       'https://api.minascan.io/node/devnet/v1/graphql'
