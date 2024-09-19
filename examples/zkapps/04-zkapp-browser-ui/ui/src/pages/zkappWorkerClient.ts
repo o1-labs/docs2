@@ -13,6 +13,13 @@ export default class ZkappWorkerClient {
   // Proxy to interact with the worker's methods as if they were local
   remoteApi: Comlink.Remote<typeof import('./zkappWorker').api>;
 
+  constructor() {
+    // Initialize the worker from the zkappWorker module
+    const worker = new Worker(new URL('./zkappWorker.ts', import.meta.url), { type: 'module' });
+    // Wrap the worker with Comlink to enable direct method invocation
+    this.remoteApi = Comlink.wrap(worker);
+  }
+
   setActiveInstanceToDevnet() {
     return this._call('setActiveInstanceToDevnet', {});
   }
@@ -70,16 +77,6 @@ export default class ZkappWorkerClient {
 
   nextId: number;
 
-  constructor() {
-    this.worker = new Worker(new URL('./zkappWorker.ts', import.meta.url));
-    this.promises = {};
-    this.nextId = 0;
-
-    this.worker.onmessage = (event: MessageEvent<ZkappWorkerReponse>) => {
-      this.promises[event.data.id].resolve(event.data.data);
-      delete this.promises[event.data.id];
-    };
-  }
 
   _call(fn: WorkerFunctions, args: any) {
     return new Promise((resolve, reject) => {
