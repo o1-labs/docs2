@@ -21,7 +21,7 @@ export default class ZkappWorkerClient {
   }
 
   setActiveInstanceToDevnet() {
-    return this._call('setActiveInstanceToDevnet', {});
+    return this.remoteApi.setActiveInstanceToDevnet();
   }
 
   loadContract() {
