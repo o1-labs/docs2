@@ -1,14 +1,17 @@
 import { Field, PublicKey, fetchAccount } from 'o1js';
 import * as Comlink from "comlink";
 
-import type {
-  WorkerFunctions,
-  ZkappWorkerReponse,
-  ZkappWorkerRequest,
-} from './zkappWorker';
+// import type {
+//   WorkerFunctions,
+//   ZkappWorkerReponse,
+//   ZkappWorkerRequest,
+// } from './zkappWorker';
 
 export default class ZkappWorkerClient {
   // ---------------------------------------------------------------------------------------
+
+  // Proxy to interact with the worker's methods as if they were local
+  remoteApi: Comlink.Remote<typeof import('./zkappWorker').api>;
 
   setActiveInstanceToDevnet() {
     return this._call('setActiveInstanceToDevnet', {});
