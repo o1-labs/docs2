@@ -37,7 +37,9 @@ export default class ZkappWorkerClient {
   }
 
   initZkappInstance(publicKey: PublicKey) {
-    return this.remoteApi.initZkappInstance(publicKey.toBase58());
+    return this._call('initZkappInstance', {
+      publicKey58: publicKey.toBase58(),
+    });
   }
 
   async getNum(): Promise<Field> {
