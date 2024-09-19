@@ -54,10 +54,11 @@ export default class ZkappWorkerClient {
   proveUpdateTransaction() {
     return this.remoteApi.proveUpdateTransaction();
   }
-  async getTransactionJSON() {
-    const result = await this._call('getTransactionJSON', {});
-    return result;
+  
+  getTransactionJSON() {
+    return this.remoteApi.getTransactionJSON();
   }
+
 
   // ---------------------------------------------------------------------------------------
 
