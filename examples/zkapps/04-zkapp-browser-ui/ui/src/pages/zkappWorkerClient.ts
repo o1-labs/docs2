@@ -46,15 +46,14 @@ export default class ZkappWorkerClient {
     const result = await this.remoteApi.getNum();
     return Field.fromJSON(JSON.parse(result as string));
   }
-  
+
   createUpdateTransaction() {
-    return this._call('createUpdateTransaction', {});
+    return this.remoteApi.createUpdateTransaction();
   }
 
   proveUpdateTransaction() {
-    return this._call('proveUpdateTransaction', {});
+    return this.remoteApi.proveUpdateTransaction();
   }
-
   async getTransactionJSON() {
     const result = await this._call('getTransactionJSON', {});
     return result;
