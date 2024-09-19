@@ -29,9 +29,9 @@ export default class ZkappWorkerClient {
   }
 
   compileContract() {
-    return this._call('compileContract', {});
+    return this.remoteApi.compileContract();
   }
-
+  
   fetchAccount({
     publicKey,
   }: {
