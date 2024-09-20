@@ -27,92 +27,78 @@ export default function Home() {
   // Do Setup
 
   useEffect(() => {
-    // async function timeout(seconds: number): Promise<void> {
-    //   return new Promise<void>((resolve) => {
-    //     setTimeout(() => {
-    //       resolve();
-    //     }, seconds * 1000);
-    //   });
-    // }
+    async function timeout(seconds: number): Promise<void> {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, seconds * 1000);
+      });
+    }
 
-    const zkappWorkerClient = new ZkappWorkerClient();
-
-    setState(prev => ({ ...prev, zkappWorkerClient }));
-        
-    const setup = async () => {
-           setDisplayText('Loading web worker...');
+    (async () => {
+      if (!state.hasBeenSetup) {
+        setDisplayText('Loading web worker...');
         console.log('Loading web worker...');
-      await zkappWorkerClient.setActiveInstanceToDevnet();
-      const mina = (window as any).mina;
-      if (!mina) {
-          setState(prev => ({ ...prev, hasWallet: false }));
+        const zkappWorkerClient = new ZkappWorkerClient();
+        await timeout(5);
+
+        setDisplayText('Done loading web worker');
+        console.log('Done loading web worker');
+
+        await zkappWorkerClient.setActiveInstanceToDevnet();
+
+        const mina = (window as any).mina;
+
+        if (mina == null) {
+          setState({ ...state, hasWallet: false });
           return;
+        }
+
+        const publicKeyBase58: string = (await mina.requestAccounts())[0];
+        const publicKey = PublicKey.fromBase58(publicKeyBase58);
+
+        console.log(`Using key:${publicKey.toBase58()}`);
+        setDisplayText(`Using key:${publicKey.toBase58()}`);
+
+        setDisplayText('Checking if fee payer account exists...');
+        console.log('Checking if fee payer account exists...');
+
+        const res = await zkappWorkerClient.fetchAccount({
+          publicKey: publicKey!,
+        });
+        const accountExists = res.error == null;
+
+        await zkappWorkerClient.loadContract();
+
+        console.log('Compiling zkApp...');
+        setDisplayText('Compiling zkApp...');
+        await zkappWorkerClient.compileContract();
+        console.log('zkApp compiled');
+        setDisplayText('zkApp compiled...');
+
+        const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
+
+        await zkappWorkerClient.initZkappInstance(ZKAPP_ADDRESS);
+
+        console.log('Getting zkApp state...');
+        setDisplayText('Getting zkApp state...');
+        await zkappWorkerClient.fetchAccount(ZKAPP_ADDRESS);
+        const currentNum = await zkappWorkerClient.getNum();
+        console.log(`Current state in zkApp: ${currentNum.toString()}`);
+        setDisplayText('');
+
+        setState({
+          ...state,
+          zkappWorkerClient,
+          hasWallet: true,
+          hasBeenSetup: true,
+          publicKey,
+          zkappPublicKey,
+          accountExists,
+          currentNum,
+        });
       }
-    };
-
-    // (async () => {
-    //   if (!state.hasBeenSetup) {
-   
-    //     const zkappWorkerClient = new ZkappWorkerClient();
-    //     await timeout(5);
-
-    //     setDisplayText('Done loading web worker');
-    //     console.log('Done loading web worker');
-
-    //     await zkappWorkerClient.setActiveInstanceToDevnet();
-
-    //     const mina = (window as any).mina;
-
-    //     if (mina == null) {
-    //       setState({ ...state, hasWallet: false });
-    //       return;
-    //     }
-
-    //     const publicKeyBase58: string = (await mina.requestAccounts())[0];
-    //     const publicKey = PublicKey.fromBase58(publicKeyBase58);
-
-    //     console.log(`Using key:${publicKey.toBase58()}`);
-    //     setDisplayText(`Using key:${publicKey.toBase58()}`);
-
-    //     setDisplayText('Checking if fee payer account exists...');
-    //     console.log('Checking if fee payer account exists...');
-
-    //     const res = await zkappWorkerClient.fetchAccount({
-    //       publicKey: publicKey!,
-    //     });
-    //     const accountExists = res.error == null;
-
-    //     await zkappWorkerClient.loadContract();
-
-    //     console.log('Compiling zkApp...');
-    //     setDisplayText('Compiling zkApp...');
-    //     await zkappWorkerClient.compileContract();
-    //     console.log('zkApp compiled');
-    //     setDisplayText('zkApp compiled...');
-
-    //     const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
-
-    //     await zkappWorkerClient.initZkappInstance(zkappPublicKey);
-
-    //     console.log('Getting zkApp state...');
-    //     setDisplayText('Getting zkApp state...');
-    //     await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
-    //     const currentNum = await zkappWorkerClient.getNum();
-    //     console.log(`Current state in zkApp: ${currentNum.toString()}`);
-    //     setDisplayText('');
-
-    //     setState({
-    //       ...state,
-    //       zkappWorkerClient,
-    //       hasWallet: true,
-    //       hasBeenSetup: true,
-    //       publicKey,
-    //       zkappPublicKey,
-    //       accountExists,
-    //       currentNum,
-    //     });
-    //   }
-    // })();
+    })();
   }, []);
 
   // -------------------------------------------------------
