@@ -10,7 +10,7 @@ const state = {
   transaction: null as null | Transaction,
 };
 
-const api = {
+export const api = {
   async setActiveInstanceToDevnet() {
     const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
     Mina.setActiveInstance(Network);
