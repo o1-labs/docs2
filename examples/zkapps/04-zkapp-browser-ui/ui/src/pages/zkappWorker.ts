@@ -16,7 +16,7 @@ const state = {
 // ---------------------------------------------------------------------------------------
 
 // Define the worker's methods
-const api = {
+export const api = {
   setActiveInstanceToDevnet: async (args: {}) => {
     const Network = Mina.Network(
       'https://api.minascan.io/node/devnet/v1/graphql'
@@ -39,6 +39,9 @@ const api = {
   initZkappInstance: async (publicKey: PublicKey) => {
     console.log(publicKey)
     // const publicKey = PublicKey.fromBase58(args.publicKey58);
+    // const pk = PublicKey.toBase58(publicKey)
+    // console.log('pk', pk)
+    console.log(state.Add)
     state.zkapp = new state.Add!(publicKey);
   },
   getNum: async (args: {}) => {
