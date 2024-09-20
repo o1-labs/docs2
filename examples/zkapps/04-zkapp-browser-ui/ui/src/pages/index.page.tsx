@@ -16,7 +16,9 @@ export default function Home() {
     accountExists: false,
     currentNum: null as null | Field,
     publicKey: null as null | PublicKey,
+    publicKeyBase58: '',
     zkappPublicKey: null as null | PublicKey,
+    zkappPublicKeyBase58: '',
     creatingTransaction: false,
   });
 
@@ -94,7 +96,7 @@ export default function Home() {
           zkappWorkerClient,
           hasWallet: true,
           hasBeenSetup: true,
-          publicKey,
+          publicKeyBase58,
           zkappPublicKey,
           accountExists,
           currentNum,
