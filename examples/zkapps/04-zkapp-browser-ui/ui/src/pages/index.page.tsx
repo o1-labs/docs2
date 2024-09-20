@@ -63,9 +63,11 @@ export default function Home() {
         setDisplayText('Checking if fee payer account exists...');
         console.log('Checking if fee payer account exists...');
 
-        const res = await zkappWorkerClient.fetchAccount({
-          publicKey: publicKey!,
-        });
+        console.log(`Public key to load: ${publicKeyBase58}`);
+
+        const res = await zkappWorkerClient.fetchAccount(
+         publicKeyBase58,
+        );
         const accountExists = res.error == null;
 
         await zkappWorkerClient.loadContract();
