@@ -1,12 +1,6 @@
 import { Field, PublicKey, fetchAccount } from 'o1js';
 import * as Comlink from "comlink";
 
-// import type {
-//   WorkerFunctions,
-//   ZkappWorkerReponse,
-//   ZkappWorkerRequest,
-// } from './zkappWorker';
-
 export default class ZkappWorkerClient {
   // ---------------------------------------------------------------------------------------
   worker: Worker;
@@ -32,11 +26,10 @@ export default class ZkappWorkerClient {
     return this.remoteApi.compileContract();
   }
 
-  async fetchAccount(publicKey: PublicKey): Promise<ReturnType<typeof fetchAccount>> {
-    console.log('publicKey', publicKey);
-    return this.remoteApi.fetchAccount(publicKey);
+  async fetchAccount(publicKey58: string) {
+    return this.remoteApi.fetchAccount(publicKey58);
   }
-
+  
   async initZkappInstance(publicKey: PublicKey) {
     return this.remoteApi.initZkappInstance(publicKey.toBase58());
   }
