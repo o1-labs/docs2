@@ -98,6 +98,7 @@ export default function Home() {
           hasBeenSetup: true,
           publicKeyBase58,
           zkappPublicKey,
+          zkappPublicKeyBase58: ZKAPP_ADDRESS,
           accountExists,
           currentNum,
         });
