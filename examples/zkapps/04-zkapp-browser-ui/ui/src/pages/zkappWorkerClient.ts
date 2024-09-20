@@ -20,24 +20,24 @@ export default class ZkappWorkerClient {
     this.remoteApi = Comlink.wrap(worker);
   }
 
-  setActiveInstanceToDevnet() {
+  async setActiveInstanceToDevnet() {
     return this.remoteApi.setActiveInstanceToDevnet();
   }
 
-  loadContract() {
+  async loadContract() {
     return this.remoteApi.loadContract();
   }
 
-  compileContract() {
+  async compileContract() {
     return this.remoteApi.compileContract();
   }
 
-  fetchAccount(publicKey: PublicKey): Promise<ReturnType<typeof fetchAccount>> {
+  async fetchAccount(publicKey: PublicKey): Promise<ReturnType<typeof fetchAccount>> {
     console.log('publicKey', publicKey);
     return this.remoteApi.fetchAccount(publicKey);
   }
 
-  initZkappInstance(publicKey: PublicKey) {
+  async initZkappInstance(publicKey: PublicKey) {
     return this.remoteApi.initZkappInstance(publicKey.toBase58());
   }
 
@@ -46,15 +46,15 @@ export default class ZkappWorkerClient {
     return Field.fromJSON(JSON.parse(result as string));
   }
 
-  createUpdateTransaction() {
+  async createUpdateTransaction() {
     return this.remoteApi.createUpdateTransaction();
   }
 
-  proveUpdateTransaction() {
+  async proveUpdateTransaction() {
     return this.remoteApi.proveUpdateTransaction();
   }
 
-  getTransactionJSON() {
+  async getTransactionJSON() {
     return this.remoteApi.getTransactionJSON();
   }
 
