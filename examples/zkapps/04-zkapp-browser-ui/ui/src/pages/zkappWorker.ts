@@ -31,12 +31,14 @@ const api = {
   compileContract: async (args: {}) => {
     await state.Add!.compile();
   },
-  fetchAccount: async (args: { publicKey58: string }) => {
-    const publicKey = PublicKey.fromBase58(args.publicKey58);
-    return await fetchAccount({ publicKey });
+  fetchAccount: async (publicKey: PublicKey) => {
+    // console.log('args', args  )
+    // const publicKey = PublicKey.fromBase58(args.publicKey58);
+    return await fetchAccount(publicKey);
   },
-  initZkappInstance: async (args: { publicKey58: string }) => {
-    const publicKey = PublicKey.fromBase58(args.publicKey58);
+  initZkappInstance: async (publicKey: PublicKey) => {
+    console.log(publicKey)
+    // const publicKey = PublicKey.fromBase58(args.publicKey58);
     state.zkapp = new state.Add!(publicKey);
   },
   getNum: async (args: {}) => {
