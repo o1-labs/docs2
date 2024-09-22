@@ -37,7 +37,7 @@ export default function Home() {
       });
     }
 
-    (async () => {
+    async function setup() {
       if (!state.hasBeenSetup) {
         setDisplayText('Loading web worker...');
         console.log('Loading web worker...');
@@ -103,7 +103,9 @@ export default function Home() {
           currentNum,
         });
       }
-    })();
+    };
+
+    setup();
   }, []);
 
   // -------------------------------------------------------
