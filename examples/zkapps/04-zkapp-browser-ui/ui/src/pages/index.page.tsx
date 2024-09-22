@@ -95,7 +95,6 @@ export default function Home() {
           hasWallet: true,
           hasBeenSetup: true,
           publicKeyBase58,
-          zkappPublicKey,
           zkappPublicKeyBase58: ZKAPP_ADDRESS,
           accountExists,
           currentNum,
