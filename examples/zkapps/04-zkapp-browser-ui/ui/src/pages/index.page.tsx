@@ -15,9 +15,7 @@ export default function Home() {
     hasBeenSetup: false,
     accountExists: false,
     currentNum: null as null | Field,
-    publicKey: null as null | PublicKey,
     publicKeyBase58: '',
-    zkappPublicKey: null as null | PublicKey,
     zkappPublicKeyBase58: '',
     creatingTransaction: false,
   });
