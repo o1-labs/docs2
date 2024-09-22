@@ -27,20 +27,13 @@ export default function Home() {
   // Do Setup
 
   useEffect(() => {
-    async function timeout(seconds: number): Promise<void> {
-      return new Promise<void>((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, seconds * 1000);
-      });
-    }
 
     async function setup() {
       if (!state.hasBeenSetup) {
         setDisplayText('Loading web worker...');
         console.log('Loading web worker...');
         const zkappWorkerClient = new ZkappWorkerClient();
-        await timeout(5);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
 
         setDisplayText('Done loading web worker');
         console.log('Done loading web worker');
