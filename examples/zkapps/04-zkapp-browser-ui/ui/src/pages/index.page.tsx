@@ -164,14 +164,18 @@ export default function Home() {
   // Refresh the current state
 
   const onRefreshCurrentNum = async () => {
-    console.log('Getting zkApp state...');
-    setDisplayText('Getting zkApp state...');
-
-    await zkappWorkerClient!.fetchAccount(ZKAPP_ADDRESS);
-    const currentNum = await zkappWorkerClient!.getNum();
-    setCurrentNum(currentNum);
-    console.log(`Current state in zkApp: ${currentNum}`);
-    setDisplayText('');
+    try {
+      console.log('Getting zkApp state...');
+      setDisplayText('Getting zkApp state...');
+      await zkappWorkerClient!.fetchAccount(ZKAPP_ADDRESS);
+      const currentNum = await zkappWorkerClient!.getNum();
+      setCurrentNum(currentNum);
+      console.log(`Current state in zkApp: ${currentNum}`);
+      setDisplayText('');
+    } catch (error: any) {
+      console.log(`Error refreshing state: ${error.message}`);
+      setDisplayText(`Error refreshing state: ${error.message}`);
+    }
   };
 
   // -------------------------------------------------------
