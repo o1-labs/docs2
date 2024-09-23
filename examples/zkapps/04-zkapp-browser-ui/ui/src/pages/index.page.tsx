@@ -10,9 +10,6 @@ const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
   const [state, setState] = useState({
-    hasBeenSetup: false,
-    accountExists: false,
-    currentNum: null as null | Field,
     publicKeyBase58: '',
     zkappPublicKeyBase58: '',
     creatingTransaction: false,
@@ -22,6 +19,7 @@ export default function Home() {
   const [hasWallet, setHasWallet] = useState<null | boolean>(null);
   const [hasBeenSetup, setHasBeenSetup] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
+  const [currentNum, setCurrentNum] = useState<null | Field>(null);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -85,7 +83,9 @@ export default function Home() {
           setDisplayText('Getting zkApp state...');
           await zkappWorkerClient.fetchAccount(ZKAPP_ADDRESS);
           const currentNum = await zkappWorkerClient.getNum();
-          console.log(`Current state in zkApp: ${currentNum.toString()}`);
+          setCurrentNum(currentNum);
+          console.log(`Current state in zkApp: ${currentNum}`);
+
           
           setHasBeenSetup(true);
           setHasWallet(true);
@@ -95,7 +95,6 @@ export default function Home() {
             ...state,
             publicKeyBase58,
             zkappPublicKeyBase58: ZKAPP_ADDRESS,
-            currentNum,
           });
         }
       } catch (error: any) {
@@ -184,8 +183,8 @@ export default function Home() {
 
     await zkappWorkerClient!.fetchAccount(state.zkappPublicKeyBase58!);
     const currentNum = await zkappWorkerClient!.getNum();
-    setState({ ...state, currentNum });
-    console.log(`Current state in zkApp: ${currentNum.toString()}`);
+    setCurrentNum(currentNum);
+    console.log(`Current state in zkApp: ${currentNum}`);
     setDisplayText('');
   };
 
@@ -245,7 +244,7 @@ export default function Home() {
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
-          Current state in zkApp: {state.currentNum!.toString()}{' '}
+          Current state in zkApp: {currentNum}{' '}
         </div>
         <button
           className={styles.card}
