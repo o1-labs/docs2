@@ -116,11 +116,12 @@ export default function Home() {
           await new Promise((resolve) => setTimeout(resolve, 5000));
         } 
       }
+      // setDisplayText('');
       setAccountExists(true);
     };
 
     checkAccountExists();
-  }, [hasBeenSetup]);
+  }, [hasBeenSetup, accountExists]);
 
   // -------------------------------------------------------
   // Send a transaction
@@ -232,8 +233,6 @@ export default function Home() {
 
   let mainContent;
   if (hasBeenSetup && accountExists) {
-    console.log('currentNum test', currentNum);
-    console.log('current num type', typeof currentNum)
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
