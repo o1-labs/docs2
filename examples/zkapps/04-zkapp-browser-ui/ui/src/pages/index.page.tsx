@@ -10,7 +10,7 @@ const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
   const [state, setState] = useState({
-    publicKeyBase58: '',
+    
     zkappPublicKeyBase58: '',
     creatingTransaction: false,
   });
@@ -20,6 +20,7 @@ export default function Home() {
   const [hasBeenSetup, setHasBeenSetup] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
   const [currentNum, setCurrentNum] = useState<null | Field>(null);
+  const [publicKeyBase58, setPublicKeyBase58] = useState('');
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -51,6 +52,7 @@ export default function Home() {
           }
 
           const publicKeyBase58: string = (await mina.requestAccounts())[0];
+          setPublicKeyBase58(publicKeyBase58);
           const publicKey = PublicKey.fromBase58(publicKeyBase58);
 
           console.log(`Using key:${publicKey.toBase58()}`);
@@ -93,7 +95,6 @@ export default function Home() {
           
           setState({
             ...state,
-            publicKeyBase58,
             zkappPublicKeyBase58: ZKAPP_ADDRESS,
           });
         }
@@ -118,7 +119,7 @@ export default function Home() {
         for (;;) {
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
-          const res = await zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
+          const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
           console.log('response', res)
           const accountExists = res.error == null;
           if (accountExists) {
@@ -143,7 +144,7 @@ export default function Home() {
     setDisplayText('Creating a transaction...');
     console.log('Creating a transaction...');
 
-    await zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
+    await zkappWorkerClient!.fetchAccount(publicKeyBase58);
 
     await zkappWorkerClient!.createUpdateTransaction();
 
@@ -192,7 +193,7 @@ export default function Home() {
   // Create UI elements
 
   let hasWallet;
-  if (state.hasWallet != null && !state.hasWallet) {
+  if (hasWallet != null && !hasWallet) {
     const auroLink = 'https://www.aurowallet.com/';
     const auroLinkElem = (
       <a href={auroLink} target="_blank" rel="noreferrer">
