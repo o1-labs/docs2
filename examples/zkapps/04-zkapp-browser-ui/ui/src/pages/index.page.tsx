@@ -27,7 +27,6 @@ export default function Home() {
   // Do Setup
 
   useEffect(() => {
-
     const setup = async () => {
       try {
         if (!state.hasBeenSetup) {
@@ -107,7 +106,7 @@ export default function Home() {
   // Wait for account to exist, if it didn't
 
   useEffect(() => {
-    (async () => {
+    const checkAccountExists = async () => {
       if (state.hasBeenSetup && !state.accountExists) {
         for (;;) {
           setDisplayText('Checking if fee payer account exists...');
@@ -121,7 +120,9 @@ export default function Home() {
         }
         setState({ ...state, accountExists: true });
       }
-    })();
+    };
+
+    checkAccountExists();
   }, [state.hasBeenSetup]);
 
   // -------------------------------------------------------
