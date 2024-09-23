@@ -9,18 +9,13 @@ let transactionFee = 0.1;
 const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
-  const [state, setState] = useState({
-    
-    zkappPublicKeyBase58: '',
-    creatingTransaction: false,
-  });
-  
   const [zkappWorkerClient, setZkappWorkerClient] = useState<null | ZkappWorkerClient>(null);
   const [hasWallet, setHasWallet] = useState<null | boolean>(null);
   const [hasBeenSetup, setHasBeenSetup] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
   const [currentNum, setCurrentNum] = useState<null | Field>(null);
   const [publicKeyBase58, setPublicKeyBase58] = useState('');
+  const [creatingTransaction, setCreatingTransaction] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -67,6 +62,7 @@ export default function Home() {
           publicKeyBase58,
           );
           const accountExists = res.error === null;
+          console.log('setupResponse', accountExists)
           setAccountExists(accountExists);
 
           await zkappWorkerClient.loadContract();
@@ -93,10 +89,6 @@ export default function Home() {
           setHasWallet(true);
           setDisplayText('');
           
-          setState({
-            ...state,
-            zkappPublicKeyBase58: ZKAPP_ADDRESS,
-          });
         }
       } catch (error: any) {
         setDisplayText(`Error during setup: ${error.message}`);
@@ -123,13 +115,12 @@ export default function Home() {
           console.log('response', res)
           const accountExists = res.error == null;
           if (accountExists) {
-            setAccountExists(true);
             break;
           }
           await new Promise((resolve) => setTimeout(resolve, 5000));
-        }
-        
+        } 
       }
+      setAccountExists(true);
     };
 
     checkAccountExists();
@@ -139,11 +130,12 @@ export default function Home() {
   // Send a transaction
 
   const onSendTransaction = async () => {
-    setState({ ...state, creatingTransaction: true });
+    setCreatingTransaction(true);
 
     setDisplayText('Creating a transaction...');
     console.log('Creating a transaction...');
 
+    console.log('publicKeyBase58 sending to worker', publicKeyBase58);
     await zkappWorkerClient!.fetchAccount(publicKeyBase58);
 
     await zkappWorkerClient!.createUpdateTransaction();
@@ -172,7 +164,7 @@ export default function Home() {
     setTransactionLink(transactionLink);
     setDisplayText(transactionLink);
 
-    setState({ ...state, creatingTransaction: false });
+    setCreatingTransaction(true);
   };
 
   // -------------------------------------------------------
@@ -182,7 +174,7 @@ export default function Home() {
     console.log('Getting zkApp state...');
     setDisplayText('Getting zkApp state...');
 
-    await zkappWorkerClient!.fetchAccount(state.zkappPublicKeyBase58!);
+    await zkappWorkerClient!.fetchAccount(ZKAPP_ADDRESS);
     const currentNum = await zkappWorkerClient!.getNum();
     setCurrentNum(currentNum);
     console.log(`Current state in zkApp: ${currentNum}`);
@@ -192,15 +184,17 @@ export default function Home() {
   // -------------------------------------------------------
   // Create UI elements
 
-  let hasWallet;
-  if (hasWallet != null && !hasWallet) {
+  let auroLinkElem;
+  if (hasWallet === false) {
     const auroLink = 'https://www.aurowallet.com/';
-    const auroLinkElem = (
-      <a href={auroLink} target="_blank" rel="noreferrer">
-        Install Auro wallet here
-      </a>
+    auroLinkElem = (
+      <div>
+        Could not find a wallet.{' '}
+        <a href="https://www.aurowallet.com/" target="_blank" rel="noreferrer">
+          Install Auro wallet here
+        </a>
+      </div>
     );
-    hasWallet = <div>Could not find a wallet. {auroLinkElem}</div>;
   }
 
   const stepDisplay = transactionlink ? (
@@ -222,14 +216,14 @@ export default function Home() {
       style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
     >
       {stepDisplay}
-      {hasWallet}
+      {auroLinkElem}
     </div>
   );
 
   let accountDoesNotExist;
   if (hasBeenSetup && !accountExists) {
     const faucetLink =
-      'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
+      `https://faucet.minaprotocol.com/?address='${publicKeyBase58}`;
     accountDoesNotExist = (
       <div>
         <span style={{ paddingRight: '1rem' }}>Account does not exist.</span>
@@ -242,15 +236,17 @@ export default function Home() {
 
   let mainContent;
   if (hasBeenSetup && accountExists) {
+    console.log('currentNum test', currentNum);
+    console.log('current num type', typeof currentNum)
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
-          Current state in zkApp: {currentNum}{' '}
+          Current state in zkApp: {currentNum?.toString()}{' '}
         </div>
         <button
           className={styles.card}
           onClick={onSendTransaction}
-          disabled={state.creatingTransaction}
+          disabled={creatingTransaction}
         >
           Send Transaction
         </button>
