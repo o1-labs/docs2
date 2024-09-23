@@ -28,7 +28,7 @@ export default function Home() {
 
   useEffect(() => {
 
-    async function setup() {
+    const setup = async () => {
       try {
         if (!state.hasBeenSetup) {
           setDisplayText('Loading web worker...');
