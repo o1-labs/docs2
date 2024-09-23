@@ -18,7 +18,11 @@ export default function Home() {
   const [creatingTransaction, setCreatingTransaction] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
-
+  
+  const displayStep = (step: string) => {
+    setDisplayText(step)
+    console.log(step)
+  }
   // -------------------------------------------------------
   // Do Setup
 
@@ -26,31 +30,27 @@ export default function Home() {
     const setup = async () => {
       try {
         if (!hasBeenSetup) {
-          setDisplayText('Loading web worker...');
-          console.log('Loading web worker...');
+          displayStep('Loading web worker...')
           const zkappWorkerClient = new ZkappWorkerClient();
           setZkappWorkerClient(zkappWorkerClient);
           await new Promise((resolve) => setTimeout(resolve, 5000));
 
-          setDisplayText('Done loading web worker');
-          console.log('Done loading web worker');
+          displayStep('Done loading web worker')
 
           await zkappWorkerClient.setActiveInstanceToDevnet();
 
           const mina = (window as any).mina;
           if (mina == null) {
             setHasWallet(false);
-            setDisplayText('Wallet not found.');
+            displayStep('Wallet not found.');
             return;
           }
 
           const publicKeyBase58: string = (await mina.requestAccounts())[0];
           setPublicKeyBase58(publicKeyBase58);
-          console.log(`Using key:${publicKeyBase58}`);
-          setDisplayText(`Using key:${publicKeyBase58}`);
+          displayStep(`Using key:${publicKeyBase58}`);
 
-          setDisplayText('Checking if fee payer account exists...');
-          console.log('Checking if fee payer account exists...');
+          displayStep('Checking if fee payer account exists...');
 
           const res = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
@@ -61,16 +61,13 @@ export default function Home() {
 
           await zkappWorkerClient.loadContract();
 
-          console.log('Compiling zkApp...');
-          setDisplayText('Compiling zkApp...');
+          displayStep('Compiling zkApp...');
           await zkappWorkerClient.compileContract();
-          console.log('zkApp compiled');
-          setDisplayText('zkApp compiled...');
+          displayStep('zkApp compiled');
 
           await zkappWorkerClient.initZkappInstance(ZKAPP_ADDRESS);
 
-          console.log('Getting zkApp state...');
-          setDisplayText('Getting zkApp state...');
+          displayStep('Getting zkApp state...');
           await zkappWorkerClient.fetchAccount(ZKAPP_ADDRESS);
           const currentNum = await zkappWorkerClient.getNum();
           setCurrentNum(currentNum);
@@ -83,8 +80,7 @@ export default function Home() {
           
         }
       } catch (error: any) {
-        setDisplayText(`Error during setup: ${error.message}`);
-        console.error('Error during setup:', error);
+        displayStep(`Error during setup: ${error.message}`);
       }
     };
 
@@ -99,8 +95,8 @@ export default function Home() {
       if (hasBeenSetup && !accountExists) {
         try { 
           for (;;) {
-            setDisplayText('Checking if fee payer account exists...');
-            console.log('Checking if fee payer account exists...');
+            displayStep('Checking if fee payer account exists...');
+            
             const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
             const accountExists = res.error == null;
             if (accountExists) {
@@ -109,7 +105,7 @@ export default function Home() {
             await new Promise((resolve) => setTimeout(resolve, 5000));
           } 
         } catch (error: any) {
-          setDisplayText(`Error checking account: ${error.message}`);
+          displayStep(`Error checking account: ${error.message}`);
         }
 
       }
@@ -121,32 +117,24 @@ export default function Home() {
 
   // -------------------------------------------------------
   // Send a transaction
-  const displayStep = (step: string) => {
-    setDisplayText(step)
-    console.log(step)
-  }
-  
+
   const onSendTransaction = async () => {
     setCreatingTransaction(true);
 
-    setDisplayText('Creating a transaction...');
-    console.log('Creating a transaction...');
-
+    displayStep('Creating a transaction...');
+   
     console.log('publicKeyBase58 sending to worker', publicKeyBase58);
     await zkappWorkerClient!.fetchAccount(publicKeyBase58);
 
     await zkappWorkerClient!.createUpdateTransaction();
 
-    setDisplayText('Creating proof...');
-    console.log('Creating proof...');
+    displayStep('Creating proof...');
     await zkappWorkerClient!.proveUpdateTransaction();
 
-    console.log('Requesting send transaction...');
-    setDisplayText('Requesting send transaction...');
+    displayStep('Requesting send transaction...');
     const transactionJSON = await zkappWorkerClient!.getTransactionJSON();
 
-    setDisplayText('Getting transaction JSON...');
-    console.log('Getting transaction JSON...');
+    displayStep('Getting transaction JSON...');
     const { hash } = await (window as any).mina.sendTransaction({
       transaction: transactionJSON,
       feePayer: {
@@ -169,16 +157,14 @@ export default function Home() {
 
   const onRefreshCurrentNum = async () => {
     try {
-      console.log('Getting zkApp state...');
-      setDisplayText('Getting zkApp state...');
+      displayStep('Getting zkApp state...');
       await zkappWorkerClient!.fetchAccount(ZKAPP_ADDRESS);
       const currentNum = await zkappWorkerClient!.getNum();
       setCurrentNum(currentNum);
       console.log(`Current state in zkApp: ${currentNum}`);
       setDisplayText('');
     } catch (error: any) {
-      console.log(`Error refreshing state: ${error.message}`);
-      setDisplayText(`Error refreshing state: ${error.message}`);
+      displayStep(`Error refreshing state: ${error.message}`);
     }
   };
 
