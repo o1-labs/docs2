@@ -104,15 +104,11 @@ export default function Home() {
 
   useEffect(() => {
     const checkAccountExists = async () => {
-      console.log('inside', hasBeenSetup)
-      console.log('inside ae', accountExists)
-    
       if (hasBeenSetup && !accountExists) {
         for (;;) {
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
           const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
-          console.log('response', res)
           const accountExists = res.error == null;
           if (accountExists) {
             break;
