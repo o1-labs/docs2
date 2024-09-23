@@ -10,8 +10,6 @@ const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
 
 export default function Home() {
   const [state, setState] = useState({
-    zkappWorkerClient: null as null | ZkappWorkerClient,
-    hasWallet: null as null | boolean,
     hasBeenSetup: false,
     accountExists: false,
     currentNum: null as null | Field,
@@ -21,6 +19,7 @@ export default function Home() {
   });
   
   const [zkappWorkerClient, setZkappWorkerClient] = useState<null | ZkappWorkerClient>(null);
+  const [hasWallet, setHasWallet] = useState<null | boolean>(null);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -46,7 +45,8 @@ export default function Home() {
           const mina = (window as any).mina;
 
           if (mina == null) {
-            setState({ ...state, hasWallet: false });
+            setHasWallet(false);
+            setDisplayText('Wallet not found.');
             return;
           }
 
@@ -84,10 +84,10 @@ export default function Home() {
           const currentNum = await zkappWorkerClient.getNum();
           console.log(`Current state in zkApp: ${currentNum.toString()}`);
           setDisplayText('');
-
+          
+          setHasWallet(true);
           setState({
             ...state,
-            hasWallet: true,
             hasBeenSetup: true,
             publicKeyBase58,
             zkappPublicKeyBase58: ZKAPP_ADDRESS,
@@ -109,11 +109,15 @@ export default function Home() {
 
   useEffect(() => {
     const checkAccountExists = async () => {
+      console.log('inside', state.hasBeenSetup)
+      console.log('inside ae', state.accountExists)
+    
       if (state.hasBeenSetup && !state.accountExists) {
         for (;;) {
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
-          const res = await state.zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
+          const res = await zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
+          console.log('response', res)
           const accountExists = res.error == null;
           if (accountExists) {
             break;
@@ -136,17 +140,17 @@ export default function Home() {
     setDisplayText('Creating a transaction...');
     console.log('Creating a transaction...');
 
-    await state.zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
+    await zkappWorkerClient!.fetchAccount(state.publicKeyBase58);
 
-    await state.zkappWorkerClient!.createUpdateTransaction();
+    await zkappWorkerClient!.createUpdateTransaction();
 
     setDisplayText('Creating proof...');
     console.log('Creating proof...');
-    await state.zkappWorkerClient!.proveUpdateTransaction();
+    await zkappWorkerClient!.proveUpdateTransaction();
 
     console.log('Requesting send transaction...');
     setDisplayText('Requesting send transaction...');
-    const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
+    const transactionJSON = await zkappWorkerClient!.getTransactionJSON();
 
     setDisplayText('Getting transaction JSON...');
     console.log('Getting transaction JSON...');
@@ -174,8 +178,8 @@ export default function Home() {
     console.log('Getting zkApp state...');
     setDisplayText('Getting zkApp state...');
 
-    await state.zkappWorkerClient!.fetchAccount(state.zkappPublicKeyBase58!);
-    const currentNum = await state.zkappWorkerClient!.getNum();
+    await zkappWorkerClient!.fetchAccount(state.zkappPublicKeyBase58!);
+    const currentNum = await zkappWorkerClient!.getNum();
     setState({ ...state, currentNum });
     console.log(`Current state in zkApp: ${currentNum.toString()}`);
     setDisplayText('');
