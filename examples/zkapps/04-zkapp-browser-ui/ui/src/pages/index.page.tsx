@@ -19,7 +19,8 @@ export default function Home() {
     zkappPublicKeyBase58: '',
     creatingTransaction: false,
   });
-
+  
+  const [zkappWorkerClient, setZkappWorkerClient] = useState<null | ZkappWorkerClient>(null);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -33,6 +34,8 @@ export default function Home() {
           setDisplayText('Loading web worker...');
           console.log('Loading web worker...');
           const zkappWorkerClient = new ZkappWorkerClient();
+          setZkappWorkerClient(zkappWorkerClient);
+
           await new Promise((resolve) => setTimeout(resolve, 5000));
 
           setDisplayText('Done loading web worker');
@@ -84,7 +87,6 @@ export default function Home() {
 
           setState({
             ...state,
-            zkappWorkerClient,
             hasWallet: true,
             hasBeenSetup: true,
             publicKeyBase58,
