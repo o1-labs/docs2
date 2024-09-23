@@ -121,7 +121,11 @@ export default function Home() {
 
   // -------------------------------------------------------
   // Send a transaction
-
+  const displayStep = (step: string) => {
+    setDisplayText(step)
+    console.log(step)
+  }
+  
   const onSendTransaction = async () => {
     setCreatingTransaction(true);
 
