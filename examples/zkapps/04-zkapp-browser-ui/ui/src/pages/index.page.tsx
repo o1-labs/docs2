@@ -30,7 +30,6 @@ export default function Home() {
           console.log('Loading web worker...');
           const zkappWorkerClient = new ZkappWorkerClient();
           setZkappWorkerClient(zkappWorkerClient);
-
           await new Promise((resolve) => setTimeout(resolve, 5000));
 
           setDisplayText('Done loading web worker');
@@ -39,7 +38,6 @@ export default function Home() {
           await zkappWorkerClient.setActiveInstanceToDevnet();
 
           const mina = (window as any).mina;
-
           if (mina == null) {
             setHasWallet(false);
             setDisplayText('Wallet not found.');
@@ -105,18 +103,22 @@ export default function Home() {
   useEffect(() => {
     const checkAccountExists = async () => {
       if (hasBeenSetup && !accountExists) {
-        for (;;) {
-          setDisplayText('Checking if fee payer account exists...');
-          console.log('Checking if fee payer account exists...');
-          const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
-          const accountExists = res.error == null;
-          if (accountExists) {
-            break;
-          }
-          await new Promise((resolve) => setTimeout(resolve, 5000));
-        } 
+        try { 
+          for (;;) {
+            setDisplayText('Checking if fee payer account exists...');
+            console.log('Checking if fee payer account exists...');
+            const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
+            const accountExists = res.error == null;
+            if (accountExists) {
+              break;
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          } 
+        } catch (error: any) {
+          setDisplayText(`Error checking account: ${error.message}`);
+        }
+
       }
-      // setDisplayText('');
       setAccountExists(true);
     };
 
