@@ -21,6 +21,7 @@ export default function Home() {
   const [zkappWorkerClient, setZkappWorkerClient] = useState<null | ZkappWorkerClient>(null);
   const [hasWallet, setHasWallet] = useState<null | boolean>(null);
   const [hasBeenSetup, setHasBeenSetup] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [transactionlink, setTransactionLink] = useState('');
 
@@ -65,7 +66,8 @@ export default function Home() {
           const res = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
           );
-          const accountExists = res.error == null;
+          const accountExists = res.error === null;
+          setAccountExists(accountExists);
 
           await zkappWorkerClient.loadContract();
 
@@ -93,7 +95,6 @@ export default function Home() {
             ...state,
             publicKeyBase58,
             zkappPublicKeyBase58: ZKAPP_ADDRESS,
-            accountExists,
             currentNum,
           });
         }
@@ -112,9 +113,9 @@ export default function Home() {
   useEffect(() => {
     const checkAccountExists = async () => {
       console.log('inside', hasBeenSetup)
-      console.log('inside ae', state.accountExists)
+      console.log('inside ae', accountExists)
     
-      if (hasBeenSetup && !state.accountExists) {
+      if (hasBeenSetup && !accountExists) {
         for (;;) {
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
@@ -122,11 +123,12 @@ export default function Home() {
           console.log('response', res)
           const accountExists = res.error == null;
           if (accountExists) {
+            setAccountExists(true);
             break;
           }
           await new Promise((resolve) => setTimeout(resolve, 5000));
         }
-        setState({ ...state, accountExists: true });
+        
       }
     };
 
@@ -225,7 +227,7 @@ export default function Home() {
   );
 
   let accountDoesNotExist;
-  if (hasBeenSetup && !state.accountExists) {
+  if (hasBeenSetup && !accountExists) {
     const faucetLink =
       'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
     accountDoesNotExist = (
@@ -239,7 +241,7 @@ export default function Home() {
   }
 
   let mainContent;
-  if (hasBeenSetup && state.accountExists) {
+  if (hasBeenSetup && accountExists) {
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
