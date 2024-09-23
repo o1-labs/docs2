@@ -34,7 +34,6 @@ export default function Home() {
           const zkappWorkerClient = new ZkappWorkerClient();
           setZkappWorkerClient(zkappWorkerClient);
           await new Promise((resolve) => setTimeout(resolve, 5000));
-
           displayStep('Done loading web worker')
 
           await zkappWorkerClient.setActiveInstanceToDevnet();
@@ -51,12 +50,10 @@ export default function Home() {
           displayStep(`Using key:${publicKeyBase58}`);
 
           displayStep('Checking if fee payer account exists...');
-
           const res = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
           );
           const accountExists = res.error === null;
-   
           setAccountExists(accountExists);
 
           await zkappWorkerClient.loadContract();
@@ -113,7 +110,7 @@ export default function Home() {
     };
 
     checkAccountExists();
-  }, [hasBeenSetup, accountExists]);
+  }, [zkappWorkerClient, hasBeenSetup, accountExists]);
 
   // -------------------------------------------------------
   // Send a transaction
