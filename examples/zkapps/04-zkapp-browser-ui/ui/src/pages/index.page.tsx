@@ -46,21 +46,17 @@ export default function Home() {
 
           const publicKeyBase58: string = (await mina.requestAccounts())[0];
           setPublicKeyBase58(publicKeyBase58);
-          const publicKey = PublicKey.fromBase58(publicKeyBase58);
-
-          console.log(`Using key:${publicKey.toBase58()}`);
-          setDisplayText(`Using key:${publicKey.toBase58()}`);
+          console.log(`Using key:${publicKeyBase58}`);
+          setDisplayText(`Using key:${publicKeyBase58}`);
 
           setDisplayText('Checking if fee payer account exists...');
           console.log('Checking if fee payer account exists...');
-
-          console.log(`Public key to load: ${publicKeyBase58}`);
 
           const res = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
           );
           const accountExists = res.error === null;
-          console.log('setupResponse', accountExists)
+   
           setAccountExists(accountExists);
 
           await zkappWorkerClient.loadContract();
@@ -70,8 +66,6 @@ export default function Home() {
           await zkappWorkerClient.compileContract();
           console.log('zkApp compiled');
           setDisplayText('zkApp compiled...');
-
-          const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
 
           await zkappWorkerClient.initZkappInstance(ZKAPP_ADDRESS);
 
