@@ -25,15 +25,15 @@ export default function Home() {
     console.log(step)
   }
 
-  // Helper function to fetch account data
-  const fetchAccountData = async (publicKey: string) => {
-    try {
-      const res = await zkappWorkerClient!.fetchAccount(publicKey);
-      return res;
-    } catch (error: any) {
-      displayStep(`Error fetching account data: ${error.message}`);
-    }
+  const compileAndInitializeZkApp = async () => {
+    displayStep('Compiling zkApp...');
+    await zkappWorkerClient!.compileContract();
+    displayStep('zkApp compiled');
+
+    await zkappWorkerClient!.initZkappInstance(ZKAPP_ADDRESS);
+    displayStep('zkApp instance initialized');
   };
+
 
 
   // -------------------------------------------------------
@@ -63,9 +63,10 @@ export default function Home() {
           displayStep(`Using key:${publicKeyBase58}`);
 
           displayStep('Checking if fee payer account exists...');
-          const res = await zkappWorkerClient.fetchAccount(
+          const accountData = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
           );
+          const accountData = await fetchAccountData(publicKeyBase58);
           const accountExists = res.error === null;
           setAccountExists(accountExists);
 
