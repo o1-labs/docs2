@@ -63,10 +63,9 @@ export default function Home() {
           displayStep(`Using key:${publicKeyBase58}`);
 
           displayStep('Checking if fee payer account exists...');
-          const accountData = await zkappWorkerClient.fetchAccount(
+          const res = await zkappWorkerClient.fetchAccount(
           publicKeyBase58,
           );
-          const accountData = await fetchAccountData(publicKeyBase58);
           const accountExists = res.error === null;
           setAccountExists(accountExists);
 
