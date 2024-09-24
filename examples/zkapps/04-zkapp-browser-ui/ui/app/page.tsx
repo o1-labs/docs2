@@ -24,6 +24,18 @@ export default function Home() {
     setDisplayText(step)
     console.log(step)
   }
+
+  // Helper function to fetch account data
+  const fetchAccountData = async (publicKey: string) => {
+    try {
+      const res = await zkappWorkerClient!.fetchAccount(publicKey);
+      return res;
+    } catch (error: any) {
+      displayStep(`Error fetching account data: ${error.message}`);
+    }
+  };
+
+
   // -------------------------------------------------------
   // Do Setup
 
