@@ -25,17 +25,6 @@ export default function Home() {
     console.log(step)
   }
 
-  const compileAndInitializeZkApp = async () => {
-    displayStep('Compiling zkApp...');
-    await zkappWorkerClient!.compileContract();
-    displayStep('zkApp compiled');
-
-    await zkappWorkerClient!.initZkappInstance(ZKAPP_ADDRESS);
-    displayStep('zkApp instance initialized');
-  };
-
-
-
   // -------------------------------------------------------
   // Do Setup
 
@@ -130,7 +119,6 @@ export default function Home() {
 
   const onSendTransaction = async () => {
     setCreatingTransaction(true);
-
     displayStep('Creating a transaction...');
    
     console.log('publicKeyBase58 sending to worker', publicKeyBase58);
