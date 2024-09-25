@@ -1,8 +1,11 @@
-import { Mina, PublicKey, fetchAccount } from 'o1js';
 import * as Comlink from "comlink";
 import type { Add } from '../../contracts/src/Add';
 
-type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
+
+const getAPI = async () => {
+  const { Mina, PublicKey, fetchAccount } = await import('o1js');
+  type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
+
 
 const state = {
   Add: null as null | typeof Add,
@@ -10,7 +13,7 @@ const state = {
   transaction: null as null | Transaction,
 };
 
-export const api = {
+const api = {
   async setActiveInstanceToDevnet() {
     const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
     Mina.setActiveInstance(Network);
@@ -48,7 +51,13 @@ export const api = {
   async getTransactionJSON() {
     return state.transaction!.toJSON();
   },
-};
 
+};
+return api;
+
+
+}
+
+const api = await getAPI();
 // Expose the API to be used by the main thread
 Comlink.expose(api);
