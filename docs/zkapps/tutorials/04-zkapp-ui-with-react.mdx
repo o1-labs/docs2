@@ -194,20 +194,19 @@ The example project has a completed app. The `index.page.tsx` file is the entry 
 
 ### Add state
 
-This `04-zkapp-browser-ui/ui/src/pages/index.page.tsx` statement creates mutable state that you can reference in the UI. The state updates as the application runs:
+These `04-zkapp-browser-ui/ui/app/page.tsx` statement creates mutable state that you can reference in the UI. The state updates as the application runs:
 
 ```ts ignore
 ...
-  const [state, setState] = useState({
-    zkappWorkerClient: null as null | ZkappWorkerClient,
-    hasWallet: null as null | boolean,
-    hasBeenSetup: false,
-    accountExists: false,
-    currentNum: null as null | Field,
-    publicKey: null as null | PublicKey,
-    zkappPublicKey: null as null | PublicKey,
-    creatingTransaction: false
-  });
+  const [zkappWorkerClient, setZkappWorkerClient] = useState<null | ZkappWorkerClient>(null);
+  const [hasWallet, setHasWallet] = useState<null | boolean>(null);
+  const [hasBeenSetup, setHasBeenSetup] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
+  const [currentNum, setCurrentNum] = useState<null | Field>(null);
+  const [publicKeyBase58, setPublicKeyBase58] = useState('');
+  const [creatingTransaction, setCreatingTransaction] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const [transactionlink, setTransactionLink] = useState('');
 ...
 ```
 
