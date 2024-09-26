@@ -317,31 +317,36 @@ Execute the following commands being within the `04-zkapp-browser-ui/ui/` direct
 
 ### Wait for the fee payer account to be funded
 
-Now that the UI setup is finished, a new effect waits for the fee payer account to be funded if it didn't before by checking the account presence in ledger.
+Now that the UI setup is finished, a new useEffect waits for the fee payer account to be funded if it didn't before by checking the account presence in ledger.
 
 Don't forget that if the account has been newly created, it must be funded from the Faucet.
 
 ```ts ignore
 ...
   useEffect(() => {
-    (async () => {
-      if (state.hasBeenSetup && !state.accountExists) {
-        for (;;) {
-          setDisplayText('Checking if fee payer account exists...');
-          console.log('Checking if fee payer account exists...');
-          const res = await state.zkappWorkerClient!.fetchAccount({
-            publicKey: state.publicKey!
-          });
-          const accountExists = res.error == null;
-          if (accountExists) {
-            break;
-          }
-          await new Promise((resolve) => setTimeout(resolve, 5000));
+    const checkAccountExists = async () => {
+      if (hasBeenSetup && !accountExists) {
+        try { 
+          for (;;) {
+            displayStep('Checking if fee payer account exists...');
+            
+            const res = await zkappWorkerClient!.fetchAccount(publicKeyBase58);
+            const accountExists = res.error == null;
+            if (accountExists) {
+              break;
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          } 
+        } catch (error: any) {
+          displayStep(`Error checking account: ${error.message}`);
         }
-        setState({ ...state, accountExists: true });
+
       }
-    })();
-  }, [state.hasBeenSetup]);
+      setAccountExists(true);
+    };
+
+    checkAccountExists();
+  }, [zkappWorkerClient, hasBeenSetup, accountExists]); 
 ...
 ```
 
