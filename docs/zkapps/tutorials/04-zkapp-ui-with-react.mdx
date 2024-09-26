@@ -262,22 +262,17 @@ To learn more about `useEffect` hooks, see [useEffect](https://react.dev/referen
 ...
   await zkappWorkerClient.loadContract();
 
-  console.log('Compiling zkApp...');
-  setDisplayText('Compiling zkApp...');
+  displayStep('Compiling zkApp...');
   await zkappWorkerClient.compileContract();
-  console.log('zkApp compiled');
-  setDisplayText('zkApp compiled...');
+  displayStep('zkApp compiled');
 
-  const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
+  await zkappWorkerClient.initZkappInstance(ZKAPP_ADDRESS);
 
-  await zkappWorkerClient.initZkappInstance(zkappPublicKey);
-
-  console.log('Getting zkApp state...');
-  setDisplayText('Getting zkApp state...');
-  await zkappWorkerClient.fetchAccount({ publicKey: zkappPublicKey });
+  displayStep('Getting zkApp state...');
+  await zkappWorkerClient.fetchAccount(ZKAPP_ADDRESS);
   const currentNum = await zkappWorkerClient.getNum();
-  console.log(`Current state in zkApp: ${currentNum.toString()}`);
-  setDisplayText('');
+  setCurrentNum(currentNum);
+  console.log(`Current state in zkApp: ${currentNum}`);
 ...
 ```
 
