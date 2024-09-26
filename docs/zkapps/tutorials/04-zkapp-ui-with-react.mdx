@@ -280,16 +280,9 @@ To learn more about `useEffect` hooks, see [useEffect](https://react.dev/referen
 
 ```ts ignore
 ...
-  setState({
-    ...state,
-    zkappWorkerClient,
-    hasWallet: true,
-    hasBeenSetup: true,
-    publicKey,
-    zkappPublicKey,
-    accountExists,
-    currentNum
-  });
+  setHasBeenSetup(true);
+  setHasWallet(true);
+  setDisplayText('');
 ...
 ```
 
