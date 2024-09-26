@@ -357,42 +357,34 @@ These functions will be triggered on buttons press.
 ```ts ignore
 ...
   const onSendTransaction = async () => {
-    setState({ ...state, creatingTransaction: true });
+    setCreatingTransaction(true);
+    displayStep('Creating a transaction...');
+   
+    console.log('publicKeyBase58 sending to worker', publicKeyBase58);
+    await zkappWorkerClient!.fetchAccount(publicKeyBase58);
 
-    setDisplayText('Creating a transaction...');
-    console.log('Creating a transaction...');
+    await zkappWorkerClient!.createUpdateTransaction();
 
-    await state.zkappWorkerClient!.fetchAccount({
-      publicKey: state.publicKey!
-    });
+    displayStep('Creating proof...');
+    await zkappWorkerClient!.proveUpdateTransaction();
 
-    await state.zkappWorkerClient!.createUpdateTransaction();
+    displayStep('Requesting send transaction...');
+    const transactionJSON = await zkappWorkerClient!.getTransactionJSON();
 
-    setDisplayText('Creating proof...');
-    console.log('Creating proof...');
-    await state.zkappWorkerClient!.proveUpdateTransaction();
-
-    console.log('Requesting send transaction...');
-    setDisplayText('Requesting send transaction...');
-    const transactionJSON = await state.zkappWorkerClient!.getTransactionJSON();
-
-    setDisplayText('Getting transaction JSON...');
-    console.log('Getting transaction JSON...');
+    displayStep('Getting transaction JSON...');
     const { hash } = await (window as any).mina.sendTransaction({
       transaction: transactionJSON,
       feePayer: {
         fee: transactionFee,
-        memo: ''
-      }
+        memo: '',
+      },
     });
 
     const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
-    console.log(`View transaction at ${transactionLink}`);
-
     setTransactionLink(transactionLink);
     setDisplayText(transactionLink);
 
-    setState({ ...state, creatingTransaction: false });
+    setCreatingTransaction(true);
   };
 
   const onRefreshCurrentNum = async () => {
