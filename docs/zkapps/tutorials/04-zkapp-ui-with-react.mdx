@@ -168,7 +168,7 @@ The example project has a completed app. The `index.page.tsx` file is the entry 
 
 ### Environment configuration
 
-- In `04-zkapp-browser-ui/ui/src/pages/index.page.tsx`
+- In `04-zkapp-browser-ui/ui/app/page.tsx`
 
   ```ts ignore
   let transactionFee = 0.1;
@@ -177,7 +177,7 @@ The example project has a completed app. The `index.page.tsx` file is the entry 
 
   The smart contract that the UI interacts with in this tutorial has been deployed to the Devnet and the public key is stored in the `ZKAPP_ADDRESS` variable. If you experience problems with the deployed contract, you can [deploy](deploying-to-a-network) the `Add` contract included in the `contracts` folder yourself to any other network. When deployed, replace `ZKAPP_ADDRESS` variable with the public key of your own deployed zkApp.
 
-- In `04-zkapp-browser-ui/ui/src/pages/zkappWorker.ts`
+- In `04-zkapp-browser-ui/ui/app/zkappWorker.ts`
 
   ```ts ignore
   setActiveInstanceToDevnet: async (args: {}) => {
