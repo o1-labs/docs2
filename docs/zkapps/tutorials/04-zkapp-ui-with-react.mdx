@@ -238,25 +238,22 @@ To learn more about `useEffect` hooks, see [useEffect](https://react.dev/referen
 ```ts ignore
 ...
   const mina = (window as any).mina;
-
   if (mina == null) {
-    setState({ ...state, hasWallet: false });
+    setHasWallet(false);
+    displayStep('Wallet not found.');
     return;
   }
 
   const publicKeyBase58: string = (await mina.requestAccounts())[0];
-  const publicKey = PublicKey.fromBase58(publicKeyBase58);
+  setPublicKeyBase58(publicKeyBase58);
+  displayStep(`Using key:${publicKeyBase58}`);
 
-  console.log(`Using key:${publicKey.toBase58()}`);
-  setDisplayText(`Using key:${publicKey.toBase58()}`);
-
-  setDisplayText('Checking if fee payer account exists...');
-  console.log('Checking if fee payer account exists...');
-
-  const res = await zkappWorkerClient.fetchAccount({
-    publicKey: publicKey!
-  });
-  const accountExists = res.error == null;
+  displayStep('Checking if fee payer account exists...');
+  const res = await zkappWorkerClient.fetchAccount(
+  publicKeyBase58,
+  );
+  const accountExists = res.error === null;
+  setAccountExists(accountExists);
 ...
 ```
 
