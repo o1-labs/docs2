@@ -405,19 +405,26 @@ These functions will be triggered on buttons press.
 
 ```ts ignore
 ...
-  let hasWallet;
-  if (state.hasWallet != null && !state.hasWallet) {
+  let auroLinkElem;
+  if (hasWallet === false) {
     const auroLink = 'https://www.aurowallet.com/';
-    const auroLinkElem = (
-      <a href={auroLink} target="_blank" rel="noreferrer">
-        Install Auro wallet here
-      </a>
+    auroLinkElem = (
+      <div>
+        Could not find a wallet.{' '}
+        <a href="https://www.aurowallet.com/" target="_blank" rel="noreferrer">
+          Install Auro wallet here
+        </a>
+      </div>
     );
-    hasWallet = <div>Could not find a wallet. {auroLinkElem}</div>;
   }
 
   const stepDisplay = transactionlink ? (
-    <a href={transactionlink} target="_blank" rel="noreferrer" style={{ textDecoration: 'underline' }}>
+    <a
+      href={transactionlink}
+      target="_blank"
+      rel="noreferrer"
+      style={{ textDecoration: 'underline' }}
+    >
       View transaction
     </a>
   ) : (
@@ -430,14 +437,14 @@ These functions will be triggered on buttons press.
       style={{ fontWeight: 'bold', fontSize: '1.5rem', paddingBottom: '5rem' }}
     >
       {stepDisplay}
-      {hasWallet}
+      {auroLinkElem}
     </div>
   );
 
   let accountDoesNotExist;
-  if (state.hasBeenSetup && !state.accountExists) {
+  if (hasBeenSetup && !accountExists) {
     const faucetLink =
-      'https://faucet.minaprotocol.com/?address=' + state.publicKey!.toBase58();
+      `https://faucet.minaprotocol.com/?address='${publicKeyBase58}`;
     accountDoesNotExist = (
       <div>
         <span style={{ paddingRight: '1rem' }}>Account does not exist.</span>
@@ -449,16 +456,16 @@ These functions will be triggered on buttons press.
   }
 
   let mainContent;
-  if (state.hasBeenSetup && state.accountExists) {
+  if (hasBeenSetup && accountExists) {
     mainContent = (
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         <div className={styles.center} style={{ padding: 0 }}>
-          Current state in zkApp: {state.currentNum!.toString()}{' '}
+          Current state in zkApp: {currentNum?.toString()}{' '}
         </div>
         <button
           className={styles.card}
           onClick={onSendTransaction}
-          disabled={state.creatingTransaction}
+          disabled={creatingTransaction}
         >
           Send Transaction
         </button>
