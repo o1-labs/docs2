@@ -182,7 +182,7 @@ The web worker code resides in the `04-zkapp-browser-ui/ui/app/zkappWorker.ts` f
 
 #### Defining State
 
-The state object holds references to the zkAppInstance, AddInstance, transactions, and other necessary components.
+The state object holds references to the zkApp Instance, Add contract instance, and the transactions.
 ```ts ignore
   const state = {
     Add: null as null | typeof Add,
@@ -190,6 +190,48 @@ The state object holds references to the zkAppInstance, AddInstance, transaction
     transaction: null as null | Transaction,
   };
   ```
+
+#### Functions using `o1js` that will be executed in the worker thread
+```ts ignore
+export const api = {
+  async setActiveInstanceToDevnet() {
+    const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
+    console.log('Devnet network instance configured');
+    Mina.setActiveInstance(Network);
+  },
+  async loadContract() {
+    const { Add } = await import('../../contracts/build/src/Add.js');
+    state.Add = Add;
+  },
+  async compileContract() {
+    await state.Add!.compile();
+  },
+  async fetchAccount(publicKey58: string) {
+
+    const publicKey = PublicKey.fromBase58(publicKey58);
+    return fetchAccount({ publicKey });
+  },
+  async initZkappInstance(publicKey58: string) {
+    const publicKey = PublicKey.fromBase58(publicKey58);
+    state.zkapp = new state.Add!(publicKey);
+  },
+  async getNum() {
+    const currentNum = await state.zkapp!.num.get();
+    return JSON.stringify(currentNum.toJSON());
+  },
+  async createUpdateTransaction() {
+    state.transaction = await Mina.transaction(async () => {
+      await state.zkapp!.update();
+    });
+  },
+  async proveUpdateTransaction() {
+    await state.transaction!.prove();
+  },
+  async getTransactionJSON() {
+    return state.transaction!.toJSON();
+  },
+};
+```  
 
 ### Environment configuration
 
