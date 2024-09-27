@@ -180,7 +180,16 @@ The example project has a completed app. The `page.tsx` file is the entry file f
 
 The web worker code resides in the `04-zkapp-browser-ui/ui/app/zkappWorker.ts` file. Here, you define the functions that will be executed in the worker thread.
 
+#### Defining State
 
+The state object holds references to the zkAppInstance, AddInstance, transactions, and other necessary components.
+```ts ignore
+  const state = {
+    Add: null as null | typeof Add,
+    zkapp: null as null | Add,
+    transaction: null as null | Transaction,
+  };
+  ```
 
 ### Environment configuration
 
