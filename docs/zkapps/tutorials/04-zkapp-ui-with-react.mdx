@@ -232,6 +232,12 @@ export const api = {
   },
 };
 ```  
+#### Expose functions to the main thread with `comlink`
+
+```ts ignore
+// Expose the API to be used by the main thread
+Comlink.expose(api);
+```
 
 ### Environment configuration
 
