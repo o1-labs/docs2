@@ -242,6 +242,12 @@ Comlink.expose(api);
 
 The web worker client code resides in the `04-zkapp-browser-ui/ui/app/zkappWorkerClient.ts` file. Here you create a client in the main thread that interacts with the web worker.
 
+- In the constructor create a new Worker instance pointing to the `zkappWorker.ts` file.
+  ```ts
+  constructor() {
+    // Initialize the worker from the zkappWorker module
+    const worker = new Worker(new URL('./zkappWorker.ts', import.meta.url), { type: 'module' });
+  ```
 
 ### Environment configuration
 
