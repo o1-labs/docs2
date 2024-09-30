@@ -257,7 +257,7 @@ The web worker client code resides in the `04-zkapp-browser-ui/ui/app/zkappWorke
     // Initialize the worker from the zkappWorker module
     const worker = new Worker(new URL('./zkappWorker.ts', import.meta.url), { type: 'module' });
   ```
-- Create a proxy object `remoteApi` that provides typesafe access to the worker's API methods.
+- With `Comlink.wrap`, create a proxy object `remoteApi` that provides typesafe access the worker's API methods.
 
   ```ts
     // Wrap the worker with Comlink to enable direct method invocation
