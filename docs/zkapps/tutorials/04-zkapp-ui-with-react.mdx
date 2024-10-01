@@ -259,6 +259,11 @@ The web worker client code resides in the `04-zkapp-browser-ui/ui/app/zkappWorke
   ```
 - With `Comlink.wrap`, create a proxy object `remoteApi` that provides typesafe access the worker's API methods.
 
+  ```ts
+    // Wrap the worker with Comlink to enable direct method invocation
+    this.remoteApi = Comlink.wrap(this.worker);
+  ```    
+
 - Define methods in the ZkappWorkerClient class that call the corresponding method on `remoteApi`, effectively forwarding the calls to the worker.
 
   ```ts
@@ -299,13 +304,6 @@ The web worker client code resides in the `04-zkapp-browser-ui/ui/app/zkappWorke
       return this.remoteApi.getTransactionJSON();
     }
   ```
-
-
-  ```ts
-    // Wrap the worker with Comlink to enable direct method invocation
-    this.remoteApi = Comlink.wrap(this.worker);
-  ```    
-
 
 ### Environment configuration
 
