@@ -142,8 +142,6 @@ export default function Home() {
     });
 
     const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
-    console.log(`View transaction at ${transactionLink}`);
-
     setTransactionLink(transactionLink);
     setDisplayText(transactionLink);
 
