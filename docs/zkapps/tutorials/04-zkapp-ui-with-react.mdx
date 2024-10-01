@@ -241,7 +241,7 @@ Comlink.expose(api);
 
 The web worker client code resides in the `04-zkapp-browser-ui/ui/app/zkappWorkerClient.ts` file. Here you create a client in the main thread that interacts with the web worker.
 
-- `Worker` is a reference to the Worker instance and `remoteApi` is a reference to a proxy object that provides typesafe access to the worker's API methods.
+- `worker` is a reference to the web worker instance and `remoteApi` is a reference to a proxy object that provides typesafe access to the worker's API methods.
 
   ```ts
   export default class ZkappWorkerClient {
