@@ -6,7 +6,7 @@ type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 const state = {
   AddInstance: null as null | typeof Add,
-  zkapp: null as null | Add,
+  zkappInstance: null as null | Add,
   transaction: null as null | Transaction,
 };
 
@@ -29,15 +29,15 @@ export const api = {
   },
   async initZkappInstance(publicKey58: string) {
     const publicKey = PublicKey.fromBase58(publicKey58);
-    state.zkapp = new state.AddInstance!(publicKey);
+    state.zkappInstance = new state.AddInstance!(publicKey);
   },
   async getNum() {
-    const currentNum = await state.zkapp!.num.get();
+    const currentNum = await state.zkappInstance!.num.get();
     return JSON.stringify(currentNum.toJSON());
   },
   async createUpdateTransaction() {
     state.transaction = await Mina.transaction(async () => {
-      await state.zkapp!.update();
+      await state.zkappInstance!.update();
     });
   },
   async proveUpdateTransaction() {
