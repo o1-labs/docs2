@@ -1,40 +1,35 @@
+import { Mina, PublicKey, fetchAccount } from 'o1js';
 import * as Comlink from "comlink";
 import type { Add } from '../../contracts/src/Add';
 
-
-const getAPI = async () => {
-  const { Mina, PublicKey, fetchAccount } = await import('o1js');
-  type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
-
+type Transaction = Awaited<ReturnType<typeof Mina.transaction>>;
 
 const state = {
-  Add: null as null | typeof Add,
+  AddInstance: null as null | typeof Add,
   zkapp: null as null | Add,
   transaction: null as null | Transaction,
 };
 
-const api = {
+export const api = {
   async setActiveInstanceToDevnet() {
     const Network = Mina.Network('https://api.minascan.io/node/devnet/v1/graphql');
+    console.log('Devnet network instance configured');
     Mina.setActiveInstance(Network);
   },
   async loadContract() {
     const { Add } = await import('../../contracts/build/src/Add.js');
-    state.Add = Add;
+    state.AddInstance = Add;
   },
   async compileContract() {
-    await state.Add!.compile();
+    await state.AddInstance!.compile();
   },
   async fetchAccount(publicKey58: string) {
-    console.log(`fetchAccount Received publicKey58: ${publicKey58}`);
-
     const publicKey = PublicKey.fromBase58(publicKey58);
     return fetchAccount({ publicKey });
   },
   async initZkappInstance(publicKey58: string) {
-    console.log(`initZkappInstance Received publicKey58: ${publicKey58}`);
     const publicKey = PublicKey.fromBase58(publicKey58);
-    state.zkapp = new state.Add!(publicKey);
+    state.zkapp = new state.AddInstance!(publicKey);
   },
   async getNum() {
     const currentNum = await state.zkapp!.num.get();
@@ -51,13 +46,7 @@ const api = {
   async getTransactionJSON() {
     return state.transaction!.toJSON();
   },
-
 };
-return api;
 
-
-}
-
-const api = await getAPI();
 // Expose the API to be used by the main thread
 Comlink.expose(api);
