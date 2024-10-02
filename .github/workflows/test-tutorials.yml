@@ -4,16 +4,37 @@ on:
   push:
 
 jobs:
-  hello-world:
+  run-tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        example-path:
+          - examples/zkapps/01-hello-world
+          - examples/zkapps/02-private-inputs-and-hash-functions
+          - examples/zkapps/05-common-types-and-functions
+          - examples/zkapps/10-account-updates
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          # In case of version change, update README.md accordingly
-          node-version: 18
-      - run: |
-          npm ci
+          node-version: '20'
+      
+      - name: Install dependencies at root level
+        run: npm ci
+      
+      - name: Set Git config (global)
+        run: |
           git config --global user.email "test@example.com"
           git config --global user.name "Test"
-          npx ts-node scripts/tutorial-runner.ts docs/zkapps/tutorials/01-hello-world.mdx
+
+      - name: Install and run build for ${{ matrix.example-path }}
+        run: |
+          cd ${{ matrix.example-path }}
+          npm ci
+          npm run build
+          node build/src/main.js
