@@ -136,21 +136,6 @@ In the `04-zkapp-browser-ui/ui` directory, install `comlink` by running the foll
 $ npm install comlink
 ```
 To learn more about `comlink` , read the [documentation](https://www.npmjs.com/package/comlink).
-## Build the default contract
-
-This tutorial uses the default contract `Add` that is always scaffolded with the `zk project` command.
-
-To build the default contract so that it can be used with UI application, run this command from the `04-zkapp-browser-ui/contracts` directory:
-
-```sh
-$ npm run build
-```
-
-Outside of this tutorial, the workflow for building your own zkApp is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI application code.
-
-## Implement the UI
-
-The UI application has several components: the React page itself and the code that uses o1js.
 
 ### Download helper files
 
@@ -167,6 +152,22 @@ Because o1js code is computationally intensive, it's helpful to use web workers.
 
     - `zkappWorker.ts` is the web worker code
     - `zkappWorkerClient.ts` is the client code that is run from React to interact with the web worker
+    
+## Build the default contract
+
+This tutorial uses the default contract `Add` that is always scaffolded with the `zk project` command.
+
+To build the default contract so that it can be used with UI application, run this command from the `04-zkapp-browser-ui/contracts` directory:
+
+```sh
+$ npm run build
+```
+
+Outside of this tutorial, the workflow for building your own zkApp is to edit files in the `contracts` folder, rebuild the contract, and then access it from your UI application code.
+
+## Implement the UI
+
+The UI application has several components: the React page itself and the code that uses o1js.
 
 ### Download the main browser UI logic file
 
