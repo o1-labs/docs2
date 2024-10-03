@@ -194,7 +194,7 @@ The state object holds references to the zkApp Instance, Add contract instance, 
 
 ##### Defining functions that will run in the worker thread
 
-These functions perform tasks such as setting up the network instance, loading and compiling the smart contract, fetching accounts, interacting with the smart contract, and handling transactions.
+These functions perform tasks such as setting up the network instance, loading and compiling the smart contract, fetching accounts, interacting with the smart contract, and handling transactions. The functions will run in the web worker thread to ensure the UI thread is not blocked during long computations.
 
 ```ts ignore
 export const api = {
