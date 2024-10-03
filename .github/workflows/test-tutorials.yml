@@ -2,6 +2,8 @@ name: Test-Tutorials
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   run-tests:
