@@ -1528,6 +1528,11 @@ module.exports = {
         'participate/bugs-and-feature-requests',
       ],
     },
+    {
+    type: 'doc',
+    label: 'Mina Security',
+    id: 'mina-security',
+    },    
     'glossary',
   ],
 };
