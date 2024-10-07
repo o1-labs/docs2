@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-tests:
+  test-tutorials:
     runs-on: ubuntu-latest
 
     strategy:
