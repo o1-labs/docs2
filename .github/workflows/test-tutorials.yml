@@ -1,6 +1,4 @@
 name: Test-Tutorials
-
-name: Tutorials tests
 on:
   push:
     branches:
@@ -13,6 +11,7 @@ jobs:
 
     strategy:
       matrix:
+        node-version: [18, 20, 22]
         example-path:
           - examples/zkapps/01-hello-world
           - examples/zkapps/02-private-inputs-and-hash-functions
@@ -26,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
       
       - name: Set Git config (global)
         run: |
