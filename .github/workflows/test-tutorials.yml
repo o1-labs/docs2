@@ -26,9 +26,6 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Install dependencies at root level
-        run: npm ci
-      
       - name: Set Git config (global)
         run: |
           git config --global user.email "test@example.com"
