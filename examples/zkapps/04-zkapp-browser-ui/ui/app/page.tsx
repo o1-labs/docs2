@@ -1,5 +1,5 @@
 'use client';
-import { Field, PublicKey } from 'o1js';
+import { Field } from 'o1js';
 import { useEffect, useState } from 'react';
 import GradientBG from '../components/GradientBG';
 import styles from '../styles/Home.module.css';
