@@ -16,11 +16,11 @@ keywords:
 
 # ZkApp Upgradability
 
-The Mina protocol allows for the upgrading of verification keys on-chain.  This article will demonstrate some specific examples of how to upgrade a ZkApp.
+The Mina protocol allows for the upgrading of verification keys on-chain.  This article will demonstrate how to upgrade a ZkApp.
 
 ### First: A note on Permissions
 
-Please carefully review the [Permissions](/zkapps/writing-a-zkapp/feature-overview/permissions) article to understand the security model of who can upgrade a smart contract.  This walkthrough of upgradability will assume that you know how Permissions work on Mina.
+Permissions regarding ZkApp upgrades are thoroughly covered in: [Permissions](/zkapps/writing-a-zkapp/feature-overview/permissions#upgradeability-of-smart-contracts).  The Permissions article explains the security assumptions in more detail, while this article explains how to perform an upgrade.
 
 ### Second: A note on Mina's execution model
 
@@ -88,7 +88,7 @@ const contractAddress = zkAppKey.toPublicKey();
 
 const upgradeTx = await Mina.transaction({ sender, fee },
   async () => {
-    const update = AccountUpdate.createSigned(zkApp.address);
+    const update = AccountUpdate.createSigned(contractAddress);
     update.update.verificationKey = {
       isSome: Bool(true),
       value: verificationKey,
