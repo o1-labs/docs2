@@ -100,3 +100,103 @@ await tx.send();
 ```
 
 And just like that, when the transaction is applied to the blockchain, the verification key at the ZkApp address will be updated from `"27729068461170601362912907281403262888852363473424470267835507636847418791713"` to `"18150279532259194644722165513074833862035641840431153413486908511595437348455"`!
+
+## Upgrades with More Surface Area
+
+In the previous example, we changed one small variable in the smart contract but kept the state and methods the same.  However, there is no limit to what you can change via upgrade.  Let's go through one more example where more things have changed.
+
+```ts
+import { Field, SmartContract, state, State, method } from 'o1js';
+
+export class AddV3 extends SmartContract {
+  @state(Field) num = State<Field>();
+  @state(Field) callCount = State<Field>();
+
+  init() {
+    super.init();
+    this.num.set(Field(1));
+  }
+
+  @method async add2() {
+    this.add(2);
+  }
+
+  @method async add5() {
+    this.add(5);
+  }
+
+  @method async add10() {
+    this.add(10);
+  }
+
+  async add(n: number) {
+    const callCount = this.callCount.getAndRequireEquals();
+    const currentState = this.num.getAndRequireEquals();
+    const newState = currentState.add(n);
+    this.callCount.set(callCount.add(1));
+    this.num.set(newState);
+  }
+}
+```
+
+This new contract is more of a departure from our original design.  It has an extra piece of state that tracks how many times it has been called, and it allows for different operands to be used in the addition.  It is a valid upgrade path to go from `AddV1` to `AddV3`.
+
+```ts
+// The same pattern applies!
+const verificationKey = (await AddV3.compile()).verificationKey;
+const contractAddress = zkAppKey.toPublicKey();
+
+const upgradeTx = await Mina.transaction({ sender, fee },
+  async () => {
+    const update = AccountUpdate.createSigned(contractAddress);
+    update.update.verificationKey = {
+      isSome: Bool(true),
+      value: verificationKey,
+    };
+  }
+);
+await tx.sign([senderKey, zkAppKey]).prove();
+await tx.send();
+```
+
+### State Variables
+
+**Warning**: If you change the order of the state in your upgraded contract, the upgrade will not match the states in the correct order
+
+Keep in mind that the state won't be reset when you upgrade.  `init` will also not be called again.  No raw values in the current state of your deployed contract will be edited by an upgrade other than the verification key.
+
+Make sure to avoid re-ordering state variables as in this unsafe example:
+
+```ts
+import { Field, SmartContract, state, State, method } from 'o1js';
+
+export class AddV3Unsafe extends SmartContract {
+  @state(Field) callCount = State<Field>(); // `num` used to be first!
+  @state(Field) num = State<Field>(); // 
+
+  init() {
+    super.init();
+    this.num.set(Field(1));
+  }
+
+  @method async add2() {
+    this.add(2);
+  }
+
+  @method async add5() {
+    this.add(5);
+  }
+
+  @method async add10() {
+    this.add(10);
+  }
+
+  async add(n: number) {
+    const callCount = this.callCount.getAndRequireEquals();
+    const currentState = this.num.getAndRequireEquals();
+    const newState = currentState.add(n);
+    this.callCount.set(callCount.add(1));
+    this.num.set(newState);
+  }
+}
+```
