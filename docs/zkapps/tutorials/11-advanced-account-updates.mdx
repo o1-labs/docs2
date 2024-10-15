@@ -48,9 +48,7 @@ To implement, you need three contracts:
 2. `TokenUser`: A zkApp contract that manages tokens. This contract is instantiated on the Mina (default) `tokenId`.
 3. `TokenHolder`: A zkApp contract that stores tokens on behalf of the `TokenUser` contract. This contract is instantiated on the `MyToken` instance of `tokenId`.
 
-The full code is provided in the [examples/zkapps/11-advanced-account-updates/](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/) folder.
-
-As shown in the [main.ts](https://github.com/o1-labs/docs2/blob/main/examples/zkapps/11-advanced-account-updates/src/main.ts) example file, a token standard library abstracts many of these details away for standard use. This tutorial helps you understand what the library is doing and how to think about a zkApp manager account.
+A token standard library abstracts many of these details away for standard use. This tutorial helps you understand what the library is doing and how to think about a zkApp manager account.
 
 Set up the contracts as follows:
 
@@ -191,5 +189,3 @@ A token standard library abstracts many of these details away for standard use.
 ## Conclusion
 
 Congratulations! You have explored some of the advanced features of account updates and are equipped to build with token zkApp manager accounts.
-
-To see how to apply token managers in a more complex example, see the [wrappedMinaToken implementation](https://github.com/o1-labs/docs2/tree/main/examples/zkapps/11-advanced-account-updates/src/wrappedMinaMain.ts).
