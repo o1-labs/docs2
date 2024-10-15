@@ -1,0 +1,102 @@
+---
+title: Upgradability
+hide_title: true
+description: Detailed guide on upgrading zkapps by setting the verification key
+keywords:
+  - permissions
+  - zkapp development
+  - smart contracts
+  - mina
+  - smart contract security
+  - smart contract Upgradability
+  - o1js
+  - mina transaction
+  - blockchain
+---
+
+# ZkApp Upgradability
+
+The Mina protocol allows for the upgrading of verification keys on-chain.  This article will demonstrate some specific examples of how to upgrade a ZkApp.
+
+### First: A note on Permissions
+
+Please carefully review the [Permissions](/zkapps/writing-a-zkapp/feature-overview/permissions) article to understand the security model of who can upgrade a smart contract.  This walkthrough of upgradability will assume that you know how Permissions work on Mina.
+
+### Second: A note on Mina's execution model
+
+Upgradability on other blockchains may mean that a user thinks they're using one program, but since it has been upgraded, they are actually using another program.  Two programs with the same function signature may have very different behavior and result in a bad or unsafe user experience.  Mina's execution model is different.  On Mina, users run their own program and upload the proof to the blockchain for verification only.  So what it means to upgrade a ZkApp is only to change the verification key on-chain.  Proofs generated with an older prover function will not be valid, and users will need to download the new prover function to generate a valid proof.
+
+## Baseline ZkApp
+
+For example, let's use our standard `Add` example smart contract as the baseline ZkApp.
+
+```ts
+import { Field, SmartContract, state, State, method } from 'o1js';
+
+export class Add extends SmartContract {
+  @state(Field) num = State<Field>();
+
+  init() {
+    super.init();
+    this.num.set(Field(1));
+  }
+
+  @method async update() {
+    const currentState = this.num.getAndRequireEquals();
+    const newState = currentState.add(2);
+    this.num.set(newState);
+  }
+}
+```
+
+This contract has a verification key of `"27729068461170601362912907281403262888852363473424470267835507636847418791713"`
+
+## Upgraded ZkApp
+
+For our upgraded contract, let's use this updated example which adds by 4 instead of by 2.
+
+```ts
+import { Field, SmartContract, state, State, method } from 'o1js';
+
+export class AddV2 extends SmartContract {
+  @state(Field) num = State<Field>();
+
+  init() {
+    super.init();
+    this.num.set(Field(1));
+  }
+
+  @method async update() {
+    const currentState = this.num.getAndRequireEquals();
+    const newState = currentState.add(4);
+    this.num.set(newState);
+  }
+}
+```
+
+This contract has a verification key of `"18150279532259194644722165513074833862035641840431153413486908511595437348455"`
+
+## Upgrading a ZkApp
+
+Upgrading a ZkApp by signature can be done if you control the private key of a ZkApp.  To do this, you need to sign a transaction that upgrades the ZkApp with that key.
+
+Imagine we have already deployed the `Add` contract, and we have the private key available as `zkAppKey`
+
+```ts
+const verificationKey = (await AddV2.compile()).verificationKey;
+const contractAddress = zkAppKey.toPublicKey();
+
+const upgradeTx = await Mina.transaction({ sender, fee },
+  async () => {
+    const update = AccountUpdate.createSigned(zkApp.address);
+    update.update.verificationKey = {
+      isSome: Bool(true),
+      value: verificationKey,
+    };
+  }
+);
+await tx.sign([senderKey, zkAppKey]).prove();
+await tx.send();
+```
+
+And just like that, when the transaction is applied to the blockchain, the verification key at the ZkApp address will be updated from `"27729068461170601362912907281403262888852363473424470267835507636847418791713"` to `"18150279532259194644722165513074833862035641840431153413486908511595437348455"`!
