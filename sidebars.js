@@ -121,6 +121,7 @@ module.exports = {
                 'zkapps/writing-a-zkapp/feature-overview/on-chain-values',
                 'zkapps/writing-a-zkapp/feature-overview/offchain-storage',
                 'zkapps/writing-a-zkapp/feature-overview/permissions',
+                'zkapps/writing-a-zkapp/feature-overview/upgradability',
                 'zkapps/writing-a-zkapp/feature-overview/events',
                 'zkapps/writing-a-zkapp/feature-overview/actions-and-reducer',
                 'zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions',
@@ -1529,10 +1530,10 @@ module.exports = {
       ],
     },
     {
-    type: 'doc',
-    label: 'Mina Security',
-    id: 'mina-security',
-    },    
+      type: 'doc',
+      label: 'Mina Security',
+      id: 'mina-security',
+    },
     'glossary',
   ],
 };
