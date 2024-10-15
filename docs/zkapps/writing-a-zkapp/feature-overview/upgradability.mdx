@@ -172,7 +172,7 @@ import { Field, SmartContract, state, State, method } from 'o1js';
 
 export class AddV3Unsafe extends SmartContract {
   @state(Field) callCount = State<Field>(); // `num` used to be first!
-  @state(Field) num = State<Field>(); // 
+  @state(Field) num = State<Field>();
 
   init() {
     super.init();
