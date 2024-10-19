@@ -5,10 +5,13 @@
 #
 
 name: Algolia-Search
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    
 jobs:
   wait-for-vercel:
     runs-on: ubuntu-latest
