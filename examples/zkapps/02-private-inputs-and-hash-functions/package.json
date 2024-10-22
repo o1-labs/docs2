@@ -43,6 +43,6 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "o1js": "1.*"
+    "o1js": "https://pkg.pr.new/o1-labs/o1js@b04520d"
   }
 }
