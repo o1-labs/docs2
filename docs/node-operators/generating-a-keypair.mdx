@@ -74,7 +74,7 @@ Generate a new public, private keypair
     ```sh
     echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
     sudo apt-get update
-    sudo apt-get install -y mina-mainnet=3.0.0-93e0279
+    sudo apt-get install -y mina-mainnet=3.0.2-4aac388
     ```
 
 1. Verify that the key generation tool installed correctly:
@@ -86,7 +86,7 @@ Generate a new public, private keypair
     The expected output is:
 
     ```
-    Commit 93e02797f72abe2cbf8dfca6f2328e9c8cd76546 on branch berkeley
+    Commit 4aac38814556b9641ffbdfaef19b38ab7980011b
     ```
 
 ### macOS, Windows, and platforms other than Ubuntu and Debian
@@ -129,7 +129,7 @@ Make sure to set a new and secure password for the following commands. Mina will
     cd ~
     docker run -it --rm --entrypoint "" \
            --volume $(pwd)/keys:/keys \
-           minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet \
+           minaprotocol/mina-daemon:3.0.2-4aac388-bullseye-mainnet \
            mina advanced generate-keypair --privkey-path /keys/my-wallet
     ```
 
@@ -163,7 +163,7 @@ On Docker:
 ```
 docker run -it --rm --entrypoint "" \
         --volume $(pwd)/keys:/keys \
-        minaprotocol/mina-daemon:3.0.0-93e0279-bullseye-mainnet \
+        minaprotocol/mina-daemon:3.0.2-4aac388-bullseye-mainnet \
         mina advanced validate-keypair --privkey-path /keys/my-wallet
 ```
 
