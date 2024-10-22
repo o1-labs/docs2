@@ -29,7 +29,7 @@ jobs:
         run: |
           # Install dependencies and build o1js
           cd o1js
-          git submodule update --init --recursive
+          GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
           npm ci && npm run build
           cd src/mina-signer && npm ci && npm run build && cd ../../
 
