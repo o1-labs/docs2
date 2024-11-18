@@ -15,12 +15,6 @@ import WeChatLogo from '@site/static/svg/socials/wechat_24x24.svg';
 import YoutubeLogo from '@site/static/svg/socials/youtube_24x24.svg';
 import { FormSubmitUrl } from '@site/src/constants';
 
-function getCurrentYear(){
-  const today = new Date();
-  const year = today.getFullYear();
-  return year;
-}
-
 function Footer(): JSX.Element | null {
   const [email, setEmail] = React.useState('');
   const [isSubmitted, setIsSubmitted] = React.useState(false);
@@ -236,7 +230,7 @@ function Footer(): JSX.Element | null {
           </ul>
         </div>
         <div className={styles.minaFooter_legals__info}>
-          ©{getCurrentYear()} Mina Foundation. All rights reserved.
+          ©2024 Mina Foundation. All rights reserved.
         </div>
       </div>
     </footer>
