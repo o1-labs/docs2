@@ -32,7 +32,7 @@ services:
     ports:
       - '5432:5432'
   bootstrap_db:
-    image: 'minaprotocol/mina-archive:3.0.2-4aac388-bullseye'
+    image: 'minaprotocol/mina-archive:3.0.3-d800da8-bullseye'
     # image: 'gcr.io/o1labs-192920/mina-archive:3.0.1-alpha1-0473756-bullseye' # Use this image for Devnet
     command: >
       bash -c '
@@ -51,7 +51,7 @@ services:
       postgres:
         condition: service_healthy
   missing_blocks_guardian:
-    image: 'minaprotocol/mina-archive:3.0.2-4aac388-bullseye'
+    image: 'minaprotocol/mina-archive:3.0.3-d800da8-bullseye'
     # image: 'gcr.io/o1labs-192920/mina-archive:3.0.1-alpha1-0473756-bullseye' # Use this image for Devnet
     command: >
       bash -c '
@@ -66,7 +66,7 @@ services:
       bootstrap_db:
         condition: service_completed_successfully
   mina_archive:
-    image: 'minaprotocol/mina-archive:3.0.2-4aac388-bullseye'
+    image: 'minaprotocol/mina-archive:3.0.3-d800da8-bullseye'
     restart: always
     command:
       - mina-archive
@@ -81,7 +81,7 @@ services:
       bootstrap_db:
         condition: service_completed_successfully
   mina_node:
-    image: 'minaprotocol/mina-daemon:3.0.2-4aac388-bullseye-mainnet'
+    image: 'minaprotocol/mina-daemon:3.0.3-d800da8-bullseye-mainnet'
     # image: 'gcr.io/o1labs-192920/mina-daemon:3.0.1-alpha1-0473756-bullseye-devnet' # Use this image for Devnet
     restart: always
     entrypoint: []
