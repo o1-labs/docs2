@@ -55,13 +55,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=3.0.2-4aac388
+     sudo apt-get install mina-archive=3.0.3-d800da8
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:3.0.2-4aac388-bullseye
+     minaprotocol/mina-archive:3.0.3-d800da8-bullseye
      ```
 
 ## Set up the archive node
@@ -125,7 +125,7 @@ To get started with installing and running the archive node using Docker, follow
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:3.0.2-4aac388-bullseye
+   docker pull minaprotocol/mina-archive:3.0.3-d800da8-bullseye
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -168,7 +168,7 @@ To get started with installing and running the archive node using Docker, follow
    --name archive \
    -p 3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:3.0.2-4aac388-bullseye \
+   minaprotocol/mina-archive:3.0.3-d800da8-bullseye \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -212,7 +212,7 @@ To run the archive node using Docker Compose:
 3. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:3.0.2-4aac388-bullseye
+   docker pull minaprotocol/mina-archive:3.0.3-d800da8-bullseye
    ```
 
 4. Pull and install the postgres image from Docker Hub.
@@ -240,7 +240,7 @@ To run the archive node using Docker Compose:
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:3.0.2-4aac388-bullseye'
+       image: 'minaprotocol/mina-archive:3.0.3-d800da8-bullseye'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086
