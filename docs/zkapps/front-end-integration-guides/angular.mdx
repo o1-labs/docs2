@@ -219,7 +219,7 @@ npm i @angular-builders/custom-webpack
         - rename the browser property to `main` in `options`.
         - add  `"customWebpackConfig": { "path": "./webpack.config.js" },` to `options`.
         - delete `server`, `prerender`, and `ssr` from `options`.
-    - In `angular.json` under `/projects/angular-o1js-demo/architect/serve`, replace the default builder `"builder": "@angular-devkit/build-angular:dev-server",` with ` "builder": "@angular-builders/custom-webpack:dev-server".
+    - In `angular.json` under `/projects/angular-o1js-demo/architect/serve`, replace the default builder `"builder": "@angular-devkit/build-angular:dev-server",` with `"builder": "@angular-builders/custom-webpack:dev-server"`.
 - The build targets should look like this:
 
 ```json
