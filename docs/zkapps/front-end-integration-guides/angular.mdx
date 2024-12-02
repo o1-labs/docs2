@@ -1,5 +1,5 @@
 ---
-title: Angular and Github Pages
+title: Angular and GitHub Pages
 description: Getting started with Angular
 keywords:
   - angular
@@ -20,7 +20,7 @@ keywords:
 
 ## Initialize the Project
 
-- Install the Angular cli globally:
+- Install the Angular CLI globally:
 
 ```bash
 npm install -g @angular/cli
@@ -32,7 +32,7 @@ npm install -g @angular/cli
 ng new <project-name>
 ```
 
-- Install the Angular cli `npm install -g @angular/cli`
+- Install the Angular CLI `npm install -g @angular/cli`
 - Create a new project `ng new <project-name>`
     - Select your preferred stylesheet format.
     - For **Server-Side Rendering (SSR)** and **Static Site Generation (SSG/Prerendering)**, choose **Yes**.
@@ -59,7 +59,7 @@ cd ../
 npm install -g zkapp-cli
 ```
 
-- Initialize a new zkapp with the cli. When prompted to create a UI project, select **none**.
+- Initialize a new zkapp with the CLI. When prompted to create a UI project, select **none**.
 
 ```bash
 zk project add
@@ -77,7 +77,7 @@ npm run build
 
 ## Call Contracts
 
-- Move back into the angular project.
+- Move back into the Angular project.
 - To interact with the deployed `Add` contract, we’ll add code to fetch the current state and initiate a transaction. This code will execute only in the browser, so we'll add it to `afterNextRender` in the constructor of `src/app/app.component.ts`.
     - `afterNextRender` only runs after the Angular component has fully rendered.
     - The Auro wallet injects a Mina provider into the global context. It is accessible as `window.mina`.
@@ -102,17 +102,17 @@ export class AppComponent {
       const {Mina, PublicKey, fetchAccount} = await import('o1js');
       const {Add} = await import('../../../add');
       // connect the Mina instance to testnet
-Mina.setActiveInstance(Mina.Network('https://api.minascan.io/node/devnet/v1/graphql'));
+      Mina.setActiveInstance(Mina.Network('https://api.minascan.io/node/devnet/v1/graphql'));
       // we've already deployed the Add contract on testnet at this address
-      // <https://minascan.io/devnet/account/B62qnTDEeYtBHBePA4yhCt4TCgDtA4L2CGvK7PirbJyX4pKH8bmtWe5>
-const zkAppAddress = `B62qnTDEeYtBHBePA4yhCt4TCgDtA4L2CGvK7PirbJyX4pKH8bmtWe5`;
+      // https://minascan.io/devnet/account/B62qnTDEeYtBHBePA4yhCt4TCgDtA4L2CGvK7PirbJyX4pKH8bmtWe5
+      const zkAppAddress = `B62qnTDEeYtBHBePA4yhCt4TCgDtA4L2CGvK7PirbJyX4pKH8bmtWe5`;
       await fetchAccount({publicKey: zkAppAddress});
       const zkApp = new Add(PublicKey.fromBase58(zkAppAddress));
       // Read state from the testnet Add contract
-console.log(`Reading state of add contract at ${zkAppAddress}: num=${zkApp.num.get()}`);
+      console.log(`Reading state of add contract at ${zkAppAddress}: num=${zkApp.num.get()}`);
       try {
         // retrieve the injected mina provider if it exists
-const mina = (window as any).mina;
+        const mina = (window as any).mina;
         const walletKey: string = (await mina.requestAccounts())[0];
         console.log(`Injected mina provider address: ${walletKey}`);
         await fetchAccount({publicKey: PublicKey.fromBase58(walletKey)});
@@ -121,32 +121,27 @@ const mina = (window as any).mina;
         console.log("Compiled Add");
 
         // send a transaction with the injected Mina provider
-const transaction = await Mina.transaction(async () => {
+        const transaction = await Mina.transaction(async () => {
           await zkApp.update();
         });
         await transaction.prove();
-        const {hash} = await (window as any).mina.sendTransaction({
+        const {hash} = await mina.sendTransaction({
           transaction: transaction.toJSON(),
         });
 
         // display the link to the transaction
-const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
-        console.log(`View transaction at ${transactionLink}`);
-      } catch (e: any) {
+        const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
+          console.log(`View transaction at ${transactionLink}`);
+        } catch (e: any) {
         console.error(e.message);
-
-        switch (e.message) {
-          case  e.message.includes("Cannot read properties of undefined (reading 'requestAccounts')"):
-            console.error("Is Auro installed?");
-            break;
-          case  e.message.includes("Please create or restore wallet first."):
-            console.error("Have you created a wallet?");
-            break;
-          case  e.message.includes("User rejected the request."):
-            console.error("Did you grant the app permission to connect to your wallet?");
-            break;
-          default:
-            console.error("An unknown error occurred:", e);
+        if (e.message.includes("Cannot read properties of undefined (reading 'requestAccounts')")) {
+         console.error("Is Auro installed?");
+        } else if (e.message.includes("Please create or restore wallet first.")) {
+         console.error("Have you created a wallet?");
+        } else if (e.message.includes("User rejected the request.")) {
+         console.error("Did you grant the app permission to connect to your wallet?");
+        } else {
+         console.error("An unknown error occurred:", e);
         }
       }
     });
@@ -173,7 +168,7 @@ const transactionLink = `https://minascan.io/devnet/tx/${hash}`;
     - Cross-Origin-Opener-Policy (COOP) must be set to `"same-origin"` to prevents cross-origin resources from accessing the main document’s memory.
     - Cross-Origin-Embedder-Policy (COEP) must be set to `"require-corp"` to restrict the way cross origin resources can be loaded by the main document. They'll either need to be from the same origin or include the `Cross-Origin-Resource-Policy: cross-origin` header.
 - Depending on how the application is being run, there are different ways to set these headers. Running the application locally with `ng serve` uses `@angular-devkit/build-angular:dev-server"` which we can configure in the project's `angular.json` file at `/projects/angular-o1js-demo/architect/serve/configurations/development`.
-- Architect is angular's task runner, the entries (called build targets) under `architect` each represent tasks that the angular cli can run (`ng build`, `ng serve`, `ng test`, etc). The `builder` property of each target specifies the program that Architect should run to execute the task. The `options` can be used to supply parameters to the builder, and the `configurations`specifies a custom set of options for different target configurations (development, production, etc).
+- Architect is Angular's task runner, the entries (called build targets) under `architect` each represent tasks that the Angular CLI can run (`ng build`, `ng serve`, `ng test`, etc). The `builder` property of each target specifies the program that Architect should run to execute the task. The `options` can be used to supply parameters to the builder, and the `configurations`specifies a custom set of options for different target configurations (development, production, etc).
 - Running `ng serve` locally runs the `@angular-devkit/build-angular:dev-server` builder, and in its options object we can specify custom headers specifying the headers required for `SharedArrayBuffer` as follows:
 
 ```
@@ -302,7 +297,7 @@ npm i @angular-builders/custom-webpack
 "copy-libs": "mkdir -p public/lib/o1js && cp node_modules/o1js/dist/web/index.js public/lib/o1js/index.js"
 ```
 
-- add the `copy-o1js-lib` task to the build script and the start script.
+- Add the `copy-o1js-lib` task to the build script and the start script.
     - `"build": "npm run copy-libs && ng build"`
     - `"start": "npm run copy-libs && ng serve"`
 - Add `public/lib` to `.gitignore`.
@@ -347,12 +342,12 @@ const {Mina, PublicKey, fetchAccount} = o1js;
 - Verify that "Compiled Add" is logged, meaning that the SDK has successfully generated a proving key for the `Add` zkapp.
 - If you're connected to Devnet and your account is funded with Devnet tokens, you should be be able to broadcast a successful transaction calling `update` on the zkapp. After a few minutes, the state change associated with the transaction will take effect on chain and you'll see `num` increase when you reload the page!
 
-## Deploying to Github Pages
+## Deploying to GitHub Pages
 
-- Now we'll set the app up for deployment to github pages.
+- Now we'll set the app up for deployment to GitHub pages.
 - Publish your project to a GitHub repository.
 - Run `ng deploy` and select GitHub Pages.
-- Add `baseHref` to `options` under `build` in angular.json with the name of your github repository.
+- Add `baseHref` to `options` under `build` in angular.json with the name of your GitHub repository.
     - **Do not remove the slashes!**
 
 ```json
@@ -389,7 +384,7 @@ npm i coi-serviceworker
 ```
 
 - Create a file `src/app/COIServiceWorker.ts` with the following contents.
-    - Be sure to replace `<your repo name>` with the name of your github repo!
+    - Be sure to replace `<your repo name>` with the name of your GitHub repo!
 
 ```tsx
 export {};
