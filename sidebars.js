@@ -145,6 +145,17 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Front End Integration Guides',
+          link: {
+            type: 'doc',
+            id: 'zkapps/front-end-integration-guides/angular',
+          },
+          items: [
+            'zkapps/front-end-integration-guides/angular',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           link: {
             type: 'doc',
