@@ -71,10 +71,7 @@ test('Initial contract data has correct state', async () => {
 
 tx = await Mina.transaction({ sender: feepayerAddress, fee }, async () => {
   const update = AccountUpdate.createSigned(zkApp.address);
-  update.update.verificationKey = {
-    isSome: Bool(true),
-    value: v2Contract.verificationKey,
-  };
+  update.account.verificationKey.set(v2Contract.verificationKey);
 });
 await tx.sign([senderKey, addKey]).prove();
 await tx.send().wait();
@@ -100,10 +97,7 @@ test('Initial contract data has correct state', async () => {
 
 tx = await Mina.transaction({ sender: feepayerAddress, fee }, async () => {
   const update = AccountUpdate.createSigned(zkApp.address);
-  update.update.verificationKey = {
-    isSome: Bool(true),
-    value: v3Contract.verificationKey,
-  };
+  update.account.verificationKey.set(v3Contract.verificationKey);
 });
 await tx.sign([senderKey, addKey]).prove();
 await tx.send().wait();
@@ -158,10 +152,7 @@ test('Initial contract data has correct state', async () => {
 
 tx = await Mina.transaction({ sender: feepayerAddress, fee }, async () => {
   const update = AccountUpdate.createSigned(unsafeAddAddress);
-  update.update.verificationKey = {
-    isSome: Bool(true),
-    value: v3ContractUnsafe.verificationKey,
-  };
+  update.account.verificationKey.set(v3ContractUnsafe.verificationKey);
 });
 await tx.sign([senderKey, unsafeZkAppAccount.key]).prove();
 await tx.send().wait();

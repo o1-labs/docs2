@@ -145,6 +145,17 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Front End Integration Guides',
+          link: {
+            type: 'doc',
+            id: 'zkapps/front-end-integration-guides/angular',
+          },
+          items: [
+            'zkapps/front-end-integration-guides/angular',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           link: {
             type: 'doc',
@@ -239,11 +250,6 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/EcdsaSignatureV2',
-                  label: 'EcdsaSignatureV2',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Field',
                   label: 'Field',
                 },
@@ -251,11 +257,6 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/ForeignCurve',
                   label: 'ForeignCurve',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/classes/ForeignCurveV2',
-                  label: 'ForeignCurveV2',
                 },
                 {
                   type: 'doc',
@@ -346,6 +347,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/classes/Scalar',
                   label: 'Scalar',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/classes/ScalarField',
+                  label: 'ScalarField',
                 },
                 {
                   type: 'doc',
@@ -505,18 +511,8 @@ module.exports = {
                 },
                 {
                   type: 'doc',
-                  id: 'zkapps/o1js-reference/functions/createEcdsaV2',
-                  label: 'createEcdsaV2',
-                },
-                {
-                  type: 'doc',
                   id: 'zkapps/o1js-reference/functions/createForeignCurve',
                   label: 'createForeignCurve',
-                },
-                {
-                  type: 'doc',
-                  id: 'zkapps/o1js-reference/functions/createForeignCurveV2',
-                  label: 'createForeignCurveV2',
                 },
                 {
                   type: 'doc',
@@ -712,8 +708,34 @@ module.exports = {
                         },
                         {
                           type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/functions/decryptBytes',
+                          label: 'decryptBytes',
+                        },
+                        {
+                          type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Encryption/functions/encrypt',
                           label: 'encrypt',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/functions/encryptBytes',
+                          label: 'encryptBytes',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'category',
+                      label: 'Type-Aliases',
+                      items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/type-aliases/CipherText',
+                          label: 'CipherText',
+                        },
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Encryption/type-aliases/CipherTextBytes',
+                          label: 'CipherTextBytes',
                         },
                       ],
                     },
@@ -734,6 +756,11 @@ module.exports = {
                       items: [
                         {
                           type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/classes/BatchReducer',
+                          label: 'BatchReducer',
+                        },
+                        {
+                          type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/classes/OffchainStateCommitments',
                           label: 'OffchainStateCommitments',
                         },
@@ -743,6 +770,11 @@ module.exports = {
                       type: 'category',
                       label: 'Functions',
                       items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/functions/ActionBatch',
+                          label: 'ActionBatch',
+                        },
                         {
                           type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/functions/IndexedMerkleMap',
@@ -764,6 +796,11 @@ module.exports = {
                       type: 'category',
                       label: 'Type-Aliases',
                       items: [
+                        {
+                          type: 'doc',
+                          id: 'zkapps/o1js-reference/namespaces/Experimental/type-aliases/ActionBatch',
+                          label: 'ActionBatch',
+                        },
                         {
                           type: 'doc',
                           id: 'zkapps/o1js-reference/namespaces/Experimental/type-aliases/IndexedMerkleMap',
@@ -942,6 +979,11 @@ module.exports = {
                               type: 'category',
                               label: 'Functions',
                               items: [
+                                {
+                                  type: 'doc',
+                                  id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/functions/fromBase58',
+                                  label: 'fromBase58',
+                                },
                                 {
                                   type: 'doc',
                                   id: 'zkapps/o1js-reference/namespaces/Mina/namespaces/TestPublicKey/functions/random',
@@ -1157,6 +1199,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableHashable-1',
+                  label: 'ProvableHashable-1',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/ProvableHashable',
                   label: 'ProvableHashable',
                 },
@@ -1164,6 +1211,21 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/ProvablePure',
                   label: 'ProvablePure',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableType',
+                  label: 'ProvableType',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableTypePure',
+                  label: 'ProvableTypePure',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ProvableWithEmpty',
+                  label: 'ProvableWithEmpty',
                 },
                 {
                   type: 'doc',
@@ -1187,6 +1249,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/ToProvable',
+                  label: 'ToProvable',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/TransactionPromise',
                   label: 'TransactionPromise',
                 },
@@ -1194,6 +1261,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/TransactionStatus',
                   label: 'TransactionStatus',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/TupleN',
+                  label: 'TupleN',
                 },
                 {
                   type: 'doc',
@@ -1214,6 +1286,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/type-aliases/WithHash',
                   label: 'WithHash',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/type-aliases/WithProvable',
+                  label: 'WithProvable',
                 },
                 {
                   type: 'doc',
@@ -1303,6 +1380,11 @@ module.exports = {
                 },
                 {
                   type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/ProvableType',
+                  label: 'ProvableType',
+                },
+                {
+                  type: 'doc',
                   id: 'zkapps/o1js-reference/variables/TokenId',
                   label: 'TokenId',
                 },
@@ -1310,6 +1392,11 @@ module.exports = {
                   type: 'doc',
                   id: 'zkapps/o1js-reference/variables/TransactionVersion',
                   label: 'TransactionVersion',
+                },
+                {
+                  type: 'doc',
+                  id: 'zkapps/o1js-reference/variables/TupleN',
+                  label: 'TupleN',
                 },
                 {
                   type: 'doc',

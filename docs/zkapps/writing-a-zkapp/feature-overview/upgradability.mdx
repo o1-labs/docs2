@@ -89,14 +89,11 @@ const contractAddress = zkAppKey.toPublicKey();
 const upgradeTx = await Mina.transaction({ sender, fee },
   async () => {
     const update = AccountUpdate.createSigned(contractAddress);
-    update.update.verificationKey = {
-      isSome: Bool(true),
-      value: verificationKey,
-    };
+    update.account.verificationKey.set(verificationKey);
   }
 );
-await tx.sign([senderKey, zkAppKey]).prove();
-await tx.send();
+await upgradeTx.sign([senderKey, zkAppKey]).prove();
+await upgradeTx.send();
 ```
 
 And just like that, when the transaction is applied to the blockchain, the verification key at the ZkApp address will be updated from `"27729068461170601362912907281403262888852363473424470267835507636847418791713"` to `"18150279532259194644722165513074833862035641840431153413486908511595437348455"`!
@@ -149,14 +146,11 @@ const contractAddress = zkAppKey.toPublicKey();
 const upgradeTx = await Mina.transaction({ sender, fee },
   async () => {
     const update = AccountUpdate.createSigned(contractAddress);
-    update.update.verificationKey = {
-      isSome: Bool(true),
-      value: verificationKey,
-    };
+    update.account.verificationKey.set(verificationKey);
   }
 );
-await tx.sign([senderKey, zkAppKey]).prove();
-await tx.send();
+await upgradeTx.sign([senderKey, zkAppKey]).prove();
+await upgradeTx.send();
 ```
 
 ### State Variables
