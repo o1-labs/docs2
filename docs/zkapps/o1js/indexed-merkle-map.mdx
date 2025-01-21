@@ -32,7 +32,7 @@ A Merkle Map is a wrapper around a [Merkle Tree](/zkapps/o1js/merkle-tree). Both
 The Indexed Merkle Map is an improved version of the [MerkleMap](/zkapps/tutorials/common-types-and-functions#merkle-map), offering enhanced efficiency and usability:
 
 - **Reduced Constraints:** Uses 4-8x fewer constraints than `MerkleMap`.
-- **Support for Dummy Updates:** Handles dummy updates for keys like `0` and `-1`.
+- **Support for Dummy Updates:** Handles updates that don't affect the root for keys like `0` and `-1`.
 - **Provable Code Integration:** Unlike `MerkleTree` and `MerkleMap`, the high-level API of `IndexedMerkleMap` is usable within provable code.
 
 :::note
