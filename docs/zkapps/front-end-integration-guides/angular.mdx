@@ -10,13 +10,36 @@ keywords:
 # Angular Integration Guide
 ## Install a Wallet
 
-- Install a wallet that supports zkApp transactions. For this tutorial, we’ll use **Auro Wallet**. [Download it here](https://www.aurowallet.com/).
+- Install a wallet that supports zkApp transactions. For this tutorial, we’ll use **Auro Wallet** (v2.3.1). [Download it here](https://www.aurowallet.com/).
 - Add the Auro Wallet browser extension.
 - Open the extension and follow the steps to create a new wallet.
 - Click **"Mainnet"** at the top of the extension view, then select **"Show Testnet"** from the menu. After that, select **"Devnet"**.
     - Using Devnet will allow us to interact with a test version of the Mina network without needing to spend real Mina to pay for transaction fees.
+
+<figure
+  style={{ display: "flex", height:"30rem" }}>
+  <img
+    src="/img/angular-integration-guide/auro-1.png"
+    alt="Enable testnets on Auro"
+    height="10rem"
+    style={{ margin: "0 auto" }}
+  />
+</figure>
+<br />
+
 - Fund your wallet using the [Mina Faucet](https://faucet.minaprotocol.com/).
     - You'll need to wait one block (~3 minutes) to see the change in balance reflected on chain. You can use [Minascan](https://minascan.io/devnet) to track the status of your transaction.
+
+<figure
+  style={{ display: "flex", height:"30rem" }}>
+  <img
+    src="/img/angular-integration-guide/faucet.png"
+    alt="Enable testnets on Auro"
+    height="10rem"
+    style={{ margin: "0 auto" }}
+  />
+</figure>
+<br />
 
 ## Initialize the Project
 
