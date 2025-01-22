@@ -46,7 +46,7 @@ keywords:
 - Install the Angular CLI globally:
 
 ```bash
-npm install -g @angular/cli
+npm install -g @angular/cli@19
 ```
 
 - Create a new Angular project by running:
@@ -54,16 +54,14 @@ npm install -g @angular/cli
 ```bash
 ng new <project-name>
 ```
-
-- Install the Angular CLI `npm install -g @angular/cli`
-- Create a new project `ng new <project-name>`
-    - Select your preferred stylesheet format.
-    - For **Server-Side Rendering (SSR)** and **Static Site Generation (SSG/Prerendering)**, choose **Yes**.
+- Configure the project
+  - Select your preferred stylesheet format.
+  - For **Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (y/N)**, choose **No**.
 - Install the `o1js` library:
 
 ```bash
 cd <project-name>
-npm install o1js
+npm install o1js@2
 ```
 
 - Start the local development server.
@@ -118,7 +116,8 @@ import {RouterOutlet} from '@angular/router';
 })
 
 export class AppComponent {
-  title = 'angular-o1js-demo';
+  // replace with your project name!
+  title = '<project-name>';
 
   constructor() {
     afterNextRender(async () => {
@@ -190,19 +189,29 @@ export class AppComponent {
 - For security reasons, `SharedArrayBuffer` needs certain headers to be set. These prevent cross origin resources (scripts and content loaded from external domains, iframes, and popups) from accessing shared memory.
     - Cross-Origin-Opener-Policy (COOP) must be set to `"same-origin"` to prevents cross-origin resources from accessing the main document’s memory.
     - Cross-Origin-Embedder-Policy (COEP) must be set to `"require-corp"` to restrict the way cross origin resources can be loaded by the main document. They'll either need to be from the same origin or include the `Cross-Origin-Resource-Policy: cross-origin` header.
-- Depending on how the application is being run, there are different ways to set these headers. Running the application locally with `ng serve` uses `@angular-devkit/build-angular:dev-server"` which we can configure in the project's `angular.json` file at `/projects/angular-o1js-demo/architect/serve/configurations/development`.
+- Depending on how the application is being run, there are different ways to set these headers. Running the application locally with `ng serve` uses `@angular-devkit/build-angular:dev-server"` which we can configure in the project's `angular.json` file at `/projects/<project-name>/architect/serve/configurations/development`.
 - Architect is Angular's task runner, the entries (called build targets) under `architect` each represent tasks that the Angular CLI can run (`ng build`, `ng serve`, `ng test`, etc). The `builder` property of each target specifies the program that Architect should run to execute the task. The `options` can be used to supply parameters to the builder, and the `configurations`specifies a custom set of options for different target configurations (development, production, etc).
 - Running `ng serve` locally runs the `@angular-devkit/build-angular:dev-server` builder, and in its options object we can specify custom headers specifying the headers required for `SharedArrayBuffer` as follows:
 
 ```
-  "serve": {
-    "builder": "@angular-devkit/build-angular:dev-server",
-    "options": {
-      "headers": {
-        "Cross-Origin-Opener-Policy": "same-origin",
-        "Cross-Origin-Embedder-Policy": "require-corp"
-      }
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
++  "options": {
++    "headers": {
++      "Cross-Origin-Opener-Policy": "same-origin",
++      "Cross-Origin-Embedder-Policy": "require-corp"
++    }
++  },
+  "configurations": {
+    "production": {
+      "buildTarget": "angular-demo:build:production"
     },
+    "development": {
+      "buildTarget": "angular-demo:build:development"
+    }
+  },
+  "defaultConfiguration": "development"
+},
 ```
 
 - Restart the server with `npm run start` and view the application in the browser again - the `SharedArrayBuffer` error should be gone!
@@ -233,81 +242,80 @@ npm i @angular-builders/custom-webpack
 ```
 
 - Update the `serve` and `build` build targets to use the `@angular-builders/custom-webpack` builders and load the file.
-    - In `angular.json` under `/projects/angular-o1js-demo/architect/build`, replace the default builder `"builder": "@angular-devkit/build-angular:application",` with `"builder": "@angular-builders/custom-webpack:browser"`.
+    - In `angular.json` under `/projects/<project-name>/architect/build`, replace the default builder `"builder": "@angular-devkit/build-angular:application",` with `"builder": "@angular-builders/custom-webpack:browser"`.
         - rename the browser property to `main` in `options`.
         - add  `"customWebpackConfig": { "path": "./webpack.config.js" },` to `options`.
-        - delete `server`, `prerender`, and `ssr` from `options`.
-    - In `angular.json` under `/projects/angular-o1js-demo/architect/serve`, replace the default builder `"builder": "@angular-devkit/build-angular:dev-server",` with `"builder": "@angular-builders/custom-webpack:dev-server"`.
-- The build targets should look like this:
+    - In `angular.json` under `/projects/<project-name>/architect/serve`, replace the default builder `"builder": "@angular-devkit/build-angular:dev-server",` with `"builder": "@angular-builders/custom-webpack:dev-server"`.
+- The changes to your build targets should look like this:
 
 ```json
-"build": {
-  "builder": "@angular-builders/custom-webpack:browser",
-  "options": {
-    "customWebpackConfig": {
-      "path": "./webpack.config.js"
-    },
-    "main": "src/main.ts",
-    "outputPath": "dist/<project-name>",
-    "index": "src/index.html",
-    "polyfills": [
-      "zone.js"
-    ],
-    "tsConfig": "tsconfig.app.json",
-    "inlineStyleLanguage": "scss",
-    "assets": [
-      {
-        "glob": "**/*",
-        "input": "public"
-      }
-    ],
-    "styles": [
-      "src/styles.scss"
-    ],
-    "scripts": []
-  },
-  "configurations": {
-    "production": {
-      "budgets": [
-        {
-          "type": "initial",
-          "maximumWarning": "500kB",
-          "maximumError": "1MB"
+    "build": {
+-      "builder": "@angular-devkit/build-angular:application",
++      "builder": "@angular-builders/custom-webpack:browser",
+      "options": {
++        "customWebpackConfig": { "path": "./webpack.config.js" },
+        "outputPath": "dist/angular-demo",
+        "index": "src/index.html",
+-        "browser": "src/main.ts",
++        "main": "src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all"
         },
-        {
-          "type": "anyComponentStyle",
-          "maximumWarning": "2kB",
-          "maximumError": "4kB"
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
         }
-      ],
-      "outputHashing": "all"
+      },
+      "defaultConfiguration": "production"
     },
-    "development": {
-      "optimization": false,
-      "extractLicenses": false,
-      "sourceMap": true
-    }
-  },
-  "defaultConfiguration": "production"
-},
-"serve": {
-  "builder": "@angular-builders/custom-webpack:dev-server",
-  "configurations": {
-    "production": {
-      "buildTarget": "<project-name>:build:production"
+    "serve": {
+      "builder": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "headers": {
+          "Cross-Origin-Opener-Policy": "same-origin",
+          "Cross-Origin-Embedder-Policy": "require-corp"
+        }
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "angular-demo:build:production"
+        },
+        "development": {
+          "buildTarget": "angular-demo:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
     },
-    "development": {
-      "buildTarget": "<project-name>:build:development"
-    }
-  },
-  "options": {
-    "headers": {
-      "Cross-Origin-Opener-Policy": "same-origin",
-      "Cross-Origin-Embedder-Policy": "require-corp"
-    }
-  },
-  "defaultConfiguration": "development"
-},
 ```
 
 ### Copy o1js into Static Assets
