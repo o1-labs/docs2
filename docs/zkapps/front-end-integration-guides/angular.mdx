@@ -238,84 +238,57 @@ module.exports = {
 - Install builders which support using custom webpack configs - Angular's default builder will ignore the webpack file.
 
 ```bash
-npm i @angular-builders/custom-webpack
+npm i @angular-builders/custom-webpack@19
 ```
 
 - Update the `serve` and `build` build targets to use the `@angular-builders/custom-webpack` builders and load the file.
     - In `angular.json` under `/projects/<project-name>/architect/build`, replace the default builder `"builder": "@angular-devkit/build-angular:application",` with `"builder": "@angular-builders/custom-webpack:browser"`.
-        - rename the browser property to `main` in `options`.
+        - rename the `browser` property to `main` in `options`.
         - add  `"customWebpackConfig": { "path": "./webpack.config.js" },` to `options`.
     - In `angular.json` under `/projects/<project-name>/architect/serve`, replace the default builder `"builder": "@angular-devkit/build-angular:dev-server",` with `"builder": "@angular-builders/custom-webpack:dev-server"`.
 - The changes to your build targets should look like this:
 
 ```json
-    "build": {
--      "builder": "@angular-devkit/build-angular:application",
-+      "builder": "@angular-builders/custom-webpack:browser",
-      "options": {
-+        "customWebpackConfig": { "path": "./webpack.config.js" },
-        "outputPath": "dist/angular-demo",
-        "index": "src/index.html",
--        "browser": "src/main.ts",
-+        "main": "src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "public"
-          }
-        ],
-        "styles": [
-          "src/styles.scss"
-        ],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kB",
-              "maximumError": "1MB"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kB",
-              "maximumError": "8kB"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "builder": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "headers": {
-          "Cross-Origin-Opener-Policy": "same-origin",
-          "Cross-Origin-Embedder-Policy": "require-corp"
-        }
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "angular-demo:build:production"
-        },
-        "development": {
-          "buildTarget": "angular-demo:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
+       "architect": {
+         "build": {
+-          "builder": "@angular-devkit/build-angular:application",
++          "builder": "@angular-builders/custom-webpack:browser",
+           "options": {
++            "customWebpackConfig": { "path": "./webpack.config.js" },
+             "outputPath": "dist/angular-demo",
+             "index": "src/index.html",
+-            "browser": "src/main.ts",
++            "main": "src/main.ts",
+             "polyfills": [
+               "zone.js"
+             ],
+             "tsConfig": "tsconfig.app.json",
+             "assets": [
+               {
+                 "glob": "**/*",
+                 "input": "public"
+               }
+             ],
+             "styles": [
+               "src/styles.css"
+             ],
+             "scripts": []
+           },
+           "configurations": { ... },
+           "defaultConfiguration": "production"
+         },
+         "serve": {
+-          "builder": "@angular-devkit/build-angular:dev-server",
++          "builder": "@angular-builders/custom-webpack:dev-server",
+           "options": {
+             "headers": {
+               "Cross-Origin-Opener-Policy": "same-origin",
+               "Cross-Origin-Embedder-Policy": "require-corp"
+             }
+           },
+           "configurations": { ... },
+           "defaultConfiguration": "development"
+         },
 ```
 
 ### Copy o1js into Static Assets
