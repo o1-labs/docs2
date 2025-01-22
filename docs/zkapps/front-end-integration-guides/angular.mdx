@@ -388,31 +388,12 @@ npm install coi-serviceworker@^0.1.7
 - Update the script that copies `o1js` to `public` to also include the `coi-serviceworker` file:
 
 ```json
-"copy-libs": "mkdir -p public/lib/o1js && cp node_modules/o1js/dist/web/index.js public/lib/o1js/index.js && cp node_modules/coi-serviceworker/coi-serviceworker.min.js public/lib/coi-serviceworker.min.js"
+"copy-libs": "mkdir -p public/lib/o1js && cp node_modules/o1js/dist/web/index.js public/lib/o1js/index.js && cp node_modules/coi-serviceworker/coi-serviceworker.min.js public/coi-serviceworker.min.js"
 ```
 
-- Create a file `src/app/COIServiceWorker.ts` with the following contents.
-    - Be sure to replace `<project-name>` with the name of your project/GitHub repo!
-
-```tsx
-export {};
-
-function loadCOIServiceWorker() {
-  console.log('Load COIServiceWorker', navigator);
-  if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.location.hostname != 'localhost') {
-    navigator.serviceWorker.register('/<project-name>/lib/coi-serviceworker.min.js')
-      .then(registration => console.log('COI Service Worker registered with scope:', registration.scope))
-      .catch(error => console.error('COI Service Worker registration failed:', error));
-  }
-}
-
-loadCOIServiceWorker();
-```
-
-- Import it at the top of `src/app/app.component.ts`.
-
-```tsx
-import './COIServiceWorker';
+- Import it in your index.html file right above the o1js importmap script
+```html
+<script src="coi-serviceworker.min.js"></script>
 ```
 
 - Redeploy the application with the `COIServiceWorker` files.
