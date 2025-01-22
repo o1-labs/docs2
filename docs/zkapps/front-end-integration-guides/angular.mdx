@@ -355,6 +355,11 @@ declare var o1js: typeof o1jsTypes;
 - Now we'll set the app up for deployment to GitHub pages.
 - Publish your project to a GitHub repository with the same name.
 - Run `ng deploy` and select GitHub Pages.
+
+```bash
+ng deploy
+```
+
 - Add `baseHref` to `options` under `build` in angular.json with the name of your GitHub repository.
     - **Do not remove the slashes!**
 
@@ -391,7 +396,7 @@ npm install coi-serviceworker@^0.1.7
 "copy-libs": "mkdir -p public/lib/o1js && cp node_modules/o1js/dist/web/index.js public/lib/o1js/index.js && cp node_modules/coi-serviceworker/coi-serviceworker.min.js public/coi-serviceworker.min.js"
 ```
 
-- Import it in your index.html file right above the o1js importmap script
+- Import it in your `index.html` file right above the o1js importmap script.
 ```html
 <script src="coi-serviceworker.min.js"></script>
 ```
