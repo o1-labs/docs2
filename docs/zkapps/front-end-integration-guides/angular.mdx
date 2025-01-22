@@ -77,7 +77,7 @@ npm run start
 
 ```bash
 cd ../
-npm install -g zkapp-cli
+npm install -g zkapp-cli@0.22.3
 ```
 
 - Initialize a new zkapp with the CLI. When prompted to create a UI project, select **none**.
@@ -238,7 +238,7 @@ module.exports = {
 - Install builders which support using custom webpack configs - Angular's default builder will ignore the webpack file.
 
 ```bash
-npm i @angular-builders/custom-webpack@19
+npm install @angular-builders/custom-webpack@19
 ```
 
 - Update the `serve` and `build` build targets to use the `@angular-builders/custom-webpack` builders and load the file.
@@ -353,13 +353,13 @@ declare var o1js: typeof o1jsTypes;
 ## Deploying to GitHub Pages
 
 - Now we'll set the app up for deployment to GitHub pages.
-- Publish your project to a GitHub repository.
+- Publish your project to a GitHub repository with the same name.
 - Run `ng deploy` and select GitHub Pages.
 - Add `baseHref` to `options` under `build` in angular.json with the name of your GitHub repository.
     - **Do not remove the slashes!**
 
 ```json
-"baseHref": "/<your-github-repo-name>/"
+"baseHref": "/<project-name>/"
 ```
 
 - Create a deploy script in package.json which copies the required libraries
@@ -382,7 +382,7 @@ npm run deploy
 - Install `coi-serviceworker`.
 
 ```bash
-npm i coi-serviceworker
+npm install coi-serviceworker@^0.1.7
 ```
 
 - Update the script that copies `o1js` to `public` to also include the `coi-serviceworker` file:
@@ -392,7 +392,7 @@ npm i coi-serviceworker
 ```
 
 - Create a file `src/app/COIServiceWorker.ts` with the following contents.
-    - Be sure to replace `<your repo name>` with the name of your GitHub repo!
+    - Be sure to replace `<project-name>` with the name of your project/GitHub repo!
 
 ```tsx
 export {};
@@ -400,7 +400,7 @@ export {};
 function loadCOIServiceWorker() {
   console.log('Load COIServiceWorker', navigator);
   if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.location.hostname != 'localhost') {
-    navigator.serviceWorker.register('/<your repo name>/lib/coi-serviceworker.min.js')
+    navigator.serviceWorker.register('/<project-name>/lib/coi-serviceworker.min.js')
       .then(registration => console.log('COI Service Worker registered with scope:', registration.scope))
       .catch(error => console.error('COI Service Worker registration failed:', error));
   }
