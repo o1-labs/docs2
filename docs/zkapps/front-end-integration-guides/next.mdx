@@ -618,31 +618,36 @@ export default function Home() {
   const [logMessages, setLogMessages] = useState<string[]>([]);
 
   const logContainerRef = useRef<HTMLDivElement>(null);
+  const isInitializingRef = useRef(false);
+
+  const initializeWorker = async (worker: TodoListWorkerClient) => {
+    setLogMessages((prev) => [...prev, "Compiling zk program..."]);
+    const timeStart = Date.now();
+    await worker.init();
+    const todos = await worker.getTodos();
+    setLogMessages((prev) => [...prev, `Zk program compiled in ${Date.now() - timeStart}ms`]);
+    setTodoList(todos);
+    setHasBeenInitialized(true);
+    isInitializingRef.current = false;
+  };
+
+  const setup = async () => {
+    setWorkerIsBusy(true);
+    if (!todoListWorkerClient) {
+      setLogMessages((prev) => [...prev, "No worker client found, creating new one..."]);
+      const workerClient = new TodoListWorkerClient();
+      setTodoListWorkerClient(workerClient);
+      setLogMessages((prev) => [...prev, "Worker client created"]);
+      isInitializingRef.current = true;
+      await initializeWorker(workerClient);
+    } else if (!hasBeenInitialized && !isInitializingRef.current) {
+      isInitializingRef.current = true;
+      await initializeWorker(todoListWorkerClient);
+    }
+    setWorkerIsBusy(false);
+  };
 
   useEffect(() => {
-    const initializeWorker = async (worker: TodoListWorkerClient) => {
-      setLogMessages((prev) => [...prev, "Compiling zk program..."]);
-      const timeStart = Date.now();
-      await worker.init();
-      const todos = await worker.getTodos();
-      setLogMessages((prev) => [...prev, `Zk program compiled in ${Date.now() - timeStart}ms`]);
-      setTodoList(todos);
-      setHasBeenInitialized(true);
-    };
-
-    const setup = async () => {
-      setWorkerIsBusy(true);
-      if (!todoListWorkerClient) {
-        setLogMessages((prev) => [...prev, "No worker client found, creating new one..."]);
-        const workerClient = new TodoListWorkerClient();
-        setTodoListWorkerClient(workerClient);
-        setLogMessages((prev) => [...prev, "Worker client created"]);
-        await initializeWorker(workerClient);
-      } else if (!hasBeenInitialized) {
-        await initializeWorker(todoListWorkerClient);
-      }
-      setWorkerIsBusy(false);
-    };
     setup();
   }, [hasBeenInitialized, todoListWorkerClient]);
 
