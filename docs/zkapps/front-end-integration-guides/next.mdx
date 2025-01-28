@@ -123,7 +123,7 @@ To use Comlink, first install it:
 npm i comlink
 ```
 
-Then, create a worker, and a workerClient file.  For this app, I will call the filed `todoListWorker.ts` and `todoListWorkerClient.ts`.
+Then, create a worker, and a workerClient file.  For this app, I will call the files `todoListWorker.ts` and `todoListWorkerClient.ts`.
 
 ```bash
 touch src/app/todoListWorker.ts src/app/todoListWorkerClient.ts
@@ -486,6 +486,7 @@ export default class TodoListWorkerClient {
 For the final step, let's create a couple simple components to round out our application.  Let's create some files.  These components will render our pending and proven todo items.  The pending items are stored in react state until we add them to the proven data by calling the web worker client.  This improves performance by not having to wait for the proof to be generated every time an action is taken.
 
 ```bash
+mkdir -p src/components
 touch src/components/PendingTodoItem.tsx src/components/PendingTodosQueue.tsx src/components/ProvenTodoItem.tsx src/components/ProvenTodosQueue.tsx
 ```
 
