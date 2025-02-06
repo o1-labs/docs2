@@ -71,6 +71,7 @@ module.exports = {
             'zkapps/o1js/index',
             'zkapps/o1js/basic-concepts',
             'zkapps/o1js/recursion',
+            'zkapps/o1js/circuit-writing-primer',
             'zkapps/o1js/gadgets',
             'zkapps/o1js/bitwise-operations',
             'zkapps/o1js/foreign-fields',
