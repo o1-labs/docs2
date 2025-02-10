@@ -24,7 +24,7 @@ o1js produces `kimchi` proofs.  Kimchi is defined in detail in the [Mina Book](h
 
 One of the challenges when approaching circuit-writing is understanding how the nature of a circuit differs from most common programming paradigms.
 
-There is no equivalent to `JUMP` or `GOTO` in a circuit.  The implication of this for the developer is there is no way to branch or loop in o1js.  There are some workarounds to these limitations that we will discuss, but it's important to understand the fundamental limitation.
+There is no equivalent to `JUMP` or `GOTO` in a circuit.  The implication of this for the developer is there is no way to branch or dynamically loop in o1js.  There are some workarounds to these limitations that we will discuss, but it's important to understand the fundamental limitation.
 
 The tradeoff for these limitations is that circuits can be proven to be executed correctly.  Practically all applications built with o1js should be designed with this tradeoff in mind.  "How does proving correct execution of this program provide value?" is a question you should ask about any ZkApp design built with o1js.
 
@@ -77,7 +77,7 @@ print: [Function: print],
 summary: [Function: summary]
 ```
 
-You see, `Provable.constraintSystem` let's us visualize our entire circuit.  When using `Provable.constrainSystem`, witnesses need to be explicitly created for any input data.  This is easily verified by updating the code:
+You see, `Provable.constraintSystem` lets us visualize our entire circuit.  When using `Provable.constrainSystem`, witnesses need to be explicitly created for any input data.  This is easily verified by updating the code:
 
 ```ts
 import { Field, Provable } from 'o1js';
@@ -102,7 +102,7 @@ print: [Function: print],
 summary: [Function: summary]
 ```
 
-As you can see, there is no circuit this time.  This showcases another benefit of checking your code with `Provable.constraintSystem` - it can help you verify that your circuit is actually provable.
+As you can see, there is no circuit this time because the input `const anyField = Field(1001);` is not explicitly witnessed in.  One added benetit of checking your code with `Provable.constraintSystem` is that it can help you verify that your circuit is actually provable.  Some of the common mistakes people make that result in non-provable circuits will show `0` rows and an empty `gates` array.
 
 ### analyzeMethods
 
@@ -228,6 +228,48 @@ console.log('equivalent: ', {
 hash:  { rows: 38, digest: 'ac5f1fd447da277f66bcbbe6f46a22f8' }
 equivalent:  { rows: 38, digest: 'ac5f1fd447da277f66bcbbe6f46a22f8' }
 ```
+
+### What happens if I don't follow the rules?
+
+In the case of conditional logic, we _can_ still generate a valid circuit.  But the circuit will ignore the branching.  In these cases, the javascript will execute with a dummy value, and whatever conditional branches the dummy value goes down, that will be the circuit.
+
+If we edit the implementation of the hash method above to include a condition on the input length, it will appear to be valid...
+
+```ts
+hash: {
+    privateInputs: [MyArray],
+    method: async (myArray: Field[]) => {
+    if (myArray.length !== 5) {
+        return { publicOutput: Field(0) };
+    } else {
+        return { publicOutput: Poseidon.hash(myArray) };
+    }
+    },
+},
+```
+
+```sh
+hash:  { rows: 38, digest: 'ac5f1fd447da277f66bcbbe6f46a22f8' }
+```
+
+Note that the circuit did not change at all, because even though we appear to have added a branch, the dummy value has a length of 5, so the other branch is simply discarded.
+
+If we try to call this method with an input of greather than or fewer than 5 elements, we will _not_ succeed in producing a valid proof.  We will get an error for attempting to break the rules.
+
+```ts
+await MyArrayProgram.compile();
+
+const p = await MyArrayProgram.hash([Field(10)]);
+```
+
+```sh
+Error: Error when witnessing in hash, argument 0: Expected witnessed values of length 5, got 1.
+    at exists (o1js/src/lib/provable/core/exists.ts:32:11)
+    at Object.witness (o1js/src/lib/provable/types/witness.ts:32:14)
+    at main (o1js/src/lib/proof-system/zkprogram.ts:845:30)
+```
+
+The same intuition applies for looping a variable number of times.  Instead of the witness being the wrong size, the circuit will have the wrong gates.  The result is the same:  the _javascript_ is valid, and may lull you into a sense of security, but you need to apply your circuit-writing knowledge to create valid programs.
 
 ## More Resources
 
