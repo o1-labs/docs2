@@ -162,6 +162,10 @@ Every page also has a markdown twin: add `.md` to its URL (for example https://d
 
 - [Exchange Operators](https://docs.minaprotocol.com/node-operators/exchange-operators): Guide for exchanges integrating with the Mina blockchain using Rosetta API, archive nodes, and block producer nodes.
 
+## Integrations
+
+- [Integrate with Mina](https://docs.minaprotocol.com/integrations): Choose how to integrate an application, exchange, wallet, explorer, or indexer with Mina — the daemon GraphQL API, archive nodes, Rosetta, client SDKs, and signing libraries.
+
 ## Developer Tools
 
 - [Mina Signer](https://docs.minaprotocol.com/mina-signer): A NodeJS/Browser-compatible JavaScript library for signing transactions, generating keys, and integrating with o1js and Rosetta in the Mina Protocol.

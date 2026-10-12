@@ -609,6 +609,48 @@ A zero knowledge proof. zk-SNARK is the acronym for zero knowledge succinct non-
 [A](#a) [B](#b) [C](#c) [D](#d) [E](#e) [F](#f) G [H](#h) [I](#i) J [K](#k) [L](#l) [M](#m) [N](#n) [O](#o) [P](#p) Q [R](#r) [S](#s) [T](#t) [U](#u) [V](#v) W X Y [Z](#z)
 
 ---
+url: /integrations
+---
+
+# Integrate with Mina
+
+
+
+<Subhead>
+The interfaces an application, exchange, wallet, explorer, or indexer uses to read Mina data and send transactions.
+</Subhead>
+
+Mina gives you several interfaces and a set of client libraries. Each one reads from a different source, so choose by the data you need, not by the language you write in.
+
+## Choose an interface
+
+| You need | Use | Reads from |
+|---|---|---|
+| Current account state, the recent chain, sending transactions | [Daemon GraphQL API](/node-operators/validator-node/querying-data) | A Mina node. It keeps only the last k blocks (290) |
+| Blocks and transactions over the full history | An [archive node](/node-operators/archive-node) | Its Postgres database |
+| Deposits, withdrawals and balances for an exchange or custodian | [Rosetta API](/node-operators/data-and-history/rosetta) | A Mina node and an archive database |
+| Keys and transaction signatures, offline or in a browser | [Mina Signer](/mina-signer) | Nothing: it signs locally and needs no node |
+| zkApp state, events and actions from a smart contract | [o1js](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions) | A Mina node, and an archive for events and actions |
+
+## Client libraries
+
+| Library | Talks to | Languages |
+|---|---|---|
+| Mina SDK | Daemon GraphQL API | [Rust](https://github.com/MinaProtocol/mina-sdk-rust) (`mina-sdk`), [Go](https://github.com/MinaProtocol/mina-sdk-go), [Python](https://github.com/MinaProtocol/mina-sdk-python) (`mina-sdk`) |
+| [Mina Signer](/mina-signer) | No API: signs locally | JavaScript and TypeScript (`mina-signer`) |
+| [o1js](/zkapps/o1js) | Daemon GraphQL API and an archive | TypeScript (`o1js`) |
+
+The Mina SDKs are at version 0.x, so a minor release can change their API.
+
+## Integration guides
+
+- [Exchange Operators](/node-operators/exchange-operators): run the nodes, the archive and Rosetta that an exchange needs, and handle deposits and withdrawals.
+- [Archive Node](/node-operators/archive-node): run an archive node that stores the full chain history in Postgres.
+- [Rosetta API](/node-operators/data-and-history/rosetta): run Mina's Rosetta implementation.
+- [Daemon GraphQL API](/node-operators/validator-node/querying-data): query a node and send transactions to it.
+- [Fetch events and actions](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions): read a zkApp's events and actions with o1js.
+
+---
 url: /mina-protocol/block-producers
 ---
 
