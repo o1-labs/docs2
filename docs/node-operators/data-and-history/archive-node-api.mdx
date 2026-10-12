@@ -76,15 +76,15 @@ Open `http://localhost:8080` for the GraphiQL playground.
 For when you have a database reachable but no Node toolchain.
 
 ```sh
-docker pull ghcr.io/o1-labs/archive-node-api:latest
+docker pull ghcr.io/o1-labs/archive-node-api:2
 
 docker run --rm -p 8080:8080 \
   -e PG_CONN='postgres://postgres:postgres@host.docker.internal:5432/archive' \
   -e ENABLE_GRAPHIQL=true \
-  ghcr.io/o1-labs/archive-node-api:latest
+  ghcr.io/o1-labs/archive-node-api:2
 ```
 
-Pin a version tag rather than `latest` for production.
+Tags `2`, `2.0` and `2.0.0` follow the major, the minor and one exact release. Use `2` or an exact tag in production, not `latest`.
 
 </TabItem>
 <TabItem value="compose" label="Docker Compose">
@@ -113,7 +113,7 @@ curl -s -X POST http://localhost:8080 \
 
 ## The query surface
 
-Five root fields. The authoritative definition is [`schema.graphql`](https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql) in the repository.
+Seven root fields. The authoritative definition is [`schema.graphql`](https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql) in the repository.
 
 | Query | Returns |
 |---|---|
@@ -122,6 +122,8 @@ Five root fields. The authoritative definition is [`schema.graphql`](https://git
 | `blocks(query:, limit:, sortBy:)` | Blocks by height or date range, with transaction detail |
 | `networkState` | The archive's maximum canonical and pending block heights |
 | `verificationKeyUpdates(input:)` | Applied account updates that set a given verification key, over a required block range |
+| `zkappCommands(input:)` | zkApp commands and their account updates over a block range, optionally filtered by account and token. Off unless `ENABLE_ZKAPP_COMMANDS_QUERY=true` |
+| `schemaVersion` | The `MAJOR.MINOR` version of the schema this server speaks. Always served |
 
 Events for one address, over a block range:
 
@@ -176,7 +178,7 @@ query {
 ```
 
 :::note
-Every query is bounded by `BLOCK_RANGE_SIZE` (10000 blocks by default). Walk a wider history in pages rather than in one request — the server rejects a span wider than its configured limit.
+Block-range queries are bounded by `BLOCK_RANGE_SIZE` (10000 blocks by default); `zkappCommands` has its own, smaller `ZKAPP_COMMAND_RANGE_SIZE` (1000). Walk a wider history in pages rather than in one request — the server rejects a span wider than its configured limit.
 :::
 
 ## Using it from o1js
@@ -195,7 +197,9 @@ Without an `archive` endpoint, fetching events or actions raises an error. For t
 
 ## Client SDKs
 
-Typed clients wrap the same endpoint with configurable retries and timeouts. Each exposes one method per root field, so the surface below is the surface above.
+Typed clients wrap the same endpoint with configurable retries and timeouts. Each has one method for each of `events`, `actions`, `blocks`, `networkState` and `verificationKeyUpdates`; reach `zkappCommands` and `schemaVersion` through the SDK's raw-query method.
+
+Pass the server's base URL as-is. The Archive Node API serves GraphQL at `/`, and the SDKs do not append a path.
 
 <Tabs>
 <TabItem value="ts" label="TypeScript" default>
@@ -231,7 +235,9 @@ let client = ArchiveClient::new("https://api.minascan.io/archive/devnet/v1/graph
 let events = client
     .get_events(
         EventFilterOptionsInput::for_address("B62q...")
-            .status(BlockStatusFilter::Canonical),
+            .status(BlockStatusFilter::Canonical)
+            .from(100)
+            .to(200),
     )
     .await?;
 ```
@@ -240,16 +246,22 @@ let events = client
 <TabItem value="go" label="Go">
 
 ```sh
-go get github.com/o1-labs/mina-archive-sdk-go
+go get github.com/o1-labs/mina-archive-sdk-go/v2
 ```
 
 ```go
+import archive "github.com/o1-labs/mina-archive-sdk-go/v2"
+
 client := archive.NewClient(
     archive.WithGraphQLURI("https://api.minascan.io/archive/devnet/v1/graphql"),
 )
+defer client.Close()
+
 events, err := client.GetEvents(ctx, archive.EventFilterOptionsInput{
     Address: "B62q...",
     Status:  archive.BlockStatusCanonical,
+    From:    archive.IntPtr(100),
+    To:      archive.IntPtr(200),
 })
 ```
 
@@ -271,10 +283,13 @@ Boolean variables accept `true`/`false`, `1`/`0`, `yes`/`no`, or `on`/`off`, cas
 | `PG_CONN` | *(required)* | Postgres connection string for the archive database |
 | `PORT` | `8080` | Port the GraphQL server listens on |
 | `BLOCK_RANGE_SIZE` | `10000` | Maximum block span a single query may cover |
-| `ENABLED_QUERIES` | *(all)* | Comma-separated subset of root fields to expose |
+| `ENABLED_QUERIES` | *(all)* | Comma-separated subset of root fields to expose. `schemaVersion` is always served |
 | `ENABLE_GRAPHIQL` | `false` | Serve the GraphiQL playground at `/` |
 | `ENABLE_INTROSPECTION` | `false` | Allow schema introspection |
 | `ENABLE_BLOCK_TRANSACTION_DETAILS` | `false` | Include `userCommands`, `zkappCommands`, and `feeTransfers` on blocks |
+| `ENABLE_ZKAPP_COMMANDS_QUERY` | `false` | Expose the `zkappCommands` root query |
+| `ZKAPP_COMMAND_RANGE_SIZE` | `1000` | Maximum block span of one `zkappCommands` query |
+| `ZKAPP_COMMAND_ACCOUNT_UPDATE_LIMIT` | `5000` | Maximum account updates one `zkappCommands` query may expand |
 
 ### Database
 
@@ -331,4 +346,16 @@ Reference Kubernetes manifests, a production Compose file, and an operations run
 
 The GraphQL schema follows semantic versioning. A new root field or a new optional argument is a minor release; removing or renaming anything a client can select is a major one, and never happens silently — a schema check gates every change to the repository.
 
-Client SDK versions track the schema they speak, so an SDK on the same major and minor version as the server is known to match it.
+The server, its schema and the client SDKs share one major version. **The same major means compatible**: a 2.x SDK works against any 2.x server, and a higher server minor only adds what the SDK does not wrap yet. Minor and patch versions move independently.
+
+A client can ask the server which schema it speaks:
+
+```graphql
+query {
+  schemaVersion
+}
+```
+
+`schemaVersion` reports the contract, not the queries a given deployment exposes. `ENABLED_QUERIES` and `ENABLE_ZKAPP_COMMANDS_QUERY` can still switch data queries off, so detect a missing query from the `Cannot query field` error.
+
+The full policy, including what counts as a breaking change, is in the repository's [versioning guide](https://github.com/o1-labs/Archive-Node-API/blob/main/docs/versioning.md).
