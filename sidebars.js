@@ -426,6 +426,11 @@ module.exports = {
       items: [
         {
           type: 'ref',
+          id: 'node-operators/data-and-history/archive-node-api',
+          label: 'Archive Node API',
+        },
+        {
+          type: 'ref',
           id: 'node-operators/archive-node/index',
           label: 'Archive Node',
         },

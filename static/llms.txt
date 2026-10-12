@@ -165,7 +165,7 @@ Every page also has a markdown twin: add `.md` to its URL (for example https://d
 
 ## Integrations
 
-- [Integrate with Mina](https://docs.minaprotocol.com/integrations): Choose how to integrate an application, exchange, wallet, explorer, or indexer with Mina — the daemon GraphQL API, archive nodes, Rosetta, client SDKs, and signing libraries.
+- [Integrate with Mina](https://docs.minaprotocol.com/integrations): Choose how to integrate an application, exchange, wallet, explorer, or indexer with Mina — the daemon GraphQL API, the Archive Node API, Rosetta, client SDKs, and signing libraries.
 
 ## Developer Tools
 
