@@ -1,0 +1,346 @@
+# Archive Node API GraphQL schema, version 2.0 (Archive Node API 2.0.0).
+# Source of truth: https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql
+# This copy is served at https://docs.minaprotocol.com/archive-node-api/schema.graphql
+# and embedded in https://docs.minaprotocol.com/node-operators/data-and-history/archive-node-api-schema
+
+# docs:start schema
+scalar DateTime
+
+"""
+Filter for the consensus status of the block
+"""
+enum BlockStatusFilter {
+  """
+  All blocks
+  """
+  ALL
+  """
+  Only pending blocks
+  """
+  PENDING
+  """
+  Only canonical (finalized) blocks
+  """
+  CANONICAL
+}
+
+"""
+Filter events from a specific account
+
+**WARNING**: The graphQL schema server will limit the block scan range to a fixed number of blocks.  The default is 10,000 blocks, but can be changed by the host.
+It is the responsibility of the client to use a block range that is within the limit, which will guarantee that all events are eventually returned.  It is possible to get a partial result if you do not specify both a `from` and a `to` parameter.
+"""
+input EventFilterOptionsInput {
+  address: String!
+  tokenId: String
+  status: BlockStatusFilter
+  """
+  Mina block height to filter events to, exclusive
+  """
+  to: Int
+  """
+  Mina block height to filter events from, inclusive
+  """
+  from: Int
+}
+
+"""
+Filter actions from a specific account
+
+**WARNING**: The graphQL schema server will limit the block scan range to a fixed number of blocks.  The default is 10,000 blocks, but can be changed by the host.
+It is the responsibility of the client to use a block range that is within the limit, which will guarantee that all actions are eventually returned.  It is possible to get a partial result if you do not specify both a `from` and a `to` parameter.
+"""
+input ActionFilterOptionsInput {
+  address: String!
+  tokenId: String
+  status: BlockStatusFilter
+  """
+  Mina block height to filter actions to, exclusive
+  """
+  to: Int
+  """
+  Mina block height to filter actions from, inclusive
+  """
+  from: Int
+  """
+  Filter for actions that happened after this action state, inclusive
+  """
+  fromActionState: String
+  """
+  Filter for actions that happened before this action state, inclusive
+  """
+  endActionState: String
+}
+
+"""
+Find applied account updates that set a specific verification key.
+
+The block range is required and limited by the server's configured maximum.
+`from` is inclusive and `to` is exclusive.
+"""
+input VerificationKeyUpdateFilterInput {
+  verificationKeyHash: String!
+  from: Int!
+  to: Int!
+  status: BlockStatusFilter
+}
+
+"""
+Filter successful zkApp commands by block range.
+
+Both `from` and `to` are required. The range is bounded by `ZKAPP_COMMAND_RANGE_SIZE`, and the server may reject dense ranges that expand to too many account updates.
+"""
+input ZkappCommandFilterOptionsInput {
+  blockStatus: BlockStatusFilter
+  """
+  Mina block height to filter zkApp commands from, inclusive
+  """
+  from: Int!
+  """
+  Mina block height to filter zkApp commands to, exclusive
+  """
+  to: Int!
+  """
+  Optional account update public key filter.
+  """
+  accountPublicKey: String
+  """
+  Optional account update token id filter.
+  """
+  tokenId: String
+}
+
+type EventData {
+  accountUpdateId: String!
+  transactionInfo: TransactionInfo
+  data: [String!]!
+}
+
+type ActionData {
+  accountUpdateId: String!
+  transactionInfo: TransactionInfo
+  data: [String!]!
+}
+
+type BlockInfo {
+  height: Int!
+  stateHash: String!
+  parentHash: String!
+  ledgerHash: String!
+  chainStatus: String!
+  timestamp: String!
+  globalSlotSinceHardfork: Int!
+  globalSlotSinceGenesis: Int!
+  distanceFromMaxBlockHeight: Int!
+}
+
+type MaxBlockHeightInfo {
+  canonicalMaxBlockHeight: Int!
+  pendingMaxBlockHeight: Int!
+}
+
+type TransactionInfo {
+  status: String!
+  hash: String!
+  memo: String!
+  authorizationKind: String!
+  sequenceNumber: Int!
+  zkappAccountUpdateIds: [Int!]!
+}
+
+type VerificationKeyUpdate {
+  accountUpdateId: String!
+  address: String!
+  tokenId: String!
+  verificationKeyHash: String!
+  blockInfo: BlockInfo!
+  transactionInfo: TransactionInfo!
+}
+
+type ActionStates {
+  actionStateOne: String
+  actionStateTwo: String
+  actionStateThree: String
+  actionStateFour: String
+  actionStateFive: String
+}
+
+type EventOutput {
+  blockInfo: BlockInfo
+  eventData: [EventData!]
+}
+
+type ActionOutput {
+  blockInfo: BlockInfo
+  transactionInfo: TransactionInfo
+  actionData: [ActionData!]
+  actionState: ActionStates!
+}
+
+"""
+Raw field array from the archive database.
+
+An empty `fields` array means the archive row exists but contains no field values.
+Nullable entries mean the corresponding nullable archive state slot has no field value.
+"""
+type ZkappFieldArray {
+  fields: [String]!
+}
+
+type ZkappAccountPrecondition {
+  state: ZkappFieldArray
+  actionState: ZkappFieldArray
+  provedState: Boolean
+  isNew: Boolean
+}
+
+type ZkappGlobalSlotBounds {
+  lowerBound: Int
+  upperBound: Int
+}
+
+type ZkappNetworkPrecondition {
+  globalSlotSinceGenesis: ZkappGlobalSlotBounds
+}
+
+type ZkappAccountUpdateOutput {
+  id: String!
+  publicKey: String!
+  tokenId: String!
+  authorizationKind: String!
+  balanceChange: String!
+  incrementNonce: Boolean!
+  callDepth: Int!
+  actions: [ZkappFieldArray!]!
+  events: [ZkappFieldArray!]!
+  appState: ZkappFieldArray
+  accountPrecondition: ZkappAccountPrecondition
+  networkPrecondition: ZkappNetworkPrecondition
+}
+
+type ZkappCommandOutput {
+  blockInfo: BlockInfo!
+  hash: String!
+  feePayer: String!
+  fee: String!
+  memo: String!
+  sequenceNumber: Int!
+  accountUpdates: [ZkappAccountUpdateOutput!]!
+}
+
+"""
+Metadata about the network
+"""
+type NetworkStateOutput {
+  """
+  Returns the latest pending and canonical block heights that are synced by the archive node.  If the archive node is not fully synced, the pending block height will be lower than the actual network state.  Wait some time for the archive node to get back in sync.
+  """
+  maxBlockHeight: MaxBlockHeightInfo
+}
+
+enum BlockSortByInput {
+  BLOCKHEIGHT_ASC
+  BLOCKHEIGHT_DESC
+}
+
+"""
+Filter for blocks by date range, canonical status, and other criteria
+"""
+input BlockQueryInput {
+  """
+  Filter blocks from this height, inclusive
+  """
+  blockHeight_gte: Int
+  """
+  Filter blocks to this height, exclusive
+  """
+  blockHeight_lt: Int
+  """
+  Filter blocks from this date/time, inclusive
+  """
+  dateTime_gte: DateTime
+  """
+  Filter blocks to this date/time, exclusive
+  """
+  dateTime_lt: DateTime
+  """
+  Filter for canonical (finalized) blocks only
+  """
+  canonical: Boolean
+  """
+  Filter for blocks in best chain only
+  """
+  inBestChain: Boolean
+}
+
+type UserCommand {
+  hash: String!
+  kind: String!
+  from: String!
+  to: String!
+  amount: String!
+  fee: String!
+  memo: String!
+  nonce: Int!
+  status: String!
+  failureReason: String
+}
+
+type ZkAppCommand {
+  hash: String!
+  feePayer: String!
+  fee: String!
+  memo: String!
+  status: String!
+  failureReason: String
+}
+
+type FeeTransfer {
+  recipient: String!
+  fee: String!
+  type: String!
+}
+
+type BlockTransactions {
+  coinbase: String!
+  userCommands: [UserCommand!]!
+  zkappCommands: [ZkAppCommand!]!
+  feeTransfer: [FeeTransfer!]!
+}
+
+type Block {
+  blockHeight: Int!
+  creator: String!
+  stateHash: String!
+  parentHash: String!
+  dateTime: DateTime!
+  transactions: BlockTransactions!
+}
+
+type Query {
+  """
+  The `MAJOR.MINOR` version of this schema.
+
+  Clients compare it with the schema version they were built against: an equal
+  major means the contract they code against still holds, and a higher minor
+  means this server has additive changes they may not know about yet.
+
+  Always available, even when `ENABLED_QUERIES` restricts which data queries
+  this server exposes — a compatibility check that can itself be switched off
+  is of no use to a client.
+  """
+  schemaVersion: String!
+  events(input: EventFilterOptionsInput!): [EventOutput!]!
+  actions(input: ActionFilterOptionsInput!): [ActionOutput!]!
+  verificationKeyUpdates(
+    input: VerificationKeyUpdateFilterInput!
+  ): [VerificationKeyUpdate!]!
+  zkappCommands(input: ZkappCommandFilterOptionsInput!): [ZkappCommandOutput!]!
+  networkState: NetworkStateOutput!
+  blocks(
+    query: BlockQueryInput
+    limit: Int
+    sortBy: BlockSortByInput
+  ): [Block!]!
+}
+# docs:end schema

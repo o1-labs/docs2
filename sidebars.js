@@ -337,6 +337,7 @@ module.exports = {
           },
           items: [
             'node-operators/data-and-history/archive-node-api',
+            'node-operators/data-and-history/archive-node-api-schema',
             'node-operators/data-and-history/rosetta',
           ],
         },

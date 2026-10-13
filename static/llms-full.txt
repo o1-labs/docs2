@@ -8976,6 +8976,384 @@ It is important to pay out rewards to participants who have delegated their stak
 To learn how, see [Sending Many Transactions](/mina-protocol/sending-a-payment#sending-many-transactions).
 
 ---
+url: /node-operators/data-and-history/archive-node-api-schema
+---
+
+# Archive Node API schema
+
+
+
+<Subhead>
+The GraphQL schema definition of the Archive Node API, schema version 2.0.
+</Subhead>
+
+This page is the schema that the [Archive Node API](/node-operators/data-and-history/archive-node-api) 2.0.0 serves. The schema definition language (SDL) below is the full contract: every root query under `type Query`, every input type and every output type.
+
+## Fetch the schema as a file
+
+| Source | URL | Use it for |
+|---|---|---|
+| This site | `https://docs.minaprotocol.com/archive-node-api/schema.graphql` | Code generation, AI agents, and tools. Plain text, no authentication |
+| The repository | `https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql` | The source of truth, with its history |
+| Your own instance | `http://localhost:8080` with `ENABLE_INTROSPECTION=true` | The schema that one deployment serves |
+
+```sh
+# The published 2.0 schema
+curl -sO https://docs.minaprotocol.com/archive-node-api/schema.graphql
+
+# The schema of your own instance, through introspection
+npx get-graphql-schema http://localhost:8080 > schema.graphql
+```
+
+Introspection is off by default. The server answers an introspection query only when `ENABLE_INTROSPECTION=true`. Keep it off on a public instance and use the published file instead.
+
+The schema follows semantic versioning, and a server reports the version it speaks through the `schemaVersion` query. The [Schema stability](/node-operators/data-and-history/archive-node-api#schema-stability) section explains what a minor and a major release change.
+
+## Schema definition
+
+```graphql title="schema.graphql"
+scalar DateTime
+
+"""
+Filter for the consensus status of the block
+"""
+enum BlockStatusFilter {
+  """
+  All blocks
+  """
+  ALL
+  """
+  Only pending blocks
+  """
+  PENDING
+  """
+  Only canonical (finalized) blocks
+  """
+  CANONICAL
+}
+
+"""
+Filter events from a specific account
+
+**WARNING**: The graphQL schema server will limit the block scan range to a fixed number of blocks.  The default is 10,000 blocks, but can be changed by the host.
+It is the responsibility of the client to use a block range that is within the limit, which will guarantee that all events are eventually returned.  It is possible to get a partial result if you do not specify both a `from` and a `to` parameter.
+"""
+input EventFilterOptionsInput {
+  address: String!
+  tokenId: String
+  status: BlockStatusFilter
+  """
+  Mina block height to filter events to, exclusive
+  """
+  to: Int
+  """
+  Mina block height to filter events from, inclusive
+  """
+  from: Int
+}
+
+"""
+Filter actions from a specific account
+
+**WARNING**: The graphQL schema server will limit the block scan range to a fixed number of blocks.  The default is 10,000 blocks, but can be changed by the host.
+It is the responsibility of the client to use a block range that is within the limit, which will guarantee that all actions are eventually returned.  It is possible to get a partial result if you do not specify both a `from` and a `to` parameter.
+"""
+input ActionFilterOptionsInput {
+  address: String!
+  tokenId: String
+  status: BlockStatusFilter
+  """
+  Mina block height to filter actions to, exclusive
+  """
+  to: Int
+  """
+  Mina block height to filter actions from, inclusive
+  """
+  from: Int
+  """
+  Filter for actions that happened after this action state, inclusive
+  """
+  fromActionState: String
+  """
+  Filter for actions that happened before this action state, inclusive
+  """
+  endActionState: String
+}
+
+"""
+Find applied account updates that set a specific verification key.
+
+The block range is required and limited by the server's configured maximum.
+`from` is inclusive and `to` is exclusive.
+"""
+input VerificationKeyUpdateFilterInput {
+  verificationKeyHash: String!
+  from: Int!
+  to: Int!
+  status: BlockStatusFilter
+}
+
+"""
+Filter successful zkApp commands by block range.
+
+Both `from` and `to` are required. The range is bounded by `ZKAPP_COMMAND_RANGE_SIZE`, and the server may reject dense ranges that expand to too many account updates.
+"""
+input ZkappCommandFilterOptionsInput {
+  blockStatus: BlockStatusFilter
+  """
+  Mina block height to filter zkApp commands from, inclusive
+  """
+  from: Int!
+  """
+  Mina block height to filter zkApp commands to, exclusive
+  """
+  to: Int!
+  """
+  Optional account update public key filter.
+  """
+  accountPublicKey: String
+  """
+  Optional account update token id filter.
+  """
+  tokenId: String
+}
+
+type EventData {
+  accountUpdateId: String!
+  transactionInfo: TransactionInfo
+  data: [String!]!
+}
+
+type ActionData {
+  accountUpdateId: String!
+  transactionInfo: TransactionInfo
+  data: [String!]!
+}
+
+type BlockInfo {
+  height: Int!
+  stateHash: String!
+  parentHash: String!
+  ledgerHash: String!
+  chainStatus: String!
+  timestamp: String!
+  globalSlotSinceHardfork: Int!
+  globalSlotSinceGenesis: Int!
+  distanceFromMaxBlockHeight: Int!
+}
+
+type MaxBlockHeightInfo {
+  canonicalMaxBlockHeight: Int!
+  pendingMaxBlockHeight: Int!
+}
+
+type TransactionInfo {
+  status: String!
+  hash: String!
+  memo: String!
+  authorizationKind: String!
+  sequenceNumber: Int!
+  zkappAccountUpdateIds: [Int!]!
+}
+
+type VerificationKeyUpdate {
+  accountUpdateId: String!
+  address: String!
+  tokenId: String!
+  verificationKeyHash: String!
+  blockInfo: BlockInfo!
+  transactionInfo: TransactionInfo!
+}
+
+type ActionStates {
+  actionStateOne: String
+  actionStateTwo: String
+  actionStateThree: String
+  actionStateFour: String
+  actionStateFive: String
+}
+
+type EventOutput {
+  blockInfo: BlockInfo
+  eventData: [EventData!]
+}
+
+type ActionOutput {
+  blockInfo: BlockInfo
+  transactionInfo: TransactionInfo
+  actionData: [ActionData!]
+  actionState: ActionStates!
+}
+
+"""
+Raw field array from the archive database.
+
+An empty `fields` array means the archive row exists but contains no field values.
+Nullable entries mean the corresponding nullable archive state slot has no field value.
+"""
+type ZkappFieldArray {
+  fields: [String]!
+}
+
+type ZkappAccountPrecondition {
+  state: ZkappFieldArray
+  actionState: ZkappFieldArray
+  provedState: Boolean
+  isNew: Boolean
+}
+
+type ZkappGlobalSlotBounds {
+  lowerBound: Int
+  upperBound: Int
+}
+
+type ZkappNetworkPrecondition {
+  globalSlotSinceGenesis: ZkappGlobalSlotBounds
+}
+
+type ZkappAccountUpdateOutput {
+  id: String!
+  publicKey: String!
+  tokenId: String!
+  authorizationKind: String!
+  balanceChange: String!
+  incrementNonce: Boolean!
+  callDepth: Int!
+  actions: [ZkappFieldArray!]!
+  events: [ZkappFieldArray!]!
+  appState: ZkappFieldArray
+  accountPrecondition: ZkappAccountPrecondition
+  networkPrecondition: ZkappNetworkPrecondition
+}
+
+type ZkappCommandOutput {
+  blockInfo: BlockInfo!
+  hash: String!
+  feePayer: String!
+  fee: String!
+  memo: String!
+  sequenceNumber: Int!
+  accountUpdates: [ZkappAccountUpdateOutput!]!
+}
+
+"""
+Metadata about the network
+"""
+type NetworkStateOutput {
+  """
+  Returns the latest pending and canonical block heights that are synced by the archive node.  If the archive node is not fully synced, the pending block height will be lower than the actual network state.  Wait some time for the archive node to get back in sync.
+  """
+  maxBlockHeight: MaxBlockHeightInfo
+}
+
+enum BlockSortByInput {
+  BLOCKHEIGHT_ASC
+  BLOCKHEIGHT_DESC
+}
+
+"""
+Filter for blocks by date range, canonical status, and other criteria
+"""
+input BlockQueryInput {
+  """
+  Filter blocks from this height, inclusive
+  """
+  blockHeight_gte: Int
+  """
+  Filter blocks to this height, exclusive
+  """
+  blockHeight_lt: Int
+  """
+  Filter blocks from this date/time, inclusive
+  """
+  dateTime_gte: DateTime
+  """
+  Filter blocks to this date/time, exclusive
+  """
+  dateTime_lt: DateTime
+  """
+  Filter for canonical (finalized) blocks only
+  """
+  canonical: Boolean
+  """
+  Filter for blocks in best chain only
+  """
+  inBestChain: Boolean
+}
+
+type UserCommand {
+  hash: String!
+  kind: String!
+  from: String!
+  to: String!
+  amount: String!
+  fee: String!
+  memo: String!
+  nonce: Int!
+  status: String!
+  failureReason: String
+}
+
+type ZkAppCommand {
+  hash: String!
+  feePayer: String!
+  fee: String!
+  memo: String!
+  status: String!
+  failureReason: String
+}
+
+type FeeTransfer {
+  recipient: String!
+  fee: String!
+  type: String!
+}
+
+type BlockTransactions {
+  coinbase: String!
+  userCommands: [UserCommand!]!
+  zkappCommands: [ZkAppCommand!]!
+  feeTransfer: [FeeTransfer!]!
+}
+
+type Block {
+  blockHeight: Int!
+  creator: String!
+  stateHash: String!
+  parentHash: String!
+  dateTime: DateTime!
+  transactions: BlockTransactions!
+}
+
+type Query {
+  """
+  The `MAJOR.MINOR` version of this schema.
+
+  Clients compare it with the schema version they were built against: an equal
+  major means the contract they code against still holds, and a higher minor
+  means this server has additive changes they may not know about yet.
+
+  Always available, even when `ENABLED_QUERIES` restricts which data queries
+  this server exposes — a compatibility check that can itself be switched off
+  is of no use to a client.
+  """
+  schemaVersion: String!
+  events(input: EventFilterOptionsInput!): [EventOutput!]!
+  actions(input: ActionFilterOptionsInput!): [ActionOutput!]!
+  verificationKeyUpdates(
+    input: VerificationKeyUpdateFilterInput!
+  ): [VerificationKeyUpdate!]!
+  zkappCommands(input: ZkappCommandFilterOptionsInput!): [ZkappCommandOutput!]!
+  networkState: NetworkStateOutput!
+  blocks(
+    query: BlockQueryInput
+    limit: Int
+    sortBy: BlockSortByInput
+  ): [Block!]!
+}
+```
+
+---
 url: /node-operators/data-and-history/archive-node-api
 ---
 
@@ -9078,7 +9456,7 @@ curl -s -X POST http://localhost:8080 \
 
 ## The query surface
 
-Seven root fields. The authoritative definition is [`schema.graphql`](https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql) in the repository.
+Seven root fields. The authoritative definition is the [schema reference](/node-operators/data-and-history/archive-node-api-schema), which also gives the schema as a file to download.
 
 | Query | Returns |
 |---|---|
@@ -9090,10 +9468,15 @@ Seven root fields. The authoritative definition is [`schema.graphql`](https://gi
 | `zkappCommands(input:)` | zkApp commands and their account updates over a block range, optionally filtered by account and token. Off unless `ENABLE_ZKAPP_COMMANDS_QUERY=true` |
 | `schemaVersion` | The `MAJOR.MINOR` version of the schema this server speaks. Always served |
 
-The highest block height the archive has, canonical and pending. A block becomes canonical when it is 290 blocks (k) below the tip, so the two numbers differ by about 290:
+The examples below run against your own instance from [Quick start](#quick-start). The addresses, heights and hashes are real Devnet values, so they return data on a Devnet archive. Block ranges are `from` inclusive and `to` exclusive on every query.
+
+### Handshake
+
+The first query a client sends. `schemaVersion` tells you which contract the server speaks, and `networkState` tells you how far the archive has synced. A block becomes canonical when it is 290 blocks (k) below the tip, so the two heights differ by about 290:
 
 ```graphql
 query {
+  schemaVersion
   networkState {
     maxBlockHeight {
       canonicalMaxBlockHeight
@@ -9103,7 +9486,88 @@ query {
 }
 ```
 
-The events that a zkApp emitted in a block range. This address is a Lumina DEX pool on Devnet:
+### Blocks
+
+The five most recent canonical blocks, newest first:
+
+```graphql
+query {
+  blocks(query: { canonical: true }, limit: 5, sortBy: BLOCKHEIGHT_DESC) {
+    blockHeight
+    stateHash
+    creator
+    dateTime
+  }
+}
+```
+
+A height range, with the transactions in each block. On Devnet, block 470002 holds two zkApp commands:
+
+```graphql
+query {
+  blocks(
+    query: { blockHeight_gte: 470000, blockHeight_lt: 470003, canonical: true }
+    sortBy: BLOCKHEIGHT_ASC
+  ) {
+    blockHeight
+    stateHash
+    dateTime
+    transactions {
+      coinbase
+      userCommands {
+        hash
+        kind
+        from
+        to
+        amount
+        fee
+        status
+      }
+      zkappCommands {
+        hash
+        feePayer
+        fee
+        status
+        failureReason
+      }
+      feeTransfer {
+        recipient
+        fee
+        type
+      }
+    }
+  }
+}
+```
+
+The same three blocks selected by time instead of height. `DateTime` values are ISO 8601 strings, and Devnet produces a block about every three minutes:
+
+```graphql
+query {
+  blocks(
+    query: {
+      dateTime_gte: "2025-11-05T10:15:00Z"
+      dateTime_lt: "2025-11-05T10:31:00Z"
+      canonical: true
+    }
+    sortBy: BLOCKHEIGHT_ASC
+  ) {
+    blockHeight
+    dateTime
+    transactions {
+      coinbase
+    }
+  }
+}
+```
+
+:::note
+`userCommands`, `zkappCommands` and `feeTransfer` on a block are served only when `ENABLE_BLOCK_TRANSACTION_DETAILS=true`. The other fields are always served.
+:::
+
+### Events
+
+The events that a zkApp emitted in a block range. This address is a Lumina DEX pool on Devnet, and the range holds one event-emitting transaction, at block 470259:
 
 ```graphql
 query {
@@ -9118,34 +9582,79 @@ query {
     blockInfo {
       height
       stateHash
+      parentHash
       timestamp
+      chainStatus
+      distanceFromMaxBlockHeight
     }
     eventData {
+      accountUpdateId
       data
       transactionInfo {
         hash
         status
+        memo
+        authorizationKind
       }
     }
   }
 }
 ```
 
-`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them.
+`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them. `chainStatus` is `canonical` or `pending`, and `distanceFromMaxBlockHeight` tells you how far the block is from the tip.
 
-Actions folded from a checkpoint, which is what an o1js reducer does:
+Events of the same account under a custom token. `tokenId` defaults to MINA, `wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf`; pass the token's ID to read the account that the zkApp owns under that token:
+
+```graphql
+query {
+  events(
+    input: {
+      address: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+      tokenId: "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf"
+      status: CANONICAL
+      from: 470000
+      to: 470300
+    }
+  ) {
+    blockInfo {
+      height
+    }
+    eventData {
+      data
+    }
+  }
+}
+```
+
+### Actions
+
+Replace `address` with your zkApp's public key in these two examples.
+
+Actions folded from a checkpoint, which is what an o1js reducer does. The `fromActionState` below is the initial action state of every account, so this request starts from the zkApp's first action. In a reducer loop, pass the last action state you processed instead:
 
 ```graphql
 query {
   actions(
     input: {
-      address: "B62qiaEMrWiYdK7LcJ2ScdMyG8LzUxi7yaw17XvBD34on7UKfhAkRML"
+      address: "B62q..."
+      status: CANONICAL
       fromActionState: "25079927036070901246064867767436987657692091363973573142121686150614948079097"
     }
   ) {
+    blockInfo {
+      height
+      stateHash
+    }
+    transactionInfo {
+      hash
+      status
+    }
     actionState {
       actionStateOne
       actionStateTwo
+      actionStateThree
+      actionStateFour
+      actionStateFive
     }
     actionData {
       accountUpdateId
@@ -9155,13 +9664,168 @@ query {
 }
 ```
 
-:::note
-Range limits differ by query. Walk a wider history in pages, one request for each range.
+Actions between two checkpoints, inside a block range. Both action-state bounds are inclusive. Use this when a reducer has already settled up to `endActionState`:
+
+```graphql
+query {
+  actions(
+    input: {
+      address: "B62q..."
+      from: 470000
+      to: 480000
+      fromActionState: "25079927036070901246064867767436987657692091363973573142121686150614948079097"
+      endActionState: "<action state after the last processed action>"
+    }
+  ) {
+    blockInfo {
+      height
+    }
+    actionState {
+      actionStateOne
+    }
+    actionData {
+      data
+    }
+  }
+}
+```
+
+`actionStateOne` is the action state after the block's actions were applied. `actionStateTwo` to `actionStateFive` are the four earlier states that the account keeps, which a reducer uses to find its checkpoint again after a reorganization.
+
+### Verification key updates
+
+Every account update that set one verification key, in a required block range. This finds every contract deployed from the same code. On Devnet, this hash is the Lumina pool contract, and the range holds four pool deployments:
+
+```graphql
+query {
+  verificationKeyUpdates(
+    input: {
+      verificationKeyHash: "7480901441026468595703278519003423509807923435933557767337375565636818933806"
+      from: 430000
+      to: 440000
+      status: CANONICAL
+    }
+  ) {
+    address
+    tokenId
+    blockInfo {
+      height
+      stateHash
+    }
+    transactionInfo {
+      hash
+      status
+    }
+  }
+}
+```
+
+The first result is at block 432749: the pool from the events example. To find the hash of a deployed contract, read `verificationKey { hash }` from the account on the daemon GraphQL API.
+
+### zkApp commands
+
+Successful zkApp commands and their account updates in a block range. This serves an indexer that needs the whole transaction, not only one account's events. Both bounds are required, and `accountPublicKey` keeps only the commands that touch one account. This request returns the Lumina pool's transaction from the events example:
+
+```graphql
+query {
+  zkappCommands(
+    input: {
+      from: 470259
+      to: 470260
+      blockStatus: CANONICAL
+      accountPublicKey: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+    }
+  ) {
+    hash
+    feePayer
+    fee
+    memo
+    blockInfo {
+      height
+      stateHash
+    }
+    accountUpdates {
+      publicKey
+      tokenId
+      authorizationKind
+      balanceChange
+      callDepth
+      events {
+        fields
+      }
+      actions {
+        fields
+      }
+      appState {
+        fields
+      }
+    }
+  }
+}
+```
+
+`balanceChange` is a signed string in nanomina. `appState`, `events` and `actions` are the raw field arrays from the archive database. The query is off by default: set `ENABLE_ZKAPP_COMMANDS_QUERY=true` on the server, and expect a `Cannot query field "zkappCommands"` error from a server that has not.
+
+### Send a query with variables
+
+Any GraphQL client works. With `curl`, send the query and its variables as JSON to `/`:
+
+```sh
+curl -s -X POST http://localhost:8080 \
+  -H 'Content-Type: application/json' \
+  --data @- <<'EOF'
+{
+  "query": "query Events($input: EventFilterOptionsInput!) { events(input: $input) { blockInfo { height } eventData { data } } }",
+  "variables": {
+    "input": {
+      "address": "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY",
+      "status": "CANONICAL",
+      "from": 470000,
+      "to": 470300
+    }
+  }
+}
+EOF
+```
+
+### Walk a long history
+
+Range limits differ by query, so a client reads a long history one range at a time.
 
 - `events` and `actions` search at most `BLOCK_RANGE_SIZE` blocks (10000 by default). The server shortens a wider range **without an error**: it keeps `from` and moves `to` to `from + BLOCK_RANGE_SIZE`. With only `to`, it searches the `BLOCK_RANGE_SIZE` blocks below `to`. With neither, it searches the last `BLOCK_RANGE_SIZE` blocks only, so an older event does not appear.
 - `verificationKeyUpdates` rejects a range wider than `BLOCK_RANGE_SIZE`.
 - `zkappCommands` rejects a range wider than `ZKAPP_COMMAND_RANGE_SIZE` (1000 by default).
-:::
+
+Always send both `from` and `to`, and step `from` by the range size. This TypeScript loop collects every canonical event of an address between two heights:
+
+```ts
+const RANGE = 10000; // the server's BLOCK_RANGE_SIZE
+
+const query = `query Events($input: EventFilterOptionsInput!) {
+  events(input: $input) { blockInfo { height } eventData { data } }
+}`;
+
+async function allEvents(endpoint: string, address: string, fromHeight: number, toHeight: number) {
+  const events = [];
+  for (let from = fromHeight; from < toHeight; from += RANGE) {
+    const to = Math.min(from + RANGE, toHeight);
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query,
+        variables: { input: { address, status: 'CANONICAL', from, to } },
+      }),
+    });
+    const { data, errors } = await res.json();
+    if (errors) throw new Error(JSON.stringify(errors));
+    events.push(...data.events);
+  }
+  return events;
+}
+```
+
+The [client SDKs](#client-sdks) do the request and the retries for you, and the loop stays the same.
 
 ## Using it from o1js
 
@@ -9340,7 +10004,7 @@ query {
 
 `schemaVersion` reports the contract, not the queries a given deployment exposes. `ENABLED_QUERIES` and `ENABLE_ZKAPP_COMMANDS_QUERY` can still switch data queries off, so detect a missing query from the `Cannot query field` error.
 
-The full policy, including what counts as a breaking change, is in the repository's [versioning guide](https://github.com/o1-labs/Archive-Node-API/blob/main/docs/versioning.md).
+The full policy, including what counts as a breaking change, is in the repository's [versioning guide](https://github.com/o1-labs/Archive-Node-API/blob/main/docs/versioning.md). The 2.0 schema is on the [schema reference](/node-operators/data-and-history/archive-node-api-schema) page and at `https://docs.minaprotocol.com/archive-node-api/schema.graphql` as a file.
 
 ---
 url: /node-operators/data-and-history

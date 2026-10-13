@@ -4,13 +4,31 @@
     {
       "source": "/(.*)\\.md",
       "headers": [
-        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" }
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/archive-node-api/schema.graphql",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
       ]
     }
   ],
   "redirects": [
-    { "source": "/en", "destination": "/" },
-    { "source": "/en/:path(.*)", "destination": "/:path(.*)" },
+    {
+      "source": "/en",
+      "destination": "/"
+    },
+    {
+      "source": "/en/:path(.*)",
+      "destination": "/:path(.*)"
+    },
     {
       "source": "/zkapps/o1js/recursion",
       "destination": "https://docs.o1labs.org/o1js/advanced-concepts/recursion"
