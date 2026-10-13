@@ -34,18 +34,6 @@ Mina gives you three APIs and a set of client libraries. Each API reads from a d
 | Keys and transaction signatures, offline or in a browser | [Mina Signer](/mina-signer) | Nothing: it signs locally and needs no node |
 | zkApp state, events and actions from a smart contract | [o1js](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions) | A Mina node and an Archive Node API endpoint |
 
-## Public endpoints
-
-To try an API before you run your own infrastructure, use a public endpoint.
-
-| API | Devnet | Mainnet |
-|---|---|---|
-| Archive Node API | [`https://devnet-archive-node-api.gcp.o1test.net/`](https://devnet-archive-node-api.gcp.o1test.net/) | [`https://archive-node-api.gcp.o1test.net/`](https://archive-node-api.gcp.o1test.net/) |
-
-The Archive Node API endpoints serve GraphiQL in a browser. The [Archive Node API guide](/node-operators/data-and-history/archive-node-api#try-it) has queries that you can run from the page.
-
-For production traffic, run your own nodes, so that your service does not depend on a shared endpoint.
-
 ## Client libraries
 
 | Library | Talks to | Languages |

@@ -632,18 +632,6 @@ Mina gives you three APIs and a set of client libraries. Each API reads from a d
 | Keys and transaction signatures, offline or in a browser | [Mina Signer](/mina-signer) | Nothing: it signs locally and needs no node |
 | zkApp state, events and actions from a smart contract | [o1js](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions) | A Mina node and an Archive Node API endpoint |
 
-## Public endpoints
-
-To try an API before you run your own infrastructure, use a public endpoint.
-
-| API | Devnet | Mainnet |
-|---|---|---|
-| Archive Node API | [`https://devnet-archive-node-api.gcp.o1test.net/`](https://devnet-archive-node-api.gcp.o1test.net/) | [`https://archive-node-api.gcp.o1test.net/`](https://archive-node-api.gcp.o1test.net/) |
-
-The Archive Node API endpoints serve GraphiQL in a browser. The [Archive Node API guide](/node-operators/data-and-history/archive-node-api#try-it) has queries that you can run from the page.
-
-For production traffic, run your own nodes, so that your service does not depend on a shared endpoint.
-
 ## Client libraries
 
 | Library | Talks to | Languages |
@@ -8997,59 +8985,6 @@ url: /node-operators/data-and-history/archive-node-api
 
 
 
-
-export const networkStateQuery = `query {
-  networkState {
-    maxBlockHeight {
-      canonicalMaxBlockHeight
-      pendingMaxBlockHeight
-    }
-  }
-}`;
-
-export const recentBlocksQuery = `query {
-  blocks(query: { canonical: true }, limit: 5, sortBy: BLOCKHEIGHT_DESC) {
-    blockHeight
-    stateHash
-    creator
-    dateTime
-    transactions {
-      coinbase
-      userCommands {
-        hash
-        kind
-        from
-        to
-        amount
-      }
-    }
-  }
-}`;
-
-export const zkappEventsQuery = `query {
-  events(
-    input: {
-      address: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
-      status: CANONICAL
-      from: 470000
-      to: 470300
-    }
-  ) {
-    blockInfo {
-      height
-      stateHash
-      timestamp
-    }
-    eventData {
-      data
-      transactionInfo {
-        hash
-        status
-      }
-    }
-  }
-}`;
-
 <Subhead>
 A GraphQL service over an archive node database — the supported way for zkApps, explorers, and indexers to read Mina's history.
 </Subhead>
@@ -9070,36 +9005,6 @@ Four ways to read Mina data. They are not interchangeable — pick by what you a
 | Arbitrary analytical queries over the full schema | The archive Postgres directly | No API constrains your query shape — and none protects the database |
 
 The Archive Node API and Rosetta read the *same* archive database. Running both against one database is normal.
-
-## Public endpoints
-
-o1Labs runs a public Archive Node API for each network. Use them to explore the API and to develop against it. For production traffic, run your own instance (see [Quick start](#quick-start)), so that your service does not depend on a shared endpoint.
-
-| Network | GraphQL endpoint and GraphiQL |
-|---|---|
-| Devnet | [`https://devnet-archive-node-api.gcp.o1test.net/`](https://devnet-archive-node-api.gcp.o1test.net/) |
-| Mainnet | [`https://archive-node-api.gcp.o1test.net/`](https://archive-node-api.gcp.o1test.net/) |
-
-The endpoint is the root path: send `POST` requests to `/`, not to `/graphql`. Open the same URL in a browser to get GraphiQL, an interactive editor with schema documentation and autocompletion.
-
-:::note
-The public endpoints do not serve `schemaVersion` or `zkappCommands` yet. All other queries on this page work on them.
-:::
-
-## Try it
-
-Each example below runs against a public endpoint from this page. Edit the query and select **Run query**, or select **Open in GraphiQL** to continue in the full editor.
-
-The highest block height the archive has, canonical and pending. A block becomes canonical when it is 290 blocks (k) below the tip, so the two numbers differ by about 290:
-
-
-The five most recent canonical blocks, with their payments and delegations:
-
-
-The events that a zkApp emitted in a block range. This address is a Lumina DEX pool on Devnet:
-
-
-`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them.
 
 ## Architecture
 
@@ -9128,7 +9033,7 @@ PG_CONN='postgres://postgres:postgres@localhost:5432/archive' \
 # → {"level":"info",...,"port":"8080","msg":"server started"}
 ```
 
-Open `http://localhost:8080` for the GraphiQL playground.
+Open `http://localhost:8080` for the GraphiQL playground. The GraphQL endpoint is the root path: send `POST` requests to `/`, not to `/graphql`.
 
 </TabItem>
 <TabItem value="docker" label="Docker">
@@ -9185,7 +9090,48 @@ Seven root fields. The authoritative definition is [`schema.graphql`](https://gi
 | `zkappCommands(input:)` | zkApp commands and their account updates over a block range, optionally filtered by account and token. Off unless `ENABLE_ZKAPP_COMMANDS_QUERY=true` |
 | `schemaVersion` | The `MAJOR.MINOR` version of the schema this server speaks. Always served |
 
-For runnable `networkState`, `blocks` and `events` examples, see [Try it](#try-it).
+The highest block height the archive has, canonical and pending. A block becomes canonical when it is 290 blocks (k) below the tip, so the two numbers differ by about 290:
+
+```graphql
+query {
+  networkState {
+    maxBlockHeight {
+      canonicalMaxBlockHeight
+      pendingMaxBlockHeight
+    }
+  }
+}
+```
+
+The events that a zkApp emitted in a block range. This address is a Lumina DEX pool on Devnet:
+
+```graphql
+query {
+  events(
+    input: {
+      address: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+      status: CANONICAL
+      from: 470000
+      to: 470300
+    }
+  ) {
+    blockInfo {
+      height
+      stateHash
+      timestamp
+    }
+    eventData {
+      data
+      transactionInfo {
+        hash
+        status
+      }
+    }
+  }
+}
+```
+
+`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them.
 
 Actions folded from a checkpoint, which is what an o1js reducer does:
 
