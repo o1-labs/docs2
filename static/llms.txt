@@ -179,6 +179,6 @@ Every page also has a markdown twin: add `.md` to its URL (for example https://d
 ## Operator-facing facts
 
 - [Exchange Integration FAQ](https://docs.minaprotocol.com/node-operators/faq#exchange-integration): Account creation fee 1 MINA, mempool capacity 3000 transactions, recommended 15-block confirmation, no official broadcast nodes, do not require memos for deposits.
-- [Archive Node API GraphQL schema](https://docs.minaprotocol.com/archive-node-api/schema.graphql): The complete schema (SDL) of the Archive Node API 2.0 as a plain-text file: root queries events, actions, blocks, networkState, verificationKeyUpdates, zkappCommands, schemaVersion. GraphQL endpoint is the root path of a server; introspection is off by default.
+- [Archive Node API GraphQL schema](https://docs.minaprotocol.com/archive-node-api/schema.graphql): The complete schema (SDL) of the Archive Node API 2.0 as a plain-text file; the introspection JSON is at /archive-node-api/schema.json. Root queries events, actions, blocks, networkState, verificationKeyUpdates, zkappCommands, schemaVersion. GraphQL endpoint is the root path of a server; introspection is off by default.
 - [Daemon defaults](https://docs.minaprotocol.com/node-operators/validator-node/querying-data): GraphQL API on port 3085 by default; configurable via --rest-port.
 - [Lifecycle of a Payment](https://docs.minaprotocol.com/mina-protocol/lifecycle-of-a-payment): Transaction states from submission to finality, confirmation count vs reorg probability, what exchanges should wait for.

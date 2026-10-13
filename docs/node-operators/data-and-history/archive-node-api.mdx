@@ -125,7 +125,7 @@ Seven root fields. The authoritative definition is the [schema reference](/node-
 | `zkappCommands(input:)` | zkApp commands and their account updates over a block range, optionally filtered by account and token. Off unless `ENABLE_ZKAPP_COMMANDS_QUERY=true` |
 | `schemaVersion` | The `MAJOR.MINOR` version of the schema this server speaks. Always served |
 
-The examples below run against your own instance from [Quick start](#quick-start). The addresses, heights and hashes are real Devnet values, so they return data on a Devnet archive. Block ranges are `from` inclusive and `to` exclusive on every query.
+The examples below run against your own instance from [Quick start](#quick-start). The addresses, heights and hashes are real Devnet values, so they return data on a Devnet archive, and the responses shown are what a Devnet archive returned. Block ranges are `from` inclusive and `to` exclusive on every query.
 
 ### Handshake
 
@@ -142,6 +142,25 @@ query {
   }
 }
 ```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "schemaVersion": "2.0",
+    "networkState": {
+      "maxBlockHeight": {
+        "canonicalMaxBlockHeight": 573702,
+        "pendingMaxBlockHeight": 573992
+      }
+    }
+  }
+}
+```
+
+</details>
 
 ### Blocks
 
@@ -197,6 +216,53 @@ query {
 }
 ```
 
+<details>
+<summary>Response (block 470002; blocks 470000 and 470001 hold only a coinbase)</summary>
+
+```json
+{
+  "data": {
+    "blocks": [
+      "\u2026",
+      {
+        "blockHeight": 470002,
+        "stateHash": "3NK9zM3mXJsWbBiLfUqFewEgyovVNBDCaSCeRRnnS2oTg53KN7iq",
+        "dateTime": "2025-11-05T10:30:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000",
+          "userCommands": [],
+          "zkappCommands": [
+            {
+              "hash": "5JtwjufZFKL6GYt1wx1c4JFoNRNs3DCCu5LAv4Hk88mYECRaMHan",
+              "feePayer": "B62qod2DugDjy9Jxhzd56gFS7npN8pWhanxxb36MLPzDDqtzzDyBy5z",
+              "fee": "400000000",
+              "status": "applied",
+              "failureReason": null
+            },
+            {
+              "hash": "5JuxTZXY9Z3fd1LSrPyvnmhq2ScCLaxmdfaEMmJk9bWHnCQv7VF1",
+              "feePayer": "B62qmGtQ7kn6zbw4tAYomBJJri1gZSThfQZJaMG6eR3tyNP3RiCcEQZ",
+              "fee": "100000000",
+              "status": "applied",
+              "failureReason": null
+            }
+          ],
+          "feeTransfer": [
+            {
+              "recipient": "B62qpfgnUm7zVqi8MJHNB2m37rtgMNDbFNhC2DpMmmVpQt8x6gKv9Ww",
+              "fee": "500000000",
+              "type": "fee_transfer"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 The same three blocks selected by time instead of height. `DateTime` values are ISO 8601 strings, and Devnet produces a block about every three minutes:
 
 ```graphql
@@ -217,6 +283,41 @@ query {
   }
 }
 ```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "blocks": [
+      {
+        "blockHeight": 470000,
+        "dateTime": "2025-11-05T10:15:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      },
+      {
+        "blockHeight": 470001,
+        "dateTime": "2025-11-05T10:21:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      },
+      {
+        "blockHeight": 470002,
+        "dateTime": "2025-11-05T10:30:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
 
 :::note
 `userCommands`, `zkappCommands` and `feeTransfer` on a block are served only when `ENABLE_BLOCK_TRANSACTION_DETAILS=true`. The other fields are always served.
@@ -258,7 +359,48 @@ query {
 }
 ```
 
-`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them. `chainStatus` is `canonical` or `pending`, and `distanceFromMaxBlockHeight` tells you how far the block is from the tip.
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "blockInfo": {
+          "height": 470259,
+          "stateHash": "3NLyMpkM1Gdgtt2jDs2qK3puuy4m1iFE3MXbtnmdg6WTYnBsu2d1",
+          "parentHash": "3NLJJEu12roWDC7CBmaRU8C74bJacoJwD9qZRUWbCz4qQVg8J9Ff",
+          "timestamp": "1762430760000",
+          "chainStatus": "canonical",
+          "distanceFromMaxBlockHeight": 103733
+        },
+        "eventData": [
+          {
+            "accountUpdateId": "192898",
+            "data": [
+              "3",
+              "24052708529394526800224616175202855196403836544833931471428478190495166298049",
+              "1",
+              "5000000000"
+            ],
+            "transactionInfo": {
+              "hash": "5JuwhbYXvPK4u4Lv6dgdjrJHzSKj7rUKVY9FbAHUp66Frd94Mh8y",
+              "status": "applied",
+              "memo": "E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH",
+              "authorizationKind": "Proof"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them. `chainStatus` is `canonical` or `pending`, and `distanceFromMaxBlockHeight` tells you how far the block is from the tip. Amounts, such as the `5000000000` above, are strings in nanomina.
 
 Events of the same account under a custom token. `tokenId` defaults to MINA, `wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf`; pass the token's ID to read the account that the zkApp owns under that token:
 
@@ -282,6 +424,8 @@ query {
   }
 }
 ```
+
+With the MINA token ID this returns the same event as the query above. With a custom token ID it returns the events of the account that the zkApp owns under that token.
 
 ### Actions
 
@@ -377,6 +521,44 @@ query {
 }
 ```
 
+<details>
+<summary>Response (first two of four; the four deployments are at blocks 432749, 434622, 435910, 436785)</summary>
+
+```json
+{
+  "data": {
+    "verificationKeyUpdates": [
+      {
+        "address": "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY",
+        "tokenId": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+        "blockInfo": {
+          "height": 432749,
+          "stateHash": "3NLX5TfnXBYQVHqkQC9ywz3H6Yu22NaG5VQACouPnCCC6udM1mWd"
+        },
+        "transactionInfo": {
+          "hash": "5Jv2h9n2iRtnqMh4ZbYoFnwbdGD7Spi5noRLv1McyXK2rbkWC11z",
+          "status": "applied"
+        }
+      },
+      {
+        "address": "B62qjPYCxG2Z9k5XTCknCgq6N1W6EDEU4tJ4Dp2cUuzVjBHPSsJ7ptN",
+        "tokenId": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+        "blockInfo": {
+          "height": 434622,
+          "stateHash": "3NKYF3E6tGvEXCUcSbEXkrNGzfnj82cy4yX5QHXVgkYMJkSGnob9"
+        },
+        "transactionInfo": {
+          "hash": "5Ju2yoYtECLa513WMFnFAtiiDPSiimd64WUiLfhHhZwsJYVeyaaa",
+          "status": "applied"
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 The first result is at block 432749: the pool from the events example. To find the hash of a deployed contract, read `verificationKey { hash }` from the account on the daemon GraphQL API.
 
 ### zkApp commands
@@ -444,6 +626,35 @@ curl -s -X POST http://localhost:8080 \
 }
 EOF
 ```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "blockInfo": {
+          "height": 470259
+        },
+        "eventData": [
+          {
+            "data": [
+              "3",
+              "24052708529394526800224616175202855196403836544833931471428478190495166298049",
+              "1",
+              "5000000000"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
 
 ### Walk a long history
 
