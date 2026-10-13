@@ -336,8 +336,15 @@ module.exports = {
             id: 'node-operators/data-and-history/index',
           },
           items: [
-            'node-operators/data-and-history/archive-node-api',
-            'node-operators/data-and-history/archive-node-api-schema',
+            {
+              type: 'category',
+              label: 'Archive Node API',
+              link: {
+                type: 'doc',
+                id: 'node-operators/data-and-history/archive-node-api',
+              },
+              items: ['node-operators/data-and-history/archive-node-api-schema'],
+            },
             'node-operators/data-and-history/rosetta',
           ],
         },
