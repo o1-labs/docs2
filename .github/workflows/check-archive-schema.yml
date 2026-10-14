@@ -1,0 +1,70 @@
+name: Check the Archive Node API schema copy
+
+# static/archive-node-api/schema.graphql is a copy of schema.graphql from the
+# o1-labs/Archive-Node-API repository, and schema.json is derived from it. This
+# job fails when the copy no longer matches the upstream file at
+# ARCHIVE_NODE_API_REF, or when schema.json is stale.
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'static/archive-node-api/**'
+      - 'scripts/generate-archive-schema-json.mjs'
+      - '.github/workflows/check-archive-schema.yml'
+  schedule:
+    # Mondays 06:00 UTC, so an upstream schema release is noticed within a week.
+    - cron: '0 6 * * 1'
+  workflow_dispatch: {}
+
+env:
+  # The upstream revision the docs copy follows. Move it to the release tag
+  # (for example v2.0.0) once the release is tagged.
+  ARCHIVE_NODE_API_REF: main
+
+jobs:
+  check-archive-schema:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Fetch the upstream schema
+        run: |
+          curl -fsSL \
+            "https://raw.githubusercontent.com/o1-labs/Archive-Node-API/${ARCHIVE_NODE_API_REF}/schema.graphql" \
+            -o /tmp/upstream.graphql
+
+      - name: Compare the SDL copy with upstream
+        run: |
+          # The copy wraps the upstream file in a header and #include_code markers.
+          sed -n '/^# docs:start schema$/,/^# docs:end schema$/p' static/archive-node-api/schema.graphql \
+            | sed '1d;$d' > /tmp/local.graphql
+          if ! diff -u /tmp/upstream.graphql /tmp/local.graphql; then
+            echo ""
+            echo "❌ static/archive-node-api/schema.graphql differs from Archive-Node-API@${ARCHIVE_NODE_API_REF}."
+            echo "Copy the upstream schema.graphql between the docs:start/docs:end markers, then regenerate schema.json."
+            exit 1
+          fi
+
+      - name: Install graphql for the JSON generator
+        run: npm i --prefix /tmp/g --no-audit --no-fund graphql@16
+
+      - name: Regenerate schema.json
+        run: NODE_PATH=/tmp/g/node_modules node scripts/generate-archive-schema-json.mjs
+
+      - name: Check schema.json for differences
+        run: |
+          if ! git diff --exit-code static/archive-node-api/schema.json; then
+            echo ""
+            echo "❌ static/archive-node-api/schema.json is out of date!"
+            echo "Run the generator (see the header of scripts/generate-archive-schema-json.mjs) and commit the result."
+            exit 1
+          fi

@@ -1,0 +1,875 @@
+---
+title: Archive Node API
+hide_title: true
+description: Run and integrate the Archive Node API, a GraphQL service that exposes blocks, events, actions, and transactions from an archive node Postgres database for zkApps, explorers, and indexers.
+keywords:
+  - archive node
+  - GraphQL
+  - API
+  - events
+  - actions
+  - zkApp
+  - blockchain integration
+  - historical data
+  - SDK
+---
+
+# Archive Node API
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+A GraphQL service over an archive node database — the supported way for zkApps, explorers, and indexers to read Mina's history.
+</Subhead>
+
+An [archive node](/node-operators/archive-node) stores Mina's history in a Postgres database, but it exposes no public API of its own. The [Archive Node API](https://github.com/o1-labs/Archive-Node-API) closes that gap: it is a read-only GraphQL server that you point at an existing archive node database and query for blocks, events, actions, and transactions.
+
+It does **not** run an archive node. You need one already syncing, or a snapshot of its database, before this service has anything to serve.
+
+## Choose a data path
+
+Four ways to read Mina data. They are not interchangeable — pick by what you are building.
+
+| You need | Use | Why |
+|---|---|---|
+| Current network state, recent blocks, sending transactions | [Daemon GraphQL](/node-operators/validator-node/querying-data) | The daemon keeps only the last k blocks (currently 290) |
+| zkApp events and actions, block and transaction history | **Archive Node API** | Purpose-built for o1js and zkApp developers |
+| Exchange integration — deposits, withdrawals, balances | [Rosetta API](/node-operators/data-and-history/rosetta) | A standardized cross-chain interface exchanges already support |
+| Arbitrary analytical queries over the full schema | The archive Postgres directly | No API constrains your query shape — and none protects the database |
+
+The Archive Node API and Rosetta read the *same* archive database. Running both against one database is normal.
+
+## Architecture
+
+| Component | Default port | Role |
+|---|---|---|
+| Mina daemon | 8302 (P2P), 3085 (GraphQL) | Syncs with the network |
+| `mina-archive` process | 3086 | Receives blocks from the daemon, writes them to Postgres |
+| PostgreSQL | 5432 | Stores the history |
+| **Archive Node API** | 8080 | Serves GraphQL over that Postgres |
+
+The API holds a connection pool to Postgres and issues read-only queries. It has no write path, no keys, and no daemon connection of its own.
+
+## Quick start
+
+<Tabs>
+<TabItem value="npm" label="npm" default>
+
+Lightest weight, for when you already have an archive database reachable.
+
+```sh
+npm install -g @o1-labs/mina-archive-node-graphql
+
+PG_CONN='postgres://postgres:postgres@localhost:5432/archive' \
+  ENABLE_GRAPHIQL=true \
+  mina-archive-node-graphql
+# → {"level":"info",...,"port":"8080","msg":"server started"}
+```
+
+Open `http://localhost:8080` for the GraphiQL playground. The GraphQL endpoint is the root path: send `POST` requests to `/`, not to `/graphql`.
+
+</TabItem>
+<TabItem value="docker" label="Docker">
+
+For when you have a database reachable but no Node toolchain.
+
+```sh
+docker pull ghcr.io/o1-labs/archive-node-api:2
+
+docker run --rm -p 8080:8080 \
+  -e PG_CONN='postgres://postgres:postgres@host.docker.internal:5432/archive' \
+  -e ENABLE_GRAPHIQL=true \
+  ghcr.io/o1-labs/archive-node-api:2
+```
+
+Tags `2`, `2.0` and `2.0.0` follow the major, the minor and one exact release. Use `2` or an exact tag in production, not `latest`.
+
+</TabItem>
+<TabItem value="compose" label="Docker Compose">
+
+For when you have no archive database at all — Compose stands one up from a published snapshot.
+
+```sh
+git clone https://github.com/o1-labs/Archive-Node-API.git
+cd Archive-Node-API
+cp .env.example.compose .env
+
+./scripts/download_db.sh devnet   # or: mainnet
+docker compose up
+```
+
+</TabItem>
+</Tabs>
+
+Confirm that your instance is serving:
+
+```sh
+curl -s -X POST http://localhost:8080 \
+  -H 'Content-Type: application/json' \
+  --data '{"query":"{ networkState { maxBlockHeight { canonicalMaxBlockHeight pendingMaxBlockHeight } } }"}'
+```
+
+## The query surface
+
+Seven root fields. The authoritative definition is the [schema reference](/node-operators/data-and-history/archive-node-api-schema), which also gives the schema as a file to download.
+
+| Query | Returns |
+|---|---|
+| `events(input:)` | Events emitted by a zkApp account, filtered by address, token, block range, and chain status |
+| `actions(input:)` | Actions dispatched from a zkApp account, optionally bounded by action state |
+| `blocks(query:, limit:, sortBy:)` | Blocks by height or date range, with transaction detail |
+| `networkState` | The archive's maximum canonical and pending block heights |
+| `verificationKeyUpdates(input:)` | Applied account updates that set a given verification key, over a required block range |
+| `zkappCommands(input:)` | zkApp commands and their account updates over a block range, optionally filtered by account and token. Off unless `ENABLE_ZKAPP_COMMANDS_QUERY=true` |
+| `schemaVersion` | The `MAJOR.MINOR` version of the schema this server speaks. Always served |
+
+The examples below run against your own instance from [Quick start](#quick-start). The addresses, heights and hashes are real Devnet values, so they return data on a Devnet archive, and the responses shown are what a Devnet archive returned. Block ranges are `from` inclusive and `to` exclusive on every query.
+
+### Handshake
+
+The first query a client sends. `schemaVersion` tells you which contract the server speaks, and `networkState` tells you how far the archive has synced. A block becomes canonical when it is 290 blocks (k) below the tip, so the two heights differ by about 290:
+
+```graphql
+query {
+  schemaVersion
+  networkState {
+    maxBlockHeight {
+      canonicalMaxBlockHeight
+      pendingMaxBlockHeight
+    }
+  }
+}
+```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "schemaVersion": "2.0",
+    "networkState": {
+      "maxBlockHeight": {
+        "canonicalMaxBlockHeight": 573702,
+        "pendingMaxBlockHeight": 573992
+      }
+    }
+  }
+}
+```
+
+</details>
+
+### Blocks
+
+The five most recent canonical blocks, newest first:
+
+```graphql
+query {
+  blocks(query: { canonical: true }, limit: 5, sortBy: BLOCKHEIGHT_DESC) {
+    blockHeight
+    stateHash
+    creator
+    dateTime
+  }
+}
+```
+
+A height range, with the transactions in each block. On Devnet, block 470002 holds two zkApp commands:
+
+```graphql
+query {
+  blocks(
+    query: { blockHeight_gte: 470000, blockHeight_lt: 470003, canonical: true }
+    sortBy: BLOCKHEIGHT_ASC
+  ) {
+    blockHeight
+    stateHash
+    dateTime
+    transactions {
+      coinbase
+      userCommands {
+        hash
+        kind
+        from
+        to
+        amount
+        fee
+        status
+      }
+      zkappCommands {
+        hash
+        feePayer
+        fee
+        status
+        failureReason
+      }
+      feeTransfer {
+        recipient
+        fee
+        type
+      }
+    }
+  }
+}
+```
+
+<details>
+<summary>Response (block 470002; blocks 470000 and 470001 hold only a coinbase)</summary>
+
+```json
+{
+  "data": {
+    "blocks": [
+      "\u2026",
+      {
+        "blockHeight": 470002,
+        "stateHash": "3NK9zM3mXJsWbBiLfUqFewEgyovVNBDCaSCeRRnnS2oTg53KN7iq",
+        "dateTime": "2025-11-05T10:30:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000",
+          "userCommands": [],
+          "zkappCommands": [
+            {
+              "hash": "5JtwjufZFKL6GYt1wx1c4JFoNRNs3DCCu5LAv4Hk88mYECRaMHan",
+              "feePayer": "B62qod2DugDjy9Jxhzd56gFS7npN8pWhanxxb36MLPzDDqtzzDyBy5z",
+              "fee": "400000000",
+              "status": "applied",
+              "failureReason": null
+            },
+            {
+              "hash": "5JuxTZXY9Z3fd1LSrPyvnmhq2ScCLaxmdfaEMmJk9bWHnCQv7VF1",
+              "feePayer": "B62qmGtQ7kn6zbw4tAYomBJJri1gZSThfQZJaMG6eR3tyNP3RiCcEQZ",
+              "fee": "100000000",
+              "status": "applied",
+              "failureReason": null
+            }
+          ],
+          "feeTransfer": [
+            {
+              "recipient": "B62qpfgnUm7zVqi8MJHNB2m37rtgMNDbFNhC2DpMmmVpQt8x6gKv9Ww",
+              "fee": "500000000",
+              "type": "fee_transfer"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+The same three blocks selected by time instead of height. `DateTime` values are ISO 8601 strings, and Devnet produces a block about every three minutes:
+
+```graphql
+query {
+  blocks(
+    query: {
+      dateTime_gte: "2025-11-05T10:15:00Z"
+      dateTime_lt: "2025-11-05T10:31:00Z"
+      canonical: true
+    }
+    sortBy: BLOCKHEIGHT_ASC
+  ) {
+    blockHeight
+    dateTime
+    transactions {
+      coinbase
+    }
+  }
+}
+```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "blocks": [
+      {
+        "blockHeight": 470000,
+        "dateTime": "2025-11-05T10:15:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      },
+      {
+        "blockHeight": 470001,
+        "dateTime": "2025-11-05T10:21:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      },
+      {
+        "blockHeight": 470002,
+        "dateTime": "2025-11-05T10:30:00.000Z",
+        "transactions": {
+          "coinbase": "720000000000"
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+:::note
+`userCommands`, `zkappCommands` and `feeTransfer` on a block are served only when `ENABLE_BLOCK_TRANSACTION_DETAILS=true`. The other fields are always served.
+:::
+
+### Events
+
+The events that a zkApp emitted in a block range. This address is a Lumina DEX pool on Devnet, and the range holds one event-emitting transaction, at block 470259:
+
+```graphql
+query {
+  events(
+    input: {
+      address: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+      status: CANONICAL
+      from: 470000
+      to: 470300
+    }
+  ) {
+    blockInfo {
+      height
+      stateHash
+      parentHash
+      timestamp
+      chainStatus
+      distanceFromMaxBlockHeight
+    }
+    eventData {
+      accountUpdateId
+      data
+      transactionInfo {
+        hash
+        status
+        memo
+        authorizationKind
+      }
+    }
+  }
+}
+```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "blockInfo": {
+          "height": 470259,
+          "stateHash": "3NLyMpkM1Gdgtt2jDs2qK3puuy4m1iFE3MXbtnmdg6WTYnBsu2d1",
+          "parentHash": "3NLJJEu12roWDC7CBmaRU8C74bJacoJwD9qZRUWbCz4qQVg8J9Ff",
+          "timestamp": "1762430760000",
+          "chainStatus": "canonical",
+          "distanceFromMaxBlockHeight": 103733
+        },
+        "eventData": [
+          {
+            "accountUpdateId": "192898",
+            "data": [
+              "3",
+              "24052708529394526800224616175202855196403836544833931471428478190495166298049",
+              "1",
+              "5000000000"
+            ],
+            "transactionInfo": {
+              "hash": "5JuwhbYXvPK4u4Lv6dgdjrJHzSKj7rUKVY9FbAHUp66Frd94Mh8y",
+              "status": "applied",
+              "memo": "E4YM2vTHhWEg66xpj52JErHUBU4pZ1yageL4TVDDpTTSsv8mK6YaH",
+              "authorizationKind": "Proof"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+`timestamp` is Unix time in milliseconds, as a string. `data` holds the event's field elements in the order that the contract emitted them. `chainStatus` is `canonical` or `pending`, and `distanceFromMaxBlockHeight` tells you how far the block is from the tip. Amounts, such as the `5000000000` above, are strings in nanomina.
+
+Events of the same account under a custom token. `tokenId` defaults to MINA, `wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf`; pass the token's ID to read the account that the zkApp owns under that token:
+
+```graphql
+query {
+  events(
+    input: {
+      address: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+      tokenId: "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf"
+      status: CANONICAL
+      from: 470000
+      to: 470300
+    }
+  ) {
+    blockInfo {
+      height
+    }
+    eventData {
+      data
+    }
+  }
+}
+```
+
+With the MINA token ID this returns the same event as the query above. With a custom token ID it returns the events of the account that the zkApp owns under that token.
+
+### Actions
+
+Replace `address` with your zkApp's public key in these two examples.
+
+Actions folded from a checkpoint, which is what an o1js reducer does. The `fromActionState` below is the initial action state of every account, so this request starts from the zkApp's first action. In a reducer loop, pass the last action state you processed instead:
+
+```graphql
+query {
+  actions(
+    input: {
+      address: "B62q..."
+      status: CANONICAL
+      fromActionState: "25079927036070901246064867767436987657692091363973573142121686150614948079097"
+    }
+  ) {
+    blockInfo {
+      height
+      stateHash
+    }
+    transactionInfo {
+      hash
+      status
+    }
+    actionState {
+      actionStateOne
+      actionStateTwo
+      actionStateThree
+      actionStateFour
+      actionStateFive
+    }
+    actionData {
+      accountUpdateId
+      data
+    }
+  }
+}
+```
+
+Actions between two checkpoints, inside a block range. Both action-state bounds are inclusive. Use this when a reducer has already settled up to `endActionState`:
+
+```graphql
+query {
+  actions(
+    input: {
+      address: "B62q..."
+      from: 470000
+      to: 480000
+      fromActionState: "25079927036070901246064867767436987657692091363973573142121686150614948079097"
+      endActionState: "<action state after the last processed action>"
+    }
+  ) {
+    blockInfo {
+      height
+    }
+    actionState {
+      actionStateOne
+    }
+    actionData {
+      data
+    }
+  }
+}
+```
+
+`actionStateOne` is the action state after the block's actions were applied. `actionStateTwo` to `actionStateFive` are the four earlier states that the account keeps, which a reducer uses to find its checkpoint again after a reorganization.
+
+### Verification key updates
+
+Every account update that set one verification key, in a required block range. This finds every contract deployed from the same code. On Devnet, this hash is the Lumina pool contract, and the range holds four pool deployments:
+
+```graphql
+query {
+  verificationKeyUpdates(
+    input: {
+      verificationKeyHash: "7480901441026468595703278519003423509807923435933557767337375565636818933806"
+      from: 430000
+      to: 440000
+      status: CANONICAL
+    }
+  ) {
+    address
+    tokenId
+    blockInfo {
+      height
+      stateHash
+    }
+    transactionInfo {
+      hash
+      status
+    }
+  }
+}
+```
+
+<details>
+<summary>Response (first two of four; the four deployments are at blocks 432749, 434622, 435910, 436785)</summary>
+
+```json
+{
+  "data": {
+    "verificationKeyUpdates": [
+      {
+        "address": "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY",
+        "tokenId": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+        "blockInfo": {
+          "height": 432749,
+          "stateHash": "3NLX5TfnXBYQVHqkQC9ywz3H6Yu22NaG5VQACouPnCCC6udM1mWd"
+        },
+        "transactionInfo": {
+          "hash": "5Jv2h9n2iRtnqMh4ZbYoFnwbdGD7Spi5noRLv1McyXK2rbkWC11z",
+          "status": "applied"
+        }
+      },
+      {
+        "address": "B62qjPYCxG2Z9k5XTCknCgq6N1W6EDEU4tJ4Dp2cUuzVjBHPSsJ7ptN",
+        "tokenId": "wSHV2S4qX9jFsLjQo8r1BsMLH2ZRKsZx6EJd1sbozGPieEC4Jf",
+        "blockInfo": {
+          "height": 434622,
+          "stateHash": "3NKYF3E6tGvEXCUcSbEXkrNGzfnj82cy4yX5QHXVgkYMJkSGnob9"
+        },
+        "transactionInfo": {
+          "hash": "5Ju2yoYtECLa513WMFnFAtiiDPSiimd64WUiLfhHhZwsJYVeyaaa",
+          "status": "applied"
+        }
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+The first result is at block 432749: the pool from the events example. To find the hash of a deployed contract, read `verificationKey { hash }` from the account on the daemon GraphQL API.
+
+### zkApp commands
+
+Successful zkApp commands and their account updates in a block range. This serves an indexer that needs the whole transaction, not only one account's events. Both bounds are required, and `accountPublicKey` keeps only the commands that touch one account. This request returns the Lumina pool's transaction from the events example:
+
+```graphql
+query {
+  zkappCommands(
+    input: {
+      from: 470259
+      to: 470260
+      blockStatus: CANONICAL
+      accountPublicKey: "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY"
+    }
+  ) {
+    hash
+    feePayer
+    fee
+    memo
+    blockInfo {
+      height
+      stateHash
+    }
+    accountUpdates {
+      publicKey
+      tokenId
+      authorizationKind
+      balanceChange
+      callDepth
+      events {
+        fields
+      }
+      actions {
+        fields
+      }
+      appState {
+        fields
+      }
+    }
+  }
+}
+```
+
+`balanceChange` is a signed string in nanomina. `appState`, `events` and `actions` are the raw field arrays from the archive database. The query is off by default: set `ENABLE_ZKAPP_COMMANDS_QUERY=true` on the server, and expect a `Cannot query field "zkappCommands"` error from a server that has not.
+
+### Send a query with variables
+
+Any GraphQL client works. With `curl`, send the query and its variables as JSON to `/`:
+
+```sh
+curl -s -X POST http://localhost:8080 \
+  -H 'Content-Type: application/json' \
+  --data @- <<'EOF'
+{
+  "query": "query Events($input: EventFilterOptionsInput!) { events(input: $input) { blockInfo { height } eventData { data } } }",
+  "variables": {
+    "input": {
+      "address": "B62qjGGHziBe9brhAC4zkvQa2dyN7nisKnAhKC7rasGFtW31GiuTZoY",
+      "status": "CANONICAL",
+      "from": 470000,
+      "to": 470300
+    }
+  }
+}
+EOF
+```
+
+<details>
+<summary>Response</summary>
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "blockInfo": {
+          "height": 470259
+        },
+        "eventData": [
+          {
+            "data": [
+              "3",
+              "24052708529394526800224616175202855196403836544833931471428478190495166298049",
+              "1",
+              "5000000000"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+### Walk a long history
+
+Range limits differ by query, so a client reads a long history one range at a time.
+
+- `events` and `actions` search at most `BLOCK_RANGE_SIZE` blocks (10000 by default). The server shortens a wider range **without an error**: it keeps `from` and moves `to` to `from + BLOCK_RANGE_SIZE`. With only `to`, it searches the `BLOCK_RANGE_SIZE` blocks below `to`. With neither, it searches the last `BLOCK_RANGE_SIZE` blocks only, so an older event does not appear.
+- `verificationKeyUpdates` rejects a range wider than `BLOCK_RANGE_SIZE`.
+- `zkappCommands` rejects a range wider than `ZKAPP_COMMAND_RANGE_SIZE` (1000 by default).
+
+Always send both `from` and `to`, and step `from` by the range size. This TypeScript loop collects every canonical event of an address between two heights:
+
+```ts
+const RANGE = 10000; // the server's BLOCK_RANGE_SIZE
+
+const query = `query Events($input: EventFilterOptionsInput!) {
+  events(input: $input) { blockInfo { height } eventData { data } }
+}`;
+
+async function allEvents(endpoint: string, address: string, fromHeight: number, toHeight: number) {
+  const events = [];
+  for (let from = fromHeight; from < toHeight; from += RANGE) {
+    const to = Math.min(from + RANGE, toHeight);
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query,
+        variables: { input: { address, status: 'CANONICAL', from, to } },
+      }),
+    });
+    const { data, errors } = await res.json();
+    if (errors) throw new Error(JSON.stringify(errors));
+    events.push(...data.events);
+  }
+  return events;
+}
+```
+
+The [client SDKs](#client-sdks) do the request and the retries for you, and the loop stays the same.
+
+## Using it from o1js
+
+A zkApp reaches the API through the `archive` property of its network configuration. o1js then uses it for `fetchEvents` and `fetchActions`:
+
+```ts
+const Network = Mina.Network({
+  mina: 'https://api.minascan.io/node/devnet/v1/graphql',
+  archive: 'https://api.minascan.io/archive/devnet/v1/graphql',
+});
+Mina.setActiveInstance(Network);
+```
+
+Without an `archive` endpoint, fetching events or actions raises an error. For the full o1js workflow, see [Fetch Events and Actions](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions).
+
+## Client SDKs
+
+Typed clients wrap the same endpoint with configurable retries and timeouts. Each has one method for each of `events`, `actions`, `blocks`, `networkState` and `verificationKeyUpdates`; reach `zkappCommands` and `schemaVersion` through the SDK's raw-query method.
+
+Pass the server's base URL as-is. The Archive Node API serves GraphQL at `/`, and the SDKs do not append a path.
+
+<Tabs>
+<TabItem value="ts" label="TypeScript" default>
+
+```sh
+npm install @o1-labs/mina-archive-sdk
+```
+
+```ts
+import { ArchiveClient } from '@o1-labs/mina-archive-sdk';
+
+const client = new ArchiveClient('https://api.minascan.io/archive/devnet/v1/graphql');
+
+const events = await client.getEvents({
+  address: 'B62q...',
+  status: 'CANONICAL',
+  from: 100,
+  to: 200,
+});
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```sh
+cargo add mina-archive-sdk
+```
+
+```rust
+use mina_archive_sdk::{ArchiveClient, EventFilterOptionsInput, BlockStatusFilter};
+
+let client = ArchiveClient::new("https://api.minascan.io/archive/devnet/v1/graphql");
+let events = client
+    .get_events(
+        EventFilterOptionsInput::for_address("B62q...")
+            .status(BlockStatusFilter::Canonical)
+            .from(100)
+            .to(200),
+    )
+    .await?;
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```sh
+go get github.com/o1-labs/mina-archive-sdk-go/v2
+```
+
+```go
+import archive "github.com/o1-labs/mina-archive-sdk-go/v2"
+
+client := archive.NewClient(
+    archive.WithGraphQLURI("https://api.minascan.io/archive/devnet/v1/graphql"),
+)
+defer client.Close()
+
+events, err := client.GetEvents(ctx, archive.EventFilterOptionsInput{
+    Address: "B62q...",
+    Status:  archive.BlockStatusCanonical,
+    From:    archive.IntPtr(100),
+    To:      archive.IntPtr(200),
+})
+```
+
+</TabItem>
+</Tabs>
+
+Sources: [mina-archive-sdk-js](https://github.com/o1-labs/mina-archive-sdk-js), [mina-archive-sdk-rust](https://github.com/o1-labs/mina-archive-sdk-rust), [mina-archive-sdk-go](https://github.com/o1-labs/mina-archive-sdk-go).
+
+## Configuration
+
+`PG_CONN` is the only required variable. Configuration is validated at startup: a missing connection string, a non-numeric port, or a mistyped boolean stops the server with a clear message rather than booting into a broken state.
+
+Boolean variables accept `true`/`false`, `1`/`0`, `yes`/`no`, or `on`/`off`, case-insensitively.
+
+### Essentials
+
+| Variable | Default | Description |
+|---|---|---|
+| `PG_CONN` | *(required)* | Postgres connection string for the archive database |
+| `PORT` | `8080` | Port the GraphQL server listens on |
+| `BLOCK_RANGE_SIZE` | `10000` | Maximum block span a single query may cover |
+| `ENABLED_QUERIES` | *(all)* | Comma-separated subset of root fields to expose. `schemaVersion` is always served |
+| `ENABLE_GRAPHIQL` | `false` | Serve the GraphiQL playground at `/` |
+| `ENABLE_INTROSPECTION` | `false` | Allow schema introspection |
+| `ENABLE_BLOCK_TRANSACTION_DETAILS` | `false` | Include `userCommands`, `zkappCommands`, and `feeTransfers` on blocks |
+| `ENABLE_ZKAPP_COMMANDS_QUERY` | `false` | Expose the `zkappCommands` root query |
+| `ZKAPP_COMMAND_RANGE_SIZE` | `1000` | Maximum block span of one `zkappCommands` query |
+| `ZKAPP_COMMAND_ACCOUNT_UPDATE_LIMIT` | `5000` | Maximum account updates one `zkappCommands` query may expand |
+
+### Database
+
+| Variable | Default | Description |
+|---|---|---|
+| `PG_MAX_CONNECTIONS` | `10` | Maximum pooled connections, total rather than per host |
+| `PG_IDLE_TIMEOUT` | `30` | Seconds an idle connection is kept |
+| `PG_CONNECT_TIMEOUT` | `30` | Seconds to wait for a new connection |
+| `PG_STATEMENT_TIMEOUT` | `15000` | Server-side timeout in milliseconds per statement; `0` disables |
+
+For redundancy, `PG_CONN` accepts several hosts — `postgres://host1:5432,host2:5432/archive`, the same syntax `psql` uses. The driver **fails over** between them; it does not spread reads across them.
+
+### Exposure controls
+
+| Variable | Default | Description |
+|---|---|---|
+| `CORS_ORIGIN` | *(disabled)* | Cross-origin access. Unset means same-origin only; `*` means any origin; or give a comma-separated allowlist |
+| `RATE_LIMIT_MAX` | `600` | Requests per client IP per window; `0` disables |
+| `RATE_LIMIT_WINDOW_MS` | `60000` | Rate-limit window length |
+| `TRUST_PROXY` | *(unset)* | Number of trusted proxy hops in front of the API |
+| `GRAPHQL_MAX_DEPTH` | `12` | Maximum selection-set nesting depth |
+| `GRAPHQL_MAX_ALIASES` | `15` | Maximum aliases in one operation |
+| `GRAPHQL_MAX_TOKENS` | `1000` | Maximum lexical tokens in a query document |
+| `GRAPHQL_MAX_COST` | `5000` | Maximum estimated query cost |
+
+:::caution
+`TRUST_PROXY` has no default, and the rate limiter stays **disabled** until you set it. Neither reading is safe to assume: keying on the socket address behind a load balancer collapses every client into one bucket, while trusting `X-Forwarded-For` without a hop count lets any caller mint a fresh bucket per request. A bare GCP external Application Load Balancer is `TRUST_PROXY=2`; add one per additional proxy. Use `TRUST_PROXY=0` only for a directly exposed server.
+:::
+
+:::caution
+Browser clients need `CORS_ORIGIN` set. The default sends no permissive CORS headers, so a web front end on another origin cannot call the API until you allowlist its origin. Server-to-server callers and `curl` are unaffected.
+:::
+
+The complete reference, including tracing variables, is in the repository's [setup guide](https://github.com/o1-labs/Archive-Node-API/blob/main/docs/getting-started.md#configuration).
+
+## Running it in production
+
+| Endpoint | Purpose |
+|---|---|
+| `/healthcheck` | Liveness — the process is up and serving HTTP |
+| `/readiness` | Readiness — the database is reachable; returns 503 when it is not |
+| `/metrics` | Prometheus request-rate, error-rate, and duration metrics, behind `ENABLE_METRICS` |
+
+Point your orchestrator's liveness probe at `/healthcheck` and its readiness probe at `/readiness`, so a pod with an unreachable database leaves the load-balancer pool instead of being restarted.
+
+Two things to keep in mind when you deploy it:
+
+- `/metrics` is unauthenticated. Do not publish it on the same address as the API.
+- On `SIGTERM` the server drains in-flight requests before exiting, bounded by `SHUTDOWN_TIMEOUT_MS` (20000 by default). Keep the orchestrator's grace period above that value or it will kill the process mid-drain.
+
+Reference Kubernetes manifests, a production Compose file, and an operations runbook covering SLOs, capacity, and failover are published in the repository under [`deploy/`](https://github.com/o1-labs/Archive-Node-API/tree/main/deploy) and [`docs/`](https://github.com/o1-labs/Archive-Node-API/tree/main/docs).
+
+## Schema stability
+
+The GraphQL schema follows semantic versioning. A new root field or a new optional argument is a minor release; removing or renaming anything a client can select is a major one, and never happens silently — a schema check gates every change to the repository.
+
+The server, its schema and the client SDKs share one major version. **The same major means compatible**: a 2.x SDK works against any 2.x server, and a higher server minor only adds what the SDK does not wrap yet. Minor and patch versions move independently.
+
+A client can ask the server which schema it speaks:
+
+```graphql
+query {
+  schemaVersion
+}
+```
+
+`schemaVersion` reports the contract, not the queries a given deployment exposes. `ENABLED_QUERIES` and `ENABLE_ZKAPP_COMMANDS_QUERY` can still switch data queries off, so detect a missing query from the `Cannot query field` error.
+
+The full policy, including what counts as a breaking change, is in the repository's [versioning guide](https://github.com/o1-labs/Archive-Node-API/blob/main/docs/versioning.md). The 2.0 schema is on the [schema reference](/node-operators/data-and-history/archive-node-api-schema) page and at `https://docs.minaprotocol.com/archive-node-api/schema.graphql` as a file.

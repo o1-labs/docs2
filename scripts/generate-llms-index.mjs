@@ -49,6 +49,12 @@ const OPERATOR_FACTS = [
       "Account creation fee 1 MINA, mempool capacity 3000 transactions, recommended 15-block confirmation, no official broadcast nodes, do not require memos for deposits.",
   },
   {
+    label: "Archive Node API GraphQL schema",
+    url: `${SITE_URL}/archive-node-api/schema.graphql`,
+    description:
+      "The complete schema (SDL) of the Archive Node API 2.0 as a plain-text file; the introspection JSON is at /archive-node-api/schema.json. Root queries events, actions, blocks, networkState, verificationKeyUpdates, zkappCommands, schemaVersion. GraphQL endpoint is the root path of a server; introspection is off by default.",
+  },
+  {
     label: "Daemon defaults",
     url: `${SITE_URL}/node-operators/validator-node/querying-data`,
     description:
