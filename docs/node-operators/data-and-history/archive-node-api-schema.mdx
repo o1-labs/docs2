@@ -1,0 +1,89 @@
+---
+title: Archive Node API schema
+hide_title: true
+description: The complete GraphQL schema (SDL) of the Archive Node API 2.0, with every root query, input and output type, and the URL where agents and tools can fetch it as a file.
+keywords:
+  - archive node
+  - GraphQL
+  - schema
+  - SDL
+  - API reference
+  - events
+  - actions
+  - zkApp
+---
+
+# Archive Node API schema
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+The GraphQL schema definition of the Archive Node API, schema version 2.0.
+</Subhead>
+
+This page is the schema that the [Archive Node API](/node-operators/data-and-history/archive-node-api) 2.0.0 serves. The schema definition language (SDL) below is the full contract: every root query under `type Query`, every input type and every output type.
+
+## Fetch the schema as a file
+
+GraphQL has no separate description document like OpenAPI. The schema is the contract, in one of two forms that the GraphQL specification defines: the SDL text, and the JSON that an introspection query returns. Both forms of the 2.0 schema are published here.
+
+| Source | URL | Use it for |
+|---|---|---|
+| SDL on this site | `https://docs.minaprotocol.com/archive-node-api/schema.graphql` | Code generation, AI agents, IDE plugins, and documentation tools. Plain text, no authentication |
+| Introspection JSON on this site | `https://docs.minaprotocol.com/archive-node-api/schema.json` | Tools that read a `schema.json` (`{ "__schema": ... }`) instead of SDL |
+| The repository | `https://github.com/o1-labs/Archive-Node-API/blob/main/schema.graphql` | The source of truth, with its history |
+| Your own instance | `http://localhost:8080` with `ENABLE_INTROSPECTION=true` | The schema that one deployment serves |
+
+```sh
+# The published 2.0 schema, as SDL and as introspection JSON
+curl -sO https://docs.minaprotocol.com/archive-node-api/schema.graphql
+curl -sO https://docs.minaprotocol.com/archive-node-api/schema.json
+
+# The schema of your own instance, through introspection
+npx get-graphql-schema http://localhost:8080 > schema.graphql
+```
+
+Introspection is off by default. The server answers an introspection query only when `ENABLE_INTROSPECTION=true`. Keep it off on a public instance and use the published files instead. A check in the docs repository compares the published copy with the repository's `schema.graphql` every week, so the two do not drift apart.
+
+## Use the schema in your project
+
+Point your tools at the published URL instead of at a running server. IDE plugins and linters read a `graphql-config` file:
+
+```yaml title=".graphqlrc.yml"
+schema: https://docs.minaprotocol.com/archive-node-api/schema.graphql
+documents: src/**/*.graphql
+```
+
+To generate TypeScript types for your queries with [GraphQL Code Generator](https://the-guild.dev/graphql/codegen):
+
+```sh
+npm install -D @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-operations
+```
+
+```ts title="codegen.ts"
+import type { CodegenConfig } from '@graphql-codegen/cli';
+
+const config: CodegenConfig = {
+  schema: 'https://docs.minaprotocol.com/archive-node-api/schema.graphql',
+  documents: ['src/**/*.graphql'],
+  generates: {
+    'src/generated/archive.ts': {
+      plugins: ['typescript', 'typescript-operations'],
+    },
+  },
+};
+
+export default config;
+```
+
+```sh
+npx graphql-codegen
+```
+
+Each `.graphql` file under `src/` then gets a typed result, so a renamed field is a compile error rather than an `undefined` at run time. The [client SDKs](/node-operators/data-and-history/archive-node-api#client-sdks) ship these types already, for the queries they wrap.
+
+The schema follows semantic versioning, and a server reports the version it speaks through the `schemaVersion` query. The [Schema stability](/node-operators/data-and-history/archive-node-api#schema-stability) section explains what a minor and a major release change.
+
+## Schema definition
+
+#include_code schema static/archive-node-api/schema.graphql graphql title="schema.graphql"

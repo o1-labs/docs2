@@ -1,0 +1,55 @@
+---
+title: Integrate with Mina
+hide_title: true
+description: Choose how to integrate an application, exchange, wallet, explorer, or indexer with Mina — the daemon GraphQL API, the Archive Node API, Rosetta, client SDKs, and signing libraries.
+keywords:
+  - integration
+  - API
+  - GraphQL
+  - archive node
+  - Rosetta
+  - SDK
+  - exchange
+  - wallet
+  - indexer
+---
+
+# Integrate with Mina
+
+import Subhead from "@site/src/components/common/Subhead";
+
+<Subhead>
+The interfaces an application, exchange, wallet, explorer, or indexer uses to read Mina data and send transactions.
+</Subhead>
+
+Mina gives you three APIs and a set of client libraries. Each API reads from a different source, so choose by the data you need, not by the language you write in.
+
+## Choose an interface
+
+| You need | Use | Reads from |
+|---|---|---|
+| Current account state, the recent chain, sending transactions | [Daemon GraphQL API](/node-operators/validator-node/querying-data) | A Mina node. It keeps only the last k blocks (290) |
+| Blocks and transactions over the full history, zkApp events and actions | [Archive Node API](/node-operators/data-and-history/archive-node-api) | An [archive node](/node-operators/archive-node)'s Postgres database |
+| Deposits, withdrawals and balances for an exchange or custodian | [Rosetta API](/node-operators/data-and-history/rosetta) | A Mina node and an archive database |
+| Keys and transaction signatures, offline or in a browser | [Mina Signer](/mina-signer) | Nothing: it signs locally and needs no node |
+| zkApp state, events and actions from a smart contract | [o1js](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions) | A Mina node and an Archive Node API endpoint |
+
+## Client libraries
+
+| Library | Talks to | Languages |
+|---|---|---|
+| Archive SDK | Archive Node API | [TypeScript](https://github.com/o1-labs/mina-archive-sdk-js) (`@o1-labs/mina-archive-sdk`), [Rust](https://github.com/o1-labs/mina-archive-sdk-rust) (`mina-archive-sdk`), [Go](https://github.com/o1-labs/mina-archive-sdk-go) (`github.com/o1-labs/mina-archive-sdk-go/v2`) |
+| Mina SDK | Daemon GraphQL API | [Rust](https://github.com/MinaProtocol/mina-sdk-rust) (`mina-sdk`), [Go](https://github.com/MinaProtocol/mina-sdk-go), [Python](https://github.com/MinaProtocol/mina-sdk-python) (`mina-sdk`) |
+| [Mina Signer](/mina-signer) | No API: signs locally | JavaScript and TypeScript (`mina-signer`) |
+| [o1js](/zkapps/o1js) | Daemon GraphQL API and Archive Node API | TypeScript (`o1js`) |
+
+The Archive SDKs share one major version with the Archive Node API: a 2.x SDK works with any 2.x server. The Mina SDKs are at version 0.x, so a minor release can change their API.
+
+## Integration guides
+
+- [Exchange Operators](/node-operators/exchange-operators): run the nodes, the archive and Rosetta that an exchange needs, and handle deposits and withdrawals.
+- [Archive Node API](/node-operators/data-and-history/archive-node-api): run the API over an archive database, query it, and operate it in production.
+- [Archive Node](/node-operators/archive-node): run an archive node that stores the full chain history in Postgres.
+- [Rosetta API](/node-operators/data-and-history/rosetta): run Mina's Rosetta implementation.
+- [Daemon GraphQL API](/node-operators/validator-node/querying-data): query a node and send transactions to it.
+- [Fetch events and actions](/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions): read a zkApp's events and actions with o1js.

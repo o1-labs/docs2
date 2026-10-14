@@ -335,7 +335,18 @@ module.exports = {
             type: 'doc',
             id: 'node-operators/data-and-history/index',
           },
-          items: ['node-operators/data-and-history/rosetta'],
+          items: [
+            {
+              type: 'category',
+              label: 'Archive Node API',
+              link: {
+                type: 'doc',
+                id: 'node-operators/data-and-history/archive-node-api',
+              },
+              items: ['node-operators/data-and-history/archive-node-api-schema'],
+            },
+            'node-operators/data-and-history/rosetta',
+          ],
         },
         {
           type: 'category',
@@ -411,6 +422,51 @@ module.exports = {
         'node-developers/sandbox-node',
         'node-developers/graphql-api',
         'node-developers/contributing',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Integrations',
+      link: {
+        type: 'doc',
+        id: 'integrations/index',
+      },
+      items: [
+        {
+          type: 'ref',
+          id: 'node-operators/data-and-history/archive-node-api',
+          label: 'Archive Node API',
+        },
+        {
+          type: 'ref',
+          id: 'node-operators/archive-node/index',
+          label: 'Archive Node',
+        },
+        {
+          type: 'ref',
+          id: 'node-operators/data-and-history/rosetta',
+          label: 'Rosetta API',
+        },
+        {
+          type: 'ref',
+          id: 'node-operators/validator-node/querying-data',
+          label: 'Daemon GraphQL API',
+        },
+        {
+          type: 'ref',
+          id: 'node-operators/exchange-operators',
+          label: 'Exchange Operators',
+        },
+        {
+          type: 'ref',
+          id: 'mina-signer',
+          label: 'Mina Signer',
+        },
+        {
+          type: 'ref',
+          id: 'zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions',
+          label: 'Fetch Events and Actions',
+        },
       ],
     },
     {
