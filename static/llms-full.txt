@@ -20656,6 +20656,8 @@ In previous tutorials, you learned how to deploy and execute transactions on a l
 
 In this tutorial, you will use the `zk config` command to create the deploy alias, request tMINA funds to pay for transaction fees, and deploy zkApp to a live network.
 
+tMINA is test MINA: the token of the Mina test networks, which has no real value. You get tMINA from the faucet, a service that sends free tMINA to an address that you give it.
+
 This tutorial reuses the `Square` contract that you created in [Tutorial 1: Hello World](hello-world).
 
 ## Prerequisites
@@ -20759,7 +20761,7 @@ A deploy alias consists of:
 
 - A self-describing name that can be anything. Using naming patterns is helpful when you have more than one deploy alias.
 - The target network kind (`Testnet`, `Mainnet` or custom network kind id)
-- The Mina GraphQL API URL that defines the network that receives your deploy transaction and broadcasts it to the appropriate Mina network (Testnet, Devnet, Mainnet, and so on)
+- The Mina GraphQL API URL that defines the network that receives your deploy transaction and broadcasts it to the appropriate Mina network (for example, Devnet or Mainnet)
 - The transaction fee (in MINA) to use when deploying
 - Two key pairs:
   - A key pair for the zkApp account. Public and private keys to use in your application are automatically generated in `keys/<deploy-alias-name>.json`.
@@ -20780,6 +20782,8 @@ A deploy alias consists of:
       This tutorial uses `devnet`, but the deploy alias name can be anything and does not have to match the network name.
 
     - Target network kind: `Testnet`
+
+      Devnet is a test network, so its network kind is `Testnet`. The network kind sets how transactions are signed. Use `Mainnet` only for Mainnet.
 
     - Mina GraphQL API URL: `https://devnet-plain-1.gcp.o1test.net/graphql`
 
@@ -20830,15 +20834,18 @@ A deploy alias consists of:
     - To deploy zkApp, run: `zk deploy devnet`
   ```
 
-1. Request funds from the Testnet Faucet to fund your fee payer account.
+  The zkApp CLI shows the "If this is the testnet" step for every deploy alias with the `Testnet` network kind. Devnet is a test network, so do this step.
 
-  Follow the prompts to request tMINA.
-  To get funds on the Devnet, use the URL that was shown in the zkApp CLI output:
+1. Request tMINA from the faucet to fund your fee payer account.
+
+  Use the URL that was shown in the zkApp CLI output:
     - Visit `https://faucet.minaprotocol.com/?address=<FEE-PAYER-ACCOUNT>`
-    - Choose the corresponding network you're going to deploy your zkApp to (`Devnet` in this case)
-    - And click the **Request** button
+    - Choose the network that you deploy your zkApp to (`Devnet` in this case)
+    - Click the **Request** button
 
-  Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so that tMINA becomes available for the fee payer account.
+  If the faucet shows an HTTP 429 (Too Many Requests) error, wait some minutes and try again.
+
+  Before proceeding to the next step, wait a few minutes for the next block to include your transaction, so that tMINA becomes available for the fee payer account. The faucet transaction also creates the fee payer account on Devnet. The network takes 1 MINA from the received amount for the account creation.
 
 1. To deploy your project execute the following command:
 
@@ -20878,7 +20885,7 @@ A deploy alias consists of:
     |-----------------|-------------------------------------------------|
     | Network kind    | testnet                                         |
     |-----------------|-------------------------------------------------|
-    | URL             | https://devnet-plain-1.gcp.o1test.net/graphql  |
+    | URL             | https://devnet-plain-1.gcp.o1test.net/graphql   |
     |-----------------|-------------------------------------------------|
     | Fee payer       | Alias         : 03-deploy                       |
     |                 | Account       : B62...                          |
@@ -20902,11 +20909,12 @@ A deploy alias consists of:
     Your smart contract will be live (or updated)
     at B62...
     as soon as the transaction is included in a block:
-    https://minascan.io/devnet/tx/<txn-hash>?type=zk-tx
+    Transaction hash: <txn-hash>
   ```
 
-1. To see the zkApp transaction and navigate to accounts involved you can follow the transaction link provided to you in zkApp CLI output.
-Or use the [Minascan](https://minascan.io) explorer to search for the account with deployed zkApp.
+1. To see the zkApp transaction and the accounts that it changes, open `https://minascan.io/devnet/tx/<txn-hash>?type=zk-tx` in the [Minascan](https://minascan.io) explorer. Replace `<txn-hash>` with the transaction hash from the zkApp CLI output. You can also search Minascan for the zkApp account address.
+
+  The zkApp CLI shows a Minascan link instead of the transaction hash only when the Mina GraphQL API URL is a Minascan endpoint.
 
 ## Success
 
