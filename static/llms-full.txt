@@ -21359,16 +21359,10 @@ async getTransactionJSON() {
 
   ```tsx
   let transactionFee = 0.1;
-  const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
+  const ZKAPP_ADDRESS = 'B62qo6qTabXehFEZKwjvtUDzfgEWU1hrTCxG1AM8NLnEo6XgNca65Ku';
   ```
 
   `ZKAPP_ADDRESS` is the public key of an `Add` contract on Devnet. The UI reads its state.
-
-  :::caution
-
-  The `Add` contract at this address was deployed with an earlier version of o1js. Its verification key is not the verification key that o1js 3.0.0 compiles for `Add`, so Devnet rejects a transaction that you prove with o1js 3.0.0. To send transactions, [deploy](deploying-to-a-network) the `Add` contract in the `contracts` folder yourself, and replace the value of `ZKAPP_ADDRESS` with the public key of your zkApp.
-
-  :::
 
 - In `04-zkapp-browser-ui/ui/app/zkappWorker.ts`
 

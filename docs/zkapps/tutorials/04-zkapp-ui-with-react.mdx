@@ -232,12 +232,6 @@ Define methods in the `ZkappWorkerClient` class that call the corresponding meth
 
   `ZKAPP_ADDRESS` is the public key of an `Add` contract on Devnet. The UI reads its state.
 
-  :::caution
-
-  The `Add` contract at this address was deployed with an earlier version of o1js. Its verification key is not the verification key that o1js 3.0.0 compiles for `Add`, so Devnet rejects a transaction that you prove with o1js 3.0.0. To send transactions, [deploy](deploying-to-a-network) the `Add` contract in the `contracts` folder yourself, and replace the value of `ZKAPP_ADDRESS` with the public key of your zkApp.
-
-  :::
-
 - In `04-zkapp-browser-ui/ui/app/zkappWorker.ts`
 
   #include_code network examples/zkapps/04-zkapp-browser-ui/ui/app/zkappWorker.ts ts

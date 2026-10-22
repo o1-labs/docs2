@@ -8,7 +8,7 @@ import ZkappWorkerClient from './zkappWorkerClient';
 
 // docs:start config
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qpXPvmKDf4SaFJynPsT6DyvuxMS9H1pT4TGonDT26m599m7dS9gP';
+const ZKAPP_ADDRESS = 'B62qo6qTabXehFEZKwjvtUDzfgEWU1hrTCxG1AM8NLnEo6XgNca65Ku';
 // docs:end config
 
 export default function Home() {
