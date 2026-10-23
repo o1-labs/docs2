@@ -7094,7 +7094,7 @@ docker run \
   --name mina \
   -e RUN_DEMO=true \
   -e MINA_PRIVKEY_PASS='' \
-  minaprotocol/mina-daemon:4.0.0-6850301-bullseye-mainnet
+  minaprotocol/mina-daemon:4.0.3-73134bf-bookworm-mainnet
 
 ```
 
@@ -7891,13 +7891,13 @@ Running an archive node requires some knowledge of managing a PostgreSQL databas
    - Ubuntu/Debian:
 
      ```
-     sudo apt-get install mina-archive=4.0.0-6850301
+     sudo apt-get install mina-archive-mainnet=4.0.3-73134bf
      ```
 
    - Docker:
 
      ```
-     minaprotocol/mina-archive:4.0.0-6850301-bullseye-mainnet
+     minaprotocol/mina-archive:4.0.3-73134bf-bookworm-mainnet
      ```
 
 ## Set up the archive node
@@ -7947,10 +7947,10 @@ To run a local archive node in the foreground for testing:
    psql -p 5432 --h localhost -c "create database archive"
    ```
 
-1. Load the mina archive schema into the archive database, (create_schema.sql and zkapp_tables.sql):
+1. Load the mina archive schema (`create_schema.sql`) into the archive database:
 
    ```sh
-   psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/release/3.0.2/src/app/archive/create_schema.sql)
+   psql -h localhost -p 5432 -d archive -f <(curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/4.0.3/src/app/archive/create_schema.sql)
    ```
 
 1. Start the archive process on port 3086 and connect to the postgres database that runs on port 5432:
@@ -7979,7 +7979,7 @@ To run a local archive node in the foreground for testing:
 2. Pull the archive node image from Docker Hub.
 
    ```sh
-   docker pull minaprotocol/mina-archive:4.0.0-6850301-bullseye-mainnet
+   docker pull minaprotocol/mina-archive:4.0.3-73134bf-bookworm-mainnet
    ```
 
 3. Pull and install the postgres image from Docker Hub.
@@ -8000,12 +8000,10 @@ To run a local archive node in the foreground for testing:
    docker exec -it postgres createdb -U postgres archive
    ```
 
-6. Load the mina archive schemas into the archive database, (create_schema.sql and zkapp_tables.sql.)
+6. Load the mina archive schema (`create_schema.sql`) into the archive database:
 
    ```sh
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
-
-   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/1551e2faaa246c01636908aabe5f7981715a10f4/src/app/archive/zkapp_tables.sql | docker exec -i postgres psql -U postgres -d archive
+   curl -Ls https://raw.githubusercontent.com/MinaProtocol/mina/4.0.3/src/app/archive/create_schema.sql | docker exec -i postgres psql -U postgres -d archive
    ```
 
 7. Create a local directory to store the archive node data.
@@ -8021,7 +8019,7 @@ To run a local archive node in the foreground for testing:
    --name archive \
    -p 127.0.0.1:3086:3086 \
    -v /tmp/archive:/data \
-   minaprotocol/mina-archive:4.0.0-6850301-bullseye-mainnet \
+   minaprotocol/mina-archive:4.0.3-73134bf-bookworm-mainnet \
    mina-archive run \
    --postgres-uri postgres://postgres:postgres@postgres:5432/archive \
    --server-port 3086
@@ -8048,7 +8046,7 @@ With Compose, you use a YAML file to configure your application's services. Then
 2. Pull the required images:
 
    ```sh
-   docker pull minaprotocol/mina-archive:4.0.0-6850301-bullseye-mainnet
+   docker pull minaprotocol/mina-archive:4.0.3-73134bf-bookworm-mainnet
    docker pull postgres
    ```
 
@@ -8071,7 +8069,7 @@ With Compose, you use a YAML file to configure your application's services. Then
        ports:
          - '5432:5432'
      archive:
-       image: 'minaprotocol/mina-archive:4.0.0-6850301-bullseye-mainnet'
+       image: 'minaprotocol/mina-archive:4.0.3-73134bf-bookworm-mainnet'
        command: >-
          mina-archive run --postgres-uri
          postgres://postgres:postgres@postgres:5432/archive --server-port 3086
@@ -8193,7 +8191,7 @@ Referenced by:
 
 ```
 
-Review the full schema at [/archive/create_schema.sql](https://github.com/minaProtocol/mina/blob/master/src/app/archive/create_schema.sql) and [/archive/zkapp_tables.sql](https://github.com/MinaProtocol/mina/blob/berkeley/src/app/archive/zkapp_tables.sql)
+Review the full schema at [/archive/create_schema.sql](https://github.com/MinaProtocol/mina/blob/4.0.3/src/app/archive/create_schema.sql)
 
 ## Monitor the archive node
 
@@ -10332,7 +10330,7 @@ The all-in-one image bundles the daemon, archive node, PostgreSQL, and Rosetta A
 docker run -it --rm --name rosetta \
   --entrypoint=./docker-start.sh \
   -p 8302:8302 -p 3085:3085 -p 127.0.0.1:3086:3086 -p 3087:3087 \
-  minaprotocol/mina-rosetta:4.0.0-6850301-noble-mainnet
+  minaprotocol/mina-rosetta:4.0.3-73134bf-noble-mainnet
 ```
 
 #### Devnet
@@ -10343,7 +10341,7 @@ docker run -it --rm --name rosetta \
   -p 8302:8302 -p 3085:3085 -p 127.0.0.1:3086:3086 -p 3087:3087 \
   -e MINA_NETWORK=devnet \
   -e PEER_LIST_URL=https://bootnodes.minaprotocol.com/networks/devnet.txt \
-  minaprotocol/mina-rosetta:4.0.0-6965b50-bookworm-devnet
+  minaprotocol/mina-rosetta:4.0.3-73134bf-bookworm-devnet
 ```
 
 Initial sync typically takes between 20 minutes and 1 hour depending on your hardware and network connection. You can check sync status with:
@@ -10411,7 +10409,7 @@ The Rosetta Construction API requires an "offline" endpoint that can build and s
 docker run -it --rm --name rosetta-offline \
   --entrypoint=./docker-standalone-start.sh \
   -p 3088:3088 \
-  minaprotocol/mina-rosetta:4.0.0-6850301-noble-mainnet
+  minaprotocol/mina-rosetta:4.0.3-73134bf-noble-mainnet
 ```
 
 This starts only the Rosetta API process — no daemon, archive, or database. Point your Construction API calls to this endpoint for offline operations.
@@ -10424,7 +10422,7 @@ For development and testing, the demo mode launches a local sandbox with a simpl
 docker run -it --rm --name rosetta-demo \
   --entrypoint=./docker-demo-start.sh \
   -p 3085:3085 -p 3087:3087 \
-  minaprotocol/mina-rosetta:4.0.0-6850301-noble-mainnet
+  minaprotocol/mina-rosetta:4.0.3-73134bf-noble-mainnet
 ```
 
 This creates an isolated network with no external connectivity — useful for developing integrations before connecting to mainnet or devnet.
@@ -10433,9 +10431,9 @@ This creates an isolated network with no external connectivity — useful for de
 
 | Network | Image | Notes |
 |---|---|---|
-| **Mainnet (noble)** | `minaprotocol/mina-rosetta:4.0.0-6850301-noble-mainnet` | amd64 |
-| **Mainnet (bookworm)** | `minaprotocol/mina-rosetta:4.0.0-6850301-bookworm-mainnet` | Also available for arm64 |
-| **Devnet (bookworm)** | `minaprotocol/mina-rosetta:4.0.0-6965b50-bookworm-devnet` | Latest devnet |
+| **Mainnet (noble)** | `minaprotocol/mina-rosetta:4.0.3-73134bf-noble-mainnet` | amd64 |
+| **Mainnet (bookworm)** | `minaprotocol/mina-rosetta:4.0.3-73134bf-bookworm-mainnet` | amd64 |
+| **Devnet (bookworm)** | `minaprotocol/mina-rosetta:4.0.3-73134bf-bookworm-devnet` | Latest devnet |
 
 Images are published on [Docker Hub](https://hub.docker.com/r/minaprotocol/mina-rosetta/tags).
 
@@ -14079,7 +14077,7 @@ Run the container with following command (replace the image tag with one from do
     docker run -it --rm --name rosetta \
         --entrypoint=./docker-start.sh \
         -p 10101:10101 -p 3085:3085 -p 127.0.0.1:3086:3086 -p 3087:3087 \
-        minaprotocol/mina-rosetta:4.0.0-6850301-bullseye-mainnet
+        minaprotocol/mina-rosetta:4.0.3-73134bf-bookworm-mainnet
 ```
 
 You can also create a file with the environment variables and pass it to the docker run command with `--env-file` flag. For example, create a file named `mainnet.env` with the following content:
@@ -14853,7 +14851,7 @@ docker run --name mina-seed-node -d \
 -v "$(pwd)/keys:/root/keys:ro" \
 -v "$(pwd)/.mina-config:/root/.mina-config" \
 -v "$(pwd)/.mina-env:/entrypoint.d/mina-env:ro" \
-minaprotocol/mina-daemon:4.0.0-6850301-bullseye-mainnet \
+minaprotocol/mina-daemon:4.0.3-73134bf-bookworm-mainnet \
 daemon
 ```
 
@@ -15642,7 +15640,7 @@ docker run --name mina-node -d \
 -v $(pwd)/.mina-env:/entrypoint.d/mina-env:ro \
 -v $(pwd)/keys:/keys:ro \
 -v $(pwd)/.mina-config:/root/.mina-config \
-minaprotocol/mina-daemon:4.0.0-6850301-bullseye-mainnet \
+minaprotocol/mina-daemon:4.0.3-73134bf-bookworm-mainnet \
 daemon
 ```
 
@@ -15656,7 +15654,7 @@ docker run --name mina-node -d \
 -v $(pwd)/.mina-env:/entrypoint.d/mina-env:ro \
 -v $(pwd)/keys:/keys:ro \
 -v $(pwd)/.mina-config:/root/.mina-config \
-minaprotocol/mina-daemon:4.0.0-6965b50-bullseye-devnet \
+minaprotocol/mina-daemon:4.0.3-73134bf-bookworm-devnet \
 daemon
 ```
 
@@ -15796,7 +15794,7 @@ If you don't have Mina installed locally, you can use Docker. Start an interacti
 ```sh
 docker run -it --rm --entrypoint /bin/bash \
        --volume "$YOUR_KEY_DIR":/root/keys \
-       minaprotocol/mina-daemon:4.0.0-6850301-bullseye-mainnet
+       minaprotocol/mina-daemon:4.0.3-73134bf-bookworm-mainnet
 ```
 
 All `mina` commands below can then be run directly inside the container.
@@ -15900,7 +15898,7 @@ For pre-release builds, see the [Mina Releases](https://github.com/MinaProtocol/
 sudo rm /etc/apt/sources.list.d/mina*.list
 echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
 sudo apt-get update
-sudo apt-get install --yes unzip mina-mainnet=4.0.0-6850301
+sudo apt-get install --yes unzip mina-mainnet=4.0.3-73134bf
 ```
 
 </TabItem>
@@ -15908,10 +15906,10 @@ sudo apt-get install --yes unzip mina-mainnet=4.0.0-6850301
 
 ```sh
 sudo rm /etc/apt/sources.list.d/mina*.list
-echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) alpha" | sudo tee /etc/apt/sources.list.d/mina-devnet.list
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina-devnet.list
 sudo apt-get install --yes apt-transport-https
 sudo apt-get update
-sudo apt-get install --yes unzip mina-devnet=4.0.0-6965b50
+sudo apt-get install --yes unzip mina-devnet=4.0.3-73134bf
 ```
 
 </TabItem>
